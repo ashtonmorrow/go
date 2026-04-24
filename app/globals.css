@@ -1,0 +1,42 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  body {
+    @apply bg-cream text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  a {
+    @apply text-teal transition-colors;
+  }
+  a:hover {
+    @apply text-ink-deep;
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink-deep;
+  }
+}
+
+/* Reusable patterns */
+.card {
+  @apply bg-cream-soft rounded overflow-hidden transition-shadow;
+}
+.card:hover {
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+.pill {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 text-small rounded-full bg-sand text-slate;
+}
+.kbd {
+  @apply font-mono text-[11px] text-muted;
+}
+
+/* Hide scrollbar but keep function */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

@@ -1,0 +1,127 @@
+'use client';
+
+import { APIProvider, Map, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
+import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import type { City } from '@/lib/notion';
+
+type Props = {
+  cities: Pick<City, 'id' | 'name' | 'slug' | 'country' | 'lat' | 'lng' | 'been' | 'go' | 'heroImage'>[];
+  apiKey: string;
+  mapId?: string;
+};
+
+type Filter = 'all' | 'been' | 'go';
+
+export default function CityMap({ cities, apiKey, mapId }: Props) {
+  const [filter, setFilter] = useState<Filter>('been');
+  const [selected, setSelected] = useState<Props['cities'][number] | null>(null);
+
+  const visible = useMemo(() => {
+    const withCoords = cities.filter(c => c.lat != null && c.lng != null);
+    if (filter === 'been') return withCoords.filter(c => c.been);
+    if (filter === 'go') return withCoords.filter(c => c.go);
+    return withCoords.filter(c => c.been || c.go);
+  }, [cities, filter]);
+
+  const counts = useMemo(() => {
+    const been = cities.filter(c => c.been).length;
+    const go = cities.filter(c => c.go).length;
+    return { been, go, all: been + go };
+  }, [cities]);
+
+  return (
+    <section className="relative">
+      <div className="max-w-page mx-auto px-5 pt-8 pb-4">
+        <h1 className="text-display text-ink-deep">Where I've been. Where I'm going.</h1>
+        <p className="mt-3 text-slate max-w-prose">
+          A living atlas of {counts.been} places I've visited and {counts.go} on the list. Click a pin for the story.
+        </p>
+      </div>
+
+      <div className="max-w-page mx-auto px-5 mb-3 flex items-center gap-2 text-small">
+        {([
+          { k: 'been' as const, label: 'Been' },
+          { k: 'go' as const, label: 'Go' },
+          { k: 'all' as const, label: 'All' },
+        ]).map(opt => {
+          const active = filter === opt.k;
+          const count = opt.k === 'been' ? counts.been : opt.k === 'go' ? counts.go : counts.all;
+          return (
+            <button
+              key={opt.k}
+              onClick={() => setFilter(opt.k)}
+              className={
+                'px-3 py-1.5 rounded-full border transition-colors ' +
+                (active
+                  ? 'bg-teal text-white border-teal'
+                  : 'bg-cream-soft text-slate border-sand hover:border-slate')
+              }
+            >
+              {opt.label} <span className="opacity-70 ml-1">{count}</span>
+            </button>
+          );
+        })}
+        <div className="ml-auto kbd">{visible.length} shown</div>
+      </div>
+
+      <div className="relative max-w-page mx-auto px-5">
+        <div className="rounded overflow-hidden border border-sand">
+          <div className="h-[70vh] w-full">
+            <APIProvider apiKey={apiKey}>
+              <Map
+                defaultCenter={{ lat: 25, lng: 10 }}
+                defaultZoom={2}
+                mapId={mapId}
+                gestureHandling="greedy"
+                disableDefaultUI={false}
+                clickableIcons={false}
+              >
+                {visible.map(c => (
+                  <AdvancedMarker
+                    key={c.id}
+                    position={{ lat: c.lat!, lng: c.lng! }}
+                    onClick={() => setSelected(c)}
+                  >
+                    <div
+                      className={
+                        'h-3 w-3 rounded-full border-2 border-white shadow-md ' +
+                        (c.been ? 'bg-teal' : 'bg-sky')
+                      }
+                    />
+                  </AdvancedMarker>
+                ))}
+                {selected && (
+                  <InfoWindow
+                    position={{ lat: selected.lat!, lng: selected.lng! }}
+                    onCloseClick={() => setSelected(null)}
+                    pixelOffset={[0, -10]}
+                  >
+                    <div className="min-w-[180px]">
+                      <div className="font-semibold text-ink-deep">{selected.name}</div>
+                      {selected.country && <div className="text-xs text-slate">{selected.country}</div>}
+                      <Link
+                        href={`/cities/${selected.slug}`}
+                        className="mt-2 inline-block text-xs text-teal"
+                      >
+                        View page →
+                      </Link>
+                    </div>
+                  </InfoWindow>
+                )}
+              </Map>
+            </APIProvider>
+          </div>
+        </div>
+        <div className="mt-3 flex gap-4 text-small text-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-teal" /> Been
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-sky" /> Go
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
