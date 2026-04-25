@@ -206,10 +206,10 @@ export default function CitiesGrid({ cities }: Props) {
 }
 
 // === Toggle ===
-// iOS-style switch with a label to the right. `on` is controlled. The whole
-// row is one button so the label is also a click target. We intentionally use
-// dark "ink-deep" for the on state to match the wireframe's solid black pill,
-// not the brand teal — keeps the chrome visually quiet.
+// iOS-style sliding switch with a label to the right. `on` is controlled.
+// Uses standard Tailwind `translate-x-5` for the knob slide so we don't
+// depend on arbitrary-value JIT generation; transition-transform animates
+// the slide cleanly.
 function Toggle({
   on,
   onChange,
@@ -220,29 +220,33 @@ function Toggle({
   label: string;
 }) {
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={on}
-      aria-label={label}
-      onClick={() => onChange(!on)}
-      className="inline-flex items-center gap-2 group"
-    >
-      <span
+    <label className="inline-flex items-center gap-2 cursor-pointer select-none">
+      <button
+        type="button"
+        role="switch"
+        aria-checked={on}
+        aria-label={label}
+        onClick={() => onChange(!on)}
         className={
-          'relative inline-block w-11 h-6 rounded-full transition-colors ' +
+          'relative inline-block w-11 h-6 rounded-full transition-colors duration-200 flex-shrink-0 ' +
           (on ? 'bg-ink-deep' : 'bg-sand')
         }
       >
         <span
+          aria-hidden
           className={
-            'absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ' +
-            (on ? 'left-[22px]' : 'left-0.5')
+            'absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ' +
+            (on ? 'translate-x-5' : 'translate-x-0')
           }
         />
+      </button>
+      <span
+        onClick={() => onChange(!on)}
+        className="text-ink text-small font-medium"
+      >
+        {label}
       </span>
-      <span className="text-ink text-small font-medium">{label}</span>
-    </button>
+    </label>
   );
 }
 
