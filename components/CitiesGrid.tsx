@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type City = {
   id: string;
@@ -131,6 +132,12 @@ export default function CitiesGrid({ cities }: Props) {
           <p className="text-slate mt-4 text-small">
             {filtered.length} of {cities.length}
           </p>
+          <Link
+            href="/map"
+            className="inline-flex items-center gap-1.5 mt-3 text-small text-teal hover:text-ink-deep transition-colors"
+          >
+            View on map <span aria-hidden>→</span>
+          </Link>
         </div>
         <input
           type="text"
@@ -401,12 +408,6 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           ' inset 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 0 0 4px transparent, inset 0 0 0 5px hsl(35 25% 86%)',
       }}
     >
-      {/* Printed "POST CARD" header at the top — like a real postal-issue card */}
-      <div
-        className="absolute top-1.5 inset-x-0 text-center text-[8px] uppercase tracking-[0.3em] text-ink-deep/35 font-medium pointer-events-none select-none z-0"
-      >
-        Post Card
-      </div>
       {/* === STAMP — top-right ===
           Real-stamp look via stamp-perforated CSS class (scalloped edges via mask) */}
       <div
@@ -436,7 +437,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       )}
 
       {/* === HEADER — top-left: city + country === */}
-      <div className="px-3.5 pt-5" style={{ paddingRight: 88 }}>
+      <div className="px-3.5 pt-3" style={{ paddingRight: 88 }}>
         <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
           {city.name}
         </h3>
