@@ -388,15 +388,25 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
 
         {/* === FRONT FACE (the postcard back side — address+stamp) === */}
         <div
-      className="flip-face postcard relative bg-white transition-shadow"
+      className="flip-face postcard relative transition-shadow"
       style={{
-        // White postcard with solid border + soft drop shadow (like sitting on a desk)
-        border: '1px solid hsl(35 22% 82%)',
+        // Warm-cream postcard with solid border + warm drop shadow + inset border ring
+        background: '#fdfaf2', // slightly aged cream paper
+        border: '1px solid hsl(35 25% 78%)',
         borderRadius: 4,
         boxShadow:
-          '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
+          // Warm drop shadow (paper resting on a desk, not blue-gray)
+          '0 1px 2px rgba(80, 56, 28, 0.06), 0 4px 8px rgba(80, 56, 28, 0.07), 0 12px 18px -6px rgba(80, 56, 28, 0.08),' +
+          // Inset border line (printed frame inside the card edge)
+          ' inset 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 0 0 4px transparent, inset 0 0 0 5px hsl(35 25% 86%)',
       }}
     >
+      {/* Printed "POST CARD" header at the top — like a real postal-issue card */}
+      <div
+        className="absolute top-1.5 inset-x-0 text-center text-[8px] uppercase tracking-[0.3em] text-ink-deep/35 font-medium pointer-events-none select-none z-0"
+      >
+        Post Card
+      </div>
       {/* === STAMP — top-right ===
           Real-stamp look via stamp-perforated CSS class (scalloped edges via mask) */}
       <div
@@ -426,7 +436,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       )}
 
       {/* === HEADER — top-left: city + country === */}
-      <div className="px-3.5 pt-3" style={{ paddingRight: 88 }}>
+      <div className="px-3.5 pt-5" style={{ paddingRight: 88 }}>
         <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
           {city.name}
         </h3>
@@ -491,6 +501,12 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               </div>
             )}
           </dl>
+          {/* Faux address lines below the stats — like the recipient lines on real postcards */}
+          <div className="mt-2 space-y-1">
+            <div className="h-px bg-sand opacity-60" />
+            <div className="h-px bg-sand opacity-50" />
+            <div className="h-px bg-sand opacity-40" />
+          </div>
         </div>
       </div>
 
