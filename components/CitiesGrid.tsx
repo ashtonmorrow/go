@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ViewSwitcher from './ViewSwitcher';
+import { useCityFilters } from './CityFiltersContext';
+import type { Continent, KoppenGroup, VisaUs, TapWater, DriveSide } from './CityFiltersContext';
 
 type City = {
   id: string;
@@ -26,39 +28,96 @@ type City = {
   savedPlaces: string | null;
   currency: string | null;
   language: string | null;
-  driveSide: 'L' | 'R' | null;
+  driveSide: DriveSide | null;
+  // Country-derived facts used as filter axes (passed in from page.tsx)
+  continent: Continent | null;
+  visa: VisaUs | null;
+  tapWater: TapWater | null;
 };
 
 type Props = { cities: City[] };
-
-type SortKey = 'name' | 'population' | 'elevation' | 'avgHigh' | 'founded';
 
 const PAGE_SIZE = 36;
 
 export default function CitiesGrid({ cities }: Props) {
   const router = useRouter();
-  const [sort, setSort] = useState<SortKey>('name');
-  const [desc, setDesc] = useState(false);
-  // Independent Been / Go toggles (replacing single 4-value filter).
-  // Both off = show all. Either on = show union of selected.
-  // Default matches the previous "Been" filter so /cities loads on the same set.
-  const [showBeen, setShowBeen] = useState(true);
-  const [showGo, setShowGo] = useState(false);
-  const [q, setQ] = useState('');
+  const filters = useCityFilters();
+  // Filter state lives in the sidebar via context; defaults here are only
+  // used if for some reason the provider isn't mounted (defensive).
+  const state = filters?.state;
+  const setCounts = filters?.setCounts;
+
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filtered = useMemo(() => {
+    if (!state) return cities;
+    const {
+      q,
+      showBeen,
+      showGo,
+      showSaved,
+      continents,
+      koppenGroups,
+      visa,
+      tapWater,
+      drive,
+      sort,
+      desc,
+    } = state;
+
     let list = cities;
-    // Apply personal-status toggles. If both off, no status filter.
-    if (showBeen || showGo) {
-      list = list.filter(c => (showBeen && c.been) || (showGo && c.go));
+
+    // 1. Personal status — Been / Go / Saved as independent inclusive filters.
+    //    If none are on, no status filter (show all). If any are on, show
+    //    cities that match any of the selected.
+    if (showBeen || showGo || showSaved) {
+      list = list.filter(
+        c =>
+          (showBeen && c.been) ||
+          (showGo && c.go) ||
+          (showSaved && !!c.savedPlaces)
+      );
     }
+
+    // 2. Free text search over name + country.
     if (q.trim()) {
       const needle = q.trim().toLowerCase();
       list = list.filter(
-        c => c.name.toLowerCase().includes(needle) || (c.country || '').toLowerCase().includes(needle)
+        c =>
+          c.name.toLowerCase().includes(needle) ||
+          (c.country || '').toLowerCase().includes(needle)
       );
     }
+
+    // 3. Continent multi-select.
+    if (continents.size > 0) {
+      list = list.filter(c => c.continent && continents.has(c.continent));
+    }
+
+    // 4. Köppen climate group — first letter of code (Csa → C).
+    if (koppenGroups.size > 0) {
+      list = list.filter(c => {
+        const g = c.koppen?.[0]?.toUpperCase();
+        return g && koppenGroups.has(g as KoppenGroup);
+      });
+    }
+
+    // 5. Visa requirement (US passport).
+    if (visa.size > 0) {
+      list = list.filter(c => c.visa && visa.has(c.visa));
+    }
+
+    // 6. Tap water safety.
+    if (tapWater.size > 0) {
+      list = list.filter(c => c.tapWater && tapWater.has(c.tapWater));
+    }
+
+    // 7. Drive side.
+    if (drive.size > 0) {
+      list = list.filter(c => c.driveSide && drive.has(c.driveSide));
+    }
+
+    // 8. Sort.
     const get = (c: City): any => {
       if (sort === 'name') return c.name?.toLowerCase() ?? '';
       if (sort === 'founded') {
@@ -78,11 +137,17 @@ export default function CitiesGrid({ cities }: Props) {
       if (av > bv) return desc ? -1 : 1;
       return 0;
     });
-  }, [cities, sort, desc, showBeen, showGo, q]);
+  }, [cities, state]);
 
+  // Reset pagination + push result count to the sidebar whenever filters
+  // change. The sidebar's FilterPanel reads totalCount/resultCount from
+  // context and renders "X / Y cities" near the Clear button.
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [showBeen, showGo, sort, desc, q]);
+  }, [state]);
+  useEffect(() => {
+    setCounts?.(filtered.length, cities.length);
+  }, [filtered.length, cities.length, setCounts]);
 
   const sentinel = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -103,80 +168,23 @@ export default function CitiesGrid({ cities }: Props) {
   const visible = filtered.slice(0, visibleCount);
   const remaining = filtered.length - visibleCount;
 
-  // Sort field buttons (left column under the prose). The wireframe shows 4
-  // pills next to the Map toggle. Name is the implicit default (controlled by
-  // A–Z / Z–A on the right) so it isn't a button here.
-  const sortButtons: { k: SortKey; label: string }[] = [
-    { k: 'founded', label: 'Founded' },
-    { k: 'population', label: 'Population' },
-    { k: 'elevation', label: 'Elevation' },
-    { k: 'avgHigh', label: 'Temp' },
-  ];
-
   return (
     <section className="max-w-page mx-auto px-5 py-10">
-      {/* Header — two columns. Left is editorial (title, prose). Right is
-          everything personal-to-me: search, my Been/Go status, sort direction. */}
-      <div className="flex items-start justify-between gap-6 flex-wrap">
-        <div className="max-w-prose">
-          <h1 className="text-h1 text-ink-deep">Cities</h1>
-          <p className="text-slate mt-3 leading-relaxed">
-            I am currently using Notion to keep my travel notes organized. Originally
-            everything was hand curated. Today much of it is scraped from open source
-            sites across the web. I&apos;m often asked to share observations or notes
-            about a specific destination, so this page seemed like a good compromise.
-            Currently the cities postcards directly query my Notion via the API so
-            be patient with the load time!
-          </p>
-          <p className="text-muted mt-3 text-small italic">
-            PS, this page is like everything else, just for fun and a work in progress.
-          </p>
-        </div>
-
-        {/* Right column: search + my filters + sort direction.
-            Stacked top-to-bottom; right-aligned to match the wireframe. */}
-        <div className="flex flex-col items-start gap-3 self-start">
-          <input
-            type="text"
-            placeholder="Search city or country"
-            value={q}
-            onChange={e => setQ(e.target.value)}
-            className="px-3 py-2 rounded border border-sand bg-white text-ink text-sm focus:outline-none focus:border-teal w-64"
-          />
-          <div className="flex items-center gap-5">
-            <Toggle on={showBeen} onChange={setShowBeen} label="Been?" />
-            <Toggle on={showGo} onChange={setShowGo} label="Go?" />
-          </div>
-          <Segmented
-            value={desc ? 'desc' : 'asc'}
-            options={[
-              { value: 'asc', label: 'A-Z' },
-              { value: 'desc', label: 'Z-A' },
-            ]}
-            onChange={v => setDesc(v === 'desc')}
-          />
-        </div>
-      </div>
-
-      {/* Below the header: sort-field pills.
-          (The Postcard/Map view switcher now lives as a floating control
-          in the bottom-right via <ViewSwitcher>, mounted at the bottom of
-          this component so it's available without scrolling back up.) */}
-      <div className="mt-6 flex flex-wrap items-center gap-2 text-small">
-        {sortButtons.map(s => (
-          <button
-            key={s.k}
-            onClick={() => setSort(s.k)}
-            className={
-              'px-4 py-2 rounded-md transition-colors font-medium ' +
-              (sort === s.k
-                ? 'bg-ink-deep text-cream-soft'
-                : 'bg-ink-deep/95 text-cream-soft hover:bg-ink-deep')
-            }
-          >
-            {s.label}
-          </button>
-        ))}
+      {/* Page header — title + intro prose only. All filter / sort / search
+          controls now live in the sidebar (see <FilterPanel>). */}
+      <div className="max-w-prose">
+        <h1 className="text-h1 text-ink-deep">Cities</h1>
+        <p className="text-slate mt-3 leading-relaxed">
+          I am currently using Notion to keep my travel notes organized. Originally
+          everything was hand curated. Today much of it is scraped from open source
+          sites across the web. I&apos;m often asked to share observations or notes
+          about a specific destination, so this page seemed like a good compromise.
+          Currently the cities postcards directly query my Notion via the API so
+          be patient with the load time!
+        </p>
+        <p className="text-muted mt-3 text-small italic">
+          PS, this page is like everything else, just for fun and a work in progress.
+        </p>
       </div>
 
       {/* Postcard grid: landscape cards, 3 columns max so each card has room
@@ -205,85 +213,10 @@ export default function CitiesGrid({ cities }: Props) {
   );
 }
 
-// === Toggle ===
-// iOS-style sliding switch with a label to the right. `on` is controlled.
-// Uses standard Tailwind `translate-x-5` for the knob slide so we don't
-// depend on arbitrary-value JIT generation; transition-transform animates
-// the slide cleanly.
-function Toggle({
-  on,
-  onChange,
-  label,
-}: {
-  on: boolean;
-  onChange: (next: boolean) => void;
-  label: string;
-}) {
-  return (
-    <label className="inline-flex items-center gap-2 cursor-pointer select-none">
-      <button
-        type="button"
-        role="switch"
-        aria-checked={on}
-        aria-label={label}
-        onClick={() => onChange(!on)}
-        className={
-          'relative inline-block w-11 h-6 rounded-full transition-colors duration-200 flex-shrink-0 ' +
-          (on ? 'bg-ink-deep' : 'bg-sand')
-        }
-      >
-        <span
-          aria-hidden
-          className={
-            'absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-200 ' +
-            (on ? 'translate-x-5' : 'translate-x-0')
-          }
-        />
-      </button>
-      <span
-        onClick={() => onChange(!on)}
-        className="text-ink text-small font-medium"
-      >
-        {label}
-      </span>
-    </label>
-  );
-}
-
-// === Segmented control ===
-// Two-option pill segment, used for A–Z / Z–A sort direction in the header.
-// Generic on the value type so the same component can host other binary
-// segment controls later (e.g. C / F unit toggle).
-function Segmented<T extends string>({
-  value,
-  options,
-  onChange,
-}: {
-  value: T;
-  options: { value: T; label: string }[];
-  onChange: (next: T) => void;
-}) {
-  return (
-    <div className="inline-flex rounded-md border border-sand bg-white p-0.5">
-      {options.map(o => {
-        const active = o.value === value;
-        return (
-          <button
-            key={o.value}
-            type="button"
-            onClick={() => onChange(o.value)}
-            className={
-              'px-3 py-1 rounded text-small font-medium transition-colors ' +
-              (active ? 'bg-cream-soft text-ink-deep' : 'text-slate hover:text-ink-deep')
-            }
-          >
-            {o.label}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
+// (Page-level Toggle and Segmented helpers were moved to FilterPanel where
+//  they live as Switch / Select / DirectionButton tied to the sidebar
+//  cockpit. Removing them from here keeps this file focused on the
+//  postcard rendering.)
 
 function Postmark({ label, subtitle, color }: { label: string; subtitle: string; color: string }) {
   // Hand-stamped postal cancellation mark, semi-transparent, slightly rotated,

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '@/components/Sidebar';
+import { CityFiltersProvider } from '@/components/CityFiltersContext';
 
 export const metadata: Metadata = {
   title: 'Go · Mike Lee',
@@ -15,10 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             On mobile (< md) the sidebar collapses into a top bar + drawer
             (rendered inside <Sidebar /> itself) so this flex layout still
             works; the drawer is fixed-positioned and doesn't affect flow. */}
-        <div className="md:flex md:min-h-screen">
-          <Sidebar />
-          <main className="flex-1 min-w-0">{children}</main>
-        </div>
+        <CityFiltersProvider>
+          <div className="md:flex md:min-h-screen">
+            <Sidebar />
+            <main className="flex-1 min-w-0">{children}</main>
+          </div>
+        </CityFiltersProvider>
       </body>
     </html>
   );

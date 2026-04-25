@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import FilterPanel from './FilterPanel';
+import { useCityFilters } from './CityFiltersContext';
 
 type Counts = {
   cities: number;
@@ -89,8 +91,15 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
 
 // === NavBody ===
 // The actual sidebar contents — shared between desktop rail and mobile drawer.
+//
+// On /cities the panel becomes a full filter cockpit: pages → filter panel
+// (search, status, geography, practicality, sort) → elsewhere. On every
+// other page the filter panel is hidden and the collections section takes
+// its place.
 function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => void }) {
   const pathname = usePathname() || '';
+  const filtersAvailable = useCityFilters() !== null;
+  const showFilters = filtersAvailable && pathname.startsWith('/cities') && !pathname.match(/^\/cities\/.+/);
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
@@ -107,7 +116,7 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         </Link>
       </div>
 
-      {/* Pages */}
+      {/* Pages — always visible */}
       <Section label="Pages">
         {PAGES.map(p => {
           const active = pathname === p.href || (p.href === '/cities' && pathname.startsWith('/cities/'));
@@ -124,14 +133,19 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         })}
       </Section>
 
-      {/* Collections — informational stats with click-through to /cities */}
-      <Section label="Collections">
-        <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
-        <Item href="/cities" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
-        <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
-        <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
-        <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
-      </Section>
+      {/* On /cities: full filter cockpit. Otherwise: read-only collection
+          stats so the user still sees how many cities/countries/etc exist. */}
+      {showFilters ? (
+        <FilterPanel />
+      ) : (
+        <Section label="Collections">
+          <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
+          <Item href="/cities" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
+          <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
+          <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
+          <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
+        </Section>
+      )}
 
       {/* Elsewhere — external Mike Lee subdomains */}
       <Section label="Elsewhere">
