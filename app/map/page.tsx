@@ -4,16 +4,16 @@ import WorldGlobe from '@/components/WorldGlobeLoader';
 export const revalidate = 3600;
 export const metadata = { title: 'Map · go.mike-lee' };
 
-// Full-bleed map page. The map itself takes the entire content area below
-// the sticky nav so the focus stays on the pins. No headline, no description,
-// no counts — just the map. Renders as a 3D globe by default with a Flat
-// (Mercator) projection toggle.
+// Full-bleed map page. Now shows ALL cities (not just Been/Go) so the
+// sister-city network is visible. Visited / Planned / Other are colour
+// differentiated, and clicking a pin reveals that city's sister-city
+// connections as drawn lines on the globe.
 export default async function MapPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const countryById = new Map(countries.map(c => [c.id, c]));
 
   const pins = cities
-    .filter(c => (c.been || c.go) && c.lat != null && c.lng != null)
+    .filter(c => c.lat != null && c.lng != null)
     .map(c => {
       const country = c.countryPageId ? countryById.get(c.countryPageId) : null;
       return {
@@ -26,6 +26,7 @@ export default async function MapPage() {
         go: c.go,
         lat: c.lat as number,
         lng: c.lng as number,
+        sisterCities: c.sisterCities,
       };
     });
 
