@@ -1,12 +1,13 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
-import WorldMap from '@/components/WorldMap';
+import WorldGlobe from '@/components/WorldGlobeLoader';
 
 export const revalidate = 3600;
 export const metadata = { title: 'Map · go.mike-lee' };
 
-// Full-bleed map page. The map itself takes the entire content area below the
-// sticky nav so the focus stays on the pins. No headline, no description, no
-// counts — just the map.
+// Full-bleed map page. The map itself takes the entire content area below
+// the sticky nav so the focus stays on the pins. No headline, no description,
+// no counts — just the map. Renders as a 3D globe by default with a Flat
+// (Mercator) projection toggle.
 export default async function MapPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const countryById = new Map(countries.map(c => [c.id, c]));
@@ -28,5 +29,5 @@ export default async function MapPage() {
       };
     });
 
-  return <WorldMap pins={pins} />;
+  return <WorldGlobe pins={pins} />;
 }
