@@ -13,6 +13,7 @@ import {
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import ViewSwitcher from './ViewSwitcher';
+import { COLORS } from '@/lib/colors';
 
 type Pin = {
   id: string;
@@ -175,7 +176,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             id="connections-layer"
             type="line"
             paint={{
-              'line-color': '#b8862e',
+              'line-color': COLORS.accent,
               'line-width': 1.5,
               'line-opacity': 0.55,
               'line-dasharray': [2, 2],
@@ -201,20 +202,20 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
               'circle-color': [
                 'case',
                 ['boolean', ['get', 'selected'], false],
-                '#0f172a',
+                COLORS.inkDeep,
                 ['boolean', ['get', 'sister'], false],
-                '#b8862e',
+                COLORS.accent,
                 [
                   'match',
                   ['get', 'status'],
                   STATUS_BEEN,
-                  '#2f6f73',
+                  COLORS.teal,
                   STATUS_GO,
-                  '#6b7c8f',
-                  '#c8c4ba',
+                  COLORS.slate,
+                  COLORS.pinIdle,
                 ],
               ],
-              'circle-stroke-color': '#ffffff',
+              'circle-stroke-color': COLORS.white,
               'circle-stroke-width': [
                 'case',
                 ['boolean', ['get', 'selected'], false],
@@ -329,11 +330,11 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             Been
           </div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ background: '#6b7c8f' }} />
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate" />
             Want to go
           </div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: '#c8c4ba' }} />
+            <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: COLORS.pinIdle }} />
             Sister-city network
           </div>
           <div className="text-muted text-[10px] mt-1.5 pt-1.5 border-t border-sand">

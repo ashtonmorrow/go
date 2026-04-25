@@ -4,31 +4,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* === Base layer ============================================================
+   Body type, link colours, heading colours — the foundation every page
+   inherits before any component-specific styling. */
 @layer base {
   html {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   body {
     @apply bg-white text-ink antialiased;
+    /* Inter alternate-glyph features that look nicer on small UI text */
     font-feature-settings: 'cv11', 'ss01';
   }
+  /* Link convention: subtle ink-deep on hover (not jumpy brand teal) so the
+     site doesn't flicker every time the cursor passes a link. The teal is
+     reserved for explicit "navigate to my Notion" calls. */
   a {
-    @apply text-teal transition-colors;
+    @apply text-ink-deep transition-colors;
   }
   a:hover {
-    @apply text-ink-deep;
+    @apply text-teal;
   }
   h1, h2, h3, h4 {
     @apply text-ink-deep;
   }
 }
 
-/* Reusable patterns */
+/* === Component primitives ==================================================
+   .card  — neutral surface card (sidebar facts, detail-page asides)
+   .pill  — small inline badge for tags / counts
+   .kbd   — keyboard shortcut hint
+   These are intentionally generic so any page can compose them. */
 .card {
   @apply bg-cream-soft rounded overflow-hidden transition-shadow;
 }
 .card:hover {
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.05);
+  @apply shadow-card;
 }
 .pill {
   @apply inline-flex items-center gap-1 px-2 py-0.5 text-small rounded-full bg-sand text-slate;

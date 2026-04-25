@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import ViewSwitcher from './ViewSwitcher';
 import { useCityFilters } from './CityFiltersContext';
 import type { Continent, KoppenGroup, VisaUs, TapWater, DriveSide } from './CityFiltersContext';
+import { COLORS } from '@/lib/colors';
 
 type City = {
   id: string;
@@ -343,13 +344,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         {/* === BACK FACE === a country/region map with the city marked === */}
         {hasLocation && tiles.length > 0 && (
           <div
-            className="flip-face flip-face-back overflow-hidden bg-cream-soft"
-            style={{
-              border: '1px solid hsl(35 22% 82%)',
-              borderRadius: 4,
-              boxShadow:
-                '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
-            }}
+            className="flip-face flip-face-back overflow-hidden bg-cream-soft border border-paper-edge rounded-[4px] shadow-card"
           >
             {/* 3x3 tile grid, anchored so the city's exact pixel sits at
                 card centre (50% / 50%). The translate negates gridCity to
@@ -405,7 +400,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                   width: 14,
                   height: 14,
                   borderRadius: '50%',
-                  background: '#2f6f73',
+                  background: COLORS.teal,
                   border: '2px solid white',
                   boxShadow: '0 0 0 6px rgba(47, 111, 115, 0.22)',
                 }}
@@ -436,13 +431,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={e => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-ink-deep text-[11px] font-medium hover:bg-cream-soft transition-colors flex-shrink-0"
-                  style={{
-                    borderBottom: '1px solid #0f172a',
-                    borderRadius: 0,
-                    boxShadow:
-                      '0 0.6px 0.6px -1.25px rgba(0,0,0,0.18), 0 2.29px 2.29px -2.5px rgba(0,0,0,0.16), 0 10px 10px -3.75px rgba(0,0,0,0.06)',
-                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-ink-deep text-[11px] font-medium hover:bg-cream-soft transition-colors flex-shrink-0 border-b border-ink-deep shadow-pill rounded-none"
                 >
                   View my Pins <span aria-hidden>📍</span>
                 </a>
@@ -451,19 +440,19 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           </div>
         )}
 
-        {/* === FRONT FACE (the postcard back side — address+stamp) === */}
+        {/* === FRONT FACE (the postcard back side — address+stamp) ===
+            Uses design-system tokens: bg-paper (the warm card colour),
+            border-paper-edge, shadow-paper. The inner inset 5px ring fakes a
+            printed frame just inside the edge — kept inline because it has
+            to stack with the drop shadow. */}
         <div
-      className="flip-face postcard relative transition-shadow"
+      className="flip-face postcard relative transition-shadow bg-paper rounded-[4px] border border-paper-edge"
       style={{
-        // Warm-cream postcard with solid border + warm drop shadow + inset border ring
-        background: '#fdfaf2', // slightly aged cream paper
-        border: '1px solid hsl(35 25% 78%)',
-        borderRadius: 4,
         boxShadow:
-          // Warm drop shadow (paper resting on a desk, not blue-gray)
+          // Drop shadow (warm, like real paper)
           '0 1px 2px rgba(80, 56, 28, 0.06), 0 4px 8px rgba(80, 56, 28, 0.07), 0 12px 18px -6px rgba(80, 56, 28, 0.08),' +
-          // Inset border line (printed frame inside the card edge)
-          ' inset 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 0 0 4px transparent, inset 0 0 0 5px hsl(35 25% 86%)',
+          // Inset frame
+          ' inset 0 0 0 1px rgba(255, 255, 255, 0.5), inset 0 0 0 5px hsl(35 25% 86%)',
       }}
     >
       {/* === STAMP — top-right ===
@@ -495,7 +484,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         <Postmark
           label={city.been ? 'VISITED' : 'PLANNING'}
           subtitle={city.country || ''}
-          color={city.been ? '#2f6f73' : '#6b7c8f'}
+          color={city.been ? COLORS.teal : COLORS.slate}
         />
       )}
 
