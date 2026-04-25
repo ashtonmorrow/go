@@ -24,6 +24,9 @@ type City = {
   koppen: string | null;
   founded: string | null;
   savedPlaces: string | null;
+  currency: string | null;
+  language: string | null;
+  driveSide: 'L' | 'R' | null;
 };
 
 type Props = { cities: City[] };
@@ -224,8 +227,10 @@ function Postmark({ label, subtitle, color }: { label: string; subtitle: string;
       className="absolute z-20 pointer-events-none"
       style={{
         // Positioned to overlap the upper-left corner of the postage stamp,
-        // simulating a real postal cancellation hitting the stamp.
-        top: -4,
+        // simulating a real postal cancellation hitting the stamp. The stamp
+        // now sits at top-1, so the postmark drops a hair to land more
+        // squarely on the stamp face rather than running off the top.
+        top: 2,
         right: 38,
         width: 60,
         height: 60,
@@ -287,23 +292,43 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   const seed = (city.id || '').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
   const tilt = ((seed % 25) - 12) / 10; // -1.2..1.2 deg
 
-  // OSM tile coords for the back-of-postcard map.
-  // Zoom 4 = ~2500km per tile (continental view). For most countries, the city
-  // sits inside its tile with country context visible around it.
+  // === Back-of-postcard map ===
+  // Earlier this used a single OSM tile + background-position to "pan" to the
+  // city. That math is wrong with `background-size: cover` on a non-square
+  // card: cover scales the tile to fill the card and on the wider axis there's
+  // no slack to pan, so the city ends up offset from where the pin is drawn
+  // (50%/50%). Fix: render a 3x3 grid of tiles centred on the city's tile,
+  // then translate that grid so the city's exact pixel sits dead-centre under
+  // the pin. With 9 tiles around the city we always have enough map to fill
+  // the card no matter where the city falls within its tile.
   const ZOOM = 4;
-  let tileUrl: string | null = null;
-  let subPctX = 50;
-  let subPctY = 50;
+  const TILE_SIZE = 256;
+  type Tile = { dx: number; dy: number; url: string | null };
+  let tiles: Tile[] = [];
+  let cityPxX = 0;
+  let cityPxY = 0;
   if (hasLocation) {
     const n = Math.pow(2, ZOOM);
     const xf = ((city.lng! + 180) / 360) * n;
     const yf = ((1 - Math.asinh(Math.tan((city.lat! * Math.PI) / 180)) / Math.PI) / 2) * n;
-    const tileX = Math.floor(xf);
-    const tileY = Math.floor(yf);
-    tileUrl = `https://tile.openstreetmap.org/${ZOOM}/${tileX}/${tileY}.png`;
-    subPctX = ((xf - tileX) * 100); // city's x within tile, as percent
-    subPctY = ((yf - tileY) * 100);
+    const cityTileX = Math.floor(xf);
+    const cityTileY = Math.floor(yf);
+    cityPxX = (xf - cityTileX) * TILE_SIZE; // 0..256, city's x within centre tile
+    cityPxY = (yf - cityTileY) * TILE_SIZE;
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        const tx = cityTileX + dx;
+        const ty = cityTileY + dy;
+        // Wrap longitude (the world is a cylinder); clamp out-of-range Y near the poles
+        const wx = ((tx % n) + n) % n;
+        const url = ty < 0 || ty >= n ? null : `https://tile.openstreetmap.org/${ZOOM}/${wx}/${ty}.png`;
+        tiles.push({ dx, dy, url });
+      }
+    }
   }
+  // City's pixel within the 3x3 grid (768x768): centre tile starts at (TILE_SIZE, TILE_SIZE).
+  const gridCityX = TILE_SIZE + cityPxX; // ∈ [256, 512]
+  const gridCityY = TILE_SIZE + cityPxY;
 
   // Outer wrapper: provides perspective + size + click handler
   return (
@@ -314,25 +339,56 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
     >
       <div className={'flip-card ' + (hasLocation ? '' : '!transform-none')}>
         {/* === BACK FACE === a country/region map with the city marked === */}
-        {hasLocation && tileUrl && (
+        {hasLocation && tiles.length > 0 && (
           <div
-            className="flip-face flip-face-back overflow-hidden bg-white"
+            className="flip-face flip-face-back overflow-hidden bg-cream-soft"
             style={{
               border: '1px solid hsl(35 22% 82%)',
               borderRadius: 4,
               boxShadow:
                 '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
-              // Map fills the entire card via background-image with cover.
-              // background-position pans the image so the city's exact lat/lng
-              // sits at the centre of the visible area regardless of where it
-              // happens to fall within the tile.
-              backgroundImage: `url(${tileUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: `${subPctX}% ${subPctY}%`,
-              backgroundRepeat: 'no-repeat',
             }}
           >
-            {/* City pin always at container centre (since bg is anchored to city) */}
+            {/* 3x3 tile grid, anchored so the city's exact pixel sits at
+                card centre (50% / 50%). The translate negates gridCity to
+                shift the grid up-and-left, then `left:50%;top:50%` puts that
+                negated point at the card centre — net effect: gridCity is at
+                card centre. The pin is drawn at card centre below. */}
+            <div
+              className="absolute"
+              style={{
+                left: '50%',
+                top: '50%',
+                width: TILE_SIZE * 3,
+                height: TILE_SIZE * 3,
+                transform: `translate(${-gridCityX}px, ${-gridCityY}px)`,
+                pointerEvents: 'none',
+              }}
+            >
+              {tiles.map(t =>
+                t.url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={`${t.dx}_${t.dy}`}
+                    src={t.url}
+                    alt=""
+                    style={{
+                      position: 'absolute',
+                      left: (t.dx + 1) * TILE_SIZE,
+                      top: (t.dy + 1) * TILE_SIZE,
+                      width: TILE_SIZE,
+                      height: TILE_SIZE,
+                      display: 'block',
+                    }}
+                    loading="lazy"
+                    draggable={false}
+                  />
+                ) : null
+              )}
+            </div>
+
+            {/* City pin always at container centre (since the tile grid is
+                anchored so the city's pixel lands here). */}
             <div
               className="absolute"
               style={{
@@ -409,11 +465,15 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       }}
     >
       {/* === STAMP — top-right ===
-          Real-stamp look via stamp-perforated CSS class (scalloped edges via mask) */}
+          Tucked closer to the top edge of the card so the cancellation
+          mark sits visibly on top of it (postmark below). White inner
+          background + cream perforations for clearly visible scalloped
+          edges against the warm card paper. */}
       <div
-        className="stamp-perforated absolute top-2.5 right-2.5 z-10 w-[68px] h-[84px] bg-cream-soft p-2 flex items-center justify-center"
+        className="stamp-perforated absolute top-1 right-2 z-10 w-[68px] h-[84px] bg-white p-2 flex items-center justify-center"
         style={{
           transform: 'rotate(2deg)',
+          boxShadow: '0 1px 1px rgba(80, 56, 28, 0.08)',
         }}
         title={city.cityFlag ? `${city.name} flag` : city.country ? `${city.country} flag` : ''}
       >
@@ -427,7 +487,8 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
 
       {/* === POSTMARK CANCELLATION STAMP ===
           Round inked stamp overlapping the postage stamp (like a real cancellation).
-          "VISITED" for Been, "PLANNING" for Go-only. */}
+          "VISITED" for Been, "PLANNING" for Go-only. Pulled up to follow
+          the stamp's new top-1 position. */}
       {(city.been || city.go) && (
         <Postmark
           label={city.been ? 'VISITED' : 'PLANNING'}
@@ -438,9 +499,24 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
 
       {/* === HEADER — top-left: city + country === */}
       <div className="px-3.5 pt-3" style={{ paddingRight: 88 }}>
-        <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
-          {city.name}
-        </h3>
+        <div className="flex items-center gap-1.5">
+          <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
+            {city.name}
+          </h3>
+          {city.savedPlaces && (
+            <a
+              href={city.savedPlaces}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              aria-label={`Open ${city.name} in Google Maps`}
+              title="Open my saved places in Google Maps"
+              className="text-[14px] leading-none flex-shrink-0 hover:scale-110 transition-transform"
+            >
+              <span aria-hidden>📍</span>
+            </a>
+          )}
+        </div>
         <p className="text-[10px] text-slate uppercase tracking-[0.12em] mt-0.5 truncate">
           {city.country}
         </p>
@@ -471,9 +547,12 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           </div>
         </div>
 
-        {/* RIGHT — address-style stat list */}
+        {/* RIGHT — address-style stat list. Compact 6-row layout fits inside
+            the bottom 42% of the card without forcing scrolling on smaller
+            tiles. Currency / language / drive-side come from the linked
+            Country page; if absent, the row is omitted. */}
         <div className="flex-1 min-w-0">
-          <dl className="text-[10px] leading-[1.4] tabular-nums">
+          <dl className="text-[10px] leading-[1.35] tabular-nums">
             {fmtPopulation(city.population) && (
               <div className="flex justify-between gap-2">
                 <dt className="text-muted">pop</dt>
@@ -489,44 +568,36 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                 </dd>
               </div>
             )}
+            {city.currency && (
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted">cur</dt>
+                <dd className="text-ink truncate" title={city.currency}>{city.currency}</dd>
+              </div>
+            )}
+            {city.language && (
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted">lang</dt>
+                <dd className="text-ink truncate" title={city.language}>{city.language}</dd>
+              </div>
+            )}
+            {city.driveSide && (
+              <div className="flex justify-between gap-2">
+                <dt className="text-muted">drive</dt>
+                <dd className="text-ink">{city.driveSide === 'L' ? 'left' : 'right'}</dd>
+              </div>
+            )}
             {city.koppen && (
               <div className="flex justify-between gap-2">
                 <dt className="text-muted">cli</dt>
                 <dd className="text-ink">{city.koppen}</dd>
               </div>
             )}
-            {city.elevation != null && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">elev</dt>
-                <dd className="text-ink">{Math.round(city.elevation)}m</dd>
-              </div>
-            )}
           </dl>
-          {/* Faux address lines below the stats — like the recipient lines on real postcards */}
-          <div className="mt-2 space-y-1">
-            <div className="h-px bg-sand opacity-60" />
-            <div className="h-px bg-sand opacity-50" />
-            <div className="h-px bg-sand opacity-40" />
-          </div>
         </div>
       </div>
 
-      {/* === SAVED-PLACES PIN — bottom-right === */}
-      {city.savedPlaces && (
-        <a
-          href={city.savedPlaces}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={e => e.stopPropagation()}
-          aria-label={`Open ${city.name} in Google Maps`}
-          title="Open my saved places in Google Maps"
-          className="absolute bottom-2 right-2 z-10 w-6 h-6 rounded-full bg-cream/95 backdrop-blur border border-sand text-teal grid place-items-center hover:bg-teal hover:text-white transition-colors"
-        >
-          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden>
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" />
-          </svg>
-        </a>
-      )}
+      {/* Saved-places link is now in the header next to the city name as a
+          red 📍 emoji, so this corner is intentionally empty. */}
         </div>
       </div>
     </div>

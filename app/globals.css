@@ -76,8 +76,8 @@
    Uses CSS mask with stacked radial gradients to "punch out" semicircles
    along all four edges, mimicking a real stamp's serrated edge. */
 .stamp-perforated {
-  --p: 3px;       /* perforation circle radius */
-  --d: 7px;       /* spacing between perforations */
+  --p: 4px;       /* perforation circle radius — bumped up so teeth read clearly */
+  --d: 10px;      /* spacing between perforations */
   -webkit-mask:
     radial-gradient(circle var(--p) at center, transparent 99%, black 100%) top / var(--d) calc(var(--p) * 2) repeat-x,
     radial-gradient(circle var(--p) at center, transparent 99%, black 100%) bottom / var(--d) calc(var(--p) * 2) repeat-x,
