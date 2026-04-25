@@ -195,6 +195,52 @@ export default function CitiesGrid({ cities }: Props) {
   );
 }
 
+function Postmark({ label, subtitle, color }: { label: string; subtitle: string; color: string }) {
+  // Hand-stamped postal cancellation mark, semi-transparent, slightly rotated,
+  // overlapping the postage stamp the way real postmarks do.
+  // Shape: outer ring + inner ring, horizontal cancellation bar through middle,
+  // top arc text with the label and bottom arc with the subtitle.
+  const id = `pm-${Math.random().toString(36).slice(2, 7)}`;
+  return (
+    <div
+      className="absolute z-20 pointer-events-none"
+      style={{
+        top: -2,
+        right: 30,
+        width: 64,
+        height: 64,
+        transform: 'rotate(-12deg)',
+        opacity: 0.72,
+      }}
+      aria-hidden
+    >
+      <svg viewBox="0 0 64 64" width="64" height="64">
+        <defs>
+          <path id={`${id}-top`} d="M 8 32 a 24 24 0 0 1 48 0" fill="none" />
+          <path id={`${id}-bot`} d="M 8 32 a 24 24 0 0 0 48 0" fill="none" />
+        </defs>
+        {/* Outer & inner concentric rings */}
+        <circle cx="32" cy="32" r="29" fill="none" stroke={color} strokeWidth="1.5" />
+        <circle cx="32" cy="32" r="22" fill="none" stroke={color} strokeWidth="0.8" />
+        {/* Cancellation bar */}
+        <line x1="2" y1="32" x2="62" y2="32" stroke={color} strokeWidth="2" />
+        {/* Top arc text — the main label */}
+        <text fontSize="6.5" fontWeight="700" fill={color} letterSpacing="1.2">
+          <textPath href={`#${id}-top`} startOffset="50%" textAnchor="middle">
+            {label}
+          </textPath>
+        </text>
+        {/* Bottom arc text — country/subtitle */}
+        <text fontSize="4" fontWeight="500" fill={color} letterSpacing="0.4">
+          <textPath href={`#${id}-bot`} startOffset="50%" textAnchor="middle">
+            {(subtitle || '').slice(0, 18).toUpperCase()}
+          </textPath>
+        </text>
+      </svg>
+    </div>
+  );
+}
+
 function fmtCoord(value: number | null, axis: 'lat' | 'lng'): string {
   if (value == null) return '—';
   const dir = axis === 'lat' ? (value >= 0 ? 'N' : 'S') : value >= 0 ? 'E' : 'W';
@@ -216,38 +262,43 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   return (
     <div
       onClick={onClick}
-      className="postcard group cursor-pointer relative bg-cream-soft hover:bg-cream transition-colors"
+      className="postcard group cursor-pointer relative bg-white transition-shadow"
       style={{
-        // Postcard outer "perforation" — subtle dotted/dashed border
-        border: '1px dashed hsl(35 18% 72%)',
-        borderRadius: 6,
-        boxShadow: '0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 8px rgba(15, 23, 42, 0.03)',
+        // White postcard with solid border + soft drop shadow (like sitting on a desk)
+        border: '1px solid hsl(35 22% 82%)',
+        borderRadius: 4,
+        boxShadow:
+          '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
         aspectRatio: '5 / 3',
       }}
     >
-      {/* === STAMP — top-right === */}
+      {/* === STAMP — top-right ===
+          Real-stamp look via stamp-perforated CSS class (scalloped edges via mask) */}
       <div
-        className="absolute top-2 right-2 z-10 w-12 h-14 bg-cream-soft p-1 flex items-center justify-center"
+        className="stamp-perforated absolute top-2 right-2 z-10 w-12 h-14 bg-cream-soft p-1.5 flex items-center justify-center"
         style={{
-          // Mimic a stamp's perforated edge with a dashed border
-          border: '1.5px dashed hsl(35 18% 70%)',
           transform: 'rotate(2deg)',
-          boxShadow: '0 1px 2px rgba(15, 23, 42, 0.06)',
         }}
         title={city.cityFlag ? `${city.name} flag` : city.country ? `${city.country} flag` : ''}
       >
         {flagSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={flagSrc}
-            alt=""
-            className="w-full h-full object-contain"
-            loading="lazy"
-          />
+          <img src={flagSrc} alt="" className="w-full h-full object-contain" loading="lazy" />
         ) : (
-          <div className="w-full h-full bg-sand rounded-sm" />
+          <div className="w-full h-full bg-sand" />
         )}
       </div>
+
+      {/* === POSTMARK CANCELLATION STAMP ===
+          Round inked stamp overlapping the postage stamp (like a real cancellation).
+          "VISITED" for Been, "PLANNING" for Go-only. */}
+      {(city.been || city.go) && (
+        <Postmark
+          label={city.been ? 'VISITED' : 'PLANNING'}
+          subtitle={city.country || ''}
+          color={city.been ? '#2f6f73' : '#6b7c8f'}
+        />
+      )}
 
       {/* === HEADER — top-left: city + country === */}
       <div className="px-3.5 pt-3 pr-16">
@@ -256,8 +307,6 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         </h3>
         <p className="text-[10px] text-slate uppercase tracking-[0.12em] mt-0.5 truncate">
           {city.country}
-          {city.been && <span className="ml-1 text-teal">· been</span>}
-          {!city.been && city.go && <span className="ml-1 text-slate">· go</span>}
         </p>
       </div>
 

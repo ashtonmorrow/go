@@ -40,3 +40,25 @@
 /* Hide scrollbar but keep function */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === Postage-stamp perforation effect ===
+   Uses CSS mask with stacked radial gradients to "punch out" semicircles
+   along all four edges, mimicking a real stamp's serrated edge. */
+.stamp-perforated {
+  --p: 3px;       /* perforation circle radius */
+  --d: 7px;       /* spacing between perforations */
+  -webkit-mask:
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) top / var(--d) calc(var(--p) * 2) repeat-x,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) bottom / var(--d) calc(var(--p) * 2) repeat-x,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) left / calc(var(--p) * 2) var(--d) repeat-y,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) right / calc(var(--p) * 2) var(--d) repeat-y,
+    linear-gradient(black, black);
+  -webkit-mask-composite: source-out, source-out, source-out, source-out, source-over;
+  mask:
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) top / var(--d) calc(var(--p) * 2) repeat-x,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) bottom / var(--d) calc(var(--p) * 2) repeat-x,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) left / calc(var(--p) * 2) var(--d) repeat-y,
+    radial-gradient(circle var(--p) at center, transparent 99%, black 100%) right / calc(var(--p) * 2) var(--d) repeat-y,
+    linear-gradient(black, black);
+  mask-composite: exclude;
+}
