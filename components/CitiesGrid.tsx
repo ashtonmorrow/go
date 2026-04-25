@@ -346,8 +346,8 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   const flagSrc = city.cityFlag || city.countryFlag;
   // Postcard flips on hover IF we have coordinates (so we can render a map back).
   const hasLocation = city.lat != null && city.lng != null;
-  const dotX = city.lng != null ? ((city.lng + 180) / 360) * 100 : null;
-  const dotY = city.lat != null ? ((90 - city.lat) / 180) * 60 : null;
+  // (Previously: dotX/dotY for an inline postmark mini-map. Removed in the
+  //  typography redesign — the back-of-card map already shows location.)
 
   // Tiny deterministic rotation per card so the grid feels like a wall of
   // hand-placed postcards, not a uniform layout. Hash the id to a stable
@@ -560,10 +560,21 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         />
       )}
 
-      {/* === HEADER — top-left: city + country === */}
-      <div className="px-3.5 pt-3" style={{ paddingRight: 88 }}>
-        <div className="flex items-center gap-1.5">
-          <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
+      {/*  ──────────────────────────────────────────────────────────────
+            POSTCARD TYPOGRAPHY — three-tier type scale, two type families.
+            Following standard postcard design rules:
+              • One bold display headline (city) is the focal point
+              • Sans-serif label tier (country, stat labels)
+              • Monospace body tier (values) gives the typewriter-on-postcard
+                feel that ties the whole card together
+            Sizes are deliberately limited to avoid the previous "haphazard"
+            mix of 8px / 9px / 10px / 11px / 14px / 15px.
+          ──────────────────────────────────────────────────────────────  */}
+
+      {/* === HEADER — city name + country, top-left of card === */}
+      <div className="px-4 pt-3" style={{ paddingRight: 88 }}>
+        <div className="flex items-baseline gap-2 min-w-0">
+          <h3 className="text-ink-deep font-bold text-xl uppercase tracking-tight leading-none truncate">
             {city.name}
           </h3>
           {city.savedPlaces && (
@@ -574,95 +585,75 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               onClick={e => e.stopPropagation()}
               aria-label={`Open ${city.name} in Google Maps`}
               title="Open my saved places in Google Maps"
-              className="text-[14px] leading-none flex-shrink-0 hover:scale-110 transition-transform"
+              className="text-[15px] leading-none flex-shrink-0 hover:scale-110 transition-transform"
             >
               <span aria-hidden>📍</span>
             </a>
           )}
         </div>
-        <p className="text-[10px] text-slate uppercase tracking-[0.12em] mt-0.5 truncate">
+        <p className="text-[10px] text-slate uppercase tracking-[0.18em] mt-1 truncate">
           {city.country}
         </p>
+        {/* Letterhead-style rule under the headline. Subtle warm sand colour
+            so it reads as a printed line on the card, not a UI divider. */}
+        <div className="h-px bg-sand mt-2" />
       </div>
 
-      {/* === POSTCARD MIDDLE LINE — vertical divider === */}
-      <div className="absolute left-[42%] top-[58%] bottom-3 w-px border-l border-dashed border-sand" />
-
-      {/* === BODY — postmark on left, address-style data on right === */}
-      <div className="absolute inset-x-3.5 top-[58%] bottom-2 flex gap-3">
-        {/* LEFT — postmark with location dot */}
-        <div className="w-[38%] flex flex-col">
-          <svg viewBox="0 0 100 60" className="w-full" preserveAspectRatio="none" style={{ height: 32 }}>
-            <line x1="0" y1="30" x2="100" y2="30" stroke="hsl(35 22% 84%)" strokeWidth="0.5" />
-            <line x1="50" y1="0" x2="50" y2="60" stroke="hsl(35 22% 84%)" strokeWidth="0.5" />
-            <line x1="0" y1="22" x2="100" y2="22" stroke="hsl(35 22% 90%)" strokeWidth="0.3" strokeDasharray="1 2" />
-            <line x1="0" y1="38" x2="100" y2="38" stroke="hsl(35 22% 90%)" strokeWidth="0.3" strokeDasharray="1 2" />
-            {dotX != null && dotY != null && (
-              <>
-                <circle cx={dotX} cy={dotY} r="2.5" fill="#2f6f73" />
-                <circle cx={dotX} cy={dotY} r="5" fill="#2f6f73" opacity="0.18" />
-              </>
-            )}
-          </svg>
-          <div className="mt-0.5 text-[9px] font-mono text-muted leading-tight">
-            <div>{fmtCoord(city.lat, 'lat')}</div>
-            <div>{fmtCoord(city.lng, 'lng')}</div>
-          </div>
-        </div>
-
-        {/* RIGHT — address-style stat list. Compact 6-row layout fits inside
-            the bottom 42% of the card without forcing scrolling on smaller
-            tiles. Currency / language / drive-side come from the linked
-            Country page; if absent, the row is omitted. */}
-        <div className="flex-1 min-w-0">
-          <dl className="text-[10px] leading-[1.35] tabular-nums">
-            {fmtPopulation(city.population) && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">pop</dt>
-                <dd className="text-ink truncate">{fmtPopulation(city.population)}</dd>
-              </div>
-            )}
-            {(city.avgHigh != null || city.avgLow != null) && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">avg</dt>
-                <dd className="text-ink">
-                  {city.avgLow != null ? city.avgLow.toFixed(0) : '?'}–
-                  {city.avgHigh != null ? city.avgHigh.toFixed(0) : '?'}°C
-                </dd>
-              </div>
-            )}
-            {city.currency && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">cur</dt>
-                <dd className="text-ink truncate" title={city.currency}>{city.currency}</dd>
-              </div>
-            )}
-            {city.language && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">lang</dt>
-                <dd className="text-ink truncate" title={city.language}>{city.language}</dd>
-              </div>
-            )}
-            {city.driveSide && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">drive</dt>
-                <dd className="text-ink">{city.driveSide === 'L' ? 'left' : 'right'}</dd>
-              </div>
-            )}
-            {city.koppen && (
-              <div className="flex justify-between gap-2">
-                <dt className="text-muted">cli</dt>
-                <dd className="text-ink">{city.koppen}</dd>
-              </div>
-            )}
-          </dl>
-        </div>
+      {/* === BODY — single-column address-style stat list ===
+          Label on the left (sans, small caps), value on the right (mono).
+          Values are right-aligned so the column reads like a typewritten
+          receipt. The whole list sits between the headline rule and the
+          coords footer below. */}
+      <div className="absolute inset-x-4 top-[40%] bottom-7 flex flex-col justify-around">
+        <dl className="text-[11px] leading-tight">
+          {fmtPopulation(city.population) && (
+            <Row label="Population" value={fmtPopulation(city.population)!} />
+          )}
+          {(city.avgHigh != null || city.avgLow != null) && (
+            <Row
+              label="Avg Temp"
+              value={
+                (city.avgLow != null ? city.avgLow.toFixed(0) : '?') +
+                '–' +
+                (city.avgHigh != null ? city.avgHigh.toFixed(0) : '?') +
+                '°C'
+              }
+            />
+          )}
+          {city.currency && <Row label="Currency" value={city.currency} />}
+          {city.language && <Row label="Language" value={city.language} />}
+          {city.driveSide && (
+            <Row label="Drive" value={city.driveSide === 'L' ? 'left' : 'right'} />
+          )}
+          {city.koppen && <Row label="Climate" value={city.koppen} />}
+        </dl>
       </div>
 
-      {/* Saved-places link is now in the header next to the city name as a
-          red 📍 emoji, so this corner is intentionally empty. */}
+      {/* === FOOTER — coordinates as a stamped line at the bottom === */}
+      <div className="absolute inset-x-4 bottom-1.5 flex items-baseline gap-2 text-[9px] font-mono text-muted tracking-wide">
+        <span>{fmtCoord(city.lat, 'lat')}</span>
+        <span aria-hidden className="opacity-40">·</span>
+        <span>{fmtCoord(city.lng, 'lng')}</span>
+      </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+// === Row ===
+// Single label/value pair on the postcard front. Labels are uppercase small-
+// caps in sans, values are right-aligned monospace so a stack of rows visually
+// aligns like an old typewritten ledger. truncate handles overflow.
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between items-baseline gap-3 py-0.5">
+      <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+        {label}
+      </dt>
+      <dd className="text-ink-deep font-mono text-[11px] truncate text-right" title={value}>
+        {value}
+      </dd>
     </div>
   );
 }

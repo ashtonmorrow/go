@@ -35,7 +35,7 @@ export default async function CitiesPage() {
       // Country-derived facts shown on the postcard
       currency: country?.currency ?? null,
       language: country?.language ?? null,
-      driveSide: driveSide(country?.iso2 ?? null),
+      driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
     };
   });
   return <CitiesGrid cities={minimal} />;
