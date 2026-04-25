@@ -269,9 +269,8 @@ function fmtPopulation(n: number | null): string | null {
 
 function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   const flagSrc = city.cityFlag || city.countryFlag;
-  // Back-of-postcard photo source: Personal Photo first, Hero Image fallback,
-  // null if neither is set (in which case the card doesn't flip).
-  const backImage = city.personalPhoto || (city as any).heroImage || null;
+  // Postcard flips on hover IF we have coordinates (so we can render a map back).
+  const hasLocation = city.lat != null && city.lng != null;
   const dotX = city.lng != null ? ((city.lng + 180) / 360) * 100 : null;
   const dotY = city.lat != null ? ((90 - city.lat) / 180) * 60 : null;
 
@@ -281,46 +280,100 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   const seed = (city.id || '').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
   const tilt = ((seed % 25) - 12) / 10; // -1.2..1.2 deg
 
+  // OSM tile coords for the back-of-postcard map.
+  // Zoom 4 = ~2500km per tile (continental view). For most countries, the city
+  // sits inside its tile with country context visible around it.
+  const ZOOM = 4;
+  let tileUrl: string | null = null;
+  let subPctX = 50;
+  let subPctY = 50;
+  if (hasLocation) {
+    const n = Math.pow(2, ZOOM);
+    const xf = ((city.lng! + 180) / 360) * n;
+    const yf = ((1 - Math.asinh(Math.tan((city.lat! * Math.PI) / 180)) / Math.PI) / 2) * n;
+    const tileX = Math.floor(xf);
+    const tileY = Math.floor(yf);
+    tileUrl = `https://tile.openstreetmap.org/${ZOOM}/${tileX}/${tileY}.png`;
+    subPctX = ((xf - tileX) * 100); // city's x within tile, as percent
+    subPctY = ((yf - tileY) * 100);
+  }
+
   // Outer wrapper: provides perspective + size + click handler
   return (
     <div
       onClick={onClick}
-      className={'flip-perspective cursor-pointer group ' + (backImage ? '' : 'no-flip')}
+      className={'flip-perspective cursor-pointer group ' + (hasLocation ? '' : 'no-flip')}
       style={{ aspectRatio: '5 / 3', transform: `rotate(${tilt}deg)` }}
     >
-      <div className={'flip-card ' + (backImage ? '' : '!transform-none')}>
-        {/* === BACK FACE === only if there's a photo */}
-        {backImage && (
+      <div className={'flip-card ' + (hasLocation ? '' : '!transform-none')}>
+        {/* === BACK FACE === a country/region map with the city marked === */}
+        {hasLocation && tileUrl && (
           <div
-            className="flip-face flip-face-back overflow-hidden"
+            className="flip-face flip-face-back overflow-hidden bg-white"
             style={{
               border: '1px solid hsl(35 22% 82%)',
               borderRadius: 4,
               boxShadow:
                 '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
-              backgroundColor: 'hsl(35 25% 96%)',
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={backImage}
-              alt={city.name}
-              className="w-full h-full object-cover"
-              loading="lazy"
-              style={{
-                // White inner border like a real photo postcard
-                padding: 6,
-                background: '#fff',
-              }}
-            />
-            {/* City name label on the bottom strip — like a real postcard caption */}
+            {/* Square OSM tile, scaled to height of postcard, centered horizontally */}
             <div
-              className="absolute bottom-0 inset-x-0 py-1.5 px-3 text-white text-[11px] uppercase tracking-[0.18em] font-medium"
+              className="absolute"
               style={{
-                background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.55))',
+                top: 0,
+                bottom: 0,
+                aspectRatio: '1 / 1',
+                left: '50%',
+                transform: 'translateX(-50%)',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={tileUrl}
+                alt={`Map of ${city.name} region`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* City pin at the city's exact sub-tile position */}
+              <div
+                className="absolute"
+                style={{
+                  left: `${subPctX}%`,
+                  top: `${subPctY}%`,
+                  transform: 'translate(-50%, -50%)',
+                  pointerEvents: 'none',
+                }}
+              >
+                <div
+                  style={{
+                    width: 14,
+                    height: 14,
+                    borderRadius: '50%',
+                    background: '#2f6f73',
+                    border: '2px solid white',
+                    boxShadow: '0 0 0 5px rgba(47, 111, 115, 0.22)',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* City name strip at bottom (like postcard caption) */}
+            <div
+              className="absolute bottom-0 inset-x-0 py-1.5 px-3 text-white text-[11px] uppercase tracking-[0.18em] font-medium z-10"
+              style={{
+                background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.65))',
               }}
             >
               {city.name}
+            </div>
+
+            {/* OSM attribution (required by their tile policy) */}
+            <div
+              className="absolute top-1 right-1 text-[8px] bg-white/85 text-ink-deep/60 px-1 rounded leading-none py-0.5"
+              style={{ pointerEvents: 'none' }}
+            >
+              © OpenStreetMap
             </div>
           </div>
         )}

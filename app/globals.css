@@ -48,6 +48,9 @@
    physical flip and not a flat mirror. */
 .flip-perspective {
   perspective: 1200px;
+  /* preserve-3d here keeps child transforms (like rotateY) from being flattened
+     by the wrapper's own 2D rotate(tilt) transform. */
+  transform-style: preserve-3d;
 }
 .flip-card {
   position: relative;
