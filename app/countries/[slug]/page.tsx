@@ -2,14 +2,48 @@ import { fetchCountryBySlug, fetchAllCities, fetchPageBlocks } from '@/lib/notio
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
+import { SITE_URL, clip, countryJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 export const revalidate = 3600;
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const country = await fetchCountryBySlug(slug);
   if (!country) return { title: 'Not found' };
-  return { title: `${country.name} · Mike Lee` };
+
+  // Description: lead with capital + practicalities, then Wikipedia lede if room.
+  const practicalParts = [
+    country.capital ? `Capital: ${country.capital}` : null,
+    country.language ? country.language : null,
+    country.currency ? country.currency : null,
+  ].filter(Boolean) as string[];
+  const lede = practicalParts.length
+    ? `${country.name} — ${practicalParts.join(' · ')}.`
+    : `${country.name} — travel notes and cities from a personal travel atlas.`;
+  const description = clip(lede, 155);
+
+  const url = `${SITE_URL}/countries/${country.slug}`;
+
+  return {
+    title: country.name,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${country.name} · Mike Lee`,
+      description,
+      ...(country.flag ? { images: [{ url: country.flag }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${country.name} · Mike Lee`,
+      description,
+      ...(country.flag ? { images: [country.flag] } : {}),
+    },
+  };
 }
 
 export default async function CountryPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -23,8 +57,25 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const blocks = await fetchPageBlocks(country.id);
   const hasBody = blocks.length > 0;
 
+  // Structured data — Country + BreadcrumbList.
+  const countryData = countryJsonLd({
+    slug: country.slug,
+    name: country.name,
+    iso2: country.iso2,
+    iso3: country.iso3,
+    capital: country.capital,
+    description: country.wikipediaSummary,
+    image: country.flag,
+  });
+  const breadcrumbItems = [
+    { name: 'Cities', item: `${SITE_URL}/cities` },
+    { name: country.name },
+  ];
+
   return (
     <article className="max-w-page mx-auto px-5 py-8">
+      <JsonLd data={countryData} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
       <div className="text-small text-muted mb-2">
         <Link href="/cities" className="hover:text-teal">Cities</Link>
       </div>

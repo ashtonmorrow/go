@@ -8,7 +8,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'About this travel atlas · Mike Lee',
   description:
-    'How a Notion workspace of 1,341 cities and 213 countries became an interactive travel atlas — tech stack, data enrichment pipeline, postcard design, and globe rendering.',
+    'How a Notion workspace of 1,341 cities became an interactive travel atlas — data model, enrichment pipeline, postcard design, MapLibre globe.',
   keywords: [
     'notion as cms',
     'next.js notion',

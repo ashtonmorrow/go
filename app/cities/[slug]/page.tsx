@@ -2,6 +2,9 @@ import { fetchCityBySlug, fetchPageBlocks, fetchAllCountries, fetchAllCities } f
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
+import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -14,13 +17,39 @@ export async function generateStaticParams() {
   return [];
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const city = await fetchCityBySlug(slug);
   if (!city) return { title: 'Not found' };
+
+  // Description priority: curated `about` > Wikipedia summary > template.
+  // The `about` field is the hand- or AI-curated travel-atlas blurb, which
+  // is more on-voice than the Wikipedia lede. Both get clipped to 155.
+  const description =
+    clip(city.about, 155) ??
+    clip(city.wikipediaSummary, 155) ??
+    `${city.name}${city.country ? `, ${city.country}` : ''} — population, climate, currency, language, and travel notes.`;
+
+  const url = `${SITE_URL}/cities/${city.slug}`;
+  const image = city.personalPhoto ?? city.heroImage ?? undefined;
+
   return {
-    title: `${city.name} · Mike Lee`,
-    description: city.wikipediaSummary?.slice(0, 160) || undefined,
+    title: city.name,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${city.name} · Mike Lee`,
+      description,
+      ...(image ? { images: [{ url: image }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${city.name} · Mike Lee`,
+      description,
+      ...(image ? { images: [image] } : {}),
+    },
   };
 }
 
@@ -45,8 +74,33 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const fmt = (n: number | null, unit = '', digits = 0) =>
     n == null ? '—' : (digits > 0 ? n.toFixed(digits) : Intl.NumberFormat('en').format(n)) + unit;
 
+  // Structured data — City + BreadcrumbList. The breadcrumb gives Google
+  // a clean trail to render in SERPs (Cities → Country → City).
+  const cityData = cityJsonLd(
+    {
+      slug: city.slug,
+      name: city.name,
+      localName: city.localName,
+      description: city.about ?? city.wikipediaSummary,
+      image: city.personalPhoto ?? city.heroImage,
+      lat: city.lat,
+      lng: city.lng,
+      population: city.population,
+    },
+    country ? { slug: country.slug, name: country.name } : null
+  );
+  const breadcrumbItems = [
+    { name: 'Cities', item: `${SITE_URL}/cities` },
+    ...(country
+      ? [{ name: country.name, item: `${SITE_URL}/countries/${country.slug}` }]
+      : []),
+    { name: city.name },
+  ];
+
   return (
     <article className="max-w-page mx-auto px-5 py-8">
+      <JsonLd data={cityData} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
       {/* Breadcrumbs */}
       <div className="text-small text-muted mb-2">
         <Link href="/cities" className="hover:text-teal">Cities</Link>

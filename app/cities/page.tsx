@@ -3,14 +3,31 @@ import CitiesGrid from '@/components/CitiesGrid';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
+import JsonLd from '@/components/JsonLd';
+import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
   Continent,
   VisaUs,
   TapWater,
 } from '@/components/CityFiltersContext';
+import type { Metadata } from 'next';
 
 export const revalidate = 3600;
-export const metadata = { title: 'Cities · Mike Lee' };
+
+// Per-page metadata — third-person, ≤155 char description, concrete count.
+export const metadata: Metadata = {
+  title: 'Cities',
+  description:
+    'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+  alternates: { canonical: `${SITE_URL}/cities` },
+  openGraph: {
+    type: 'website',
+    url: `${SITE_URL}/cities`,
+    title: 'Cities · Mike Lee',
+    description:
+      'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+  },
+};
 
 // Type guards: filter Notion's free-text strings down to the closed unions
 // the filter context expects. Anything outside the known set becomes null.
@@ -80,5 +97,30 @@ export default async function CitiesPage() {
         tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
     };
   });
-  return <CitiesGrid cities={minimal} />;
+  // CollectionPage + ItemList structured data. Item list capped at 30
+  // entries — featured / well-known cities preferred so search engines
+  // see the headline destinations rather than alphabetical filler.
+  const featuredItems = cities
+    .filter(c => c.been || c.go)
+    .slice(0, 30)
+    .map(c => ({
+      url: `${SITE_URL}/cities/${c.slug}`,
+      name: c.name,
+    }));
+
+  const collectionData = collectionJsonLd({
+    url: `${SITE_URL}/cities`,
+    name: 'Cities',
+    description:
+      'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+    items: featuredItems,
+    totalItems: cities.length,
+  });
+
+  return (
+    <>
+      <JsonLd data={collectionData} />
+      <CitiesGrid cities={minimal} />
+    </>
+  );
 }

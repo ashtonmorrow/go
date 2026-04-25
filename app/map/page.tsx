@@ -1,8 +1,25 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import WorldGlobe from '@/components/WorldGlobeLoader';
+import JsonLd from '@/components/JsonLd';
+import { SITE_URL, webPageJsonLd } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 export const revalidate = 3600;
-export const metadata = { title: 'Map · Mike Lee' };
+
+const MAP_DESCRIPTION =
+  'An interactive globe of 1,341 places. Visited in teal, planned in slate. Click any pin to see its sister-city network drawn across the world.';
+
+export const metadata: Metadata = {
+  title: 'Map',
+  description: MAP_DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/map` },
+  openGraph: {
+    type: 'website',
+    url: `${SITE_URL}/map`,
+    title: 'Map · Mike Lee',
+    description: MAP_DESCRIPTION,
+  },
+};
 
 // Full-bleed map page. Now shows ALL cities (not just Been/Go) so the
 // sister-city network is visible. Visited / Planned / Other are colour
@@ -30,5 +47,16 @@ export default async function MapPage() {
       };
     });
 
-  return <WorldGlobe pins={pins} />;
+  const pageData = webPageJsonLd({
+    url: `${SITE_URL}/map`,
+    name: 'Map · Mike Lee',
+    description: MAP_DESCRIPTION,
+  });
+
+  return (
+    <>
+      <JsonLd data={pageData} />
+      <WorldGlobe pins={pins} />
+    </>
+  );
 }
