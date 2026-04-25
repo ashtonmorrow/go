@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ViewSwitcher from './ViewSwitcher';
 
 type City = {
   id: string;
@@ -157,27 +158,25 @@ export default function CitiesGrid({ cities }: Props) {
         </div>
       </div>
 
-      {/* Below the header: Map toggle on the far left, then sort-field pills.
-          The Map toggle navigates to /map (where, on that page, the toggle
-          would appear "on" — current page is /cities so it's off here). */}
-      <div className="mt-6 flex flex-wrap items-center gap-3 text-small">
-        <Toggle on={false} onChange={() => router.push('/map')} label="Map" />
-        <div className="flex flex-wrap gap-2 ml-2">
-          {sortButtons.map(s => (
-            <button
-              key={s.k}
-              onClick={() => setSort(s.k)}
-              className={
-                'px-4 py-2 rounded-md transition-colors font-medium ' +
-                (sort === s.k
-                  ? 'bg-ink-deep text-cream-soft'
-                  : 'bg-ink-deep/95 text-cream-soft hover:bg-ink-deep')
-              }
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
+      {/* Below the header: sort-field pills.
+          (The Postcard/Map view switcher now lives as a floating control
+          in the bottom-right via <ViewSwitcher>, mounted at the bottom of
+          this component so it's available without scrolling back up.) */}
+      <div className="mt-6 flex flex-wrap items-center gap-2 text-small">
+        {sortButtons.map(s => (
+          <button
+            key={s.k}
+            onClick={() => setSort(s.k)}
+            className={
+              'px-4 py-2 rounded-md transition-colors font-medium ' +
+              (sort === s.k
+                ? 'bg-ink-deep text-cream-soft'
+                : 'bg-ink-deep/95 text-cream-soft hover:bg-ink-deep')
+            }
+          >
+            {s.label}
+          </button>
+        ))}
       </div>
 
       {/* Postcard grid: landscape cards, 3 columns max so each card has room
@@ -199,6 +198,9 @@ export default function CitiesGrid({ cities }: Props) {
           <p>No cities match.</p>
         </div>
       )}
+
+      {/* Floating Postcard ↔ Map view switcher, fixed bottom-right. */}
+      <ViewSwitcher />
     </section>
   );
 }

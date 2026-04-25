@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ViewSwitcher from './ViewSwitcher';
 
 type Pin = {
   id: string;
@@ -209,10 +210,15 @@ export default function WorldMap({ pins }: Props) {
         })}
       </div>
 
-      {/* OSM attribution — required by their tile policy */}
-      <div className="absolute bottom-1 right-1 text-[9px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5 pointer-events-none">
+      {/* OSM attribution — required by their tile policy. Anchored to the
+          bottom-LEFT to make room for the floating ViewSwitcher in the
+          bottom-right corner. */}
+      <div className="absolute bottom-1 left-1 text-[9px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5 pointer-events-none">
         © OpenStreetMap
       </div>
+
+      {/* Floating Postcard ↔ Map view switcher, fixed bottom-right. */}
+      <ViewSwitcher />
     </div>
   );
 }
