@@ -269,20 +269,71 @@ function fmtPopulation(n: number | null): string | null {
 
 function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
   const flagSrc = city.cityFlag || city.countryFlag;
+  // Back-of-postcard photo source: Personal Photo first, Hero Image fallback,
+  // null if neither is set (in which case the card doesn't flip).
+  const backImage = city.personalPhoto || (city as any).heroImage || null;
   const dotX = city.lng != null ? ((city.lng + 180) / 360) * 100 : null;
   const dotY = city.lat != null ? ((90 - city.lat) / 180) * 60 : null;
 
+  // Tiny deterministic rotation per card so the grid feels like a wall of
+  // hand-placed postcards, not a uniform layout. Hash the id to a stable
+  // angle in roughly [-1.2°, +1.2°].
+  const seed = (city.id || '').split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  const tilt = ((seed % 25) - 12) / 10; // -1.2..1.2 deg
+
+  // Outer wrapper: provides perspective + size + click handler
   return (
     <div
       onClick={onClick}
-      className="postcard group cursor-pointer relative bg-white transition-shadow"
+      className={'flip-perspective cursor-pointer group ' + (backImage ? '' : 'no-flip')}
+      style={{ aspectRatio: '5 / 3', transform: `rotate(${tilt}deg)` }}
+    >
+      <div className={'flip-card ' + (backImage ? '' : '!transform-none')}>
+        {/* === BACK FACE === only if there's a photo */}
+        {backImage && (
+          <div
+            className="flip-face flip-face-back overflow-hidden"
+            style={{
+              border: '1px solid hsl(35 22% 82%)',
+              borderRadius: 4,
+              boxShadow:
+                '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
+              backgroundColor: 'hsl(35 25% 96%)',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={backImage}
+              alt={city.name}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              style={{
+                // White inner border like a real photo postcard
+                padding: 6,
+                background: '#fff',
+              }}
+            />
+            {/* City name label on the bottom strip — like a real postcard caption */}
+            <div
+              className="absolute bottom-0 inset-x-0 py-1.5 px-3 text-white text-[11px] uppercase tracking-[0.18em] font-medium"
+              style={{
+                background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.55))',
+              }}
+            >
+              {city.name}
+            </div>
+          </div>
+        )}
+
+        {/* === FRONT FACE (the postcard back side — address+stamp) === */}
+        <div
+      className="flip-face postcard relative bg-white transition-shadow"
       style={{
         // White postcard with solid border + soft drop shadow (like sitting on a desk)
         border: '1px solid hsl(35 22% 82%)',
         borderRadius: 4,
         boxShadow:
           '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
-        aspectRatio: '5 / 3',
       }}
     >
       {/* === STAMP — top-right ===
@@ -398,6 +449,8 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           </svg>
         </a>
       )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -41,6 +41,34 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* === Postcard flip ===
+   3D hover-flip animation: card rotates 180° around Y axis to reveal a photo
+   on the back. Uses preserve-3d + backface-visibility for clean two-sided
+   rotation. The wrapper provides perspective so the rotation looks like a
+   physical flip and not a flat mirror. */
+.flip-perspective {
+  perspective: 1200px;
+}
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.34, 1.06, 0.5, 1);
+  transform-style: preserve-3d;
+}
+.flip-perspective:hover .flip-card {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-face-back {
+  transform: rotateY(180deg);
+}
+
 /* === Postage-stamp perforation effect ===
    Uses CSS mask with stacked radial gradients to "punch out" semicircles
    along all four edges, mimicking a real stamp's serrated edge. */
