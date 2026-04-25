@@ -170,23 +170,10 @@ export default function CitiesGrid({ cities }: Props) {
   const remaining = filtered.length - visibleCount;
 
   return (
-    <section className="max-w-page mx-auto px-5 py-10">
-      {/* Page header — title + intro prose only. All filter / sort / search
-          controls now live in the sidebar (see <FilterPanel>). */}
-      <div className="max-w-prose">
-        <h1 className="text-h1 text-ink-deep">Cities</h1>
-        <p className="text-slate mt-3 leading-relaxed">
-          I am currently using Notion to keep my travel notes organized. Originally
-          everything was hand curated. Today much of it is scraped from open source
-          sites across the web. I&apos;m often asked to share observations or notes
-          about a specific destination, so this page seemed like a good compromise.
-          Currently the cities postcards directly query my Notion via the API so
-          be patient with the load time!
-        </p>
-        <p className="text-muted mt-3 text-small italic">
-          PS, this page is like everything else, just for fun and a work in progress.
-        </p>
-      </div>
+    <section className="max-w-page mx-auto px-5 py-6">
+      {/* The "Cities" heading + intro prose moved to the dedicated /about
+          technical article. The postcard grid is now the entire main view;
+          chrome lives in the sidebar (filters, navigation). */}
 
       {/* Postcard grid: landscape cards, 3 columns max so each card has room
           for the stamp + two-column body without text truncating. */}

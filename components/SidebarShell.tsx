@@ -27,6 +27,7 @@ type Counts = {
 const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/cities', emoji: '📮', label: 'Postcards' },
   { href: '/map', emoji: '🗺️', label: 'Map' },
+  { href: '/about', emoji: '📖', label: 'About' },
 ];
 
 const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
