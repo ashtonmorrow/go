@@ -6,7 +6,7 @@ import Link from 'next/link';
 // Open Graph + Twitter cards, canonical URL, dates. Next.js's metadata
 // API picks up most of these and renders them in <head> automatically.
 export const metadata: Metadata = {
-  title: 'About go.mike-lee.me · A travel atlas built on Notion',
+  title: 'About this travel atlas · Mike Lee',
   description:
     'How a Notion workspace of 1,341 cities and 213 countries became an interactive travel atlas — tech stack, data enrichment pipeline, postcard design, and globe rendering.',
   keywords: [
@@ -19,20 +19,22 @@ export const metadata: Metadata = {
     'claude code',
     'vibe coding',
   ],
+  // Canonical URL stays as the real URL where the page lives — needed for SEO
+  // even though the user-visible branding doesn't reference the subdomain.
   alternates: { canonical: 'https://go.mike-lee.me/about' },
   openGraph: {
     type: 'article',
-    title: 'About go.mike-lee.me — a travel atlas built on Notion',
+    title: 'About this travel atlas — Mike Lee',
     description:
       'How a Notion workspace of 1,341 cities and 213 countries became an interactive travel atlas. Stack, enrichment, postcard design, globe rendering.',
     url: 'https://go.mike-lee.me/about',
-    siteName: 'go.mike-lee.me',
+    siteName: 'mike-lee.me',
     publishedTime: '2026-04-25',
     authors: ['Mike Lee'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About go.mike-lee.me',
+    title: 'About this travel atlas — Mike Lee',
     description:
       'How a Notion workspace of 1,341 cities became an interactive travel atlas.',
   },
@@ -44,10 +46,10 @@ export const metadata: Metadata = {
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: 'About go.mike-lee.me — a travel atlas built on Notion',
+  headline: 'About this travel atlas — built on Notion',
   alternativeHeadline: 'How 1,341 cities and 213 countries became an interactive atlas',
   description:
-    'A walkthrough of go.mike-lee.me — the data model in Notion, the enrichment pipeline that fills in structured facts and prose, the postcard front-end, and the MapLibre globe view.',
+    'A walkthrough of the travel atlas — the data model in Notion, the enrichment pipeline that fills in structured facts and prose, the postcard front-end, and the MapLibre globe view.',
   datePublished: '2026-04-25',
   dateModified: '2026-04-25',
   inLanguage: 'en',
@@ -96,9 +98,9 @@ export default function AboutPage() {
           <span className="mx-1.5">/</span>
           <span>About</span>
         </div>
-        <h1 className="text-h1 text-ink-deep">About go.mike-lee.me</h1>
+        <h1 className="text-h1 text-ink-deep">About this travel atlas</h1>
         <p className="text-h3 text-slate font-normal mt-3">
-          A travel atlas built on Notion.
+          Built on Notion. Connected to 1,341 cities.
         </p>
         <p className="text-small text-muted mt-4">
           Published April 2026 · Mike Lee · Updated regularly
@@ -133,11 +135,11 @@ export default function AboutPage() {
       <div className="space-y-8 text-ink leading-relaxed">
 
         <section id="about" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">What this site is</h2>
+          <h2 className="text-h2 text-ink-deep mb-4">What this is</h2>
           <p>
-            go.mike-lee.me is a personal travel atlas — a connected database of
-            1,341 cities and 213 countries, presented as a wall of postcards
-            and an interactive globe. Most travel sites are essays organised by
+            This is a personal travel atlas — a connected database of 1,341
+            cities and 213 countries, presented as a wall of postcards and an
+            interactive globe. Most travel sites are essays organised by
             destination. This one is the inverse: a structured workspace that
             happens to render as a website. Every postcard is a Notion page,
             every filter is a Notion property, and every change to the
@@ -303,7 +305,7 @@ export default function AboutPage() {
               ['Map', 'MapLibre GL JS v5 + react-map-gl v8 (loaded via dynamic import to avoid SSR)'],
               ['Tiles', 'OpenFreeMap — free, no API key, OSM-derived vector tiles'],
               ['Hosting', 'Vercel — free tier, on-demand ISR with revalidate of one hour'],
-              ['Domain', 'go.mike-lee.me, custom CNAME via Squarespace DNS pointing at Vercel'],
+              ['Domain', 'A subdomain on mike-lee.me; custom CNAME via Squarespace DNS pointing at Vercel'],
               ['Repository', 'GitHub, public, single Next.js project'],
             ]}
           />

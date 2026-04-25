@@ -2,7 +2,7 @@ import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import WorldGlobe from '@/components/WorldGlobeLoader';
 
 export const revalidate = 3600;
-export const metadata = { title: 'Map · go.mike-lee' };
+export const metadata = { title: 'Map · Mike Lee' };
 
 // Full-bleed map page. Now shows ALL cities (not just Been/Go) so the
 // sister-city network is visible. Visited / Planned / Other are colour

@@ -4,8 +4,8 @@ import Sidebar from '@/components/Sidebar';
 import { CityFiltersProvider } from '@/components/CityFiltersContext';
 
 export const metadata: Metadata = {
-  title: 'Go · Mike Lee',
-  description: 'Places I\'ve been and places I want to go — a travel atlas by Mike Lee.',
+  title: 'Travel · Mike Lee',
+  description: 'A travel atlas by Mike Lee — cities, countries, and notes from places he&#39;s been and wants to go.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

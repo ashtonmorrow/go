@@ -16,7 +16,7 @@ type Counts = {
 
 // Layer-inspired left rail. Three vertical zones:
 //   1. Brand header (project name + dropdown affordance)
-//   2. Pages — go.mike-lee.me's own routes
+//   2. Pages — this travel atlas's own routes
 //   3. Collections — informational counts (currently click-through to /cities;
 //      future work could deep-link to /cities?filter=been etc.)
 //   4. Elsewhere — external Mike Lee subdomains (was the old top pill nav)
@@ -59,7 +59,7 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
             </svg>
           </button>
           <Link href="/cities" className="font-semibold text-ink-deep">
-            go.mike-lee
+            Travel · Mike Lee
           </Link>
         </div>
       </div>

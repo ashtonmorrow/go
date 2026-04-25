@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const country = await fetchCountryBySlug(slug);
   if (!country) return { title: 'Not found' };
-  return { title: `${country.name} · go.mike-lee` };
+  return { title: `${country.name} · Mike Lee` };
 }
 
 export default async function CountryPage({ params }: { params: Promise<{ slug: string }> }) {

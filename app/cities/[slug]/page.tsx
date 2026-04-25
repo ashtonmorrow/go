@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const city = await fetchCityBySlug(slug);
   if (!city) return { title: 'Not found' };
   return {
-    title: `${city.name} · go.mike-lee`,
+    title: `${city.name} · Mike Lee`,
     description: city.wikipediaSummary?.slice(0, 160) || undefined,
   };
 }

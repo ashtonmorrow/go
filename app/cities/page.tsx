@@ -10,7 +10,7 @@ import type {
 } from '@/components/CityFiltersContext';
 
 export const revalidate = 3600;
-export const metadata = { title: 'Cities · go.mike-lee' };
+export const metadata = { title: 'Cities · Mike Lee' };
 
 // Type guards: filter Notion's free-text strings down to the closed unions
 // the filter context expects. Anything outside the known set becomes null.
