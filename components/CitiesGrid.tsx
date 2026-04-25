@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
 type City = {
   id: string;
@@ -31,8 +30,7 @@ type City = {
 
 type Props = { cities: City[] };
 
-type SortKey = 'name' | 'population' | 'elevation' | 'avgHigh' | 'avgLow' | 'rainfall' | 'founded';
-type Filter = 'all' | 'been' | 'go' | 'saved';
+type SortKey = 'name' | 'population' | 'elevation' | 'avgHigh' | 'founded';
 
 const PAGE_SIZE = 36;
 
@@ -40,15 +38,20 @@ export default function CitiesGrid({ cities }: Props) {
   const router = useRouter();
   const [sort, setSort] = useState<SortKey>('name');
   const [desc, setDesc] = useState(false);
-  const [filter, setFilter] = useState<Filter>('been');
+  // Independent Been / Go toggles (replacing single 4-value filter).
+  // Both off = show all. Either on = show union of selected.
+  // Default matches the previous "Been" filter so /cities loads on the same set.
+  const [showBeen, setShowBeen] = useState(true);
+  const [showGo, setShowGo] = useState(false);
   const [q, setQ] = useState('');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filtered = useMemo(() => {
     let list = cities;
-    if (filter === 'been') list = list.filter(c => c.been);
-    else if (filter === 'go') list = list.filter(c => c.go);
-    else if (filter === 'saved') list = list.filter(c => !!c.savedPlaces);
+    // Apply personal-status toggles. If both off, no status filter.
+    if (showBeen || showGo) {
+      list = list.filter(c => (showBeen && c.been) || (showGo && c.go));
+    }
     if (q.trim()) {
       const needle = q.trim().toLowerCase();
       list = list.filter(
@@ -74,11 +77,11 @@ export default function CitiesGrid({ cities }: Props) {
       if (av > bv) return desc ? -1 : 1;
       return 0;
     });
-  }, [cities, sort, desc, filter, q]);
+  }, [cities, sort, desc, showBeen, showGo, q]);
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [filter, sort, desc, q]);
+  }, [showBeen, showGo, sort, desc, q]);
 
   const sentinel = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -99,26 +102,21 @@ export default function CitiesGrid({ cities }: Props) {
   const visible = filtered.slice(0, visibleCount);
   const remaining = filtered.length - visibleCount;
 
-  const filterChips: { k: Filter; label: string; count: number }[] = [
-    { k: 'been', label: 'Been', count: cities.filter(c => c.been).length },
-    { k: 'go', label: 'Go', count: cities.filter(c => c.go).length },
-    { k: 'saved', label: 'Saved', count: cities.filter(c => !!c.savedPlaces).length },
-    { k: 'all', label: 'All', count: cities.length },
-  ];
-
+  // Sort field buttons (left column under the prose). The wireframe shows 4
+  // pills next to the Map toggle. Name is the implicit default (controlled by
+  // A–Z / Z–A on the right) so it isn't a button here.
   const sortButtons: { k: SortKey; label: string }[] = [
-    { k: 'name', label: 'A–Z' },
-    { k: 'population', label: 'Pop' },
-    { k: 'avgHigh', label: 'Hot' },
-    { k: 'avgLow', label: 'Cold' },
-    { k: 'rainfall', label: 'Rain' },
-    { k: 'elevation', label: 'Elev' },
     { k: 'founded', label: 'Founded' },
+    { k: 'population', label: 'Population' },
+    { k: 'elevation', label: 'Elevation' },
+    { k: 'avgHigh', label: 'Temp' },
   ];
 
   return (
     <section className="max-w-page mx-auto px-5 py-10">
-      <div className="flex items-end justify-between gap-4 flex-wrap">
+      {/* Header — two columns. Left is editorial (title, prose). Right is
+          everything personal-to-me: search, my Been/Go status, sort direction. */}
+      <div className="flex items-start justify-between gap-6 flex-wrap">
         <div className="max-w-prose">
           <h1 className="text-h1 text-ink-deep">Cities</h1>
           <p className="text-slate mt-3 leading-relaxed">
@@ -132,66 +130,54 @@ export default function CitiesGrid({ cities }: Props) {
           <p className="text-muted mt-3 text-small italic">
             PS, this page is like everything else, just for fun and a work in progress.
           </p>
-          <p className="text-slate mt-4 text-small">
-            {filtered.length} of {cities.length}
-          </p>
-          <Link
-            href="/map"
-            className="inline-flex items-center gap-1.5 mt-3 text-small text-teal hover:text-ink-deep transition-colors"
-          >
-            View on map <span aria-hidden>→</span>
-          </Link>
         </div>
-        <input
-          type="text"
-          placeholder="Search city or country"
-          value={q}
-          onChange={e => setQ(e.target.value)}
-          className="px-3 py-2 rounded border border-sand bg-white text-ink text-sm focus:outline-none focus:border-teal w-64 self-start"
-        />
+
+        {/* Right column: search + my filters + sort direction.
+            Stacked top-to-bottom; right-aligned to match the wireframe. */}
+        <div className="flex flex-col items-start gap-3 self-start">
+          <input
+            type="text"
+            placeholder="Search city or country"
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            className="px-3 py-2 rounded border border-sand bg-white text-ink text-sm focus:outline-none focus:border-teal w-64"
+          />
+          <div className="flex items-center gap-5">
+            <Toggle on={showBeen} onChange={setShowBeen} label="Been?" />
+            <Toggle on={showGo} onChange={setShowGo} label="Go?" />
+          </div>
+          <Segmented
+            value={desc ? 'desc' : 'asc'}
+            options={[
+              { value: 'asc', label: 'A-Z' },
+              { value: 'desc', label: 'Z-A' },
+            ]}
+            onChange={v => setDesc(v === 'desc')}
+          />
+        </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap gap-2 text-small">
-        {filterChips.map(c => {
-          const active = filter === c.k;
-          return (
+      {/* Below the header: Map toggle on the far left, then sort-field pills.
+          The Map toggle navigates to /map (where, on that page, the toggle
+          would appear "on" — current page is /cities so it's off here). */}
+      <div className="mt-6 flex flex-wrap items-center gap-3 text-small">
+        <Toggle on={false} onChange={() => router.push('/map')} label="Map" />
+        <div className="flex flex-wrap gap-2 ml-2">
+          {sortButtons.map(s => (
             <button
-              key={c.k}
-              onClick={() => setFilter(c.k)}
+              key={s.k}
+              onClick={() => setSort(s.k)}
               className={
-                'px-3 py-1.5 rounded-full border transition-colors ' +
-                (active
-                  ? 'bg-teal text-white border-teal'
-                  : 'bg-white text-slate border-sand hover:border-slate')
+                'px-4 py-2 rounded-md transition-colors font-medium ' +
+                (sort === s.k
+                  ? 'bg-ink-deep text-cream-soft'
+                  : 'bg-ink-deep/95 text-cream-soft hover:bg-ink-deep')
               }
             >
-              {c.label} <span className="opacity-70 ml-1">{c.count}</span>
+              {s.label}
             </button>
-          );
-        })}
-
-        <span className="ml-2 text-muted self-center">Sort:</span>
-        {sortButtons.map(s => (
-          <button
-            key={s.k}
-            onClick={() => {
-              if (sort === s.k) setDesc(d => !d);
-              else {
-                setSort(s.k);
-                setDesc(false);
-              }
-            }}
-            className={
-              'px-3 py-1.5 rounded-full border transition-colors ' +
-              (sort === s.k
-                ? 'bg-ink-deep text-cream-soft border-ink-deep'
-                : 'bg-white text-slate border-sand hover:border-slate')
-            }
-          >
-            {s.label}
-            {sort === s.k ? (desc ? ' ↓' : ' ↑') : ''}
-          </button>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Postcard grid: landscape cards. 4 at xl, 3 at lg, 2 at md, 1 at base */}
@@ -213,6 +199,82 @@ export default function CitiesGrid({ cities }: Props) {
         </div>
       )}
     </section>
+  );
+}
+
+// === Toggle ===
+// iOS-style switch with a label to the right. `on` is controlled. The whole
+// row is one button so the label is also a click target. We intentionally use
+// dark "ink-deep" for the on state to match the wireframe's solid black pill,
+// not the brand teal — keeps the chrome visually quiet.
+function Toggle({
+  on,
+  onChange,
+  label,
+}: {
+  on: boolean;
+  onChange: (next: boolean) => void;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={label}
+      onClick={() => onChange(!on)}
+      className="inline-flex items-center gap-2 group"
+    >
+      <span
+        className={
+          'relative inline-block w-11 h-6 rounded-full transition-colors ' +
+          (on ? 'bg-ink-deep' : 'bg-sand')
+        }
+      >
+        <span
+          className={
+            'absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ' +
+            (on ? 'left-[22px]' : 'left-0.5')
+          }
+        />
+      </span>
+      <span className="text-ink text-small font-medium">{label}</span>
+    </button>
+  );
+}
+
+// === Segmented control ===
+// Two-option pill segment, used for A–Z / Z–A sort direction in the header.
+// Generic on the value type so the same component can host other binary
+// segment controls later (e.g. C / F unit toggle).
+function Segmented<T extends string>({
+  value,
+  options,
+  onChange,
+}: {
+  value: T;
+  options: { value: T; label: string }[];
+  onChange: (next: T) => void;
+}) {
+  return (
+    <div className="inline-flex rounded-md border border-sand bg-white p-0.5">
+      {options.map(o => {
+        const active = o.value === value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onChange(o.value)}
+            className={
+              'px-3 py-1 rounded text-small font-medium transition-colors ' +
+              (active ? 'bg-cream-soft text-ink-deep' : 'text-slate hover:text-ink-deep')
+            }
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
