@@ -71,6 +71,14 @@
 .flip-face-back {
   transform: rotateY(180deg);
 }
+/* When the card is flipped (hovered), disable pointer events on the front
+   face. Without this, the front face — geometrically still at z=0 — can
+   intercept clicks meant for buttons on the back (e.g. "View my Pins").
+   Modern browsers don't reliably disable pointer events purely from
+   `backface-visibility: hidden` across all engines. */
+.flip-perspective:hover .flip-face:not(.flip-face-back) {
+  pointer-events: none;
+}
 
 /* === Postage-stamp perforation effect ===
    Uses CSS mask with stacked radial gradients to "punch out" semicircles

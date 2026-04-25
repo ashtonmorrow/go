@@ -180,8 +180,9 @@ export default function CitiesGrid({ cities }: Props) {
         </div>
       </div>
 
-      {/* Postcard grid: landscape cards. 4 at xl, 3 at lg, 2 at md, 1 at base */}
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {/* Postcard grid: landscape cards, 3 columns max so each card has room
+          for the stamp + two-column body without text truncating. */}
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {visible.map(c => (
           <CityCard key={c.id} city={c} onClick={() => router.push(`/cities/${c.slug}`)} />
         ))}

@@ -28,13 +28,14 @@ function project(lat: number, lng: number, sizePx: number) {
   return { x, y };
 }
 
-// We render the world from OSM tiles at zoom 2 (4×4 grid of 256-px tiles =
-// 1024 px square image). This is the smallest tile zoom that still shows
-// recognisable continent shapes without too much distortion at the equator.
+// World rendered from OSM tiles at zoom 2 (4×4 grid of 256-px tiles =
+// 1024-px square source). preserveAspectRatio="none" on the SVG and
+// percentage tile layout mean the map stretches to whatever viewport size
+// we give it — so the same component scales cleanly across mobile through
+// 4K without per-device fiddling.
 const ZOOM = 2;
 const TILES_PER_SIDE = 1 << ZOOM; // 4
-const TILE_SIZE = 256;
-const WORLD_PX = TILES_PER_SIDE * TILE_SIZE; // 1024
+const WORLD_PX = TILES_PER_SIDE * 256; // 1024
 
 export default function WorldMap({ pins }: Props) {
   const router = useRouter();
@@ -57,17 +58,138 @@ export default function WorldMap({ pins }: Props) {
     return out;
   }, []);
 
-  const beenCount = pins.filter(p => p.been).length;
-  const goCount = pins.filter(p => p.go && !p.been).length;
-
+  // Full-bleed map: spans the full viewport width and fills the area below
+  // the sticky nav (~64px). Filter chips float as a small overlay so they
+  // don't claim chrome real estate the way a separate header would. Pins
+  // are clickable; click navigates to the city's detail page.
   return (
-    <div className="mt-6">
-      {/* Filter chips */}
-      <div className="flex gap-2 mb-4 text-small">
+    <div
+      className="relative w-screen overflow-hidden bg-cream-soft"
+      style={{
+        // 64px tracks the sticky nav height (py-3 + pill content). Matches
+        // edge-to-edge intent without hiding the nav.
+        height: 'calc(100svh - 64px)',
+        // Pull the wrapper out of any parent padding so it truly bleeds to
+        // the viewport edges on all devices.
+        marginLeft: 'calc(50% - 50vw)',
+        marginRight: 'calc(50% - 50vw)',
+      }}
+    >
+      {/* Tile layer — absolute-positioned 4×4 grid of OSM tiles */}
+      <div className="absolute inset-0">
+        {tiles.map(t => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={`${t.x}-${t.y}`}
+            src={t.url}
+            alt=""
+            className="absolute"
+            style={{
+              left: `${(t.x / TILES_PER_SIDE) * 100}%`,
+              top: `${(t.y / TILES_PER_SIDE) * 100}%`,
+              width: `${100 / TILES_PER_SIDE}%`,
+              height: `${100 / TILES_PER_SIDE}%`,
+              // Slight desaturation so pins pop. OSM tiles can be busy.
+              filter: 'saturate(0.55) brightness(1.04)',
+            }}
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      {/* Pin layer — SVG overlay sized to the source world image so we can
+          project lat/lng to pixel coords once and let SVG scaling handle
+          resizing. preserveAspectRatio="none" lets the SVG stretch to match
+          the (non-square) viewport; pins co-stretch with the tiles. */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox={`0 0 ${WORLD_PX} ${WORLD_PX}`}
+        preserveAspectRatio="none"
+      >
+        {visible.map(p => {
+          const { x, y } = project(p.lat, p.lng, WORLD_PX);
+          const isBeen = p.been;
+          const isHovered = hovered === p.id;
+          const r = isHovered ? 9 : 6;
+          return (
+            <g
+              key={p.id}
+              onMouseEnter={() => setHovered(p.id)}
+              onMouseLeave={() => setHovered(prev => (prev === p.id ? null : prev))}
+              onClick={() => router.push(`/cities/${p.slug}`)}
+              style={{ cursor: 'pointer' }}
+            >
+              <circle
+                cx={x}
+                cy={y}
+                r={r * 2.4}
+                fill={isBeen ? '#2f6f73' : '#6b7c8f'}
+                opacity={isHovered ? 0.28 : 0.18}
+              />
+              <circle
+                cx={x}
+                cy={y}
+                r={r}
+                fill={isBeen ? '#2f6f73' : '#6b7c8f'}
+                stroke="#ffffff"
+                strokeWidth={2}
+              />
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Hover tooltip — HTML overlay positioned by the pin's % within the
+          source viewBox (matches the SVG stretch). */}
+      {hovered && (() => {
+        const p = visible.find(v => v.id === hovered);
+        if (!p) return null;
+        const { x, y } = project(p.lat, p.lng, WORLD_PX);
+        const xPct = (x / WORLD_PX) * 100;
+        const yPct = (y / WORLD_PX) * 100;
+        const above = yPct > 18;
+        return (
+          <div
+            className="absolute pointer-events-none z-20"
+            style={{
+              left: `${xPct}%`,
+              top: `${yPct}%`,
+              transform: above
+                ? 'translate(-50%, calc(-100% - 14px))'
+                : 'translate(-50%, 14px)',
+            }}
+          >
+            <div
+              className="bg-white border border-sand rounded px-2.5 py-1.5 text-small whitespace-nowrap flex items-center gap-2"
+              style={{
+                boxShadow:
+                  '0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.08)',
+              }}
+            >
+              {p.countryFlag && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={p.countryFlag}
+                  alt=""
+                  className="w-4 h-auto rounded-sm border border-sand"
+                />
+              )}
+              <div>
+                <div className="text-ink-deep font-medium leading-tight">{p.name}</div>
+                <div className="text-muted text-[10px] leading-tight">{p.country}</div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* Filter chips — floating overlay top-left so the map stays full bleed
+          but Been/Go filtering remains one tap away. */}
+      <div className="absolute top-3 left-3 z-10 flex gap-2 text-small">
         {[
-          { k: 'both' as const, label: 'All', count: pins.length },
-          { k: 'been' as const, label: 'Been', count: beenCount },
-          { k: 'go' as const, label: 'Go', count: goCount },
+          { k: 'both' as const, label: 'All' },
+          { k: 'been' as const, label: 'Been' },
+          { k: 'go' as const, label: 'Go' },
         ].map(c => {
           const active = filter === c.k;
           return (
@@ -75,149 +197,21 @@ export default function WorldMap({ pins }: Props) {
               key={c.k}
               onClick={() => setFilter(c.k)}
               className={
-                'px-3 py-1.5 rounded-full border transition-colors ' +
+                'px-3 py-1.5 rounded-full border transition-colors backdrop-blur ' +
                 (active
                   ? 'bg-teal text-white border-teal'
-                  : 'bg-white text-slate border-sand hover:border-slate')
+                  : 'bg-white/85 text-slate border-sand hover:border-slate')
               }
             >
-              {c.label} <span className="opacity-70 ml-1">{c.count}</span>
+              {c.label}
             </button>
           );
         })}
       </div>
 
-      {/* Map container — aspect-ratio matches world image (square Mercator).
-          We use SVG so pins, tooltips, and hover are crisp at any size. */}
-      <div
-        className="relative w-full overflow-hidden rounded border border-sand bg-cream-soft"
-        style={{ aspectRatio: '1 / 1', maxHeight: '80vh' }}
-      >
-        {/* Tile layer — absolute-positioned grid of OSM tiles */}
-        <div className="absolute inset-0">
-          {tiles.map(t => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={`${t.x}-${t.y}`}
-              src={t.url}
-              alt=""
-              className="absolute"
-              style={{
-                left: `${(t.x / TILES_PER_SIDE) * 100}%`,
-                top: `${(t.y / TILES_PER_SIDE) * 100}%`,
-                width: `${100 / TILES_PER_SIDE}%`,
-                height: `${100 / TILES_PER_SIDE}%`,
-                imageRendering: 'auto',
-                // Slight desaturation so pins pop. Real photographic OSM tiles
-                // can be visually busy when crowded with pins.
-                filter: 'saturate(0.55) brightness(1.04)',
-              }}
-              loading="lazy"
-            />
-          ))}
-        </div>
-
-        {/* Pin layer — SVG overlay, viewBox sized to the world image so we can
-            project lat/lng to pixel coords directly. */}
-        <svg
-          className="absolute inset-0 w-full h-full"
-          viewBox={`0 0 ${WORLD_PX} ${WORLD_PX}`}
-          preserveAspectRatio="none"
-        >
-          {visible.map(p => {
-            const { x, y } = project(p.lat, p.lng, WORLD_PX);
-            const isBeen = p.been;
-            const isHovered = hovered === p.id;
-            // Pin radius in world-px. SVG scales it so 8 ≈ 8 / 1024 of width.
-            const r = isHovered ? 9 : 6;
-            return (
-              <g
-                key={p.id}
-                onMouseEnter={() => setHovered(p.id)}
-                onMouseLeave={() => setHovered(prev => (prev === p.id ? null : prev))}
-                onClick={() => router.push(`/cities/${p.slug}`)}
-                style={{ cursor: 'pointer' }}
-              >
-                {/* Halo */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={r * 2.4}
-                  fill={isBeen ? '#2f6f73' : '#6b7c8f'}
-                  opacity={isHovered ? 0.28 : 0.18}
-                />
-                {/* Core */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={r}
-                  fill={isBeen ? '#2f6f73' : '#6b7c8f'}
-                  stroke="#ffffff"
-                  strokeWidth={2}
-                />
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* Hover tooltip — HTML overlay so we get nice typography + a flag */}
-        {hovered && (() => {
-          const p = visible.find(v => v.id === hovered);
-          if (!p) return null;
-          const { x, y } = project(p.lat, p.lng, WORLD_PX);
-          const xPct = (x / WORLD_PX) * 100;
-          const yPct = (y / WORLD_PX) * 100;
-          // Position above the pin; flip below if near the top edge.
-          const above = yPct > 18;
-          return (
-            <div
-              className="absolute pointer-events-none z-10"
-              style={{
-                left: `${xPct}%`,
-                top: `${yPct}%`,
-                transform: above
-                  ? 'translate(-50%, calc(-100% - 14px))'
-                  : 'translate(-50%, 14px)',
-              }}
-            >
-              <div
-                className="bg-white border border-sand rounded px-2.5 py-1.5 text-small whitespace-nowrap flex items-center gap-2"
-                style={{
-                  boxShadow:
-                    '0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.08)',
-                }}
-              >
-                {p.countryFlag && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={p.countryFlag}
-                    alt=""
-                    className="w-4 h-auto rounded-sm border border-sand"
-                  />
-                )}
-                <div>
-                  <div className="text-ink-deep font-medium leading-tight">{p.name}</div>
-                  <div className="text-muted text-[10px] leading-tight">{p.country}</div>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
-
-        {/* Attribution — required by OSM tile policy */}
-        <div className="absolute bottom-1 right-1 text-[9px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5 pointer-events-none">
-          © OpenStreetMap
-        </div>
-      </div>
-
-      {/* Legend */}
-      <div className="mt-3 flex gap-4 text-small text-slate">
-        <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-full bg-teal" /> Visited
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="inline-block w-3 h-3 rounded-full" style={{ background: '#6b7c8f' }} /> Planned
-        </span>
+      {/* OSM attribution — required by their tile policy */}
+      <div className="absolute bottom-1 right-1 text-[9px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5 pointer-events-none">
+        © OpenStreetMap
       </div>
     </div>
   );

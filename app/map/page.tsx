@@ -4,8 +4,9 @@ import WorldMap from '@/components/WorldMap';
 export const revalidate = 3600;
 export const metadata = { title: 'Map · go.mike-lee' };
 
-// Server component: fetches cities + countries from Notion, filters to Been
-// (and optionally Go), then hands a minimal payload to the client map.
+// Full-bleed map page. The map itself takes the entire content area below the
+// sticky nav so the focus stays on the pins. No headline, no description, no
+// counts — just the map.
 export default async function MapPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const countryById = new Map(countries.map(c => [c.id, c]));
@@ -27,22 +28,5 @@ export default async function MapPage() {
       };
     });
 
-  return (
-    <section className="max-w-page mx-auto px-5 py-10">
-      <div className="max-w-prose">
-        <h1 className="text-h1 text-ink-deep">Map</h1>
-        <p className="text-slate mt-3 leading-relaxed">
-          Every city pinned here is somewhere I&apos;ve been or am planning to
-          visit. Hover a pin for the city name; click to open the postcard.
-          This is an outline view — the world is drawn loosely from a
-          simplified country outline so the focus stays on the pins.
-        </p>
-        <p className="text-slate mt-3 text-small">
-          {pins.filter(p => p.been).length} visited · {pins.filter(p => p.go && !p.been).length} planned
-        </p>
-      </div>
-
-      <WorldMap pins={pins} />
-    </section>
-  );
+  return <WorldMap pins={pins} />;
 }
