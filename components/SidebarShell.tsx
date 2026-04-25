@@ -30,9 +30,11 @@ const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/about', emoji: '📖', label: 'About' },
 ];
 
+// External links to other Mike Lee subdomains. The "About" link that used
+// to live here pointed to app.mike-lee.me; that's now the internal /about
+// route in the Pages section, so it isn't duplicated here.
 const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
   { href: 'https://mike-lee.me', emoji: '🏠', label: 'mike-lee.me' },
-  { href: 'https://app.mike-lee.me', emoji: '👤', label: 'About' },
   { href: 'https://ski.mike-lee.me/', emoji: '⛷️', label: 'Cat-Ski' },
   { href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8', emoji: '🐈', label: 'Stray' },
 ];
@@ -155,12 +157,15 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         ))}
       </Section>
 
-      {/* Footer note */}
-      <div className="mt-auto pt-4 text-[11px] text-muted leading-relaxed">
-        © {new Date().getFullYear()} Mike Lee
-        <br />
-        synced from Notion · hosted on Vercel
-      </div>
+      {/* Footer credit — hyperlinked to LinkedIn */}
+      <a
+        href="https://www.linkedin.com/in/mikelee89/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto pt-4 text-[11px] text-muted hover:text-ink-deep transition-colors"
+      >
+        Whisker Leaks — {new Date().getFullYear()}
+      </a>
     </div>
   );
 }
