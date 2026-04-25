@@ -115,9 +115,20 @@ export default function CitiesGrid({ cities }: Props) {
   return (
     <section className="max-w-page mx-auto px-5 py-10">
       <div className="flex items-end justify-between gap-4 flex-wrap">
-        <div>
+        <div className="max-w-prose">
           <h1 className="text-h1 text-ink-deep">Cities</h1>
-          <p className="text-slate mt-1 text-small">
+          <p className="text-slate mt-3 leading-relaxed">
+            I am currently using Notion to keep my travel notes organized. Originally
+            everything was hand curated. Today much of it is scraped from open source
+            sites across the web. I&apos;m often asked to share observations or notes
+            about a specific destination, so this page seemed like a good compromise.
+            Currently the cities postcards directly query my Notion via the API so
+            be patient with the load time!
+          </p>
+          <p className="text-muted mt-3 text-small italic">
+            PS, this page is like everything else, just for fun and a work in progress.
+          </p>
+          <p className="text-slate mt-4 text-small">
             {filtered.length} of {cities.length}
           </p>
         </div>
@@ -126,7 +137,7 @@ export default function CitiesGrid({ cities }: Props) {
           placeholder="Search city or country"
           value={q}
           onChange={e => setQ(e.target.value)}
-          className="px-3 py-2 rounded border border-sand bg-white text-ink text-sm focus:outline-none focus:border-teal w-64"
+          className="px-3 py-2 rounded border border-sand bg-white text-ink text-sm focus:outline-none focus:border-teal w-64 self-start"
         />
       </div>
 
