@@ -59,22 +59,13 @@ export default function WorldMap({ pins }: Props) {
     return out;
   }, []);
 
-  // Full-bleed map: spans the full viewport width and fills the area below
-  // the sticky nav (~64px). Filter chips float as a small overlay so they
-  // don't claim chrome real estate the way a separate header would. Pins
-  // are clickable; click navigates to the city's detail page.
+  // Full-bleed map: fills the entire main content area (which itself is
+  // viewport-width-minus-sidebar on desktop, full viewport width on mobile).
+  // Vertically: full viewport on desktop (no top bar), viewport minus mobile
+  // top bar (~56px) below md.
   return (
     <div
-      className="relative w-screen overflow-hidden bg-cream-soft"
-      style={{
-        // 64px tracks the sticky nav height (py-3 + pill content). Matches
-        // edge-to-edge intent without hiding the nav.
-        height: 'calc(100svh - 64px)',
-        // Pull the wrapper out of any parent padding so it truly bleeds to
-        // the viewport edges on all devices.
-        marginLeft: 'calc(50% - 50vw)',
-        marginRight: 'calc(50% - 50vw)',
-      }}
+      className="relative w-full overflow-hidden bg-cream-soft h-[calc(100svh-56px)] md:h-screen"
     >
       {/* Tile layer — absolute-positioned 4×4 grid of OSM tiles */}
       <div className="absolute inset-0">

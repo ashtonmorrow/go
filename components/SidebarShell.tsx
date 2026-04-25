@@ -1,0 +1,219 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+
+type Counts = {
+  cities: number;
+  countries: number;
+  been: number;
+  go: number;
+  saved: number;
+};
+
+// Layer-inspired left rail. Three vertical zones:
+//   1. Brand header (project name + dropdown affordance)
+//   2. Pages — go.mike-lee.me's own routes
+//   3. Collections — informational counts (currently click-through to /cities;
+//      future work could deep-link to /cities?filter=been etc.)
+//   4. Elsewhere — external Mike Lee subdomains (was the old top pill nav)
+//
+// On screens < md the rail collapses into a top app bar with a hamburger
+// that slides the same nav in from the left as a drawer.
+
+const PAGES: { href: string; emoji: string; label: string }[] = [
+  { href: '/cities', emoji: '📮', label: 'Postcards' },
+  { href: '/map', emoji: '🗺️', label: 'Map' },
+];
+
+const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
+  { href: 'https://mike-lee.me', emoji: '🏠', label: 'mike-lee.me' },
+  { href: 'https://app.mike-lee.me', emoji: '👤', label: 'About' },
+  { href: 'https://ski.mike-lee.me/', emoji: '⛷️', label: 'Cat-Ski' },
+  { href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8', emoji: '🐈', label: 'Stray' },
+];
+
+export default function SidebarShell({ counts }: { counts: Counts }) {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  return (
+    <>
+      {/* === Mobile top bar === only visible below md. Has the hamburger
+          and the brand label so the user knows where they are. === */}
+      <div className="md:hidden sticky top-0 z-40 bg-white border-b border-sand">
+        <div className="flex items-center gap-3 px-4 py-3">
+          <button
+            type="button"
+            aria-label="Open navigation"
+            onClick={() => setDrawerOpen(true)}
+            className="p-2 -m-2 rounded hover:bg-cream-soft"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden>
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+          </button>
+          <Link href="/cities" className="font-semibold text-ink-deep">
+            go.mike-lee
+          </Link>
+        </div>
+      </div>
+
+      {/* === Mobile drawer scrim === */}
+      {drawerOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-50 bg-black/30"
+          onClick={() => setDrawerOpen(false)}
+          aria-hidden
+        />
+      )}
+
+      {/* === Mobile drawer === */}
+      <aside
+        className={
+          'md:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-white border-r border-sand transition-transform duration-200 ' +
+          (drawerOpen ? 'translate-x-0' : '-translate-x-full')
+        }
+      >
+        <NavBody counts={counts} onLinkClick={() => setDrawerOpen(false)} />
+      </aside>
+
+      {/* === Desktop sticky rail === always visible md+, fills the viewport
+          height. Sits on the left of the page with main content to its right. */}
+      <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
+        <NavBody counts={counts} />
+      </aside>
+    </>
+  );
+}
+
+// === NavBody ===
+// The actual sidebar contents — shared between desktop rail and mobile drawer.
+function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => void }) {
+  const pathname = usePathname() || '';
+
+  return (
+    <div className="flex flex-col h-full p-4 gap-6">
+      {/* Brand header */}
+      <div className="flex items-center justify-between gap-2">
+        <Link
+          href="/cities"
+          onClick={onLinkClick}
+          className="inline-flex items-center gap-2 font-semibold text-ink-deep hover:text-ink"
+        >
+          <span aria-hidden>🌏</span>
+          <span>go.mike-lee</span>
+          <span className="text-muted text-xs" aria-hidden>▾</span>
+        </Link>
+      </div>
+
+      {/* Pages */}
+      <Section label="Pages">
+        {PAGES.map(p => {
+          const active = pathname === p.href || (p.href === '/cities' && pathname.startsWith('/cities/'));
+          return (
+            <Item
+              key={p.href}
+              href={p.href}
+              emoji={p.emoji}
+              label={p.label}
+              active={active}
+              onClick={onLinkClick}
+            />
+          );
+        })}
+      </Section>
+
+      {/* Collections — informational stats with click-through to /cities */}
+      <Section label="Collections">
+        <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
+        <Item href="/cities" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
+        <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
+        <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
+        <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
+      </Section>
+
+      {/* Elsewhere — external Mike Lee subdomains */}
+      <Section label="Elsewhere">
+        {ELSEWHERE.map(p => (
+          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
+        ))}
+      </Section>
+
+      {/* Footer note */}
+      <div className="mt-auto pt-4 text-[11px] text-muted leading-relaxed">
+        © {new Date().getFullYear()} Mike Lee
+        <br />
+        synced from Notion · hosted on Vercel
+      </div>
+    </div>
+  );
+}
+
+// === Section header ===
+function Section({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium px-2 mb-1">
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// === Item ===
+// Single sidebar row: emoji + label + optional count, internal link.
+function Item({
+  href,
+  emoji,
+  label,
+  count,
+  active,
+  onClick,
+}: {
+  href: string;
+  emoji: string;
+  label: string;
+  count?: number;
+  active?: boolean;
+  onClick?: () => void;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className={
+        'group flex items-center gap-2 px-2 py-1.5 rounded text-small transition-colors ' +
+        (active
+          ? 'bg-cream text-ink-deep font-medium'
+          : 'text-slate hover:bg-cream-soft hover:text-ink-deep')
+      }
+    >
+      <span className="text-base leading-none flex-shrink-0" aria-hidden>{emoji}</span>
+      <span className="flex-1 truncate">{label}</span>
+      {count !== undefined && (
+        <span className="text-[11px] tabular-nums text-muted bg-sand/70 px-1.5 py-0.5 rounded">
+          {count}
+        </span>
+      )}
+    </Link>
+  );
+}
+
+// === ExternalItem ===
+// External link with the small "↗" indicator, opens in a new tab.
+function ExternalItem({ href, emoji, label }: { href: string; emoji: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-2 px-2 py-1.5 rounded text-small text-slate hover:bg-cream-soft hover:text-ink-deep transition-colors"
+    >
+      <span className="text-base leading-none flex-shrink-0" aria-hidden>{emoji}</span>
+      <span className="flex-1 truncate">{label}</span>
+      <span className="text-muted text-[10px] opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden>↗</span>
+    </a>
+  );
+}
