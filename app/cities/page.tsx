@@ -1,6 +1,8 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import CitiesGrid from '@/components/CitiesGrid';
 import { driveSide } from '@/lib/driveSide';
+import { visaUs } from '@/lib/visaUs';
+import { tapWater } from '@/lib/tapWater';
 import type {
   Continent,
   VisaUs,
@@ -60,13 +62,22 @@ export default async function CitiesPage() {
       koppen: c.koppen,
       founded: c.founded,
       savedPlaces: c.myGooglePlaces,
-      // Country-derived facts shown on the postcard + used as filter axes
+      // Country-derived facts shown on the postcard + used as filter axes.
+      // Visa and tap-water fields are sparsely populated in the Notion
+      // workspace today, so we fall back to the ISO2-keyed lookups in
+      // lib/visaUs.ts and lib/tapWater.ts when Notion has nothing. When
+      // Notion does have a value, that wins (Notion is the source of truth
+      // for any country we've explicitly curated).
       currency: country?.currency ?? null,
       language: country?.language ?? null,
       driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
       continent: asContinent(country?.continent),
-      visa: asVisa(country?.visaUs),
-      tapWater: asTapWater(country?.tapWater),
+      visa:
+        asVisa(country?.visaUs) ??
+        visaUs(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      tapWater:
+        asTapWater(country?.tapWater) ??
+        tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
     };
   });
   return <CitiesGrid cities={minimal} />;
