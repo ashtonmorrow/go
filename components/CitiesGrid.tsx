@@ -205,16 +205,18 @@ function Postmark({ label, subtitle, color }: { label: string; subtitle: string;
     <div
       className="absolute z-20 pointer-events-none"
       style={{
-        top: -2,
-        right: 30,
-        width: 64,
-        height: 64,
-        transform: 'rotate(-12deg)',
-        opacity: 0.72,
+        // Positioned to overlap the upper-left corner of the postage stamp,
+        // simulating a real postal cancellation hitting the stamp.
+        top: -4,
+        right: 38,
+        width: 60,
+        height: 60,
+        transform: 'rotate(-14deg)',
+        opacity: 0.78,
       }}
       aria-hidden
     >
-      <svg viewBox="0 0 64 64" width="64" height="64">
+      <svg viewBox="0 0 64 64" width="60" height="60">
         <defs>
           <path id={`${id}-top`} d="M 8 32 a 24 24 0 0 1 48 0" fill="none" />
           <path id={`${id}-bot`} d="M 8 32 a 24 24 0 0 0 48 0" fill="none" />
@@ -275,7 +277,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       {/* === STAMP — top-right ===
           Real-stamp look via stamp-perforated CSS class (scalloped edges via mask) */}
       <div
-        className="stamp-perforated absolute top-2 right-2 z-10 w-12 h-14 bg-cream-soft p-1.5 flex items-center justify-center"
+        className="stamp-perforated absolute top-2.5 right-2.5 z-10 w-[68px] h-[84px] bg-cream-soft p-2 flex items-center justify-center"
         style={{
           transform: 'rotate(2deg)',
         }}
@@ -301,7 +303,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       )}
 
       {/* === HEADER — top-left: city + country === */}
-      <div className="px-3.5 pt-3 pr-16">
+      <div className="px-3.5 pt-3" style={{ paddingRight: 88 }}>
         <h3 className="text-ink-deep font-bold text-[15px] uppercase tracking-wide leading-tight truncate">
           {city.name}
         </h3>
