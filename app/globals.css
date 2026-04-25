@@ -9,7 +9,7 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
   body {
-    @apply bg-cream text-ink antialiased;
+    @apply bg-white text-ink antialiased;
     font-feature-settings: 'cv11', 'ss01';
   }
   a {

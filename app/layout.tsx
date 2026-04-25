@@ -1,35 +1,47 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Go · Mike Lee',
   description: 'Places I\'ve been and places I want to go — a travel atlas by Mike Lee.',
 };
 
+// Nav links match mike-lee.me — same set of pills, same order, so subdomains feel like one site.
+const NAV_LINKS = [
+  { label: 'Home', href: 'https://mike-lee.me' },
+  { label: 'About', href: 'https://app.mike-lee.me' },
+  { label: 'Cat - Ski', href: 'https://ski.mike-lee.me/' },
+  { label: 'Stray', href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8' },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <header className="border-b border-sand bg-cream/95 backdrop-blur sticky top-0 z-40">
-          <div className="max-w-page mx-auto px-5 h-14 flex items-center justify-between">
-            <Link href="/" className="text-ink-deep font-semibold tracking-tight hover:text-teal transition-colors">
-              go.mike-lee
-            </Link>
-            <nav className="flex items-center gap-6 text-small">
-              <Link href="/" className="text-ink hover:text-teal">Map</Link>
-              <Link href="/cities" className="text-ink hover:text-teal">Cities</Link>
-              <a href="https://mike-lee.me" className="text-slate hover:text-teal">mike-lee.me</a>
-            </nav>
-          </div>
-        </header>
+        <div className="sticky top-0 z-40 bg-white">
+          <nav className="max-w-page mx-auto px-5 py-3 flex flex-wrap gap-2">
+            {NAV_LINKS.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex items-center px-4 py-2 bg-white text-ink-deep text-small font-medium hover:bg-cream-soft transition-colors"
+                style={{
+                  borderBottom: '1px solid #0f172a',
+                  borderRadius: 0,
+                  boxShadow:
+                    '0 0.6px 0.6px -1.25px rgba(0,0,0,0.18), 0 2.29px 2.29px -2.5px rgba(0,0,0,0.16), 0 10px 10px -3.75px rgba(0,0,0,0.06)',
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
         <main className="min-h-screen">{children}</main>
         <footer className="mt-20 border-t border-sand py-8">
           <div className="max-w-page mx-auto px-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-small text-muted">
             <span>© {new Date().getFullYear()} Mike Lee</span>
-            <span>
-              Data from Notion · map by Google · hosted on Vercel
-            </span>
+            <span>go.mike-lee.me · synced from Notion · hosted on Vercel</span>
           </div>
         </footer>
       </body>

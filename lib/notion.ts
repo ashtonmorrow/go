@@ -58,6 +58,7 @@ export type City = {
   sisterCities: string[]; // page IDs
   heroImage: string | null;
   personalPhoto: string | null;
+  cityFlag: string | null;
   wikipediaUrl: string | null;
   wikipediaSummary: string | null;
   quote: string | null;
@@ -175,6 +176,7 @@ function rowToCity(row: any): City {
     sisterCities: relation(p['Sister Cities']),
     heroImage: file(p['Hero Image']),
     personalPhoto: file(p['Personal Photo']),
+    cityFlag: file(p['Flag']),
     wikipediaUrl: text(p['Wikipedia URL']),
     wikipediaSummary: text(p['Wikipedia Summary']),
     quote: text(p['Quote']),
