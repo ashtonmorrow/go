@@ -106,20 +106,7 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      {/* Brand header */}
-      <div className="flex items-center justify-between gap-2">
-        <Link
-          href="/cities"
-          onClick={onLinkClick}
-          className="inline-flex items-center gap-2 font-semibold text-ink-deep hover:text-ink"
-        >
-          <span aria-hidden>🌏</span>
-          <span>go.mike-lee</span>
-          <span className="text-muted text-xs" aria-hidden>▾</span>
-        </Link>
-      </div>
-
-      {/* Pages — always visible */}
+      {/* Pages — always visible at the top */}
       <Section label="Pages">
         {PAGES.map(p => {
           const active = pathname === p.href || (p.href === '/cities' && pathname.startsWith('/cities/'));
@@ -136,6 +123,15 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         })}
       </Section>
 
+      {/* Elsewhere — external Mike Lee subdomains, sits between Pages and
+          the (page-specific) filter cockpit so it reads as part of the
+          stable nav rather than mixed in with content controls. */}
+      <Section label="Elsewhere">
+        {ELSEWHERE.map(p => (
+          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
+        ))}
+      </Section>
+
       {/* On /cities: full filter cockpit. Otherwise: read-only collection
           stats so the user still sees how many cities/countries/etc exist. */}
       {showFilters ? (
@@ -150,22 +146,26 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         </Section>
       )}
 
-      {/* Elsewhere — external Mike Lee subdomains */}
-      <Section label="Elsewhere">
-        {ELSEWHERE.map(p => (
-          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
-        ))}
-      </Section>
-
-      {/* Footer credit — hyperlinked to LinkedIn */}
-      <a
-        href="https://www.linkedin.com/in/mikelee89/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto pt-4 text-[11px] text-muted hover:text-ink-deep transition-colors"
-      >
-        Whisker Leaks — {new Date().getFullYear()}
-      </a>
+      {/* Bottom block: Home shortcut + footer credit. mt-auto pushes the
+          whole block to the bottom of the rail; gap-3 separates the home
+          row from the credit. */}
+      <div className="mt-auto flex flex-col gap-3 pt-4">
+        <Item
+          href="/cities"
+          emoji="🏠"
+          label="Home"
+          active={pathname === '/cities'}
+          onClick={onLinkClick}
+        />
+        <a
+          href="https://www.linkedin.com/in/mikelee89/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-2 text-[11px] text-muted hover:text-ink-deep transition-colors"
+        >
+          Whisker Leaks — {new Date().getFullYear()}
+        </a>
+      </div>
     </div>
   );
 }
