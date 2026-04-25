@@ -315,65 +315,73 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               borderRadius: 4,
               boxShadow:
                 '0 1px 2px rgba(15, 23, 42, 0.05), 0 4px 8px rgba(15, 23, 42, 0.05), 0 12px 18px -6px rgba(15, 23, 42, 0.06)',
+              // Map fills the entire card via background-image with cover.
+              // background-position pans the image so the city's exact lat/lng
+              // sits at the centre of the visible area regardless of where it
+              // happens to fall within the tile.
+              backgroundImage: `url(${tileUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: `${subPctX}% ${subPctY}%`,
+              backgroundRepeat: 'no-repeat',
             }}
           >
-            {/* Square OSM tile, scaled to height of postcard, centered horizontally */}
+            {/* City pin always at container centre (since bg is anchored to city) */}
             <div
               className="absolute"
               style={{
-                top: 0,
-                bottom: 0,
-                aspectRatio: '1 / 1',
                 left: '50%',
-                transform: 'translateX(-50%)',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none',
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={tileUrl}
-                alt={`Map of ${city.name} region`}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              {/* City pin at the city's exact sub-tile position */}
               <div
-                className="absolute"
                 style={{
-                  left: `${subPctX}%`,
-                  top: `${subPctY}%`,
-                  transform: 'translate(-50%, -50%)',
-                  pointerEvents: 'none',
+                  width: 14,
+                  height: 14,
+                  borderRadius: '50%',
+                  background: '#2f6f73',
+                  border: '2px solid white',
+                  boxShadow: '0 0 0 6px rgba(47, 111, 115, 0.22)',
                 }}
-              >
-                <div
-                  style={{
-                    width: 14,
-                    height: 14,
-                    borderRadius: '50%',
-                    background: '#2f6f73',
-                    border: '2px solid white',
-                    boxShadow: '0 0 0 5px rgba(47, 111, 115, 0.22)',
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* City name strip at bottom (like postcard caption) */}
-            <div
-              className="absolute bottom-0 inset-x-0 py-1.5 px-3 text-white text-[11px] uppercase tracking-[0.18em] font-medium z-10"
-              style={{
-                background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.65))',
-              }}
-            >
-              {city.name}
+              />
             </div>
 
             {/* OSM attribution (required by their tile policy) */}
             <div
-              className="absolute top-1 right-1 text-[8px] bg-white/85 text-ink-deep/60 px-1 rounded leading-none py-0.5"
+              className="absolute top-1 right-1 text-[8px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5"
               style={{ pointerEvents: 'none' }}
             >
               © OpenStreetMap
+            </div>
+
+            {/* Bottom strip: city name + "View my Pins" button (if savedPlaces) */}
+            <div
+              className="absolute bottom-0 inset-x-0 px-3 py-2 z-10 flex items-center justify-between gap-3"
+              style={{
+                background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.7))',
+              }}
+            >
+              <div className="text-white text-[11px] uppercase tracking-[0.18em] font-medium truncate">
+                {city.name}
+              </div>
+              {city.savedPlaces && (
+                <a
+                  href={city.savedPlaces}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-ink-deep text-[11px] font-medium hover:bg-cream-soft transition-colors flex-shrink-0"
+                  style={{
+                    borderBottom: '1px solid #0f172a',
+                    borderRadius: 0,
+                    boxShadow:
+                      '0 0.6px 0.6px -1.25px rgba(0,0,0,0.18), 0 2.29px 2.29px -2.5px rgba(0,0,0,0.16), 0 10px 10px -3.75px rgba(0,0,0,0.06)',
+                  }}
+                >
+                  View my Pins <span aria-hidden>📍</span>
+                </a>
+              )}
             </div>
           </div>
         )}
