@@ -55,6 +55,18 @@ export function personJsonLd() {
     alternateName: AUTHOR_ALT_NAME,
     url: AUTHOR_URL,
     sameAs: [AUTHOR_LINKEDIN],
+    // Topical fingerprint — gives Google + LLM crawlers a clean signal
+    // about what this Person is an authoritative source for. Kept
+    // narrow to the actual content of the site so the entity stays
+    // believable. Add jobTitle / worksFor here when ready.
+    knowsAbout: [
+      'travel',
+      'geography',
+      'cartography',
+      'world heritage sites',
+      'urbanism',
+      'open data',
+    ],
   };
 }
 

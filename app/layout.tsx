@@ -53,6 +53,16 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     creator: '@mikelee',
   },
+  // Auto-discovery for the JSON Feed of pins. NetNewsWire and Inoreader
+  // pick this up automatically when the user visits any page on the site
+  // — saves them from having to know the feed URL by heart. Next.js
+  // serializes `alternates.types` as <link rel="alternate" type="…">.
+  alternates: {
+    canonical: SITE_URL,
+    types: {
+      'application/feed+json': `${SITE_URL}/feeds/pins.json`,
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
