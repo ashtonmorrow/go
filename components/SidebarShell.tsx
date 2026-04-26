@@ -31,11 +31,11 @@ const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/about', emoji: '📖', label: 'About' },
 ];
 
-// External links to other Mike Lee subdomains. The "About" link that used
-// to live here pointed to app.mike-lee.me; that's now the internal /about
-// route in the Pages section, so it isn't duplicated here.
+// External links to other Mike Lee subdomains. mike-lee.me itself isn't
+// listed because the bottom-anchored '🏠 Home' button already points there.
+// The "About" link that used to live here pointed to app.mike-lee.me;
+// that's now the internal /about route in the Views section.
 const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
-  { href: 'https://mike-lee.me', emoji: '🏠', label: 'mike-lee.me' },
   { href: 'https://ski.mike-lee.me/', emoji: '⛷️', label: 'Cat-Ski' },
   { href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8', emoji: '🐈', label: 'Stray' },
 ];
