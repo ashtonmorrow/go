@@ -62,9 +62,13 @@ export default async function PinsPage() {
           name: 'Pins',
           description: DESCRIPTION,
           totalItems: pins.length,
+          // Carry the cover image into the ItemList so search engines /
+          // LLM crawlers can render rich list previews. Images here are
+          // already on our Supabase Storage bucket, so they're stable.
           items: pins.map(p => ({
             url: `${SITE_URL}/pins/${p.slug ?? p.id}`,
             name: p.name,
+            image: p.images[0]?.url ?? null,
           })),
         })}
       />

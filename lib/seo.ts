@@ -10,6 +10,8 @@
 //   /cities          — CollectionPage + ItemList    (a curated collection)
 //   /cities/[slug]   — City + BreadcrumbList        (a Place subclass)
 //   /countries/[slug]— Country + BreadcrumbList
+//   /pins            — CollectionPage + ItemList
+//   /pins/[slug]     — TouristAttraction + BreadcrumbList
 //   /map             — WebPage                       (interactive view)
 //   /about           — TechArticle                   (technical write-up)
 //   layout (site)    — Person + WebSite              (sitewide)
@@ -161,11 +163,16 @@ export function countryJsonLd(country: {
 // Listing page (CollectionPage + ItemList). Item list is intentionally
 // truncated to the first N entries — full lists harm crawl efficiency
 // without much SEO benefit.
+//
+// Each list item can optionally carry an image URL — useful on /pins
+// where the photo is identity-defining for the place. When supplied,
+// itemListElement.item becomes a Thing-shaped object so the image hangs
+// off the entity itself rather than the ListItem wrapper.
 export function collectionJsonLd(opts: {
   url: string;
   name: string;
   description: string;
-  items: { url: string; name: string }[];
+  items: { url: string; name: string; image?: string | null }[];
   totalItems: number;
   maxItemsInList?: number;
 }) {
@@ -187,8 +194,111 @@ export function collectionJsonLd(opts: {
         position: i + 1,
         url: it.url,
         name: it.name,
+        ...(it.image
+          ? {
+              item: {
+                '@type': 'Thing',
+                name: it.name,
+                url: it.url,
+                image: it.image,
+              },
+            }
+          : {}),
       })),
     },
+  };
+}
+
+// Pin (place-of-interest) detail page. Modelled as TouristAttraction
+// (a Place subclass that Google's structured-data documentation
+// explicitly supports) with geo, address, image, isAccessibleForFree,
+// and `sameAs` links pointing at the attraction's official site and the
+// UNESCO World Heritage entry where applicable.
+//
+// Notes on the modelling:
+//   * `additionalType` lifts UNESCO sites into the more specific
+//     LandmarksOrHistoricalBuilding subclass without losing
+//     TouristAttraction (Google understands both).
+//   * `address` is best-effort — pins only carry a city + country text
+//     label, not full street addresses, so we emit a PostalAddress with
+//     the locality / country slots only.
+//   * `containedInPlace` references the country page on this site so
+//     the entity graph is self-traversable.
+export function pinJsonLd(pin: {
+  slug: string;
+  name: string;
+  description?: string | null;
+  image?: string | null;
+  lat?: number | null;
+  lng?: number | null;
+  city?: string | null;
+  country?: string | null;
+  countrySlug?: string | null;
+  category?: string | null;
+  unescoId?: number | null;
+  unescoUrl?: string | null;
+  website?: string | null;
+  /** True when admission is free (price_amount === 0). Null when unknown. */
+  isFree?: boolean | null;
+}) {
+  const url = `${SITE_URL}/pins/${pin.slug}`;
+  const sameAs = [pin.website, pin.unescoUrl].filter(Boolean) as string[];
+  const isUnesco = pin.unescoId != null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    '@id': url,
+    url,
+    name: pin.name,
+    ...(pin.description ? { description: clip(pin.description, 300) } : {}),
+    ...(pin.image ? { image: pin.image } : {}),
+    ...(pin.category ? { keywords: pin.category } : {}),
+    ...(isUnesco
+      ? {
+          // Lift UNESCO sites into a more specific Place subclass
+          // without dropping TouristAttraction. Both are valid for
+          // Google's place rich results.
+          additionalType: 'https://schema.org/LandmarksOrHistoricalBuildings',
+        }
+      : {}),
+    ...(pin.lat != null && pin.lng != null
+      ? {
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: pin.lat,
+            longitude: pin.lng,
+          },
+        }
+      : {}),
+    ...(pin.city || pin.country
+      ? {
+          address: {
+            '@type': 'PostalAddress',
+            ...(pin.city ? { addressLocality: pin.city } : {}),
+            ...(pin.country ? { addressCountry: pin.country } : {}),
+          },
+        }
+      : {}),
+    ...(pin.country && pin.countrySlug
+      ? {
+          containedInPlace: {
+            '@type': 'Country',
+            name: pin.country,
+            url: `${SITE_URL}/countries/${pin.countrySlug}`,
+          },
+        }
+      : pin.country
+      ? {
+          containedInPlace: {
+            '@type': 'Country',
+            name: pin.country,
+          },
+        }
+      : {}),
+    ...(sameAs.length ? { sameAs } : {}),
+    ...(pin.isFree != null ? { isAccessibleForFree: pin.isFree } : {}),
+    isPartOf: { '@id': WEBSITE_ID },
   };
 }
 

@@ -7,8 +7,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { fetchPinBySlug } from '@/lib/pins';
+import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
-import { SITE_URL, clip, breadcrumbJsonLd } from '@/lib/seo';
+import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -55,14 +56,55 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
 
+  // Resolve the country slug so the JSON-LD `containedInPlace` link points
+  // back at this site's own country page rather than just naming a string.
+  // Lookup is cheap thanks to the React.cache() wrapper around fetchAllCountries.
+  const country = pin.statesNames[0] ?? null;
+  const countries = country ? await fetchAllCountries() : [];
+  const countrySlug =
+    country
+      ? countries.find(c => c.name.toLowerCase() === country.toLowerCase())?.slug ?? null
+      : null;
+
   const placeText = [...pin.cityNames, ...pin.statesNames].filter(Boolean).join(', ');
   const breadcrumbs = [
     { name: 'Pins', item: `${SITE_URL}/pins` },
+    ...(country && countrySlug
+      ? [{ name: country, item: `${SITE_URL}/countries/${countrySlug}` }]
+      : []),
     { name: pin.name },
   ];
 
+  // TouristAttraction structured data — the canonical schema for a
+  // place-of-interest detail page. Carries geo, address, sameAs links
+  // (UNESCO + official site), isAccessibleForFree when known.
+  const isFree =
+    pin.priceAmount === 0
+      ? true
+      : pin.priceAmount != null
+      ? false
+      : null;
+
   return (
     <article className="max-w-page mx-auto px-5 py-8">
+      <JsonLd
+        data={pinJsonLd({
+          slug: pin.slug ?? pin.id,
+          name: pin.name,
+          description: pin.description,
+          image: pin.images[0]?.url ?? null,
+          lat: pin.lat,
+          lng: pin.lng,
+          city: pin.cityNames[0] ?? null,
+          country,
+          countrySlug,
+          category: pin.category,
+          unescoId: pin.unescoId,
+          unescoUrl: pin.unescoUrl,
+          website: pin.website,
+          isFree,
+        })}
+      />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
       <div className="text-small text-muted mb-2">
