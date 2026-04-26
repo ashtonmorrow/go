@@ -15,16 +15,16 @@ import type { Metadata } from 'next';
 export const revalidate = 3600;
 
 const DESCRIPTION =
-  'All 1,341 cities as a sortable table. Filter by continent, climate, visa, water, drive side. Click any row to open its postcard.';
+  'All 1,341 cities as a sortable data table. Filter by continent, climate, visa, water, drive side. Click any row to open its postcard.';
 
 export const metadata: Metadata = {
-  title: 'Table',
+  title: 'City Data',
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/table` },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/table`,
-    title: 'Table · Mike Lee',
+    title: 'City Data · Mike Lee',
     description: DESCRIPTION,
   },
 };
@@ -110,7 +110,7 @@ export default async function TablePage() {
 
   const collectionData = collectionJsonLd({
     url: `${SITE_URL}/table`,
-    name: 'Table',
+    name: 'City Data',
     description: DESCRIPTION,
     items: featuredItems,
     totalItems: cities.length,

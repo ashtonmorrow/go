@@ -185,19 +185,21 @@ export default function CitiesTable({ cities }: Props) {
   };
 
   return (
-    <section className="max-w-page mx-auto px-5 py-6">
-      <div className="max-w-prose">
-        <h1 className="text-h1 text-ink-deep">Table</h1>
-        <p className="text-slate mt-3 leading-relaxed">
-          Every city in one tabular view. Click a column header to sort; use the
-          sidebar filters to narrow. Click any row to open its postcard.
-        </p>
+    <section className="w-full bg-white">
+      {/* Discreet page label. Lives in a thin top chrome bar instead of a
+          hero — keeps the H1 in the document for SEO and gives the user a
+          quiet anchor for "where am I" without claiming hero real estate.
+          Same uppercase tracked treatment as the sidebar section labels so
+          it reads as chrome, not content. */}
+      <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-sand">
+        <h1 className="text-[11px] uppercase tracking-[0.18em] font-medium text-ink-deep">
+          City Data
+        </h1>
       </div>
 
-      {/* Table container — horizontal scroll on narrow viewports, sticky
-          header on vertical scroll. Border + bg-white keep it visually
-          distinct from the page background. */}
-      <div className="mt-6 overflow-x-auto rounded-md border border-sand bg-white shadow-card">
+      {/* Edge-to-edge table — fills the entire main content area. Sticky
+          header on vertical scroll, horizontal scroll on narrow viewports. */}
+      <div className="overflow-x-auto">
         <table className="w-full text-small text-ink border-collapse">
           <thead className="sticky top-0 z-10 bg-cream-soft">
             <tr>
