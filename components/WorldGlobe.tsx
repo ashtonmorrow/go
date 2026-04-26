@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useCallback, useRef } from 'react';
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Map as MapView,
@@ -12,8 +12,14 @@ import {
   type MapMouseEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { useCityFilters } from './CityFiltersContext';
+import { filterCities, sortCities } from '@/lib/cityFilter';
 import { COLORS } from '@/lib/colors';
 
+// Pin shape consumed by the globe. Now carries the same practicality
+// fields as the rest of the city pipeline so the cockpit can filter on
+// them. lat/lng/sisterCities are the additions on top of the standard
+// City shape — required for the map to render and draw connections.
 type Pin = {
   id: string;
   name: string;
@@ -25,6 +31,22 @@ type Pin = {
   lat: number;
   lng: number;
   sisterCities: string[];
+
+  // Filter axes — all optional, all matched by lib/cityFilter.ts
+  continent?: string | null;
+  koppen?: string | null;
+  currency?: string | null;
+  language?: string | null;
+  founded?: string | null;
+  visa?: string | null;
+  tapWater?: string | null;
+  driveSide?: 'L' | 'R' | null;
+  savedPlaces?: string | null;
+  population?: number | null;
+  elevation?: number | null;
+  avgHigh?: number | null;
+  avgLow?: number | null;
+  rainfall?: number | null;
 };
 
 type Projection = 'globe' | 'mercator';
@@ -39,12 +61,29 @@ const STATUS_OTHER = 2;
 export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   const router = useRouter();
   const mapRef = useRef<MapRef | null>(null);
+  const ctx = useCityFilters();
 
   const [projection, setProjection] = useState<Projection>('globe');
   const [hovered, setHovered] = useState<Pin | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // Index for O(1) sister-city lookup by id.
+  // Visible set after applying the cockpit's predicates. The byId index
+  // below still includes every pin (so sister-graph lookups work even
+  // when a sister is currently filtered out — its line draws to the
+  // sister's coordinates regardless).
+  const visible = useMemo(() => {
+    const state = ctx?.state;
+    return state ? sortCities(filterCities(pins, state), state) : pins;
+  }, [pins, ctx?.state]);
+
+  // Push counts to the cockpit footer.
+  useEffect(() => {
+    ctx?.setCounts(visible.length, pins.length);
+  }, [ctx, visible.length, pins.length]);
+
+  // Index for O(1) sister-city lookup by id — over the full set so
+  // selecting a visible city reveals lines to all its sisters, including
+  // ones currently hidden by the filter.
   const byId = useMemo(() => {
     const m = new Map<string, Pin>();
     for (const p of pins) m.set(p.id, p);
@@ -58,12 +97,13 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   );
 
   // === GeoJSON sources ===
-  // 1) All cities as points; one paint expression styles all of them based
-  //    on `status` (Been / Go / Other) and `selected`/`sister` flags.
+  // 1) Visible cities as points (the filtered set) — one paint expression
+  //    styles all of them based on `status` (Been / Go / Other) and the
+  //    `selected`/`sister` flags.
   const citiesGeoJSON = useMemo(() => {
     return {
       type: 'FeatureCollection' as const,
-      features: pins.map(p => {
+      features: visible.map(p => {
         const status = p.been ? STATUS_BEEN : p.go ? STATUS_GO : STATUS_OTHER;
         return {
           type: 'Feature' as const,
@@ -84,7 +124,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         };
       }),
     };
-  }, [pins, selectedId, sisterIds]);
+  }, [visible, selectedId, sisterIds]);
 
   // 2) Sister-city connections drawn as great-circle-ish line strings from
   //    the selected city to each sister. We just use straight lat/lng line

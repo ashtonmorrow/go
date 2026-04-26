@@ -153,17 +153,14 @@ function NavBody({
   // Detail pages and views that aren't wired to a filter context get the
   // read-only Collections list instead.
   const onCitiesCards     = pathname === '/cities/cards';
+  const onCitiesMap       = pathname === '/cities/map';
   const onCitiesTable     = pathname === '/cities/table';
   const onCountriesGlobe  = pathname === '/countries/map';
   const onCountriesCards  = pathname === '/countries/cards';
   const onCountriesTable  = pathname === '/countries/table';
-  // /cities/map (the sister-city globe) intentionally not in this list
-  // yet — the WorldGlobe component takes a stripped-down Pin shape that
-  // doesn't carry the practicality fields the cockpit filters on.
-  // Wiring it up properly is a follow-up (#90).
   const onPinsAny = pathname === '/pins/cards' || pathname === '/pins/map' || pathname === '/pins/table';
   const showCityFilters =
-    cityFiltersAvailable && (onCitiesCards || onCitiesTable || onCountriesGlobe);
+    cityFiltersAvailable && (onCitiesCards || onCitiesMap || onCitiesTable || onCountriesGlobe);
   const showCountryFilters =
     countryFiltersAvailable && (onCountriesCards || onCountriesTable);
   const showPinFilters = pinFiltersAvailable && onPinsAny;
