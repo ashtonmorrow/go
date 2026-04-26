@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { flagCircle } from '@/lib/flags';
 
 type CityRef = { id: string; name: string; slug: string; been: boolean };
 
@@ -319,16 +320,19 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
                   className="flex items-center justify-between gap-2 px-3 py-2 text-[12px] text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
                 >
                   <span className="truncate">{c.name}</span>
-                  {c.been && country.flag && (
-                    <span
-                      aria-hidden
-                      title="Been"
-                      className="inline-block w-3.5 h-3.5 rounded-full border border-sand flex-shrink-0"
-                      style={{
-                        backgroundImage: `url(${country.flag})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
+                  {c.been && country.iso2 && (
+                    // Purpose-designed circular flag SVG from circle-flags
+                    // (HatScripts, MIT). National symbols are framed
+                    // correctly inside the circle, unlike a cover-cropped
+                    // rectangle. Size at 14×14 to match dropdown row height.
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={flagCircle(country.iso2) || ''}
+                      alt=""
+                      title={`Been to a city in ${country.name}`}
+                      width={14}
+                      height={14}
+                      className="w-3.5 h-3.5 rounded-full flex-shrink-0"
                     />
                   )}
                 </Link>
