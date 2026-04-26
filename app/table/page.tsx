@@ -3,6 +3,7 @@ import CitiesTable from '@/components/CitiesTable';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
+import { fetchCityFlags } from '@/lib/cityFlags';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
@@ -58,6 +59,14 @@ export default async function TablePage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const byId = new Map(countries.map(c => [c.id, c]));
 
+  // Civic flags via Wikidata for cities whose Notion `cityFlag` is empty.
+  // Same shared cache as /cities — fetchCityFlags is React-cached and
+  // ISR-cached, so calling it from both routes hits Wikidata once per
+  // 24 h and once per Next render.
+  const wikidataFlags = await fetchCityFlags(
+    cities.filter(c => !c.cityFlag && c.wikidataId).map(c => c.wikidataId)
+  );
+
   // Identical minimal-shape mapping used by /cities — keeps the table and
   // the postcard wall structurally in sync. Both views use the same
   // useFilteredCities hook so sort + filter behaviour is identical.
@@ -70,7 +79,8 @@ export default async function TablePage() {
       country: c.country,
       been: c.been,
       go: c.go,
-      cityFlag: c.cityFlag,
+      // Same three-tier flag fallback used by /cities — Notion → Wikidata → country.
+      cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
       lat: c.lat,

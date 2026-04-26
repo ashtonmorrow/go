@@ -3,6 +3,7 @@ import CitiesGrid from '@/components/CitiesGrid';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
+import { fetchCityFlags } from '@/lib/cityFlags';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
@@ -57,6 +58,14 @@ export default async function CitiesPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const byId = new Map(countries.map(c => [c.id, c]));
 
+  // Pull civic flags from Wikidata for any city that has a Wikidata ID but
+  // no Notion-curated cityFlag. Cached for 24 h via ISR; runs once per
+  // revalidation window for the whole list.
+  const qidsNeedingFlag = cities
+    .filter(c => !c.cityFlag && c.wikidataId)
+    .map(c => c.wikidataId);
+  const wikidataFlags = await fetchCityFlags(qidsNeedingFlag);
+
   const minimal = cities.map(c => {
     const country = c.countryPageId ? byId.get(c.countryPageId) : null;
     return {
@@ -66,7 +75,11 @@ export default async function CitiesPage() {
       country: c.country,
       been: c.been,
       go: c.go,
-      cityFlag: c.cityFlag,
+      // Three-tier fallback for the postcard stamp:
+      //   1. cityFlag    — curated value in Notion (rare)
+      //   2. wikidataFlag — civic flag from Wikidata P41 / P94 (most cases)
+      //   3. countryFlag — falls through to country flag in CityCard
+      cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
       lat: c.lat,

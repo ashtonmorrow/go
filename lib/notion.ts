@@ -59,6 +59,7 @@ export type City = {
   heroImage: string | null;
   personalPhoto: string | null;
   cityFlag: string | null;
+  wikidataId: string | null;
   wikipediaUrl: string | null;
   wikipediaSummary: string | null;
   quote: string | null;
@@ -177,6 +178,7 @@ function rowToCity(row: any): City {
     heroImage: file(p['Hero Image']),
     personalPhoto: file(p['Personal Photo']),
     cityFlag: file(p['Flag']),
+    wikidataId: text(p['Wikidata ID']),
     wikipediaUrl: text(p['Wikipedia URL']),
     wikipediaSummary: text(p['Wikipedia Summary']),
     quote: text(p['Quote']),
