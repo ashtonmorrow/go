@@ -104,7 +104,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
     (e: MapMouseEvent) => {
       const feat = e.features?.[0];
       if (!feat) return;
-      const iso3 = feat.properties?.ISO_A3 as string | undefined;
+      const iso3 = feat.properties?.['ISO3166-1-Alpha-3'] as string | undefined;
       if (!iso3) return;
       const entry = countriesByIso3[iso3];
       if (entry) router.push(`/countries/${entry.slug}`);
@@ -115,7 +115,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
   const handleMouseMove = useCallback((e: MapMouseEvent) => {
     const feat = e.features?.[0];
     if (feat) {
-      const iso3 = feat.properties?.ISO_A3 as string | undefined;
+      const iso3 = feat.properties?.['ISO3166-1-Alpha-3'] as string | undefined;
       if (iso3) {
         setHovered({ iso3, lng: e.lngLat.lng, lat: e.lngLat.lat });
         return;
@@ -154,23 +154,23 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             paint={{
               'fill-color': [
                 'case',
-                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
                 COLORS.teal,
-                ['in', ['get', 'ISO_A3'], ['literal', plannedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', plannedIso3]],
                 COLORS.slate,
-                ['in', ['get', 'ISO_A3'], ['literal', matchedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
                 COLORS.accent,
                 'rgba(0,0,0,0)',
               ] as unknown as string,
               'fill-opacity': [
                 'case',
-                ['==', ['get', 'ISO_A3'], hoveredIso],
+                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
                 0.85,
-                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
                 0.65,
-                ['in', ['get', 'ISO_A3'], ['literal', plannedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', plannedIso3]],
                 0.32,
-                ['in', ['get', 'ISO_A3'], ['literal', matchedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
                 0.18,
                 0,
               ] as unknown as number,
@@ -185,23 +185,23 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             paint={{
               'line-color': [
                 'case',
-                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
                 COLORS.teal,
                 COLORS.inkDeep,
               ] as unknown as string,
               'line-width': [
                 'case',
-                ['==', ['get', 'ISO_A3'], hoveredIso],
+                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
                 1.6,
-                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
                 1.0,
                 0.4,
               ] as unknown as number,
               'line-opacity': [
                 'case',
-                ['==', ['get', 'ISO_A3'], hoveredIso],
+                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
                 0.85,
-                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
                 0.7,
                 0.22,
               ] as unknown as number,
