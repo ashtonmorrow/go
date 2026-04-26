@@ -117,14 +117,16 @@ function NavBody({
 }) {
   const pathname = usePathname() || '';
   const filtersAvailable = useCityFilters() !== null;
-  // Show the FilterPanel cockpit on the city-collection views: /cities (the
-  // postcard wall) and /table (the tabular view) — they share state via
-  // CityFiltersContext + useFilteredCities, so flipping between them
-  // preserves the active filters. City detail pages (/cities/<slug>) get
-  // the Collections list instead.
+  // Show the FilterPanel cockpit on the data-driven views: /cities (the
+  // postcard wall), /table (the tabular view), and /world (the country
+  // globe — country shading derives from filtered cities). They all share
+  // state via CityFiltersContext + useFilteredCities, so flipping between
+  // them preserves the active filters. City detail pages get Collections
+  // instead.
   const onCitiesIndex = pathname === '/cities';
   const onTable = pathname === '/table';
-  const showFilters = filtersAvailable && (onCitiesIndex || onTable);
+  const onWorld = pathname === '/world';
+  const showFilters = filtersAvailable && (onCitiesIndex || onTable || onWorld);
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">

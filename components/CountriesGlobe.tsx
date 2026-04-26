@@ -14,25 +14,34 @@ import {
 import 'maplibre-gl/dist/maplibre-gl.css';
 import ViewSwitcher from './ViewSwitcher';
 import { COLORS } from '@/lib/colors';
+import { useFilteredCities } from '@/lib/useFilteredCities';
+import type { City } from '@/lib/cityShape';
+
+// Country metadata indexed by ISO 3166-1 alpha-3.
+type CountryMeta = {
+  name: string;
+  slug: string;
+  flag: string | null;
+};
 
 type Props = {
-  // Set of ISO 3166-1 alpha-3 codes for countries with at least one Been city.
-  visitedIso3: string[];
-  // Set of ISO3s for countries with Go cities but no Been (i.e. only planned).
-  plannedIso3: string[];
-  // Map ISO3 → { name, slug } so click → navigate to /countries/<slug>.
-  iso3Map: Record<string, { name: string; slug: string; beenCount: number; cityCount: number }>;
+  cities: City[];
+  // ISO3 → country metadata lookup (built server-side from the Notion
+  // countries table). Drives the popup + click navigation.
+  countriesByIso3: Record<string, CountryMeta>;
+  // Mapping from countryPageId (Notion id) → ISO3, used to bridge cities
+  // (which reference country by page id) to the GeoJSON (which keys on ISO3).
+  countryIdToIso3: Record<string, string>;
 };
 
 type Projection = 'globe' | 'mercator';
 
-// Public-domain Natural-Earth-derived country boundaries hosted by datasets/
-// geo-countries on GitHub, served through jsDelivr. Single ~250 KB file,
-// covers every UN country with ISO_A3 properties — small enough to ship as
-// a runtime fetch instead of bundling. License: PDDL 1.0.
+// Public-domain Natural-Earth-derived country boundaries (datasets/
+// geo-countries on GitHub via jsDelivr). License: PDDL 1.0. ~250 KB
+// runtime fetch — Next ISR caches it after the first hit per window.
 const COUNTRY_GEOJSON = 'https://cdn.jsdelivr.net/gh/datasets/geo-countries@master/data/countries.geojson';
 
-export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Props) {
+export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso3 }: Props) {
   const router = useRouter();
   const mapRef = useRef<MapRef | null>(null);
 
@@ -43,28 +52,64 @@ export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Pr
     lat: number;
   } | null>(null);
 
-  // Pre-build the paint expressions for the country fill / outline layers.
-  // MapLibre's expression types are union-of-tuples and don't infer cleanly
-  // from `useMemo` builders, so the result is cast through `any` at the
-  // callsite. The actual structure is straightforward: case → in →
-  // literal-array of ISO3 strings.
-  const hoveredIso = hovered?.iso3 ?? '__none__';
-  const visitedSet = useMemo(() => visitedIso3, [visitedIso3]);
-  const plannedSet = useMemo(() => plannedIso3, [plannedIso3]);
+  // === Apply sidebar filters to the city list ============================
+  // useFilteredCities reads from CityFiltersContext, so toggling Continent /
+  // Climate / Country / Visa etc. in the sidebar narrows the cities, and
+  // therefore narrows which countries get shaded on the globe.
+  const filtered = useFilteredCities(cities);
 
-  // === Click + hover ===
-  // queryRenderedFeatures hits the country fill layer; navigate on click,
-  // track ISO3 + cursor lat/lng on hover for the popup.
+  // === Derive country status from filtered cities ========================
+  // Same primary-status priority used everywhere (Been > Go > Saved).
+  // A country counts as 'visited' if any of ITS filtered cities is Been;
+  // 'planned' if it has Go cities but no Been; 'matched' (lighter shade)
+  // if it has cities passing the filter at all but no status.
+  const { visitedIso3, plannedIso3, matchedIso3, perCountry } = useMemo(() => {
+    const beenByIso3 = new Map<string, number>();
+    const goByIso3 = new Map<string, number>();
+    const cityByIso3 = new Map<string, number>();
+
+    for (const c of filtered) {
+      // Resolve via the country page id → ISO3 map built server-side.
+      // Cities without a linked country are skipped (their country
+      // free-text might exist but isn't indexed for the globe).
+      if (!c.countryPageId) continue;
+      const iso3 = countryIdToIso3[c.countryPageId];
+      if (!iso3) continue;
+
+      cityByIso3.set(iso3, (cityByIso3.get(iso3) || 0) + 1);
+      if (c.been) beenByIso3.set(iso3, (beenByIso3.get(iso3) || 0) + 1);
+      else if (c.go) goByIso3.set(iso3, (goByIso3.get(iso3) || 0) + 1);
+    }
+
+    const visited: string[] = [];
+    const planned: string[] = [];
+    const matched: string[] = [];
+    const perCountryStats: Record<string, { been: number; go: number; total: number }> = {};
+
+    for (const [iso3, total] of cityByIso3) {
+      const been = beenByIso3.get(iso3) || 0;
+      const go = goByIso3.get(iso3) || 0;
+      perCountryStats[iso3] = { been, go, total };
+      if (been > 0) visited.push(iso3);
+      else if (go > 0) planned.push(iso3);
+      else matched.push(iso3);
+    }
+    return { visitedIso3: visited, plannedIso3: planned, matchedIso3: matched, perCountry: perCountryStats };
+  }, [filtered, countryIdToIso3]);
+
+  const hoveredIso = hovered?.iso3 ?? '__none__';
+
+  // === Click + hover handlers ===
   const handleClick = useCallback(
     (e: MapMouseEvent) => {
       const feat = e.features?.[0];
       if (!feat) return;
       const iso3 = feat.properties?.ISO_A3 as string | undefined;
       if (!iso3) return;
-      const entry = iso3Map[iso3];
+      const entry = countriesByIso3[iso3];
       if (entry) router.push(`/countries/${entry.slug}`);
     },
-    [iso3Map, router]
+    [countriesByIso3, router]
   );
 
   const handleMouseMove = useCallback((e: MapMouseEvent) => {
@@ -98,59 +143,74 @@ export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Pr
         onMouseLeave={handleMouseLeave}
       >
         <Source id="countries" type="geojson" data={COUNTRY_GEOJSON}>
-          {/* Fill — visited gets teal at moderate opacity, planned gets
-              slate, everything else is transparent so the basemap shows.
-              MapLibre expression types don't infer cleanly through React's
-              JSX prop checking, hence the `as any` casts. */}
+          {/* Fill layer — visited countries punch through with a strong
+              teal so the visited footprint reads at a glance. Planned
+              countries get a quieter slate. Cities-without-status (just
+              filter-matched) get a faint cream highlight so the user can
+              see the filter results without confusing them with visited. */}
           <Layer
             id="countries-fill"
             type="fill"
             paint={{
               'fill-color': [
                 'case',
-                ['in', ['get', 'ISO_A3'], ['literal', visitedSet]],
+                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
                 COLORS.teal,
-                ['in', ['get', 'ISO_A3'], ['literal', plannedSet]],
+                ['in', ['get', 'ISO_A3'], ['literal', plannedIso3]],
                 COLORS.slate,
+                ['in', ['get', 'ISO_A3'], ['literal', matchedIso3]],
+                COLORS.accent,
                 'rgba(0,0,0,0)',
               ] as unknown as string,
               'fill-opacity': [
                 'case',
                 ['==', ['get', 'ISO_A3'], hoveredIso],
+                0.85,
+                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
                 0.65,
-                ['in', ['get', 'ISO_A3'], ['literal', visitedSet]],
-                0.45,
-                ['in', ['get', 'ISO_A3'], ['literal', plannedSet]],
-                0.22,
+                ['in', ['get', 'ISO_A3'], ['literal', plannedIso3]],
+                0.32,
+                ['in', ['get', 'ISO_A3'], ['literal', matchedIso3]],
+                0.18,
                 0,
               ] as unknown as number,
             }}
           />
-          {/* Subtle outline on every country so unvisited ones still read as
-              shapes against the basemap; thicker outline on the hovered one. */}
+          {/* Outline layer — every country gets a faint line so unfilled
+              ones still read as shapes. Visited countries get a darker,
+              thicker outline so the boundary pops next to neighbours. */}
           <Layer
             id="countries-outline"
             type="line"
             paint={{
-              'line-color': COLORS.inkDeep,
+              'line-color': [
+                'case',
+                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                COLORS.teal,
+                COLORS.inkDeep,
+              ] as unknown as string,
               'line-width': [
                 'case',
                 ['==', ['get', 'ISO_A3'], hoveredIso],
-                1.4,
+                1.6,
+                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
+                1.0,
                 0.4,
               ] as unknown as number,
               'line-opacity': [
                 'case',
                 ['==', ['get', 'ISO_A3'], hoveredIso],
+                0.85,
+                ['in', ['get', 'ISO_A3'], ['literal', visitedIso3]],
                 0.7,
-                0.25,
+                0.22,
               ] as unknown as number,
             }}
           />
         </Source>
 
-        {/* Hover popup — name + visited/total cities */}
-        {hovered && iso3Map[hovered.iso3] && (
+        {/* Hover popup */}
+        {hovered && countriesByIso3[hovered.iso3] && (
           <Popup
             longitude={hovered.lng}
             latitude={hovered.lat}
@@ -160,16 +220,32 @@ export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Pr
             offset={12}
             className="!p-0"
           >
-            <div className="px-2.5 py-1.5">
-              <div className="text-ink-deep font-medium leading-tight text-small">
-                {iso3Map[hovered.iso3].name}
-              </div>
-              <div className="text-muted text-[10px] leading-tight tabular-nums">
-                {iso3Map[hovered.iso3].beenCount > 0
-                  ? `${iso3Map[hovered.iso3].beenCount} of ${iso3Map[hovered.iso3].cityCount} cities visited`
-                  : iso3Map[hovered.iso3].cityCount > 0
-                    ? `${iso3Map[hovered.iso3].cityCount} cities · planning`
-                    : 'Not visited'}
+            <div className="px-2.5 py-1.5 flex items-center gap-2">
+              {countriesByIso3[hovered.iso3].flag && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={countriesByIso3[hovered.iso3].flag!}
+                  alt=""
+                  className="w-4 h-auto rounded-sm border border-sand"
+                />
+              )}
+              <div>
+                <div className="text-ink-deep font-medium leading-tight text-small">
+                  {countriesByIso3[hovered.iso3].name}
+                </div>
+                <div className="text-muted text-[10px] leading-tight tabular-nums">
+                  {(() => {
+                    const stats = perCountry[hovered.iso3];
+                    if (!stats) return 'Not in current filter';
+                    if (stats.been > 0) {
+                      return `${stats.been} of ${stats.total} cities visited`;
+                    }
+                    if (stats.go > 0) {
+                      return `${stats.total} cities · planning`;
+                    }
+                    return `${stats.total} cities match filters`;
+                  })()}
+                </div>
               </div>
             </div>
           </Popup>
@@ -183,7 +259,7 @@ export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Pr
         <div className="flex items-center gap-2 mb-1">
           <span
             className="inline-block w-3 h-3 rounded-sm"
-            style={{ background: COLORS.teal, opacity: 0.5 }}
+            style={{ background: COLORS.teal, opacity: 0.7 }}
           />
           Visited
         </div>
@@ -194,8 +270,15 @@ export default function CountriesGlobe({ visitedIso3, plannedIso3, iso3Map }: Pr
           />
           Planned
         </div>
-        <div className="text-muted text-[10px] mt-1.5 pt-1.5 border-t border-sand">
-          Click any country to open its page
+        <div className="flex items-center gap-2 mb-1">
+          <span
+            className="inline-block w-3 h-3 rounded-sm"
+            style={{ background: COLORS.accent, opacity: 0.3 }}
+          />
+          In current filter
+        </div>
+        <div className="text-muted text-[10px] mt-1.5 pt-1.5 border-t border-sand tabular-nums">
+          {visitedIso3.length} visited · {plannedIso3.length} planned
         </div>
       </div>
 

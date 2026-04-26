@@ -15,6 +15,10 @@ export type City = {
   name: string;
   slug: string;
   country: string | null;
+  // Notion page id of the linked Country record. Used by /world to bridge
+  // cities (referenced by page id in Notion) to GeoJSON country fills
+  // (keyed by ISO3). Optional because not every consumer needs it.
+  countryPageId?: string | null;
   been: boolean;
   go: boolean;
   cityFlag: string | null;
