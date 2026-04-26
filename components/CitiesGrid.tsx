@@ -94,14 +94,16 @@ function Postmark({ label, subtitle, color }: { label: string; subtitle: string;
     <div
       className="absolute z-20 pointer-events-none"
       style={{
-        // Positioned to overlap the upper-left corner of the postage stamp,
-        // simulating a real postal cancellation hitting the stamp. The stamp
-        // now sits at top-1, so the postmark drops a hair to land more
-        // squarely on the stamp face rather than running off the top.
-        top: 2,
-        right: 38,
-        width: 60,
-        height: 60,
+        // Overlaps the upper-left corner of the (now landscape) postage
+        // stamp, like a real postal cancellation hitting the stamp face.
+        // Stamp is at top-1.5 right-2 with width 90, so its left edge
+        // sits ~98px from the card's right edge. Postmark is 56px wide
+        // and right-anchored at ~62 so its right ~third overlaps the
+        // upper-left of the stamp.
+        top: -2,
+        right: 62,
+        width: 56,
+        height: 56,
         transform: 'rotate(-14deg)',
         opacity: 0.78,
       }}
@@ -321,12 +323,12 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       }}
     >
       {/* === STAMP — top-right ===
-          Tucked closer to the top edge of the card so the cancellation
-          mark sits visibly on top of it (postmark below). White inner
-          background + cream perforations for clearly visible scalloped
-          edges against the warm card paper. */}
+          LANDSCAPE 3:2 to match the natural aspect ratio of national flags.
+          A portrait stamp left big white margins above and below the flag,
+          which read as 'flag floating in a box' rather than as a stamp.
+          Inner padding reduced to 6px so the flag fills the stamp face. */}
       <div
-        className="stamp-perforated absolute top-1 right-2 z-10 w-[68px] h-[84px] bg-white p-2 flex items-center justify-center"
+        className="stamp-perforated absolute top-1.5 right-2 z-10 w-[90px] h-[60px] bg-white p-1.5 flex items-center justify-center"
         style={{
           transform: 'rotate(2deg)',
           boxShadow: '0 1px 1px rgba(80, 56, 28, 0.08)',
@@ -364,8 +366,9 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             mix of 8px / 9px / 10px / 11px / 14px / 15px.
           ──────────────────────────────────────────────────────────────  */}
 
-      {/* === HEADER — city name + country, top-left of card === */}
-      <div className="px-4 pt-3" style={{ paddingRight: 88 }}>
+      {/* === HEADER — city name + country, top-left of card.
+          paddingRight clears the landscape stamp + a little breathing room. */}
+      <div className="px-4 pt-3" style={{ paddingRight: 110 }}>
         <div className="flex items-baseline gap-2 min-w-0">
           <h3 className="text-ink-deep font-bold text-xl uppercase tracking-tight leading-none truncate">
             {city.name}
