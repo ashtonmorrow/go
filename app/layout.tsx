@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '@/components/Sidebar';
 import { CityFiltersProvider } from '@/components/CityFiltersContext';
+import { PinFiltersProvider } from '@/components/PinFiltersContext';
 import JsonLd from '@/components/JsonLd';
 import {
   SITE_URL,
@@ -79,10 +80,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             (rendered inside <Sidebar /> itself) so this flex layout still
             works; the drawer is fixed-positioned and doesn't affect flow. */}
         <CityFiltersProvider>
-          <div className="md:flex md:min-h-screen">
-            <Sidebar />
-            <main className="flex-1 min-w-0">{children}</main>
-          </div>
+          <PinFiltersProvider>
+            <div className="md:flex md:min-h-screen">
+              <Sidebar />
+              <main className="flex-1 min-w-0">{children}</main>
+            </div>
+          </PinFiltersProvider>
         </CityFiltersProvider>
       </body>
     </html>

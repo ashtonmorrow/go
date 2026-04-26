@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import FilterPanel from './FilterPanel';
+import PinFilterPanel from './PinFilterPanel';
 import { useCityFilters } from './CityFiltersContext';
+import { usePinFilters } from './PinFiltersContext';
 
 type Counts = {
   cities: number;
@@ -12,6 +14,7 @@ type Counts = {
   been: number;
   go: number;
   saved: number;
+  pins: number;
 };
 
 // Layer-inspired left rail. Top to bottom:
@@ -46,9 +49,13 @@ const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
 export default function SidebarShell({
   counts,
   countryOptions,
+  pinCountryOptions = [],
+  pinCategoryOptions = [],
 }: {
   counts: Counts;
   countryOptions: string[];
+  pinCountryOptions?: string[];
+  pinCategoryOptions?: string[];
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -88,13 +95,24 @@ export default function SidebarShell({
           (drawerOpen ? 'translate-x-0' : '-translate-x-full')
         }
       >
-        <NavBody counts={counts} countryOptions={countryOptions} onLinkClick={() => setDrawerOpen(false)} />
+        <NavBody
+          counts={counts}
+          countryOptions={countryOptions}
+          pinCountryOptions={pinCountryOptions}
+          pinCategoryOptions={pinCategoryOptions}
+          onLinkClick={() => setDrawerOpen(false)}
+        />
       </aside>
 
       {/* === Desktop sticky rail === always visible md+, fills the viewport
           height. Sits on the left of the page with main content to its right. */}
       <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-        <NavBody counts={counts} countryOptions={countryOptions} />
+        <NavBody
+          counts={counts}
+          countryOptions={countryOptions}
+          pinCountryOptions={pinCountryOptions}
+          pinCategoryOptions={pinCategoryOptions}
+        />
       </aside>
     </>
   );
@@ -110,24 +128,30 @@ export default function SidebarShell({
 function NavBody({
   counts,
   countryOptions,
+  pinCountryOptions,
+  pinCategoryOptions,
   onLinkClick,
 }: {
   counts: Counts;
   countryOptions: string[];
+  pinCountryOptions: string[];
+  pinCategoryOptions: string[];
   onLinkClick?: () => void;
 }) {
   const pathname = usePathname() || '';
-  const filtersAvailable = useCityFilters() !== null;
-  // Show the FilterPanel cockpit on the data-driven views: /cities (the
-  // postcard wall), /table (the tabular view), and /world (the country
-  // globe — country shading derives from filtered cities). They all share
-  // state via CityFiltersContext + useFilteredCities, so flipping between
-  // them preserves the active filters. City detail pages get Collections
-  // instead.
+  const cityFiltersAvailable = useCityFilters() !== null;
+  const pinFiltersAvailable = usePinFilters() !== null;
+  // Show the city FilterPanel on the city-driven views: /cities, /table,
+  // /world. /pins gets its own PinFilterPanel — the dimensions don't
+  // overlap (pins don't have Köppen, voltage, etc.) so we keep them
+  // separate. Detail pages get the read-only Collections list.
   const onCitiesIndex = pathname === '/cities';
   const onTable = pathname === '/table';
   const onWorld = pathname === '/world';
-  const showFilters = filtersAvailable && (onCitiesIndex || onTable || onWorld);
+  const onPinsIndex = pathname === '/pins';
+  const showCityFilters =
+    cityFiltersAvailable && (onCitiesIndex || onTable || onWorld);
+  const showPinFilters = pinFiltersAvailable && onPinsIndex;
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
@@ -150,16 +174,21 @@ function NavBody({
         })}
       </Section>
 
-      {/* On /cities: full filter cockpit. Otherwise: read-only collection
-          stats so the user still sees how many cities / countries / etc.
-          exist. Countries links to its own page; the others scope the
-          /cities view (eventually with URL filters). */}
-      {showFilters ? (
+      {/* /cities + /table + /world → city filter cockpit.
+          /pins → pin filter cockpit.
+          Anything else → read-only Collections list with counts. */}
+      {showCityFilters ? (
         <FilterPanel countryOptions={countryOptions} />
+      ) : showPinFilters ? (
+        <PinFilterPanel
+          countryOptions={pinCountryOptions}
+          categoryOptions={pinCategoryOptions}
+        />
       ) : (
         <Section label="Collections">
           <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
           <Item href="/countries" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
+          <Item href="/pins" emoji="📍" label="Pins" count={counts.pins} onClick={onLinkClick} />
           <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
           <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
           <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
