@@ -4,12 +4,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { flagCircle } from '@/lib/flags';
+import { useCountryFilters } from './CountryFiltersContext';
+import { filterCountries, sortCountries } from '@/lib/countryFilter';
 
 type CityRef = { id: string; name: string; slug: string; been: boolean };
 
-// Minimal country shape the grid needs. Mirrors the "minimal" pattern used
-// by CitiesGrid — keeps server payload small and the client component
-// loosely coupled to the Notion schema.
+// Minimal country shape the grid needs. Carries the practicality fields the
+// CountryFilterPanel cockpit filters on (continent, schengen, visa,
+// tapWater, driveSide) so the client work has everything inline.
 type Country = {
   id: string;
   name: string;
@@ -17,6 +19,7 @@ type Country = {
   flag: string | null;
   iso2: string | null;
   capital: string | null;
+  continent: string | null;
   language: string | null;
   currency: string | null;
   callingCode: string | null;
@@ -29,109 +32,35 @@ type Country = {
   cities: CityRef[];
   visa: string | null;
   tapWater: string | null;
+  driveSide: 'L' | 'R' | null;
 };
 
 type Props = { countries: Country[] };
 
-type Sort = 'name' | 'visited' | 'cities' | 'continent';
-
 export default function CountriesGrid({ countries }: Props) {
   const router = useRouter();
-  const [q, setQ] = useState('');
-  const [sort, setSort] = useState<Sort>('name');
-  const [filter, setFilter] = useState<'all' | 'visited' | 'planned'>('all');
+  const ctx = useCountryFilters();
 
+  // Filter + sort via the shared cockpit. When the context isn't mounted
+  // (defensive — provider is always wrapped in layout.tsx) fall through
+  // to a name-sorted render.
   const filtered = useMemo(() => {
-    let list = countries;
+    const state = ctx?.state;
+    if (!state) return [...countries].sort((a, b) => a.name.localeCompare(b.name));
+    return sortCountries(filterCountries(countries, state), state);
+  }, [countries, ctx?.state]);
 
-    if (filter === 'visited') list = list.filter(c => c.beenCount > 0);
-    if (filter === 'planned') list = list.filter(c => c.cityCount > 0 && c.beenCount === 0);
-
-    if (q.trim()) {
-      const needle = q.trim().toLowerCase();
-      list = list.filter(
-        c => c.name.toLowerCase().includes(needle) || (c.iso2 || '').toLowerCase().includes(needle)
-      );
-    }
-
-    return [...list].sort((a, b) => {
-      if (sort === 'visited') return b.beenCount - a.beenCount || a.name.localeCompare(b.name);
-      if (sort === 'cities') return b.cityCount - a.cityCount || a.name.localeCompare(b.name);
-      return a.name.localeCompare(b.name);
-    });
-  }, [countries, q, sort, filter]);
-
-  const visitedCount = countries.filter(c => c.beenCount > 0).length;
+  // Push counts up to the cockpit footer.
+  useEffect(() => {
+    ctx?.setCounts(filtered.length, countries.length);
+  }, [ctx, filtered.length, countries.length]);
 
   return (
-    <section className="max-w-page mx-auto px-5 py-10">
-      <div className="max-w-prose">
-        <h1 className="text-h1 text-ink-deep">My plan to see the entire world.</h1>
-      </div>
-
-      {/* Compact controls bar — search left, filter chips + sort right. */}
-      <div className="mt-6 flex flex-wrap items-center gap-3 text-small">
-        <input
-          type="search"
-          value={q}
-          onChange={e => setQ(e.target.value)}
-          placeholder="Search country or ISO"
-          className="px-3 py-2 rounded-md border border-sand bg-white text-ink focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 w-56"
-        />
-
-        <div className="flex flex-wrap gap-1">
-          {[
-            { k: 'all' as const, label: 'All', count: countries.length },
-            { k: 'visited' as const, label: 'Visited', count: visitedCount },
-            { k: 'planned' as const, label: 'Planned only', count: countries.filter(c => c.cityCount > 0 && c.beenCount === 0).length },
-          ].map(c => {
-            const active = filter === c.k;
-            return (
-              <button
-                key={c.k}
-                onClick={() => setFilter(c.k)}
-                className={
-                  'px-3 py-1.5 rounded-full border transition-colors ' +
-                  (active
-                    ? 'bg-ink-deep text-cream-soft border-ink-deep'
-                    : 'bg-white text-slate border-sand hover:border-slate')
-                }
-              >
-                {c.label} <span className="opacity-70 ml-1 tabular-nums">{c.count}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="ml-auto flex items-center gap-2 text-muted">
-          <span>Sort:</span>
-          {[
-            { k: 'name' as const, label: 'A–Z' },
-            { k: 'visited' as const, label: 'Most visited' },
-            { k: 'cities' as const, label: 'Most cities' },
-          ].map(s => (
-            <button
-              key={s.k}
-              onClick={() => setSort(s.k)}
-              className={
-                'px-3 py-1 rounded-md transition-colors text-small font-medium ' +
-                (sort === s.k ? 'bg-ink-deep text-cream-soft' : 'text-slate hover:text-ink-deep')
-              }
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <p className="mt-3 text-small text-muted">
-        {filtered.length} of {countries.length}
-      </p>
-
+    <section className="max-w-page mx-auto px-5 pb-10">
       {/* Flag tile grid — 2 / 3 / 4 / 5 columns at increasing widths. Each
           card uses the shared flip-perspective CSS so the back of the card
           shows facts; identical mechanic to the cities postcards. */}
-      <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {filtered.map(c => (
           <FlagCard key={c.id} country={c} onClick={() => router.push(`/countries/${c.slug}`)} />
         ))}
@@ -139,7 +68,7 @@ export default function CountriesGrid({ countries }: Props) {
 
       {filtered.length === 0 && (
         <div className="text-center py-20 text-muted">
-          <p>No countries match.</p>
+          <p>No countries match the current filters.</p>
         </div>
       )}
     </section>

@@ -2,6 +2,7 @@ import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import CountriesGrid from '@/components/CountriesGrid';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
+import { driveSide } from '@/lib/driveSide';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
@@ -50,6 +51,7 @@ export default async function CountriesPage() {
       flag: c.flag,
       iso2: c.iso2,
       capital: c.capital,
+      continent: c.continent,
       language: c.language,
       currency: c.currency,
       callingCode: c.callingCode,
@@ -64,6 +66,7 @@ export default async function CountriesPage() {
       // Country DB is sparse on those columns. Notion wins when populated.
       visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
       tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
+      driveSide: driveSide(c.iso2 ?? null, c.name),
     };
   });
 

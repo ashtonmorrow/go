@@ -5,8 +5,10 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import FilterPanel from './FilterPanel';
 import PinFilterPanel from './PinFilterPanel';
+import CountryFilterPanel from './CountryFilterPanel';
 import { useCityFilters } from './CityFiltersContext';
 import { usePinFilters } from './PinFiltersContext';
+import { useCountryFilters } from './CountryFiltersContext';
 
 type Counts = {
   cities: number;
@@ -140,24 +142,30 @@ function NavBody({
   onLinkClick?: () => void;
 }) {
   const pathname = usePathname() || '';
-  const cityFiltersAvailable = useCityFilters() !== null;
-  const pinFiltersAvailable = usePinFilters() !== null;
-  // Filter-cockpit visibility under the new Object × View routes:
-  //   * City filters apply to the city-driven data views — cards, table,
-  //     and the country globe (whose shading derives from filtered cities)
-  //   * Pin filters apply to the pin cards view
+  const cityFiltersAvailable    = useCityFilters() !== null;
+  const pinFiltersAvailable     = usePinFilters() !== null;
+  const countryFiltersAvailable = useCountryFilters() !== null;
+  // Filter-cockpit visibility under the Object × View routes:
+  //   * City filters apply to /cities/cards, /cities/table, and the
+  //     country globe (whose shading derives from filtered cities)
+  //   * Country filters apply to /countries/cards + /countries/table
+  //   * Pin filters apply to all three pin views
   // Detail pages and views that aren't wired to a filter context get the
   // read-only Collections list instead.
-  const onCitiesCards    = pathname === '/cities/cards';
-  const onCitiesTable    = pathname === '/cities/table';
-  const onCountriesGlobe = pathname === '/countries/map';
+  const onCitiesCards     = pathname === '/cities/cards';
+  const onCitiesTable     = pathname === '/cities/table';
+  const onCountriesGlobe  = pathname === '/countries/map';
+  const onCountriesCards  = pathname === '/countries/cards';
+  const onCountriesTable  = pathname === '/countries/table';
   // /cities/map (the sister-city globe) intentionally not in this list
   // yet — the WorldGlobe component takes a stripped-down Pin shape that
   // doesn't carry the practicality fields the cockpit filters on.
-  // Wiring it up properly is a follow-up.
+  // Wiring it up properly is a follow-up (#90).
   const onPinsAny = pathname === '/pins/cards' || pathname === '/pins/map' || pathname === '/pins/table';
   const showCityFilters =
     cityFiltersAvailable && (onCitiesCards || onCitiesTable || onCountriesGlobe);
+  const showCountryFilters =
+    countryFiltersAvailable && (onCountriesCards || onCountriesTable);
   const showPinFilters = pinFiltersAvailable && onPinsAny;
 
   return (
@@ -186,9 +194,9 @@ function NavBody({
         })}
       </Section>
 
-      {/* /cities + /table + /world → city filter cockpit.
-          /pins → pin filter cockpit.
-          Anything else → read-only Collections list with counts. */}
+      {/* Filter cockpits — at most one mounted at a time, picked by
+          which Object × View page we're on. Falls through to a
+          read-only Collections list with counts on detail pages. */}
       {showCityFilters ? (
         <FilterPanel countryOptions={countryOptions} />
       ) : showPinFilters ? (
@@ -196,6 +204,8 @@ function NavBody({
           countryOptions={pinCountryOptions}
           categoryOptions={pinCategoryOptions}
         />
+      ) : showCountryFilters ? (
+        <CountryFilterPanel />
       ) : (
         <Section label="Collections">
           <Item href="/cities/cards"    emoji="📮" label="Cities"    count={counts.cities}    onClick={onLinkClick} />

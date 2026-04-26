@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useCountryFilters } from './CountryFiltersContext';
+import { filterCountries } from '@/lib/countryFilter';
 
 // === CountriesTable ========================================================
 // Compact sortable data table for the country atlas. First-pass simple:
@@ -40,11 +42,24 @@ type SortKey =
   | 'callingCode' | 'voltage' | 'tapWater' | 'visa' | 'cityCount';
 
 export default function CountriesTable({ rows }: { rows: Row[] }) {
+  const ctx = useCountryFilters();
   const [sort, setSort] = useState<SortKey>('name');
   const [desc, setDesc] = useState(false);
 
+  // Apply the cockpit's predicates first, then the table's local
+  // column-sort. (Local sort overrides the cockpit's sort dimension —
+  // the column headers are the more direct affordance here.)
+  const filtered = useMemo(() => {
+    const state = ctx?.state;
+    return state ? filterCountries(rows, state) : rows;
+  }, [rows, ctx?.state]);
+
+  useEffect(() => {
+    ctx?.setCounts(filtered.length, rows.length);
+  }, [ctx, filtered.length, rows.length]);
+
   const sorted = useMemo(() => {
-    const copy = [...rows];
+    const copy = [...filtered];
     copy.sort((a, b) => {
       const A = a[sort] ?? '';
       const B = b[sort] ?? '';
@@ -54,7 +69,7 @@ export default function CountriesTable({ rows }: { rows: Row[] }) {
       return desc ? -cmp : cmp;
     });
     return copy;
-  }, [rows, sort, desc]);
+  }, [filtered, sort, desc]);
 
   const onSort = (k: SortKey) => {
     if (sort === k) setDesc(d => !d);
