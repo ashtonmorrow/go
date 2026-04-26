@@ -44,6 +44,20 @@ export type Pin = {
 
   visited: boolean;
 
+  // Wikidata enrichment (populated by scripts/wikidata_enrich pass —
+  // see migration `pins_enrichment_columns`). Most pins have a QID;
+  // ~70% have a Wikipedia article; ~30% have an inception year.
+  wikidataQid: string | null;
+  wikipediaUrl: string | null;
+  inceptionYear: number | null;
+  durationMinutes: number | null;
+  /** "Instance of" labels from Wikidata, e.g. ["archaeological site", "national park"]. */
+  tags: string[];
+  /** Notable lists this pin appears on, e.g. ["UNESCO World Heritage", "Atlas Obscura"]. */
+  lists: string[];
+  /** Optional 1-12 month numbers for "best time to visit" — currently always empty; reserved. */
+  bestMonths: number[];
+
   airtableModifiedAt: string | null;
   updatedAt: string | null;
 
@@ -51,6 +65,8 @@ export type Pin = {
   googleMapsUrl: string | null;
   /** Derived: link to the UNESCO World Heritage page when applicable. */
   unescoUrl: string | null;
+  /** Derived: link to the Wikidata entity when applicable. */
+  wikidataUrl: string | null;
 };
 
 // ---- Row → Pin -------------------------------------------------------------
@@ -71,6 +87,8 @@ function rowToPin(row: any): Pin {
   const unescoUrl = unescoId != null
     ? `https://whc.unesco.org/en/list/${unescoId}/`
     : null;
+  const wikidataQid = typeof row.wikidata_qid === 'string' ? row.wikidata_qid : null;
+  const wikidataUrl = wikidataQid ? `https://www.wikidata.org/wiki/${wikidataQid}` : null;
 
   const rawImages = Array.isArray(row.images) ? row.images : [];
   const images: PinImage[] = rawImages
@@ -102,10 +120,21 @@ function rowToPin(row: any): Pin {
     website: row.website ?? null,
     images,
     visited: !!row.visited,
+
+    // Wikidata-enriched fields
+    wikidataQid,
+    wikipediaUrl: typeof row.wikipedia_url === 'string' ? row.wikipedia_url : null,
+    inceptionYear: typeof row.inception_year === 'number' ? row.inception_year : null,
+    durationMinutes: typeof row.duration_minutes === 'number' ? row.duration_minutes : null,
+    tags:        Array.isArray(row.tags)        ? row.tags        : [],
+    lists:       Array.isArray(row.lists)       ? row.lists       : [],
+    bestMonths:  Array.isArray(row.best_months) ? row.best_months : [],
+
     airtableModifiedAt: row.airtable_modified_at ?? null,
     updatedAt: row.updated_at ?? null,
     googleMapsUrl,
     unescoUrl,
+    wikidataUrl,
   };
 }
 
