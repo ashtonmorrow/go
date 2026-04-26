@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useMemo } from 'react';
 import { usePinFilters } from './PinFiltersContext';
+import { filterPins, sortPins } from '@/lib/pinFilter';
 import { flagCircle } from '@/lib/flags';
 import type { Pin } from '@/lib/pins';
 
@@ -32,57 +33,12 @@ type Props = {
 export default function PinsGrid({ pins, countryNameToIso2 }: Props) {
   const ctx = usePinFilters();
 
-  // Filter + sort. Memoised so the work runs once per state change rather
-  // than on every render (e.g. when the parent re-renders from count
-  // updates).
+  // Filter + sort via the shared helper so cards, table, and map run
+  // the exact same predicates.
   const filtered = useMemo(() => {
     const state = ctx?.state;
     if (!state) return pins;
-
-    const needle = state.q.trim().toLowerCase();
-    const out: Pin[] = [];
-    for (const p of pins) {
-      // q match
-      if (needle) {
-        const hay = (
-          p.name + '\n' +
-          (p.description ?? '') + '\n' +
-          p.cityNames.join(' ') + '\n' +
-          p.statesNames.join(' ')
-        ).toLowerCase();
-        if (!hay.includes(needle)) continue;
-      }
-      // visited
-      if (state.visitedFilter === 'visited' && !p.visited) continue;
-      if (state.visitedFilter === 'not-visited' && p.visited) continue;
-      // UNESCO-only
-      if (state.unescoOnly && p.unescoId == null) continue;
-      // categories
-      if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
-      // country (matches first state_name)
-      if (state.countries.size > 0) {
-        const country = p.statesNames[0];
-        if (!country || !state.countries.has(country)) continue;
-      }
-      out.push(p);
-    }
-    // sort
-    out.sort((a, b) => {
-      let cmp = 0;
-      if (state.sort === 'name') {
-        cmp = a.name.localeCompare(b.name);
-      } else {
-        // 'recent' — compare timestamps; missing values sort last regardless of dir
-        const A = a.airtableModifiedAt ?? a.updatedAt ?? '';
-        const B = b.airtableModifiedAt ?? b.updatedAt ?? '';
-        if (!A && !B) cmp = 0;
-        else if (!A) cmp = 1;
-        else if (!B) cmp = -1;
-        else cmp = A < B ? -1 : A > B ? 1 : 0;
-      }
-      return state.desc ? -cmp : cmp;
-    });
-    return out;
+    return sortPins(filterPins(pins, state), state);
   }, [pins, ctx?.state]);
 
   // Push counts up to the panel.

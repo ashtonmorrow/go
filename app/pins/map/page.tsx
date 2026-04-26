@@ -28,24 +28,12 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsMapPage() {
+  // PinsMap consumes the same PinFiltersContext as the cards/table views,
+  // so we pass the full Pin set and it filters client-side. Slightly
+  // bigger payload than the old marker-only shape, but the filter
+  // cockpit needs the description / city names / unesco_id to do its
+  // job — and the "right answer" is consistency between views.
   const pins = await fetchAllPins();
-
-  // Map payload is just the bits the marker layer needs — name, slug,
-  // coords, visited status, an optional thumb. Strips the rest so the
-  // client bundle stays small.
-  const markers = pins
-    .filter(p => p.lat != null && p.lng != null)
-    .map(p => ({
-      id: p.id,
-      name: p.name,
-      slug: p.slug ?? p.id,
-      lat: p.lat as number,
-      lng: p.lng as number,
-      visited: p.visited,
-      category: p.category,
-      country: p.statesNames[0] ?? null,
-      thumb: p.images[0]?.url ?? null,
-    }));
 
   const pageData = webPageJsonLd({
     url: `${SITE_URL}/pins/map`,
@@ -56,7 +44,7 @@ export default async function PinsMapPage() {
   return (
     <>
       <JsonLd data={pageData} />
-      <PinsMap markers={markers} />
+      <PinsMap pins={pins} />
       <ViewSwitcher
         object="pins"
         current="map"

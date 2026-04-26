@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Map as MapView,
@@ -11,7 +11,10 @@ import {
   type MapMouseEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { usePinFilters } from './PinFiltersContext';
+import { filterPins } from '@/lib/pinFilter';
 import { COLORS } from '@/lib/colors';
+import type { Pin } from '@/lib/pins';
 
 // === PinsMap ===============================================================
 // Simplified globe view for /pins/map. Renders each pin as a small circle
@@ -21,46 +24,55 @@ import { COLORS } from '@/lib/colors';
 // Intentionally narrower than WorldGlobe: no sister-city graph, no
 // projection toggle. The pin set is curated, the visualisation is the
 // dot field — adding more chrome would clutter it.
-
-type Marker = {
-  id: string;
-  name: string;
-  slug: string;
-  lat: number;
-  lng: number;
-  visited: boolean;
-  category: string | null;
-  country: string | null;
-  thumb: string | null;
-};
+//
+// Filter cockpit wires through usePinFilters — same axes that drive the
+// cards and table views drive the dot count here, so flipping between
+// /pins/cards, /pins/map, /pins/table preserves the user's filter state.
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
 
-export default function PinsMap({ markers }: { markers: Marker[] }) {
+export default function PinsMap({ pins }: { pins: Pin[] }) {
   const router = useRouter();
-  const [hovered, setHovered] = useState<Marker | null>(null);
+  const ctx = usePinFilters();
 
-  // GeoJSON source from the markers — MapLibre renders ~1,300 dots in one
-  // draw call instead of 1,300 React markers.
+  // Filter via the shared cockpit, then drop pins without coordinates
+  // (a marker layer needs every feature to have a Point geometry).
+  const visible = useMemo(() => {
+    const state = ctx?.state;
+    const filtered = state ? filterPins(pins, state) : pins;
+    return filtered.filter(p => p.lat != null && p.lng != null);
+  }, [pins, ctx?.state]);
+
+  // Push counts up to the cockpit (denominator is total *with coords*,
+  // not total pins, so the badge math feels right on the map).
+  useEffect(() => {
+    const totalWithCoords = pins.filter(p => p.lat != null && p.lng != null).length;
+    ctx?.setCounts(visible.length, totalWithCoords);
+  }, [ctx, visible.length, pins]);
+
+  const [hovered, setHovered] = useState<Pin | null>(null);
+
+  // GeoJSON source from the visible pin set — MapLibre renders the dots
+  // in one draw call instead of one React marker per row.
   const geojson = useMemo(() => ({
     type: 'FeatureCollection' as const,
-    features: markers.map(m => ({
+    features: visible.map(p => ({
       type: 'Feature' as const,
-      geometry: { type: 'Point' as const, coordinates: [m.lng, m.lat] },
+      geometry: { type: 'Point' as const, coordinates: [p.lng as number, p.lat as number] },
       properties: {
-        id: m.id,
-        name: m.name,
-        slug: m.slug,
-        visited: m.visited ? 1 : 0,
+        id: p.id,
+        name: p.name,
+        slug: p.slug ?? p.id,
+        visited: p.visited ? 1 : 0,
       },
     })),
-  }), [markers]);
+  }), [visible]);
 
   const byId = useMemo(() => {
-    const m = new Map<string, Marker>();
-    for (const x of markers) m.set(x.id, x);
+    const m = new Map<string, Pin>();
+    for (const x of visible) m.set(x.id, x);
     return m;
-  }, [markers]);
+  }, [visible]);
 
   const onMove = useCallback((e: MapMouseEvent) => {
     const f = e.features?.[0];
@@ -110,7 +122,7 @@ export default function PinsMap({ markers }: { markers: Marker[] }) {
           />
         </Source>
 
-        {hovered && (
+        {hovered && hovered.lat != null && hovered.lng != null && (
           <Popup
             longitude={hovered.lng}
             latitude={hovered.lat}
@@ -122,10 +134,10 @@ export default function PinsMap({ markers }: { markers: Marker[] }) {
           >
             <div className="p-2 max-w-[220px]">
               <div className="flex items-center gap-2">
-                {hovered.thumb && (
+                {hovered.images[0]?.url && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={hovered.thumb}
+                    src={hovered.images[0].url}
                     alt=""
                     className="w-10 h-10 rounded object-cover bg-cream-soft border border-sand"
                   />
@@ -135,7 +147,7 @@ export default function PinsMap({ markers }: { markers: Marker[] }) {
                     {hovered.name}
                   </div>
                   <div className="text-muted text-[11px] truncate">
-                    {[hovered.category, hovered.country].filter(Boolean).join(' · ')}
+                    {[hovered.category, hovered.statesNames[0]].filter(Boolean).join(' · ')}
                   </div>
                 </div>
               </div>

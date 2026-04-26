@@ -151,10 +151,14 @@ function NavBody({
   const onCitiesCards    = pathname === '/cities/cards';
   const onCitiesTable    = pathname === '/cities/table';
   const onCountriesGlobe = pathname === '/countries/map';
-  const onPinsCards      = pathname === '/pins/cards';
+  // /cities/map (the sister-city globe) intentionally not in this list
+  // yet — the WorldGlobe component takes a stripped-down Pin shape that
+  // doesn't carry the practicality fields the cockpit filters on.
+  // Wiring it up properly is a follow-up.
+  const onPinsAny = pathname === '/pins/cards' || pathname === '/pins/map' || pathname === '/pins/table';
   const showCityFilters =
     cityFiltersAvailable && (onCitiesCards || onCitiesTable || onCountriesGlobe);
-  const showPinFilters = pinFiltersAvailable && onPinsCards;
+  const showPinFilters = pinFiltersAvailable && onPinsAny;
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">

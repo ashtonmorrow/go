@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { usePinFilters } from './PinFiltersContext';
+import { filterPins } from '@/lib/pinFilter';
 import { flagCircle } from '@/lib/flags';
 import type { Pin } from '@/lib/pins';
 
@@ -20,11 +22,25 @@ export default function PinsTable({
   pins: Pin[];
   countryNameToIso2: Record<string, string>;
 }) {
+  const ctx = usePinFilters();
   const [sort, setSort] = useState<SortKey>('name');
   const [desc, setDesc] = useState(false);
 
+  // Apply the shared filter cockpit's predicates first; then the table's
+  // local column-sort takes over. (Local sort overrides the cockpit's
+  // sort dimension because the column headers are the more direct affordance.)
+  const filtered = useMemo(() => {
+    const state = ctx?.state;
+    return state ? filterPins(pins, state) : pins;
+  }, [pins, ctx?.state]);
+
+  // Push counts up to the cockpit so the "X / Y pins" badge stays in sync.
+  useEffect(() => {
+    ctx?.setCounts(filtered.length, pins.length);
+  }, [ctx, filtered.length, pins.length]);
+
   const sorted = useMemo(() => {
-    const copy = [...pins];
+    const copy = [...filtered];
     copy.sort((a, b) => {
       let A: string | number | boolean | null = '';
       let B: string | number | boolean | null = '';
@@ -41,7 +57,7 @@ export default function PinsTable({
       return desc ? -cmp : cmp;
     });
     return copy;
-  }, [pins, sort, desc]);
+  }, [filtered, sort, desc]);
 
   const onSort = (k: SortKey) => {
     if (sort === k) setDesc(d => !d);
