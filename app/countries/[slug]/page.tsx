@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, countryJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import CurrencyWidget from '@/components/CurrencyWidget';
+import AdvisoryBadge from '@/components/AdvisoryBadge';
+import { visaPortal } from '@/lib/visaPortals';
 import type { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -56,6 +59,12 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
 
   const blocks = await fetchPageBlocks(country.id);
   const hasBody = blocks.length > 0;
+
+  // eVisa portal lookup. The portal map (lib/visaPortals.ts) is
+  // the source of truth — many countries that take U.S. travellers via
+  // eVisa don't say so explicitly in the Notion visaUs field, and we
+  // don't want to gate the link on a fragile string match.
+  const evisaUrl = visaPortal(country.iso2, country.name);
 
   // Structured data — Country + BreadcrumbList.
   const countryData = countryJsonLd({
@@ -125,29 +134,54 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           </section>
         </div>
 
-        <aside className="card p-5 text-small self-start md:sticky md:top-20">
-          <h3 className="text-muted uppercase tracking-wider text-[11px]">Travel</h3>
-          <dl className="mt-3 space-y-2">
-            {[
-              ['Language', country.language],
-              ['Currency', country.currency],
-              ['Calling code', country.callingCode],
-              ['Schengen', country.schengen ? 'Yes' : 'No'],
-              ['Voltage', country.voltage],
-              ['Plugs', country.plugTypes.length ? country.plugTypes.join(', ') : null],
-              ['Tap water', country.tapWater],
-              ['Emergency', country.emergencyNumber],
-              ['Tipping', country.tipping],
-              ['US visa', country.visaUs],
-            ]
-              .filter(([, v]) => v)
-              .map(([k, v]) => (
-                <div key={k as string} className="flex justify-between gap-3">
-                  <dt className="text-slate">{k}</dt>
-                  <dd className="text-ink-deep text-right">{v}</dd>
-                </div>
-              ))}
-          </dl>
+        {/* Sidebar — stacked cards: currency, advisory, eVisa, facts */}
+        <aside className="self-start md:sticky md:top-20 space-y-4">
+          {/* Live FX rate from fawazahmed0/currency-api (24 h ISR). */}
+          <CurrencyWidget currency={country.currency} />
+
+          {/* U.S. State Department travel advisory level. */}
+          <AdvisoryBadge iso2={country.iso2} countryName={country.name} />
+
+          {/* eVisa shortcut — direct link to the official portal. */}
+          {evisaUrl && (
+            <a
+              href={evisaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-4 block text-small hover:bg-cream-soft transition"
+            >
+              <div className="text-muted uppercase tracking-wider text-[11px]">eVisa portal</div>
+              <div className="mt-2 text-teal font-medium">Apply online →</div>
+              <div className="mt-1 text-muted text-[11px] truncate" title={evisaUrl}>
+                {evisaUrl.replace(/^https?:\/\//, '').split('/')[0]}
+              </div>
+            </a>
+          )}
+
+          <div className="card p-5 text-small">
+            <h3 className="text-muted uppercase tracking-wider text-[11px]">Travel</h3>
+            <dl className="mt-3 space-y-2">
+              {[
+                ['Language', country.language],
+                ['Currency', country.currency],
+                ['Calling code', country.callingCode],
+                ['Schengen', country.schengen ? 'Yes' : 'No'],
+                ['Voltage', country.voltage],
+                ['Plugs', country.plugTypes.length ? country.plugTypes.join(', ') : null],
+                ['Tap water', country.tapWater],
+                ['Emergency', country.emergencyNumber],
+                ['Tipping', country.tipping],
+                ['US visa', country.visaUs],
+              ]
+                .filter(([, v]) => v)
+                .map(([k, v]) => (
+                  <div key={k as string} className="flex justify-between gap-3">
+                    <dt className="text-slate">{k}</dt>
+                    <dd className="text-ink-deep text-right">{v}</dd>
+                  </div>
+                ))}
+            </dl>
+          </div>
         </aside>
       </div>
     </article>

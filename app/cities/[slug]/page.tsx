@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
+import MonthlyClimateChart from '@/components/MonthlyClimateChart';
+import { fetchCityClimate } from '@/lib/cityClimate';
 import type { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -61,6 +63,11 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const blocks = await fetchPageBlocks(city.id);
   const hasBody = blocks.length > 0;
 
+  // Curated cities = ones I've been to or want to go to. The remaining
+  // ~1,000 placeholder cities have AI-generated prose that isn't worth
+  // showing — Wikipedia + raw facts are more honest signal there.
+  const isCurated = city.been || city.go;
+
   // Fetch country for sidebar info
   const countries = await fetchAllCountries();
   const country = countries.find(c => c.id === city.countryPageId) || null;
@@ -70,6 +77,10 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const sisters = city.sisterCities
     .map(id => allCities.find(c => c.id === id))
     .filter(Boolean) as typeof allCities;
+
+  // Monthly climate from NASA POWER (cached 30 days). Returns null when
+  // lat/lng missing or API unreachable; chart skipped silently in that case.
+  const climate = await fetchCityClimate(city.lat, city.lng);
 
   const fmt = (n: number | null, unit = '', digits = 0) =>
     n == null ? '—' : (digits > 0 ? n.toFixed(digits) : Intl.NumberFormat('en').format(n)) + unit;
@@ -151,20 +162,23 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             </section>
           )}
 
-          {city.whyVisit && (
+          {/* AI-curated travel prose only renders for cities I've actually
+              been to or want to go to. Placeholder cities get Wikipedia +
+              facts only — better to say less than to fake confidence. */}
+          {isCurated && city.whyVisit && (
             <section className="mt-8">
               <h2 className="text-h3 text-ink-deep mb-2">Why visit</h2>
               <p className="text-ink leading-relaxed">{city.whyVisit}</p>
             </section>
           )}
-          {city.avoid && (
+          {isCurated && city.avoid && (
             <section className="mt-8">
               <h2 className="text-h3 text-ink-deep mb-2">When to avoid</h2>
               <p className="text-ink leading-relaxed">{city.avoid}</p>
             </section>
           )}
 
-          {(city.hotSeasonName || city.coldSeasonName) && (
+          {isCurated && (city.hotSeasonName || city.coldSeasonName) && (
             <section className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
               {city.hotSeasonName && (
                 <div>
@@ -178,6 +192,18 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                   {city.coolerWetterSeason && <p className="text-small text-slate mt-1">{city.coolerWetterSeason}</p>}
                 </div>
               )}
+            </section>
+          )}
+
+          {/* NASA POWER monthly climatology — works for every city with
+              coords, regardless of curation status. Pure data; safe. */}
+          {climate && (
+            <section className="mt-8">
+              <h2 className="text-h3 text-ink-deep mb-2">Year-round climate</h2>
+              <p className="text-small text-slate mb-3">
+                Monthly highs, lows, and rainfall (long-term averages, NASA POWER).
+              </p>
+              <MonthlyClimateChart data={climate} lat={city.lat} />
             </section>
           )}
 
