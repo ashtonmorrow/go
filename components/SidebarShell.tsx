@@ -14,12 +14,13 @@ type Counts = {
   saved: number;
 };
 
-// Layer-inspired left rail. Three vertical zones:
-//   1. Brand header (project name + dropdown affordance)
-//   2. Pages — this travel atlas's own routes
-//   3. Collections — informational counts (currently click-through to /cities;
-//      future work could deep-link to /cities?filter=been etc.)
-//   4. Elsewhere — external Mike Lee subdomains (was the old top pill nav)
+// Layer-inspired left rail. Top to bottom:
+//   • Views        — this section's own routes (Postcards, Map, About)
+//   • Collections  — informational counts (Cities / Countries / Been / Go /
+//                    Saved). On /cities this slot is replaced with the full
+//                    FilterPanel cockpit.
+//   • Elsewhere    — external Mike Lee subdomains
+//   • Home + Whisker Leaks credit, anchored to the bottom
 //
 // On screens < md the rail collapses into a top app bar with a hamburger
 // that slides the same nav in from the left as a drawer.
@@ -44,8 +45,9 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
 
   return (
     <>
-      {/* === Mobile top bar === only visible below md. Has the hamburger
-          and the brand label so the user knows where they are. === */}
+      {/* === Mobile top bar === only visible below md. Just the hamburger —
+          no brand label, since it would duplicate what the URL bar already
+          says and clutter the narrow viewport. === */}
       <div className="md:hidden sticky top-0 z-40 bg-white border-b border-sand">
         <div className="flex items-center gap-3 px-4 py-3">
           <button
@@ -58,9 +60,6 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
               <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
           </button>
-          <Link href="/cities" className="font-semibold text-ink-deep">
-            Travel · Mike Lee
-          </Link>
         </div>
       </div>
 
@@ -106,8 +105,8 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      {/* Pages — always visible at the top */}
-      <Section label="Pages">
+      {/* Views — this section's own routes (Postcards, Map, About) */}
+      <Section label="Views">
         {PAGES.map(p => {
           const active = pathname === p.href || (p.href === '/cities' && pathname.startsWith('/cities/'));
           return (
@@ -123,40 +122,35 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
         })}
       </Section>
 
-      {/* Elsewhere — external Mike Lee subdomains, sits between Pages and
-          the (page-specific) filter cockpit so it reads as part of the
-          stable nav rather than mixed in with content controls. */}
-      <Section label="Elsewhere">
-        {ELSEWHERE.map(p => (
-          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
-        ))}
-      </Section>
-
       {/* On /cities: full filter cockpit. Otherwise: read-only collection
-          stats so the user still sees how many cities/countries/etc exist. */}
+          stats so the user still sees how many cities / countries / etc.
+          exist. Countries links to its own page; the others scope the
+          /cities view (eventually with URL filters). */}
       {showFilters ? (
         <FilterPanel />
       ) : (
         <Section label="Collections">
           <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
-          <Item href="/cities" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
+          <Item href="/countries" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
           <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
           <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
           <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
         </Section>
       )}
 
-      {/* Bottom block: Home shortcut + footer credit. mt-auto pushes the
-          whole block to the bottom of the rail; gap-3 separates the home
-          row from the credit. */}
+      {/* Elsewhere — external Mike Lee subdomains. Now sits below the
+          Collections / Filters block so the in-section content controls
+          come before the off-site links. */}
+      <Section label="Elsewhere">
+        {ELSEWHERE.map(p => (
+          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
+        ))}
+      </Section>
+
+      {/* Bottom block: Home (= the parent site, mike-lee.me — this is just
+          a sub-section) + footer credit. mt-auto pushes to the bottom. */}
       <div className="mt-auto flex flex-col gap-3 pt-4">
-        <Item
-          href="/cities"
-          emoji="🏠"
-          label="Home"
-          active={pathname === '/cities'}
-          onClick={onLinkClick}
-        />
+        <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" />
         <a
           href="https://www.linkedin.com/in/mikelee89/"
           target="_blank"
