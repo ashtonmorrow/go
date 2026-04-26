@@ -58,12 +58,13 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
   // therefore narrows which countries get shaded on the globe.
   const filtered = useFilteredCities(cities);
 
-  // === Derive country status from filtered cities ========================
-  // Same primary-status priority used everywhere (Been > Go > Saved).
-  // A country counts as 'visited' if any of ITS filtered cities is Been;
-  // 'planned' if it has Go cities but no Been; 'matched' (lighter shade)
-  // if it has cities passing the filter at all but no status.
-  const { visitedIso3, plannedIso3, matchedIso3, perCountry } = useMemo(() => {
+  // === Derive matched countries from filtered cities =====================
+  // A country is 'matched' if it has at least one city in the active
+  // filter set. One bucket, one colour. The earlier visited / planned /
+  // matched-no-status split was confusing — the user already controls
+  // which subset shows by toggling Been / Want to go / Has saved places
+  // in the sidebar, so the globe just needs to reflect the result.
+  const { matchedIso3, perCountry } = useMemo(() => {
     const beenByIso3 = new Map<string, number>();
     const goByIso3 = new Map<string, number>();
     const cityByIso3 = new Map<string, number>();
@@ -81,20 +82,19 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
       else if (c.go) goByIso3.set(iso3, (goByIso3.get(iso3) || 0) + 1);
     }
 
-    const visited: string[] = [];
-    const planned: string[] = [];
+    // Per-country stats stay (used by the hover popup) — but the fill
+    // expression only needs one array now.
     const matched: string[] = [];
     const perCountryStats: Record<string, { been: number; go: number; total: number }> = {};
-
     for (const [iso3, total] of cityByIso3) {
-      const been = beenByIso3.get(iso3) || 0;
-      const go = goByIso3.get(iso3) || 0;
-      perCountryStats[iso3] = { been, go, total };
-      if (been > 0) visited.push(iso3);
-      else if (go > 0) planned.push(iso3);
-      else matched.push(iso3);
+      perCountryStats[iso3] = {
+        been: beenByIso3.get(iso3) || 0,
+        go: goByIso3.get(iso3) || 0,
+        total,
+      };
+      matched.push(iso3);
     }
-    return { visitedIso3: visited, plannedIso3: planned, matchedIso3: matched, perCountry: perCountryStats };
+    return { matchedIso3: matched, perCountry: perCountryStats };
   }, [filtered, countryIdToIso3]);
 
   const hoveredIso = hovered?.iso3 ?? '__none__';
@@ -143,49 +143,34 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         onMouseLeave={handleMouseLeave}
       >
         <Source id="countries" type="geojson" data={COUNTRY_GEOJSON}>
-          {/* Fill layer — visited countries punch through with a strong
-              teal so the visited footprint reads at a glance. Planned
-              countries get a quieter slate. Cities-without-status (just
-              filter-matched) get a faint cream highlight so the user can
-              see the filter results without confusing them with visited. */}
+          {/* Fill layer — single colour. A country is shaded if any of
+              its cities passes the active filter set; otherwise no fill.
+              Hover bumps the opacity so the target country lights up. */}
           <Layer
             id="countries-fill"
             type="fill"
             paint={{
-              'fill-color': [
-                'case',
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
-                COLORS.teal,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', plannedIso3]],
-                COLORS.slate,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
-                COLORS.accent,
-                'rgba(0,0,0,0)',
-              ] as unknown as string,
+              'fill-color': COLORS.teal,
               'fill-opacity': [
                 'case',
                 ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
-                0.85,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
-                0.65,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', plannedIso3]],
-                0.32,
+                0.8,
                 ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
-                0.18,
+                0.55,
                 0,
               ] as unknown as number,
             }}
           />
           {/* Outline layer — every country gets a faint line so unfilled
-              ones still read as shapes. Visited countries get a darker,
-              thicker outline so the boundary pops next to neighbours. */}
+              ones still read as shapes. Matched countries get a darker
+              outline so the boundary stays crisp against the fill. */}
           <Layer
             id="countries-outline"
             type="line"
             paint={{
               'line-color': [
                 'case',
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
                 COLORS.teal,
                 COLORS.inkDeep,
               ] as unknown as string,
@@ -193,15 +178,15 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
                 'case',
                 ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
                 1.6,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
-                1.0,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                0.9,
                 0.4,
               ] as unknown as number,
               'line-opacity': [
                 'case',
                 ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
                 0.85,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', visitedIso3]],
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
                 0.7,
                 0.22,
               ] as unknown as number,
@@ -254,32 +239,15 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         <NavigationControl position="bottom-left" showCompass={projection === 'globe'} />
       </MapView>
 
-      {/* === Legend (top-left) === */}
-      <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-[11px] text-slate">
-        <div className="flex items-center gap-2 mb-1">
-          <span
-            className="inline-block w-3 h-3 rounded-sm"
-            style={{ background: COLORS.teal, opacity: 0.7 }}
-          />
-          Visited
-        </div>
-        <div className="flex items-center gap-2 mb-1">
-          <span
-            className="inline-block w-3 h-3 rounded-sm"
-            style={{ background: COLORS.slate, opacity: 0.4 }}
-          />
-          Planned
-        </div>
-        <div className="flex items-center gap-2 mb-1">
-          <span
-            className="inline-block w-3 h-3 rounded-sm"
-            style={{ background: COLORS.accent, opacity: 0.3 }}
-          />
-          In current filter
-        </div>
-        <div className="text-muted text-[10px] mt-1.5 pt-1.5 border-t border-sand tabular-nums">
-          {visitedIso3.length} visited · {plannedIso3.length} planned
-        </div>
+      {/* === Count badge (top-left) ===
+          Single colour means no key is needed — shaded == matches the
+          current filter. The badge just gives the user feedback as
+          filters narrow / widen the result set. */}
+      <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2.5 py-1.5 text-[11px] text-slate">
+        <span className="text-ink-deep font-medium tabular-nums">
+          {matchedIso3.length}
+        </span>
+        <span className="ml-1">{matchedIso3.length === 1 ? 'country' : 'countries'}</span>
       </div>
 
       {/* === Projection toggle === top-right */}
