@@ -99,16 +99,18 @@ export default async function PinsPage() {
 }
 
 // === PinCard ===
-// Compact horizontal card. Layout:
+// Layer-style "place card". Layout:
 //
-//   ┌──────────────────────────────────────────────────────┐
-//   │  Pin name                              ●img   ●flag │
-//   │  Cultural · UNESCO · City, Country                   │
-//   │  short description ─ one line, truncated             │
-//   └──────────────────────────────────────────────────────┘
+//   ┌────────────────────────────────────────────────┐
+//   │  ┌──────┐  Pin name                    ●flag   │
+//   │  │ img  │  Category · place                    │
+//   │  └──────┘                                      │
+//   └────────────────────────────────────────────────┘
 //
-// The whole row is a link to the detail page; an extra "Maps" out-link
-// sits below for one-click directions without the round-trip.
+// The cover image is the left anchor — square (rounded-lg, not a circle),
+// taking up the full vertical of the card. The right column is two lines:
+// bold title, then a single muted sub-label (category + city, country).
+// Country flag floats top-right as a small badge.
 function PinCard({
   pin,
   countryIso2,
@@ -119,101 +121,72 @@ function PinCard({
   const cover = pin.images[0];
   const country = pin.statesNames[0] ?? null;
   const city = pin.cityNames[0] ?? null;
+  // Sub-label combines category + place into a single tight line. Examples:
+  //   "Cultural · Berlin, Germany"
+  //   "UNESCO · Mauritius"
+  //   "Cultural"     (when no place text)
+  //   "Berlin"       (when no category)
   const placeText = [city, country].filter(Boolean).join(', ');
-  const firstSentence = pin.description?.split(/(?<=[.!?])\s/)[0] ?? null;
+  const subParts = [
+    pin.category ?? (pin.unescoId != null ? 'UNESCO' : null),
+    placeText || null,
+  ].filter(Boolean);
+  const subLabel = subParts.join(' · ');
+
   const flagUrl = flagCircle(countryIso2);
 
   return (
-    <article className="card p-3 flex items-start gap-3 hover:shadow-paper transition-shadow">
-      {/* === Left: text content ============================================ */}
-      <div className="flex-1 min-w-0 flex flex-col gap-1.5">
-        <div className="flex items-start gap-2">
-          <h2 className="text-ink-deep font-semibold leading-snug flex-1 truncate">
-            <Link
-              href={`/pins/${pin.slug ?? pin.id}`}
-              className="hover:text-teal transition-colors"
-            >
-              {pin.name}
-            </Link>
-          </h2>
-          {pin.visited && (
-            <span className="pill bg-teal/10 text-teal text-[10px] flex-shrink-0">
-              Been
-            </span>
-          )}
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
-          {pin.category && (
-            <span className="pill bg-cream-soft text-slate">{pin.category}</span>
-          )}
-          {pin.unescoId != null && (
-            <span className="pill bg-accent/10 text-accent">UNESCO</span>
-          )}
-          {placeText && (
-            <span className="text-muted truncate">{placeText}</span>
-          )}
-        </div>
-
-        {firstSentence && (
-          <p className="text-[12px] text-slate leading-snug line-clamp-2">
-            {firstSentence}
-          </p>
-        )}
-
-        {pin.googleMapsUrl && (
-          <a
-            href={pin.googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[11px] text-teal hover:underline mt-0.5"
-          >
-            Open in Google Maps →
-          </a>
-        )}
-      </div>
-
-      {/* === Right: avatars stack ============================================
-          Pin photo as a circular icon, then the country flag as a second
-          circular icon on the far right. Either or both may be missing —
-          when they are, we render a sand placeholder so the layout stays
-          rectangular and predictable. */}
-      <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
+    <Link
+      href={`/pins/${pin.slug ?? pin.id}`}
+      className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
+    >
+      {/* === Cover image — left anchor ====================================== */}
+      <div className="flex-shrink-0">
         {cover ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={cover.url}
             alt=""
             aria-hidden
-            className="w-12 h-12 rounded-full object-cover bg-cream-soft border border-sand"
+            className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
           />
         ) : (
           <div
             aria-hidden
-            className="w-12 h-12 rounded-full bg-cream-soft border border-sand flex items-center justify-center text-[10px] text-muted"
+            className="w-14 h-14 rounded-lg bg-cream-soft border border-sand flex items-center justify-center text-base text-muted"
           >
-            {/* Tiny pin glyph as fallback so the spot reads as 'place' */}
             📍
           </div>
         )}
       </div>
 
-      <div className="flex-shrink-0">
-        {flagUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={flagUrl}
-            alt={country ?? ''}
-            title={country ?? ''}
-            className="w-8 h-8 rounded-full border border-sand bg-white"
-          />
-        ) : (
-          <div
-            aria-hidden
-            className="w-8 h-8 rounded-full border border-sand bg-cream-soft"
-          />
+      {/* === Title + sub-label ============================================== */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2">
+          <h2 className="text-ink-deep font-semibold leading-tight truncate flex-1 group-hover:text-teal transition-colors">
+            {pin.name}
+          </h2>
+          {pin.visited && (
+            <span className="text-[10px] text-teal font-medium uppercase tracking-wider flex-shrink-0">
+              Been
+            </span>
+          )}
+          {flagUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={flagUrl}
+              alt={country ?? ''}
+              title={country ?? ''}
+              className="w-5 h-5 rounded-full border border-sand bg-white flex-shrink-0"
+            />
+          )}
+        </div>
+        {subLabel && (
+          <p className="text-[12px] text-muted truncate font-mono mt-0.5">
+            {subLabel}
+          </p>
         )}
       </div>
-    </article>
+    </Link>
   );
 }
