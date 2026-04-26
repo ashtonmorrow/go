@@ -7,6 +7,7 @@ import { useCityFilters } from './CityFiltersContext';
 import { COLORS } from '@/lib/colors';
 import type { City } from '@/lib/cityShape';
 import { useFilteredCities } from '@/lib/useFilteredCities';
+import KoppenIcon from './KoppenIcon';
 
 type Props = { cities: City[] };
 
@@ -421,7 +422,18 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           {city.driveSide && (
             <Row label="Drive" value={city.driveSide === 'L' ? 'left' : 'right'} />
           )}
-          {city.koppen && <Row label="Climate" value={city.koppen} />}
+          {city.koppen && (
+            // Climate row uses an icon instead of the raw Köppen code.
+            // Visual at-a-glance, full code + meaning live in the tooltip.
+            <div className="flex justify-between items-center gap-3 py-0.5">
+              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+                Climate
+              </dt>
+              <dd className="text-ink-deep flex items-center">
+                <KoppenIcon code={city.koppen} size={14} className="text-ink-deep" />
+              </dd>
+            </div>
+          )}
         </dl>
       </div>
 

@@ -6,6 +6,7 @@ import ViewSwitcher from './ViewSwitcher';
 import { useCityFilters, SortKey } from './CityFiltersContext';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import type { City } from '@/lib/cityShape';
+import KoppenIcon from './KoppenIcon';
 
 type Props = { cities: City[] };
 
@@ -129,8 +130,17 @@ export default function CitiesTable({ cities }: Props) {
         key: 'koppen',
         label: 'Climate',
         align: 'center',
-        className: 'min-w-[70px] font-mono text-[12px]',
-        render: c => c.koppen ?? '—',
+        className: 'min-w-[70px]',
+        // Group-level icon (Tropical / Arid / Temperate / Continental /
+        // Polar) with the precise Köppen code in the title + aria-label.
+        render: c =>
+          c.koppen ? (
+            <span className="inline-flex items-center justify-center text-ink-deep">
+              <KoppenIcon code={c.koppen} size={16} className="text-ink-deep" />
+            </span>
+          ) : (
+            <span className="text-muted">—</span>
+          ),
       },
       {
         key: 'founded',
