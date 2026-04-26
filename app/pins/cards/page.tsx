@@ -46,10 +46,8 @@ export default async function PinsPage() {
     if (c.iso2) countryNameToIso2[c.name.toLowerCase()] = c.iso2;
   }
 
-  const visitedCount = pins.filter(p => p.visited).length;
-
   return (
-    <div className="max-w-page mx-auto px-5 py-8">
+    <div className="max-w-page mx-auto px-5 py-6">
       <JsonLd
         data={collectionJsonLd({
           url: `${SITE_URL}/pins/cards`,
@@ -64,16 +62,13 @@ export default async function PinsPage() {
         })}
       />
 
-      <header className="mb-6 flex items-start justify-between gap-3 flex-wrap">
-        <div>
-          <h1 className="text-h1 text-ink-deep">Pins</h1>
-          <p className="mt-2 text-slate max-w-prose">
-            Places I think are worth a detour. {pins.length} so far,
-            {' '}{visitedCount} visited. Each links out to Google Maps.
-          </p>
-        </div>
+      {/* Compact header — matches /cities/cards, /countries/cards, etc.
+          Total + visited counts live in the cockpit's "X / Y pins" badge,
+          so the page itself doesn't need to repeat them. */}
+      <div className="mb-4 flex items-center justify-between gap-3 flex-wrap">
+        <h1 className="text-h2 text-ink-deep">Pins</h1>
         <ViewSwitcher object="pins" current="cards" />
-      </header>
+      </div>
 
       <PinsGrid pins={pins} countryNameToIso2={countryNameToIso2} />
     </div>
