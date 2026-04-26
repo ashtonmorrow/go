@@ -1,17 +1,20 @@
 // === /pins index ===========================================================
 // Curated places-of-interest (UNESCO sites, museums, viewpoints) sourced
 // from my Airtable Framer/Attractions table and stored in Stray's
-// Supabase. The index renders a responsive card grid; each card is a link
-// to the detail page, with a quick out-link to Google Maps from the
-// coords.
+// Supabase.
 //
-// First-pass simple: no filters, no infinite scroll. The pin set is small
-// and curated by hand — the view earns those affordances later as the
-// table grows.
+// Card design — "icon card": text on the left, the pin's photo as a small
+// circular avatar to its right, and the country's circular flag as a
+// second avatar on the far right. The cards are tag-led (Cultural /
+// Natural / UNESCO / city / country) rather than image-led, which is the
+// honest framing — most images are stand-ins until the rehost ships,
+// and the metadata is the part that's stable.
 //
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
+import { fetchAllCountries } from '@/lib/notion';
+import { flagCircle } from '@/lib/flags';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
@@ -33,7 +36,21 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsPage() {
-  const pins = await fetchAllPins();
+  // Pins + countries fetched in parallel. Countries gives us the
+  // name → ISO2 lookup we need to resolve the flag avatar — pins store
+  // the country only as a text label (`states_names: ['Germany']`), so
+  // the page does the join at request time.
+  const [pins, countries] = await Promise.all([
+    fetchAllPins(),
+    fetchAllCountries(),
+  ]);
+
+  // Lower-cased name lookup so capitalisation drift between Airtable and
+  // Notion doesn't drop a flag.
+  const countryIso2ByName = new Map<string, string>();
+  for (const c of countries) {
+    if (c.iso2) countryIso2ByName.set(c.name.toLowerCase(), c.iso2);
+  }
 
   const visitedCount = pins.filter(p => p.visited).length;
 
@@ -52,7 +69,7 @@ export default async function PinsPage() {
         })}
       />
 
-      <header className="mb-8">
+      <header className="mb-6">
         <h1 className="text-h1 text-ink-deep">Pins</h1>
         <p className="mt-2 text-slate max-w-prose">
           Places I think are worth a detour. {pins.length} so far,
@@ -61,14 +78,19 @@ export default async function PinsPage() {
       </header>
 
       {pins.length === 0 ? (
-        <div className="card p-8 text-center text-slate">
-          No pins yet. Add records to the Airtable Attractions table and
-          run <code className="font-mono text-small">scripts/import-pins.mjs</code> to sync.
-        </div>
+        <div className="card p-8 text-center text-slate">No pins yet.</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
           {pins.map(pin => (
-            <PinCard key={pin.id} pin={pin} />
+            <PinCard
+              key={pin.id}
+              pin={pin}
+              countryIso2={
+                pin.statesNames[0]
+                  ? countryIso2ByName.get(pin.statesNames[0].toLowerCase()) ?? null
+                  : null
+              }
+            />
           ))}
         </div>
       )}
@@ -77,35 +99,36 @@ export default async function PinsPage() {
 }
 
 // === PinCard ===
-// Tile for the index grid. Optional thumbnail at top, then name +
-// category badge + location summary + first sentence of the description.
-// The whole card is clickable; a separate small "Maps" out-link sits
-// inside so you can skip the detail page when you just want directions.
-function PinCard({ pin }: { pin: Awaited<ReturnType<typeof fetchAllPins>>[number] }) {
+// Compact horizontal card. Layout:
+//
+//   ┌──────────────────────────────────────────────────────┐
+//   │  Pin name                              ●img   ●flag │
+//   │  Cultural · UNESCO · City, Country                   │
+//   │  short description ─ one line, truncated             │
+//   └──────────────────────────────────────────────────────┘
+//
+// The whole row is a link to the detail page; an extra "Maps" out-link
+// sits below for one-click directions without the round-trip.
+function PinCard({
+  pin,
+  countryIso2,
+}: {
+  pin: Awaited<ReturnType<typeof fetchAllPins>>[number];
+  countryIso2: string | null;
+}) {
   const cover = pin.images[0];
-  const placeText = [...pin.cityNames, ...pin.statesNames].filter(Boolean).join(', ');
+  const country = pin.statesNames[0] ?? null;
+  const city = pin.cityNames[0] ?? null;
+  const placeText = [city, country].filter(Boolean).join(', ');
   const firstSentence = pin.description?.split(/(?<=[.!?])\s/)[0] ?? null;
+  const flagUrl = flagCircle(countryIso2);
 
   return (
-    <article className="card overflow-hidden flex flex-col h-full hover:shadow-paper transition-shadow">
-      {cover ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={cover.url}
-          alt={pin.name}
-          className="w-full aspect-[3/2] object-cover bg-cream-soft"
-        />
-      ) : (
-        <div className="w-full aspect-[3/2] bg-cream-soft flex items-center justify-center text-muted text-small">
-          {pin.category ?? 'No image'}
-        </div>
-      )}
-
-      <div className="p-4 flex flex-col gap-2 flex-1">
+    <article className="card p-3 flex items-start gap-3 hover:shadow-paper transition-shadow">
+      {/* === Left: text content ============================================ */}
+      <div className="flex-1 min-w-0 flex flex-col gap-1.5">
         <div className="flex items-start gap-2">
-          <h2 className="text-h3 text-ink-deep flex-1">
-            {/* Slug is non-null in practice since import enforces it; guard
-                with a fallback to the id so the page still routes. */}
+          <h2 className="text-ink-deep font-semibold leading-snug flex-1 truncate">
             <Link
               href={`/pins/${pin.slug ?? pin.id}`}
               className="hover:text-teal transition-colors"
@@ -114,24 +137,26 @@ function PinCard({ pin }: { pin: Awaited<ReturnType<typeof fetchAllPins>>[number
             </Link>
           </h2>
           {pin.visited && (
-            <span className="pill bg-teal/10 text-teal text-[11px] flex-shrink-0">
+            <span className="pill bg-teal/10 text-teal text-[10px] flex-shrink-0">
               Been
             </span>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-2 text-[11px]">
+        <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
           {pin.category && (
             <span className="pill bg-cream-soft text-slate">{pin.category}</span>
           )}
           {pin.unescoId != null && (
             <span className="pill bg-accent/10 text-accent">UNESCO</span>
           )}
-          {placeText && <span className="text-muted">{placeText}</span>}
+          {placeText && (
+            <span className="text-muted truncate">{placeText}</span>
+          )}
         </div>
 
         {firstSentence && (
-          <p className="text-small text-slate leading-snug line-clamp-3">
+          <p className="text-[12px] text-slate leading-snug line-clamp-2">
             {firstSentence}
           </p>
         )}
@@ -141,10 +166,52 @@ function PinCard({ pin }: { pin: Awaited<ReturnType<typeof fetchAllPins>>[number
             href={pin.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-auto pt-2 text-small text-teal hover:underline"
+            className="text-[11px] text-teal hover:underline mt-0.5"
           >
             Open in Google Maps →
           </a>
+        )}
+      </div>
+
+      {/* === Right: avatars stack ============================================
+          Pin photo as a circular icon, then the country flag as a second
+          circular icon on the far right. Either or both may be missing —
+          when they are, we render a sand placeholder so the layout stays
+          rectangular and predictable. */}
+      <div className="flex flex-col items-center gap-1.5 flex-shrink-0">
+        {cover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cover.url}
+            alt=""
+            aria-hidden
+            className="w-12 h-12 rounded-full object-cover bg-cream-soft border border-sand"
+          />
+        ) : (
+          <div
+            aria-hidden
+            className="w-12 h-12 rounded-full bg-cream-soft border border-sand flex items-center justify-center text-[10px] text-muted"
+          >
+            {/* Tiny pin glyph as fallback so the spot reads as 'place' */}
+            📍
+          </div>
+        )}
+      </div>
+
+      <div className="flex-shrink-0">
+        {flagUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={flagUrl}
+            alt={country ?? ''}
+            title={country ?? ''}
+            className="w-8 h-8 rounded-full border border-sand bg-white"
+          />
+        ) : (
+          <div
+            aria-hidden
+            className="w-8 h-8 rounded-full border border-sand bg-cream-soft"
+          />
         )}
       </div>
     </article>
