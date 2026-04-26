@@ -1,0 +1,140 @@
+import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import CitiesTable from '@/components/CitiesTable';
+import { driveSide } from '@/lib/driveSide';
+import { visaUs } from '@/lib/visaUs';
+import { tapWater } from '@/lib/tapWater';
+import { fetchCityFlags } from '@/lib/cityFlags';
+import JsonLd from '@/components/JsonLd';
+import ViewSwitcher from '@/components/ViewSwitcher';
+import { SITE_URL, collectionJsonLd } from '@/lib/seo';
+import type {
+  Continent,
+  VisaUs,
+  TapWater,
+} from '@/components/CityFiltersContext';
+import type { Metadata } from 'next';
+
+export const revalidate = 3600;
+
+const DESCRIPTION =
+  'All 1,341 cities as a sortable data table. Filter by continent, climate, visa, water, drive side. Click any row to open its postcard.';
+
+export const metadata: Metadata = {
+  title: 'City Data',
+  description: DESCRIPTION,
+  alternates: { canonical: `${SITE_URL}/cities/table` },
+  openGraph: {
+    type: 'website',
+    url: `${SITE_URL}/cities/table`,
+    title: 'City Data · Mike Lee',
+    description: DESCRIPTION,
+  },
+};
+
+// === Type narrowing helpers ================================================
+// Same pattern used by /cities/page.tsx — narrow Notion's free-text fields
+// to the closed unions used by the filter context.
+const CONTINENT_VALUES: Continent[] = [
+  'Africa',
+  'Asia',
+  'Europe',
+  'North America',
+  'South America',
+  'Australia',
+  'Antartica',
+];
+const VISA_VALUES: VisaUs[] = ['Visa-free', 'eVisa', 'On arrival', 'Required', 'Varies'];
+const TAP_WATER_VALUES: TapWater[] = ['Safe', 'Treat first', 'Not safe', 'Varies'];
+
+function asContinent(v: string | null | undefined): Continent | null {
+  return v && (CONTINENT_VALUES as string[]).includes(v) ? (v as Continent) : null;
+}
+function asVisa(v: string | null | undefined): VisaUs | null {
+  return v && (VISA_VALUES as string[]).includes(v) ? (v as VisaUs) : null;
+}
+function asTapWater(v: string | null | undefined): TapWater | null {
+  return v && (TAP_WATER_VALUES as string[]).includes(v) ? (v as TapWater) : null;
+}
+
+export default async function TablePage() {
+  const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
+  const byId = new Map(countries.map(c => [c.id, c]));
+
+  // Civic flags via Wikidata for cities whose Notion `cityFlag` is empty.
+  // Same shared cache as /cities — fetchCityFlags is React-cached and
+  // ISR-cached, so calling it from both routes hits Wikidata once per
+  // 24 h and once per Next render.
+  const wikidataFlags = await fetchCityFlags(
+    cities.filter(c => !c.cityFlag && c.wikidataId).map(c => c.wikidataId)
+  );
+
+  // Identical minimal-shape mapping used by /cities — keeps the table and
+  // the postcard wall structurally in sync. Both views use the same
+  // useFilteredCities hook so sort + filter behaviour is identical.
+  const minimal = cities.map(c => {
+    const country = c.countryPageId ? byId.get(c.countryPageId) : null;
+    return {
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+      country: c.country,
+      been: c.been,
+      go: c.go,
+      // Same three-tier flag fallback used by /cities — Notion → Wikidata → country.
+      cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
+      countryFlag: country?.flag ?? null,
+      personalPhoto: c.personalPhoto,
+      lat: c.lat,
+      lng: c.lng,
+      population: c.population,
+      elevation: c.elevation,
+      avgHigh: c.avgHigh,
+      avgLow: c.avgLow,
+      rainfall: c.rainfall,
+      koppen: c.koppen,
+      founded: c.founded,
+      savedPlaces: c.myGooglePlaces,
+      currency: country?.currency ?? null,
+      language: country?.language ?? null,
+      driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      continent: asContinent(country?.continent),
+      visa:
+        asVisa(country?.visaUs) ??
+        visaUs(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      tapWater:
+        asTapWater(country?.tapWater) ??
+        tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+    };
+  });
+
+  // CollectionPage + ItemList — same shape as /cities, but pulls a
+  // different sample (most-populous Been/Go cities) to give crawlers a
+  // diverse signal of what the table contains.
+  const featuredItems = minimal
+    .filter(c => c.been || c.go)
+    .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
+    .slice(0, 30)
+    .map(c => ({
+      url: `${SITE_URL}/cities/${c.slug}`,
+      name: c.name,
+    }));
+
+  const collectionData = collectionJsonLd({
+    url: `${SITE_URL}/cities/table`,
+    name: 'City Data',
+    description: DESCRIPTION,
+    items: featuredItems,
+    totalItems: cities.length,
+  });
+
+  return (
+    <>
+      <JsonLd data={collectionData} />
+      <div className="px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
+        <h1 className="text-h2 text-ink-deep">City Data</h1>
+        <ViewSwitcher object="cities" current="table" />
+      </div>
+      <CitiesTable cities={minimal} />
+    </>
+  );
+}

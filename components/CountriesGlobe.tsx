@@ -12,7 +12,6 @@ import {
   type MapMouseEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import ViewSwitcher from './ViewSwitcher';
 import { COLORS } from '@/lib/colors';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import type { City } from '@/lib/cityShape';
@@ -261,7 +260,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         </div>
       </div>
 
-      <ViewSwitcher />
+      {/* View switcher lives at the page level (app/countries/map/page.tsx). */}
     </div>
   );
 }

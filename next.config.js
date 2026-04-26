@@ -23,5 +23,23 @@ const nextConfig = {
   experimental: {
     // Fine-tune if needed
   },
+  // === Legacy URL redirects =============================================
+  // The atlas now uses an Object × View URL shape: /<object>/<view> with
+  // <object> ∈ {cities, countries, pins} and <view> ∈ {cards, map, table}.
+  // The original routes listed below predate that scheme; we 308-redirect
+  // them to the canonical paths so existing links and search results
+  // don't break.
+  async redirects() {
+    return [
+      // Object indexes → cards (the default view)
+      { source: '/cities',    destination: '/cities/cards',    permanent: true },
+      { source: '/countries', destination: '/countries/cards', permanent: true },
+      { source: '/pins',      destination: '/pins/cards',      permanent: true },
+      // Standalone view pages → object/view canonicals
+      { source: '/map',   destination: '/cities/map',     permanent: true },
+      { source: '/table', destination: '/cities/table',   permanent: true },
+      { source: '/world', destination: '/countries/map', permanent: true },
+    ];
+  },
 };
 module.exports = nextConfig;

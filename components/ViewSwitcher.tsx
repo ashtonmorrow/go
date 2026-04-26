@@ -1,65 +1,92 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
-// Floating, fixed-position view switcher pinned to the bottom-right corner.
-// Lets the user flip between the postcard grid (/cities) and the world map
-// (/map) without scrolling back to the page header.
+// === ViewSwitcher ==========================================================
+// Horizontal pill switcher for the View axis of the unified Object × View
+// nav. Sits inline with each page's H1. The Object axis (Cities /
+// Countries / Pins) lives in the left sidebar; this is the orthogonal
+// "how am I looking at it?" control.
 //
-// Mounted on both /cities and /map so the same control is always available
-// in the corner regardless of which view you're currently in. The active
-// option is the one matching the current pathname.
-export default function ViewSwitcher() {
-  const pathname = usePathname() || '';
-  const onMap = pathname.startsWith('/map');
+// Usage: <ViewSwitcher object="cities" current="cards" />
+//
+// The same three views — Cards, Map, Table — exist for every object.
+// Each pill links to /<object>/<view>; the active pill is the one
+// matching `current`.
+//
+// Some object-view combinations have view-specific names that read better
+// in context (e.g. "Globe" rather than "Map" for /countries) — we keep the
+// canonical view keys ('cards' | 'map' | 'table') for routing, and label
+// them per-object via the `LABELS` table below.
 
+export type ObjectKey = 'cities' | 'countries' | 'pins';
+export type ViewKey = 'cards' | 'map' | 'table';
+
+const VIEW_ORDER: ViewKey[] = ['cards', 'map', 'table'];
+
+// Per-object labels — keep the verb concrete to the data on screen.
+//   • Cities:    Postcards / Map / Table
+//   • Countries: Cards / Globe / Table
+//   • Pins:      Cards / Map / Table
+const LABELS: Record<ObjectKey, Record<ViewKey, { icon: string; label: string }>> = {
+  cities: {
+    cards: { icon: '📮', label: 'Postcards' },
+    map:   { icon: '🗺️', label: 'Map' },
+    table: { icon: '🗂️', label: 'Table' },
+  },
+  countries: {
+    cards: { icon: '🏳️', label: 'Cards' },
+    map:   { icon: '🌍', label: 'Globe' },
+    table: { icon: '🗂️', label: 'Table' },
+  },
+  pins: {
+    cards: { icon: '📍', label: 'Cards' },
+    map:   { icon: '🗺️', label: 'Map' },
+    table: { icon: '🗂️', label: 'Table' },
+  },
+};
+
+export default function ViewSwitcher({
+  object,
+  current,
+  className,
+}: {
+  object: ObjectKey;
+  current: ViewKey;
+  /** Wrapper class for layout — defaults to inline. Pass 'fixed bottom-…'
+   *  to use as a floating control (e.g. on full-bleed map pages). */
+  className?: string;
+}) {
   return (
     <div
-      className="fixed bottom-5 right-5 z-50"
-      // pointer-events-none on the wrapper would block both pills; instead
-      // we rely on the inner element to receive clicks. The fixed
-      // positioning + high z-index keeps it above all card / map content.
+      className={
+        'inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 ' +
+        (className ?? '')
+      }
+      role="tablist"
+      aria-label="Switch view"
     >
-      <div
-        className="inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 shadow-lg"
-        role="tablist"
-        aria-label="Switch view"
-      >
-        <Pill href="/cities" active={!onMap} icon="📮" label="Postcard" />
-        <Pill href="/map" active={onMap} icon="🗺️" label="Map" />
-      </div>
+      {VIEW_ORDER.map(view => {
+        const active = view === current;
+        const { icon, label } = LABELS[object][view];
+        return (
+          <Link
+            key={view}
+            href={`/${object}/${view}`}
+            role="tab"
+            aria-selected={active}
+            className={
+              'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-small font-medium transition-colors ' +
+              (active
+                ? 'bg-ink-deep text-cream-soft'
+                : 'text-slate hover:text-ink-deep')
+            }
+          >
+            <span aria-hidden>{icon}</span>
+            <span>{label}</span>
+          </Link>
+        );
+      })}
     </div>
-  );
-}
-
-function Pill({
-  href,
-  active,
-  icon,
-  label,
-}: {
-  href: string;
-  active: boolean;
-  icon: string;
-  label: string;
-}) {
-  // Active pill: solid dark fill (matches the page's other active controls
-  // like sort-field buttons). Inactive pill: just the label, hover darkens.
-  const base =
-    'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-small font-medium transition-colors';
-  const stateClasses = active
-    ? 'bg-ink-deep text-cream-soft'
-    : 'text-slate hover:text-ink-deep';
-  return (
-    <Link
-      href={href}
-      role="tab"
-      aria-selected={active}
-      className={base + ' ' + stateClasses}
-    >
-      <span aria-hidden>{icon}</span>
-      <span>{label}</span>
-    </Link>
   );
 }

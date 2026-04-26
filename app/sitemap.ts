@@ -20,49 +20,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
   const now = new Date();
 
+  // Object × View matrix — every cell is a real page in the new nav.
+  // Cards views get the highest priority (the canonical default for each
+  // object); map and table follow.
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/cities`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/map`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/countries`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/world`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/table`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastModified: '2026-04-25',
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/pins`,
-      lastModified: now,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
+    { url: `${SITE_URL}/cities/cards`,    lastModified: now, changeFrequency: 'daily',  priority: 1.0 },
+    { url: `${SITE_URL}/cities/map`,      lastModified: now, changeFrequency: 'daily',  priority: 0.9 },
+    { url: `${SITE_URL}/cities/table`,    lastModified: now, changeFrequency: 'daily',  priority: 0.8 },
+    { url: `${SITE_URL}/countries/cards`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/countries/map`,   lastModified: now, changeFrequency: 'daily',  priority: 0.9 },
+    { url: `${SITE_URL}/countries/table`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}/pins/cards`,      lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/pins/map`,        lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}/pins/table`,      lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}/about`,           lastModified: '2026-04-25', changeFrequency: 'monthly', priority: 0.7 },
   ];
 
   const cityRoutes: MetadataRoute.Sitemap = cities.map(c => ({

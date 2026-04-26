@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ViewSwitcher from './ViewSwitcher';
 import { useCityFilters, SortKey } from './CityFiltersContext';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import type { City } from '@/lib/cityShape';
@@ -411,7 +410,7 @@ export default function CitiesTable({ cities }: Props) {
         )}
       </div>
 
-      <ViewSwitcher />
+      {/* View switcher lives at the page level now. */}
     </section>
   );
 }

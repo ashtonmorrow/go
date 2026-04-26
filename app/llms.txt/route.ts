@@ -53,14 +53,19 @@ export async function GET(): Promise<Response> {
     fetchAllPins(),
   ]);
 
+  // Object × View nav — same matrix lives in the sitebar (object) +
+  // per-page ViewSwitcher (view).
   const navigation = section('Views', [
-    { url: `${SITE_URL}/cities`,    name: 'Postcards',  description: '1,341 cities as postcards, filterable by Been / Want to go / Saved' },
-    { url: `${SITE_URL}/pins`,      name: 'Pins',       description: 'Curated places of interest (UNESCO sites, museums, viewpoints) with Google-Maps deep links' },
-    { url: `${SITE_URL}/map`,       name: 'Map',        description: 'Interactive globe of every city' },
-    { url: `${SITE_URL}/world`,     name: 'World',      description: 'Country-shaded globe driven by the same filter cockpit' },
-    { url: `${SITE_URL}/countries`, name: 'Countries',  description: '213 countries as flag tiles with travel logistics' },
-    { url: `${SITE_URL}/table`,     name: 'City Data',  description: 'Tabular view of every city with sortable columns and a column picker' },
-    { url: `${SITE_URL}/about`,     name: 'About',      description: 'How the atlas is built — sources, stack, and design choices' },
+    { url: `${SITE_URL}/cities/cards`,    name: 'Cities — Postcards', description: '1,341 cities as hand-rotated postcards' },
+    { url: `${SITE_URL}/cities/map`,      name: 'Cities — Map',       description: 'Interactive globe of every city, sister-city graph on click' },
+    { url: `${SITE_URL}/cities/table`,    name: 'Cities — Table',     description: 'Sortable data table of all 1,341 cities' },
+    { url: `${SITE_URL}/countries/cards`, name: 'Countries — Cards',  description: '213 countries as flag tiles with travel logistics' },
+    { url: `${SITE_URL}/countries/map`,   name: 'Countries — Globe',  description: 'Country-shaded globe driven by the same filter cockpit' },
+    { url: `${SITE_URL}/countries/table`, name: 'Countries — Table',  description: 'Sortable data table of all 213 countries' },
+    { url: `${SITE_URL}/pins/cards`,      name: 'Pins — Cards',       description: 'Curated places of interest (UNESCO sites, museums, viewpoints)' },
+    { url: `${SITE_URL}/pins/map`,        name: 'Pins — Map',         description: 'Globe of every pin with click-through detail' },
+    { url: `${SITE_URL}/pins/table`,      name: 'Pins — Table',       description: 'Sortable data table of every pin' },
+    { url: `${SITE_URL}/about`,           name: 'About',              description: 'How the atlas is built — sources, stack, and design choices' },
   ]);
 
   // Curated highlights only — Been + Want-to-go cities — to keep the

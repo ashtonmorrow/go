@@ -12,7 +12,6 @@ import {
   type MapMouseEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import ViewSwitcher from './ViewSwitcher';
 import { COLORS } from '@/lib/colors';
 
 type Pin = {
@@ -361,7 +360,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         </div>
       </div>
 
-      <ViewSwitcher />
+      {/* View switcher lives at the page level (app/cities/map/page.tsx). */}
     </div>
   );
 }

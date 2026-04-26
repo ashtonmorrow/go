@@ -28,13 +28,14 @@ type Counts = {
 // On screens < md the rail collapses into a top app bar with a hamburger
 // that slides the same nav in from the left as a drawer.
 
+// Object axis. The View axis (Cards / Map / Table) lives in the
+// per-page <ViewSwitcher>, not here. Sidebar links land on the Cards
+// view of each object — the canonical default.
 const PAGES: { href: string; emoji: string; label: string }[] = [
-  { href: '/cities', emoji: '📮', label: 'Postcards' },
-  { href: '/pins', emoji: '📍', label: 'Pins' },
-  { href: '/map', emoji: '🗺️', label: 'Map' },
-  { href: '/world', emoji: '🌍', label: 'World' },
-  { href: '/table', emoji: '🗂️', label: 'City Data' },
-  { href: '/about', emoji: '📖', label: 'About' },
+  { href: '/cities/cards',    emoji: '📮', label: 'Cities' },
+  { href: '/countries/cards', emoji: '🌍', label: 'Countries' },
+  { href: '/pins/cards',      emoji: '📍', label: 'Pins' },
+  { href: '/about',           emoji: '📖', label: 'About' },
 ];
 
 // External links to other Mike Lee subdomains. mike-lee.me itself isn't
@@ -141,26 +142,33 @@ function NavBody({
   const pathname = usePathname() || '';
   const cityFiltersAvailable = useCityFilters() !== null;
   const pinFiltersAvailable = usePinFilters() !== null;
-  // Show the city FilterPanel on the city-driven views: /cities, /table,
-  // /world. /pins gets its own PinFilterPanel — the dimensions don't
-  // overlap (pins don't have Köppen, voltage, etc.) so we keep them
-  // separate. Detail pages get the read-only Collections list.
-  const onCitiesIndex = pathname === '/cities';
-  const onTable = pathname === '/table';
-  const onWorld = pathname === '/world';
-  const onPinsIndex = pathname === '/pins';
+  // Filter-cockpit visibility under the new Object × View routes:
+  //   * City filters apply to the city-driven data views — cards, table,
+  //     and the country globe (whose shading derives from filtered cities)
+  //   * Pin filters apply to the pin cards view
+  // Detail pages and views that aren't wired to a filter context get the
+  // read-only Collections list instead.
+  const onCitiesCards    = pathname === '/cities/cards';
+  const onCitiesTable    = pathname === '/cities/table';
+  const onCountriesGlobe = pathname === '/countries/map';
+  const onPinsCards      = pathname === '/pins/cards';
   const showCityFilters =
-    cityFiltersAvailable && (onCitiesIndex || onTable || onWorld);
-  const showPinFilters = pinFiltersAvailable && onPinsIndex;
+    cityFiltersAvailable && (onCitiesCards || onCitiesTable || onCountriesGlobe);
+  const showPinFilters = pinFiltersAvailable && onPinsCards;
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
       {/* Views — this section's own routes (Postcards, Map, About) */}
       <Section label="Views">
         {PAGES.map(p => {
-          const active = pathname === p.href
-            || (p.href === '/cities' && pathname.startsWith('/cities/'))
-            || (p.href === '/pins' && pathname.startsWith('/pins/'));
+          // Sidebar items always link to the Cards view of an object, but
+          // the active state should light up for any view of that object,
+          // including the dynamic detail pages — /cities/[slug] etc.
+          // Shared prefix is "/<object>/", which we derive from the link.
+          const objectPrefix = p.href.replace(/\/cards$/, '/');
+          const active =
+            pathname === p.href ||
+            (objectPrefix.endsWith('/') && pathname.startsWith(objectPrefix));
           return (
             <Item
               key={p.href}
@@ -186,12 +194,12 @@ function NavBody({
         />
       ) : (
         <Section label="Collections">
-          <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
-          <Item href="/countries" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
-          <Item href="/pins" emoji="📍" label="Pins" count={counts.pins} onClick={onLinkClick} />
-          <Item href="/cities" emoji="✈️" label="Been" count={counts.been} onClick={onLinkClick} />
-          <Item href="/cities" emoji="⭐" label="Go" count={counts.go} onClick={onLinkClick} />
-          <Item href="/cities" emoji="💾" label="Saved" count={counts.saved} onClick={onLinkClick} />
+          <Item href="/cities/cards"    emoji="📮" label="Cities"    count={counts.cities}    onClick={onLinkClick} />
+          <Item href="/countries/cards" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
+          <Item href="/pins/cards"      emoji="📍" label="Pins"      count={counts.pins}      onClick={onLinkClick} />
+          <Item href="/cities/cards"    emoji="✈️" label="Been"      count={counts.been}      onClick={onLinkClick} />
+          <Item href="/cities/cards"    emoji="⭐" label="Go"        count={counts.go}        onClick={onLinkClick} />
+          <Item href="/cities/cards"    emoji="💾" label="Saved"     count={counts.saved}     onClick={onLinkClick} />
         </Section>
       )}
 

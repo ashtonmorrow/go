@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ViewSwitcher from './ViewSwitcher';
 import { useCityFilters } from './CityFiltersContext';
 import { COLORS } from '@/lib/colors';
 import type { City } from '@/lib/cityShape';
@@ -74,8 +73,8 @@ export default function CitiesGrid({ cities }: Props) {
         </div>
       )}
 
-      {/* Floating Postcard ↔ Map view switcher, fixed bottom-right. */}
-      <ViewSwitcher />
+      {/* View switcher now lives at the page level (app/cities/cards/page.tsx)
+          alongside the H1; no floating duplicate here. */}
     </section>
   );
 }
