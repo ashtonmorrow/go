@@ -27,6 +27,7 @@ type Counts = {
 
 const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/cities', emoji: '📮', label: 'Postcards' },
+  { href: '/pins', emoji: '📍', label: 'Pins' },
   { href: '/map', emoji: '🗺️', label: 'Map' },
   { href: '/world', emoji: '🌍', label: 'World' },
   { href: '/table', emoji: '🗂️', label: 'City Data' },
@@ -133,7 +134,9 @@ function NavBody({
       {/* Views — this section's own routes (Postcards, Map, About) */}
       <Section label="Views">
         {PAGES.map(p => {
-          const active = pathname === p.href || (p.href === '/cities' && pathname.startsWith('/cities/'));
+          const active = pathname === p.href
+            || (p.href === '/cities' && pathname.startsWith('/cities/'))
+            || (p.href === '/pins' && pathname.startsWith('/pins/'));
           return (
             <Item
               key={p.href}

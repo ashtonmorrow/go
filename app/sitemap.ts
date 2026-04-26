@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllPins } from '@/lib/pins';
 import { SITE_URL } from '@/lib/seo';
 
 // Dynamic sitemap. Includes:
@@ -12,7 +13,11 @@ import { SITE_URL } from '@/lib/seo';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
+  const [cities, countries, pins] = await Promise.all([
+    fetchAllCities(),
+    fetchAllCountries(),
+    fetchAllPins(),
+  ]);
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -52,6 +57,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/pins`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 
   const cityRoutes: MetadataRoute.Sitemap = cities.map(c => ({
@@ -70,5 +81,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...cityRoutes, ...countryRoutes];
+  const pinRoutes: MetadataRoute.Sitemap = pins
+    .filter(p => p.slug)
+    .map(p => ({
+      url: `${SITE_URL}/pins/${p.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: p.visited ? 0.7 : 0.5,
+    }));
+
+  return [...staticRoutes, ...cityRoutes, ...countryRoutes, ...pinRoutes];
 }
