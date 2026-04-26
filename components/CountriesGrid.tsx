@@ -260,39 +260,6 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
             )}
           </div>
 
-          {/* === Dropdown ===
-              Floats above the bottom strip when pinned. Constrained to the
-              card width and capped at ~50% of card height with internal
-              scroll, so it never spills out unpredictably. */}
-          {pinned && dropdownCities.length > 0 && (
-            <div
-              role="menu"
-              onClick={e => e.stopPropagation()}
-              className="absolute z-30 left-1.5 right-1.5 bottom-9 bg-white border border-sand rounded-md shadow-card overflow-hidden"
-              style={{ maxHeight: '60%' }}
-            >
-              <ul className="overflow-y-auto" style={{ maxHeight: '100%' }}>
-                {dropdownCities.map(c => (
-                  <li key={c.id}>
-                    <Link
-                      href={`/cities/${c.slug}`}
-                      onClick={e => e.stopPropagation()}
-                      className="flex items-center justify-between gap-2 px-2.5 py-1.5 text-[11px] text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
-                    >
-                      <span className="truncate">{c.name}</span>
-                      {c.been && (
-                        <span
-                          aria-hidden
-                          className="inline-block w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0"
-                          title="Been"
-                        />
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
 
         {/* === FRONT FACE — flag photo === */}
@@ -330,6 +297,46 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
           </div>
         </div>
       </div>
+
+      {/* === Dropdown ===
+          Rendered as a SIBLING of .flip-card (inside .flip-perspective)
+          so it doesn't rotate with the flip and can extend BELOW the
+          card without being clipped. Positioned with top-full so it
+          drops down from the card's bottom edge, classic menu UX. */}
+      {pinned && dropdownCities.length > 0 && (
+        <div
+          role="menu"
+          onClick={e => e.stopPropagation()}
+          className="absolute z-30 left-0 right-0 top-full mt-1 bg-white border border-sand rounded-md shadow-card overflow-hidden"
+          style={{ maxHeight: 'min(320px, 60vh)' }}
+        >
+          <ul className="overflow-y-auto" style={{ maxHeight: 'min(320px, 60vh)' }}>
+            {dropdownCities.map(c => (
+              <li key={c.id}>
+                <Link
+                  href={`/cities/${c.slug}`}
+                  onClick={e => e.stopPropagation()}
+                  className="flex items-center justify-between gap-2 px-3 py-2 text-[12px] text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
+                >
+                  <span className="truncate">{c.name}</span>
+                  {c.been && country.flag && (
+                    <span
+                      aria-hidden
+                      title="Been"
+                      className="inline-block w-3.5 h-3.5 rounded-full border border-sand flex-shrink-0"
+                      style={{
+                        backgroundImage: `url(${country.flag})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    />
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

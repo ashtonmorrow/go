@@ -62,6 +62,10 @@
   /* preserve-3d here keeps child transforms (like rotateY) from being flattened
      by the wrapper's own 2D rotate(tilt) transform. */
   transform-style: preserve-3d;
+  /* Establish a positioning context so children rendered alongside the
+     flip-card (e.g. country-card dropdowns) can anchor to the wrapper
+     and extend beyond the card bounds. */
+  position: relative;
 }
 .flip-card {
   position: relative;
