@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 export const revalidate = 3600;
 
 const DESCRIPTION =
-  '213 countries in the atlas, drawn as flag tiles. Hover for the practicalities — capital, language, currency, plug types, visa, tap-water safety.';
+  '213 countries in the atlas, drawn as flag tiles. Hover for the practicalities. Capital, language, currency, plug types, visa, tap-water safety.';
 
 export const metadata: Metadata = {
   title: 'Countries',

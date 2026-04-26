@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     country.currency ? country.currency : null,
   ].filter(Boolean) as string[];
   const lede = practicalParts.length
-    ? `${country.name} — ${practicalParts.join(' · ')}.`
-    : `${country.name} — travel notes and cities from a personal travel atlas.`;
+    ? `${country.name}. ${practicalParts.join('. ')}.`
+    : `${country.name}. Travel notes and cities from a personal atlas.`;
   const description = clip(lede, 155);
 
   const url = `${SITE_URL}/countries/${country.slug}`;

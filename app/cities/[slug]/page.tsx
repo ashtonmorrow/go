@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description =
     clip(city.about, 155) ??
     clip(city.wikipediaSummary, 155) ??
-    `${city.name}${city.country ? `, ${city.country}` : ''} — population, climate, currency, language, and travel notes.`;
+    `${city.name}${city.country ? `, ${city.country}` : ''}. Population, climate, currency, language, travel notes.`;
 
   const url = `${SITE_URL}/cities/${city.slug}`;
   const image = city.personalPhoto ?? city.heroImage ?? undefined;
