@@ -89,16 +89,54 @@ export default async function WorldPage() {
   });
 
   // Country lookup maps for the globe:
-  //   countriesByIso3 — popup metadata + click-to-navigate by ISO3
+  //   countriesByIso3 — full popup metadata for the hover tile + click-to-
+  //                     navigate by ISO3. Carries every practical field on
+  //                     the country, plus a driveSide derivation, so the
+  //                     popup can render a real fact sheet.
   //   countryIdToIso3 — bridge from city.countryPageId to ISO3 (the
   //                     GeoJSON keys on ISO3, but cities reference Notion
   //                     country page ids)
-  const countriesByIso3: Record<string, { name: string; slug: string; flag: string | null }> = {};
+  const countriesByIso3: Record<
+    string,
+    {
+      name: string;
+      slug: string;
+      flag: string | null;
+      iso2: string | null;
+      capital: string | null;
+      language: string | null;
+      currency: string | null;
+      callingCode: string | null;
+      schengen: boolean;
+      voltage: string | null;
+      plugTypes: string[];
+      tapWater: string | null;
+      visa: string | null;
+      driveSide: 'L' | 'R' | null;
+    }
+  > = {};
   const countryIdToIso3: Record<string, string> = {};
   for (const c of countries) {
     if (!c.iso3) continue;
     const iso = c.iso3.toUpperCase();
-    countriesByIso3[iso] = { name: c.name, slug: c.slug, flag: c.flag };
+    countriesByIso3[iso] = {
+      name: c.name,
+      slug: c.slug,
+      flag: c.flag,
+      iso2: c.iso2,
+      capital: c.capital,
+      language: c.language,
+      currency: c.currency,
+      callingCode: c.callingCode,
+      schengen: c.schengen,
+      voltage: c.voltage,
+      plugTypes: c.plugTypes,
+      // Notion's tap-water / visa columns are sparse; fall through to the
+      // static lookups so the popup is populated for most countries.
+      tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
+      visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
+      driveSide: driveSide(c.iso2 ?? null, c.name),
+    };
     countryIdToIso3[c.id] = iso;
   }
 

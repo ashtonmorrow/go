@@ -17,11 +17,24 @@ import { COLORS } from '@/lib/colors';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import type { City } from '@/lib/cityShape';
 
-// Country metadata indexed by ISO 3166-1 alpha-3.
+// Country metadata indexed by ISO 3166-1 alpha-3. Carries every field the
+// hover tile needs so the popup can render a real fact sheet without
+// follow-up fetches.
 type CountryMeta = {
   name: string;
   slug: string;
   flag: string | null;
+  iso2: string | null;
+  capital: string | null;
+  language: string | null;
+  currency: string | null;
+  callingCode: string | null;
+  schengen: boolean;
+  voltage: string | null;
+  plugTypes: string[];
+  tapWater: string | null;
+  visa: string | null;
+  driveSide: 'L' | 'R' | null;
 };
 
 type Props = {
@@ -194,7 +207,13 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
           />
         </Source>
 
-        {/* Hover popup */}
+        {/* Hover popup — rich fact tile.
+            Width-locked to ~280px so the layout is consistent across
+            countries with very long or very short names. Headline row
+            has flag + name + ISO2 badge; a dl rows section follows
+            with the practicalities (capital, language, currency, visa,
+            tap water, drive, voltage, plug types); footer surfaces the
+            cities-visited breakdown for the active filter. */}
         {hovered && countriesByIso3[hovered.iso3] && (
           <Popup
             longitude={hovered.lng}
@@ -204,35 +223,9 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             anchor="top"
             offset={12}
             className="!p-0"
+            maxWidth="320px"
           >
-            <div className="px-2.5 py-1.5 flex items-center gap-2">
-              {countriesByIso3[hovered.iso3].flag && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={countriesByIso3[hovered.iso3].flag!}
-                  alt=""
-                  className="w-4 h-auto rounded-sm border border-sand"
-                />
-              )}
-              <div>
-                <div className="text-ink-deep font-medium leading-tight text-small">
-                  {countriesByIso3[hovered.iso3].name}
-                </div>
-                <div className="text-muted text-[10px] leading-tight tabular-nums">
-                  {(() => {
-                    const stats = perCountry[hovered.iso3];
-                    if (!stats) return 'Not in current filter';
-                    if (stats.been > 0) {
-                      return `${stats.been} of ${stats.total} cities visited`;
-                    }
-                    if (stats.go > 0) {
-                      return `${stats.total} cities · planning`;
-                    }
-                    return `${stats.total} cities match filters`;
-                  })()}
-                </div>
-              </div>
-            </div>
+            <CountryHoverTile country={countriesByIso3[hovered.iso3]} stats={perCountry[hovered.iso3]} />
           </Popup>
         )}
 
@@ -297,5 +290,94 @@ function ProjectionPill({
       <span aria-hidden>{icon}</span>
       <span>{label}</span>
     </button>
+  );
+}
+
+// === CountryHoverTile ======================================================
+// Pop-up tile shown when the user hovers any country on the globe.
+// Headline + practicalities + city stats. Field rows follow the same
+// 'label small caps · value mono / sans' pattern the city detail page
+// sidebar uses, so the visual language stays consistent across views.
+function CountryHoverTile({
+  country,
+  stats,
+}: {
+  country: CountryMeta;
+  stats?: { been: number; go: number; total: number };
+}) {
+  // Build the row list — only include rows where there's a value, so a
+  // sparsely-populated country (some islands etc) renders cleanly without
+  // 'em-dash placeholders'.
+  const rows: { label: string; value: string }[] = [];
+  if (country.capital) rows.push({ label: 'Capital', value: country.capital });
+  if (country.language) rows.push({ label: 'Language', value: country.language });
+  if (country.currency) rows.push({ label: 'Currency', value: country.currency });
+  if (country.callingCode) rows.push({ label: 'Phone', value: country.callingCode });
+  if (country.visa) rows.push({ label: 'Visa', value: country.visa });
+  if (country.tapWater) rows.push({ label: 'Water', value: country.tapWater });
+  if (country.driveSide)
+    rows.push({ label: 'Drive', value: country.driveSide === 'L' ? 'left' : 'right' });
+  if (country.voltage) rows.push({ label: 'Voltage', value: country.voltage });
+  if (country.plugTypes.length > 0)
+    rows.push({ label: 'Plugs', value: country.plugTypes.join(' · ') });
+  if (country.schengen) rows.push({ label: 'Schengen', value: 'Yes' });
+
+  const cityLine = stats
+    ? stats.been > 0
+      ? `${stats.been} of ${stats.total} cities visited`
+      : stats.go > 0
+        ? `${stats.total} planned · not visited yet`
+        : `${stats.total} cities match filters`
+    : 'No cities in current filter';
+
+  return (
+    <div className="w-[280px]">
+      {/* Header — flag + name + ISO badge */}
+      <div className="flex items-center gap-2.5 px-3 py-2 border-b border-sand">
+        {country.flag && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={country.flag}
+            alt=""
+            className="w-7 h-auto rounded-sm border border-sand flex-shrink-0"
+          />
+        )}
+        <div className="flex-1 min-w-0">
+          <div className="text-ink-deep font-semibold leading-tight truncate">
+            {country.name}
+          </div>
+        </div>
+        {country.iso2 && (
+          <span className="text-[9px] font-mono text-muted tracking-[0.14em]">
+            {country.iso2}
+          </span>
+        )}
+      </div>
+
+      {/* Practicalities */}
+      {rows.length > 0 && (
+        <dl className="px-3 py-2 text-[11px] leading-tight space-y-0.5">
+          {rows.map(r => (
+            <div key={r.label} className="flex items-baseline justify-between gap-3">
+              <dt className="text-[9px] uppercase tracking-[0.14em] text-muted font-medium flex-shrink-0">
+                {r.label}
+              </dt>
+              <dd
+                className="text-ink-deep font-mono truncate text-right text-[11px]"
+                title={r.value}
+              >
+                {r.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {/* Footer — city stats from the active filter */}
+      <div className="px-3 py-1.5 border-t border-sand text-[10px] text-slate tabular-nums flex items-center justify-between gap-2">
+        <span>{cityLine}</span>
+        <span className="text-muted text-[9px]">click → open</span>
+      </div>
+    </div>
   );
 }
