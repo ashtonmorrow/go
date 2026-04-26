@@ -70,7 +70,11 @@
   transition: transform 0.7s cubic-bezier(0.34, 1.06, 0.5, 1);
   transform-style: preserve-3d;
 }
-.flip-perspective:hover .flip-card {
+.flip-perspective:hover .flip-card,
+/* Pinned state — used by the country flag-card dropdowns. While a city
+   dropdown is open the card needs to stay flipped even after the cursor
+   moves off it, so the user can interact with the dropdown content. */
+.flip-perspective.is-pinned .flip-card {
   transform: rotateY(180deg);
 }
 .flip-face {

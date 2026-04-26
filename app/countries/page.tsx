@@ -26,39 +26,45 @@ export const metadata: Metadata = {
 export default async function CountriesPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
 
-  // Index cities by country relation so we can attach per-country counts
-  // without iterating cities once per country.
-  const cityCountByCountry = new Map<string, number>();
-  const beenCountByCountry = new Map<string, number>();
+  // Group cities by country relation so each country card carries the
+  // actual list (name + slug + been). The card uses these for the
+  // click-to-open dropdown behind the "X cities / Y visited" footer.
+  const citiesByCountry = new Map<string, { id: string; name: string; slug: string; been: boolean }[]>();
   for (const city of cities) {
     if (!city.countryPageId) continue;
-    cityCountByCountry.set(city.countryPageId, (cityCountByCountry.get(city.countryPageId) || 0) + 1);
-    if (city.been) {
-      beenCountByCountry.set(city.countryPageId, (beenCountByCountry.get(city.countryPageId) || 0) + 1);
-    }
+    const list = citiesByCountry.get(city.countryPageId) ?? [];
+    list.push({ id: city.id, name: city.name, slug: city.slug, been: city.been });
+    citiesByCountry.set(city.countryPageId, list);
   }
 
-  const minimal = countries.map(c => ({
-    id: c.id,
-    name: c.name,
-    slug: c.slug,
-    flag: c.flag,
-    iso2: c.iso2,
-    capital: c.capital,
-    language: c.language,
-    currency: c.currency,
-    callingCode: c.callingCode,
-    schengen: c.schengen,
-    voltage: c.voltage,
-    plugTypes: c.plugTypes,
-    emergencyNumber: c.emergencyNumber,
-    cityCount: cityCountByCountry.get(c.id) || 0,
-    beenCount: beenCountByCountry.get(c.id) || 0,
-    // Visa + tap-water mostly come from the static lookups since Notion's
-    // Country DB is sparse on those columns. Notion wins when populated.
-    visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
-    tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
-  }));
+  const minimal = countries.map(c => {
+    const countryCities = (citiesByCountry.get(c.id) ?? []).slice().sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    const beenCount = countryCities.filter(x => x.been).length;
+    return {
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+      flag: c.flag,
+      iso2: c.iso2,
+      capital: c.capital,
+      language: c.language,
+      currency: c.currency,
+      callingCode: c.callingCode,
+      schengen: c.schengen,
+      voltage: c.voltage,
+      plugTypes: c.plugTypes,
+      emergencyNumber: c.emergencyNumber,
+      cityCount: countryCities.length,
+      beenCount,
+      cities: countryCities,
+      // Visa + tap-water mostly come from the static lookups since Notion's
+      // Country DB is sparse on those columns. Notion wins when populated.
+      visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
+      tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
+    };
+  });
 
   // Sort the JSON-LD ItemList so "Been" countries appear first — gives
   // search engines a meaningful sample of the curated set.

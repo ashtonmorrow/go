@@ -1,7 +1,10 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+type CityRef = { id: string; name: string; slug: string; been: boolean };
 
 // Minimal country shape the grid needs. Mirrors the "minimal" pattern used
 // by CitiesGrid — keeps server payload small and the client component
@@ -22,6 +25,7 @@ type Country = {
   emergencyNumber: string | null;
   cityCount: number;
   beenCount: number;
+  cities: CityRef[];
   visa: string | null;
   tapWater: string | null;
 };
@@ -61,11 +65,7 @@ export default function CountriesGrid({ countries }: Props) {
   return (
     <section className="max-w-page mx-auto px-5 py-10">
       <div className="max-w-prose">
-        <h1 className="text-h1 text-ink-deep">Countries</h1>
-        <p className="text-slate mt-3 leading-relaxed">
-          {countries.length} countries in the atlas, {visitedCount} of them visited so far.
-          Hover any flag for the practicalities — capital, language, currency, plug types.
-        </p>
+        <h1 className="text-h1 text-ink-deep">My plan to see the entire world.</h1>
       </div>
 
       {/* Compact controls bar — search left, filter chips + sort right. */}
@@ -149,6 +149,11 @@ export default function CountriesGrid({ countries }: Props) {
 // Two-faced tile: front is the flag image with country name + ISO badge
 // overlaid; back is a list of practicalities. Hover flips on Y-axis, click
 // navigates to the country detail page.
+//
+// The footer of the back face — "X cities / Y visited" — is interactive:
+// click either count to pin the card flipped and open a dropdown listing
+// the actual cities (filtered to visited when the visited count is
+// clicked). Click outside or press Escape to close.
 function FlagCard({ country, onClick }: { country: Country; onClick: () => void }) {
   // Tiny deterministic tilt per card so the grid feels hand-placed (same
   // trick as CityCard).
@@ -157,11 +162,55 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
 
   const beenBadge = country.beenCount > 0;
 
+  // Dropdown state — null when closed. Pinning forces the card flipped
+  // (overrides the hover-only CSS rule) so the user can interact with
+  // the dropdown without it disappearing when the cursor moves.
+  const [pinned, setPinned] = useState<'all' | 'visited' | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+
+  // Outside-click + Escape to close. We listen at the document level
+  // because the dropdown can extend outside the card bounds.
+  useEffect(() => {
+    if (!pinned) return;
+    const onDocPointer = (e: MouseEvent | TouchEvent) => {
+      if (!cardRef.current?.contains(e.target as Node)) setPinned(null);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setPinned(null);
+    };
+    document.addEventListener('mousedown', onDocPointer);
+    document.addEventListener('touchstart', onDocPointer);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDocPointer);
+      document.removeEventListener('touchstart', onDocPointer);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [pinned]);
+
+  const dropdownCities = useMemo(
+    () => (pinned === 'visited' ? country.cities.filter(c => c.been) : country.cities),
+    [pinned, country.cities]
+  );
+
+  // Outer wrapper handles card-level click → navigate to the country
+  // detail. Inner buttons that open dropdowns stop propagation.
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (pinned) return; // Don't navigate while interacting with the dropdown
+    onClick();
+  };
+
   return (
     <div
-      onClick={onClick}
-      className="flip-perspective cursor-pointer group"
-      style={{ aspectRatio: '3 / 2', transform: `rotate(${tilt}deg)` }}
+      ref={cardRef}
+      onClick={handleCardClick}
+      className={
+        'flip-perspective cursor-pointer group ' +
+        // When pinned, force the back face visible by adding the same
+        // hover-state class the CSS targets. See globals.css below.
+        (pinned ? 'is-pinned' : '')
+      }
+      style={{ aspectRatio: '3 / 2', transform: `rotate(${tilt}deg)`, zIndex: pinned ? 30 : undefined }}
     >
       <div className="flip-card">
         {/* === BACK FACE — facts === */}
@@ -192,13 +241,58 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
             </dl>
             {country.cityCount > 0 && (
               <div className="mt-1.5 pt-1.5 border-t border-sand text-[10px] text-slate flex justify-between tabular-nums">
-                <span>{country.cityCount} cities</span>
+                <CountButton
+                  active={pinned === 'all'}
+                  onClick={() => setPinned(pinned === 'all' ? null : 'all')}
+                >
+                  {country.cityCount} {country.cityCount === 1 ? 'city' : 'cities'}
+                </CountButton>
                 {country.beenCount > 0 && (
-                  <span className="text-teal font-medium">{country.beenCount} visited</span>
+                  <CountButton
+                    active={pinned === 'visited'}
+                    onClick={() => setPinned(pinned === 'visited' ? null : 'visited')}
+                    accent
+                  >
+                    {country.beenCount} visited
+                  </CountButton>
                 )}
               </div>
             )}
           </div>
+
+          {/* === Dropdown ===
+              Floats above the bottom strip when pinned. Constrained to the
+              card width and capped at ~50% of card height with internal
+              scroll, so it never spills out unpredictably. */}
+          {pinned && dropdownCities.length > 0 && (
+            <div
+              role="menu"
+              onClick={e => e.stopPropagation()}
+              className="absolute z-30 left-1.5 right-1.5 bottom-9 bg-white border border-sand rounded-md shadow-card overflow-hidden"
+              style={{ maxHeight: '60%' }}
+            >
+              <ul className="overflow-y-auto" style={{ maxHeight: '100%' }}>
+                {dropdownCities.map(c => (
+                  <li key={c.id}>
+                    <Link
+                      href={`/cities/${c.slug}`}
+                      onClick={e => e.stopPropagation()}
+                      className="flex items-center justify-between gap-2 px-2.5 py-1.5 text-[11px] text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
+                    >
+                      <span className="truncate">{c.name}</span>
+                      {c.been && (
+                        <span
+                          aria-hidden
+                          className="inline-block w-1.5 h-1.5 rounded-full bg-teal flex-shrink-0"
+                          title="Been"
+                        />
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* === FRONT FACE — flag photo === */}
@@ -237,6 +331,43 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
         </div>
       </div>
     </div>
+  );
+}
+
+// Small button styled to match the bottom-strip count text. Stops
+// propagation so the card's onClick (navigate to country detail) doesn't
+// fire when the user is opening a dropdown.
+function CountButton({
+  active,
+  onClick,
+  accent,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  accent?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={e => {
+        e.stopPropagation();
+        onClick();
+      }}
+      className={
+        'inline-flex items-center gap-1 px-1.5 -mx-1.5 -my-0.5 py-0.5 rounded transition-colors ' +
+        (active
+          ? 'bg-cream-soft text-ink-deep'
+          : accent
+            ? 'text-teal font-medium hover:bg-cream-soft'
+            : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
+      }
+      aria-expanded={active}
+    >
+      {children}
+      <span aria-hidden className="text-[8px] opacity-60">{active ? '▴' : '▾'}</span>
+    </button>
   );
 }
 
