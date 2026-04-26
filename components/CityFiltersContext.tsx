@@ -39,6 +39,7 @@ export type FilterState = {
   showBeen: boolean;
   showGo: boolean;
   showSaved: boolean;
+  countries: Set<string>;
   continents: Set<Continent>;
   koppenGroups: Set<KoppenGroup>;
   visa: Set<VisaUs>;
@@ -53,6 +54,7 @@ const DEFAULT_STATE: FilterState = {
   showBeen: true,
   showGo: false,
   showSaved: false,
+  countries: new Set(),
   continents: new Set(),
   koppenGroups: new Set(),
   visa: new Set(),
@@ -91,6 +93,7 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     if (state.showBeen !== DEFAULT_STATE.showBeen) n++;
     if (state.showGo !== DEFAULT_STATE.showGo) n++;
     if (state.showSaved !== DEFAULT_STATE.showSaved) n++;
+    n += state.countries.size > 0 ? 1 : 0;
     n += state.continents.size > 0 ? 1 : 0;
     n += state.koppenGroups.size > 0 ? 1 : 0;
     n += state.visa.size > 0 ? 1 : 0;

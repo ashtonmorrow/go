@@ -24,6 +24,7 @@ export function useFilteredCities(cities: City[]) {
       showBeen,
       showGo,
       showSaved,
+      countries,
       continents,
       koppenGroups,
       visa,
@@ -45,14 +46,38 @@ export function useFilteredCities(cities: City[]) {
       );
     }
 
-    // Free-text search over name + country.
+    // Free-text search across EVERY text field on the city. Pre-builds a
+    // single haystack string per row at filter time, lower-cased, so the
+    // includes() check is a single operation per row.
     if (q.trim()) {
       const needle = q.trim().toLowerCase();
-      list = list.filter(
-        c =>
-          c.name.toLowerCase().includes(needle) ||
-          (c.country || '').toLowerCase().includes(needle)
-      );
+      list = list.filter(c => {
+        const driveText = c.driveSide === 'L' ? 'left' : c.driveSide === 'R' ? 'right' : '';
+        const haystack = [
+          c.name,
+          c.country,
+          c.continent,
+          c.koppen,
+          c.currency,
+          c.language,
+          c.founded,
+          c.visa,
+          c.tapWater,
+          driveText,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+        return haystack.includes(needle);
+      });
+    }
+
+    // Country multi-select — searchable picker in the sidebar. Matches
+    // against the city's `country` text field (which mirrors the country
+    // page name). Cities with a country name not in the canonical set
+    // (e.g. typos) won't match; treat that as a data-cleanup opportunity.
+    if (countries.size > 0) {
+      list = list.filter(c => c.country && countries.has(c.country));
     }
 
     if (continents.size > 0) {

@@ -18,5 +18,13 @@ export default async function Sidebar() {
     saved: cities.filter(c => !!c.myGooglePlaces).length,
   };
 
-  return <SidebarShell counts={counts} />;
+  // Country options for the searchable multi-select in the FilterPanel.
+  // Use the unique set of country names that actually appear on cities,
+  // sorted alphabetically. This way the picker can never offer a country
+  // that has no cities to filter to.
+  const countryOptions = Array.from(
+    new Set(cities.map(c => c.country).filter((s): s is string => !!s))
+  ).sort((a, b) => a.localeCompare(b));
+
+  return <SidebarShell counts={counts} countryOptions={countryOptions} />;
 }

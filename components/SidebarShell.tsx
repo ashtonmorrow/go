@@ -41,7 +41,13 @@ const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
   { href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8', emoji: '🐈', label: 'Stray' },
 ];
 
-export default function SidebarShell({ counts }: { counts: Counts }) {
+export default function SidebarShell({
+  counts,
+  countryOptions,
+}: {
+  counts: Counts;
+  countryOptions: string[];
+}) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -80,13 +86,13 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
           (drawerOpen ? 'translate-x-0' : '-translate-x-full')
         }
       >
-        <NavBody counts={counts} onLinkClick={() => setDrawerOpen(false)} />
+        <NavBody counts={counts} countryOptions={countryOptions} onLinkClick={() => setDrawerOpen(false)} />
       </aside>
 
       {/* === Desktop sticky rail === always visible md+, fills the viewport
           height. Sits on the left of the page with main content to its right. */}
       <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-        <NavBody counts={counts} />
+        <NavBody counts={counts} countryOptions={countryOptions} />
       </aside>
     </>
   );
@@ -99,7 +105,15 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
 // (search, status, geography, practicality, sort) → elsewhere. On every
 // other page the filter panel is hidden and the collections section takes
 // its place.
-function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => void }) {
+function NavBody({
+  counts,
+  countryOptions,
+  onLinkClick,
+}: {
+  counts: Counts;
+  countryOptions: string[];
+  onLinkClick?: () => void;
+}) {
   const pathname = usePathname() || '';
   const filtersAvailable = useCityFilters() !== null;
   // Show the FilterPanel cockpit on the city-collection views: /cities (the
@@ -135,7 +149,7 @@ function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => 
           exist. Countries links to its own page; the others scope the
           /cities view (eventually with URL filters). */}
       {showFilters ? (
-        <FilterPanel />
+        <FilterPanel countryOptions={countryOptions} />
       ) : (
         <Section label="Collections">
           <Item href="/cities" emoji="📮" label="Cities" count={counts.cities} onClick={onLinkClick} />
