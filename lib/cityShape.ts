@@ -1,0 +1,39 @@
+// Shared client-side City shape — the minimal payload that page.tsx hands to
+// every city-consuming view (CitiesGrid, CitiesTable, future widgets).
+//
+// One source of truth here means /cities and /table stay structurally
+// identical: same fields, same filter logic, same sort behaviour.
+import type {
+  Continent,
+  VisaUs,
+  TapWater,
+  DriveSide,
+} from '@/components/CityFiltersContext';
+
+export type City = {
+  id: string;
+  name: string;
+  slug: string;
+  country: string | null;
+  been: boolean;
+  go: boolean;
+  cityFlag: string | null;
+  countryFlag: string | null;
+  personalPhoto: string | null;
+  lat: number | null;
+  lng: number | null;
+  population: number | null;
+  elevation: number | null;
+  avgHigh: number | null;
+  avgLow: number | null;
+  rainfall: number | null;
+  koppen: string | null;
+  founded: string | null;
+  savedPlaces: string | null;
+  currency: string | null;
+  language: string | null;
+  driveSide: DriveSide | null;
+  continent: Continent | null;
+  visa: VisaUs | null;
+  tapWater: TapWater | null;
+};

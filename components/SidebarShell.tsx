@@ -28,6 +28,7 @@ type Counts = {
 const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/cities', emoji: '📮', label: 'Postcards' },
   { href: '/map', emoji: '🗺️', label: 'Map' },
+  { href: '/table', emoji: '🗂️', label: 'Table' },
   { href: '/about', emoji: '📖', label: 'About' },
 ];
 
@@ -101,7 +102,14 @@ export default function SidebarShell({ counts }: { counts: Counts }) {
 function NavBody({ counts, onLinkClick }: { counts: Counts; onLinkClick?: () => void }) {
   const pathname = usePathname() || '';
   const filtersAvailable = useCityFilters() !== null;
-  const showFilters = filtersAvailable && pathname.startsWith('/cities') && !pathname.match(/^\/cities\/.+/);
+  // Show the FilterPanel cockpit on the city-collection views: /cities (the
+  // postcard wall) and /table (the tabular view) — they share state via
+  // CityFiltersContext + useFilteredCities, so flipping between them
+  // preserves the active filters. City detail pages (/cities/<slug>) get
+  // the Collections list instead.
+  const onCitiesIndex = pathname === '/cities';
+  const onTable = pathname === '/table';
+  const showFilters = filtersAvailable && (onCitiesIndex || onTable);
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">

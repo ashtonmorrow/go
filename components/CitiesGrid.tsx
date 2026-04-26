@@ -1,40 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ViewSwitcher from './ViewSwitcher';
 import { useCityFilters } from './CityFiltersContext';
-import type { Continent, KoppenGroup, VisaUs, TapWater, DriveSide } from './CityFiltersContext';
 import { COLORS } from '@/lib/colors';
-
-type City = {
-  id: string;
-  name: string;
-  slug: string;
-  country: string | null;
-  been: boolean;
-  go: boolean;
-  cityFlag: string | null;
-  countryFlag: string | null;
-  personalPhoto: string | null;
-  lat: number | null;
-  lng: number | null;
-  population: number | null;
-  elevation: number | null;
-  avgHigh: number | null;
-  avgLow: number | null;
-  rainfall: number | null;
-  koppen: string | null;
-  founded: string | null;
-  savedPlaces: string | null;
-  currency: string | null;
-  language: string | null;
-  driveSide: DriveSide | null;
-  // Country-derived facts used as filter axes (passed in from page.tsx)
-  continent: Continent | null;
-  visa: VisaUs | null;
-  tapWater: TapWater | null;
-};
+import type { City } from '@/lib/cityShape';
+import { useFilteredCities } from '@/lib/useFilteredCities';
 
 type Props = { cities: City[] };
 
@@ -43,112 +15,18 @@ const PAGE_SIZE = 36;
 export default function CitiesGrid({ cities }: Props) {
   const router = useRouter();
   const filters = useCityFilters();
-  // Filter state lives in the sidebar via context; defaults here are only
-  // used if for some reason the provider isn't mounted (defensive).
   const state = filters?.state;
-  const setCounts = filters?.setCounts;
 
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const filtered = useMemo(() => {
-    if (!state) return cities;
-    const {
-      q,
-      showBeen,
-      showGo,
-      showSaved,
-      continents,
-      koppenGroups,
-      visa,
-      tapWater,
-      drive,
-      sort,
-      desc,
-    } = state;
+  // Shared filter logic — same hook the /table view uses, so flipping
+  // between the two shows identical results in identical order.
+  const filtered = useFilteredCities(cities);
 
-    let list = cities;
-
-    // 1. Personal status — Been / Go / Saved as independent inclusive filters.
-    //    If none are on, no status filter (show all). If any are on, show
-    //    cities that match any of the selected.
-    if (showBeen || showGo || showSaved) {
-      list = list.filter(
-        c =>
-          (showBeen && c.been) ||
-          (showGo && c.go) ||
-          (showSaved && !!c.savedPlaces)
-      );
-    }
-
-    // 2. Free text search over name + country.
-    if (q.trim()) {
-      const needle = q.trim().toLowerCase();
-      list = list.filter(
-        c =>
-          c.name.toLowerCase().includes(needle) ||
-          (c.country || '').toLowerCase().includes(needle)
-      );
-    }
-
-    // 3. Continent multi-select.
-    if (continents.size > 0) {
-      list = list.filter(c => c.continent && continents.has(c.continent));
-    }
-
-    // 4. Köppen climate group — first letter of code (Csa → C).
-    if (koppenGroups.size > 0) {
-      list = list.filter(c => {
-        const g = c.koppen?.[0]?.toUpperCase();
-        return g && koppenGroups.has(g as KoppenGroup);
-      });
-    }
-
-    // 5. Visa requirement (US passport).
-    if (visa.size > 0) {
-      list = list.filter(c => c.visa && visa.has(c.visa));
-    }
-
-    // 6. Tap water safety.
-    if (tapWater.size > 0) {
-      list = list.filter(c => c.tapWater && tapWater.has(c.tapWater));
-    }
-
-    // 7. Drive side.
-    if (drive.size > 0) {
-      list = list.filter(c => c.driveSide && drive.has(c.driveSide));
-    }
-
-    // 8. Sort.
-    const get = (c: City): any => {
-      if (sort === 'name') return c.name?.toLowerCase() ?? '';
-      if (sort === 'founded') {
-        const m = (c.founded || '').match(/\d+/);
-        const n = m ? parseInt(m[0], 10) : null;
-        return c.founded?.includes('BC') && n ? -n : n;
-      }
-      return (c as any)[sort];
-    };
-    return [...list].sort((a, b) => {
-      const av = get(a),
-        bv = get(b);
-      if (av == null && bv == null) return 0;
-      if (av == null) return 1;
-      if (bv == null) return -1;
-      if (av < bv) return desc ? 1 : -1;
-      if (av > bv) return desc ? -1 : 1;
-      return 0;
-    });
-  }, [cities, state]);
-
-  // Reset pagination + push result count to the sidebar whenever filters
-  // change. The sidebar's FilterPanel reads totalCount/resultCount from
-  // context and renders "X / Y cities" near the Clear button.
+  // Reset pagination whenever filters change.
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [state]);
-  useEffect(() => {
-    setCounts?.(filtered.length, cities.length);
-  }, [filtered.length, cities.length, setCounts]);
 
   const sentinel = useRef<HTMLDivElement | null>(null);
   useEffect(() => {

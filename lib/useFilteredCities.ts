@@ -1,0 +1,109 @@
+'use client';
+
+import { useEffect, useMemo } from 'react';
+import { useCityFilters, KoppenGroup } from '@/components/CityFiltersContext';
+import type { City } from './cityShape';
+
+// === useFilteredCities ======================================================
+// Single source of truth for city filtering + sorting. Both CitiesGrid (the
+// postcard wall) and CitiesTable (the Airtable-style view) call this hook so
+// the sidebar filters apply identically across views — flip from postcards
+// to table and the same set of cities is shown in the same order.
+//
+// Side-effect: pushes the filtered count into the sidebar via the context's
+// setCounts so the FilterPanel can render "X / Y cities".
+export function useFilteredCities(cities: City[]) {
+  const filters = useCityFilters();
+  const state = filters?.state;
+  const setCounts = filters?.setCounts;
+
+  const filtered = useMemo(() => {
+    if (!state) return cities;
+    const {
+      q,
+      showBeen,
+      showGo,
+      showSaved,
+      continents,
+      koppenGroups,
+      visa,
+      tapWater,
+      drive,
+      sort,
+      desc,
+    } = state;
+
+    let list = cities;
+
+    // Personal status — Been / Go / Saved as independent inclusive filters.
+    if (showBeen || showGo || showSaved) {
+      list = list.filter(
+        c =>
+          (showBeen && c.been) ||
+          (showGo && c.go) ||
+          (showSaved && !!c.savedPlaces)
+      );
+    }
+
+    // Free-text search over name + country.
+    if (q.trim()) {
+      const needle = q.trim().toLowerCase();
+      list = list.filter(
+        c =>
+          c.name.toLowerCase().includes(needle) ||
+          (c.country || '').toLowerCase().includes(needle)
+      );
+    }
+
+    if (continents.size > 0) {
+      list = list.filter(c => c.continent && continents.has(c.continent));
+    }
+
+    if (koppenGroups.size > 0) {
+      list = list.filter(c => {
+        const g = c.koppen?.[0]?.toUpperCase();
+        return g && koppenGroups.has(g as KoppenGroup);
+      });
+    }
+
+    if (visa.size > 0) {
+      list = list.filter(c => c.visa && visa.has(c.visa));
+    }
+
+    if (tapWater.size > 0) {
+      list = list.filter(c => c.tapWater && tapWater.has(c.tapWater));
+    }
+
+    if (drive.size > 0) {
+      list = list.filter(c => c.driveSide && drive.has(c.driveSide));
+    }
+
+    // Sort — value-getter handles "founded" with BC parsing.
+    const get = (c: City): unknown => {
+      if (sort === 'name') return c.name?.toLowerCase() ?? '';
+      if (sort === 'founded') {
+        const m = (c.founded || '').match(/\d+/);
+        const n = m ? parseInt(m[0], 10) : null;
+        return c.founded?.includes('BC') && n ? -n : n;
+      }
+      return (c as unknown as Record<string, unknown>)[sort];
+    };
+    return [...list].sort((a, b) => {
+      const av = get(a) as number | string | null | undefined;
+      const bv = get(b) as number | string | null | undefined;
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1;
+      if (bv == null) return -1;
+      if (av < bv) return desc ? 1 : -1;
+      if (av > bv) return desc ? -1 : 1;
+      return 0;
+    });
+  }, [cities, state]);
+
+  // Push counts to the sidebar's FilterPanel so it can render '42 / 281'.
+  useEffect(() => {
+    setCounts?.(filtered.length, cities.length);
+  }, [filtered.length, cities.length, setCounts]);
+
+  return filtered;
+}
