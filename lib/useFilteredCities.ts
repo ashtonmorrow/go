@@ -37,21 +37,29 @@ export function useFilteredCities(cities: City[]) {
     let list = cities;
 
     // === Personal status filter ============================================
-    // Each city has ONE primary status with priority Been > Go > Saved.
-    // This matches how the postmark renders (a Been city shows VISITED
-    // even if Go is also set). The previous additive logic let been-
-    // cities slip through the Go filter when Notion had both flags
-    // ticked — so 'Been OFF + Want to go ON' surfaced cities you'd
-    // actually visited.
+    // Two-tier semantics:
+    //
+    //   • Been vs Go:  MUTUALLY EXCLUSIVE PRIORITY. A city tagged both
+    //     surfaces under Been (matches how the postmark renders 'VISITED'
+    //     when both flags are set). Toggle Been off and the city hides
+    //     even if Go is on — fixes the original "Want to go shows VISITED
+    //     cities" bug.
+    //
+    //   • Saved:       INDEPENDENT ADDITIVE. Saved places is a presence
+    //     attribute, not a status — most cities with saved-places URLs
+    //     are also Been cities. Toggling 'Has saved places' surfaces
+    //     those cities regardless of their Been/Go state, and does not
+    //     hide cities already matched by Been or Go.
+    //
+    // Active toggle, city kept if EITHER its status matches OR (Saved is
+    // on AND the city has a saved-places URL).
     if (showBeen || showGo || showSaved) {
       list = list.filter(c => {
-        // Determine the city's primary status, then check whether the
-        // corresponding toggle is on. A city with no status is filtered
-        // out whenever any toggle is active.
-        if (c.been) return showBeen;
-        if (c.go) return showGo;
-        if (c.savedPlaces) return showSaved;
-        return false;
+        let statusMatch = false;
+        if (c.been) statusMatch = showBeen;
+        else if (c.go) statusMatch = showGo;
+        const savedMatch = showSaved && !!c.savedPlaces;
+        return statusMatch || savedMatch;
       });
     }
 
