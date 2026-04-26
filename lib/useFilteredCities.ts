@@ -36,14 +36,23 @@ export function useFilteredCities(cities: City[]) {
 
     let list = cities;
 
-    // Personal status — Been / Go / Saved as independent inclusive filters.
+    // === Personal status filter ============================================
+    // Each city has ONE primary status with priority Been > Go > Saved.
+    // This matches how the postmark renders (a Been city shows VISITED
+    // even if Go is also set). The previous additive logic let been-
+    // cities slip through the Go filter when Notion had both flags
+    // ticked — so 'Been OFF + Want to go ON' surfaced cities you'd
+    // actually visited.
     if (showBeen || showGo || showSaved) {
-      list = list.filter(
-        c =>
-          (showBeen && c.been) ||
-          (showGo && c.go) ||
-          (showSaved && !!c.savedPlaces)
-      );
+      list = list.filter(c => {
+        // Determine the city's primary status, then check whether the
+        // corresponding toggle is on. A city with no status is filtered
+        // out whenever any toggle is active.
+        if (c.been) return showBeen;
+        if (c.go) return showGo;
+        if (c.savedPlaces) return showSaved;
+        return false;
+      });
     }
 
     // Free-text search across EVERY text field on the city. Pre-builds a
