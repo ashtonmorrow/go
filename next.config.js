@@ -11,6 +11,13 @@ const nextConfig = {
       { protocol: 'https', hostname: 'flagcdn.com' },
       { protocol: 'https', hostname: 'hatscripts.github.io' },
       { protocol: 'https', hostname: 'tile.openstreetmap.org' },
+      // Pin images. Airtable attachment URLs are short-lived; we keep
+      // the host on the allowlist so the index/detail pages render
+      // until task #83 (rehost into Supabase Storage) lands.
+      { protocol: 'https', hostname: 'v5.airtableusercontent.com' },
+      // Supabase Storage CDN — used by the future rehost target as well
+      // as anything we serve from the Stray bucket directly.
+      { protocol: 'https', hostname: 'pdjrvlhepiwkshxerkpz.supabase.co' },
     ],
   },
   experimental: {
