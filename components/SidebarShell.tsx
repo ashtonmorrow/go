@@ -221,8 +221,11 @@ function Item({
       onClick={onClick}
       className={
         'group flex items-center gap-2 px-2 py-1.5 rounded text-small transition-colors ' +
+        // Active state used to be bg-cream which reads as a soft gold pill.
+        // Replaced with a quieter bg-cream-soft + ink-deep bold treatment so
+        // the rail doesn't compete with brand-accent uses elsewhere.
         (active
-          ? 'bg-cream text-ink-deep font-medium'
+          ? 'bg-cream-soft text-ink-deep font-semibold'
           : 'text-slate hover:bg-cream-soft hover:text-ink-deep')
       }
     >

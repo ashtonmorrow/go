@@ -6,7 +6,10 @@
 // IF YOU UPDATE A VALUE HERE, also update tailwind.config.ts.
 export const COLORS = {
   ink: '#2e2e2e',
-  inkDeep: '#0f172a',
+  // Near-black with a faint warm undertone (was #0f172a navy — read as
+  // 'blue' on every chip / toggle / button). Stays neutral against the
+  // cream / paper / sand surfaces.
+  inkDeep: '#1c1b19',
   slate: '#6b7c8f',
   muted: '#7c7e7f',
   white: '#ffffff',
@@ -17,7 +20,7 @@ export const COLORS = {
   paperEdge: 'hsl(35 25% 78%)',
   sky: '#afc7d6',
   teal: '#2f6f73',
-  // Amber accent — sister-city highlight on the map, secondary accents.
+  // Amber accent — sister-city highlight on the map only. Narrow scope.
   accent: '#b8862e',
   // Quiet sand-grey used for de-emphasised pins (sister-city placeholders).
   pinIdle: '#c8c4ba',

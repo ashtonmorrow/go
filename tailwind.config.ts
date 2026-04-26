@@ -5,24 +5,48 @@ import type { Config } from 'tailwindcss';
 // app. When a component needs a value not in this list, the answer is
 // usually "add it here, then use it" — not "inline a hex".
 //
-// Color hierarchy:
-//   ink / ink-deep / slate / muted   — text from primary → tertiary
-//   white / cream-soft / cream       — surface backgrounds, light → warm
-//   paper                            — the warm postcard paper colour
-//   sand / paper-edge                — borders / dividers
-//   teal                             — brand accent (links, "Been" pin)
-//   accent                           — secondary accent (sister-city ring)
-//   sky                              — future / "Go" pin tint
+// === Colour role table ====================================================
+// Following the 60 / 30 / 10 split: 60% surfaces, 30% text/structure, 10% accent.
 //
-// Type scale:
-//   display (60) → h1 (40) → h2 (28) → h3 (20) → body (16) → small (13)
+// SURFACES (60%) — backgrounds and chrome
+//   white            chrome (sidebar, popovers, headers)
+//   cream-soft       content cards, hover states, table headers
+//   cream            very-soft warm surface (used sparingly — reads gold)
+//   paper            postcard paper (warm, slightly aged feel)
+//   sand             borders, dividers
+//   paper-edge       paper-card borders
+//
+// TEXT + STRUCTURE (30%)
+//   ink-deep         primary text, headlines, ACTIVE chrome state (selected
+//                    chip, pinned button, etc). Tuned to a near-neutral
+//                    dark so toggles don't read as 'blue'.
+//   ink              body text
+//   slate            secondary text, labels, "Go" status
+//   muted            tertiary text, captions, section labels
+//
+// ACCENT (10%) — used sparingly
+//   teal             BRAND ACCENT. Status: 'Been'. Hover-emphasis on links.
+//                    Used for postcard postmark (VISITED) and map pins.
+//   accent (amber)   NARROW USE: sister-city relationship visualisation on
+//                    the map only. Don't sprinkle it elsewhere.
+//   slate            STATUS: 'Go' / planned. (Doubles as text role above.)
+//
+// ACTIVE CHROME STATE — every selected chip / pinned button uses
+//   bg-ink-deep + text-cream-soft. NO exceptions; if a control needs a
+//   different active treatment, that's a sign it should not be a chip.
+// =========================================================================
+//
+// Type scale: display (60) → h1 (40) → h2 (28) → h3 (20) → body (16) → small (13)
 export default {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
         ink: '#2e2e2e',
-        'ink-deep': '#0f172a',
+        // Near-black with a faint warm undertone so it sits with the cream
+        // / paper / sand surfaces. Was #0f172a (navy) which read as 'blue'
+        // on every selected toggle and pinned button.
+        'ink-deep': '#1c1b19',
         slate: '#6b7c8f',
         muted: '#7c7e7f',
         cream: '#f6f1e8',
@@ -34,7 +58,7 @@ export default {
         'paper-edge': 'hsl(35 25% 78%)',
         sky: '#afc7d6',
         teal: '#2f6f73',
-        // Amber accent — sister-city highlight on the map, secondary accents.
+        // Amber accent — sister-city highlight on the map only. Narrow scope.
         accent: '#b8862e',
       },
       fontFamily: {
