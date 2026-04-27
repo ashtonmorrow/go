@@ -195,13 +195,34 @@ function rowToCity(row: any): City {
   };
 }
 
+// Detects curated Flag URLs whose path component is empty — happens when
+// a flagcdn template like `https://flagcdn.com/w640/${iso2}.png` was
+// resolved with an empty iso2 (the bug that broke the Antarctica record
+// before we set ISO2='AQ' on it). When the URL is shaped like this, we
+// disregard the curated value and fall through to flagRect(iso2).
+const BROKEN_FLAGCDN = /\/flagcdn\.com\/[^/]+\/(?:\.|_+\.)/;
+
+function looksBroken(url: string | null): boolean {
+  if (!url) return true;
+  return BROKEN_FLAGCDN.test(url);
+}
+
 function rowToCountry(row: any): Country {
   const p = row.properties;
+  const iso2 = text(p['ISO2']);
+  const curatedFlag = file(p['Flag']);
+  // Prefer curated only when it doesn't look broken. Falls through to
+  // the canonical flagcdn URL via flagRect(iso2) otherwise.
+  const flag = !looksBroken(curatedFlag)
+    ? curatedFlag
+    : iso2
+    ? `https://flagcdn.com/${iso2.toLowerCase()}.svg`
+    : null;
   return {
     id: row.id,
     name: text(p['Name']) || '',
     slug: text(p['Slug']) || '',
-    iso2: text(p['ISO2']),
+    iso2,
     iso3: text(p['ISO3']),
     continent: text(p['Continent']),
     capital: text(p['Capital']),
@@ -217,7 +238,7 @@ function rowToCountry(row: any): Country {
     visaUs: text(p['Visa (US Passport)']),
     wikidataId: text(p['Wikidata ID']),
     wikipediaSummary: text(p['Wikipedia Summary']),
-    flag: file(p['Flag']),
+    flag,
   };
 }
 
