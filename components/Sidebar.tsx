@@ -30,17 +30,8 @@ export default async function Sidebar() {
     new Set(cities.map(c => c.country).filter((s): s is string => !!s))
   ).sort((a, b) => a.localeCompare(b));
 
-  // ISO3 → continent map for WorldMapPicker. The picker fetches the
-  // world country GeoJSON (keyed on ISO3) and needs to resolve a
-  // clicked country to its continent. We build the lookup here from
-  // Notion's countries DB — single source of truth for continent
-  // attribution — and thread it down through SidebarShell.
-  const iso3ToContinent: Record<string, string> = {};
-  for (const c of countries) {
-    if (c.iso3 && c.continent) {
-      iso3ToContinent[c.iso3.toUpperCase()] = c.continent;
-    }
-  }
+  // (WorldMapPicker no longer needs iso3->continent threaded through —
+  // the baked Natural Earth GeoJSON ships with continent on each feature.)
 
   // Pin-side filter options — derived from the pin set itself rather than
   // the global country list, for the same reason as above. Categories are
@@ -78,7 +69,6 @@ export default async function Sidebar() {
     <SidebarShell
       counts={counts}
       countryOptions={countryOptions}
-      iso3ToContinent={iso3ToContinent}
       pinCountryOptions={pinCountryOptions}
       pinCategoryOptions={pinCategoryOptions}
       pinListOptions={pinListOptions}

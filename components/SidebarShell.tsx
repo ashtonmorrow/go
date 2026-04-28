@@ -51,7 +51,6 @@ const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
 export default function SidebarShell({
   counts,
   countryOptions,
-  iso3ToContinent = {},
   pinCountryOptions = [],
   pinCategoryOptions = [],
   pinListOptions = [],
@@ -59,9 +58,6 @@ export default function SidebarShell({
 }: {
   counts: Counts;
   countryOptions: string[];
-  /** ISO3 → continent name. Threaded into FilterPanel and
-   *  CountryFilterPanel for the WorldMapPicker. */
-  iso3ToContinent?: Record<string, string>;
   pinCountryOptions?: string[];
   pinCategoryOptions?: string[];
   pinListOptions?: string[];
@@ -108,7 +104,6 @@ export default function SidebarShell({
         <NavBody
           counts={counts}
           countryOptions={countryOptions}
-          iso3ToContinent={iso3ToContinent}
           pinCountryOptions={pinCountryOptions}
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
@@ -123,7 +118,6 @@ export default function SidebarShell({
         <NavBody
           counts={counts}
           countryOptions={countryOptions}
-          iso3ToContinent={iso3ToContinent}
           pinCountryOptions={pinCountryOptions}
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
@@ -144,7 +138,6 @@ export default function SidebarShell({
 function NavBody({
   counts,
   countryOptions,
-  iso3ToContinent,
   pinCountryOptions,
   pinCategoryOptions,
   pinListOptions,
@@ -153,7 +146,6 @@ function NavBody({
 }: {
   counts: Counts;
   countryOptions: string[];
-  iso3ToContinent: Record<string, string>;
   pinCountryOptions: string[];
   pinCategoryOptions: string[];
   pinListOptions: string[];
@@ -221,7 +213,7 @@ function NavBody({
           which Object × View page we're on. Falls through to a
           read-only Collections list with counts on detail pages. */}
       {showCityFilters ? (
-        <FilterPanel countryOptions={countryOptions} iso3ToContinent={iso3ToContinent} />
+        <FilterPanel countryOptions={countryOptions} />
       ) : showPinFilters ? (
         <PinFilterPanel
           countryOptions={pinCountryOptions}
@@ -230,7 +222,7 @@ function NavBody({
           tagOptions={pinTagOptions}
         />
       ) : showCountryFilters ? (
-        <CountryFilterPanel iso3ToContinent={iso3ToContinent} />
+        <CountryFilterPanel />
       ) : (
         <Section label="Collections">
           <Item href="/cities/cards"    emoji="📮" label="Cities"    count={counts.cities}    onClick={onLinkClick} />

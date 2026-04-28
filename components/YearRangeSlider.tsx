@@ -14,6 +14,7 @@
 
 import { useMemo } from 'react';
 import { COLORS } from '@/lib/colors';
+import EraSelect from './EraSelect';
 
 type Props = {
   min: number | null;
@@ -126,33 +127,16 @@ export default function YearRangeSlider({ min, max, onChange }: Props) {
         <span>2000</span>
       </div>
 
-      {/* Era quick-picks. Snap-to-band complement to dragging — most
-          users want "Antiquity" or "Modern", not a specific year range. */}
-      <div className="mt-2 flex flex-wrap gap-1">
-        {[
-          { label: 'Any',         min: null, max: null },
-          { label: 'Antiquity',   min: -3000, max: 500 },
-          { label: 'Medieval',    min: 500,   max: 1500 },
-          { label: 'Early modern', min: 1500, max: 1800 },
-          { label: 'Modern',      min: 1800,  max: null },
-        ].map(p => {
-          const active = min === p.min && max === p.max;
-          return (
-            <button
-              key={p.label}
-              type="button"
-              onClick={() => onChange({ min: p.min, max: p.max })}
-              className={
-                'px-1.5 py-0.5 rounded text-[10px] transition-colors ' +
-                (active
-                  ? 'bg-ink-deep text-cream-soft'
-                  : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
-              }
-            >
-              {p.label}
-            </button>
-          );
-        })}
+      {/* Era picker — searchable dropdown of named periods. Replaces the
+          5-chip row that only fit "Antiquity / Medieval / Early modern /
+          Modern" because more eras would wrap. The dropdown comfortably
+          holds 50+ named periods (Victorian, Tang Dynasty, Edo Japan,
+          Belle Époque, etc.) and a search input narrows them. Selecting
+          an era applies its [min, max] to the slider; selecting "Any era"
+          clears. The slider remains the primary control — the dropdown
+          is a snap-to-named-band shortcut. */}
+      <div className="mt-2">
+        <EraSelect min={min} max={max} onChange={onChange} />
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `

@@ -38,8 +38,47 @@ export default function PinFilterPanel({
   if (!ctx) return null;
   const { state, setState, reset, activeFilterCount, resultCount, totalCount } = ctx;
 
+  const dirty = activeFilterCount > 0;
+
   return (
     <div className="flex flex-col gap-5">
+      {/* Cockpit header — pinned at the top of the panel. Live result
+          count on the left, prominent "Clear all" on the right. */}
+      <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
+        <div className="text-[11px] text-muted">
+          {resultCount != null && totalCount != null ? (
+            <>
+              <span className="text-ink-deep font-medium tabular-nums">{resultCount}</span>
+              <span className="mx-1">/</span>
+              <span className="tabular-nums">{totalCount}</span>
+              <span className="ml-1">pins</span>
+            </>
+          ) : (
+            <span>&nbsp;</span>
+          )}
+        </div>
+        <button
+          type="button"
+          onClick={reset}
+          disabled={!dirty}
+          className={
+            'inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-md border transition-colors ' +
+            (dirty
+              ? 'text-ink-deep border-sand hover:border-slate hover:bg-cream-soft'
+              : 'text-muted/60 border-transparent cursor-not-allowed')
+          }
+          aria-label="Clear all filters"
+          title="Clear all filters"
+        >
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M3 6h18" />
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+          </svg>
+          Clear all{dirty ? ` (${activeFilterCount})` : ''}
+        </button>
+      </div>
+
       <div>
         <SectionLabel>Search</SectionLabel>
         <SearchInput
@@ -171,33 +210,6 @@ export default function PinFilterPanel({
         </div>
       </div>
 
-      <div className="pt-3 border-t border-sand flex items-center justify-between gap-2">
-        <div className="text-[11px] text-muted">
-          {resultCount != null && totalCount != null ? (
-            <>
-              <span className="text-ink-deep font-medium">{resultCount}</span>
-              <span className="mx-1">/</span>
-              <span>{totalCount}</span>
-              <span className="ml-1">pins</span>
-            </>
-          ) : (
-            <span>&nbsp;</span>
-          )}
-        </div>
-        <button
-          type="button"
-          onClick={reset}
-          disabled={activeFilterCount === 0}
-          className={
-            'text-[11px] px-2 py-1 rounded-md transition-colors ' +
-            (activeFilterCount > 0
-              ? 'text-ink-deep hover:bg-cream-soft'
-              : 'text-muted/50 cursor-not-allowed')
-          }
-        >
-          Clear{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
-        </button>
-      </div>
     </div>
   );
 }

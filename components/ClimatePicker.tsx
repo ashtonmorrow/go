@@ -37,9 +37,10 @@ export default function ClimatePicker({ selected, onToggle }: Props) {
             type="button"
             onClick={() => onToggle(g.value)}
             aria-pressed={active}
-            title={g.label}
+            title={g.label} /* tooltip carries the name; the icon does the rest */
+            aria-label={g.label}
             className={
-              'flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-md ' +
+              'flex items-center justify-center py-2 rounded-md ' +
               'border transition-colors ' +
               (active
                 ? 'bg-ink-deep border-ink-deep text-cream-soft'
@@ -48,10 +49,9 @@ export default function ClimatePicker({ selected, onToggle }: Props) {
           >
             <KoppenIcon
               code={g.value}
-              size={18}
+              size={20}
               className={active ? 'text-cream-soft' : 'text-slate'}
             />
-            <span className="text-[9px] font-medium leading-none">{g.label}</span>
           </button>
         );
       })}
