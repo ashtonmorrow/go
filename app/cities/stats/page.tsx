@@ -20,7 +20,7 @@ import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { City } from '@/lib/cityShape';
 
-export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Filter-aware breakdowns over the 1,341-city atlas — by continent, climate, visa, drive-side; top countries; oldest, hottest, coldest. Numbers update as you change filters in the sidebar.';

@@ -9,7 +9,7 @@ import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const MAP_DESCRIPTION =
   'An interactive globe of 1,341 places. Visited in teal, planned in slate. Click any pin to see its sister-city network drawn across the world.';

@@ -10,6 +10,7 @@
 // every component to assemble it.
 //
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
 
 export type PinImage = {
@@ -141,27 +142,47 @@ function rowToPin(row: any): Pin {
 // ---- Queries ---------------------------------------------------------------
 
 /**
- * Every pin, name-sorted. Currently ~5–15 records, so we hand the whole set
- * back. When the table grows past a few hundred rows we'll want to paginate
- * and / or filter at the query layer.
+ * Every pin, name-sorted. 1,342 rows today; small enough to fetch as a
+ * batch. Cached two ways:
+ *
+ *   • unstable_cache (Next data cache) — persists across requests AND
+ *     across routes. The Sidebar in the layout calls this on every page
+ *     view; without the data cache, a Supabase round-trip would happen
+ *     on every navigation that landed on a cold ISR entry.
+ *   • React.cache() — within a single render, dedupes (e.g. Sidebar +
+ *     /pins/cards both call fetchAllPins() and resolve to one promise).
+ *
+ * Revalidates every 24h or via revalidateTag('supabase-pins').
  */
-export const fetchAllPins = cache(async (): Promise<Pin[]> => {
-  const { data, error } = await supabase
-    .from('pins')
-    .select('*')
-    .order('name', { ascending: true });
-  if (error) {
-    console.error('[pins] fetchAllPins failed:', error);
-    return [];
-  }
-  return (data ?? []).map(rowToPin);
-});
+const _fetchAllPins = unstable_cache(
+  async (): Promise<Pin[]> => {
+    const { data, error } = await supabase
+      .from('pins')
+      .select('*')
+      .order('name', { ascending: true });
+    if (error) {
+      console.error('[pins] fetchAllPins failed:', error);
+      return [];
+    }
+    return (data ?? []).map(rowToPin);
+  },
+  ['supabase-pins'],
+  { revalidate: 86400, tags: ['supabase-pins'] }
+);
+export const fetchAllPins = cache(_fetchAllPins);
 
 /**
- * Single pin by slug. Returns null when not found rather than throwing —
- * the page component decides whether to 404.
+ * Single pin by slug. Resolved against the cached full set rather than
+ * a separate Supabase call, so detail-page navigation reuses whatever
+ * the layout/index already warmed up. Falls back to a direct query as
+ * a last resort (e.g. brand-new pin with stale cache).
  */
 export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {
+  const all = await fetchAllPins();
+  const found = all.find(p => p.slug === slug);
+  if (found) return found;
+
+  // Cold-cache fallback: hit Supabase directly.
   const { data, error } = await supabase
     .from('pins')
     .select('*')

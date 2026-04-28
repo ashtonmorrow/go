@@ -25,9 +25,23 @@ export type PinFilterable = {
   inceptionYear?: number | null;
   /** Numeric price; 0 means free, null means unknown. */
   priceAmount?: number | null;
+  /** Free-text price string from the source ("Free", "$15 adult", "Donation"). */
+  priceText?: string | null;
   airtableModifiedAt?: string | null;
   updatedAt?: string | null;
 };
+
+// Words/phrases in the priceText field that imply free admission. Used
+// alongside `priceAmount === 0` to identify the free-entry subset. The
+// regex is permissive but anchored on word boundaries so "freezing" (in
+// a description) wouldn't match here — and we only run it on priceText.
+const FREE_PRICE_TEXT = /\b(free|no charge|no admission|no entry fee|complimentary|gratis|gratuit)\b/i;
+
+function isFreeAdmission(p: PinFilterable): boolean {
+  if (p.priceAmount === 0) return true;
+  if (p.priceText && FREE_PRICE_TEXT.test(p.priceText)) return true;
+  return false;
+}
 
 export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterState): T[] {
   const needle = state.q.trim().toLowerCase();
@@ -46,13 +60,12 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
     if (state.visitedFilter === 'visited' && !p.visited) continue;
     if (state.visitedFilter === 'not-visited' && p.visited) continue;
     if (state.unescoOnly && p.unescoId == null) continue;
-    // Free entry — pass when there's no recorded price OR when it's
-    // explicitly 0. Keeping unknowns in the "free" bucket because the
-    // pin set is mostly UNESCO sites + national parks + viewpoints
-    // where the default IS free; treating unknowns as priced would
-    // make the toggle effectively useless (only 4/1342 pins have a
-    // recorded price, none explicitly 0).
-    if (state.freeOnly && p.priceAmount != null && p.priceAmount > 0) continue;
+    // No admission fee — strict. A pin only qualifies when we have
+    // EVIDENCE it's free: priceAmount is exactly 0, OR priceText
+    // explicitly says so ("Free", "No charge", "Complimentary").
+    // Pins with unknown price are excluded; otherwise the filter
+    // would be a no-op (the dataset is overwhelmingly null-priced).
+    if (state.freeOnly && !isFreeAdmission(p)) continue;
     if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
     if (state.countries.size > 0) {
       const country = (p.statesNames ?? [])[0];

@@ -10,7 +10,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import PinsMap from '@/components/PinsMapLoader';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
-export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Every curated place on a 3D globe. Click any marker for the detail and a Google Maps deep link.';

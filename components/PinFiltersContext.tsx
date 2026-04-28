@@ -20,7 +20,11 @@ export type PinFilterState = {
   visitedFilter: 'all' | 'visited' | 'not-visited';
   /** UNESCO World Heritage sites only when true. Stays compatible with category. */
   unescoOnly: boolean;
-  /** Free entry only — uses priceAmount === 0 (NOT priceAmount == null). */
+  /** No admission fee — strict. Pin must have priceAmount === 0 OR
+   *  priceText that explicitly indicates free ("Free", "No charge",
+   *  "Complimentary"). Pins with unknown price are excluded — the
+   *  earlier permissive predicate that included nulls was a no-op
+   *  because 1,338/1,342 pins have no recorded price. */
   freeOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;

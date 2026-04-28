@@ -1,5 +1,6 @@
 import { Client, APIResponseError } from '@notionhq/client';
 import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -243,48 +244,71 @@ function rowToCountry(row: any): Country {
 }
 
 // ---- Fetchers ----
-// All fetchers are wrapped with React's `cache()` so that during a single server
-// render / build, calling them multiple times only hits Notion once. This
-// collapses thousands of redundant pagination passes into a handful.
+// Two-layer caching:
+//
+//   1. unstable_cache (Next.js data cache) — persists across requests AND
+//      across routes, so the Sidebar in the layout doesn't refetch the
+//      whole Notion universe on every page navigation. This is the main
+//      cold-load fix; without it each route's ISR entry has to cold-render
+//      the layout's data dependencies separately.
+//   2. React.cache() — wraps the unstable_cache result so within ONE render
+//      we still dedupe calls (e.g. Sidebar + page body both calling
+//      fetchAllCities() resolves to a single resolved promise).
+//
+// Bust via revalidateTag(...) from /api/revalidate when the Notion source
+// of truth changes (currently 24h is acceptable — the Notion DBs change
+// slowly and stale-while-revalidate fills new pages quickly).
 
-export const fetchAllCities = cache(async (): Promise<City[]> => {
-  if (!process.env.NOTION_TOKEN) {
-    console.warn('NOTION_TOKEN not set — returning empty city list');
-    return [];
-  }
-  const rows: any[] = [];
-  let cursor: string | undefined;
-  do {
-    const res: any = await withRetry(() =>
-      notion.databases.query({
-        database_id: CITIES_DB,
-        start_cursor: cursor,
-        page_size: 100,
-      })
-    );
-    rows.push(...res.results);
-    cursor = res.has_more ? res.next_cursor : undefined;
-  } while (cursor);
-  return rows.map(rowToCity);
-});
+const CACHE_REVALIDATE_SECONDS = 86400; // 24h
 
-export const fetchAllCountries = cache(async (): Promise<Country[]> => {
-  if (!process.env.NOTION_TOKEN) return [];
-  const rows: any[] = [];
-  let cursor: string | undefined;
-  do {
-    const res: any = await withRetry(() =>
-      notion.databases.query({
-        database_id: COUNTRIES_DB,
-        start_cursor: cursor,
-        page_size: 100,
-      })
-    );
-    rows.push(...res.results);
-    cursor = res.has_more ? res.next_cursor : undefined;
-  } while (cursor);
-  return rows.map(rowToCountry);
-});
+const _fetchAllCities = unstable_cache(
+  async (): Promise<City[]> => {
+    if (!process.env.NOTION_TOKEN) {
+      console.warn('NOTION_TOKEN not set — returning empty city list');
+      return [];
+    }
+    const rows: any[] = [];
+    let cursor: string | undefined;
+    do {
+      const res: any = await withRetry(() =>
+        notion.databases.query({
+          database_id: CITIES_DB,
+          start_cursor: cursor,
+          page_size: 100,
+        })
+      );
+      rows.push(...res.results);
+      cursor = res.has_more ? res.next_cursor : undefined;
+    } while (cursor);
+    return rows.map(rowToCity);
+  },
+  ['notion-cities'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+);
+export const fetchAllCities = cache(_fetchAllCities);
+
+const _fetchAllCountries = unstable_cache(
+  async (): Promise<Country[]> => {
+    if (!process.env.NOTION_TOKEN) return [];
+    const rows: any[] = [];
+    let cursor: string | undefined;
+    do {
+      const res: any = await withRetry(() =>
+        notion.databases.query({
+          database_id: COUNTRIES_DB,
+          start_cursor: cursor,
+          page_size: 100,
+        })
+      );
+      rows.push(...res.results);
+      cursor = res.has_more ? res.next_cursor : undefined;
+    } while (cursor);
+    return rows.map(rowToCountry);
+  },
+  ['notion-countries'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+);
+export const fetchAllCountries = cache(_fetchAllCountries);
 
 // Lookup-by-slug reuses the cached list instead of a separate Notion query.
 // At ~1,400 rows the in-memory find is O(n) but instant (<1ms).

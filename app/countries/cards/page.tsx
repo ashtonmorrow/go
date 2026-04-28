@@ -8,7 +8,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   '213 countries in the atlas, drawn as flag tiles. Hover for the practicalities. Capital, language, currency, plug types, visa, tap-water safety.';
