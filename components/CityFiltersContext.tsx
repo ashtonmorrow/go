@@ -98,13 +98,19 @@ export type FilterState = {
 };
 
 const DEFAULT_STATE: FilterState = {
-  // Neutral default: every status layer is visible. The user lands on the
-  // full atlas with all three status colors rendered, nothing silently hidden.
+  // Status layers default ON — full atlas visible by status.
   showBeen: true,
   showGo: true,
   showOther: true,
 
-  // Neutral default: no narrowing applied.
+  // Faceted filters all neutral EXCEPT hasSavedPlaces — Mike's home and
+  // default cities view land with "With saved places" pre-applied so
+  // the postcard wall opens on the curated subset (cities he's actually
+  // annotated with a Google Maps list). Visible default rather than
+  // hidden — the chip shows up in the ActiveFilters ribbon and the
+  // tri-state in the cockpit reads "With", so the user can see and
+  // clear it. activeFilterCount counts it as an active facet, which
+  // is honest.
   q: '',
   countries: new Set(),
   continents: new Set(),
@@ -114,7 +120,7 @@ const DEFAULT_STATE: FilterState = {
   drive: new Set(),
   populationMin: null,
   populationMax: null,
-  hasSavedPlaces: 'any',
+  hasSavedPlaces: 'with',
 
   sort: 'name',
   desc: false,
@@ -199,7 +205,27 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const stableReset = useCallback(() => setState(DEFAULT_STATE), []);
+  // Clear-all explicitly resets to a TRULY-neutral state, not to
+  // DEFAULT_STATE. The default carries hasSavedPlaces='with' so the
+  // initial page load lands on the curated subset; but clicking
+  // "Clear all" should give the user the full atlas, otherwise the
+  // button feels broken ("I clicked clear and I still have a filter").
+  const stableReset = useCallback(() => setState({
+    ...DEFAULT_STATE,
+    hasSavedPlaces: 'any',
+    showBeen: true,
+    showGo: true,
+    showOther: true,
+    q: '',
+    countries: new Set(),
+    continents: new Set(),
+    koppenGroups: new Set(),
+    visa: new Set(),
+    tapWater: new Set(),
+    drive: new Set(),
+    populationMin: null,
+    populationMax: null,
+  }), []);
 
   const value = useMemo(
     () => ({
