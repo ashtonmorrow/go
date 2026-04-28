@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from 'react';
+import type { Continent } from './CityFiltersContext';
 
 // === Pin filter state ======================================================
 // Mirrors the shape of CityFiltersContext but with pin-relevant dimensions.
@@ -28,6 +29,11 @@ export type PinFilterState = {
   freeOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;
+  /** Continents to keep — derived from each pin's country via the
+   *  Natural-Earth-baked countryContinent lookup. AND-composed with
+   *  the explicit countries set: a pin must satisfy BOTH (or neither
+   *  if both are empty). */
+  continents: Set<Continent>;
   /** Notable lists membership — UNESCO World Heritage, Atlas Obscura, etc. */
   lists: Set<string>;
   /** Wikidata "instance of" labels — archaeological site, national park, etc. */
@@ -46,6 +52,7 @@ const DEFAULT_STATE: PinFilterState = {
   freeOnly: false,
   categories: new Set(),
   countries: new Set(),
+  continents: new Set(),
   lists: new Set(),
   tags: new Set(),
   inceptionMin: null,
@@ -80,6 +87,7 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     if (state.freeOnly !== DEFAULT_STATE.freeOnly) n++;
     n += state.categories.size > 0 ? 1 : 0;
     n += state.countries.size > 0 ? 1 : 0;
+    n += state.continents.size > 0 ? 1 : 0;
     n += state.lists.size > 0 ? 1 : 0;
     n += state.tags.size > 0 ? 1 : 0;
     if (state.inceptionMin != null || state.inceptionMax != null) n++;

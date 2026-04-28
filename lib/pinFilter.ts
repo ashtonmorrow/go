@@ -8,6 +8,7 @@
 // Generic over T so each view can shape its data however it wants, as
 // long as the structural fields the filters need are present.
 import type { PinFilterState } from '@/components/PinFiltersContext';
+import { continentOfCountry } from './countryContinent';
 
 export type PinFilterable = {
   name: string;
@@ -70,6 +71,15 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
     if (state.countries.size > 0) {
       const country = (p.statesNames ?? [])[0];
       if (!country || !state.countries.has(country)) continue;
+    }
+    // Continent — derived from the pin's country via Natural Earth.
+    // Pins whose country can't be resolved are excluded when the filter
+    // is active (rather than guessed at), matching the conservative
+    // policy used by the country and category facets above.
+    if (state.continents.size > 0) {
+      const country = (p.statesNames ?? [])[0];
+      const continent = continentOfCountry(country);
+      if (!continent || !state.continents.has(continent)) continue;
     }
     // List multi-select — pin must be on every selected list (AND).
     // Switch to .some(...) for OR semantics if the chip count gets noisy.

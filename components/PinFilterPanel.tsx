@@ -4,6 +4,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePinFilters, togglePinSet, PinSortKey } from './PinFiltersContext';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
 import YearRangeSlider from './YearRangeSlider';
+import WorldMapPicker from './WorldMapPicker';
+import type { Continent } from './CityFiltersContext';
 
 // === PinFilterPanel ========================================================
 // Cockpit UI for /pins. Mirrors the FilterPanel pattern from /cities so the
@@ -173,6 +175,19 @@ export default function PinFilterPanel({
           />
         </div>
       )}
+
+      {/* Continent — pictorial world map. Same component the cities and
+          countries cockpits use; here the click resolves the pin's
+          country to its continent via the baked Natural Earth lookup. */}
+      <div>
+        <SectionLabel>Continent</SectionLabel>
+        <WorldMapPicker
+          selected={state.continents}
+          onToggle={(c: Continent) =>
+            setState(s => ({ ...s, continents: togglePinSet(s.continents, c) }))
+          }
+        />
+      </div>
 
       {countryOptions.length > 0 && (
         <div>

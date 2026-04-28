@@ -139,9 +139,14 @@ export default function WorldMapPicker({ selected, onToggle }: Props) {
           );
         })}
 
-        {/* All countries — colored by selection state. fillRule evenodd
-            handles polygons-with-holes (e.g. Lesotho inside South Africa)
-            cleanly. */}
+        {/* All countries — colored by selection state. Inline fills
+            instead of Tailwind classes because Tailwind class generation
+            from string-built className expressions doesn't always survive
+            production purge, and the previous render came out invisible
+            (cream-soft on sky-blue had ~zero contrast). Land tone is a
+            warm parchment that reads clearly on the ocean blue.
+            fillRule evenodd handles polygons-with-holes (e.g. Lesotho
+            inside South Africa) cleanly. */}
         {renderedCountries.map(c => (
           <path
             key={c.iso3 || c.name}
@@ -149,13 +154,13 @@ export default function WorldMapPicker({ selected, onToggle }: Props) {
             fillRule="evenodd"
             onClick={() => onToggle(c.continent)}
             aria-label={`${c.name} (${c.continent})`}
-            className={
-              (c.isSelected
-                ? 'fill-ink-deep stroke-cream-soft'
-                : 'fill-cream-soft stroke-ink-deep/30 hover:fill-cream') +
-              ' transition-colors cursor-pointer'
-            }
-            strokeWidth={0.3}
+            fill={c.isSelected ? '#1c1b19' /* ink-deep */ : '#f3eddd' /* warm parchment */}
+            stroke={c.isSelected ? '#faf9f7' /* cream-soft */ : '#9b8b6a' /* warm sand-brown */}
+            strokeWidth={c.isSelected ? 0.4 : 0.35}
+            className="cursor-pointer transition-colors"
+            style={{
+              transition: 'fill 120ms ease',
+            }}
             filter="url(#wmp-shadow)"
           />
         ))}
