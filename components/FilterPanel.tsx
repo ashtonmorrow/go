@@ -3,14 +3,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCityFilters, toggleSet, SortKey } from './CityFiltersContext';
 import type {
-  Continent,
-  KoppenGroup,
   VisaUs,
   TapWater,
   DriveSide,
   CityLayer,
   HasSaved,
 } from './CityFiltersContext';
+import ContinentPicker from './ContinentPicker';
+import ClimatePicker from './ClimatePicker';
+import PopulationRangeSlider from './PopulationRangeSlider';
 
 // === FilterPanel ===
 // Cockpit layout, top to bottom:
@@ -33,23 +34,10 @@ import type {
 // (Munzner, "Visualization Analysis & Design", ch. 13; see also Square's
 // CrossFilter pattern).
 
-const CONTINENTS: Continent[] = [
-  'Africa',
-  'Asia',
-  'Europe',
-  'North America',
-  'South America',
-  'Australia',
-];
-
-const KOPPEN_GROUPS: { value: KoppenGroup; label: string }[] = [
-  { value: 'A', label: 'Tropical' },
-  { value: 'B', label: 'Arid' },
-  { value: 'C', label: 'Temperate' },
-  { value: 'D', label: 'Continental' },
-  { value: 'E', label: 'Polar' },
-];
-
+// CONTINENTS + KOPPEN_GROUPS arrays are gone — the pictorial pickers
+// (ContinentPicker, ClimatePicker) own their own option lists now since
+// each option carries pictorial metadata (continent paths, Köppen icons)
+// that doesn't fit a generic ChipGroup option shape.
 const VISA_OPTIONS: { value: VisaUs; label: string }[] = [
   { value: 'Visa-free', label: 'Visa-free' },
   { value: 'eVisa', label: 'eVisa' },
@@ -145,25 +133,20 @@ export default function FilterPanel({
 
       <div>
         <SectionLabel>Continent</SectionLabel>
-        <ChipGroup
-          options={CONTINENTS.map(c => ({ value: c, label: c }))}
+        <ContinentPicker
           selected={state.continents}
           onToggle={v =>
-            setState(s => ({ ...s, continents: toggleSet(s.continents, v as Continent) }))
+            setState(s => ({ ...s, continents: toggleSet(s.continents, v) }))
           }
         />
       </div>
 
       <div>
         <SectionLabel>Climate</SectionLabel>
-        <ChipGroup
-          options={KOPPEN_GROUPS}
+        <ClimatePicker
           selected={state.koppenGroups}
           onToggle={v =>
-            setState(s => ({
-              ...s,
-              koppenGroups: toggleSet(s.koppenGroups, v as KoppenGroup),
-            }))
+            setState(s => ({ ...s, koppenGroups: toggleSet(s.koppenGroups, v) }))
           }
         />
       </div>
@@ -219,51 +202,19 @@ export default function FilterPanel({
         />
       </div>
 
-      {/* Population range — same control as before. */}
+      {/* Population — dual-thumb log-scale slider. Replaces the old
+          number-input pair (typing "5000000" was awkward) and the linear
+          chip jumps that spanned 4 orders of magnitude. Quick-pick chips
+          live under the slider for snap-to-band shortcuts. */}
       <div>
         <SectionLabel>Population</SectionLabel>
-        <div className="flex items-center gap-2 text-small">
-          <NumberInput
-            value={state.populationMin}
-            onChange={v => setState(s => ({ ...s, populationMin: v }))}
-            placeholder="any"
-          />
-          <span className="text-muted text-[11px]">→</span>
-          <NumberInput
-            value={state.populationMax}
-            onChange={v => setState(s => ({ ...s, populationMax: v }))}
-            placeholder="any"
-          />
-        </div>
-        <div className="mt-1.5 flex flex-wrap gap-1">
-          {[
-            { label: 'Reset', min: null, max: null },
-            { label: '< 100k', min: null, max: 100_000 },
-            { label: '100k-1M', min: 100_000, max: 1_000_000 },
-            { label: '1M-5M', min: 1_000_000, max: 5_000_000 },
-            { label: '5M+', min: 5_000_000, max: null },
-          ].map(p => {
-            const active =
-              state.populationMin === p.min && state.populationMax === p.max;
-            return (
-              <button
-                key={p.label}
-                type="button"
-                onClick={() =>
-                  setState(s => ({ ...s, populationMin: p.min, populationMax: p.max }))
-                }
-                className={
-                  'px-1.5 py-0.5 rounded text-[10px] transition-colors ' +
-                  (active
-                    ? 'bg-ink-deep text-cream-soft'
-                    : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
-                }
-              >
-                {p.label}
-              </button>
-            );
-          })}
-        </div>
+        <PopulationRangeSlider
+          min={state.populationMin}
+          max={state.populationMax}
+          onChange={({ min, max }) =>
+            setState(s => ({ ...s, populationMin: min, populationMax: max }))
+          }
+        />
       </div>
 
       {/* === SORT === */}
@@ -550,29 +501,7 @@ function Select<T extends string>({
   );
 }
 
-function NumberInput({
-  value, onChange, placeholder,
-}: {
-  value: number | null;
-  onChange: (next: number | null) => void;
-  placeholder?: string;
-}) {
-  return (
-    <input
-      type="number"
-      inputMode="numeric"
-      value={value == null ? '' : String(value)}
-      placeholder={placeholder}
-      onChange={e => {
-        const raw = e.target.value.trim();
-        if (raw === '') return onChange(null);
-        const n = Number(raw);
-        onChange(Number.isFinite(n) ? n : null);
-      }}
-      className="w-full px-2 py-1 text-small rounded-md border border-sand bg-white text-ink-deep focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 tabular-nums"
-    />
-  );
-}
+// (NumberInput removed — PopulationRangeSlider replaced the only call site.)
 
 function DirectionButton({
   active,
