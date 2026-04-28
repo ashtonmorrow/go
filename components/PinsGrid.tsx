@@ -92,6 +92,14 @@ function PinCard({
   const subLabel = subParts.join(' · ');
   const flagUrl = flagCircle(countryIso2);
 
+  // Up to two list badges on the card. Atlas Obscura wins display
+  // priority because it's the cult-classic "weird places" tag the user
+  // explicitly asked to surface; UNESCO is implicit in the existing
+  // sub-label and a wider audience already knows it. The set is small
+  // so the lookup table here is fine.
+  const PRIORITY_LISTS = ['Atlas Obscura', 'New 7 Wonders', '7 Natural Wonders', '7 Ancient Wonders'];
+  const visibleLists = PRIORITY_LISTS.filter(l => pin.lists.includes(l)).slice(0, 2);
+
   return (
     <Link
       href={`/pins/${pin.slug ?? pin.id}`}
@@ -140,6 +148,19 @@ function PinCard({
           <p className="text-[12px] text-muted truncate font-mono mt-0.5">
             {subLabel}
           </p>
+        )}
+        {visibleLists.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-1">
+            {visibleLists.map(l => (
+              <span
+                key={l}
+                className="text-[10px] px-1.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20"
+                title={`Featured on ${l}`}
+              >
+                {l}
+              </span>
+            ))}
+          </div>
         )}
       </div>
     </Link>

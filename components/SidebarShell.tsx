@@ -54,11 +54,15 @@ export default function SidebarShell({
   countryOptions,
   pinCountryOptions = [],
   pinCategoryOptions = [],
+  pinListOptions = [],
+  pinTagOptions = [],
 }: {
   counts: Counts;
   countryOptions: string[];
   pinCountryOptions?: string[];
   pinCategoryOptions?: string[];
+  pinListOptions?: string[];
+  pinTagOptions?: string[];
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -103,6 +107,8 @@ export default function SidebarShell({
           countryOptions={countryOptions}
           pinCountryOptions={pinCountryOptions}
           pinCategoryOptions={pinCategoryOptions}
+          pinListOptions={pinListOptions}
+          pinTagOptions={pinTagOptions}
           onLinkClick={() => setDrawerOpen(false)}
         />
       </aside>
@@ -115,6 +121,8 @@ export default function SidebarShell({
           countryOptions={countryOptions}
           pinCountryOptions={pinCountryOptions}
           pinCategoryOptions={pinCategoryOptions}
+          pinListOptions={pinListOptions}
+          pinTagOptions={pinTagOptions}
         />
       </aside>
     </>
@@ -133,12 +141,16 @@ function NavBody({
   countryOptions,
   pinCountryOptions,
   pinCategoryOptions,
+  pinListOptions,
+  pinTagOptions,
   onLinkClick,
 }: {
   counts: Counts;
   countryOptions: string[];
   pinCountryOptions: string[];
   pinCategoryOptions: string[];
+  pinListOptions: string[];
+  pinTagOptions: string[];
   onLinkClick?: () => void;
 }) {
   const pathname = usePathname() || '';
@@ -200,6 +212,8 @@ function NavBody({
         <PinFilterPanel
           countryOptions={pinCountryOptions}
           categoryOptions={pinCategoryOptions}
+          listOptions={pinListOptions}
+          tagOptions={pinTagOptions}
         />
       ) : showCountryFilters ? (
         <CountryFilterPanel />

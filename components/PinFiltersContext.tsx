@@ -20,8 +20,17 @@ export type PinFilterState = {
   visitedFilter: 'all' | 'visited' | 'not-visited';
   /** UNESCO World Heritage sites only when true. Stays compatible with category. */
   unescoOnly: boolean;
+  /** Free entry only — uses priceAmount === 0 (NOT priceAmount == null). */
+  freeOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;
+  /** Notable lists membership — UNESCO World Heritage, Atlas Obscura, etc. */
+  lists: Set<string>;
+  /** Wikidata "instance of" labels — archaeological site, national park, etc. */
+  tags: Set<string>;
+  /** Inception year range (inclusive). Both null = unbounded. Negative = BCE. */
+  inceptionMin: number | null;
+  inceptionMax: number | null;
   sort: PinSortKey;
   desc: boolean;
 };
@@ -30,8 +39,13 @@ const DEFAULT_STATE: PinFilterState = {
   q: '',
   visitedFilter: 'all',
   unescoOnly: false,
+  freeOnly: false,
   categories: new Set(),
   countries: new Set(),
+  lists: new Set(),
+  tags: new Set(),
+  inceptionMin: null,
+  inceptionMax: null,
   sort: 'name',
   desc: false,
 };
@@ -59,8 +73,12 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     let n = 0;
     if (state.visitedFilter !== DEFAULT_STATE.visitedFilter) n++;
     if (state.unescoOnly !== DEFAULT_STATE.unescoOnly) n++;
+    if (state.freeOnly !== DEFAULT_STATE.freeOnly) n++;
     n += state.categories.size > 0 ? 1 : 0;
     n += state.countries.size > 0 ? 1 : 0;
+    n += state.lists.size > 0 ? 1 : 0;
+    n += state.tags.size > 0 ? 1 : 0;
+    if (state.inceptionMin != null || state.inceptionMax != null) n++;
     return n;
   }, [state]);
 

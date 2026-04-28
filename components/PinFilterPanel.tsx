@@ -24,9 +24,13 @@ const SORT_FIELDS: { value: PinSortKey; label: string }[] = [
 export default function PinFilterPanel({
   countryOptions = [],
   categoryOptions = [],
+  listOptions = [],
+  tagOptions = [],
 }: {
   countryOptions?: string[];
   categoryOptions?: string[];
+  listOptions?: string[];
+  tagOptions?: string[];
 }) {
   const ctx = usePinFilters();
   if (!ctx) return null;
@@ -60,7 +64,64 @@ export default function PinFilterPanel({
             label="UNESCO only"
             onChange={v => setState(s => ({ ...s, unescoOnly: v }))}
           />
+          <Switch
+            on={state.freeOnly}
+            label="Free entry only"
+            onChange={v => setState(s => ({ ...s, freeOnly: v }))}
+          />
         </div>
+      </div>
+
+      {/* Lists — UNESCO World Heritage, Atlas Obscura, the wonders sets,
+          etc. Short, stable list — chips read better than a multiselect. */}
+      {listOptions.length > 0 && (
+        <div>
+          <SectionLabel>On lists</SectionLabel>
+          <ChipGroup
+            options={listOptions.map(l => ({ value: l, label: l }))}
+            selected={state.lists}
+            onToggle={v =>
+              setState(s => ({ ...s, lists: togglePinSet(s.lists, v) }))
+            }
+          />
+        </div>
+      )}
+
+      {/* Tags — Wikidata "instance of" labels. Long, granular — fits the
+          searchable multi-select pattern better than chips. */}
+      {tagOptions.length > 0 && (
+        <div>
+          <SectionLabel>Type</SectionLabel>
+          <SearchableMultiSelect
+            placeholder="Search types"
+            options={tagOptions}
+            selected={state.tags}
+            onToggle={v => setState(s => ({ ...s, tags: togglePinSet(s.tags, v) }))}
+            onClear={() => setState(s => ({ ...s, tags: new Set() }))}
+          />
+        </div>
+      )}
+
+      {/* Inception year range — Wikidata-derived. Negative = BCE.
+          Both inputs optional; an empty value means "unbounded". */}
+      <div>
+        <SectionLabel>Established between</SectionLabel>
+        <div className="flex items-center gap-2 text-small">
+          <YearInput
+            value={state.inceptionMin}
+            onChange={v => setState(s => ({ ...s, inceptionMin: v }))}
+            placeholder="any"
+          />
+          <span className="text-muted text-[11px]">→</span>
+          <YearInput
+            value={state.inceptionMax}
+            onChange={v => setState(s => ({ ...s, inceptionMax: v }))}
+            placeholder="any"
+          />
+        </div>
+        <p className="mt-1 text-[10px] text-muted px-0.5">
+          Negative for BCE (e.g. -2500 for the Pyramids).
+        </p>
       </div>
 
       {categoryOptions.length > 0 && (
@@ -289,6 +350,30 @@ function Select<T extends string>({
         <path d="m6 9 6 6 6-6" />
       </svg>
     </div>
+  );
+}
+
+function YearInput({
+  value, onChange, placeholder,
+}: {
+  value: number | null;
+  onChange: (next: number | null) => void;
+  placeholder?: string;
+}) {
+  return (
+    <input
+      type="number"
+      inputMode="numeric"
+      value={value == null ? '' : String(value)}
+      placeholder={placeholder}
+      onChange={e => {
+        const raw = e.target.value.trim();
+        if (raw === '') return onChange(null);
+        const n = Number(raw);
+        onChange(Number.isFinite(n) ? n : null);
+      }}
+      className="w-full px-2 py-1 text-small rounded-md border border-sand bg-white text-ink-deep focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 tabular-nums"
+    />
   );
 }
 

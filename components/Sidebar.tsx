@@ -44,12 +44,42 @@ export default async function Sidebar() {
     new Set(pins.map(p => p.category).filter((s): s is string => !!s))
   ).sort((a, b) => a.localeCompare(b));
 
+  // Lists — bubble curated lists (UNESCO, Atlas Obscura, wonders) in a
+  // friendly order rather than alphabetical. Anything else falls in
+  // alphabetically afterwards.
+  const PRIMARY_LIST_ORDER = [
+    'UNESCO World Heritage',
+    'Atlas Obscura',
+    'New 7 Wonders',
+    '7 Natural Wonders',
+    '7 Ancient Wonders',
+  ];
+  const seenLists = new Set<string>();
+  for (const p of pins) for (const l of p.lists) seenLists.add(l);
+  const pinListOptions = [
+    ...PRIMARY_LIST_ORDER.filter(l => seenLists.has(l)),
+    ...Array.from(seenLists)
+      .filter(l => !PRIMARY_LIST_ORDER.includes(l))
+      .sort((a, b) => a.localeCompare(b)),
+  ];
+
+  // Tags — Wikidata "instance of" labels. Hide singletons (only one pin
+  // has them) since they don't help anyone narrow down.
+  const tagCounts = new Map<string, number>();
+  for (const p of pins) for (const t of p.tags) tagCounts.set(t, (tagCounts.get(t) ?? 0) + 1);
+  const pinTagOptions = Array.from(tagCounts.entries())
+    .filter(([, n]) => n > 1)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([t]) => t);
+
   return (
     <SidebarShell
       counts={counts}
       countryOptions={countryOptions}
       pinCountryOptions={pinCountryOptions}
       pinCategoryOptions={pinCategoryOptions}
+      pinListOptions={pinListOptions}
+      pinTagOptions={pinTagOptions}
     />
   );
 }

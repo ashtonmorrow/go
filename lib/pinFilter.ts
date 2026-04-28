@@ -17,6 +17,14 @@ export type PinFilterable = {
   category?: string | null;
   visited: boolean;
   unescoId?: number | null;
+  /** Wikidata-derived: notable lists membership (UNESCO, Atlas Obscura, etc.) */
+  lists?: string[];
+  /** Wikidata-derived: type-of labels (archaeological site, national park, etc.) */
+  tags?: string[];
+  /** Year established. Negative = BCE. */
+  inceptionYear?: number | null;
+  /** Numeric price; 0 means free, null means unknown. */
+  priceAmount?: number | null;
   airtableModifiedAt?: string | null;
   updatedAt?: string | null;
 };
@@ -38,10 +46,40 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
     if (state.visitedFilter === 'visited' && !p.visited) continue;
     if (state.visitedFilter === 'not-visited' && p.visited) continue;
     if (state.unescoOnly && p.unescoId == null) continue;
+    if (state.freeOnly && p.priceAmount !== 0) continue;
     if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
     if (state.countries.size > 0) {
       const country = (p.statesNames ?? [])[0];
       if (!country || !state.countries.has(country)) continue;
+    }
+    // List multi-select — pin must be on every selected list (AND).
+    // Switch to .some(...) for OR semantics if the chip count gets noisy.
+    if (state.lists.size > 0) {
+      const pinLists = p.lists ?? [];
+      let hasAll = true;
+      for (const l of state.lists) {
+        if (!pinLists.includes(l)) { hasAll = false; break; }
+      }
+      if (!hasAll) continue;
+    }
+    // Tag multi-select — OR semantics (any of the selected tags). Tags
+    // are noisier and more granular than lists, so OR keeps the cockpit
+    // useful when the user clicks a few related types like
+    // "archaeological site" + "old town".
+    if (state.tags.size > 0) {
+      const pinTags = p.tags ?? [];
+      let any = false;
+      for (const t of state.tags) {
+        if (pinTags.includes(t)) { any = true; break; }
+      }
+      if (!any) continue;
+    }
+    // Inception year range — inclusive, both ends optional.
+    if (state.inceptionMin != null) {
+      if (p.inceptionYear == null || p.inceptionYear < state.inceptionMin) continue;
+    }
+    if (state.inceptionMax != null) {
+      if (p.inceptionYear == null || p.inceptionYear > state.inceptionMax) continue;
     }
     out.push(p);
   }
