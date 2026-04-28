@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useEffect, useMemo } from 'react';
 import { usePinFilters } from './PinFiltersContext';
 import { filterPins, sortPins } from '@/lib/pinFilter';
-import { flagCircle } from '@/lib/flags';
+import { flagRect } from '@/lib/flags';
+import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
 import type { Pin } from '@/lib/pins';
 
 // === PinsGrid ==============================================================
@@ -90,20 +91,24 @@ function PinCard({
     placeText || null,
   ].filter(Boolean);
   const subLabel = subParts.join(' · ');
-  const flagUrl = flagCircle(countryIso2);
+  const flagUrl = flagRect(countryIso2);
 
-  // Up to two list badges on the card. UNESCO is intentionally NOT in
-  // this set — most pins are UNESCO sites and the badge would be noise.
-  // Atlas Obscura + the wonder sets are the high-signal ones to call
-  // out. Source order is from lib/pinLists.ts so any new canonical
-  // list inherits the right priority automatically.
-  const PRIORITY_LISTS = [
+  // Up to two list badges on the card. The wonder/Atlas Obscura sets
+  // come first because they're the rarest and most distinctive; UNESCO
+  // is included now that the chit carries a recognisable globe icon
+  // (previously it was text-only and would have been noise — most pins
+  // are UNESCO sites). Source order is preserved as priority order so a
+  // pin that's both Atlas Obscura AND UNESCO surfaces Atlas Obscura first.
+  const PRIORITY_LISTS: CanonicalList[] = [
     'Atlas Obscura',
     'New 7 Wonders',
     '7 Natural Wonders',
     '7 Ancient Wonders',
     'International Dark Sky Park',
     'IUGS Geological Heritage Site',
+    'Ramsar Wetland',
+    'UNESCO World Heritage',
+    'UNESCO Tentative List',
   ];
   const visibleLists = PRIORITY_LISTS.filter(l => pin.lists.includes(l)).slice(0, 2);
 
@@ -147,7 +152,7 @@ function PinCard({
               src={flagUrl}
               alt={country ?? ''}
               title={country ?? ''}
-              className="w-5 h-5 rounded-full border border-sand bg-white flex-shrink-0"
+              className="w-6 h-4 rounded-sm border border-sand bg-white object-cover flex-shrink-0"
             />
           )}
         </div>
@@ -159,17 +164,32 @@ function PinCard({
         {visibleLists.length > 0 && (
           <div className="mt-1 flex flex-wrap gap-1">
             {visibleLists.map(l => (
-              <span
-                key={l}
-                className="text-[10px] px-1.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20"
-                title={`Featured on ${l}`}
-              >
-                {l}
-              </span>
+              <ListBadge key={l} list={l} />
             ))}
           </div>
         )}
       </div>
     </Link>
+  );
+}
+
+// === ListBadge ============================================================
+// Compact icon-bearing chit for a canonical list membership. The emoji
+// glyph (globe for UNESCO, compass for Atlas Obscura, etc.) does most of
+// the recognition work — for a glanceable card it's faster to scan than
+// reading "UNESCO World Heritage" repeatedly across 1,300 pins. The full
+// canonical name is preserved on the title attribute for hover/screen
+// readers, and the short label is the visible text.
+function ListBadge({ list }: { list: CanonicalList }) {
+  const icon = LIST_ICONS[list];
+  const label = LIST_SHORT_LABELS[list];
+  return (
+    <span
+      className="inline-flex items-center gap-1 text-[10px] leading-none px-1.5 py-1 rounded-full bg-accent/10 text-accent border border-accent/20"
+      title={`Featured on ${list}`}
+    >
+      <span aria-hidden className="text-[11px]">{icon}</span>
+      <span>{label}</span>
+    </span>
   );
 }

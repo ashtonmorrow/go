@@ -78,3 +78,41 @@ export function normaliseLists(raw: string[]): CanonicalList[] {
   }
   return Array.from(out).sort();
 }
+
+// === List visual identity =================================================
+// Each canonical list gets a single emoji glyph and a short label suitable
+// for a compact badge. The emoji carries 80% of the recognition load — a
+// globe for UNESCO, a compass for Atlas Obscura's offbeat-explorer vibe,
+// a droplet for Ramsar wetlands, etc. — so the chit can stay tiny without
+// losing meaning. Short labels are used in the card badge; the full
+// canonical name still appears in the badge `title` for accessibility.
+
+export const LIST_ICONS: Record<CanonicalList, string> = {
+  'UNESCO World Heritage':           '🌐',
+  'UNESCO Tentative List':           '🌐',
+  'Atlas Obscura':                   '🧭',
+  'Ramsar Wetland':                  '💧',
+  'International Dark Sky Park':     '✨',
+  'IUGS Geological Heritage Site':   '⛰️',
+  'New 7 Wonders':                   '⭐',
+  '7 Natural Wonders':               '🌿',
+  '7 Ancient Wonders':               '🏛️',
+};
+
+/**
+ * Compact label used inside the card badge — the canonical name is often
+ * too long to fit two badges side-by-side ("IUGS Geological Heritage Site"
+ * is 30 chars). We keep these short and recognisable; the full name is
+ * still surfaced via `title` and on the detail page.
+ */
+export const LIST_SHORT_LABELS: Record<CanonicalList, string> = {
+  'UNESCO World Heritage':           'UNESCO',
+  'UNESCO Tentative List':           'UNESCO Tentative',
+  'Atlas Obscura':                   'Atlas Obscura',
+  'Ramsar Wetland':                  'Ramsar',
+  'International Dark Sky Park':     'Dark Sky',
+  'IUGS Geological Heritage Site':   'IUGS Geo',
+  'New 7 Wonders':                   'New 7 Wonders',
+  '7 Natural Wonders':               '7 Natural',
+  '7 Ancient Wonders':               '7 Ancient',
+};
