@@ -66,7 +66,7 @@ export default function PinFilterPanel({
           />
           <Switch
             on={state.freeOnly}
-            label="Free entry only"
+            label="No admission fee"
             onChange={v => setState(s => ({ ...s, freeOnly: v }))}
           />
         </div>

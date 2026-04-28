@@ -46,7 +46,13 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
     if (state.visitedFilter === 'visited' && !p.visited) continue;
     if (state.visitedFilter === 'not-visited' && p.visited) continue;
     if (state.unescoOnly && p.unescoId == null) continue;
-    if (state.freeOnly && p.priceAmount !== 0) continue;
+    // Free entry — pass when there's no recorded price OR when it's
+    // explicitly 0. Keeping unknowns in the "free" bucket because the
+    // pin set is mostly UNESCO sites + national parks + viewpoints
+    // where the default IS free; treating unknowns as priced would
+    // make the toggle effectively useless (only 4/1342 pins have a
+    // recorded price, none explicitly 0).
+    if (state.freeOnly && p.priceAmount != null && p.priceAmount > 0) continue;
     if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
     if (state.countries.size > 0) {
       const country = (p.statesNames ?? [])[0];

@@ -50,8 +50,15 @@ export const fetchWikipediaSummary = cache(
   async (title: string | null): Promise<WikipediaSummary | null> => {
     if (!title) return null;
     const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+    // 3s timeout — if Wikipedia is slow on a cold ISR cache, returning
+    // null and rendering the curator description instead is much better
+    // than blocking the page indefinitely. Once cached the request
+    // never re-runs anyway (30-day ISR).
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
     try {
       const res = await fetch(url, {
+        signal: controller.signal,
         next: { revalidate: 60 * 60 * 24 * 30 }, // 30 days
         headers: {
           // Wikipedia asks for a contact-able UA per their etiquette.
@@ -60,6 +67,7 @@ export const fetchWikipediaSummary = cache(
           'Accept': 'application/json',
         },
       });
+      clearTimeout(timeout);
       if (!res.ok) return null;
       const data = await res.json();
       // The REST API can return disambiguation or notFound types; we
@@ -75,6 +83,9 @@ export const fetchWikipediaSummary = cache(
         url: data.content_urls?.desktop?.page ?? `https://en.wikipedia.org/wiki/${encodeURIComponent(title)}`,
       };
     } catch {
+      // Either the timeout fired or the fetch errored — fall through
+      // to null and let the page render without the lead paragraph.
+      clearTimeout(timeout);
       return null;
     }
   }
