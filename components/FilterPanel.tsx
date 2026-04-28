@@ -183,6 +183,56 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         />
       </div>
 
+      {/* === POPULATION RANGE ===
+          Numeric range filter — useful for travelers picking between
+          megacities (>5M) and mid-size travel-friendly cities (~500k-2M).
+          Quick-pick chips below cover the common bands. */}
+      <div>
+        <SectionLabel>Population</SectionLabel>
+        <div className="flex items-center gap-2 text-small">
+          <NumberInput
+            value={state.populationMin}
+            onChange={v => setState(s => ({ ...s, populationMin: v }))}
+            placeholder="any"
+          />
+          <span className="text-muted text-[11px]">→</span>
+          <NumberInput
+            value={state.populationMax}
+            onChange={v => setState(s => ({ ...s, populationMax: v }))}
+            placeholder="any"
+          />
+        </div>
+        <div className="mt-1.5 flex flex-wrap gap-1">
+          {[
+            { label: 'Reset', min: null, max: null },
+            { label: '< 100k', min: null, max: 100_000 },
+            { label: '100k-1M', min: 100_000, max: 1_000_000 },
+            { label: '1M-5M', min: 1_000_000, max: 5_000_000 },
+            { label: '5M+', min: 5_000_000, max: null },
+          ].map(p => {
+            const active =
+              state.populationMin === p.min && state.populationMax === p.max;
+            return (
+              <button
+                key={p.label}
+                type="button"
+                onClick={() =>
+                  setState(s => ({ ...s, populationMin: p.min, populationMax: p.max }))
+                }
+                className={
+                  'px-1.5 py-0.5 rounded text-[10px] transition-colors ' +
+                  (active
+                    ? 'bg-ink-deep text-cream-soft'
+                    : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
+                }
+              >
+                {p.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* === SORT === */}
       <div>
         <SectionLabel>Sort by</SectionLabel>
@@ -437,6 +487,32 @@ function Select<T extends string>({
         <path d="m6 9 6 6 6-6" />
       </svg>
     </div>
+  );
+}
+
+// Compact numeric input for the Population range. Empty string means
+// "unbounded" — null is sent up rather than 0.
+function NumberInput({
+  value, onChange, placeholder,
+}: {
+  value: number | null;
+  onChange: (next: number | null) => void;
+  placeholder?: string;
+}) {
+  return (
+    <input
+      type="number"
+      inputMode="numeric"
+      value={value == null ? '' : String(value)}
+      placeholder={placeholder}
+      onChange={e => {
+        const raw = e.target.value.trim();
+        if (raw === '') return onChange(null);
+        const n = Number(raw);
+        onChange(Number.isFinite(n) ? n : null);
+      }}
+      className="w-full px-2 py-1 text-small rounded-md border border-sand bg-white text-ink-deep focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 tabular-nums"
+    />
   );
 }
 

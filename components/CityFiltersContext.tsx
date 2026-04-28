@@ -45,6 +45,9 @@ export type FilterState = {
   visa: Set<VisaUs>;
   tapWater: Set<TapWater>;
   drive: Set<DriveSide>;
+  /** Population range (inclusive). Both null = unbounded. */
+  populationMin: number | null;
+  populationMax: number | null;
   sort: SortKey;
   desc: boolean;
 };
@@ -60,6 +63,8 @@ const DEFAULT_STATE: FilterState = {
   visa: new Set(),
   tapWater: new Set(),
   drive: new Set(),
+  populationMin: null,
+  populationMax: null,
   sort: 'name',
   desc: false,
 };
@@ -99,6 +104,7 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     n += state.visa.size > 0 ? 1 : 0;
     n += state.tapWater.size > 0 ? 1 : 0;
     n += state.drive.size > 0 ? 1 : 0;
+    if (state.populationMin != null || state.populationMax != null) n++;
     return n;
   }, [state]);
 

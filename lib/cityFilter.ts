@@ -87,6 +87,19 @@ export function filterCities<T extends CityFilterable>(cities: T[], state: CityF
   if (drive.size > 0) {
     list = list.filter(c => c.driveSide && drive.has(c.driveSide as never));
   }
+
+  // Population range — inclusive, both ends optional. Cities without a
+  // population value are filtered out when EITHER bound is set, since
+  // the user is asking for cities of a specific size.
+  const { populationMin, populationMax } = state;
+  if (populationMin != null || populationMax != null) {
+    list = list.filter(c => {
+      if (c.population == null) return false;
+      if (populationMin != null && c.population < populationMin) return false;
+      if (populationMax != null && c.population > populationMax) return false;
+      return true;
+    });
+  }
   return list;
 }
 
