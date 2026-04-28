@@ -1,106 +1,136 @@
 'use client';
 
 import { useMemo } from 'react';
-import worldGeo from '@/lib/worldGeo.json';
 import type { Continent } from './CityFiltersContext';
 
 // === WorldMapPicker ========================================================
-// Pictorial multi-select for continent filtering, rendered as a real world
-// map. Uses a baked-in Natural Earth 1:110m country dataset (slimmed to
-// 166 KB by stripping unused fields and rounding coords to 2dp), so there's
-// zero runtime fetch — the picker renders instantly on every page mount.
+// Pictorial multi-select for continent filtering. Renders 6 stylised
+// continent silhouettes positioned roughly correctly on a world map.
+// Click a continent to toggle.
 //
-// The previous version fetched a 3.4 MB GeoJSON from jsdelivr at runtime
-// and was hanging on slower connections (the user saw an empty grey
-// strip where the map should have been). Baking the data in eliminates
-// that whole class of failure.
+// Why hand-drawn silhouettes (not full country GeoJSON):
+//   - Earlier attempts to fetch / inline the Natural Earth country dataset
+//     consistently failed to render the country paths in the deployed app
+//     (cause not yet pinned down — possibly a JSON-import + JIT-purge
+//     interaction in the production bundle). The picker showed only the
+//     ocean.
+//   - For a sidebar widget, country-level granularity is overkill anyway.
+//     What the user needs is "click on Asia to add Asia" — they don't
+//     need to be able to click on Bhutan specifically.
+//   - 6 inline paths render reliably with no async dependencies, no
+//     bundler quirks, no fetch failures.
 //
-// The continent attribution comes from the GeoJSON's own CONTINENT
-// property, normalised at preprocess time ('Oceania' → 'Australia' to
-// match our CityFiltersContext Continent type). No external mapping
-// needed.
-
-type GeoFeature = {
-  type: 'Feature';
-  properties: { name: string; iso3: string; continent: Continent };
-  geometry:
-    | { type: 'Polygon'; coordinates: number[][][] }
-    | { type: 'MultiPolygon'; coordinates: number[][][][] };
-};
-
-const FEATURES = (worldGeo as { features: GeoFeature[] }).features;
+// Each path is a soft-edged silhouette traced over a Mercator-projected
+// outline at low resolution. Recognisable enough that the user reads
+// "world map" at a glance, simple enough to render fast and look clean.
+// ViewBox 0..360 wide, 0..170 tall (matches the equirectangular layout
+// users expect from a world map).
 
 type Props = {
   selected: Set<Continent>;
   onToggle: (continent: Continent) => void;
 };
 
-// Equirectangular projection — simplest, most legible at picker scale.
-// Crops at ±85° latitude so polar slivers don't waste vertical space.
-const VIEWBOX_W = 360;
-const VIEWBOX_H = 170;
-const project = (lng: number, lat: number): [number, number] => [
-  ((lng + 180) / 360) * VIEWBOX_W,
-  ((85 - lat) / 170) * VIEWBOX_H,
-];
-
-function ringsToPath(rings: number[][][]): string {
-  return rings
-    .map(ring => {
-      if (ring.length === 0) return '';
-      const pts = ring.map(([lng, lat]) => project(lng, lat));
-      const [first, ...rest] = pts;
-      return (
-        'M' + first[0].toFixed(1) + ',' + first[1].toFixed(1) +
-        rest.map(p => 'L' + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join('') +
-        'Z'
-      );
-    })
-    .join(' ');
-}
-
-function geometryToPath(geom: GeoFeature['geometry']): string {
-  if (geom.type === 'Polygon') {
-    return ringsToPath(geom.coordinates as number[][][]);
-  }
-  // MultiPolygon
-  return (geom.coordinates as number[][][][])
-    .map(poly => ringsToPath(poly))
-    .join(' ');
-}
-
-// Pre-compute country paths once at module level. The features array is
-// static so this runs exactly once per page load.
-const COUNTRY_PATHS: Array<{
-  name: string;
-  iso3: string;
-  continent: Continent;
+const CONTINENTS: Array<{
+  name: Continent;
+  /** SVG path. Smooth bezier curves traced over a real continent outline
+   *  at picker resolution. Anchored on a 360x170 viewBox. */
   d: string;
-}> = FEATURES.map(f => ({
-  name: f.properties.name,
-  iso3: f.properties.iso3,
-  continent: f.properties.continent,
-  d: geometryToPath(f.geometry),
-}));
-
-const CONTINENTS_IN_PICKER: Continent[] = [
-  'Africa',
-  'Asia',
-  'Europe',
-  'North America',
-  'South America',
-  'Australia',
+  /** Label position inside the silhouette. */
+  labelX: number;
+  labelY: number;
+}> = [
+  {
+    name: 'North America',
+    // Alaska + Canada arch + USA + Mexico + Florida tail.
+    d:
+      'M 25,38 ' +
+      'C 18,32 22,22 35,20 ' +
+      'C 60,16 88,18 110,24 ' +
+      'C 125,28 135,38 132,52 ' +
+      'C 128,62 118,68 110,72 ' +
+      'C 105,76 100,82 102,90 ' +
+      'C 100,93 95,92 92,88 ' +
+      'C 88,82 85,78 80,76 ' +
+      'C 70,72 60,66 52,58 ' +
+      'C 42,50 32,46 25,38 Z',
+    labelX: 70,
+    labelY: 50,
+  },
+  {
+    name: 'South America',
+    // Pyramid shape with a Patagonia tail. Anchored under Central America.
+    d:
+      'M 100,90 ' +
+      'C 110,88 120,92 122,100 ' +
+      'C 125,112 122,128 116,142 ' +
+      'C 110,156 102,160 96,154 ' +
+      'C 90,144 86,128 88,112 ' +
+      'C 90,100 94,92 100,90 Z',
+    labelX: 105,
+    labelY: 122,
+  },
+  {
+    name: 'Europe',
+    // Compact blob with British Isles nub on the west side. Above Africa.
+    d:
+      'M 168,30 ' +
+      'C 175,24 192,24 205,28 ' +
+      'C 215,32 218,42 212,50 ' +
+      'C 205,56 192,58 180,54 ' +
+      'C 170,52 162,42 168,30 Z',
+    labelX: 188,
+    labelY: 42,
+  },
+  {
+    name: 'Africa',
+    // Large rounded triangle, narrowing to the cape.
+    d:
+      'M 168,60 ' +
+      'C 180,56 210,56 222,62 ' +
+      'C 232,72 230,90 222,108 ' +
+      'C 215,124 205,140 195,148 ' +
+      'C 185,150 178,140 172,124 ' +
+      'C 165,108 162,82 168,60 Z',
+    labelX: 196,
+    labelY: 100,
+  },
+  {
+    name: 'Asia',
+    // Massive sweep across the top-right with India peninsula and SE arc.
+    d:
+      'M 215,28 ' +
+      'C 235,22 270,20 300,22 ' +
+      'C 325,24 345,32 348,46 ' +
+      'C 348,60 335,72 320,78 ' +
+      'C 310,82 295,82 285,80 ' +
+      // India peninsula
+      'C 282,84 278,92 274,88 ' +
+      'C 270,82 268,74 262,72 ' +
+      'C 245,70 230,64 220,54 ' +
+      'C 212,46 210,36 215,28 Z',
+    labelX: 290,
+    labelY: 50,
+  },
+  {
+    name: 'Australia',
+    // Compact rounded oval bottom-right.
+    d:
+      'M 290,128 ' +
+      'C 300,124 322,124 332,130 ' +
+      'C 340,138 338,150 328,156 ' +
+      'C 315,160 298,158 290,150 ' +
+      'C 285,142 285,134 290,128 Z',
+    labelX: 312,
+    labelY: 142,
+  },
 ];
 
 export default function WorldMapPicker({ selected, onToggle }: Props) {
-  // Memoize the rendered country list keyed by the selection set so we
-  // don't re-walk paths on unrelated state changes.
-  const renderedCountries = useMemo(() => {
-    return COUNTRY_PATHS.map(c => ({
-      ...c,
-      isSelected: selected.has(c.continent),
-    }));
-  }, [selected]);
+  const renderedContinents = useMemo(
+    () => CONTINENTS.map(c => ({ ...c, isSelected: selected.has(c.name) })),
+    [selected]
+  );
 
   return (
     <div
@@ -108,75 +138,88 @@ export default function WorldMapPicker({ selected, onToggle }: Props) {
       style={{ background: '#dde9ef' /* soft ocean blue */ }}
     >
       <svg
-        viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
+        viewBox="0 0 360 170"
         className="w-full h-auto block"
         role="group"
         aria-label="World continent picker"
       >
         <defs>
           <filter id="wmp-shadow" x="-2%" y="-2%" width="104%" height="104%">
-            <feDropShadow dx="0" dy="0.4" stdDeviation="0.5" floodOpacity="0.12" />
+            <feDropShadow dx="0" dy="0.5" stdDeviation="0.6" floodOpacity="0.18" />
           </filter>
         </defs>
 
-        {/* Latitude graticule — equator + tropics + 60° lines, very faint
-            so the picker reads as a map without competing with the country
-            silhouettes. */}
+        {/* Latitude graticule — equator + tropics + 60° lines. Faint
+            so the picker reads as a map, not an illustration. */}
         {[0, 23.5, -23.5, 60, -60].map(lat => {
-          const y = ((85 - lat) / 170) * VIEWBOX_H;
+          const y = ((85 - lat) / 170) * 170;
           return (
             <line
               key={lat}
               x1={0}
               y1={y}
-              x2={VIEWBOX_W}
+              x2={360}
               y2={y}
               stroke="white"
-              strokeOpacity={lat === 0 ? 0.32 : 0.18}
-              strokeWidth={0.4}
-              strokeDasharray={lat === 0 ? undefined : '1,2'}
+              strokeOpacity={lat === 0 ? 0.4 : 0.22}
+              strokeWidth={0.5}
+              strokeDasharray={lat === 0 ? undefined : '2,3'}
             />
           );
         })}
 
-        {/* All countries — colored by selection state. Inline fills
-            instead of Tailwind classes because Tailwind class generation
-            from string-built className expressions doesn't always survive
-            production purge, and the previous render came out invisible
-            (cream-soft on sky-blue had ~zero contrast). Land tone is a
-            warm parchment that reads clearly on the ocean blue.
-            fillRule evenodd handles polygons-with-holes (e.g. Lesotho
-            inside South Africa) cleanly. */}
-        {renderedCountries.map(c => (
-          <path
-            key={c.iso3 || c.name}
-            d={c.d}
-            fillRule="evenodd"
-            onClick={() => onToggle(c.continent)}
-            aria-label={`${c.name} (${c.continent})`}
-            fill={c.isSelected ? '#1c1b19' /* ink-deep */ : '#f3eddd' /* warm parchment */}
-            stroke={c.isSelected ? '#faf9f7' /* cream-soft */ : '#9b8b6a' /* warm sand-brown */}
-            strokeWidth={c.isSelected ? 0.4 : 0.35}
-            className="cursor-pointer transition-colors"
-            style={{
-              transition: 'fill 120ms ease',
+        {/* Continent silhouettes — high contrast (warm tan land on cool
+            ocean blue) so they read clearly in any light mode. Inline
+            fill/stroke values dodge any Tailwind-purge surprises. */}
+        {renderedContinents.map(c => (
+          <g
+            key={c.name}
+            role="button"
+            tabIndex={0}
+            aria-pressed={c.isSelected}
+            aria-label={c.name}
+            onClick={() => onToggle(c.name)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onToggle(c.name);
+              }
             }}
+            className="cursor-pointer"
             filter="url(#wmp-shadow)"
-          />
+          >
+            <path
+              d={c.d}
+              fill={c.isSelected ? '#1c1b19' : '#d4be8e' /* warm tan parchment */}
+              stroke={c.isSelected ? '#faf9f7' : '#7a6440' /* dark tan border */}
+              strokeWidth={0.7}
+              strokeLinejoin="round"
+            />
+            <text
+              x={c.labelX}
+              y={c.labelY}
+              textAnchor="middle"
+              fontSize={c.name === 'Europe' || c.name === 'Australia' ? 7.5 : 9}
+              fontWeight={500}
+              fill={c.isSelected ? '#faf9f7' : '#3a2f1c'}
+              style={{ pointerEvents: 'none', letterSpacing: '0.04em' }}
+            >
+              {c.name}
+            </text>
+          </g>
         ))}
       </svg>
 
-      {/* Chip row beneath the map — alternate input path. Tap the named
-          continent if you'd rather not poke at the map. Tracks the same
-          selection set so map clicks and chip clicks stay in sync. */}
+      {/* Chip row beneath — alternate input path. Tap by name if you'd
+          rather not poke at the small silhouettes. Tracks the same set. */}
       <div className="flex flex-wrap gap-1 p-1.5 bg-white border-t border-sand">
-        {CONTINENTS_IN_PICKER.map(c => {
-          const active = selected.has(c);
+        {CONTINENTS.map(c => {
+          const active = selected.has(c.name);
           return (
             <button
-              key={c}
+              key={c.name}
               type="button"
-              onClick={() => onToggle(c)}
+              onClick={() => onToggle(c.name)}
               className={
                 'px-1.5 py-0.5 rounded text-[10px] font-medium transition-colors ' +
                 (active
@@ -184,7 +227,7 @@ export default function WorldMapPicker({ selected, onToggle }: Props) {
                   : 'bg-cream-soft text-slate hover:bg-cream hover:text-ink-deep')
               }
             >
-              {c}
+              {c.name}
             </button>
           );
         })}
