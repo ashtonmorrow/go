@@ -9,3 +9,6 @@ out
 .vercel
 .vscode
 .idea
+
+# TypeScript incremental build cache — regenerated on every `tsc` run.
+tsconfig.tsbuildinfo
