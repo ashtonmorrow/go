@@ -45,7 +45,7 @@ const PAGES: { href: string; emoji: string; label: string }[] = [
 // that's now the internal /about route in the Views section.
 const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
   { href: 'https://ski.mike-lee.me/', emoji: '⛷️', label: 'Cat-Ski' },
-  { href: 'https://app.stray.tips/share/animal/f475e984-b982-4b7f-a913-79fb28ae8bb8', emoji: '🐈', label: 'Stray' },
+  { href: 'https://app.stray.tips/', emoji: '🐈', label: 'Stray' },
 ];
 
 export default function SidebarShell({
