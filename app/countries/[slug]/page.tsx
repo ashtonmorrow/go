@@ -8,6 +8,7 @@ import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
+import { fetchAllCountryFacts, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
 import type { Metadata } from 'next';
 
 export const revalidate = 3600;
@@ -55,8 +56,13 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const country = await fetchCountryBySlug(slug);
   if (!country) notFound();
 
-  const allCities = await fetchAllCities();
+  const [allCities, factsByIso2] = await Promise.all([
+    fetchAllCities(),
+    fetchAllCountryFacts(),
+  ]);
   const cities = allCities.filter(c => c.countryPageId === country.id);
+  const fact = country.iso2 ? factsByIso2.get(country.iso2.toUpperCase()) ?? null : null;
+  const perCapita = fact ? gdpPerCapita(fact) : null;
 
   const blocks = await fetchPageBlocks(country.id);
   const hasBody = blocks.length > 0;
@@ -162,6 +168,64 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
                 {evisaUrl.replace(/^https?:\/\//, '').split('/')[0]}
               </div>
             </a>
+          )}
+
+          {/* Wikidata baselines — population, area, GDP, HDI, life
+              expectancy. Only renders when at least one is non-null
+              so the card doesn't appear empty for places without
+              fact rows (e.g. small dependencies). data_year hint
+              tells the reader how fresh the value is. */}
+          {fact && (fact.population != null || fact.gdpNominalUsd != null || fact.hdi != null) && (
+            <div className="card p-5 text-small">
+              <h3 className="text-muted uppercase tracking-wider text-[11px]">By the numbers</h3>
+              <dl className="mt-3 space-y-2">
+                {fact.population != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">Population</dt>
+                    <dd className="text-ink-deep tabular-nums">{compactNumber(fact.population)}</dd>
+                  </div>
+                )}
+                {fact.areaKm2 != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">Area</dt>
+                    <dd className="text-ink-deep tabular-nums">
+                      {compactNumber(fact.areaKm2)} km²
+                    </dd>
+                  </div>
+                )}
+                {fact.gdpNominalUsd != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">GDP (nominal)</dt>
+                    <dd className="text-ink-deep tabular-nums">{compactUsd(fact.gdpNominalUsd)}</dd>
+                  </div>
+                )}
+                {perCapita != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">GDP per capita</dt>
+                    <dd className="text-ink-deep tabular-nums">
+                      {compactUsd(Math.round(perCapita))}
+                    </dd>
+                  </div>
+                )}
+                {fact.hdi != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">HDI</dt>
+                    <dd className="text-ink-deep tabular-nums">{fact.hdi.toFixed(3)}</dd>
+                  </div>
+                )}
+                {fact.lifeExpectancy != null && (
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-slate">Life expectancy</dt>
+                    <dd className="text-ink-deep tabular-nums">{fact.lifeExpectancy.toFixed(1)} yr</dd>
+                  </div>
+                )}
+              </dl>
+              {fact.dataYear != null && (
+                <p className="mt-2 text-muted text-[10px]">
+                  Wikidata · most recent values circa {fact.dataYear}.
+                </p>
+              )}
+            </div>
           )}
 
           <div className="card p-5 text-small">

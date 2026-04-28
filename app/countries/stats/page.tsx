@@ -5,6 +5,7 @@
 //
 import type { Metadata } from 'next';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCountryFacts } from '@/lib/countryFacts';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { driveSide } from '@/lib/driveSide';
@@ -31,7 +32,11 @@ export const metadata: Metadata = {
 };
 
 export default async function CountryStatsPage() {
-  const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
+  const [cities, countries, factsByIso2] = await Promise.all([
+    fetchAllCities(),
+    fetchAllCountries(),
+    fetchAllCountryFacts(),
+  ]);
 
   // Pre-compute per-country city + been counts so the client doesn't
   // need to ship the full city list.
@@ -57,6 +62,8 @@ export default async function CountryStatsPage() {
     driveSide: driveSide(c.iso2, c.name),
     cityCount: cityCount.get(c.id) ?? 0,
     beenCount: beenCount.get(c.id) ?? 0,
+    // Wikidata baselines, joined by ISO2 from public.country_facts.
+    fact: c.iso2 ? factsByIso2.get(c.iso2.toUpperCase()) ?? null : null,
   }));
 
   return (
