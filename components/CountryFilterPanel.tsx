@@ -7,6 +7,7 @@ import type {
   TapWater,
   DriveSide,
 } from './CityFiltersContext';
+import WorldMapPicker from './WorldMapPicker';
 
 // === CountryFilterPanel ====================================================
 // Cockpit UI for /countries/cards and /countries/table. Mirrors the
@@ -19,10 +20,6 @@ import type {
 //   3. Geography — Continent chips
 //   4. Practicality — Visa, Tap water, Drive side chips
 //   5. Sort — name / # cities / # visited
-
-const CONTINENTS: Continent[] = [
-  'Africa', 'Asia', 'Europe', 'North America', 'South America', 'Australia',
-];
 
 const VISA_OPTIONS: { value: VisaUs; label: string }[] = [
   { value: 'Visa-free', label: 'Visa-free' },
@@ -43,7 +40,11 @@ const SORT_FIELDS: { value: CountrySortKey; label: string }[] = [
   { value: 'beenCount', label: 'Cities visited' },
 ];
 
-export default function CountryFilterPanel() {
+export default function CountryFilterPanel({
+  iso3ToContinent = {},
+}: {
+  iso3ToContinent?: Record<string, string>;
+}) {
   const ctx = useCountryFilters();
   if (!ctx) return null;
   const { state, setState, reset, activeFilterCount, resultCount, totalCount } = ctx;
@@ -81,11 +82,11 @@ export default function CountryFilterPanel() {
 
       <div>
         <SectionLabel>Continent</SectionLabel>
-        <ChipGroup
-          options={CONTINENTS.map(c => ({ value: c, label: c }))}
+        <WorldMapPicker
+          iso3ToContinent={iso3ToContinent as Record<string, Continent>}
           selected={state.continents}
           onToggle={v =>
-            setState(s => ({ ...s, continents: toggleCountrySet(s.continents, v as Continent) }))
+            setState(s => ({ ...s, continents: toggleCountrySet(s.continents, v) }))
           }
         />
       </div>

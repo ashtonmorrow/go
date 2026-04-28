@@ -9,9 +9,10 @@ import type {
   CityLayer,
   HasSaved,
 } from './CityFiltersContext';
-import ContinentPicker from './ContinentPicker';
+import WorldMapPicker from './WorldMapPicker';
 import ClimatePicker from './ClimatePicker';
 import PopulationRangeSlider from './PopulationRangeSlider';
+import type { Continent } from './CityFiltersContext';
 
 // === FilterPanel ===
 // Cockpit layout, top to bottom:
@@ -75,8 +76,12 @@ const LAYERS: { key: CityLayer; label: string; swatch: string; field: 'showBeen'
 
 export default function FilterPanel({
   countryOptions = [],
+  iso3ToContinent = {},
 }: {
   countryOptions?: string[];
+  /** ISO3 → continent name for the WorldMapPicker. Threaded from
+   *  Sidebar (server component) which has Notion country data. */
+  iso3ToContinent?: Record<string, string>;
 }) {
   const ctx = useCityFilters();
   if (!ctx) return null; // Provider not mounted — safe no-op
@@ -133,7 +138,8 @@ export default function FilterPanel({
 
       <div>
         <SectionLabel>Continent</SectionLabel>
-        <ContinentPicker
+        <WorldMapPicker
+          iso3ToContinent={iso3ToContinent as Record<string, Continent>}
           selected={state.continents}
           onToggle={v =>
             setState(s => ({ ...s, continents: toggleSet(s.continents, v) }))

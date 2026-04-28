@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePinFilters, togglePinSet, PinSortKey } from './PinFiltersContext';
+import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
+import YearRangeSlider from './YearRangeSlider';
 
 // === PinFilterPanel ========================================================
 // Cockpit UI for /pins. Mirrors the FilterPanel pattern from /cities so the
@@ -73,12 +75,15 @@ export default function PinFilterPanel({
       </div>
 
       {/* Lists — UNESCO World Heritage, Atlas Obscura, the wonders sets,
-          etc. Short, stable list — chips read better than a multiselect. */}
+          etc. Each chip carries the same canonical glyph (globe, compass,
+          droplet…) the cards use, so the cockpit and the cards share a
+          visual language. Short labels keep the chip row from wrapping
+          past two rows. */}
       {listOptions.length > 0 && (
         <div>
           <SectionLabel>On lists</SectionLabel>
-          <ChipGroup
-            options={listOptions.map(l => ({ value: l, label: l }))}
+          <ListChipGroup
+            options={listOptions}
             selected={state.lists}
             onToggle={v =>
               setState(s => ({ ...s, lists: togglePinSet(s.lists, v) }))
@@ -102,26 +107,19 @@ export default function PinFilterPanel({
         </div>
       )}
 
-      {/* Inception year range — Wikidata-derived. Negative = BCE.
-          Both inputs optional; an empty value means "unbounded". */}
+      {/* Inception year — dual-thumb slider with era quick-picks
+          (Antiquity / Medieval / Early modern / Modern). Replaces the
+          number-input pair which made BCE entry awkward (typing -2500
+          for the Pyramids was non-discoverable). */}
       <div>
         <SectionLabel>Established between</SectionLabel>
-        <div className="flex items-center gap-2 text-small">
-          <YearInput
-            value={state.inceptionMin}
-            onChange={v => setState(s => ({ ...s, inceptionMin: v }))}
-            placeholder="any"
-          />
-          <span className="text-muted text-[11px]">→</span>
-          <YearInput
-            value={state.inceptionMax}
-            onChange={v => setState(s => ({ ...s, inceptionMax: v }))}
-            placeholder="any"
-          />
-        </div>
-        <p className="mt-1 text-[10px] text-muted px-0.5">
-          Negative for BCE (e.g. -2500 for the Pyramids).
-        </p>
+        <YearRangeSlider
+          min={state.inceptionMin}
+          max={state.inceptionMax}
+          onChange={({ min, max }) =>
+            setState(s => ({ ...s, inceptionMin: min, inceptionMax: max }))
+          }
+        />
       </div>
 
       {categoryOptions.length > 0 && (
@@ -353,27 +351,45 @@ function Select<T extends string>({
   );
 }
 
-function YearInput({
-  value, onChange, placeholder,
+// === ListChipGroup ===
+// Same shape as ChipGroup but each chip carries the canonical list's
+// glyph + short label. The icons match what the cards/detail page show,
+// so users decode "globe = UNESCO" once and apply it everywhere.
+function ListChipGroup({
+  options,
+  selected,
+  onToggle,
 }: {
-  value: number | null;
-  onChange: (next: number | null) => void;
-  placeholder?: string;
+  options: string[];
+  selected: Set<string>;
+  onToggle: (value: string) => void;
 }) {
   return (
-    <input
-      type="number"
-      inputMode="numeric"
-      value={value == null ? '' : String(value)}
-      placeholder={placeholder}
-      onChange={e => {
-        const raw = e.target.value.trim();
-        if (raw === '') return onChange(null);
-        const n = Number(raw);
-        onChange(Number.isFinite(n) ? n : null);
-      }}
-      className="w-full px-2 py-1 text-small rounded-md border border-sand bg-white text-ink-deep focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 tabular-nums"
-    />
+    <div className="flex flex-wrap gap-1">
+      {options.map(o => {
+        const active = selected.has(o);
+        const canonical = o as CanonicalList;
+        const icon = LIST_ICONS[canonical];
+        const label = LIST_SHORT_LABELS[canonical] ?? o;
+        return (
+          <button
+            key={o}
+            type="button"
+            onClick={() => onToggle(o)}
+            title={o}
+            className={
+              'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              (active
+                ? 'bg-ink-deep text-cream-soft border-ink-deep'
+                : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
+            }
+          >
+            {icon && <span aria-hidden>{icon}</span>}
+            <span>{label}</span>
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
