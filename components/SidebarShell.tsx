@@ -166,14 +166,21 @@ function NavBody({
   const onCitiesCards     = pathname === '/cities/cards';
   const onCitiesMap       = pathname === '/cities/map';
   const onCitiesTable     = pathname === '/cities/table';
+  const onCitiesStats     = pathname === '/cities/stats';
   const onCountriesGlobe  = pathname === '/countries/map';
   const onCountriesCards  = pathname === '/countries/cards';
   const onCountriesTable  = pathname === '/countries/table';
-  const onPinsAny = pathname === '/pins/cards' || pathname === '/pins/map' || pathname === '/pins/table';
+  const onCountriesStats  = pathname === '/countries/stats';
+  const onPinsAny =
+    pathname === '/pins/cards' ||
+    pathname === '/pins/map' ||
+    pathname === '/pins/table' ||
+    pathname === '/pins/stats';
   const showCityFilters =
-    cityFiltersAvailable && (onCitiesCards || onCitiesMap || onCitiesTable || onCountriesGlobe);
+    cityFiltersAvailable &&
+    (onCitiesCards || onCitiesMap || onCitiesTable || onCitiesStats || onCountriesGlobe);
   const showCountryFilters =
-    countryFiltersAvailable && (onCountriesCards || onCountriesTable);
+    countryFiltersAvailable && (onCountriesCards || onCountriesTable || onCountriesStats);
   const showPinFilters = pinFiltersAvailable && onPinsAny;
 
   return (

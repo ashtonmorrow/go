@@ -1,20 +1,29 @@
 // === /cities/stats =========================================================
-// At-a-glance breakdown of the 1,341-city atlas. Big-number summary +
-// proportional bar charts by continent, by Köppen group, by visa, by
-// drive-side, plus a top-N tables of countries by city count and
-// extremes (oldest / hottest / coldest).
+// Filter-aware breakdowns over the city atlas. The page is a thin
+// server shell that loads the data; CityStatsClient does the actual
+// filter consumption and recomputes every aggregate from the cockpit-
+// filtered set on each render.
+//
+// Coverage framing — when a filter is active the headline KPIs show
+// both "X% of these" (within filter) and "Y% of atlas" (global) so
+// the user can read coverage either way.
 //
 import type { Metadata } from 'next';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { driveSide } from '@/lib/driveSide';
+import { visaUs } from '@/lib/visaUs';
+import { tapWater } from '@/lib/tapWater';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
-import { BigStat, Breakdown, FactList } from '@/components/StatBlocks';
+import CityStatsClient from '@/components/CityStatsClient';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
+import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
+import type { City } from '@/lib/cityShape';
 
 export const revalidate = 3600;
 
 const DESCRIPTION =
-  'Counts and breakdowns over the 1,341-city atlas — by continent, climate, visa, drive-side; top countries; oldest, hottest, coldest.';
+  'Filter-aware breakdowns over the 1,341-city atlas — by continent, climate, visa, drive-side; top countries; oldest, hottest, coldest. Numbers update as you change filters in the sidebar.';
 
 export const metadata: Metadata = {
   title: 'City Stats',
@@ -28,92 +37,70 @@ export const metadata: Metadata = {
   },
 };
 
+// Same type guards used by /cities/cards + /cities/table — narrow
+// Notion's free-text columns down to the closed unions the cockpit
+// expects.
+const CONTINENT_VALUES: Continent[] = [
+  'Africa', 'Asia', 'Europe', 'North America', 'South America', 'Australia', 'Antartica',
+];
+const VISA_VALUES: VisaUs[] = ['Visa-free', 'eVisa', 'On arrival', 'Required', 'Varies'];
+const TAP_WATER_VALUES: TapWater[] = ['Safe', 'Treat first', 'Not safe', 'Varies'];
+const asContinent = (v: string | null | undefined): Continent | null =>
+  v && (CONTINENT_VALUES as string[]).includes(v) ? (v as Continent) : null;
+const asVisa = (v: string | null | undefined): VisaUs | null =>
+  v && (VISA_VALUES as string[]).includes(v) ? (v as VisaUs) : null;
+const asTapWater = (v: string | null | undefined): TapWater | null =>
+  v && (TAP_WATER_VALUES as string[]).includes(v) ? (v as TapWater) : null;
+
 export default async function CityStatsPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const countryById = new Map(countries.map(c => [c.id, c]));
 
-  // Headline counts.
-  const total = cities.length;
-  const beenCount = cities.filter(c => c.been).length;
-  const goCount = cities.filter(c => c.go).length;
-  const savedCount = cities.filter(c => !!c.myGooglePlaces).length;
-  const withPhotoCount = cities.filter(c => !!c.personalPhoto).length;
-
-  // Bucket helpers — collapse a Map<key, count> into [key, count][] sorted desc.
-  const bucketize = <T,>(items: T[], key: (x: T) => string | null): { label: string; count: number }[] => {
-    const m = new Map<string, number>();
-    for (const it of items) {
-      const k = key(it);
-      if (!k) continue;
-      m.set(k, (m.get(k) ?? 0) + 1);
-    }
-    return Array.from(m, ([label, count]) => ({ label, count }))
-      .sort((a, b) => b.count - a.count);
-  };
-
-  // By continent — derived from each city's linked country.
-  const byContinent = bucketize(cities, c => {
+  // Same minimal City projection used by /cities/cards. Carries every
+  // axis the cockpit can filter on so CityStatsClient runs the exact
+  // same predicates as CitiesGrid / CitiesTable.
+  const minimal: City[] = cities.map(c => {
     const country = c.countryPageId ? countryById.get(c.countryPageId) : null;
-    return country?.continent ?? null;
+    return {
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+      country: c.country,
+      countryPageId: c.countryPageId ?? null,
+      been: c.been,
+      go: c.go,
+      cityFlag: c.cityFlag ?? null,
+      countryFlag: country?.flag ?? null,
+      personalPhoto: c.personalPhoto,
+      lat: c.lat,
+      lng: c.lng,
+      population: c.population,
+      elevation: c.elevation,
+      avgHigh: c.avgHigh,
+      avgLow: c.avgLow,
+      rainfall: c.rainfall,
+      koppen: c.koppen,
+      founded: c.founded,
+      savedPlaces: c.myGooglePlaces,
+      currency: country?.currency ?? null,
+      language: country?.language ?? null,
+      driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      continent: asContinent(country?.continent),
+      visa:
+        asVisa(country?.visaUs) ??
+        visaUs(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      tapWater:
+        asTapWater(country?.tapWater) ??
+        tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+    };
   });
 
-  // Köppen at the group level (first letter of code: A/B/C/D/E).
-  const KOPPEN_GROUP_LABELS: Record<string, string> = {
-    A: 'A — Tropical',
-    B: 'B — Arid',
-    C: 'C — Temperate',
-    D: 'D — Continental',
-    E: 'E — Polar',
-  };
-  const byKoppen = bucketize(cities, c => {
-    const g = c.koppen?.[0]?.toUpperCase();
-    return g ? KOPPEN_GROUP_LABELS[g] ?? g : null;
-  });
-
-  // Top countries by city count (link out to the country page).
-  const countryCounts = new Map<string, number>();
-  for (const c of cities) {
-    if (!c.countryPageId) continue;
-    countryCounts.set(c.countryPageId, (countryCounts.get(c.countryPageId) ?? 0) + 1);
+  // Slim country lookup — only what the breakdown needs (name, slug,
+  // continent for grouping). Avoids shipping the full country list.
+  const countriesByPageId: Record<string, { name: string; slug: string; continent: string | null }> = {};
+  for (const c of countries) {
+    countriesByPageId[c.id] = { name: c.name, slug: c.slug, continent: c.continent };
   }
-  const topCountries = Array.from(countryCounts.entries())
-    .map(([id, count]) => {
-      const country = countryById.get(id);
-      return country ? { label: country.name, count, href: `/countries/${country.slug}` } : null;
-    })
-    .filter((x): x is { label: string; count: number; href: string } => !!x)
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 12);
-
-  // Extremes — oldest founded year, hottest avg high, coldest avg low.
-  const founded = cities
-    .filter(c => c.founded)
-    .map(c => {
-      const m = c.founded!.match(/\d+/);
-      const year = m ? parseInt(m[0], 10) : null;
-      const signed = c.founded!.includes('BC') && year ? -year : year;
-      return { c, signed };
-    })
-    .filter((x): x is { c: typeof cities[number]; signed: number } => x.signed != null)
-    .sort((a, b) => a.signed - b.signed)
-    .slice(0, 5)
-    .map(({ c, signed }) => ({
-      label: c.name,
-      value: signed < 0 ? `${-signed} BCE` : `${signed}`,
-      href: `/cities/${c.slug}`,
-    }));
-
-  const hottest = [...cities]
-    .filter(c => c.avgHigh != null)
-    .sort((a, b) => (b.avgHigh as number) - (a.avgHigh as number))
-    .slice(0, 5)
-    .map(c => ({ label: c.name, value: `${c.avgHigh!.toFixed(1)}°C`, href: `/cities/${c.slug}` }));
-
-  const coldest = [...cities]
-    .filter(c => c.avgLow != null)
-    .sort((a, b) => (a.avgLow as number) - (b.avgLow as number))
-    .slice(0, 5)
-    .map(c => ({ label: c.name, value: `${c.avgLow!.toFixed(1)}°C`, href: `/cities/${c.slug}` }));
 
   return (
     <div className="max-w-page mx-auto px-5 py-6">
@@ -130,27 +117,7 @@ export default async function CityStatsPage() {
         <ViewSwitcher object="cities" current="stats" />
       </div>
 
-      {/* Headline counts. Five small KPI cards above the fold. */}
-      <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6">
-        <BigStat value={total} label="Cities" />
-        <BigStat value={beenCount} label="Visited" hint={`${Math.round((beenCount / total) * 100)}% of the atlas`} />
-        <BigStat value={goCount} label="Want to go" />
-        <BigStat value={savedCount} label="With saved places" />
-        <BigStat value={withPhotoCount} label="With my photos" />
-      </section>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Breakdown title="By continent"   rows={byContinent} />
-        <Breakdown title="By climate"     rows={byKoppen} />
-        <Breakdown
-          title="Top countries by city count"
-          rows={topCountries}
-          href="/countries/cards"
-        />
-        <FactList title="Hottest (avg high)" rows={hottest} />
-        <FactList title="Coldest (avg low)" rows={coldest} />
-        <FactList title="Earliest founded" rows={founded} />
-      </div>
+      <CityStatsClient cities={minimal} countriesByPageId={countriesByPageId} />
     </div>
   );
 }
