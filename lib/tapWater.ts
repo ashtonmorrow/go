@@ -58,6 +58,22 @@ const VARIES = new Set<string>([
   // Add countries here if they're genuinely too variable to label.
 ]);
 
+// Places with no civilian tap-water infrastructure to assess. The
+// deny-by-default 'Not safe' is wrong here because it implies a hazard
+// that doesn't exist (the right answer is "there's no tap"). Returns
+// null for these so the country page suppresses the row entirely.
+const NO_PUBLIC_SUPPLY = new Set<string>([
+  'AQ',  // Antarctica — Antarctic Treaty area, only research stations
+  'BV',  // Bouvet Island (Norwegian dependency, uninhabited)
+  'GS',  // South Georgia & the South Sandwich Islands (uninhabited)
+  'HM',  // Heard Island & McDonald Islands (uninhabited)
+  'TF',  // French Southern & Antarctic Lands (no permanent civilian pop)
+  'IO',  // British Indian Ocean Territory (military only)
+  'UM',  // US Minor Outlying Islands (uninhabited)
+  'CC',  // Cocos (Keeling) Islands — minor case; ~600 pop, water tankered
+  'AX',  // Åland — keep Finland as the practical signal
+]);
+
 const NAME_TO_ISO2: Record<string, string> = {
   'united kingdom': 'GB',
   'united states': 'US',
@@ -82,6 +98,7 @@ export function tapWater(iso2: string | null, countryName?: string | null): TapW
     code = NAME_TO_ISO2[countryName.toLowerCase()] ?? null;
   }
   if (!code) return null;
+  if (NO_PUBLIC_SUPPLY.has(code)) return null;  // suppress the row entirely
   if (SAFE.has(code)) return 'Safe';
   if (TREAT_FIRST.has(code)) return 'Treat first';
   if (VARIES.has(code)) return 'Varies';
