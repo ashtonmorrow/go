@@ -6,6 +6,7 @@ import { useCityFilters } from './CityFiltersContext';
 import { COLORS } from '@/lib/colors';
 import type { City } from '@/lib/cityShape';
 import { useFilteredCities } from '@/lib/useFilteredCities';
+import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
 
 type Props = { cities: City[] };
@@ -53,9 +54,14 @@ export default function CitiesGrid({ cities }: Props) {
           technical article. The postcard grid is now the entire main view;
           chrome lives in the sidebar (filters, navigation). */}
 
+      {/* Active-filter breadcrumb ribbon — only renders when at least one
+          narrowing facet is active. Mounts above the postcard grid so the
+          state is visible without scrolling. */}
+      <ActiveFilters className="mb-3" />
+
       {/* Postcard grid: landscape cards, 3 columns max so each card has room
           for the stamp + two-column body without text truncating. */}
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {visible.map(c => (
           <CityCard key={c.id} city={c} onClick={() => router.push(`/cities/${c.slug}`)} />
         ))}

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react';
 import { useCityFilters } from './CityFiltersContext';
-import { filterCities } from '@/lib/cityFilter';
+import { applyLayerVisibility, filterCities, layerCounts as countLayers } from '@/lib/cityFilter';
 import { BigStat, Breakdown, FactList } from './StatBlocks';
 import type { City } from '@/lib/cityShape';
 
@@ -34,27 +34,37 @@ export default function CityStatsClient({
   const ctx = useCityFilters();
   const state = ctx?.state;
 
-  // Treat the cockpit as "active" only when the user has actually
-  // changed something. The CityFiltersContext default is showBeen=true
-  // (which makes /cities/cards open already-focused on visited cities)
-  // — but on the stats page that default would silently narrow the
-  // baseline to the 298 visited cities the moment you arrive. Stats
-  // wants the full atlas as the denominator unless the user opts in.
+  // Stats treats the cockpit as "active" if the user has narrowed (any
+  // facet) or hidden a layer. With the layers/filters split, defaults
+  // are genuinely neutral — every layer ON, every facet EMPTY — so
+  // "active" cleanly means "user has changed the cockpit." When inactive
+  // the headline cohort is the full atlas (no silent narrowing).
   const filterActive =
     (ctx?.activeFilterCount ?? 0) > 0 ||
-    (state?.q ?? '').trim().length > 0;
+    (ctx?.activeLayerHidden ?? false);
 
-  const filtered = useMemo(() => {
+  const narrowed = useMemo(() => {
     if (!state || !filterActive) return cities;
     return filterCities(cities, state);
   }, [cities, state, filterActive]);
 
-  // Mirror the cockpit count contract so the "X / Y cities" badge in
-  // the sidebar tracks alongside the stats. When filterActive is
-  // false this reports total/total — confirms "everything is showing".
+  const filtered = useMemo(() => {
+    if (!state || !filterActive) return cities;
+    return applyLayerVisibility(narrowed, state);
+  }, [narrowed, state, filterActive]);
+
+  // Push counts to the cockpit footer. When filterActive is false this
+  // reports total/total — confirms "everything is showing".
   useEffect(() => {
     ctx?.setCounts(filtered.length, cities.length);
   }, [ctx, filtered.length, cities.length]);
+
+  // Push layer counts (over the narrowed-but-not-yet-visibility set) so
+  // the sidebar's layer toggles show "Been (47)" etc. that reflects the
+  // narrowed cohort, not the global tally.
+  useEffect(() => {
+    ctx?.setLayerCounts(countLayers(narrowed));
+  }, [ctx, narrowed]);
 
   const total = cities.length;
   const matching = filtered.length;

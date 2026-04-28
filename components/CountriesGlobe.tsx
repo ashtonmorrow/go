@@ -14,6 +14,9 @@ import {
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { COLORS } from '@/lib/colors';
 import { useFilteredCities } from '@/lib/useFilteredCities';
+import { cityLayer } from '@/lib/cityFilter';
+import { useCityFilters, type CityLayer } from './CityFiltersContext';
+import ActiveFilters from './ActiveFilters';
 import type { City } from '@/lib/cityShape';
 
 // Country metadata indexed by ISO 3166-1 alpha-3. Carries every field the
@@ -56,6 +59,7 @@ const COUNTRY_GEOJSON = 'https://cdn.jsdelivr.net/gh/datasets/geo-countries@mast
 export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso3 }: Props) {
   const router = useRouter();
   const mapRef = useRef<MapRef | null>(null);
+  const ctx = useCityFilters();
 
   const [projection, setProjection] = useState<Projection>('globe');
   const [hovered, setHovered] = useState<{
@@ -64,50 +68,64 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
     lat: number;
   } | null>(null);
 
-  // === Apply sidebar filters to the city list ============================
-  // useFilteredCities reads from CityFiltersContext, so toggling Continent /
-  // Climate / Country / Visa etc. in the sidebar narrows the cities, and
-  // therefore narrows which countries get shaded on the globe.
+  // useFilteredCities runs the FULL pipeline (facets + layer visibility +
+  // sort), so when the user toggles a layer off the cities in that layer
+  // disappear from the globe altogether.
   const filtered = useFilteredCities(cities);
 
-  // === Derive matched countries from filtered cities =====================
-  // A country is 'matched' if it has at least one city in the active
-  // filter set. One bucket, one colour. The earlier visited / planned /
-  // matched-no-status split was confusing — the user already controls
-  // which subset shows by toggling Been / Want to go / Has saved places
-  // in the sidebar, so the globe just needs to reflect the result.
-  const { matchedIso3, perCountry } = useMemo(() => {
-    const beenByIso3 = new Map<string, number>();
-    const goByIso3 = new Map<string, number>();
-    const cityByIso3 = new Map<string, number>();
+  // === Derive country shading from the filtered set ======================
+  // Every country with at least one filtered city gets a fill color. The
+  // color is chosen by the country's DOMINANT layer using priority
+  // Been > Go > Saved > Other — so a country with 3 visited cities and
+  // 1 planned city shades teal (Been), not slate (Go). This mirrors the
+  // map-layer pattern from Strava / Kepler.gl: a place reads as the
+  // strongest signal it carries, not the average.
+  //
+  // perCountry keeps the per-bucket counts for the hover tile so users
+  // can still see "5 visited, 2 planned, 1 saved" when they mouse over.
+  const { layerByIso3, perCountry } = useMemo(() => {
+    type Buckets = Record<CityLayer, number>;
+    const buckets = new Map<string, Buckets>();
 
     for (const c of filtered) {
-      // Resolve via the country page id → ISO3 map built server-side.
-      // Cities without a linked country are skipped (their country
-      // free-text might exist but isn't indexed for the globe).
       if (!c.countryPageId) continue;
       const iso3 = countryIdToIso3[c.countryPageId];
       if (!iso3) continue;
-
-      cityByIso3.set(iso3, (cityByIso3.get(iso3) || 0) + 1);
-      if (c.been) beenByIso3.set(iso3, (beenByIso3.get(iso3) || 0) + 1);
-      else if (c.go) goByIso3.set(iso3, (goByIso3.get(iso3) || 0) + 1);
+      let b = buckets.get(iso3);
+      if (!b) {
+        b = { been: 0, go: 0, saved: 0, other: 0 };
+        buckets.set(iso3, b);
+      }
+      b[cityLayer(c)]++;
     }
 
-    // Per-country stats stay (used by the hover popup) — but the fill
-    // expression only needs one array now.
-    const matched: string[] = [];
-    const perCountryStats: Record<string, { been: number; go: number; total: number }> = {};
-    for (const [iso3, total] of cityByIso3) {
-      perCountryStats[iso3] = {
-        been: beenByIso3.get(iso3) || 0,
-        go: goByIso3.get(iso3) || 0,
-        total,
-      };
-      matched.push(iso3);
+    const layers: Record<string, CityLayer> = {};
+    const perCountryStats: Record<string, Buckets & { total: number }> = {};
+    for (const [iso3, b] of buckets) {
+      // Priority: Been > Go > Saved > Other. A bucket with at least one
+      // city in a higher-priority layer wins, regardless of count.
+      const dominant: CityLayer =
+        b.been > 0 ? 'been'
+          : b.go > 0 ? 'go'
+          : b.saved > 0 ? 'saved'
+          : 'other';
+      layers[iso3] = dominant;
+      perCountryStats[iso3] = { ...b, total: b.been + b.go + b.saved + b.other };
     }
-    return { matchedIso3: matched, perCountry: perCountryStats };
+    return { layerByIso3: layers, perCountry: perCountryStats };
   }, [filtered, countryIdToIso3]);
+
+  // Group ISO3s by layer for the MapLibre fill expression. Each layer
+  // gets its own color via a series of `match` branches in the paint.
+  const isoByLayer = useMemo(() => {
+    const byLayer: Record<CityLayer, string[]> = { been: [], go: [], saved: [], other: [] };
+    for (const [iso3, l] of Object.entries(layerByIso3)) {
+      byLayer[l].push(iso3);
+    }
+    return byLayer;
+  }, [layerByIso3]);
+
+  const matchedIso3 = useMemo(() => Object.keys(layerByIso3), [layerByIso3]);
 
   const hoveredIso = hovered?.iso3 ?? '__none__';
 
@@ -155,14 +173,23 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         onMouseLeave={handleMouseLeave}
       >
         <Source id="countries" type="geojson" data={COUNTRY_GEOJSON}>
-          {/* Fill layer — single colour. A country is shaded if any of
-              its cities passes the active filter set; otherwise no fill.
-              Hover bumps the opacity so the target country lights up. */}
+          {/* Fill layer — color by dominant layer (Been=teal, Go=slate,
+              Saved=accent, Other=muted). Each layer's ISO3 list is matched
+              independently so toggling a layer off in the cockpit instantly
+              clears countries whose dominant signal was that layer. Hover
+              bumps the opacity so the target country lights up. */}
           <Layer
             id="countries-fill"
             type="fill"
             paint={{
-              'fill-color': COLORS.teal,
+              'fill-color': [
+                'case',
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.been]],  COLORS.teal,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.go]],    COLORS.slate,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.saved]], COLORS.accent,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.other]], COLORS.pinIdle,
+                'transparent',
+              ] as unknown as string,
               'fill-opacity': [
                 'case',
                 ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
@@ -183,7 +210,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
               'line-color': [
                 'case',
                 ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
-                COLORS.teal,
+                COLORS.inkDeep,
                 COLORS.inkDeep,
               ] as unknown as string,
               'line-width': [
@@ -260,6 +287,14 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         </div>
       </div>
 
+      {/* Active-filter chip ribbon — floats top-center. Hidden when no
+          facets are active. */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
+        <div className="bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden">
+          <ActiveFilters />
+        </div>
+      </div>
+
       {/* View switcher lives at the page level (app/countries/map/page.tsx). */}
     </div>
   );
@@ -302,7 +337,7 @@ function CountryHoverTile({
   stats,
 }: {
   country: CountryMeta;
-  stats?: { been: number; go: number; total: number };
+  stats?: { been: number; go: number; saved: number; other: number; total: number };
 }) {
   // Build the row list — only include rows where there's a value, so a
   // sparsely-populated country (some islands etc) renders cleanly without

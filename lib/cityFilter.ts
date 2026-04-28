@@ -1,15 +1,24 @@
-// === Shared city filter + sort logic =======================================
-// Same pattern as lib/pinFilter.ts and lib/countryFilter.ts. Extracted
-// from useFilteredCities so non-hook consumers (notably WorldGlobe,
-// which lives inside MapLibre callbacks) can apply the same filter
-// without dragging the side-effecting hook semantics in.
+// === Shared city filter + layer + sort logic ===============================
+// Three concerns now cleanly separated (see CityFiltersContext for the
+// design rationale):
 //
-// Generic over T so callers can shape data however they want as long
-// as the structural fields the filter axes need are present.
-// CityFiltersContext exports the state type as `FilterState` for legacy
-// reasons (it predates Pin/Country contexts which use the namespaced names).
-// Aliasing here so the helper signature reads cleanly alongside the others.
-import type { FilterState as CityFilterState, KoppenGroup } from '@/components/CityFiltersContext';
+//   1. filterCities — applies NARROWING facets only (search, country,
+//      continent, climate, visa, tap water, drive, population). Status
+//      (Been/Go/Saved) is NOT a filter axis here.
+//   2. cityLayer    — assigns a layer label to a city based on its status.
+//      Priority: Been > Go > Saved > Other. One layer per city.
+//   3. applyLayerVisibility — drops cities whose layer is currently hidden
+//      via the showX flags in FilterState. Composes after filterCities.
+//
+// Standard pipeline used by every consumer:
+//
+//     const matched   = filterCities(cities, state);
+//     const visible   = applyLayerVisibility(matched, state);
+//     const sorted    = sortCities(visible, state);
+//
+// Generic over T so callers can shape data however they want as long as
+// the structural fields each function needs are present.
+import type { FilterState as CityFilterState, KoppenGroup, CityLayer } from '@/components/CityFiltersContext';
 
 export type CityFilterable = {
   name: string;
@@ -32,26 +41,36 @@ export type CityFilterable = {
   rainfall?: number | null;
 };
 
+/**
+ * Assign one canonical layer to a city. Priority is Been > Go > Saved >
+ * Other so that any city in the Been bucket renders teal even if it also
+ * has saved places, and a saved-but-not-planned city falls back through
+ * Saved rather than Other.
+ *
+ * Mike's atlas convention: Been and Go are mutually exclusive in the source
+ * data (you don't "want to go" somewhere you've already been). The priority
+ * just hardens that invariant against any future data drift.
+ */
+export function cityLayer(c: CityFilterable): CityLayer {
+  if (c.been) return 'been';
+  if (c.go) return 'go';
+  if (c.savedPlaces) return 'saved';
+  return 'other';
+}
+
+/**
+ * Apply NARROWING facets only — search, geography, practicality, population.
+ * Layer visibility is intentionally out of scope; chain into
+ * applyLayerVisibility next if you want the visible set.
+ */
 export function filterCities<T extends CityFilterable>(cities: T[], state: CityFilterState): T[] {
   const {
-    q, showBeen, showGo, showSaved,
+    q,
     countries, continents, koppenGroups,
     visa, tapWater, drive,
   } = state;
 
   let list = cities;
-
-  // Personal status — Been > Go priority, Saved additive (preserves the
-  // semantics fixed in tasks #75 + #77).
-  if (showBeen || showGo || showSaved) {
-    list = list.filter(c => {
-      let statusMatch = false;
-      if (c.been) statusMatch = showBeen;
-      else if (c.go) statusMatch = showGo;
-      const savedMatch = showSaved && !!c.savedPlaces;
-      return statusMatch || savedMatch;
-    });
-  }
 
   if (q.trim()) {
     const needle = q.trim().toLowerCase();
@@ -103,6 +122,30 @@ export function filterCities<T extends CityFilterable>(cities: T[], state: CityF
   return list;
 }
 
+/**
+ * Hide cities whose layer is currently toggled off. Run AFTER filterCities
+ * so the layer counts in the cockpit reflect the narrowed set ("how many
+ * Been cities are still visible after I filter to Asia"), not the full
+ * atlas in isolation.
+ */
+export function applyLayerVisibility<T extends CityFilterable>(
+  cities: T[],
+  state: CityFilterState,
+): T[] {
+  const { showBeen, showGo, showSaved, showOther } = state;
+  // Fast path — every layer on means no filtering at all.
+  if (showBeen && showGo && showSaved && showOther) return cities;
+  // Fast path — every layer off means empty result.
+  if (!showBeen && !showGo && !showSaved && !showOther) return [];
+  return cities.filter(c => {
+    const layer = cityLayer(c);
+    if (layer === 'been') return showBeen;
+    if (layer === 'go') return showGo;
+    if (layer === 'saved') return showSaved;
+    return showOther;
+  });
+}
+
 export function sortCities<T extends CityFilterable>(cities: T[], state: CityFilterState): T[] {
   const { sort, desc } = state;
   const get = (c: T): unknown => {
@@ -124,4 +167,18 @@ export function sortCities<T extends CityFilterable>(cities: T[], state: CityFil
     if (av > bv) return desc ? -1 : 1;
     return 0;
   });
+}
+
+/**
+ * Count cities in each layer within the given (already-filtered) set.
+ * Used by FilterPanel to show "Been (47) · Go (12) · Saved (3) · Other (188)"
+ * counts on the layer toggles, so the user sees how many records each
+ * layer would reveal. Counts are computed over the FILTERED set, not the
+ * full atlas — they should reflect "how much will this toggle add to my
+ * current view" rather than the global tally.
+ */
+export function layerCounts<T extends CityFilterable>(filtered: T[]): Record<CityLayer, number> {
+  const counts: Record<CityLayer, number> = { been: 0, go: 0, saved: 0, other: 0 };
+  for (const c of filtered) counts[cityLayer(c)]++;
+  return counts;
 }

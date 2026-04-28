@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCityFilters, SortKey } from './CityFiltersContext';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import type { City } from '@/lib/cityShape';
+import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
 
 type Props = { cities: City[] };
@@ -249,11 +250,15 @@ export default function CitiesTable({ cities }: Props) {
     <section className="w-full bg-white">
       {/* Discreet page label + columns picker. Thin chrome bar across the
           top of the table, sticky so it stays visible while the user
-          scrolls vertically through the rows. */}
+          scrolls vertically through the rows. ActiveFilters slot in
+          between so users see what's applied as they scroll. */}
       <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-sand sticky top-0 z-20 bg-white">
-        <h1 className="text-[11px] uppercase tracking-[0.18em] font-medium text-ink-deep">
-          City Data
-        </h1>
+        <div className="flex items-center gap-3 min-w-0 flex-wrap">
+          <h1 className="text-[11px] uppercase tracking-[0.18em] font-medium text-ink-deep flex-shrink-0">
+            City Data
+          </h1>
+          <ActiveFilters />
+        </div>
 
         {/* === Columns picker === */}
         <div ref={colsRef} className="relative">

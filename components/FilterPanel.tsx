@@ -8,25 +8,29 @@ import type {
   VisaUs,
   TapWater,
   DriveSide,
+  CityLayer,
 } from './CityFiltersContext';
 
 // === FilterPanel ===
-// The "cockpit" — every search/filter/sort control the user has, packed into
-// the left rail. Sections are stacked, each with a small uppercase label, so
-// the user can scan the categories without reading every control.
+// Cockpit layout, top to bottom:
 //
-// Cockpit UX choices applied here (per Nielsen / shadcn references):
-//   1. SEARCH FIRST — global text search at the very top, since it short-
-//      circuits everything else.
-//   2. STATUS — the user's own Been/Go/Saved is the most personal filter, so
-//      it sits right under search.
-//   3. GEOGRAPHY — broad scoping (continent, climate). Multi-select chips so
-//      "Asia + Europe" is natural.
-//   4. PRACTICALITY — visa, tap water, drive side: things that decide whether
-//      a place is actually viable for a first-time traveler.
-//   5. SORT — last, because once you've scoped down you order what's left.
-//   6. RESET — visible "Clear filters (N)" button when any filter is active.
-//   7. RESULT COUNT — passed in by the parent; shown next to the reset button.
+//   1. SEARCH         — text first; short-circuits everything else.
+//   2. LAYERS         — visibility toggles (encoding, NOT narrowing). Each
+//                       layer has a color swatch and a live count of how
+//                       many cities currently fall in it within the
+//                       narrowed set. This is the cockpit's signal that
+//                       Been/Go/Saved are *what you see colored*, not
+//                       *what you filter to*.
+//   3. FILTERS        — the actual narrowing facets (geography, climate,
+//                       practicality, population). These compose with AND
+//                       and contribute to activeFilterCount.
+//   4. SORT           — last, because once you've scoped you order the rest.
+//   5. RESULT FOOTER  — sticky at the bottom: "X / Y cities" + Clear (N).
+//
+// The split lines up with how the data UI literature recommends decomposing
+// "filters" — visibility/encoding live separately from narrowing/inclusion
+// (Munzner, "Visualization Analysis & Design", ch. 13; see also Square's
+// CrossFilter pattern).
 
 const CONTINENTS: Continent[] = [
   'Africa',
@@ -68,14 +72,28 @@ const SORT_FIELDS: { value: SortKey; label: string }[] = [
   { value: 'rainfall', label: 'Rainfall' },
 ];
 
-export default function FilterPanel({ countryOptions = [] }: { countryOptions?: string[] }) {
+// Layer descriptors — one source of truth for the swatch color and label.
+// Color tokens align with WorldGlobe + CountriesGlobe so the cockpit
+// swatch reads as a sample of what'll appear on the map.
+const LAYERS: { key: CityLayer; label: string; swatch: string; field: 'showBeen' | 'showGo' | 'showSaved' | 'showOther' }[] = [
+  { key: 'been',  label: 'Been',          swatch: 'bg-teal',           field: 'showBeen' },
+  { key: 'go',    label: 'Want to go',    swatch: 'bg-slate',          field: 'showGo' },
+  { key: 'saved', label: 'Saved places',  swatch: 'bg-accent',         field: 'showSaved' },
+  { key: 'other', label: 'Unstatused',    swatch: 'bg-sand',           field: 'showOther' },
+];
+
+export default function FilterPanel({
+  countryOptions = [],
+}: {
+  countryOptions?: string[];
+}) {
   const ctx = useCityFilters();
   if (!ctx) return null; // Provider not mounted — safe no-op
-  const { state, setState, reset, activeFilterCount, resultCount, totalCount } = ctx;
+  const { state, setState, reset, activeFilterCount, activeLayerHidden, resultCount, totalCount, layerCounts } = ctx;
 
   return (
     <div className="flex flex-col gap-5">
-      {/* === SEARCH === inline magnifier icon + clean shadcn-style border */}
+      {/* === SEARCH === */}
       <div>
         <SectionLabel>Search</SectionLabel>
         <SearchInput
@@ -85,29 +103,28 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         />
       </div>
 
-      {/* === MY STATUS === */}
+      {/* === LAYERS ===
+          Encoding controls — toggle WHICH STATUS COLORS are rendered.
+          Each row pairs the swatch (sample of the on-map color) with a
+          live count from the narrowed set. The header makes the intent
+          explicit so the user reads it as visibility, not filtering. */}
       <div>
-        <SectionLabel>My status</SectionLabel>
-        <div className="flex flex-col gap-1.5">
-          <Switch
-            on={state.showBeen}
-            label="Been"
-            onChange={v => setState(s => ({ ...s, showBeen: v }))}
-          />
-          <Switch
-            on={state.showGo}
-            label="Want to go"
-            onChange={v => setState(s => ({ ...s, showGo: v }))}
-          />
-          <Switch
-            on={state.showSaved}
-            label="Has saved places"
-            onChange={v => setState(s => ({ ...s, showSaved: v }))}
-          />
+        <SectionLabel hint={activeLayerHidden ? 'some hidden' : undefined}>Layers</SectionLabel>
+        <div className="flex flex-col gap-1">
+          {LAYERS.map(l => (
+            <LayerRow
+              key={l.key}
+              label={l.label}
+              swatchClass={l.swatch}
+              count={layerCounts?.[l.key]}
+              on={state[l.field]}
+              onChange={v => setState(s => ({ ...s, [l.field]: v }))}
+            />
+          ))}
         </div>
       </div>
 
-      {/* === GEOGRAPHY === */}
+      {/* === FILTERS — narrowing facets === */}
       {countryOptions.length > 0 && (
         <div>
           <SectionLabel>Country</SectionLabel>
@@ -148,7 +165,6 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         />
       </div>
 
-      {/* === PRACTICALITY === */}
       <div>
         <SectionLabel>Visa (US passport)</SectionLabel>
         <ChipGroup
@@ -183,10 +199,7 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         />
       </div>
 
-      {/* === POPULATION RANGE ===
-          Numeric range filter — useful for travelers picking between
-          megacities (>5M) and mid-size travel-friendly cities (~500k-2M).
-          Quick-pick chips below cover the common bands. */}
+      {/* Population range — same control as before. */}
       <div>
         <SectionLabel>Population</SectionLabel>
         <div className="flex items-center gap-2 text-small">
@@ -255,9 +268,10 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         </div>
       </div>
 
-      {/* === RESET + RESULT COUNT ===
-          Sticky-style block at the bottom of the panel: shows what's matching
-          and gives the user one tap to escape if filters narrowed too far. */}
+      {/* === RESULT COUNT + RESET ===
+          Shows what's matching and gives one tap to escape if filters
+          narrowed too far. The "Clear (N)" button only counts narrowing
+          facets — layer toggles need their own escape via the swatches. */}
       <div className="pt-3 border-t border-sand flex items-center justify-between gap-2">
         <div className="text-[11px] text-muted">
           {resultCount != null && totalCount != null ? (
@@ -274,10 +288,10 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
         <button
           type="button"
           onClick={reset}
-          disabled={activeFilterCount === 0}
+          disabled={activeFilterCount === 0 && !activeLayerHidden}
           className={
             'text-[11px] px-2 py-1 rounded-md transition-colors ' +
-            (activeFilterCount > 0
+            (activeFilterCount > 0 || activeLayerHidden
               ? 'text-ink-deep hover:bg-cream-soft'
               : 'text-muted/50 cursor-not-allowed')
           }
@@ -292,111 +306,80 @@ export default function FilterPanel({ countryOptions = [] }: { countryOptions?: 
 // === Helpers: human-friendly direction labels per sort field ===
 function ascendingLabel(sort: SortKey): string {
   switch (sort) {
-    case 'name':
-      return 'A → Z';
-    case 'founded':
-      return 'Oldest';
-    case 'population':
-      return 'Smallest';
+    case 'name':       return 'A → Z';
+    case 'founded':    return 'Oldest';
+    case 'population': return 'Smallest';
     case 'avgHigh':
-    case 'avgLow':
-      return 'Coolest';
-    case 'elevation':
-      return 'Lowest';
-    case 'rainfall':
-      return 'Driest';
-    default:
-      return 'Asc';
+    case 'avgLow':     return 'Coolest';
+    case 'elevation':  return 'Lowest';
+    case 'rainfall':   return 'Driest';
+    default:           return 'Asc';
   }
 }
 function descendingLabel(sort: SortKey): string {
   switch (sort) {
-    case 'name':
-      return 'Z → A';
-    case 'founded':
-      return 'Newest';
-    case 'population':
-      return 'Largest';
+    case 'name':       return 'Z → A';
+    case 'founded':    return 'Newest';
+    case 'population': return 'Largest';
     case 'avgHigh':
-    case 'avgLow':
-      return 'Hottest';
-    case 'elevation':
-      return 'Highest';
-    case 'rainfall':
-      return 'Wettest';
-    default:
-      return 'Desc';
+    case 'avgLow':     return 'Hottest';
+    case 'elevation':  return 'Highest';
+    case 'rainfall':   return 'Wettest';
+    default:           return 'Desc';
   }
 }
 
 // =================== Shared shadcn-style primitives ===================
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
-    <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
-      {children}
+    <div className="text-[10px] uppercase tracking-[0.14em] font-medium mb-2 px-0.5 flex items-baseline justify-between gap-2">
+      <span className="text-muted">{children}</span>
+      {hint && (
+        <span className="text-[9px] text-accent normal-case tracking-normal font-normal">
+          {hint}
+        </span>
+      )}
     </div>
   );
 }
 
-// shadcn-style search input. Border-input style, focus ring, magnifier icon.
-function SearchInput({
-  value,
-  onChange,
-  placeholder,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-}) {
-  return (
-    <div className="relative">
-      <svg
-        className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        <circle cx="11" cy="11" r="8" />
-        <path d="m21 21-4.35-4.35" />
-      </svg>
-      <input
-        type="search"
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        placeholder={placeholder}
-        className="w-full pl-8 pr-2.5 py-2 text-small rounded-md border border-sand bg-white text-ink placeholder:text-muted/70 focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10"
-      />
-    </div>
-  );
-}
-
-// iOS-style toggle (knob slides via translate-x). Used standalone in the
-// sidebar — slightly more compact than the page-level Toggle so it fits
-// the narrow rail.
-function Switch({
-  on,
+// === LayerRow ===
+// One layer toggle. Color swatch + label + count pill + iOS-style switch.
+// Inert click on the color swatch is intentional — only the toggle changes
+// state, the swatch is just a visual sample of the on-map color.
+function LayerRow({
   label,
+  swatchClass,
+  count,
+  on,
   onChange,
 }: {
-  on: boolean;
   label: string;
+  swatchClass: string;
+  count: number | undefined;
+  on: boolean;
   onChange: (next: boolean) => void;
 }) {
   return (
-    <label className="flex items-center justify-between gap-2 cursor-pointer select-none px-1 py-0.5 rounded hover:bg-cream-soft">
-      <span className="text-small text-ink">{label}</span>
+    <label
+      className={
+        'flex items-center justify-between gap-2 cursor-pointer select-none px-1 py-1 rounded hover:bg-cream-soft ' +
+        (on ? '' : 'opacity-60')
+      }
+    >
+      <span className="flex items-center gap-2 min-w-0">
+        <span aria-hidden className={'inline-block w-3 h-3 rounded-full flex-shrink-0 ' + swatchClass} />
+        <span className="text-small text-ink truncate">{label}</span>
+        {count != null && (
+          <span className="text-[10px] tabular-nums text-muted">{count}</span>
+        )}
+      </span>
       <button
         type="button"
         role="switch"
         aria-checked={on}
-        aria-label={label}
+        aria-label={`${on ? 'Hide' : 'Show'} ${label}`}
         onClick={() => onChange(!on)}
         className={
           'relative inline-block w-9 h-5 rounded-full transition-colors duration-200 flex-shrink-0 ' +
@@ -415,7 +398,38 @@ function Switch({
   );
 }
 
-// Multi-select chips. Compact, wraps. Active = solid ink, inactive = outlined.
+// shadcn-style search input.
+function SearchInput({
+  value,
+  onChange,
+  placeholder,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <div className="relative">
+      <svg
+        className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+        width="14" height="14" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" strokeWidth="2"
+        strokeLinecap="round" strokeLinejoin="round" aria-hidden
+      >
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.35-4.35" />
+      </svg>
+      <input
+        type="search"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full pl-8 pr-2.5 py-2 text-small rounded-md border border-sand bg-white text-ink placeholder:text-muted/70 focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10"
+      />
+    </div>
+  );
+}
+
 function ChipGroup<T extends string>({
   options,
   selected,
@@ -449,7 +463,6 @@ function ChipGroup<T extends string>({
   );
 }
 
-// Native <select> styled to match shadcn's border/focus pattern.
 function Select<T extends string>({
   value,
   onChange,
@@ -467,22 +480,13 @@ function Select<T extends string>({
         className="w-full pl-2.5 pr-8 py-1.5 text-small rounded-md border border-sand bg-white text-ink-deep focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 appearance-none cursor-pointer"
       >
         {options.map(o => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
+          <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
       <svg
         className="absolute right-2 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
-        width="12"
-        height="12"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
+        width="12" height="12" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
@@ -490,8 +494,6 @@ function Select<T extends string>({
   );
 }
 
-// Compact numeric input for the Population range. Empty string means
-// "unbounded" — null is sent up rather than 0.
 function NumberInput({
   value, onChange, placeholder,
 }: {
@@ -540,10 +542,6 @@ function DirectionButton({
 }
 
 // === SearchableMultiSelect ===
-// Compact combobox for picking from a long list (countries, languages, etc).
-// Trigger button shows the count of selected items; clicking opens a popover
-// with a search input + scrollable checkbox list. Outside-click and Escape
-// both dismiss. Designed to fit inside the narrow sidebar rail.
 function SearchableMultiSelect({
   placeholder,
   options,
@@ -602,9 +600,7 @@ function SearchableMultiSelect({
           {selected.size === 0 ? (
             <span className="text-muted">{placeholder}</span>
           ) : (
-            <span>
-              {selected.size} selected
-            </span>
+            <span>{selected.size} selected</span>
           )}
         </span>
         <span aria-hidden className="text-muted text-[10px]">{open ? '▴' : '▾'}</span>

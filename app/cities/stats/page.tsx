@@ -16,6 +16,7 @@ import { tapWater } from '@/lib/tapWater';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import CityStatsClient from '@/components/CityStatsClient';
+import ActiveFilters from '@/components/ActiveFilters';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { City } from '@/lib/cityShape';
@@ -116,6 +117,8 @@ export default async function CityStatsPage() {
         <h1 className="text-h2 text-ink-deep">City Stats</h1>
         <ViewSwitcher object="cities" current="stats" />
       </div>
+
+      <ActiveFilters className="mb-4" />
 
       <CityStatsClient cities={minimal} countriesByPageId={countriesByPageId} />
     </div>

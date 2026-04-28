@@ -13,8 +13,9 @@ import {
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCityFilters } from './CityFiltersContext';
-import { filterCities, sortCities } from '@/lib/cityFilter';
+import { applyLayerVisibility, cityLayer, filterCities, layerCounts as countLayers, sortCities } from '@/lib/cityFilter';
 import { COLORS } from '@/lib/colors';
+import ActiveFilters from './ActiveFilters';
 
 // Pin shape consumed by the globe. Now carries the same practicality
 // fields as the rest of the city pipeline so the cockpit can filter on
@@ -51,12 +52,14 @@ type Pin = {
 
 type Projection = 'globe' | 'mercator';
 
-// Pin status drives both the colour and the size of the dot. Encoded as a
-// numeric category so MapLibre's circle-color expression can do a simple
-// match on the property.
-const STATUS_BEEN = 0;
-const STATUS_GO = 1;
-const STATUS_OTHER = 2;
+// Pin layer drives both the colour and the size of the dot. Encoded as
+// a numeric category so MapLibre's circle-color expression can do a
+// simple match on the property. Layer keys mirror lib/cityFilter's
+// CityLayer union: been > go > saved > other.
+const LAYER_BEEN  = 0;
+const LAYER_GO    = 1;
+const LAYER_SAVED = 2;
+const LAYER_OTHER = 3;
 
 export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   const router = useRouter();
@@ -67,19 +70,30 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   const [hovered, setHovered] = useState<Pin | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // Visible set after applying the cockpit's predicates. The byId index
-  // below still includes every pin (so sister-graph lookups work even
-  // when a sister is currently filtered out — its line draws to the
-  // sister's coordinates regardless).
-  const visible = useMemo(() => {
+  // Pipeline: facets → layer visibility → sort. The byId index below
+  // still includes every pin (so sister-graph lookups work even when a
+  // sister is currently hidden — its line draws to the sister's coords
+  // regardless). narrowed is the post-facet, pre-visibility set, used to
+  // feed layer counts back to the sidebar.
+  const narrowed = useMemo(() => {
     const state = ctx?.state;
-    return state ? sortCities(filterCities(pins, state), state) : pins;
+    return state ? filterCities(pins, state) : pins;
   }, [pins, ctx?.state]);
 
-  // Push counts to the cockpit footer.
+  const visible = useMemo(() => {
+    const state = ctx?.state;
+    if (!state) return narrowed;
+    return sortCities(applyLayerVisibility(narrowed, state), state);
+  }, [narrowed, ctx?.state]);
+
+  // Push counts + per-layer counts to the cockpit footer.
   useEffect(() => {
     ctx?.setCounts(visible.length, pins.length);
   }, [ctx, visible.length, pins.length]);
+
+  useEffect(() => {
+    ctx?.setLayerCounts(countLayers(narrowed));
+  }, [ctx, narrowed]);
 
   // Index for O(1) sister-city lookup by id — over the full set so
   // selecting a visible city reveals lines to all its sisters, including
@@ -97,14 +111,19 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   );
 
   // === GeoJSON sources ===
-  // 1) Visible cities as points (the filtered set) — one paint expression
-  //    styles all of them based on `status` (Been / Go / Other) and the
-  //    `selected`/`sister` flags.
+  // 1) Visible cities as points (the filtered + layer-visible set) — one
+  //    paint expression styles all of them based on `layer` (Been / Go /
+  //    Saved / Other) and the `selected`/`sister` flags.
   const citiesGeoJSON = useMemo(() => {
     return {
       type: 'FeatureCollection' as const,
       features: visible.map(p => {
-        const status = p.been ? STATUS_BEEN : p.go ? STATUS_GO : STATUS_OTHER;
+        const layer = cityLayer(p);
+        const layerKey =
+          layer === 'been' ? LAYER_BEEN
+            : layer === 'go' ? LAYER_GO
+            : layer === 'saved' ? LAYER_SAVED
+            : LAYER_OTHER;
         return {
           type: 'Feature' as const,
           id: p.id,
@@ -113,7 +132,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             name: p.name,
             slug: p.slug,
             country: p.country,
-            status,
+            layer: layerKey,
             selected: p.id === selectedId,
             sister: sisterIds.has(p.id),
           },
@@ -229,14 +248,15 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             id="cities-layer"
             type="circle"
             paint={{
-              // Outer halo via stroke
+              // Outer halo via stroke. Saved + Other are smaller than Been/Go
+              // so the high-signal layers visually pop. Selected/sister overrides.
               'circle-radius': [
                 'case',
                 ['boolean', ['get', 'selected'], false],
                 9,
                 ['boolean', ['get', 'sister'], false],
                 7,
-                ['match', ['get', 'status'], STATUS_BEEN, 5, STATUS_GO, 5, 3],
+                ['match', ['get', 'layer'], LAYER_BEEN, 5, LAYER_GO, 5, LAYER_SAVED, 4, 3],
               ],
               'circle-color': [
                 'case',
@@ -246,11 +266,13 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 COLORS.accent,
                 [
                   'match',
-                  ['get', 'status'],
-                  STATUS_BEEN,
+                  ['get', 'layer'],
+                  LAYER_BEEN,
                   COLORS.teal,
-                  STATUS_GO,
+                  LAYER_GO,
                   COLORS.slate,
+                  LAYER_SAVED,
+                  COLORS.accent,
                   COLORS.pinIdle,
                 ],
               ],
@@ -271,13 +293,13 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 1,
                 [
                   'match',
-                  ['get', 'status'],
-                  STATUS_BEEN,
-                  1,
-                  STATUS_GO,
-                  1,
+                  ['get', 'layer'],
+                  LAYER_BEEN, 1,
+                  LAYER_GO,   1,
+                  LAYER_SAVED, 0.85,
                   // Other cities are de-emphasised so Been/Go visually pop;
-                  // they still show on the globe as tiny dots.
+                  // they still show on the globe as small dots so the user
+                  // sees the full atlas density.
                   0.55,
                 ],
               ],
@@ -361,22 +383,22 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         </div>
       )}
 
-      {/* Legend — compact pin-color key, only shown when nothing is selected */}
+      {/* Legend — compact pin-color key, only shown when nothing is selected.
+          Mirrors the LAYERS in the sidebar cockpit so the user can map any
+          on-map color back to its toggle. Layers the user has hidden are
+          rendered greyed out in the legend so the key still reads as
+          complete but tells the truth about what's currently shown. */}
       {!selected && (
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-[11px] text-slate">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-teal" />
-            Been
+          <LegendRow on={ctx?.state.showBeen ?? true}  color={COLORS.teal}    label="Been" />
+          <LegendRow on={ctx?.state.showGo ?? true}    color={COLORS.slate}   label="Want to go" />
+          <LegendRow on={ctx?.state.showSaved ?? true} color={COLORS.accent}  label="Saved places" />
+          <LegendRow on={ctx?.state.showOther ?? true} color={COLORS.pinIdle} label="Unstatused" small />
+          <div className="flex items-center gap-2 mt-1 pt-1.5 border-t border-sand">
+            <span className="inline-block w-2 h-0.5" style={{ background: COLORS.accent, opacity: 0.5 }} />
+            <span>Sister-city link</span>
           </div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate" />
-            Want to go
-          </div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="inline-block w-1.5 h-1.5 rounded-full" style={{ background: COLORS.pinIdle }} />
-            Sister-city network
-          </div>
-          <div className="text-muted text-[10px] mt-1.5 pt-1.5 border-t border-sand">
+          <div className="text-muted text-[10px] mt-1.5">
             Click a pin to see its sister cities
           </div>
         </div>
@@ -397,6 +419,14 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             icon="🗺️"
             label="Flat"
           />
+        </div>
+      </div>
+
+      {/* Active-filter chip ribbon — floats top-center on the map. Hidden
+          when no facets are active, so the map stays clean by default. */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
+        <div className="bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden">
+          <ActiveFilters />
         </div>
       </div>
 
@@ -429,5 +459,27 @@ function ProjectionPill({
       <span aria-hidden>{icon}</span>
       <span>{label}</span>
     </button>
+  );
+}
+
+// One row of the floating legend — color swatch + label, dimmed when the
+// corresponding layer is currently hidden in the sidebar cockpit.
+function LegendRow({
+  on,
+  color,
+  label,
+  small = false,
+}: {
+  on: boolean;
+  color: string;
+  label: string;
+  small?: boolean;
+}) {
+  const size = small ? 'w-1.5 h-1.5' : 'w-2.5 h-2.5';
+  return (
+    <div className={'flex items-center gap-2 mb-1 ' + (on ? '' : 'opacity-40 line-through')}>
+      <span className={'inline-block rounded-full ' + size} style={{ background: color }} />
+      <span>{label}</span>
+    </div>
   );
 }
