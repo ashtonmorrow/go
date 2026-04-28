@@ -105,6 +105,13 @@ export default function ActiveFilters({ className = '' }: { className?: string }
       clear: () => setState(s => ({ ...s, populationMin: null, populationMax: null })),
     });
   }
+  if (state.hasSavedPlaces !== 'any') {
+    chips.push({
+      key: 'saved',
+      label: state.hasSavedPlaces === 'with' ? 'With saved places' : 'No saved places',
+      clear: () => setState(s => ({ ...s, hasSavedPlaces: 'any' })),
+    });
+  }
 
   return (
     <div className={'flex items-center gap-1.5 flex-wrap ' + className}>

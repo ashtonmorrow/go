@@ -42,19 +42,21 @@ export type CityFilterable = {
 };
 
 /**
- * Assign one canonical layer to a city. Priority is Been > Go > Saved >
- * Other so that any city in the Been bucket renders teal even if it also
- * has saved places, and a saved-but-not-planned city falls back through
- * Saved rather than Other.
+ * Assign one status layer to a city. Three buckets, mutually exclusive:
+ * Been > Go > Other. Saved-places is intentionally NOT a layer here — a
+ * Been city can also have saved places, and a priority chain that put
+ * Saved before Other would erase the Saved-and-Been signal silently.
+ * Saved is its own facet (filterCities applies it) plus a map overlay
+ * (WorldGlobe draws an accent ring around saved-places dots regardless
+ * of which status layer they're in).
  *
- * Mike's atlas convention: Been and Go are mutually exclusive in the source
- * data (you don't "want to go" somewhere you've already been). The priority
- * just hardens that invariant against any future data drift.
+ * Mike's atlas convention: Been and Go are mutually exclusive in the
+ * source data — you don't "want to go" somewhere you've already been.
+ * The priority just hardens that invariant against any future data drift.
  */
 export function cityLayer(c: CityFilterable): CityLayer {
   if (c.been) return 'been';
   if (c.go) return 'go';
-  if (c.savedPlaces) return 'saved';
   return 'other';
 }
 
@@ -119,6 +121,17 @@ export function filterCities<T extends CityFilterable>(cities: T[], state: CityF
       return true;
     });
   }
+
+  // Saved-places tri-state. 'any' = unfiltered; 'with' / 'without' apply.
+  // Truthy savedPlaces means there's a curated annotation (a Google Maps
+  // list URL, in practice).
+  const { hasSavedPlaces } = state;
+  if (hasSavedPlaces === 'with') {
+    list = list.filter(c => !!c.savedPlaces);
+  } else if (hasSavedPlaces === 'without') {
+    list = list.filter(c => !c.savedPlaces);
+  }
+
   return list;
 }
 
@@ -132,16 +145,15 @@ export function applyLayerVisibility<T extends CityFilterable>(
   cities: T[],
   state: CityFilterState,
 ): T[] {
-  const { showBeen, showGo, showSaved, showOther } = state;
+  const { showBeen, showGo, showOther } = state;
   // Fast path — every layer on means no filtering at all.
-  if (showBeen && showGo && showSaved && showOther) return cities;
+  if (showBeen && showGo && showOther) return cities;
   // Fast path — every layer off means empty result.
-  if (!showBeen && !showGo && !showSaved && !showOther) return [];
+  if (!showBeen && !showGo && !showOther) return [];
   return cities.filter(c => {
     const layer = cityLayer(c);
     if (layer === 'been') return showBeen;
     if (layer === 'go') return showGo;
-    if (layer === 'saved') return showSaved;
     return showOther;
   });
 }
@@ -178,7 +190,7 @@ export function sortCities<T extends CityFilterable>(cities: T[], state: CityFil
  * current view" rather than the global tally.
  */
 export function layerCounts<T extends CityFilterable>(filtered: T[]): Record<CityLayer, number> {
-  const counts: Record<CityLayer, number> = { been: 0, go: 0, saved: 0, other: 0 };
+  const counts: Record<CityLayer, number> = { been: 0, go: 0, other: 0 };
   for (const c of filtered) counts[cityLayer(c)]++;
   return counts;
 }

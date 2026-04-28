@@ -55,11 +55,13 @@ type Projection = 'globe' | 'mercator';
 // Pin layer drives both the colour and the size of the dot. Encoded as
 // a numeric category so MapLibre's circle-color expression can do a
 // simple match on the property. Layer keys mirror lib/cityFilter's
-// CityLayer union: been > go > saved > other.
+// CityLayer union: been > go > other (3 mutually-exclusive statuses).
+// Saved-places is rendered as a separate gold-ring OVERLAY on top of
+// the layer color, since it's an orthogonal signal — a Been city can
+// also have saved places.
 const LAYER_BEEN  = 0;
 const LAYER_GO    = 1;
-const LAYER_SAVED = 2;
-const LAYER_OTHER = 3;
+const LAYER_OTHER = 2;
 
 export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   const router = useRouter();
@@ -113,7 +115,9 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   // === GeoJSON sources ===
   // 1) Visible cities as points (the filtered + layer-visible set) — one
   //    paint expression styles all of them based on `layer` (Been / Go /
-  //    Saved / Other) and the `selected`/`sister` flags.
+  //    Other) and the `selected`/`sister` flags. `saved` is a boolean
+  //    property used by a separate overlay layer that draws a gold ring
+  //    around any saved-places city.
   const citiesGeoJSON = useMemo(() => {
     return {
       type: 'FeatureCollection' as const,
@@ -122,7 +126,6 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         const layerKey =
           layer === 'been' ? LAYER_BEEN
             : layer === 'go' ? LAYER_GO
-            : layer === 'saved' ? LAYER_SAVED
             : LAYER_OTHER;
         return {
           type: 'Feature' as const,
@@ -133,6 +136,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             slug: p.slug,
             country: p.country,
             layer: layerKey,
+            saved: !!p.savedPlaces,
             selected: p.id === selectedId,
             sister: sisterIds.has(p.id),
           },
@@ -248,15 +252,15 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             id="cities-layer"
             type="circle"
             paint={{
-              // Outer halo via stroke. Saved + Other are smaller than Been/Go
-              // so the high-signal layers visually pop. Selected/sister overrides.
+              // Outer halo via stroke. Other is smaller than Been/Go so the
+              // high-signal layers visually pop. Selected/sister overrides.
               'circle-radius': [
                 'case',
                 ['boolean', ['get', 'selected'], false],
                 9,
                 ['boolean', ['get', 'sister'], false],
                 7,
-                ['match', ['get', 'layer'], LAYER_BEEN, 5, LAYER_GO, 5, LAYER_SAVED, 4, 3],
+                ['match', ['get', 'layer'], LAYER_BEEN, 5, LAYER_GO, 5, 3],
               ],
               'circle-color': [
                 'case',
@@ -271,8 +275,6 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                   COLORS.teal,
                   LAYER_GO,
                   COLORS.slate,
-                  LAYER_SAVED,
-                  COLORS.accent,
                   COLORS.pinIdle,
                 ],
               ],
@@ -296,13 +298,40 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                   ['get', 'layer'],
                   LAYER_BEEN, 1,
                   LAYER_GO,   1,
-                  LAYER_SAVED, 0.85,
                   // Other cities are de-emphasised so Been/Go visually pop;
                   // they still show on the globe as small dots so the user
                   // sees the full atlas density.
                   0.55,
                 ],
               ],
+            }}
+          />
+          {/* Saved-places overlay — gold ring drawn around any city with
+              saved annotations, regardless of its status layer. This is
+              the orthogonal-overlay treatment: a Been city with saved
+              places reads as "teal dot inside gold ring," carrying both
+              signals at once. Filtered to only saved cities via the
+              expression so it doesn't overdraw the rest. */}
+          <Layer
+            id="cities-saved-overlay"
+            type="circle"
+            filter={['boolean', ['get', 'saved'], false]}
+            paint={{
+              'circle-radius': [
+                'case',
+                ['boolean', ['get', 'selected'], false],
+                12,
+                ['boolean', ['get', 'sister'], false],
+                10,
+                ['match', ['get', 'layer'], LAYER_BEEN, 8, LAYER_GO, 8, 6],
+              ],
+              'circle-color': 'transparent',
+              'circle-stroke-color': COLORS.accent,
+              'circle-stroke-width': 1.5,
+              'circle-stroke-opacity': 0.85,
+              // Always visible, but pull the opacity down on hidden-layer
+              // dots so we don't see floating rings with no centre.
+              'circle-opacity': 0,
             }}
           />
         </Source>
@@ -387,14 +416,24 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
           Mirrors the LAYERS in the sidebar cockpit so the user can map any
           on-map color back to its toggle. Layers the user has hidden are
           rendered greyed out in the legend so the key still reads as
-          complete but tells the truth about what's currently shown. */}
+          complete but tells the truth about what's currently shown. The
+          gold ring is a separate row for the orthogonal saved-places
+          overlay, not a status — explicitly labelled as "ring" so users
+          read it as overlay rather than another color. */}
       {!selected && (
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-[11px] text-slate">
           <LegendRow on={ctx?.state.showBeen ?? true}  color={COLORS.teal}    label="Been" />
           <LegendRow on={ctx?.state.showGo ?? true}    color={COLORS.slate}   label="Want to go" />
-          <LegendRow on={ctx?.state.showSaved ?? true} color={COLORS.accent}  label="Saved places" />
           <LegendRow on={ctx?.state.showOther ?? true} color={COLORS.pinIdle} label="Unstatused" small />
-          <div className="flex items-center gap-2 mt-1 pt-1.5 border-t border-sand">
+          <div className="flex items-center gap-2 mb-1 mt-1 pt-1.5 border-t border-sand">
+            <span
+              aria-hidden
+              className="inline-block w-3 h-3 rounded-full bg-transparent"
+              style={{ border: `1.5px solid ${COLORS.accent}` }}
+            />
+            <span>Saved places (ring)</span>
+          </div>
+          <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-0.5" style={{ background: COLORS.accent, opacity: 0.5 }} />
             <span>Sister-city link</span>
           </div>

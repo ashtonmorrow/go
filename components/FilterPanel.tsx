@@ -9,6 +9,7 @@ import type {
   TapWater,
   DriveSide,
   CityLayer,
+  HasSaved,
 } from './CityFiltersContext';
 
 // === FilterPanel ===
@@ -73,13 +74,15 @@ const SORT_FIELDS: { value: SortKey; label: string }[] = [
 ];
 
 // Layer descriptors — one source of truth for the swatch color and label.
-// Color tokens align with WorldGlobe + CountriesGlobe so the cockpit
-// swatch reads as a sample of what'll appear on the map.
-const LAYERS: { key: CityLayer; label: string; swatch: string; field: 'showBeen' | 'showGo' | 'showSaved' | 'showOther' }[] = [
-  { key: 'been',  label: 'Been',          swatch: 'bg-teal',           field: 'showBeen' },
-  { key: 'go',    label: 'Want to go',    swatch: 'bg-slate',          field: 'showGo' },
-  { key: 'saved', label: 'Saved places',  swatch: 'bg-accent',         field: 'showSaved' },
-  { key: 'other', label: 'Unstatused',    swatch: 'bg-sand',           field: 'showOther' },
+// Three mutually-exclusive status buckets. Saved-places lives in FILTERS
+// below as its own facet because it's orthogonal: a Been city can also
+// have saved places, and forcing them onto a priority chain erases that
+// signal. On the map saved-places gets a separate gold-ring overlay
+// drawn on top of the layer color.
+const LAYERS: { key: CityLayer; label: string; swatch: string; field: 'showBeen' | 'showGo' | 'showOther' }[] = [
+  { key: 'been',  label: 'Been',         swatch: 'bg-teal',  field: 'showBeen' },
+  { key: 'go',    label: 'Want to go',   swatch: 'bg-slate', field: 'showGo' },
+  { key: 'other', label: 'Unstatused',   swatch: 'bg-sand',  field: 'showOther' },
 ];
 
 export default function FilterPanel({
@@ -196,6 +199,23 @@ export default function FilterPanel({
           onToggle={v =>
             setState(s => ({ ...s, drive: toggleSet(s.drive, v as DriveSide) }))
           }
+        />
+      </div>
+
+      {/* Saved places — tri-state. 'Any' is the neutral default; toggling
+          'With' or 'Without' narrows the dataset. The accent gold ring
+          on the map shows saved-places cities even when the filter is
+          'Any', so users can spot them visually without narrowing. */}
+      <div>
+        <SectionLabel>Saved places</SectionLabel>
+        <SingleSelectChips<HasSaved>
+          options={[
+            { value: 'any',     label: 'Any' },
+            { value: 'with',    label: 'With' },
+            { value: 'without', label: 'Without' },
+          ]}
+          value={state.hasSavedPlaces}
+          onChange={v => setState(s => ({ ...s, hasSavedPlaces: v }))}
         />
       </div>
 
@@ -426,6 +446,42 @@ function SearchInput({
         placeholder={placeholder}
         className="w-full pl-8 pr-2.5 py-2 text-small rounded-md border border-sand bg-white text-ink placeholder:text-muted/70 focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10"
       />
+    </div>
+  );
+}
+
+// Single-select segmented chips — for tri-state facets like Saved places
+// where the options are mutually exclusive (Any / With / Without). Same
+// visual style as ChipGroup but only one chip can be active at a time.
+function SingleSelectChips<T extends string>({
+  options,
+  value,
+  onChange,
+}: {
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (next: T) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-1">
+      {options.map(o => {
+        const active = value === o.value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            onClick={() => onChange(o.value)}
+            className={
+              'px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              (active
+                ? 'bg-ink-deep text-cream-soft border-ink-deep'
+                : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
+            }
+          >
+            {o.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

@@ -57,10 +57,18 @@ export type TapWater = 'Safe' | 'Treat first' | 'Not safe' | 'Varies';
 export type DriveSide = 'L' | 'R';
 
 // Layer = encoding axis. A city falls into exactly one layer determined
-// by priority: Been > Go > Saved > Other. The corresponding showX boolean
-// controls whether that layer is rendered (visible in lists, colored on
-// maps, counted in stats).
-export type CityLayer = 'been' | 'go' | 'saved' | 'other';
+// by status: Been > Go > Other (mutually exclusive). Saved-places is NOT
+// a layer because it's orthogonal — a Been city can also have saved
+// places, and squashing that into a priority chain would erase real
+// information. Saved-places lives in the FILTERS section as a tri-state
+// facet, with a separate gold-ring overlay drawn on top of the layer
+// color on the map. This is the categorical-color + boolean-overlay
+// pattern (Munzner, Visualization Analysis & Design, ch. 12).
+export type CityLayer = 'been' | 'go' | 'other';
+
+/** Tri-state facet: 'any' = unfiltered, 'with' = only cities that have
+ *  saved places, 'without' = only cities that don't. */
+export type HasSaved = 'any' | 'with' | 'without';
 
 // Filter state shape. Layers come first (visibility), then facets (narrowing),
 // then sort. Multi-selects are sets so toggling on/off is O(1).
@@ -68,7 +76,6 @@ export type FilterState = {
   // === LAYERS (encoding — visibility toggles, NOT narrowing filters) ===
   showBeen: boolean;
   showGo: boolean;
-  showSaved: boolean;
   showOther: boolean;
 
   // === FILTERS (narrowing — composed with AND) ===
@@ -82,6 +89,8 @@ export type FilterState = {
   /** Population range (inclusive). Both null = unbounded. */
   populationMin: number | null;
   populationMax: number | null;
+  /** Saved-places tri-state. 'any' = no narrowing; 'with' / 'without' apply. */
+  hasSavedPlaces: HasSaved;
 
   // === SORT ===
   sort: SortKey;
@@ -89,11 +98,10 @@ export type FilterState = {
 };
 
 const DEFAULT_STATE: FilterState = {
-  // Neutral default: every layer is visible. The user lands on the full
-  // atlas with all four status colors rendered, nothing silently hidden.
+  // Neutral default: every status layer is visible. The user lands on the
+  // full atlas with all three status colors rendered, nothing silently hidden.
   showBeen: true,
   showGo: true,
-  showSaved: true,
   showOther: true,
 
   // Neutral default: no narrowing applied.
@@ -106,6 +114,7 @@ const DEFAULT_STATE: FilterState = {
   drive: new Set(),
   populationMin: null,
   populationMax: null,
+  hasSavedPlaces: 'any',
 
   sort: 'name',
   desc: false,
@@ -157,12 +166,13 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     n += state.tapWater.size > 0 ? 1 : 0;
     n += state.drive.size > 0 ? 1 : 0;
     if (state.populationMin != null || state.populationMax != null) n++;
+    if (state.hasSavedPlaces !== 'any') n++;
     return n;
   }, [state]);
 
   const activeLayerHidden = useMemo(
-    () => !state.showBeen || !state.showGo || !state.showSaved || !state.showOther,
-    [state.showBeen, state.showGo, state.showSaved, state.showOther]
+    () => !state.showBeen || !state.showGo || !state.showOther,
+    [state.showBeen, state.showGo, state.showOther]
   );
 
   // Stable identity so consumers can include it in useEffect deps without
@@ -181,7 +191,6 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
         prev &&
         prev.been === next.been &&
         prev.go === next.go &&
-        prev.saved === next.saved &&
         prev.other === next.other
       ) {
         return prev;

@@ -75,16 +75,18 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
 
   // === Derive country shading from the filtered set ======================
   // Every country with at least one filtered city gets a fill color. The
-  // color is chosen by the country's DOMINANT layer using priority
-  // Been > Go > Saved > Other — so a country with 3 visited cities and
-  // 1 planned city shades teal (Been), not slate (Go). This mirrors the
-  // map-layer pattern from Strava / Kepler.gl: a place reads as the
-  // strongest signal it carries, not the average.
+  // color is chosen by the country's DOMINANT status layer using priority
+  // Been > Go > Other — so a country with 3 visited cities and 1 planned
+  // city shades teal (Been), not slate (Go). This mirrors the map-layer
+  // pattern from Strava / Kepler.gl: a place reads as the strongest
+  // signal it carries, not the average.
   //
-  // perCountry keeps the per-bucket counts for the hover tile so users
-  // can still see "5 visited, 2 planned, 1 saved" when they mouse over.
+  // Saved-places is NOT in the layer priority because it's an orthogonal
+  // signal (a Been city can also have saved places). We track it as a
+  // separate bucket count for the hover tile but never let it determine
+  // the country fill color.
   const { layerByIso3, perCountry } = useMemo(() => {
-    type Buckets = Record<CityLayer, number>;
+    type Buckets = Record<CityLayer, number> & { saved: number };
     const buckets = new Map<string, Buckets>();
 
     for (const c of filtered) {
@@ -93,24 +95,24 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
       if (!iso3) continue;
       let b = buckets.get(iso3);
       if (!b) {
-        b = { been: 0, go: 0, saved: 0, other: 0 };
+        b = { been: 0, go: 0, other: 0, saved: 0 };
         buckets.set(iso3, b);
       }
       b[cityLayer(c)]++;
+      if (c.savedPlaces) b.saved++;
     }
 
     const layers: Record<string, CityLayer> = {};
     const perCountryStats: Record<string, Buckets & { total: number }> = {};
     for (const [iso3, b] of buckets) {
-      // Priority: Been > Go > Saved > Other. A bucket with at least one
-      // city in a higher-priority layer wins, regardless of count.
+      // Priority: Been > Go > Other. A bucket with at least one city in
+      // a higher-priority layer wins, regardless of count.
       const dominant: CityLayer =
         b.been > 0 ? 'been'
           : b.go > 0 ? 'go'
-          : b.saved > 0 ? 'saved'
           : 'other';
       layers[iso3] = dominant;
-      perCountryStats[iso3] = { ...b, total: b.been + b.go + b.saved + b.other };
+      perCountryStats[iso3] = { ...b, total: b.been + b.go + b.other };
     }
     return { layerByIso3: layers, perCountry: perCountryStats };
   }, [filtered, countryIdToIso3]);
@@ -118,7 +120,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
   // Group ISO3s by layer for the MapLibre fill expression. Each layer
   // gets its own color via a series of `match` branches in the paint.
   const isoByLayer = useMemo(() => {
-    const byLayer: Record<CityLayer, string[]> = { been: [], go: [], saved: [], other: [] };
+    const byLayer: Record<CityLayer, string[]> = { been: [], go: [], other: [] };
     for (const [iso3, l] of Object.entries(layerByIso3)) {
       byLayer[l].push(iso3);
     }
@@ -186,7 +188,6 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
                 'case',
                 ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.been]],  COLORS.teal,
                 ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.go]],    COLORS.slate,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.saved]], COLORS.accent,
                 ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.other]], COLORS.pinIdle,
                 'transparent',
               ] as unknown as string,
@@ -337,7 +338,7 @@ function CountryHoverTile({
   stats,
 }: {
   country: CountryMeta;
-  stats?: { been: number; go: number; saved: number; other: number; total: number };
+  stats?: { been: number; go: number; other: number; saved: number; total: number };
 }) {
   // Build the row list — only include rows where there's a value, so a
   // sparsely-populated country (some islands etc) renders cleanly without
