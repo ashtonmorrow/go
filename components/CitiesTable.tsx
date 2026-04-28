@@ -158,8 +158,12 @@ export default function CitiesTable({ cities }: Props) {
       {
         key: 'language',
         label: 'Language',
-        className: 'min-w-[140px]',
-        render: c => <span className="truncate block">{c.language ?? '—'}</span>,
+        // Cap max width and allow soft wrapping. Some countries have many
+        // co-official languages ("Spanish, Catalan, Galician, Basque,
+        // Aranese") which under truncate+nowrap stretched the column to
+        // 600px, pushing every column right of it offscreen.
+        className: 'w-[160px] min-w-[120px] max-w-[200px] whitespace-normal break-words',
+        render: c => <span className="text-ink leading-snug">{c.language ?? '—'}</span>,
       },
       {
         key: 'drive',

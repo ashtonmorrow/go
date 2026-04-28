@@ -116,3 +116,60 @@ export const LIST_SHORT_LABELS: Record<CanonicalList, string> = {
   '7 Natural Wonders':               '7 Natural',
   '7 Ancient Wonders':               '7 Ancient',
 };
+
+// === List-source link-outs ================================================
+// Each canonical list points to an external authority — the list's official
+// catalogue or homepage — so the badge can be a click-through "see this on
+// the source" link. Where we have a per-pin identifier (UNESCO whc id,
+// Atlas Obscura slug) we deeplink straight to the entity page; where we
+// don't, we fall back to the list's overview page so users still have
+// SOMETHING to click.
+//
+// Anchor input shape — pass whatever you have, missing fields fall through:
+type LinkContext = {
+  unescoId?: number | null;
+  /** Atlas Obscura slug — Wikidata P3134 value, e.g. "mesa-verde-cliff-dwellings".
+   *  Currently null on every pin until the next enrichment pass writes them. */
+  atlasObscuraSlug?: string | null;
+  /** Wikidata QID, used as a generic "look me up" fallback for lists that
+   *  don't have a clean per-entity URL (Ramsar, Dark Sky Park, IUGS). */
+  wikidataQid?: string | null;
+};
+
+/**
+ * Resolve the click-through URL for a list badge. Always returns a non-null
+ * URL — the worst case is the list's homepage, never a dead link.
+ */
+export function getListUrl(list: CanonicalList, ctx: LinkContext): string {
+  switch (list) {
+    case 'UNESCO World Heritage':
+      // Per-site URL when we have the WHC id; otherwise the master list.
+      return ctx.unescoId != null
+        ? `https://whc.unesco.org/en/list/${ctx.unescoId}/`
+        : 'https://whc.unesco.org/en/list/';
+    case 'UNESCO Tentative List':
+      // No clean per-entry URL pattern that's stable across redirects, so
+      // we go to the canonical tentative-list index and let users search.
+      return 'https://whc.unesco.org/en/tentativelists/';
+    case 'Atlas Obscura':
+      // Per-place URL when we've captured the slug; otherwise the
+      // browse-all index. Slug is added during the AO coverage boost pass.
+      return ctx.atlasObscuraSlug
+        ? `https://www.atlasobscura.com/places/${ctx.atlasObscuraSlug}`
+        : 'https://www.atlasobscura.com/places';
+    case 'Ramsar Wetland':
+      // Per-site URL needs a Ramsar Site ID we don't currently capture.
+      // Fall back to the official RIS search; users can paste the pin name.
+      return 'https://rsis.ramsar.org/';
+    case 'International Dark Sky Park':
+      return 'https://darksky.org/places/';
+    case 'IUGS Geological Heritage Site':
+      return 'https://iugs-geoheritage.org/geoheritage_sites/';
+    case 'New 7 Wonders':
+      return 'https://world.new7wonders.com/';
+    case '7 Natural Wonders':
+      return 'https://nature.new7wonders.com/';
+    case '7 Ancient Wonders':
+      return 'https://en.wikipedia.org/wiki/Seven_Wonders_of_the_Ancient_World';
+  }
+}

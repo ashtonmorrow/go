@@ -26,6 +26,7 @@ import { fetchPinBySlug } from '@/lib/pins';
 import { fetchAllCountries } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
+import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
@@ -174,20 +175,60 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           />
         </p>
 
-        {/* Pills row: status, lists, category */}
+        {/* Pills row: status, lists, category. List pills are now
+            click-through to the canonical source — UNESCO whc.unesco.org
+            for World Heritage with a known id, the list's overview page
+            otherwise. Each badge gets its glyph (globe, compass, droplet,
+            etc.) so a quick scan tells you what kind of recognition this
+            place carries before you read the labels. */}
         <div className="mt-3 flex flex-wrap gap-1.5">
           {pin.visited && (
             <span className="pill bg-teal/10 text-teal">Been</span>
           )}
-          {pin.lists.map(l => (
-            <span
-              key={l}
-              className="pill bg-accent/10 text-accent border border-accent/20"
-              title={`Featured on ${l}`}
-            >
-              {l}
-            </span>
-          ))}
+          {pin.lists.map(l => {
+            // Cast guards us against legacy non-canonical labels still
+            // floating around in the DB; the icon lookup safely returns
+            // undefined and we fall back to a generic chip.
+            const canonical = l as CanonicalList;
+            const icon = LIST_ICONS[canonical];
+            const url = icon
+              ? getListUrl(canonical, {
+                  unescoId: pin.unescoId,
+                  // atlasObscuraSlug isn't on the schema yet; pass through
+                  // when it lands in a future enrichment pass.
+                  atlasObscuraSlug: null,
+                  wikidataQid: pin.wikidataQid,
+                })
+              : null;
+            const className =
+              'pill bg-accent/10 text-accent border border-accent/20 ' +
+              'inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors';
+            const inner = (
+              <>
+                {icon && <span aria-hidden>{icon}</span>}
+                <span>{l}</span>
+                {url && (
+                  <span aria-hidden className="text-accent/60 text-[10px]">↗</span>
+                )}
+              </>
+            );
+            return url ? (
+              <a
+                key={l}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+                title={`Featured on ${l} — open source`}
+              >
+                {inner}
+              </a>
+            ) : (
+              <span key={l} className={className} title={`Featured on ${l}`}>
+                {inner}
+              </span>
+            );
+          })}
           {pin.category && pin.lists.length === 0 && (
             <span className="pill bg-cream-soft text-slate">{pin.category}</span>
           )}
