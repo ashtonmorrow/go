@@ -32,15 +32,26 @@ export default function CityStatsClient({
   countriesByPageId: Record<string, { name: string; slug: string; continent: string | null }>;
 }) {
   const ctx = useCityFilters();
+  const state = ctx?.state;
+
+  // Treat the cockpit as "active" only when the user has actually
+  // changed something. The CityFiltersContext default is showBeen=true
+  // (which makes /cities/cards open already-focused on visited cities)
+  // — but on the stats page that default would silently narrow the
+  // baseline to the 298 visited cities the moment you arrive. Stats
+  // wants the full atlas as the denominator unless the user opts in.
+  const filterActive =
+    (ctx?.activeFilterCount ?? 0) > 0 ||
+    (state?.q ?? '').trim().length > 0;
 
   const filtered = useMemo(() => {
-    const state = ctx?.state;
-    return state ? filterCities(cities, state) : cities;
-  }, [cities, ctx?.state]);
+    if (!state || !filterActive) return cities;
+    return filterCities(cities, state);
+  }, [cities, state, filterActive]);
 
   // Mirror the cockpit count contract so the "X / Y cities" badge in
-  // the sidebar tracks alongside the stats. Mounted with the rest of
-  // the city views.
+  // the sidebar tracks alongside the stats. When filterActive is
+  // false this reports total/total — confirms "everything is showing".
   useEffect(() => {
     ctx?.setCounts(filtered.length, cities.length);
   }, [ctx, filtered.length, cities.length]);
@@ -53,7 +64,6 @@ export default function CityStatsClient({
   const photoInFilter = filtered.filter(c => !!c.personalPhoto).length;
 
   const beenAcross = cities.filter(c => c.been).length;
-  const filterActive = matching !== total;
   const pct = (n: number, denom: number) => denom > 0 ? Math.round((n / denom) * 100) : 0;
 
   // Coverage hints — front and centre. When a filter is active the
