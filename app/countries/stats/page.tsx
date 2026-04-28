@@ -14,7 +14,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import CountryStatsClient, { type CountryStatsRow } from '@/components/CountryStatsClient';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Filter-aware breakdowns over the 213-country atlas — by continent, visa, tap water, drive-side; top countries by visit count and atlas presence. Numbers update as you change filters in the sidebar.';

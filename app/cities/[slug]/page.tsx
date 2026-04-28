@@ -9,7 +9,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import type { Metadata } from 'next';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 export const dynamicParams = true;
 
 // Pre-render nothing at build time; pages are generated on-demand on first visit

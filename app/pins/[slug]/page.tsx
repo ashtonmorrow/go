@@ -30,7 +30,7 @@ import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

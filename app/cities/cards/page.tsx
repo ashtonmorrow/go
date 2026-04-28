@@ -14,7 +14,7 @@ import type {
 } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 // Per-page metadata — third-person, ≤155 char description, concrete count.
 export const metadata: Metadata = {

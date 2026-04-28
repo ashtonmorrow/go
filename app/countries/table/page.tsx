@@ -14,7 +14,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import CountriesTable from '@/components/CountriesTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'All 213 countries as a sortable data table. Capital, language, currency, plugs, voltage, visa, tap-water, drive side. Click any row for the detail page.';

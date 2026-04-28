@@ -9,7 +9,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import PinStatsClient from '@/components/PinStatsClient';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Filter-aware breakdowns over the curated pin set — by category, list (UNESCO, Atlas Obscura, wonders), country, type. Numbers update as you change filters in the sidebar.';

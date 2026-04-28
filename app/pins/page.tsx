@@ -15,7 +15,7 @@ import JsonLd from '@/components/JsonLd';
 import PinsGrid from '@/components/PinsGrid';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Curated places worth a detour. UNESCO sites, museums, viewpoints. Each pin links straight to Google Maps so you can drop it into your trip.';

@@ -12,7 +12,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import PinsTable from '@/components/PinsTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'All pins as a sortable data table. Name, category, country, UNESCO ID, coordinates, visited status. Click any row to open the detail page.';

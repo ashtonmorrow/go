@@ -9,7 +9,7 @@ import { tapWater } from '@/lib/tapWater';
 import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 3600;
+export const revalidate = 60 * 60 * 24 * 7; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
 const DESCRIPTION =
   'Every country on a 3D globe, shaded by status. Visited shines teal, planned in slate, anything matching your filters lights up amber. Click to open.';
