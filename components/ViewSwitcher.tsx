@@ -20,29 +20,32 @@ import Link from 'next/link';
 // them per-object via the `LABELS` table below.
 
 export type ObjectKey = 'cities' | 'countries' | 'pins';
-export type ViewKey = 'cards' | 'map' | 'table';
+export type ViewKey = 'cards' | 'map' | 'table' | 'stats';
 
-const VIEW_ORDER: ViewKey[] = ['cards', 'map', 'table'];
+const VIEW_ORDER: ViewKey[] = ['cards', 'map', 'table', 'stats'];
 
 // Per-object labels — keep the verb concrete to the data on screen.
-//   • Cities:    Postcards / Map / Table
-//   • Countries: Cards / Globe / Table
-//   • Pins:      Cards / Map / Table
+//   • Cities:    Postcards / Map / Table / Stats
+//   • Countries: Cards / Globe / Table / Stats
+//   • Pins:      Cards / Map / Table / Stats
 const LABELS: Record<ObjectKey, Record<ViewKey, { icon: string; label: string }>> = {
   cities: {
     cards: { icon: '📮', label: 'Postcards' },
     map:   { icon: '🗺️', label: 'Map' },
     table: { icon: '🗂️', label: 'Table' },
+    stats: { icon: '📊', label: 'Stats' },
   },
   countries: {
     cards: { icon: '🏳️', label: 'Cards' },
     map:   { icon: '🌍', label: 'Globe' },
     table: { icon: '🗂️', label: 'Table' },
+    stats: { icon: '📊', label: 'Stats' },
   },
   pins: {
     cards: { icon: '📍', label: 'Cards' },
     map:   { icon: '🗺️', label: 'Map' },
     table: { icon: '🗂️', label: 'Table' },
+    stats: { icon: '📊', label: 'Stats' },
   },
 };
 
@@ -52,7 +55,9 @@ export default function ViewSwitcher({
   className,
 }: {
   object: ObjectKey;
-  current: ViewKey;
+  /** When omitted (e.g. on detail pages) no pill is highlighted —
+   *  every option just acts as a link to the equivalent index view. */
+  current?: ViewKey;
   /** Wrapper class for layout — defaults to inline. Pass 'fixed bottom-…'
    *  to use as a floating control (e.g. on full-bleed map pages). */
   className?: string;

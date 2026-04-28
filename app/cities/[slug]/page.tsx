@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
+import ViewSwitcher from '@/components/ViewSwitcher';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import type { Metadata } from 'next';
 
@@ -112,12 +113,16 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     <article className="max-w-page mx-auto px-5 py-8">
       <JsonLd data={cityData} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
-      {/* Breadcrumbs */}
-      <div className="text-small text-muted mb-2">
-        <Link href="/cities" className="hover:text-teal">Cities</Link>
-        {country && <> <span> / </span>
-          <Link href={`/countries/${country.slug}`} className="hover:text-teal">{country.name}</Link>
-        </>}
+      {/* Breadcrumbs + persistent View switcher (no pill highlighted —
+          this is a detail page, not any of the four index views). */}
+      <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
+        <div className="text-small text-muted">
+          <Link href="/cities" className="hover:text-teal">Cities</Link>
+          {country && <> <span> / </span>
+            <Link href={`/countries/${country.slug}`} className="hover:text-teal">{country.name}</Link>
+          </>}
+        </div>
+        <ViewSwitcher object="cities" />
       </div>
 
       <header className="flex items-end gap-4 flex-wrap">

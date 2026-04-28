@@ -6,6 +6,7 @@ import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, countryJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
+import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
 import type { Metadata } from 'next';
 
@@ -85,8 +86,13 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
     <article className="max-w-page mx-auto px-5 py-8">
       <JsonLd data={countryData} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
-      <div className="text-small text-muted mb-2">
-        <Link href="/cities" className="hover:text-teal">Cities</Link>
+      {/* Breadcrumb + persistent View switcher (no pill highlighted —
+          this is a country detail page, not any of the four index views). */}
+      <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
+        <div className="text-small text-muted">
+          <Link href="/countries/cards" className="hover:text-teal">Countries</Link>
+        </div>
+        <ViewSwitcher object="countries" />
       </div>
 
       <header className="flex items-center gap-5 flex-wrap">

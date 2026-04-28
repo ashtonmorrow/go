@@ -27,6 +27,7 @@ import { fetchAllCountries } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
 import JsonLd from '@/components/JsonLd';
+import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 
 export const revalidate = 3600;
@@ -138,18 +139,23 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
       />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
-      {/* === Breadcrumbs ================================================== */}
-      <nav className="text-small text-muted mb-3" aria-label="Breadcrumb">
-        <Link href="/pins" className="hover:text-teal">Pins</Link>
-        {country && countrySlug && (
-          <>
-            <span className="mx-1.5" aria-hidden>›</span>
-            <Link href={`/countries/${countrySlug}`} className="hover:text-teal">{country}</Link>
-          </>
-        )}
-        <span className="mx-1.5" aria-hidden>›</span>
-        <span className="text-ink-deep">{pin.name}</span>
-      </nav>
+      {/* === Breadcrumbs + View switcher ==================================
+          Switcher renders without a `current` so no pill is highlighted —
+          we're on a detail page, not any of the four index views. */}
+      <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
+        <nav className="text-small text-muted" aria-label="Breadcrumb">
+          <Link href="/pins" className="hover:text-teal">Pins</Link>
+          {country && countrySlug && (
+            <>
+              <span className="mx-1.5" aria-hidden>›</span>
+              <Link href={`/countries/${countrySlug}`} className="hover:text-teal">{country}</Link>
+            </>
+          )}
+          <span className="mx-1.5" aria-hidden>›</span>
+          <span className="text-ink-deep">{pin.name}</span>
+        </nav>
+        <ViewSwitcher object="pins" />
+      </div>
 
       {/* === Title block ================================================== */}
       <header className="border-b border-sand pb-5">

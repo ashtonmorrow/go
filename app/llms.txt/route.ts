@@ -59,12 +59,15 @@ export async function GET(): Promise<Response> {
     { url: `${SITE_URL}/cities/cards`,    name: 'Cities — Postcards', description: '1,341 cities as hand-rotated postcards' },
     { url: `${SITE_URL}/cities/map`,      name: 'Cities — Map',       description: 'Interactive globe of every city, sister-city graph on click' },
     { url: `${SITE_URL}/cities/table`,    name: 'Cities — Table',     description: 'Sortable data table of all 1,341 cities' },
+    { url: `${SITE_URL}/cities/stats`,    name: 'Cities — Stats',     description: 'Aggregate breakdowns: by continent, climate, top countries, extremes' },
     { url: `${SITE_URL}/countries/cards`, name: 'Countries — Cards',  description: '213 countries as flag tiles with travel logistics' },
     { url: `${SITE_URL}/countries/map`,   name: 'Countries — Globe',  description: 'Country-shaded globe driven by the same filter cockpit' },
     { url: `${SITE_URL}/countries/table`, name: 'Countries — Table',  description: 'Sortable data table of all 213 countries' },
+    { url: `${SITE_URL}/countries/stats`, name: 'Countries — Stats',  description: 'Aggregate breakdowns by continent, visa, tap water, drive-side, top countries' },
     { url: `${SITE_URL}/pins/cards`,      name: 'Pins — Cards',       description: 'Curated places of interest (UNESCO sites, museums, viewpoints)' },
     { url: `${SITE_URL}/pins/map`,        name: 'Pins — Map',         description: 'Globe of every pin with click-through detail' },
     { url: `${SITE_URL}/pins/table`,      name: 'Pins — Table',       description: 'Sortable data table of every pin' },
+    { url: `${SITE_URL}/pins/stats`,      name: 'Pins — Stats',       description: 'Aggregate breakdowns by category, list (UNESCO, Atlas Obscura), country, tag' },
     { url: `${SITE_URL}/about`,           name: 'About',              description: 'How the atlas is built — sources, stack, and design choices' },
   ]);
 

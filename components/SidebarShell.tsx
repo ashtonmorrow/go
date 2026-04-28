@@ -30,14 +30,13 @@ type Counts = {
 // On screens < md the rail collapses into a top app bar with a hamburger
 // that slides the same nav in from the left as a drawer.
 
-// Object axis. The View axis (Cards / Map / Table) lives in the
-// per-page <ViewSwitcher>, not here. Sidebar links land on the Cards
-// view of each object — the canonical default.
+// Object axis. The View axis (Cards / Map / Table / Stats) lives in
+// the per-page <ViewSwitcher>, not here. Sidebar links land on the
+// Cards view of each object — the canonical default.
 const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/cities/cards',    emoji: '📮', label: 'Cities' },
   { href: '/countries/cards', emoji: '🌍', label: 'Countries' },
   { href: '/pins/cards',      emoji: '📍', label: 'Pins' },
-  { href: '/about',           emoji: '📖', label: 'About' },
 ];
 
 // External links to other Mike Lee subdomains. mike-lee.me itself isn't
@@ -237,15 +236,19 @@ function NavBody({
         ))}
       </Section>
 
-      {/* Bottom block: Home (= the parent site, mike-lee.me — this is just
-          a sub-section) + footer credit. mt-auto pushes to the bottom. */}
-      <div className="mt-auto flex flex-col gap-3 pt-4">
+      {/* Bottom block: Home (= the parent site, mike-lee.me — this is
+          just a sub-section), then a quiet About link below it. About
+          got demoted from the Views section (which is reserved for the
+          three first-class object axes) so it's less prominent but
+          still findable. */}
+      <div className="mt-auto flex flex-col gap-1 pt-4">
         <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" />
+        <Item href="/about" emoji="📖" label="About this atlas" onClick={onLinkClick} />
         <a
           href="https://www.linkedin.com/in/mikelee89/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-2 text-[11px] text-muted hover:text-ink-deep transition-colors"
+          className="px-2 mt-2 text-[11px] text-muted hover:text-ink-deep transition-colors"
         >
           Whisker Leaks — {new Date().getFullYear()}
         </a>
