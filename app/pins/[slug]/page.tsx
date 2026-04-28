@@ -27,6 +27,7 @@ import { fetchAllCountries } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
 import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
+import { parseHours, DAY_LABELS, type DayKey } from '@/lib/parseHours';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
@@ -279,21 +280,32 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             </section>
           )}
 
-          {/* Visiting practicalities */}
-          {(pin.hours || pin.priceText) && (
+          {/* Visiting practicalities — Hours and Cost. Hours render as a
+              7-row table with today's row highlighted when we can parse
+              the structured weekly format; falls back to the prose text
+              otherwise. Cost shows priceText when set, plus a "Free
+              entry" callout when priceAmount is exactly 0. */}
+          {(pin.hours || pin.priceText || pin.priceAmount === 0) && (
             <section className="mt-8 pt-8 border-t border-sand grid grid-cols-1 sm:grid-cols-2 gap-6">
               {pin.hours && (
                 <div>
                   <h2 className="text-h3 text-ink-deep mb-2">Hours</h2>
-                  <p className="text-ink leading-relaxed whitespace-pre-line">{pin.hours}</p>
+                  <HoursBlock raw={pin.hours} />
                 </div>
               )}
-              {pin.priceText && (
+              {(pin.priceText || pin.priceAmount === 0) && (
                 <div>
                   <h2 className="text-h3 text-ink-deep mb-2">Cost</h2>
-                  <p className="text-ink leading-relaxed">{pin.priceText}</p>
-                  {isFree === true && (
-                    <p className="mt-1 text-small text-teal">Free entry.</p>
+                  {pin.priceText && (
+                    <p className="text-ink leading-relaxed">{pin.priceText}</p>
+                  )}
+                  {pin.priceAmount === 0 && (
+                    <p className={(pin.priceText ? 'mt-1 ' : '') + 'text-small text-teal'}>Free entry.</p>
+                  )}
+                  {pin.priceAmount != null && pin.priceAmount > 0 && pin.priceCurrency && (
+                    <p className="mt-1 text-small text-muted font-mono">
+                      {pin.priceCurrency} {pin.priceAmount}
+                    </p>
                   )}
                 </div>
               )}
@@ -481,6 +493,48 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         </aside>
       </div>
     </article>
+  );
+}
+
+// === HoursBlock =========================================================
+// When the pin's hours field parses cleanly as a weekly schedule (5+
+// days), render it as a 7-row table with today's row highlighted in
+// teal so users find "is this open right now?" at a glance. When the
+// schedule is prose ("Open daily 6am–6pm with seasonal variation",
+// etc.) we fall through to the original whitespace-preserved prose —
+// trying to summarise free-form text into a tidy table tends to drop
+// the nuance the prose carried.
+function HoursBlock({ raw }: { raw: string }) {
+  const parsed = parseHours(raw);
+  if (!parsed?.structured) {
+    return <p className="text-ink leading-relaxed whitespace-pre-line">{raw}</p>;
+  }
+  // Sun=0..Sat=6 in JS Date.getDay(); align with our DayKey order.
+  const todayIdx = new Date().getDay();
+  const todayKey: DayKey = (['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as DayKey[])[todayIdx];
+  return (
+    <dl className="text-small font-mono">
+      {parsed.structured.map(d => {
+        const isToday = d.day === todayKey;
+        return (
+          <div
+            key={d.day}
+            className={
+              'flex items-baseline justify-between gap-3 py-0.5 ' +
+              (isToday ? 'text-teal font-semibold' : 'text-ink')
+            }
+          >
+            <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+              {DAY_LABELS[d.day]}
+              {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+            </dt>
+            <dd className="tabular-nums">
+              {d.closed ? 'Closed' : `${d.open}–${d.close}`}
+            </dd>
+          </div>
+        );
+      })}
+    </dl>
   );
 }
 

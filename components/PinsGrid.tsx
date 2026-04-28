@@ -6,6 +6,7 @@ import { usePinFilters } from './PinFiltersContext';
 import { filterPins, sortPins } from '@/lib/pinFilter';
 import { flagRect } from '@/lib/flags';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
+import { parseHours, todayHoursLabel } from '@/lib/parseHours';
 import type { Pin } from '@/lib/pins';
 
 // === PinsGrid ==============================================================
@@ -112,6 +113,21 @@ function PinCard({
   ];
   const visibleLists = PRIORITY_LISTS.filter(l => pin.lists.includes(l)).slice(0, 2);
 
+  // Today's open-hours snippet — only when the pin has a parseable
+  // weekly schedule. Free-form prose hours are kept for the detail
+  // page; trying to summarise them on a 14-line card cell is fragile.
+  const hoursToday = todayHoursLabel(parseHours(pin.hours));
+  // Compact admission hint — only render when we have a confirmed
+  // numeric price. The atlas's price coverage is sparse so a "Cost"
+  // row is mostly noise; reserve it for the (currently ~5) pins
+  // that carry curated price info.
+  const priceHint =
+    pin.priceAmount === 0
+      ? 'Free'
+      : pin.priceAmount != null && pin.priceCurrency
+        ? `${pin.priceCurrency} ${pin.priceAmount}`
+        : null;
+
   return (
     <Link
       href={`/pins/${pin.slug ?? pin.id}`}
@@ -166,6 +182,24 @@ function PinCard({
             {visibleLists.map(l => (
               <ListBadge key={l} list={l} />
             ))}
+          </div>
+        )}
+        {/* Practical info row — compact today-hours snippet plus an
+            admission hint when known. Shown together since both are
+            "should I bother going right now?" signals. Only renders
+            when we actually have data (no "Hours: —" placeholders). */}
+        {(hoursToday || priceHint) && (
+          <div className="mt-1 flex items-center gap-2 text-[10px] text-slate font-mono">
+            {hoursToday && (
+              <span className="inline-flex items-center gap-1">
+                <span aria-hidden>🕐</span>
+                <span className="truncate">{hoursToday}</span>
+              </span>
+            )}
+            {hoursToday && priceHint && <span aria-hidden className="text-muted">·</span>}
+            {priceHint && (
+              <span className={priceHint === 'Free' ? 'text-teal' : ''}>{priceHint}</span>
+            )}
           </div>
         )}
       </div>
