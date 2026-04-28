@@ -9,16 +9,14 @@
 // doesn't resolve here is left out of continent filtering (rather than
 // guessed at), which is the safer default.
 
-import worldGeo from './worldGeo.json';
+import { WORLD_GEO } from './worldGeoData';
 import type { Continent } from '@/components/CityFiltersContext';
-
-type Feature = { properties: { name: string; iso3: string; continent: string } };
 
 const NAME_TO_CONTINENT: Record<string, Continent> = {};
 
-for (const f of (worldGeo as { features: Feature[] }).features) {
+for (const f of WORLD_GEO.features) {
   const name = f.properties.name?.toLowerCase().trim();
-  const continent = f.properties.continent as Continent;
+  const continent = f.properties.continent;
   if (name && continent) {
     NAME_TO_CONTINENT[name] = continent;
   }
