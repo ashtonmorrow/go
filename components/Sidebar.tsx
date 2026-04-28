@@ -3,6 +3,7 @@
 // the page already does) and hands them to the interactive client shell.
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
+import { CANONICAL_LISTS } from '@/lib/pinLists';
 import SidebarShell from './SidebarShell';
 
 export default async function Sidebar() {
@@ -44,24 +45,13 @@ export default async function Sidebar() {
     new Set(pins.map(p => p.category).filter((s): s is string => !!s))
   ).sort((a, b) => a.localeCompare(b));
 
-  // Lists — bubble curated lists (UNESCO, Atlas Obscura, wonders) in a
-  // friendly order rather than alphabetical. Anything else falls in
-  // alphabetically afterwards.
-  const PRIMARY_LIST_ORDER = [
-    'UNESCO World Heritage',
-    'Atlas Obscura',
-    'New 7 Wonders',
-    '7 Natural Wonders',
-    '7 Ancient Wonders',
-  ];
+  // Lists — derived from the curated CANONICAL_LISTS source of truth in
+  // lib/pinLists.ts. Order matches the canonical declaration (UNESCO →
+  // Atlas Obscura → wonders → niche). Only lists that actually appear
+  // on at least one pin are surfaced as filter options.
   const seenLists = new Set<string>();
   for (const p of pins) for (const l of p.lists) seenLists.add(l);
-  const pinListOptions = [
-    ...PRIMARY_LIST_ORDER.filter(l => seenLists.has(l)),
-    ...Array.from(seenLists)
-      .filter(l => !PRIMARY_LIST_ORDER.includes(l))
-      .sort((a, b) => a.localeCompare(b)),
-  ];
+  const pinListOptions = (CANONICAL_LISTS as readonly string[]).filter(l => seenLists.has(l));
 
   // Tags — Wikidata "instance of" labels. Hide singletons (only one pin
   // has them) since they don't help anyone narrow down.

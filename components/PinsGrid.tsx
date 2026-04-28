@@ -92,12 +92,19 @@ function PinCard({
   const subLabel = subParts.join(' · ');
   const flagUrl = flagCircle(countryIso2);
 
-  // Up to two list badges on the card. Atlas Obscura wins display
-  // priority because it's the cult-classic "weird places" tag the user
-  // explicitly asked to surface; UNESCO is implicit in the existing
-  // sub-label and a wider audience already knows it. The set is small
-  // so the lookup table here is fine.
-  const PRIORITY_LISTS = ['Atlas Obscura', 'New 7 Wonders', '7 Natural Wonders', '7 Ancient Wonders'];
+  // Up to two list badges on the card. UNESCO is intentionally NOT in
+  // this set — most pins are UNESCO sites and the badge would be noise.
+  // Atlas Obscura + the wonder sets are the high-signal ones to call
+  // out. Source order is from lib/pinLists.ts so any new canonical
+  // list inherits the right priority automatically.
+  const PRIORITY_LISTS = [
+    'Atlas Obscura',
+    'New 7 Wonders',
+    '7 Natural Wonders',
+    '7 Ancient Wonders',
+    'International Dark Sky Park',
+    'IUGS Geological Heritage Site',
+  ];
   const visibleLists = PRIORITY_LISTS.filter(l => pin.lists.includes(l)).slice(0, 2);
 
   return (
