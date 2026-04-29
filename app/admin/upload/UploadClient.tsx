@@ -55,21 +55,26 @@ type Candidate = {
   existingPinSlug: string | null;
 };
 
-type Phase = 'pick' | 'review' | 'saving' | 'done';
+type Phase = 'pick' | 'review';
+
+type CandidateState = {
+  status: 'idle' | 'saving' | 'saved' | 'error';
+  error?: string;
+  pinSlug?: string;
+  pinId?: string;
+  photoCount?: number;
+  isNew?: boolean;
+};
 
 export default function UploadClient() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [phase, setPhase] = useState<Phase>('pick');
   const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [selectedCandidates, setSelectedCandidates] = useState<Set<string>>(new Set());
   /** Map<photoId, candidateId | 'skip'> */
   const [assignments, setAssignments] = useState<Map<string, string>>(new Map());
+  const [candidateStates, setCandidateStates] = useState<Map<string, CandidateState>>(new Map());
   const [findingCandidates, setFindingCandidates] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
-  const [saveResult, setSaveResult] = useState<{
-    created: Array<{ photoHash: string; pinId: string; pinSlug: string; isNew: boolean }>;
-    failed: Array<{ photoHash: string; error: string }>;
-  } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const ingestFiles = useCallback(async (files: File[]) => {
@@ -163,13 +168,7 @@ export default function UploadClient() {
       if (!res.ok) throw new Error(data?.error ?? 'find-candidates failed');
       const cs: Candidate[] = data.candidates ?? [];
       setCandidates(cs);
-
-      // Default selection: pre-select candidates that don't overlap an existing
-      // pin. (Existing-pin candidates are still useful — they'll attach photos
-      // to the existing pin without creating a new one.)
-      const sel = new Set<string>();
-      for (const c of cs) sel.add(c.id);
-      setSelectedCandidates(sel);
+      setCandidateStates(new Map(cs.map(c => [c.id, { status: 'idle' as const }])));
 
       // Default per-photo assignment: each photo to its nearest matching candidate.
       const defaultAssign = new Map<string, string>();
@@ -201,15 +200,6 @@ export default function UploadClient() {
     }
   };
 
-  const toggleCandidate = (id: string) => {
-    setSelectedCandidates(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
   const setAssignment = (photoId: string, candidateOrSkip: string) => {
     setAssignments(prev => {
       const next = new Map(prev);
@@ -218,29 +208,43 @@ export default function UploadClient() {
     });
   };
 
-  const submit = async () => {
-    setPhase('saving');
-    setGlobalError(null);
+  const setCandidateState = (id: string, patch: CandidateState) => {
+    setCandidateStates(prev => new Map(prev).set(id, patch));
+  };
 
-    const candidateById = new Map(candidates.map(c => [c.id, c]));
+  const saveCandidate = async (candidateId: string) => {
+    const cand = candidates.find(c => c.id === candidateId);
+    if (!cand) return;
+
+    const assignedPhotos = photos.filter(p => {
+      if (!p.hash || p.stage === 'no-gps' || p.stage === 'error') return false;
+      return assignments.get(p.id) === candidateId;
+    });
+
+    if (!assignedPhotos.length) {
+      setCandidateState(candidateId, {
+        status: 'error',
+        error: 'No photos assigned to this place.',
+      });
+      return;
+    }
+
+    setCandidateState(candidateId, { status: 'saving' });
+
     const uploadedUrls = new Map<string, string>();
-
-    for (const photo of photos) {
-      if (!photo.hash || photo.stage === 'no-gps' || photo.stage === 'error') continue;
-      const assigned = assignments.get(photo.id);
-      if (!assigned || assigned === 'skip') continue;
-      const cand = candidateById.get(assigned);
-      if (!cand) continue;
-      if (!selectedCandidates.has(assigned) && !cand.existingPinId) continue;
-
+    for (const photo of assignedPhotos) {
+      if (photo.uploadedUrl) {
+        uploadedUrls.set(photo.id, photo.uploadedUrl);
+        continue;
+      }
       try {
         setPhotos(prev => prev.map(p => (p.id === photo.id ? { ...p, stage: 'uploading' } : p)));
         const form = new FormData();
         form.append('file', photo.file, photo.file.name);
-        form.append('hash', photo.hash);
+        form.append('hash', photo.hash!);
         const res = await fetch('/api/admin/upload-photo', { method: 'POST', body: form });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error ?? 'upload failed');
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data?.error ?? `upload failed (${res.status})`);
         uploadedUrls.set(photo.id, data.url);
         setPhotos(prev =>
           prev.map(p =>
@@ -250,48 +254,32 @@ export default function UploadClient() {
           ),
         );
       } catch (e) {
+        const msg = e instanceof Error ? e.message : 'upload failed';
         setPhotos(prev =>
           prev.map(p =>
-            p.id === photo.id
-              ? {
-                  ...p,
-                  stage: 'error',
-                  error: e instanceof Error ? e.message : 'upload failed',
-                }
-              : p,
+            p.id === photo.id ? { ...p, stage: 'error', error: msg } : p,
           ),
         );
+        setCandidateState(candidateId, { status: 'error', error: `Upload failed: ${msg}` });
+        return;
       }
     }
 
-    const liveAssignments: any[] = [];
-    for (const photo of photos) {
-      const url = uploadedUrls.get(photo.id);
-      if (!url || !photo.hash) continue;
-      const assigned = assignments.get(photo.id);
-      if (!assigned || assigned === 'skip') continue;
-      const cand = candidateById.get(assigned);
-      if (!cand) continue;
-
-      const existingPinId = cand.existingPinId;
-      const newPinFromCandidate =
-        !existingPinId && selectedCandidates.has(cand.id) ? cand.place : null;
-      if (!existingPinId && !newPinFromCandidate) continue;
-
-      liveAssignments.push({
-        photoHash: photo.hash,
-        photoUrl: url,
-        takenAt: photo.takenAt ? photo.takenAt.toISOString() : null,
-        exifLat: photo.lat ?? null,
-        exifLng: photo.lng ?? null,
-        width: photo.width ?? null,
-        height: photo.height ?? null,
-        bytes: photo.file.size ?? null,
+    const liveAssignments = assignedPhotos
+      .filter(p => uploadedUrls.has(p.id))
+      .map(p => ({
+        photoHash: p.hash!,
+        photoUrl: uploadedUrls.get(p.id)!,
+        takenAt: p.takenAt ? p.takenAt.toISOString() : null,
+        exifLat: p.lat ?? null,
+        exifLng: p.lng ?? null,
+        width: p.width ?? null,
+        height: p.height ?? null,
+        bytes: p.file.size ?? null,
         caption: null,
-        existingPinId,
-        newPinFromCandidate,
-      });
-    }
+        existingPinId: cand.existingPinId ?? null,
+        newPinFromCandidate: cand.existingPinId ? null : cand.place,
+      }));
 
     try {
       const res = await fetch('/api/admin/save-batch', {
@@ -299,13 +287,31 @@ export default function UploadClient() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ assignments: liveAssignments }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error ?? 'save-batch failed');
-      setSaveResult(data);
-      setPhase('done');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error ?? `save-batch failed (${res.status})`);
+
+      if (data.failed?.length) {
+        setCandidateState(candidateId, {
+          status: 'error',
+          error: data.failed[0].error ?? 'save failed',
+        });
+        return;
+      }
+
+      const created: Array<{ pinId: string; pinSlug: string; isNew: boolean }> = data.created ?? [];
+      const first = created[0];
+      setCandidateState(candidateId, {
+        status: 'saved',
+        pinId: first?.pinId,
+        pinSlug: first?.pinSlug,
+        photoCount: created.length,
+        isNew: first?.isNew ?? false,
+      });
     } catch (e) {
-      setGlobalError(e instanceof Error ? e.message : 'save-batch failed');
-      setPhase('review');
+      setCandidateState(candidateId, {
+        status: 'error',
+        error: e instanceof Error ? e.message : 'save failed',
+      });
     }
   };
 
@@ -313,9 +319,8 @@ export default function UploadClient() {
     photos.forEach(p => URL.revokeObjectURL(p.preview));
     setPhotos([]);
     setCandidates([]);
-    setSelectedCandidates(new Set());
     setAssignments(new Map());
-    setSaveResult(null);
+    setCandidateStates(new Map());
     setPhase('pick');
     setGlobalError(null);
   };
@@ -388,21 +393,13 @@ export default function UploadClient() {
         <ReviewSheet
           photos={photos}
           candidates={candidates}
-          selectedCandidates={selectedCandidates}
           assignments={assignments}
-          onToggleCandidate={toggleCandidate}
+          candidateStates={candidateStates}
           onAssign={setAssignment}
+          onSaveCandidate={saveCandidate}
           onBack={() => setPhase('pick')}
-          onSubmit={submit}
+          onReset={reset}
         />
-      )}
-
-      {phase === 'saving' && (
-        <div className="text-small text-ink">Saving… uploading photos and creating pins.</div>
-      )}
-
-      {phase === 'done' && saveResult && (
-        <DonePanel result={saveResult} onReset={reset} />
       )}
     </div>
   );
@@ -492,93 +489,61 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
 function ReviewSheet({
   photos,
   candidates,
-  selectedCandidates,
   assignments,
-  onToggleCandidate,
+  candidateStates,
   onAssign,
+  onSaveCandidate,
   onBack,
-  onSubmit,
+  onReset,
 }: {
   photos: Photo[];
   candidates: Candidate[];
-  selectedCandidates: Set<string>;
   assignments: Map<string, string>;
-  onToggleCandidate: (id: string) => void;
+  candidateStates: Map<string, CandidateState>;
   onAssign: (photoId: string, candId: string) => void;
+  onSaveCandidate: (id: string) => void;
   onBack: () => void;
-  onSubmit: () => void;
+  onReset: () => void;
 }) {
-  const candidateById = useMemo(() => new Map(candidates.map(c => [c.id, c])), [candidates]);
   const ready = photos.filter(p => p.stage === 'ready' && p.hash);
+  const photosByCandidate = useMemo(() => {
+    const map = new Map<string, Photo[]>();
+    for (const p of ready) {
+      const a = assignments.get(p.id);
+      if (!a || a === 'skip') continue;
+      if (!map.has(a)) map.set(a, []);
+      map.get(a)!.push(p);
+    }
+    return map;
+  }, [ready, assignments]);
 
-  const newCount = candidates.filter(c => !c.existingPinId && selectedCandidates.has(c.id)).length;
-  const existingCount = candidates.filter(c => !!c.existingPinId).length;
-  const photoTargetCount = ready.filter(p => {
-    const a = assignments.get(p.id);
-    if (!a || a === 'skip') return false;
-    const c = candidateById.get(a);
-    if (!c) return false;
-    return !!c.existingPinId || selectedCandidates.has(c.id);
-  }).length;
+  const savedCount = [...candidateStates.values()].filter(s => s.status === 'saved').length;
 
   return (
     <div className="space-y-6">
       <section>
-        <h2 className="text-h3 text-ink-deep mb-3">Candidates near your photos</h2>
+        <h2 className="text-h3 text-ink-deep mb-3">Places near your photos</h2>
+        <p className="text-small text-muted mb-3">
+          Each place has its own Save button. Click to upload the assigned photos and
+          create the pin (or attach to an existing one). You can save them in any order.
+        </p>
         {candidates.length === 0 ? (
           <p className="text-small text-muted">
-            No nearby places returned. Either the photos are far from any indexed POI, or
-            Google Places didn&rsquo;t recognise the area. You can still go back and remove
-            photos.
+            No nearby places returned. Photos may be far from indexed POIs.
           </p>
         ) : (
           <ul className="space-y-2">
-            {candidates.map(c => {
-              const isExisting = !!c.existingPinId;
-              const checked = isExisting || selectedCandidates.has(c.id);
-              return (
-                <li key={c.id} className="flex items-start gap-3 p-3 rounded border border-sand bg-white">
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    disabled={isExisting}
-                    onChange={() => !isExisting && onToggleCandidate(c.id)}
-                    className="mt-1"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      <span className="font-medium text-ink-deep">{c.place.name}</span>
-                      {isExisting && (
-                        <span className="pill bg-cream-soft text-slate text-[10px]">
-                          existing pin
-                        </span>
-                      )}
-                      {!isExisting && (
-                        <span className="pill bg-teal/10 text-teal text-[10px]">
-                          new pin
-                        </span>
-                      )}
-                      {c.photoHashes.length > 1 && (
-                        <span className="pill bg-accent/10 text-accent text-[10px]">
-                          {c.photoHashes.length} photos
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-small text-muted truncate">
-                      {c.place.address || `${c.place.city}, ${c.place.country}`}
-                    </p>
-                    <p className="text-[10px] text-muted font-mono mt-0.5">
-                      {c.place.category} · {c.place.lat.toFixed(4)}, {c.place.lng.toFixed(4)}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
+            {candidates.map(c => (
+              <CandidateRow
+                key={c.id}
+                candidate={c}
+                photoCount={photosByCandidate.get(c.id)?.length ?? 0}
+                state={candidateStates.get(c.id) ?? { status: 'idle' }}
+                onSave={() => onSaveCandidate(c.id)}
+              />
+            ))}
           </ul>
         )}
-        <p className="mt-3 text-[11px] text-muted">
-          {newCount} new pin{newCount === 1 ? '' : 's'} · {existingCount} existing match{existingCount === 1 ? '' : 'es'}
-        </p>
       </section>
 
       <section>
@@ -633,15 +598,14 @@ function ReviewSheet({
         </button>
         <div className="flex items-center gap-3">
           <span className="text-small text-muted">
-            Will save {photoTargetCount} photo{photoTargetCount === 1 ? '' : 's'}
+            {savedCount} of {candidates.length} saved
           </span>
           <button
             type="button"
-            onClick={onSubmit}
-            disabled={photoTargetCount === 0}
-            className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
+            onClick={onReset}
+            className="px-3 py-2 text-small text-ink hover:bg-cream-soft rounded border border-sand"
           >
-            Save batch
+            Upload more
           </button>
         </div>
       </div>
@@ -649,75 +613,95 @@ function ReviewSheet({
   );
 }
 
-function DonePanel({
-  result,
-  onReset,
+function CandidateRow({
+  candidate,
+  photoCount,
+  state,
+  onSave,
 }: {
-  result: {
-    created: Array<{ photoHash: string; pinId: string; pinSlug: string; isNew: boolean }>;
-    failed: Array<{ photoHash: string; error: string }>;
-  };
-  onReset: () => void;
+  candidate: Candidate;
+  photoCount: number;
+  state: CandidateState;
+  onSave: () => void;
 }) {
-  const newPins = new Map<string, { slug: string; count: number }>();
-  for (const c of result.created) {
-    if (!c.isNew) continue;
-    const e = newPins.get(c.pinId);
-    if (e) e.count++;
-    else newPins.set(c.pinId, { slug: c.pinSlug, count: 1 });
-  }
+  const isExisting = !!candidate.existingPinId;
+  const slug = state.pinSlug ?? candidate.existingPinSlug ?? null;
 
   return (
-    <div className="space-y-4">
-      <div className="px-4 py-3 rounded bg-teal/10 text-teal text-small">
-        Saved {result.created.length} photo{result.created.length === 1 ? '' : 's'}
-        {newPins.size > 0 && (
-          <> · created {newPins.size} new pin{newPins.size === 1 ? '' : 's'}</>
+    <li className="flex items-start gap-3 p-3 rounded border border-sand bg-white">
+      <div className="flex-1 min-w-0">
+        <div className="flex items-baseline gap-2 flex-wrap">
+          <span className="font-medium text-ink-deep">{candidate.place.name}</span>
+          {isExisting ? (
+            <span className="pill bg-cream-soft text-slate text-[10px]">existing pin</span>
+          ) : (
+            <span className="pill bg-teal/10 text-teal text-[10px]">new pin</span>
+          )}
+          {photoCount > 0 && (
+            <span className="pill bg-accent/10 text-accent text-[10px]">
+              {photoCount} photo{photoCount === 1 ? '' : 's'} assigned
+            </span>
+          )}
+        </div>
+        <p className="text-small text-muted truncate">
+          {candidate.place.address || `${candidate.place.city}, ${candidate.place.country}`}
+        </p>
+        <p className="text-[10px] text-muted font-mono mt-0.5">
+          {candidate.place.category} · {candidate.place.lat.toFixed(4)}, {candidate.place.lng.toFixed(4)}
+        </p>
+        {state.status === 'error' && state.error && (
+          <p className="mt-1 text-[11px] text-orange">{state.error}</p>
         )}
-        {result.failed.length > 0 && (
-          <> · {result.failed.length} failed</>
+        {state.status === 'saved' && slug && (
+          <p className="mt-1 text-[11px] text-teal">
+            Saved {state.photoCount ?? 0} photo{(state.photoCount ?? 0) === 1 ? '' : 's'} ·{' '}
+            <a href={`/pins/${slug}`} target="_blank" rel="noopener noreferrer" className="underline">
+              View pin →
+            </a>
+          </p>
         )}
       </div>
+      <SaveButton state={state} disabled={photoCount === 0} onClick={onSave} />
+    </li>
+  );
+}
 
-      {newPins.size > 0 && (
-        <div>
-          <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">New pins</h3>
-          <ul className="text-small space-y-1">
-            {[...newPins.entries()].map(([pinId, { slug, count }]) => (
-              <li key={pinId}>
-                <a
-                  href={`/pins/${slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-teal hover:underline"
-                >
-                  {slug} → {count} photo{count === 1 ? '' : 's'}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {result.failed.length > 0 && (
-        <div>
-          <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Failed</h3>
-          <ul className="text-small space-y-1 text-orange">
-            {result.failed.map((f, i) => (
-              <li key={i}>{f.photoHash.slice(0, 8)}…: {f.error}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <button
-        type="button"
-        onClick={onReset}
-        className="px-4 py-2 text-small font-medium rounded bg-ink-deep text-white"
-      >
-        Upload more
-      </button>
-    </div>
+function SaveButton({
+  state,
+  disabled,
+  onClick,
+}: {
+  state: CandidateState;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  if (state.status === 'saved') {
+    return (
+      <span className="px-3 py-1.5 text-small font-medium rounded bg-teal/10 text-teal">
+        Saved ✓
+      </span>
+    );
+  }
+  const label =
+    state.status === 'saving' ? 'Saving…' :
+    state.status === 'error' ? 'Retry' :
+    'Save';
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled || state.status === 'saving'}
+      className={
+        'px-3 py-1.5 text-small font-medium rounded transition-colors ' +
+        (disabled
+          ? 'bg-cream-soft text-muted cursor-not-allowed'
+          : state.status === 'error'
+          ? 'bg-orange text-white hover:bg-orange/90'
+          : 'bg-teal text-white hover:bg-teal/90')
+      }
+    >
+      {label}
+    </button>
   );
 }
 
