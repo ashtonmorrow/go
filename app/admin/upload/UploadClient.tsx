@@ -534,19 +534,35 @@ function ReviewSheet({
   onBack: () => void;
   onReset: () => void;
 }) {
-  const ready = photos.filter(p => p.stage === 'ready' && p.hash);
+  const usable = photos.filter(p => p.hash && p.stage !== 'no-gps' && p.stage !== 'error');
+
   const photosByCandidate = useMemo(() => {
     const map = new Map<string, Photo[]>();
-    for (const p of ready) {
+    for (const p of usable) {
       const a = assignments.get(p.id);
       if (!a || a === 'skip') continue;
       if (!map.has(a)) map.set(a, []);
       map.get(a)!.push(p);
     }
     return map;
-  }, [ready, assignments]);
+  }, [usable, assignments]);
 
-  const savedCount = [...candidateStates.values()].filter(s => s.status === 'saved').length;
+  // Photos that haven't been saved yet — used for the "remaining" section.
+  // A photo is "saved" if it's assigned to a candidate whose state is 'saved'.
+  const remainingPhotos = useMemo(() => {
+    return usable.filter(p => {
+      const a = assignments.get(p.id);
+      if (!a) return true;
+      if (a === 'skip') return true;
+      const cs = candidateStates.get(a);
+      return cs?.status !== 'saved';
+    });
+  }, [usable, assignments, candidateStates]);
+
+  const savedPhotoCount = [...candidateStates.values()]
+    .filter(s => s.status === 'saved')
+    .reduce((sum, s) => sum + (s.photoCount ?? 0), 0);
+  const totalUsable = usable.length;
 
   return (
     <div className="space-y-6">
@@ -576,47 +592,54 @@ function ReviewSheet({
         )}
       </section>
 
-      <section>
-        <h2 className="text-h3 text-ink-deep mb-3">Assign each photo</h2>
-        <ul className="space-y-2">
-          {ready.map(p => {
-            const matching = candidates.filter(c => p.hash && c.photoHashes.includes(p.hash));
-            const assigned = assignments.get(p.id) ?? 'skip';
-            return (
-              <li key={p.id} className="flex items-center gap-3 p-2 rounded border border-sand bg-white">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
-                <div className="flex-1 min-w-0 text-small">
-                  <p className="font-mono text-[11px] text-muted truncate">
-                    {p.lat?.toFixed(4)}, {p.lng?.toFixed(4)}
-                  </p>
-                  {p.takenAt && (
-                    <p className="text-[11px] text-muted">{p.takenAt.toLocaleString()}</p>
-                  )}
-                </div>
-                <select
-                  value={assigned}
-                  onChange={e => onAssign(p.id, e.target.value)}
-                  className="text-small border border-sand rounded px-2 py-1 bg-white"
-                >
-                  <option value="skip">Skip this photo</option>
-                  {matching.map(c => (
-                    <option key={c.id} value={c.id}>
-                      {c.place.name}
-                      {c.existingPinId ? ' (existing)' : ''}
-                    </option>
-                  ))}
-                  {matching.length === 0 && (
-                    <option value="skip" disabled>
-                      No nearby candidates
-                    </option>
-                  )}
-                </select>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      {remainingPhotos.length > 0 && (
+        <section>
+          <h2 className="text-h3 text-ink-deep mb-1">Photos still to assign</h2>
+          <p className="text-small text-muted mb-3">
+            These photos aren&rsquo;t saved yet. Pick the right place from the dropdown,
+            then scroll up and click <strong>Save</strong> on that place&rsquo;s row.
+            Choose <em>Skip</em> if you don&rsquo;t want to save the photo.
+          </p>
+          <ul className="space-y-2">
+            {remainingPhotos.map(p => {
+              const matching = candidates.filter(c => p.hash && c.photoHashes.includes(p.hash));
+              const assigned = assignments.get(p.id) ?? 'skip';
+              return (
+                <li key={p.id} className="flex items-center gap-3 p-2 rounded border border-sand bg-white">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
+                  <div className="flex-1 min-w-0 text-small">
+                    <p className="font-mono text-[11px] text-muted truncate">
+                      {p.lat?.toFixed(4)}, {p.lng?.toFixed(4)}
+                    </p>
+                    {p.takenAt && (
+                      <p className="text-[11px] text-muted">{p.takenAt.toLocaleString()}</p>
+                    )}
+                  </div>
+                  <select
+                    value={assigned}
+                    onChange={e => onAssign(p.id, e.target.value)}
+                    className="text-small border border-sand rounded px-2 py-1 bg-white max-w-[260px]"
+                  >
+                    <option value="skip">Skip this photo</option>
+                    {matching.map(c => (
+                      <option key={c.id} value={c.id}>
+                        {c.place.name}
+                        {c.existingPinId ? ' (existing)' : ''}
+                      </option>
+                    ))}
+                    {matching.length === 0 && (
+                      <option value="skip" disabled>
+                        No nearby candidates
+                      </option>
+                    )}
+                  </select>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
 
       <div className="flex items-center justify-between pt-4 border-t border-sand">
         <button
@@ -628,7 +651,10 @@ function ReviewSheet({
         </button>
         <div className="flex items-center gap-3">
           <span className="text-small text-muted">
-            {savedCount} of {candidates.length} saved
+            {savedPhotoCount} of {totalUsable} photos saved
+            {remainingPhotos.length > 0 && (
+              <> · {remainingPhotos.length} still to assign</>
+            )}
           </span>
           <button
             type="button"

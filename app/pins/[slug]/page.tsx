@@ -182,23 +182,43 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         <ViewSwitcher object="pins" />
       </div>
 
-      <header className="border-b border-sand pb-5">
-        <h1 className="text-h1 text-ink-deep leading-tight">{pin.name}</h1>
-        <p className="mt-2 text-slate">
-          <SubLine
-            parts={[
-              wp?.description ?? null,
-              placeText || null,
-              formatYear(pin.inceptionYear) ? `since ${formatYear(pin.inceptionYear)}` : null,
-            ]}
+      <header className="border-b border-sand pb-5 flex gap-4 items-start">
+        {galleryImages[0] && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={galleryImages[0].url}
+            alt=""
+            aria-hidden
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover bg-cream-soft border border-sand flex-shrink-0"
           />
-        </p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {pin.visited && <span className="pill bg-teal/10 text-teal">Been</span>}
-          {pin.status && pin.status !== 'active' && (
-            <span className="pill bg-orange/10 text-orange">{STATUS_FACET[pin.status].label}</span>
+        )}
+        <div className="flex-1 min-w-0">
+          {pin.lat != null && pin.lng != null && (
+            <p className="text-[11px] uppercase tracking-[0.18em] font-mono text-muted mb-1">
+              {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
+            </p>
           )}
-          {pin.lists.map(l => {
+          <h1 className="text-h1 text-ink-deep leading-tight">{pin.name}</h1>
+          <p className="mt-2 text-slate">
+            <SubLine
+              parts={[
+                wp?.description ?? null,
+                placeText || null,
+                formatYear(pin.inceptionYear) ? `since ${formatYear(pin.inceptionYear)}` : null,
+              ]}
+            />
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            {pin.visited && (
+              <span className="text-teal text-[11px] uppercase tracking-[0.14em] font-medium inline-flex items-center gap-1.5">
+                <span aria-hidden>✅</span>
+                <span>Visited</span>
+              </span>
+            )}
+            {pin.status && pin.status !== 'active' && (
+              <span className="pill bg-orange/10 text-orange">{STATUS_FACET[pin.status].label}</span>
+            )}
+            {pin.lists.map(l => {
             const canonical = l as CanonicalList;
             const icon = LIST_ICONS[canonical];
             const url = icon
@@ -238,14 +258,15 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           {pin.category && pin.lists.length === 0 && (
             <span className="pill bg-cream-soft text-slate">{pin.category}</span>
           )}
+          </div>
         </div>
       </header>
 
-      {galleryImages[0] && (
+      {personalPhotos[0] && (
         <figure className="mt-6 rounded overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={galleryImages[0].url}
+            src={personalPhotos[0].url}
             alt={pin.name}
             className="w-full max-h-[60vh] object-cover bg-cream-soft"
           />
@@ -301,11 +322,11 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
           {hasGoodToKnow && <GoodToKnowSection pin={pin} facets={goodToKnowFacets} />}
 
-          {personalPhotos.length > 0 && (
+          {personalPhotos.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h3 text-ink-deep mb-3">Your photos</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {personalPhotos.map(p => (
+                {personalPhotos.slice(1).map(p => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     key={p.id}
@@ -348,7 +369,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         </div>
 
         <aside className="self-start md:sticky md:top-20 space-y-4">
-          {wp?.thumbnailUrl && wp.thumbnailUrl !== galleryImages[0]?.url && (
+          {wp?.thumbnailUrl && wp.thumbnailUrl !== galleryImages[0]?.url && personalPhotos.length === 0 && (
             <figure className="card p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={wp.thumbnailUrl} alt="" aria-hidden className="w-full rounded bg-cream-soft" />
