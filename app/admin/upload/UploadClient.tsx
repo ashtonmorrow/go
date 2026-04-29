@@ -209,6 +209,14 @@ export default function UploadClient() {
     });
   };
 
+  const detachPhoto = (photoId: string) => {
+    setAssignments(prev => {
+      const next = new Map(prev);
+      next.set(photoId, 'skip');
+      return next;
+    });
+  };
+
   const setCandidateState = (id: string, patch: CandidateState) => {
     setCandidateStates(prev => new Map(prev).set(id, patch));
   };
@@ -414,6 +422,7 @@ export default function UploadClient() {
           assignments={assignments}
           candidateStates={candidateStates}
           onAssign={setAssignment}
+          onDetachPhoto={detachPhoto}
           onSaveCandidate={saveCandidate}
           onBack={() => setPhase('pick')}
           onReset={reset}
@@ -510,6 +519,7 @@ function ReviewSheet({
   assignments,
   candidateStates,
   onAssign,
+  onDetachPhoto,
   onSaveCandidate,
   onBack,
   onReset,
@@ -519,6 +529,7 @@ function ReviewSheet({
   assignments: Map<string, string>;
   candidateStates: Map<string, CandidateState>;
   onAssign: (photoId: string, candId: string) => void;
+  onDetachPhoto: (photoId: string) => void;
   onSaveCandidate: (id: string) => void;
   onBack: () => void;
   onReset: () => void;
@@ -555,9 +566,10 @@ function ReviewSheet({
               <CandidateRow
                 key={c.id}
                 candidate={c}
-                photoCount={photosByCandidate.get(c.id)?.length ?? 0}
+                assignedPhotos={photosByCandidate.get(c.id) ?? []}
                 state={candidateStates.get(c.id) ?? { status: 'idle' }}
                 onSave={() => onSaveCandidate(c.id)}
+                onDetachPhoto={onDetachPhoto}
               />
             ))}
           </ul>
@@ -633,17 +645,21 @@ function ReviewSheet({
 
 function CandidateRow({
   candidate,
-  photoCount,
+  assignedPhotos,
   state,
   onSave,
+  onDetachPhoto,
 }: {
   candidate: Candidate;
-  photoCount: number;
+  assignedPhotos: Photo[];
   state: CandidateState;
   onSave: () => void;
+  onDetachPhoto: (photoId: string) => void;
 }) {
   const isExisting = !!candidate.existingPinId;
   const slug = state.pinSlug ?? candidate.existingPinSlug ?? null;
+  const photoCount = assignedPhotos.length;
+  const isSaved = state.status === 'saved';
 
   return (
     <li className="flex items-start gap-3 p-3 rounded border border-sand bg-white">
@@ -667,11 +683,42 @@ function CandidateRow({
         <p className="text-[10px] text-muted font-mono mt-0.5">
           {candidate.place.category} · {candidate.place.lat.toFixed(4)}, {candidate.place.lng.toFixed(4)}
         </p>
-        {state.status === 'error' && state.error && (
-          <p className="mt-1 text-[11px] text-orange">{state.error}</p>
+
+        {assignedPhotos.length > 0 && (
+          <div className="mt-2 flex gap-2 flex-wrap">
+            {assignedPhotos.map(p => (
+              <div key={p.id} className="relative group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={p.preview}
+                  alt={p.takenAt?.toLocaleString() ?? ''}
+                  title={[
+                    p.takenAt?.toLocaleString(),
+                    p.lat != null && p.lng != null ? `${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}` : null,
+                  ].filter(Boolean).join(' · ')}
+                  className="w-14 h-14 object-cover rounded border border-sand bg-cream-soft"
+                />
+                {!isSaved && (
+                  <button
+                    type="button"
+                    onClick={() => onDetachPhoto(p.id)}
+                    aria-label="Wrong place — remove this photo"
+                    title="Wrong place — remove this photo"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-[10px] leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
         )}
-        {state.status === 'saved' && slug && (
-          <p className="mt-1 text-[11px] text-teal">
+
+        {state.status === 'error' && state.error && (
+          <p className="mt-2 text-[11px] text-orange">{state.error}</p>
+        )}
+        {isSaved && slug && (
+          <p className="mt-2 text-[11px] text-teal">
             Saved {state.photoCount ?? 0} photo{(state.photoCount ?? 0) === 1 ? '' : 's'} ·{' '}
             <a href={`/pins/${slug}`} target="_blank" rel="noopener noreferrer" className="underline">
               View pin →
