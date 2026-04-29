@@ -274,17 +274,28 @@ function rowToPin(row: any): Pin {
   };
 }
 
+const PAGE_SIZE = 1000;
+
 const _fetchAllPins = unstable_cache(
   async (): Promise<Pin[]> => {
-    const { data, error } = await supabase
-      .from('pins')
-      .select('*')
-      .order('name', { ascending: true });
-    if (error) {
-      console.error('[pins] fetchAllPins failed:', error);
-      return [];
+    const all: any[] = [];
+    let start = 0;
+    for (;;) {
+      const { data, error } = await supabase
+        .from('pins')
+        .select('*')
+        .order('name', { ascending: true })
+        .range(start, start + PAGE_SIZE - 1);
+      if (error) {
+        console.error('[pins] fetchAllPins page failed:', error);
+        break;
+      }
+      if (!data || data.length === 0) break;
+      all.push(...data);
+      if (data.length < PAGE_SIZE) break;
+      start += PAGE_SIZE;
     }
-    return (data ?? []).map(rowToPin);
+    return all.map(rowToPin);
   },
   ['supabase-pins'],
   { revalidate: 86400, tags: ['supabase-pins'] }

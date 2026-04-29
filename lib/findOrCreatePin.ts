@@ -121,17 +121,28 @@ export async function findCandidatesForPhotos(
   if (grouped.size === 0) return [];
 
   const sb = supabaseAdmin();
-  const { data: existingPins } = await sb
-    .from('pins')
-    .select('id, name, slug, lat, lng')
-    .not('lat', 'is', null)
-    .not('lng', 'is', null);
+  const PAGE_SIZE = 1000;
+  const existingPins: Array<{ id: string; name: string; slug: string | null; lat: number; lng: number }> = [];
+  for (let start = 0; ; start += PAGE_SIZE) {
+    const { data, error } = await sb
+      .from('pins')
+      .select('id, name, slug, lat, lng')
+      .not('lat', 'is', null)
+      .not('lng', 'is', null)
+      .range(start, start + PAGE_SIZE - 1);
+    if (error || !data || data.length === 0) break;
+    for (const p of data) {
+      if (typeof p.lat === 'number' && typeof p.lng === 'number') {
+        existingPins.push({ id: p.id, name: p.name, slug: p.slug ?? null, lat: p.lat, lng: p.lng });
+      }
+    }
+    if (data.length < PAGE_SIZE) break;
+  }
 
   const candidates = [...grouped.values()];
   for (const c of candidates) {
     let bestMatch: { id: string; name: string; slug: string | null; dist: number } | null = null;
-    for (const p of existingPins ?? []) {
-      if (typeof p.lat !== 'number' || typeof p.lng !== 'number') continue;
+    for (const p of existingPins) {
       const dist = haversineKm(c.place.lat, c.place.lng, p.lat, p.lng);
       if (dist < 0.1 && (!bestMatch || dist < bestMatch.dist)) {
         bestMatch = { id: p.id, name: p.name, slug: p.slug, dist };
