@@ -140,6 +140,8 @@ function PinCard({
             src={coverUrl}
             alt=""
             aria-hidden
+            loading="lazy"
+            decoding="async"
             className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
           />
         ) : (
@@ -168,6 +170,8 @@ function PinCard({
               src={flagUrl}
               alt={country ?? ''}
               title={country ?? ''}
+              loading="lazy"
+              decoding="async"
               className="w-6 h-4 rounded-sm border border-sand bg-white object-cover flex-shrink-0"
             />
           )}

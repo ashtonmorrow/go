@@ -11,6 +11,7 @@ const MAX_PHOTOS = 30;
 type PhotoStage =
   | 'reading'
   | 'no-gps'
+  | 'duplicate'
   | 'ready'
   | 'uploading'
   | 'uploaded'
@@ -31,6 +32,7 @@ type Photo = {
   width?: number;
   height?: number;
   uploadedUrl?: string;
+  duplicateOf?: { pinId: string; pinName: string; pinSlug: string | null };
 };
 
 type CandidatePlace = {
@@ -94,12 +96,15 @@ export default function UploadClient() {
     }));
     setPhotos(prev => [...prev, ...newPhotos]);
 
+    const ingestedHashes: string[] = [];
     for (const photo of newPhotos) {
       try {
         const { file: workingFile } = await convertHeicIfNeeded(photo.file);
         const hash = await sha256OfFile(workingFile);
         const meta = await extractExifMeta(workingFile);
         const dims = await imageDimensions(workingFile);
+
+        ingestedHashes.push(hash);
 
         setPhotos(prev =>
           prev.map(p =>
@@ -126,6 +131,34 @@ export default function UploadClient() {
               : p,
           ),
         );
+      }
+    }
+
+    // After all photos in this batch finish hashing, ask the server which
+    // hashes already exist in personal_photos. Mark those as duplicates so
+    // they can't be re-uploaded.
+    if (ingestedHashes.length) {
+      try {
+        const res = await fetch('/api/admin/check-duplicates', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ hashes: ingestedHashes }),
+        });
+        const data = await res.json().catch(() => ({}));
+        const dupes = (data?.duplicates ?? {}) as Record<
+          string,
+          { pinId: string; pinName: string; pinSlug: string | null }
+        >;
+        if (Object.keys(dupes).length) {
+          setPhotos(prev =>
+            prev.map(p => {
+              if (!p.hash || !dupes[p.hash]) return p;
+              return { ...p, stage: 'duplicate' as const, duplicateOf: dupes[p.hash] };
+            }),
+          );
+        }
+      } catch (e) {
+        console.warn('check-duplicates failed:', e);
       }
     }
   }, [photos.length]);
@@ -198,6 +231,66 @@ export default function UploadClient() {
       setGlobalError(e instanceof Error ? e.message : 'find-candidates failed');
     } finally {
       setFindingCandidates(false);
+    }
+  };
+
+  /** Re-run the candidate search for one photo with a free-text query.
+   *  Useful when the nearby search didn't return the right place. New
+   *  candidates are merged into the candidates list (deduped by id). */
+  const searchAgainForPhoto = async (photoId: string, query: string): Promise<boolean> => {
+    const photo = photos.find(p => p.id === photoId);
+    if (!photo || !photo.hash || photo.lat == null || photo.lng == null) return false;
+    const trimmed = query.trim();
+    if (!trimmed) return false;
+
+    try {
+      const res = await fetch('/api/admin/find-candidates', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          photos: [{ hash: photo.hash, lat: photo.lat, lng: photo.lng, query: trimmed }],
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'search failed');
+      const newCs: Candidate[] = data.candidates ?? [];
+      if (!newCs.length) return false;
+
+      setCandidates(prev => {
+        const byId = new Map(prev.map(c => [c.id, c]));
+        for (const nc of newCs) {
+          const existing = byId.get(nc.id);
+          if (existing) {
+            // Merge photoHashes so the same place keeps prior associations
+            for (const h of nc.photoHashes) {
+              if (!existing.photoHashes.includes(h)) existing.photoHashes.push(h);
+            }
+          } else {
+            byId.set(nc.id, nc);
+          }
+        }
+        return [...byId.values()];
+      });
+      setCandidateStates(prev => {
+        const next = new Map(prev);
+        for (const nc of newCs) {
+          if (!next.has(nc.id)) next.set(nc.id, { status: 'idle' as const });
+        }
+        return next;
+      });
+      // Auto-assign this photo to the top new result if it's not already assigned.
+      const top = newCs[0];
+      if (top) {
+        setAssignments(prev => {
+          const next = new Map(prev);
+          next.set(photoId, top.id);
+          return next;
+        });
+      }
+      return true;
+    } catch (e) {
+      setGlobalError(e instanceof Error ? e.message : 'search failed');
+      return false;
     }
   };
 
@@ -353,6 +446,7 @@ export default function UploadClient() {
 
   const readyCount = photos.filter(p => p.stage === 'ready').length;
   const noGpsCount = photos.filter(p => p.stage === 'no-gps').length;
+  const dupeCount = photos.filter(p => p.stage === 'duplicate').length;
 
   return (
     <div className="space-y-6">
@@ -390,7 +484,9 @@ export default function UploadClient() {
 
               <div className="flex items-center justify-between gap-3 pt-2">
                 <p className="text-small text-muted">
-                  {readyCount} with GPS · {noGpsCount} without GPS · {photos.length} total
+                  {readyCount} with GPS · {noGpsCount} without GPS
+                  {dupeCount > 0 && <> · {dupeCount} already saved</>}
+                  {' · '}{photos.length} total
                 </p>
                 <div className="flex gap-2">
                   <button
@@ -424,6 +520,7 @@ export default function UploadClient() {
           onAssign={setAssignment}
           onDetachPhoto={detachPhoto}
           onSaveCandidate={saveCandidate}
+          onSearchAgain={searchAgainForPhoto}
           onBack={() => setPhase('pick')}
           onReset={reset}
         />
@@ -474,6 +571,7 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
   const tag =
     stage === 'reading' ? { label: 'Reading…', cls: 'bg-cream-soft text-muted' } :
     stage === 'no-gps' ? { label: 'No GPS', cls: 'bg-orange/10 text-orange' } :
+    stage === 'duplicate' ? { label: 'Already saved', cls: 'bg-cream-soft text-slate' } :
     stage === 'ready' ? { label: 'Ready', cls: 'bg-teal/10 text-teal' } :
     stage === 'uploading' ? { label: 'Uploading…', cls: 'bg-cream-soft text-muted' } :
     stage === 'uploaded' ? { label: 'Uploaded', cls: 'bg-teal/10 text-teal' } :
@@ -482,7 +580,7 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
     { label: 'Error', cls: 'bg-orange/10 text-orange' };
 
   return (
-    <div className="rounded border border-sand overflow-hidden bg-white">
+    <div className={'rounded border overflow-hidden bg-white ' + (stage === 'duplicate' ? 'border-slate/40 opacity-70' : 'border-sand')}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photo.preview} alt="" className="w-full aspect-square object-cover bg-cream-soft" />
       <div className="p-2 text-[11px]">
@@ -497,12 +595,29 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
             ✕
           </button>
         </div>
-        {photo.lat != null && photo.lng != null && (
+        {stage === 'duplicate' && photo.duplicateOf && (
+          <p className="mt-1 text-slate leading-tight">
+            On{' '}
+            {photo.duplicateOf.pinSlug ? (
+              <a
+                href={`/pins/${photo.duplicateOf.pinSlug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal underline hover:text-teal"
+              >
+                {photo.duplicateOf.pinName}
+              </a>
+            ) : (
+              <span className="text-ink-deep">{photo.duplicateOf.pinName}</span>
+            )}
+          </p>
+        )}
+        {photo.lat != null && photo.lng != null && stage !== 'duplicate' && (
           <p className="mt-1 font-mono text-muted truncate">
             {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
           </p>
         )}
-        {photo.takenAt && (
+        {photo.takenAt && stage !== 'duplicate' && (
           <p className="mt-0.5 text-muted">
             {photo.takenAt.toLocaleDateString()}
           </p>
@@ -521,6 +636,7 @@ function ReviewSheet({
   onAssign,
   onDetachPhoto,
   onSaveCandidate,
+  onSearchAgain,
   onBack,
   onReset,
 }: {
@@ -531,10 +647,13 @@ function ReviewSheet({
   onAssign: (photoId: string, candId: string) => void;
   onDetachPhoto: (photoId: string) => void;
   onSaveCandidate: (id: string) => void;
+  onSearchAgain: (photoId: string, query: string) => Promise<boolean>;
   onBack: () => void;
   onReset: () => void;
 }) {
-  const usable = photos.filter(p => p.hash && p.stage !== 'no-gps' && p.stage !== 'error');
+  const usable = photos.filter(
+    p => p.hash && p.stage !== 'no-gps' && p.stage !== 'error' && p.stage !== 'duplicate',
+  );
 
   const photosByCandidate = useMemo(() => {
     const map = new Map<string, Photo[]>();
@@ -600,62 +719,22 @@ function ReviewSheet({
             Choose <em>Skip</em> if you don&rsquo;t want to save the photo.
           </p>
           <ul className="space-y-2">
-            {remainingPhotos.map(p => {
-              const matching = candidates.filter(c => p.hash && c.photoHashes.includes(p.hash));
-              const assigned = assignments.get(p.id) ?? 'skip';
-              const assignedState = assigned !== 'skip' ? candidateStates.get(assigned) : undefined;
-              const canSave = assigned !== 'skip' && assignedState?.status !== 'saving';
-              return (
-                <li key={p.id} className="flex items-center gap-3 p-2 rounded border border-sand bg-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
-                  <div className="flex-1 min-w-0 text-small">
-                    <p className="font-mono text-[11px] text-muted truncate">
-                      {p.lat?.toFixed(4)}, {p.lng?.toFixed(4)}
-                    </p>
-                    {p.takenAt && (
-                      <p className="text-[11px] text-muted">{p.takenAt.toLocaleString()}</p>
-                    )}
-                  </div>
-                  <select
-                    value={assigned}
-                    onChange={e => onAssign(p.id, e.target.value)}
-                    className="text-small border border-sand rounded px-2 py-1 bg-white max-w-[260px]"
-                  >
-                    <option value="skip">Skip this photo</option>
-                    {matching.map(c => (
-                      <option key={c.id} value={c.id}>
-                        {c.place.name}
-                        {c.existingPinId ? ' (existing)' : ''}
-                      </option>
-                    ))}
-                    {matching.length === 0 && (
-                      <option value="skip" disabled>
-                        No nearby candidates
-                      </option>
-                    )}
-                  </select>
-                  <button
-                    type="button"
-                    onClick={() => assigned !== 'skip' && onSaveCandidate(assigned)}
-                    disabled={!canSave}
-                    className={
-                      'text-small px-3 py-1.5 rounded font-medium transition-colors ' +
-                      (canSave
-                        ? 'bg-teal text-white hover:bg-teal/90'
-                        : 'bg-cream-soft text-muted cursor-not-allowed')
-                    }
-                    title={
-                      assigned === 'skip'
-                        ? 'Pick a place first'
-                        : `Save photos assigned to this place`
-                    }
-                  >
-                    {assignedState?.status === 'saving' ? 'Saving…' : 'Save'}
-                  </button>
-                </li>
-              );
-            })}
+            {remainingPhotos.map(p => (
+              <RemainingPhotoRow
+                key={p.id}
+                photo={p}
+                candidates={candidates}
+                assigned={assignments.get(p.id) ?? 'skip'}
+                assignedState={
+                  assignments.get(p.id) && assignments.get(p.id) !== 'skip'
+                    ? candidateStates.get(assignments.get(p.id) as string)
+                    : undefined
+                }
+                onAssign={onAssign}
+                onSaveCandidate={onSaveCandidate}
+                onSearchAgain={onSearchAgain}
+              />
+            ))}
           </ul>
         </section>
       )}
@@ -685,6 +764,144 @@ function ReviewSheet({
         </div>
       </div>
     </div>
+  );
+}
+
+function RemainingPhotoRow({
+  photo,
+  candidates,
+  assigned,
+  assignedState,
+  onAssign,
+  onSaveCandidate,
+  onSearchAgain,
+}: {
+  photo: Photo;
+  candidates: Candidate[];
+  assigned: string;
+  assignedState: CandidateState | undefined;
+  onAssign: (photoId: string, candId: string) => void;
+  onSaveCandidate: (id: string) => void;
+  onSearchAgain: (photoId: string, query: string) => Promise<boolean>;
+}) {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [searchMsg, setSearchMsg] = useState<string | null>(null);
+
+  const matching = candidates.filter(c => photo.hash && c.photoHashes.includes(photo.hash));
+  const canSave = assigned !== 'skip' && assignedState?.status !== 'saving';
+
+  const submitSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!query.trim() || searching) return;
+    setSearching(true);
+    setSearchMsg(null);
+    const found = await onSearchAgain(photo.id, query);
+    setSearching(false);
+    if (!found) {
+      setSearchMsg('No results. Try a different name.');
+    } else {
+      setSearchMsg(null);
+      setQuery('');
+      setSearchOpen(false);
+    }
+  };
+
+  return (
+    <li className="rounded border border-sand bg-white">
+      <div className="flex items-center gap-3 p-2">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photo.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
+        <div className="flex-1 min-w-0 text-small">
+          <p className="font-mono text-[11px] text-muted truncate">
+            {photo.lat?.toFixed(4)}, {photo.lng?.toFixed(4)}
+          </p>
+          {photo.takenAt && (
+            <p className="text-[11px] text-muted">{photo.takenAt.toLocaleString()}</p>
+          )}
+        </div>
+        <select
+          value={assigned}
+          onChange={e => onAssign(photo.id, e.target.value)}
+          className="text-small border border-sand rounded px-2 py-1 bg-white max-w-[260px]"
+        >
+          <option value="skip">Skip this photo</option>
+          {matching.map(c => (
+            <option key={c.id} value={c.id}>
+              {c.place.name}
+              {c.existingPinId ? ' (existing)' : ''}
+            </option>
+          ))}
+          {matching.length === 0 && (
+            <option value="skip" disabled>
+              No nearby candidates
+            </option>
+          )}
+        </select>
+        <button
+          type="button"
+          onClick={() => setSearchOpen(s => !s)}
+          className="text-[11px] px-2 py-1 rounded border border-sand text-ink hover:bg-cream-soft"
+          title="Wrong place? Type a name to search."
+        >
+          Try again
+        </button>
+        <button
+          type="button"
+          onClick={() => assigned !== 'skip' && onSaveCandidate(assigned)}
+          disabled={!canSave}
+          className={
+            'text-small px-3 py-1.5 rounded font-medium transition-colors ' +
+            (canSave
+              ? 'bg-teal text-white hover:bg-teal/90'
+              : 'bg-cream-soft text-muted cursor-not-allowed')
+          }
+          title={
+            assigned === 'skip'
+              ? 'Pick a place first'
+              : `Save photos assigned to this place`
+          }
+        >
+          {assignedState?.status === 'saving' ? 'Saving…' : 'Save'}
+        </button>
+      </div>
+
+      {searchOpen && (
+        <form onSubmit={submitSearch} className="border-t border-sand p-2 flex items-center gap-2 bg-cream-soft/60">
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Type the place name (e.g. Mosque of Muhammad Ali)"
+            className="flex-1 text-small border border-sand rounded px-2 py-1 bg-white"
+            autoFocus
+          />
+          <button
+            type="submit"
+            disabled={!query.trim() || searching}
+            className={
+              'text-[11px] px-3 py-1.5 rounded font-medium ' +
+              (!query.trim() || searching
+                ? 'bg-cream-soft text-muted cursor-not-allowed'
+                : 'bg-ink-deep text-white hover:bg-ink-deep/90')
+            }
+          >
+            {searching ? 'Searching…' : 'Search'}
+          </button>
+          <button
+            type="button"
+            onClick={() => { setSearchOpen(false); setQuery(''); setSearchMsg(null); }}
+            className="text-[11px] px-2 py-1 text-muted hover:text-ink"
+          >
+            Cancel
+          </button>
+        </form>
+      )}
+      {searchMsg && (
+        <p className="px-3 pb-2 text-[11px] text-orange">{searchMsg}</p>
+      )}
+    </li>
   );
 }
 

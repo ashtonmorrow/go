@@ -15,13 +15,20 @@ export async function POST(req: Request) {
   if (!photos) {
     return NextResponse.json({ error: 'photos[] required' }, { status: 400 });
   }
-  const valid = photos.filter(
-    (p: any) =>
-      p &&
-      typeof p.hash === 'string' &&
-      typeof p.lat === 'number' &&
-      typeof p.lng === 'number',
-  );
+  const valid = photos
+    .filter(
+      (p: any) =>
+        p &&
+        typeof p.hash === 'string' &&
+        typeof p.lat === 'number' &&
+        typeof p.lng === 'number',
+    )
+    .map((p: any) => ({
+      hash: p.hash as string,
+      lat: p.lat as number,
+      lng: p.lng as number,
+      query: typeof p.query === 'string' && p.query.trim() ? p.query.trim() : null,
+    }));
   if (valid.length === 0) {
     return NextResponse.json({ candidates: [] });
   }

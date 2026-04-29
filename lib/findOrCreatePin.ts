@@ -48,11 +48,15 @@ function slugify(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
 }
 
-async function nearbyPlacesFor(lat: number, lng: number): Promise<CandidatePlace[]> {
+async function nearbyPlacesFor(
+  lat: number,
+  lng: number,
+  query?: string | null,
+): Promise<CandidatePlace[]> {
   const sb = supabaseAdmin();
-  const { data, error } = await sb.functions.invoke('location-lookup', {
-    body: { lat, lng },
-  });
+  const body: Record<string, unknown> = { lat, lng };
+  if (query) body.query = query;
+  const { data, error } = await sb.functions.invoke('location-lookup', { body });
   if (error) {
     console.error('[findOrCreatePin] location-lookup failed:', error);
     return [];
@@ -84,14 +88,14 @@ async function nearbyPlacesFor(lat: number, lng: number): Promise<CandidatePlace
  * 100m of each candidate so we don't propose duplicates.
  */
 export async function findCandidatesForPhotos(
-  photos: Array<{ hash: string; lat: number; lng: number }>,
+  photos: Array<{ hash: string; lat: number; lng: number; query?: string | null }>,
 ): Promise<Candidate[]> {
   if (!photos.length) return [];
 
   const allPlaces: Array<{ place: CandidatePlace; photoHash: string }> = [];
   await Promise.all(
     photos.map(async p => {
-      const places = await nearbyPlacesFor(p.lat, p.lng);
+      const places = await nearbyPlacesFor(p.lat, p.lng, p.query ?? null);
       for (const place of places) {
         allPlaces.push({ place, photoHash: p.hash });
       }
