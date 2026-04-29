@@ -17,28 +17,22 @@ export type PinSortKey = 'name' | 'recent';
 
 export type PinFilterState = {
   q: string;
-  /** Three-state visited toggle: 'all' | 'visited' | 'not-visited' */
   visitedFilter: 'all' | 'visited' | 'not-visited';
-  /** UNESCO World Heritage sites only when true. Stays compatible with category. */
   unescoOnly: boolean;
-  /** No admission fee — strict. Pin must have priceAmount === 0 OR
-   *  priceText that explicitly indicates free ("Free", "No charge",
-   *  "Complimentary"). Pins with unknown price are excluded — the
-   *  earlier permissive predicate that included nulls was a no-op
-   *  because 1,338/1,342 pins have no recorded price. */
   freeOnly: boolean;
+  /** Pin must have food on site (any non-'none' food_on_site value). */
+  foodOnSiteOnly: boolean;
+  /** Pin must be wheelchair-accessible ('fully' or 'partially'). */
+  wheelchairOnly: boolean;
+  /** Pin must be flagged kid_friendly = true. */
+  kidFriendlyOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;
-  /** Continents to keep — derived from each pin's country via the
-   *  Natural-Earth-baked countryContinent lookup. AND-composed with
-   *  the explicit countries set: a pin must satisfy BOTH (or neither
-   *  if both are empty). */
   continents: Set<Continent>;
-  /** Notable lists membership — UNESCO World Heritage, Atlas Obscura, etc. */
   lists: Set<string>;
-  /** Wikidata "instance of" labels — archaeological site, national park, etc. */
   tags: Set<string>;
-  /** Inception year range (inclusive). Both null = unbounded. Negative = BCE. */
+  /** Pin's bring[] must include every selected token (AND). */
+  bring: Set<string>;
   inceptionMin: number | null;
   inceptionMax: number | null;
   sort: PinSortKey;
@@ -50,11 +44,15 @@ const DEFAULT_STATE: PinFilterState = {
   visitedFilter: 'all',
   unescoOnly: false,
   freeOnly: false,
+  foodOnSiteOnly: false,
+  wheelchairOnly: false,
+  kidFriendlyOnly: false,
   categories: new Set(),
   countries: new Set(),
   continents: new Set(),
   lists: new Set(),
   tags: new Set(),
+  bring: new Set(),
   inceptionMin: null,
   inceptionMax: null,
   sort: 'name',
@@ -85,11 +83,15 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     if (state.visitedFilter !== DEFAULT_STATE.visitedFilter) n++;
     if (state.unescoOnly !== DEFAULT_STATE.unescoOnly) n++;
     if (state.freeOnly !== DEFAULT_STATE.freeOnly) n++;
+    if (state.foodOnSiteOnly !== DEFAULT_STATE.foodOnSiteOnly) n++;
+    if (state.wheelchairOnly !== DEFAULT_STATE.wheelchairOnly) n++;
+    if (state.kidFriendlyOnly !== DEFAULT_STATE.kidFriendlyOnly) n++;
     n += state.categories.size > 0 ? 1 : 0;
     n += state.countries.size > 0 ? 1 : 0;
     n += state.continents.size > 0 ? 1 : 0;
     n += state.lists.size > 0 ? 1 : 0;
     n += state.tags.size > 0 ? 1 : 0;
+    n += state.bring.size > 0 ? 1 : 0;
     if (state.inceptionMin != null || state.inceptionMax != null) n++;
     return n;
   }, [state]);

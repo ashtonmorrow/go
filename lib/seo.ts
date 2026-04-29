@@ -236,6 +236,67 @@ export function collectionJsonLd(opts: {
 //     the locality / country slots only.
 //   * `containedInPlace` references the country page on this site so
 //     the entity graph is self-traversable.
+type PinJsonLdAdmission = {
+  adult?: number | null;
+  child?: number | null;
+  senior?: number | null;
+  student?: number | null;
+  currency?: string | null;
+  notes?: string | null;
+};
+
+type PinJsonLdHours = {
+  mon?: string[];
+  tue?: string[];
+  wed?: string[];
+  thu?: string[];
+  fri?: string[];
+  sat?: string[];
+  sun?: string[];
+};
+
+const DAY_TO_SCHEMA: Record<string, string> = {
+  mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday',
+  fri: 'Friday', sat: 'Saturday', sun: 'Sunday',
+};
+
+function hoursToSchemaSpec(h: PinJsonLdHours) {
+  const out: Array<Record<string, unknown>> = [];
+  for (const day of ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']) {
+    const intervals = (h as any)[day] as string[] | undefined;
+    if (!intervals || !intervals.length) continue;
+    for (const range of intervals) {
+      const m = /^(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})$/.exec(range);
+      if (!m) continue;
+      out.push({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: DAY_TO_SCHEMA[day],
+        opens: m[1].padStart(5, '0'),
+        closes: m[2].padStart(5, '0'),
+      });
+    }
+  }
+  return out;
+}
+
+function admissionToOffers(a: PinJsonLdAdmission) {
+  const offers: Array<Record<string, unknown>> = [];
+  const tiers: Array<[string, number | null | undefined]> = [
+    ['Adult', a.adult], ['Child', a.child], ['Senior', a.senior], ['Student', a.student],
+  ];
+  for (const [name, price] of tiers) {
+    if (typeof price === 'number') {
+      offers.push({
+        '@type': 'Offer',
+        name,
+        price,
+        ...(a.currency ? { priceCurrency: a.currency } : {}),
+      });
+    }
+  }
+  return offers;
+}
+
 export function pinJsonLd(pin: {
   slug: string;
   name: string;
@@ -250,12 +311,23 @@ export function pinJsonLd(pin: {
   unescoId?: number | null;
   unescoUrl?: string | null;
   website?: string | null;
-  /** True when admission is free (price_amount === 0). Null when unknown. */
   isFree?: boolean | null;
+  address?: string | null;
+  openingHours?: PinJsonLdHours | null;
+  admission?: PinJsonLdAdmission | null;
+  wheelchairAccessible?: 'fully' | 'partially' | 'no' | 'unknown' | null;
+  kidFriendly?: boolean | null;
+  durationMinutes?: number | null;
 }) {
   const url = `${SITE_URL}/pins/${pin.slug}`;
   const sameAs = [pin.website, pin.unescoUrl].filter(Boolean) as string[];
   const isUnesco = pin.unescoId != null;
+  const hoursSpec = pin.openingHours ? hoursToSchemaSpec(pin.openingHours) : [];
+  const offers = pin.admission ? admissionToOffers(pin.admission) : [];
+
+  const accessibilityFeatures: string[] = [];
+  if (pin.wheelchairAccessible === 'fully') accessibilityFeatures.push('wheelchairAccessible');
+  if (pin.wheelchairAccessible === 'partially') accessibilityFeatures.push('wheelchairAccessibleEntrance');
 
   return {
     '@context': 'https://schema.org',
@@ -267,12 +339,7 @@ export function pinJsonLd(pin: {
     ...(pin.image ? { image: pin.image } : {}),
     ...(pin.category ? { keywords: pin.category } : {}),
     ...(isUnesco
-      ? {
-          // Lift UNESCO sites into a more specific Place subclass
-          // without dropping TouristAttraction. Both are valid for
-          // Google's place rich results.
-          additionalType: 'https://schema.org/LandmarksOrHistoricalBuildings',
-        }
+      ? { additionalType: 'https://schema.org/LandmarksOrHistoricalBuildings' }
       : {}),
     ...(pin.lat != null && pin.lng != null
       ? {
@@ -283,10 +350,11 @@ export function pinJsonLd(pin: {
           },
         }
       : {}),
-    ...(pin.city || pin.country
+    ...(pin.address || pin.city || pin.country
       ? {
           address: {
             '@type': 'PostalAddress',
+            ...(pin.address ? { streetAddress: pin.address } : {}),
             ...(pin.city ? { addressLocality: pin.city } : {}),
             ...(pin.country ? { addressCountry: pin.country } : {}),
           },
@@ -301,15 +369,19 @@ export function pinJsonLd(pin: {
           },
         }
       : pin.country
-      ? {
-          containedInPlace: {
-            '@type': 'Country',
-            name: pin.country,
-          },
-        }
+      ? { containedInPlace: { '@type': 'Country', name: pin.country } }
       : {}),
     ...(sameAs.length ? { sameAs } : {}),
     ...(pin.isFree != null ? { isAccessibleForFree: pin.isFree } : {}),
+    ...(hoursSpec.length ? { openingHoursSpecification: hoursSpec } : {}),
+    ...(offers.length ? { offers } : {}),
+    ...(accessibilityFeatures.length ? { accessibilityFeature: accessibilityFeatures } : {}),
+    ...(pin.kidFriendly === true
+      ? { audience: { '@type': 'PeopleAudience', suggestedMinAge: 0 } }
+      : {}),
+    ...(typeof pin.durationMinutes === 'number'
+      ? { timeRequired: `PT${pin.durationMinutes}M` }
+      : {}),
     isPartOf: { '@id': WEBSITE_ID },
   };
 }

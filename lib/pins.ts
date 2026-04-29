@@ -1,14 +1,3 @@
-// === Pins ==================================================================
-// Read-only data layer for the /pins route. Wraps Supabase queries against
-// public.pins. Cached via React.cache() so a page that needs both the index
-// list and a single pin (e.g. detail page that wants neighbors) only hits
-// Postgres once.
-//
-// Pin shape mirrors the Postgres columns (see migration
-// `create_pins_table_for_go_travel_atlas`). One ergonomic addition: a
-// derived `googleMapsUrl` that's cheaper to use at render time than asking
-// every component to assemble it.
-//
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
@@ -19,6 +8,47 @@ export type PinImage = {
   height?: number | null;
   filename?: string | null;
   type?: string | null;
+};
+
+export type PinStatus = 'active' | 'closed' | 'temporarily-closed' | 'seasonal' | 'unknown';
+export type PinBooking = 'no' | 'recommended' | 'required' | 'timed-entry-only';
+export type PinCrowdLevel = 'always-quiet' | 'morning-quiet' | 'consistently-busy' | 'seasonal-spikes' | 'unknown';
+export type PinFoodOnSite = 'none' | 'kiosk' | 'cafe' | 'restaurant' | 'multiple' | 'unknown';
+export type PinRestrooms = 'none' | 'basic' | 'modern' | 'paid' | 'unknown';
+export type PinShade = 'fully-shaded' | 'partly-shaded' | 'fully-exposed' | 'covered-indoor' | 'unknown';
+export type PinIndoorOutdoor = 'indoor' | 'outdoor' | 'mixed' | 'unknown';
+export type PinWheelchair = 'fully' | 'partially' | 'no' | 'unknown';
+export type PinPhotography = 'allowed' | 'no-flash' | 'paid-permit' | 'restricted' | 'forbidden' | 'unknown';
+export type PinDifficulty = 'easy' | 'moderate' | 'hard' | 'expert' | 'unknown';
+export type PinParking = 'free' | 'paid' | 'street' | 'limited' | 'none' | 'unknown';
+export type PinRequiresGuide = 'no' | 'recommended' | 'required' | 'unknown';
+export type PinTimeOfDay = 'sunrise' | 'morning' | 'midday' | 'afternoon' | 'sunset' | 'evening' | 'night';
+
+export type PinAdmission = {
+  adult?: number | null;
+  child?: number | null;
+  senior?: number | null;
+  student?: number | null;
+  currency?: string | null;
+  free_under_age?: number | null;
+  notes?: string | null;
+};
+
+export type PinTransit = {
+  station?: string | null;
+  line?: string | null;
+  walking_minutes?: number | null;
+};
+
+export type PinOpeningHours = {
+  mon?: string[];
+  tue?: string[];
+  wed?: string[];
+  thu?: string[];
+  fri?: string[];
+  sat?: string[];
+  sun?: string[];
+  notes?: string | null;
 };
 
 export type Pin = {
@@ -34,6 +64,7 @@ export type Pin = {
 
   category: string | null;
   description: string | null;
+
   hours: string | null;
   priceText: string | null;
   priceAmount: number | null;
@@ -45,50 +76,101 @@ export type Pin = {
 
   visited: boolean;
 
-  // Wikidata enrichment (populated by scripts/wikidata_enrich pass —
-  // see migration `pins_enrichment_columns`). Most pins have a QID;
-  // ~70% have a Wikipedia article; ~30% have an inception year.
   wikidataQid: string | null;
   wikipediaUrl: string | null;
   inceptionYear: number | null;
   durationMinutes: number | null;
-  /** "Instance of" labels from Wikidata, e.g. ["archaeological site", "national park"]. */
   tags: string[];
-  /** Notable lists this pin appears on, e.g. ["UNESCO World Heritage", "Atlas Obscura"]. */
   lists: string[];
-  /** Optional 1-12 month numbers for "best time to visit" — currently always empty; reserved. */
   bestMonths: number[];
 
   airtableModifiedAt: string | null;
   updatedAt: string | null;
 
-  /** Derived: a Google Maps deep-link if we have coords. null otherwise. */
+  address: string | null;
+  openingHours: PinOpeningHours | null;
+  closureDays: string[];
+  status: PinStatus | null;
+  closureReason: string | null;
+
+  admission: PinAdmission | null;
+  free: boolean | null;
+  booking: PinBooking | null;
+  bookingUrl: string | null;
+  officialTicketUrl: string | null;
+
+  bestTimeOfDay: PinTimeOfDay[];
+  worstMonths: number[];
+  crowdLevel: PinCrowdLevel | null;
+
+  foodOnSite: PinFoodOnSite | null;
+  waterRefill: boolean | null;
+  restrooms: PinRestrooms | null;
+  wifi: boolean | null;
+  lockers: boolean | null;
+  shade: PinShade | null;
+  indoorOutdoor: PinIndoorOutdoor | null;
+
+  wheelchairAccessible: PinWheelchair | null;
+  strollerFriendly: boolean | null;
+  kidFriendly: boolean | null;
+  minAgeRecommended: number | null;
+  petFriendly: boolean | null;
+  photography: PinPhotography | null;
+  dressCode: string | null;
+  difficulty: PinDifficulty | null;
+
+  nearestTransit: PinTransit | null;
+  parking: PinParking | null;
+  accessNotes: string | null;
+
+  bring: string[];
+
+  safetyNotes: string | null;
+  scamWarning: string | null;
+  requiresPermit: boolean | null;
+  requiresGuide: PinRequiresGuide | null;
+  languagesOffered: string[];
+
   googleMapsUrl: string | null;
-  /** Derived: link to the UNESCO World Heritage page when applicable. */
   unescoUrl: string | null;
-  /** Derived: link to the Wikidata entity when applicable. */
   wikidataUrl: string | null;
 };
 
-// ---- Row → Pin -------------------------------------------------------------
-// Postgres returns snake_case; everywhere else in the app uses camelCase.
-// The mapper also derives the convenience URLs so views don't repeat the
-// "have lat/lng?" guard.
-//
-// `images` is jsonb in Postgres — it comes back already parsed, but TS sees
-// it as `unknown`, so we coerce + filter to keep the public type honest.
+const asString = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
+const asNumber = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+const asBool = (v: unknown): boolean | null => (typeof v === 'boolean' ? v : null);
+const asStringArray = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
+const asNumberArray = (v: unknown): number[] => (Array.isArray(v) ? v.filter((x): x is number => typeof x === 'number') : []);
+
+function asEnum<T extends string>(v: unknown, allowed: readonly T[]): T | null {
+  return typeof v === 'string' && (allowed as readonly string[]).includes(v) ? (v as T) : null;
+}
+
+const STATUSES = ['active', 'closed', 'temporarily-closed', 'seasonal', 'unknown'] as const;
+const BOOKINGS = ['no', 'recommended', 'required', 'timed-entry-only'] as const;
+const CROWDS = ['always-quiet', 'morning-quiet', 'consistently-busy', 'seasonal-spikes', 'unknown'] as const;
+const FOODS = ['none', 'kiosk', 'cafe', 'restaurant', 'multiple', 'unknown'] as const;
+const RESTROOMS = ['none', 'basic', 'modern', 'paid', 'unknown'] as const;
+const SHADES = ['fully-shaded', 'partly-shaded', 'fully-exposed', 'covered-indoor', 'unknown'] as const;
+const INDOOR = ['indoor', 'outdoor', 'mixed', 'unknown'] as const;
+const WHEELCHAIR = ['fully', 'partially', 'no', 'unknown'] as const;
+const PHOTOGRAPHY = ['allowed', 'no-flash', 'paid-permit', 'restricted', 'forbidden', 'unknown'] as const;
+const DIFFICULTIES = ['easy', 'moderate', 'hard', 'expert', 'unknown'] as const;
+const PARKINGS = ['free', 'paid', 'street', 'limited', 'none', 'unknown'] as const;
+const GUIDES = ['no', 'recommended', 'required', 'unknown'] as const;
+const TIMES = ['sunrise', 'morning', 'midday', 'afternoon', 'sunset', 'evening', 'night'] as const;
+
 function rowToPin(row: any): Pin {
-  const lat = typeof row.lat === 'number' ? row.lat : null;
-  const lng = typeof row.lng === 'number' ? row.lng : null;
+  const lat = asNumber(row.lat);
+  const lng = asNumber(row.lng);
   const googleMapsUrl =
     lat != null && lng != null
       ? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`
       : null;
-  const unescoId = typeof row.unesco_id === 'number' ? row.unesco_id : null;
-  const unescoUrl = unescoId != null
-    ? `https://whc.unesco.org/en/list/${unescoId}/`
-    : null;
-  const wikidataQid = typeof row.wikidata_qid === 'string' ? row.wikidata_qid : null;
+  const unescoId = asNumber(row.unesco_id);
+  const unescoUrl = unescoId != null ? `https://whc.unesco.org/en/list/${unescoId}/` : null;
+  const wikidataQid = asString(row.wikidata_qid);
   const wikidataUrl = wikidataQid ? `https://www.wikidata.org/wiki/${wikidataQid}` : null;
 
   const rawImages = Array.isArray(row.images) ? row.images : [];
@@ -102,6 +184,14 @@ function rowToPin(row: any): Pin {
       type: i.type ?? null,
     }));
 
+  const admission = row.admission && typeof row.admission === 'object' ? (row.admission as PinAdmission) : null;
+  const openingHours = row.opening_hours && typeof row.opening_hours === 'object' ? (row.opening_hours as PinOpeningHours) : null;
+  const nearestTransit = row.nearest_transit && typeof row.nearest_transit === 'object' ? (row.nearest_transit as PinTransit) : null;
+
+  const bestTimeOfDay = asStringArray(row.best_time_of_day).filter((v): v is PinTimeOfDay =>
+    (TIMES as readonly string[]).includes(v),
+  );
+
   return {
     id: row.id,
     airtableId: row.airtable_id ?? null,
@@ -109,51 +199,81 @@ function rowToPin(row: any): Pin {
     slug: row.slug ?? null,
     lat,
     lng,
-    cityNames: Array.isArray(row.city_names) ? row.city_names : [],
-    statesNames: Array.isArray(row.states_names) ? row.states_names : [],
+    cityNames: asStringArray(row.city_names),
+    statesNames: asStringArray(row.states_names),
     category: row.category ?? null,
     description: row.description ?? null,
     hours: row.hours ?? null,
     priceText: row.price_text ?? null,
-    priceAmount: typeof row.price_amount === 'number' ? row.price_amount : null,
+    priceAmount: asNumber(row.price_amount),
     priceCurrency: row.price_currency ?? null,
     unescoId,
     website: row.website ?? null,
     images,
     visited: !!row.visited,
 
-    // Wikidata-enriched fields
     wikidataQid,
-    wikipediaUrl: typeof row.wikipedia_url === 'string' ? row.wikipedia_url : null,
-    inceptionYear: typeof row.inception_year === 'number' ? row.inception_year : null,
-    durationMinutes: typeof row.duration_minutes === 'number' ? row.duration_minutes : null,
-    tags:        Array.isArray(row.tags)        ? row.tags        : [],
-    lists:       Array.isArray(row.lists)       ? row.lists       : [],
-    bestMonths:  Array.isArray(row.best_months) ? row.best_months : [],
+    wikipediaUrl: asString(row.wikipedia_url),
+    inceptionYear: asNumber(row.inception_year),
+    durationMinutes: asNumber(row.duration_minutes),
+    tags: asStringArray(row.tags),
+    lists: asStringArray(row.lists),
+    bestMonths: asNumberArray(row.best_months),
 
     airtableModifiedAt: row.airtable_modified_at ?? null,
     updatedAt: row.updated_at ?? null,
+
+    address: asString(row.address),
+    openingHours,
+    closureDays: asStringArray(row.closure_days),
+    status: asEnum(row.status, STATUSES),
+    closureReason: asString(row.closure_reason),
+
+    admission,
+    free: asBool(row.free),
+    booking: asEnum(row.booking, BOOKINGS),
+    bookingUrl: asString(row.booking_url),
+    officialTicketUrl: asString(row.official_ticket_url),
+
+    bestTimeOfDay,
+    worstMonths: asNumberArray(row.worst_months),
+    crowdLevel: asEnum(row.crowd_level, CROWDS),
+
+    foodOnSite: asEnum(row.food_on_site, FOODS),
+    waterRefill: asBool(row.water_refill),
+    restrooms: asEnum(row.restrooms, RESTROOMS),
+    wifi: asBool(row.wifi),
+    lockers: asBool(row.lockers),
+    shade: asEnum(row.shade, SHADES),
+    indoorOutdoor: asEnum(row.indoor_outdoor, INDOOR),
+
+    wheelchairAccessible: asEnum(row.wheelchair_accessible, WHEELCHAIR),
+    strollerFriendly: asBool(row.stroller_friendly),
+    kidFriendly: asBool(row.kid_friendly),
+    minAgeRecommended: asNumber(row.min_age_recommended),
+    petFriendly: asBool(row.pet_friendly),
+    photography: asEnum(row.photography, PHOTOGRAPHY),
+    dressCode: asString(row.dress_code),
+    difficulty: asEnum(row.difficulty, DIFFICULTIES),
+
+    nearestTransit,
+    parking: asEnum(row.parking, PARKINGS),
+    accessNotes: asString(row.access_notes),
+
+    bring: asStringArray(row.bring),
+
+    safetyNotes: asString(row.safety_notes),
+    scamWarning: asString(row.scam_warning),
+    requiresPermit: asBool(row.requires_permit),
+    requiresGuide: asEnum(row.requires_guide, GUIDES),
+    languagesOffered: asStringArray(row.languages_offered),
+
     googleMapsUrl,
     unescoUrl,
     wikidataUrl,
   };
 }
 
-// ---- Queries ---------------------------------------------------------------
-
-/**
- * Every pin, name-sorted. 1,342 rows today; small enough to fetch as a
- * batch. Cached two ways:
- *
- *   • unstable_cache (Next data cache) — persists across requests AND
- *     across routes. The Sidebar in the layout calls this on every page
- *     view; without the data cache, a Supabase round-trip would happen
- *     on every navigation that landed on a cold ISR entry.
- *   • React.cache() — within a single render, dedupes (e.g. Sidebar +
- *     /pins/cards both call fetchAllPins() and resolve to one promise).
- *
- * Revalidates every 24h or via revalidateTag('supabase-pins').
- */
 const _fetchAllPins = unstable_cache(
   async (): Promise<Pin[]> => {
     const { data, error } = await supabase
@@ -171,18 +291,11 @@ const _fetchAllPins = unstable_cache(
 );
 export const fetchAllPins = cache(_fetchAllPins);
 
-/**
- * Single pin by slug. Resolved against the cached full set rather than
- * a separate Supabase call, so detail-page navigation reuses whatever
- * the layout/index already warmed up. Falls back to a direct query as
- * a last resort (e.g. brand-new pin with stale cache).
- */
 export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {
   const all = await fetchAllPins();
   const found = all.find(p => p.slug === slug);
   if (found) return found;
 
-  // Cold-cache fallback: hit Supabase directly.
   const { data, error } = await supabase
     .from('pins')
     .select('*')

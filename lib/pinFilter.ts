@@ -18,16 +18,18 @@ export type PinFilterable = {
   category?: string | null;
   visited: boolean;
   unescoId?: number | null;
-  /** Wikidata-derived: notable lists membership (UNESCO, Atlas Obscura, etc.) */
   lists?: string[];
-  /** Wikidata-derived: type-of labels (archaeological site, national park, etc.) */
   tags?: string[];
-  /** Year established. Negative = BCE. */
   inceptionYear?: number | null;
-  /** Numeric price; 0 means free, null means unknown. */
   priceAmount?: number | null;
-  /** Free-text price string from the source ("Free", "$15 adult", "Donation"). */
   priceText?: string | null;
+  /** Curated traveler-enrichment fields (sections 1-8). All optional so
+   *  pre-enrichment views still type-check. */
+  free?: boolean | null;
+  foodOnSite?: string | null;
+  wheelchairAccessible?: string | null;
+  kidFriendly?: boolean | null;
+  bring?: string[];
   airtableModifiedAt?: string | null;
   updatedAt?: string | null;
 };
@@ -39,6 +41,7 @@ export type PinFilterable = {
 const FREE_PRICE_TEXT = /\b(free|no charge|no admission|no entry fee|complimentary|gratis|gratuit)\b/i;
 
 function isFreeAdmission(p: PinFilterable): boolean {
+  if (p.free === true) return true;
   if (p.priceAmount === 0) return true;
   if (p.priceText && FREE_PRICE_TEXT.test(p.priceText)) return true;
   return false;
@@ -67,6 +70,23 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
     // Pins with unknown price are excluded; otherwise the filter
     // would be a no-op (the dataset is overwhelmingly null-priced).
     if (state.freeOnly && !isFreeAdmission(p)) continue;
+    if (state.foodOnSiteOnly) {
+      const f = p.foodOnSite;
+      if (!f || f === 'none' || f === 'unknown') continue;
+    }
+    if (state.wheelchairOnly) {
+      const w = p.wheelchairAccessible;
+      if (w !== 'fully' && w !== 'partially') continue;
+    }
+    if (state.kidFriendlyOnly && p.kidFriendly !== true) continue;
+    if (state.bring.size > 0) {
+      const pinBring = p.bring ?? [];
+      let hasAll = true;
+      for (const b of state.bring) {
+        if (!pinBring.includes(b)) { hasAll = false; break; }
+      }
+      if (!hasAll) continue;
+    }
     if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
     if (state.countries.size > 0) {
       const country = (p.statesNames ?? [])[0];

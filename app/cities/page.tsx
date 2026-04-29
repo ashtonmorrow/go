@@ -5,6 +5,8 @@ import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { fetchCityFlags } from '@/lib/cityFlags';
 import { currencySymbol } from '@/lib/currencySymbol';
+import { ukSubdivision } from '@/lib/ukRegion';
+import { flagRect } from '@/lib/flags';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
@@ -14,9 +16,8 @@ import type {
 } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800;
 
-// Per-page metadata — third-person, ≤155 char description, concrete count.
 export const metadata: Metadata = {
   title: 'Cities',
   description:
@@ -31,8 +32,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Type guards: filter Notion's free-text strings down to the closed unions
-// the filter context expects. Anything outside the known set becomes null.
 const CONTINENT_VALUES: Continent[] = [
   'Africa',
   'Asia',
@@ -59,9 +58,6 @@ export default async function CitiesPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const byId = new Map(countries.map(c => [c.id, c]));
 
-  // Pull civic flags from Wikidata for any city that has a Wikidata ID but
-  // no Notion-curated cityFlag. Cached for 24 h via ISR; runs once per
-  // revalidation window for the whole list.
   const qidsNeedingFlag = cities
     .filter(c => !c.cityFlag && c.wikidataId)
     .map(c => c.wikidataId);
@@ -69,6 +65,11 @@ export default async function CitiesPage() {
 
   const minimal = cities.map(c => {
     const country = c.countryPageId ? byId.get(c.countryPageId) : null;
+    const ukRegion =
+      country?.iso2?.toUpperCase() === 'GB'
+        ? ukSubdivision(c.name, c.lat, c.lng)
+        : null;
+    const ukRegionFlag = ukRegion ? flagRect(`gb-${ukRegion}`) : null;
     return {
       id: c.id,
       name: c.name,
@@ -76,11 +77,10 @@ export default async function CitiesPage() {
       country: c.country,
       been: c.been,
       go: c.go,
-      // Three-tier fallback for the postcard stamp:
-      //   1. cityFlag    — curated value in Notion (rare)
-      //   2. wikidataFlag — civic flag from Wikidata P41 / P94 (most cases)
-      //   3. countryFlag — falls through to country flag in CityCard
-      cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
+      cityFlag:
+        c.cityFlag
+        ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null)
+        ?? ukRegionFlag,
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
       lat: c.lat,
@@ -93,12 +93,6 @@ export default async function CitiesPage() {
       koppen: c.koppen,
       founded: c.founded,
       savedPlaces: c.myGooglePlaces,
-      // Country-derived facts shown on the postcard + used as filter axes.
-      // Visa and tap-water fields are sparsely populated in the Notion
-      // workspace today, so we fall back to the ISO2-keyed lookups in
-      // lib/visaUs.ts and lib/tapWater.ts when Notion has nothing. When
-      // Notion does have a value, that wins (Notion is the source of truth
-      // for any country we've explicitly curated).
       currency: country?.currency ?? null,
       currencySymbol: currencySymbol(country?.currency ?? null),
       language: country?.language ?? null,
@@ -114,9 +108,7 @@ export default async function CitiesPage() {
       plugTypes: country?.plugTypes ?? [],
     };
   });
-  // CollectionPage + ItemList structured data. Item list capped at 30
-  // entries — featured / well-known cities preferred so search engines
-  // see the headline destinations rather than alphabetical filler.
+
   const featuredItems = cities
     .filter(c => c.been || c.go)
     .slice(0, 30)

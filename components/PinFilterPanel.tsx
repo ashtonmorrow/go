@@ -6,6 +6,7 @@ import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinList
 import YearRangeSlider from './YearRangeSlider';
 import WorldMapPicker from './WorldMapPicker';
 import type { Continent } from './CityFiltersContext';
+import { BRING_FACET, bringFacet } from '@/lib/pinFacets';
 
 // === PinFilterPanel ========================================================
 // Cockpit UI for /pins. Mirrors the FilterPanel pattern from /cities so the
@@ -112,6 +113,21 @@ export default function PinFilterPanel({
             label="No admission fee"
             onChange={v => setState(s => ({ ...s, freeOnly: v }))}
           />
+          <Switch
+            on={state.foodOnSiteOnly}
+            label="Food on site"
+            onChange={v => setState(s => ({ ...s, foodOnSiteOnly: v }))}
+          />
+          <Switch
+            on={state.wheelchairOnly}
+            label="Wheelchair accessible"
+            onChange={v => setState(s => ({ ...s, wheelchairOnly: v }))}
+          />
+          <Switch
+            on={state.kidFriendlyOnly}
+            label="Kid-friendly"
+            onChange={v => setState(s => ({ ...s, kidFriendlyOnly: v }))}
+          />
         </div>
       </div>
 
@@ -148,10 +164,14 @@ export default function PinFilterPanel({
         </div>
       )}
 
-      {/* Inception year — dual-thumb slider with era quick-picks
-          (Antiquity / Medieval / Early modern / Modern). Replaces the
-          number-input pair which made BCE entry awkward (typing -2500
-          for the Pyramids was non-discoverable). */}
+      <div>
+        <SectionLabel>Bring</SectionLabel>
+        <BringChipGroup
+          selected={state.bring}
+          onToggle={v => setState(s => ({ ...s, bring: togglePinSet(s.bring, v) }))}
+        />
+      </div>
+
       <div>
         <SectionLabel>Established between</SectionLabel>
         <YearRangeSlider
@@ -543,6 +563,40 @@ function SearchableMultiSelect({
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function BringChipGroup({
+  selected,
+  onToggle,
+}: {
+  selected: Set<string>;
+  onToggle: (v: string) => void;
+}) {
+  const keys = Object.keys(BRING_FACET);
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {keys.map(k => {
+        const facet = bringFacet(k);
+        const checked = selected.has(k);
+        return (
+          <button
+            key={k}
+            type="button"
+            onClick={() => onToggle(k)}
+            className={
+              'pill text-[11px] transition-colors ' +
+              (checked
+                ? 'bg-ink-deep text-white border border-ink-deep'
+                : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')
+            }
+            aria-pressed={checked}
+          >
+            {facet.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

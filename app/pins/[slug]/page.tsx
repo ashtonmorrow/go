@@ -1,42 +1,28 @@
-// === /pins/[slug] ==========================================================
-// Detail page for a single pin, modelled as a Wikipedia-style article:
-//
-//   ┌──────────────────────────────────────┬──────────────┐
-//   │  Title                               │              │
-//   │  Sub-line: city, country · since N   │  Infobox     │
-//   │  Tag pills, list pills, badges       │  (facts,     │
-//   │                                      │   links,     │
-//   │  Hero image                          │   coords,    │
-//   │                                      │   external)  │
-//   │  Lead paragraph (Wikipedia summary)  │              │
-//   │                                      │              │
-//   │  About (UNESCO blurb / curator note) │              │
-//   │  Hours · Cost                        │              │
-//   │  Image gallery                       │              │
-//   │  Tags                                │              │
-//   └──────────────────────────────────────┴──────────────┘
-//
-// More-is-more: every fact we have is rendered. Empty bits are dropped
-// silently. Wikipedia summary fetched at request time and cached 30 days.
-//
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { fetchPinBySlug } from '@/lib/pins';
+import { fetchPinBySlug, type Pin, type PinOpeningHours } from '@/lib/pins';
+import { fetchPhotosForPin } from '@/lib/personalPhotos';
 import { fetchAllCountries } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
 import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
 import { parseHours, DAY_LABELS, type DayKey } from '@/lib/parseHours';
+import { admissionView, admissionShortLabel } from '@/lib/admission';
+import {
+  STATUS_FACET, BOOKING_FACET, CROWD_FACET, FOOD_FACET, RESTROOMS_FACET,
+  SHADE_FACET, INDOOR_FACET, WHEELCHAIR_FACET, PHOTOGRAPHY_FACET,
+  DIFFICULTY_FACET, PARKING_FACET, REQUIRES_GUIDE_FACET, TIME_OF_DAY_FACET,
+  bringFacet, monthRange,
+} from '@/lib/pinFacets';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+export const revalidate = 604800;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  // Lazy-render — first hit fills the cache, subsequent hits are instant.
   return [];
 }
 
@@ -77,12 +63,11 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
 
-  // Run the slow-but-cheap lookups in parallel: country slug for the
-  // breadcrumb / containedInPlace, Wikipedia summary for the lead paragraph.
   const country = pin.statesNames[0] ?? null;
-  const [countries, wp] = await Promise.all([
+  const [countries, wp, personalPhotos] = await Promise.all([
     country ? fetchAllCountries() : Promise.resolve([]),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
+    fetchPhotosForPin(pin.id),
   ]);
   const countryRecord = country
     ? countries.find(c => c.name.toLowerCase() === country.toLowerCase()) ?? null
@@ -99,24 +84,59 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     { name: pin.name },
   ];
 
-  // TouristAttraction structured data.
-  const isFree =
-    pin.priceAmount === 0
-      ? true
-      : pin.priceAmount != null
-      ? false
-      : null;
+  const admission = admissionView(pin.admission, pin.free, pin.priceText, pin.priceAmount, pin.priceCurrency);
+  const isFree = pin.free === true || (pin.free == null && pin.priceAmount === 0)
+    ? true
+    : pin.free === false || (pin.free == null && pin.priceAmount != null && pin.priceAmount > 0)
+    ? false
+    : null;
 
-  // Format inception year — negative is BCE.
   const formatYear = (y: number | null): string | null => {
     if (y == null) return null;
     if (y < 0) return `${-y} BCE`;
     return `${y}`;
   };
 
-  // De-dupe images by URL just in case the rehost put the same one in twice.
   const galleryImages = pin.images.filter((img, i, arr) =>
     img.url && arr.findIndex(x => x.url === img.url) === i
+  );
+
+  const hasPlanInfo = Boolean(
+    pin.openingHours || pin.hours || admission.kind !== 'unknown' ||
+    pin.booking || pin.bookingUrl || pin.officialTicketUrl ||
+    pin.status || pin.closureReason || pin.closureDays.length ||
+    pin.bestMonths.length || pin.worstMonths.length ||
+    pin.bestTimeOfDay.length || pin.crowdLevel ||
+    pin.durationMinutes != null,
+  );
+
+  const amenityFacets = [
+    pin.foodOnSite ? FOOD_FACET[pin.foodOnSite] : null,
+    pin.restrooms ? RESTROOMS_FACET[pin.restrooms] : null,
+    pin.waterRefill ? { label: 'Water refill available', icon: 'droplet' } : null,
+    pin.wifi ? { label: 'Wi-Fi available', icon: 'wifi' } : null,
+    pin.lockers ? { label: 'Lockers available', icon: 'package' } : null,
+    pin.shade ? SHADE_FACET[pin.shade] : null,
+    pin.indoorOutdoor ? INDOOR_FACET[pin.indoorOutdoor] : null,
+  ].filter((f): f is { label: string; icon: string } => Boolean(f));
+
+  const hasGettingThere = Boolean(pin.address || pin.nearestTransit || pin.parking || pin.accessNotes);
+
+  const goodToKnowFacets = [
+    pin.wheelchairAccessible ? WHEELCHAIR_FACET[pin.wheelchairAccessible] : null,
+    pin.photography ? PHOTOGRAPHY_FACET[pin.photography] : null,
+    pin.requiresGuide ? REQUIRES_GUIDE_FACET[pin.requiresGuide] : null,
+    pin.requiresPermit ? { label: 'Permit required', icon: 'receipt' } : null,
+    pin.kidFriendly === true ? { label: 'Kid-friendly', icon: 'baby' } : null,
+    pin.kidFriendly === false ? { label: 'Not for young kids', icon: 'circle-x' } : null,
+    pin.strollerFriendly === true ? { label: 'Stroller-friendly', icon: 'baby' } : null,
+    pin.petFriendly === true ? { label: 'Pet-friendly', icon: 'paw-print' } : null,
+    pin.difficulty ? DIFFICULTY_FACET[pin.difficulty] : null,
+  ].filter((f): f is { label: string; icon: string } => Boolean(f));
+
+  const hasGoodToKnow = Boolean(
+    goodToKnowFacets.length || pin.dressCode || pin.safetyNotes || pin.scamWarning ||
+    pin.languagesOffered.length || pin.minAgeRecommended != null,
   );
 
   return (
@@ -137,13 +157,16 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           unescoUrl: pin.unescoUrl,
           website: pin.website,
           isFree,
+          address: pin.address,
+          openingHours: pin.openingHours,
+          admission: pin.admission,
+          wheelchairAccessible: pin.wheelchairAccessible,
+          kidFriendly: pin.kidFriendly,
+          durationMinutes: pin.durationMinutes,
         })}
       />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
 
-      {/* === Breadcrumbs + View switcher ==================================
-          Switcher renders without a `current` so no pill is highlighted —
-          we're on a detail page, not any of the four index views. */}
       <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
         <nav className="text-small text-muted" aria-label="Breadcrumb">
           <Link href="/pins" className="hover:text-teal">Pins</Link>
@@ -159,13 +182,8 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         <ViewSwitcher object="pins" />
       </div>
 
-      {/* === Title block ================================================== */}
       <header className="border-b border-sand pb-5">
         <h1 className="text-h1 text-ink-deep leading-tight">{pin.name}</h1>
-
-        {/* Sub-line: place · since YYYY · type. Each is optional and the
-            separators collapse cleanly. Wikipedia's own one-liner
-            description wins when populated (more recognisable phrasing). */}
         <p className="mt-2 text-slate">
           <SubLine
             parts={[
@@ -175,28 +193,17 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             ]}
           />
         </p>
-
-        {/* Pills row: status, lists, category. List pills are now
-            click-through to the canonical source — UNESCO whc.unesco.org
-            for World Heritage with a known id, the list's overview page
-            otherwise. Each badge gets its glyph (globe, compass, droplet,
-            etc.) so a quick scan tells you what kind of recognition this
-            place carries before you read the labels. */}
         <div className="mt-3 flex flex-wrap gap-1.5">
-          {pin.visited && (
-            <span className="pill bg-teal/10 text-teal">Been</span>
+          {pin.visited && <span className="pill bg-teal/10 text-teal">Been</span>}
+          {pin.status && pin.status !== 'active' && (
+            <span className="pill bg-orange/10 text-orange">{STATUS_FACET[pin.status].label}</span>
           )}
           {pin.lists.map(l => {
-            // Cast guards us against legacy non-canonical labels still
-            // floating around in the DB; the icon lookup safely returns
-            // undefined and we fall back to a generic chip.
             const canonical = l as CanonicalList;
             const icon = LIST_ICONS[canonical];
             const url = icon
               ? getListUrl(canonical, {
                   unescoId: pin.unescoId,
-                  // atlasObscuraSlug isn't on the schema yet; pass through
-                  // when it lands in a future enrichment pass.
                   atlasObscuraSlug: null,
                   wikidataQid: pin.wikidataQid,
                 })
@@ -208,9 +215,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <>
                 {icon && <span aria-hidden>{icon}</span>}
                 <span>{l}</span>
-                {url && (
-                  <span aria-hidden className="text-accent/60 text-[10px]">↗</span>
-                )}
+                {url && <span aria-hidden className="text-accent/60 text-[10px]">↗</span>}
               </>
             );
             return url ? (
@@ -236,7 +241,6 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         </div>
       </header>
 
-      {/* === Hero image =================================================== */}
       {galleryImages[0] && (
         <figure className="mt-6 rounded overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -249,11 +253,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
-        {/* === Main column =============================================== */}
         <div className="min-w-0">
-          {/* Lead paragraph — Wikipedia summary if we have one. Falls back
-              to the curator description otherwise. Clear "Read more on
-              Wikipedia" link at the bottom for the full article. */}
           {wp?.extract && (
             <section>
               <p className="text-ink leading-relaxed text-[17px]">{wp.extract}</p>
@@ -268,53 +268,56 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             </section>
           )}
 
-          {/* Curator description — UNESCO inscription text or the original
-              Airtable Description. Renders below the Wikipedia lead so it's
-              clearly a second voice. */}
           {pin.description && (
             <section className={wp?.extract ? 'mt-8 pt-8 border-t border-sand' : ''}>
-              {wp?.extract && (
-                <h2 className="text-h3 text-ink-deep mb-3">From the source</h2>
-              )}
+              {wp?.extract && <h2 className="text-h3 text-ink-deep mb-3">From the source</h2>}
               <p className="text-ink leading-relaxed whitespace-pre-line">{pin.description}</p>
             </section>
           )}
 
-          {/* Visiting practicalities — Hours and Cost. Hours render as a
-              7-row table with today's row highlighted when we can parse
-              the structured weekly format; falls back to the prose text
-              otherwise. Cost shows priceText when set, plus a "Free
-              entry" callout when priceAmount is exactly 0. */}
-          {(pin.hours || pin.priceText || pin.priceAmount === 0) && (
-            <section className="mt-8 pt-8 border-t border-sand grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {pin.hours && (
-                <div>
-                  <h2 className="text-h3 text-ink-deep mb-2">Hours</h2>
-                  <HoursBlock raw={pin.hours} />
-                </div>
-              )}
-              {(pin.priceText || pin.priceAmount === 0) && (
-                <div>
-                  <h2 className="text-h3 text-ink-deep mb-2">Cost</h2>
-                  {pin.priceText && (
-                    <p className="text-ink leading-relaxed">{pin.priceText}</p>
-                  )}
-                  {pin.priceAmount === 0 && (
-                    <p className={(pin.priceText ? 'mt-1 ' : '') + 'text-small text-teal'}>Free entry.</p>
-                  )}
-                  {pin.priceAmount != null && pin.priceAmount > 0 && pin.priceCurrency && (
-                    <p className="mt-1 text-small text-muted font-mono">
-                      {pin.priceCurrency} {pin.priceAmount}
-                    </p>
-                  )}
-                </div>
-              )}
+          {hasPlanInfo && <PlanSection pin={pin} admissionLabel={admissionShortLabel(admission)} />}
+
+          {amenityFacets.length > 0 && (
+            <section className="mt-8 pt-8 border-t border-sand">
+              <h2 className="text-h3 text-ink-deep mb-3">What to expect</h2>
+              <FacetGrid items={amenityFacets} />
             </section>
           )}
 
-          {/* Image gallery — drops the first image since it's the hero,
-              renders the rest as a 3-up grid. Most pins only have one
-              image so this section often doesn't appear. */}
+          {hasGettingThere && <GettingThereSection pin={pin} />}
+
+          {pin.bring.length > 0 && (
+            <section className="mt-8 pt-8 border-t border-sand">
+              <h2 className="text-h3 text-ink-deep mb-3">What to bring</h2>
+              <div className="flex flex-wrap gap-1.5">
+                {pin.bring.map(b => (
+                  <span key={b} className="pill bg-cream-soft text-ink-deep">
+                    {bringFacet(b).label}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {hasGoodToKnow && <GoodToKnowSection pin={pin} facets={goodToKnowFacets} />}
+
+          {personalPhotos.length > 0 && (
+            <section className="mt-8 pt-8 border-t border-sand">
+              <h2 className="text-h3 text-ink-deep mb-3">Your photos</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {personalPhotos.map(p => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={p.id}
+                    src={p.url}
+                    alt={p.caption ?? `${pin.name} — personal photo`}
+                    className="w-full aspect-square object-cover rounded bg-cream-soft"
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
           {galleryImages.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h3 text-ink-deep mb-3">Gallery</h2>
@@ -332,42 +335,27 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             </section>
           )}
 
-          {/* Tags — Wikidata "instance of" labels. Useful for grokking
-              what kind of place this actually is at a glance. */}
           {pin.tags.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h3 text-ink-deep mb-2">Type</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.tags.map(t => (
-                  <span key={t} className="pill bg-cream-soft text-slate text-[11px]">
-                    {t}
-                  </span>
+                  <span key={t} className="pill bg-cream-soft text-slate text-[11px]">{t}</span>
                 ))}
               </div>
             </section>
           )}
         </div>
 
-        {/* === Infobox sidebar =========================================== */}
         <aside className="self-start md:sticky md:top-20 space-y-4">
-          {/* Wikipedia thumbnail (only when distinct from hero — saves a
-              redundant render when both are the same image). */}
           {wp?.thumbnailUrl && wp.thumbnailUrl !== galleryImages[0]?.url && (
             <figure className="card p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={wp.thumbnailUrl}
-                alt=""
-                aria-hidden
-                className="w-full rounded bg-cream-soft"
-              />
-              <figcaption className="text-[10px] text-muted mt-1 px-1">
-                Image via Wikipedia
-              </figcaption>
+              <img src={wp.thumbnailUrl} alt="" aria-hidden className="w-full rounded bg-cream-soft" />
+              <figcaption className="text-[10px] text-muted mt-1 px-1">Image via Wikipedia</figcaption>
             </figure>
           )}
 
-          {/* Plan-a-visit action block */}
           <div className="card p-4 space-y-3 text-small">
             <h3 className="text-muted uppercase tracking-wider text-[11px]">Plan a visit</h3>
 
@@ -384,6 +372,28 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <p className="text-muted text-[11px]">No coordinates on file.</p>
             )}
 
+            {pin.bookingUrl && (
+              <a
+                href={pin.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
+              >
+                Book tickets →
+              </a>
+            )}
+
+            {!pin.bookingUrl && pin.officialTicketUrl && (
+              <a
+                href={pin.officialTicketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
+              >
+                Buy tickets →
+              </a>
+            )}
+
             {pin.website && (
               <a
                 href={pin.website}
@@ -397,7 +407,6 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             )}
           </div>
 
-          {/* Facts table — Wikipedia infobox style. Every row is optional. */}
           <div className="card p-4 text-small">
             <h3 className="text-muted uppercase tracking-wider text-[11px] mb-3">Facts</h3>
             <dl className="space-y-2">
@@ -409,9 +418,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                       <img src={flagUrl} alt="" className="w-4 h-4 rounded-full border border-sand" />
                     )}
                     {countrySlug ? (
-                      <Link href={`/countries/${countrySlug}`} className="hover:text-teal">
-                        {country}
-                      </Link>
+                      <Link href={`/countries/${countrySlug}`} className="hover:text-teal">{country}</Link>
                     ) : (
                       country
                     )}
@@ -419,18 +426,17 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                 </Fact>
               )}
               {pin.cityNames[0] && <Fact label="City">{pin.cityNames[0]}</Fact>}
+              {pin.address && <Fact label="Address"><span className="text-right">{pin.address}</span></Fact>}
               {pin.category && <Fact label="Category">{pin.category}</Fact>}
+              {pin.durationMinutes != null && (
+                <Fact label="Visit time">{fmtDuration(pin.durationMinutes)}</Fact>
+              )}
               {formatYear(pin.inceptionYear) && (
                 <Fact label="Established">{formatYear(pin.inceptionYear)}</Fact>
               )}
               {pin.unescoId != null && (
                 <Fact label="UNESCO #">
-                  <a
-                    href={pin.unescoUrl ?? '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-teal hover:underline tabular-nums"
-                  >
+                  <a href={pin.unescoUrl ?? '#'} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline tabular-nums">
                     {pin.unescoId}
                   </a>
                 </Fact>
@@ -445,47 +451,18 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             </dl>
           </div>
 
-          {/* External references — every link out lives here so the body
-              doesn't get cluttered with parenthetical "see also" lines. */}
           {(pin.unescoUrl || pin.wikipediaUrl || pin.wikidataUrl) && (
             <div className="card p-4 text-small">
               <h3 className="text-muted uppercase tracking-wider text-[11px] mb-3">References</h3>
               <ul className="space-y-1.5">
                 {pin.unescoUrl && (
-                  <li>
-                    <a
-                      href={pin.unescoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal hover:underline"
-                    >
-                      whc.unesco.org →
-                    </a>
-                  </li>
+                  <li><a href={pin.unescoUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">whc.unesco.org →</a></li>
                 )}
                 {pin.wikipediaUrl && (
-                  <li>
-                    <a
-                      href={pin.wikipediaUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal hover:underline"
-                    >
-                      Wikipedia →
-                    </a>
-                  </li>
+                  <li><a href={pin.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikipedia →</a></li>
                 )}
                 {pin.wikidataUrl && (
-                  <li>
-                    <a
-                      href={pin.wikidataUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal hover:underline"
-                    >
-                      Wikidata ({pin.wikidataQid}) →
-                    </a>
-                  </li>
+                  <li><a href={pin.wikidataUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikidata ({pin.wikidataQid}) →</a></li>
                 )}
               </ul>
             </div>
@@ -496,22 +473,258 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   );
 }
 
-// === HoursBlock =========================================================
-// When the pin's hours field parses cleanly as a weekly schedule (5+
-// days), render it as a 7-row table with today's row highlighted in
-// teal so users find "is this open right now?" at a glance. When the
-// schedule is prose ("Open daily 6am–6pm with seasonal variation",
-// etc.) we fall through to the original whitespace-preserved prose —
-// trying to summarise free-form text into a tidy table tends to drop
-// the nuance the prose carried.
-function HoursBlock({ raw }: { raw: string }) {
-  const parsed = parseHours(raw);
-  if (!parsed?.structured) {
-    return <p className="text-ink leading-relaxed whitespace-pre-line">{raw}</p>;
+function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string | null }) {
+  const showCost = pin.free === true || pin.admission || pin.priceText || pin.priceAmount != null;
+  const showHours = pin.openingHours || pin.hours;
+  const showTiming = pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel;
+  const showBooking = pin.booking || pin.bookingUrl || pin.officialTicketUrl;
+  const showStatus = pin.status && pin.status !== 'active';
+
+  return (
+    <section className="mt-8 pt-8 border-t border-sand">
+      <h2 className="text-h3 text-ink-deep mb-4">Plan your visit</h2>
+
+      {showStatus && pin.status && (
+        <div className="mb-4 px-3 py-2 rounded bg-orange/10 text-orange text-small">
+          <strong>{STATUS_FACET[pin.status].label}.</strong>
+          {pin.closureReason && <span className="ml-1">{pin.closureReason}</span>}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {showHours && (
+          <div>
+            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Hours</h3>
+            <HoursBlock openingHours={pin.openingHours} raw={pin.hours} />
+            {pin.closureDays.length > 0 && (
+              <p className="mt-2 text-[11px] text-muted">
+                Also closed: {pin.closureDays.join(', ')}
+              </p>
+            )}
+          </div>
+        )}
+
+        {showCost && (
+          <div>
+            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Admission</h3>
+            <AdmissionBlock pin={pin} fallback={admissionLabel} />
+          </div>
+        )}
+
+        {showBooking && (
+          <div>
+            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Booking</h3>
+            {pin.booking && <p className="text-ink">{BOOKING_FACET[pin.booking].label}</p>}
+            {pin.bookingUrl && (
+              <a href={pin.bookingUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline text-small block mt-1">
+                Reserve →
+              </a>
+            )}
+            {!pin.bookingUrl && pin.officialTicketUrl && (
+              <a href={pin.officialTicketUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline text-small block mt-1">
+                Official tickets →
+              </a>
+            )}
+          </div>
+        )}
+
+        {showTiming && (
+          <div>
+            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">When to go</h3>
+            <ul className="text-small text-ink space-y-1">
+              {pin.bestMonths.length > 0 && (
+                <li><span className="text-muted">Best:</span> {monthRange(pin.bestMonths)}</li>
+              )}
+              {pin.worstMonths.length > 0 && (
+                <li><span className="text-muted">Avoid:</span> {monthRange(pin.worstMonths)}</li>
+              )}
+              {pin.bestTimeOfDay.length > 0 && (
+                <li>
+                  <span className="text-muted">Time of day:</span>{' '}
+                  {pin.bestTimeOfDay.map(t => TIME_OF_DAY_FACET[t].label).join(', ')}
+                </li>
+              )}
+              {pin.crowdLevel && (
+                <li><span className="text-muted">Crowds:</span> {CROWD_FACET[pin.crowdLevel].label}</li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }) {
+  const view = admissionView(pin.admission, pin.free, pin.priceText, pin.priceAmount, pin.priceCurrency);
+  if (view.kind === 'free') {
+    return (
+      <>
+        <p className="text-teal font-medium">Free</p>
+        {view.note && <p className="mt-1 text-small text-ink leading-relaxed">{view.note}</p>}
+      </>
+    );
   }
-  // Sun=0..Sat=6 in JS Date.getDay(); align with our DayKey order.
+  if (view.kind === 'paid' && view.tiers.length) {
+    return (
+      <>
+        <dl className="text-small">
+          {view.tiers.map(t => (
+            <div key={t.label} className="flex justify-between gap-3 py-0.5">
+              <dt className="text-slate">{t.label}</dt>
+              <dd className="text-ink-deep tabular-nums font-mono">{t.formatted}</dd>
+            </div>
+          ))}
+        </dl>
+        {view.note && <p className="mt-2 text-[11px] text-muted leading-relaxed">{view.note}</p>}
+      </>
+    );
+  }
+  if (view.kind === 'paid' && view.note) {
+    return <p className="text-ink leading-relaxed text-small">{view.note}</p>;
+  }
+  return fallback ? <p className="text-ink text-small">{fallback}</p> : <p className="text-muted text-small">Pricing unknown</p>;
+}
+
+function GettingThereSection({ pin }: { pin: Pin }) {
+  return (
+    <section className="mt-8 pt-8 border-t border-sand">
+      <h2 className="text-h3 text-ink-deep mb-3">Getting there</h2>
+      <dl className="text-small space-y-2">
+        {pin.address && (
+          <div className="flex flex-col sm:flex-row sm:gap-3">
+            <dt className="text-slate sm:w-32 flex-shrink-0">Address</dt>
+            <dd className="text-ink-deep">{pin.address}</dd>
+          </div>
+        )}
+        {pin.nearestTransit && (pin.nearestTransit.station || pin.nearestTransit.line) && (
+          <div className="flex flex-col sm:flex-row sm:gap-3">
+            <dt className="text-slate sm:w-32 flex-shrink-0">Transit</dt>
+            <dd className="text-ink-deep">
+              {pin.nearestTransit.station}
+              {pin.nearestTransit.line && <span className="text-muted"> · {pin.nearestTransit.line}</span>}
+              {typeof pin.nearestTransit.walking_minutes === 'number' && (
+                <span className="text-muted"> · {pin.nearestTransit.walking_minutes} min walk</span>
+              )}
+            </dd>
+          </div>
+        )}
+        {pin.parking && (
+          <div className="flex flex-col sm:flex-row sm:gap-3">
+            <dt className="text-slate sm:w-32 flex-shrink-0">Parking</dt>
+            <dd className="text-ink-deep">{PARKING_FACET[pin.parking].label}</dd>
+          </div>
+        )}
+        {pin.accessNotes && (
+          <div className="flex flex-col sm:flex-row sm:gap-3">
+            <dt className="text-slate sm:w-32 flex-shrink-0">Notes</dt>
+            <dd className="text-ink-deep leading-relaxed">{pin.accessNotes}</dd>
+          </div>
+        )}
+      </dl>
+    </section>
+  );
+}
+
+function GoodToKnowSection({
+  pin,
+  facets,
+}: {
+  pin: Pin;
+  facets: { label: string; icon: string }[];
+}) {
+  return (
+    <section className="mt-8 pt-8 border-t border-sand">
+      <h2 className="text-h3 text-ink-deep mb-3">Good to know</h2>
+
+      {facets.length > 0 && <FacetGrid items={facets} className="mb-4" />}
+
+      <dl className="text-small space-y-2">
+        {pin.dressCode && (
+          <FactRow label="Dress code">{pin.dressCode}</FactRow>
+        )}
+        {pin.minAgeRecommended != null && (
+          <FactRow label="Recommended age">{pin.minAgeRecommended}+</FactRow>
+        )}
+        {pin.languagesOffered.length > 0 && (
+          <FactRow label="Languages">{pin.languagesOffered.join(', ')}</FactRow>
+        )}
+        {pin.safetyNotes && (
+          <FactRow label="Safety">{pin.safetyNotes}</FactRow>
+        )}
+        {pin.scamWarning && (
+          <FactRow label="Watch out for">
+            <span className="text-orange">{pin.scamWarning}</span>
+          </FactRow>
+        )}
+      </dl>
+    </section>
+  );
+}
+
+function FacetGrid({ items, className }: { items: { label: string; icon: string }[]; className?: string }) {
+  return (
+    <ul className={'grid grid-cols-1 sm:grid-cols-2 gap-2 ' + (className ?? '')}>
+      {items.map((it, i) => (
+        <li key={i} className="flex items-start gap-2 text-small text-ink">
+          <span aria-hidden className="text-teal mt-0.5">●</span>
+          <span>{it.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function fmtDuration(mins: number): string {
+  if (mins < 60) return `${mins} min`;
+  const hours = Math.floor(mins / 60);
+  const rem = mins % 60;
+  if (rem === 0) return `${hours} hr`;
+  return `${hours} hr ${rem} min`;
+}
+
+const HOURS_DAY_ORDER: DayKey[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+function HoursBlock({ openingHours, raw }: { openingHours: PinOpeningHours | null; raw: string | null }) {
   const todayIdx = new Date().getDay();
   const todayKey: DayKey = (['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as DayKey[])[todayIdx];
+
+  if (openingHours) {
+    return (
+      <dl className="text-small font-mono">
+        {HOURS_DAY_ORDER.map(d => {
+          const intervals = (openingHours as any)[d] as string[] | undefined;
+          const isToday = d === todayKey;
+          const text = !intervals || intervals.length === 0
+            ? 'Closed'
+            : intervals.join(', ');
+          return (
+            <div
+              key={d}
+              className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
+            >
+              <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+                {DAY_LABELS[d]}
+                {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+              </dt>
+              <dd className="tabular-nums">{text}</dd>
+            </div>
+          );
+        })}
+        {openingHours.notes && (
+          <p className="mt-2 text-[11px] text-muted font-sans leading-relaxed">{openingHours.notes}</p>
+        )}
+      </dl>
+    );
+  }
+
+  if (!raw) return null;
+
+  const parsed = parseHours(raw);
+  if (!parsed?.structured) {
+    return <p className="text-ink leading-relaxed whitespace-pre-line text-small">{raw}</p>;
+  }
+
   return (
     <dl className="text-small font-mono">
       {parsed.structured.map(d => {
@@ -519,18 +732,13 @@ function HoursBlock({ raw }: { raw: string }) {
         return (
           <div
             key={d.day}
-            className={
-              'flex items-baseline justify-between gap-3 py-0.5 ' +
-              (isToday ? 'text-teal font-semibold' : 'text-ink')
-            }
+            className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
           >
             <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
               {DAY_LABELS[d.day]}
               {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
             </dt>
-            <dd className="tabular-nums">
-              {d.closed ? 'Closed' : `${d.open}–${d.close}`}
-            </dd>
+            <dd className="tabular-nums">{d.closed ? 'Closed' : `${d.open}–${d.close}`}</dd>
           </div>
         );
       })}
@@ -538,10 +746,6 @@ function HoursBlock({ raw }: { raw: string }) {
   );
 }
 
-// === Sub-line ===
-// Joins non-empty parts with a center-dot separator. Pulls slightly
-// nicer than just .filter().join() because we get to drop the leading
-// separator if the first part is empty.
 function SubLine({ parts }: { parts: (string | null)[] }) {
   const filled = parts.filter((p): p is string => !!p);
   if (filled.length === 0) return null;
@@ -557,15 +761,22 @@ function SubLine({ parts }: { parts: (string | null)[] }) {
   );
 }
 
-// === Fact ===
-// One row of the facts dl. Hidden if children is null/undefined so
-// callers don't have to wrap each row in their own conditional.
 function Fact({ label, children }: { label: string; children: React.ReactNode }) {
   if (children == null || children === '') return null;
   return (
     <div className="flex justify-between items-start gap-3">
       <dt className="text-slate">{label}</dt>
       <dd className="text-ink-deep text-right">{children}</dd>
+    </div>
+  );
+}
+
+function FactRow({ label, children }: { label: string; children: React.ReactNode }) {
+  if (children == null || children === '') return null;
+  return (
+    <div className="flex flex-col sm:flex-row sm:gap-3">
+      <dt className="text-slate sm:w-32 flex-shrink-0">{label}</dt>
+      <dd className="text-ink-deep leading-relaxed">{children}</dd>
     </div>
   );
 }

@@ -12,6 +12,7 @@
   "dependencies": {
     "@notionhq/client": "^2.3.0",
     "@supabase/supabase-js": "^2.104.1",
+    "heic-to": "^1.4.2",
     "maplibre-gl": "^5.24.0",
     "next": "^15.3.0",
     "react": "19.0.0",
