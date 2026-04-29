@@ -51,6 +51,31 @@ export type PinOpeningHours = {
   notes?: string | null;
 };
 
+/** Richer hours shape codex writes — handles ramadan, parent-site refs,
+ *  free-form weekly notes that the simpler PinOpeningHours can't capture. */
+export type PinHoursDetails = {
+  type?: string | null;
+  weekly?: { daily?: string; mon?: string; tue?: string; wed?: string; thu?: string; fri?: string; sat?: string; sun?: string } | null;
+  ramadan?: { daily?: string } | null;
+  parent_site?: string | null;
+  notes?: string[] | null;
+};
+
+export type PinPriceTier = {
+  label: string;
+  amount: number;
+  currency: string;
+};
+
+/** Richer pricing shape codex writes — supports a baseline price plus
+ *  variants (foreigner vs national, student vs adult, vehicle tickets). */
+export type PinPriceDetails = {
+  type?: string | null;
+  baseline?: PinPriceTier | null;
+  variants?: PinPriceTier[] | null;
+  notes?: string[] | null;
+};
+
 export type Pin = {
   id: string;
   airtableId: string | null;
@@ -132,9 +157,27 @@ export type Pin = {
   requiresGuide: PinRequiresGuide | null;
   languagesOffered: string[];
 
+  /** Codex enrichment — richer than opening_hours / admission, with
+   *  variant pricing, ramadan hours, parent-site cross-refs. Renderers
+   *  prefer these over the simpler opening_hours / admission when set. */
+  hoursDetails: PinHoursDetails | null;
+  priceDetails: PinPriceDetails | null;
+  freeToVisit: boolean | null;
+  bookingRequired: boolean | null;
+  hoursSourceUrl: string | null;
+  priceSourceUrl: string | null;
+  enrichmentStatus: string | null;
+  enrichmentConfidence: string | null;
+  enrichedAt: string | null;
+  enrichmentNotes: string | null;
+
   googleMapsUrl: string | null;
   unescoUrl: string | null;
   wikidataUrl: string | null;
+
+  /** Set by the page after a separate personal_photos lookup. Cards prefer
+   *  this over the first curated image. Null when there's no personal photo. */
+  personalCoverUrl: string | null;
 };
 
 const asString = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
@@ -268,9 +311,21 @@ function rowToPin(row: any): Pin {
     requiresGuide: asEnum(row.requires_guide, GUIDES),
     languagesOffered: asStringArray(row.languages_offered),
 
+    hoursDetails: row.hours_details && typeof row.hours_details === 'object' ? (row.hours_details as PinHoursDetails) : null,
+    priceDetails: row.price_details && typeof row.price_details === 'object' ? (row.price_details as PinPriceDetails) : null,
+    freeToVisit: asBool(row.free_to_visit),
+    bookingRequired: asBool(row.booking_required),
+    hoursSourceUrl: asString(row.hours_source_url),
+    priceSourceUrl: asString(row.price_source_url),
+    enrichmentStatus: asString(row.enrichment_status),
+    enrichmentConfidence: asString(row.enrichment_confidence),
+    enrichedAt: asString(row.enriched_at),
+    enrichmentNotes: asString(row.enrichment_notes),
+
     googleMapsUrl,
     unescoUrl,
     wikidataUrl,
+    personalCoverUrl: null,
   };
 }
 

@@ -26,6 +26,7 @@ export type PinFilterable = {
   /** Curated traveler-enrichment fields (sections 1-8). All optional so
    *  pre-enrichment views still type-check. */
   free?: boolean | null;
+  freeToVisit?: boolean | null;
   foodOnSite?: string | null;
   wheelchairAccessible?: string | null;
   kidFriendly?: boolean | null;
@@ -41,6 +42,7 @@ export type PinFilterable = {
 const FREE_PRICE_TEXT = /\b(free|no charge|no admission|no entry fee|complimentary|gratis|gratuit)\b/i;
 
 function isFreeAdmission(p: PinFilterable): boolean {
+  if (p.freeToVisit === true) return true;
   if (p.free === true) return true;
   if (p.priceAmount === 0) return true;
   if (p.priceText && FREE_PRICE_TEXT.test(p.priceText)) return true;

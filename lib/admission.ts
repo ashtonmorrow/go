@@ -1,5 +1,5 @@
 import { currencySymbol } from './currencySymbol';
-import type { PinAdmission } from './pins';
+import type { Pin, PinAdmission, PinPriceDetails } from './pins';
 
 export type AdmissionTier = {
   label: string;
@@ -8,8 +8,8 @@ export type AdmissionTier = {
 };
 
 export type AdmissionView =
-  | { kind: 'free'; note: string | null }
-  | { kind: 'paid'; tiers: AdmissionTier[]; currency: string | null; note: string | null }
+  | { kind: 'free'; note: string | null; notes: string[] }
+  | { kind: 'paid'; tiers: AdmissionTier[]; currency: string | null; note: string | null; notes: string[] }
   | { kind: 'unknown' };
 
 const TIER_ORDER: Array<keyof PinAdmission> = ['adult', 'student', 'senior', 'child'];
@@ -27,17 +27,50 @@ function fmtMoney(amount: number, currency: string | null): string {
   return `${amount.toLocaleString()} ${currency}`;
 }
 
-export function admissionView(
-  admission: PinAdmission | null,
-  free: boolean | null,
-  legacyText: string | null,
-  legacyAmount: number | null,
-  legacyCurrency: string | null,
-): AdmissionView {
-  if (free === true) {
-    return { kind: 'free', note: admission?.notes ?? legacyText ?? null };
+function viewFromPriceDetails(pd: PinPriceDetails): AdmissionView {
+  const notes = Array.isArray(pd.notes) ? pd.notes.filter(Boolean) : [];
+  if (pd.type === 'free') {
+    return { kind: 'free', note: notes[0] ?? null, notes };
+  }
+  const tiers: AdmissionTier[] = [];
+  if (pd.baseline && typeof pd.baseline.amount === 'number') {
+    tiers.push({
+      label: pd.baseline.label || 'Adult',
+      amount: pd.baseline.amount,
+      formatted: fmtMoney(pd.baseline.amount, pd.baseline.currency),
+    });
+  }
+  if (Array.isArray(pd.variants)) {
+    for (const v of pd.variants) {
+      if (!v || typeof v.amount !== 'number') continue;
+      tiers.push({
+        label: v.label || 'Variant',
+        amount: v.amount,
+        formatted: fmtMoney(v.amount, v.currency),
+      });
+    }
+  }
+  return {
+    kind: 'paid',
+    tiers,
+    currency: pd.baseline?.currency ?? null,
+    note: notes[0] ?? null,
+    notes,
+  };
+}
+
+export function admissionView(pin: Pin): AdmissionView {
+  // Codex's price_details takes precedence — richer shape with variants.
+  if (pin.priceDetails) return viewFromPriceDetails(pin.priceDetails);
+
+  // Codex's free_to_visit is a strict yes/no.
+  if (pin.freeToVisit === true) {
+    return { kind: 'free', note: null, notes: [] };
   }
 
+  // Original admission jsonb (4-tier).
+  const admission = pin.admission;
+  const legacyCurrency = pin.priceCurrency;
   if (admission) {
     const tiers: AdmissionTier[] = [];
     for (const key of TIER_ORDER) {
@@ -56,26 +89,30 @@ export function admissionView(
         tiers,
         currency: admission.currency ?? legacyCurrency,
         note: admission.notes ?? null,
+        notes: admission.notes ? [admission.notes] : [],
       };
     }
   }
 
-  if (typeof legacyAmount === 'number' && legacyAmount >= 0) {
-    if (legacyAmount === 0) return { kind: 'free', note: legacyText };
+  if (pin.free === true) return { kind: 'free', note: pin.priceText ?? null, notes: [] };
+
+  if (typeof pin.priceAmount === 'number' && pin.priceAmount >= 0) {
+    if (pin.priceAmount === 0) return { kind: 'free', note: pin.priceText, notes: [] };
     return {
       kind: 'paid',
-      tiers: [{ label: 'Admission', amount: legacyAmount, formatted: fmtMoney(legacyAmount, legacyCurrency) }],
+      tiers: [{ label: 'Admission', amount: pin.priceAmount, formatted: fmtMoney(pin.priceAmount, legacyCurrency) }],
       currency: legacyCurrency,
-      note: legacyText,
+      note: pin.priceText,
+      notes: [],
     };
   }
 
-  if (legacyText && /\bfree\b/i.test(legacyText)) {
-    return { kind: 'free', note: legacyText };
+  if (pin.priceText && /\bfree\b/i.test(pin.priceText)) {
+    return { kind: 'free', note: pin.priceText, notes: [] };
   }
 
-  if (legacyText) {
-    return { kind: 'paid', tiers: [], currency: legacyCurrency, note: legacyText };
+  if (pin.priceText) {
+    return { kind: 'paid', tiers: [], currency: legacyCurrency, note: pin.priceText, notes: [] };
   }
 
   return { kind: 'unknown' };

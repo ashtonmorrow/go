@@ -10,6 +10,7 @@
 //
 import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
+import { fetchPersonalCovers } from '@/lib/personalPhotos';
 import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
 import PinsGrid from '@/components/PinsGrid';
@@ -34,10 +35,13 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsPage() {
-  const [pins, countries] = await Promise.all([
+  const [pinsRaw, countries, personalCovers] = await Promise.all([
     fetchAllPins(),
     fetchAllCountries(),
+    fetchPersonalCovers(),
   ]);
+
+  const pins = pinsRaw.map(p => ({ ...p, personalCoverUrl: personalCovers.get(p.id) ?? null }));
 
   // Lower-cased name lookup so capitalisation drift between Airtable and
   // Notion doesn't drop a flag.

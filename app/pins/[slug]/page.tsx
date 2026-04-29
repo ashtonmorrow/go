@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { fetchPinBySlug, type Pin, type PinOpeningHours } from '@/lib/pins';
+import { fetchPinBySlug, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
 import { fetchAllCountries } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
@@ -84,12 +84,11 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     { name: pin.name },
   ];
 
-  const admission = admissionView(pin.admission, pin.free, pin.priceText, pin.priceAmount, pin.priceCurrency);
-  const isFree = pin.free === true || (pin.free == null && pin.priceAmount === 0)
-    ? true
-    : pin.free === false || (pin.free == null && pin.priceAmount != null && pin.priceAmount > 0)
-    ? false
-    : null;
+  const admission = admissionView(pin);
+  const isFree = pin.freeToVisit ?? pin.free ?? (
+    pin.priceAmount === 0 ? true :
+    pin.priceAmount != null && pin.priceAmount > 0 ? false : null
+  );
 
   const formatYear = (y: number | null): string | null => {
     if (y == null) return null;
@@ -102,8 +101,10 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   );
 
   const hasPlanInfo = Boolean(
-    pin.openingHours || pin.hours || admission.kind !== 'unknown' ||
+    pin.hoursDetails || pin.openingHours || pin.hours ||
+    admission.kind !== 'unknown' ||
     pin.booking || pin.bookingUrl || pin.officialTicketUrl ||
+    pin.bookingRequired != null ||
     pin.status || pin.closureReason || pin.closureDays.length ||
     pin.bestMonths.length || pin.worstMonths.length ||
     pin.bestTimeOfDay.length || pin.crowdLevel ||
@@ -495,10 +496,12 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 }
 
 function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string | null }) {
-  const showCost = pin.free === true || pin.admission || pin.priceText || pin.priceAmount != null;
-  const showHours = pin.openingHours || pin.hours;
+  const showCost =
+    pin.priceDetails || pin.freeToVisit != null ||
+    pin.free === true || pin.admission || pin.priceText || pin.priceAmount != null;
+  const showHours = pin.hoursDetails || pin.openingHours || pin.hours;
   const showTiming = pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel;
-  const showBooking = pin.booking || pin.bookingUrl || pin.officialTicketUrl;
+  const showBooking = pin.booking || pin.bookingRequired != null || pin.bookingUrl || pin.officialTicketUrl;
   const showStatus = pin.status && pin.status !== 'active';
 
   return (
@@ -516,7 +519,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
         {showHours && (
           <div>
             <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Hours</h3>
-            <HoursBlock openingHours={pin.openingHours} raw={pin.hours} />
+            <HoursBlock hoursDetails={pin.hoursDetails} openingHours={pin.openingHours} raw={pin.hours} />
             {pin.closureDays.length > 0 && (
               <p className="mt-2 text-[11px] text-muted">
                 Also closed: {pin.closureDays.join(', ')}
@@ -536,6 +539,12 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
           <div>
             <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Booking</h3>
             {pin.booking && <p className="text-ink">{BOOKING_FACET[pin.booking].label}</p>}
+            {!pin.booking && pin.bookingRequired === true && (
+              <p className="text-ink">Booking required</p>
+            )}
+            {!pin.booking && pin.bookingRequired === false && (
+              <p className="text-ink">No booking needed</p>
+            )}
             {pin.bookingUrl && (
               <a href={pin.bookingUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline text-small block mt-1">
                 Reserve →
@@ -544,6 +553,23 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
             {!pin.bookingUrl && pin.officialTicketUrl && (
               <a href={pin.officialTicketUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline text-small block mt-1">
                 Official tickets →
+              </a>
+            )}
+          </div>
+        )}
+
+        {(pin.hoursSourceUrl || pin.priceSourceUrl) && (
+          <div className="sm:col-span-2 text-[11px] text-muted">
+            Sources:{' '}
+            {pin.hoursSourceUrl && (
+              <a href={pin.hoursSourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-teal underline">
+                hours
+              </a>
+            )}
+            {pin.hoursSourceUrl && pin.priceSourceUrl && ' · '}
+            {pin.priceSourceUrl && (
+              <a href={pin.priceSourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-teal underline">
+                pricing
               </a>
             )}
           </div>
@@ -577,7 +603,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
 }
 
 function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }) {
-  const view = admissionView(pin.admission, pin.free, pin.priceText, pin.priceAmount, pin.priceCurrency);
+  const view = admissionView(pin);
   if (view.kind === 'free') {
     return (
       <>
@@ -590,14 +616,20 @@ function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }
     return (
       <>
         <dl className="text-small">
-          {view.tiers.map(t => (
-            <div key={t.label} className="flex justify-between gap-3 py-0.5">
+          {view.tiers.map((t, i) => (
+            <div key={`${t.label}-${i}`} className="flex justify-between gap-3 py-0.5">
               <dt className="text-slate">{t.label}</dt>
               <dd className="text-ink-deep tabular-nums font-mono">{t.formatted}</dd>
             </div>
           ))}
         </dl>
-        {view.note && <p className="mt-2 text-[11px] text-muted leading-relaxed">{view.note}</p>}
+        {view.notes.length > 0 && (
+          <ul className="mt-2 text-[11px] text-muted leading-relaxed space-y-0.5">
+            {view.notes.map((n, i) => (
+              <li key={i}>· {n}</li>
+            ))}
+          </ul>
+        )}
       </>
     );
   }
@@ -706,9 +738,65 @@ function fmtDuration(mins: number): string {
 
 const HOURS_DAY_ORDER: DayKey[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-function HoursBlock({ openingHours, raw }: { openingHours: PinOpeningHours | null; raw: string | null }) {
+function HoursBlock({
+  hoursDetails,
+  openingHours,
+  raw,
+}: {
+  hoursDetails: PinHoursDetails | null;
+  openingHours: PinOpeningHours | null;
+  raw: string | null;
+}) {
   const todayIdx = new Date().getDay();
   const todayKey: DayKey = (['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as DayKey[])[todayIdx];
+
+  if (hoursDetails) {
+    const w = hoursDetails.weekly ?? null;
+    const dailyText = w?.daily;
+    return (
+      <div className="text-small">
+        {dailyText ? (
+          <p className="text-ink font-mono">Daily {dailyText}</p>
+        ) : w ? (
+          <dl className="font-mono">
+            {HOURS_DAY_ORDER.map(d => {
+              const text = (w as any)[d] as string | undefined;
+              const isToday = d === todayKey;
+              return (
+                <div
+                  key={d}
+                  className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
+                >
+                  <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+                    {DAY_LABELS[d]}
+                    {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+                  </dt>
+                  <dd className="tabular-nums">{text ?? 'Closed'}</dd>
+                </div>
+              );
+            })}
+          </dl>
+        ) : null}
+        {hoursDetails.ramadan?.daily && (
+          <p className="mt-2 text-[11px] text-muted">
+            Ramadan: {hoursDetails.ramadan.daily}
+          </p>
+        )}
+        {hoursDetails.parent_site && (
+          <p className="mt-1 text-[11px] text-muted">
+            Hours follow {hoursDetails.parent_site}.
+          </p>
+        )}
+        {Array.isArray(hoursDetails.notes) && hoursDetails.notes.length > 0 && (
+          <ul className="mt-2 text-[11px] text-muted leading-relaxed space-y-0.5">
+            {hoursDetails.notes.map((n, i) => (
+              <li key={i}>· {n}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  }
 
   if (openingHours) {
     return (

@@ -83,7 +83,7 @@ function PinCard({
   pin: Pin;
   countryIso2: string | null;
 }) {
-  const cover = pin.images[0];
+  const coverUrl = pin.personalCoverUrl ?? pin.images[0]?.url ?? null;
   const country = pin.statesNames[0] ?? null;
   const city = pin.cityNames[0] ?? null;
   const placeText = [city, country].filter(Boolean).join(', ');
@@ -134,10 +134,10 @@ function PinCard({
       className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
     >
       <div className="flex-shrink-0">
-        {cover ? (
+        {coverUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={cover.url}
+            src={coverUrl}
             alt=""
             aria-hidden
             className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
