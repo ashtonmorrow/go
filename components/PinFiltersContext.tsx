@@ -55,8 +55,8 @@ const DEFAULT_STATE: PinFilterState = {
   bring: new Set(),
   inceptionMin: null,
   inceptionMax: null,
-  sort: 'name',
-  desc: false,
+  sort: 'recent',
+  desc: true,
 };
 
 type Ctx = {

@@ -142,10 +142,10 @@ export function sortPins<T extends PinFilterable>(pins: T[], state: PinFilterSta
     if (state.sort === 'name') {
       cmp = a.name.localeCompare(b.name);
     } else {
-      // 'recent' — by airtable_modified_at, fall back to updated_at;
-      // missing values sort last regardless of direction.
-      const A = a.airtableModifiedAt ?? a.updatedAt ?? '';
-      const B = b.airtableModifiedAt ?? b.updatedAt ?? '';
+      // 'recent' — by updated_at (auto-bumped on every edit + has a NOT NULL
+      // default of now()), with airtable_modified_at as a final fallback.
+      const A = a.updatedAt ?? a.airtableModifiedAt ?? '';
+      const B = b.updatedAt ?? b.airtableModifiedAt ?? '';
       if (!A && !B) cmp = 0;
       else if (!A) cmp = 1;
       else if (!B) cmp = -1;
