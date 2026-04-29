@@ -331,6 +331,24 @@ function rowToPin(row: any): Pin {
 
 const PAGE_SIZE = 1000;
 
+// Columns shipped to index views (cards / table / map / stats / filter panels).
+// Excludes heavy jsonb (hours_details, price_details, opening_hours, admission,
+// nearest_transit) and long-text detail-only fields (access_notes, safety_notes,
+// scam_warning, dress_code, closure_reason, enrichment_notes). The full row is
+// fetched directly by the detail page via fetchPinBySlug.
+const INDEX_COLUMNS = [
+  'id', 'airtable_id', 'name', 'slug',
+  'lat', 'lng', 'city_names', 'states_names',
+  'category', 'description', 'hours',
+  'price_text', 'price_amount', 'price_currency',
+  'unesco_id', 'website', 'images', 'visited',
+  'wikidata_qid', 'wikipedia_url', 'inception_year',
+  'duration_minutes', 'tags', 'lists', 'best_months',
+  'airtable_modified_at', 'updated_at',
+  'free', 'free_to_visit', 'food_on_site',
+  'wheelchair_accessible', 'kid_friendly', 'bring',
+].join(',');
+
 const _fetchAllPins = unstable_cache(
   async (): Promise<Pin[]> => {
     const all: any[] = [];
@@ -338,7 +356,7 @@ const _fetchAllPins = unstable_cache(
     for (;;) {
       const { data, error } = await supabase
         .from('pins')
-        .select('*')
+        .select(INDEX_COLUMNS)
         .order('name', { ascending: true })
         .range(start, start + PAGE_SIZE - 1);
       if (error) {
@@ -357,19 +375,23 @@ const _fetchAllPins = unstable_cache(
 );
 export const fetchAllPins = cache(_fetchAllPins);
 
-export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {
-  const all = await fetchAllPins();
-  const found = all.find(p => p.slug === slug);
-  if (found) return found;
-
-  const { data, error } = await supabase
-    .from('pins')
-    .select('*')
-    .eq('slug', slug)
-    .maybeSingle();
-  if (error) {
-    console.error(`[pins] fetchPinBySlug(${slug}) failed:`, error);
-    return null;
-  }
-  return data ? rowToPin(data) : null;
-});
+// Detail page: full row (heavy jsonbs included). unstable_cache is keyed by
+// slug so each pin's detail data is cached independently across requests;
+// React.cache() within a single render dedupes if multiple paths need it.
+const _fetchPinBySlug = unstable_cache(
+  async (slug: string): Promise<Pin | null> => {
+    const { data, error } = await supabase
+      .from('pins')
+      .select('*')
+      .eq('slug', slug)
+      .maybeSingle();
+    if (error) {
+      console.error(`[pins] fetchPinBySlug(${slug}) failed:`, error);
+      return null;
+    }
+    return data ? rowToPin(data) : null;
+  },
+  ['supabase-pin-by-slug'],
+  { revalidate: 86400, tags: ['supabase-pins'] },
+);
+export const fetchPinBySlug = cache(_fetchPinBySlug);

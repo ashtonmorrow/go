@@ -596,14 +596,15 @@ function ReviewSheet({
         <section>
           <h2 className="text-h3 text-ink-deep mb-1">Photos still to assign</h2>
           <p className="text-small text-muted mb-3">
-            These photos aren&rsquo;t saved yet. Pick the right place from the dropdown,
-            then scroll up and click <strong>Save</strong> on that place&rsquo;s row.
+            Pick the right place from the dropdown and click <strong>Save</strong>.
             Choose <em>Skip</em> if you don&rsquo;t want to save the photo.
           </p>
           <ul className="space-y-2">
             {remainingPhotos.map(p => {
               const matching = candidates.filter(c => p.hash && c.photoHashes.includes(p.hash));
               const assigned = assignments.get(p.id) ?? 'skip';
+              const assignedState = assigned !== 'skip' ? candidateStates.get(assigned) : undefined;
+              const canSave = assigned !== 'skip' && assignedState?.status !== 'saving';
               return (
                 <li key={p.id} className="flex items-center gap-3 p-2 rounded border border-sand bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -634,6 +635,24 @@ function ReviewSheet({
                       </option>
                     )}
                   </select>
+                  <button
+                    type="button"
+                    onClick={() => assigned !== 'skip' && onSaveCandidate(assigned)}
+                    disabled={!canSave}
+                    className={
+                      'text-small px-3 py-1.5 rounded font-medium transition-colors ' +
+                      (canSave
+                        ? 'bg-teal text-white hover:bg-teal/90'
+                        : 'bg-cream-soft text-muted cursor-not-allowed')
+                    }
+                    title={
+                      assigned === 'skip'
+                        ? 'Pick a place first'
+                        : `Save photos assigned to this place`
+                    }
+                  >
+                    {assignedState?.status === 'saving' ? 'Saving…' : 'Save'}
+                  </button>
                 </li>
               );
             })}
