@@ -35,9 +35,16 @@ export type City = {
   founded: string | null;
   savedPlaces: string | null;
   currency: string | null;
+  /** Glyph for the city's currency (€, $, £, ¥, ₹). Derived from the
+   *  3-letter code via lib/currencySymbol; null when unknown. */
+  currencySymbol?: string | null;
   language: string | null;
   driveSide: DriveSide | null;
   continent: Continent | null;
   visa: VisaUs | null;
   tapWater: TapWater | null;
+  /** Country-level electrical voltage, e.g. "230V" or "120/240V". */
+  voltage?: string | null;
+  /** Country-level plug type codes, e.g. ["A", "B", "C"]. */
+  plugTypes?: string[];
 };

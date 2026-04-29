@@ -4,6 +4,7 @@ import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { fetchCityFlags } from '@/lib/cityFlags';
+import { currencySymbol } from '@/lib/currencySymbol';
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
@@ -100,6 +101,7 @@ export default async function CitiesPage() {
       // Notion does have a value, that wins (Notion is the source of truth
       // for any country we've explicitly curated).
       currency: country?.currency ?? null,
+      currencySymbol: currencySymbol(country?.currency ?? null),
       language: country?.language ?? null,
       driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
       continent: asContinent(country?.continent),
@@ -109,6 +111,8 @@ export default async function CitiesPage() {
       tapWater:
         asTapWater(country?.tapWater) ??
         tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      voltage: country?.voltage ?? null,
+      plugTypes: country?.plugTypes ?? [],
     };
   });
   // CollectionPage + ItemList structured data. Item list capped at 30

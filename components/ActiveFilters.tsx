@@ -56,6 +56,14 @@ export default function ActiveFilters({ className = '' }: { className?: string }
       clear: () => setState(s => ({ ...s, q: '' })),
     });
   }
+  if (state.statusFocus !== null) {
+    const labels = { visited: 'Visited', planning: 'Planning', researching: 'Researching' } as const;
+    chips.push({
+      key: 'status',
+      label: labels[state.statusFocus],
+      clear: () => setState(s => ({ ...s, statusFocus: null })),
+    });
+  }
   for (const country of state.countries) {
     chips.push({
       key: `country:${country}`,

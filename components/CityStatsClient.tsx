@@ -41,7 +41,7 @@ export default function CityStatsClient({
   // the headline cohort is the full atlas (no silent narrowing).
   const filterActive =
     (ctx?.activeFilterCount ?? 0) > 0 ||
-    (ctx?.activeLayerHidden ?? false);
+    (ctx?.state.statusFocus != null);
 
   const narrowed = useMemo(() => {
     if (!state || !filterActive) return cities;

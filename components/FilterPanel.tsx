@@ -61,16 +61,14 @@ const SORT_FIELDS: { value: SortKey; label: string }[] = [
   { value: 'rainfall', label: 'Rainfall' },
 ];
 
-// Layer descriptors — one source of truth for the swatch color and label.
-// Three mutually-exclusive status buckets. Saved-places lives in FILTERS
-// below as its own facet because it's orthogonal: a Been city can also
-// have saved places, and forcing them onto a priority chain erases that
-// signal. On the map saved-places gets a separate gold-ring overlay
-// drawn on top of the layer color.
-const LAYERS: { key: CityLayer; label: string; swatch: string; field: 'showBeen' | 'showGo' | 'showOther' }[] = [
-  { key: 'been',  label: 'Been',         swatch: 'bg-teal',  field: 'showBeen' },
-  { key: 'go',    label: 'Want to go',   swatch: 'bg-slate', field: 'showGo' },
-  { key: 'other', label: 'Unstatused',   swatch: 'bg-sand',  field: 'showOther' },
+// Status focus options — single-select segmented control. Order is
+// the user's journey: Researching → Planning → Visited. Each has a
+// dot color matching the map encoding so the cockpit reads as a key
+// for the map.
+const STATUS_OPTIONS: { value: CityLayer; label: string; swatch: string }[] = [
+  { value: 'researching', label: 'Researching', swatch: 'bg-sand' },
+  { value: 'planning',    label: 'Planning',    swatch: 'bg-slate' },
+  { value: 'visited',     label: 'Visited',     swatch: 'bg-teal' },
 ];
 
 export default function FilterPanel({
@@ -80,9 +78,9 @@ export default function FilterPanel({
 }) {
   const ctx = useCityFilters();
   if (!ctx) return null; // Provider not mounted — safe no-op
-  const { state, setState, reset, activeFilterCount, activeLayerHidden, resultCount, totalCount, layerCounts } = ctx;
+  const { state, setState, reset, activeFilterCount, resultCount, totalCount, layerCounts } = ctx;
 
-  const dirty = activeFilterCount > 0 || activeLayerHidden;
+  const dirty = activeFilterCount > 0;
 
   return (
     <div className="flex flex-col gap-5">
@@ -124,7 +122,7 @@ export default function FilterPanel({
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
             <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
           </svg>
-          Clear all{dirty ? ` (${activeFilterCount + (activeLayerHidden ? 1 : 0)})` : ''}
+          Clear all{dirty ? ` (${activeFilterCount})` : ''}
         </button>
       </div>
 
@@ -138,25 +136,57 @@ export default function FilterPanel({
         />
       </div>
 
-      {/* === LAYERS ===
-          Encoding controls — toggle WHICH STATUS COLORS are rendered.
-          Each row pairs the swatch (sample of the on-map color) with a
-          live count from the narrowed set. The header makes the intent
-          explicit so the user reads it as visibility, not filtering. */}
+      {/* === STATUS FOCUS ===
+          Single-select segmented control: Researching → Planning →
+          Visited. Click a segment to narrow the atlas to that status;
+          click the active segment to clear (back to all-visible).
+          Replaces the previous 3-toggle Layers section — easier to
+          reason about and matches how users actually browse. */}
       <div>
-        <SectionLabel hint={activeLayerHidden ? 'some hidden' : undefined}>Layers</SectionLabel>
-        <div className="flex flex-col gap-1">
-          {LAYERS.map(l => (
-            <LayerRow
-              key={l.key}
-              label={l.label}
-              swatchClass={l.swatch}
-              count={layerCounts?.[l.key]}
-              on={state[l.field]}
-              onChange={v => setState(s => ({ ...s, [l.field]: v }))}
-            />
-          ))}
+        <SectionLabel>Status focus</SectionLabel>
+        <div className="grid grid-cols-3 gap-1">
+          {STATUS_OPTIONS.map(s => {
+            const active = state.statusFocus === s.value;
+            const count = layerCounts?.[s.value];
+            return (
+              <button
+                key={s.value}
+                type="button"
+                onClick={() =>
+                  setState(prev => ({
+                    ...prev,
+                    statusFocus: prev.statusFocus === s.value ? null : s.value,
+                  }))
+                }
+                aria-pressed={active}
+                className={
+                  'flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-md ' +
+                  'border transition-colors ' +
+                  (active
+                    ? 'bg-ink-deep border-ink-deep text-cream-soft'
+                    : 'bg-white border-sand text-slate hover:border-slate hover:text-ink-deep')
+                }
+              >
+                <span aria-hidden className={'inline-block w-2 h-2 rounded-full ' + s.swatch} />
+                <span className="text-[10px] font-medium leading-none">{s.label}</span>
+                {count != null && (
+                  <span className={'text-[9px] tabular-nums ' + (active ? 'text-cream-soft/80' : 'text-muted')}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
+        {state.statusFocus && (
+          <button
+            type="button"
+            onClick={() => setState(s => ({ ...s, statusFocus: null }))}
+            className="mt-1 text-[10px] text-slate hover:text-ink-deep"
+          >
+            Show all statuses
+          </button>
+        )}
       </div>
 
       {/* === FILTERS — narrowing facets === */}

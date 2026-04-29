@@ -42,22 +42,26 @@ export type CityFilterable = {
 };
 
 /**
- * Assign one status layer to a city. Three buckets, mutually exclusive:
- * Been > Go > Other. Saved-places is intentionally NOT a layer here — a
- * Been city can also have saved places, and a priority chain that put
- * Saved before Other would erase the Saved-and-Been signal silently.
+ * Assign one status to a city. Three buckets, mutually exclusive:
+ * Visited > Planning > Researching. Maps from the Notion source columns
+ * `been` (true → visited) and `go` (true → planning). Anything that's
+ * neither is "researching" — in the atlas but no commitment yet.
+ *
+ * Saved-places is intentionally NOT in this priority chain — a visited
+ * city can also have saved places, and a priority chain that put Saved
+ * before Researching would erase the Saved-and-Visited signal silently.
  * Saved is its own facet (filterCities applies it) plus a map overlay
  * (WorldGlobe draws an accent ring around saved-places dots regardless
- * of which status layer they're in).
+ * of which status they're in).
  *
- * Mike's atlas convention: Been and Go are mutually exclusive in the
+ * Mike's atlas convention: been and go are mutually exclusive in the
  * source data — you don't "want to go" somewhere you've already been.
- * The priority just hardens that invariant against any future data drift.
+ * The priority hardens that invariant against any future data drift.
  */
 export function cityLayer(c: CityFilterable): CityLayer {
-  if (c.been) return 'been';
-  if (c.go) return 'go';
-  return 'other';
+  if (c.been) return 'visited';
+  if (c.go) return 'planning';
+  return 'researching';
 }
 
 /**
@@ -132,30 +136,26 @@ export function filterCities<T extends CityFilterable>(cities: T[], state: CityF
     list = list.filter(c => !c.savedPlaces);
   }
 
+  // Status focus — single-select narrowing replacing the old
+  // showBeen/showGo/showOther multi-toggle layers.
+  const { statusFocus } = state;
+  if (statusFocus !== null) {
+    list = list.filter(c => cityLayer(c) === statusFocus);
+  }
+
   return list;
 }
 
 /**
- * Hide cities whose layer is currently toggled off. Run AFTER filterCities
- * so the layer counts in the cockpit reflect the narrowed set ("how many
- * Been cities are still visible after I filter to Asia"), not the full
- * atlas in isolation.
+ * Legacy helper kept as a no-op so any straggler consumer doesn't break
+ * during the migration. Status filtering now happens inside filterCities
+ * via state.statusFocus.
  */
 export function applyLayerVisibility<T extends CityFilterable>(
   cities: T[],
-  state: CityFilterState,
+  _state: CityFilterState,
 ): T[] {
-  const { showBeen, showGo, showOther } = state;
-  // Fast path — every layer on means no filtering at all.
-  if (showBeen && showGo && showOther) return cities;
-  // Fast path — every layer off means empty result.
-  if (!showBeen && !showGo && !showOther) return [];
-  return cities.filter(c => {
-    const layer = cityLayer(c);
-    if (layer === 'been') return showBeen;
-    if (layer === 'go') return showGo;
-    return showOther;
-  });
+  return cities;
 }
 
 export function sortCities<T extends CityFilterable>(cities: T[], state: CityFilterState): T[] {
@@ -190,7 +190,7 @@ export function sortCities<T extends CityFilterable>(cities: T[], state: CityFil
  * current view" rather than the global tally.
  */
 export function layerCounts<T extends CityFilterable>(filtered: T[]): Record<CityLayer, number> {
-  const counts: Record<CityLayer, number> = { been: 0, go: 0, other: 0 };
+  const counts: Record<CityLayer, number> = { visited: 0, planning: 0, researching: 0 };
   for (const c of filtered) counts[cityLayer(c)]++;
   return counts;
 }

@@ -372,9 +372,18 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             mix of 8px / 9px / 10px / 11px / 14px / 15px.
           ──────────────────────────────────────────────────────────────  */}
 
-      {/* === HEADER — city name + country, top-left of card.
-          paddingRight clears the landscape stamp + a little breathing room. */}
+      {/* === HEADER — coords pre-header, then city name + country.
+          paddingRight clears the landscape stamp + a little breathing room.
+          Coords moved up from the footer so the postcard reads top-down
+          like a real postcard return-address: location → place → details. */}
       <div className="px-4 pt-3" style={{ paddingRight: 110 }}>
+        {(city.lat != null || city.lng != null) && (
+          <p className="text-[9px] font-mono text-muted tracking-[0.08em] mb-1 truncate">
+            <span>{fmtCoord(city.lat, 'lat')}</span>
+            <span aria-hidden className="opacity-40 mx-1">·</span>
+            <span>{fmtCoord(city.lng, 'lng')}</span>
+          </p>
+        )}
         <div className="flex items-baseline gap-2 min-w-0">
           <h3 className="text-ink-deep font-bold text-xl uppercase tracking-tight leading-none truncate">
             {city.name}
@@ -406,7 +415,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           Values are right-aligned so the column reads like a typewritten
           receipt. The whole list sits between the headline rule and the
           coords footer below. */}
-      <div className="absolute inset-x-4 top-[40%] bottom-7 flex flex-col justify-around">
+      <div className="absolute inset-x-4 top-[40%] bottom-2.5 flex flex-col justify-around">
         <dl className="text-[11px] leading-tight">
           {fmtPopulation(city.population) && (
             <Row label="Population" value={fmtPopulation(city.population)!} />
@@ -422,10 +431,64 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               }
             />
           )}
-          {city.currency && <Row label="Currency" value={city.currency} />}
+          {/* Currency — glyph + ISO code together, separated by a slim
+              divider. Glyph alone is hard to map ("$" could be USD, AUD,
+              CAD, MXN, ARS); code alone reads as a 3-letter abbreviation
+              with no visual anchor. Together they're recognisable both
+              ways. Falls back to code-only when the glyph is unknown. */}
+          {city.currency && (
+            <div className="flex justify-between items-baseline gap-3 py-0.5">
+              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+                Currency
+              </dt>
+              <dd className="text-ink-deep font-mono text-[11px] truncate text-right">
+                {city.currencySymbol && city.currencySymbol !== city.currency && (
+                  <>
+                    <span>{city.currencySymbol}</span>
+                    <span aria-hidden className="text-muted mx-1">|</span>
+                  </>
+                )}
+                <span>{city.currency}</span>
+              </dd>
+            </div>
+          )}
           {city.language && <Row label="Language" value={city.language} />}
           {city.driveSide && (
-            <Row label="Drive" value={city.driveSide === 'L' ? 'left' : 'right'} />
+            // Drive — pictorial. Tiny SVG of a stylised road with a 🚗
+            // glyph positioned on the correct side. Plus the L/R letter
+            // for accessibility / scanability.
+            <div className="flex justify-between items-center gap-3 py-0.5">
+              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+                Drive
+              </dt>
+              <dd className="text-ink-deep flex items-center gap-1.5">
+                <span className="font-mono text-[11px]">{city.driveSide}</span>
+                <DriveIcon side={city.driveSide} />
+              </dd>
+            </div>
+          )}
+          {/* Water — tap-water safety. Drop emoji + label is more
+              glanceable than the four-state text. */}
+          {city.tapWater && <Row label="Water" value={fmtTapWater(city.tapWater)} />}
+          {/* Electric — plug type letters + voltage. Travelers obsess
+              over this; the plug letters are universally recognised
+              (A/B/C/D/E/F/G/I/J etc.) and the voltage matters for
+              whether their charger needs a converter. */}
+          {(city.plugTypes && city.plugTypes.length > 0 || city.voltage) && (
+            <div className="flex justify-between items-baseline gap-3 py-0.5">
+              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+                Electric
+              </dt>
+              <dd className="text-ink-deep font-mono text-[11px] truncate text-right">
+                {city.plugTypes && city.plugTypes.length > 0 && (
+                  <span>{city.plugTypes.slice(0, 3).join('/')}</span>
+                )}
+                {city.plugTypes && city.plugTypes.length > 0 && city.voltage && (
+                  <span aria-hidden className="text-muted mx-1">|</span>
+                )}
+                {city.voltage && <span>{city.voltage}</span>}
+              </dd>
+            </div>
           )}
           {city.koppen && (
             // Climate row uses an icon instead of the raw Köppen code.
@@ -441,17 +504,51 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           )}
         </dl>
       </div>
-
-      {/* === FOOTER — coordinates as a stamped line at the bottom === */}
-      <div className="absolute inset-x-4 bottom-1.5 flex items-baseline gap-2 text-[9px] font-mono text-muted tracking-wide">
-        <span>{fmtCoord(city.lat, 'lat')}</span>
-        <span aria-hidden className="opacity-40">·</span>
-        <span>{fmtCoord(city.lng, 'lng')}</span>
-      </div>
         </div>
       </div>
     </div>
   );
+}
+
+// === DriveIcon ===
+// Stylised single-lane road with a 🚗 placed on the L or R side. Pure
+// SVG so it scales cleanly inside the postcard's tight type scale.
+function DriveIcon({ side }: { side: 'L' | 'R' }) {
+  // 28x14 viewBox: a horizontal road with a centre dashed line and a
+  // car positioned on the appropriate lane.
+  return (
+    <svg
+      viewBox="0 0 28 14"
+      width={26}
+      height={13}
+      aria-hidden
+      style={{ flexShrink: 0 }}
+    >
+      <rect x={1} y={2} width={26} height={10} rx={1.5} fill="#eceae6" stroke="#9b8b6a" strokeWidth={0.4} />
+      <line x1={3} y1={7} x2={25} y2={7} stroke="#9b8b6a" strokeWidth={0.6} strokeDasharray="1.5,1.5" />
+      <text
+        x={side === 'L' ? 7 : 21}
+        y={11}
+        fontSize={8}
+        textAnchor="middle"
+        style={{ pointerEvents: 'none' }}
+      >
+        🚗
+      </text>
+    </svg>
+  );
+}
+
+// Compact glyph + word for tap-water safety. Keeps the postcard's
+// "all values right-aligned mono" rhythm intact.
+function fmtTapWater(w: string): string {
+  switch (w) {
+    case 'Safe':        return '✓ Safe';
+    case 'Treat first': return '⚠ Treat';
+    case 'Not safe':    return '✕ Boil';
+    case 'Varies':      return '~ Varies';
+    default:            return w;
+  }
 }
 
 // === Row ===

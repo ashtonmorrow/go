@@ -95,7 +95,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
       if (!iso3) continue;
       let b = buckets.get(iso3);
       if (!b) {
-        b = { been: 0, go: 0, other: 0, saved: 0 };
+        b = { visited: 0, planning: 0, researching: 0, saved: 0 };
         buckets.set(iso3, b);
       }
       b[cityLayer(c)]++;
@@ -105,14 +105,15 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
     const layers: Record<string, CityLayer> = {};
     const perCountryStats: Record<string, Buckets & { total: number }> = {};
     for (const [iso3, b] of buckets) {
-      // Priority: Been > Go > Other. A bucket with at least one city in
-      // a higher-priority layer wins, regardless of count.
+      // Priority: Visited > Planning > Researching. A country with at
+      // least one city in a higher-priority status wins, regardless of
+      // count — so a country with 3 visited and 1 planned shades teal.
       const dominant: CityLayer =
-        b.been > 0 ? 'been'
-          : b.go > 0 ? 'go'
-          : 'other';
+        b.visited > 0 ? 'visited'
+          : b.planning > 0 ? 'planning'
+          : 'researching';
       layers[iso3] = dominant;
-      perCountryStats[iso3] = { ...b, total: b.been + b.go + b.other };
+      perCountryStats[iso3] = { ...b, total: b.visited + b.planning + b.researching };
     }
     return { layerByIso3: layers, perCountry: perCountryStats };
   }, [filtered, countryIdToIso3]);
@@ -120,7 +121,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
   // Group ISO3s by layer for the MapLibre fill expression. Each layer
   // gets its own color via a series of `match` branches in the paint.
   const isoByLayer = useMemo(() => {
-    const byLayer: Record<CityLayer, string[]> = { been: [], go: [], other: [] };
+    const byLayer: Record<CityLayer, string[]> = { visited: [], planning: [], researching: [] };
     for (const [iso3, l] of Object.entries(layerByIso3)) {
       byLayer[l].push(iso3);
     }
@@ -186,9 +187,9 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             paint={{
               'fill-color': [
                 'case',
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.been]],  COLORS.teal,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.go]],    COLORS.slate,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.other]], COLORS.pinIdle,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.visited]],     COLORS.teal,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.planning]],    COLORS.slate,
+                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.researching]], COLORS.pinIdle,
                 'transparent',
               ] as unknown as string,
               'fill-opacity': [
@@ -338,7 +339,7 @@ function CountryHoverTile({
   stats,
 }: {
   country: CountryMeta;
-  stats?: { been: number; go: number; other: number; saved: number; total: number };
+  stats?: { visited: number; planning: number; researching: number; saved: number; total: number };
 }) {
   // Build the row list — only include rows where there's a value, so a
   // sparsely-populated country (some islands etc) renders cleanly without
@@ -358,9 +359,9 @@ function CountryHoverTile({
   if (country.schengen) rows.push({ label: 'Schengen', value: 'Yes' });
 
   const cityLine = stats
-    ? stats.been > 0
-      ? `${stats.been} of ${stats.total} cities visited`
-      : stats.go > 0
+    ? stats.visited > 0
+      ? `${stats.visited} of ${stats.total} cities visited`
+      : stats.planning > 0
         ? `${stats.total} planned · not visited yet`
         : `${stats.total} cities match filters`
     : 'No cities in current filter';

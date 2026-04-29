@@ -59,9 +59,10 @@ type Projection = 'globe' | 'mercator';
 // Saved-places is rendered as a separate gold-ring OVERLAY on top of
 // the layer color, since it's an orthogonal signal — a Been city can
 // also have saved places.
-const LAYER_BEEN  = 0;
-const LAYER_GO    = 1;
-const LAYER_OTHER = 2;
+// Numeric encoding of CityLayer for MapLibre's match expressions.
+const LAYER_VISITED     = 0;
+const LAYER_PLANNING    = 1;
+const LAYER_RESEARCHING = 2;
 
 export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   const router = useRouter();
@@ -124,9 +125,9 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
       features: visible.map(p => {
         const layer = cityLayer(p);
         const layerKey =
-          layer === 'been' ? LAYER_BEEN
-            : layer === 'go' ? LAYER_GO
-            : LAYER_OTHER;
+          layer === 'visited' ? LAYER_VISITED
+            : layer === 'planning' ? LAYER_PLANNING
+            : LAYER_RESEARCHING;
         return {
           type: 'Feature' as const,
           id: p.id,
@@ -260,7 +261,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 9,
                 ['boolean', ['get', 'sister'], false],
                 7,
-                ['match', ['get', 'layer'], LAYER_BEEN, 5, LAYER_GO, 5, 3],
+                ['match', ['get', 'layer'], LAYER_VISITED, 5, LAYER_PLANNING, 5, 3],
               ],
               'circle-color': [
                 'case',
@@ -271,9 +272,9 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 [
                   'match',
                   ['get', 'layer'],
-                  LAYER_BEEN,
+                  LAYER_VISITED,
                   COLORS.teal,
-                  LAYER_GO,
+                  LAYER_PLANNING,
                   COLORS.slate,
                   COLORS.pinIdle,
                 ],
@@ -296,8 +297,8 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 [
                   'match',
                   ['get', 'layer'],
-                  LAYER_BEEN, 1,
-                  LAYER_GO,   1,
+                  LAYER_VISITED, 1,
+                  LAYER_PLANNING,   1,
                   // Other cities are de-emphasised so Been/Go visually pop;
                   // they still show on the globe as small dots so the user
                   // sees the full atlas density.
@@ -323,7 +324,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 12,
                 ['boolean', ['get', 'sister'], false],
                 10,
-                ['match', ['get', 'layer'], LAYER_BEEN, 8, LAYER_GO, 8, 6],
+                ['match', ['get', 'layer'], LAYER_VISITED, 8, LAYER_PLANNING, 8, 6],
               ],
               'circle-color': 'transparent',
               'circle-stroke-color': COLORS.accent,
@@ -422,9 +423,15 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
           read it as overlay rather than another color. */}
       {!selected && (
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-[11px] text-slate">
-          <LegendRow on={ctx?.state.showBeen ?? true}  color={COLORS.teal}    label="Been" />
-          <LegendRow on={ctx?.state.showGo ?? true}    color={COLORS.slate}   label="Want to go" />
-          <LegendRow on={ctx?.state.showOther ?? true} color={COLORS.pinIdle} label="Unstatused" small />
+          <LegendRow
+            on={ctx?.state.statusFocus == null || ctx.state.statusFocus === 'visited'}
+            color={COLORS.teal}    label="Visited" />
+          <LegendRow
+            on={ctx?.state.statusFocus == null || ctx.state.statusFocus === 'planning'}
+            color={COLORS.slate}   label="Planning" />
+          <LegendRow
+            on={ctx?.state.statusFocus == null || ctx.state.statusFocus === 'researching'}
+            color={COLORS.pinIdle} label="Researching" small />
           <div className="flex items-center gap-2 mb-1 mt-1 pt-1.5 border-t border-sand">
             <span
               aria-hidden

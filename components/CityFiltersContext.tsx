@@ -56,27 +56,38 @@ export type VisaUs = 'Visa-free' | 'eVisa' | 'On arrival' | 'Required' | 'Varies
 export type TapWater = 'Safe' | 'Treat first' | 'Not safe' | 'Varies';
 export type DriveSide = 'L' | 'R';
 
-// Layer = encoding axis. A city falls into exactly one layer determined
-// by status: Been > Go > Other (mutually exclusive). Saved-places is NOT
-// a layer because it's orthogonal — a Been city can also have saved
-// places, and squashing that into a priority chain would erase real
-// information. Saved-places lives in the FILTERS section as a tri-state
-// facet, with a separate gold-ring overlay drawn on top of the layer
-// color on the map. This is the categorical-color + boolean-overlay
-// pattern (Munzner, Visualization Analysis & Design, ch. 12).
-export type CityLayer = 'been' | 'go' | 'other';
+// Status = the user's relationship to a city. Three values, mutually
+// exclusive: visited (have been), planning (want to go), researching
+// (in the atlas but no commitment yet). Drives map color encoding and
+// is the primary status-focus axis in the cockpit.
+//
+// Saved-places is intentionally NOT a status because it's orthogonal —
+// a visited city can also have saved places, and squashing that into a
+// priority chain would erase real information. Saved-places lives in
+// the FILTERS section as a tri-state facet, with a separate gold-ring
+// overlay drawn on top of the status color on the map.
+//
+// Internal value names are kept as 'visited' | 'planning' | 'researching'
+// to match the user-facing vocabulary. The Notion source columns are
+// `been` and `go` (booleans); the cityLayer() function maps those to
+// the new vocabulary at the boundary so the rest of the code reads
+// naturally.
+export type CityLayer = 'visited' | 'planning' | 'researching';
 
 /** Tri-state facet: 'any' = unfiltered, 'with' = only cities that have
  *  saved places, 'without' = only cities that don't. */
 export type HasSaved = 'any' | 'with' | 'without';
 
-// Filter state shape. Layers come first (visibility), then facets (narrowing),
-// then sort. Multi-selects are sets so toggling on/off is O(1).
+// Filter state shape.
 export type FilterState = {
-  // === LAYERS (encoding — visibility toggles, NOT narrowing filters) ===
-  showBeen: boolean;
-  showGo: boolean;
-  showOther: boolean;
+  // === STATUS FOCUS (single-select narrowing) ===
+  // Researching → Planning → Visited (the user's journey). Click a
+  // segment in the cockpit to narrow to that status; click the active
+  // one to clear (statusFocus = null = show all statuses).
+  // Replaced the previous showBeen/showGo/showOther multi-toggle layers
+  // — easier to reason about and matches how users actually browse
+  // their atlas in practice.
+  statusFocus: CityLayer | null;
 
   // === FILTERS (narrowing — composed with AND) ===
   q: string;
@@ -98,10 +109,8 @@ export type FilterState = {
 };
 
 const DEFAULT_STATE: FilterState = {
-  // Status layers default ON — full atlas visible by status.
-  showBeen: true,
-  showGo: true,
-  showOther: true,
+  // Status focus null = show all 3 statuses on the map (full atlas).
+  statusFocus: null,
 
   // Faceted filters all neutral EXCEPT hasSavedPlaces — Mike's home and
   // default cities view land with "With saved places" pre-applied so
@@ -161,10 +170,12 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
   });
   const [layerCounts, setLayerCountsState] = useState<Record<CityLayer, number> | null>(null);
 
-  // Active-filter counter — narrowing only, layer toggles excluded.
+  // Active-filter counter — every active narrowing facet (including
+  // statusFocus when set, since it's now a real filter not a layer).
   const activeFilterCount = useMemo(() => {
     let n = 0;
     if (state.q.trim()) n++;
+    if (state.statusFocus !== null) n++;
     n += state.countries.size > 0 ? 1 : 0;
     n += state.continents.size > 0 ? 1 : 0;
     n += state.koppenGroups.size > 0 ? 1 : 0;
@@ -176,10 +187,9 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     return n;
   }, [state]);
 
-  const activeLayerHidden = useMemo(
-    () => !state.showBeen || !state.showGo || !state.showOther,
-    [state.showBeen, state.showGo, state.showOther]
-  );
+  // Kept on the context for backwards compat with any leftover consumer;
+  // always false now since there's no separate layer-visibility axis.
+  const activeLayerHidden = false;
 
   // Stable identity so consumers can include it in useEffect deps without
   // creating a re-fire loop on every render.
@@ -195,9 +205,9 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
       // re-render of the sidebar on every filter tick when nothing's changed.
       if (
         prev &&
-        prev.been === next.been &&
-        prev.go === next.go &&
-        prev.other === next.other
+        prev.visited === next.visited &&
+        prev.planning === next.planning &&
+        prev.researching === next.researching
       ) {
         return prev;
       }
@@ -212,10 +222,8 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
   // button feels broken ("I clicked clear and I still have a filter").
   const stableReset = useCallback(() => setState({
     ...DEFAULT_STATE,
+    statusFocus: null,
     hasSavedPlaces: 'any',
-    showBeen: true,
-    showGo: true,
-    showOther: true,
     q: '',
     countries: new Set(),
     continents: new Set(),
