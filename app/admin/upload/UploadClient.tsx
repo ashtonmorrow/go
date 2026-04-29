@@ -4,6 +4,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { extractExifMeta } from '@/lib/exifGps';
 import { convertHeicIfNeeded } from '@/lib/heicConvert';
 import { sha256OfFile } from '@/lib/photoHash';
+import { supabase } from '@/lib/supabase';
 
 const MAX_PHOTOS = 30;
 
@@ -239,17 +240,34 @@ export default function UploadClient() {
       }
       try {
         setPhotos(prev => prev.map(p => (p.id === photo.id ? { ...p, stage: 'uploading' } : p)));
-        const form = new FormData();
-        form.append('file', photo.file, photo.file.name);
-        form.append('hash', photo.hash!);
-        const res = await fetch('/api/admin/upload-photo', { method: 'POST', body: form });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data?.error ?? `upload failed (${res.status})`);
-        uploadedUrls.set(photo.id, data.url);
+
+        // Step 1: ask the server for a one-time signed upload token (small JSON,
+        // safely under any payload limit).
+        const tokenRes = await fetch('/api/admin/upload-photo', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ hash: photo.hash, contentType: photo.file.type }),
+        });
+        const tokenData = await tokenRes.json().catch(() => ({}));
+        if (!tokenRes.ok) {
+          throw new Error(tokenData?.error ?? `signed-url failed (${tokenRes.status})`);
+        }
+
+        // Step 2: upload the file body directly to Supabase Storage. Bypasses
+        // Vercel entirely, so we're not bound by the 4.5MB function limit.
+        const { error: uploadErr } = await supabase.storage
+          .from('personal-photos')
+          .uploadToSignedUrl(tokenData.path, tokenData.token, photo.file, {
+            contentType: photo.file.type || 'application/octet-stream',
+            upsert: true,
+          });
+        if (uploadErr) throw new Error(uploadErr.message);
+
+        uploadedUrls.set(photo.id, tokenData.publicUrl);
         setPhotos(prev =>
           prev.map(p =>
             p.id === photo.id
-              ? { ...p, stage: 'uploaded', uploadedUrl: data.url }
+              ? { ...p, stage: 'uploaded', uploadedUrl: tokenData.publicUrl }
               : p,
           ),
         );

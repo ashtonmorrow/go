@@ -15,43 +15,46 @@ function extFromMime(mime: string): string {
   return 'bin';
 }
 
+/**
+ * Returns a one-time signed upload URL so the browser can PUT the file
+ * directly to Supabase Storage, bypassing Vercel's 4.5MB function body
+ * limit. The server never holds the file bytes.
+ */
 export async function POST(req: Request) {
-  const formData = await req.formData().catch(() => null);
-  if (!formData) {
-    return NextResponse.json({ error: 'multipart form data required' }, { status: 400 });
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
-  const file = formData.get('file');
-  const hash = formData.get('hash');
-  if (!(file instanceof File)) {
-    return NextResponse.json({ error: 'file required' }, { status: 400 });
-  }
-  if (typeof hash !== 'string' || !hash) {
+
+  const hash = typeof body?.hash === 'string' ? body.hash : '';
+  const contentType = typeof body?.contentType === 'string' ? body.contentType : 'application/octet-stream';
+  if (!hash) {
     return NextResponse.json({ error: 'hash required' }, { status: 400 });
   }
 
-  const sb = supabaseAdmin();
-
-  const ext = extFromMime(file.type) || 'bin';
+  const ext = extFromMime(contentType) || 'bin';
   const path = `${hash.slice(0, 2)}/${hash}.${ext}`;
-  const arrayBuffer = await file.arrayBuffer();
 
-  const { error: uploadErr } = await sb.storage
+  const sb = supabaseAdmin();
+  const { data, error } = await sb.storage
     .from(BUCKET)
-    .upload(path, new Uint8Array(arrayBuffer), {
-      contentType: file.type || 'application/octet-stream',
-      upsert: true,
-    });
+    .createSignedUploadUrl(path, { upsert: true });
 
-  if (uploadErr) {
-    console.error('[upload-photo] storage upload failed:', uploadErr);
-    return NextResponse.json({ error: uploadErr.message }, { status: 500 });
+  if (error || !data) {
+    console.error('[upload-url] createSignedUploadUrl failed:', error);
+    return NextResponse.json(
+      { error: error?.message ?? 'failed to create signed url' },
+      { status: 500 },
+    );
   }
 
   const { data: urlData } = sb.storage.from(BUCKET).getPublicUrl(path);
 
   return NextResponse.json({
-    url: urlData.publicUrl,
+    token: data.token,
     path,
-    bytes: arrayBuffer.byteLength,
+    publicUrl: urlData.publicUrl,
   });
 }
