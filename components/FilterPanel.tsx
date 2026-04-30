@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+// (useState/useRef/useMemo not needed at this scope anymore — the only
+//  consumer was the SearchableMultiSelect we removed.)
 import { useCityFilters, toggleSet, SortKey } from './CityFiltersContext';
 import type {
   VisaUs,
@@ -126,9 +127,14 @@ export default function FilterPanel({
         </button>
       </div>
 
-      {/* === SEARCH === */}
+      {/* === FILTER (text search) ===
+          One label for the whole panel below. The text input matches city
+          name, country, continent, climate, currency, language, founded,
+          visa, tap-water and drive-side, so the dedicated Country dropdown
+          that used to sit below this is gone — typing the country name
+          here narrows the same way. */}
       <div>
-        <SectionLabel>Search</SectionLabel>
+        <SectionLabel>Filter</SectionLabel>
         <SearchInput
           value={state.q}
           onChange={q => setState(s => ({ ...s, q }))}
@@ -136,14 +142,10 @@ export default function FilterPanel({
         />
       </div>
 
-      {/* === STATUS FOCUS ===
-          Single-select segmented control: Researching → Planning →
-          Visited. Click a segment to narrow the atlas to that status;
-          click the active segment to clear (back to all-visible).
-          Replaces the previous 3-toggle Layers section — easier to
-          reason about and matches how users actually browse. */}
+      {/* Status focus — segmented Researching / Planning / Visited.
+          Label dropped per cockpit cleanup; the row itself reads as the
+          control. Click a segment to narrow; click again to clear. */}
       <div>
-        <SectionLabel>Status focus</SectionLabel>
         <div className="grid grid-cols-3 gap-1">
           {STATUS_OPTIONS.map(s => {
             const active = state.statusFocus === s.value;
@@ -189,24 +191,9 @@ export default function FilterPanel({
         )}
       </div>
 
-      {/* === FILTERS — narrowing facets === */}
-      {countryOptions.length > 0 && (
-        <div>
-          <SectionLabel>Country</SectionLabel>
-          <SearchableMultiSelect
-            placeholder="Search countries"
-            options={countryOptions}
-            selected={state.countries}
-            onToggle={v =>
-              setState(s => ({ ...s, countries: toggleSet(s.countries, v) }))
-            }
-            onClear={() => setState(s => ({ ...s, countries: new Set() }))}
-          />
-        </div>
-      )}
-
+      {/* Continent picker — pictorial; label dropped because the world-map
+          UI is self-documenting. */}
       <div>
-        <SectionLabel>Continent</SectionLabel>
         <WorldMapPicker
           selected={state.continents}
           onToggle={v =>
@@ -215,8 +202,9 @@ export default function FilterPanel({
         />
       </div>
 
+      {/* Climate picker — Köppen icon group, label dropped for the same
+          reason: the icons read as the section. */}
       <div>
-        <SectionLabel>Climate</SectionLabel>
         <ClimatePicker
           selected={state.koppenGroups}
           onToggle={v =>
@@ -569,132 +557,6 @@ function DirectionButton({
   );
 }
 
-// === SearchableMultiSelect ===
-function SearchableMultiSelect({
-  placeholder,
-  options,
-  selected,
-  onToggle,
-  onClear,
-}: {
-  placeholder: string;
-  options: string[];
-  selected: Set<string>;
-  onToggle: (value: string) => void;
-  onClear: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [q, setQ] = useState('');
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onPointer = (e: MouseEvent | TouchEvent) => {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-    };
-    document.addEventListener('mousedown', onPointer);
-    document.addEventListener('touchstart', onPointer);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('mousedown', onPointer);
-      document.removeEventListener('touchstart', onPointer);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [open]);
-
-  const filtered = useMemo(() => {
-    if (!q.trim()) return options;
-    const needle = q.trim().toLowerCase();
-    return options.filter(o => o.toLowerCase().includes(needle));
-  }, [options, q]);
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        className={
-          'w-full flex items-center justify-between gap-2 px-2.5 py-1.5 text-small ' +
-          'rounded-md border border-sand bg-white text-ink-deep ' +
-          'focus:outline-none focus:border-ink-deep focus:ring-2 focus:ring-ink-deep/10 ' +
-          'hover:border-slate transition-colors'
-        }
-        aria-expanded={open}
-      >
-        <span className="truncate">
-          {selected.size === 0 ? (
-            <span className="text-muted">{placeholder}</span>
-          ) : (
-            <span>{selected.size} selected</span>
-          )}
-        </span>
-        <span aria-hidden className="text-muted text-[10px]">{open ? '▴' : '▾'}</span>
-      </button>
-
-      {open && (
-        <div className="absolute top-full left-0 right-0 mt-1 z-30 bg-white border border-sand rounded-md shadow-card overflow-hidden">
-          <div className="p-2 border-b border-sand">
-            <input
-              type="search"
-              autoFocus
-              value={q}
-              onChange={e => setQ(e.target.value)}
-              placeholder="Search…"
-              className="w-full px-2 py-1 text-small rounded border border-sand bg-white text-ink focus:outline-none focus:border-ink-deep"
-            />
-          </div>
-          <ul className="max-h-56 overflow-y-auto">
-            {filtered.length === 0 && (
-              <li className="px-2.5 py-2 text-[11px] text-muted">No matches.</li>
-            )}
-            {filtered.map(o => {
-              const checked = selected.has(o);
-              return (
-                <li key={o}>
-                  <button
-                    type="button"
-                    onClick={() => onToggle(o)}
-                    className="w-full flex items-center gap-2 px-2.5 py-1.5 text-[11px] text-left hover:bg-cream-soft transition-colors"
-                  >
-                    <span
-                      aria-hidden
-                      className={
-                        'inline-flex items-center justify-center w-3.5 h-3.5 rounded border ' +
-                        (checked ? 'bg-ink-deep border-ink-deep text-white' : 'border-sand bg-white')
-                      }
-                    >
-                      {checked && (
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      )}
-                    </span>
-                    <span className="truncate text-ink-deep">{o}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-          {selected.size > 0 && (
-            <div className="border-t border-sand p-1.5 flex justify-between items-center text-[11px]">
-              <span className="text-muted px-1">{selected.size} selected</span>
-              <button
-                type="button"
-                onClick={() => {
-                  onClear();
-                  setQ('');
-                }}
-                className="px-2 py-1 rounded hover:bg-cream-soft text-ink-deep"
-              >
-                Clear
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
+// (SearchableMultiSelect removed — the country dropdown it powered was
+//  consolidated into the top text Filter input. Both surfaces searched the
+//  same field set; one is enough.)

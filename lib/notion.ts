@@ -255,6 +255,7 @@ async function selectAll<T>(table: typeof TABLE_CITIES | typeof TABLE_COUNTRIES)
     const { data, error } = await supabase
       .from(table)
       .select('*')
+      .not('slug', 'like', 'delete-%')
       .order('name')
       .range(from, from + PAGE - 1);
     if (error) {
@@ -298,6 +299,7 @@ const _fetchCityBySlug = unstable_cache(
       .from(TABLE_CITIES)
       .select('*')
       .eq('slug', slug)
+      .not('slug', 'like', 'delete-%')
       .maybeSingle();
     if (error || !data) return null;
     return supaCityRow(data);
@@ -373,6 +375,7 @@ const _fetchCitiesByIds = unstable_cache(
     const { data, error } = await supabase
       .from(TABLE_CITIES)
       .select('*')
+      .not('slug', 'like', 'delete-%')
       .in('id', ids);
     if (error || !data) return [];
     return (data as any[]).map(supaCityRow);
@@ -391,6 +394,7 @@ const _fetchCitiesByCountryId = unstable_cache(
       .from(TABLE_CITIES)
       .select('*')
       .eq('country_id', countryId)
+      .not('slug', 'like', 'delete-%')
       .order('name');
     if (error || !data) return [];
     return (data as any[]).map(supaCityRow);

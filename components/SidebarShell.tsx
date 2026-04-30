@@ -188,8 +188,11 @@ function NavBody({
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      {/* Views — this section's own routes (Postcards, Map, About) */}
-      <Section label="Views">
+      {/* Top object axis — Cities / Countries / Pins. Articles nest inline
+          under Pins as a hover sub-list (driven by lib/articles.ts). The
+          old "Views" section label is gone — the structure is self-evident
+          and the label was just noise. */}
+      <div className="flex flex-col gap-0.5">
         {PAGES.map(p => {
           // Sidebar items always link to the Cards view of an object, but
           // the active state should light up for any view of that object,
@@ -210,7 +213,11 @@ function NavBody({
             />
           );
         })}
-      </Section>
+        {/* Articles sit immediately under Pins — hovering the row drops the
+            article list inline beneath it, same nested treatment used for
+            sub-items elsewhere. */}
+        <ArticlesItem onClick={onLinkClick} pathname={pathname} />
+      </div>
 
       {/* Filter cockpits — at most one mounted at a time, picked by
           which Object × View page we're on. Falls through to a
@@ -236,15 +243,6 @@ function NavBody({
           <Item href="/cities/cards"    emoji="💾" label="Saved"     count={counts.saved}     onClick={onLinkClick} />
         </Section>
       )}
-
-      {/* Articles — hand-coded long-form pieces. Single sidebar item
-          backed by lib/articles.ts; hovering the row pops a flyout listing
-          every article. Tapping the row itself navigates to the index
-          page so the user always has both an at-a-glance dropdown and a
-          full landing page. */}
-      <Section label="Read">
-        <ArticlesItem onClick={onLinkClick} pathname={pathname} />
-      </Section>
 
       {/* Elsewhere — external Mike Lee subdomains. Now sits below the
           Collections / Filters block so the in-section content controls
