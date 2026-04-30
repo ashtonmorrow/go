@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FilterPanel from './FilterPanel';
 import PinFilterPanel from './PinFilterPanel';
 import CountryFilterPanel from './CountryFilterPanel';
@@ -10,6 +10,7 @@ import { useCityFilters } from './CityFiltersContext';
 import { usePinFilters } from './PinFiltersContext';
 import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
+import { articlesByDate } from '@/lib/articles';
 
 type Counts = {
   cities: number;
@@ -236,6 +237,15 @@ function NavBody({
         </Section>
       )}
 
+      {/* Articles — hand-coded long-form pieces. Single sidebar item
+          backed by lib/articles.ts; hovering the row pops a flyout listing
+          every article. Tapping the row itself navigates to the index
+          page so the user always has both an at-a-glance dropdown and a
+          full landing page. */}
+      <Section label="Read">
+        <ArticlesItem onClick={onLinkClick} pathname={pathname} />
+      </Section>
+
       {/* Elsewhere — external Mike Lee subdomains. Now sits below the
           Collections / Filters block so the in-section content controls
           come before the off-site links. */}
@@ -324,6 +334,141 @@ function Item({
         </span>
       )}
     </Link>
+  );
+}
+
+// === ArticlesItem ===
+// Sidebar row with a hover-flyout that lists every registered article.
+// Clicking the row goes to /articles (the full index). Hovering opens a
+// floating panel anchored to the right of the rail on desktop; on mobile
+// (where the rail is itself a drawer pinned to the left), the panel
+// expands inline below the row instead of flying out, since flying right
+// would just escape the drawer's clip area.
+function ArticlesItem({
+  onClick,
+  pathname,
+}: {
+  onClick?: () => void;
+  pathname: string;
+}) {
+  const articles = articlesByDate();
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  // Active when the user is on /articles itself or on any registered
+  // article's route — keeps the section visually pinned during reading.
+  const active =
+    pathname === '/articles' ||
+    articles.some(a => a.href === pathname);
+
+  // Outside-click + Escape close. Only matters on touch devices where the
+  // popover stays open after an initial tap; on desktop the onMouseLeave
+  // handler does the work.
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onDoc);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDoc);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  return (
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Link
+        href="/articles"
+        onClick={onClick}
+        className={
+          'group flex items-center gap-2 px-2 py-1.5 rounded text-small transition-colors ' +
+          (active
+            ? 'bg-cream-soft text-ink-deep font-semibold'
+            : 'text-slate hover:bg-cream-soft hover:text-ink-deep')
+        }
+        aria-haspopup="menu"
+        aria-expanded={open}
+      >
+        <span className="text-base leading-none flex-shrink-0" aria-hidden>📰</span>
+        <span className="flex-1 truncate">Articles</span>
+        <span
+          className={
+            'text-[10px] flex-shrink-0 transition-transform ' +
+            (open ? 'rotate-90' : '')
+          }
+          aria-hidden
+        >
+          ▸
+        </span>
+      </Link>
+      {open && articles.length > 0 && (
+        <div
+          // Mobile (default): inline panel below the row, full sidebar width.
+          // Desktop (md+): float to the right of the rail with a small offset
+          //   so it reads as a connected popover rather than a separate menu.
+          className={
+            'z-50 mt-1 ' +
+            'bg-white border border-sand rounded-md shadow-lg overflow-hidden ' +
+            // Inline below on mobile/drawer
+            'relative ' +
+            // Flyout on desktop — left-full puts the left edge at the right
+            // edge of the parent (the sidebar item), top-0 aligns with the
+            // row, mt-0 cancels the mobile mt-1, w fixed so titles wrap
+            // predictably.
+            'md:absolute md:left-full md:top-0 md:mt-0 md:ml-1 md:w-72'
+          }
+          role="menu"
+        >
+          <div className="py-1">
+            {articles.map(a => {
+              const isCurrent = a.href === pathname;
+              return (
+                <Link
+                  key={a.slug}
+                  href={a.href}
+                  onClick={() => { setOpen(false); onClick?.(); }}
+                  className={
+                    'flex items-start gap-2 px-3 py-2 text-small ' +
+                    (isCurrent
+                      ? 'bg-cream-soft text-ink-deep font-medium'
+                      : 'text-ink hover:bg-cream-soft hover:text-ink-deep')
+                  }
+                  role="menuitem"
+                >
+                  {a.emoji && (
+                    <span aria-hidden className="text-base leading-none flex-shrink-0 mt-0.5">
+                      {a.emoji}
+                    </span>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="truncate">{a.title}</div>
+                    <div className="text-[11px] text-muted line-clamp-2 mt-0.5">
+                      {a.description}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+            <Link
+              href="/articles"
+              onClick={() => { setOpen(false); onClick?.(); }}
+              className="block px-3 py-2 text-[11px] text-muted hover:text-ink-deep hover:bg-cream-soft border-t border-sand"
+            >
+              See all articles →
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
