@@ -19,6 +19,7 @@ import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
+import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 
 export const revalidate = 604800;
 export const dynamicParams = true;
@@ -206,9 +207,11 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         {galleryImages[0] && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={galleryImages[0].url}
+            src={thumbUrl(galleryImages[0].url, { size: 96 }) ?? galleryImages[0].url}
             alt=""
             aria-hidden
+            width={96}
+            height={96}
             className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover bg-cream-soft border border-sand flex-shrink-0"
           />
         )}
@@ -286,8 +289,19 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         <figure className="mt-6 rounded overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={personalPhotos[0].url}
+            src={heroUrl(personalPhotos[0].url, 1200) ?? personalPhotos[0].url}
             alt={pin.name}
+            // The hero is the LCP element on this route; tell the browser
+            // not to defer it. Without this, image lazy-load heuristics +
+            // network throttling could push LCP past 30s on slow connections.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...({ fetchpriority: 'high' } as any)}
+            decoding="async"
+            // Width/height from EXIF (when available) prevents the CLS shift
+            // we were seeing when the hero arrived after FCP. Falls back to
+            // a 3:2 placeholder so the layout still reserves space.
+            width={personalPhotos[0].width ?? 1200}
+            height={personalPhotos[0].height ?? 800}
             className="w-full max-h-[60vh] object-cover bg-cream-soft"
           />
         </figure>
@@ -352,8 +366,12 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     key={p.id}
-                    src={p.url}
+                    src={thumbUrl(p.url, { size: 240 }) ?? p.url}
                     alt={p.caption ?? `${pin.name} — personal photo`}
+                    loading="lazy"
+                    decoding="async"
+                    width={240}
+                    height={240}
                     className="w-full aspect-square object-cover rounded bg-cream-soft"
                   />
                 ))}
@@ -369,8 +387,12 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     key={img.url + i}
-                    src={img.url}
+                    src={thumbUrl(img.url, { size: 240 }) ?? img.url}
                     alt={`${pin.name} — image ${i + 2}`}
+                    loading="lazy"
+                    decoding="async"
+                    width={240}
+                    height={240}
                     className="w-full aspect-square object-cover rounded bg-cream-soft"
                   />
                 ))}

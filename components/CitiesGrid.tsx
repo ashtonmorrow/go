@@ -419,12 +419,12 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       {/* === BODY — single-column address-style stat list ===
           Label on the left (sans, small caps), value on the right (mono).
           Values are right-aligned so the column reads like a typewritten
-          receipt. flex-1 + min-h-0 makes it consume whatever vertical space
-          is left under the header, no matter how tall the card is in the
-          current grid breakpoint. justify-around distributes the rows
-          evenly so the column "breathes" on a tall card and packs in on
-          a short one. */}
-      <div className="px-4 pt-1.5 pb-2 flex-1 min-h-0 flex flex-col justify-around overflow-hidden">
+          receipt. flex-1 + min-h-0 fills whatever space the header leaves;
+          rows pack at the top (justify-start) so the last row never sits
+          flush against the card's bottom border + rounded corner — that
+          combination was clipping the climate icon by 1-2px on tall cards
+          and making it look broken even though it was technically there. */}
+      <div className="px-4 pt-1 pb-3 flex-1 min-h-0 flex flex-col justify-start overflow-hidden">
         <dl className="text-[11px] leading-tight">
           {fmtPopulation(city.population) && (
             <Row label="Population" value={fmtPopulation(city.population)!} />
