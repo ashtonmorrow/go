@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { extractExifMeta } from '@/lib/exifGps';
 import { convertHeicIfNeeded } from '@/lib/heicConvert';
 import { sha256OfFile } from '@/lib/photoHash';
@@ -784,29 +784,14 @@ function RemainingPhotoRow({
   onSaveCandidate: (id: string) => void;
   onSearchAgain: (photoId: string, query: string) => Promise<boolean>;
 }) {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const [searching, setSearching] = useState(false);
-  const [searchMsg, setSearchMsg] = useState<string | null>(null);
-
   const matching = candidates.filter(c => photo.hash && c.photoHashes.includes(photo.hash));
   const canSave = assigned !== 'skip' && assignedState?.status !== 'saving';
 
-  const submitSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim() || searching) return;
-    setSearching(true);
-    setSearchMsg(null);
-    const found = await onSearchAgain(photo.id, query);
-    setSearching(false);
-    if (!found) {
-      setSearchMsg('No results. Try a different name.');
-    } else {
-      setSearchMsg(null);
-      setQuery('');
-      setSearchOpen(false);
-    }
-  };
+  const assignedLabel = (() => {
+    if (assigned === 'skip') return null;
+    const c = candidates.find(x => x.id === assigned);
+    return c ? c.place.name : null;
+  })();
 
   return (
     <li className="rounded border border-sand bg-white">
@@ -821,32 +806,13 @@ function RemainingPhotoRow({
             <p className="text-[11px] text-muted">{photo.takenAt.toLocaleString()}</p>
           )}
         </div>
-        <select
-          value={assigned}
-          onChange={e => onAssign(photo.id, e.target.value)}
-          className="text-small border border-sand rounded px-2 py-1 bg-white max-w-[260px]"
-        >
-          <option value="skip">Skip this photo</option>
-          {matching.map(c => (
-            <option key={c.id} value={c.id}>
-              {c.place.name}
-              {c.existingPinId ? ' (existing)' : ''}
-            </option>
-          ))}
-          {matching.length === 0 && (
-            <option value="skip" disabled>
-              No nearby candidates
-            </option>
-          )}
-        </select>
-        <button
-          type="button"
-          onClick={() => setSearchOpen(s => !s)}
-          className="text-[11px] px-2 py-1 rounded border border-sand text-ink hover:bg-cream-soft"
-          title="Wrong place? Type a name to search."
-        >
-          Try again
-        </button>
+        <PlaceCombobox
+          assignedId={assigned}
+          assignedLabel={assignedLabel}
+          candidates={matching}
+          onPick={candId => onAssign(photo.id, candId)}
+          onSearchPlaces={async query => onSearchAgain(photo.id, query)}
+        />
         <button
           type="button"
           onClick={() => assigned !== 'skip' && onSaveCandidate(assigned)}
@@ -866,42 +832,186 @@ function RemainingPhotoRow({
           {assignedState?.status === 'saving' ? 'Saving…' : 'Save'}
         </button>
       </div>
-
-      {searchOpen && (
-        <form onSubmit={submitSearch} className="border-t border-sand p-2 flex items-center gap-2 bg-cream-soft/60">
-          <input
-            type="text"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            placeholder="Type the place name (e.g. Mosque of Muhammad Ali)"
-            className="flex-1 text-small border border-sand rounded px-2 py-1 bg-white"
-            autoFocus
-          />
-          <button
-            type="submit"
-            disabled={!query.trim() || searching}
-            className={
-              'text-[11px] px-3 py-1.5 rounded font-medium ' +
-              (!query.trim() || searching
-                ? 'bg-cream-soft text-muted cursor-not-allowed'
-                : 'bg-ink-deep text-white hover:bg-ink-deep/90')
-            }
-          >
-            {searching ? 'Searching…' : 'Search'}
-          </button>
-          <button
-            type="button"
-            onClick={() => { setSearchOpen(false); setQuery(''); setSearchMsg(null); }}
-            className="text-[11px] px-2 py-1 text-muted hover:text-ink"
-          >
-            Cancel
-          </button>
-        </form>
-      )}
-      {searchMsg && (
-        <p className="px-3 pb-2 text-[11px] text-orange">{searchMsg}</p>
-      )}
     </li>
+  );
+}
+
+/**
+ * Combobox for picking a place to attach a photo to.
+ *
+ * Shows the currently-assigned place (or "Skip / pick a place") on the trigger.
+ * Opening reveals:
+ *   - Search input at top (autofocus). Filters the local candidate pool by
+ *     substring. The local pool is whatever Google Nearby Search returned for
+ *     this photo's GPS coords plus anything we've added via Places search.
+ *   - Filtered list of those candidates.
+ *   - "Skip this photo" sticky option.
+ *   - "Search Google Places for «query»" appears whenever the typed query
+ *     doesn't already exactly match a candidate name. This calls the same
+ *     find-candidates endpoint with a `query` so we can attach photos to
+ *     places that aren't in the photo's GPS neighborhood (e.g. an attraction
+ *     20 km away that the EXIF coords don't surface).
+ */
+function PlaceCombobox({
+  assignedId,
+  assignedLabel,
+  candidates,
+  onPick,
+  onSearchPlaces,
+}: {
+  assignedId: string;
+  assignedLabel: string | null;
+  candidates: Candidate[];
+  onPick: (candId: string) => void;
+  onSearchPlaces: (query: string) => Promise<boolean>;
+}) {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [searchMsg, setSearchMsg] = useState<string | null>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  // Outside-click + Escape close.
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('mousedown', onDoc);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDoc);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? candidates.filter(c => c.place.name.toLowerCase().includes(q))
+    : candidates;
+
+  const exactMatch = q && candidates.some(c => c.place.name.toLowerCase() === q);
+  const showPlacesAction = q.length >= 2 && !exactMatch;
+
+  const triggerLabel = assignedId === 'skip'
+    ? 'Skip / pick a place'
+    : (assignedLabel ?? 'Pick a place');
+
+  const runPlacesSearch = async () => {
+    if (!q || searching) return;
+    setSearching(true);
+    setSearchMsg(null);
+    const found = await onSearchPlaces(query.trim());
+    setSearching(false);
+    if (!found) {
+      setSearchMsg('No Google results. Try a different name.');
+    } else {
+      setSearchMsg(null);
+      setQuery('');
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div ref={wrapRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        className="text-small border border-sand rounded px-3 py-1.5 bg-white hover:border-slate flex items-center gap-2 max-w-[280px] min-w-[220px]"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className={'truncate flex-1 text-left ' + (assignedId === 'skip' ? 'text-muted' : 'text-ink-deep')}>
+          {triggerLabel}
+        </span>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted flex-shrink-0">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          className="absolute right-0 top-full mt-1 z-30 w-[320px] bg-white border border-sand rounded-md shadow-lg overflow-hidden"
+          role="listbox"
+        >
+          <div className="p-2 border-b border-sand">
+            <input
+              type="text"
+              value={query}
+              onChange={e => { setQuery(e.target.value); setSearchMsg(null); }}
+              onKeyDown={e => {
+                if (e.key === 'Enter' && showPlacesAction) {
+                  e.preventDefault();
+                  runPlacesSearch();
+                }
+              }}
+              placeholder="Type a place name…"
+              className="w-full text-small border border-sand rounded px-2 py-1.5 bg-white focus:outline-none focus:border-ink-deep"
+              autoFocus
+            />
+          </div>
+          <div className="max-h-[280px] overflow-y-auto">
+            <button
+              type="button"
+              onClick={() => { onPick('skip'); setOpen(false); }}
+              className={
+                'w-full text-left px-3 py-2 text-small hover:bg-cream-soft border-b border-sand ' +
+                (assignedId === 'skip' ? 'bg-cream-soft text-ink-deep font-medium' : 'text-muted')
+              }
+            >
+              Skip this photo
+            </button>
+            {filtered.length === 0 && !showPlacesAction && (
+              <p className="px-3 py-2 text-[11px] text-muted">
+                {q ? 'No nearby pins match.' : 'No nearby candidates yet.'}
+              </p>
+            )}
+            {filtered.map(c => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => { onPick(c.id); setOpen(false); setQuery(''); }}
+                className={
+                  'w-full text-left px-3 py-2 text-small hover:bg-cream-soft flex items-center gap-2 ' +
+                  (c.id === assignedId ? 'bg-cream-soft' : '')
+                }
+              >
+                <span className="flex-1 min-w-0 truncate text-ink-deep">{c.place.name}</span>
+                <span className={'pill text-[9px] flex-shrink-0 ' + (c.existingPinId ? 'bg-cream-soft text-slate' : 'bg-teal/10 text-teal')}>
+                  {c.existingPinId ? 'existing' : 'new'}
+                </span>
+              </button>
+            ))}
+            {showPlacesAction && (
+              <button
+                type="button"
+                onClick={runPlacesSearch}
+                disabled={searching}
+                className={
+                  'w-full text-left px-3 py-2 text-small border-t border-sand flex items-center gap-2 ' +
+                  (searching ? 'text-muted cursor-not-allowed bg-cream-soft' : 'text-ink-deep hover:bg-cream-soft')
+                }
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+                <span className="flex-1 min-w-0 truncate">
+                  {searching ? 'Searching Google Places…' : <>Search Google Places for &ldquo;<strong>{query.trim()}</strong>&rdquo;</>}
+                </span>
+              </button>
+            )}
+          </div>
+          {searchMsg && (
+            <p className="px-3 py-2 text-[11px] text-orange border-t border-sand bg-cream-soft/60">
+              {searchMsg}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
