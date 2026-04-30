@@ -91,6 +91,28 @@ function isBrokenFlagcdn(url: string | null): boolean {
   return !url || BROKEN_FLAGCDN.test(url);
 }
 
+/**
+ * Slug fallback: when a Notion row has no Slug filled in (mostly placeholder
+ * cities seeded before the field was enforced), derive one from the name and
+ * append a row-ID hash so two unslugged rows with the same name can both
+ * land cleanly. Keeps the unique-on-(slug) constraint intact.
+ *
+ * Once the user fills in a real Slug in Notion / Supabase, the next migration
+ * run replaces the fallback with the curated value.
+ */
+function fallbackSlug(name: string, rowId: string): string {
+  const idSuffix = rowId.replace(/-/g, '').slice(-6);
+  const fromName = (name || '')
+    .toLowerCase()
+    .normalize('NFD')
+    // Strip combining-diacritical marks (Unicode block U+0300–U+036F).
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 70);
+  return fromName ? `${fromName}-${idSuffix}` : `unnamed-${idSuffix}`;
+}
+
 // ---------------------------------------------------------------------------
 // Notion fetch with retry/backoff for 429s.
 // ---------------------------------------------------------------------------
@@ -138,10 +160,11 @@ function buildCountryRow(row: any) {
     : iso2
     ? `https://flagcdn.com/${iso2.toLowerCase()}.svg`
     : null;
+  const name = text(p['Name']) || '';
   return {
     id:                row.id,
-    name:              text(p['Name']) || '',
-    slug:              text(p['Slug']) || '',
+    name,
+    slug:              text(p['Slug']) || fallbackSlug(name, row.id),
     iso2,
     iso3:              text(p['ISO3']),
     continent:         text(p['Continent']),
@@ -167,10 +190,11 @@ function buildCountryRow(row: any) {
 function buildCityRow(row: any) {
   const p = row.properties;
   const { lat, lng } = parseLatLng(text(p['Lat & Long']));
+  const name = text(p['Name']) || '';
   return {
     id:                       row.id,
-    name:                     text(p['Name']) || '',
-    slug:                     text(p['Slug']) || '',
+    name,
+    slug:                     text(p['Slug']) || fallbackSlug(name, row.id),
     country:                  text(p['Country']),
     country_id:               rel(p['Country (linked)'])[0] || null,
     local_name:               text(p['Local Name']),
@@ -219,7 +243,31 @@ function buildCityRow(row: any) {
 // Main.
 // ---------------------------------------------------------------------------
 
-async function chunkedUpsert(table: 'cities' | 'countries', rows: any[]) {
+/**
+ * In-batch slug dedup. Notion is happy to let multiple rows share a slug
+ * (e.g. Cartagena, Spain + Cartagena, Colombia both with `Slug = "cartagena"`),
+ * but the Supabase tables enforce uniqueness. First row to claim a slug
+ * keeps the clean form; subsequent collisions get a 6-char row-ID suffix.
+ *
+ * Logged so the user can fix in Notion afterwards if they want pretty URLs.
+ */
+function dedupeSlugs(table: 'go_cities' | 'go_countries', rows: any[]): any[] {
+  const seen = new Set<string>();
+  for (const r of rows) {
+    if (!seen.has(r.slug)) {
+      seen.add(r.slug);
+      continue;
+    }
+    const idSuffix = String(r.id).replace(/-/g, '').slice(-6);
+    const newSlug = `${r.slug}-${idSuffix}`;
+    console.warn(`[migrate] ${table}: slug "${r.slug}" already taken; "${r.name}" (${r.id}) gets "${newSlug}"`);
+    r.slug = newSlug;
+    seen.add(newSlug);
+  }
+  return rows;
+}
+
+async function chunkedUpsert(table: 'go_cities' | 'go_countries', rows: any[]) {
   // Supabase has request-size limits; chunk to avoid 413s with rich payloads.
   const CHUNK = 200;
   let written = 0;
@@ -239,13 +287,13 @@ async function chunkedUpsert(table: 'cities' | 'countries', rows: any[]) {
 async function main() {
   console.log('[migrate] Fetching countries from Notion…');
   const countryPages = await fetchAllPages(COUNTRIES_DB);
-  const countryRows = countryPages.map(buildCountryRow);
+  const countryRows = dedupeSlugs('go_countries', countryPages.map(buildCountryRow));
   console.log(`[migrate] Got ${countryRows.length} countries. Upserting…`);
-  await chunkedUpsert('countries', countryRows);
+  await chunkedUpsert('go_countries', countryRows);
 
   console.log('[migrate] Fetching cities from Notion…');
   const cityPages = await fetchAllPages(CITIES_DB);
-  const cityRows = cityPages.map(buildCityRow);
+  const cityRows = dedupeSlugs('go_cities', cityPages.map(buildCityRow));
   // Drop city rows that would foreign-key to a country we don't have
   // (shouldn't happen in practice, but defensive).
   const countryIds = new Set(countryRows.map(c => c.id));
@@ -256,7 +304,7 @@ async function main() {
     }
   }
   console.log(`[migrate] Got ${cityRows.length} cities. Upserting…`);
-  await chunkedUpsert('cities', cityRows);
+  await chunkedUpsert('go_cities', cityRows);
 
   console.log('[migrate] Done.');
 }

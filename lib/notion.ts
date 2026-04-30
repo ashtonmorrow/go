@@ -238,10 +238,16 @@ function supaCountryRow(r: any): Country {
 
 const CACHE_REVALIDATE_SECONDS = 300; // 5min
 
-// Supabase select bumped to 5000 to comfortably hold the ~1,400 cities.
-// PostgREST's default limit is 1000 which would silently truncate. The
-// pagination loop is also a safety net if the table grows past 5k.
-async function selectAll<T>(table: 'cities' | 'countries'): Promise<T[]> {
+// We read from go_cities / go_countries — Stray's iOS app already owns
+// public.cities and public.countries on this Supabase project, so we sit
+// in our own namespace to avoid colliding with their schema.
+const TABLE_CITIES = 'go_cities' as const;
+const TABLE_COUNTRIES = 'go_countries' as const;
+
+// Supabase pagination loop — PostgREST caps each response at 1000 rows
+// by default, so we page until we get a short read. Safety net for when
+// the city table grows past 5k.
+async function selectAll<T>(table: typeof TABLE_CITIES | typeof TABLE_COUNTRIES): Promise<T[]> {
   const out: T[] = [];
   const PAGE = 1000;
   for (let from = 0; ; from += PAGE) {
@@ -263,7 +269,7 @@ async function selectAll<T>(table: 'cities' | 'countries'): Promise<T[]> {
 
 const _fetchAllCities = unstable_cache(
   async (): Promise<City[]> => {
-    const rows = await selectAll<any>('cities');
+    const rows = await selectAll<any>(TABLE_CITIES);
     return rows.map(supaCityRow);
   },
   ['notion-cities'],
@@ -273,7 +279,7 @@ export const fetchAllCities = cache(_fetchAllCities);
 
 const _fetchAllCountries = unstable_cache(
   async (): Promise<Country[]> => {
-    const rows = await selectAll<any>('countries');
+    const rows = await selectAll<any>(TABLE_COUNTRIES);
     return rows.map(supaCountryRow);
   },
   ['notion-countries'],
@@ -288,7 +294,7 @@ const _fetchCityBySlug = unstable_cache(
   async (slug: string): Promise<City | null> => {
     if (!slug) return null;
     const { data, error } = await supabase
-      .from('cities')
+      .from(TABLE_CITIES)
       .select('*')
       .eq('slug', slug)
       .maybeSingle();
@@ -304,7 +310,7 @@ const _fetchCountryBySlug = unstable_cache(
   async (slug: string): Promise<Country | null> => {
     if (!slug) return null;
     const { data, error } = await supabase
-      .from('countries')
+      .from(TABLE_COUNTRIES)
       .select('*')
       .eq('slug', slug)
       .maybeSingle();
