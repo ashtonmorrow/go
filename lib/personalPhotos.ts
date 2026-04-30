@@ -39,9 +39,13 @@ const _fetchPhotosForPin = unstable_cache(
 
 export const fetchPhotosForPin = cache(_fetchPhotosForPin);
 
+// unstable_cache serializes its return value, and Map instances don't survive
+// that round trip — they come back as plain objects with no Symbol.iterator,
+// which crashes any `for ... of` consumer. So the cached function returns a
+// plain Record; the non-cached helper rehydrates a Map at the call site.
 const _fetchAllPersonalPhotos = unstable_cache(
-  async (): Promise<Map<string, PersonalPhoto[]>> => {
-    const map = new Map<string, PersonalPhoto[]>();
+  async (): Promise<Record<string, PersonalPhoto[]>> => {
+    const out: Record<string, PersonalPhoto[]> = {};
     const PAGE = 1000;
     for (let start = 0; ; start += PAGE) {
       const { data, error } = await supabase
@@ -60,26 +64,28 @@ const _fetchAllPersonalPhotos = unstable_cache(
           width: (r.width as number | null) ?? null,
           height: (r.height as number | null) ?? null,
         };
-        if (!map.has(photo.pinId)) map.set(photo.pinId, []);
-        map.get(photo.pinId)!.push(photo);
+        if (!out[photo.pinId]) out[photo.pinId] = [];
+        out[photo.pinId].push(photo);
       }
       if (data.length < PAGE) break;
     }
-    return map;
+    return out;
   },
   ['supabase-personal-photos-all'],
   { revalidate: 86400, tags: ['supabase-personal-photos'] },
 );
 
-export const fetchAllPersonalPhotos = cache(_fetchAllPersonalPhotos);
+export const fetchAllPersonalPhotos = cache(async (): Promise<Map<string, PersonalPhoto[]>> => {
+  const record = await _fetchAllPersonalPhotos();
+  return new Map(Object.entries(record ?? {}));
+});
 
-/** Cover URL per pin: first personal photo if any, else null. Cheaper to
- *  call than fetchAllPersonalPhotos when callers only need a thumbnail. */
+/** Cover URL per pin: first personal photo if any, else null. */
 export const fetchPersonalCovers = cache(async (): Promise<Map<string, string>> => {
-  const all = await fetchAllPersonalPhotos();
+  const record = await _fetchAllPersonalPhotos();
   const out = new Map<string, string>();
-  for (const [pinId, photos] of all) {
-    if (photos[0]?.url) out.set(pinId, photos[0].url);
+  for (const [pinId, photos] of Object.entries(record ?? {})) {
+    if (photos?.[0]?.url) out.set(pinId, photos[0].url);
   }
   return out;
 });
