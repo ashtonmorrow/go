@@ -20,6 +20,14 @@ const nextConfig = {
       { protocol: 'https', hostname: 'pdjrvlhepiwkshxerkpz.supabase.co' },
     ],
   },
+  // Ship the file-based content collection (lib/content.ts reads from /content
+  // at request time) inside the serverless function bundles. Next.js can't
+  // statically trace the dynamic fs.readFile path so we tell it explicitly.
+  outputFileTracingIncludes: {
+    '/pins/[slug]':      ['./content/**/*'],
+    '/cities/[slug]':    ['./content/**/*'],
+    '/countries/[slug]': ['./content/**/*'],
+  },
   experimental: {
     // Fine-tune if needed
   },

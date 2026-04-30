@@ -7,6 +7,8 @@ import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { fetchCityClimate } from '@/lib/cityClimate';
+import { readPlaceContent, paragraphs } from '@/lib/content';
+import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -36,10 +38,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `${SITE_URL}/cities/${city.slug}`;
   const image = city.personalPhoto ?? city.heroImage ?? undefined;
 
+  // Pages with a /content/cities/<slug>.md become indexable; everything else
+  // stays noindex by default to avoid bloating the search index with stub
+  // pages that are essentially Wikipedia regurgitated.
+  const fileContent = await readPlaceContent('cities', slug);
+
   return {
     title: city.name,
     description,
     alternates: { canonical: url },
+    robots: fileContent?.indexable ? undefined : { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -61,7 +69,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();
 
-  const blocks = await fetchPageBlocks(city.id);
+  // Fan everything else out in parallel — Notion blocks, country sidebar,
+  // sister-city resolution, climate, and the local content file. Previously
+  // these were sequential awaits which stacked Notion's ~250-400ms TTFB
+  // four times in a row on a cold cache.
+  const [blocks, countries, allCities, climate, content] = await Promise.all([
+    fetchPageBlocks(city.id),
+    fetchAllCountries(),
+    fetchAllCities(),
+    fetchCityClimate(city.lat, city.lng),
+    readPlaceContent('cities', slug),
+  ]);
   const hasBody = blocks.length > 0;
 
   // Curated cities = ones I've been to or want to go to. The remaining
@@ -69,19 +87,10 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // showing — Wikipedia + raw facts are more honest signal there.
   const isCurated = city.been || city.go;
 
-  // Fetch country for sidebar info
-  const countries = await fetchAllCountries();
   const country = countries.find(c => c.id === city.countryPageId) || null;
-
-  // Resolve sister-city names
-  const allCities = await fetchAllCities();
   const sisters = city.sisterCities
     .map(id => allCities.find(c => c.id === id))
     .filter(Boolean) as typeof allCities;
-
-  // Monthly climate from NASA POWER (cached 30 days). Returns null when
-  // lat/lng missing or API unreachable; chart skipped silently in that case.
-  const climate = await fetchCityClimate(city.lat, city.lng);
 
   const fmt = (n: number | null, unit = '', digits = 0) =>
     n == null ? '—' : (digits > 0 ? n.toFixed(digits) : Intl.NumberFormat('en').format(n)) + unit;
@@ -140,9 +149,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
 
       {(city.personalPhoto || city.heroImage) && (
         <figure className="mt-6 rounded overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={city.personalPhoto || city.heroImage!}
+            src={heroUrl(city.personalPhoto || city.heroImage!, 1200) ?? (city.personalPhoto || city.heroImage!)}
             alt={city.name}
+            // LCP element on this route: tell the browser not to defer it.
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...({ fetchpriority: 'high' } as any)}
+            decoding="async"
+            // 3:2 placeholder reserves space; the real image overrides on load.
+            width={1200}
+            height={800}
             className="w-full max-h-[60vh] object-cover"
           />
         </figure>
@@ -153,6 +170,19 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <div className="md:col-span-2 min-w-0">
           {city.quote && (
             <blockquote className="border-l-4 border-teal pl-4 text-slate italic">{city.quote}</blockquote>
+          )}
+
+          {/* Personal-voice prose from /content/cities/<slug>.md, if present.
+              Sits above Wikipedia so the page reads "what I think" first
+              and "what the encyclopedia says" second. */}
+          {content && (
+            <section className={city.quote ? 'mt-6' : ''}>
+              {paragraphs(content.body).map((p, i) => (
+                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                  {p}
+                </p>
+              ))}
+            </section>
           )}
 
           {city.wikipediaSummary && (
@@ -252,7 +282,18 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           )}
           {country && (
             <div className="mt-4 pt-4 border-t border-sand flex items-center gap-3">
-              {country.flag && <img src={country.flag} alt={country.name} className="w-10 h-auto rounded" />}
+              {country.flag && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={thumbUrl(country.flag, { size: 40 }) ?? country.flag}
+                  alt={country.name}
+                  width={40}
+                  height={28}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-10 h-auto rounded"
+                />
+              )}
               <div>
                 <div className="text-ink-deep font-medium">{country.name}</div>
                 <div className="text-small text-slate">{country.capital}</div>

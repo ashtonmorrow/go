@@ -20,6 +20,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { readPlaceContent, paragraphs } from '@/lib/content';
 
 export const revalidate = 604800;
 export const dynamicParams = true;
@@ -40,14 +41,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `${SITE_URL}/pins/${pin.slug ?? pin.id}`;
   const image = pin.images[0]?.url ?? undefined;
 
+  // Indexability: a content file can opt the page in via `indexable: true`
+  // in its frontmatter. Either source flips noindex off — once you've
+  // dropped a /content/pins/<slug>.md with the flag set, the page becomes
+  // crawlable without touching the DB.
+  const fileContent = await readPlaceContent('pins', pin.slug ?? '');
+  const indexable = fileContent?.indexable === true || pin.indexable;
+
   return {
     title: pin.name,
     description,
     alternates: { canonical: url },
-    // Default to noindex on every pin until it's curated. Flip indexable=true
-    // in /admin/pins/[id] (or via the bulk editor) once a pin has substantive
-    // content beyond Wikipedia + structured facts.
-    robots: pin.indexable ? undefined : { index: false, follow: true },
+    robots: indexable ? undefined : { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -70,10 +75,11 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   if (!pin) notFound();
 
   const country = pin.statesNames[0] ?? null;
-  const [countries, wp, personalPhotos] = await Promise.all([
+  const [countries, wp, personalPhotos, content] = await Promise.all([
     country ? fetchAllCountries() : Promise.resolve([]),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
+    readPlaceContent('pins', pin.slug ?? ''),
   ]);
   const countryRecord = country
     ? countries.find(c => c.name.toLowerCase() === country.toLowerCase()) ?? null
@@ -309,6 +315,20 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">
+          {/* Personal-voice notes from /content/pins/<slug>.md, if present.
+              Sits at the top because it's the part of the page someone came
+              for — Wikipedia's extract reads like an encyclopedia, this
+              reads like a postcard. */}
+          {content && (
+            <section className="mb-8 pb-8 border-b border-sand">
+              {paragraphs(content.body).map((p, i) => (
+                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                  {p}
+                </p>
+              ))}
+            </section>
+          )}
+
           {wp?.extract && (
             <section>
               <p className="text-ink leading-relaxed text-[17px]">{wp.extract}</p>

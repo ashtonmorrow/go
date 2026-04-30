@@ -9,6 +9,8 @@ import AdvisoryBadge from '@/components/AdvisoryBadge';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
 import { fetchAllCountryFacts, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
+import { readPlaceContent, paragraphs } from '@/lib/content';
+import { thumbUrl } from '@/lib/imageUrl';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -31,10 +33,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const url = `${SITE_URL}/countries/${country.slug}`;
 
+  // Indexable iff /content/countries/<slug>.md exists with indexable:true.
+  const fileContent = await readPlaceContent('countries', slug);
+
   return {
     title: country.name,
     description,
     alternates: { canonical: url },
+    robots: fileContent?.indexable ? undefined : { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -56,15 +62,16 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const country = await fetchCountryBySlug(slug);
   if (!country) notFound();
 
-  const [allCities, factsByIso2] = await Promise.all([
+  // Single Promise.all so the cold-cache TTFBs stack, not chain.
+  const [allCities, factsByIso2, blocks, content] = await Promise.all([
     fetchAllCities(),
     fetchAllCountryFacts(),
+    fetchPageBlocks(country.id),
+    readPlaceContent('countries', slug),
   ]);
   const cities = allCities.filter(c => c.countryPageId === country.id);
   const fact = country.iso2 ? factsByIso2.get(country.iso2.toUpperCase()) ?? null : null;
   const perCapita = fact ? gdpPerCapita(fact) : null;
-
-  const blocks = await fetchPageBlocks(country.id);
   const hasBody = blocks.length > 0;
 
   // eVisa portal lookup. The portal map (lib/visaPortals.ts) is
@@ -103,7 +110,15 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
 
       <header className="flex items-center gap-5 flex-wrap">
         {country.flag && (
-          <img src={country.flag} alt={country.name} className="w-20 h-auto rounded border border-sand" />
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={thumbUrl(country.flag, { size: 80 }) ?? country.flag}
+            alt={country.name}
+            width={80}
+            height={56}
+            decoding="async"
+            className="w-20 h-auto rounded border border-sand"
+          />
         )}
         <div>
           <h1 className="text-h1 text-ink-deep">{country.name}</h1>
@@ -113,8 +128,20 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         <div className="md:col-span-2 min-w-0">
-          {country.wikipediaSummary && (
+          {/* Personal-voice prose from /content/countries/<slug>.md, if present.
+              Reads first; the Wikipedia summary follows for breadth. */}
+          {content && (
             <section>
+              {paragraphs(content.body).map((p, i) => (
+                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                  {p}
+                </p>
+              ))}
+            </section>
+          )}
+
+          {country.wikipediaSummary && (
+            <section className={content ? 'mt-8 pt-8 border-t border-sand' : ''}>
               <h2 className="text-h3 text-ink-deep mb-2">About</h2>
               <p className="text-ink leading-relaxed">{country.wikipediaSummary}</p>
             </section>
