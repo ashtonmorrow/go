@@ -29,6 +29,9 @@ const ALLOWED_FIELDS = new Set([
   'hotel_vibe', 'breakfast_quality', 'wifi_quality', 'noise_level', 'location_pitch',
   // Restaurant
   'cuisine', 'meal_types', 'dishes_tried', 'dietary_options', 'reservation_recommended',
+  'price_tier', 'price_per_person_usd',
+  // SEO
+  'indexable',
   // Other facets
   'food_on_site', 'water_refill', 'restrooms', 'wifi', 'lockers',
   'shade', 'indoor_outdoor',

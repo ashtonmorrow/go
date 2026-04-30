@@ -128,6 +128,11 @@ export type Pin = {
   dishesTried: string[];
   dietaryOptions: string[];
   reservationRecommended: boolean | null;
+  priceTier: '$' | '$$' | '$$$' | '$$$$' | null;
+  pricePerPersonUsd: number | null;
+
+  // SEO
+  indexable: boolean;
 
   hours: string | null;
   priceText: string | null;
@@ -311,6 +316,10 @@ function rowToPin(row: any): Pin {
     dishesTried: asStringArray(row.dishes_tried),
     dietaryOptions: asStringArray(row.dietary_options),
     reservationRecommended: asBool(row.reservation_recommended),
+    priceTier: asEnum(row.price_tier, ['$', '$$', '$$$', '$$$$'] as const),
+    pricePerPersonUsd: asNumber(row.price_per_person_usd),
+
+    indexable: !!row.indexable,
     hours: row.hours ?? null,
     priceText: row.price_text ?? null,
     priceAmount: asNumber(row.price_amount),
@@ -414,6 +423,8 @@ const INDEX_COLUMNS = [
   'wheelchair_accessible', 'kid_friendly', 'bring',
   // Personal-experience fields used on cards / sort / filters
   'personal_rating', 'visit_year',
+  // SEO + restaurant pricing on cards
+  'indexable', 'price_tier',
 ].join(',');
 
 const _fetchAllPins = unstable_cache(

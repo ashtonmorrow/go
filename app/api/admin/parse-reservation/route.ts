@@ -45,16 +45,32 @@ async function callStrayParser(payload: {
   text?: string;
   pdf_base64?: string;
   pdf_mime?: string;
-}): Promise<ParsedReservation | null> {
+}): Promise<{ parsed: ParsedReservation } | { error: string }> {
   const sb = supabaseAdmin();
   const { data, error } = await sb.functions.invoke('parse-reservation', { body: payload });
   if (error) {
-    console.error('[parse-reservation] edge function failed:', error);
-    return null;
+    // FunctionsHttpError responses include the body as `context`; pull whatever
+    // we can to surface the actual cause to the client.
+    let detail = '';
+    try {
+      const ctx = (error as any).context;
+      if (ctx && typeof ctx.json === 'function') {
+        const body = await ctx.json();
+        detail = body?.error ? `: ${body.error}` : `: ${JSON.stringify(body).slice(0, 200)}`;
+      } else if (typeof ctx?.statusText === 'string') {
+        detail = `: ${ctx.statusText}`;
+      }
+    } catch {
+      /* ignore */
+    }
+    console.error('[parse-reservation] edge function failed:', error, detail);
+    return { error: `edge function failed${detail || `: ${error.message}`}` };
   }
   const parsed = (data as any)?.parsed;
-  if (!parsed) return null;
-  return parsed as ParsedReservation;
+  if (!parsed) {
+    return { error: `edge function returned no parsed object (got ${JSON.stringify(data).slice(0, 200)})` };
+  }
+  return { parsed: parsed as ParsedReservation };
 }
 
 function slugify(s: string): string {
@@ -201,10 +217,17 @@ export async function POST(req: Request) {
     });
   }
 
-  const parsed = await callStrayParser(payload);
-  if (!parsed || !parsed.hotel_name) {
+  const callResult = await callStrayParser(payload);
+  if ('error' in callResult) {
     return NextResponse.json(
-      { error: `Could not parse a hotel name from ${sourceLabel}.`, parsed },
+      { error: `${sourceLabel}: ${callResult.error}` },
+      { status: 502 },
+    );
+  }
+  const parsed = callResult.parsed;
+  if (!parsed.hotel_name) {
+    return NextResponse.json(
+      { error: `Could not parse a hotel name from ${sourceLabel}. (Gemini returned no hotel_name — likely a scanned/empty PDF or unfamiliar layout.)`, parsed },
       { status: 422 },
     );
   }

@@ -43,6 +43,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: pin.name,
     description,
     alternates: { canonical: url },
+    // Default to noindex on every pin until it's curated. Flip indexable=true
+    // in /admin/pins/[id] (or via the bulk editor) once a pin has substantive
+    // content beyond Wikipedia + structured facts.
+    robots: pin.indexable ? undefined : { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -751,7 +755,9 @@ function PersonalSection({ pin }: { pin: Pin }) {
       pin.mealTypes.length ||
       pin.dishesTried.length ||
       pin.dietaryOptions.length ||
-      pin.reservationRecommended != null);
+      pin.reservationRecommended != null ||
+      pin.priceTier != null ||
+      pin.pricePerPersonUsd != null);
 
   if (!universal && !hasHotel && !hasMeal) return null;
 
@@ -828,6 +834,20 @@ function PersonalSection({ pin }: { pin: Pin }) {
 
       {hasMeal && (
         <dl className="text-small space-y-1.5 mb-4">
+          {(pin.priceTier || pin.pricePerPersonUsd != null) && (
+            <FactRow label="Price">
+              <span className="inline-flex items-baseline gap-2">
+                {pin.priceTier && (
+                  <span className="font-mono text-ink-deep tabular-nums">{pin.priceTier}</span>
+                )}
+                {pin.pricePerPersonUsd != null && (
+                  <span className="text-muted text-[12px]">
+                    ~${pin.pricePerPersonUsd.toLocaleString()}/person
+                  </span>
+                )}
+              </span>
+            </FactRow>
+          )}
           {pin.cuisine.length > 0 && (
             <FactRow label="Cuisine">
               <span className="flex flex-wrap gap-1">

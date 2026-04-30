@@ -96,6 +96,9 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
         <Field label="Category (raw)">
           <Input value={state.category ?? ''} onChange={v => set('category', v || null)} />
         </Field>
+        <Field label="Search-indexable">
+          <BoolToggle value={state.indexable} onChange={v => set('indexable', v)} />
+        </Field>
       </Section>
 
       <Section label="Status">
@@ -277,6 +280,35 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
           </Field>
           <Field label="Reservation recommended">
             <BoolTri value={state.reservation_recommended} onChange={v => set('reservation_recommended', v)} />
+          </Field>
+          <Field label="Price tier">
+            <div className="inline-flex rounded border border-sand overflow-hidden text-[12px]">
+              {[null, '$', '$$', '$$$', '$$$$'].map(tier => (
+                <button
+                  key={tier ?? 'unset'}
+                  type="button"
+                  onClick={() => set('price_tier', tier)}
+                  className={
+                    'px-3 py-1.5 ' +
+                    (state.price_tier === tier
+                      ? 'bg-ink-deep text-white'
+                      : 'bg-white text-ink hover:bg-cream-soft')
+                  }
+                >
+                  {tier ?? 'Unset'}
+                </button>
+              ))}
+            </div>
+          </Field>
+          <Field label="Per-person USD">
+            <input
+              type="number"
+              step="0.01"
+              value={state.price_per_person_usd ?? ''}
+              onChange={e => set('price_per_person_usd', e.target.value ? Number(e.target.value) : null)}
+              placeholder="35"
+              className={inputCls + ' w-32'}
+            />
           </Field>
         </Section>
       )}

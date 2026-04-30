@@ -60,6 +60,11 @@ export type PinEditorState = {
   dishes_tried: string[];
   dietary_options: string[];
   reservation_recommended: boolean | null;
+  price_tier: string | null;
+  price_per_person_usd: number | null;
+
+  // SEO
+  indexable: boolean;
 };
 
 const asStr = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
@@ -118,5 +123,9 @@ export function rowToPinForEdit(row: any): PinEditorState {
     dishes_tried: asArr(row.dishes_tried),
     dietary_options: asArr(row.dietary_options),
     reservation_recommended: asBool(row.reservation_recommended),
+    price_tier: asStr(row.price_tier),
+    price_per_person_usd: asNum(row.price_per_person_usd),
+
+    indexable: !!row.indexable,
   };
 }
