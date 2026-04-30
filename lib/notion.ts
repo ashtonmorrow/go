@@ -2,6 +2,7 @@ import { Client, APIResponseError } from '@notionhq/client';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
+import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE } from './goTables';
 
 // PHASE 2 NOTE — Apr 2026
 // =========================================================================
@@ -20,9 +21,9 @@ import { supabase } from './supabase';
 //
 // Cache layer: Supabase is fast (~30-80ms) so we drop the 24h unstable_cache
 // in favor of a 5-minute one. Edits in Supabase Studio appear within minutes
-// rather than waiting for a manual revalidate. Tag names kept as
-// `notion-cities` / `notion-countries` so the existing /api/revalidate
-// endpoint still works.
+// rather than waiting for a manual revalidate. We tag with both the new
+// `supabase-*` names and the old `notion-*` names so existing revalidation
+// hooks keep working while new augmentation code can use clearer names.
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -232,8 +233,8 @@ function supaCountryRow(r: any): Country {
 // unstable_cache + React.cache() combo gives us cross-render persistence
 // (the Sidebar + page body don't double-fetch) and short enough TTL that
 // edits in Supabase Studio show up without a manual revalidate trip. The
-// existing /api/revalidate route's `notion-cities` and `notion-countries`
-// tags still work — same key strings, just a different data source behind
+// existing /api/revalidate route's legacy `notion-cities` and
+// `notion-countries` tags still work — same key strings, just a different data source behind
 // them.
 
 const CACHE_REVALIDATE_SECONDS = 300; // 5min
@@ -241,8 +242,8 @@ const CACHE_REVALIDATE_SECONDS = 300; // 5min
 // We read from go_cities / go_countries — Stray's iOS app already owns
 // public.cities and public.countries on this Supabase project, so we sit
 // in our own namespace to avoid colliding with their schema.
-const TABLE_CITIES = 'go_cities' as const;
-const TABLE_COUNTRIES = 'go_countries' as const;
+export const TABLE_CITIES = GO_CITIES_TABLE;
+export const TABLE_COUNTRIES = GO_COUNTRIES_TABLE;
 
 // Supabase pagination loop — PostgREST caps each response at 1000 rows
 // by default, so we page until we get a short read. Safety net for when
@@ -273,7 +274,7 @@ const _fetchAllCities = unstable_cache(
     return rows.map(supaCityRow);
   },
   ['notion-cities'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchAllCities = cache(_fetchAllCities);
 
@@ -283,7 +284,7 @@ const _fetchAllCountries = unstable_cache(
     return rows.map(supaCountryRow);
   },
   ['notion-countries'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchAllCountries = cache(_fetchAllCountries);
 
@@ -302,7 +303,7 @@ const _fetchCityBySlug = unstable_cache(
     return supaCityRow(data);
   },
   ['notion-city-by-slug'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchCityBySlug = cache(_fetchCityBySlug);
 
@@ -318,7 +319,7 @@ const _fetchCountryBySlug = unstable_cache(
     return supaCountryRow(data);
   },
   ['notion-country-by-slug'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryBySlug = cache(_fetchCountryBySlug);
 
@@ -342,7 +343,7 @@ const _fetchCountryById = unstable_cache(
     return supaCountryRow(data);
   },
   ['notion-country-by-id'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryById = cache(_fetchCountryById);
 
@@ -359,7 +360,7 @@ const _fetchCountryByName = unstable_cache(
     return supaCountryRow(data);
   },
   ['notion-country-by-name'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryByName = cache(_fetchCountryByName);
 
@@ -377,7 +378,7 @@ const _fetchCitiesByIds = unstable_cache(
     return (data as any[]).map(supaCityRow);
   },
   ['notion-cities-by-ids'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchCitiesByIds = cache(_fetchCitiesByIds);
 
@@ -395,7 +396,7 @@ const _fetchCitiesByCountryId = unstable_cache(
     return (data as any[]).map(supaCityRow);
   },
   ['notion-cities-by-country'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchCitiesByCountryId = cache(_fetchCitiesByCountryId);
 

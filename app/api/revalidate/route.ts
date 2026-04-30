@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 // Webhook endpoint to revalidate pages when Notion data changes.
 // Configure a secret in env as REVALIDATE_SECRET.
@@ -13,6 +13,10 @@ export async function POST(req: NextRequest) {
   const path = searchParams.get('path') || '/';
   try {
     revalidatePath(path);
+    revalidateTag('supabase-cities');
+    revalidateTag('supabase-countries');
+    revalidateTag('notion-cities');
+    revalidateTag('notion-countries');
     return NextResponse.json({ ok: true, revalidated: path });
   } catch (e: any) {
     return NextResponse.json({ ok: false, error: e?.message || 'unknown' }, { status: 500 });

@@ -23,6 +23,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { Client, APIResponseError } from '@notionhq/client';
+import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE, type GoGeoTable } from '../lib/goTables';
 
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -251,7 +252,7 @@ function buildCityRow(row: any) {
  *
  * Logged so the user can fix in Notion afterwards if they want pretty URLs.
  */
-function dedupeSlugs(table: 'go_cities' | 'go_countries', rows: any[]): any[] {
+function dedupeSlugs(table: GoGeoTable, rows: any[]): any[] {
   const seen = new Set<string>();
   for (const r of rows) {
     if (!seen.has(r.slug)) {
@@ -267,7 +268,7 @@ function dedupeSlugs(table: 'go_cities' | 'go_countries', rows: any[]): any[] {
   return rows;
 }
 
-async function chunkedUpsert(table: 'go_cities' | 'go_countries', rows: any[]) {
+async function chunkedUpsert(table: GoGeoTable, rows: any[]) {
   // Supabase has request-size limits; chunk to avoid 413s with rich payloads.
   const CHUNK = 200;
   let written = 0;
@@ -287,13 +288,13 @@ async function chunkedUpsert(table: 'go_cities' | 'go_countries', rows: any[]) {
 async function main() {
   console.log('[migrate] Fetching countries from Notion…');
   const countryPages = await fetchAllPages(COUNTRIES_DB);
-  const countryRows = dedupeSlugs('go_countries', countryPages.map(buildCountryRow));
+  const countryRows = dedupeSlugs(GO_COUNTRIES_TABLE, countryPages.map(buildCountryRow));
   console.log(`[migrate] Got ${countryRows.length} countries. Upserting…`);
-  await chunkedUpsert('go_countries', countryRows);
+  await chunkedUpsert(GO_COUNTRIES_TABLE, countryRows);
 
   console.log('[migrate] Fetching cities from Notion…');
   const cityPages = await fetchAllPages(CITIES_DB);
-  const cityRows = dedupeSlugs('go_cities', cityPages.map(buildCityRow));
+  const cityRows = dedupeSlugs(GO_CITIES_TABLE, cityPages.map(buildCityRow));
   // Drop city rows that would foreign-key to a country we don't have
   // (shouldn't happen in practice, but defensive).
   const countryIds = new Set(countryRows.map(c => c.id));
@@ -304,7 +305,7 @@ async function main() {
     }
   }
   console.log(`[migrate] Got ${cityRows.length} cities. Upserting…`);
-  await chunkedUpsert('go_cities', cityRows);
+  await chunkedUpsert(GO_CITIES_TABLE, cityRows);
 
   console.log('[migrate] Done.');
 }
