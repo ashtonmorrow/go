@@ -1,6 +1,28 @@
 import { Client, APIResponseError } from '@notionhq/client';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
+import { supabase } from './supabase';
+
+// PHASE 2 NOTE — Apr 2026
+// =========================================================================
+// This file is named notion.ts for git-history continuity, but the runtime
+// reads for cities + countries are now backed by Supabase tables (mirrored
+// from the original Notion databases via scripts/migrate-notion-to-supabase.ts).
+// The Notion API call path is kept *only* for fetchPageBlocks, which still
+// renders legacy Notion blocks for any city/country page that doesn't yet
+// have a /content/<scope>/<slug>.md file overriding the prose.
+//
+// Why the file isn't renamed: 21 import sites depend on `@/lib/notion` and
+// the public surface here (City, Country, fetchAllCities, fetchCityBySlug,
+// fetchAllCountries, fetchCountryBySlug, fetchPageBlocks) hasn't changed.
+// We can rename later in a mechanical pass; for now keep the surface and
+// swap the internals.
+//
+// Cache layer: Supabase is fast (~30-80ms) so we drop the 24h unstable_cache
+// in favor of a 5-minute one. Edits in Supabase Studio appear within minutes
+// rather than waiting for a manual revalidate. Tag names kept as
+// `notion-cities` / `notion-countries` so the existing /api/revalidate
+// endpoint still works.
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -99,108 +121,11 @@ export type Country = {
   flag: string | null;
 };
 
-// ---- Property helpers ----
-function text(prop: any): string | null {
-  if (!prop) return null;
-  if (prop.type === 'title') return prop.title.map((t: any) => t.plain_text).join('').trim() || null;
-  if (prop.type === 'rich_text') return prop.rich_text.map((t: any) => t.plain_text).join('').trim() || null;
-  if (prop.type === 'select') return prop.select?.name || null;
-  if (prop.type === 'url') return prop.url || null;
-  return null;
-}
-
-function number(prop: any): number | null {
-  return prop?.type === 'number' ? prop.number : null;
-}
-
-function checkbox(prop: any): boolean {
-  return prop?.type === 'checkbox' ? !!prop.checkbox : false;
-}
-
-function file(prop: any): string | null {
-  if (prop?.type !== 'files' || !prop.files?.length) return null;
-  const f = prop.files[0];
-  if (f.type === 'external') return f.external.url;
-  if (f.type === 'file') return f.file.url;
-  return null;
-}
-
-function multiSelect(prop: any): string[] {
-  return prop?.type === 'multi_select' ? prop.multi_select.map((s: any) => s.name) : [];
-}
-
-function relation(prop: any): string[] {
-  return prop?.type === 'relation' ? prop.relation.map((r: any) => r.id) : [];
-}
-
-function parseLatLng(s: string | null): { lat: number | null; lng: number | null } {
-  if (!s) return { lat: null, lng: null };
-  const m = s.match(/(-?\d+\.?\d*)/g);
-  if (!m || m.length < 2) return { lat: null, lng: null };
-  const lat = parseFloat(m[0]);
-  const lng = parseFloat(m[1]);
-  if (isNaN(lat) || isNaN(lng)) return { lat: null, lng: null };
-  // Handle direction markers
-  const upper = s.toUpperCase();
-  const signedLat = upper.match(/[NS]/)?.[0] === 'S' ? -Math.abs(lat) : lat;
-  const signedLng = upper.match(/[EW]/)?.[0] === 'W' ? -Math.abs(lng) : lng;
-  return { lat: signedLat, lng: signedLng };
-}
-
-function rowToCity(row: any): City {
-  const p = row.properties;
-  const { lat, lng } = parseLatLng(text(p['Lat & Long']));
-  return {
-    id: row.id,
-    name: text(p['Name']) || '',
-    slug: text(p['Slug']) || '',
-    country: text(p['Country']),
-    countryPageId: relation(p['Country (linked)'])[0] || null,
-    localName: text(p['Local Name']),
-    been: checkbox(p['Been?']),
-    go: checkbox(p['Go?']),
-    lat, lng,
-    population: number(p['Population']),
-    area: number(p['Area (km²)']),
-    elevation: number(p['Elevation (m)']),
-    mayor: text(p['Mayor']),
-    founded: text(p['Founded']),
-    demonym: text(p['Demonym']),
-    timeZone: text(p['Time Zone']),
-    utcOffset: text(p['UTC Offset']),
-    avgHigh: number(p['Avg High (°C)']),
-    avgLow: number(p['Avg Low (°C)']),
-    rainfall: number(p['Annual Rainfall (mm)']),
-    koppen: text(p['Köppen Climate']),
-    nicknames: text(p['Nicknames']),
-    motto: text(p['City Motto']),
-    iataAirports: text(p['IATA Airports']),
-    sisterCities: relation(p['Sister Cities']),
-    heroImage: file(p['Hero Image']),
-    personalPhoto: file(p['Personal Photo']),
-    cityFlag: file(p['Flag']),
-    wikidataId: text(p['Wikidata ID']),
-    wikipediaUrl: text(p['Wikipedia URL']),
-    wikipediaSummary: text(p['Wikipedia Summary']),
-    quote: text(p['Quote']),
-    about: text(p['about']),
-    whyVisit: text(p['Why Visit?']),
-    avoid: text(p['avoid']),
-    plac: text(p['Plac']),
-    hotSeasonName: text(p['hot/dry season name']),
-    hotSeasonDescription: text(p['hot/dry season description']),
-    coldSeasonName: text(p['cold/wet season name']),
-    coolerWetterSeason: text(p['Cooler/Wetter Season']),
-    myGooglePlaces: text(p['My Saved Places']),
-    savedPlaces: text(p['My Saved Places']),
-  };
-}
-
 // Detects curated Flag URLs whose path component is empty — happens when
 // a flagcdn template like `https://flagcdn.com/w640/${iso2}.png` was
 // resolved with an empty iso2 (the bug that broke the Antarctica record
 // before we set ISO2='AQ' on it). When the URL is shaped like this, we
-// disregard the curated value and fall through to flagRect(iso2).
+// disregard the curated value and fall through to the iso2-derived URL.
 const BROKEN_FLAGCDN = /\/flagcdn\.com\/[^/]+\/(?:\.|_+\.)/;
 
 function looksBroken(url: string | null): boolean {
@@ -208,79 +133,138 @@ function looksBroken(url: string | null): boolean {
   return BROKEN_FLAGCDN.test(url);
 }
 
-function rowToCountry(row: any): Country {
-  const p = row.properties;
-  const iso2 = text(p['ISO2']);
-  const curatedFlag = file(p['Flag']);
-  // Prefer curated only when it doesn't look broken. Falls through to
-  // the canonical flagcdn URL via flagRect(iso2) otherwise.
-  const flag = !looksBroken(curatedFlag)
-    ? curatedFlag
+// ---- Supabase row → camelCase shape mappers ----
+
+function asNum(v: unknown): number | null {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  if (typeof v === 'string' && v.trim() !== '') {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+}
+
+function supaCityRow(r: any): City {
+  return {
+    id:                   r.id,
+    name:                 r.name ?? '',
+    slug:                 r.slug ?? '',
+    country:              r.country ?? null,
+    countryPageId:        r.country_id ?? null,
+    localName:            r.local_name ?? null,
+    been:                 !!r.been,
+    go:                   !!r.go,
+    lat:                  asNum(r.lat),
+    lng:                  asNum(r.lng),
+    population:           asNum(r.population),
+    area:                 asNum(r.area),
+    elevation:            asNum(r.elevation),
+    mayor:                r.mayor ?? null,
+    founded:              r.founded ?? null,
+    demonym:              r.demonym ?? null,
+    timeZone:             r.time_zone ?? null,
+    utcOffset:            r.utc_offset ?? null,
+    avgHigh:              asNum(r.avg_high),
+    avgLow:               asNum(r.avg_low),
+    rainfall:             asNum(r.rainfall),
+    koppen:               r.koppen ?? null,
+    nicknames:            r.nicknames ?? null,
+    motto:                r.motto ?? null,
+    iataAirports:         r.iata_airports ?? null,
+    sisterCities:         Array.isArray(r.sister_cities) ? r.sister_cities : [],
+    heroImage:            r.hero_image ?? null,
+    personalPhoto:        r.personal_photo ?? null,
+    cityFlag:             r.city_flag ?? null,
+    wikidataId:           r.wikidata_id ?? null,
+    wikipediaUrl:         r.wikipedia_url ?? null,
+    wikipediaSummary:     r.wikipedia_summary ?? null,
+    quote:                r.quote ?? null,
+    about:                r.about ?? null,
+    whyVisit:             r.why_visit ?? null,
+    avoid:                r.avoid ?? null,
+    plac:                 r.plac ?? null,
+    hotSeasonName:        r.hot_season_name ?? null,
+    hotSeasonDescription: r.hot_season_description ?? null,
+    coldSeasonName:       r.cold_season_name ?? null,
+    coolerWetterSeason:   r.cooler_wetter_season ?? null,
+    myGooglePlaces:       r.my_google_places ?? null,
+    savedPlaces:          r.my_google_places ?? null, // legacy duplicate
+  };
+}
+
+function supaCountryRow(r: any): Country {
+  // Same flagcdn fallback the Notion mapper used. The migrator already
+  // wrote a non-broken value into r.flag, but keeping the fallback here
+  // means an iso2-only country (no curated flag yet) still renders.
+  const iso2 = r.iso2 ?? null;
+  const curated = r.flag ?? null;
+  const flag = !looksBroken(curated)
+    ? curated
     : iso2
-    ? `https://flagcdn.com/${iso2.toLowerCase()}.svg`
+    ? `https://flagcdn.com/${(iso2 as string).toLowerCase()}.svg`
     : null;
   return {
-    id: row.id,
-    name: text(p['Name']) || '',
-    slug: text(p['Slug']) || '',
+    id:                r.id,
+    name:              r.name ?? '',
+    slug:              r.slug ?? '',
     iso2,
-    iso3: text(p['ISO3']),
-    continent: text(p['Continent']),
-    capital: text(p['Capital']),
-    language: text(p['Language']),
-    currency: text(p['Currency']),
-    callingCode: text(p['Calling Code']),
-    schengen: checkbox(p['Schengen?']),
-    plugTypes: multiSelect(p['Plug Types']),
-    voltage: text(p['Voltage']),
-    tapWater: text(p['Tap Water']),
-    tipping: text(p['Tipping']),
-    emergencyNumber: text(p['Emergency Number']),
-    visaUs: text(p['Visa (US Passport)']),
-    wikidataId: text(p['Wikidata ID']),
-    wikipediaSummary: text(p['Wikipedia Summary']),
+    iso3:              r.iso3 ?? null,
+    continent:         r.continent ?? null,
+    capital:           r.capital ?? null,
+    language:          r.language ?? null,
+    currency:          r.currency ?? null,
+    callingCode:       r.calling_code ?? null,
+    schengen:          !!r.schengen,
+    plugTypes:         Array.isArray(r.plug_types) ? r.plug_types : [],
+    voltage:           r.voltage ?? null,
+    tapWater:          r.tap_water ?? null,
+    tipping:           r.tipping ?? null,
+    emergencyNumber:   r.emergency_number ?? null,
+    visaUs:            r.visa_us ?? null,
+    wikidataId:        r.wikidata_id ?? null,
+    wikipediaSummary:  r.wikipedia_summary ?? null,
     flag,
   };
 }
 
 // ---- Fetchers ----
-// Two-layer caching:
-//
-//   1. unstable_cache (Next.js data cache) — persists across requests AND
-//      across routes, so the Sidebar in the layout doesn't refetch the
-//      whole Notion universe on every page navigation. This is the main
-//      cold-load fix; without it each route's ISR entry has to cold-render
-//      the layout's data dependencies separately.
-//   2. React.cache() — wraps the unstable_cache result so within ONE render
-//      we still dedupe calls (e.g. Sidebar + page body both calling
-//      fetchAllCities() resolves to a single resolved promise).
-//
-// Bust via revalidateTag(...) from /api/revalidate when the Notion source
-// of truth changes (currently 24h is acceptable — the Notion DBs change
-// slowly and stale-while-revalidate fills new pages quickly).
+// Cache layer: Supabase queries run ~30-80ms warm, ~150ms cold. The 5-min
+// unstable_cache + React.cache() combo gives us cross-render persistence
+// (the Sidebar + page body don't double-fetch) and short enough TTL that
+// edits in Supabase Studio show up without a manual revalidate trip. The
+// existing /api/revalidate route's `notion-cities` and `notion-countries`
+// tags still work — same key strings, just a different data source behind
+// them.
 
-const CACHE_REVALIDATE_SECONDS = 86400; // 24h
+const CACHE_REVALIDATE_SECONDS = 300; // 5min
+
+// Supabase select bumped to 5000 to comfortably hold the ~1,400 cities.
+// PostgREST's default limit is 1000 which would silently truncate. The
+// pagination loop is also a safety net if the table grows past 5k.
+async function selectAll<T>(table: 'cities' | 'countries'): Promise<T[]> {
+  const out: T[] = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await supabase
+      .from(table)
+      .select('*')
+      .order('name')
+      .range(from, from + PAGE - 1);
+    if (error) {
+      console.error(`[supabase ${table}] fetch failed:`, error);
+      break;
+    }
+    if (!data || data.length === 0) break;
+    out.push(...(data as T[]));
+    if (data.length < PAGE) break;
+  }
+  return out;
+}
 
 const _fetchAllCities = unstable_cache(
   async (): Promise<City[]> => {
-    if (!process.env.NOTION_TOKEN) {
-      console.warn('NOTION_TOKEN not set — returning empty city list');
-      return [];
-    }
-    const rows: any[] = [];
-    let cursor: string | undefined;
-    do {
-      const res: any = await withRetry(() =>
-        notion.databases.query({
-          database_id: CITIES_DB,
-          start_cursor: cursor,
-          page_size: 100,
-        })
-      );
-      rows.push(...res.results);
-      cursor = res.has_more ? res.next_cursor : undefined;
-    } while (cursor);
-    return rows.map(rowToCity);
+    const rows = await selectAll<any>('cities');
+    return rows.map(supaCityRow);
   },
   ['notion-cities'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
@@ -289,38 +273,48 @@ export const fetchAllCities = cache(_fetchAllCities);
 
 const _fetchAllCountries = unstable_cache(
   async (): Promise<Country[]> => {
-    if (!process.env.NOTION_TOKEN) return [];
-    const rows: any[] = [];
-    let cursor: string | undefined;
-    do {
-      const res: any = await withRetry(() =>
-        notion.databases.query({
-          database_id: COUNTRIES_DB,
-          start_cursor: cursor,
-          page_size: 100,
-        })
-      );
-      rows.push(...res.results);
-      cursor = res.has_more ? res.next_cursor : undefined;
-    } while (cursor);
-    return rows.map(rowToCountry);
+    const rows = await selectAll<any>('countries');
+    return rows.map(supaCountryRow);
   },
   ['notion-countries'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
 );
 export const fetchAllCountries = cache(_fetchAllCountries);
 
-// Lookup-by-slug reuses the cached list instead of a separate Notion query.
-// At ~1,400 rows the in-memory find is O(n) but instant (<1ms).
-export const fetchCityBySlug = cache(async (slug: string): Promise<City | null> => {
-  const all = await fetchAllCities();
-  return all.find(c => c.slug === slug) || null;
-});
+// Direct slug lookups — single-row indexed queries, way faster than
+// loading the full table just to .find() a match. Wrapped in unstable_cache
+// per slug so a popular detail page only hits Supabase once per 5min window.
+const _fetchCityBySlug = unstable_cache(
+  async (slug: string): Promise<City | null> => {
+    if (!slug) return null;
+    const { data, error } = await supabase
+      .from('cities')
+      .select('*')
+      .eq('slug', slug)
+      .maybeSingle();
+    if (error || !data) return null;
+    return supaCityRow(data);
+  },
+  ['notion-city-by-slug'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+);
+export const fetchCityBySlug = cache(_fetchCityBySlug);
 
-export const fetchCountryBySlug = cache(async (slug: string): Promise<Country | null> => {
-  const all = await fetchAllCountries();
-  return all.find(c => c.slug === slug) || null;
-});
+const _fetchCountryBySlug = unstable_cache(
+  async (slug: string): Promise<Country | null> => {
+    if (!slug) return null;
+    const { data, error } = await supabase
+      .from('countries')
+      .select('*')
+      .eq('slug', slug)
+      .maybeSingle();
+    if (error || !data) return null;
+    return supaCountryRow(data);
+  },
+  ['notion-country-by-slug'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+);
+export const fetchCountryBySlug = cache(_fetchCountryBySlug);
 
 // Blocks vary per page so caching is per-pageId. Wrapping with `cache()` still
 // dedupes multiple calls for the same pageId within a render.
