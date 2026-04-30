@@ -325,7 +325,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             broke when new rows (Water, Electric) were added in the rebuild
             — at narrow card widths the last row clipped past the bottom. */}
         <div
-      className="flip-face postcard relative transition-shadow bg-paper rounded-[4px] border border-paper-edge flex flex-col"
+      className="flip-face postcard relative transition-shadow bg-paper rounded-[4px] border border-paper-edge flex flex-col overflow-hidden"
       style={{
         boxShadow:
           // Drop shadow (warm, like real paper)
@@ -382,7 +382,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           paddingRight clears the landscape stamp + a little breathing room.
           Coords moved up from the footer so the postcard reads top-down
           like a real postcard return-address: location → place → details. */}
-      <div className="px-4 pt-3" style={{ paddingRight: 110 }}>
+      <div className="px-4 pt-2.5" style={{ paddingRight: 110 }}>
         {(city.lat != null || city.lng != null) && (
           <p className="text-[9px] font-mono text-muted tracking-[0.08em] mb-1 truncate">
             <span>{fmtCoord(city.lat, 'lat')}</span>
@@ -424,7 +424,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           current grid breakpoint. justify-around distributes the rows
           evenly so the column "breathes" on a tall card and packs in on
           a short one. */}
-      <div className="px-4 pt-2 pb-2.5 flex-1 min-h-0 flex flex-col justify-around">
+      <div className="px-4 pt-1.5 pb-2 flex-1 min-h-0 flex flex-col justify-around overflow-hidden">
         <dl className="text-[11px] leading-tight">
           {fmtPopulation(city.population) && (
             <Row label="Population" value={fmtPopulation(city.population)!} />

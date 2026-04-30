@@ -27,18 +27,49 @@ export const dynamic = 'force-dynamic';
  */
 
 type ParsedReservation = {
+  // Identity
   hotel_name: string | null;
+  brand: string | null;
+  chain: string | null;
+
+  // Location
   address: string | null;
   city: string | null;
+  state: string | null;
   country: string | null;
+  postal_code: string | null;
+  lat: number | null;
+  lng: number | null;
+
+  // Contact (hotel-side, not guest)
+  phone: string | null;
+  website: string | null;
+  email: string | null;
+
+  // Hotel-level descriptors
+  star_rating: number | null;
+  description: string | null;
+  check_in_time: string | null;
+  check_out_time: string | null;
+
+  // Amenities
+  breakfast_included: boolean | null;
+  wifi: 'free' | 'paid' | 'none' | null;
+  parking: 'free' | 'paid' | 'street' | 'none' | null;
+  pool: boolean | null;
+  gym: boolean | null;
+  spa: boolean | null;
+  restaurant_on_site: boolean | null;
+  bar: boolean | null;
+  airport_shuttle: boolean | null;
+  pet_friendly: boolean | null;
+
+  // Stay-level (year-only, never exact dates)
   year: number | null;
   nights: number | null;
   room_type: string | null;
   total_paid: number | null;
   currency: string | null;
-  brand: string | null;
-  chain: string | null;
-  breakfast_included: boolean | null;
 };
 
 async function callStrayParser(payload: {
@@ -98,25 +129,61 @@ async function lookupExistingImport(hash: string) {
   };
 }
 
+/** Map the wifi enum from the parse onto our existing wifi (boolean) +
+ *  wifi_quality (text) columns. Boolean answers "is there wifi at all?"
+ *  while wifi_quality captures the paid/free distinction the confirmation
+ *  often shows. */
+function wifiFields(w: ParsedReservation['wifi']) {
+  if (w === 'free') return { wifi: true, wifi_quality: 'free' };
+  if (w === 'paid') return { wifi: true, wifi_quality: 'paid' };
+  if (w === 'none') return { wifi: false, wifi_quality: null };
+  return null;
+}
+
+/** Build a string array of amenity tags Gemini surfaced — used to populate
+ *  hotel_vibe so the qualitative amenity grid on the detail page lights up
+ *  without manual editing. */
+function vibeFromAmenities(p: ParsedReservation): string[] {
+  const out: string[] = [];
+  if (p.pool) out.push('pool');
+  if (p.gym) out.push('gym');
+  if (p.spa) out.push('spa');
+  if (p.restaurant_on_site) out.push('on-site restaurant');
+  if (p.bar) out.push('bar');
+  if (p.airport_shuttle) out.push('airport shuttle');
+  if (p.pet_friendly) out.push('pet-friendly');
+  return out;
+}
+
 async function upsertPin(parsed: ParsedReservation): Promise<{ id: string; slug: string | null; isNew: boolean } | null> {
   if (!parsed.hotel_name) return null;
   const sb = supabaseAdmin();
 
+  // Pull the same column set we might write back to so the non-destructive
+  // update path can decide field-by-field whether to fill in.
   const { data: existing } = await sb
     .from('pins')
-    .select('id, slug, city_names, visit_year, nights_stayed, room_type, room_price_per_night, room_price_currency, address, states_names, kind, visited')
+    .select(
+      'id, slug, kind, visited, city_names, states_names, address, lat, lng, phone, website, description, ' +
+      'visit_year, nights_stayed, room_type, room_price_per_night, room_price_currency, ' +
+      'breakfast_quality, wifi, wifi_quality, parking, hotel_vibe',
+    )
     .ilike('name', parsed.hotel_name)
     .limit(5);
 
+  // Wider .select() tightens supabase-js's row inference enough that it
+  // wraps each cell in a GenericStringError type. We treat rows as untyped
+  // because the candidate map drives writes, so cast once and move on.
+  const rows: any[] = Array.isArray(existing) ? (existing as any[]) : [];
   let existingPin: any | null = null;
-  if (existing && existing.length > 0) {
+  if (rows.length > 0) {
     if (parsed.city) {
       const cityLower = parsed.city.toLowerCase();
-      existingPin = existing.find(p =>
+      existingPin = rows.find(p =>
         Array.isArray(p.city_names) && p.city_names.some((c: string) => c.toLowerCase() === cityLower),
       ) ?? null;
     }
-    if (!existingPin) existingPin = existing[0];
+    if (!existingPin) existingPin = rows[0];
   }
 
   const perNight =
@@ -124,16 +191,40 @@ async function upsertPin(parsed: ParsedReservation): Promise<{ id: string; slug:
       ? Number((parsed.total_paid / parsed.nights).toFixed(2))
       : null;
 
-  // Build the candidate field set from the parse.
+  // Build the candidate field set from the parse — anything we have a
+  // value for becomes a target. The non-destructive update path below
+  // filters this further.
   const candidate: Record<string, unknown> = { kind: 'hotel', visited: true };
+
+  // Location.
   if (parsed.address) candidate.address = parsed.address;
   if (parsed.city) candidate.city_names = [parsed.city];
   if (parsed.country) candidate.states_names = [parsed.country];
+  if (parsed.lat != null) candidate.lat = parsed.lat;
+  if (parsed.lng != null) candidate.lng = parsed.lng;
+
+  // Public contact (hotel-side, never guest-side).
+  if (parsed.phone) candidate.phone = parsed.phone;
+  if (parsed.website) candidate.website = parsed.website;
+
+  // Description / property snippet.
+  if (parsed.description) candidate.description = parsed.description;
+
+  // Stay facts.
   if (parsed.year) candidate.visit_year = parsed.year;
   if (parsed.nights) candidate.nights_stayed = parsed.nights;
   if (parsed.room_type) candidate.room_type = parsed.room_type;
   if (perNight) candidate.room_price_per_night = perNight;
   if (parsed.currency) candidate.room_price_currency = parsed.currency;
+
+  // Amenities / qualitative.
+  if (parsed.breakfast_included === true) candidate.breakfast_quality = 'included';
+  else if (parsed.breakfast_included === false) candidate.breakfast_quality = 'not included';
+  const wifi = wifiFields(parsed.wifi);
+  if (wifi) Object.assign(candidate, wifi);
+  if (parsed.parking) candidate.parking = parsed.parking;
+  const vibe = vibeFromAmenities(parsed);
+  if (vibe.length > 0) candidate.hotel_vibe = vibe;
 
   if (existingPin) {
     // Non-destructive update: only fill fields the pin doesn't already have.
