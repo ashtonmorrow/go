@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
+import { revalidateTag, revalidatePath } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { createPinFromCandidate, type CandidatePlace } from '@/lib/findOrCreatePin';
 
@@ -106,11 +106,17 @@ export async function POST(req: Request) {
     }
   }
 
-  // Bust the pins cache so the new photos appear immediately on detail pages.
+  // Bust the pins data cache + index page ISR so freshly-created pins surface
+  // on /pins/cards immediately rather than waiting for the next revalidate window.
   try {
     revalidateTag('supabase-pins');
+    revalidateTag('supabase-personal-photos');
+    revalidatePath('/pins');
+    revalidatePath('/pins/cards');
+    revalidatePath('/pins/map');
+    revalidatePath('/pins/table');
   } catch {
-    /* revalidateTag may not be available in some runtimes */
+    /* not all runtimes expose revalidate* helpers */
   }
 
   return NextResponse.json({ created, failed });

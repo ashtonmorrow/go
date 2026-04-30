@@ -39,9 +39,12 @@ export type PinFilterState = {
   desc: boolean;
 };
 
+// Curated landing — pins is mostly a personal "places I've been" list, so the
+// default narrows to visited. Reset() returns to NEUTRAL_STATE for a real
+// escape hatch.
 const DEFAULT_STATE: PinFilterState = {
   q: '',
-  visitedFilter: 'all',
+  visitedFilter: 'visited',
   unescoOnly: false,
   freeOnly: false,
   foodOnSiteOnly: false,
@@ -102,7 +105,12 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
-  const stableReset = useCallback(() => setState(DEFAULT_STATE), []);
+  // Reset clears EVERYTHING including the curated visited='visited' default
+  // so the user has a true "show me all 1300+ pins" escape hatch.
+  const stableReset = useCallback(
+    () => setState({ ...DEFAULT_STATE, visitedFilter: 'all' }),
+    [],
+  );
 
   const value = useMemo(
     () => ({
