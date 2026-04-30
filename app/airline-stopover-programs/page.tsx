@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { AllianceFilter } from "./_components/AllianceFilter";
 import { ProgramCard } from "./_components/ProgramCard";
@@ -11,24 +10,120 @@ import {
   getStubs,
 } from "./_data/programs";
 
-const LAST_UPDATED = "April 2026";
+const SITE_URL = "https://go.mike-lee.me";
+const PAGE_PATH = "/airline-stopover-programs";
+const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
+const PUBLISHED_ISO = "2026-04-30";
+const UPDATED_ISO = "2026-04-30";
+const LAST_UPDATED_LABEL = "April 30, 2026";
+const AUTHOR_NAME = "Mike Lee";
+
+const PAGE_TITLE = "Airline stopover programs";
+const PAGE_DESCRIPTION =
+  "A reference of major airline stopover programs, listing hotel nights included, validity windows, and stopover cities for each carrier.";
 
 export const metadata: Metadata = {
-  title: "Airline stopover programs — a one-page cheat sheet",
-  description:
-    "Every major airline's stopover program in one place: which ones include a free hotel, how long you can stay, and what to watch out for. Updated " +
-    LAST_UPDATED +
-    ".",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   openGraph: {
-    title: "Airline stopover programs — a one-page cheat sheet",
-    description:
-      "Two trips for the price of one — sometimes with a free hotel. The full cheat sheet, side-by-side by alliance.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     type: "article",
+    url: PAGE_URL,
+    publishedTime: PUBLISHED_ISO,
+    modifiedTime: UPDATED_ISO,
+    authors: [AUTHOR_NAME],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
   },
   alternates: {
-    canonical: "/airline-stopover-programs",
+    canonical: PAGE_PATH,
   },
 };
+
+function airlineSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function StructuredData() {
+  const verified = PROGRAMS.filter((p) => !p.isStub);
+
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    datePublished: PUBLISHED_ISO,
+    dateModified: UPDATED_ISO,
+    author: { "@type": "Person", name: AUTHOR_NAME },
+    publisher: { "@type": "Person", name: AUTHOR_NAME },
+    mainEntityOfPage: { "@type": "WebPage", "@id": PAGE_URL },
+    url: PAGE_URL,
+    inLanguage: "en",
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: PAGE_TITLE,
+        item: PAGE_URL,
+      },
+    ],
+  };
+
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: PAGE_TITLE,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: verified.length,
+    itemListElement: verified.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${PAGE_URL}#${airlineSlug(p.airline)}`,
+      item: {
+        "@type": "Service",
+        name: `${p.airline} stopover program`,
+        provider: {
+          "@type": "Airline",
+          name: p.airline,
+        },
+        ...(p.cities ? { areaServed: p.cities } : {}),
+        ...(p.commentary ? { description: p.commentary } : {}),
+        ...(p.programUrl ? { url: p.programUrl } : {}),
+      },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+      />
+    </>
+  );
+}
 
 export default function AirlineStopoverProgramsPage() {
   const grouped = groupByAlliance(PROGRAMS);
@@ -41,70 +136,15 @@ export default function AirlineStopoverProgramsPage() {
     "Non aligned": grouped["Non aligned"].length,
   };
 
-  const totalListed = PROGRAMS.filter((p) => !p.isStub).length;
-  const withHotel = PROGRAMS.filter(
-    (p) => !p.isStub && p.hotelNights && p.hotelNights !== "0"
-  ).length;
-
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
-      {/* ── Header ────────────────────────────────────────────────── */}
-      <header className="mb-10">
-        <p className="text-sm font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-          Travel cheat sheet
-        </p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
-          Airline stopover programs
-        </h1>
-        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
-          Two trips for the price of one — sometimes with a free hotel. The
-          catch is in the fine print, so here&apos;s every major program
-          side-by-side.
-        </p>
-      </header>
+      <StructuredData />
 
-      {/* ── Intro prose ─────────────────────────────────────────── */}
-      <section className="space-y-4 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
-        <p>
-          A stopover program lets you break a long international flight into
-          two trips at no extra airfare. Instead of suffering an overnight
-          layover in a hub city, you turn it into a two- or three-day visit
-          on the way to where you were already going. Some airlines sweeten
-          the deal with a free hotel and meals; others just give you
-          permission to stop without repricing the ticket.
-        </p>
-        <p>
-          The annoying thing is that every airline structures their program
-          differently, and the marketing language is uniformly vague about
-          which one you&apos;re actually getting. So I built this page to
-          line them all up. Of the {totalListed} programs listed below,{" "}
-          <strong>{withHotel} include a complimentary hotel</strong> for
-          eligible passengers. The rest are routing perks — useful, but not a
-          free vacation.
-        </p>
-        <div className="my-6 rounded-lg border-l-4 border-gray-900 bg-gray-50 px-4 py-3 text-[15px] text-gray-700 dark:border-gray-100 dark:bg-gray-900/60 dark:text-gray-300">
-          <p className="font-semibold text-gray-900 dark:text-gray-100">
-            Three things to know before booking
-          </p>
-          <ol className="mt-2 list-decimal space-y-1 pl-5">
-            <li>
-              <strong>Routing matters.</strong> A stopover almost always has
-              to happen at the carrier&apos;s hub. A Turkish stopover means
-              flying Turkish Airlines through Istanbul. You can&apos;t bolt a
-              Doha stopover onto a Lufthansa ticket.
-            </li>
-            <li>
-              <strong>&ldquo;Free hotel&rdquo; has fine print.</strong>{" "}
-              Eligible fare class, minimum cabin, length of layover, partner
-              hotels only — read the program page before counting on it.
-            </li>
-            <li>
-              <strong>Programs change.</strong> Always confirm on the
-              airline&apos;s own page (linked on each card) before booking.
-            </li>
-          </ol>
-        </div>
-      </section>
+      <header className="mb-10">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
+          {PAGE_TITLE}
+        </h1>
+      </header>
 
       {/* ── Cheat sheet ─────────────────────────────────────────── */}
       <div id="cheat-sheet-top" className="scroll-mt-24" />
@@ -115,18 +155,18 @@ export default function AirlineStopoverProgramsPage() {
           const programs = grouped[alliance];
           if (programs.length === 0) return null;
           const style = ALLIANCE_STYLES[alliance];
+          const sectionId =
+            alliance === "Star Alliance"
+              ? "star-alliance"
+              : alliance === "Non aligned"
+                ? "non-aligned"
+                : alliance.toLowerCase();
           return (
             <section
               key={alliance}
-              id={
-                alliance === "Star Alliance"
-                  ? "star-alliance"
-                  : alliance === "Non aligned"
-                    ? "non-aligned"
-                    : alliance.toLowerCase()
-              }
+              id={sectionId}
               className="scroll-mt-24"
-              aria-labelledby={`${alliance.replace(/\s+/g, "-").toLowerCase()}-heading`}
+              aria-labelledby={`${sectionId}-heading`}
             >
               <header className="mb-4 flex items-baseline gap-3 border-b border-gray-200 pb-2 dark:border-gray-800">
                 <span
@@ -134,7 +174,7 @@ export default function AirlineStopoverProgramsPage() {
                   aria-hidden="true"
                 />
                 <h2
-                  id={`${alliance.replace(/\s+/g, "-").toLowerCase()}-heading`}
+                  id={`${sectionId}-heading`}
                   className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
                 >
                   {style.label}
@@ -146,7 +186,9 @@ export default function AirlineStopoverProgramsPage() {
               </header>
               <div className="grid gap-4 sm:grid-cols-2">
                 {programs.map((p) => (
-                  <ProgramCard key={p.airline} program={p} />
+                  <div key={p.airline} id={airlineSlug(p.airline)} className="scroll-mt-24">
+                    <ProgramCard program={p} />
+                  </div>
                 ))}
               </div>
             </section>
@@ -161,13 +203,9 @@ export default function AirlineStopoverProgramsPage() {
           className="mt-16 scroll-mt-24 rounded-xl border border-dashed border-gray-300 bg-gray-50/60 p-5 dark:border-gray-700 dark:bg-gray-900/40"
         >
           <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Still researching
+            Programs pending verification
           </h2>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Programs I know exist but haven&apos;t fully verified yet. Holler
-            if you have first-hand experience with any of these.
-          </p>
-          <ul className="mt-4 grid gap-2 text-sm text-gray-700 sm:grid-cols-2 dark:text-gray-300">
+          <ul className="mt-3 grid gap-2 text-sm text-gray-700 sm:grid-cols-2 dark:text-gray-300">
             {stubs.map((p) => {
               const allianceStyle = p.alliance
                 ? ALLIANCE_STYLES[p.alliance]
@@ -195,15 +233,8 @@ export default function AirlineStopoverProgramsPage() {
       )}
 
       {/* ── Footer note ─────────────────────────────────────────── */}
-      <footer className="mt-16 border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-gray-800 dark:text-gray-400">
-        <p>
-          Last updated {LAST_UPDATED}. Programs change frequently — confirm on
-          the airline&apos;s page before booking. Spotted an error or know of
-          a program I missed?{" "}
-          <Link href="/" className="underline-offset-4 hover:underline">
-            Get in touch.
-          </Link>
-        </p>
+      <footer className="mt-16 border-t border-gray-200 pt-6 text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
+        <p>Last updated {LAST_UPDATED_LABEL}.</p>
       </footer>
     </main>
   );

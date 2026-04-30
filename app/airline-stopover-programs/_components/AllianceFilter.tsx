@@ -14,8 +14,8 @@ const SECTION_IDS: Record<Alliance, string> = {
 
 /**
  * Sticky pill bar that scroll-jumps to alliance sections and tracks the
- * section currently in view. Pure UI sugar — the underlying page is
- * fully server-rendered and works without JS.
+ * section currently in view. The underlying page is fully server-rendered
+ * and works without JS.
  */
 export function AllianceFilter({ counts }: { counts: Counts }) {
   const [active, setActive] = useState<Alliance | "all">("all");

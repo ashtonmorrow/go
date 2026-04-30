@@ -73,7 +73,7 @@ export const PROGRAMS: StopoverProgram[] = [
     duration:
       "Stopover program with a free hotel benefit (timing depends on eligibility rules).",
     commentary:
-      "Complimentary hotel — typically 1 night in economy, 2 nights in business — for eligible itineraries.",
+      "Complimentary hotel for eligible itineraries: typically one night for economy passengers and two nights for business.",
     programUrl: "https://www.turkishairlines.com/en-int/flights/stopover/",
   },
   {
@@ -104,7 +104,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Up to 48 hours.",
     commentary:
-      "Marketed Toronto stopover offer on select itineraries; framed as an experience rather than included hotel nights.",
+      "Toronto stopover offered on select itineraries. Positioned as a destination experience rather than a hotel benefit.",
     programUrl:
       "https://www.aircanada.com/en-ca/flights-to-toronto/stopover-in-toronto",
   },
@@ -115,7 +115,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Up to 48 hours.",
     commentary:
-      "Stopover Bogotá: add a stop on connecting itineraries with no additional airfare. Positioned around destination perks and discounts rather than included hotels.",
+      "Adds a Bogotá stop on connecting itineraries at no additional airfare. The program emphasizes destination discounts and partner offers rather than included hotel nights.",
     programUrl:
       "https://www.avianca.com/en/offers-destinations/stopover-bogota/",
   },
@@ -136,7 +136,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Up to 7 days.",
     commentary:
-      "Stopover programme marketed primarily for Munich as an add-on to itineraries — more about experiences and add-on bookings than bundled hotel nights.",
+      "Stopover programme oriented around Munich as an itinerary add-on. The offering centers on partner experiences and bookings rather than included hotel nights.",
     programUrl: "https://www.lufthansa.com/us/en/book-and-manage/stopover",
   },
   {
@@ -146,7 +146,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Layover 5.5 to under 24 hours; tour itself is about 2.5 hours.",
     commentary:
-      "Free city tour for eligible transit passengers. Note: this is a tour, not a multi-day stopover program.",
+      "Free guided city tour for eligible transit passengers. The benefit is a tour, not a multi-day stopover program.",
     programUrl:
       "https://www.singaporeair.com/en_UK/es/plan-travel/privileges/free-singapore-tour/",
   },
@@ -157,7 +157,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Up to 10 days.",
     commentary:
-      "Add a Portugal stopover with no additional airfare, plus partner discounts at hotels and attractions.",
+      "Add a Portugal stopover at no additional airfare. Partner discounts available at hotels and attractions.",
     programUrl: "https://www.flytap.com/en-us/stopover",
   },
 
@@ -169,7 +169,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "1–4",
     duration: "Transit 12 to 96 hours; up to 4 nights.",
     commentary:
-      "Discounted stopover hotel packages (not usually free) sold via Qatar Stopover.",
+      "Discounted stopover hotel packages sold through Qatar Stopover. Hotel is generally not complimentary.",
     programUrl: "https://www.qatarairways.com/en/offers/qatar-stopover.html",
   },
   {
@@ -179,7 +179,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "1–3",
     duration: "1 to 3 nights.",
     commentary:
-      "Bookable stopover packages that include hotel nights as part of the bundle. Pricing varies.",
+      "Bookable stopover packages with hotel nights included in the bundle. Pricing varies.",
     programUrl: "https://www.omanair.com/en_es/stopover-in-muscat",
   },
   {
@@ -190,7 +190,7 @@ export const PROGRAMS: StopoverProgram[] = [
     duration:
       "6 or 8 to 24 hours (max 1 night; 6+ hours in Crown, 8+ in Economy).",
     commentary:
-      "Transit accommodation: hotel, meals, and transfers for eligible itineraries where RJ is the first available connection.",
+      "Transit accommodation including hotel, meals, and transfers for eligible itineraries where RJ is the first available connection.",
     programUrl:
       "https://www.rj.com/en/info-and-tips/our-hub-and-beyond/transit-accommodation",
   },
@@ -207,11 +207,11 @@ export const PROGRAMS: StopoverProgram[] = [
   {
     airline: "British Airways",
     alliance: "oneworld",
-    cities: "London (LHR/LGW) — self-built",
+    cities: "London (LHR/LGW), constructed via multi-city booking",
     hotelNights: "0",
     duration: "Varies by fare rules or multi-city booking.",
     commentary:
-      "No standardized stopover program with defined perks. You can construct stopovers via multi-city pricing or BA Holidays multi-centre bookings.",
+      "No standardized stopover program with defined benefits. Stopovers can be constructed through multi-city pricing or BA Holidays multi-centre bookings.",
     programUrl:
       "https://www.britishairways.com/content/holidays/holiday-types/multi-centre-holidays",
   },
@@ -222,7 +222,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "1 to 7 days.",
     commentary:
-      "Stopover booking option in Hong Kong; offers and discounts may appear, but a hotel is not inherently included.",
+      "Stopover booking option in Hong Kong. Offers and discounts may apply; a hotel is not automatically included.",
     programUrl:
       "https://flights.cathaypacific.com/en_HK/offers/stopover-in-hong-kong.html",
   },
@@ -233,7 +233,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "24 hours to 10 days (max 9 nights).",
     commentary:
-      "Add a Madrid stopover with no additional airfare, plus city discounts and perks.",
+      "Add a Madrid stopover at no additional airfare. Includes partner discounts at hotels and attractions.",
     programUrl: "https://www.iberia.com/us/en/iberia-stopover/",
   },
 
@@ -245,7 +245,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "1",
     duration: "Up to 96 hours.",
     commentary:
-      "Stopover visa flow marketed with a one-night accommodation benefit on eligible Saudia itineraries.",
+      "Stopover visa flow with a one-night accommodation benefit on eligible Saudia itineraries.",
     programUrl: "https://www.saudia.com/transit-visa",
   },
   {
@@ -255,7 +255,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Connection must be 4 to 24 hours.",
     commentary:
-      "Free transit tour program for eligible connections. (Tour, not hotel.)",
+      "Free transit tour program for eligible connections. The benefit is a guided tour rather than hotel accommodation.",
     programUrl:
       "https://www.koreanair.com/contents/plan-your-travel/at-the-airport/incheon-airport/transfer/transit-program?hl=en",
   },
@@ -266,7 +266,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "0",
     duration: "Up to 72 hours.",
     commentary:
-      "Stopover concept with suggested 24, 48, or 72-hour Copenhagen stays. Routing and booking flow dependent.",
+      "Stopover offering with suggested 24, 48, or 72-hour Copenhagen stays. Subject to routing and booking flow.",
     programUrl: "https://www.flysas.com/en/themes/stopover",
   },
 
@@ -278,7 +278,7 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "1–2",
     duration: "Minimum 24-hour stop, commonly up to 96 hours.",
     commentary:
-      "Abu Dhabi Stopover: complimentary hotel stay (up to two nights free) on eligible bookings.",
+      "Abu Dhabi Stopover. Complimentary hotel stay of up to two nights on eligible bookings.",
     programUrl: "https://www.etihad.com/en/abu-dhabi/stopover",
   },
   {
@@ -299,9 +299,9 @@ export const PROGRAMS: StopoverProgram[] = [
     cities: "Dubai (DXB)",
     hotelNights: "1",
     duration:
-      "Typically for long connections when no better connection is available — often cited as 10 to 24 hours.",
+      "Applied to long connections when no better routing is available. Commonly cited as 10 to 24 hours.",
     commentary:
-      "Dubai Connect: complimentary hotel plus transfers and meals for eligible long connections.",
+      "Dubai Connect. Complimentary hotel, transfers, and meals for eligible long connections.",
     programUrl:
       "https://www.emirates.com/english/before-you-fly/dubai-international-airport/dubai-connect/",
   },
@@ -385,7 +385,7 @@ export function groupByAlliance(
   return out;
 }
 
-/** Programs flagged as stubs — rendered in the "Researching" tail section. */
+/** Programs flagged as stubs, rendered in the verification-pending tail section. */
 export function getStubs(programs: StopoverProgram[]): StopoverProgram[] {
   return programs.filter((p) => p.isStub);
 }

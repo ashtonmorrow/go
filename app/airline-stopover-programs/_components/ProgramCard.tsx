@@ -72,10 +72,9 @@ export function ProgramCard({ program }: { program: StopoverProgram }) {
           href={program.programUrl}
           target="_blank"
           rel="noreferrer noopener"
-          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-gray-900 underline-offset-4 hover:underline dark:text-gray-100"
+          className="mt-4 inline-flex items-center text-sm font-medium text-gray-900 underline-offset-4 hover:underline dark:text-gray-100"
         >
-          Program details
-          <span aria-hidden="true">→</span>
+          Official program page
         </a>
       )}
     </article>
