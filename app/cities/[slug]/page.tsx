@@ -69,16 +69,20 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();
 
-  // Fan everything else out in parallel — Notion blocks, country sidebar,
-  // sister-city resolution, climate, and the local content file. Previously
-  // these were sequential awaits which stacked Notion's ~250-400ms TTFB
-  // four times in a row on a cold cache.
-  const [blocks, countries, allCities, climate, content] = await Promise.all([
-    fetchPageBlocks(city.id),
+  // Read the file-based content first — it's a fast disk read and lets us
+  // decide whether to skip the slow Notion blocks fetch entirely. When a
+  // content file exists, it IS the prose; the legacy Notion-blocks rendering
+  // would just sit underneath it and we'd be paying 500ms-2s for nothing.
+  const content = await readPlaceContent('cities', slug);
+
+  // Everything else fans out in parallel. Notion blocks fall back to an
+  // empty array when content is taking over, so we don't even queue the
+  // request — that's the single biggest perf win on a cold cache.
+  const [blocks, countries, allCities, climate] = await Promise.all([
+    content ? Promise.resolve([]) : fetchPageBlocks(city.id),
     fetchAllCountries(),
     fetchAllCities(),
     fetchCityClimate(city.lat, city.lng),
-    readPlaceContent('cities', slug),
   ]);
   const hasBody = blocks.length > 0;
 

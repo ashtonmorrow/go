@@ -324,20 +324,33 @@ export const fetchCountryBySlug = cache(async (slug: string): Promise<Country | 
 
 // Blocks vary per page so caching is per-pageId. Wrapping with `cache()` still
 // dedupes multiple calls for the same pageId within a render.
-export const fetchPageBlocks = cache(async (pageId: string): Promise<any[]> => {
-  if (!process.env.NOTION_TOKEN) return [];
-  const blocks: any[] = [];
-  let cursor: string | undefined;
-  do {
-    const res: any = await withRetry(() =>
-      notion.blocks.children.list({
-        block_id: pageId,
-        start_cursor: cursor,
-        page_size: 100,
-      })
-    );
-    blocks.push(...res.results);
-    cursor = res.has_more ? res.next_cursor : undefined;
-  } while (cursor);
-  return blocks;
-});
+//
+// PERF: this used to be the slowest fetch on the city + country detail
+// pages — Notion's blocks.children.list runs 500ms-2s per call, and we
+// were doing it uncached on every request. Wrapping with `unstable_cache`
+// keyed on the pageId means the second request to a given detail page
+// hits the Next.js data cache instead of Notion. Combined with the
+// content-file short-circuit at the call sites, most detail-page renders
+// no longer touch Notion at all for blocks.
+const _fetchPageBlocks = unstable_cache(
+  async (pageId: string): Promise<any[]> => {
+    if (!process.env.NOTION_TOKEN) return [];
+    const blocks: any[] = [];
+    let cursor: string | undefined;
+    do {
+      const res: any = await withRetry(() =>
+        notion.blocks.children.list({
+          block_id: pageId,
+          start_cursor: cursor,
+          page_size: 100,
+        })
+      );
+      blocks.push(...res.results);
+      cursor = res.has_more ? res.next_cursor : undefined;
+    } while (cursor);
+    return blocks;
+  },
+  ['notion-page-blocks'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-page-blocks'] }
+);
+export const fetchPageBlocks = cache(_fetchPageBlocks);

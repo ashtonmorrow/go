@@ -62,12 +62,14 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const country = await fetchCountryBySlug(slug);
   if (!country) notFound();
 
-  // Single Promise.all so the cold-cache TTFBs stack, not chain.
-  const [allCities, factsByIso2, blocks, content] = await Promise.all([
+  // Read the local content file first; if present, skip the slow Notion
+  // blocks fetch entirely (the file IS the prose now).
+  const content = await readPlaceContent('countries', slug);
+
+  const [allCities, factsByIso2, blocks] = await Promise.all([
     fetchAllCities(),
     fetchAllCountryFacts(),
-    fetchPageBlocks(country.id),
-    readPlaceContent('countries', slug),
+    content ? Promise.resolve([]) : fetchPageBlocks(country.id),
   ]);
   const cities = allCities.filter(c => c.countryPageId === country.id);
   const fact = country.iso2 ? factsByIso2.get(country.iso2.toUpperCase()) ?? null : null;
