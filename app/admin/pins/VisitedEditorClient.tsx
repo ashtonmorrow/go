@@ -239,6 +239,12 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                     >
                       {row.name}
                     </button>
+                    <Link
+                      href={`/admin/pins/${row.id}`}
+                      className="ml-2 text-[10px] text-teal hover:underline"
+                    >
+                      edit
+                    </Link>
                     {row.slug && (
                       <Link
                         href={`/pins/${row.slug}`}

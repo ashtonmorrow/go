@@ -323,6 +323,8 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
           {hasGoodToKnow && <GoodToKnowSection pin={pin} facets={goodToKnowFacets} />}
 
+          <PersonalSection pin={pin} />
+
           {personalPhotos.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h3 text-ink-deep mb-3">Your photos</h2>
@@ -675,6 +677,119 @@ function GettingThereSection({ pin }: { pin: Pin }) {
           </div>
         )}
       </dl>
+    </section>
+  );
+}
+
+function PersonalSection({ pin }: { pin: Pin }) {
+  const universal =
+    pin.personalRating != null ||
+    pin.personalReview ||
+    pin.visitDates ||
+    pin.companions.length > 0;
+
+  const hasHotel =
+    pin.kind === 'hotel' &&
+    (pin.nightsStayed != null ||
+      pin.roomType ||
+      pin.roomPricePerNight != null ||
+      pin.wouldStayAgain != null);
+
+  const hasMeal =
+    pin.kind === 'restaurant' &&
+    (pin.cuisine.length ||
+      pin.mealTypes.length ||
+      pin.dishesTried.length ||
+      pin.dietaryOptions.length ||
+      pin.reservationRecommended != null);
+
+  if (!universal && !hasHotel && !hasMeal) return null;
+
+  const heading =
+    pin.kind === 'hotel' ? 'Your stay' :
+    pin.kind === 'restaurant' ? 'Your meal' :
+    'Your visit';
+
+  return (
+    <section className="mt-8 pt-8 border-t border-sand">
+      <h2 className="text-h3 text-ink-deep mb-3">{heading}</h2>
+
+      {universal && (
+        <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-small">
+          {pin.personalRating != null && (
+            <span aria-label={`${pin.personalRating} out of 5 stars`} className="text-ink-deep">
+              {'★'.repeat(pin.personalRating)}
+              <span className="text-sand">{'★'.repeat(5 - pin.personalRating)}</span>
+            </span>
+          )}
+          {pin.visitDates && (
+            <span className="text-slate">{pin.visitDates}</span>
+          )}
+          {pin.companions.length > 0 && (
+            <span className="text-muted text-[12px]">
+              with {pin.companions.join(', ')}
+            </span>
+          )}
+        </div>
+      )}
+
+      {hasHotel && (
+        <dl className="text-small space-y-1.5 mb-4">
+          {pin.nightsStayed != null && (
+            <FactRow label="Nights">
+              {pin.nightsStayed} {pin.nightsStayed === 1 ? 'night' : 'nights'}
+            </FactRow>
+          )}
+          {pin.roomType && <FactRow label="Room">{pin.roomType}</FactRow>}
+          {pin.roomPricePerNight != null && (
+            <FactRow label="Per night">
+              <span className="font-mono tabular-nums">
+                {pin.roomPriceCurrency ? `${pin.roomPriceCurrency} ` : ''}
+                {pin.roomPricePerNight}
+              </span>
+            </FactRow>
+          )}
+          {pin.wouldStayAgain === true && (
+            <FactRow label="Verdict"><span className="text-teal">Would stay again</span></FactRow>
+          )}
+          {pin.wouldStayAgain === false && (
+            <FactRow label="Verdict"><span className="text-orange">Wouldn&rsquo;t stay again</span></FactRow>
+          )}
+        </dl>
+      )}
+
+      {hasMeal && (
+        <dl className="text-small space-y-1.5 mb-4">
+          {pin.cuisine.length > 0 && (
+            <FactRow label="Cuisine">
+              <span className="flex flex-wrap gap-1">
+                {pin.cuisine.map(c => (
+                  <span key={c} className="pill bg-cream-soft text-ink-deep capitalize">{c}</span>
+                ))}
+              </span>
+            </FactRow>
+          )}
+          {pin.mealTypes.length > 0 && (
+            <FactRow label="Best for">{pin.mealTypes.join(', ')}</FactRow>
+          )}
+          {pin.dishesTried.length > 0 && (
+            <FactRow label="Tried">{pin.dishesTried.join(' · ')}</FactRow>
+          )}
+          {pin.dietaryOptions.length > 0 && (
+            <FactRow label="Dietary">{pin.dietaryOptions.join(', ')}</FactRow>
+          )}
+          {pin.reservationRecommended === true && (
+            <FactRow label="Reservation">Recommended</FactRow>
+          )}
+          {pin.reservationRecommended === false && (
+            <FactRow label="Reservation">Walk-ins welcome</FactRow>
+          )}
+        </dl>
+      )}
+
+      {pin.personalReview && (
+        <p className="text-ink leading-relaxed whitespace-pre-line">{pin.personalReview}</p>
+      )}
     </section>
   );
 }

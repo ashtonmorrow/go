@@ -37,11 +37,32 @@ export async function POST(req: Request) {
 
   const sb = supabaseAdmin();
 
+  // Belt-and-suspenders dup check: even though the personal_photos.hash
+  // unique index would reject inserts, we want to fail loudly with a clear
+  // message rather than silently swallow 23505. Pre-fetch any existing
+  // hashes from this batch so we can short-circuit.
+  const incomingHashes = [...new Set(assignments.map(a => a.photoHash).filter(Boolean))];
+  const existingHashes = new Set<string>();
+  if (incomingHashes.length) {
+    const { data: existing } = await sb
+      .from('personal_photos')
+      .select('hash')
+      .in('hash', incomingHashes);
+    for (const row of existing ?? []) {
+      if (typeof row.hash === 'string') existingHashes.add(row.hash);
+    }
+  }
+
   const newPinCache = new Map<string, { id: string; slug: string }>();
   const created: Array<{ photoHash: string; pinId: string; pinSlug: string; isNew: boolean }> = [];
   const failed: Array<{ photoHash: string; error: string }> = [];
+  const skipped: Array<{ photoHash: string; reason: string }> = [];
 
   for (const a of assignments) {
+    if (existingHashes.has(a.photoHash)) {
+      skipped.push({ photoHash: a.photoHash, reason: 'Photo already uploaded — duplicate hash' });
+      continue;
+    }
     try {
       let pinId = a.existingPinId ?? null;
       let pinSlug: string | null = null;
@@ -119,5 +140,5 @@ export async function POST(req: Request) {
     /* not all runtimes expose revalidate* helpers */
   }
 
-  return NextResponse.json({ created, failed });
+  return NextResponse.json({ created, failed, skipped });
 }

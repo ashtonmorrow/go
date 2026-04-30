@@ -24,6 +24,17 @@ export type PinParking = 'free' | 'paid' | 'street' | 'limited' | 'none' | 'unkn
 export type PinRequiresGuide = 'no' | 'recommended' | 'required' | 'unknown';
 export type PinTimeOfDay = 'sunrise' | 'morning' | 'midday' | 'afternoon' | 'sunset' | 'evening' | 'night';
 
+export type PinKind = 'attraction' | 'shopping' | 'hotel' | 'park' | 'restaurant' | 'transit';
+
+export const PIN_KIND_LABELS: Record<PinKind, string> = {
+  attraction: 'Attraction',
+  shopping: 'Shopping',
+  hotel: 'Hotel',
+  park: 'Park',
+  restaurant: 'Restaurant',
+  transit: 'Transit',
+};
+
 export type PinAdmission = {
   adult?: number | null;
   child?: number | null;
@@ -88,7 +99,29 @@ export type Pin = {
   statesNames: string[];
 
   category: string | null;
+  kind: PinKind | null;
   description: string | null;
+
+  // Universal personal experience (any visited pin)
+  personalRating: number | null;
+  personalReview: string | null;
+  visitDates: string | null;
+  personalNotes: string | null;
+  companions: string[];
+
+  // Hotel-only
+  nightsStayed: number | null;
+  roomType: string | null;
+  roomPricePerNight: number | null;
+  roomPriceCurrency: string | null;
+  wouldStayAgain: boolean | null;
+
+  // Restaurant-only
+  cuisine: string[];
+  mealTypes: string[];
+  dishesTried: string[];
+  dietaryOptions: string[];
+  reservationRecommended: boolean | null;
 
   hours: string | null;
   priceText: string | null;
@@ -203,6 +236,7 @@ const DIFFICULTIES = ['easy', 'moderate', 'hard', 'expert', 'unknown'] as const;
 const PARKINGS = ['free', 'paid', 'street', 'limited', 'none', 'unknown'] as const;
 const GUIDES = ['no', 'recommended', 'required', 'unknown'] as const;
 const TIMES = ['sunrise', 'morning', 'midday', 'afternoon', 'sunset', 'evening', 'night'] as const;
+const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 
 function rowToPin(row: any): Pin {
   const lat = asNumber(row.lat);
@@ -245,7 +279,26 @@ function rowToPin(row: any): Pin {
     cityNames: asStringArray(row.city_names),
     statesNames: asStringArray(row.states_names),
     category: row.category ?? null,
+    kind: asEnum(row.kind, KINDS),
     description: row.description ?? null,
+
+    personalRating: asNumber(row.personal_rating),
+    personalReview: asString(row.personal_review),
+    visitDates: asString(row.visit_dates),
+    personalNotes: asString(row.personal_notes),
+    companions: asStringArray(row.companions),
+
+    nightsStayed: asNumber(row.nights_stayed),
+    roomType: asString(row.room_type),
+    roomPricePerNight: asNumber(row.room_price_per_night),
+    roomPriceCurrency: asString(row.room_price_currency),
+    wouldStayAgain: asBool(row.would_stay_again),
+
+    cuisine: asStringArray(row.cuisine),
+    mealTypes: asStringArray(row.meal_types),
+    dishesTried: asStringArray(row.dishes_tried),
+    dietaryOptions: asStringArray(row.dietary_options),
+    reservationRecommended: asBool(row.reservation_recommended),
     hours: row.hours ?? null,
     priceText: row.price_text ?? null,
     priceAmount: asNumber(row.price_amount),
@@ -339,7 +392,7 @@ const PAGE_SIZE = 1000;
 const INDEX_COLUMNS = [
   'id', 'airtable_id', 'name', 'slug',
   'lat', 'lng', 'city_names', 'states_names',
-  'category', 'description', 'hours',
+  'category', 'kind', 'description', 'hours',
   'price_text', 'price_amount', 'price_currency',
   'unesco_id', 'website', 'images', 'visited',
   'wikidata_qid', 'wikipedia_url', 'inception_year',
@@ -347,6 +400,8 @@ const INDEX_COLUMNS = [
   'airtable_modified_at', 'updated_at',
   'free', 'free_to_visit', 'food_on_site',
   'wheelchair_accessible', 'kid_friendly', 'bring',
+  // Personal-experience fields used on cards / sort / filters
+  'personal_rating', 'visit_dates',
 ].join(',');
 
 const _fetchAllPins = unstable_cache(
