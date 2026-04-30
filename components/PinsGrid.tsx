@@ -1,13 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePinFilters } from './PinFiltersContext';
 import { filterPins, sortPins } from '@/lib/pinFilter';
 import { flagRect } from '@/lib/flags';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
 import { parseHours, todayHoursLabel } from '@/lib/parseHours';
+import { thumbUrl } from '@/lib/imageUrl';
 import type { Pin } from '@/lib/pins';
+
+/** Cards rendered on first paint — 60 covers ~3 viewports of grid on
+ *  desktop and a long scroll on mobile. The rest stream in via an
+ *  IntersectionObserver-driven pager so we don't ship 1,300 DOM nodes
+ *  + 1,300 image requests on initial load. */
+const PAGE_SIZE = 60;
 
 // === PinsGrid ==============================================================
 // Client component that takes the server-fetched pin list (already mapped
@@ -48,6 +55,32 @@ export default function PinsGrid({ pins, countryNameToIso2 }: Props) {
     ctx?.setCounts(filtered.length, pins.length);
   }, [ctx, filtered.length, pins.length]);
 
+  // Pagination — only render PAGE_SIZE cards initially, then bump as the
+  // user scrolls past the sentinel. Resets to PAGE_SIZE whenever the
+  // filter state changes so a freshly-applied filter starts at the top.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [ctx?.state]);
+
+  const sentinel = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const el = sentinel.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setVisibleCount(v => Math.min(v + PAGE_SIZE, filtered.length));
+          }
+        }
+      },
+      { rootMargin: '600px 0px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [filtered.length]);
+
   if (filtered.length === 0) {
     return (
       <div className="card p-8 text-center text-slate">
@@ -56,20 +89,30 @@ export default function PinsGrid({ pins, countryNameToIso2 }: Props) {
     );
   }
 
+  const visible = filtered.slice(0, visibleCount);
+  const remaining = filtered.length - visibleCount;
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-      {filtered.map(pin => (
-        <PinCard
-          key={pin.id}
-          pin={pin}
-          countryIso2={
-            pin.statesNames[0]
-              ? countryNameToIso2[pin.statesNames[0].toLowerCase()] ?? null
-              : null
-          }
-        />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+        {visible.map(pin => (
+          <PinCard
+            key={pin.id}
+            pin={pin}
+            countryIso2={
+              pin.statesNames[0]
+                ? countryNameToIso2[pin.statesNames[0].toLowerCase()] ?? null
+                : null
+            }
+          />
+        ))}
+      </div>
+      {remaining > 0 && (
+        <div ref={sentinel} className="mt-6 text-center text-small text-muted py-6">
+          Loading more… ({remaining} left)
+        </div>
+      )}
+    </>
   );
 }
 
@@ -83,7 +126,14 @@ function PinCard({
   pin: Pin;
   countryIso2: string | null;
 }) {
-  const coverUrl = pin.personalCoverUrl ?? pin.images[0]?.url ?? null;
+  // Thumbnail transform: tell Supabase Storage to serve a 112x112 (2x of
+  // the 56px CSS size) JPEG instead of the original 4-8 MB photo. This
+  // is the single biggest perf win on /pins/cards — without it each card
+  // pulls down a full-resolution image just to render a postage stamp.
+  const coverUrl = thumbUrl(
+    pin.personalCoverUrl ?? pin.images[0]?.url ?? null,
+    { size: 56 },
+  );
   const country = pin.statesNames[0] ?? null;
   const city = pin.cityNames[0] ?? null;
   const placeText = [city, country].filter(Boolean).join(', ');
@@ -142,6 +192,8 @@ function PinCard({
             aria-hidden
             loading="lazy"
             decoding="async"
+            width={56}
+            height={56}
             className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
           />
         ) : (
@@ -172,6 +224,8 @@ function PinCard({
               title={country ?? ''}
               loading="lazy"
               decoding="async"
+              width={24}
+              height={16}
               className="w-6 h-4 rounded-sm border border-sand bg-white object-cover flex-shrink-0"
             />
           )}
