@@ -317,9 +317,15 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             Uses design-system tokens: bg-paper (the warm card colour),
             border-paper-edge, shadow-paper. The inner inset 5px ring fakes a
             printed frame just inside the edge — kept inline because it has
-            to stack with the drop shadow. */}
+            to stack with the drop shadow.
+
+            Layout: flex column. Header sits at top in natural flow; body
+            (the dl of stat rows) takes the remaining space with flex-1.
+            We previously absolute-positioned the body at top-[40%] which
+            broke when new rows (Water, Electric) were added in the rebuild
+            — at narrow card widths the last row clipped past the bottom. */}
         <div
-      className="flip-face postcard relative transition-shadow bg-paper rounded-[4px] border border-paper-edge"
+      className="flip-face postcard relative transition-shadow bg-paper rounded-[4px] border border-paper-edge flex flex-col"
       style={{
         boxShadow:
           // Drop shadow (warm, like real paper)
@@ -413,9 +419,12 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
       {/* === BODY — single-column address-style stat list ===
           Label on the left (sans, small caps), value on the right (mono).
           Values are right-aligned so the column reads like a typewritten
-          receipt. The whole list sits between the headline rule and the
-          coords footer below. */}
-      <div className="absolute inset-x-4 top-[40%] bottom-2.5 flex flex-col justify-around">
+          receipt. flex-1 + min-h-0 makes it consume whatever vertical space
+          is left under the header, no matter how tall the card is in the
+          current grid breakpoint. justify-around distributes the rows
+          evenly so the column "breathes" on a tall card and packs in on
+          a short one. */}
+      <div className="px-4 pt-2 pb-2.5 flex-1 min-h-0 flex flex-col justify-around">
         <dl className="text-[11px] leading-tight">
           {fmtPopulation(city.population) && (
             <Row label="Population" value={fmtPopulation(city.population)!} />
@@ -437,7 +446,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               with no visual anchor. Together they're recognisable both
               ways. Falls back to code-only when the glyph is unknown. */}
           {city.currency && (
-            <div className="flex justify-between items-baseline gap-3 py-0.5">
+            <div className="flex justify-between items-baseline gap-3 py-px">
               <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Currency
               </dt>
@@ -457,7 +466,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             // Drive — pictorial. Tiny SVG of a stylised road with a 🚗
             // glyph positioned on the correct side. Plus the L/R letter
             // for accessibility / scanability.
-            <div className="flex justify-between items-center gap-3 py-0.5">
+            <div className="flex justify-between items-center gap-3 py-px">
               <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Drive
               </dt>
@@ -475,7 +484,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               (A/B/C/D/E/F/G/I/J etc.) and the voltage matters for
               whether their charger needs a converter. */}
           {(city.plugTypes && city.plugTypes.length > 0 || city.voltage) && (
-            <div className="flex justify-between items-baseline gap-3 py-0.5">
+            <div className="flex justify-between items-baseline gap-3 py-px">
               <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Electric
               </dt>
@@ -493,7 +502,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           {city.koppen && (
             // Climate row uses an icon instead of the raw Köppen code.
             // Visual at-a-glance, full code + meaning live in the tooltip.
-            <div className="flex justify-between items-center gap-3 py-0.5">
+            <div className="flex justify-between items-center gap-3 py-px">
               <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Climate
               </dt>
@@ -557,7 +566,7 @@ function fmtTapWater(w: string): string {
 // aligns like an old typewritten ledger. truncate handles overflow.
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between items-baseline gap-3 py-0.5">
+    <div className="flex justify-between items-baseline gap-3 py-px">
       <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
         {label}
       </dt>

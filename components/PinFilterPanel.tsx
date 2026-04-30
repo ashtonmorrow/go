@@ -103,31 +103,41 @@ export default function PinFilterPanel({
               { value: 'not-visited',  label: 'Not yet' },
             ]}
           />
-          <Switch
-            on={state.unescoOnly}
-            label="UNESCO only"
-            onChange={v => setState(s => ({ ...s, unescoOnly: v }))}
-          />
-          <Switch
-            on={state.freeOnly}
-            label="No admission fee"
-            onChange={v => setState(s => ({ ...s, freeOnly: v }))}
-          />
-          <Switch
-            on={state.foodOnSiteOnly}
-            label="Food on site"
-            onChange={v => setState(s => ({ ...s, foodOnSiteOnly: v }))}
-          />
-          <Switch
-            on={state.wheelchairOnly}
-            label="Wheelchair accessible"
-            onChange={v => setState(s => ({ ...s, wheelchairOnly: v }))}
-          />
-          <Switch
-            on={state.kidFriendlyOnly}
-            label="Kid-friendly"
-            onChange={v => setState(s => ({ ...s, kidFriendlyOnly: v }))}
-          />
+          {/* Five binary "show only places that…" filters as a single chip
+              group. Click to add the filter, click again to clear. Compact
+              and visually consistent with the Lists / Bring sections below. */}
+          <div className="flex flex-wrap gap-1.5 mt-1">
+            <QuickFilterChip
+              on={state.unescoOnly}
+              icon="🌍"
+              label="UNESCO"
+              onChange={v => setState(s => ({ ...s, unescoOnly: v }))}
+            />
+            <QuickFilterChip
+              on={state.freeOnly}
+              icon="◯"
+              label="Free"
+              onChange={v => setState(s => ({ ...s, freeOnly: v }))}
+            />
+            <QuickFilterChip
+              on={state.foodOnSiteOnly}
+              icon="🍽"
+              label="Food"
+              onChange={v => setState(s => ({ ...s, foodOnSiteOnly: v }))}
+            />
+            <QuickFilterChip
+              on={state.wheelchairOnly}
+              icon="♿"
+              label="Accessible"
+              onChange={v => setState(s => ({ ...s, wheelchairOnly: v }))}
+            />
+            <QuickFilterChip
+              on={state.kidFriendlyOnly}
+              icon="🧒"
+              label="Kid-friendly"
+              onChange={v => setState(s => ({ ...s, kidFriendlyOnly: v }))}
+            />
+          </div>
         </div>
       </div>
 
@@ -395,6 +405,41 @@ function Select<T extends string>({
         <path d="m6 9 6 6 6-6" />
       </svg>
     </div>
+  );
+}
+
+// === QuickFilterChip ===
+// Single boolean filter rendered as a chip. Click to enable, click again to
+// clear. Used for the quick "show only..." filters under Status (UNESCO,
+// Free, Food, Accessible, Kid-friendly) — collapsing what used to be five
+// stacked Switch toggles into one compact chip row.
+function QuickFilterChip({
+  on,
+  icon,
+  label,
+  onChange,
+}: {
+  on: boolean;
+  icon: string;
+  label: string;
+  onChange: (next: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(!on)}
+      title={label}
+      aria-pressed={on}
+      className={
+        'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+        (on
+          ? 'bg-ink-deep text-cream-soft border-ink-deep'
+          : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
+      }
+    >
+      <span aria-hidden className="text-[12px] leading-none">{icon}</span>
+      <span>{label}</span>
+    </button>
   );
 }
 
