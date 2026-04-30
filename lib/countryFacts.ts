@@ -63,6 +63,21 @@ export const fetchAllCountryFacts = cache(async (): Promise<Map<string, CountryF
   return out;
 });
 
+/**
+ * Single-row lookup by ISO2 — used on the country detail page so we don't
+ * load all ~230 fact rows just to surface one.
+ */
+export const fetchCountryFactByIso2 = cache(async (iso2: string | null): Promise<CountryFact | null> => {
+  if (!iso2) return null;
+  const { data, error } = await supabase
+    .from('country_facts')
+    .select('*')
+    .eq('iso2', iso2.toUpperCase())
+    .maybeSingle();
+  if (error || !data) return null;
+  return rowToFact(data);
+});
+
 // ---- Display helpers ------------------------------------------------------
 
 /**

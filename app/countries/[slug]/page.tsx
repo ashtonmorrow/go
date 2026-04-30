@@ -1,4 +1,4 @@
-import { fetchCountryBySlug, fetchAllCities, fetchPageBlocks } from '@/lib/notion';
+import { fetchCountryBySlug, fetchCitiesByCountryId, fetchPageBlocks } from '@/lib/notion';
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,7 +8,7 @@ import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
-import { fetchAllCountryFacts, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
+import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
@@ -68,15 +68,15 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const content = await readPlaceContent('countries', slug);
 
   // Country pages don't carry their own personal photo, so the cover hero
-  // is always pulled from a pin in the country (when one exists).
-  const [allCities, factsByIso2, blocks, fallbackCover] = await Promise.all([
-    fetchAllCities(),
-    fetchAllCountryFacts(),
+  // is always pulled from a pin in the country (when one exists). Each
+  // call below is a surgical query — used to load all 1,341 cities + all
+  // 230 country facts and filter client-side.
+  const [cities, fact, blocks, fallbackCover] = await Promise.all([
+    fetchCitiesByCountryId(country.id),
+    fetchCountryFactByIso2(country.iso2),
     content ? Promise.resolve([]) : fetchPageBlocks(country.id),
     fetchCoverForCountry(country.name),
   ]);
-  const cities = allCities.filter(c => c.countryPageId === country.id);
-  const fact = country.iso2 ? factsByIso2.get(country.iso2.toUpperCase()) ?? null : null;
   const perCapita = fact ? gdpPerCapita(fact) : null;
   const hasBody = blocks.length > 0;
 

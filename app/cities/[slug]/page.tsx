@@ -1,4 +1,9 @@
-import { fetchCityBySlug, fetchPageBlocks, fetchAllCountries, fetchAllCities } from '@/lib/notion';
+import {
+  fetchCityBySlug,
+  fetchPageBlocks,
+  fetchCountryById,
+  fetchCitiesByIds,
+} from '@/lib/notion';
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -76,15 +81,16 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // would just sit underneath it and we'd be paying 500ms-2s for nothing.
   const content = await readPlaceContent('cities', slug);
 
-  // Fan everything else out in parallel. Notion blocks fall back to an
-  // empty array when content is taking over, so we don't even queue the
-  // request. The pin-photo cover fallback only fires when the city has
-  // no personal photo of its own — saves a round trip on the common case.
+  // Fan everything else out in parallel. Each call is now a surgical query
+  // (indexed lookup or filtered subset) — we used to call fetchAllCountries
+  // + fetchAllCities here just to find one country and a handful of sister
+  // cities, which shipped 1.5 MB of JSON for every cold render. Now we hit
+  // exactly the rows we need.
   const needsCoverFallback = !city.personalPhoto && !city.heroImage;
-  const [blocks, countries, allCities, climate, fallbackCover] = await Promise.all([
+  const [blocks, country, sisters, climate, fallbackCover] = await Promise.all([
     content ? Promise.resolve([]) : fetchPageBlocks(city.id),
-    fetchAllCountries(),
-    fetchAllCities(),
+    city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
+    city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
   ]);
@@ -106,11 +112,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // ~1,000 placeholder cities have AI-generated prose that isn't worth
   // showing — Wikipedia + raw facts are more honest signal there.
   const isCurated = city.been || city.go;
-
-  const country = countries.find(c => c.id === city.countryPageId) || null;
-  const sisters = city.sisterCities
-    .map(id => allCities.find(c => c.id === id))
-    .filter(Boolean) as typeof allCities;
 
   const fmt = (n: number | null, unit = '', digits = 0) =>
     n == null ? '—' : (digits > 0 ? n.toFixed(digits) : Intl.NumberFormat('en').format(n)) + unit;

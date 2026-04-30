@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { fetchPinBySlug, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
-import { fetchAllCountries } from '@/lib/notion';
+import { fetchCountryByName } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
 import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
@@ -75,15 +75,15 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   if (!pin) notFound();
 
   const country = pin.statesNames[0] ?? null;
-  const [countries, wp, personalPhotos, content] = await Promise.all([
-    country ? fetchAllCountries() : Promise.resolve([]),
+  // Surgical country lookup by name — used to load all 226 countries here
+  // and .find() through them. The case-insensitive name match is handled
+  // server-side via ilike now.
+  const [countryRecord, wp, personalPhotos, content] = await Promise.all([
+    country ? fetchCountryByName(country) : Promise.resolve(null),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
     readPlaceContent('pins', pin.slug ?? ''),
   ]);
-  const countryRecord = country
-    ? countries.find(c => c.name.toLowerCase() === country.toLowerCase()) ?? null
-    : null;
   const countrySlug = countryRecord?.slug ?? null;
   const flagUrl = flagCircle(countryRecord?.iso2 ?? null);
 

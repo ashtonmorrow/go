@@ -322,6 +322,83 @@ const _fetchCountryBySlug = unstable_cache(
 );
 export const fetchCountryBySlug = cache(_fetchCountryBySlug);
 
+// === Surgical lookups for detail pages ===
+//
+// The detail pages used to call fetchAllCities() / fetchAllCountries() and
+// .find() the row they cared about. With 1,351 cities + 226 countries that
+// shipped 1.5MB of JSON across the wire and through the data cache for
+// every cold render, just to surface one record. These four narrow queries
+// hit the indexed columns directly.
+
+const _fetchCountryById = unstable_cache(
+  async (id: string): Promise<Country | null> => {
+    if (!id) return null;
+    const { data, error } = await supabase
+      .from(TABLE_COUNTRIES)
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+    if (error || !data) return null;
+    return supaCountryRow(data);
+  },
+  ['notion-country-by-id'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+);
+export const fetchCountryById = cache(_fetchCountryById);
+
+const _fetchCountryByName = unstable_cache(
+  async (name: string): Promise<Country | null> => {
+    if (!name) return null;
+    const { data, error } = await supabase
+      .from(TABLE_COUNTRIES)
+      .select('*')
+      .ilike('name', name)
+      .limit(1)
+      .maybeSingle();
+    if (error || !data) return null;
+    return supaCountryRow(data);
+  },
+  ['notion-country-by-name'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-countries'] }
+);
+export const fetchCountryByName = cache(_fetchCountryByName);
+
+/** Resolve a list of city ids to City rows. Order in = order out is NOT
+ *  preserved (Supabase returns whatever order the query planner picks);
+ *  callers that care reorder client-side. */
+const _fetchCitiesByIds = unstable_cache(
+  async (ids: string[]): Promise<City[]> => {
+    if (!ids || ids.length === 0) return [];
+    const { data, error } = await supabase
+      .from(TABLE_CITIES)
+      .select('*')
+      .in('id', ids);
+    if (error || !data) return [];
+    return (data as any[]).map(supaCityRow);
+  },
+  ['notion-cities-by-ids'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+);
+export const fetchCitiesByIds = cache(_fetchCitiesByIds);
+
+/** Cities whose country FK matches the given country id. Used by the
+ *  country detail page's "Cities in <country>" list. */
+const _fetchCitiesByCountryId = unstable_cache(
+  async (countryId: string): Promise<City[]> => {
+    if (!countryId) return [];
+    const { data, error } = await supabase
+      .from(TABLE_CITIES)
+      .select('*')
+      .eq('country_id', countryId)
+      .order('name');
+    if (error || !data) return [];
+    return (data as any[]).map(supaCityRow);
+  },
+  ['notion-cities-by-country'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-cities'] }
+);
+export const fetchCitiesByCountryId = cache(_fetchCitiesByCountryId);
+
 // Blocks vary per page so caching is per-pageId. Wrapping with `cache()` still
 // dedupes multiple calls for the same pageId within a render.
 //
