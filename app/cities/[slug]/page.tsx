@@ -9,6 +9,7 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { fetchCoverForCity } from '@/lib/placeCovers';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -75,16 +76,31 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // would just sit underneath it and we'd be paying 500ms-2s for nothing.
   const content = await readPlaceContent('cities', slug);
 
-  // Everything else fans out in parallel. Notion blocks fall back to an
+  // Fan everything else out in parallel. Notion blocks fall back to an
   // empty array when content is taking over, so we don't even queue the
-  // request — that's the single biggest perf win on a cold cache.
-  const [blocks, countries, allCities, climate] = await Promise.all([
+  // request. The pin-photo cover fallback only fires when the city has
+  // no personal photo of its own — saves a round trip on the common case.
+  const needsCoverFallback = !city.personalPhoto && !city.heroImage;
+  const [blocks, countries, allCities, climate, fallbackCover] = await Promise.all([
     content ? Promise.resolve([]) : fetchPageBlocks(city.id),
     fetchAllCountries(),
     fetchAllCities(),
     fetchCityClimate(city.lat, city.lng),
+    needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
   ]);
   const hasBody = blocks.length > 0;
+
+  // Final cover URL: city's own photo wins, otherwise we fall back to the
+  // most recent pin photo from anywhere in the city. Empty when neither
+  // exists; the figure block below renders nothing in that case.
+  const coverUrl =
+    city.personalPhoto ||
+    city.heroImage ||
+    fallbackCover?.url ||
+    null;
+  const coverDims = fallbackCover && !city.personalPhoto && !city.heroImage
+    ? { width: fallbackCover.width ?? 1200, height: fallbackCover.height ?? 800 }
+    : { width: 1200, height: 800 };
 
   // Curated cities = ones I've been to or want to go to. The remaining
   // ~1,000 placeholder cities have AI-generated prose that isn't worth
@@ -151,21 +167,31 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         </div>
       </header>
 
-      {(city.personalPhoto || city.heroImage) && (
+      {coverUrl && (
         <figure className="mt-6 rounded overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={heroUrl(city.personalPhoto || city.heroImage!, 1200) ?? (city.personalPhoto || city.heroImage!)}
+            src={heroUrl(coverUrl, 1200) ?? coverUrl}
             alt={city.name}
             // LCP element on this route: tell the browser not to defer it.
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {...({ fetchpriority: 'high' } as any)}
             decoding="async"
-            // 3:2 placeholder reserves space; the real image overrides on load.
-            width={1200}
-            height={800}
+            // EXIF dimensions (when the cover came from the personal-photos
+            // fallback) reserve exact layout space; otherwise a 3:2
+            // placeholder. Either way the figure below has zero CLS.
+            width={coverDims.width}
+            height={coverDims.height}
             className="w-full max-h-[60vh] object-cover"
           />
+          {/* Tiny attribution caption when the cover is borrowed from a pin —
+              keeps the user oriented ("this is a photo I took inside the
+              city, not a stock photo"). Only renders when fallback was used. */}
+          {fallbackCover && !city.personalPhoto && !city.heroImage && (
+            <figcaption className="text-[11px] text-muted px-1 mt-1">
+              From a pin in {city.name}
+            </figcaption>
+          )}
         </figure>
       )}
 

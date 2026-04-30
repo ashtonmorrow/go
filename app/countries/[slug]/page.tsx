@@ -10,7 +10,8 @@ import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
 import { fetchAllCountryFacts, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
 import { readPlaceContent, paragraphs } from '@/lib/content';
-import { thumbUrl } from '@/lib/imageUrl';
+import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { fetchCoverForCountry } from '@/lib/placeCovers';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -66,10 +67,13 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   // blocks fetch entirely (the file IS the prose now).
   const content = await readPlaceContent('countries', slug);
 
-  const [allCities, factsByIso2, blocks] = await Promise.all([
+  // Country pages don't carry their own personal photo, so the cover hero
+  // is always pulled from a pin in the country (when one exists).
+  const [allCities, factsByIso2, blocks, fallbackCover] = await Promise.all([
     fetchAllCities(),
     fetchAllCountryFacts(),
     content ? Promise.resolve([]) : fetchPageBlocks(country.id),
+    fetchCoverForCountry(country.name),
   ]);
   const cities = allCities.filter(c => c.countryPageId === country.id);
   const fact = country.iso2 ? factsByIso2.get(country.iso2.toUpperCase()) ?? null : null;
@@ -127,6 +131,29 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           {country.capital && <p className="text-slate mt-1">Capital: {country.capital}</p>}
         </div>
       </header>
+
+      {/* Cover hero from a pin in this country — only renders when at least
+          one pin in the country has a personal photo attached. Country
+          pages don't carry their own photo column, so the fallback chain
+          is the entire source for this hero. */}
+      {fallbackCover && (
+        <figure className="mt-6 rounded overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroUrl(fallbackCover.url, 1200) ?? fallbackCover.url}
+            alt={country.name}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...({ fetchpriority: 'high' } as any)}
+            decoding="async"
+            width={fallbackCover.width ?? 1200}
+            height={fallbackCover.height ?? 800}
+            className="w-full max-h-[60vh] object-cover"
+          />
+          <figcaption className="text-[11px] text-muted px-1 mt-1">
+            From a pin in {country.name}
+          </figcaption>
+        </figure>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         <div className="md:col-span-2 min-w-0">
