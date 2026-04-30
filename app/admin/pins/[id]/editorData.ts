@@ -37,9 +37,10 @@ export type PinEditorState = {
   // Universal personal experience
   personal_rating: number | null;
   personal_review: string | null;
-  visit_dates: string | null;
+  visit_year: number | null;
   personal_notes: string | null;
   companions: string[];
+  best_for: string[];
 
   // Hotel
   nights_stayed: number | null;
@@ -47,6 +48,11 @@ export type PinEditorState = {
   room_price_per_night: number | null;
   room_price_currency: string | null;
   would_stay_again: boolean | null;
+  hotel_vibe: string[];
+  breakfast_quality: string | null;
+  wifi_quality: string | null;
+  noise_level: string | null;
+  location_pitch: string | null;
 
   // Restaurant
   cuisine: string[];
@@ -91,15 +97,21 @@ export function rowToPinForEdit(row: any): PinEditorState {
 
     personal_rating: asNum(row.personal_rating),
     personal_review: asStr(row.personal_review),
-    visit_dates: asStr(row.visit_dates),
+    visit_year: asNum(row.visit_year),
     personal_notes: asStr(row.personal_notes),
     companions: asArr(row.companions),
+    best_for: asArr(row.best_for),
 
     nights_stayed: asNum(row.nights_stayed),
     room_type: asStr(row.room_type),
     room_price_per_night: asNum(row.room_price_per_night),
     room_price_currency: asStr(row.room_price_currency),
     would_stay_again: asBool(row.would_stay_again),
+    hotel_vibe: asArr(row.hotel_vibe),
+    breakfast_quality: asStr(row.breakfast_quality),
+    wifi_quality: asStr(row.wifi_quality),
+    noise_level: asStr(row.noise_level),
+    location_pitch: asStr(row.location_pitch),
 
     cuisine: asArr(row.cuisine),
     meal_types: asArr(row.meal_types),

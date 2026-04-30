@@ -251,11 +251,18 @@ function NavBody({
       <div className="mt-auto flex flex-col gap-1 pt-4">
         <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" />
         <Item href="/about" emoji="📖" label="About this atlas" onClick={onLinkClick} />
+        <Link
+          href="/privacy"
+          onClick={onLinkClick}
+          className="px-2 py-0.5 text-[11px] text-muted hover:text-ink-deep transition-colors"
+        >
+          Privacy &amp; data
+        </Link>
         <a
           href="https://www.linkedin.com/in/mikelee89/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-2 mt-2 text-[11px] text-muted hover:text-ink-deep transition-colors"
+          className="px-2 mt-1 text-[11px] text-muted hover:text-ink-deep transition-colors"
         >
           Whisker Leaks — {new Date().getFullYear()}
         </a>

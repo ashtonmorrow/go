@@ -944,6 +944,20 @@ function CandidateRow({
         </p>
         <p className="text-[10px] text-muted font-mono mt-0.5">
           {candidate.place.category} · {candidate.place.lat.toFixed(4)}, {candidate.place.lng.toFixed(4)}
+          {candidate.place.googleMapsUrl && (
+            <>
+              {' · '}
+              <a
+                href={candidate.place.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal underline hover:text-teal/80"
+                title="Verify this place on Google Maps before saving"
+              >
+                preview on Google ↗
+              </a>
+            </>
+          )}
         </p>
 
         {assignedPhotos.length > 0 && (

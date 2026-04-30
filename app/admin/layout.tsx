@@ -22,8 +22,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/admin/upload" className="text-ink hover:text-teal">
               Upload photos
             </Link>
+            <Link href="/admin/reservations/new" className="text-ink hover:text-teal">
+              Add past stay
+            </Link>
             <Link href="/admin/pins" className="text-ink hover:text-teal">
-              Edit visited
+              Edit pins
             </Link>
           </nav>
         </div>

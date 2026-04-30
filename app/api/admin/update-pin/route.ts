@@ -22,9 +22,11 @@ const ALLOWED_FIELDS = new Set([
   // Cost
   'price_text', 'price_amount', 'price_currency', 'free', 'free_to_visit',
   // Universal personal
-  'personal_rating', 'personal_review', 'visit_dates', 'personal_notes', 'companions',
+  'personal_rating', 'personal_review', 'visit_year', 'personal_notes',
+  'companions', 'best_for',
   // Hotel
   'nights_stayed', 'room_type', 'room_price_per_night', 'room_price_currency', 'would_stay_again',
+  'hotel_vibe', 'breakfast_quality', 'wifi_quality', 'noise_level', 'location_pitch',
   // Restaurant
   'cuisine', 'meal_types', 'dishes_tried', 'dietary_options', 'reservation_recommended',
   // Other facets
@@ -68,6 +70,14 @@ export async function POST(req: Request) {
       const n = Number(value);
       if (!Number.isFinite(n) || n < 1 || n > 5) {
         return NextResponse.json({ error: 'personal_rating must be 1-5' }, { status: 400 });
+      }
+      update[key] = Math.round(n);
+      continue;
+    }
+    if (key === 'visit_year' && value !== null) {
+      const n = Number(value);
+      if (!Number.isFinite(n) || n < 1900 || n > 2100) {
+        return NextResponse.json({ error: 'visit_year must be 1900-2100' }, { status: 400 });
       }
       update[key] = Math.round(n);
       continue;

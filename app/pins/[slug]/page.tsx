@@ -108,19 +108,22 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
       !!pin.hoursDetails.type ||
       (Array.isArray(pin.hoursDetails.notes) && pin.hoursDetails.notes.length > 0)
     );
-  const isHotelOrRestaurant = pin.kind === 'hotel' || pin.kind === 'restaurant';
+  const isHotel = pin.kind === 'hotel';
+  const isRestaurant = pin.kind === 'restaurant';
+  const isHotelOrRestaurant = isHotel || isRestaurant;
   const hasPlanInfo = Boolean(
-    hoursDetailsHasData || pin.openingHours || pin.hours ||
+    (!isHotel && (hoursDetailsHasData || pin.openingHours || pin.hours)) ||
     (!isHotelOrRestaurant && admission.kind !== 'unknown') ||
     pin.booking || pin.bookingUrl || pin.officialTicketUrl ||
     pin.bookingRequired != null ||
     pin.status || pin.closureReason || pin.closureDays.length ||
-    pin.bestMonths.length || pin.worstMonths.length ||
-    pin.bestTimeOfDay.length || pin.crowdLevel ||
-    pin.durationMinutes != null,
+    (!isHotel && (pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel)) ||
+    (!isHotel && pin.durationMinutes != null),
   );
 
-  const amenityFacets = [
+  // Amenity grid is irrelevant for hotels (of course they have wifi/restrooms;
+  // the qualitative wifi_quality/breakfast_quality fields cover what matters).
+  const amenityFacets = isHotel ? [] : [
     pin.foodOnSite ? FOOD_FACET[pin.foodOnSite] : null,
     pin.restrooms ? RESTROOMS_FACET[pin.restrooms] : null,
     pin.waterRefill ? { label: 'Water refill available', icon: 'droplet' } : null,
@@ -132,7 +135,9 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
   const hasGettingThere = Boolean(pin.address || pin.nearestTransit || pin.parking || pin.accessNotes);
 
-  const goodToKnowFacets = [
+  // Good-to-know is mostly irrelevant for hotels too; wheelchair_accessible
+  // matters but otherwise the personal review carries it.
+  const goodToKnowFacets = isHotel ? [] : [
     pin.wheelchairAccessible ? WHEELCHAIR_FACET[pin.wheelchairAccessible] : null,
     pin.photography ? PHOTOGRAPHY_FACET[pin.photography] : null,
     pin.requiresGuide ? REQUIRES_GUIDE_FACET[pin.requiresGuide] : null,
@@ -144,7 +149,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     pin.difficulty ? DIFFICULTY_FACET[pin.difficulty] : null,
   ].filter((f): f is { label: string; icon: string } => Boolean(f));
 
-  const hasGoodToKnow = Boolean(
+  const hasGoodToKnow = !isHotel && Boolean(
     goodToKnowFacets.length || pin.dressCode || pin.safetyNotes || pin.scamWarning ||
     pin.languagesOffered.length || pin.minAgeRecommended != null,
   );
@@ -525,7 +530,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
       !!pin.hoursDetails.type ||
       (Array.isArray(pin.hoursDetails.notes) && pin.hoursDetails.notes.length > 0)
     );
-  const showHours = hoursDetailsHasData || pin.openingHours || pin.hours;
+  const showHours = !isHotel && (hoursDetailsHasData || pin.openingHours || pin.hours);
 
   const showCost =
     !isHotel && !isRestaurant && (
@@ -536,7 +541,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
       pin.priceText ||
       pin.priceAmount != null
     );
-  const showTiming = pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel;
+  const showTiming = !isHotel && (pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel);
   const showBooking = pin.booking || pin.bookingRequired != null || pin.bookingUrl || pin.officialTicketUrl;
   const showStatus = pin.status && pin.status !== 'active';
 
@@ -719,7 +724,7 @@ function PersonalSection({ pin }: { pin: Pin }) {
   const universal =
     pin.personalRating != null ||
     pin.personalReview ||
-    pin.visitDates ||
+    pin.visitYear != null ||
     pin.companions.length > 0;
 
   const hasHotel =
@@ -727,7 +732,12 @@ function PersonalSection({ pin }: { pin: Pin }) {
     (pin.nightsStayed != null ||
       pin.roomType ||
       pin.roomPricePerNight != null ||
-      pin.wouldStayAgain != null);
+      pin.wouldStayAgain != null ||
+      pin.hotelVibe.length ||
+      pin.breakfastQuality ||
+      pin.wifiQuality ||
+      pin.noiseLevel ||
+      pin.locationPitch);
 
   const hasMeal =
     pin.kind === 'restaurant' &&
@@ -756,8 +766,13 @@ function PersonalSection({ pin }: { pin: Pin }) {
               <span className="text-sand">{'★'.repeat(5 - pin.personalRating)}</span>
             </span>
           )}
-          {pin.visitDates && (
-            <span className="text-slate">{pin.visitDates}</span>
+          {pin.visitYear != null && (
+            <span className="text-slate">{pin.visitYear}</span>
+          )}
+          {pin.bestFor.length > 0 && (
+            <span className="text-muted text-[12px]">
+              best for {pin.bestFor.join(', ')}
+            </span>
           )}
           {pin.companions.length > 0 && (
             <span className="text-muted text-[12px]">
@@ -768,28 +783,41 @@ function PersonalSection({ pin }: { pin: Pin }) {
       )}
 
       {hasHotel && (
-        <dl className="text-small space-y-1.5 mb-4">
-          {pin.nightsStayed != null && (
-            <FactRow label="Nights">
-              {pin.nightsStayed} {pin.nightsStayed === 1 ? 'night' : 'nights'}
-            </FactRow>
+        <>
+          {pin.hotelVibe.length > 0 && (
+            <div className="mb-3 flex flex-wrap gap-1.5">
+              {pin.hotelVibe.map(v => (
+                <span key={v} className="pill bg-cream-soft text-ink-deep capitalize">{v}</span>
+              ))}
+            </div>
           )}
-          {pin.roomType && <FactRow label="Room">{pin.roomType}</FactRow>}
-          {pin.roomPricePerNight != null && (
-            <FactRow label="Per night">
-              <span className="font-mono tabular-nums">
-                {pin.roomPriceCurrency ? `${pin.roomPriceCurrency} ` : ''}
-                {pin.roomPricePerNight}
-              </span>
-            </FactRow>
-          )}
-          {pin.wouldStayAgain === true && (
-            <FactRow label="Verdict"><span className="text-teal">Would stay again</span></FactRow>
-          )}
-          {pin.wouldStayAgain === false && (
-            <FactRow label="Verdict"><span className="text-orange">Wouldn&rsquo;t stay again</span></FactRow>
-          )}
-        </dl>
+          <dl className="text-small space-y-1.5 mb-4">
+            {pin.nightsStayed != null && (
+              <FactRow label="Nights">
+                {pin.nightsStayed} {pin.nightsStayed === 1 ? 'night' : 'nights'}
+              </FactRow>
+            )}
+            {pin.roomType && <FactRow label="Room">{pin.roomType}</FactRow>}
+            {pin.roomPricePerNight != null && (
+              <FactRow label="Per night">
+                <span className="font-mono tabular-nums">
+                  {pin.roomPriceCurrency ? `${pin.roomPriceCurrency} ` : ''}
+                  {pin.roomPricePerNight}
+                </span>
+              </FactRow>
+            )}
+            {pin.locationPitch && <FactRow label="Location">{pin.locationPitch}</FactRow>}
+            {pin.breakfastQuality && <FactRow label="Breakfast">{pin.breakfastQuality}</FactRow>}
+            {pin.wifiQuality && <FactRow label="Wifi">{pin.wifiQuality}</FactRow>}
+            {pin.noiseLevel && <FactRow label="Noise">{pin.noiseLevel}</FactRow>}
+            {pin.wouldStayAgain === true && (
+              <FactRow label="Verdict"><span className="text-teal">Would stay again</span></FactRow>
+            )}
+            {pin.wouldStayAgain === false && (
+              <FactRow label="Verdict"><span className="text-orange">Wouldn&rsquo;t stay again</span></FactRow>
+            )}
+          </dl>
+        </>
       )}
 
       {hasMeal && (

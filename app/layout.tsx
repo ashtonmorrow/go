@@ -5,6 +5,7 @@ import { CityFiltersProvider } from '@/components/CityFiltersContext';
 import { PinFiltersProvider } from '@/components/PinFiltersContext';
 import { CountryFiltersProvider } from '@/components/CountryFiltersContext';
 import JsonLd from '@/components/JsonLd';
+import CookieBanner from '@/components/CookieBanner';
 import {
   SITE_URL,
   SITE_NAME,
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Sidebar />
                 <main className="flex-1 min-w-0">{children}</main>
               </div>
+              <CookieBanner />
             </PinFiltersProvider>
           </CountryFiltersProvider>
         </CityFiltersProvider>

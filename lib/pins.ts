@@ -105,16 +105,22 @@ export type Pin = {
   // Universal personal experience (any visited pin)
   personalRating: number | null;
   personalReview: string | null;
-  visitDates: string | null;
+  visitYear: number | null;
   personalNotes: string | null;
   companions: string[];
+  bestFor: string[];
 
-  // Hotel-only
+  // Hotel-only structured + qualitative
   nightsStayed: number | null;
   roomType: string | null;
   roomPricePerNight: number | null;
   roomPriceCurrency: string | null;
   wouldStayAgain: boolean | null;
+  hotelVibe: string[];
+  breakfastQuality: string | null;
+  wifiQuality: string | null;
+  noiseLevel: string | null;
+  locationPitch: string | null;
 
   // Restaurant-only
   cuisine: string[];
@@ -284,15 +290,21 @@ function rowToPin(row: any): Pin {
 
     personalRating: asNumber(row.personal_rating),
     personalReview: asString(row.personal_review),
-    visitDates: asString(row.visit_dates),
+    visitYear: asNumber(row.visit_year),
     personalNotes: asString(row.personal_notes),
     companions: asStringArray(row.companions),
+    bestFor: asStringArray(row.best_for),
 
     nightsStayed: asNumber(row.nights_stayed),
     roomType: asString(row.room_type),
     roomPricePerNight: asNumber(row.room_price_per_night),
     roomPriceCurrency: asString(row.room_price_currency),
     wouldStayAgain: asBool(row.would_stay_again),
+    hotelVibe: asStringArray(row.hotel_vibe),
+    breakfastQuality: asString(row.breakfast_quality),
+    wifiQuality: asString(row.wifi_quality),
+    noiseLevel: asString(row.noise_level),
+    locationPitch: asString(row.location_pitch),
 
     cuisine: asStringArray(row.cuisine),
     mealTypes: asStringArray(row.meal_types),
@@ -401,7 +413,7 @@ const INDEX_COLUMNS = [
   'free', 'free_to_visit', 'food_on_site',
   'wheelchair_accessible', 'kid_friendly', 'bring',
   // Personal-experience fields used on cards / sort / filters
-  'personal_rating', 'visit_dates',
+  'personal_rating', 'visit_year',
 ].join(',');
 
 const _fetchAllPins = unstable_cache(

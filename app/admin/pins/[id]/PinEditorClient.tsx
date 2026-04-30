@@ -122,28 +122,35 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
       </Section>
 
       <Section label="Your visit">
-        <Field label="Rating (1-5)">
-          <input
-            type="number"
-            min={1}
-            max={5}
-            value={state.personal_rating ?? ''}
-            onChange={e => set('personal_rating', e.target.value ? Number(e.target.value) : null)}
-            className={inputCls + ' w-24'}
+        <Field label="Rating">
+          <StarRating
+            value={state.personal_rating}
+            onChange={v => set('personal_rating', v)}
           />
         </Field>
-        <Field label="Visit dates">
-          <Input
-            value={state.visit_dates ?? ''}
-            onChange={v => set('visit_dates', v || null)}
-            placeholder="March 2024 / 2024-03-15 to 19"
+        <Field label="Year">
+          <input
+            type="number"
+            min={1900}
+            max={2100}
+            value={state.visit_year ?? ''}
+            onChange={e => set('visit_year', e.target.value ? Number(e.target.value) : null)}
+            placeholder="2024"
+            className={inputCls + ' w-24 font-mono'}
           />
         </Field>
         <Field label="Companions">
           <ArrayInput
             value={state.companions}
             onChange={v => set('companions', v)}
-            placeholder="solo, family, friends, partner"
+            placeholder="solo, partner, family, friends"
+          />
+        </Field>
+        <Field label="Best for">
+          <ArrayInput
+            value={state.best_for}
+            onChange={v => set('best_for', v)}
+            placeholder="solo, couples, families, business, weekend trips"
           />
         </Field>
         <Field label="Public review">
@@ -199,6 +206,41 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
           </Field>
           <Field label="Would stay again">
             <BoolTri value={state.would_stay_again} onChange={v => set('would_stay_again', v)} />
+          </Field>
+          <Field label="Hotel vibe">
+            <ArrayInput
+              value={state.hotel_vibe}
+              onChange={v => set('hotel_vibe', v)}
+              placeholder="boutique, business, budget, luxury, hostel, design, resort, family-friendly, extended-stay, eco"
+            />
+          </Field>
+          <Field label="Breakfast">
+            <Input
+              value={state.breakfast_quality ?? ''}
+              onChange={v => set('breakfast_quality', v || null)}
+              placeholder="hot buffet, great / continental, mid / no breakfast"
+            />
+          </Field>
+          <Field label="Wifi">
+            <Input
+              value={state.wifi_quality ?? ''}
+              onChange={v => set('wifi_quality', v || null)}
+              placeholder="fast / fine / slow / didn't test"
+            />
+          </Field>
+          <Field label="Noise">
+            <Input
+              value={state.noise_level ?? ''}
+              onChange={v => set('noise_level', v || null)}
+              placeholder="quiet / some street noise / very noisy"
+            />
+          </Field>
+          <Field label="Location pitch">
+            <Input
+              value={state.location_pitch ?? ''}
+              onChange={v => set('location_pitch', v || null)}
+              placeholder="5 min walk to old town, 25 min metro to airport"
+            />
           </Field>
         </Section>
       )}
@@ -444,6 +486,46 @@ function BoolToggle({ value, onChange }: { value: boolean; onChange: (v: boolean
     >
       {value ? 'Yes' : 'No'}
     </button>
+  );
+}
+
+function StarRating({
+  value,
+  onChange,
+}: {
+  value: number | null;
+  onChange: (v: number | null) => void;
+}) {
+  return (
+    <div className="inline-flex items-center gap-1">
+      {[1, 2, 3, 4, 5].map(n => {
+        const filled = value != null && n <= value;
+        return (
+          <button
+            key={n}
+            type="button"
+            onClick={() => onChange(value === n ? null : n)}
+            className={
+              'text-2xl leading-none transition-colors px-0.5 ' +
+              (filled ? 'text-ink-deep' : 'text-sand hover:text-slate')
+            }
+            aria-label={`${n} star${n === 1 ? '' : 's'}`}
+            title={value === n ? 'Click again to clear' : `${n} star${n === 1 ? '' : 's'}`}
+          >
+            ★
+          </button>
+        );
+      })}
+      {value != null && (
+        <button
+          type="button"
+          onClick={() => onChange(null)}
+          className="ml-2 text-[11px] text-muted hover:text-ink"
+        >
+          clear
+        </button>
+      )}
+    </div>
   );
 }
 
