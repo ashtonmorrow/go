@@ -100,9 +100,18 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     img.url && arr.findIndex(x => x.url === img.url) === i
   );
 
+  const hoursDetailsHasData =
+    pin.hoursDetails && (
+      !!pin.hoursDetails.weekly ||
+      !!pin.hoursDetails.ramadan ||
+      !!pin.hoursDetails.parent_site ||
+      !!pin.hoursDetails.type ||
+      (Array.isArray(pin.hoursDetails.notes) && pin.hoursDetails.notes.length > 0)
+    );
+  const isHotelOrRestaurant = pin.kind === 'hotel' || pin.kind === 'restaurant';
   const hasPlanInfo = Boolean(
-    pin.hoursDetails || pin.openingHours || pin.hours ||
-    admission.kind !== 'unknown' ||
+    hoursDetailsHasData || pin.openingHours || pin.hours ||
+    (!isHotelOrRestaurant && admission.kind !== 'unknown') ||
     pin.booking || pin.bookingUrl || pin.officialTicketUrl ||
     pin.bookingRequired != null ||
     pin.status || pin.closureReason || pin.closureDays.length ||
@@ -498,17 +507,42 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 }
 
 function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string | null }) {
+  // Hotels and restaurants get their own pricing in the kind-specific section
+  // (room_price_per_night, etc.), so admission/cost is suppressed here.
+  const isHotel = pin.kind === 'hotel';
+  const isRestaurant = pin.kind === 'restaurant';
+  const heading =
+    isHotel ? 'Plan your stay' :
+    isRestaurant ? 'Plan your meal' :
+    'Plan your visit';
+
+  // Hours: skip empty {} hours_details placeholder.
+  const hoursDetailsHasData =
+    pin.hoursDetails && (
+      !!pin.hoursDetails.weekly ||
+      !!pin.hoursDetails.ramadan ||
+      !!pin.hoursDetails.parent_site ||
+      !!pin.hoursDetails.type ||
+      (Array.isArray(pin.hoursDetails.notes) && pin.hoursDetails.notes.length > 0)
+    );
+  const showHours = hoursDetailsHasData || pin.openingHours || pin.hours;
+
   const showCost =
-    pin.priceDetails || pin.freeToVisit != null ||
-    pin.free === true || pin.admission || pin.priceText || pin.priceAmount != null;
-  const showHours = pin.hoursDetails || pin.openingHours || pin.hours;
+    !isHotel && !isRestaurant && (
+      admissionLabel != null ||
+      pin.freeToVisit != null ||
+      pin.free === true ||
+      pin.admission ||
+      pin.priceText ||
+      pin.priceAmount != null
+    );
   const showTiming = pin.bestMonths.length || pin.worstMonths.length || pin.bestTimeOfDay.length || pin.crowdLevel;
   const showBooking = pin.booking || pin.bookingRequired != null || pin.bookingUrl || pin.officialTicketUrl;
   const showStatus = pin.status && pin.status !== 'active';
 
   return (
     <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h3 text-ink-deep mb-4">Plan your visit</h2>
+      <h2 className="text-h3 text-ink-deep mb-4">{heading}</h2>
 
       {showStatus && pin.status && (
         <div className="mb-4 px-3 py-2 rounded bg-orange/10 text-orange text-small">
@@ -865,7 +899,15 @@ function HoursBlock({
   const todayIdx = new Date().getDay();
   const todayKey: DayKey = (['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as DayKey[])[todayIdx];
 
-  if (hoursDetails) {
+  const hasHoursDetailsData =
+    hoursDetails && (
+      !!hoursDetails.weekly ||
+      !!hoursDetails.ramadan ||
+      !!hoursDetails.parent_site ||
+      !!hoursDetails.type ||
+      (Array.isArray(hoursDetails.notes) && hoursDetails.notes.length > 0)
+    );
+  if (hasHoursDetailsData && hoursDetails) {
     const w = hoursDetails.weekly ?? null;
     const dailyText = w?.daily;
     return (

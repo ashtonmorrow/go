@@ -27,13 +27,24 @@ function fmtMoney(amount: number, currency: string | null): string {
   return `${amount.toLocaleString()} ${currency}`;
 }
 
-function viewFromPriceDetails(pd: PinPriceDetails): AdmissionView {
+function viewFromPriceDetails(pd: PinPriceDetails): AdmissionView | null {
   const notes = Array.isArray(pd.notes) ? pd.notes.filter(Boolean) : [];
+  const hasBaseline = pd.baseline && typeof pd.baseline.amount === 'number';
+  const hasVariants = Array.isArray(pd.variants) && pd.variants.some(v => v && typeof v.amount === 'number');
+  const hasType = typeof pd.type === 'string' && pd.type.length > 0;
+
+  // Empty {} jsonb gets initialized by codex but contains no real data.
+  // Treat that as "no information" so the detail page hides the admission
+  // block instead of rendering an empty "Pricing unknown" placeholder.
+  if (!hasType && !hasBaseline && !hasVariants && notes.length === 0) {
+    return null;
+  }
+
   if (pd.type === 'free') {
     return { kind: 'free', note: notes[0] ?? null, notes };
   }
   const tiers: AdmissionTier[] = [];
-  if (pd.baseline && typeof pd.baseline.amount === 'number') {
+  if (hasBaseline && pd.baseline) {
     tiers.push({
       label: pd.baseline.label || 'Adult',
       amount: pd.baseline.amount,
@@ -61,7 +72,11 @@ function viewFromPriceDetails(pd: PinPriceDetails): AdmissionView {
 
 export function admissionView(pin: Pin): AdmissionView {
   // Codex's price_details takes precedence — richer shape with variants.
-  if (pin.priceDetails) return viewFromPriceDetails(pin.priceDetails);
+  // viewFromPriceDetails returns null for empty {} placeholders.
+  if (pin.priceDetails) {
+    const pdView = viewFromPriceDetails(pin.priceDetails);
+    if (pdView) return pdView;
+  }
 
   // Codex's free_to_visit is a strict yes/no.
   if (pin.freeToVisit === true) {

@@ -10,9 +10,13 @@ type Row = {
   city: string;
   country: string;
   visited: boolean;
+  kind: string | null;
 };
 
 type Filter = 'all' | 'visited' | 'not-visited';
+type SortKey = 'recent' | 'name' | 'city' | 'country';
+const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
+type Kind = typeof KINDS[number];
 
 export default function VisitedEditorClient({ initialRows }: { initialRows: Row[] }) {
   const [originalVisited] = useState<Map<string, boolean>>(
@@ -23,6 +27,9 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   );
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
+  const [country, setCountry] = useState<string>('');
+  const [kindFilter, setKindFilter] = useState<Set<Kind>>(new Set());
+  const [sortKey, setSortKey] = useState<SortKey>('recent');
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<{ updated: number; errors?: string[] } | null>(null);
 
@@ -34,12 +41,22 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     return out;
   }, [current, originalVisited]);
 
+  const countryOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const r of initialRows) if (r.country) set.add(r.country);
+    return [...set].sort((a, b) => a.localeCompare(b));
+  }, [initialRows]);
+
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return initialRows.filter(r => {
+    const out = initialRows.filter(r => {
       const visitedNow = current.get(r.id) ?? r.visited;
       if (filter === 'visited' && !visitedNow) return false;
       if (filter === 'not-visited' && visitedNow) return false;
+      if (country && r.country !== country) return false;
+      if (kindFilter.size > 0) {
+        if (!r.kind || !kindFilter.has(r.kind as Kind)) return false;
+      }
       if (!needle) return true;
       return (
         r.name.toLowerCase().includes(needle) ||
@@ -47,7 +64,27 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         r.country.toLowerCase().includes(needle)
       );
     });
-  }, [initialRows, q, filter, current]);
+
+    // Initial rows arrive pre-sorted by updated_at desc (server sets this).
+    // Re-sort only when the user picks a non-recent key.
+    if (sortKey !== 'recent') {
+      out.sort((a, b) => {
+        const A = sortKey === 'name' ? a.name : sortKey === 'city' ? a.city : a.country;
+        const B = sortKey === 'name' ? b.name : sortKey === 'city' ? b.city : b.country;
+        return A.localeCompare(B);
+      });
+    }
+    return out;
+  }, [initialRows, q, filter, country, kindFilter, sortKey, current]);
+
+  const toggleKind = (k: Kind) => {
+    setKindFilter(prev => {
+      const next = new Set(prev);
+      if (next.has(k)) next.delete(k);
+      else next.add(k);
+      return next;
+    });
+  };
 
   const toggleRow = (id: string) => {
     setCurrent(prev => {
@@ -128,9 +165,66 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               </button>
             ))}
           </div>
+          <select
+            value={country}
+            onChange={e => setCountry(e.target.value)}
+            className="text-small border border-sand rounded px-2 py-2 bg-white max-w-[200px]"
+            title="Filter by country"
+          >
+            <option value="">All countries</option>
+            {countryOptions.map(c => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+
+          <select
+            value={sortKey}
+            onChange={e => setSortKey(e.target.value as SortKey)}
+            className="text-small border border-sand rounded px-2 py-2 bg-white"
+            title="Sort"
+          >
+            <option value="recent">Recently edited</option>
+            <option value="name">Name (A→Z)</option>
+            <option value="city">City (A→Z)</option>
+            <option value="country">Country (A→Z)</option>
+          </select>
+
           <span className="text-[11px] text-muted">
             {filtered.length} shown · {visitedCount} of {initialRows.length} visited
           </span>
+        </div>
+
+        {/* Kind chips */}
+        <div className="w-full flex flex-wrap items-center gap-1.5">
+          <span className="text-[11px] uppercase tracking-wider text-muted mr-1">Kind</span>
+          {KINDS.map(k => {
+            const checked = kindFilter.has(k);
+            return (
+              <button
+                key={k}
+                type="button"
+                onClick={() => toggleKind(k)}
+                className={
+                  'pill text-[11px] capitalize ' +
+                  (checked
+                    ? 'bg-ink-deep text-white border border-ink-deep'
+                    : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')
+                }
+                aria-pressed={checked}
+              >
+                {k}
+              </button>
+            );
+          })}
+          {kindFilter.size > 0 && (
+            <button
+              type="button"
+              onClick={() => setKindFilter(new Set())}
+              className="text-[11px] text-muted hover:text-ink ml-1"
+            >
+              clear
+            </button>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -198,6 +292,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
             <tr>
               <th className="text-left px-3 py-2 w-10"></th>
               <th className="text-left px-3 py-2">Name</th>
+              <th className="text-left px-3 py-2 hidden lg:table-cell w-[110px]">Kind</th>
               <th className="text-left px-3 py-2 hidden sm:table-cell">City</th>
               <th className="text-left px-3 py-2 hidden md:table-cell">Country</th>
               <th className="text-left px-3 py-2 w-10"></th>
@@ -206,7 +301,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           <tbody>
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-3 py-6 text-center text-muted text-small">
+                <td colSpan={6} className="px-3 py-6 text-center text-muted text-small">
                   No pins match.
                 </td>
               </tr>
@@ -253,6 +348,15 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                       >
                         view ↗
                       </Link>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 align-top text-slate hidden lg:table-cell">
+                    {row.kind ? (
+                      <span className="capitalize text-[11px] pill bg-cream-soft text-slate">
+                        {row.kind}
+                      </span>
+                    ) : (
+                      <span className="text-muted/60 text-[11px]">—</span>
                     )}
                   </td>
                   <td className="px-3 py-2 align-top text-slate hidden sm:table-cell">

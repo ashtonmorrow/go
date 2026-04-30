@@ -26,6 +26,7 @@ export default async function AdminPinsPage() {
       city: p.cityNames[0] ?? '',
       country: p.statesNames[0] ?? '',
       visited: p.visited,
+      kind: p.kind ?? null,
     }));
 
   return (
