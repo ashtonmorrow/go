@@ -18,6 +18,7 @@ import {
 import JsonLd from '@/components/JsonLd';
 import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
+import { withUtm } from '@/lib/utm';
 
 export const revalidate = 604800;
 export const dynamicParams = true;
@@ -399,7 +400,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
             {pin.googleMapsUrl ? (
               <a
-                href={pin.googleMapsUrl}
+                href={withUtm(pin.googleMapsUrl, { medium: 'pin-detail', campaign: 'google-maps' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block px-3 py-2 rounded bg-teal/10 text-teal hover:bg-teal/15 transition-colors text-center font-medium"
@@ -412,7 +413,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
             {pin.bookingUrl && (
               <a
-                href={pin.bookingUrl}
+                href={withUtm(pin.bookingUrl, { medium: 'pin-detail-cta', campaign: 'booking' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
@@ -423,7 +424,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
             {!pin.bookingUrl && pin.officialTicketUrl && (
               <a
-                href={pin.officialTicketUrl}
+                href={withUtm(pin.officialTicketUrl, { medium: 'pin-detail-cta', campaign: 'official-tickets' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
@@ -434,7 +435,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
             {pin.website && (
               <a
-                href={pin.website}
+                href={withUtm(pin.website, { medium: 'pin-detail', campaign: 'official-website' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-teal hover:underline truncate"
@@ -474,7 +475,12 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               )}
               {pin.unescoId != null && (
                 <Fact label="UNESCO #">
-                  <a href={pin.unescoUrl ?? '#'} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline tabular-nums">
+                  <a
+                    href={pin.unescoUrl ? withUtm(pin.unescoUrl, { medium: 'pin-detail', campaign: 'unesco' }) : '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal hover:underline tabular-nums"
+                  >
                     {pin.unescoId}
                   </a>
                 </Fact>
@@ -494,13 +500,13 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <h3 className="text-muted uppercase tracking-wider text-[11px] mb-3">References</h3>
               <ul className="space-y-1.5">
                 {pin.unescoUrl && (
-                  <li><a href={pin.unescoUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">whc.unesco.org →</a></li>
+                  <li><a href={withUtm(pin.unescoUrl, { medium: 'pin-detail', campaign: 'unesco' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">whc.unesco.org →</a></li>
                 )}
                 {pin.wikipediaUrl && (
-                  <li><a href={pin.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikipedia →</a></li>
+                  <li><a href={withUtm(pin.wikipediaUrl, { medium: 'pin-detail', campaign: 'wikipedia' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikipedia →</a></li>
                 )}
                 {pin.wikidataUrl && (
-                  <li><a href={pin.wikidataUrl} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikidata ({pin.wikidataQid}) →</a></li>
+                  <li><a href={withUtm(pin.wikidataUrl, { medium: 'pin-detail', campaign: 'wikidata' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikidata ({pin.wikidataQid}) →</a></li>
                 )}
               </ul>
             </div>

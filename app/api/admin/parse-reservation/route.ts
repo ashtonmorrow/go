@@ -6,38 +6,36 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 /**
- * Parse a hotel confirmation email body via Gemini, strip PII regardless of
- * what came in, then either find an existing pin (by name + city) or create
- * a new one with kind='hotel' and the parsed fields prefilled. Returns the
- * pin id so the client can redirect to the editor.
+ * Parse a hotel confirmation. Accepts:
+ *   - multipart/form-data with `file` field (a PDF) — preferred path
+ *   - application/json with { text } — pasted email body fallback
  *
- * Hard rules — these are NEVER stored, regardless of LLM output:
- *   - confirmation numbers
- *   - exact dates (only year)
- *   - guest names, primary or additional
- *   - guest count
- *   - email addresses
- *   - loyalty status / points
+ * Calls Gemini to extract structured fields, scrubs PII regardless of LLM
+ * output, then either finds an existing pin (by name + city) or creates a
+ * new one with kind='hotel' and the parsed fields prefilled.
+ *
+ * NEVER stored: confirmation numbers, guest names, exact dates, guest counts,
+ * email addresses, loyalty status. Year is the only date field.
  */
-const SYSTEM_PROMPT = `You are a hotel reservation parser. Extract structured travel data from the email below.
+const EXTRACTION_PROMPT = `You are a hotel reservation parser. Extract structured travel data from this hotel confirmation.
 
-CRITICAL: do NOT include any of: guest names, additional guest names, email addresses, phone numbers, confirmation numbers, exact check-in/check-out dates, number of guests, or loyalty status.
+CRITICAL: do NOT return any of: guest names, additional guest names, email addresses, phone numbers, confirmation numbers, exact check-in/check-out dates, number of guests, or loyalty status / membership tier / points balances.
 
-Extract ONLY:
-- hotel_name: the property name (e.g. "Holiday Inn Express & Suites Barcelona - Sabadell")
-- address: the hotel's street address line
-- city: best-guess city
-- country: best-guess country
-- year: the YEAR of the stay (4-digit int) — never the month or day
-- nights: number of nights
-- room_type: e.g. "Standard Room With Free Breakfast"
-- total_paid: numeric total paid for the stay (sum of all charges)
-- currency: 3-letter ISO code (USD, EUR, GBP)
-- brand: hotel brand if mentioned (e.g. "Holiday Inn Express")
-- chain: parent chain if mentioned (e.g. "IHG")
-- breakfast_included: true if the room includes breakfast
-
-Return JSON only, no prose. Use null for any field you cannot determine. The total_paid divided by nights gives the per-night rate.`;
+Return JSON ONLY. Use null for any field you cannot determine. Schema:
+{
+  "hotel_name": string | null,
+  "address": string | null,
+  "city": string | null,
+  "country": string | null,
+  "year": int | null,            // YEAR of stay only — never month or day
+  "nights": int | null,
+  "room_type": string | null,    // e.g. "Standard Room With Free Breakfast"
+  "total_paid": number | null,   // sum of all charges for the whole stay
+  "currency": string | null,     // 3-letter ISO (USD, EUR, GBP)
+  "brand": string | null,        // e.g. "Holiday Inn Express"
+  "chain": string | null,        // e.g. "IHG"
+  "breakfast_included": boolean | null
+}`;
 
 type ParsedReservation = {
   hotel_name: string | null;
@@ -54,94 +52,82 @@ type ParsedReservation = {
   breakfast_included: boolean | null;
 };
 
-async function parseViaGemini(text: string): Promise<ParsedReservation | null> {
-  const sb = supabaseAdmin();
-  // Use the Stray location-lookup edge function indirectly? No — that's
-  // dedicated to places. Easier: call Gemini directly. The edge function
-  // already has GEMINI_API_KEY, and we can hit it. But cleanest is a small
-  // dedicated edge function or just invoke Gemini through an HTTPS call from
-  // here using a server-side-only key. Stray's key lives on the edge
-  // function; we don't have it on Vercel. So we use Stray's edge function
-  // by adding a thin "parse-reservation" mode to it, OR we invoke the
-  // existing edge function via supabase.functions.invoke('parse-reservation').
-  //
-  // To avoid coupling, we add a Vercel env var GEMINI_API_KEY and call
-  // Gemini directly from here. If that env isn't set, fall back to a
-  // best-effort regex extractor.
-  const key = process.env.GEMINI_API_KEY;
-  if (!key) {
-    return regexFallback(text);
-  }
+const EMPTY: ParsedReservation = {
+  hotel_name: null, address: null, city: null, country: null,
+  year: null, nights: null, room_type: null, total_paid: null,
+  currency: null, brand: null, chain: null, breakfast_included: null,
+};
 
+async function callGeminiNative(parts: any[]): Promise<ParsedReservation | null> {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) return null;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
   try {
-    const res = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
-      {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'gemini-2.5-flash',
-          messages: [
-            { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'user', content: text.slice(0, 12000) },
-          ],
-          response_format: { type: 'json_object' },
-        }),
-      },
-    );
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts }],
+        generationConfig: { responseMimeType: 'application/json' },
+      }),
+    });
     if (!res.ok) {
-      console.error('[parse-reservation] gemini error:', res.status, await res.text());
-      return regexFallback(text);
+      console.error('[parse-reservation] gemini error:', res.status, (await res.text()).slice(0, 500));
+      return null;
     }
     const data = await res.json();
-    const content = data.choices?.[0]?.message?.content;
-    if (!content) return regexFallback(text);
-    const parsed = JSON.parse(content) as ParsedReservation;
-    return scrub(parsed);
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) return null;
+    return scrub(JSON.parse(text) as ParsedReservation);
   } catch (e) {
     console.error('[parse-reservation] gemini call failed:', e);
-    return regexFallback(text);
+    return null;
   }
 }
 
-/** Defensive scrub — drops any field that contains PII patterns even if the
- *  model returned it anyway. */
+async function parsePdf(buf: ArrayBuffer): Promise<ParsedReservation | null> {
+  const b64 = Buffer.from(buf).toString('base64');
+  return callGeminiNative([
+    { inline_data: { mime_type: 'application/pdf', data: b64 } },
+    { text: EXTRACTION_PROMPT },
+  ]);
+}
+
+async function parseText(text: string): Promise<ParsedReservation | null> {
+  if (!process.env.GEMINI_API_KEY) return regexFallback(text);
+  return callGeminiNative([
+    { text: `${EXTRACTION_PROMPT}\n\n--- email body ---\n\n${text.slice(0, 12000)}` },
+  ]) ?? regexFallback(text);
+}
+
 function scrub(p: ParsedReservation): ParsedReservation {
   const PII_RE = /\b(confirm(ation)?|booking|reservation)\s*(#|number|no\.?)/i;
   const EMAIL_RE = /[^@\s]+@[^@\s]+\.[^@\s]+/;
-  const stripped: ParsedReservation = { ...p };
+  const out: ParsedReservation = { ...p };
   for (const k of ['hotel_name', 'address', 'room_type', 'brand', 'chain'] as const) {
-    const v = stripped[k];
+    const v = out[k];
     if (typeof v === 'string') {
-      if (PII_RE.test(v) || EMAIL_RE.test(v)) stripped[k] = null;
+      if (PII_RE.test(v) || EMAIL_RE.test(v)) out[k] = null;
     }
   }
-  // Year sanity
-  if (stripped.year != null) {
-    const y = Number(stripped.year);
-    stripped.year = Number.isFinite(y) && y >= 1900 && y <= 2100 ? y : null;
+  if (out.year != null) {
+    const y = Number(out.year);
+    out.year = Number.isFinite(y) && y >= 1900 && y <= 2100 ? y : null;
   }
-  return stripped;
+  if (out.nights != null) {
+    const n = Number(out.nights);
+    out.nights = Number.isFinite(n) && n > 0 && n < 365 ? Math.round(n) : null;
+  }
+  return out;
 }
 
 function regexFallback(text: string): ParsedReservation {
-  // Very rough — only reliable if the model is unavailable. Pulls a 4-digit
-  // year and "N nights" patterns. Better to require the env var.
   const yearMatch = text.match(/\b(19|20)\d{2}\b/);
   const nightsMatch = text.match(/(\d+)\s*nights?/i);
   return {
-    hotel_name: null,
-    address: null,
-    city: null,
-    country: null,
+    ...EMPTY,
     year: yearMatch ? Number(yearMatch[0]) : null,
     nights: nightsMatch ? Number(nightsMatch[1]) : null,
-    room_type: null,
-    total_paid: null,
-    currency: null,
-    brand: null,
-    chain: null,
-    breakfast_included: null,
   };
 }
 
@@ -149,39 +135,19 @@ function slugify(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
 }
 
-export async function POST(req: Request) {
-  let body: any;
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
-  }
-  const text = typeof body?.text === 'string' ? body.text : '';
-  if (!text || text.length < 50) {
-    return NextResponse.json({ error: 'paste the email body (at least 50 chars)' }, { status: 400 });
-  }
-
-  const parsed = await parseViaGemini(text);
-  if (!parsed || !parsed.hotel_name) {
-    return NextResponse.json({
-      error: 'Could not parse a hotel name. Paste the full email body, or add the pin manually.',
-      parsed,
-    }, { status: 422 });
-  }
-
+async function upsertPin(parsed: ParsedReservation): Promise<{ id: string; slug: string | null; isNew: boolean } | null> {
+  if (!parsed.hotel_name) return null;
   const sb = supabaseAdmin();
 
-  // Try to find an existing pin by name (case-insensitive) + matching city if we have one.
-  let pinId: string | null = null;
-  let pinSlug: string | null = null;
-  let isNew = false;
-
-  const matchQuery = sb
+  // Existing match by name (case-insensitive) and ideally city.
+  const { data: existing } = await sb
     .from('pins')
     .select('id, slug, city_names')
-    .ilike('name', parsed.hotel_name);
+    .ilike('name', parsed.hotel_name)
+    .limit(5);
 
-  const { data: existing } = await matchQuery.limit(5);
+  let pinId: string | null = null;
+  let pinSlug: string | null = null;
   if (existing && existing.length > 0) {
     if (parsed.city) {
       const cityLower = parsed.city.toLowerCase();
@@ -204,59 +170,109 @@ export async function POST(req: Request) {
       ? Number((parsed.total_paid / parsed.nights).toFixed(2))
       : null;
 
-  const updates: Record<string, unknown> = {
-    kind: 'hotel',
-    visited: true,
-  };
-  if (parsed.address) updates.address = parsed.address;
-  if (parsed.city) updates.city_names = [parsed.city];
-  if (parsed.country) updates.states_names = [parsed.country];
-  if (parsed.year) updates.visit_year = parsed.year;
-  if (parsed.nights) updates.nights_stayed = parsed.nights;
-  if (parsed.room_type) updates.room_type = parsed.room_type;
-  if (perNight) updates.room_price_per_night = perNight;
-  if (parsed.currency) updates.room_price_currency = parsed.currency;
+  const fields: Record<string, unknown> = { kind: 'hotel', visited: true };
+  if (parsed.address) fields.address = parsed.address;
+  if (parsed.city) fields.city_names = [parsed.city];
+  if (parsed.country) fields.states_names = [parsed.country];
+  if (parsed.year) fields.visit_year = parsed.year;
+  if (parsed.nights) fields.nights_stayed = parsed.nights;
+  if (parsed.room_type) fields.room_type = parsed.room_type;
+  if (perNight) fields.room_price_per_night = perNight;
+  if (parsed.currency) fields.room_price_currency = parsed.currency;
 
   if (pinId) {
-    const { error } = await sb.from('pins').update(updates).eq('id', pinId);
+    const { error } = await sb.from('pins').update(fields).eq('id', pinId);
     if (error) {
       console.error('[parse-reservation] update existing failed:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return null;
     }
+    return { id: pinId, slug: pinSlug, isNew: false };
+  }
+
+  const baseSlug = slugify(parsed.hotel_name);
+  let slug = baseSlug;
+  for (let i = 0; i < 5; i++) {
+    const { data: existingSlug } = await sb.from('pins').select('id').eq('slug', slug).maybeSingle();
+    if (!existingSlug) break;
+    slug = `${baseSlug}-${Math.random().toString(36).slice(2, 6)}`;
+  }
+  const { data: created, error } = await sb
+    .from('pins')
+    .insert({
+      name: parsed.hotel_name,
+      slug,
+      category: 'hotel',
+      ...fields,
+    })
+    .select('id, slug')
+    .single();
+  if (error || !created) {
+    console.error('[parse-reservation] insert failed:', error);
+    return null;
+  }
+  return { id: created.id, slug: created.slug ?? null, isNew: true };
+}
+
+export async function POST(req: Request) {
+  const contentType = req.headers.get('content-type') ?? '';
+  let parsed: ParsedReservation | null = null;
+  let sourceLabel = 'text';
+
+  if (contentType.includes('multipart/form-data')) {
+    const form = await req.formData().catch(() => null);
+    if (!form) {
+      return NextResponse.json({ error: 'invalid multipart body' }, { status: 400 });
+    }
+    const file = form.get('file');
+    if (!(file instanceof File)) {
+      return NextResponse.json({ error: 'file field required' }, { status: 400 });
+    }
+    if (file.size > 4 * 1024 * 1024) {
+      return NextResponse.json({ error: 'PDF too large (max 4 MB per file)' }, { status: 413 });
+    }
+    sourceLabel = file.name || 'pdf';
+    const buf = await file.arrayBuffer();
+    parsed = await parsePdf(buf);
   } else {
-    isNew = true;
-    const baseSlug = slugify(parsed.hotel_name);
-    let slug = baseSlug;
-    for (let i = 0; i < 5; i++) {
-      const { data: existingSlug } = await sb.from('pins').select('id').eq('slug', slug).maybeSingle();
-      if (!existingSlug) break;
-      slug = `${baseSlug}-${Math.random().toString(36).slice(2, 6)}`;
+    let body: any;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'invalid JSON' }, { status: 400 });
     }
-    const { data: created, error } = await sb
-      .from('pins')
-      .insert({
-        name: parsed.hotel_name,
-        slug,
-        category: 'hotel',
-        ...updates,
-      })
-      .select('id, slug')
-      .single();
-    if (error || !created) {
-      console.error('[parse-reservation] insert failed:', error);
-      return NextResponse.json({ error: error?.message ?? 'create failed' }, { status: 500 });
+    const text = typeof body?.text === 'string' ? body.text : '';
+    if (!text || text.length < 50) {
+      return NextResponse.json({ error: 'paste the email body (at least 50 chars)' }, { status: 400 });
     }
-    pinId = created.id;
-    pinSlug = created.slug;
+    parsed = await parseText(text);
+  }
+
+  if (!parsed || !parsed.hotel_name) {
+    return NextResponse.json(
+      { error: `Could not parse a hotel name from ${sourceLabel}.`, parsed },
+      { status: 422 },
+    );
+  }
+
+  const result = await upsertPin(parsed);
+  if (!result) {
+    return NextResponse.json({ error: 'failed to create or update pin', parsed }, { status: 500 });
   }
 
   try {
     revalidateTag('supabase-pins');
     revalidatePath('/pins/cards');
-    if (pinSlug) revalidatePath(`/pins/${pinSlug}`);
+    if (result.slug) revalidatePath(`/pins/${result.slug}`);
   } catch {
     /* ignore */
   }
 
-  return NextResponse.json({ id: pinId, slug: pinSlug, isNew, parsed });
+  return NextResponse.json({
+    id: result.id,
+    slug: result.slug,
+    isNew: result.isNew,
+    name: parsed.hotel_name,
+    sourceLabel,
+    parsed,
+  });
 }

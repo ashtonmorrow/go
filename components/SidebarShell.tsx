@@ -9,6 +9,7 @@ import CountryFilterPanel from './CountryFilterPanel';
 import { useCityFilters } from './CityFiltersContext';
 import { usePinFilters } from './PinFiltersContext';
 import { useCountryFilters } from './CountryFiltersContext';
+import { withUtm } from '@/lib/utm';
 
 type Counts = {
   cities: number;
@@ -43,9 +44,10 @@ const PAGES: { href: string; emoji: string; label: string }[] = [
 // listed because the bottom-anchored '🏠 Home' button already points there.
 // The "About" link that used to live here pointed to app.mike-lee.me;
 // that's now the internal /about route in the Views section.
-const ELSEWHERE: { href: string; emoji: string; label: string }[] = [
-  { href: 'https://ski.mike-lee.me/', emoji: '⛷️', label: 'Cat-Ski' },
-  { href: 'https://app.stray.tips/', emoji: '🐈', label: 'Stray' },
+const ELSEWHERE: { href: string; emoji: string; label: string; campaign?: string }[] = [
+  { href: 'https://ski.mike-lee.me/',     emoji: '⛷️', label: 'Cat-Ski', campaign: 'cat-ski' },
+  { href: 'https://pounce.mike-lee.me/',  emoji: '🐾', label: 'Pounce',  campaign: 'pounce' },
+  { href: 'https://app.stray.tips/',      emoji: '🐈', label: 'Stray',   campaign: 'stray' },
 ];
 
 export default function SidebarShell({
@@ -239,7 +241,7 @@ function NavBody({
           come before the off-site links. */}
       <Section label="Elsewhere">
         {ELSEWHERE.map(p => (
-          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} />
+          <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} campaign={p.campaign} />
         ))}
       </Section>
 
@@ -249,7 +251,7 @@ function NavBody({
           three first-class object axes) so it's less prominent but
           still findable. */}
       <div className="mt-auto flex flex-col gap-1 pt-4">
-        <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" />
+        <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" campaign="mike-lee-home" />
         <Item href="/about" emoji="📖" label="About this atlas" onClick={onLinkClick} />
         <Link
           href="/privacy"
@@ -259,7 +261,7 @@ function NavBody({
           Privacy &amp; data
         </Link>
         <a
-          href="https://www.linkedin.com/in/mikelee89/"
+          href={withUtm('https://www.linkedin.com/in/mikelee89/', { medium: 'sidebar', campaign: 'linkedin-footer' })}
           target="_blank"
           rel="noopener noreferrer"
           className="px-2 mt-1 text-[11px] text-muted hover:text-ink-deep transition-colors"
@@ -326,11 +328,24 @@ function Item({
 }
 
 // === ExternalItem ===
-// External link with the small "↗" indicator, opens in a new tab.
-function ExternalItem({ href, emoji, label }: { href: string; emoji: string; label: string }) {
+// External link with the small "↗" indicator, opens in a new tab. Adds UTM
+// params so we can attribute clicks in the destination's analytics — most
+// useful for our own properties (mike-lee.me, ski.mike-lee.me, pounce.mike-lee.me).
+function ExternalItem({
+  href,
+  emoji,
+  label,
+  campaign,
+}: {
+  href: string;
+  emoji: string;
+  label: string;
+  campaign?: string;
+}) {
+  const tracked = withUtm(href, { medium: 'sidebar', campaign });
   return (
     <a
-      href={href}
+      href={tracked}
       target="_blank"
       rel="noopener noreferrer"
       className="group flex items-center gap-2 px-2 py-1.5 rounded text-small text-slate hover:bg-cream-soft hover:text-ink-deep transition-colors"
