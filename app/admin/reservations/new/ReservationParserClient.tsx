@@ -6,7 +6,7 @@ import Link from 'next/link';
 type FileStatus =
   | { stage: 'pending' }
   | { stage: 'parsing' }
-  | { stage: 'done'; pinId: string; pinSlug: string | null; name: string; isNew: boolean }
+  | { stage: 'done'; pinId: string; pinSlug: string | null; name: string; isNew: boolean; duplicate: boolean }
   | { stage: 'error'; error: string };
 
 type Item = {
@@ -19,7 +19,7 @@ export default function ReservationParserClient() {
   const [items, setItems] = useState<Item[]>([]);
   const [text, setText] = useState('');
   const [pasting, setPasting] = useState(false);
-  const [pasteResult, setPasteResult] = useState<{ pinId: string; pinSlug: string | null; name: string } | null>(null);
+  const [pasteResult, setPasteResult] = useState<{ pinId: string; pinSlug: string | null; name: string; duplicate: boolean } | null>(null);
   const [pasteError, setPasteError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -59,6 +59,7 @@ export default function ReservationParserClient() {
                     pinSlug: data.slug ?? null,
                     name: data.name,
                     isNew: !!data.isNew,
+                    duplicate: !!data.duplicate,
                   },
                 }
               : p,
@@ -96,7 +97,12 @@ export default function ReservationParserClient() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error ?? `parse failed (${res.status})`);
-      setPasteResult({ pinId: data.id, pinSlug: data.slug ?? null, name: data.name });
+      setPasteResult({
+        pinId: data.id,
+        pinSlug: data.slug ?? null,
+        name: data.name,
+        duplicate: !!data.duplicate,
+      });
       setText('');
     } catch (e) {
       setPasteError(e instanceof Error ? e.message : 'unknown');
@@ -170,8 +176,11 @@ export default function ReservationParserClient() {
             </div>
           )}
           {pasteResult && (
-            <div className="px-3 py-2 rounded bg-teal/10 text-teal text-small">
-              Created <strong>{pasteResult.name}</strong> ·{' '}
+            <div className={'px-3 py-2 rounded text-small ' + (pasteResult.duplicate ? 'bg-cream-soft text-slate' : 'bg-teal/10 text-teal')}>
+              {pasteResult.duplicate
+                ? <>Already imported <strong>{pasteResult.name}</strong> — skipped.</>
+                : <>Created <strong>{pasteResult.name}</strong></>}
+              {' · '}
               <Link href={`/admin/pins/${pasteResult.pinId}`} className="underline">
                 edit
               </Link>
@@ -265,8 +274,10 @@ function PdfRow({ item, onRemove }: { item: Item; onRemove: () => void }) {
           <p className="text-[11px] text-orange">{status.error}</p>
         )}
         {status.stage === 'done' && (
-          <p className="text-[11px] text-teal">
-            {status.isNew ? 'Created' : 'Updated'} <strong>{status.name}</strong>
+          <p className={'text-[11px] ' + (status.duplicate ? 'text-slate' : 'text-teal')}>
+            {status.duplicate
+              ? <>Already imported <strong>{status.name}</strong> — skipped.</>
+              : <>{status.isNew ? 'Created' : 'Updated'} <strong>{status.name}</strong></>}
           </p>
         )}
       </div>
