@@ -30,37 +30,42 @@ export type SavedListMeta = {
   updatedAt: string | null;
 };
 
-/** Pull every saved-list metadata row in one go and index by name. The set
- *  is small (hundreds at most) so we cache aggressively and let consumers
- *  do their own .get(name) lookups. 5-minute revalidate matches the rest
- *  of the Supabase fetch family. */
-const _fetchAllSavedListsMeta = unstable_cache(
-  async (): Promise<Map<string, SavedListMeta>> => {
+/** Pull every saved-list metadata row in one go. The set is small (hundreds
+ *  at most) so we cache aggressively. We must return an array (not a Map)
+ *  from `unstable_cache` because Next's data cache serializes via JSON, and
+ *  Maps round-trip as `{}`. The Map is reconstructed in the React.cache
+ *  wrapper so consumers still get a fast .get(name) API.
+ *
+ *  This is the same gotcha task #161 fixed for fetchAllPins. */
+const _fetchAllSavedListsMetaArray = unstable_cache(
+  async (): Promise<SavedListMeta[]> => {
     const { data, error } = await supabase
       .from('saved_lists')
       .select('name, google_share_url, description, cover_pin_id, updated_at');
     if (error) {
       console.error('[savedLists] fetch failed:', error);
-      return new Map();
+      return [];
     }
-    const map = new Map<string, SavedListMeta>();
-    for (const row of data ?? []) {
-      map.set(row.name as string, {
-        name: row.name as string,
-        googleShareUrl: (row.google_share_url as string | null) ?? null,
-        description: (row.description as string | null) ?? null,
-        coverPinId: (row.cover_pin_id as string | null) ?? null,
-        updatedAt: (row.updated_at as string | null) ?? null,
-      });
-    }
-    return map;
+    return (data ?? []).map(row => ({
+      name: row.name as string,
+      googleShareUrl: (row.google_share_url as string | null) ?? null,
+      description: (row.description as string | null) ?? null,
+      coverPinId: (row.cover_pin_id as string | null) ?? null,
+      updatedAt: (row.updated_at as string | null) ?? null,
+    }));
   },
   ['saved-lists-meta'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 
-/** Wrapped in React.cache for per-render memoization on top of unstable_cache. */
-export const fetchAllSavedListsMeta = cache(_fetchAllSavedListsMeta);
+/** Wrapped in React.cache so the Map reconstruction happens once per render.
+ *  Callers see the same Map shape they did before this fix. */
+export const fetchAllSavedListsMeta = cache(async (): Promise<Map<string, SavedListMeta>> => {
+  const arr = await _fetchAllSavedListsMetaArray();
+  const map = new Map<string, SavedListMeta>();
+  for (const row of arr) map.set(row.name, row);
+  return map;
+});
 
 /** Convenience for a single name. */
 export async function fetchSavedListMeta(name: string): Promise<SavedListMeta | null> {
