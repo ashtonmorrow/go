@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
+import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';
 
 // Dynamic sitemap. Includes:
@@ -65,5 +66,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: p.visited ? 0.7 : 0.5,
     }));
 
-  return [...staticRoutes, ...cityRoutes, ...countryRoutes, ...pinRoutes];
+  // Curated /pins/views/<slug> landings — high-intent SEO surfaces with
+  // their own editorial copy + Article schema. Bumped to 0.8 because each
+  // is a hand-tuned destination, not just a filter permutation.
+  const viewRoutes: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/pins/views`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    ...listPinViews().map(v => ({
+      url: `${SITE_URL}/pins/views/${v.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
+  ];
+
+  return [...staticRoutes, ...cityRoutes, ...countryRoutes, ...pinRoutes, ...viewRoutes];
 }
