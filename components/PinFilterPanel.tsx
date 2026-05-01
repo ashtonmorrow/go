@@ -31,11 +31,16 @@ export default function PinFilterPanel({
   categoryOptions = [],
   listOptions = [],
   tagOptions = [],
+  savedListOptions = [],
 }: {
   countryOptions?: string[];
   categoryOptions?: string[];
   listOptions?: string[];
   tagOptions?: string[];
+  /** Mike's personal Google Maps saved-list names (Madrid, Bangkok, Coffee
+   *  Shops, …). Sorted by member count desc upstream in Sidebar.tsx so the
+   *  most-populated lists surface first. */
+  savedListOptions?: string[];
 }) {
   const ctx = usePinFilters();
   if (!ctx) return null;
@@ -179,6 +184,26 @@ export default function PinFilterPanel({
             selected={state.tags}
             onToggle={v => setState(s => ({ ...s, tags: togglePinSet(s.tags, v) }))}
             onClear={() => setState(s => ({ ...s, tags: new Set() }))}
+          />
+        </div>
+      )}
+
+      {/* Saved on my lists — Mike's personal Google Maps collections
+          (Madrid, Bangkok, Coffee Shops, …) imported from Takeout. Long
+          tail of ~230 list names, so a searchable multi-select is the
+          right shape rather than a fixed chip group. OR semantics: pick
+          "madrid" + "barcelona" → see everything across both lists. */}
+      {savedListOptions.length > 0 && (
+        <div>
+          <SectionLabel>Saved on my lists</SectionLabel>
+          <SearchableMultiSelect
+            placeholder="Search my lists"
+            options={savedListOptions}
+            selected={state.savedLists}
+            onToggle={v =>
+              setState(s => ({ ...s, savedLists: togglePinSet(s.savedLists, v) }))
+            }
+            onClear={() => setState(s => ({ ...s, savedLists: new Set() }))}
           />
         </div>
       )}

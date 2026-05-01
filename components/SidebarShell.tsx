@@ -58,6 +58,7 @@ export default function SidebarShell({
   pinCategoryOptions = [],
   pinListOptions = [],
   pinTagOptions = [],
+  pinSavedListOptions = [],
   articleEntries = [],
 }: {
   counts: Counts;
@@ -66,6 +67,7 @@ export default function SidebarShell({
   pinCategoryOptions?: string[];
   pinListOptions?: string[];
   pinTagOptions?: string[];
+  pinSavedListOptions?: string[];
   /** Server-fetched article + post union — see lib/articles.getAllArticleEntries.
    *  Defaults to [] so existing call sites keep typechecking before the prop
    *  is threaded through; we should always pass it in production. */
@@ -116,6 +118,7 @@ export default function SidebarShell({
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
           pinTagOptions={pinTagOptions}
+          pinSavedListOptions={pinSavedListOptions}
           articleEntries={articleEntries}
           onLinkClick={() => setDrawerOpen(false)}
         />
@@ -131,6 +134,7 @@ export default function SidebarShell({
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
           pinTagOptions={pinTagOptions}
+          pinSavedListOptions={pinSavedListOptions}
           articleEntries={articleEntries}
         />
       </aside>
@@ -152,6 +156,7 @@ function NavBody({
   pinCategoryOptions,
   pinListOptions,
   pinTagOptions,
+  pinSavedListOptions,
   articleEntries,
   onLinkClick,
 }: {
@@ -161,6 +166,7 @@ function NavBody({
   pinCategoryOptions: string[];
   pinListOptions: string[];
   pinTagOptions: string[];
+  pinSavedListOptions: string[];
   articleEntries: ArticleEntry[];
   onLinkClick?: () => void;
 }) {
@@ -243,6 +249,7 @@ function NavBody({
           categoryOptions={pinCategoryOptions}
           listOptions={pinListOptions}
           tagOptions={pinTagOptions}
+          savedListOptions={pinSavedListOptions}
         />
       ) : showCountryFilters ? (
         <CountryFilterPanel />

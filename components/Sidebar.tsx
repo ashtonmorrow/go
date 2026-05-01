@@ -69,6 +69,22 @@ export default async function Sidebar() {
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .map(([t]) => t);
 
+  // Saved lists — Mike's personal Google Maps collections (Madrid, Bangkok,
+  // Coffee Shops, etc), populated by the Takeout import. Sorted by member
+  // count desc so the lists with the most pins surface first; lists with
+  // only 1 pin are kept (filtering them out would hide a real list with a
+  // single match). Cap at 50 in the cockpit so the chip group doesn't
+  // wallpaper the rail — the rare long tail can still be filter-targeted
+  // by passing the value through search later.
+  const savedListCounts = new Map<string, number>();
+  for (const p of pins) for (const l of p.savedLists) {
+    savedListCounts.set(l, (savedListCounts.get(l) ?? 0) + 1);
+  }
+  const pinSavedListOptions = Array.from(savedListCounts.entries())
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 50)
+    .map(([name]) => name);
+
   return (
     <SidebarShell
       counts={counts}
@@ -77,6 +93,7 @@ export default async function Sidebar() {
       pinCategoryOptions={pinCategoryOptions}
       pinListOptions={pinListOptions}
       pinTagOptions={pinTagOptions}
+      pinSavedListOptions={pinSavedListOptions}
       articleEntries={articleEntries}
     />
   );

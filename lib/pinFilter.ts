@@ -38,6 +38,9 @@ export type PinFilterable = {
    *  treated as false when missing. */
   personalReview?: string | null;
   personalRating?: number | null;
+  /** Mike's personal Google Maps saved-list memberships (Madrid, Bangkok,
+   *  Coffee Shops, etc). Populated by the saved-list import. */
+  savedLists?: string[];
 };
 
 // Words/phrases in the priceText field that imply free admission. Used
@@ -101,6 +104,18 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
         if (!pinBring.includes(b)) { hasAll = false; break; }
       }
       if (!hasAll) continue;
+    }
+    // Saved lists — OR semantics (any selected list matches). Mirrors the
+    // `lists` filter semantics elsewhere in the cockpit. The 230 saved
+    // lists are mostly geographic so picking "madrid" + "barcelona" should
+    // surface every place across both, not just intersection.
+    if (state.savedLists.size > 0) {
+      const pinSaved = p.savedLists ?? [];
+      let hit = false;
+      for (const s of state.savedLists) {
+        if (pinSaved.includes(s)) { hit = true; break; }
+      }
+      if (!hit) continue;
     }
     if (state.categories.size > 0 && (!p.category || !state.categories.has(p.category))) continue;
     if (state.countries.size > 0) {

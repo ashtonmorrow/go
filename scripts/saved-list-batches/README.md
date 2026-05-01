@@ -1,54 +1,44 @@
 # Saved-list import — final apply
 
 The Google Takeout `Saved/<list>.csv` files (230 lists, ~3,023 unique
-places) have been collapsed into 10 SQL batches in this directory:
+places) are bundled here for one-shot apply.
 
-- `update-0.sql` … `update-4.sql` — match the title against existing
-  pins by normalized name, append the list memberships to
-  `pins.saved_lists`, and copy the CSV note into `pins.personal_notes`
-  when the column is empty.
-- `insert-0.sql` … `insert-4.sql` — insert a draft pin (no coords) for
-  every saved-list title that didn't match an existing pin. Inserted
-  rows carry `source = 'google-saved-list'` and `visited = false`.
+**Recommended:** run `apply-all-remaining.sql`. It does everything in
+one transaction — stages 3,000 entries into a temp table, runs UPDATE
+to merge memberships into matched existing pins, then INSERT to create
+draft pins for the unmatched ~1,800 titles, then drops the staging.
 
-The first smoke test (`update-4.sql`) ran cleanly via the Supabase MCP
-during the prep phase — Massa Bistro, InterContinental Istanbul, and
-Travertines of Pamukkale picked up their `istanbul` / `pamukkale`
-list memberships. The remaining 9 batches were too large to dispatch
-without burning conversation context, so they live here for you to
-apply.
+The 23 entries already smoke-tested (`update-4.sql`'s Istanbul +
+Pamukkale + a few NOLA + Random) are excluded from the consolidated
+file so it's safe to run after that test pass.
+
+The split `update-{0..4}.sql` / `insert-{0..4}.sql` files are kept
+around as fallback if the mega-file is too large for your client.
 
 ## How to run
 
-### Option A — Supabase Studio SQL Editor
+### Option A — Supabase Studio SQL Editor (recommended)
 
 Open https://supabase.com/dashboard/project/pdjrvlhepiwkshxerkpz/sql,
-paste each file in order (updates first, then inserts), and Run.
-
-Order matters: do all five `update-*.sql` files first so list memberships
-land on existing pins. Then the `insert-*.sql` files only insert pins
-that **don't already match** by normalized name (the `WHERE NOT EXISTS`
-clause), so running them after updates is correct and idempotent.
+paste the contents of `apply-all-remaining.sql`, and Run. The whole
+thing is one transaction; if anything fails, nothing commits.
 
 ### Option B — psql
 
-If you have the Postgres connection string from Supabase
-(`Settings → Database → Connection string → URI`):
-
 ```sh
 export DATABASE_URL='postgresql://postgres:<password>@db.pdjrvlhepiwkshxerkpz.supabase.co:5432/postgres'
-
-for f in scripts/saved-list-batches/update-*.sql; do
-  echo "=== $f ==="
-  psql "$DATABASE_URL" -f "$f"
-done
-for f in scripts/saved-list-batches/insert-*.sql; do
-  echo "=== $f ==="
-  psql "$DATABASE_URL" -f "$f"
-done
+psql "$DATABASE_URL" -f scripts/saved-list-batches/apply-all-remaining.sql
 ```
 
-Each batch is idempotent — re-running has no effect once applied.
+The `apply-all-remaining.sql` file already excludes the 23 entries
+applied during the smoke test, so re-running it is safe (the
+`WHERE NOT EXISTS` clause + array-merge dedup handle idempotency).
+
+### Option C (fallback) — split batches
+
+If the consolidated 261 KB file is too large for your tool, run the
+split files in order: all five `update-*.sql` first, then the five
+`insert-*.sql`. Same idempotent semantics.
 
 ## What you'll see after
 

@@ -38,6 +38,11 @@ export type PinFilterState = {
   tags: Set<string>;
   /** Pin's bring[] must include every selected token (AND). */
   bring: Set<string>;
+  /** Pin's saved_lists[] must include at least one selected list (OR).
+   *  Saved lists are Mike's personal Google Maps collections (Madrid,
+   *  Bangkok, Coffee Shops, etc) — distinct from the canonical UNESCO /
+   *  Atlas Obscura lists already covered by `lists`. */
+  savedLists: Set<string>;
   inceptionMin: number | null;
   inceptionMax: number | null;
   sort: PinSortKey;
@@ -62,6 +67,7 @@ const DEFAULT_STATE: PinFilterState = {
   lists: new Set(),
   tags: new Set(),
   bring: new Set(),
+  savedLists: new Set(),
   inceptionMin: null,
   inceptionMax: null,
   sort: 'recent',
@@ -102,6 +108,7 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     n += state.lists.size > 0 ? 1 : 0;
     n += state.tags.size > 0 ? 1 : 0;
     n += state.bring.size > 0 ? 1 : 0;
+    n += state.savedLists.size > 0 ? 1 : 0;
     if (state.inceptionMin != null || state.inceptionMax != null) n++;
     return n;
   }, [state]);
