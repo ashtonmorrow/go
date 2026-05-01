@@ -348,7 +348,7 @@ async function fetchAllCities(): Promise<CityRow[]> {
       .range(from, from + page - 1);
     if (error) throw error;
     if (!data || data.length === 0) break;
-    out.push(...(data as CityRow[]));
+    out.push(...(data as unknown as CityRow[]));
     if (data.length < page) break;
   }
   return out;
