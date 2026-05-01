@@ -161,6 +161,28 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
 
   return (
     <div>
+      {/* Create-new-list form. Sits above the search row so the affordance
+          is the first thing the admin sees on the page. */}
+      <form
+        className="mb-4 flex flex-wrap items-center gap-2"
+        onSubmit={e => { e.preventDefault(); createList(); }}
+      >
+        <input
+          type="text"
+          value={newName}
+          onChange={e => setNewName(e.target.value)}
+          placeholder="New list name (e.g. coffee shops, lisbon)…"
+          className="flex-1 max-w-md text-small border border-sand rounded px-3 py-2 bg-white focus:outline-none focus:border-ink-deep"
+        />
+        <button
+          type="submit"
+          disabled={busy || !newName.trim()}
+          className="px-3 py-2 rounded bg-teal text-white text-small font-medium disabled:opacity-50"
+        >
+          + Create list
+        </button>
+      </form>
+
       <div className="mb-4 flex items-center gap-3">
         <input
           type="search"
@@ -235,7 +257,13 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
                         </button>
                       </div>
                     ) : (
-                      <span className="text-ink-deep capitalize">{l.name}</span>
+                      <Link
+                        href={`/admin/lists/${listNameToSlug(l.name)}`}
+                        className="text-ink-deep capitalize hover:underline"
+                        title="Edit list members"
+                      >
+                        {l.name}
+                      </Link>
                     )}
                   </td>
                   <td className="px-4 py-2.5 align-middle min-w-[220px] max-w-[360px]">
