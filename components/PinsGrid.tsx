@@ -8,6 +8,7 @@ import { flagRect } from '@/lib/flags';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
 import { parseHours, todayHoursLabel } from '@/lib/parseHours';
 import { thumbUrl } from '@/lib/imageUrl';
+import { snippet } from '@/lib/savedLists';
 import type { Pin } from '@/lib/pins';
 
 /** Cards rendered on first paint — 60 covers ~3 viewports of grid on
@@ -167,6 +168,12 @@ function PinCard({
   // weekly schedule. Free-form prose hours are kept for the detail
   // page; trying to summarise them on a 14-line card cell is fragile.
   const hoursToday = todayHoursLabel(parseHours(pin.hours));
+
+  // Personal review snippet — first sentence-or-two of Mike's prose,
+  // line-clamped on the card. The truncation itself is the affordance
+  // to click through; the visit_year sits next to the rating.
+  const reviewSnippet = snippet(pin.personalReview, 110);
+  const hasRating = pin.personalRating != null && pin.personalRating > 0;
   // Compact admission hint — only render when we have a confirmed
   // numeric price. The atlas's price coverage is sparse so a "Cost"
   // row is mostly noise; reserve it for the (currently ~5) pins
@@ -233,6 +240,32 @@ function PinCard({
         {subLabel && (
           <p className="text-small text-muted truncate font-mono mt-0.5">
             {subLabel}
+          </p>
+        )}
+        {/* Personal experience row — rating + visit year. The emoji stars
+            do most of the recognition work; the year is muted so it reads
+            as a secondary detail. Only renders when there's a rating;
+            unrated visited pins keep the card compact. */}
+        {hasRating && (
+          <p
+            className="mt-0.5 text-label leading-tight"
+            aria-label={`${pin.personalRating} stars`}
+          >
+            {'⭐'.repeat(pin.personalRating ?? 0)}
+            {pin.visitYear ? (
+              <span className="ml-1.5 text-muted text-micro tabular-nums">
+                · {pin.visitYear}
+              </span>
+            ) : null}
+          </p>
+        )}
+        {/* Review snippet — Mike's prose, truncated to ~110 chars and
+            clamped to two lines. The truncation itself is the click bait
+            into the detail page. Skipped entirely when there's no review,
+            so unreviewed cards don't get pushed taller for empty space. */}
+        {reviewSnippet && (
+          <p className="mt-0.5 text-label text-slate leading-snug line-clamp-2">
+            {reviewSnippet}
           </p>
         )}
         {visibleLists.length > 0 && (
