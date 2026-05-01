@@ -47,6 +47,9 @@ type CityRow = {
   been: boolean | null;
   go: boolean | null;
   wikidata_id: string | null;
+  population: number | null;
+  area: number | null;
+  elevation: number | null;
   mayor: string | null;
   founded: string | null;
   demonym: string | null;
@@ -65,6 +68,9 @@ type CountryRow = {
 type Facts = {
   mayor?: string;
   founded?: string;
+  population?: number;
+  area?: number;
+  elevation?: number;
   demonyms: string[];
   nicknames: string[];
   mottos: string[];
@@ -111,6 +117,12 @@ function formatWikidataDate(value: string): string | null {
     new Date(Date.UTC(2000, month - 1, 1))
   );
   return `${monthName} ${day}, ${year}`;
+}
+
+function parseWikidataNumber(value: string | undefined): number | undefined {
+  if (!value) return undefined;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : undefined;
 }
 
 function continentRank(continent: string): number {
@@ -180,6 +192,9 @@ async function fetchFacts(qids: string[]): Promise<Map<string, Facts>> {
       VALUES ?city { ${values} }
       OPTIONAL { ?city wdt:P6 ?mayor. }
       OPTIONAL { ?city wdt:P571 ?inception. }
+      OPTIONAL { ?city wdt:P1082 ?population. }
+      OPTIONAL { ?city wdt:P2046 ?area. }
+      OPTIONAL { ?city wdt:P2044 ?elevation. }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". ?mayor rdfs:label ?mayorLabel. }
     }
   `);
@@ -189,6 +204,12 @@ async function fetchFacts(qids: string[]): Promise<Map<string, Facts>> {
     const fact = getFact(facts, qid);
     if (!fact.mayor && row.mayorLabel?.value) fact.mayor = row.mayorLabel.value;
     if (!fact.founded && row.inception?.value) fact.founded = formatWikidataDate(row.inception.value) ?? undefined;
+    const population = parseWikidataNumber(row.population?.value);
+    if (population != null) fact.population = Math.max(fact.population ?? 0, Math.round(population));
+    const area = parseWikidataNumber(row.area?.value);
+    if (area != null) fact.area = Math.max(fact.area ?? 0, Number(area.toFixed(2)));
+    const elevation = parseWikidataNumber(row.elevation?.value);
+    if (elevation != null) fact.elevation = Math.round(elevation);
   }
   await sleep(250);
 
@@ -255,6 +276,9 @@ function needsFacts(city: CityRow): boolean {
   return [
     city.mayor,
     city.founded,
+    city.population,
+    city.area,
+    city.elevation,
     city.demonym,
     city.nicknames,
     city.motto,
@@ -266,7 +290,7 @@ function needsFacts(city: CityRow): boolean {
 async function main() {
   console.log(`[wd] Loading cities and countries${DRY_RUN ? ' (dry run)' : ''}...`);
   const [cities, countries] = await Promise.all([
-    fetchAll<CityRow>('go_cities', 'id, name, slug, country, country_id, been, go, wikidata_id, mayor, founded, demonym, nicknames, motto, iata_airports, sister_cities'),
+    fetchAll<CityRow>('go_cities', 'id, name, slug, country, country_id, been, go, wikidata_id, population, area, elevation, mayor, founded, demonym, nicknames, motto, iata_airports, sister_cities'),
     fetchAll<CountryRow>('go_countries', 'id, name, continent'),
   ]);
   const countryById = new Map(countries.map(country => [country.id, country]));
@@ -327,6 +351,9 @@ async function main() {
       const update: Record<string, unknown> = {};
       if (empty(city.mayor) && fact.mayor) update.mayor = fact.mayor;
       if (empty(city.founded) && fact.founded) update.founded = fact.founded;
+      if (empty(city.population) && fact.population != null) update.population = fact.population;
+      if (empty(city.area) && fact.area != null) update.area = fact.area;
+      if (empty(city.elevation) && fact.elevation != null) update.elevation = fact.elevation;
       if (empty(city.demonym)) {
         const value = compactList(fact.demonyms, 4);
         if (value) update.demonym = value;

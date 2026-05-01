@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "migrate:notion": "tsx --env-file=.env.local scripts/migrate-notion-to-supabase.ts",
     "attribution:backfill": "tsx --env-file=.env.local scripts/backfill-image-attribution.ts",
-    "facts:backfill": "tsx --env-file=.env.local scripts/backfill-wikidata-city-facts.ts"
+    "facts:backfill": "tsx --env-file=.env.local scripts/backfill-wikidata-city-facts.ts",
+    "editorial:cleanup": "tsx --env-file=.env.local scripts/editorial-cleanup-cities.ts"
   },
   "dependencies": {
     "@notionhq/client": "^2.3.0",
