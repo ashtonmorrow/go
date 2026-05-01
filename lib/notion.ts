@@ -263,27 +263,48 @@ const CACHE_REVALIDATE_SECONDS = 300; // 5min
 export const TABLE_CITIES = GO_CITIES_TABLE;
 export const TABLE_COUNTRIES = GO_COUNTRIES_TABLE;
 
-// Supabase pagination loop — PostgREST caps each response at 1000 rows
-// by default, so we page until we get a short read. Safety net for when
-// the city table grows past 5k.
+// Supabase pagination — fan-out, not loop. PostgREST caps each response
+// at 1000 rows; sequential fetches across 5k rows of fat `select('*')`
+// data crossed Vercel's serverless function timeout, returned an error,
+// and unstable_cache poisoned the empty result. Pre-counting via a head
+// request lets us fire all pages in parallel — total wall time becomes
+// max(pages) ≈ one round-trip instead of sum(pages).
 async function selectAll<T>(table: typeof TABLE_CITIES | typeof TABLE_COUNTRIES): Promise<T[]> {
-  const out: T[] = [];
   const PAGE = 1000;
-  for (let from = 0; ; from += PAGE) {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
-      .not('slug', 'like', 'delete-%')
-      .order('name')
-      .range(from, from + PAGE - 1);
-    if (error) {
-      console.error(`[supabase ${table}] fetch failed:`, error);
-      break;
-    }
-    if (!data || data.length === 0) break;
-    out.push(...(data as T[]));
-    if (data.length < PAGE) break;
+  const { count, error: countErr } = await supabase
+    .from(table)
+    .select('id', { count: 'exact', head: true })
+    .not('slug', 'like', 'delete-%');
+  if (countErr || count == null) {
+    console.error(`[supabase ${table}] count failed:`, countErr);
+    return [];
   }
+
+  const numPages = Math.max(1, Math.ceil(count / PAGE));
+  const ranges = Array.from({ length: numPages }, (_, i) => [
+    i * PAGE,
+    Math.min((i + 1) * PAGE - 1, count - 1),
+  ]);
+
+  const pages = await Promise.all(
+    ranges.map(([from, to]) =>
+      supabase
+        .from(table)
+        .select('*')
+        .not('slug', 'like', 'delete-%')
+        .order('name')
+        .range(from, to)
+        .then(res => {
+          if (res.error) {
+            console.error(`[supabase ${table}] page ${from}-${to} failed:`, res.error);
+            return [] as T[];
+          }
+          return (res.data ?? []) as T[];
+        }),
+    ),
+  );
+  const out: T[] = [];
+  for (const page of pages) out.push(...page);
   return out;
 }
 
