@@ -268,6 +268,13 @@ function NavBody({
         >
           Privacy &amp; data
         </Link>
+        <Link
+          href="/credits"
+          onClick={onLinkClick}
+          className="px-2 py-0.5 text-[11px] text-muted hover:text-ink-deep transition-colors"
+        >
+          Image &amp; data credits
+        </Link>
         <a
           href={withUtm('https://www.linkedin.com/in/mikelee89/', { medium: 'sidebar', campaign: 'linkedin-footer' })}
           target="_blank"

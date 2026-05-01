@@ -437,7 +437,29 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             <figure className="card p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={wp.thumbnailUrl} alt="" aria-hidden className="w-full rounded bg-cream-soft" />
-              <figcaption className="text-[10px] text-muted mt-1 px-1">Image via Wikipedia</figcaption>
+              {/* Attribution: per Wikimedia Commons + Wikipedia REST policy,
+                  link to the source article so the upstream author + license
+                  credits travel with the image. The full credit story lives
+                  on /credits. */}
+              <figcaption className="text-[10px] text-muted mt-1 px-1">
+                Lead image from{' '}
+                {wp.url ? (
+                  <a
+                    href={wp.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-ink-deep underline-offset-2 hover:underline"
+                  >
+                    the Wikipedia article
+                  </a>
+                ) : (
+                  'the Wikipedia article'
+                )}
+                .{' '}
+                <Link href="/credits" className="hover:text-ink-deep underline-offset-2 hover:underline">
+                  Credits
+                </Link>
+              </figcaption>
             </figure>
           )}
 
