@@ -51,7 +51,7 @@ export default function CountryFilterPanel() {
     <div className="flex flex-col gap-5">
       {/* Cockpit header — Clear-all pinned at the top of the panel. */}
       <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
-        <div className="text-[11px] text-muted">
+        <div className="text-label text-muted">
           {resultCount != null && totalCount != null ? (
             <>
               <span className="text-ink-deep font-medium tabular-nums">{resultCount}</span>
@@ -68,7 +68,7 @@ export default function CountryFilterPanel() {
           onClick={reset}
           disabled={!dirty}
           className={
-            'inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-md border transition-colors ' +
+            'inline-flex items-center gap-1 text-label px-2 py-1 rounded-md border transition-colors ' +
             (dirty
               ? 'text-ink-deep border-sand hover:border-slate hover:bg-cream-soft'
               : 'text-muted/60 border-transparent cursor-not-allowed')
@@ -192,7 +192,7 @@ export default function CountryFilterPanel() {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
+    <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
       {children}
     </div>
   );
@@ -263,7 +263,7 @@ function TriState<T extends string>({
           type="button"
           onClick={() => onChange(o.value)}
           className={
-            'flex-1 px-2 py-1 rounded text-[11px] font-medium transition-colors ' +
+            'flex-1 px-2 py-1 rounded text-label font-medium transition-colors ' +
             (value === o.value
               ? 'bg-cream-soft text-ink-deep'
               : 'text-slate hover:text-ink-deep')
@@ -292,7 +292,7 @@ function ChipGroup<T extends string>({
             type="button"
             onClick={() => onToggle(o.value)}
             className={
-              'px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              'px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
               (active
                 ? 'bg-ink-deep text-cream-soft border-ink-deep'
                 : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
@@ -345,7 +345,7 @@ function DirectionButton({
       type="button"
       onClick={onClick}
       className={
-        'flex-1 px-2 py-1 rounded text-[11px] font-medium transition-colors ' +
+        'flex-1 px-2 py-1 rounded text-label font-medium transition-colors ' +
         (active ? 'bg-cream-soft text-ink-deep' : 'text-slate hover:text-ink-deep')
       }
     >

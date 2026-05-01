@@ -167,7 +167,7 @@ export default function WorldMapPicker({ selected, onToggle }: Props) {
               type="button"
               onClick={() => onToggle(c)}
               className={
-                'px-1.5 py-0.5 rounded text-[10px] font-medium transition-colors ' +
+                'px-1.5 py-0.5 rounded text-micro font-medium transition-colors ' +
                 (active
                   ? 'bg-ink-deep text-cream-soft'
                   : 'bg-cream-soft text-slate hover:bg-cream hover:text-ink-deep')

@@ -1,9 +1,12 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
-import CitiesTable from '@/components/CitiesTable';
+import CitiesGrid from '@/components/CitiesGrid';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { fetchCityFlags } from '@/lib/cityFlags';
+import { currencySymbol } from '@/lib/currencySymbol';
+import { ukSubdivision } from '@/lib/ukRegion';
+import { flagRect } from '@/lib/flags';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
@@ -13,26 +16,22 @@ import type {
 } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
-
-const DESCRIPTION =
-  'All 1,341 cities as a sortable data table. Filter by continent, climate, visa, water, drive side. Click any row to open its postcard.';
+export const revalidate = 604800;
 
 export const metadata: Metadata = {
-  title: 'City Data',
-  description: DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}/cities/table` },
+  title: 'Cities',
+  description:
+    'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+  alternates: { canonical: `${SITE_URL}/cities/cards` },
   openGraph: {
     type: 'website',
-    url: `${SITE_URL}/cities/table`,
-    title: 'City Data · Mike Lee',
-    description: DESCRIPTION,
+    url: `${SITE_URL}/cities/cards`,
+    title: 'Cities · Mike Lee',
+    description:
+      'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
   },
 };
 
-// === Type narrowing helpers ================================================
-// Same pattern used by /cities/page.tsx — narrow Notion's free-text fields
-// to the closed unions used by the filter context.
 const CONTINENT_VALUES: Continent[] = [
   'Africa',
   'Asia',
@@ -55,23 +54,22 @@ function asTapWater(v: string | null | undefined): TapWater | null {
   return v && (TAP_WATER_VALUES as string[]).includes(v) ? (v as TapWater) : null;
 }
 
-export default async function TablePage() {
+export default async function CitiesPage() {
   const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
   const byId = new Map(countries.map(c => [c.id, c]));
 
-  // Civic flags via Wikidata for cities whose Notion `cityFlag` is empty.
-  // Same shared cache as /cities — fetchCityFlags is React-cached and
-  // ISR-cached, so calling it from both routes hits Wikidata once per
-  // 24 h and once per Next render.
-  const wikidataFlags = await fetchCityFlags(
-    cities.filter(c => !c.cityFlag && c.wikidataId).map(c => c.wikidataId)
-  );
+  const qidsNeedingFlag = cities
+    .filter(c => !c.cityFlag && c.wikidataId)
+    .map(c => c.wikidataId);
+  const wikidataFlags = await fetchCityFlags(qidsNeedingFlag);
 
-  // Identical minimal-shape mapping used by /cities — keeps the table and
-  // the postcard wall structurally in sync. Both views use the same
-  // useFilteredCities hook so sort + filter behaviour is identical.
   const minimal = cities.map(c => {
     const country = c.countryPageId ? byId.get(c.countryPageId) : null;
+    const ukRegion =
+      country?.iso2?.toUpperCase() === 'GB'
+        ? ukSubdivision(c.name, c.lat, c.lng)
+        : null;
+    const ukRegionFlag = ukRegion ? flagRect(`gb-${ukRegion}`) : null;
     return {
       id: c.id,
       name: c.name,
@@ -79,11 +77,18 @@ export default async function TablePage() {
       country: c.country,
       been: c.been,
       go: c.go,
-      // Same three-tier flag fallback used by /cities — Notion → Wikidata → country.
-      cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
+      cityFlag:
+        c.cityFlag
+        ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null)
+        ?? ukRegionFlag,
+      // Attribution flows through only when the curated cityFlag (the
+      // Commons-sourced one) is in use; the wikidataFlags / ukRegionFlag
+      // fallbacks are sourced separately and don't carry author/license
+      // metadata. (TODO: capture provenance for those too if we keep
+      // sourcing from Commons.)
+      cityFlagAttribution: c.cityFlag ? c.cityFlagAttribution : null,
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
-      heroImage: c.heroImage,
       lat: c.lat,
       lng: c.lng,
       population: c.population,
@@ -95,6 +100,7 @@ export default async function TablePage() {
       founded: c.founded,
       savedPlaces: c.myGooglePlaces,
       currency: country?.currency ?? null,
+      currencySymbol: currencySymbol(country?.currency ?? null),
       language: country?.language ?? null,
       driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
       continent: asContinent(country?.continent),
@@ -104,15 +110,13 @@ export default async function TablePage() {
       tapWater:
         asTapWater(country?.tapWater) ??
         tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
+      voltage: country?.voltage ?? null,
+      plugTypes: country?.plugTypes ?? [],
     };
   });
 
-  // CollectionPage + ItemList — same shape as /cities, but pulls a
-  // different sample (most-populous Been/Go cities) to give crawlers a
-  // diverse signal of what the table contains.
-  const featuredItems = minimal
+  const featuredItems = cities
     .filter(c => c.been || c.go)
-    .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
     .slice(0, 30)
     .map(c => ({
       url: `${SITE_URL}/cities/${c.slug}`,
@@ -120,9 +124,10 @@ export default async function TablePage() {
     }));
 
   const collectionData = collectionJsonLd({
-    url: `${SITE_URL}/cities/table`,
-    name: 'City Data',
-    description: DESCRIPTION,
+    url: `${SITE_URL}/cities/cards`,
+    name: 'Cities',
+    description:
+      'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
     items: featuredItems,
     totalItems: cities.length,
   });
@@ -130,8 +135,8 @@ export default async function TablePage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <section className="max-w-page mx-auto px-5 pt-6"><h1 className="text-h2 text-ink-deep">City Data</h1></section>
-      <CitiesTable cities={minimal} />
+      <h1 className="text-h2 text-ink-deep">Cities</h1>
+      <CitiesGrid cities={minimal} />
     </>
   );
 }

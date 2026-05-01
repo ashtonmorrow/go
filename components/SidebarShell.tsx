@@ -264,14 +264,14 @@ function NavBody({
         <Link
           href="/privacy"
           onClick={onLinkClick}
-          className="px-2 py-0.5 text-[11px] text-muted hover:text-ink-deep transition-colors"
+          className="px-2 py-0.5 text-label text-muted hover:text-ink-deep transition-colors"
         >
           Privacy &amp; data
         </Link>
         <Link
           href="/credits"
           onClick={onLinkClick}
-          className="px-2 py-0.5 text-[11px] text-muted hover:text-ink-deep transition-colors"
+          className="px-2 py-0.5 text-label text-muted hover:text-ink-deep transition-colors"
         >
           Image &amp; data credits
         </Link>
@@ -279,7 +279,7 @@ function NavBody({
           href={withUtm('https://www.linkedin.com/in/mikelee89/', { medium: 'sidebar', campaign: 'linkedin-footer' })}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-2 mt-1 text-[11px] text-muted hover:text-ink-deep transition-colors"
+          className="px-2 mt-1 text-label text-muted hover:text-ink-deep transition-colors"
         >
           Whisker Leaks — {new Date().getFullYear()}
         </a>
@@ -292,7 +292,7 @@ function NavBody({
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium px-2 mb-1">
+      <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium px-2 mb-1">
         {label}
       </div>
       {children}
@@ -344,7 +344,7 @@ function Item({
       <span className="leading-none flex-shrink-0" aria-hidden>{emoji}</span>
       <span className="flex-1 truncate">{label}</span>
       {count !== undefined && (
-        <span className="text-[10px] tabular-nums text-muted bg-sand/70 px-1.5 py-0.5 rounded">
+        <span className="text-micro tabular-nums text-muted bg-sand/70 px-1.5 py-0.5 rounded">
           {count}
         </span>
       )}
@@ -397,7 +397,7 @@ function ArticlesItem({
         <span className="flex-1 truncate">Articles</span>
         <span
           className={
-            'text-[10px] flex-shrink-0 transition-transform ' +
+            'text-micro flex-shrink-0 transition-transform ' +
             (open ? 'rotate-90' : '')
           }
           aria-hidden
@@ -469,7 +469,7 @@ function ExternalItem({
     >
       <span className="leading-none flex-shrink-0" aria-hidden>{emoji}</span>
       <span className="flex-1 truncate">{label}</span>
-      <span className="text-muted text-[10px] opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden>↗</span>
+      <span className="text-muted text-micro opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden>↗</span>
     </a>
   );
 }

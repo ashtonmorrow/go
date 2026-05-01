@@ -119,7 +119,7 @@ export default function PopulationRangeSlider({ min, max, onChange }: Props) {
   return (
     <div className="select-none">
       {/* Live readout — the current min/max in human-friendly form. */}
-      <div className="flex items-center justify-between text-[11px] text-ink-deep mb-1.5 font-mono tabular-nums">
+      <div className="flex items-center justify-between text-label text-ink-deep mb-1.5 font-mono tabular-nums">
         <span>{fmt(min, 'min')}</span>
         <span className="text-muted">→</span>
         <span>{fmt(max, 'max')}</span>
@@ -196,7 +196,7 @@ export default function PopulationRangeSlider({ min, max, onChange }: Props) {
 
       {/* Tick labels at decade boundaries — 100, 1k, 10k, 100k, 1M, 10M.
           Helps users gauge what each thumb position actually means. */}
-      <div className="flex justify-between mt-1 text-[9px] text-muted font-mono tabular-nums px-0.5">
+      <div className="flex justify-between mt-1 text-micro text-muted font-mono tabular-nums px-0.5">
         <span>100</span>
         <span>1k</span>
         <span>10k</span>
@@ -223,7 +223,7 @@ export default function PopulationRangeSlider({ min, max, onChange }: Props) {
               type="button"
               onClick={() => onChange({ min: p.min, max: p.max })}
               className={
-                'px-1.5 py-0.5 rounded text-[10px] transition-colors ' +
+                'px-1.5 py-0.5 rounded text-micro transition-colors ' +
                 (active
                   ? 'bg-ink-deep text-cream-soft'
                   : 'text-slate hover:text-ink-deep hover:bg-cream-soft')

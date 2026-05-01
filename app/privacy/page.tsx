@@ -100,7 +100,7 @@ export default function PrivacyPage() {
         </p>
       </section>
 
-      <p className="text-[11px] text-muted mt-12">
+      <p className="text-label text-muted mt-12">
         Last updated when this site was last built. This page lives at{' '}
         <code className="font-mono">/privacy</code>.
       </p>

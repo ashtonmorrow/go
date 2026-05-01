@@ -83,7 +83,6 @@ export default async function TablePage() {
       cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
-      heroImage: c.heroImage,
       lat: c.lat,
       lng: c.lng,
       population: c.population,

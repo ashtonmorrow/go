@@ -39,12 +39,12 @@ export default function AdvisoryBadge({ iso2, countryName }: Props) {
       className={`card p-4 text-small block hover:opacity-90 transition`}
       title={`U.S. State Department travel advisory level ${level} of 4`}
     >
-      <div className="text-muted uppercase tracking-wider text-[11px]">U.S. travel advisory</div>
-      <div className={`mt-2 inline-flex items-center gap-2 px-2 py-1 rounded border text-[12px] font-medium ${styles[level]}`}>
+      <div className="text-muted uppercase tracking-wider text-label">U.S. travel advisory</div>
+      <div className={`mt-2 inline-flex items-center gap-2 px-2 py-1 rounded border text-small font-medium ${styles[level]}`}>
         <span className="font-mono">L{level}</span>
         <span>{label}</span>
       </div>
-      <div className="mt-1 text-muted text-[11px]">travel.state.gov →</div>
+      <div className="mt-1 text-muted text-label">travel.state.gov →</div>
     </a>
   );
 }

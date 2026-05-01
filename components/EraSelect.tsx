@@ -191,10 +191,10 @@ export default function EraSelect({ min, max, onChange }: Props) {
         aria-expanded={open}
       >
         <span className="truncate">
-          <span className="text-muted text-[10px] uppercase tracking-[0.14em] mr-1">Era:</span>
+          <span className="text-muted text-micro uppercase tracking-[0.14em] mr-1">Era:</span>
           {triggerLabel}
         </span>
-        <span aria-hidden className="text-muted text-[10px]">{open ? '▴' : '▾'}</span>
+        <span aria-hidden className="text-muted text-micro">{open ? '▴' : '▾'}</span>
       </button>
 
       {open && (
@@ -212,12 +212,12 @@ export default function EraSelect({ min, max, onChange }: Props) {
 
           <ul className="max-h-72 overflow-y-auto py-1">
             {grouped.length === 0 && (
-              <li className="px-2.5 py-2 text-[11px] text-muted">No eras match.</li>
+              <li className="px-2.5 py-2 text-label text-muted">No eras match.</li>
             )}
             {grouped.map(([groupName, items]) => (
               <li key={groupName || '_root'}>
                 {groupName && (
-                  <div className="px-2.5 pt-2 pb-1 text-[9px] uppercase tracking-[0.14em] text-muted font-medium">
+                  <div className="px-2.5 pt-2 pb-1 text-micro uppercase tracking-[0.14em] text-muted font-medium">
                     {groupName}
                   </div>
                 )}
@@ -230,14 +230,14 @@ export default function EraSelect({ min, max, onChange }: Props) {
                           type="button"
                           onClick={() => handlePick(e)}
                           className={
-                            'w-full flex items-center justify-between gap-3 px-2.5 py-1.5 text-[11px] text-left transition-colors ' +
+                            'w-full flex items-center justify-between gap-3 px-2.5 py-1.5 text-label text-left transition-colors ' +
                             (active
                               ? 'bg-cream-soft text-ink-deep font-medium'
                               : 'text-ink-deep hover:bg-cream-soft')
                           }
                         >
                           <span className="truncate">{e.name}</span>
-                          <span className="text-muted text-[10px] tabular-nums font-mono flex-shrink-0">
+                          <span className="text-muted text-micro tabular-nums font-mono flex-shrink-0">
                             {fmtBoundary(e.min, 'min')}–{fmtBoundary(e.max, 'max')}
                           </span>
                         </button>

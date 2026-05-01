@@ -28,7 +28,7 @@ export default function ImageCredit({
   if (!attribution) return null;
   const { author, license, licenseUrl, sourceUrl } = attribution;
   return (
-    <figcaption className={'text-[10px] text-muted leading-snug ' + (className ?? '')}>
+    <figcaption className={'text-micro text-muted leading-snug ' + (className ?? '')}>
       {author && <>Photo by {author}</>}
       {author && (license || sourceUrl) && <span aria-hidden> · </span>}
       {license && (

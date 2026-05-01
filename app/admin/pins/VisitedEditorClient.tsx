@@ -148,7 +148,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
             placeholder="Search name, city, country"
             className="text-small border border-sand rounded px-3 py-2 bg-white w-64"
           />
-          <div className="inline-flex rounded border border-sand overflow-hidden text-[11px]">
+          <div className="inline-flex rounded border border-sand overflow-hidden text-label">
             {(['all', 'visited', 'not-visited'] as Filter[]).map(f => (
               <button
                 key={f}
@@ -189,14 +189,14 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
             <option value="country">Country (A→Z)</option>
           </select>
 
-          <span className="text-[11px] text-muted">
+          <span className="text-label text-muted">
             {filtered.length} shown · {visitedCount} of {initialRows.length} visited
           </span>
         </div>
 
         {/* Kind chips */}
         <div className="w-full flex flex-wrap items-center gap-1.5">
-          <span className="text-[11px] uppercase tracking-wider text-muted mr-1">Kind</span>
+          <span className="text-label uppercase tracking-wider text-muted mr-1">Kind</span>
           {KINDS.map(k => {
             const checked = kindFilter.has(k);
             return (
@@ -205,7 +205,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                 type="button"
                 onClick={() => toggleKind(k)}
                 className={
-                  'pill text-[11px] capitalize ' +
+                  'pill text-label capitalize ' +
                   (checked
                     ? 'bg-ink-deep text-white border border-ink-deep'
                     : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')
@@ -220,7 +220,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
             <button
               type="button"
               onClick={() => setKindFilter(new Set())}
-              className="text-[11px] text-muted hover:text-ink ml-1"
+              className="text-label text-muted hover:text-ink ml-1"
             >
               clear
             </button>
@@ -233,7 +233,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               <button
                 type="button"
                 onClick={() => setVisitedAllVisible(true)}
-                className="text-[11px] px-2 py-1 rounded border border-sand hover:bg-cream-soft text-ink"
+                className="text-label px-2 py-1 rounded border border-sand hover:bg-cream-soft text-ink"
                 title="Mark all currently filtered rows as visited"
               >
                 Tick filtered
@@ -241,7 +241,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               <button
                 type="button"
                 onClick={() => setVisitedAllVisible(false)}
-                className="text-[11px] px-2 py-1 rounded border border-sand hover:bg-cream-soft text-ink"
+                className="text-label px-2 py-1 rounded border border-sand hover:bg-cream-soft text-ink"
                 title="Unmark all currently filtered rows"
               >
                 Untick filtered
@@ -288,7 +288,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       {/* Table */}
       <div className="border border-sand rounded overflow-hidden">
         <table className="w-full text-small">
-          <thead className="bg-cream-soft text-[11px] uppercase tracking-wider text-muted">
+          <thead className="bg-cream-soft text-label uppercase tracking-wider text-muted">
             <tr>
               <th className="text-left px-3 py-2 w-10"></th>
               <th className="text-left px-3 py-2">Name</th>
@@ -336,7 +336,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                     </button>
                     <Link
                       href={`/admin/pins/${row.id}`}
-                      className="ml-2 text-[10px] text-teal hover:underline"
+                      className="ml-2 text-micro text-teal hover:underline"
                     >
                       edit
                     </Link>
@@ -344,7 +344,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                       <Link
                         href={`/pins/${row.slug}`}
                         target="_blank"
-                        className="ml-2 text-[10px] text-muted hover:text-teal"
+                        className="ml-2 text-micro text-muted hover:text-teal"
                       >
                         view ↗
                       </Link>
@@ -352,11 +352,11 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                   </td>
                   <td className="px-3 py-2 align-top text-slate hidden lg:table-cell">
                     {row.kind ? (
-                      <span className="capitalize text-[11px] pill bg-cream-soft text-slate">
+                      <span className="capitalize text-label pill bg-cream-soft text-slate">
                         {row.kind}
                       </span>
                     ) : (
-                      <span className="text-muted/60 text-[11px]">—</span>
+                      <span className="text-muted/60 text-label">—</span>
                     )}
                   </td>
                   <td className="px-3 py-2 align-top text-slate hidden sm:table-cell">
@@ -365,7 +365,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                   <td className="px-3 py-2 align-top text-slate hidden md:table-cell">
                     {row.country || <span className="text-muted/60">—</span>}
                   </td>
-                  <td className="px-3 py-2 align-top text-[10px] text-muted">
+                  <td className="px-3 py-2 align-top text-micro text-muted">
                     {isDirty ? '●' : ''}
                   </td>
                 </tr>

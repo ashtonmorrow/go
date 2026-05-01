@@ -72,7 +72,6 @@ export default async function CityStatsPage() {
       cityFlag: c.cityFlag ?? null,
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
-      heroImage: c.heroImage,
       lat: c.lat,
       lng: c.lng,
       population: c.population,

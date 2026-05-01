@@ -212,7 +212,7 @@ function PinCard({
             {pin.name}
           </h2>
           {pin.visited && (
-            <span className="text-[10px] text-teal font-medium uppercase tracking-wider flex-shrink-0">
+            <span className="text-micro text-teal font-medium uppercase tracking-wider flex-shrink-0">
               Been
             </span>
           )}
@@ -231,7 +231,7 @@ function PinCard({
           )}
         </div>
         {subLabel && (
-          <p className="text-[12px] text-muted truncate font-mono mt-0.5">
+          <p className="text-small text-muted truncate font-mono mt-0.5">
             {subLabel}
           </p>
         )}
@@ -247,7 +247,7 @@ function PinCard({
             "should I bother going right now?" signals. Only renders
             when we actually have data (no "Hours: —" placeholders). */}
         {(hoursToday || priceHint) && (
-          <div className="mt-1 flex items-center gap-2 text-[10px] text-slate font-mono">
+          <div className="mt-1 flex items-center gap-2 text-micro text-slate font-mono">
             {hoursToday && (
               <span className="inline-flex items-center gap-1">
                 <span aria-hidden>🕐</span>
@@ -277,10 +277,10 @@ function ListBadge({ list }: { list: CanonicalList }) {
   const label = LIST_SHORT_LABELS[list];
   return (
     <span
-      className="inline-flex items-center gap-1 text-[10px] leading-none px-1.5 py-1 rounded-full bg-accent/10 text-accent border border-accent/20"
+      className="inline-flex items-center gap-1 text-micro leading-none px-1.5 py-1 rounded-full bg-accent/10 text-accent border border-accent/20"
       title={`Featured on ${list}`}
     >
-      <span aria-hidden className="text-[11px]">{icon}</span>
+      <span aria-hidden className="text-label">{icon}</span>
       <span>{label}</span>
     </span>
   );

@@ -79,7 +79,7 @@ export default function CountriesTable({ rows }: { rows: Row[] }) {
   return (
     <div className="overflow-x-auto px-5 pb-8">
       <table className="w-full text-small border-separate border-spacing-0">
-        <thead className="text-[11px] uppercase tracking-wider text-muted">
+        <thead className="text-label uppercase tracking-wider text-muted">
           <tr>
             <Th k="name"        sort={sort} desc={desc} onSort={onSort}>Country</Th>
             <Th k="continent"   sort={sort} desc={desc} onSort={onSort}>Continent</Th>
@@ -116,7 +116,7 @@ export default function CountriesTable({ rows }: { rows: Row[] }) {
               <Td>{[r.voltage, r.plugTypes.join('/')].filter(Boolean).join(' · ')}</Td>
               <Td>{r.tapWater}</Td>
               <Td>{r.visa}</Td>
-              <td className="py-2 pr-3 border-b border-sand text-[12px] tabular-nums text-slate">
+              <td className="py-2 pr-3 border-b border-sand text-small tabular-nums text-slate">
                 {r.cityCount > 0
                   ? <>{r.cityCount}{r.beenCount > 0 ? <> · <span className="text-teal">{r.beenCount}</span></> : null}</>
                   : <span className="text-muted">—</span>}

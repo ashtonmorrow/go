@@ -67,7 +67,7 @@ export default function PinsTable({
   return (
     <div className="overflow-x-auto px-5 pb-8">
       <table className="w-full text-small border-separate border-spacing-0">
-        <thead className="text-[11px] uppercase tracking-wider text-muted">
+        <thead className="text-label uppercase tracking-wider text-muted">
           <tr>
             <Th k="name"     sort={sort} desc={desc} onSort={onSort}>Name</Th>
             <Th k="category" sort={sort} desc={desc} onSort={onSort}>Category</Th>
@@ -113,7 +113,7 @@ export default function PinsTable({
                 </Td>
                 <td className="py-2 pr-3 border-b border-sand">
                   {p.visited
-                    ? <span className="text-teal text-[11px] uppercase tracking-wider">Been</span>
+                    ? <span className="text-teal text-label uppercase tracking-wider">Been</span>
                     : <span className="text-muted">—</span>}
                 </td>
                 <td className="py-2 pr-3 border-b border-sand">
@@ -121,7 +121,7 @@ export default function PinsTable({
                     ? <a
                         href={p.googleMapsUrl}
                         target="_blank" rel="noopener noreferrer"
-                        className="text-teal hover:underline text-[11px]"
+                        className="text-teal hover:underline text-label"
                       >Open ↗</a>
                     : <span className="text-muted">—</span>}
                 </td>

@@ -68,7 +68,7 @@ export default async function PinsPage() {
       {/* Compact header — matches /cities/cards, /countries/cards, etc.
           Total + visited counts live in the cockpit's "X / Y pins" badge,
           so the page itself doesn't need to repeat them. */}
-      <section className="max-w-page mx-auto px-5 pt-6"><h1 className="text-h2 text-ink-deep">Pins</h1></section>
+      <h1 className="text-h2 text-ink-deep">Pins</h1>
 
       <PinsGrid pins={pins} countryNameToIso2={countryNameToIso2} />
     </div>

@@ -146,7 +146,7 @@ export default function PinsMap({ pins }: { pins: Pin[] }) {
                   <div className="text-ink-deep font-medium text-small truncate">
                     {hovered.name}
                   </div>
-                  <div className="text-muted text-[11px] truncate">
+                  <div className="text-muted text-label truncate">
                     {[hovered.category, hovered.statesNames[0]].filter(Boolean).join(' · ')}
                   </div>
                 </div>

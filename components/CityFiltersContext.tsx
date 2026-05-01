@@ -31,6 +31,11 @@ import { createContext, useCallback, useContext, useMemo, useState, ReactNode } 
 // layers, everything else for facets).
 
 export type SortKey =
+  // Default. Cities I've curated most heavily come first: those with a
+  // Google saved-places list, then those I've personally photographed,
+  // then those that have at least an AI/curated hero image, then the rest.
+  // Within each tier the order is alphabetical for stability.
+  | 'curated'
   | 'name'
   | 'population'
   | 'founded'
@@ -109,17 +114,17 @@ export type FilterState = {
 };
 
 const DEFAULT_STATE: FilterState = {
-  // Status focus null = show all 3 statuses on the map (full atlas).
-  statusFocus: null,
+  // Default lands the user on the cities I've actually been to. The 1,000+
+  // placeholder cities still exist in the data, but you have to click off
+  // the Visited segment in the cockpit to see them — that's the right tier
+  // of friction for the long tail. Status focus null was the previous
+  // default; "Visited" is more honest about what the page is for.
+  statusFocus: 'visited',
 
-  // Faceted filters all neutral EXCEPT hasSavedPlaces — Mike's home and
-  // default cities view land with "With saved places" pre-applied so
-  // the postcard wall opens on the curated subset (cities he's actually
-  // annotated with a Google Maps list). Visible default rather than
-  // hidden — the chip shows up in the ActiveFilters ribbon and the
-  // tri-state in the cockpit reads "With", so the user can see and
-  // clear it. activeFilterCount counts it as an active facet, which
-  // is honest.
+  // hasSavedPlaces back to 'any' — the new curated sort below puts cities
+  // with Google saved-places lists at the top of the visited tier anyway,
+  // so filtering them out of the rest is heavy-handed. The user can still
+  // narrow to "With" via the cockpit if they want only the lists.
   q: '',
   countries: new Set(),
   continents: new Set(),
@@ -129,9 +134,12 @@ const DEFAULT_STATE: FilterState = {
   drive: new Set(),
   populationMin: null,
   populationMax: null,
-  hasSavedPlaces: 'with',
+  hasSavedPlaces: 'any',
 
-  sort: 'name',
+  // Curated default. Tier 1: has a Google saved-places URL.
+  // Tier 2: has a personal photo. Tier 3: has a hero image (Codex / AI /
+  // Wikimedia). Tier 4: nothing yet. Within each tier, alphabetical.
+  sort: 'curated',
   desc: false,
 };
 

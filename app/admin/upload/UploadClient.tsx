@@ -583,7 +583,7 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
     <div className={'rounded border overflow-hidden bg-white ' + (stage === 'duplicate' ? 'border-slate/40 opacity-70' : 'border-sand')}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={photo.preview} alt="" className="w-full aspect-square object-cover bg-cream-soft" />
-      <div className="p-2 text-[11px]">
+      <div className="p-2 text-label">
         <div className="flex items-center justify-between gap-2">
           <span className={'pill ' + tag.cls}>{tag.label}</span>
           <button
@@ -799,11 +799,11 @@ function RemainingPhotoRow({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={photo.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
         <div className="flex-1 min-w-0 text-small">
-          <p className="font-mono text-[11px] text-muted truncate">
+          <p className="font-mono text-label text-muted truncate">
             {photo.lat?.toFixed(4)}, {photo.lng?.toFixed(4)}
           </p>
           {photo.takenAt && (
-            <p className="text-[11px] text-muted">{photo.takenAt.toLocaleString()}</p>
+            <p className="text-label text-muted">{photo.takenAt.toLocaleString()}</p>
           )}
         </div>
         <PlaceCombobox
@@ -964,7 +964,7 @@ function PlaceCombobox({
               Skip this photo
             </button>
             {filtered.length === 0 && !showPlacesAction && (
-              <p className="px-3 py-2 text-[11px] text-muted">
+              <p className="px-3 py-2 text-label text-muted">
                 {q ? 'No nearby pins match.' : 'No nearby candidates yet.'}
               </p>
             )}
@@ -979,7 +979,7 @@ function PlaceCombobox({
                 }
               >
                 <span className="flex-1 min-w-0 truncate text-ink-deep">{c.place.name}</span>
-                <span className={'pill text-[9px] flex-shrink-0 ' + (c.existingPinId ? 'bg-cream-soft text-slate' : 'bg-teal/10 text-teal')}>
+                <span className={'pill text-micro flex-shrink-0 ' + (c.existingPinId ? 'bg-cream-soft text-slate' : 'bg-teal/10 text-teal')}>
                   {c.existingPinId ? 'existing' : 'new'}
                 </span>
               </button>
@@ -1005,7 +1005,7 @@ function PlaceCombobox({
             )}
           </div>
           {searchMsg && (
-            <p className="px-3 py-2 text-[11px] text-orange border-t border-sand bg-cream-soft/60">
+            <p className="px-3 py-2 text-label text-orange border-t border-sand bg-cream-soft/60">
               {searchMsg}
             </p>
           )}
@@ -1039,12 +1039,12 @@ function CandidateRow({
         <div className="flex items-baseline gap-2 flex-wrap">
           <span className="font-medium text-ink-deep">{candidate.place.name}</span>
           {isExisting ? (
-            <span className="pill bg-cream-soft text-slate text-[10px]">existing pin</span>
+            <span className="pill bg-cream-soft text-slate text-micro">existing pin</span>
           ) : (
-            <span className="pill bg-teal/10 text-teal text-[10px]">new pin</span>
+            <span className="pill bg-teal/10 text-teal text-micro">new pin</span>
           )}
           {photoCount > 0 && (
-            <span className="pill bg-accent/10 text-accent text-[10px]">
+            <span className="pill bg-accent/10 text-accent text-micro">
               {photoCount} photo{photoCount === 1 ? '' : 's'} assigned
             </span>
           )}
@@ -1052,7 +1052,7 @@ function CandidateRow({
         <p className="text-small text-muted truncate">
           {candidate.place.address || `${candidate.place.city}, ${candidate.place.country}`}
         </p>
-        <p className="text-[10px] text-muted font-mono mt-0.5">
+        <p className="text-micro text-muted font-mono mt-0.5">
           {candidate.place.category} · {candidate.place.lat.toFixed(4)}, {candidate.place.lng.toFixed(4)}
           {candidate.place.googleMapsUrl && (
             <>
@@ -1090,7 +1090,7 @@ function CandidateRow({
                     onClick={() => onDetachPhoto(p.id)}
                     aria-label="Wrong place — remove this photo"
                     title="Wrong place — remove this photo"
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-[10px] leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-micro leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
                   >
                     ✕
                   </button>
@@ -1101,10 +1101,10 @@ function CandidateRow({
         )}
 
         {state.status === 'error' && state.error && (
-          <p className="mt-2 text-[11px] text-orange">{state.error}</p>
+          <p className="mt-2 text-label text-orange">{state.error}</p>
         )}
         {isSaved && slug && (
-          <p className="mt-2 text-[11px] text-teal">
+          <p className="mt-2 text-label text-teal">
             Saved {state.photoCount ?? 0} photo{(state.photoCount ?? 0) === 1 ? '' : 's'} ·{' '}
             <a href={`/pins/${slug}`} target="_blank" rel="noopener noreferrer" className="underline">
               View pin →

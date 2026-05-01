@@ -361,7 +361,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 <div className="text-ink-deep font-medium leading-tight text-small">
                   {hovered.name}
                 </div>
-                <div className="text-muted text-[10px] leading-tight">{hovered.country}</div>
+                <div className="text-muted text-micro leading-tight">{hovered.country}</div>
               </div>
             </div>
           </Popup>
@@ -385,7 +385,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 <div className="text-muted text-small leading-tight truncate">
                   {selected.country}
                 </div>
-                <div className="text-[11px] text-slate mt-1">
+                <div className="text-label text-slate mt-1">
                   {selected.sisterCities.length === 0
                     ? 'No sister cities recorded'
                     : `${selected.sisterCities.length} sister cit${selected.sisterCities.length === 1 ? 'y' : 'ies'} highlighted`}
@@ -422,7 +422,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
           overlay, not a status — explicitly labelled as "ring" so users
           read it as overlay rather than another color. */}
       {!selected && (
-        <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-[11px] text-slate">
+        <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-label text-slate">
           <LegendRow
             on={ctx?.state.statusFocus == null || ctx.state.statusFocus === 'visited'}
             color={COLORS.teal}    label="Visited" />
@@ -444,7 +444,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             <span className="inline-block w-2 h-0.5" style={{ background: COLORS.accent, opacity: 0.5 }} />
             <span>Sister-city link</span>
           </div>
-          <div className="text-muted text-[10px] mt-1.5">
+          <div className="text-muted text-micro mt-1.5">
             Click a pin to see its sister cities
           </div>
         </div>

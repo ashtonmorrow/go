@@ -153,10 +153,10 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
                 {country.name}
               </h3>
               {country.iso2 && (
-                <span className="text-[9px] font-mono text-muted tracking-[0.1em]">{country.iso2}</span>
+                <span className="text-micro font-mono text-muted tracking-[0.1em]">{country.iso2}</span>
               )}
             </div>
-            <dl className="text-[10px] leading-tight space-y-0.5 flex-1 min-h-0 overflow-hidden">
+            <dl className="text-micro leading-tight space-y-0.5 flex-1 min-h-0 overflow-hidden">
               {country.capital && <Fact label="Capital" value={country.capital} />}
               {country.language && <Fact label="Lang" value={country.language} />}
               {country.currency && <Fact label="Currency" value={country.currency} />}
@@ -170,7 +170,7 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
               {country.emergencyNumber && <Fact label="999" value={country.emergencyNumber} />}
             </dl>
             {country.cityCount > 0 && (
-              <div className="mt-1.5 pt-1.5 border-t border-sand text-[10px] text-slate flex justify-between tabular-nums">
+              <div className="mt-1.5 pt-1.5 border-t border-sand text-micro text-slate flex justify-between tabular-nums">
                 <CountButton
                   active={pinned === 'all'}
                   onClick={() => setPinned(pinned === 'all' ? null : 'all')}
@@ -220,7 +220,7 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
               {country.name}
             </span>
             {beenBadge && (
-              <span className="text-[9px] uppercase tracking-[0.14em] text-teal bg-white/95 rounded-full px-1.5 py-0.5 flex-shrink-0">
+              <span className="text-micro uppercase tracking-[0.14em] text-teal bg-white/95 rounded-full px-1.5 py-0.5 flex-shrink-0">
                 Been
               </span>
             )}
@@ -246,7 +246,7 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
                 <Link
                   href={`/cities/${c.slug}`}
                   onClick={e => e.stopPropagation()}
-                  className="flex items-center justify-between gap-2 px-3 py-2 text-[12px] text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
+                  className="flex items-center justify-between gap-2 px-3 py-2 text-small text-ink hover:bg-cream-soft hover:text-ink-deep transition-colors"
                 >
                   <span className="truncate">{c.name}</span>
                   {c.been && country.iso2 && (
@@ -306,7 +306,7 @@ function CountButton({
       aria-expanded={active}
     >
       {children}
-      <span aria-hidden className="text-[8px] opacity-60">{active ? '▴' : '▾'}</span>
+      <span aria-hidden className="text-micro opacity-60">{active ? '▴' : '▾'}</span>
     </button>
   );
 }
@@ -314,8 +314,8 @@ function CountButton({
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between gap-2 items-baseline">
-      <dt className="text-[9px] uppercase tracking-[0.12em] text-muted flex-shrink-0">{label}</dt>
-      <dd className="text-ink-deep font-mono truncate text-right text-[10px]" title={value}>
+      <dt className="text-micro uppercase tracking-[0.12em] text-muted flex-shrink-0">{label}</dt>
+      <dd className="text-ink-deep font-mono truncate text-right text-micro" title={value}>
         {value}
       </dd>
     </div>

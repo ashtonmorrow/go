@@ -4,13 +4,13 @@ import { ALLIANCE_STYLES } from "../_data/programs";
 function HotelBadge({ nights }: { nights: string }) {
   if (!nights || nights === "0") {
     return (
-      <span className="inline-flex items-center rounded-full border border-gray-200 px-2 py-0.5 text-[11px] font-medium text-gray-600 dark:border-gray-700 dark:text-gray-400">
+      <span className="inline-flex items-center rounded-full border border-gray-200 px-2 py-0.5 text-label font-medium text-gray-600 dark:border-gray-700 dark:text-gray-400">
         No hotel
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center rounded-full border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-800 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200">
+    <span className="inline-flex items-center rounded-full border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-label font-semibold text-emerald-800 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200">
       {nights} {nights === "1" ? "night" : "nights"} included
     </span>
   );
@@ -42,7 +42,7 @@ export function ProgramCard({ program }: { program: StopoverProgram }) {
           <HotelBadge nights={program.hotelNights} />
           {allianceStyle && (
             <span
-              className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium ${allianceStyle.badge}`}
+              className={`inline-flex items-center rounded-full px-2 py-0.5 text-label font-medium ${allianceStyle.badge}`}
             >
               {allianceStyle.label}
             </span>
@@ -51,7 +51,7 @@ export function ProgramCard({ program }: { program: StopoverProgram }) {
       </header>
 
       {program.commentary && (
-        <p className="mt-3 text-[15px] leading-relaxed text-gray-700 dark:text-gray-300">
+        <p className="mt-3 text-body leading-relaxed text-gray-700 dark:text-gray-300">
           {program.commentary}
         </p>
       )}

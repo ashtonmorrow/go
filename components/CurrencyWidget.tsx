@@ -34,7 +34,7 @@ export default async function CurrencyWidget({ currency }: Props) {
 
   return (
     <div className="card p-4 text-small">
-      <div className="text-muted uppercase tracking-wider text-[11px]">Exchange rate</div>
+      <div className="text-muted uppercase tracking-wider text-label">Exchange rate</div>
       <div className="mt-2 text-ink-deep">
         <span className="font-mono">1&nbsp;USD</span>
         <span className="text-slate"> = </span>
@@ -42,7 +42,7 @@ export default async function CurrencyWidget({ currency }: Props) {
         <span className="text-slate"> {code.toUpperCase()}</span>
       </div>
       {fx?.date && (
-        <div className="mt-1 text-muted text-[11px]">As of {fx.date}.</div>
+        <div className="mt-1 text-muted text-label">As of {fx.date}.</div>
       )}
     </div>
   );

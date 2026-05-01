@@ -129,7 +129,7 @@ function Pill({
       <span>{label}</span>
       {typeof count === "number" && (
         <span
-          className={`rounded-full px-1.5 text-[11px] tabular-nums ${
+          className={`rounded-full px-1.5 text-label tabular-nums ${
             active
               ? "bg-white/20"
               : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"

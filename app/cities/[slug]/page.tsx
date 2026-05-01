@@ -15,7 +15,23 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
+import LiveClock from '@/components/LiveClock';
 import type { Metadata } from 'next';
+
+/** Slugify a place name the same way our atlas does, for capital-name → city
+ *  link resolution. Lowercases, strips diacritics, replaces non-alphanumerics
+ *  with hyphens. Most country capitals' city slugs follow this convention.
+ *  Returns null for empty input so the caller can skip rendering the link. */
+function slugifyCapital(name: string | null | undefined): string | null {
+  if (!name) return null;
+  const slug = name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  return slug || null;
+}
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 export const dynamicParams = true;
@@ -122,6 +138,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
 
   const fmt = (n: number | null, unit = '', digits = 0) =>
     n == null ? '—' : (digits > 0 ? n.toFixed(digits) : Intl.NumberFormat('en').format(n)) + unit;
+  const citySourceLinks = [
+    city.wikipediaUrl ? ['Wikipedia', city.wikipediaUrl, 'Summary, canonical article, and some image fallbacks.'] : null,
+    city.wikidataId ? ['Wikidata', `https://www.wikidata.org/wiki/${city.wikidataId}`, 'Population, area, image, coordinates, and linked identifiers where available.'] : null,
+    city.lat != null && city.lng != null
+      ? ['NASA POWER', `https://power.larc.nasa.gov/data-access-viewer/?start=1991&end=2020&latitude=${city.lat}&longitude=${city.lng}&community=ag`, 'Monthly temperature and rainfall climatology.']
+      : null,
+    city.elevation != null && city.lat != null && city.lng != null
+      ? ['Open-Elevation', 'https://open-elevation.com/', 'Coordinate-based elevation backfill.']
+      : null,
+    city.timeZone ? ['tz database', 'https://www.iana.org/time-zones', 'Coordinate-based IANA timezone lookup.'] : null,
+  ].filter(Boolean) as [string, string, string][];
 
   // Structured data — City + BreadcrumbList. The breadcrumb gives Google
   // a clean trail to render in SERPs (Cities → Country → City).
@@ -200,7 +227,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             <ImageCredit attribution={city.heroImageAttribution} className="px-1 mt-1" />
           )}
           {coverIsFallback && (
-            <figcaption className="text-[11px] text-muted px-1 mt-1">
+            <figcaption className="text-label text-muted px-1 mt-1">
               From a pin in {city.name}
             </figcaption>
           )}
@@ -220,7 +247,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           {content && (
             <section className={city.quote ? 'mt-6' : ''}>
               {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
                   {p}
                 </p>
               ))}
@@ -294,7 +321,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
 
         {/* Sidebar facts */}
         <aside className="card p-5 text-small self-start md:sticky md:top-20">
-          <h3 className="text-muted uppercase tracking-wider text-[11px]">Facts</h3>
+          {/* Live clock at the top — replaces the static Time zone row in
+              the Facts list below. Shows local hour:minute, weekday, and
+              the IANA zone string. Renders nothing on the server to avoid
+              a hydration mismatch. */}
+          {city.timeZone && (
+            <div className="pb-4 mb-4 border-b border-sand">
+              <LiveClock timeZone={city.timeZone} />
+            </div>
+          )}
+
+          <h3 className="text-muted uppercase tracking-wider text-label">Facts</h3>
           <dl className="mt-3 space-y-2">
             {[
               ['Population', fmt(city.population)],
@@ -305,7 +342,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               ['Avg high', fmt(city.avgHigh, '°C', 1)],
               ['Avg low', fmt(city.avgLow, '°C', 1)],
               ['Rainfall', fmt(city.rainfall, ' mm/yr', 0)],
-              ['Time zone', city.timeZone || city.utcOffset || '—'],
               ['Mayor', city.mayor || '—'],
               ['IATA', city.iataAirports || '—'],
             ].map(([k, v]) => (
@@ -324,22 +360,45 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           )}
           {country && (
             <div className="mt-4 pt-4 border-t border-sand flex items-center gap-3">
-              {country.flag && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={thumbUrl(country.flag, { size: 40 }) ?? country.flag}
-                  alt={country.name}
-                  width={40}
-                  height={28}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-10 h-auto rounded"
-                />
-              )}
-              <div>
-                <div className="text-ink-deep font-medium">{country.name}</div>
-                <div className="text-small text-slate">{country.capital}</div>
-              </div>
+              {/* Whole flag + name unit links to the country page; capital
+                  links separately to its own city page (slug derived from
+                  the capital name — most capitals follow the lowercase-
+                  hyphenated convention so the link resolves directly). */}
+              <Link
+                href={`/countries/${country.slug}`}
+                className="flex items-center gap-3 hover:text-teal transition-colors"
+                title={`Open ${country.name}`}
+              >
+                {country.flag && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={thumbUrl(country.flag, { size: 40 }) ?? country.flag}
+                    alt={country.name}
+                    width={40}
+                    height={28}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-10 h-auto rounded"
+                  />
+                )}
+                <span className="text-ink-deep font-medium hover:text-teal">
+                  {country.name}
+                </span>
+              </Link>
+              {country.capital && (() => {
+                const capitalSlug = slugifyCapital(country.capital);
+                return capitalSlug ? (
+                  <Link
+                    href={`/cities/${capitalSlug}`}
+                    className="text-small text-slate hover:text-teal transition-colors"
+                    title={`Open ${country.capital}`}
+                  >
+                    {country.capital}
+                  </Link>
+                ) : (
+                  <span className="text-small text-slate">{country.capital}</span>
+                );
+              })()}
             </div>
           )}
           {city.myGooglePlaces && (
@@ -365,6 +424,30 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               </Link>
             ))}
           </div>
+        </section>
+      )}
+
+      {citySourceLinks.length > 0 && (
+        <section className="mt-12 border-t border-sand pt-8">
+          <h2 className="text-h3 text-ink-deep mb-3">Sources</h2>
+          <p className="text-small text-slate max-w-prose">
+            This page blends public reference data, climate/elevation services, and personal notes.
+            Travel requirements can change, so visa and entry details should be checked again before booking.
+          </p>
+          <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-small">
+            {citySourceLinks.map(([label, href, note]) => (
+              <li key={label} className="rounded border border-sand p-3 bg-cream-soft/40">
+                <a href={href} target="_blank" rel="noopener noreferrer" className="text-teal font-medium">
+                  {label} →
+                </a>
+                <p className="mt-1 text-muted">{note}</p>
+              </li>
+            ))}
+            <li className="rounded border border-sand p-3 bg-cream-soft/40">
+              <Link href="/credits" className="text-teal font-medium">Site credits →</Link>
+              <p className="mt-1 text-muted">Global source notes, map tiles, flags, licenses, and attribution policy.</p>
+            </li>
+          </ul>
         </section>
       )}
     </article>

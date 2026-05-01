@@ -107,7 +107,7 @@ export default function CitiesTable({ cities }: Props) {
         label: 'Temp',
         sort: 'avgHigh',
         align: 'right',
-        className: 'min-w-[90px] tabular-nums font-mono text-[12px]',
+        className: 'min-w-[90px] tabular-nums font-mono text-small',
         render: c => fmtTemp(c.avgLow, c.avgHigh),
       },
       {
@@ -115,7 +115,7 @@ export default function CitiesTable({ cities }: Props) {
         label: 'Rain',
         sort: 'rainfall',
         align: 'right',
-        className: 'min-w-[80px] tabular-nums font-mono text-[12px]',
+        className: 'min-w-[80px] tabular-nums font-mono text-small',
         render: c => fmtNum(c.rainfall, 'mm'),
       },
       {
@@ -123,7 +123,7 @@ export default function CitiesTable({ cities }: Props) {
         label: 'Elev',
         sort: 'elevation',
         align: 'right',
-        className: 'min-w-[70px] tabular-nums font-mono text-[12px]',
+        className: 'min-w-[70px] tabular-nums font-mono text-small',
         render: c => fmtNum(c.elevation, 'm'),
       },
       {
@@ -147,7 +147,7 @@ export default function CitiesTable({ cities }: Props) {
         label: 'Founded',
         sort: 'founded',
         align: 'right',
-        className: 'min-w-[80px] tabular-nums font-mono text-[12px]',
+        className: 'min-w-[80px] tabular-nums font-mono text-small',
         render: c => c.founded ?? '—',
       },
       {
@@ -254,7 +254,7 @@ export default function CitiesTable({ cities }: Props) {
           between so users see what's applied as they scroll. */}
       <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-sand sticky top-0 z-20 bg-white">
         <div className="flex items-center gap-3 min-w-0 flex-wrap">
-          <h1 className="text-[11px] uppercase tracking-[0.18em] font-medium text-ink-deep flex-shrink-0">
+          <h1 className="text-label uppercase tracking-[0.18em] font-medium text-ink-deep flex-shrink-0">
             City Data
           </h1>
           <ActiveFilters />
@@ -279,7 +279,7 @@ export default function CitiesTable({ cities }: Props) {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
             Columns
-            <span className="text-muted text-[10px] tabular-nums">
+            <span className="text-muted text-micro tabular-nums">
               {visibleColumns.length}/{columns.length}
             </span>
           </button>
@@ -290,14 +290,14 @@ export default function CitiesTable({ cities }: Props) {
                 <button
                   type="button"
                   onClick={setAll}
-                  className="text-[11px] px-2 py-1 rounded hover:bg-cream-soft text-ink-deep"
+                  className="text-label px-2 py-1 rounded hover:bg-cream-soft text-ink-deep"
                 >
                   All
                 </button>
                 <button
                   type="button"
                   onClick={setNone}
-                  className="text-[11px] px-2 py-1 rounded hover:bg-cream-soft text-ink-deep"
+                  className="text-label px-2 py-1 rounded hover:bg-cream-soft text-ink-deep"
                 >
                   None
                 </button>
@@ -313,7 +313,7 @@ export default function CitiesTable({ cities }: Props) {
                         onClick={() => toggleCol(col.key)}
                         disabled={locked}
                         className={
-                          'w-full flex items-center gap-2 px-2.5 py-1.5 text-[11px] text-left transition-colors ' +
+                          'w-full flex items-center gap-2 px-2.5 py-1.5 text-label text-left transition-colors ' +
                           (locked ? 'opacity-60 cursor-not-allowed' : 'hover:bg-cream-soft')
                         }
                       >
@@ -336,7 +336,7 @@ export default function CitiesTable({ cities }: Props) {
                           {col.label || col.key}
                         </span>
                         {locked && (
-                          <span className="text-muted text-[9px]" title="Always visible">🔒</span>
+                          <span className="text-muted text-micro" title="Always visible">🔒</span>
                         )}
                       </button>
                     </li>
@@ -362,7 +362,7 @@ export default function CitiesTable({ cities }: Props) {
                     key={col.key}
                     onClick={sortable ? () => onHeaderClick(col) : undefined}
                     className={
-                      'text-left text-[10px] uppercase tracking-[0.12em] font-medium text-muted ' +
+                      'text-left text-micro uppercase tracking-[0.12em] font-medium text-muted ' +
                       'px-3 py-2 border-b border-sand select-none ' +
                       (sortable ? 'cursor-pointer hover:text-ink-deep ' : '') +
                       (isActive ? 'text-ink-deep ' : '') +
@@ -444,7 +444,7 @@ function StatusDots({ been, go, saved }: { been: boolean; go: boolean; saved: bo
         />
       )}
       {saved && (
-        <span aria-label="Has saved places" title="Has saved places" className="text-[10px]">
+        <span aria-label="Has saved places" title="Has saved places" className="text-micro">
           📍
         </span>
       )}

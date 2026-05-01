@@ -126,7 +126,7 @@ export default function ActiveFilters({ className = '' }: { className?: string }
       {/* Result count anchors the ribbon at the start so users see
           immediately how much their filters narrowed the set. */}
       {resultCount != null && totalCount != null && (
-        <span className="text-[11px] text-muted tabular-nums mr-1">
+        <span className="text-label text-muted tabular-nums mr-1">
           <span className="text-ink-deep font-medium">{resultCount}</span>
           <span className="mx-1">/</span>
           <span>{totalCount}</span>
@@ -138,20 +138,20 @@ export default function ActiveFilters({ className = '' }: { className?: string }
           type="button"
           onClick={chip.clear}
           className={
-            'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] ' +
+            'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-label ' +
             'bg-cream-soft border border-sand text-ink-deep ' +
             'hover:bg-cream hover:border-slate transition-colors'
           }
           title={`Remove ${chip.label}`}
         >
           <span>{chip.label}</span>
-          <span aria-hidden className="text-muted text-[10px] leading-none">×</span>
+          <span aria-hidden className="text-muted text-micro leading-none">×</span>
         </button>
       ))}
       <button
         type="button"
         onClick={reset}
-        className="text-[11px] text-slate hover:text-ink-deep underline-offset-2 hover:underline ml-1"
+        className="text-label text-slate hover:text-ink-deep underline-offset-2 hover:underline ml-1"
       >
         Clear all
       </button>

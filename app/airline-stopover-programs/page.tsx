@@ -177,14 +177,14 @@ export default function AirlineStopoverProgramsPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
           Stopover, layover, direct, nonstop
         </h2>
-        <p className="mt-3 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+        <p className="mt-3 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
           The terms get used loosely in airline marketing and even in casual
           conversation. Before getting to the programs themselves, here are
           the four distinctions that actually matter when reading fare rules
           or deciding which itinerary to book.
         </p>
         <div className="mt-5 overflow-x-auto">
-          <table className="w-full min-w-full border-collapse text-[15px]">
+          <table className="w-full min-w-full border-collapse text-body">
             <thead>
               <tr className="border-b border-gray-300 dark:border-gray-700">
                 <th
@@ -222,7 +222,7 @@ export default function AirlineStopoverProgramsPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
           Alliances and their hubs
         </h2>
-        <p className="mt-3 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+        <p className="mt-3 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
           Airlines join alliances to cooperate on ticketing, lounge access,
           and miles. For stopover programs, the practical effect is that each
           program is anchored at the carrier&apos;s hub: an Istanbul stopover
@@ -243,7 +243,7 @@ export default function AirlineStopoverProgramsPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
           Programs I have used
         </h2>
-        <div className="mt-3 space-y-4 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+        <div className="mt-3 space-y-4 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
           <p>
             I have used four of these programs personally so far: Oman Air,
             Qatar, Turkish, and Copa. The point of the rest of this page is
@@ -344,7 +344,7 @@ export default function AirlineStopoverProgramsPage() {
                   </span>
                   {allianceStyle && (
                     <span
-                      className={`text-[11px] font-medium ${allianceStyle.badge} rounded-full px-2 py-0.5`}
+                      className={`text-label font-medium ${allianceStyle.badge} rounded-full px-2 py-0.5`}
                     >
                       {allianceStyle.label}
                     </span>

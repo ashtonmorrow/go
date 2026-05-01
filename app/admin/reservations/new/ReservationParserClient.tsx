@@ -144,7 +144,7 @@ export default function ReservationParserClient() {
         <section>
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-h3 text-ink-deep">Uploads</h2>
-            <div className="text-[11px] text-muted">
+            <div className="text-label text-muted">
               {doneItems.length} parsed
               {inFlightItems.length > 0 && <> · {inFlightItems.length} in flight</>}
               {errorItems.length > 0 && <> · {errorItems.length} failed</>}
@@ -194,7 +194,7 @@ export default function ReservationParserClient() {
             className="w-full text-small font-mono border border-sand rounded px-3 py-2 bg-white leading-relaxed resize-y"
           />
           <div className="flex items-center justify-between gap-3">
-            <p className="text-[11px] text-muted">
+            <p className="text-label text-muted">
               Names, dates, and confirmation numbers are stripped before save.
             </p>
             <button
@@ -260,21 +260,21 @@ function PdfRow({ item, onRemove }: { item: Item; onRemove: () => void }) {
   const { file, status } = item;
   return (
     <li className="flex items-center gap-3 p-3 rounded border border-sand bg-white text-small">
-      <div className="text-[11px] uppercase tracking-wider text-muted w-12 flex-shrink-0">PDF</div>
+      <div className="text-label uppercase tracking-wider text-muted w-12 flex-shrink-0">PDF</div>
       <div className="flex-1 min-w-0">
-        <p className="font-mono text-[12px] text-ink-deep truncate">{file.name}</p>
-        <p className="text-[11px] text-muted">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+        <p className="font-mono text-small text-ink-deep truncate">{file.name}</p>
+        <p className="text-label text-muted">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
         {status.stage === 'parsing' && (
-          <p className="text-[11px] text-muted">Parsing with Gemini…</p>
+          <p className="text-label text-muted">Parsing with Gemini…</p>
         )}
         {status.stage === 'pending' && (
-          <p className="text-[11px] text-muted">Queued.</p>
+          <p className="text-label text-muted">Queued.</p>
         )}
         {status.stage === 'error' && (
-          <p className="text-[11px] text-orange">{status.error}</p>
+          <p className="text-label text-orange">{status.error}</p>
         )}
         {status.stage === 'done' && (
-          <p className={'text-[11px] ' + (status.duplicate ? 'text-slate' : 'text-teal')}>
+          <p className={'text-label ' + (status.duplicate ? 'text-slate' : 'text-teal')}>
             {status.duplicate
               ? <>Already imported <strong>{status.name}</strong> — skipped.</>
               : <>{status.isNew ? 'Created' : 'Updated'} <strong>{status.name}</strong></>}
@@ -284,7 +284,7 @@ function PdfRow({ item, onRemove }: { item: Item; onRemove: () => void }) {
       {status.stage === 'done' && (
         <Link
           href={`/admin/pins/${status.pinId}`}
-          className="text-[11px] px-3 py-1.5 rounded bg-teal text-white hover:bg-teal/90"
+          className="text-label px-3 py-1.5 rounded bg-teal text-white hover:bg-teal/90"
         >
           Edit pin
         </Link>
@@ -293,7 +293,7 @@ function PdfRow({ item, onRemove }: { item: Item; onRemove: () => void }) {
         <button
           type="button"
           onClick={onRemove}
-          className="text-[11px] px-2 py-1 text-muted hover:text-orange"
+          className="text-label px-2 py-1 text-muted hover:text-orange"
           aria-label="Remove"
         >
           ✕

@@ -17,14 +17,14 @@ export function BigStat({
 }) {
   return (
     <div className="card p-4">
-      <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium">
+      <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium">
         {label}
       </div>
       <div className="mt-1 text-h2 text-ink-deep tabular-nums leading-tight">
         {typeof value === 'number' ? value.toLocaleString('en') : value}
       </div>
       {hint && (
-        <div className="mt-0.5 text-[11px] text-slate">{hint}</div>
+        <div className="mt-0.5 text-label text-slate">{hint}</div>
       )}
     </div>
   );
@@ -51,11 +51,11 @@ export function Breakdown({
   return (
     <section className="card p-4">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-[11px] uppercase tracking-[0.14em] text-muted font-medium">
+        <h2 className="text-label uppercase tracking-[0.14em] text-muted font-medium">
           {title}
         </h2>
         {href && (
-          <a href={href} className="text-[11px] text-teal hover:underline">
+          <a href={href} className="text-label text-teal hover:underline">
             see all →
           </a>
         )}
@@ -79,7 +79,7 @@ export function Breakdown({
                     aria-hidden
                   />
                 </div>
-                <span className="w-10 text-right tabular-nums text-muted text-[11px]">
+                <span className="w-10 text-right tabular-nums text-muted text-label">
                   {r.count.toLocaleString('en')}
                 </span>
               </li>
@@ -104,7 +104,7 @@ export function FactList({
 }) {
   return (
     <section className="card p-4">
-      <h2 className="text-[11px] uppercase tracking-[0.14em] text-muted font-medium">
+      <h2 className="text-label uppercase tracking-[0.14em] text-muted font-medium">
         {title}
       </h2>
       <dl className="mt-3 space-y-1.5 text-small">

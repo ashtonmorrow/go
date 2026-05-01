@@ -122,7 +122,7 @@ export default function AboutPage() {
 
       {/* === Table of contents === */}
       <nav aria-label="Contents" className="card p-5 mb-10 not-prose">
-        <p className="text-[10px] uppercase tracking-[0.18em] text-muted font-medium mb-3">
+        <p className="text-micro uppercase tracking-[0.18em] text-muted font-medium mb-3">
           Contents
         </p>
         <ul className="space-y-1.5 text-small">
@@ -275,7 +275,7 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
             {head.map(h => (
               <th
                 key={h}
-                className="text-left text-[10px] uppercase tracking-[0.14em] text-muted font-medium pb-2 pr-4 border-b border-sand"
+                className="text-left text-micro uppercase tracking-[0.14em] text-muted font-medium pb-2 pr-4 border-b border-sand"
               >
                 {h}
               </th>

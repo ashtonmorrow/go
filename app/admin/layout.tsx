@@ -16,7 +16,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               ← Site
             </Link>
             <span className="text-muted">·</span>
-            <span className="text-muted uppercase tracking-wider text-[11px]">Admin</span>
+            <span className="text-muted uppercase tracking-wider text-label">Admin</span>
           </div>
           <nav className="flex items-center gap-4 text-small">
             <Link href="/admin/upload" className="text-ink hover:text-teal">

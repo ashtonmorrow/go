@@ -83,7 +83,6 @@ export default async function TablePage() {
       cityFlag: c.cityFlag ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null),
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
-      heroImage: c.heroImage,
       lat: c.lat,
       lng: c.lng,
       population: c.population,
@@ -130,7 +129,7 @@ export default async function TablePage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <section className="max-w-page mx-auto px-5 pt-6"><h1 className="text-h2 text-ink-deep">City Data</h1></section>
+      <h1 className="text-h2 text-ink-deep">City Data</h1>
       <CitiesTable cities={minimal} />
     </>
   );

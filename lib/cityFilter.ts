@@ -34,6 +34,12 @@ export type CityFilterable = {
   been: boolean;
   go: boolean;
   savedPlaces?: string | null;
+  /** A photo I personally took (uploaded via /admin/upload). Tier 2 in the
+   *  curated sort. Optional because some callers don't carry it. */
+  personalPhoto?: string | null;
+  /** AI-generated, Codex-supplied, or Wikimedia-Commons-sourced image.
+   *  Tier 3 in the curated sort. Optional + nullable. */
+  heroImage?: string | null;
   population?: number | null;
   elevation?: number | null;
   avgHigh?: number | null;
@@ -158,8 +164,34 @@ export function applyLayerVisibility<T extends CityFilterable>(
   return cities;
 }
 
+/** Curated tier: 0 = has a Google saved-places URL, 1 = has a personal
+ *  photo, 2 = has a hero image (Codex / AI / Wikimedia), 3 = nothing.
+ *  Lower tier = higher priority. Within a tier, the standard sort
+ *  comparator (alphabetical by name) takes over for stable ordering. */
+function curatedTier<T extends CityFilterable>(c: T): number {
+  if (c.savedPlaces) return 0;
+  if (c.personalPhoto) return 1;
+  if (c.heroImage) return 2;
+  return 3;
+}
+
 export function sortCities<T extends CityFilterable>(cities: T[], state: CityFilterState): T[] {
   const { sort, desc } = state;
+
+  // 'curated' is special: tier-based primary sort, alphabetical secondary.
+  // The desc flag is ignored — flipping curatedness backward (least-curated
+  // first) isn't a useful view.
+  if (sort === 'curated') {
+    return [...cities].sort((a, b) => {
+      const ta = curatedTier(a);
+      const tb = curatedTier(b);
+      if (ta !== tb) return ta - tb;
+      const an = (a.name ?? '').toLowerCase();
+      const bn = (b.name ?? '').toLowerCase();
+      return an < bn ? -1 : an > bn ? 1 : 0;
+    });
+  }
+
   const get = (c: T): unknown => {
     if (sort === 'name') return c.name?.toLowerCase() ?? '';
     if (sort === 'founded') {

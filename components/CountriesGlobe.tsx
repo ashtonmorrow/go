@@ -264,7 +264,7 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
           Single colour means no key is needed — shaded == matches the
           current filter. The badge just gives the user feedback as
           filters narrow / widen the result set. */}
-      <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2.5 py-1.5 text-[11px] text-slate">
+      <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2.5 py-1.5 text-label text-slate">
         <span className="text-ink-deep font-medium tabular-nums">
           {matchedIso3.length}
         </span>
@@ -384,7 +384,7 @@ function CountryHoverTile({
           </div>
         </div>
         {country.iso2 && (
-          <span className="text-[9px] font-mono text-muted tracking-[0.14em]">
+          <span className="text-micro font-mono text-muted tracking-[0.14em]">
             {country.iso2}
           </span>
         )}
@@ -392,14 +392,14 @@ function CountryHoverTile({
 
       {/* Practicalities */}
       {rows.length > 0 && (
-        <dl className="px-3 py-2 text-[11px] leading-tight space-y-0.5">
+        <dl className="px-3 py-2 text-label leading-tight space-y-0.5">
           {rows.map(r => (
             <div key={r.label} className="flex items-baseline justify-between gap-3">
-              <dt className="text-[9px] uppercase tracking-[0.14em] text-muted font-medium flex-shrink-0">
+              <dt className="text-micro uppercase tracking-[0.14em] text-muted font-medium flex-shrink-0">
                 {r.label}
               </dt>
               <dd
-                className="text-ink-deep font-mono truncate text-right text-[11px]"
+                className="text-ink-deep font-mono truncate text-right text-label"
                 title={r.value}
               >
                 {r.value}
@@ -410,9 +410,9 @@ function CountryHoverTile({
       )}
 
       {/* Footer — city stats from the active filter */}
-      <div className="px-3 py-1.5 border-t border-sand text-[10px] text-slate tabular-nums flex items-center justify-between gap-2">
+      <div className="px-3 py-1.5 border-t border-sand text-micro text-slate tabular-nums flex items-center justify-between gap-2">
         <span>{cityLine}</span>
-        <span className="text-muted text-[9px]">click → open</span>
+        <span className="text-muted text-micro">click → open</span>
       </div>
     </div>
   );

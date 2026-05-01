@@ -53,6 +53,7 @@ const TAP_WATER_OPTIONS: { value: TapWater; label: string }[] = [
 ];
 
 const SORT_FIELDS: { value: SortKey; label: string }[] = [
+  { value: 'curated', label: 'Most curated' },
   { value: 'name', label: 'Name' },
   { value: 'population', label: 'Population' },
   { value: 'founded', label: 'Founded' },
@@ -93,7 +94,7 @@ export default function FilterPanel({
           dims to muted so the affordance is still discoverable, just not
           shouting. */}
       <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
-        <div className="text-[11px] text-muted">
+        <div className="text-label text-muted">
           {resultCount != null && totalCount != null ? (
             <>
               <span className="text-ink-deep font-medium tabular-nums">{resultCount}</span>
@@ -110,7 +111,7 @@ export default function FilterPanel({
           onClick={reset}
           disabled={!dirty}
           className={
-            'inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-md border transition-colors ' +
+            'inline-flex items-center gap-1 text-label px-2 py-1 rounded-md border transition-colors ' +
             (dirty
               ? 'text-ink-deep border-sand hover:border-slate hover:bg-cream-soft'
               : 'text-muted/60 border-transparent cursor-not-allowed')
@@ -170,9 +171,9 @@ export default function FilterPanel({
                 }
               >
                 <span aria-hidden className={'inline-block w-2 h-2 rounded-full ' + s.swatch} />
-                <span className="text-[10px] font-medium leading-none">{s.label}</span>
+                <span className="text-micro font-medium leading-none">{s.label}</span>
                 {count != null && (
-                  <span className={'text-[9px] tabular-nums ' + (active ? 'text-cream-soft/80' : 'text-muted')}>
+                  <span className={'text-micro tabular-nums ' + (active ? 'text-cream-soft/80' : 'text-muted')}>
                     {count}
                   </span>
                 )}
@@ -184,7 +185,7 @@ export default function FilterPanel({
           <button
             type="button"
             onClick={() => setState(s => ({ ...s, statusFocus: null }))}
-            className="mt-1 text-[10px] text-slate hover:text-ink-deep"
+            className="mt-1 text-micro text-slate hover:text-ink-deep"
           >
             Show all statuses
           </button>
@@ -308,6 +309,7 @@ export default function FilterPanel({
 // === Helpers: human-friendly direction labels per sort field ===
 function ascendingLabel(sort: SortKey): string {
   switch (sort) {
+    case 'curated':    return 'Most curated';
     case 'name':       return 'A → Z';
     case 'founded':    return 'Oldest';
     case 'population': return 'Smallest';
@@ -320,6 +322,7 @@ function ascendingLabel(sort: SortKey): string {
 }
 function descendingLabel(sort: SortKey): string {
   switch (sort) {
+    case 'curated':    return 'Least curated';
     case 'name':       return 'Z → A';
     case 'founded':    return 'Newest';
     case 'population': return 'Largest';
@@ -335,10 +338,10 @@ function descendingLabel(sort: SortKey): string {
 
 function SectionLabel({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
-    <div className="text-[10px] uppercase tracking-[0.14em] font-medium mb-2 px-0.5 flex items-baseline justify-between gap-2">
+    <div className="text-micro uppercase tracking-[0.14em] font-medium mb-2 px-0.5 flex items-baseline justify-between gap-2">
       <span className="text-muted">{children}</span>
       {hint && (
-        <span className="text-[9px] text-accent normal-case tracking-normal font-normal">
+        <span className="text-micro text-accent normal-case tracking-normal font-normal">
           {hint}
         </span>
       )}
@@ -374,7 +377,7 @@ function LayerRow({
         <span aria-hidden className={'inline-block w-3 h-3 rounded-full flex-shrink-0 ' + swatchClass} />
         <span className="text-small text-ink truncate">{label}</span>
         {count != null && (
-          <span className="text-[10px] tabular-nums text-muted">{count}</span>
+          <span className="text-micro tabular-nums text-muted">{count}</span>
         )}
       </span>
       <button
@@ -454,7 +457,7 @@ function SingleSelectChips<T extends string>({
             type="button"
             onClick={() => onChange(o.value)}
             className={
-              'px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              'px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
               (active
                 ? 'bg-ink-deep text-cream-soft border-ink-deep'
                 : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
@@ -487,7 +490,7 @@ function ChipGroup<T extends string>({
             type="button"
             onClick={() => onToggle(o.value)}
             className={
-              'px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              'px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
               (active
                 ? 'bg-ink-deep text-cream-soft border-ink-deep'
                 : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
@@ -548,7 +551,7 @@ function DirectionButton({
       type="button"
       onClick={onClick}
       className={
-        'flex-1 px-2 py-1 rounded text-[11px] font-medium transition-colors ' +
+        'flex-1 px-2 py-1 rounded text-label font-medium transition-colors ' +
         (active ? 'bg-cream-soft text-ink-deep' : 'text-slate hover:text-ink-deep')
       }
     >

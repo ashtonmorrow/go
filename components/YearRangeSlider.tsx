@@ -88,7 +88,7 @@ export default function YearRangeSlider({ min, max, onChange }: Props) {
 
   return (
     <div className="select-none">
-      <div className="flex items-center justify-between text-[11px] text-ink-deep mb-1.5 font-mono tabular-nums">
+      <div className="flex items-center justify-between text-label text-ink-deep mb-1.5 font-mono tabular-nums">
         <span>{fmt(min, 'min')}</span>
         <span className="text-muted">→</span>
         <span>{fmt(max, 'max')}</span>
@@ -119,7 +119,7 @@ export default function YearRangeSlider({ min, max, onChange }: Props) {
 
       {/* Tick labels at era boundaries — orient users to where on the
           rail "BCE / 0 / Middle Ages / 1900" sit. */}
-      <div className="flex justify-between mt-1 text-[9px] text-muted font-mono tabular-nums px-0.5">
+      <div className="flex justify-between mt-1 text-micro text-muted font-mono tabular-nums px-0.5">
         <span>3000 BCE</span>
         <span>1500 BCE</span>
         <span>0</span>

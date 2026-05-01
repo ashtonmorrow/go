@@ -221,7 +221,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         )}
         <div className="flex-1 min-w-0">
           {pin.lat != null && pin.lng != null && (
-            <p className="text-[11px] uppercase tracking-[0.18em] font-mono text-muted mb-1">
+            <p className="text-label uppercase tracking-[0.18em] font-mono text-muted mb-1">
               {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
             </p>
           )}
@@ -237,7 +237,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
             {pin.visited && (
-              <span className="text-teal text-[11px] uppercase tracking-[0.14em] font-medium inline-flex items-center gap-1.5">
+              <span className="text-teal text-label uppercase tracking-[0.14em] font-medium inline-flex items-center gap-1.5">
                 <span aria-hidden>✅</span>
                 <span>Visited</span>
               </span>
@@ -262,7 +262,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <>
                 {icon && <span aria-hidden>{icon}</span>}
                 <span>{l}</span>
-                {url && <span aria-hidden className="text-accent/60 text-[10px]">↗</span>}
+                {url && <span aria-hidden className="text-accent/60 text-micro">↗</span>}
               </>
             );
             return url ? (
@@ -320,7 +320,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           {content && (
             <section className="mb-8 pb-8 border-b border-sand">
               {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
                   {p}
                 </p>
               ))}
@@ -329,7 +329,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
           {wp?.extract && (
             <section>
-              <p className="text-ink leading-relaxed text-[17px]">{wp.extract}</p>
+              <p className="text-ink leading-relaxed text-prose">{wp.extract}</p>
               <a
                 href={wp.url}
                 target="_blank"
@@ -423,7 +423,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <h2 className="text-h3 text-ink-deep mb-2">Type</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.tags.map(t => (
-                  <span key={t} className="pill bg-cream-soft text-slate text-[11px]">{t}</span>
+                  <span key={t} className="pill bg-cream-soft text-slate text-label">{t}</span>
                 ))}
               </div>
             </section>
@@ -439,7 +439,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                   link to the source article so the upstream author + license
                   credits travel with the image. The full credit story lives
                   on /credits. */}
-              <figcaption className="text-[10px] text-muted mt-1 px-1">
+              <figcaption className="text-micro text-muted mt-1 px-1">
                 Lead image from{' '}
                 {wp.url ? (
                   <a
@@ -462,7 +462,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           )}
 
           <div className="card p-4 space-y-3 text-small">
-            <h3 className="text-muted uppercase tracking-wider text-[11px]">Plan a visit</h3>
+            <h3 className="text-muted uppercase tracking-wider text-label">Plan a visit</h3>
 
             {pin.googleMapsUrl ? (
               <a
@@ -474,7 +474,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                 Open in Google Maps →
               </a>
             ) : (
-              <p className="text-muted text-[11px]">No coordinates on file.</p>
+              <p className="text-muted text-label">No coordinates on file.</p>
             )}
 
             {pin.bookingUrl && (
@@ -513,7 +513,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           </div>
 
           <div className="card p-4 text-small">
-            <h3 className="text-muted uppercase tracking-wider text-[11px] mb-3">Facts</h3>
+            <h3 className="text-muted uppercase tracking-wider text-label mb-3">Facts</h3>
             <dl className="space-y-2">
               {country && (
                 <Fact label="Country">
@@ -553,7 +553,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               )}
               {pin.lat != null && pin.lng != null && (
                 <Fact label="Coords">
-                  <span className="font-mono tabular-nums text-[12px]">
+                  <span className="font-mono tabular-nums text-small">
                     {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
                   </span>
                 </Fact>
@@ -563,7 +563,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
           {(pin.unescoUrl || pin.wikipediaUrl || pin.wikidataUrl) && (
             <div className="card p-4 text-small">
-              <h3 className="text-muted uppercase tracking-wider text-[11px] mb-3">References</h3>
+              <h3 className="text-muted uppercase tracking-wider text-label mb-3">References</h3>
               <ul className="space-y-1.5">
                 {pin.unescoUrl && (
                   <li><a href={withUtm(pin.unescoUrl, { medium: 'pin-detail', campaign: 'unesco' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">whc.unesco.org →</a></li>
@@ -631,10 +631,10 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {showHours && (
           <div>
-            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Hours</h3>
+            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">Hours</h3>
             <HoursBlock hoursDetails={pin.hoursDetails} openingHours={pin.openingHours} raw={pin.hours} />
             {pin.closureDays.length > 0 && (
-              <p className="mt-2 text-[11px] text-muted">
+              <p className="mt-2 text-label text-muted">
                 Also closed: {pin.closureDays.join(', ')}
               </p>
             )}
@@ -643,14 +643,14 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
 
         {showCost && (
           <div>
-            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Admission</h3>
+            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">Admission</h3>
             <AdmissionBlock pin={pin} fallback={admissionLabel} />
           </div>
         )}
 
         {showBooking && (
           <div>
-            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">Booking</h3>
+            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">Booking</h3>
             {pin.booking && <p className="text-ink">{BOOKING_FACET[pin.booking].label}</p>}
             {!pin.booking && pin.bookingRequired === true && (
               <p className="text-ink">Booking required</p>
@@ -672,7 +672,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
         )}
 
         {(pin.hoursSourceUrl || pin.priceSourceUrl) && (
-          <div className="sm:col-span-2 text-[11px] text-muted">
+          <div className="sm:col-span-2 text-label text-muted">
             Sources:{' '}
             {pin.hoursSourceUrl && (
               <a href={pin.hoursSourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-teal underline">
@@ -690,7 +690,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
 
         {showTiming && (
           <div>
-            <h3 className="text-small text-muted uppercase tracking-wider text-[11px] mb-2">When to go</h3>
+            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">When to go</h3>
             <ul className="text-small text-ink space-y-1">
               {pin.bestMonths.length > 0 && (
                 <li><span className="text-muted">Best:</span> {monthRange(pin.bestMonths)}</li>
@@ -737,7 +737,7 @@ function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }
           ))}
         </dl>
         {view.notes.length > 0 && (
-          <ul className="mt-2 text-[11px] text-muted leading-relaxed space-y-0.5">
+          <ul className="mt-2 text-label text-muted leading-relaxed space-y-0.5">
             {view.notes.map((n, i) => (
               <li key={i}>· {n}</li>
             ))}
@@ -844,12 +844,12 @@ function PersonalSection({ pin }: { pin: Pin }) {
             <span className="text-slate">{pin.visitYear}</span>
           )}
           {pin.bestFor.length > 0 && (
-            <span className="text-muted text-[12px]">
+            <span className="text-muted text-small">
               best for {pin.bestFor.join(', ')}
             </span>
           )}
           {pin.companions.length > 0 && (
-            <span className="text-muted text-[12px]">
+            <span className="text-muted text-small">
               with {pin.companions.join(', ')}
             </span>
           )}
@@ -903,7 +903,7 @@ function PersonalSection({ pin }: { pin: Pin }) {
                   <span className="font-mono text-ink-deep tabular-nums">{pin.priceTier}</span>
                 )}
                 {pin.pricePerPersonUsd != null && (
-                  <span className="text-muted text-[12px]">
+                  <span className="text-muted text-small">
                     ~${pin.pricePerPersonUsd.toLocaleString()}/person
                   </span>
                 )}
@@ -1040,9 +1040,9 @@ function HoursBlock({
                   key={d}
                   className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
                 >
-                  <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+                  <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
                     {DAY_LABELS[d]}
-                    {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+                    {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
                   </dt>
                   <dd className="tabular-nums">{text ?? 'Closed'}</dd>
                 </div>
@@ -1051,17 +1051,17 @@ function HoursBlock({
           </dl>
         ) : null}
         {hoursDetails.ramadan?.daily && (
-          <p className="mt-2 text-[11px] text-muted">
+          <p className="mt-2 text-label text-muted">
             Ramadan: {hoursDetails.ramadan.daily}
           </p>
         )}
         {hoursDetails.parent_site && (
-          <p className="mt-1 text-[11px] text-muted">
+          <p className="mt-1 text-label text-muted">
             Hours follow {hoursDetails.parent_site}.
           </p>
         )}
         {Array.isArray(hoursDetails.notes) && hoursDetails.notes.length > 0 && (
-          <ul className="mt-2 text-[11px] text-muted leading-relaxed space-y-0.5">
+          <ul className="mt-2 text-label text-muted leading-relaxed space-y-0.5">
             {hoursDetails.notes.map((n, i) => (
               <li key={i}>· {n}</li>
             ))}
@@ -1085,16 +1085,16 @@ function HoursBlock({
               key={d}
               className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
             >
-              <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+              <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
                 {DAY_LABELS[d]}
-                {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+                {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
               </dt>
               <dd className="tabular-nums">{text}</dd>
             </div>
           );
         })}
         {openingHours.notes && (
-          <p className="mt-2 text-[11px] text-muted font-sans leading-relaxed">{openingHours.notes}</p>
+          <p className="mt-2 text-label text-muted font-sans leading-relaxed">{openingHours.notes}</p>
         )}
       </dl>
     );
@@ -1116,9 +1116,9 @@ function HoursBlock({
             key={d.day}
             className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
           >
-            <dt className="w-12 text-[10px] uppercase tracking-[0.14em] flex-shrink-0">
+            <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
               {DAY_LABELS[d.day]}
-              {isToday && <span aria-hidden className="ml-1 text-[8px]">●</span>}
+              {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
             </dt>
             <dd className="tabular-nums">{d.closed ? 'Closed' : `${d.open}–${d.close}`}</dd>
           </div>

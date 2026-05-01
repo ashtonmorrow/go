@@ -283,7 +283,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
 
             {/* OSM attribution (required by their tile policy) */}
             <div
-              className="absolute top-1 right-1 text-[8px] bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5"
+              className="absolute top-1 right-1 text-micro bg-white/85 text-ink-deep/70 px-1 rounded leading-none py-0.5"
               style={{ pointerEvents: 'none' }}
             >
               © OpenStreetMap
@@ -296,7 +296,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                 background: 'linear-gradient(transparent, rgba(15, 23, 42, 0.7))',
               }}
             >
-              <div className="text-white text-[11px] uppercase tracking-[0.18em] font-medium truncate">
+              <div className="text-white text-label uppercase tracking-[0.18em] font-medium truncate">
                 {city.name}
               </div>
               {city.savedPlaces && (
@@ -305,7 +305,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={e => e.stopPropagation()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-ink-deep text-[11px] font-medium hover:bg-cream-soft transition-colors flex-shrink-0 border-b border-ink-deep shadow-pill rounded-none"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-ink-deep text-label font-medium hover:bg-cream-soft transition-colors flex-shrink-0 border-b border-ink-deep shadow-pill rounded-none"
                 >
                   View my Pins <span aria-hidden>📍</span>
                 </a>
@@ -395,7 +395,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           like a real postcard return-address: location → place → details. */}
       <div className="px-4 pt-2.5" style={{ paddingRight: 110 }}>
         {(city.lat != null || city.lng != null) && (
-          <p className="text-[9px] font-mono text-muted tracking-[0.08em] mb-1 truncate">
+          <p className="text-micro font-mono text-muted tracking-[0.08em] mb-1 truncate">
             <span>{fmtCoord(city.lat, 'lat')}</span>
             <span aria-hidden className="opacity-40 mx-1">·</span>
             <span>{fmtCoord(city.lng, 'lng')}</span>
@@ -413,13 +413,13 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               onClick={e => e.stopPropagation()}
               aria-label={`Open ${city.name} in Google Maps`}
               title="Open my saved places in Google Maps"
-              className="text-[15px] leading-none flex-shrink-0 hover:scale-110 transition-transform"
+              className="text-body leading-none flex-shrink-0 hover:scale-110 transition-transform"
             >
               <span aria-hidden>📍</span>
             </a>
           )}
         </div>
-        <p className="text-[10px] text-slate uppercase tracking-[0.18em] mt-1 truncate">
+        <p className="text-micro text-slate uppercase tracking-[0.18em] mt-1 truncate">
           {city.country}
         </p>
         {/* Letterhead-style rule under the headline. Subtle warm sand colour
@@ -436,7 +436,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           combination was clipping the climate icon by 1-2px on tall cards
           and making it look broken even though it was technically there. */}
       <div className="px-4 pt-1 pb-3 flex-1 min-h-0 flex flex-col justify-start overflow-hidden">
-        <dl className="text-[11px] leading-tight">
+        <dl className="text-label leading-tight">
           {fmtPopulation(city.population) && (
             <Row label="Population" value={fmtPopulation(city.population)!} />
           )}
@@ -458,10 +458,10 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               ways. Falls back to code-only when the glyph is unknown. */}
           {city.currency && (
             <div className="flex justify-between items-baseline gap-3 py-px">
-              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+              <dt className="text-micro text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Currency
               </dt>
-              <dd className="text-ink-deep font-mono text-[11px] truncate text-right">
+              <dd className="text-ink-deep font-mono text-label truncate text-right">
                 {city.currencySymbol && city.currencySymbol !== city.currency && (
                   <>
                     <span>{city.currencySymbol}</span>
@@ -478,11 +478,11 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             // glyph positioned on the correct side. Plus the L/R letter
             // for accessibility / scanability.
             <div className="flex justify-between items-center gap-3 py-px">
-              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+              <dt className="text-micro text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Drive
               </dt>
               <dd className="text-ink-deep flex items-center gap-1.5">
-                <span className="font-mono text-[11px]">{city.driveSide}</span>
+                <span className="font-mono text-label">{city.driveSide}</span>
                 <DriveIcon side={city.driveSide} />
               </dd>
             </div>
@@ -496,10 +496,10 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
               whether their charger needs a converter. */}
           {(city.plugTypes && city.plugTypes.length > 0 || city.voltage) && (
             <div className="flex justify-between items-baseline gap-3 py-px">
-              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+              <dt className="text-micro text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Electric
               </dt>
-              <dd className="text-ink-deep font-mono text-[11px] truncate text-right">
+              <dd className="text-ink-deep font-mono text-label truncate text-right">
                 {city.plugTypes && city.plugTypes.length > 0 && (
                   <span>{city.plugTypes.slice(0, 3).join('/')}</span>
                 )}
@@ -514,7 +514,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
             // Climate row uses an icon instead of the raw Köppen code.
             // Visual at-a-glance, full code + meaning live in the tooltip.
             <div className="flex justify-between items-center gap-3 py-px">
-              <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+              <dt className="text-micro text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
                 Climate
               </dt>
               <dd className="text-ink-deep flex items-center">
@@ -578,10 +578,10 @@ function fmtTapWater(w: string): string {
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between items-baseline gap-3 py-px">
-      <dt className="text-[9px] text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
+      <dt className="text-micro text-muted uppercase tracking-[0.14em] font-medium flex-shrink-0">
         {label}
       </dt>
-      <dd className="text-ink-deep font-mono text-[11px] truncate text-right" title={value}>
+      <dd className="text-ink-deep font-mono text-label truncate text-right" title={value}>
         {value}
       </dd>
     </div>

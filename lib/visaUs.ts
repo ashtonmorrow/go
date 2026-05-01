@@ -36,12 +36,17 @@ const VISA_FREE = new Set<string>([
   'AR', 'BR', 'BS', 'BB', 'BZ', 'BO', 'CL', 'CO', 'CR', 'DM', 'DO',
   'EC', 'GD', 'GT', 'GY', 'HN', 'JM', 'KN', 'LC', 'MX', 'NI',
   'PA', 'PE', 'PY', 'SR', 'SV', 'TT', 'UY', 'VC', 'AG',
+  'AW', 'CW', 'HT', 'SX',
   // Middle East
   'IL', 'AE', 'QA',
   // Africa (limited — most of the continent requires an eVisa or VOA)
-  'MA', 'TN', 'BW', 'MU', 'SC', 'NA',
+  'MA', 'TN', 'BW', 'MU', 'SC', 'NA', 'AO', 'SZ', 'GM', 'LS', 'ST', 'SN', 'ZA',
   // Pacific
-  'FJ', 'WS', 'TO', 'TV', 'VU', 'KI', 'NU', 'CK', 'MH', 'FM', 'PW',
+  'FJ', 'WS', 'TO', 'TV', 'VU', 'KI', 'NU', 'CK', 'MH', 'FM', 'PW', 'SB',
+  // French overseas collectivities / territories
+  'PF', 'NC',
+  // Eastern Europe / Central Asia
+  'MD', 'MN', 'UA',
 ]);
 
 const E_VISA = new Set<string>([
@@ -52,6 +57,7 @@ const E_VISA = new Set<string>([
   'IN', 'VN', 'LK', 'KH', 'MM', 'BD', 'PK', 'NP', 'BT',
   'TR',
   'EG', 'KE', 'ET', 'TZ', 'UG', 'RW', 'GA',
+  'BJ', 'CM', 'CI', 'DJ', 'GN', 'MW', 'MZ', 'NG', 'PG', 'SS',
   'AZ', 'AM', 'GE', 'KZ', 'KG', 'TJ', 'UZ', 'TM',
   'OM', 'BH', 'KW', 'SA', 'IQ',
 ]);
@@ -60,11 +66,13 @@ const ON_ARRIVAL = new Set<string>([
   'ID', 'MV', 'TL', 'LA',
   'JO', 'LB',
   'CV', 'MG', 'ZM', 'ZW', 'TG', 'CD',
+  'KM', 'GW', 'MR', 'SL',
 ]);
 
 const REQUIRED = new Set<string>([
   'CN', 'RU', 'CU', 'KP', 'BY', 'IR', 'SY', 'YE', 'AF', 'SO',
   'DZ', 'LY', 'SD', 'CF', 'GQ', 'ER', 'CG',
+  'BF', 'BI', 'TD', 'GH', 'LR', 'ML', 'NR', 'NE', 'VE',
 ]);
 
 // Country-name fallback for the (rare) records where ISO2 isn't populated.

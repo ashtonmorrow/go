@@ -282,7 +282,7 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
             <BoolTri value={state.reservation_recommended} onChange={v => set('reservation_recommended', v)} />
           </Field>
           <Field label="Price tier">
-            <div className="inline-flex rounded border border-sand overflow-hidden text-[12px]">
+            <div className="inline-flex rounded border border-sand overflow-hidden text-small">
               {[null, '$', '$$', '$$$', '$$$$'].map(tier => (
                 <button
                   key={tier ?? 'unset'}
@@ -552,7 +552,7 @@ function StarRating({
         <button
           type="button"
           onClick={() => onChange(null)}
-          className="ml-2 text-[11px] text-muted hover:text-ink"
+          className="ml-2 text-label text-muted hover:text-ink"
         >
           clear
         </button>
@@ -569,7 +569,7 @@ function BoolTri({
   onChange: (v: boolean | null) => void;
 }) {
   return (
-    <div className="inline-flex rounded border border-sand overflow-hidden text-[11px]">
+    <div className="inline-flex rounded border border-sand overflow-hidden text-label">
       {([
         ['Unset', null],
         ['Yes', true],

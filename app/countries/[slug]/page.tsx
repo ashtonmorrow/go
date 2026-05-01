@@ -84,6 +84,14 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   // eVisa don't say so explicitly in the Notion visaUs field, and we
   // don't want to gate the link on a fragile string match.
   const evisaUrl = visaPortal(country.iso2, country.name);
+  const countrySourceLinks = [
+    ['Travel.State.gov', 'https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages.html', 'Entry, safety, emergency, and advisory context for U.S. travelers.'],
+    country.wikidataId ? ['Wikidata', `https://www.wikidata.org/wiki/${country.wikidataId}`, 'Country identifiers, baseline facts, and linked reference data.'] : null,
+    country.wikipediaSummary ? ['Wikipedia', `https://en.wikipedia.org/wiki/${encodeURIComponent(country.name.replace(/ /g, '_'))}`, 'Public encyclopedia summary and context.'] : null,
+    country.iso2 ? ['FlagCDN', `https://flagcdn.com/${country.iso2.toLowerCase()}.svg`, 'Country flag image fallback from ISO code.'] : null,
+    evisaUrl ? ['Official eVisa portal', evisaUrl, 'Direct government application link where we have one recorded.'] : null,
+    ['Exchange-rate feed', 'https://github.com/fawazahmed0/exchange-api', 'Currency-rate widget data.'],
+  ].filter(Boolean) as [string, string, string][];
 
   // Structured data — Country + BreadcrumbList.
   const countryData = countryJsonLd({
@@ -147,7 +155,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
             height={fallbackCover.height ?? 800}
             className="w-full max-h-[60vh] object-cover"
           />
-          <figcaption className="text-[11px] text-muted px-1 mt-1">
+          <figcaption className="text-label text-muted px-1 mt-1">
             From a pin in {country.name}
           </figcaption>
         </figure>
@@ -160,7 +168,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           {content && (
             <section>
               {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-[17px]' + (i > 0 ? ' mt-4' : '')}>
+                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
                   {p}
                 </p>
               ))}
@@ -216,9 +224,9 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
               rel="noopener noreferrer"
               className="card p-4 block text-small hover:bg-cream-soft transition"
             >
-              <div className="text-muted uppercase tracking-wider text-[11px]">eVisa portal</div>
+              <div className="text-muted uppercase tracking-wider text-label">eVisa portal</div>
               <div className="mt-2 text-teal font-medium">Apply online →</div>
-              <div className="mt-1 text-muted text-[11px] truncate" title={evisaUrl}>
+              <div className="mt-1 text-muted text-label truncate" title={evisaUrl}>
                 {evisaUrl.replace(/^https?:\/\//, '').split('/')[0]}
               </div>
             </a>
@@ -231,7 +239,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
               tells the reader how fresh the value is. */}
           {fact && (fact.population != null || fact.gdpNominalUsd != null || fact.hdi != null) && (
             <div className="card p-5 text-small">
-              <h3 className="text-muted uppercase tracking-wider text-[11px]">By the numbers</h3>
+              <h3 className="text-muted uppercase tracking-wider text-label">By the numbers</h3>
               <dl className="mt-3 space-y-2">
                 {fact.population != null && (
                   <div className="flex justify-between gap-3">
@@ -275,7 +283,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
                 )}
               </dl>
               {fact.dataYear != null && (
-                <p className="mt-2 text-muted text-[10px]">
+                <p className="mt-2 text-muted text-micro">
                   Wikidata · most recent values circa {fact.dataYear}.
                 </p>
               )}
@@ -283,7 +291,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           )}
 
           <div className="card p-5 text-small">
-            <h3 className="text-muted uppercase tracking-wider text-[11px]">Travel</h3>
+            <h3 className="text-muted uppercase tracking-wider text-label">Travel</h3>
             <dl className="mt-3 space-y-2">
               {[
                 ['Language', country.language],
@@ -308,6 +316,28 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           </div>
         </aside>
       </div>
+
+      <section className="mt-12 border-t border-sand pt-8">
+        <h2 className="text-h3 text-ink-deep mb-3">Sources</h2>
+        <p className="text-small text-slate max-w-prose">
+          This page blends public reference data, travel-planning lookups, and personal atlas notes.
+          Visa and entry rules move quickly, so treat the travel fields as planning prompts and verify before booking.
+        </p>
+        <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-small">
+          {countrySourceLinks.map(([label, href, note]) => (
+            <li key={label} className="rounded border border-sand p-3 bg-cream-soft/40">
+              <a href={href} target="_blank" rel="noopener noreferrer" className="text-teal font-medium">
+                {label} →
+              </a>
+              <p className="mt-1 text-muted">{note}</p>
+            </li>
+          ))}
+          <li className="rounded border border-sand p-3 bg-cream-soft/40">
+            <Link href="/credits" className="text-teal font-medium">Site credits →</Link>
+            <p className="mt-1 text-muted">Global source notes, map tiles, flags, licenses, and attribution policy.</p>
+          </li>
+        </ul>
+      </section>
     </article>
   );
 }

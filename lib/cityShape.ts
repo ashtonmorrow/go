@@ -34,6 +34,10 @@ export type City = {
   } | null;
   countryFlag: string | null;
   personalPhoto: string | null;
+  /** AI / Codex / Wikimedia-sourced hero image for the city. Used by the
+   *  'curated' sort as a tier-3 signal (better than nothing, not as good
+   *  as a personal photo). Optional because not every consumer needs it. */
+  heroImage?: string | null;
   lat: number | null;
   lng: number | null;
   population: number | null;

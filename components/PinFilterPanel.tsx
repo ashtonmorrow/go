@@ -48,7 +48,7 @@ export default function PinFilterPanel({
       {/* Cockpit header — pinned at the top of the panel. Live result
           count on the left, prominent "Clear all" on the right. */}
       <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
-        <div className="text-[11px] text-muted">
+        <div className="text-label text-muted">
           {resultCount != null && totalCount != null ? (
             <>
               <span className="text-ink-deep font-medium tabular-nums">{resultCount}</span>
@@ -65,7 +65,7 @@ export default function PinFilterPanel({
           onClick={reset}
           disabled={!dirty}
           className={
-            'inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-md border transition-colors ' +
+            'inline-flex items-center gap-1 text-label px-2 py-1 rounded-md border transition-colors ' +
             (dirty
               ? 'text-ink-deep border-sand hover:border-slate hover:bg-cream-soft'
               : 'text-muted/60 border-transparent cursor-not-allowed')
@@ -263,7 +263,7 @@ export default function PinFilterPanel({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
+    <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
       {children}
     </div>
   );
@@ -334,7 +334,7 @@ function TriState<T extends string>({
           type="button"
           onClick={() => onChange(o.value)}
           className={
-            'flex-1 px-2 py-1 rounded text-[11px] font-medium transition-colors ' +
+            'flex-1 px-2 py-1 rounded text-label font-medium transition-colors ' +
             (value === o.value
               ? 'bg-cream-soft text-ink-deep'
               : 'text-slate hover:text-ink-deep')
@@ -363,7 +363,7 @@ function ChipGroup<T extends string>({
             type="button"
             onClick={() => onToggle(o.value)}
             className={
-              'px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              'px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
               (active
                 ? 'bg-ink-deep text-cream-soft border-ink-deep'
                 : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
@@ -431,13 +431,13 @@ function QuickFilterChip({
       title={label}
       aria-pressed={on}
       className={
-        'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+        'inline-flex items-center gap-1 px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
         (on
           ? 'bg-ink-deep text-cream-soft border-ink-deep'
           : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
       }
     >
-      <span aria-hidden className="text-[12px] leading-none">{icon}</span>
+      <span aria-hidden className="text-small leading-none">{icon}</span>
       <span>{label}</span>
     </button>
   );
@@ -470,7 +470,7 @@ function ListChipGroup({
             onClick={() => onToggle(o)}
             title={o}
             className={
-              'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-medium transition-colors border ' +
+              'inline-flex items-center gap-1 px-2 py-1 rounded-md text-label font-medium transition-colors border ' +
               (active
                 ? 'bg-ink-deep text-cream-soft border-ink-deep'
                 : 'bg-white text-slate border-sand hover:border-slate hover:text-ink-deep')
@@ -493,7 +493,7 @@ function DirectionButton({
       type="button"
       onClick={onClick}
       className={
-        'flex-1 px-2 py-1 rounded text-[11px] font-medium transition-colors ' +
+        'flex-1 px-2 py-1 rounded text-label font-medium transition-colors ' +
         (active ? 'bg-cream-soft text-ink-deep' : 'text-slate hover:text-ink-deep')
       }
     >
@@ -550,7 +550,7 @@ function SearchableMultiSelect({
             ? <span className="text-muted">{placeholder}</span>
             : <span>{selected.size} selected</span>}
         </span>
-        <span aria-hidden className="text-muted text-[10px]">{open ? '▴' : '▾'}</span>
+        <span aria-hidden className="text-muted text-micro">{open ? '▴' : '▾'}</span>
       </button>
       {open && (
         <div className="absolute top-full left-0 right-0 mt-1 z-30 bg-white border border-sand rounded-md shadow-card overflow-hidden">
@@ -564,7 +564,7 @@ function SearchableMultiSelect({
           </div>
           <ul className="max-h-56 overflow-y-auto">
             {filtered.length === 0 && (
-              <li className="px-2.5 py-2 text-[11px] text-muted">No matches.</li>
+              <li className="px-2.5 py-2 text-label text-muted">No matches.</li>
             )}
             {filtered.map(o => {
               const checked = selected.has(o);
@@ -573,7 +573,7 @@ function SearchableMultiSelect({
                   <button
                     type="button"
                     onClick={() => onToggle(o)}
-                    className="w-full flex items-center gap-2 px-2.5 py-1.5 text-[11px] text-left hover:bg-cream-soft transition-colors"
+                    className="w-full flex items-center gap-2 px-2.5 py-1.5 text-label text-left hover:bg-cream-soft transition-colors"
                   >
                     <span
                       aria-hidden
@@ -595,7 +595,7 @@ function SearchableMultiSelect({
             })}
           </ul>
           {selected.size > 0 && (
-            <div className="border-t border-sand p-1.5 flex justify-between items-center text-[11px]">
+            <div className="border-t border-sand p-1.5 flex justify-between items-center text-label">
               <span className="text-muted px-1">{selected.size} selected</span>
               <button
                 type="button"
@@ -631,7 +631,7 @@ function BringChipGroup({
             type="button"
             onClick={() => onToggle(k)}
             className={
-              'pill text-[11px] transition-colors ' +
+              'pill text-label transition-colors ' +
               (checked
                 ? 'bg-ink-deep text-white border border-ink-deep'
                 : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')

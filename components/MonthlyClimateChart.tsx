@@ -188,7 +188,7 @@ export default function MonthlyClimateChart({ data }: Props) {
           {Math.round(tMin)}°
         </text>
       </svg>
-      <figcaption className="text-[10px] text-muted mt-2 flex flex-wrap items-center gap-3">
+      <figcaption className="text-micro text-muted mt-2 flex flex-wrap items-center gap-3">
         <span className="inline-flex items-center gap-1">
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-teal" />
           high

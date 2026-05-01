@@ -245,7 +245,7 @@ export default function CountryStatsClient({ rows }: { rows: CountryStatsRow[] }
           stays "personal coverage first, world stats second". */}
       {factRows.length > 0 && (
         <section className="mb-4">
-          <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
+          <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium mb-2 px-0.5">
             World baselines · across {factRows.length} countries
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -305,7 +305,7 @@ export default function CountryStatsClient({ rows }: { rows: CountryStatsRow[] }
               <button
                 type="button"
                 onClick={() => setReferenceIso2(null)}
-                className="text-[11px] text-muted hover:text-ink-deep px-2 py-1 rounded hover:bg-cream-soft"
+                className="text-label text-muted hover:text-ink-deep px-2 py-1 rounded hover:bg-cream-soft"
               >
                 Clear
               </button>
@@ -360,7 +360,7 @@ function ReferenceComparison({
         if (refValue == null || values.length < 2) {
           return (
             <div key={m.label} className="border border-sand rounded p-3">
-              <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium">
+              <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium">
                 {m.label}
               </div>
               <div className="mt-1 text-small text-muted">No data for {reference.name}.</div>
@@ -378,15 +378,15 @@ function ReferenceComparison({
         return (
           <div key={m.label} className="border border-sand rounded p-3">
             <div className="flex items-baseline justify-between gap-2">
-              <div className="text-[10px] uppercase tracking-[0.14em] text-muted font-medium">
+              <div className="text-micro uppercase tracking-[0.14em] text-muted font-medium">
                 {m.label}
               </div>
-              <div className="text-[11px] text-muted tabular-nums">P{percentile}</div>
+              <div className="text-label text-muted tabular-nums">P{percentile}</div>
             </div>
             <div className="mt-1 text-h3 text-ink-deep tabular-nums leading-tight">
               {m.format(refValue)}
             </div>
-            <div className="mt-2 text-[11px] text-slate flex flex-wrap gap-x-3 gap-y-0.5">
+            <div className="mt-2 text-label text-slate flex flex-wrap gap-x-3 gap-y-0.5">
               <span><span className="tabular-nums text-ink-deep">{above}</span> above</span>
               <span><span className="tabular-nums text-ink-deep">{below}</span> below</span>
               {eq > 1 && (

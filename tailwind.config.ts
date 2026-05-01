@@ -84,13 +84,29 @@ export default {
       borderRadius: {
         DEFAULT: '10px',
       },
+      // === Type scale ===
+      // The whole site renders at one of these named sizes. Arbitrary
+      // text-[Npx] usage should be rare enough that a code review catches
+      // it. Mapping when sweeping legacy code:
+      //   17px → prose      (article body, longer reading)
+      //   16px → body        (default)
+      //   13px → small       (interactive items, sidebar, inputs)
+      //   12px → small       (close enough; absorb)
+      //   11px → label       (secondary labels, counts, breadcrumbs)
+      //   10px → micro       (uppercase tracking labels, decorations)
+      //    9px → micro       (round up)
+      //    8px → micro       (round up; 8px is below readable)
+      //   15px → body        (round down)
       fontSize: {
         display: ['60px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '600' }],
         h1: ['40px', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '600' }],
         h2: ['28px', { lineHeight: '1.2', letterSpacing: '-0.005em', fontWeight: '600' }],
         h3: ['20px', { lineHeight: '1.3', fontWeight: '500' }],
+        prose: ['17px', { lineHeight: '1.65' }],
         body: ['16px', { lineHeight: '1.6' }],
         small: ['13px', { lineHeight: '1.5' }],
+        label: ['11px', { lineHeight: '1.45' }],
+        micro: ['10px', { lineHeight: '1.4', letterSpacing: '0.02em' }],
       },
       // Single, named shadow scale used app-wide. Components reaching for
       // a custom shadow should pick the closest one here, or extend.

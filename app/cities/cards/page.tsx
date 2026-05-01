@@ -19,16 +19,16 @@ import type { Metadata } from 'next';
 export const revalidate = 604800;
 
 export const metadata: Metadata = {
-  title: 'Cities',
+  title: "Cities I've traveled to",
   description:
-    'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+    "Cities I've traveled to, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side, and sort.",
   alternates: { canonical: `${SITE_URL}/cities/cards` },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/cities/cards`,
-    title: 'Cities · Mike Lee',
+    title: "Cities I've traveled to · Mike Lee",
     description:
-      'Every city in the atlas, as a hand-rotated postcard. Filter by continent, climate, visa, tap-water safety, drive side, and sort.',
+      "Cities I've traveled to, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side, and sort.",
   },
 };
 
@@ -89,6 +89,7 @@ export default async function CitiesPage() {
       cityFlagAttribution: c.cityFlag ? c.cityFlagAttribution : null,
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
+      heroImage: c.heroImage,
       lat: c.lat,
       lng: c.lng,
       population: c.population,
@@ -135,7 +136,9 @@ export default async function CitiesPage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <h1 className="text-h2 text-ink-deep">Cities</h1>
+      <section className="max-w-page mx-auto px-5 pt-6">
+        <h1 className="text-h2 text-ink-deep">Cities I&rsquo;ve traveled to</h1>
+      </section>
       <CitiesGrid cities={minimal} />
     </>
   );
