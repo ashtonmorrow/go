@@ -16,6 +16,13 @@ import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
 import LiveClock from '@/components/LiveClock';
+import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
+import { fetchAllPins } from '@/lib/pins';
+import {
+  fetchAllSavedListsMeta,
+  listsMatchingPlace,
+  listNameToSlug,
+} from '@/lib/savedLists';
 import type { Metadata } from 'next';
 
 /** Slugify a place name the same way our atlas does, for capital-name → city
@@ -103,13 +110,52 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // cities, which shipped 1.5 MB of JSON for every cold render. Now we hit
   // exactly the rows we need.
   const needsCoverFallback = !city.personalPhoto && !city.heroImage;
-  const [blocks, country, sisters, climate, fallbackCover] = await Promise.all([
+  const [blocks, country, sisters, climate, fallbackCover, allPins, listsMeta] = await Promise.all([
     content ? Promise.resolve([]) : fetchPageBlocks(city.id),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
+    fetchAllPins(),
+    fetchAllSavedListsMeta(),
   ]);
+
+  // Build the "saved lists for this city" cards section. We OR-match the
+  // city's name and slug against the saved-list names; pins on any matched
+  // list bubble up. If multiple lists match (e.g. "madrid" and "madrid food"),
+  // we render the union but tag the section with the most-populated one for
+  // the Google share-URL link. Visited pins float to top.
+  const allSavedListNames = Array.from(listsMeta.keys());
+  const matchedLists = listsMatchingPlace(allSavedListNames, [city.name, slug]);
+  const matchedSet = new Set(matchedLists);
+  const cityListPins: SavedListPin[] = matchedLists.length === 0 ? [] : allPins
+    .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
+    .sort((a, b) => {
+      if (a.visited !== b.visited) return a.visited ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    })
+    .map(p => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      visited: p.visited,
+      cover: p.images?.[0]?.url ?? null,
+      city: p.cityNames?.[0] ?? null,
+      country: p.statesNames?.[0] ?? null,
+      rating: p.personalRating,
+    }));
+  // Pick the saved-list metadata with the most members, prefer one with a
+  // Google share URL set, so the "View live" link points at the most useful
+  // collection when the city has multiple matching lists.
+  const primaryListName = matchedLists
+    .map(name => ({ name, meta: listsMeta.get(name) ?? null }))
+    .sort((a, b) => {
+      const aHasUrl = !!a.meta?.googleShareUrl;
+      const bHasUrl = !!b.meta?.googleShareUrl;
+      if (aHasUrl !== bHasUrl) return aHasUrl ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    })[0]?.name ?? null;
+  const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
   const hasBody = blocks.length > 0;
 
   // Final cover URL: city's own photo wins, otherwise we fall back to the
@@ -434,6 +480,18 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             ))}
           </div>
         </section>
+      )}
+
+      {/* Saved-list section — pins from any of Mike's saved lists that match
+          this city's name. Renders nothing if the city has no matching list,
+          so it only appears for places he's actively curated. */}
+      {cityListPins.length > 0 && primaryListName && (
+        <SavedListSection
+          title={`Saved on my ${city.name} list`}
+          listSlug={listNameToSlug(primaryListName)}
+          googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
+          pins={cityListPins}
+        />
       )}
 
       {citySourceLinks.length > 0 && (

@@ -22,7 +22,13 @@ export const dynamic = 'force-dynamic';
 
 type RenameBody = { action: 'rename'; from: string; to: string };
 type DeleteBody = { action: 'delete'; name: string };
-type Body = RenameBody | DeleteBody;
+type UpdateMetaBody = {
+  action: 'updateMeta';
+  name: string;
+  google_share_url?: string | null;
+  description?: string | null;
+};
+type Body = RenameBody | DeleteBody | UpdateMetaBody;
 
 function normalizeName(s: string): string {
   // Saved-list names are lowercase + space-separated in the DB. Trim &
@@ -79,11 +85,54 @@ export async function POST(req: Request) {
     if (result.error) {
       return NextResponse.json({ error: result.error }, { status: 500 });
     }
+    // Also delete the metadata row so it doesn't linger as a ghost entry.
+    await sb.from('saved_lists').delete().eq('name', name);
     bustCaches(name);
     return NextResponse.json({ updated: result.updated });
   }
 
-  return NextResponse.json({ error: 'action must be rename | delete' }, { status: 400 });
+  if (body.action === 'updateMeta') {
+    const name = normalizeName(body.name ?? '');
+    if (!name) {
+      return NextResponse.json({ error: 'updateMeta requires `name`' }, { status: 400 });
+    }
+    // Lightweight URL sanity — accept maps.app.goo.gl, maps.google.com,
+    // and goo.gl/maps shortlinks. Empty string clears the URL.
+    let cleanedUrl: string | null | undefined;
+    if (body.google_share_url === undefined) {
+      cleanedUrl = undefined;
+    } else if (body.google_share_url === null || body.google_share_url.trim() === '') {
+      cleanedUrl = null;
+    } else {
+      const u = body.google_share_url.trim();
+      if (!/^https?:\/\//.test(u)) {
+        return NextResponse.json({ error: 'google_share_url must be an http(s) URL' }, { status: 400 });
+      }
+      cleanedUrl = u;
+    }
+
+    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    if (cleanedUrl !== undefined) patch.google_share_url = cleanedUrl;
+    if (body.description !== undefined) {
+      patch.description = body.description?.trim() || null;
+    }
+    // Upsert so the row exists even for lists that haven't gotten metadata yet.
+    const { error } = await sb.from('saved_lists').upsert({ name, ...patch });
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    // Bust the saved-lists-meta cache so the new URL surfaces immediately on
+    // /lists, /lists/<slug>, and any city/country page that links to it.
+    try {
+      revalidateTag('saved-lists-meta');
+    } catch {
+      /* ignore */
+    }
+    bustCaches(name);
+    return NextResponse.json({ ok: true });
+  }
+
+  return NextResponse.json({ error: 'action must be rename | delete | updateMeta' }, { status: 400 });
 }
 
 /** Rename a list across all pins by reading affected rows + re-writing. */

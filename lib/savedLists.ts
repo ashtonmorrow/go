@@ -8,6 +8,10 @@
 // We don't try to disambiguate collision cases (two lists that slugify to the
 // same value); the import script's normalize already collapses duplicates.
 
+import { cache } from 'react';
+import { unstable_cache } from 'next/cache';
+import { supabase } from './supabase';
+
 /** Convert a saved-list name to a URL slug. */
 export function listNameToSlug(name: string): string {
   return name.trim().toLowerCase().replace(/\s+/g, '-');
@@ -16,4 +20,97 @@ export function listNameToSlug(name: string): string {
 /** Convert a URL slug back to a saved-list name (best-effort reverse). */
 export function slugToListName(slug: string): string {
   return decodeURIComponent(slug).replace(/-/g, ' ').toLowerCase();
+}
+
+export type SavedListMeta = {
+  name: string;
+  googleShareUrl: string | null;
+  description: string | null;
+  coverPinId: string | null;
+  updatedAt: string | null;
+};
+
+/** Pull every saved-list metadata row in one go and index by name. The set
+ *  is small (hundreds at most) so we cache aggressively and let consumers
+ *  do their own .get(name) lookups. 5-minute revalidate matches the rest
+ *  of the Supabase fetch family. */
+const _fetchAllSavedListsMeta = unstable_cache(
+  async (): Promise<Map<string, SavedListMeta>> => {
+    const { data, error } = await supabase
+      .from('saved_lists')
+      .select('name, google_share_url, description, cover_pin_id, updated_at');
+    if (error) {
+      console.error('[savedLists] fetch failed:', error);
+      return new Map();
+    }
+    const map = new Map<string, SavedListMeta>();
+    for (const row of data ?? []) {
+      map.set(row.name as string, {
+        name: row.name as string,
+        googleShareUrl: (row.google_share_url as string | null) ?? null,
+        description: (row.description as string | null) ?? null,
+        coverPinId: (row.cover_pin_id as string | null) ?? null,
+        updatedAt: (row.updated_at as string | null) ?? null,
+      });
+    }
+    return map;
+  },
+  ['saved-lists-meta'],
+  { revalidate: 300, tags: ['saved-lists-meta'] },
+);
+
+/** Wrapped in React.cache for per-render memoization on top of unstable_cache. */
+export const fetchAllSavedListsMeta = cache(_fetchAllSavedListsMeta);
+
+/** Convenience for a single name. */
+export async function fetchSavedListMeta(name: string): Promise<SavedListMeta | null> {
+  const all = await fetchAllSavedListsMeta();
+  return all.get(name) ?? null;
+}
+
+// === City / country → saved-list matching ===================================
+// Heuristic: a list is "for" a place if its name contains the place name as
+// a whole word. Bangkok 🇹🇭 → "bangkok" matches city "Bangkok"; "Madrid"
+// matches city "Madrid"; "🇫🇷 Rennes" → "rennes" matches city "Rennes".
+// Themed lists ("coffee shops", "want to go") don't match anything by
+// design — the user can still see them via the /lists index.
+
+function normalizeCandidate(s: string): string {
+  return s
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Return saved-list names whose normalized form contains the place name as
+ *  a word boundary. The `places` argument lets a city pass [name, slug,
+ *  alternates] so we catch all reasonable matches without a full fuzzy
+ *  search. The result is dedup'd. */
+export function listsMatchingPlace(
+  allListNames: Iterable<string>,
+  places: (string | null | undefined)[],
+): string[] {
+  const targets = places
+    .filter((p): p is string => !!p)
+    .map(normalizeCandidate)
+    .filter(p => p.length >= 3);
+  if (targets.length === 0) return [];
+
+  const matches = new Set<string>();
+  for (const list of allListNames) {
+    const norm = normalizeCandidate(list);
+    for (const t of targets) {
+      // Whole-word containment so "rio" matches "rio botanical garden" but
+      // "ri" doesn't match anything spurious.
+      const re = new RegExp(`(?:^|\\s)${t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}(?:\\s|$)`);
+      if (re.test(norm)) {
+        matches.add(list);
+        break;
+      }
+    }
+  }
+  return Array.from(matches);
 }

@@ -2,9 +2,15 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchAllPins } from '@/lib/pins';
-import { listNameToSlug, slugToListName } from '@/lib/savedLists';
-import { thumbUrl } from '@/lib/imageUrl';
+import {
+  listNameToSlug,
+  slugToListName,
+  fetchAllSavedListsMeta,
+} from '@/lib/savedLists';
+import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import { SITE_URL } from '@/lib/seo';
+// thumbUrl previously rendered card thumbnails inline; now SavedListSection
+// owns that path so the import isn't needed at the page level.
 
 // === /lists/[slug] =========================================================
 // Single saved-list detail page. Shows every pin whose savedLists[] array
@@ -21,16 +27,17 @@ async function findList(slug: string) {
   // produces "sao paulo" (correct), but odd edge cases (a list named with
   // multiple consecutive spaces) would fall through. So we always validate
   // against the source set.
-  const pins = await fetchAllPins();
+  const [pins, listsMeta] = await Promise.all([
+    fetchAllPins(),
+    fetchAllSavedListsMeta(),
+  ]);
   const allNames = new Set<string>();
   for (const p of pins) for (const l of p.savedLists ?? []) allNames.add(l);
 
   const candidate = slugToListName(slug);
-  // Exact match first
-  if (allNames.has(candidate)) return { name: candidate, pins };
-  // Slug round-trip match (covers cases where list name has weird spacing)
+  if (allNames.has(candidate)) return { name: candidate, pins, listsMeta };
   for (const name of allNames) {
-    if (listNameToSlug(name) === slug) return { name, pins };
+    if (listNameToSlug(name) === slug) return { name, pins, listsMeta };
   }
   return null;
 }
@@ -69,17 +76,28 @@ export default async function ListPage({ params }: Props) {
   const found = await findList(slug);
   if (!found) notFound();
 
-  const onList = found.pins
+  const meta = found.listsMeta.get(found.name) ?? null;
+  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+
+  // Pins on this exact list, mapped into the SavedListSection shape so we
+  // can reuse the same paginated card grid + Google link the city/country
+  // pages use. Visited float to top.
+  const onList: SavedListPin[] = found.pins
     .filter(p => p.savedLists?.includes(found.name))
     .sort((a, b) => {
-      // Visited first, then name. Visited gets a slight boost so the user
-      // sees what they've actually been to up top.
       if (a.visited !== b.visited) return a.visited ? -1 : 1;
       return a.name.localeCompare(b.name);
-    });
-
-  const visitedCount = onList.filter(p => p.visited).length;
-  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+    })
+    .map(p => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      visited: p.visited,
+      cover: p.images?.[0]?.url ?? null,
+      city: p.cityNames?.[0] ?? null,
+      country: p.statesNames?.[0] ?? null,
+      rating: p.personalRating,
+    }));
 
   return (
     <article className="max-w-page mx-auto px-5 py-8">
@@ -93,12 +111,29 @@ export default async function ListPage({ params }: Props) {
         <h1 className="text-display text-ink-deep leading-none capitalize">
           {titleCase}
         </h1>
+        {meta?.description && (
+          <p className="mt-2 text-prose text-slate max-w-prose">{meta.description}</p>
+        )}
         <p className="mt-2 text-small text-muted">
           {onList.length} {onList.length === 1 ? 'pin' : 'pins'}
-          {visitedCount > 0 && (
-            <> · {visitedCount} visited</>
+          {onList.filter(p => p.visited).length > 0 && (
+            <> · {onList.filter(p => p.visited).length} visited</>
           )}
         </p>
+        {meta?.googleShareUrl && (
+          <a
+            href={meta.googleShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1.5 text-small text-accent hover:underline"
+          >
+            View live on Google Maps
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M7 17 17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </a>
+        )}
       </header>
 
       {onList.length === 0 ? (
@@ -106,57 +141,17 @@ export default async function ListPage({ params }: Props) {
           No pins on this list yet.
         </div>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {onList.map(p => {
-            const cover = p.images?.[0]?.url ?? null;
-            const country = p.statesNames?.[0] ?? null;
-            const city = p.cityNames?.[0] ?? null;
-            return (
-              <li key={p.id}>
-                <Link
-                  href={p.slug ? `/pins/${p.slug}` : `/pins/${p.id}`}
-                  className="block card overflow-hidden hover:shadow-paper transition-shadow"
-                >
-                  {cover ? (
-                    <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={thumbUrl(cover, { size: 400 }) ?? cover}
-                        alt=""
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                      {p.visited && (
-                        <span className="absolute top-2 right-2 pill bg-teal text-white text-micro">
-                          ✓ Visited
-                        </span>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-[0.14em]">
-                      No photo yet
-                    </div>
-                  )}
-                  <div className="p-3">
-                    <h2 className="text-ink-deep font-medium leading-tight truncate">
-                      {p.name}
-                    </h2>
-                    {(city || country) && (
-                      <p className="mt-0.5 text-label text-muted truncate">
-                        {[city, country].filter(Boolean).join(' · ')}
-                      </p>
-                    )}
-                    {p.personalRating != null && (
-                      <p className="mt-1 text-label tabular-nums">
-                        <span aria-hidden>{'⭐'.repeat(p.personalRating)}</span>
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        // Reusing SavedListSection here means the list page pagination,
+        // empty-state, and footer-link semantics stay identical to the
+        // city/country embeds. We pass a higher pageSize since the list
+        // page is dedicated to one collection — load the room.
+        <SavedListSection
+          title={`Pins on ${titleCase}`}
+          listSlug={null}
+          googleShareUrl={meta?.googleShareUrl ?? null}
+          pins={onList}
+          pageSize={48}
+        />
       )}
     </article>
   );

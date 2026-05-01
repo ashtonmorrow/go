@@ -11,6 +11,13 @@ import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from 
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
+import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
+import { fetchAllPins } from '@/lib/pins';
+import {
+  fetchAllSavedListsMeta,
+  listsMatchingPlace,
+  listNameToSlug,
+} from '@/lib/savedLists';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -70,12 +77,52 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   // is always pulled from a pin in the country (when one exists). Each
   // call below is a surgical query — used to load all 1,341 cities + all
   // 230 country facts and filter client-side.
-  const [cities, fact, blocks, fallbackCover] = await Promise.all([
+  const [cities, fact, blocks, fallbackCover, allPins, listsMeta] = await Promise.all([
     fetchCitiesByCountryId(country.id),
     fetchCountryFactByIso2(country.iso2),
     content ? Promise.resolve([]) : fetchPageBlocks(country.id),
     fetchCoverForCountry(country.name),
+    fetchAllPins(),
+    fetchAllSavedListsMeta(),
   ]);
+
+  // Saved-list cards section. Match the country name + ISO + slug against
+  // saved-list names, then collect every pin on those lists. Also include
+  // pins from lists for cities IN this country (e.g. country page Spain
+  // surfaces pins from "madrid", "barcelona", "alicante" lists). Cap at
+  // ~80 cards before forcing the "Open list" overflow link to keep the
+  // section from dominating long countries.
+  const allListNames = Array.from(listsMeta.keys());
+  const cityNamesInCountry = cities.map(c => c.name);
+  const matchedLists = listsMatchingPlace(allListNames, [
+    country.name,
+    slug,
+    ...cityNamesInCountry,
+  ]);
+  const matchedSet = new Set(matchedLists);
+  const countryListPins: SavedListPin[] = matchedLists.length === 0 ? [] : allPins
+    .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
+    .sort((a, b) => {
+      if (a.visited !== b.visited) return a.visited ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    })
+    .map(p => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      visited: p.visited,
+      cover: p.images?.[0]?.url ?? null,
+      city: p.cityNames?.[0] ?? null,
+      country: p.statesNames?.[0] ?? null,
+      rating: p.personalRating,
+    }));
+  // Pick a representative list — prefer one whose name exactly matches the
+  // country name (so "spain" wins over "madrid" on the Spain country page).
+  const exactCountryMatch = matchedLists.find(
+    l => l.toLowerCase() === country.name.toLowerCase(),
+  );
+  const primaryListName = exactCountryMatch ?? matchedLists[0] ?? null;
+  const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
   const perCapita = fact ? gdpPerCapita(fact) : null;
   const hasBody = blocks.length > 0;
 
@@ -316,6 +363,20 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           </div>
         </aside>
       </div>
+
+      {/* Saved-list section — pins from any of Mike's saved lists that match
+          this country or its cities. Renders nothing for countries with no
+          curated lists yet. Caps at ~80 visible (page size 40 with one
+          load-more) so country pages with hundreds of pins don't bloat. */}
+      {countryListPins.length > 0 && primaryListName && (
+        <SavedListSection
+          title={`Saved on my ${country.name} lists`}
+          listSlug={listNameToSlug(primaryListName)}
+          googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
+          pins={countryListPins}
+          pageSize={40}
+        />
+      )}
 
       <section className="mt-12 border-t border-sand pt-8">
         <h2 className="text-h3 text-ink-deep mb-3">Sources</h2>

@@ -1,17 +1,31 @@
 import { fetchAllPins } from '@/lib/pins';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import ListsAdminClient from './ListsAdminClient';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ListsAdminPage() {
-  const pins = await fetchAllPins();
-  // Aggregate distinct list names + member counts for the admin table.
+  const [pins, listsMeta] = await Promise.all([
+    fetchAllPins(),
+    fetchAllSavedListsMeta(),
+  ]);
+  // Aggregate distinct list names + member counts for the admin table, and
+  // join in metadata (Google share URL, description) so the admin can see
+  // and edit them inline.
   const counts = new Map<string, number>();
   for (const p of pins) {
     for (const l of p.savedLists ?? []) counts.set(l, (counts.get(l) ?? 0) + 1);
   }
   const lists = Array.from(counts.entries())
-    .map(([name, count]) => ({ name, count }))
+    .map(([name, count]) => {
+      const meta = listsMeta.get(name);
+      return {
+        name,
+        count,
+        googleShareUrl: meta?.googleShareUrl ?? null,
+        description: meta?.description ?? null,
+      };
+    })
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 
   return (
