@@ -183,33 +183,13 @@ export default async function PostPage({ params }: Props) {
           body copy is text-prose at ~17px. Tables get full borders, a shaded
           header row, alternating row stripes, and breathing-room padding so
           they read as data, not paragraphs. */}
+      {/* Post body — styled by the .post-prose CSS block in app/globals.css.
+          The previous prose-* Tailwind modifiers were no-ops because the
+          @tailwindcss/typography plugin isn't installed; we instead drive
+          the typography from a small handwritten sheet that targets headings,
+          lists, tables, links, and code blocks scoped under .post-prose. */}
       <article
-        className={[
-          'prose max-w-none',
-          // Headings — match the rest of the site's hierarchy
-          'prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-ink-deep',
-          'prose-h2:text-h2 prose-h2:mt-10 prose-h2:mb-3 prose-h2:pt-2',
-          'prose-h3:text-h3 prose-h3:mt-7 prose-h3:mb-2',
-          // Body copy — slightly looser leading so long advice paragraphs read calmly
-          'prose-p:text-prose prose-p:text-ink prose-p:leading-relaxed',
-          'prose-strong:text-ink-deep prose-em:text-ink',
-          // Links — site teal, underline only on hover
-          'prose-a:text-teal prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4',
-          // Lists — tighter gaps so bulleted advice lands in groups, not paragraphs
-          'prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-li:text-ink',
-          // Blockquotes — accent left rule, not the default Italic+border
-          'prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate',
-          // Inline code — soft pill background
-          'prose-code:bg-cream-soft prose-code:text-ink-deep prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-code:before:content-none prose-code:after:content-none',
-          // Tables — bordered, shaded header, alternating rows, generous padding
-          // Wrapper: rounded corners + horizontal scroll on narrow viewports
-          'prose-table:my-6 prose-table:border-separate prose-table:border-spacing-0 prose-table:rounded-lg prose-table:overflow-hidden prose-table:border prose-table:border-sand prose-table:text-small',
-          'prose-thead:bg-cream-soft',
-          'prose-th:text-label prose-th:uppercase prose-th:tracking-[0.1em] prose-th:font-semibold prose-th:text-slate prose-th:px-4 prose-th:py-2.5 prose-th:text-left prose-th:border-b prose-th:border-sand',
-          'prose-td:px-4 prose-td:py-3 prose-td:align-top prose-td:text-ink prose-td:border-b prose-td:border-sand/60',
-          // HR — subtle full-width rule using site palette
-          'prose-hr:border-sand prose-hr:my-10',
-        ].join(' ')}
+        className="post-prose max-w-none"
         dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
       />
 

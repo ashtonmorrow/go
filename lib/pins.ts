@@ -421,8 +421,10 @@ const INDEX_COLUMNS = [
   'airtable_modified_at', 'updated_at',
   'free', 'free_to_visit', 'food_on_site',
   'wheelchair_accessible', 'kid_friendly', 'bring',
-  // Personal-experience fields used on cards / sort / filters
-  'personal_rating', 'visit_year',
+  // Personal-experience fields used on cards / sort / filters. personal_review
+  // is included so the "Reviewed" filter can detect text-only reviews (no
+  // star rating) — the field is short on average so the payload stays light.
+  'personal_rating', 'personal_review', 'visit_year',
   // SEO + restaurant pricing on cards
   'indexable', 'price_tier',
 ].join(',');

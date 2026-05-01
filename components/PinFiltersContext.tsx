@@ -26,6 +26,11 @@ export type PinFilterState = {
   wheelchairOnly: boolean;
   /** Pin must be flagged kid_friendly = true. */
   kidFriendlyOnly: boolean;
+  /** Pin must carry a personal_review (Mike actually wrote about it).
+   *  Distinct from `visitedFilter='visited'`: visited = "I've been", reviewed
+   *  = "I've been AND wrote a review you can read". The pins matrix has both
+   *  because Mike has 1,400+ visited places but only ~600 reviews. */
+  reviewedOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;
   continents: Set<Continent>;
@@ -50,6 +55,7 @@ const DEFAULT_STATE: PinFilterState = {
   foodOnSiteOnly: false,
   wheelchairOnly: false,
   kidFriendlyOnly: false,
+  reviewedOnly: false,
   categories: new Set(),
   countries: new Set(),
   continents: new Set(),
@@ -89,6 +95,7 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     if (state.foodOnSiteOnly !== DEFAULT_STATE.foodOnSiteOnly) n++;
     if (state.wheelchairOnly !== DEFAULT_STATE.wheelchairOnly) n++;
     if (state.kidFriendlyOnly !== DEFAULT_STATE.kidFriendlyOnly) n++;
+    if (state.reviewedOnly !== DEFAULT_STATE.reviewedOnly) n++;
     n += state.categories.size > 0 ? 1 : 0;
     n += state.countries.size > 0 ? 1 : 0;
     n += state.continents.size > 0 ? 1 : 0;

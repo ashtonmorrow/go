@@ -287,7 +287,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
   );
 
   return (
-    <div className="relative w-full h-[calc(100svh-56px)] md:h-screen bg-cream-soft">
+    <div className="relative w-full h-[calc(100svh-56px)] md:h-screen bg-cream-soft overflow-hidden">
       <MapView
         ref={mapRef}
         mapStyle="https://tiles.openfreemap.org/styles/positron"

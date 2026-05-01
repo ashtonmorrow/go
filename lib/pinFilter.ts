@@ -33,6 +33,11 @@ export type PinFilterable = {
   bring?: string[];
   airtableModifiedAt?: string | null;
   updatedAt?: string | null;
+  /** Distinct from `visited` — a pin is "reviewed" only when Mike actually
+   *  wrote about it. Optional so callers without the field still typecheck;
+   *  treated as false when missing. */
+  personalReview?: string | null;
+  personalRating?: number | null;
 };
 
 // Words/phrases in the priceText field that imply free admission. Used
@@ -81,6 +86,14 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
       if (w !== 'fully' && w !== 'partially') continue;
     }
     if (state.kidFriendlyOnly && p.kidFriendly !== true) continue;
+    // Reviewed-only narrows to pins Mike has actually written a review for —
+    // distinct from `visited`. The pin must carry non-empty review text or a
+    // star rating; either is enough to be "reviewed."
+    if (state.reviewedOnly) {
+      const hasText = !!(p.personalReview && p.personalReview.trim().length > 0);
+      const hasRating = p.personalRating != null && p.personalRating > 0;
+      if (!hasText && !hasRating) continue;
+    }
     if (state.bring.size > 0) {
       const pinBring = p.bring ?? [];
       let hasAll = true;

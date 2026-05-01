@@ -52,6 +52,141 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* === Post body typography ==================================================
+   The /posts/[slug] body is rendered from raw HTML produced by `marked`. We
+   don't have @tailwindcss/typography installed, so the previous prose-* class
+   modifiers were no-ops and headings/lists landed as flat paragraphs. This
+   block is the styled-prose plugin we never installed: real typographic
+   hierarchy, bordered tables, list bullets, and link affordances — all built
+   from the site's existing color tokens (ink-deep / cream-soft / sand /
+   teal). Scoped to .post-prose so it only affects post bodies.
+   ----------------------------------------------------------------------- */
+.post-prose > * + * { margin-top: 1em; }
+.post-prose h2,
+.post-prose h3 {
+  color: rgb(20 23 25);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+.post-prose h2 {
+  font-size: 28px;
+  margin-top: 2.25rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.25rem;
+}
+.post-prose h3 {
+  font-size: 20px;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.post-prose p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgb(36 41 47);
+  margin-bottom: 1em;
+}
+.post-prose strong { color: rgb(20 23 25); font-weight: 600; }
+.post-prose em { color: rgb(36 41 47); font-style: italic; }
+
+/* Lists — proper indentation and bullet/number markers. Nested lists tighten
+   their gap so multi-level outlines don't get cavernous. */
+.post-prose ul,
+.post-prose ol {
+  margin: 1em 0;
+  padding-left: 1.5rem;
+}
+.post-prose ul { list-style-type: disc; }
+.post-prose ol { list-style-type: decimal; }
+.post-prose li { margin: 0.35rem 0; line-height: 1.6; color: rgb(36 41 47); }
+.post-prose li > ul,
+.post-prose li > ol { margin: 0.35rem 0; }
+.post-prose li::marker { color: rgb(120 125 132); }
+
+/* Links — site teal, underline only on hover so paragraphs stay calm. */
+.post-prose a {
+  color: rgb(31 124 106);
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+.post-prose a:hover { text-decoration: underline; color: rgb(31 124 106); }
+
+/* Blockquotes — left rule in accent (warm gold), no italic forced. */
+.post-prose blockquote {
+  border-left: 2px solid rgb(192 152 75);
+  margin: 1.5em 0;
+  padding-left: 1rem;
+  color: rgb(96 102 110);
+}
+.post-prose blockquote p { font-size: 16px; }
+
+/* Inline code — soft pill background. Block code stays default monospace. */
+.post-prose code {
+  background: rgb(248 244 235);
+  color: rgb(20 23 25);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.post-prose pre {
+  background: rgb(248 244 235);
+  border: 1px solid rgb(226 220 207);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.post-prose pre code { background: transparent; padding: 0; }
+
+/* Horizontal rule — subtle full-width line in sand. */
+.post-prose hr {
+  border: 0;
+  border-top: 1px solid rgb(226 220 207);
+  margin: 2.5rem 0;
+}
+
+/* Tables — bordered, rounded, padded. Mirrors the look of structured
+   facts cards elsewhere on the site so they read as data, not paragraphs.
+   Wrapped in overflow-x:auto via the surrounding article tag's responsive
+   width; on narrow viewports the user can scroll horizontally. */
+.post-prose table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgb(226 220 207);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.75rem 0;
+  font-size: 14px;
+  width: 100%;
+}
+.post-prose thead { background: rgb(248 244 235); }
+.post-prose th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: rgb(96 102 110);
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid rgb(226 220 207);
+  vertical-align: top;
+}
+.post-prose td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(226 220 207 / 0.6);
+  color: rgb(36 41 47);
+  vertical-align: top;
+}
+.post-prose tbody tr:last-child td { border-bottom: 0; }
+
+/* Images — keep them inside the prose column with a subtle border. */
+.post-prose img {
+  border-radius: 8px;
+  border: 1px solid rgb(226 220 207);
+  margin: 1.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
 /* === MapLibre Popup theming ================================================
    The default maplibregl-popup-content is a sharp-cornered white box with no
    border. We round it to lg (matches card / button radius elsewhere on the

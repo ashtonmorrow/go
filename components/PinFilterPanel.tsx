@@ -137,6 +137,15 @@ export default function PinFilterPanel({
               label="Kid-friendly"
               onChange={v => setState(s => ({ ...s, kidFriendlyOnly: v }))}
             />
+            {/* Reviewed = Mike has actually written about this place. Distinct
+                from the Visited tri-state above — Visited (1,400+) is the
+                superset, Reviewed (~600) is the curated narrative subset. */}
+            <QuickFilterChip
+              on={state.reviewedOnly}
+              icon="✍️"
+              label="Reviewed"
+              onChange={v => setState(s => ({ ...s, reviewedOnly: v }))}
+            />
           </div>
         </div>
       </div>

@@ -83,8 +83,10 @@ type PinRow = {
   slug: string | null;
   lat: number | null;
   lng: number | null;
+  google_place_url: string | null;
   kind: string | null;
   visited: boolean;
+  lists: string[] | null;
   city_names: string[] | null;
   states_names: string[] | null;
   address: string | null;
@@ -101,8 +103,12 @@ type AggregatedReview = {
   aspectRatings: Record<string, number | string>;
   /** Place's google_maps_url. */
   googlePlaceUrl: string | null;
-  /** Distinct number of reviews seen. */
+  /** Distinct number of review features seen, excluding saved-only rows. */
   count: number;
+  /** Whether this place came from a review, not only a saved-place list. */
+  hasReview: boolean;
+  /** True when the place appears in Google Saved Places. */
+  saved: boolean;
 };
 
 type MatchResult =
@@ -119,6 +125,22 @@ function normalize(s: string): string {
     .replace(/[^a-z0-9 ]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Stable key for matching equivalent Google Maps place URLs. */
+function googlePlaceKey(url: string | null | undefined): string | null {
+  if (!url) return null;
+  const cidMatch = url.match(/[?&]cid=(\d+)/);
+  if (cidMatch) return `cid:${cidMatch[1]}`;
+  const dataMatch = url.match(/!1s0x[0-9a-f]+:0x([0-9a-f]+)/i);
+  if (dataMatch) return `data:${dataMatch[1].toLowerCase()}`;
+  try {
+    const u = new URL(url);
+    u.hash = '';
+    return `url:${u.toString().replace(/\/$/, '')}`;
+  } catch {
+    return `url:${url.trim()}`;
+  }
 }
 
 /** Haversine distance in meters. */
@@ -162,25 +184,28 @@ function classifyKind(name: string): { kind: string; serviceType: string | null 
   }
   // Service-flavor — luggage lockers, tailors, laundry, pharmacy, barber/spa, medical
   if (/\b(locker|left luggage|luggage storage|consigna|gepäck|bagaglio)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'locker' };
+    return { kind: 'attraction', serviceType: 'locker' };
   }
   if (/\b(tailor|sastr|sartoria|alterations)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'tailor' };
+    return { kind: 'attraction', serviceType: 'tailor' };
   }
   if (/\b(laundry|launderette|laundromat|lavanderia|wäscherei)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'laundry' };
+    return { kind: 'attraction', serviceType: 'laundry' };
   }
   if (/\b(pharmacy|pharmacie|farmacia|apotheke|chemist|drugstore)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'pharmacy' };
+    return { kind: 'shopping', serviceType: 'pharmacy' };
   }
   if (/\b(barber|barbershop|hair salon|salon|peluquería|peluqueria|coiffeur|friseur)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'barber' };
+    return { kind: 'attraction', serviceType: 'barber' };
   }
   if (/\b(massage|spa|hammam|onsen|sauna|wellness)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'spa' };
+    return { kind: 'attraction', serviceType: 'spa' };
   }
   if (/\b(clinic|hospital|dentist|doctor|medical centre|medical center|consultorio|clínica|klinik)\b/.test(n)) {
-    return { kind: 'service', serviceType: 'medical' };
+    return { kind: 'attraction', serviceType: 'medical' };
+  }
+  if (/\b(airport|station|terminal|metro|subway|train station|bus station|ferry terminal)\b/.test(n)) {
+    return { kind: 'transit', serviceType: null };
   }
   // Park-shaped names — keep existing kind in line with the schema
   if (/\b(park|parque|garden|gardens|jardin|jardim|botanical|reserve|reserva|nature reserve)\b/.test(n)) {
@@ -202,6 +227,8 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
   const aspectRatings: Record<string, number | string> = {};
   let googlePlaceUrl: string | null = null;
   let count = 0;
+  let hasReview = false;
+  let saved = false;
 
   // Process newest-first so "most recent text" wins, and aspect_ratings
   // last-wins becomes "most-recently-set wins" if you flip the order.
@@ -213,7 +240,17 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
 
   for (const f of sorted) {
     const p = f.properties;
-    count++;
+    const isReview = Boolean(
+      p.review_text_published?.trim() ||
+        (p.five_star_rating_published && p.five_star_rating_published > 0) ||
+        (p.questions && p.questions.length > 0),
+    );
+    if (isReview) {
+      count++;
+      hasReview = true;
+    } else {
+      saved = true;
+    }
     if (!text && p.review_text_published && p.review_text_published.trim()) {
       text = p.review_text_published.trim();
     }
@@ -231,7 +268,7 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
     }
   }
 
-  return { text, rating, publishedAt, aspectRatings, googlePlaceUrl, count };
+  return { text, rating, publishedAt, aspectRatings, googlePlaceUrl, count, hasReview, saved };
 }
 
 // === Main ==================================================================
@@ -255,14 +292,8 @@ async function main() {
     const name = f.properties?.location?.name;
     const coords = f.geometry?.coordinates;
     if (!name || !coords) return null;
-    if (url) {
-      // CID-style URL: maps.google.com/?cid=12345 — unique.
-      // Place-data URL: /place//data=!4m2!3m1!1s0x0:0xHEX — also unique.
-      const cidMatch = url.match(/[?&]cid=(\d+)/);
-      if (cidMatch) return `cid:${cidMatch[1]}`;
-      const dataMatch = url.match(/!1s0x[0-9a-f]+:0x([0-9a-f]+)/i);
-      if (dataMatch) return `data:${dataMatch[1].toLowerCase()}`;
-    }
+    const fromUrl = googlePlaceKey(url);
+    if (fromUrl) return fromUrl;
     return `nm:${normalize(name)}@${coords[1].toFixed(4)},${coords[0].toFixed(4)}`;
   }
   for (const f of reviews.features) {
@@ -296,7 +327,7 @@ async function main() {
     // past PostgREST's response cap and silently dropped the connection.
     const { data, error } = await supabase
       .from('pins')
-      .select('id, name, lat, lng')
+      .select('id, name, lat, lng, google_place_url, visited, lists')
       .not('lat', 'is', null)
       .not('lng', 'is', null)
       .range(from, from + PAGE - 1);
@@ -310,11 +341,13 @@ async function main() {
       allPins.push({
         id: row.id as string,
         name: row.name as string,
+        google_place_url: (row.google_place_url as string | null) ?? null,
         slug: null,
         lat: row.lat as number,
         lng: row.lng as number,
         kind: null,
-        visited: false,
+        visited: Boolean(row.visited),
+        lists: Array.isArray(row.lists) ? row.lists as string[] : [],
         city_names: null,
         states_names: null,
         address: null,
@@ -331,9 +364,15 @@ async function main() {
     pin: p,
     nname: normalize(p.name),
   }));
+  const pinByGoogleKey = new Map<string, PinRow>();
+  for (const pin of allPins) {
+    const key = googlePlaceKey(pin.google_place_url);
+    if (key && !pinByGoogleKey.has(key)) pinByGoogleKey.set(key, pin);
+  }
 
   // 4. Match each Takeout place to a pin
   const matches: MatchResult[] = [];
+  let googleUrlCount = 0;
   let exactCount = 0;
   let substringCount = 0;
   let newCount = 0;
@@ -345,6 +384,14 @@ async function main() {
     if (!name || !coords) continue;
     const review = aggregateReviews(features);
     const nname = normalize(name);
+
+    const googleKey = googlePlaceKey(review.googlePlaceUrl);
+    const googleUrlMatch = googleKey ? pinByGoogleKey.get(googleKey) : null;
+    if (googleUrlMatch) {
+      matches.push({ kind: 'matched', pin: googleUrlMatch, review });
+      googleUrlCount++;
+      continue;
+    }
 
     // Try exact normalized name match within radius
     let best: { pin: PinRow; dist: number; mode: 'exact' | 'substring' } | null = null;
@@ -395,6 +442,7 @@ async function main() {
 
   // 5. Stats summary
   console.log('--- Match results ---');
+  console.log(`  Google URL match:       ${googleUrlCount}`);
   console.log(`  Exact name+coord match: ${exactCount}`);
   console.log(`  Substring name match:   ${substringCount}`);
   console.log(`  New place candidates:   ${newCount}`);
@@ -433,6 +481,7 @@ async function main() {
       saved: saved.features.length,
       distinctPlaces: byPlace.size,
       exactMatches: exactCount,
+      googleUrlMatches: googleUrlCount,
       substringMatches: substringCount,
       newPlaces: newCount,
       newByKind,
@@ -467,6 +516,7 @@ async function main() {
   const seenUrls = new Set(
     (existingUrls ?? [])
       .map((r) => r.google_place_url as string | null)
+      .map(googlePlaceKey)
       .filter((u): u is string => !!u),
   );
   console.log(`  ${seenUrls.size} pins already carry google_place_url (will be skipped on insert).`);
@@ -477,14 +527,17 @@ async function main() {
 
   for (const m of matches) {
     if (m.kind === 'matched') {
-      const patch: Record<string, unknown> = {
-        visited: true,
-        review_count: m.review.count,
-      };
+      const patch: Record<string, unknown> = {};
+      if (m.review.hasReview) {
+        patch.visited = true;
+        patch.review_count = m.review.count;
+      }
       if (m.review.text) patch.personal_review = m.review.text;
       if (m.review.rating) patch.personal_rating = m.review.rating;
       if (m.review.publishedAt) patch.review_published_at = m.review.publishedAt;
+      if (m.review.publishedAt) patch.visit_year = Number(m.review.publishedAt.slice(0, 4));
       if (m.review.googlePlaceUrl) patch.google_place_url = m.review.googlePlaceUrl;
+      if (m.review.saved) patch.lists = [...new Set([...(m.pin.lists ?? []), 'Google Saved Places'])];
       if (Object.keys(m.review.aspectRatings).length > 0) {
         patch.aspect_ratings = m.review.aspectRatings;
       }
@@ -492,7 +545,8 @@ async function main() {
     } else {
       // Skip already-inserted rows by google_place_url. Drops mid-run resume
       // cost to a single SELECT.
-      if (m.review.googlePlaceUrl && seenUrls.has(m.review.googlePlaceUrl)) {
+      const googleKey = googlePlaceKey(m.review.googlePlaceUrl);
+      if (googleKey && seenUrls.has(googleKey)) {
         continue;
       }
       const row: Record<string, unknown> = {
@@ -500,8 +554,8 @@ async function main() {
         lat: m.place.lat,
         lng: m.place.lng,
         kind: m.place.classifiedKind,
-        visited: true,
-        source: 'google-takeout',
+        visited: m.review.hasReview,
+        source: m.review.hasReview ? 'google-takeout-reviews' : 'google-takeout-saved',
         address: m.place.address,
         google_place_url: m.review.googlePlaceUrl,
         review_count: m.review.count,
@@ -509,7 +563,7 @@ async function main() {
         city_names: [],
         states_names: [],
         tags: [],
-        lists: [],
+        lists: m.review.saved ? ['Google Saved Places'] : [],
         best_months: [],
         images: [],
         hours_details: {},
@@ -520,6 +574,7 @@ async function main() {
       if (m.review.text) row.personal_review = m.review.text;
       if (m.review.rating) row.personal_rating = m.review.rating;
       if (m.review.publishedAt) row.review_published_at = m.review.publishedAt;
+      if (m.review.publishedAt) row.visit_year = Number(m.review.publishedAt.slice(0, 4));
       if (Object.keys(m.review.aspectRatings).length > 0) {
         row.aspect_ratings = m.review.aspectRatings;
       }
