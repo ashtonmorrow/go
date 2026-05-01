@@ -112,6 +112,17 @@ function StructuredData({
   );
 }
 
+/** Turn "khao-yai" into "Khao Yai" — used for the Places-mentioned chips,
+ *  since posts list raw slugs and slugs don't read well to humans. Doesn't
+ *  perfectly handle every casing rule (Saint-Tropez stays Saint Tropez, not
+ *  Saint-Tropez), but it's close enough for chip text. */
+function prettifySlug(slug: string): string {
+  return slug
+    .split('-')
+    .map((part) => (part.length === 0 ? part : part[0].toUpperCase() + part.slice(1)))
+    .join(' ');
+}
+
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPost(slug);
@@ -133,49 +144,78 @@ export default async function PostPage({ params }: Props) {
       <StructuredData post={post} />
 
       <header className="mb-8">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
+        <h1 className="text-display text-ink-deep leading-[1.1]">
           {post.title}
         </h1>
         {post.subtitle ? (
-          <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">
+          <p className="mt-3 text-prose text-slate leading-relaxed">
             {post.subtitle}
           </p>
         ) : null}
         {(author || dateLabel) && (
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-4 text-label uppercase tracking-[0.14em] text-muted">
             {author ? `By ${author}` : null}
-            {author && dateLabel ? ". " : null}
-            {dateLabel ? `Last updated ${dateLabel}.` : null}
+            {author && dateLabel ? " · " : null}
+            {dateLabel ? `Updated ${dateLabel}` : null}
           </p>
         )}
       </header>
 
+      {/* Hero — only renders when the post's frontmatter explicitly carries
+          a hero_image path AND we want to show it. Posts that don't yet have
+          a photo on disk should leave hero_image off the frontmatter; that
+          way no broken-image placeholder appears on the rendered page. */}
       {post.heroImage ? (
-        <figure className="mb-10">
-          <div className="overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={post.heroImage}
-              alt={post.heroAlt ?? ""}
-              className="h-auto w-full"
-            />
-          </div>
-          {post.heroAlt ? (
-            <figcaption className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-              {post.heroAlt}
-            </figcaption>
-          ) : null}
+        <figure className="mb-10 overflow-hidden rounded-xl border border-sand bg-cream-soft">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={post.heroImage}
+            alt={post.heroAlt ?? post.title}
+            className="h-auto w-full"
+          />
         </figure>
       ) : null}
 
+      {/* === Article body =====================================================
+          Tailwind Typography (`prose`) produces the base. We override with
+          site tokens so it doesn't drift into a generic gray/dark-mode look.
+          Headings use the same display/h2/h3 sizes the rest of the site uses;
+          body copy is text-prose at ~17px. Tables get full borders, a shaded
+          header row, alternating row stripes, and breathing-room padding so
+          they read as data, not paragraphs. */}
       <article
-        className="prose prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-a:underline-offset-4"
+        className={[
+          'prose max-w-none',
+          // Headings — match the rest of the site's hierarchy
+          'prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-ink-deep',
+          'prose-h2:text-h2 prose-h2:mt-10 prose-h2:mb-3 prose-h2:pt-2',
+          'prose-h3:text-h3 prose-h3:mt-7 prose-h3:mb-2',
+          // Body copy — slightly looser leading so long advice paragraphs read calmly
+          'prose-p:text-prose prose-p:text-ink prose-p:leading-relaxed',
+          'prose-strong:text-ink-deep prose-em:text-ink',
+          // Links — site teal, underline only on hover
+          'prose-a:text-teal prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4',
+          // Lists — tighter gaps so bulleted advice lands in groups, not paragraphs
+          'prose-ul:my-4 prose-ol:my-4 prose-li:my-1 prose-li:text-ink',
+          // Blockquotes — accent left rule, not the default Italic+border
+          'prose-blockquote:border-l-2 prose-blockquote:border-accent prose-blockquote:not-italic prose-blockquote:text-slate',
+          // Inline code — soft pill background
+          'prose-code:bg-cream-soft prose-code:text-ink-deep prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-code:before:content-none prose-code:after:content-none',
+          // Tables — bordered, shaded header, alternating rows, generous padding
+          // Wrapper: rounded corners + horizontal scroll on narrow viewports
+          'prose-table:my-6 prose-table:border-separate prose-table:border-spacing-0 prose-table:rounded-lg prose-table:overflow-hidden prose-table:border prose-table:border-sand prose-table:text-small',
+          'prose-thead:bg-cream-soft',
+          'prose-th:text-label prose-th:uppercase prose-th:tracking-[0.1em] prose-th:font-semibold prose-th:text-slate prose-th:px-4 prose-th:py-2.5 prose-th:text-left prose-th:border-b prose-th:border-sand',
+          'prose-td:px-4 prose-td:py-3 prose-td:align-top prose-td:text-ink prose-td:border-b prose-td:border-sand/60',
+          // HR — subtle full-width rule using site palette
+          'prose-hr:border-sand prose-hr:my-10',
+        ].join(' ')}
         dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
       />
 
       {placeLinks.length > 0 ? (
-        <footer className="mt-12 border-t border-gray-200 pt-6 dark:border-gray-800">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+        <footer className="mt-12 border-t border-sand pt-6">
+          <h2 className="text-label uppercase tracking-[0.14em] text-muted font-semibold">
             Places mentioned
           </h2>
           <ul className="mt-3 flex flex-wrap gap-2">
@@ -190,9 +230,9 @@ export default async function PostPage({ params }: Props) {
                 <li key={`${p.kind}-${p.slug}`}>
                   <Link
                     href={href}
-                    className="inline-block rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-gray-400 dark:border-gray-700 dark:text-gray-300 dark:hover:border-gray-500"
+                    className="inline-block rounded-full border border-sand bg-white px-3 py-1 text-small text-ink hover:border-slate hover:text-ink-deep transition-colors"
                   >
-                    {p.slug}
+                    {prettifySlug(p.slug)}
                   </Link>
                 </li>
               );

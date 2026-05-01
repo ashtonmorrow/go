@@ -1,8 +1,8 @@
 ---
 title: A travel guide to Bali, Indonesia
 subtitle: Where to stay, what to see, and what the map will not tell you about getting around.
-hero_image: /images/posts/bali-travel-guide.jpg
-hero_alt: Rice terraces north of Ubud at midday with a row of coconut palms in the distance.
+# TODO uncomment when image lands: hero_image: /images/posts/bali-travel-guide.jpg
+# TODO uncomment when image lands: hero_alt: Rice terraces north of Ubud at midday with a row of coconut palms in the distance.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true

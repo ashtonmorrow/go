@@ -1,8 +1,8 @@
 ---
 title: A visit to the Rio Botanical Garden
 subtitle: How to get there, what to see, and what the standard travel writeups get wrong about the location.
-hero_image: /images/posts/rio-botanical-garden.jpg
-hero_alt: The Avenue of Royal Palms at the Jardim Botânico do Rio de Janeiro on a partly cloudy afternoon.
+# TODO uncomment when image lands: hero_image: /images/posts/rio-botanical-garden.jpg
+# TODO uncomment when image lands: hero_alt: The Avenue of Royal Palms at the Jardim Botânico do Rio de Janeiro on a partly cloudy afternoon.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true

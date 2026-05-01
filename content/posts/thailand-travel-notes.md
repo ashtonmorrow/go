@@ -1,8 +1,8 @@
 ---
 title: Notes for a first trip to Thailand
 subtitle: Bangkok, Khao Yai, Chiang Mai, Phuket, and Koh Samui.
-hero_image: /images/posts/thailand-travel-notes.jpg
-hero_alt: A Bangkok skyline at dusk with the Chao Phraya River in the foreground.
+# TODO uncomment when image lands: hero_image: /images/posts/thailand-travel-notes.jpg
+# TODO uncomment when image lands: hero_alt: A Bangkok skyline at dusk with the Chao Phraya River in the foreground.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true

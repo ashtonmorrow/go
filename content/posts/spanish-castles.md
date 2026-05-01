@@ -1,8 +1,8 @@
 ---
 title: A guide to Spanish castles
 subtitle: Six worth visiting, with the historical claims I could verify and the ones I corrected.
-hero_image: /images/posts/spanish-castles.jpg
-hero_alt: The Alcázar de Segovia at golden hour, viewed from the Mirador de la Pradera de San Marcos.
+# TODO uncomment when image lands: hero_image: /images/posts/spanish-castles.jpg
+# TODO uncomment when image lands: hero_alt: The Alcázar de Segovia at golden hour, viewed from the Mirador de la Pradera de San Marcos.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true

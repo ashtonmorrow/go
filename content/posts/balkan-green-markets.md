@@ -1,8 +1,8 @@
 ---
 title: A practical guide to green markets in the Balkans
 subtitle: How they work, where the advice still holds, and where it does not.
-hero_image: /images/posts/balkan-green-markets.jpg
-hero_alt: Wonky-shaped tomatoes and a bunch of swiss chard piled on a wooden crate at a green market in the Balkans.
+# TODO uncomment when image lands: hero_image: /images/posts/balkan-green-markets.jpg
+# TODO uncomment when image lands: hero_alt: Wonky-shaped tomatoes and a bunch of swiss chard piled on a wooden crate at a green market in the Balkans.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true
