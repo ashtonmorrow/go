@@ -1,14 +1,53 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { PinEditorState } from './editorData';
 
 const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 
 export default function PinEditorClient({ initial }: { initial: PinEditorState }) {
+  const router = useRouter();
   const [state, setState] = useState<PinEditorState>(initial);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [result, setResult] = useState<{ ok: true } | { error: string } | null>(null);
+
+  const remove = async () => {
+    // Two-step confirm: typing the pin name forces us to acknowledge what
+    // we're about to nuke. Saves us when the table is sorted oddly and
+    // the wrong row's edit page is open.
+    const expected = state.name?.trim();
+    const typed = window.prompt(
+      `This will permanently delete "${expected}" from the database. ` +
+      `Personal photos attached to it go too. Type the pin name to confirm:`,
+    );
+    if (!typed || typed.trim() !== expected) {
+      if (typed != null) {
+        setResult({ error: 'Name did not match — delete cancelled.' });
+      }
+      return;
+    }
+    setDeleting(true);
+    setResult(null);
+    try {
+      const res = await fetch('/api/admin/delete-pin', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinId: state.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'delete failed');
+      // Hop back to the admin index. The list there pulls from the same
+      // bust-cached fetchAllPins so the deleted row is gone immediately.
+      router.push('/admin/pins');
+      router.refresh();
+    } catch (e) {
+      setResult({ error: e instanceof Error ? e.message : 'delete failed' });
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   const dirty = useMemo(() => {
     const keys = Object.keys(state) as (keyof PinEditorState)[];
@@ -390,16 +429,30 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
         />
       </Section>
 
-      <div className="sticky bottom-4 flex items-center justify-end gap-3 bg-white p-3 rounded shadow-paper border border-sand">
-        <span className="text-small text-muted">
+      <div className="sticky bottom-4 flex items-center gap-3 bg-white p-3 rounded shadow-paper border border-sand">
+        {/* Destructive control sits at the far left so it's a deliberate
+            reach away from the Save button on the right. The two-step
+            confirm in `remove` is the real safety net; this is just
+            visual separation. */}
+        <button
+          type="button"
+          onClick={remove}
+          disabled={saving || deleting}
+          className="px-3 py-2 text-small rounded border border-orange/40 text-orange hover:bg-orange/10 disabled:opacity-50"
+          title="Permanently delete this pin"
+        >
+          {deleting ? 'Deleting…' : 'Delete pin'}
+        </button>
+
+        <span className="ml-auto text-small text-muted">
           {dirty ? 'Unsaved changes' : 'No changes'}
         </span>
         <button
           type="submit"
-          disabled={!dirty || saving}
+          disabled={!dirty || saving || deleting}
           className={
             'px-4 py-2 text-small rounded font-medium transition-colors ' +
-            (!dirty || saving
+            (!dirty || saving || deleting
               ? 'bg-cream-soft text-muted cursor-not-allowed'
               : 'bg-teal text-white hover:bg-teal/90')
           }

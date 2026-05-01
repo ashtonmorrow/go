@@ -96,6 +96,43 @@ export default function ListDetailClient({ listName, initialRows }: Props) {
     }
   }
 
+  // Permanent pin delete from inside the list editor — useful when a draft
+  // pin (Google saved-list import without coords) is clearly junk and the
+  // admin would otherwise have to bounce to /admin/pins/<id> to nuke it.
+  async function deletePin(pinId: string, pinName: string) {
+    if (!window.confirm(
+      `Permanently delete "${pinName}" from the database? ` +
+      `This removes the pin everywhere — not just from this list. ` +
+      `Personal photos attached to it go too.`,
+    )) return;
+    setBusyIds(prev => {
+      const next = new Set(prev);
+      next.add(pinId);
+      return next;
+    });
+    setFlash(null);
+    try {
+      const res = await fetch('/api/admin/delete-pin', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinId }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'delete failed');
+      // Drop the row from the local roster.
+      setRows(prev => prev.filter(r => r.id !== pinId));
+      setFlash(`Deleted "${pinName}".`);
+    } catch (e) {
+      setFlash(e instanceof Error ? e.message : 'delete failed');
+    } finally {
+      setBusyIds(prev => {
+        const next = new Set(prev);
+        next.delete(pinId);
+        return next;
+      });
+    }
+  }
+
   return (
     <div>
       {/* Toolbar: search + members-only toggle + counts. */}
@@ -194,6 +231,15 @@ export default function ListDetailClient({ listName, initialRows }: Props) {
               >
                 Edit pin
               </Link>
+              <button
+                type="button"
+                onClick={() => deletePin(r.id, r.name)}
+                disabled={busyIds.has(r.id)}
+                className="text-label text-orange hover:text-orange/80 disabled:opacity-50"
+                title="Permanently delete this pin"
+              >
+                Delete
+              </button>
             </li>
           );
         })}
