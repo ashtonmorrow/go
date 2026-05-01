@@ -86,6 +86,31 @@ export type ArticleEntry = {
 };
 
 /**
+ * Per-post emoji map. Posts in the sidebar dropdown previously all rendered
+ * with the same 📝 glyph, which made them visually indistinguishable. This
+ * map gives each known post a topic-derived icon; new posts fall back to
+ * 📝 until added here.
+ *
+ * The icons lean on country flags where the post is country-anchored so
+ * the user can scan the list geographically; thematic posts (markets,
+ * trains) get a topic icon instead.
+ */
+const POST_EMOJI: Record<string, string> = {
+  'thailand-travel-notes': '🇹🇭',
+  'bali-travel-guide': '🌴',
+  'cape-town-travel-brief': '🏔️',
+  'spanish-castles': '🏰',
+  'bernina-express-first-class': '🚂',
+  'balkan-green-markets': '🥬',
+  'why-alicante': '🏖️',
+  'rio-botanical-garden': '🌿',
+};
+
+function emojiForPost(slug: string): string {
+  return POST_EMOJI[slug] ?? '📝';
+}
+
+/**
  * Server-only. Reads ARTICLES + content/posts/ and merges into one
  * newest-first list. Hand-coded articles win on href collisions so a
  * curated TSX page can supersede a stub post if needed.
@@ -128,7 +153,7 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
       publishedAt: p.published ?? p.updated ?? null,
       heroImage: p.heroImage,
       heroAlt: p.heroAlt ?? p.title,
-      emoji: '📝',
+      emoji: emojiForPost(p.slug),
     });
   }
 

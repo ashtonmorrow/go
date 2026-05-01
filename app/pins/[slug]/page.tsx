@@ -313,12 +313,18 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">
-          {/* Personal-voice notes from /content/pins/<slug>.md, if present.
-              Sits at the top because it's the part of the page someone came
-              for — Wikipedia's extract reads like an encyclopedia, this
-              reads like a postcard. */}
+          {/* Personal review leads — sits first in the main column so Mike's
+              voice is the first thing readers see, right under the Visited
+              mark + hero. Source-of-truth content (Wikipedia extract, source
+              description, hand-written notes from /content/pins/<slug>.md)
+              all land below it. Getting There moved out of the main column
+              entirely into a card in the right rail. */}
+          <PersonalSection pin={pin} />
+
+          {/* Personal-voice notes from /content/pins/<slug>.md, when present —
+              long-form companion to the short Google review above. */}
           {content && (
-            <section className="mb-8 pb-8 border-b border-sand">
+            <section className="mt-8 pt-8 border-t border-sand">
               {paragraphs(content.body).map((p, i) => (
                 <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
                   {p}
@@ -328,7 +334,8 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           )}
 
           {wp?.extract && (
-            <section>
+            <section className="mt-8 pt-8 border-t border-sand">
+              <h2 className="text-h3 text-ink-deep mb-3">From Wikipedia</h2>
               <p className="text-ink leading-relaxed text-prose">{wp.extract}</p>
               <a
                 href={wp.url}
@@ -342,8 +349,8 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           )}
 
           {pin.description && (
-            <section className={wp?.extract ? 'mt-8 pt-8 border-t border-sand' : ''}>
-              {wp?.extract && <h2 className="text-h3 text-ink-deep mb-3">From the source</h2>}
+            <section className="mt-8 pt-8 border-t border-sand">
+              <h2 className="text-h3 text-ink-deep mb-3">From the source</h2>
               <p className="text-ink leading-relaxed whitespace-pre-line">{pin.description}</p>
             </section>
           )}
@@ -356,8 +363,6 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               <FacetGrid items={amenityFacets} />
             </section>
           )}
-
-          {hasGettingThere && <GettingThereSection pin={pin} />}
 
           {pin.bring.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
@@ -373,8 +378,6 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           )}
 
           {hasGoodToKnow && <GoodToKnowSection pin={pin} facets={goodToKnowFacets} />}
-
-          <PersonalSection pin={pin} />
 
           {personalPhotos.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
@@ -531,7 +534,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                 </Fact>
               )}
               {pin.cityNames[0] && <Fact label="City">{pin.cityNames[0]}</Fact>}
-              {pin.address && <Fact label="Address"><span className="text-right">{pin.address}</span></Fact>}
+              {/* Address is in the Getting There card below — not duplicated here. */}
               {pin.category && <Fact label="Category">{pin.category}</Fact>}
               {pin.durationMinutes != null && (
                 <Fact label="Visit time">{fmtDuration(pin.durationMinutes)}</Fact>
@@ -560,6 +563,51 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               )}
             </dl>
           </div>
+
+          {/* Getting there — moved out of the main column entirely. Address +
+              transit + parking + access notes are reference data, not narrative,
+              so they belong here in the rail with the other facts cards. The
+              copy on the left is now free for the personal review and the
+              kind-specific Plan / What to expect / Good to know sections. */}
+          {hasGettingThere && (
+            <div className="card p-4 text-small">
+              <h3 className="text-muted uppercase tracking-wider text-label mb-3">Getting there</h3>
+              <dl className="space-y-2.5">
+                {pin.address && (
+                  <div>
+                    <dt className="text-muted text-label mb-0.5">Address</dt>
+                    <dd className="text-ink-deep leading-snug">{pin.address}</dd>
+                  </div>
+                )}
+                {pin.nearestTransit && (pin.nearestTransit.station || pin.nearestTransit.line) && (
+                  <div>
+                    <dt className="text-muted text-label mb-0.5">Nearest transit</dt>
+                    <dd className="text-ink-deep leading-snug">
+                      {pin.nearestTransit.station}
+                      {pin.nearestTransit.line && (
+                        <span className="text-muted"> · {pin.nearestTransit.line}</span>
+                      )}
+                      {typeof pin.nearestTransit.walking_minutes === 'number' && (
+                        <span className="text-muted"> · {pin.nearestTransit.walking_minutes} min walk</span>
+                      )}
+                    </dd>
+                  </div>
+                )}
+                {pin.parking && (
+                  <div>
+                    <dt className="text-muted text-label mb-0.5">Parking</dt>
+                    <dd className="text-ink-deep leading-snug">{PARKING_FACET[pin.parking].label}</dd>
+                  </div>
+                )}
+                {pin.accessNotes && (
+                  <div>
+                    <dt className="text-muted text-label mb-0.5">Notes</dt>
+                    <dd className="text-ink leading-relaxed">{pin.accessNotes}</dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          )}
 
           {(pin.unescoUrl || pin.wikipediaUrl || pin.wikidataUrl) && (
             <div className="card p-4 text-small">
@@ -752,45 +800,10 @@ function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }
   return fallback ? <p className="text-ink text-small">{fallback}</p> : <p className="text-muted text-small">Pricing unknown</p>;
 }
 
-function GettingThereSection({ pin }: { pin: Pin }) {
-  return (
-    <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h3 text-ink-deep mb-3">Getting there</h2>
-      <dl className="text-small space-y-2">
-        {pin.address && (
-          <div className="flex flex-col sm:flex-row sm:gap-3">
-            <dt className="text-slate sm:w-32 flex-shrink-0">Address</dt>
-            <dd className="text-ink-deep">{pin.address}</dd>
-          </div>
-        )}
-        {pin.nearestTransit && (pin.nearestTransit.station || pin.nearestTransit.line) && (
-          <div className="flex flex-col sm:flex-row sm:gap-3">
-            <dt className="text-slate sm:w-32 flex-shrink-0">Transit</dt>
-            <dd className="text-ink-deep">
-              {pin.nearestTransit.station}
-              {pin.nearestTransit.line && <span className="text-muted"> · {pin.nearestTransit.line}</span>}
-              {typeof pin.nearestTransit.walking_minutes === 'number' && (
-                <span className="text-muted"> · {pin.nearestTransit.walking_minutes} min walk</span>
-              )}
-            </dd>
-          </div>
-        )}
-        {pin.parking && (
-          <div className="flex flex-col sm:flex-row sm:gap-3">
-            <dt className="text-slate sm:w-32 flex-shrink-0">Parking</dt>
-            <dd className="text-ink-deep">{PARKING_FACET[pin.parking].label}</dd>
-          </div>
-        )}
-        {pin.accessNotes && (
-          <div className="flex flex-col sm:flex-row sm:gap-3">
-            <dt className="text-slate sm:w-32 flex-shrink-0">Notes</dt>
-            <dd className="text-ink-deep leading-relaxed">{pin.accessNotes}</dd>
-          </div>
-        )}
-      </dl>
-    </section>
-  );
-}
+// GettingThereSection used to be a main-column section. The address +
+// transit + parking + access-notes content moved into a card on the right
+// rail (see the aside in PinDetailPage), since reference data reads better
+// alongside the Facts card than as a sibling of the personal review.
 
 function PersonalSection({ pin }: { pin: Pin }) {
   const universal =
@@ -823,25 +836,43 @@ function PersonalSection({ pin }: { pin: Pin }) {
 
   if (!universal && !hasHotel && !hasMeal) return null;
 
+  // Heading reads in the third person — "Your visit" was confusing for
+  // every reader except Mike. The kind variants mirror the prior structure
+  // (stay / meal / review) so the page still cues whether this is a hotel,
+  // restaurant, or other place.
   const heading =
-    pin.kind === 'hotel' ? 'Your stay' :
-    pin.kind === 'restaurant' ? 'Your meal' :
-    'Your visit';
+    pin.kind === 'hotel' ? "Mike's stay" :
+    pin.kind === 'restaurant' ? "Mike's meal" :
+    "Mike's review";
 
   return (
-    <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h3 text-ink-deep mb-3">{heading}</h2>
+    // No top margin: this section now leads the main column directly under
+    // the page header, so the grid's gap-10 already provides separation.
+    <section className="rounded-xl border border-sand bg-cream-soft/60 p-5 sm:p-6 shadow-sm">
+      <header className="flex items-center justify-between gap-3 mb-4">
+        <h2 className="text-h3 text-ink-deep leading-tight">{heading}</h2>
+        {pin.visitYear != null && (
+          <span className="text-label uppercase tracking-[0.14em] text-muted">
+            Visited {pin.visitYear}
+          </span>
+        )}
+      </header>
 
-      {universal && (
-        <div className="mb-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-small">
+      {universal && (pin.personalRating != null || pin.bestFor.length > 0 || pin.companions.length > 0) && (
+        <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-small">
           {pin.personalRating != null && (
-            <span aria-label={`${pin.personalRating} out of 5 stars`} className="text-ink-deep">
-              {'★'.repeat(pin.personalRating)}
-              <span className="text-sand">{'★'.repeat(5 - pin.personalRating)}</span>
+            // Emoji stars — brand-warmer and more vivid than the unicode
+            // glyphs, which read pale against the ink-deep text. Filled
+            // stars are ⭐, empty ones are ☆ in slate.
+            <span
+              aria-label={`${pin.personalRating} out of 5 stars`}
+              className="inline-flex items-center text-base leading-none tabular-nums"
+            >
+              <span aria-hidden>{'⭐'.repeat(pin.personalRating)}</span>
+              <span aria-hidden className="text-slate/40 ml-0.5">
+                {'☆'.repeat(5 - pin.personalRating)}
+              </span>
             </span>
-          )}
-          {pin.visitYear != null && (
-            <span className="text-slate">{pin.visitYear}</span>
           )}
           {pin.bestFor.length > 0 && (
             <span className="text-muted text-small">
@@ -938,7 +969,13 @@ function PersonalSection({ pin }: { pin: Pin }) {
       )}
 
       {pin.personalReview && (
-        <p className="text-ink leading-relaxed whitespace-pre-line">{pin.personalReview}</p>
+        // Review text styled as a slightly-indented blockquote with an
+        // accent left rule so it reads as Mike's voice, not generic prose.
+        // whitespace-pre-line preserves the line breaks Google's takeout
+        // includes between paragraphs.
+        <blockquote className="text-prose text-ink leading-relaxed whitespace-pre-line border-l-2 border-accent/50 pl-4">
+          {pin.personalReview}
+        </blockquote>
       )}
     </section>
   );
