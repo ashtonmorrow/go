@@ -13,7 +13,7 @@ import {
   type MapMouseEvent,
 } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { useCityFilters } from './CityFiltersContext';
+import { useCityFilters, type KoppenGroup } from './CityFiltersContext';
 import { applyLayerVisibility, cityLayer, filterCities, layerCounts as countLayers, sortCities } from '@/lib/cityFilter';
 import { COLORS } from '@/lib/colors';
 import ActiveFilters from './ActiveFilters';
@@ -37,6 +37,8 @@ type Pin = {
   name: string;
   slug: string;
   country: string;
+  /** Country slug for routing to /countries/[slug] from the hover card. */
+  countrySlug: string | null;
   countryFlag: string | null;
   been: boolean;
   go: boolean;
@@ -400,17 +402,37 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             <div
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
-              className="min-w-[220px] max-w-[260px] px-3 py-2.5 text-small text-ink"
+              className="min-w-[240px] max-w-[280px] px-3 py-2.5 text-small text-ink"
             >
-              {/* Header — flag + name + country */}
+              {/* Header — flag links to country detail, city name links to
+                  city detail. The flag's wrapping anchor is sized to the flag
+                  so it has a clear hit-target without expanding into the rest
+                  of the row. Both names get hover-color affordance so it's
+                  visible they're links. */}
               <div className="flex items-start gap-2">
                 {hovered.countryFlag && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={hovered.countryFlag}
-                    alt=""
-                    className="w-5 h-auto rounded-sm border border-sand mt-0.5 flex-shrink-0"
-                  />
+                  hovered.countrySlug ? (
+                    <Link
+                      href={`/countries/${hovered.countrySlug}`}
+                      className="flex-shrink-0 mt-0.5 group/flag"
+                      title={`Open ${hovered.country}`}
+                      aria-label={`Open ${hovered.country}`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={hovered.countryFlag}
+                        alt=""
+                        className="w-5 h-auto rounded-sm border border-sand transition-all group-hover/flag:border-teal group-hover/flag:ring-2 group-hover/flag:ring-teal/20"
+                      />
+                    </Link>
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={hovered.countryFlag}
+                      alt=""
+                      className="w-5 h-auto rounded-sm border border-sand mt-0.5 flex-shrink-0"
+                    />
+                  )
                 )}
                 <div className="min-w-0 flex-1">
                   <Link
@@ -419,24 +441,68 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                   >
                     {hovered.name}
                   </Link>
-                  <div className="text-muted text-micro leading-tight truncate">
-                    {hovered.country}
-                  </div>
+                  {hovered.countrySlug ? (
+                    <Link
+                      href={`/countries/${hovered.countrySlug}`}
+                      className="block text-muted text-micro leading-tight truncate hover:text-ink-deep transition-colors"
+                    >
+                      {hovered.country}
+                    </Link>
+                  ) : (
+                    <div className="text-muted text-micro leading-tight truncate">
+                      {hovered.country}
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Facts strip — climate + population. Hidden when the city has
-                  neither, so we don't render a sad empty row for sparse data. */}
+              {/* Facts strip — climate is now a clickable chip that toggles
+                  the koppen-group filter in the city filter cockpit. Filtering
+                  by group (A Tropical / B Arid / C Temperate / D Continental
+                  / E Polar) instead of the precise sub-code is intentional:
+                  it lets the user quickly answer "show me other places like
+                  this" without needing to know that Cfa = humid subtropical.
+                  Population is non-interactive — it's a fact, not a filter. */}
               {(hovered.koppen || hovered.population) && (
-                <div className="mt-2 flex items-center gap-3 text-label text-slate">
-                  {hovered.koppen && (
-                    <span className="inline-flex items-center gap-1">
-                      <KoppenIcon code={hovered.koppen} size={13} />
-                      <span>Climate</span>
-                    </span>
-                  )}
+                <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+                  {hovered.koppen && (() => {
+                    const firstChar = hovered.koppen[0]?.toUpperCase();
+                    const isKoppenGroup = (c: string | undefined): c is KoppenGroup =>
+                      c === 'A' || c === 'B' || c === 'C' || c === 'D' || c === 'E';
+                    if (!isKoppenGroup(firstChar)) return null;
+                    const groupCode: KoppenGroup = firstChar;
+                    const isActive = !!ctx?.state.koppenGroups?.has(groupCode);
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!ctx) return;
+                          ctx.setState((s) => {
+                            const next = new Set(s.koppenGroups);
+                            if (next.has(groupCode)) next.delete(groupCode);
+                            else next.add(groupCode);
+                            return { ...s, koppenGroups: next };
+                          });
+                        }}
+                        className={
+                          'inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-label transition-colors border ' +
+                          (isActive
+                            ? 'bg-teal/10 text-ink-deep border-teal/40'
+                            : 'bg-cream-soft text-slate border-sand hover:border-slate hover:text-ink-deep')
+                        }
+                        title={
+                          isActive
+                            ? `Click to clear climate filter`
+                            : `Filter map to this climate group`
+                        }
+                      >
+                        <KoppenIcon code={hovered.koppen} size={13} />
+                        <span>Climate</span>
+                      </button>
+                    );
+                  })()}
                   {formatPopulation(hovered.population) && (
-                    <span className="inline-flex items-center gap-1">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-label text-slate bg-cream-soft border border-sand">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                         <circle cx="9" cy="7" r="4" />

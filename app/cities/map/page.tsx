@@ -56,6 +56,7 @@ export default async function MapPage() {
         name: c.name,
         slug: c.slug,
         country: country?.name || c.country || '',
+        countrySlug: country?.slug || null,
         countryFlag: country?.flag || null,
         been: c.been,
         go: c.go,
