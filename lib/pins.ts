@@ -151,6 +151,10 @@ export type Pin = {
   durationMinutes: number | null;
   tags: string[];
   lists: string[];
+  /** Mike's personal Google Maps saved-list memberships (Madrid, Bangkok 🇹🇭,
+   *  Coffee Shops, etc). Distinct from `lists` which holds canonical lists
+   *  like UNESCO World Heritage. Used by the "saved on my <city> list" filter. */
+  savedLists: string[];
   bestMonths: number[];
 
   airtableModifiedAt: string | null;
@@ -335,6 +339,7 @@ function rowToPin(row: any): Pin {
     durationMinutes: asNumber(row.duration_minutes),
     tags: asStringArray(row.tags),
     lists: asStringArray(row.lists),
+    savedLists: asStringArray(row.saved_lists),
     bestMonths: asNumberArray(row.best_months),
 
     airtableModifiedAt: row.airtable_modified_at ?? null,
@@ -417,7 +422,7 @@ const INDEX_COLUMNS = [
   'price_text', 'price_amount', 'price_currency',
   'unesco_id', 'website', 'images', 'visited',
   'wikidata_qid', 'wikipedia_url', 'inception_year',
-  'duration_minutes', 'tags', 'lists', 'best_months',
+  'duration_minutes', 'tags', 'lists', 'saved_lists', 'best_months',
   'airtable_modified_at', 'updated_at',
   'free', 'free_to_visit', 'food_on_site',
   'wheelchair_accessible', 'kid_friendly', 'bring',

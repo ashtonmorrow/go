@@ -139,6 +139,7 @@ function cleanCity(city: string | null | undefined, country?: string | null): st
   let s = String(city ?? '').trim();
   if (!s) return null;
   s = s
+    .replace(/^\d{3}\s?\d{2}\s+/, '')
     .replace(/^\d{4,6}\s+/, '')
     .replace(/\s+\d{4,6}$/, '')
     .replace(/\b[A-Z]{1,3}\d[A-Z\d]?\s*\d[A-Z]{2}\b/g, '')
@@ -148,6 +149,8 @@ function cleanCity(city: string | null | undefined, country?: string | null): st
     .replace(/\s+/g, ' ')
     .trim();
   if (!s) return null;
+  if (country === 'Czechia' && /^Praha\b/i.test(s)) return 'Prague';
+  if (country === 'Thailand' && /^Krung Thep Maha Nakhon\b/i.test(s)) return 'Bangkok';
   if (country === 'United Kingdom' && /\bLondon\b/i.test(s)) return 'London';
   if (country === 'United States of America' && /\bWashington\b/i.test(s) && /\bDC\b/i.test(s)) return 'Washington, DC';
   return s;
@@ -177,12 +180,17 @@ function locationFromLookup(place: LookupPlace | null): { city: string | null; c
 }
 
 function categoryToKind(category: string | null | undefined, name: string, current: string | null): string | null {
-  const c = `${category ?? ''} ${name}`.toLowerCase();
+  const categoryText = String(category ?? '').toLowerCase();
+  const nameText = String(name ?? '').toLowerCase();
+  const c = `${categoryText} ${nameText}`;
   if (/\b(hotel|lodging|resort|hostel|inn|motel|hyatt|marriott|sheraton|hilton|m[eé]ridien)\b/.test(c)) return 'hotel';
-  if (/\b(restaurant|cafe|coffee|bar|bakery|meal|food|pizza|sushi|tacos|brasserie|bistro|pub)\b/.test(c)) return 'restaurant';
+  if (/\b(restaurant|cafe|coffee|bar|bakery|meal|food|pizza|sushi|tacos|brasserie|bistro|pub)\b/.test(categoryText)) return 'restaurant';
+  if (/\b(restaurant|restaurante|cafe|café|coffee|bakery|patisserie|pizza|pizzeria|sushi|tacos|taqueria|brasserie|bistro|pub|grill|diner|cantina|trattoria|osteria)\b/.test(nameText)) return 'restaurant';
+  if (/\bbar\b/.test(nameText) && !/\b(old town of bar|bar,\s*montenegro)\b/.test(nameText)) return 'restaurant';
   if (/\b(airport|station|terminal|transit|metro|subway|rail|ferry)\b/.test(c)) return 'transit';
   if (/\b(park|garden|beach|trail|reserve|national park)\b/.test(c)) return 'park';
   if (/\b(store|shop|shopping|market|mall|pharmacy|supermarket)\b/.test(c)) return 'shopping';
+  if (/\b(museum|tourist_attraction|tourist attraction|landmark|church|place_of_worship|point_of_interest|point of interest)\b/.test(categoryText)) return 'attraction';
   if (current && ALLOWED_KINDS.has(current)) return current;
   return 'attraction';
 }
@@ -321,7 +329,7 @@ async function fetchAllPins(): Promise<PinRow[]> {
     const { data, error } = await sb.from('pins').select(columns).range(start, start + 999);
     if (error) throw error;
     if (!data?.length) break;
-    out.push(...(data as PinRow[]));
+    out.push(...(data as unknown as PinRow[]));
     if (data.length < 1000) break;
   }
   return out;
@@ -470,18 +478,39 @@ function hasMessyLocation(value: any): boolean {
   const list = Array.isArray(value) ? value : [value];
   return list.some(v => {
     const s = String(v ?? '');
-    return /\d{4,}/.test(s) || /\b[A-Z]{1,3}\d[A-Z\d]?\s*\d[A-Z]{2}\b/.test(s) || /\bProvince of\b/i.test(s);
+    return /\d{4,}/.test(s) || /\d{3}\s?\d{2}/.test(s) || /\b[A-Z]{1,3}\d[A-Z\d]?\s*\d[A-Z]{2}\b/.test(s) || /\bProvince of\b/i.test(s);
   });
+}
+
+function descriptionHasMessyLocation(description: string): boolean {
+  return (
+    /\d{3}\s?\d{2}\s+[A-ZÀ-ÿ]/.test(description) ||
+    /\b[A-Z]{1,3}\d[A-Z\d]?\s*\d[A-Z]{2}\b/.test(description) ||
+    /\bKrung Thep Maha Nakhon\b/.test(description) ||
+    /\bProvince of\b/i.test(description)
+  );
 }
 
 function derivedPatch(pin: PinRow): Record<string, any> {
   const patch: Record<string, any> = {};
+  const inferredKind = categoryToKind(pin.category, pin.name, pin.kind);
+  if (
+    inferredKind &&
+    pin.kind !== inferredKind &&
+    String(pin.source ?? '').startsWith('google-takeout')
+  ) {
+    patch.kind = inferredKind;
+  }
   const { city, country } = locationFromAddress(pin.address);
   if (city && (isEmpty(pin.city_names) || hasMessyLocation(pin.city_names))) patch.city_names = [city];
   if (country && (isEmpty(pin.states_names) || hasMessyLocation(pin.states_names))) patch.states_names = [country];
   const effectiveCity = (patch.city_names?.[0] ?? (Array.isArray(pin.city_names) ? pin.city_names[0] : null)) || city;
   const effectiveCountry = (patch.states_names?.[0] ?? (Array.isArray(pin.states_names) ? pin.states_names[0] : null)) || country;
-  if (isEmpty(pin.description)) {
+  const generatedDescriptionNeedsRefresh =
+    typeof pin.description === 'string' &&
+    pin.description.startsWith(`${pin.name} is `) &&
+    (descriptionHasMessyLocation(pin.description) || Boolean(patch.city_names) || Boolean(patch.states_names));
+  if (isEmpty(pin.description) || generatedDescriptionNeedsRefresh) {
     patch.description = makeDescription(pin, effectiveCity, effectiveCountry, pin.category);
   }
 
