@@ -1,7 +1,6 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import CountriesGlobe from '@/components/CountriesGlobeLoader';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
@@ -154,11 +153,6 @@ export default async function WorldPage() {
         cities={cityPayload}
         countriesByIso3={countriesByIso3}
         countryIdToIso3={countryIdToIso3}
-      />
-      <ViewSwitcher
-        object="countries"
-        current="map"
-        className="fixed bottom-5 right-5 z-50 shadow-lg"
       />
     </>
   );

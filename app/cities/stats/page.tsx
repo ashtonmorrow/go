@@ -14,7 +14,6 @@ import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import CityStatsClient from '@/components/CityStatsClient';
 import ActiveFilters from '@/components/ActiveFilters';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
@@ -113,10 +112,7 @@ export default async function CityStatsPage() {
         })}
       />
 
-      <div className="mb-4 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">City Stats</h1>
-        <ViewSwitcher object="cities" current="stats" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">City Stats</h1>
 
       <ActiveFilters className="mb-4" />
 

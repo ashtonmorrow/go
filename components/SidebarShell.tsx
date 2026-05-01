@@ -302,6 +302,16 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 
 // === Item ===
 // Single sidebar row: emoji + label + optional count, internal link.
+//
+// Typography contract for the whole rail:
+//   - All interactive items render at text-small (13px). One size for
+//     primary nav, sub-list items, and footer links.
+//   - Section labels + counts + decorative chevrons render at 10px.
+//   - The bottom block (privacy / credits / Whisker Leaks credit) is the
+//     one exception — 11px so it reads as quieter than the nav above.
+//   - Emojis inherit the row's font-size via "leading-none" rather than
+//     getting their own size override; previously each row used text-base
+//     for the glyph which made the icons larger than the labels.
 function Item({
   href,
   emoji,
@@ -331,10 +341,10 @@ function Item({
           : 'text-slate hover:bg-cream-soft hover:text-ink-deep')
       }
     >
-      <span className="text-base leading-none flex-shrink-0" aria-hidden>{emoji}</span>
+      <span className="leading-none flex-shrink-0" aria-hidden>{emoji}</span>
       <span className="flex-1 truncate">{label}</span>
       {count !== undefined && (
-        <span className="text-[11px] tabular-nums text-muted bg-sand/70 px-1.5 py-0.5 rounded">
+        <span className="text-[10px] tabular-nums text-muted bg-sand/70 px-1.5 py-0.5 rounded">
           {count}
         </span>
       )}
@@ -383,7 +393,7 @@ function ArticlesItem({
         aria-haspopup="menu"
         aria-expanded={open}
       >
-        <span className="text-base leading-none flex-shrink-0" aria-hidden>📰</span>
+        <span className="leading-none flex-shrink-0" aria-hidden>📰</span>
         <span className="flex-1 truncate">Articles</span>
         <span
           className={
@@ -411,7 +421,7 @@ function ArticlesItem({
                 href={a.href}
                 onClick={onClick}
                 className={
-                  'flex items-center gap-2 px-2 py-1 rounded text-[12px] transition-colors ' +
+                  'flex items-center gap-2 px-2 py-1 rounded text-small transition-colors ' +
                   (isCurrent
                     ? 'bg-cream-soft text-ink-deep font-medium'
                     : 'text-slate hover:bg-cream-soft hover:text-ink-deep')
@@ -420,7 +430,7 @@ function ArticlesItem({
                 title={a.description}
               >
                 {a.emoji && (
-                  <span aria-hidden className="text-[13px] leading-none flex-shrink-0">
+                  <span aria-hidden className="leading-none flex-shrink-0">
                     {a.emoji}
                   </span>
                 )}
@@ -457,7 +467,7 @@ function ExternalItem({
       rel="noopener noreferrer"
       className="group flex items-center gap-2 px-2 py-1.5 rounded text-small text-slate hover:bg-cream-soft hover:text-ink-deep transition-colors"
     >
-      <span className="text-base leading-none flex-shrink-0" aria-hidden>{emoji}</span>
+      <span className="leading-none flex-shrink-0" aria-hidden>{emoji}</span>
       <span className="flex-1 truncate">{label}</span>
       <span className="text-muted text-[10px] opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden>↗</span>
     </a>

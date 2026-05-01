@@ -10,7 +10,6 @@ import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { driveSide } from '@/lib/driveSide';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import CountryStatsClient, { type CountryStatsRow } from '@/components/CountryStatsClient';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
@@ -76,10 +75,7 @@ export default async function CountryStatsPage() {
         })}
       />
 
-      <div className="mb-4 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Country Stats</h1>
-        <ViewSwitcher object="countries" current="stats" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Country Stats</h1>
 
       <CountryStatsClient rows={rows} />
     </div>

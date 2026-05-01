@@ -4,7 +4,6 @@ import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import WorldGlobe from '@/components/WorldGlobeLoader';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
@@ -95,13 +94,6 @@ export default async function MapPage() {
     <>
       <JsonLd data={pageData} />
       <WorldGlobe pins={pins} />
-      {/* Floating switcher pinned bottom-right — preserves muscle memory
-          from the legacy /map page. */}
-      <ViewSwitcher
-        object="cities"
-        current="map"
-        className="fixed bottom-5 right-5 z-50 shadow-lg"
-      />
     </>
   );
 }

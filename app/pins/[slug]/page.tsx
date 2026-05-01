@@ -16,7 +16,6 @@ import {
   bringFacet, monthRange,
 } from '@/lib/pinFacets';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
@@ -206,7 +205,6 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           <span className="mx-1.5" aria-hidden>›</span>
           <span className="text-ink-deep">{pin.name}</span>
         </nav>
-        <ViewSwitcher object="pins" />
       </div>
 
       <header className="border-b border-sand pb-5 flex gap-4 items-start">

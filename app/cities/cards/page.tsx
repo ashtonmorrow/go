@@ -8,7 +8,6 @@ import { currencySymbol } from '@/lib/currencySymbol';
 import { ukSubdivision } from '@/lib/ukRegion';
 import { flagRect } from '@/lib/flags';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
   Continent,
@@ -136,10 +135,7 @@ export default async function CitiesPage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <div className="max-w-page mx-auto px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Cities</h1>
-        <ViewSwitcher object="cities" current="cards" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Cities</h1>
       <CitiesGrid cities={minimal} />
     </>
   );

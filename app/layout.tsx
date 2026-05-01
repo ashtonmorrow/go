@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Sidebar from '@/components/Sidebar';
+import AppHeader from '@/components/AppHeader';
 import { CityFiltersProvider } from '@/components/CityFiltersContext';
 import { PinFiltersProvider } from '@/components/PinFiltersContext';
 import { CountryFiltersProvider } from '@/components/CountryFiltersContext';
@@ -88,6 +89,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Sidebar />
                 <main className="flex-1 min-w-0">{children}</main>
               </div>
+              {/* Sitewide ViewSwitcher — fixed top-right on every Object
+                  route, hidden on chrome-less surfaces (admin, articles,
+                  about, credits, privacy). Replaces 14 per-page invocations. */}
+              <AppHeader />
               <CookieBanner />
             </PinFiltersProvider>
           </CountryFiltersProvider>

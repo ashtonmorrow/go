@@ -8,7 +8,6 @@ import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import PinsTable from '@/components/PinsTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
@@ -64,10 +63,7 @@ export default async function PinsTablePage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <div className="px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Pin Data</h1>
-        <ViewSwitcher object="pins" current="table" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Pin Data</h1>
       <PinsTable pins={pins} countryNameToIso2={countryNameToIso2} />
     </>
   );

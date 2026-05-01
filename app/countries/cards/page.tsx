@@ -4,7 +4,6 @@ import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { driveSide } from '@/lib/driveSide';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type { Metadata } from 'next';
 
@@ -91,10 +90,7 @@ export default async function CountriesPage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <div className="max-w-page mx-auto px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Countries</h1>
-        <ViewSwitcher object="countries" current="cards" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Countries</h1>
       <CountriesGrid countries={minimal} />
     </>
   );

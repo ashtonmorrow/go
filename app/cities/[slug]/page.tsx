@@ -10,7 +10,6 @@ import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
@@ -160,7 +159,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             <Link href={`/countries/${country.slug}`} className="hover:text-teal">{country.name}</Link>
           </>}
         </div>
-        <ViewSwitcher object="cities" />
       </div>
 
       <header className="flex items-end gap-4 flex-wrap">

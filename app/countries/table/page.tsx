@@ -10,7 +10,6 @@ import { tapWater } from '@/lib/tapWater';
 import { visaUs } from '@/lib/visaUs';
 import { driveSide } from '@/lib/driveSide';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import CountriesTable from '@/components/CountriesTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
@@ -97,10 +96,7 @@ export default async function CountriesTablePage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <div className="px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Country Data</h1>
-        <ViewSwitcher object="countries" current="table" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Country Data</h1>
       <CountriesTable rows={rows} />
     </>
   );

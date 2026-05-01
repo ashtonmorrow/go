@@ -5,7 +5,6 @@
 import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import PinStatsClient from '@/components/PinStatsClient';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
@@ -39,10 +38,7 @@ export default async function PinStatsPage() {
         })}
       />
 
-      <div className="mb-4 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">Pin Stats</h1>
-        <ViewSwitcher object="pins" current="stats" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">Pin Stats</h1>
 
       <PinStatsClient pins={pins} />
     </div>

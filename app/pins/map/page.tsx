@@ -6,7 +6,6 @@
 import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import PinsMap from '@/components/PinsMapLoader';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
@@ -45,11 +44,6 @@ export default async function PinsMapPage() {
     <>
       <JsonLd data={pageData} />
       <PinsMap pins={pins} />
-      <ViewSwitcher
-        object="pins"
-        current="map"
-        className="fixed bottom-5 right-5 z-50 shadow-lg"
-      />
     </>
   );
 }

@@ -5,7 +5,6 @@ import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { fetchCityFlags } from '@/lib/cityFlags';
 import JsonLd from '@/components/JsonLd';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type {
   Continent,
@@ -130,10 +129,7 @@ export default async function TablePage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <div className="px-5 pt-6 flex items-center justify-between gap-3 flex-wrap">
-        <h1 className="text-h2 text-ink-deep">City Data</h1>
-        <ViewSwitcher object="cities" current="table" />
-      </div>
+      <h1 className="text-h2 text-ink-deep">City Data</h1>
       <CitiesTable cities={minimal} />
     </>
   );

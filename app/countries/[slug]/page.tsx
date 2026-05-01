@@ -6,7 +6,6 @@ import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, countryJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
-import ViewSwitcher from '@/components/ViewSwitcher';
 import { visaPortal } from '@/lib/visaPortals';
 import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
 import { readPlaceContent, paragraphs } from '@/lib/content';
@@ -111,7 +110,6 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
         <div className="text-small text-muted">
           <Link href="/countries/cards" className="hover:text-teal">Countries</Link>
         </div>
-        <ViewSwitcher object="countries" />
       </div>
 
       <header className="flex items-center gap-5 flex-wrap">
