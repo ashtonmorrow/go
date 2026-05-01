@@ -17,6 +17,24 @@ export function listNameToSlug(name: string): string {
   return name.trim().toLowerCase().replace(/\s+/g, '-');
 }
 
+/** Trim a personal-review string to roughly the first sentence-or-two so it
+ *  fits two lines on a card. The card itself line-clamps; this just keeps us
+ *  from shipping 800-character reviews into every card on a 184-pin list.
+ *  Returns null on empty input so the card can hide the review block
+ *  entirely instead of rendering empty space. */
+export function snippet(text: string | null | undefined, max = 140): string | null {
+  if (!text) return null;
+  const t = text.trim();
+  if (!t) return null;
+  if (t.length <= max) return t;
+  // Prefer breaking at the first sentence boundary; fall back to word.
+  const sentence = t.slice(0, max).match(/^.+?[.!?](?=\s|$)/);
+  if (sentence) return sentence[0];
+  const cut = t.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > max - 30 ? cut.slice(0, lastSpace) : cut).trim() + '…';
+}
+
 /** Convert a URL slug back to a saved-list name (best-effort reverse). */
 export function slugToListName(slug: string): string {
   return decodeURIComponent(slug).replace(/-/g, ' ').toLowerCase();

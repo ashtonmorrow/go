@@ -108,16 +108,14 @@ export default function PinFilterPanel({
               { value: 'not-visited',  label: 'Not yet' },
             ]}
           />
-          {/* Five binary "show only places that…" filters as a single chip
-              group. Click to add the filter, click again to clear. Compact
-              and visually consistent with the Lists / Bring sections below. */}
+          {/* Binary "show only places that…" filters as a single chip group.
+              Click to add the filter, click again to clear. UNESCO used to
+              live up here too but the canonical "UNESCO" filter belongs in
+              the ON LISTS section below — leaving both meant two chips with
+              the same name and overlapping behaviour. The ON LISTS version
+              wins because it composes with the other curated lists (Atlas
+              Obscura, Ramsar, etc.) under one mental model. */}
           <div className="flex flex-wrap gap-1.5 mt-1">
-            <QuickFilterChip
-              on={state.unescoOnly}
-              icon="🌍"
-              label="UNESCO"
-              onChange={v => setState(s => ({ ...s, unescoOnly: v }))}
-            />
             <QuickFilterChip
               on={state.freeOnly}
               icon="◯"

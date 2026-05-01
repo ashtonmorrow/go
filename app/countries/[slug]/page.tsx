@@ -17,6 +17,7 @@ import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
   listNameToSlug,
+  snippet,
 } from '@/lib/savedLists';
 import type { Metadata } from 'next';
 
@@ -115,6 +116,10 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
       city: p.cityNames?.[0] ?? null,
       country: p.statesNames?.[0] ?? null,
       rating: p.personalRating,
+      review: snippet(p.personalReview, 140),
+      visitYear: p.visitYear,
+      free: !!p.free,
+      unesco: p.unescoId != null,
     }));
   // Pick a representative list — prefer one whose name exactly matches the
   // country name (so "spain" wins over "madrid" on the Spain country page).

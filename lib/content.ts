@@ -35,7 +35,7 @@ import { unstable_cache } from 'next/cache';
  *   - no admin UI to maintain
  */
 
-export type ContentScope = 'pins' | 'cities' | 'countries';
+export type ContentScope = 'pins' | 'cities' | 'countries' | 'lists';
 
 export type PlaceContent = {
   /** The prose body, trimmed. Paragraphs separated by blank lines. */

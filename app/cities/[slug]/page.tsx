@@ -22,6 +22,7 @@ import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
   listNameToSlug,
+  snippet,
 } from '@/lib/savedLists';
 import type { Metadata } from 'next';
 
@@ -143,6 +144,12 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       city: p.cityNames?.[0] ?? null,
       country: p.statesNames?.[0] ?? null,
       rating: p.personalRating,
+      // First sentence-or-two of the personal review — the snippet is the
+      // click-bait that gets visitors into the pin detail page.
+      review: snippet(p.personalReview, 140),
+      visitYear: p.visitYear,
+      free: !!p.free,
+      unesco: p.unescoId != null,
     }));
   // Pick the saved-list metadata with the most members, prefer one with a
   // Google share URL set, so the "View live" link points at the most useful
