@@ -1,13 +1,14 @@
 ---
 title: A practical guide to green markets in the Balkans
-subtitle: How to spot real farmers, when to go, and what to actually buy.
+subtitle: How they work, where the advice still holds, and where it does not.
 hero_image: /images/posts/balkan-green-markets.jpg
-hero_alt: Wonky-shaped tomatoes and a bunch of swiss chard piled on a wooden crate at Pazar in Split.
+hero_alt: Wonky-shaped tomatoes and a bunch of swiss chard piled on a wooden crate at a green market in the Balkans.
 published: 2026-04-30
 updated: 2026-04-30
 indexable: true
 authors:
   - Mike Lee
+cities_heading: Other Balkan cities with green markets
 links:
   countries:
     - croatia
@@ -16,16 +17,30 @@ links:
     - serbia
     - montenegro
   cities:
+    - zagreb
+    - pula
+    - rijeka
+    - zadar
+    - sibenik
+    - trogir
     - split
+    - hvar
+    - dubrovnik
+    - herceg-novi
+    - kotor
+    - budva
+    - bar-mne
   pins: []
 tags:
   - food
   - markets
 ---
 
-I have watched a lot of American travelers wander into a green market in Croatia or Bosnia and walk back out within ten minutes. The produce is wonky and dusty, prices are not posted, and the older sellers behind the tables are not interested in performing for tourists. The piles of perfect-looking tomatoes that did meet expectations turn out to be from resellers, not farmers.
+The green markets across Croatia, Slovenia, Bosnia and Herzegovina, Serbia, and Montenegro all operate the same way. Once you understand the rules at one of them, you can walk into any of the others and read it in thirty seconds. The differences are in how touristed each one is, and how much that changes the experience.
 
-I learned how to actually use one of these markets in Split, when my host walked me through Pazar, the main market on the edge of Diocletian's Palace. What follows is what she showed me, plus what I have watched work since.
+I tend to be in the region for several weeks at a time, which means I rotate through a few markets in any given trip. The first one I learned was Pazar in [Split](/cities/split), on the edge of Diocletian's Palace. It is now closer to half tourist market than full local one, so the advice below applies less there than it used to. Sellers are accustomed to performing for cameras, more of the produce comes from resellers, and a fair number of stalls have started pricing things for visitors. For a closer view of how these markets actually work day to day, the one in [Bar, Montenegro](/cities/bar-mne) is a better example. Almost no one there spoke English, prices were not posted, and what was on the tables had clearly come from someone's plot that morning.
+
+What follows applies cleanly at markets like Bar's, and partially at Pazar.
 
 ## How to read a stall
 
@@ -37,7 +52,7 @@ If you let the seller fill the bag, expect a few bruised pieces they were trying
 
 ## Time of day matters
 
-The good stalls are picked over by mid-morning. Most markets open around 6am, and by noon what is left is the picked-over remainder. If you are serious about buying, go before nine.
+The good stalls are picked over by mid-morning. Most markets open around 6am, and by noon what is left is the picked-over remainder. If you are serious about buying, go before nine. When you are staying in one place for several weeks, this gets easier. You start showing up at the same stall enough mornings in a row that the seller recognizes you and starts setting things aside.
 
 ## A few rules I broke at first
 
@@ -53,4 +68,8 @@ Outside the formal market you will see older people selling small piles of produ
 
 Most green markets carry homemade goods that are technically gray-market: pickled cabbage scooped out of an open plastic barrel, fresh honey in unmarked jars, soft cheeses, prosciutto, and rakija. Hygiene standards are looser than what you may be used to. The standard local view is that homemade is better than industrial, and the people selling these things eat them themselves. Use your own judgment.
 
-If you are renting an Airbnb and your host offers to introduce you to someone who makes their own olive oil or liqueur, take the introduction. The pricing is usually informal, the quality is higher than what you find at a supermarket, and you will leave with stories you would not have had otherwise.
+If you are renting an apartment for more than a few days and your host offers to introduce you to someone who makes their own olive oil or liqueur, take the introduction. The pricing is informal, the quality is higher than what you find at a supermarket, and you will leave with stories you would not have had otherwise.
+
+## A note for cat people
+
+The markets are also reliable places to pet cats. The same animals tend to show up most mornings, the fish stalls draw a crowd of them, and the older sellers usually keep a handful around the edges of the produce tables. If you, like me, route your morning around chances to scratch a cat behind the ears, both Bar and Split will deliver.

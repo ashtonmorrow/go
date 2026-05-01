@@ -55,6 +55,7 @@ export default async function CountriesPage() {
       currency: c.currency,
       callingCode: c.callingCode,
       schengen: c.schengen,
+      disputed: c.disputed,
       voltage: c.voltage,
       plugTypes: c.plugTypes,
       emergencyNumber: c.emergencyNumber,

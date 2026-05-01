@@ -1033,6 +1033,22 @@ function CandidateRow({
   const photoCount = assignedPhotos.length;
   const isSaved = state.status === 'saved';
 
+  // === Upload progress ====================================================
+  // saveCandidate() walks assignedPhotos sequentially: ready → uploading →
+  // uploaded, then fires /api/admin/save-batch once everything is in storage.
+  // We derive progress from those photo stages so we can show "Uploading 2/5"
+  // (during the loop) or "Saving pin… (5/5 uploaded)" (after the loop, while
+  // save-batch is in flight). No new state — just reads what's already on each
+  // photo's `stage` field.
+  const uploadedCount = assignedPhotos.filter(
+    p => p.stage === 'uploaded' || p.stage === 'saved',
+  ).length;
+  const isUploading = state.status === 'saving' && uploadedCount < photoCount;
+  const isFinalizing = state.status === 'saving' && !isUploading;
+  const progressPct = photoCount > 0
+    ? Math.round((uploadedCount / photoCount) * 100)
+    : 0;
+
   return (
     <li className="flex items-start gap-3 p-3 rounded border border-sand bg-white">
       <div className="flex-1 min-w-0">
@@ -1072,31 +1088,84 @@ function CandidateRow({
 
         {assignedPhotos.length > 0 && (
           <div className="mt-2 flex gap-2 flex-wrap">
-            {assignedPhotos.map(p => (
-              <div key={p.id} className="relative group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={p.preview}
-                  alt={p.takenAt?.toLocaleString() ?? ''}
-                  title={[
-                    p.takenAt?.toLocaleString(),
-                    p.lat != null && p.lng != null ? `${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}` : null,
-                  ].filter(Boolean).join(' · ')}
-                  className="w-14 h-14 object-cover rounded border border-sand bg-cream-soft"
-                />
-                {!isSaved && (
-                  <button
-                    type="button"
-                    onClick={() => onDetachPhoto(p.id)}
-                    aria-label="Wrong place — remove this photo"
-                    title="Wrong place — remove this photo"
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-micro leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-            ))}
+            {assignedPhotos.map(p => {
+              const uploaded = p.stage === 'uploaded' || p.stage === 'saved';
+              const uploading = p.stage === 'uploading';
+              return (
+                <div key={p.id} className="relative group">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.preview}
+                    alt={p.takenAt?.toLocaleString() ?? ''}
+                    title={[
+                      p.takenAt?.toLocaleString(),
+                      p.lat != null && p.lng != null ? `${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}` : null,
+                    ].filter(Boolean).join(' · ')}
+                    className={
+                      'w-14 h-14 object-cover rounded border bg-cream-soft transition-opacity ' +
+                      (uploading ? 'border-teal opacity-60' : uploaded ? 'border-teal/60' : 'border-sand')
+                    }
+                  />
+                  {/* Stage overlay — only renders during/after a save attempt
+                      so the pre-save thumbnails stay clean. */}
+                  {uploading && (
+                    <div className="absolute inset-0 rounded flex items-center justify-center bg-ink-deep/40 pointer-events-none">
+                      <Spinner className="text-white" />
+                    </div>
+                  )}
+                  {uploaded && !isSaved && (
+                    <div
+                      className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-teal text-white flex items-center justify-center shadow pointer-events-none"
+                      aria-label="Uploaded"
+                      title="Uploaded"
+                    >
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                        <path d="M20 6 9 17l-5-5" />
+                      </svg>
+                    </div>
+                  )}
+                  {!isSaved && state.status !== 'saving' && (
+                    <button
+                      type="button"
+                      onClick={() => onDetachPhoto(p.id)}
+                      aria-label="Wrong place — remove this photo"
+                      title="Wrong place — remove this photo"
+                      className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-micro leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {state.status === 'saving' && photoCount > 0 && (
+          <div className="mt-2">
+            <div className="flex items-center justify-between gap-2 text-label text-muted mb-1">
+              <span>
+                {isUploading
+                  ? `Uploading ${Math.min(uploadedCount + 1, photoCount)} of ${photoCount}…`
+                  : `Saving pin… (${uploadedCount} of ${photoCount} uploaded)`}
+              </span>
+              <span className="tabular-nums">{progressPct}%</span>
+            </div>
+            <div
+              className="h-1 rounded-full bg-sand overflow-hidden"
+              role="progressbar"
+              aria-valuenow={progressPct}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <div
+                className={
+                  'h-full bg-teal transition-[width] duration-300 ease-out ' +
+                  (isFinalizing ? 'animate-pulse' : '')
+                }
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
           </div>
         )}
 
@@ -1112,7 +1181,16 @@ function CandidateRow({
           </p>
         )}
       </div>
-      <SaveButton state={state} disabled={photoCount === 0} onClick={onSave} />
+      <SaveButton
+        state={state}
+        disabled={photoCount === 0}
+        onClick={onSave}
+        progress={
+          state.status === 'saving' && photoCount > 0
+            ? { uploaded: uploadedCount, total: photoCount }
+            : undefined
+        }
+      />
     </li>
   );
 }
@@ -1121,10 +1199,12 @@ function SaveButton({
   state,
   disabled,
   onClick,
+  progress,
 }: {
   state: CandidateState;
   disabled: boolean;
   onClick: () => void;
+  progress?: { uploaded: number; total: number };
 }) {
   if (state.status === 'saved') {
     return (
@@ -1133,26 +1213,55 @@ function SaveButton({
       </span>
     );
   }
-  const label =
-    state.status === 'saving' ? 'Saving…' :
-    state.status === 'error' ? 'Retry' :
-    'Save';
+  const label = (() => {
+    if (state.status === 'saving') {
+      if (progress) {
+        return progress.uploaded < progress.total
+          ? `${progress.uploaded}/${progress.total}…`
+          : 'Saving…';
+      }
+      return 'Saving…';
+    }
+    if (state.status === 'error') return 'Retry';
+    return 'Save';
+  })();
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled || state.status === 'saving'}
       className={
-        'px-3 py-1.5 text-small font-medium rounded transition-colors ' +
+        'px-3 py-1.5 text-small font-medium rounded transition-colors tabular-nums inline-flex items-center gap-1.5 ' +
         (disabled
           ? 'bg-cream-soft text-muted cursor-not-allowed'
           : state.status === 'error'
           ? 'bg-orange text-white hover:bg-orange/90'
+          : state.status === 'saving'
+          ? 'bg-teal text-white opacity-80 cursor-progress'
           : 'bg-teal text-white hover:bg-teal/90')
       }
     >
+      {state.status === 'saving' && <Spinner className="text-white" />}
       {label}
     </button>
+  );
+}
+
+function Spinner({ className }: { className?: string }) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      className={'animate-spin ' + (className ?? '')}
+      aria-hidden
+    >
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
   );
 }
 

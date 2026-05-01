@@ -9,6 +9,11 @@ export type CountryFilterable = {
   capital?: string | null;
   continent?: string | null;
   schengen: boolean;
+  /** Optional — only the cards/table/stats consumers carry this through.
+   *  Treated as false when missing so callers that haven't been updated
+   *  to thread the field through still typecheck and just don't expose
+   *  the Disputed toggle's narrowing power. */
+  disputed?: boolean;
   visa?: string | null;
   tapWater?: string | null;
   driveSide?: 'L' | 'R' | null;
@@ -30,6 +35,7 @@ export function filterCountries<T extends CountryFilterable>(
     if (state.visitedFilter === 'been' && r.beenCount === 0) continue;
     if (state.visitedFilter === 'not-been' && r.beenCount > 0) continue;
     if (state.schengenOnly && !r.schengen) continue;
+    if (state.disputedOnly && !r.disputed) continue;
     if (state.continents.size > 0) {
       if (!r.continent || !state.continents.has(r.continent as Continent)) continue;
     }

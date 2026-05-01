@@ -123,6 +123,9 @@ export type Country = {
   currency: string | null;
   callingCode: string | null;
   schengen: boolean;
+  /** Partially-recognized or unrecognized territory (Abkhazia, Northern
+   *  Cyprus, Transnistria, etc). Drives the Disputed filter toggle. */
+  disputed: boolean;
   plugTypes: string[];
   voltage: string | null;
   tapWater: string | null;
@@ -230,6 +233,7 @@ function supaCountryRow(r: any): Country {
     currency:          r.currency ?? null,
     callingCode:       r.calling_code ?? null,
     schengen:          !!r.schengen,
+    disputed:          !!r.disputed,
     plugTypes:         Array.isArray(r.plug_types) ? r.plug_types : [],
     voltage:           r.voltage ?? null,
     tapWater:          r.tap_water ?? null,

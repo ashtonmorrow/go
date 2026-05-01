@@ -62,6 +62,7 @@ export default async function CountriesTablePage() {
       currency: c.currency,
       callingCode: c.callingCode,
       schengen: c.schengen,
+      disputed: c.disputed,
       voltage: c.voltage,
       plugTypes: c.plugTypes,
       // Same fall-through-to-static-lookup pattern used elsewhere — Notion

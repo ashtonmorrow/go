@@ -55,6 +55,7 @@ export default async function CountryStatsPage() {
     capital: c.capital,
     continent: c.continent,
     schengen: c.schengen,
+    disputed: c.disputed,
     // Same fall-through to static lookups when Notion is empty.
     visa: c.visaUs ?? visaUs(c.iso2, c.name) ?? null,
     tapWater: c.tapWater ?? tapWater(c.iso2, c.name) ?? null,

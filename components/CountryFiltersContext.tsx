@@ -20,6 +20,10 @@ export type CountryFilterState = {
   q: string;
   visitedFilter: CountryVisited;
   schengenOnly: boolean;
+  /** Narrow to partially-recognized or unrecognized territories. Off by
+   *  default; toggling on shows only countries where go_countries.disputed
+   *  is true (Abkhazia, Northern Cyprus, Transnistria, etc). */
+  disputedOnly: boolean;
   continents: Set<Continent>;
   visa: Set<VisaUs>;
   tapWater: Set<TapWater>;
@@ -32,6 +36,7 @@ const DEFAULT_STATE: CountryFilterState = {
   q: '',
   visitedFilter: 'all',
   schengenOnly: false,
+  disputedOnly: false,
   continents: new Set(),
   visa: new Set(),
   tapWater: new Set(),
@@ -63,6 +68,7 @@ export function CountryFiltersProvider({ children }: { children: ReactNode }) {
     let n = 0;
     if (state.visitedFilter !== DEFAULT_STATE.visitedFilter) n++;
     if (state.schengenOnly !== DEFAULT_STATE.schengenOnly) n++;
+    if (state.disputedOnly !== DEFAULT_STATE.disputedOnly) n++;
     n += state.continents.size > 0 ? 1 : 0;
     n += state.visa.size > 0 ? 1 : 0;
     n += state.tapWater.size > 0 ? 1 : 0;

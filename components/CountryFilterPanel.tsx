@@ -111,6 +111,17 @@ export default function CountryFilterPanel() {
             label="Schengen only"
             onChange={v => setState(s => ({ ...s, schengenOnly: v }))}
           />
+          {/* Disputed = partially-recognized or unrecognized territories
+              (Abkhazia, Northern Cyprus, Transnistria, Western Sahara,
+              South Ossetia, Nagorno-Karabakh, Somaliland). Drives the
+              go_countries.disputed flag; Kosovo / Taiwan / Palestine stay
+              off until the user manually decides — those are politically
+              loaded enough that an opinionated default would be wrong. */}
+          <Switch
+            on={state.disputedOnly}
+            label="Disputed only"
+            onChange={v => setState(s => ({ ...s, disputedOnly: v }))}
+          />
         </div>
       </div>
 
