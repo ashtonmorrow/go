@@ -15,6 +15,7 @@
  *        - https://upload.wikimedia.org/wikipedia/commons/a/ab/Foo.jpg
  *        - https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Foo.jpg/640px-Foo.jpg
  *        - https://commons.wikimedia.org/wiki/File:Foo.jpg
+ *        - https://commons.wikimedia.org/wiki/Special:FilePath/Foo.jpg
  *      All resolve to "Foo.jpg".
  *   2. Call MediaWiki imageinfo with prop=extmetadata. The extmetadata blob
  *      includes Artist (author HTML), LicenseShortName, LicenseUrl, Credit,
@@ -49,7 +50,10 @@ export function commonsUrlToFilename(url: string): string | null {
     const u = new URL(url);
     if (u.hostname === COMMONS_HOST) {
       const m = u.pathname.match(/\/wiki\/(?:File|Image):(.+)$/);
-      return m ? decodeURIComponent(m[1].replace(/\?.*$/, '')) : null;
+      if (m) return decodeCommonsFilename(m[1].replace(/\?.*$/, ''));
+
+      const filePath = u.pathname.match(/\/wiki\/Special:FilePath\/(.+)$/);
+      return filePath ? decodeCommonsFilename(filePath[1].replace(/\?.*$/, '')) : null;
     }
     if (u.hostname === UPLOAD_HOST) {
       // Two layouts:
@@ -64,12 +68,24 @@ export function commonsUrlToFilename(url: string): string | null {
       const tail = rest[0] === 'thumb' ? rest.slice(1) : rest;
       // Now tail is [hash1, hash2, filename, (size-prefix-filename)?]
       if (tail.length < 3) return null;
-      return decodeURIComponent(tail[2]);
+      return decodeCommonsFilename(tail[2]);
     }
     return null;
   } catch {
     return null;
   }
+}
+
+function decodeCommonsFilename(value: string): string {
+  // Some migrated Notion URLs are double-encoded, e.g. Flag%2520Aachen.svg.
+  // Decode a few times until the value settles, then normalize underscores.
+  let out = value;
+  for (let i = 0; i < 3; i++) {
+    const next = decodeURIComponent(out);
+    if (next === out) break;
+    out = next;
+  }
+  return out.replace(/_/g, ' ');
 }
 
 /** Strip HTML tags + collapse whitespace. extmetadata Artist is HTML. */

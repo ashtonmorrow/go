@@ -4,15 +4,19 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
 import { CANONICAL_LISTS } from '@/lib/pinLists';
+import { getAllArticleEntries } from '@/lib/articles';
 import SidebarShell from './SidebarShell';
 
 export default async function Sidebar() {
   // Pins fetch piggybacks on React.cache() so /pins (which also calls
   // fetchAllPins) doesn't double-hit Supabase. Same with cities/countries.
-  const [cities, countries, pins] = await Promise.all([
+  // Article entries (hand-coded + file-based posts) are read here so the
+  // client SidebarShell stays a pure presentation component.
+  const [cities, countries, pins, articleEntries] = await Promise.all([
     fetchAllCities(),
     fetchAllCountries(),
     fetchAllPins(),
+    getAllArticleEntries(),
   ]);
 
   const counts = {
@@ -73,6 +77,7 @@ export default async function Sidebar() {
       pinCategoryOptions={pinCategoryOptions}
       pinListOptions={pinListOptions}
       pinTagOptions={pinTagOptions}
+      articleEntries={articleEntries}
     />
   );
 }

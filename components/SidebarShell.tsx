@@ -10,7 +10,7 @@ import { useCityFilters } from './CityFiltersContext';
 import { usePinFilters } from './PinFiltersContext';
 import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
-import { articlesByDate } from '@/lib/articles';
+import type { ArticleEntry } from '@/lib/articles';
 
 type Counts = {
   cities: number;
@@ -58,6 +58,7 @@ export default function SidebarShell({
   pinCategoryOptions = [],
   pinListOptions = [],
   pinTagOptions = [],
+  articleEntries = [],
 }: {
   counts: Counts;
   countryOptions: string[];
@@ -65,6 +66,10 @@ export default function SidebarShell({
   pinCategoryOptions?: string[];
   pinListOptions?: string[];
   pinTagOptions?: string[];
+  /** Server-fetched article + post union — see lib/articles.getAllArticleEntries.
+   *  Defaults to [] so existing call sites keep typechecking before the prop
+   *  is threaded through; we should always pass it in production. */
+  articleEntries?: ArticleEntry[];
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -111,6 +116,7 @@ export default function SidebarShell({
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
           pinTagOptions={pinTagOptions}
+          articleEntries={articleEntries}
           onLinkClick={() => setDrawerOpen(false)}
         />
       </aside>
@@ -125,6 +131,7 @@ export default function SidebarShell({
           pinCategoryOptions={pinCategoryOptions}
           pinListOptions={pinListOptions}
           pinTagOptions={pinTagOptions}
+          articleEntries={articleEntries}
         />
       </aside>
     </>
@@ -145,6 +152,7 @@ function NavBody({
   pinCategoryOptions,
   pinListOptions,
   pinTagOptions,
+  articleEntries,
   onLinkClick,
 }: {
   counts: Counts;
@@ -153,6 +161,7 @@ function NavBody({
   pinCategoryOptions: string[];
   pinListOptions: string[];
   pinTagOptions: string[];
+  articleEntries: ArticleEntry[];
   onLinkClick?: () => void;
 }) {
   const pathname = usePathname() || '';
@@ -216,7 +225,11 @@ function NavBody({
         {/* Articles sit immediately under Pins — hovering the row drops the
             article list inline beneath it, same nested treatment used for
             sub-items elsewhere. */}
-        <ArticlesItem onClick={onLinkClick} pathname={pathname} />
+        <ArticlesItem
+          onClick={onLinkClick}
+          pathname={pathname}
+          entries={articleEntries}
+        />
       </div>
 
       {/* Filter cockpits — at most one mounted at a time, picked by
@@ -358,23 +371,27 @@ function Item({
 // landing page; the sub-items in the menu navigate to individual articles.
 // The whole assembly (header + sub-list) is one hover region so the cursor
 // can move smoothly from the title down into the menu without losing hover.
+//
+// Entries are passed in from the server (Sidebar.tsx → SidebarShell), so the
+// menu lists hand-coded articles and file-based posts together, newest-first.
 function ArticlesItem({
   onClick,
   pathname,
+  entries,
 }: {
   onClick?: () => void;
   pathname: string;
+  entries: ArticleEntry[];
 }) {
-  const articles = articlesByDate();
   // Track whether to show the sub-menu. Open on hover, also stays open
   // while the cursor is inside the wrapper so users can move down to the
   // sub-items.
   const [open, setOpen] = useState(false);
   // Active when the user is on /articles itself or on any registered
-  // article's route — keeps the section visually pinned during reading.
+  // entry's route — keeps the section visually pinned during reading.
   const active =
     pathname === '/articles' ||
-    articles.some(a => a.href === pathname);
+    entries.some(a => a.href === pathname);
 
   return (
     <div
@@ -405,7 +422,7 @@ function ArticlesItem({
           ▸
         </span>
       </Link>
-      {open && articles.length > 0 && (
+      {open && entries.length > 0 && (
         // Sub-list — inline under the parent row, indented with a left
         // border so it reads as a nested menu. Only renders when hovered;
         // closes naturally when the cursor leaves the wrapper above.
@@ -413,11 +430,11 @@ function ArticlesItem({
           className="ml-4 pl-2 mt-1 mb-1 border-l border-sand flex flex-col gap-0.5"
           role="menu"
         >
-          {articles.map(a => {
+          {entries.map(a => {
             const isCurrent = a.href === pathname;
             return (
               <Link
-                key={a.slug}
+                key={a.key}
                 href={a.href}
                 onClick={onClick}
                 className={

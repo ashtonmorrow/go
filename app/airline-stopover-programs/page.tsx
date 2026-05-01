@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { AllianceFilter } from "./_components/AllianceFilter";
 import { ProgramCard } from "./_components/ProgramCard";
@@ -18,6 +19,14 @@ const UPDATED_ISO = "2026-04-30";
 const LAST_UPDATED_LABEL = "April 30, 2026";
 const AUTHOR_NAME = "Mike Lee";
 
+// Hero photo — Mike's own shot from a mosque visited on an Oman Air stopover
+// in Muscat. Lives in /public so Next/Image can serve responsive variants and
+// social platforms can fetch the absolute URL for previews.
+const HERO_IMAGE = "/images/posts/airline-stopover-programs.jpg";
+const HERO_IMAGE_URL = `${SITE_URL}${HERO_IMAGE}`;
+const HERO_ALT =
+  "A mosque visited during an Oman Air stopover in Muscat — a real-world example of breaking up a long-haul into a short trip.";
+
 const PAGE_TITLE = "The Ultimate Airline Stopover Cheat Sheet";
 const PAGE_DESCRIPTION =
   "A reference for travelers planning stopovers: terminology, the alliance landscape, programs I have used personally, and a side-by-side comparison of every major airline stopover program.";
@@ -33,11 +42,20 @@ export const metadata: Metadata = {
     publishedTime: PUBLISHED_ISO,
     modifiedTime: UPDATED_ISO,
     authors: [AUTHOR_NAME],
+    images: [
+      {
+        url: HERO_IMAGE_URL,
+        width: 2400,
+        height: 1260,
+        alt: HERO_ALT,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    images: [HERO_IMAGE_URL],
   },
   alternates: {
     canonical: PAGE_PATH,
@@ -83,6 +101,7 @@ function StructuredData() {
     "@type": "Article",
     headline: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
+    image: [HERO_IMAGE_URL],
     datePublished: PUBLISHED_ISO,
     dateModified: UPDATED_ISO,
     author: { "@type": "Person", name: AUTHOR_NAME },
@@ -162,6 +181,22 @@ export default function AirlineStopoverProgramsPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <StructuredData />
+
+      {/* Hero — Mike's mosque shot from an Oman Air stopover. Eager-loaded
+          and given high priority because it's above the fold and the LCP
+          element on this page. */}
+      <figure className="relative mb-8 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+        <div className="relative aspect-[16/9]">
+          <Image
+            src={HERO_IMAGE}
+            alt={HERO_ALT}
+            fill
+            sizes="(max-width: 768px) 100vw, 56rem"
+            priority
+            className="object-cover"
+          />
+        </div>
+      </figure>
 
       <header className="mb-10">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
