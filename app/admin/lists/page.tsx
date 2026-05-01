@@ -9,12 +9,16 @@ export default async function ListsAdminPage() {
     fetchAllPins(),
     fetchAllSavedListsMeta(),
   ]);
-  // Aggregate distinct list names + member counts for the admin table, and
-  // join in metadata (Google share URL, description) so the admin can see
-  // and edit them inline.
+  // Aggregate distinct list names + member counts for the admin table.
+  // Then union with the metadata table so newly-created empty lists show
+  // up too. Without this merge a freshly-created list would only appear
+  // after at least one pin was attached to it.
   const counts = new Map<string, number>();
   for (const p of pins) {
     for (const l of p.savedLists ?? []) counts.set(l, (counts.get(l) ?? 0) + 1);
+  }
+  for (const name of listsMeta.keys()) {
+    if (!counts.has(name)) counts.set(name, 0);
   }
   const lists = Array.from(counts.entries())
     .map(([name, count]) => {
@@ -33,9 +37,9 @@ export default async function ListsAdminPage() {
       <header className="mb-6">
         <h1 className="text-h1 text-ink-deep leading-tight">Saved lists admin</h1>
         <p className="mt-2 text-small text-muted">
-          Rename lists across every pin that carries them, or remove a list
-          entirely. The pin itself is never deleted; only the list membership
-          changes.
+          Create new lists, rename or remove existing ones, and click into a
+          list to edit which pins belong to it. The pin itself is never
+          deleted; only its list membership changes.
         </p>
       </header>
       <ListsAdminClient initialLists={lists} />

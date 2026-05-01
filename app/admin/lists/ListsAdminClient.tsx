@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { listNameToSlug } from '@/lib/savedLists';
 
 type ListRow = {
   name: string;
@@ -18,6 +20,41 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
   const [editValue, setEditValue] = useState('');
   const [busy, setBusy] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
+  // Create-new-list state — separate from `editing` so the user can be
+  // composing a new list name and editing an inline cell at the same
+  // time without one stomping on the other.
+  const [newName, setNewName] = useState('');
+
+  async function createList() {
+    const name = newName.trim().toLowerCase().replace(/\s+/g, ' ');
+    if (!name) return;
+    if (lists.some(l => l.name === name)) {
+      setFlash(`"${name}" already exists.`);
+      return;
+    }
+    setBusy(true);
+    setFlash(null);
+    try {
+      const res = await fetch('/api/admin/saved-list', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ action: 'create', name }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'create failed');
+      setLists(prev =>
+        [...prev, { name, count: 0, googleShareUrl: null, description: null }].sort(
+          (a, b) => b.count - a.count || a.name.localeCompare(b.name),
+        ),
+      );
+      setNewName('');
+      setFlash(`Created "${name}". Click it to add pins.`);
+    } catch (e) {
+      setFlash(e instanceof Error ? e.message : 'create failed');
+    } finally {
+      setBusy(false);
+    }
+  }
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

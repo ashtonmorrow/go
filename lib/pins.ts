@@ -436,23 +436,48 @@ const INDEX_COLUMNS = [
 
 const _fetchAllPins = unstable_cache(
   async (): Promise<Pin[]> => {
-    const all: any[] = [];
-    let start = 0;
-    for (;;) {
-      const { data, error } = await supabase
-        .from('pins')
-        .select(INDEX_COLUMNS)
-        .order('name', { ascending: true })
-        .range(start, start + PAGE_SIZE - 1);
-      if (error) {
-        console.error('[pins] fetchAllPins page failed:', error);
-        break;
-      }
-      if (!data || data.length === 0) break;
-      all.push(...data);
-      if (data.length < PAGE_SIZE) break;
-      start += PAGE_SIZE;
+    // Get the row count up front via a HEAD-style request so we can fan
+    // out the page reads in parallel. Sequential pagination crossed
+    // Vercel's serverless function timeout once the table grew past
+    // ~3,000 rows; the saved-list import pushed us to 5,000+. Parallel
+    // pagination keeps total wall time at ~one page (5–10s) instead of
+    // O(pages × per-page).
+    const { count, error: countErr } = await supabase
+      .from('pins')
+      .select('id', { count: 'exact', head: true });
+    if (countErr || count == null) {
+      console.error('[pins] fetchAllPins count failed:', countErr);
+      return [];
     }
+
+    const numPages = Math.max(1, Math.ceil(count / PAGE_SIZE));
+    const ranges = Array.from({ length: numPages }, (_, i) => [
+      i * PAGE_SIZE,
+      Math.min((i + 1) * PAGE_SIZE - 1, count - 1),
+    ]);
+
+    const results = await Promise.all(
+      ranges.map(([from, to]) =>
+        supabase
+          .from('pins')
+          .select(INDEX_COLUMNS)
+          .order('name', { ascending: true })
+          .range(from, to)
+          .then(res => {
+            if (res.error) {
+              console.error(`[pins] fetchAllPins page ${from}-${to} failed:`, res.error);
+              return [] as any[];
+            }
+            return (res.data ?? []) as any[];
+          }),
+      ),
+    );
+
+    // Flatten preserving order. Pages came back ordered by `name`, so the
+    // concatenated stream is already globally ordered (each range slice
+    // covers a contiguous chunk of the same sort).
+    const all: any[] = [];
+    for (const page of results) all.push(...page);
     return all.map(rowToPin);
   },
   ['supabase-pins'],

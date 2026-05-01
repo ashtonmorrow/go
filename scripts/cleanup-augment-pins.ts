@@ -111,7 +111,7 @@ function locationKey(s: string | null | undefined): string {
     .replace(/&/g, ' and ')
     .replace(/\([^)]*\)/g, ' ')
     .replace(/[_/,+-]+/g, ' ')
-    .replace(/\b(food|foods|sites|site|all|overall|misc|unexplored|metro|stops|station|stations|route|routes|close|cheap|day|places|visit|destinos|coche|parks|trails|castles|bucket|list|default)\b/g, ' ')
+    .replace(/\b(food|foods|sites|site|all|overall|misc|unexplored|metro|stops|station|stations|route|routes|close|cheap|day|places|visit|want|go|destinos|coche|parks|trails|castles|bucket|list|default)\b/g, ' ')
     .replace(/\b(uk|fr|nl|es|ar|sc|ny)\b/g, ' ')
     .replace(/\d+/g, ' ')
     .replace(/[^a-z0-9 ]+/g, ' ')
@@ -223,14 +223,14 @@ function categoryToKind(category: string | null | undefined, name: string, curre
   const categoryText = fold(category);
   const nameText = fold(name);
   const c = `${categoryText} ${nameText}`;
-  if (/\b(hotel|lodging|resort|hostel|inn|motel|guest ?house|guesthouse|lodge|aparthotel|suites|riad|hyatt|marriott|sheraton|hilton|conrad|waldorf|courtyard|fairfield|moxy|ritz[- ]?carlton|andaz|westin|kimpton|intercontinental|holiday inn|crowne plaza|radisson|wyndham|ramada|best western|four seasons|mandarin oriental|peninsula|kempinski|sofitel|novotel|mercure|ibis|pullman|accor|melia|barcelo|riu|fairmont|raffles|swissotel|movenpick|jumeirah|rosewood|edition|hoxton|citizenm|premier inn|travelodge|meridien)\b/.test(c)) return 'hotel';
+  if (/\b([a-z]*hotel|lodging|resort|hostel|inn|motel|guest ?house|guesthouse|lodge|aparthotel|suites|riad|bujtina|hyatt|marriott|sheraton|hilton|conrad|waldorf|courtyard|fairfield|moxy|ritz[- ]?carlton|andaz|westin|kimpton|intercontinental|holiday inn|crowne plaza|radisson|wyndham|ramada|best western|four seasons|mandarin oriental|peninsula|kempinski|sofitel|novotel|mercure|ibis|pullman|accor|melia|barcelo|riu|fairmont|raffles|swissotel|movenpick|jumeirah|rosewood|edition|hoxton|citizenm|premier inn|travelodge|meridien)\b/.test(c)) return 'hotel';
   if (/\b(restaurant|restaurante|cafe|caffe|coffee|coffe|bar|bakery|meal|food|pizza|sushi|tacos|brasserie|bistro|pub|brewery|taproom|grill|diner|noodle|ramen|pasta|steakhouse|takeaway|take away)\b/.test(categoryText)) return 'restaurant';
-  if (/\b(restaurant|restaurante|ristorante|cafe|caffe|coffee|coffe|bakery|bake|beigel|boulangerie|patisserie|pasteleria|panaderia|pizza|pizzeria|sushi|maki|ramen|noodle|dosa|tacos|taqueria|brasserie|bistro|pub|brewery|taproom|grill|diner|cantina|konoba|trattoria|osteria|parrilla|asado|bbq|barbecue|burger|falafel|shawarma|empanada|burrito|gelato|ice cream|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b/.test(nameText)) return 'restaurant';
+  if (/\b(restaurant|restaurante|ristorante|restoran|cafe|caffe|coffee|coffe|bakery|bake|beigel|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata|pizza|pizzeria|sushi|maki|ramen|noodle|dosa|donburi|teishoku|kebab|bao|kitchen|cocina|cucina|krua|tacos|taqueria|brasserie|bistro|pub|tavern|brewery|brewing|bierwerk|cerveceria|cerveza|taproom|grill|diner|cantina|konoba|trattoria|osteria|ostreria|parrilla|asado|bbq|barbecue|burger|falafel|shawarma|empanada|burrito|gelato|ice cream|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b|burger/.test(nameText)) return 'restaurant';
   if (/\bbar\b/.test(nameText) && !/\b(old town of bar|bar,\s*montenegro)\b/.test(nameText)) return 'restaurant';
   if (/\b(airport|station|terminal|transit|metro|subway|rail|ferry)\b/.test(c)) return 'transit';
   if (/\b(park|garden|gardens|botanical|beach|trail|reserve|national park|waterfall|lido)\b/.test(c)) return 'park';
-  if (/\b(store|shop|shopping|market|mercado|bazaar|mall|pharmacy|supermarket|boutique|tailor|barber)\b/.test(c)) return 'shopping';
-  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|waterbom|windmill|college|viking centre|viking center|plaza|square)\b/.test(c)) return 'attraction';
+  if (/\b(store|shop|shopping|market|mercado|bazaar|mall|markthal|pharmacy|supermarket|boutique|tailor|barber)\b/.test(c)) return 'shopping';
+  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|wat|ossuary|monasterio|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|theme park|waterbom|windmill|college|viking centre|viking center|plaza|square|skyspace|plopsaland|terra mitica)\b/.test(c)) return 'attraction';
   if (current && ALLOWED_KINDS.has(current)) return current;
   return defaultToAttraction ? 'attraction' : null;
 }
@@ -272,12 +272,15 @@ function makeDescription(row: PinRow, city: string | null, country: string | nul
 
 function inferCuisine(row: PinRow): string[] | null {
   if (row.kind !== 'restaurant') return null;
-  const s = `${row.name} ${row.category ?? ''} ${row.description ?? ''}`.toLowerCase();
+  const s = `${row.name} ${row.category ?? ''} ${row.description ?? ''}`
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '');
   const matches: [RegExp, string][] = [
     [/\blebanese\b/, 'Lebanese'],
-    [/\bitalian|ristorante|trattoria|osteria|pizzeria|pizza\b/, 'Italian'],
-    [/\bjapanese|sushi|ramen|izakaya\b/, 'Japanese'],
-    [/\bthai\b/, 'Thai'],
+    [/\bitalian|italia|ristorante|trattoria|osteria|ostreria|pizzeria|pizza|cucina|sapori|pasteis|nata\b/, 'Italian'],
+    [/\bjapanese|sushi|ramen|izakaya|donburi|teishoku|ippudo\b/, 'Japanese'],
+    [/\bthai|krua\b/, 'Thai'],
     [/\bindian\b/, 'Indian'],
     [/\bchinese|dimsum|dim sum\b/, 'Chinese'],
     [/\bvietnamese|pho\b/, 'Vietnamese'],
@@ -295,8 +298,8 @@ function inferCuisine(row: PinRow): string[] | null {
     [/\bcafe|coffee|coffe|bakery|patisserie|café\b/, 'Cafe'],
     [/\bvegan|vegetarian\b/, 'Vegetarian'],
     [/\bmediterranean\b/, 'Mediterranean'],
-    [/\bbar|pub|lounge|cocktail|brewery|beer|wine\b/, 'Bar'],
-    [/\bbakery|boulangerie|pasteleria|pastelería|panaderia|panadería\b/, 'Bakery'],
+    [/\bbar|pub|tavern|lounge|cocktail|brewery|brewing|cerveceria|cerveza|bierwerk|beer|wine\b/, 'Bar'],
+    [/\bbakery|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata\b/, 'Bakery'],
     [/\bice cream|gelato|chocolate|dessert|sweet\b/, 'Dessert'],
     [/\bfast food|takeaway|takeout\b/, 'Fast food'],
     [/\bfood court|food hall\b/, 'Food hall'],
@@ -308,8 +311,8 @@ function inferCuisine(row: PinRow): string[] | null {
 function inferMealTypes(row: PinRow): string[] | null {
   if (row.kind !== 'restaurant') return null;
   const s = `${row.name} ${row.category ?? ''} ${row.description ?? ''}`.toLowerCase();
-  if (/\bbar|pub|lounge|cocktail|brewery|beer|wine\b/.test(s)) return ['drinks'];
-  if (/\bcoffee|coffe|cafe|café|bakery|boulangerie|patisserie|pâtisserie|breakfast|brunch\b/.test(s)) {
+  if (/\bbar|pub|tavern|lounge|cocktail|brewery|brewing|cerveceria|cerveza|beer|wine\b/.test(s)) return ['drinks'];
+  if (/\bcoffee|coffe|cafe|café|caffe|bakery|boulangerie|patisserie|pâtisserie|patiseria|pasteleria|panaderia|pasteis|nata|breakfast|brunch\b/.test(s)) {
     return ['breakfast', 'lunch'];
   }
   if (/\bice cream|gelato|chocolate|dessert|sweet\b/.test(s)) return ['snack'];
@@ -335,14 +338,14 @@ function inferPriceTier(row: PinRow): '$' | '$$' | '$$$' | '$$$$' | null {
   if (/\${4}/.test(text) || /\b(tasting menu|fine dining|michelin|luxury)\b/.test(text)) return '$$$$';
   if (/\${3}/.test(text) || /\b(expensive|upscale)\b/.test(text)) return '$$$';
   if (/\${2}/.test(text) || /\b(moderate|mid[- ]range)\b/.test(text)) return '$$';
-  if (/\${1}/.test(text) || /\b(cheap|inexpensive|budget|fast food|street food|coffee|coffe|bakery|cafe|café)\b/.test(text)) return '$';
+  if (/\${1}/.test(text) || /\b(cheap|inexpensive|budget|fast food|street food|coffee|coffe|bakery|cafe|café|caffe|kebab|falafel|pita|pasteis|nata)\b/.test(text)) return '$';
   if (amount != null) {
     if (amount <= 15) return '$';
     if (amount <= 35) return '$$';
     if (amount <= 75) return '$$$';
     return '$$$$';
   }
-  if (/\b(bar|pub|lounge|coffee|coffe|cafe|café|bakery|ice cream|gelato|food court|fast food)\b/.test(text)) return '$';
+  if (/\b(bar|pub|tavern|lounge|coffee|coffe|cafe|café|caffe|bakery|ice cream|gelato|food court|fast food|kebab|falafel)\b/.test(text)) return '$';
   return null;
 }
 
@@ -511,6 +514,21 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'vila joyosa': { cityNames: ['Villajoyosa'], country: 'Spain' },
 };
 
+const GENERIC_SAVED_LIST_NAMES = new Set([
+  'want to go',
+  'bucket list',
+  'random bucket list',
+  'default list(1)',
+  'cool',
+  'random',
+  'misc',
+  'everything sketchy',
+  'images',
+  'photography spots',
+  'spa day',
+  'coffee shops',
+].map(value => String(value).toLowerCase().trim()));
+
 function uniqueStrings(values: Array<string | null | undefined>): string[] {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -586,10 +604,31 @@ function buildMissingSlugPatches(pins: PinRow[]): Map<string, string> {
   return out;
 }
 
+function rawSavedListKey(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function savedListNames(pin: PinRow): string[] {
+  return [...(Array.isArray(pin.saved_lists) ? pin.saved_lists : []), ...(Array.isArray(pin.lists) ? pin.lists : [])]
+    .map(String)
+    .filter(Boolean);
+}
+
+function hasOnlyGenericSavedLists(pin: PinRow): boolean {
+  const lists = savedListNames(pin);
+  return lists.length > 0 && lists.every(list => GENERIC_SAVED_LIST_NAMES.has(rawSavedListKey(list)));
+}
+
 function inferLocationFromSavedLists(pin: PinRow, cityCountryLookup: Map<string, LocationHint>): LocationHint | null {
-  const lists = [...(Array.isArray(pin.saved_lists) ? pin.saved_lists : []), ...(Array.isArray(pin.lists) ? pin.lists : [])];
+  const lists = savedListNames(pin);
   const hints: LocationHint[] = [];
   for (const list of lists) {
+    if (GENERIC_SAVED_LIST_NAMES.has(rawSavedListKey(list))) continue;
     const key = locationKey(list);
     if (!key) continue;
     const direct = cityCountryLookup.get(key);
@@ -599,6 +638,7 @@ function inferLocationFromSavedLists(pin: PinRow, cityCountryLookup: Map<string,
     }
     const words = key.split(' ').filter(Boolean);
     for (let length = Math.min(3, words.length); length >= 1; length--) {
+      if (length === 1) continue;
       for (let start = 0; start + length <= words.length; start++) {
         const phrase = words.slice(start, start + length).join(' ');
         const hint = cityCountryLookup.get(phrase);
@@ -834,17 +874,32 @@ function derivedPatch(pin: PinRow, cityCountryLookup: Map<string, LocationHint>)
       patch.states_names = [savedListLocation.country];
     }
   }
+  if (
+    String(pin.source ?? '') === 'google-saved-list' &&
+    hasOnlyGenericSavedLists(pin) &&
+    isEmpty(pin.city_names) &&
+    Array.isArray(pin.states_names) &&
+    pin.states_names.length === 1 &&
+    pin.states_names[0] === 'England'
+  ) {
+    patch.states_names = [];
+  }
   if (isEmpty(pin.google_place_url)) {
     const fallback = fallbackGoogleMapsUrl(pin);
     if (fallback) patch.google_place_url = fallback;
   }
-  const effectiveCity = (patch.city_names?.[0] ?? (Array.isArray(pin.city_names) ? pin.city_names[0] : null)) || city;
-  const effectiveCountry = (patch.states_names?.[0] ?? (Array.isArray(pin.states_names) ? pin.states_names[0] : null)) || country;
+  const effectiveCity = (Array.isArray(patch.city_names)
+    ? patch.city_names[0] ?? null
+    : (Array.isArray(pin.city_names) ? pin.city_names[0] : null)) || city;
+  const effectiveCountry = (Array.isArray(patch.states_names)
+    ? patch.states_names[0] ?? null
+    : (Array.isArray(pin.states_names) ? pin.states_names[0] : null)) || country;
   const generatedDescriptionNeedsRefresh =
     typeof pin.description === 'string' &&
     pin.description.startsWith(`${pin.name} is `) &&
     (descriptionHasMessyLocation(pin.description) ||
       /\bis a attraction\b/.test(pin.description) ||
+      (hasOnlyGenericSavedLists(pin) && isEmpty(pin.city_names) && isEmpty(pin.states_names) && /\bin England\b/.test(pin.description)) ||
       Boolean(patch.kind) ||
       Boolean(patch.city_names) ||
       Boolean(patch.states_names));

@@ -12,7 +12,19 @@ import { listNameToSlug } from '@/lib/savedLists';
 //
 // POST { action: 'delete', name: '<list>' }
 //   → every pin where saved_lists ? name has the entry removed. The pin
-//     itself stays (we never auto-delete pins from a list deletion).
+//     itself stays (we never auto-delete pins from a list deletion). The
+//     metadata row in `saved_lists` is also dropped.
+//
+// POST { action: 'updateMeta', name, google_share_url?, description? }
+//   → upsert metadata for a list. Empty string clears the URL.
+//
+// POST { action: 'create', name }
+//   → seed an empty list (saved_lists metadata row only). The list shows
+//     up in the admin UI even with zero members so it can be filled in.
+//
+// POST { action: 'addPin', name, pinId } / { action: 'removePin', name, pinId }
+//   → toggle a single pin's membership in a list. Idempotent on both
+//     sides; safe to spam from a checkbox UI.
 //
 // All ops bust the public-pages cache so /lists and /lists/<slug> reflect
 // the change after a single deploy-free roundtrip.
@@ -28,7 +40,10 @@ type UpdateMetaBody = {
   google_share_url?: string | null;
   description?: string | null;
 };
-type Body = RenameBody | DeleteBody | UpdateMetaBody;
+type CreateBody = { action: 'create'; name: string };
+type AddPinBody = { action: 'addPin'; name: string; pinId: string };
+type RemovePinBody = { action: 'removePin'; name: string; pinId: string };
+type Body = RenameBody | DeleteBody | UpdateMetaBody | CreateBody | AddPinBody | RemovePinBody;
 
 function normalizeName(s: string): string {
   // Saved-list names are lowercase + space-separated in the DB. Trim &
@@ -132,7 +147,77 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  return NextResponse.json({ error: 'action must be rename | delete | updateMeta' }, { status: 400 });
+  if (body.action === 'create') {
+    const name = normalizeName(body.name ?? '');
+    if (!name) {
+      return NextResponse.json({ error: 'create requires `name`' }, { status: 400 });
+    }
+    // Upsert into the saved_lists metadata table. The list now exists in
+    // the admin UI even though no pin carries it — Mike can populate it
+    // from the list-detail page next.
+    const { error } = await sb.from('saved_lists').upsert(
+      { name, updated_at: new Date().toISOString() },
+      { onConflict: 'name' },
+    );
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    try { revalidateTag('saved-lists-meta'); } catch {/* ignore */}
+    bustCaches(name);
+    return NextResponse.json({ ok: true, name });
+  }
+
+  if (body.action === 'addPin' || body.action === 'removePin') {
+    const name = normalizeName(body.name ?? '');
+    const pinId = (body.pinId ?? '').trim();
+    if (!name || !pinId) {
+      return NextResponse.json(
+        { error: `${body.action} requires \`name\` and \`pinId\`` },
+        { status: 400 },
+      );
+    }
+    // Read-modify-write the single pin's saved_lists array. The set
+    // is small (rarely more than 5–10 entries), so the round-trip is fine.
+    const { data: pinRow, error: selErr } = await sb
+      .from('pins')
+      .select('id, saved_lists')
+      .eq('id', pinId)
+      .maybeSingle();
+    if (selErr) return NextResponse.json({ error: selErr.message }, { status: 500 });
+    if (!pinRow) return NextResponse.json({ error: 'pin not found' }, { status: 404 });
+
+    const current = (pinRow.saved_lists as string[]) ?? [];
+    const next = body.action === 'addPin'
+      ? Array.from(new Set([...current, name])).sort()
+      : current.filter(s => s !== name);
+    // Skip the write if nothing changed — keeps updated_at honest.
+    if (next.length === current.length && next.every((v, i) => v === current[i])) {
+      return NextResponse.json({ ok: true, changed: false });
+    }
+    const { error: updErr } = await sb
+      .from('pins')
+      .update({ saved_lists: next, updated_at: new Date().toISOString() })
+      .eq('id', pinId);
+    if (updErr) return NextResponse.json({ error: updErr.message }, { status: 500 });
+
+    // Make sure the metadata row exists for newly-touched list names so
+    // the admin UI shows them next render even if no other pin carries
+    // the list yet.
+    if (body.action === 'addPin') {
+      await sb.from('saved_lists').upsert(
+        { name, updated_at: new Date().toISOString() },
+        { onConflict: 'name' },
+      );
+    }
+    try { revalidateTag('saved-lists-meta'); } catch {/* ignore */}
+    bustCaches(name);
+    return NextResponse.json({ ok: true, changed: true });
+  }
+
+  return NextResponse.json(
+    { error: 'action must be rename | delete | updateMeta | create | addPin | removePin' },
+    { status: 400 },
+  );
 }
 
 /** Rename a list across all pins by reading affected rows + re-writing. */
