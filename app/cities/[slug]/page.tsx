@@ -148,6 +148,12 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       ? ['Open-Elevation', 'https://open-elevation.com/', 'Coordinate-based elevation backfill.']
       : null,
     city.timeZone ? ['tz database', 'https://www.iana.org/time-zones', 'Coordinate-based IANA timezone lookup.'] : null,
+    city.heroImageAttribution
+      ? ['Hero image source', city.heroImageAttribution.sourceUrl, `${city.heroImageAttribution.license ?? 'License noted at source'}${city.heroImageAttribution.author ? `, ${city.heroImageAttribution.author}` : ''}.`]
+      : null,
+    city.cityFlagAttribution
+      ? ['City flag source', city.cityFlagAttribution.sourceUrl, `${city.cityFlagAttribution.license ?? 'License noted at source'}${city.cityFlagAttribution.author ? `, ${city.cityFlagAttribution.author}` : ''}.`]
+      : null,
   ].filter(Boolean) as [string, string, string][];
 
   // Structured data — City + BreadcrumbList. The breadcrumb gives Google

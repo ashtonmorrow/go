@@ -111,6 +111,12 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
   }
 
   for (const p of posts) {
+    // Skip stub posts whose external_route points at a hand-coded article we
+    // already added above. Otherwise /articles would show two cards for the
+    // same content (one per source) — hand-coded ARTICLES wins because that
+    // page has the bespoke layout.
+    if (p.externalRoute && seenHrefs.has(p.externalRoute)) continue;
+
     const href = `/posts/${p.slug}`;
     if (seenHrefs.has(href)) continue;
     seenHrefs.add(href);

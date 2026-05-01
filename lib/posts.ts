@@ -27,6 +27,11 @@ export type Post = {
   authors: string[];
   links: PostLinks;
   tags: string[];
+  /** When set, this post is a stub that points at a hand-coded page elsewhere
+   *  (e.g. /airline-stopover-programs). Surfaces (article index, related posts)
+   *  should treat it like a redirect — render the canonical article entry, not
+   *  a duplicate post tile. */
+  externalRoute: string | null;
   bodyHtml: string;
   bodyMd: string;
 };
@@ -86,6 +91,8 @@ async function readPostFile(slug: string): Promise<Post | null> {
     authors: normalizeStringArray(data.authors),
     links: normalizeLinks(data.links),
     tags: normalizeStringArray(data.tags),
+    externalRoute:
+      typeof data.external_route === "string" ? data.external_route : null,
     bodyHtml,
     bodyMd,
   };
