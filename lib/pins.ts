@@ -481,10 +481,10 @@ const _fetchAllPins = unstable_cache(
     return all.map(rowToPin);
   },
   // Cache key bumped to force a fresh refetch after the parallel-pagination
-  // fix landed — the previous key still held an empty-array poison from the
-  // pre-fix build and would have served that for another 24h. The bump is
-  // a one-time invalidation; no other code references the key by name.
-  ['supabase-pins-v2'],
+  // fix landed and again after the visited=true backfill on Google-imported
+  // pins. The cache is keyed by string; bumping the suffix is the simplest
+  // way to invalidate without waiting on the 24h TTL.
+  ['supabase-pins-v3'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 export const fetchAllPins = cache(_fetchAllPins);

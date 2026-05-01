@@ -273,6 +273,22 @@ function NavBody({
         ))}
       </Section>
 
+      {/* Admin sub-nav — only renders when the user is already inside the
+          /admin section (which means they got past the basic-auth gate at
+          least once this session). Keeps the sidebar non-leaky for public
+          visitors while making the admin sub-pages discoverable to Mike
+          once he's typed /admin/lists or similar.
+          Always-visible on /admin/* avoids the chicken-and-egg of needing
+          a link to find a link. */}
+      {pathname.startsWith('/admin') && (
+        <Section label="Admin">
+          <Item href="/admin/pins"          emoji="📌" label="Pins editor"   onClick={onLinkClick} />
+          <Item href="/admin/lists"         emoji="🗂️" label="Saved lists"   onClick={onLinkClick} />
+          <Item href="/admin/upload"        emoji="📷" label="Upload photos" onClick={onLinkClick} />
+          <Item href="/admin/reservations/new" emoji="🛎️" label="Add reservation" onClick={onLinkClick} />
+        </Section>
+      )}
+
       {/* Bottom block: Home (= the parent site, mike-lee.me — this is
           just a sub-section), then a quiet About link below it. About
           got demoted from the Views section (which is reserved for the

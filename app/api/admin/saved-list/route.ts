@@ -266,10 +266,19 @@ async function deleteByQuery(
 function bustCaches(...affectedListNames: string[]) {
   try {
     revalidateTag('supabase-pins');
+    // Also bust the saved-lists metadata cache — the admin page and the
+    // public /lists pages read it on every render and would otherwise
+    // serve a 5-minute-stale snapshot of the metadata table after a
+    // delete/create, making the change look like it didn't take.
+    revalidateTag('saved-lists-meta');
     revalidatePath('/lists');
+    revalidatePath('/admin/lists');
     for (const name of affectedListNames) {
       const slug = listNameToSlug(name);
-      if (slug) revalidatePath(`/lists/${slug}`);
+      if (slug) {
+        revalidatePath(`/lists/${slug}`);
+        revalidatePath(`/admin/lists/${slug}`);
+      }
     }
   } catch {
     /* ignore */

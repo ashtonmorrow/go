@@ -19,12 +19,52 @@ const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit
 type Kind = typeof KINDS[number];
 
 export default function VisitedEditorClient({ initialRows }: { initialRows: Row[] }) {
+  // We splice rows out of the bulk roster as they're deleted server-side,
+  // so the visible table tracks the live database. The original-visited
+  // map is keyed by id, so dropping a row keeps the diff math sound.
+  const [rows, setRows] = useState<Row[]>(initialRows);
+  const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
   const [originalVisited] = useState<Map<string, boolean>>(
     () => new Map(initialRows.map(r => [r.id, r.visited])),
   );
   const [current, setCurrent] = useState<Map<string, boolean>>(
     () => new Map(initialRows.map(r => [r.id, r.visited])),
   );
+
+  async function deletePin(id: string, name: string) {
+    if (!window.confirm(
+      `Permanently delete "${name}" from the database? ` +
+      `Personal photos go too. This can't be undone.`,
+    )) return;
+    setDeletingIds(prev => {
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+    try {
+      const res = await fetch('/api/admin/delete-pin', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinId: id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'delete failed');
+      setRows(prev => prev.filter(r => r.id !== id));
+      setCurrent(prev => {
+        const next = new Map(prev);
+        next.delete(id);
+        return next;
+      });
+    } catch (e) {
+      window.alert(e instanceof Error ? e.message : 'delete failed');
+    } finally {
+      setDeletingIds(prev => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    }
+  }
   const [q, setQ] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
   const [country, setCountry] = useState<string>('');
@@ -49,7 +89,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    const out = initialRows.filter(r => {
+    const out = rows.filter(r => {
       const visitedNow = current.get(r.id) ?? r.visited;
       if (filter === 'visited' && !visitedNow) return false;
       if (filter === 'not-visited' && visitedNow) return false;
@@ -65,7 +105,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       );
     });
 
-    // Initial rows arrive pre-sorted by updated_at desc (server sets this).
+    // Rows arrive pre-sorted by updated_at desc (server sets this).
     // Re-sort only when the user picks a non-recent key.
     if (sortKey !== 'recent') {
       out.sort((a, b) => {
@@ -75,7 +115,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       });
     }
     return out;
-  }, [initialRows, q, filter, country, kindFilter, sortKey, current]);
+  }, [rows, q, filter, country, kindFilter, sortKey, current]);
 
   const toggleKind = (k: Kind) => {
     setKindFilter(prev => {
@@ -190,7 +230,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           </select>
 
           <span className="text-label text-muted">
-            {filtered.length} shown · {visitedCount} of {initialRows.length} visited
+            {filtered.length} shown · {visitedCount} of {rows.length} visited
           </span>
         </div>
 
@@ -228,7 +268,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         </div>
 
         <div className="flex items-center gap-2">
-          {filtered.length > 0 && filtered.length < initialRows.length && (
+          {filtered.length > 0 && filtered.length < rows.length && (
             <>
               <button
                 type="button"
@@ -349,6 +389,15 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                         view ↗
                       </Link>
                     )}
+                    <button
+                      type="button"
+                      onClick={() => deletePin(row.id, row.name)}
+                      disabled={deletingIds.has(row.id)}
+                      className="ml-2 text-micro text-orange hover:underline disabled:opacity-50"
+                      title="Permanently delete this pin"
+                    >
+                      {deletingIds.has(row.id) ? 'deleting…' : 'delete'}
+                    </button>
                   </td>
                   <td className="px-3 py-2 align-top text-slate hidden lg:table-cell">
                     {row.kind ? (
