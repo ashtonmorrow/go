@@ -480,7 +480,11 @@ const _fetchAllPins = unstable_cache(
     for (const page of results) all.push(...page);
     return all.map(rowToPin);
   },
-  ['supabase-pins'],
+  // Cache key bumped to force a fresh refetch after the parallel-pagination
+  // fix landed — the previous key still held an empty-array poison from the
+  // pre-fix build and would have served that for another 24h. The bump is
+  // a one-time invalidation; no other code references the key by name.
+  ['supabase-pins-v2'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 export const fetchAllPins = cache(_fetchAllPins);
