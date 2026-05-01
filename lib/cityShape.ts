@@ -22,6 +22,16 @@ export type City = {
   been: boolean;
   go: boolean;
   cityFlag: string | null;
+  /** Wikimedia Commons attribution for cityFlag (author/license/source).
+   *  Optional + nullable: only present for Commons-hosted flags after
+   *  scripts/backfill-image-attribution.ts has run, null otherwise. */
+  cityFlagAttribution?: {
+    author: string | null;
+    license: string | null;
+    licenseUrl: string | null;
+    sourceUrl: string;
+    fetchedAt: string;
+  } | null;
   countryFlag: string | null;
   personalPhoto: string | null;
   lat: number | null;

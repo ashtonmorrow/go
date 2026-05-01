@@ -82,6 +82,12 @@ export default async function CitiesPage() {
         c.cityFlag
         ?? (c.wikidataId ? wikidataFlags.get(c.wikidataId) ?? null : null)
         ?? ukRegionFlag,
+      // Attribution flows through only when the curated cityFlag (the
+      // Commons-sourced one) is in use; the wikidataFlags / ukRegionFlag
+      // fallbacks are sourced separately and don't carry author/license
+      // metadata. (TODO: capture provenance for those too if we keep
+      // sourcing from Commons.)
+      cityFlagAttribution: c.cityFlag ? c.cityFlagAttribution : null,
       countryFlag: country?.flag ?? null,
       personalPhoto: c.personalPhoto,
       lat: c.lat,

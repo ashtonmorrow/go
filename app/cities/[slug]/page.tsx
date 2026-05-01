@@ -15,6 +15,7 @@ import { fetchCityClimate } from '@/lib/cityClimate';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
+import ImageCredit from '@/components/ImageCredit';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -99,13 +100,20 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // Final cover URL: city's own photo wins, otherwise we fall back to the
   // most recent pin photo from anywhere in the city. Empty when neither
   // exists; the figure block below renders nothing in that case.
+  // The provenance flags below decide which attribution caption to render:
+  //   - personal photo: no caption (it's mine)
+  //   - heroImage from Commons: real ImageCredit with author + license
+  //   - heroImage from elsewhere: no caption (and we should audit those)
+  //   - pin-photo fallback: borrowed-from-pin caption
   const coverUrl =
     city.personalPhoto ||
     city.heroImage ||
     fallbackCover?.url ||
     null;
-  const coverDims = fallbackCover && !city.personalPhoto && !city.heroImage
-    ? { width: fallbackCover.width ?? 1200, height: fallbackCover.height ?? 800 }
+  const coverIsHeroImage = !city.personalPhoto && !!city.heroImage;
+  const coverIsFallback = !city.personalPhoto && !city.heroImage && !!fallbackCover;
+  const coverDims = coverIsFallback
+    ? { width: fallbackCover!.width ?? 1200, height: fallbackCover!.height ?? 800 }
     : { width: 1200, height: 800 };
 
   // Curated cities = ones I've been to or want to go to. The remaining
@@ -185,10 +193,15 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             height={coverDims.height}
             className="w-full max-h-[60vh] object-cover"
           />
-          {/* Tiny attribution caption when the cover is borrowed from a pin —
-              keeps the user oriented ("this is a photo I took inside the
-              city, not a stock photo"). Only renders when fallback was used. */}
-          {fallbackCover && !city.personalPhoto && !city.heroImage && (
+          {/* Attribution priority:
+              - heroImage from Commons → author/license/source caption
+              - pin-photo fallback → "From a pin in <city>" orientation note
+              - personal photo → nothing (it's mine and the page header
+                already names me)  */}
+          {coverIsHeroImage && city.heroImageAttribution && (
+            <ImageCredit attribution={city.heroImageAttribution} className="px-1 mt-1" />
+          )}
+          {coverIsFallback && (
             <figcaption className="text-[11px] text-muted px-1 mt-1">
               From a pin in {city.name}
             </figcaption>

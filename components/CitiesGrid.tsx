@@ -8,6 +8,7 @@ import type { City } from '@/lib/cityShape';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
+import { imageCreditTitle } from './ImageCredit';
 
 type Props = { cities: City[] };
 
@@ -345,7 +346,17 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           transform: 'rotate(2deg)',
           boxShadow: '0 1px 1px rgba(80, 56, 28, 0.08)',
         }}
-        title={city.cityFlag ? `${city.name} flag` : city.country ? `${city.country} flag` : ''}
+        // Title attribute carries Commons attribution when we have it.
+        // Per-card visible captions don't fit on a 90px stamp; the tooltip
+        // is the practical surface, with the full credit on /credits.
+        title={
+          imageCreditTitle(city.cityFlagAttribution ?? null) ??
+          (city.cityFlag
+            ? `${city.name} flag`
+            : city.country
+            ? `${city.country} flag`
+            : '')
+        }
       >
         {flagSrc ? (
           // eslint-disable-next-line @next/next/no-img-element

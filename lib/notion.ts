@@ -53,6 +53,16 @@ async function withRetry<T>(fn: () => Promise<T>, tries = 5): Promise<T> {
 export const CITIES_DB = '2d3fdea3fd4b8080b8e4fc674cdf8cd4';
 export const COUNTRIES_DB = 'a925032ca4da48fa952e9dde3713955f';
 
+/** Per-image attribution for Wikimedia-Commons-sourced images. Null when
+ *  the image isn't Commons-hosted (or hasn't been backfilled yet). */
+export type ImageAttribution = {
+  author: string | null;
+  license: string | null;
+  licenseUrl: string | null;
+  sourceUrl: string;
+  fetchedAt: string;
+};
+
 export type City = {
   id: string;
   name: string;
@@ -81,8 +91,10 @@ export type City = {
   iataAirports: string | null;
   sisterCities: string[]; // page IDs
   heroImage: string | null;
+  heroImageAttribution: ImageAttribution | null;
   personalPhoto: string | null;
   cityFlag: string | null;
+  cityFlagAttribution: ImageAttribution | null;
   wikidataId: string | null;
   wikipediaUrl: string | null;
   wikipediaSummary: string | null;
@@ -174,8 +186,10 @@ function supaCityRow(r: any): City {
     iataAirports:         r.iata_airports ?? null,
     sisterCities:         Array.isArray(r.sister_cities) ? r.sister_cities : [],
     heroImage:            r.hero_image ?? null,
+    heroImageAttribution: r.hero_image_attribution ?? null,
     personalPhoto:        r.personal_photo ?? null,
     cityFlag:             r.city_flag ?? null,
+    cityFlagAttribution:  r.city_flag_attribution ?? null,
     wikidataId:           r.wikidata_id ?? null,
     wikipediaUrl:         r.wikipedia_url ?? null,
     wikipediaSummary:     r.wikipedia_summary ?? null,
