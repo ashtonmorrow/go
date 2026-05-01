@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   Map as MapView,
@@ -16,6 +17,16 @@ import { useCityFilters } from './CityFiltersContext';
 import { applyLayerVisibility, cityLayer, filterCities, layerCounts as countLayers, sortCities } from '@/lib/cityFilter';
 import { COLORS } from '@/lib/colors';
 import ActiveFilters from './ActiveFilters';
+import KoppenIcon from './KoppenIcon';
+
+/** Compact population formatter — "1.2M", "640K", "23K", "5,200" — sized to
+ *  fit the narrow popup without overflowing. Uses Intl when available. */
+function formatPopulation(n: number | null | undefined): string | null {
+  if (n == null || !Number.isFinite(n) || n <= 0) return null;
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(n >= 10_000_000 ? 0 : 1)}M`;
+  if (n >= 10_000) return `${Math.round(n / 1_000)}K`;
+  return new Intl.NumberFormat('en-US').format(n);
+}
 
 // Pin shape consumed by the globe. Now carries the same practicality
 // fields as the rest of the city pipeline so the cockpit can filter on
@@ -201,6 +212,30 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
     [router]
   );
 
+  // === Sticky-popup grace timer ============================================
+  // Hover opens the popup. Moving the cursor off the pin schedules a close
+  // 220ms later — long enough to slide the cursor onto the popup itself.
+  // The popup's wrapper cancels the timer on mouseenter so it stays open
+  // while the user reads the climate/population row or clicks a button.
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cancelClose = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+  const scheduleClose = useCallback(() => {
+    cancelClose();
+    closeTimerRef.current = setTimeout(() => setHovered(null), 220);
+  }, [cancelClose]);
+
+  // Cleanup on unmount.
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
   const handleMouseMove = useCallback(
     (e: MapMouseEvent) => {
       const feat = e.features?.[0];
@@ -208,13 +243,21 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         const id = feat.properties?.id as string | undefined;
         if (id) {
           const p = byId.get(id);
-          if (p && p.id !== hovered?.id) setHovered(p);
+          if (p && p.id !== hovered?.id) {
+            cancelClose();
+            setHovered(p);
+          } else if (p) {
+            // Re-entered the same pin — cancel any pending close.
+            cancelClose();
+          }
         }
       } else if (hovered) {
-        setHovered(null);
+        // Cursor left all pins. Schedule a close, but let the popup cancel
+        // it if the cursor moves into the popup body itself.
+        scheduleClose();
       }
     },
-    [byId, hovered]
+    [byId, hovered, cancelClose, scheduleClose]
   );
 
   return (
@@ -337,7 +380,13 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
           />
         </Source>
 
-        {/* Hover popup */}
+        {/* === Hover popup (interactive) =====================================
+            Sticky: opens on pin hover, stays open while the cursor is in the
+            popup body. Shows climate icon, population, an optional saved-
+            places link (matching the gold-ring overlay), and a "Sister
+            cities" button that takes over the highlight trigger from the
+            legend. The whole popup is one mouse-region — onMouseEnter
+            cancels the pending close, onMouseLeave starts a fresh timer. */}
         {hovered && (
           <Popup
             longitude={hovered.lng}
@@ -348,20 +397,126 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             offset={14}
             className="!p-0"
           >
-            <div className="flex items-center gap-2 px-2.5 py-1.5">
-              {hovered.countryFlag && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={hovered.countryFlag}
-                  alt=""
-                  className="w-4 h-auto rounded-sm border border-sand"
-                />
-              )}
-              <div>
-                <div className="text-ink-deep font-medium leading-tight text-small">
-                  {hovered.name}
+            <div
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+              className="min-w-[220px] max-w-[260px] px-3 py-2.5 text-small text-ink"
+            >
+              {/* Header — flag + name + country */}
+              <div className="flex items-start gap-2">
+                {hovered.countryFlag && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={hovered.countryFlag}
+                    alt=""
+                    className="w-5 h-auto rounded-sm border border-sand mt-0.5 flex-shrink-0"
+                  />
+                )}
+                <div className="min-w-0 flex-1">
+                  <Link
+                    href={`/cities/${hovered.slug}`}
+                    className="block text-ink-deep font-semibold leading-tight hover:text-teal transition-colors truncate"
+                  >
+                    {hovered.name}
+                  </Link>
+                  <div className="text-muted text-micro leading-tight truncate">
+                    {hovered.country}
+                  </div>
                 </div>
-                <div className="text-muted text-micro leading-tight">{hovered.country}</div>
+              </div>
+
+              {/* Facts strip — climate + population. Hidden when the city has
+                  neither, so we don't render a sad empty row for sparse data. */}
+              {(hovered.koppen || hovered.population) && (
+                <div className="mt-2 flex items-center gap-3 text-label text-slate">
+                  {hovered.koppen && (
+                    <span className="inline-flex items-center gap-1">
+                      <KoppenIcon code={hovered.koppen} size={13} />
+                      <span>Climate</span>
+                    </span>
+                  )}
+                  {formatPopulation(hovered.population) && (
+                    <span className="inline-flex items-center gap-1">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                      <span className="tabular-nums">
+                        {formatPopulation(hovered.population)}
+                      </span>
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Saved-places link — shown when this city has a Google saved-
+                  places URL (the gold-ring overlay). External link, opens in
+                  a new tab so the map state survives. */}
+              {hovered.savedPlaces && (
+                <a
+                  href={hovered.savedPlaces}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex items-center gap-1.5 text-label font-medium text-accent hover:text-accent/80 transition-colors"
+                >
+                  <span
+                    aria-hidden
+                    className="inline-block w-2.5 h-2.5 rounded-full bg-transparent flex-shrink-0"
+                    style={{ border: `1.5px solid ${COLORS.accent}` }}
+                  />
+                  Saved places
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M7 17 17 7" />
+                    <path d="M7 7h10v10" />
+                  </svg>
+                </a>
+              )}
+
+              {/* Action buttons — sister-cities trigger now lives here, not in
+                  the legend. Clicking promotes the hovered city to selectedId,
+                  which draws the dashed connection lines + golden sister rings.
+                  Disabled when there are no sisters to highlight, so users get
+                  feedback instead of a silent click. */}
+              <div className="mt-3 flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (hovered.sisterCities.length === 0) return;
+                    // Toggle: clicking on a highlighted city clears the
+                    // dashed-line overlay; clicking on a different city
+                    // switches to it.
+                    setSelectedId(prev =>
+                      prev === hovered.id ? null : hovered.id,
+                    );
+                  }}
+                  disabled={hovered.sisterCities.length === 0}
+                  className={
+                    'flex-1 px-2.5 py-1.5 rounded-md text-label font-medium transition-colors ' +
+                    (hovered.sisterCities.length === 0
+                      ? 'bg-cream-soft text-muted cursor-not-allowed'
+                      : selectedId === hovered.id
+                        ? 'bg-accent/15 text-ink-deep border border-accent/40'
+                        : 'bg-ink-deep text-cream-soft hover:bg-ink')
+                  }
+                  title={
+                    hovered.sisterCities.length === 0
+                      ? 'No sister cities recorded'
+                      : selectedId === hovered.id
+                        ? 'Click to clear highlight'
+                        : 'Sister cities'
+                  }
+                >
+                  Sister cities
+                </button>
+                <Link
+                  href={`/cities/${hovered.slug}`}
+                  className="px-2.5 py-1.5 rounded-md text-label font-medium text-ink-deep border border-sand hover:border-slate transition-colors"
+                  title="Open postcard"
+                >
+                  Open →
+                </Link>
               </div>
             </div>
           </Popup>
@@ -370,57 +525,38 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         <NavigationControl position="bottom-left" showCompass={projection === 'globe'} />
       </MapView>
 
-      {/* === Selected-city info card === floating top-left when a pin is
-          selected. Shows where you've drilled to + sister count + a CTA to
-          open the postcard detail. Replaces the old All/Been/Go filter chips
-          since with all cities visible the chips were less essential. */}
+      {/* === Selection clear pill === floats top-left when a sister-city
+          highlight is active, so the user can dismiss the dashed-line overlay
+          without having to find the originating pin again. The richer city
+          info (name, climate, population, "Open postcard") moved into the
+          hover popup itself, so this pill is intentionally minimal. */}
       {selected && (
-        <div className="absolute top-3 left-3 z-10 max-w-xs">
-          <div className="bg-white border border-sand rounded-lg shadow-lg p-3">
-            <div className="flex items-start gap-2">
-              <div className="flex-1 min-w-0">
-                <div className="text-ink-deep font-semibold leading-tight truncate">
-                  {selected.name}
-                </div>
-                <div className="text-muted text-small leading-tight truncate">
-                  {selected.country}
-                </div>
-                <div className="text-label text-slate mt-1">
-                  {selected.sisterCities.length === 0
-                    ? 'No sister cities recorded'
-                    : `${selected.sisterCities.length} sister cit${selected.sisterCities.length === 1 ? 'y' : 'ies'} highlighted`}
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedId(null)}
-                aria-label="Clear selection"
-                className="text-muted hover:text-ink-deep -mr-1 -mt-1 p-1"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M18 6 6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <button
-              type="button"
-              onClick={() => router.push(`/cities/${selected.slug}`)}
-              className="mt-2 w-full px-3 py-1.5 rounded-md bg-ink-deep text-cream-soft text-small font-medium hover:bg-ink transition-colors"
-            >
-              Open postcard →
-            </button>
-          </div>
+        <div className="absolute top-3 left-3 z-10">
+          <button
+            type="button"
+            onClick={() => setSelectedId(null)}
+            className="bg-white/95 backdrop-blur border border-sand rounded-full shadow-sm pl-3 pr-2 py-1.5 text-label text-ink hover:border-slate transition-colors inline-flex items-center gap-2"
+            aria-label={`Clear sister-city highlight on ${selected.name}`}
+          >
+            <span className="text-muted">Highlighting</span>
+            <span className="font-medium text-ink-deep truncate max-w-[14ch]">
+              {selected.name}
+            </span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden>
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
         </div>
       )}
 
-      {/* Legend — compact pin-color key, only shown when nothing is selected.
-          Mirrors the LAYERS in the sidebar cockpit so the user can map any
-          on-map color back to its toggle. Layers the user has hidden are
-          rendered greyed out in the legend so the key still reads as
-          complete but tells the truth about what's currently shown. The
-          gold ring is a separate row for the orthogonal saved-places
-          overlay, not a status — explicitly labelled as "ring" so users
-          read it as overlay rather than another color. */}
+      {/* Legend — compact pin-color key. Mirrors the LAYERS in the sidebar
+          cockpit so any on-map color maps back to its toggle. Layers hidden
+          in the cockpit are dimmed here so the key still reads as complete
+          but tells the truth about what's currently shown. The gold ring is
+          a separate row for the orthogonal saved-places overlay, labelled
+          "ring" so users read it as overlay rather than a status color. The
+          old "Click a pin to see its sister cities" hint is gone — that
+          trigger now lives as a button inside the pin's hover popup. */}
       {!selected && (
         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur border border-sand rounded-lg shadow-sm p-2.5 text-label text-slate">
           <LegendRow
@@ -443,9 +579,6 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-0.5" style={{ background: COLORS.accent, opacity: 0.5 }} />
             <span>Sister-city link</span>
-          </div>
-          <div className="text-muted text-micro mt-1.5">
-            Click a pin to see its sister cities
           </div>
         </div>
       )}

@@ -1026,14 +1026,28 @@ function HoursBlock({
   if (hasHoursDetailsData && hoursDetails) {
     const w = hoursDetails.weekly ?? null;
     const dailyText = w?.daily;
+    // If `weekly` exists but every per-day field is missing, treat the whole
+    // schedule as "not yet annotated" rather than rendering seven rows that
+    // each say Closed. Otherwise render the table and use "—" for missing
+    // days so they're visually distinct from explicit "Closed" entries.
+    const populatedDays = w
+      ? HOURS_DAY_ORDER.filter(d => {
+          const t = (w as Record<string, string | undefined>)[d];
+          return typeof t === 'string' && t.trim().length > 0;
+        })
+      : [];
+    const allDaysEmpty = w && !dailyText && populatedDays.length === 0;
     return (
       <div className="text-small">
         {dailyText ? (
           <p className="text-ink font-mono">Daily {dailyText}</p>
+        ) : allDaysEmpty ? (
+          <NoHoursPlaceholder />
         ) : w ? (
           <dl className="font-mono">
             {HOURS_DAY_ORDER.map(d => {
-              const text = (w as any)[d] as string | undefined;
+              const text = (w as Record<string, string | undefined>)[d];
+              const hasText = typeof text === 'string' && text.trim().length > 0;
               const isToday = d === todayKey;
               return (
                 <div
@@ -1044,7 +1058,9 @@ function HoursBlock({
                     {DAY_LABELS[d]}
                     {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
                   </dt>
-                  <dd className="tabular-nums">{text ?? 'Closed'}</dd>
+                  <dd className={'tabular-nums ' + (hasText ? '' : 'text-muted/70')}>
+                    {hasText ? text : '—'}
+                  </dd>
                 </div>
               );
             })}
@@ -1072,14 +1088,24 @@ function HoursBlock({
   }
 
   if (openingHours) {
+    // Same convention as hours_details.weekly: an entirely-empty schedule
+    // (every day missing or empty array) means we haven't annotated this
+    // pin yet, not that it's closed every day. Render the placeholder
+    // instead of seven rows of "Closed". Per-day, missing intervals show
+    // as "—" so the user can see which days still need annotation.
+    const allDaysEmpty = HOURS_DAY_ORDER.every(d => {
+      const intervals = (openingHours as Record<string, string[] | undefined>)[d];
+      return !intervals || intervals.length === 0;
+    });
+    if (allDaysEmpty && !openingHours.notes) {
+      return <NoHoursPlaceholder />;
+    }
     return (
       <dl className="text-small font-mono">
         {HOURS_DAY_ORDER.map(d => {
-          const intervals = (openingHours as any)[d] as string[] | undefined;
+          const intervals = (openingHours as Record<string, string[] | undefined>)[d];
           const isToday = d === todayKey;
-          const text = !intervals || intervals.length === 0
-            ? 'Closed'
-            : intervals.join(', ');
+          const hasIntervals = !!intervals && intervals.length > 0;
           return (
             <div
               key={d}
@@ -1089,7 +1115,9 @@ function HoursBlock({
                 {DAY_LABELS[d]}
                 {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
               </dt>
-              <dd className="tabular-nums">{text}</dd>
+              <dd className={'tabular-nums ' + (hasIntervals ? '' : 'text-muted/70')}>
+                {hasIntervals ? intervals.join(', ') : '—'}
+              </dd>
             </div>
           );
         })}
@@ -1125,6 +1153,25 @@ function HoursBlock({
         );
       })}
     </dl>
+  );
+}
+
+/**
+ * Placeholder shown when a pin has hours_details / opening_hours / hours
+ * fields, but every per-day cell is empty. Distinguishes "we haven't
+ * annotated this yet" from "this place is closed every day", which is what
+ * the old "Closed" rendering implied. Same pin without any hours field at
+ * all just doesn't render this section — null parent.
+ */
+function NoHoursPlaceholder() {
+  return (
+    <div className="flex items-start gap-2 px-3 py-2 rounded-md bg-cream-soft border border-sand text-small text-muted">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="mt-0.5 flex-shrink-0">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+      <span>Hours haven&rsquo;t been added yet.</span>
+    </div>
   );
 }
 
