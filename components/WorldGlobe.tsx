@@ -28,6 +28,30 @@ function formatPopulation(n: number | null | undefined): string | null {
   return new Intl.NumberFormat('en-US').format(n);
 }
 
+/** Bucket a city's population into one of four size tiers and return the
+ *  filter range that defines that tier. Used by the population chip in the
+ *  hover popup so clicking "693K" snaps the cockpit's population filter to
+ *  "Mid-size" cities (100K – 1M), revealing similar-sized peers on the map. */
+type PopTier = {
+  /** Stable id we use to detect "is this tier currently active?" */
+  id: 'small' | 'mid' | 'large' | 'mega';
+  label: string;
+  min: number;
+  max: number | null;
+};
+const POP_TIERS: PopTier[] = [
+  { id: 'small', label: 'Small (<100K)',   min: 0,          max: 100_000 },
+  { id: 'mid',   label: 'Mid (100K–1M)',   min: 100_000,    max: 1_000_000 },
+  { id: 'large', label: 'Large (1M–10M)',  min: 1_000_000,  max: 10_000_000 },
+  { id: 'mega',  label: 'Megacity (>10M)', min: 10_000_000, max: null },
+];
+function tierForPop(n: number): PopTier {
+  for (const t of POP_TIERS) {
+    if (n >= t.min && (t.max == null || n < t.max)) return t;
+  }
+  return POP_TIERS[POP_TIERS.length - 1];
+}
+
 // Pin shape consumed by the globe. Now carries the same practicality
 // fields as the rest of the city pipeline so the cockpit can filter on
 // them. lat/lng/sisterCities are the additions on top of the standard
@@ -402,7 +426,7 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
             <div
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
-              className="min-w-[240px] max-w-[280px] px-3 py-2.5 text-small text-ink"
+              className="min-w-[240px] max-w-[280px] p-3.5 text-small text-ink"
             >
               {/* Header — flag links to country detail, city name links to
                   city detail. The flag's wrapping anchor is sized to the flag
@@ -456,15 +480,17 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                 </div>
               </div>
 
-              {/* Facts strip — climate is now a clickable chip that toggles
-                  the koppen-group filter in the city filter cockpit. Filtering
-                  by group (A Tropical / B Arid / C Temperate / D Continental
-                  / E Polar) instead of the precise sub-code is intentional:
-                  it lets the user quickly answer "show me other places like
-                  this" without needing to know that Cfa = humid subtropical.
-                  Population is non-interactive — it's a fact, not a filter. */}
+              {/* Facts strip — both climate and population are clickable
+                  chips that toggle filters in the city filter cockpit so the
+                  user can find peer cities. Climate filters by koppen group
+                  (A Tropical / B Arid / C Temperate / D Continental / E Polar);
+                  population snaps to the appropriate size tier (Small / Mid /
+                  Large / Megacity). Climate is icon-only (matches the small-
+                  chip pattern in the navigation cockpit); population shows the
+                  formatted number since the number is the data the user
+                  actually wants to see. */}
               {(hovered.koppen || hovered.population) && (
-                <div className="mt-2.5 flex items-center gap-2 flex-wrap">
+                <div className="mt-2.5 flex items-center gap-1.5 flex-wrap">
                   {hovered.koppen && (() => {
                     const firstChar = hovered.koppen[0]?.toUpperCase();
                     const isKoppenGroup = (c: string | undefined): c is KoppenGroup =>
@@ -485,35 +511,80 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
                           });
                         }}
                         className={
+                          'inline-flex items-center justify-center w-6 h-6 rounded-full transition-colors border ' +
+                          (isActive
+                            ? 'bg-teal/10 text-ink-deep border-teal/40'
+                            : 'bg-cream-soft text-slate border-sand hover:border-slate hover:text-ink-deep')
+                        }
+                        aria-label={
+                          isActive
+                            ? 'Clear climate filter'
+                            : 'Show similar-climate cities'
+                        }
+                        title={
+                          isActive
+                            ? 'Click to clear climate filter'
+                            : 'Show similar-climate cities'
+                        }
+                      >
+                        <KoppenIcon code={hovered.koppen} size={13} />
+                      </button>
+                    );
+                  })()}
+                  {(() => {
+                    const popLabel = formatPopulation(hovered.population);
+                    if (!popLabel || hovered.population == null) return null;
+                    const tier = tierForPop(hovered.population);
+                    // "Active" when the cockpit's range matches this tier's
+                    // bounds — lets the chip read pressed/unpressed correctly
+                    // even when the user gets here via a different entry point.
+                    const isActive =
+                      ctx?.state.populationMin === tier.min &&
+                      (ctx?.state.populationMax ?? null) === tier.max;
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!ctx) return;
+                          ctx.setState((s) => {
+                            // Toggle: clicking an already-active tier clears it.
+                            if (isActive) {
+                              return { ...s, populationMin: null, populationMax: null };
+                            }
+                            return {
+                              ...s,
+                              populationMin: tier.min,
+                              populationMax: tier.max,
+                            };
+                          });
+                        }}
+                        className={
                           'inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-label transition-colors border ' +
                           (isActive
                             ? 'bg-teal/10 text-ink-deep border-teal/40'
                             : 'bg-cream-soft text-slate border-sand hover:border-slate hover:text-ink-deep')
                         }
+                        aria-label={
+                          isActive
+                            ? `Clear ${tier.label} filter`
+                            : `Show ${tier.label} cities`
+                        }
                         title={
                           isActive
-                            ? `Click to clear climate filter`
-                            : `Filter map to this climate group`
+                            ? `Click to clear ${tier.label} filter`
+                            : `Show ${tier.label} cities`
                         }
                       >
-                        <KoppenIcon code={hovered.koppen} size={13} />
-                        <span>Climate</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <span className="tabular-nums">{popLabel}</span>
                       </button>
                     );
                   })()}
-                  {formatPopulation(hovered.population) && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-label text-slate bg-cream-soft border border-sand">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                      </svg>
-                      <span className="tabular-nums">
-                        {formatPopulation(hovered.population)}
-                      </span>
-                    </span>
-                  )}
                 </div>
               )}
 
