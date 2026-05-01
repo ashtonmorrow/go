@@ -144,6 +144,9 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     city.lat != null && city.lng != null
       ? ['NASA POWER', `https://power.larc.nasa.gov/data-access-viewer/?start=1991&end=2020&latitude=${city.lat}&longitude=${city.lng}&community=ag`, 'Monthly temperature and rainfall climatology.']
       : null,
+    city.lat != null && city.lng != null
+      ? ['Open-Meteo historical weather', 'https://open-meteo.com/en/docs/historical-weather-api', '1991-2020 temperature and precipitation cross-check for compact climate fields.']
+      : null,
     city.elevation != null && city.lat != null && city.lng != null
       ? ['Open-Elevation', 'https://open-elevation.com/', 'Coordinate-based elevation backfill.']
       : null,
