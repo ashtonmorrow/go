@@ -18,9 +18,9 @@ const UPDATED_ISO = "2026-04-30";
 const LAST_UPDATED_LABEL = "April 30, 2026";
 const AUTHOR_NAME = "Mike Lee";
 
-const PAGE_TITLE = "Airline stopover programs";
+const PAGE_TITLE = "The Ultimate Airline Stopover Cheat Sheet";
 const PAGE_DESCRIPTION =
-  "A reference of major airline stopover programs, listing hotel nights included, validity windows, and stopover cities for each carrier.";
+  "A reference for travelers planning stopovers: terminology, the alliance landscape, programs I have used personally, and a side-by-side comparison of every major airline stopover program.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -51,6 +51,29 @@ function airlineSlug(name: string) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
+
+const TERMINOLOGY: { term: string; definition: string }[] = [
+  {
+    term: "Nonstop flight",
+    definition:
+      "A flight from origin to destination with no intermediate stops.",
+  },
+  {
+    term: "Direct flight",
+    definition:
+      "A single flight number that may include intermediate stops, with passengers staying on the same aircraft throughout.",
+  },
+  {
+    term: "Layover",
+    definition:
+      "A connection between two flights of less than 24 hours, used only to transfer to the onward flight.",
+  },
+  {
+    term: "Stopover",
+    definition:
+      "A connection of more than 24 hours, often planned in advance to spend time in the connecting city. The basis of the airline programs listed below.",
+  },
+];
 
 function StructuredData() {
   const verified = PROGRAMS.filter((p) => !p.isStub);
@@ -144,12 +167,109 @@ export default function AirlineStopoverProgramsPage() {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
           {PAGE_TITLE}
         </h1>
+        <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+          By {AUTHOR_NAME}. Last updated {LAST_UPDATED_LABEL}.
+        </p>
       </header>
 
-      {/* ── Cheat sheet ─────────────────────────────────────────── */}
+      {/* ── Terminology ─────────────────────────────────────────── */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+          Stopover, layover, direct, nonstop
+        </h2>
+        <p className="mt-3 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+          The terms get used loosely in airline marketing and even in casual
+          conversation. Before getting to the programs themselves, here are
+          the four distinctions that actually matter when reading fare rules
+          or deciding which itinerary to book.
+        </p>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-full border-collapse text-[15px]">
+            <thead>
+              <tr className="border-b border-gray-300 dark:border-gray-700">
+                <th
+                  scope="col"
+                  className="py-2 pr-6 text-left font-semibold text-gray-900 dark:text-gray-100"
+                >
+                  Term
+                </th>
+                <th
+                  scope="col"
+                  className="py-2 text-left font-semibold text-gray-900 dark:text-gray-100"
+                >
+                  What it means
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+              {TERMINOLOGY.map((row) => (
+                <tr key={row.term}>
+                  <td className="py-3 pr-6 align-top font-medium text-gray-900 dark:text-gray-100">
+                    {row.term}
+                  </td>
+                  <td className="py-3 align-top text-gray-700 dark:text-gray-300">
+                    {row.definition}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ── Alliances ───────────────────────────────────────────── */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+          Alliances and their hubs
+        </h2>
+        <p className="mt-3 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+          Airlines join alliances to cooperate on ticketing, lounge access,
+          and miles. For stopover programs, the practical effect is that each
+          program is anchored at the carrier&apos;s hub: an Istanbul stopover
+          requires flying Turkish Airlines, a Doha stopover requires Qatar,
+          and so on. The alliance affiliation tells you which other carriers
+          can route you into that hub on a single ticket. Star Alliance,
+          oneworld, and SkyTeam each cover several stopover hubs. Emirates,
+          Etihad, Icelandair, and China Southern run programs outside any
+          alliance. The buttons below jump to each section.
+        </p>
+      </section>
+
       <div id="cheat-sheet-top" className="scroll-mt-24" />
       <AllianceFilter counts={counts} />
 
+      {/* ── Programs I have used ────────────────────────────────── */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+          Programs I have used
+        </h2>
+        <div className="mt-3 space-y-4 text-[17px] leading-relaxed text-gray-800 dark:text-gray-200">
+          <p>
+            I have used four of these programs personally so far: Oman Air,
+            Qatar, Turkish, and Copa. The point of the rest of this page is
+            the data, but a couple of concrete examples are useful for
+            showing why the program structure matters in practice.
+          </p>
+          <p>
+            Oman Air is the clearest case. Muscat is not a city most people
+            would build a vacation around, but the program let me spend
+            roughly a day and a half at the Holiday Inn Express 15 minutes
+            from the airport. The ticket was inexpensive, and breaking the
+            journey into two non-stop flights meant I arrived in Kuala Lumpur
+            rested rather than worn down by overnight transit.
+          </p>
+          <p>
+            Copa worked the same way for Panama City. I added a couple of
+            days, saw the Panama Canal on my birthday, and got a real sense
+            of a place I would not have gone out of my way to visit. The
+            pattern across both stopovers is the same: the airline routing
+            you would already have chosen turns into a short, low-pressure
+            trip to a city you would otherwise skip.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Cheat sheet (alliance-grouped cards) ────────────────── */}
       <div className="space-y-12">
         {ALLIANCES.map((alliance) => {
           const programs = grouped[alliance];
@@ -186,7 +306,11 @@ export default function AirlineStopoverProgramsPage() {
               </header>
               <div className="grid gap-4 sm:grid-cols-2">
                 {programs.map((p) => (
-                  <div key={p.airline} id={airlineSlug(p.airline)} className="scroll-mt-24">
+                  <div
+                    key={p.airline}
+                    id={airlineSlug(p.airline)}
+                    className="scroll-mt-24"
+                  >
                     <ProgramCard program={p} />
                   </div>
                 ))}
