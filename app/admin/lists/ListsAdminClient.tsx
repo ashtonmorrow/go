@@ -11,7 +11,7 @@ type ListRow = {
   description: string | null;
 };
 
-type EditTarget = { name: string; field: 'name' | 'url' };
+type EditTarget = { name: string; field: 'name' | 'url' | 'desc' };
 
 export default function ListsAdminClient({ initialLists }: { initialLists: ListRow[] }) {
   const [lists, setLists] = useState(initialLists);
@@ -137,6 +137,34 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
     }
   }
 
+  async function saveDescription(name: string) {
+    const desc = editValue.trim();
+    setBusy(true);
+    setFlash(null);
+    try {
+      const res = await fetch('/api/admin/saved-list', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updateMeta',
+          name,
+          description: desc || null,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'save failed');
+      setLists(prev =>
+        prev.map(l => (l.name === name ? { ...l, description: desc || null } : l)),
+      );
+      setFlash(desc ? `Saved description for "${name}".` : `Cleared description for "${name}".`);
+    } catch (e) {
+      setFlash(e instanceof Error ? e.message : 'save failed');
+    } finally {
+      setBusy(false);
+      setEditing(null);
+    }
+  }
+
   async function remove(name: string) {
     const ok = confirm(`Remove "${name}" from every pin that carries it? Pins will not be deleted.`);
     if (!ok) return;
@@ -215,7 +243,7 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
               <th className="text-right px-4 py-2 text-label uppercase tracking-[0.1em] text-slate font-medium w-20">
                 Pins
               </th>
-              <th className="text-right px-4 py-2 text-label uppercase tracking-[0.1em] text-slate font-medium w-48">
+              <th className="text-right px-4 py-2 text-label uppercase tracking-[0.1em] text-slate font-medium w-72">
                 Actions
               </th>
             </tr>
@@ -224,6 +252,7 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
             {filtered.map(l => {
               const editingName = editing?.name === l.name && editing.field === 'name';
               const editingUrl = editing?.name === l.name && editing.field === 'url';
+              const editingDesc = editing?.name === l.name && editing.field === 'desc';
               return (
                 <tr key={l.name} className="border-b border-sand/60 last:border-0 hover:bg-cream-soft/50">
                   <td className="px-4 py-2.5 align-middle">
@@ -257,13 +286,50 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
                         </button>
                       </div>
                     ) : (
-                      <Link
-                        href={`/admin/lists/${listNameToSlug(l.name)}`}
-                        className="text-ink-deep capitalize hover:underline"
-                        title="Edit list members"
-                      >
-                        {l.name}
-                      </Link>
+                      <div>
+                        <Link
+                          href={`/admin/lists/${listNameToSlug(l.name)}`}
+                          className="text-ink-deep capitalize hover:underline"
+                          title="Edit list members"
+                        >
+                          {l.name}
+                        </Link>
+                        {editingDesc ? (
+                          <div className="mt-2 flex items-start gap-2">
+                            <textarea
+                              value={editValue}
+                              onChange={e => setEditValue(e.target.value)}
+                              onKeyDown={e => {
+                                if (e.key === 'Escape') setEditing(null);
+                                if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) saveDescription(l.name);
+                              }}
+                              autoFocus
+                              rows={2}
+                              placeholder="Short description shown on the public list page…"
+                              className="flex-1 text-small border border-ink-deep rounded px-2 py-1 bg-white resize-y"
+                            />
+                            <div className="flex flex-col gap-1">
+                              <button
+                                type="button"
+                                onClick={() => saveDescription(l.name)}
+                                disabled={busy}
+                                className="px-2 py-1 rounded bg-teal text-white text-label font-medium disabled:opacity-50"
+                              >
+                                Save
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setEditing(null)}
+                                className="px-2 py-1 rounded text-ink text-label hover:text-ink-deep"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : l.description ? (
+                          <p className="mt-0.5 text-label text-muted line-clamp-2">{l.description}</p>
+                        ) : null}
+                      </div>
                     )}
                   </td>
                   <td className="px-4 py-2.5 align-middle min-w-[220px] max-w-[360px]">
@@ -347,6 +413,18 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
                           className="text-label text-slate hover:text-ink-deep disabled:opacity-50"
                         >
                           Rename
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditing({ name: l.name, field: 'desc' });
+                            setEditValue(l.description ?? '');
+                          }}
+                          disabled={busy}
+                          className="text-label text-slate hover:text-ink-deep disabled:opacity-50"
+                          title={l.description ? 'Edit description' : 'Add description'}
+                        >
+                          {l.description ? 'Edit desc' : 'Add desc'}
                         </button>
                         <button
                           type="button"
