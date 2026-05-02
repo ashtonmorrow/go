@@ -17,10 +17,21 @@ import { getAllArticleEntries } from '@/lib/articles';
 import SidebarShell from './SidebarShell';
 
 /** Routes that need the full pin corpus to derive sidebar filter options
- *  (country / category / list / tag / saved-list chips). Everything else
- *  gets a stub — the sidebar still renders, just without those chips. */
+ *  (country / category / list / tag / saved-list chips). Only the four
+ *  pin-cockpit routes show the chips, so detail pages (/pins/[slug]) and
+ *  curated views (/pins/views/[view]) don't pay for the 5k-pin fetch.
+ *  Skipping it here was the difference between detail pages 500-ing on
+ *  Vercel (the corpus size + the per-page heavy fetches stacked over the
+ *  function timeout) and rendering. Everything else gets a stub — the
+ *  sidebar still renders, just without filter chips. */
 function needsPinCorpus(pathname: string): boolean {
-  return pathname === '/pins' || pathname.startsWith('/pins/');
+  return (
+    pathname === '/pins' ||
+    pathname === '/pins/cards' ||
+    pathname === '/pins/map' ||
+    pathname === '/pins/table' ||
+    pathname === '/pins/stats'
+  );
 }
 
 /** Routes that need the city corpus for the city-filter cockpit OR for
@@ -54,15 +65,18 @@ function needsCollectionsBlock(pathname: string): boolean {
   // Suppressed when on any of the three filter-cockpit routes — see
   // showCityFilters / showPinFilters / showCountryFilters in SidebarShell.
   // Mirrors the visibility logic there to keep server + client aligned.
-  if (pathname.startsWith('/cities/cards')) return false;
-  if (pathname.startsWith('/cities/map')) return false;
-  if (pathname.startsWith('/cities/table')) return false;
-  if (pathname.startsWith('/cities/stats')) return false;
-  if (pathname.startsWith('/countries/cards')) return false;
-  if (pathname.startsWith('/countries/map')) return false;
-  if (pathname.startsWith('/countries/table')) return false;
-  if (pathname.startsWith('/countries/stats')) return false;
-  if (pathname.startsWith('/pins')) return false;
+  if (pathname === '/cities/cards') return false;
+  if (pathname === '/cities/map') return false;
+  if (pathname === '/cities/table') return false;
+  if (pathname === '/cities/stats') return false;
+  if (pathname === '/countries/cards') return false;
+  if (pathname === '/countries/map') return false;
+  if (pathname === '/countries/table') return false;
+  if (pathname === '/countries/stats') return false;
+  if (pathname === '/pins/cards') return false;
+  if (pathname === '/pins/map') return false;
+  if (pathname === '/pins/table') return false;
+  if (pathname === '/pins/stats') return false;
   return true;
 }
 

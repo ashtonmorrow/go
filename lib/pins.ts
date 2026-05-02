@@ -546,7 +546,10 @@ const _fetchPinsInBbox = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  ['supabase-pins-bbox-v1'],
+  // v2: bumped after a Vercel data-cache deserialization issue caused
+  // every /pins/[slug] page to 500. Forcing a fresh cache fill on the
+  // next request, even though the underlying query shape didn't change.
+  ['supabase-pins-bbox-v2'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(_fetchPinsInBbox);
@@ -567,7 +570,10 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  ['supabase-pin-by-slug'],
+  // v2: bumped to evict any stale or oversized cache entry that was
+  // making /pins/[slug] return 500 on Vercel (locally fine). Same fix
+  // pattern used for fetchAllPins → v3.
+  ['supabase-pin-by-slug-v2'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(_fetchPinBySlug);
