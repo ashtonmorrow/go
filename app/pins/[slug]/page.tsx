@@ -47,55 +47,66 @@ function isThinPin(pin: Pin, hasFileContent: boolean): boolean {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const pin = await fetchPinBySlug(slug);
-  if (!pin) return { title: 'Not found' };
+  // generateMetadata runs BEFORE the route's error.tsx boundary mounts,
+  // so any throw here surfaces as a Vercel 500 (the bare pages-router
+  // _error fallback) and bypasses our App Router error UI. Wrap the
+  // whole thing in a try/catch and degrade to a minimal title rather
+  // than letting it kill the page render. The actual error gets logged
+  // to Vercel runtime logs.
+  try {
+    const { slug } = await params;
+    const pin = await fetchPinBySlug(slug);
+    if (!pin) return { title: 'Not found' };
 
-  // Meta description preference order:
-  //   1. The first 155 chars of Mike's personal review when it exists —
-  //      unique, voicey, and what a curious reader wants to see.
-  //   2. The pin's curated `description`.
-  //   3. A generic fallback so the meta tag never empties out.
-  const description =
-    clip(pin.personalReview, 155) ??
-    clip(pin.description, 155) ??
-    `${pin.name}${pin.cityNames[0] ? `, ${pin.cityNames[0]}` : ''}. Travel pin from a personal atlas.`;
+    // Meta description preference order:
+    //   1. The first 155 chars of Mike's personal review when it exists —
+    //      unique, voicey, and what a curious reader wants to see.
+    //   2. The pin's curated `description`.
+    //   3. A generic fallback so the meta tag never empties out.
+    const description =
+      clip(pin.personalReview, 155) ??
+      clip(pin.description, 155) ??
+      `${pin.name}${pin.cityNames[0] ? `, ${pin.cityNames[0]}` : ''}. Travel pin from a personal atlas.`;
 
-  const url = `${SITE_URL}/pins/${pin.slug ?? pin.id}`;
-  const image = pin.images[0]?.url ?? undefined;
+    const url = `${SITE_URL}/pins/${pin.slug ?? pin.id}`;
+    const image = pin.images[0]?.url ?? undefined;
 
-  // Indexability: a content file can opt the page in via `indexable: true`
-  // in its frontmatter. Either source flips noindex off — once you've
-  // dropped a /content/pins/<slug>.md with the flag set, the page becomes
-  // crawlable without touching the DB. The thinness gate is the *default*
-  // — even with `indexable=false`, only thin pages get noindex now.
-  const fileContent = await readPlaceContent('pins', pin.slug ?? '');
-  const explicitIndexable = fileContent?.indexable === true || pin.indexable;
-  // If the DB / file says yes, trust it. Otherwise auto-decide via thinness.
-  const noindex = explicitIndexable ? false : isThinPin(pin, !!fileContent);
+    // Indexability: a content file can opt the page in via `indexable: true`
+    // in its frontmatter. Either source flips noindex off — once you've
+    // dropped a /content/pins/<slug>.md with the flag set, the page becomes
+    // crawlable without touching the DB. The thinness gate is the *default*
+    // — even with `indexable=false`, only thin pages get noindex now.
+    const fileContent = await readPlaceContent('pins', pin.slug ?? '');
+    const explicitIndexable = fileContent?.indexable === true || pin.indexable;
+    // If the DB / file says yes, trust it. Otherwise auto-decide via thinness.
+    const noindex = explicitIndexable ? false : isThinPin(pin, !!fileContent);
 
-  // Long-tail-friendly title: "Pyramids of Egypt — review, hours, tickets".
-  const richTitle = pinPageTitle(pin);
+    // Long-tail-friendly title: "Pyramids of Egypt — review, hours, tickets".
+    const richTitle = pinPageTitle(pin);
 
-  return {
-    title: richTitle,
-    description,
-    alternates: { canonical: url },
-    robots: noindex ? { index: false, follow: true } : undefined,
-    openGraph: {
-      type: 'article',
-      url,
-      title: `${richTitle} · Mike Lee`,
+    return {
+      title: richTitle,
       description,
-      ...(image ? { images: [{ url: image }] } : {}),
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${richTitle} · Mike Lee`,
-      description,
-      ...(image ? { images: [image] } : {}),
-    },
-  };
+      alternates: { canonical: url },
+      robots: noindex ? { index: false, follow: true } : undefined,
+      openGraph: {
+        type: 'article',
+        url,
+        title: `${richTitle} · Mike Lee`,
+        description,
+        ...(image ? { images: [{ url: image }] } : {}),
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${richTitle} · Mike Lee`,
+        description,
+        ...(image ? { images: [image] } : {}),
+      },
+    };
+  } catch (err) {
+    console.error('[pins/[slug] generateMetadata] failed:', err);
+    return { title: 'Pin', robots: { index: false, follow: true } };
+  }
 }
 
 export default async function PinPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -53,6 +53,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  // generateMetadata runs above any route-segment error.tsx boundary,
+  // so a throw here surfaces as the pages-router 500 fallback (no error
+  // UI). Wrap defensively and log via Vercel runtime logs instead.
+  try {
   const { slug } = await params;
   const city = await fetchCityBySlug(slug);
   if (!city) return { title: 'Not found' };
@@ -92,6 +96,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ...(image ? { images: [image] } : {}),
     },
   };
+  } catch (err) {
+    console.error('[cities/[slug] generateMetadata] failed:', err);
+    return { title: 'City', robots: { index: false, follow: true } };
+  }
 }
 
 export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
