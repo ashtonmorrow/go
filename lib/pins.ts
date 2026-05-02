@@ -489,6 +489,68 @@ const _fetchAllPins = unstable_cache(
 );
 export const fetchAllPins = cache(_fetchAllPins);
 
+// === Surgical fetchers ======================================================
+// Index views need all 5k pins; detail / sidebar / list embeds need a small
+// slice. These helpers hit Supabase with a server-side filter so we don't
+// ship the entire corpus through unstable_cache deserialization to extract
+// 20 rows.
+
+/** Pins on at least one of the given saved lists. Uses a single GIN-indexed
+ *  array overlap (`saved_lists && ARRAY[...]`). Empty-list input returns
+ *  []; identical input returns identical output (the result is cached
+ *  per-name set, sorted to dedupe permutations). */
+const _fetchPinsForLists = unstable_cache(
+  async (names: string[]): Promise<Pin[]> => {
+    if (names.length === 0) return [];
+    const { data, error } = await supabase
+      .from('pins')
+      .select(INDEX_COLUMNS)
+      .overlaps('saved_lists', names)
+      .order('name', { ascending: true });
+    if (error) {
+      console.error('[pins] fetchPinsForLists failed:', error);
+      return [];
+    }
+    return (data ?? []).map(rowToPin);
+  },
+  ['supabase-pins-for-lists-v1'],
+  { revalidate: 86400, tags: ['supabase-pins'] },
+);
+export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
+  // Sort + dedupe inputs so the cache key is stable across permutations.
+  const sorted = Array.from(new Set(names)).sort();
+  return _fetchPinsForLists(sorted);
+});
+
+/** Pins inside a lat/lng bounding box, excluding one id. Used by the
+ *  pin-detail "More near here" block to find ~4 nearby pins without
+ *  loading the whole corpus. The box is widened a bit relative to the
+ *  intended radius so haversine ranking has slack at the corners. */
+const _fetchPinsInBbox = unstable_cache(
+  async (
+    minLat: number, maxLat: number, minLng: number, maxLng: number,
+    excludeId: string,
+  ): Promise<Pin[]> => {
+    const { data, error } = await supabase
+      .from('pins')
+      .select(INDEX_COLUMNS)
+      .gte('lat', minLat)
+      .lte('lat', maxLat)
+      .gte('lng', minLng)
+      .lte('lng', maxLng)
+      .neq('id', excludeId)
+      .limit(40);
+    if (error) {
+      console.error('[pins] fetchPinsInBbox failed:', error);
+      return [];
+    }
+    return (data ?? []).map(rowToPin);
+  },
+  ['supabase-pins-bbox-v1'],
+  { revalidate: 86400, tags: ['supabase-pins'] },
+);
+export const fetchPinsInBbox = cache(_fetchPinsInBbox);
+
 // Detail page: full row (heavy jsonbs included). unstable_cache is keyed by
 // slug so each pin's detail data is cached independently across requests;
 // React.cache() within a single render dedupes if multiple paths need it.

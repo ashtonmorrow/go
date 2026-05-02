@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePinFilters, togglePinSet, PinSortKey } from './PinFiltersContext';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
@@ -9,17 +8,12 @@ import WorldMapPicker from './WorldMapPicker';
 import type { Continent } from './CityFiltersContext';
 import { BRING_FACET, bringFacet } from '@/lib/pinFacets';
 
-// Curated views — short list of /pins/views/<slug> landings the panel
-// surfaces above the filter cockpit. Keeps the registry in lib/pinViews.ts
-// canonical; this is just the "show me these as pills" subset for the
-// sidebar. Order is intentional: highest-intent first.
-const VIEW_PILLS: { slug: string; emoji: string; label: string }[] = [
-  { slug: 'reviewed',     emoji: '✍️', label: 'Reviewed' },
-  { slug: 'visited',      emoji: '✈️', label: 'Visited' },
-  { slug: 'unesco',       emoji: '🌍', label: 'UNESCO' },
-  { slug: 'free',         emoji: '◯',  label: 'Free' },
-  { slug: 'kid-friendly', emoji: '🧒', label: 'Kid-friendly' },
-];
+// Curated-views pill row used to live here. It duplicated the boolean
+// chips below (Reviewed, Free, Kid-friendly) and confused users — clicking
+// "Reviewed" as a pill navigated away to /pins/views/reviewed while
+// clicking "Reviewed" as a chip toggled the filter. Now the discoverable
+// curated landings are surfaced via /pins/views (linkable from the page
+// header) and the cockpit only shows filter controls.
 
 // === PinFilterPanel ========================================================
 // Cockpit UI for /pins. Mirrors the FilterPanel pattern from /cities so the
@@ -63,25 +57,6 @@ export default function PinFilterPanel({
 
   return (
     <div className="flex flex-col gap-5">
-      {/* Curated-views pill row — quick links to the dedicated landing
-          pages at /pins/views/<slug>. Each is a hand-curated angle on the
-          pin set with editorial intro copy. The pills sit above the
-          cockpit header so they read as "here are some pre-baked answers"
-          before the user starts assembling their own filter set. */}
-      <div className="flex flex-wrap gap-1.5 -mx-1 px-1">
-        {VIEW_PILLS.map(v => (
-          <Link
-            key={v.slug}
-            href={`/pins/views/${v.slug}`}
-            className="inline-flex items-center gap-1 pill bg-cream-soft border border-sand text-label text-ink-deep hover:border-ink-deep hover:bg-white transition-colors"
-            title={`Curated view: ${v.label}`}
-          >
-            <span aria-hidden>{v.emoji}</span>
-            {v.label}
-          </Link>
-        ))}
-      </div>
-
       {/* Cockpit header — pinned at the top of the panel. Live result
           count on the left, prominent "Clear all" on the right. */}
       <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
@@ -124,20 +99,24 @@ export default function PinFilterPanel({
         <SearchInput
           value={state.q}
           onChange={q => setState(s => ({ ...s, q }))}
-          placeholder="Place, city, or country"
+          placeholder="Search…"
         />
       </div>
 
       <div>
         <SectionLabel>Status</SectionLabel>
         <div className="flex flex-col gap-1.5">
+          {/* Status labels match the city panel's "Visited / Planning / etc"
+              vocabulary so the same word means the same thing on /pins
+              and /cities. Pins don't have a Planning state today (that's a
+              city concept), so we map "All" / "Visited" / "Unvisited". */}
           <TriState
             value={state.visitedFilter}
             onChange={v => setState(s => ({ ...s, visitedFilter: v }))}
             options={[
               { value: 'all',          label: 'All' },
-              { value: 'visited',      label: 'Been' },
-              { value: 'not-visited',  label: 'Not yet' },
+              { value: 'visited',      label: 'Visited' },
+              { value: 'not-visited',  label: 'Unvisited' },
             ]}
           />
           {/* Binary "show only places that…" filters as a single chip group.
@@ -192,7 +171,7 @@ export default function PinFilterPanel({
           past two rows. */}
       {listOptions.length > 0 && (
         <div>
-          <SectionLabel>On lists</SectionLabel>
+          <SectionLabel>Lists</SectionLabel>
           <ListChipGroup
             options={listOptions}
             selected={state.lists}
@@ -225,7 +204,7 @@ export default function PinFilterPanel({
           "madrid" + "barcelona" → see everything across both lists. */}
       {savedListOptions.length > 0 && (
         <div>
-          <SectionLabel>Saved on my lists</SectionLabel>
+          <SectionLabel>My lists</SectionLabel>
           <SearchableMultiSelect
             placeholder="Search my lists"
             options={savedListOptions}
@@ -247,7 +226,7 @@ export default function PinFilterPanel({
       </div>
 
       <div>
-        <SectionLabel>Established between</SectionLabel>
+        <SectionLabel>Established</SectionLabel>
         <YearRangeSlider
           min={state.inceptionMin}
           max={state.inceptionMax}

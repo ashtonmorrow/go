@@ -41,28 +41,26 @@ export type PinView = {
 // a view doesn't bother to override a multi-select dimension.
 const emptyStringSet = (): Set<string> => new Set<string>();
 
+// Curated-view copy is intentionally lean. The label *is* the page header;
+// every additional sentence pushed travelers further from the cards. If a
+// view ever needs editorial prose, drop a `content/lists/<slug>.md` for the
+// long form — but the default here stays a one-line description (used for
+// SEO meta only) and an empty body.
 export const PIN_VIEWS: Record<string, PinView> = {
   reviewed: {
     slug: 'reviewed',
-    label: 'Reviewed places',
-    description:
-      'Every place I’ve been and bothered to write a review for — about 900 pins, scattered across 60-odd countries.',
-    body: [
-      'These are the pins where I left a star rating and at least a sentence of what I thought. The map skews toward the cities I’ve spent the most time in — Madrid, Bangkok, Athens, Cape Town — but you’ll find a stray review on most continents.',
-      'A review here doesn’t mean I’m recommending the place. Some are warnings. Read the actual text on the detail page before you adjust your trip.',
-    ],
+    label: 'Mike’s Reviews',
+    description: 'Places Mike has reviewed.',
+    body: [],
     surface: 'map',
     filterPatch: { reviewedOnly: true, visitedFilter: 'all' },
   },
 
   visited: {
     slug: 'visited',
-    label: 'Places I’ve been',
-    description:
-      'Every pin marked visited — about 1,200 places across 60+ countries, from UNESCO sites to neighborhood coffee shops.',
-    body: [
-      'A flat list of everywhere I’ve actually showed up in person. Some of these have proper reviews; most just have a star rating or a sentence of notes. Hover for the photo, click for the detail.',
-    ],
+    label: 'Places Mike has been',
+    description: 'Pins marked visited.',
+    body: [],
     surface: 'map',
     filterPatch: { visitedFilter: 'visited' },
   },
@@ -70,38 +68,26 @@ export const PIN_VIEWS: Record<string, PinView> = {
   unesco: {
     slug: 'unesco',
     label: 'UNESCO World Heritage Sites',
-    description:
-      'UNESCO World Heritage entries on my map — visited and to-go alike, each linked to its UNESCO ID and Wikipedia article.',
-    body: [
-      'There are 1,223 inscribed UNESCO sites on the planet (give or take a couple disputes a year). I’m tracking the ones I’ve been to, the ones near where I live, and the ones I’d break a trip for. Each pin links straight to UNESCO’s database.',
-      'Plenty of these are over-tourist-ed. A couple are near-empty even on a Saturday in July. The rating sometimes tells you which.',
-    ],
+    description: 'UNESCO World Heritage entries on the map.',
+    body: [],
     surface: 'map',
     filterPatch: { lists: new Set(['UNESCO']), visitedFilter: 'all' },
   },
 
   free: {
     slug: 'free',
-    label: 'Free to visit',
-    description:
-      'Pins where admission is free. Parks, plazas, Sunday-free museum days, and the kind of place a good city just gives you.',
-    body: [
-      'Not everything worth seeing has a turnstile. This view collects the pins flagged as free admission — usually parks, churches, public plazas, and the occasional museum on its no-charge day.',
-      'Free doesn’t mean nothing. A donation, a coat-check, a coffee at the café next door. Be a guest.',
-    ],
+    label: 'Free admission',
+    description: 'Pins with free admission.',
+    body: [],
     surface: 'map',
     filterPatch: { freeOnly: true, visitedFilter: 'all' },
   },
 
   'kid-friendly': {
     slug: 'kid-friendly',
-    label: 'Kid-friendly places',
-    description:
-      'Pins flagged as kid-friendly — places designed for, or comfortably tolerant of, traveling with small humans.',
-    body: [
-      'I don’t have kids myself, but plenty of friends do. These are the pins where I’ve marked the experience as comfortable for under-tens — open-air museums, parks with shade, restaurants that won’t glare at a high chair.',
-      'Always sanity-check on the detail page; “kid-friendly” to me may not match your family’s threshold.',
-    ],
+    label: 'Kid-friendly',
+    description: 'Pins flagged as kid-friendly.',
+    body: [],
     surface: 'map',
     filterPatch: { kidFriendlyOnly: true, visitedFilter: 'all' },
   },

@@ -139,9 +139,12 @@ export default async function PinView({ params }: Props) {
 
         <header className="mb-5">
           <h1 className="text-h1 text-ink-deep leading-tight">{view.label}</h1>
-          <p className="mt-2 text-prose text-slate max-w-prose">{view.description}</p>
         </header>
 
+        {/* Editorial body only renders when a view actually carries prose
+            (file-based content takes priority later). The default
+            curated-view treatment is title + map; copy that explains the
+            obvious got cut. */}
         {view.body.length > 0 && (
           <div className="post-prose max-w-prose">
             {view.body.map((para, i) => <p key={i}>{para}</p>)}

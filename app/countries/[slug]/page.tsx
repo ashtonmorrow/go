@@ -12,7 +12,7 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
-import { fetchAllPins } from '@/lib/pins';
+import { fetchPinsForLists } from '@/lib/pins';
 import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
@@ -74,25 +74,22 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   // blocks fetch entirely (the file IS the prose now).
   const content = await readPlaceContent('countries', slug);
 
-  // Country pages don't carry their own personal photo, so the cover hero
-  // is always pulled from a pin in the country (when one exists). Each
-  // call below is a surgical query — used to load all 1,341 cities + all
-  // 230 country facts and filter client-side.
-  const [cities, fact, blocks, fallbackCover, allPins, listsMeta] = await Promise.all([
+  // First pass — cheap fetches and the saved-list metadata we need to
+  // compute matchedLists. Pin data is gated on the result: most countries
+  // match at least one list (the country itself), but skipping fetchAllPins
+  // entirely on a no-match render is the win we're after.
+  const [cities, fact, blocks, fallbackCover, listsMeta] = await Promise.all([
     fetchCitiesByCountryId(country.id),
     fetchCountryFactByIso2(country.iso2),
     content ? Promise.resolve([]) : fetchPageBlocks(country.id),
     fetchCoverForCountry(country.name),
-    fetchAllPins(),
     fetchAllSavedListsMeta(),
   ]);
 
-  // Saved-list cards section. Match the country name + ISO + slug against
-  // saved-list names, then collect every pin on those lists. Also include
-  // pins from lists for cities IN this country (e.g. country page Spain
-  // surfaces pins from "madrid", "barcelona", "alicante" lists). Cap at
-  // ~80 cards before forcing the "Open list" overflow link to keep the
-  // section from dominating long countries.
+  // Saved-list cards. Match against the country name, slug, and every city
+  // in the country (so the Spain page surfaces madrid/barcelona/alicante
+  // lists). Then a single surgical Supabase query pulls only the pins on
+  // those lists — replacing what used to be a 5k-pin walk per render.
   const allListNames = Array.from(listsMeta.keys());
   const cityNamesInCountry = cities.map(c => c.name);
   const matchedLists = listsMatchingPlace(allListNames, [
@@ -101,7 +98,10 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
     ...cityNamesInCountry,
   ]);
   const matchedSet = new Set(matchedLists);
-  const countryListPins: SavedListPin[] = matchedLists.length === 0 ? [] : allPins
+  const countryPinsRaw = matchedLists.length === 0
+    ? []
+    : await fetchPinsForLists(matchedLists);
+  const countryListPins: SavedListPin[] = countryPinsRaw
     .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
     .sort((a, b) => {
       if (a.visited !== b.visited) return a.visited ? -1 : 1;

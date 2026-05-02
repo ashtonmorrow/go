@@ -1,16 +1,26 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import FilterPanel from './FilterPanel';
-import PinFilterPanel from './PinFilterPanel';
-import CountryFilterPanel from './CountryFilterPanel';
 import { useCityFilters } from './CityFiltersContext';
 import { usePinFilters } from './PinFiltersContext';
 import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
 import type { ArticleEntry } from '@/lib/articles';
+
+// Filter panels lazy-loaded so chrome-less routes (about, privacy,
+// articles, posts, admin/*) don't pay for the filter-cockpit JavaScript
+// they never render. Each panel pulls in its own pile of subcomponents
+// (WorldMapPicker bakes a country GeoJSON, PinFilterPanel pulls every
+// list-icon constant from lib/pinLists, etc.) — significant client-bundle
+// savings on cold loads. ssr:false because these are interactive chips
+// with no SEO value; the static HTML on cockpit pages already includes
+// the canonical content.
+const FilterPanel = dynamic(() => import('./FilterPanel'), { ssr: false });
+const PinFilterPanel = dynamic(() => import('./PinFilterPanel'), { ssr: false });
+const CountryFilterPanel = dynamic(() => import('./CountryFilterPanel'), { ssr: false });
 
 type Counts = {
   cities: number;

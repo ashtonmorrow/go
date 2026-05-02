@@ -17,7 +17,7 @@ import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
-import { fetchAllPins } from '@/lib/pins';
+import { fetchPinsForLists } from '@/lib/pins';
 import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
@@ -111,25 +111,34 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // cities, which shipped 1.5 MB of JSON for every cold render. Now we hit
   // exactly the rows we need.
   const needsCoverFallback = !city.personalPhoto && !city.heroImage;
-  const [blocks, country, sisters, climate, fallbackCover, allPins, listsMeta] = await Promise.all([
+  // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
+  // is needed up front to compute matchedLists, which gates the (potentially
+  // expensive) pin query that follows.
+  const [blocks, country, sisters, climate, fallbackCover, listsMeta] = await Promise.all([
     content ? Promise.resolve([]) : fetchPageBlocks(city.id),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
-    fetchAllPins(),
     fetchAllSavedListsMeta(),
   ]);
 
-  // Build the "saved lists for this city" cards section. We OR-match the
-  // city's name and slug against the saved-list names; pins on any matched
-  // list bubble up. If multiple lists match (e.g. "madrid" and "madrid food"),
-  // we render the union but tag the section with the most-populated one for
-  // the Google share-URL link. Visited pins float to top.
+  // Match the city's name/slug against saved-list names BEFORE fetching pins
+  // — most cities have no matching list, so we skip the pin query entirely
+  // for them. When there is a match, we fan out a surgical query keyed on
+  // the matched list names instead of pulling the whole 5k-pin corpus.
   const allSavedListNames = Array.from(listsMeta.keys());
   const matchedLists = listsMatchingPlace(allSavedListNames, [city.name, slug]);
   const matchedSet = new Set(matchedLists);
-  const cityListPins: SavedListPin[] = matchedLists.length === 0 ? [] : allPins
+  const cityPinsRaw = matchedLists.length === 0
+    ? []
+    : await fetchPinsForLists(matchedLists);
+
+  // The Pin shape from fetchPinsForLists already has `saved_lists` populated;
+  // we still filter to be safe (the OR predicate at the DB layer covers any
+  // pin in any matched list, which is what we want, but the .some check
+  // future-proofs against the helper expanding its predicate).
+  const cityListPins: SavedListPin[] = cityPinsRaw
     .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
     .sort((a, b) => {
       if (a.visited !== b.visited) return a.visited ? -1 : 1;

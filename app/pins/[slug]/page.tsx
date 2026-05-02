@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { fetchPinBySlug, fetchAllPins, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
+import { fetchPinBySlug, fetchPinsInBbox, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
 import { fetchCountryByName } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
@@ -107,21 +107,29 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   // Surgical country lookup by name — used to load all 226 countries here
   // and .find() through them. The case-insensitive name match is handled
   // server-side via ilike now.
-  const [countryRecord, wp, personalPhotos, content, allPinsForRelated] = await Promise.all([
+  // For "More near here" we only want a small local slice — bbox query is
+  // a single Supabase round-trip with a server-side filter, vs the old
+  // approach which loaded all 5k pins through unstable_cache just to find
+  // ~4 within 5km. Box widens to ~0.07° (~7km at the equator) so the
+  // haversine ranking has slack at the corners.
+  const BBOX_DELTA = 0.07;
+  const [countryRecord, wp, personalPhotos, content, bboxCandidates] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
     readPlaceContent('pins', pin.slug ?? ''),
-    // Pulled here for the "More near here" footer block. The fetcher is
-    // module-cached so /pins index views and this detail page share the
-    // same hit. We only consume the result if this pin has coords.
-    pin.lat != null && pin.lng != null ? fetchAllPins() : Promise.resolve([] as Pin[]),
+    pin.lat != null && pin.lng != null
+      ? fetchPinsInBbox(
+          pin.lat - BBOX_DELTA, pin.lat + BBOX_DELTA,
+          pin.lng - BBOX_DELTA, pin.lng + BBOX_DELTA,
+          pin.id,
+        )
+      : Promise.resolve([] as Pin[]),
   ]);
 
-  // Compute up to 4 nearest pins inside a 5 km radius. Skips the current
-  // pin itself, and skips pins without coords. Sorted by distance asc so
-  // the very-close cluster appears first. Empty array → block hides.
-  const relatedPins = computeRelatedPins(pin, allPinsForRelated);
+  // Rank the bbox candidates by haversine distance and take the 4 nearest
+  // inside the 5km soft radius. Empty array → the block hides entirely.
+  const relatedPins = computeRelatedPins(pin, bboxCandidates);
   const countrySlug = countryRecord?.slug ?? null;
   const flagUrl = flagCircle(countryRecord?.iso2 ?? null);
 

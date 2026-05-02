@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchAllPins } from '@/lib/pins';
+import { fetchPinsForLists } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import {
   listNameToSlug,
@@ -38,38 +38,26 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 type Props = { params: Promise<{ slug: string }> };
 
 async function findList(slug: string) {
-  // Resolve slug → list name by reverse-mapping then doing an exact match
-  // against any name actually present in the data. We can't trust just
-  // slug→name string transformation because a list called "São Paulo 🇧🇷"
-  // gets stored as "sao paulo" and slugified to "sao-paulo"; the inverse
-  // produces "sao paulo" (correct), but odd edge cases (a list named with
-  // multiple consecutive spaces) would fall through. So we always validate
-  // against the source set.
-  const [pins, listsMeta] = await Promise.all([
-    fetchAllPins(),
-    fetchAllSavedListsMeta(),
-  ]);
-  const allNames = new Set<string>();
-  for (const p of pins) for (const l of p.savedLists ?? []) allNames.add(l);
-  // Also accept names that exist as metadata-only (empty list created in
-  // /admin/lists). Users may navigate to those before adding members.
-  for (const name of listsMeta.keys()) allNames.add(name);
+  // Resolve slug → list name. The metadata table holds every list name
+  // (seeded after every saved-list import + create), so we don't need to
+  // walk the pin corpus here. This shaved a 5k-row deserialization off
+  // every list-detail render.
+  const listsMeta = await fetchAllSavedListsMeta();
+  const allNames = new Set<string>(listsMeta.keys());
 
   const candidate = slugToListName(slug);
-  if (allNames.has(candidate)) return { name: candidate, pins, listsMeta };
+  if (allNames.has(candidate)) return { name: candidate, listsMeta };
   for (const name of allNames) {
-    if (listNameToSlug(name) === slug) return { name, pins, listsMeta };
+    if (listNameToSlug(name) === slug) return { name, listsMeta };
   }
   return null;
 }
 
 export async function generateStaticParams() {
-  const pins = await fetchAllPins();
-  const slugs = new Set<string>();
-  for (const p of pins) {
-    for (const l of p.savedLists ?? []) slugs.add(listNameToSlug(l));
-  }
-  return Array.from(slugs).map(slug => ({ slug }));
+  // Driven from the metadata table — same source of truth as findList.
+  // Avoids a full fetchAllPins just to discover slug names.
+  const listsMeta = await fetchAllSavedListsMeta();
+  return Array.from(listsMeta.keys()).map(name => ({ slug: listNameToSlug(name) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -128,11 +116,15 @@ export default async function ListPage({ params }: Props) {
   // known city or country name, surface a clear link in the header so the
   // reader can pivot to the place page. Both fetchers are cached at the
   // module level so this doesn't add a network round-trip.
-  // Editorial intro is read at the same time so the page is one Promise.all.
-  const [cities, countries, content] = await Promise.all([
+  // Editorial intro + city/country anchor lookups + the pin slice for this
+  // list, all in one Promise.all. fetchPinsForLists is a single Supabase
+  // query with a server-side `saved_lists && ARRAY[name]` predicate — much
+  // cheaper than walking the full corpus to find ~50 matching rows.
+  const [cities, countries, content, listPins] = await Promise.all([
     fetchAllCities(),
     fetchAllCountries(),
     readPlaceContent('lists', slug),
+    fetchPinsForLists([found.name]),
   ]);
   const lcName = found.name.toLowerCase();
   const cityMatch = cities.find(c => c.name.toLowerCase() === lcName) ?? null;
@@ -143,8 +135,8 @@ export default async function ListPage({ params }: Props) {
   // the sort dropdown; we still pass an alphabetical default so SSR HTML is
   // stable and accessible without JS. The 'rated' default lives in the
   // SavedListSection's initialSort prop.
-  const onListPins = found.pins
-    .filter(p => p.savedLists?.includes(found.name))
+  const onListPins = listPins
+    .slice()
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const onList: SavedListPin[] = onListPins.map(p => ({
