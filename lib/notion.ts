@@ -313,7 +313,11 @@ const _fetchAllCities = unstable_cache(
     const rows = await selectAll<any>(TABLE_CITIES);
     return rows.map(supaCityRow);
   },
-  ['notion-cities'],
+  // Key bumped to v2 to evict the prior single-page cache result that
+  // capped at 1,000 rows (or held a partial 417-row response from a
+  // mid-paginate failure). Once this hits prod the next request misses
+  // and refills with the full 1,477-row corpus from the parallel fetch.
+  ['notion-cities-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchAllCities = cache(_fetchAllCities);
@@ -323,7 +327,10 @@ const _fetchAllCountries = unstable_cache(
     const rows = await selectAll<any>(TABLE_COUNTRIES);
     return rows.map(supaCountryRow);
   },
-  ['notion-countries'],
+  // Same key bump for symmetry — countries fits comfortably in one page
+  // (226 rows), but if a previous build cached an empty array we'd still
+  // serve that until the 5-min TTL expired.
+  ['notion-countries-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchAllCountries = cache(_fetchAllCountries);
