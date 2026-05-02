@@ -85,12 +85,26 @@ export default function CountryFilterPanel() {
         </button>
       </div>
 
-      <div>
-        <SectionLabel>Search</SectionLabel>
-        <SearchInput
-          value={state.q}
-          onChange={q => setState(s => ({ ...s, q }))}
-          placeholder="Country or capital"
+      <SearchInput
+        value={state.q}
+        onChange={q => setState(s => ({ ...s, q }))}
+        placeholder="Country or capital"
+      />
+
+      {/* Sort — direction toggle only. Default sort is name; the field
+          dropdown moved out because almost every user wanted A→Z and the
+          extra field options (city count, visited count) are discoverable
+          in the Table view via column headers. */}
+      <div className="inline-flex rounded-md border border-sand bg-white p-0.5 w-full">
+        <DirectionButton
+          active={!state.desc}
+          onClick={() => setState(s => ({ ...s, sort: 'name', desc: false }))}
+          label="A → Z"
+        />
+        <DirectionButton
+          active={state.desc}
+          onClick={() => setState(s => ({ ...s, sort: 'name', desc: true }))}
+          label="Z → A"
         />
       </div>
 
@@ -106,23 +120,29 @@ export default function CountryFilterPanel() {
               { value: 'not-been', label: 'Not yet' },
             ]}
           />
-          <Switch
-            on={state.schengenOnly}
-            label="Schengen only"
-            onChange={v => setState(s => ({ ...s, schengenOnly: v }))}
-          />
-          {/* Disputed = partially-recognized or unrecognized territories
-              (Abkhazia, Northern Cyprus, Transnistria, Western Sahara,
-              South Ossetia, Nagorno-Karabakh, Somaliland). Drives the
-              go_countries.disputed flag; Kosovo / Taiwan / Palestine stay
-              off until the user manually decides — those are politically
-              loaded enough that an opinionated default would be wrong. */}
-          <Switch
-            on={state.disputedOnly}
-            label="Disputed only"
-            onChange={v => setState(s => ({ ...s, disputedOnly: v }))}
-          />
         </div>
+      </div>
+
+      {/* Top-level toggles — promoted out of the Status block so each
+          one has visual breathing room and matches the design's quiet
+          stack of switch rows. */}
+      <div className="flex flex-col gap-0.5 -mx-1">
+        <Switch
+          on={state.schengenOnly}
+          label="Schengen only"
+          onChange={v => setState(s => ({ ...s, schengenOnly: v }))}
+        />
+        {/* Disputed = partially-recognized or unrecognized territories
+            (Abkhazia, Northern Cyprus, Transnistria, Western Sahara,
+            South Ossetia, Nagorno-Karabakh, Somaliland). Kosovo / Taiwan /
+            Palestine stay off until the user manually decides — those are
+            politically loaded enough that an opinionated default would
+            be wrong. */}
+        <Switch
+          on={state.disputedOnly}
+          label="Disputed only"
+          onChange={v => setState(s => ({ ...s, disputedOnly: v }))}
+        />
       </div>
 
       <div>
@@ -169,27 +189,6 @@ export default function CountryFilterPanel() {
             setState(s => ({ ...s, drive: toggleCountrySet(s.drive, v as DriveSide) }))
           }
         />
-      </div>
-
-      <div>
-        <SectionLabel>Sort by</SectionLabel>
-        <Select
-          value={state.sort}
-          onChange={v => setState(s => ({ ...s, sort: v as CountrySortKey }))}
-          options={SORT_FIELDS}
-        />
-        <div className="mt-2 inline-flex rounded-md border border-sand bg-white p-0.5 w-full">
-          <DirectionButton
-            active={!state.desc}
-            onClick={() => setState(s => ({ ...s, desc: false }))}
-            label={state.sort === 'name' ? 'A → Z' : 'Fewest'}
-          />
-          <DirectionButton
-            active={state.desc}
-            onClick={() => setState(s => ({ ...s, desc: true }))}
-            label={state.sort === 'name' ? 'Z → A' : 'Most'}
-          />
-        </div>
       </div>
 
     </div>

@@ -128,68 +128,75 @@ export default function FilterPanel({
         </button>
       </div>
 
-      {/* === FILTER (text search) ===
-          One label for the whole panel below. The text input matches city
-          name, country, continent, climate, currency, language, founded,
-          visa, tap-water and drive-side, so the dedicated Country dropdown
-          that used to sit below this is gone — typing the country name
-          here narrows the same way. */}
-      <div>
-        <SectionLabel>Filter</SectionLabel>
-        <SearchInput
-          value={state.q}
-          onChange={q => setState(s => ({ ...s, q }))}
-          placeholder="City or country"
+      {/* Search — text input matches city name, country, continent, climate,
+          currency, language, founded, visa, tap-water and drive-side. The
+          dedicated Country dropdown that used to sit below got folded in
+          since typing a country name narrows the same way. */}
+      <SearchInput
+        value={state.q}
+        onChange={q => setState(s => ({ ...s, q }))}
+        placeholder="City or country"
+      />
+
+      {/* Sort — direction-only A→Z / Z→A toggle. Default sort is name.
+          The richer field dropdown (Population, Founded, Hottest, etc.)
+          moved out of the cockpit; those sorts are still reachable via
+          the Table view's column headers. */}
+      <div className="inline-flex rounded-md border border-sand bg-white p-0.5 w-full">
+        <DirectionButton
+          active={!state.desc}
+          onClick={() => setState(s => ({ ...s, sort: 'name', desc: false }))}
+          label="A → Z"
+        />
+        <DirectionButton
+          active={state.desc}
+          onClick={() => setState(s => ({ ...s, sort: 'name', desc: true }))}
+          label="Z → A"
         />
       </div>
 
-      {/* Status focus — segmented Researching / Planning / Visited.
-          Label dropped per cockpit cleanup; the row itself reads as the
-          control. Click a segment to narrow; click again to clear. */}
+      {/* Status — three buckets (Researching → Planning → Visited) plus
+          an explicit "All" reset. Single segmented control, dropped the
+          color swatches and live counts per cleanup pass — they read as
+          noise next to the cleaner country panel which has been the
+          design north star. The map / cards still color-code these
+          statuses; the cockpit just narrows the visible set. */}
       <div>
-        <div className="grid grid-cols-3 gap-1">
-          {STATUS_OPTIONS.map(s => {
-            const active = state.statusFocus === s.value;
-            const count = layerCounts?.[s.value];
-            return (
-              <button
-                key={s.value}
-                type="button"
-                onClick={() =>
-                  setState(prev => ({
-                    ...prev,
-                    statusFocus: prev.statusFocus === s.value ? null : s.value,
-                  }))
-                }
-                aria-pressed={active}
-                className={
-                  'flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-md ' +
-                  'border transition-colors ' +
-                  (active
-                    ? 'bg-ink-deep border-ink-deep text-cream-soft'
-                    : 'bg-white border-sand text-slate hover:border-slate hover:text-ink-deep')
-                }
-              >
-                <span aria-hidden className={'inline-block w-2 h-2 rounded-full ' + s.swatch} />
-                <span className="text-micro font-medium leading-none">{s.label}</span>
-                {count != null && (
-                  <span className={'text-micro tabular-nums ' + (active ? 'text-cream-soft/80' : 'text-muted')}>
-                    {count}
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-        {state.statusFocus && (
-          <button
-            type="button"
+        <SectionLabel>Status</SectionLabel>
+        <div className="inline-flex rounded-md border border-sand bg-white p-0.5 w-full">
+          <DirectionButton
+            active={state.statusFocus === null}
             onClick={() => setState(s => ({ ...s, statusFocus: null }))}
-            className="mt-1 text-micro text-slate hover:text-ink-deep"
-          >
-            Show all statuses
-          </button>
-        )}
+            label="All"
+          />
+          <DirectionButton
+            active={state.statusFocus === 'visited'}
+            onClick={() => setState(s => ({ ...s, statusFocus: 'visited' }))}
+            label="Visited"
+          />
+          <DirectionButton
+            active={state.statusFocus === 'planning'}
+            onClick={() => setState(s => ({ ...s, statusFocus: 'planning' }))}
+            label="Planning"
+          />
+          <DirectionButton
+            active={state.statusFocus === 'researching'}
+            onClick={() => setState(s => ({ ...s, statusFocus: 'researching' }))}
+            label="Researching"
+          />
+        </div>
+      </div>
+
+      {/* Saved-places toggle — promoted out of the old tri-state into a
+          single switch. "On" means narrow to cities with ≥1 saved place;
+          "off" is the neutral default. The map's gold ring marker still
+          surfaces saved cities visually regardless of this toggle. */}
+      <div className="flex flex-col gap-0.5 -mx-1">
+        <Switch
+          on={state.hasSavedPlaces === 'with'}
+          label="Has saved places"
+          onChange={v => setState(s => ({ ...s, hasSavedPlaces: v ? 'with' : 'any' }))}
+        />
       </div>
 
       {/* Continent picker — pictorial; label dropped because the world-map
@@ -248,27 +255,11 @@ export default function FilterPanel({
         />
       </div>
 
-      {/* Saved places — tri-state. 'Any' is the neutral default; toggling
-          'With' or 'Without' narrows the dataset. The accent gold ring
-          on the map shows saved-places cities even when the filter is
-          'Any', so users can spot them visually without narrowing. */}
-      <div>
-        <SectionLabel>Saved places</SectionLabel>
-        <SingleSelectChips<HasSaved>
-          options={[
-            { value: 'any',     label: 'Any' },
-            { value: 'with',    label: 'With' },
-            { value: 'without', label: 'Without' },
-          ]}
-          value={state.hasSavedPlaces}
-          onChange={v => setState(s => ({ ...s, hasSavedPlaces: v }))}
-        />
-      </div>
-
-      {/* Population — dual-thumb log-scale slider. Replaces the old
-          number-input pair (typing "5000000" was awkward) and the linear
-          chip jumps that spanned 4 orders of magnitude. Quick-pick chips
-          live under the slider for snap-to-band shortcuts. */}
+      {/* Population — dual-thumb log-scale slider. Tucked at the bottom
+          since most users don't reach for it, but kept available because
+          the city set spans 4 orders of magnitude (Pyrgos at 4k people
+          to Tokyo at 37M) and it's the cleanest narrowing tool when the
+          user wants "big-city" or "small-town" trips. */}
       <div>
         <SectionLabel>Population</SectionLabel>
         <PopulationRangeSlider
@@ -278,28 +269,6 @@ export default function FilterPanel({
             setState(s => ({ ...s, populationMin: min, populationMax: max }))
           }
         />
-      </div>
-
-      {/* === SORT === */}
-      <div>
-        <SectionLabel>Sort by</SectionLabel>
-        <Select
-          value={state.sort}
-          onChange={v => setState(s => ({ ...s, sort: v as SortKey }))}
-          options={SORT_FIELDS}
-        />
-        <div className="mt-2 inline-flex rounded-md border border-sand bg-white p-0.5 w-full">
-          <DirectionButton
-            active={!state.desc}
-            onClick={() => setState(s => ({ ...s, desc: false }))}
-            label={ascendingLabel(state.sort)}
-          />
-          <DirectionButton
-            active={state.desc}
-            onClick={() => setState(s => ({ ...s, desc: true }))}
-            label={descendingLabel(state.sort)}
-          />
-        </div>
       </div>
 
     </div>
@@ -536,6 +505,32 @@ function Select<T extends string>({
 }
 
 // (NumberInput removed — PopulationRangeSlider replaced the only call site.)
+
+function Switch({
+  on, label, onChange,
+}: { on: boolean; label: string; onChange: (next: boolean) => void }) {
+  return (
+    <label className="flex items-center justify-between gap-2 cursor-pointer select-none px-1 py-0.5 rounded hover:bg-cream-soft">
+      <span className="text-small text-ink">{label}</span>
+      <button
+        type="button" role="switch" aria-checked={on} aria-label={label}
+        onClick={() => onChange(!on)}
+        className={
+          'relative inline-block w-9 h-5 rounded-full transition-colors duration-200 flex-shrink-0 ' +
+          (on ? 'bg-ink-deep' : 'bg-sand')
+        }
+      >
+        <span
+          aria-hidden
+          className={
+            'absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ' +
+            (on ? 'translate-x-4' : 'translate-x-0')
+          }
+        />
+      </button>
+    </label>
+  );
+}
 
 function DirectionButton({
   active,
