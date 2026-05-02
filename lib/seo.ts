@@ -80,7 +80,46 @@ export function websiteJsonLd() {
     description: SITE_DESCRIPTION,
     publisher: { '@id': AUTHOR_ID },
     inLanguage: 'en-US',
+    // Sitelinks search box — Google reads this and may render an in-result
+    // search input that hits our /search page directly. The site doesn't
+    // have a /search route yet, but the schema is harmless: Google won't
+    // surface the box until it sees the page actually accept the query
+    // string. Wire `urlTemplate` to the eventual route so the schema is
+    // already correct when we add it.
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
+}
+
+/** Build a richer pin-page title that adds context-aware suffixes when the
+ *  pin has the data to back them up. Search engines and humans both prefer
+ *  "Pyramids of Egypt — visit guide, hours · Mike Lee" over a bare name —
+ *  the former tells you what's on the page and earns more long-tail clicks. */
+export function pinPageTitle(pin: {
+  name: string;
+  visited: boolean;
+  personalReview?: string | null;
+  hours?: string | null;
+  priceText?: string | null;
+  priceAmount?: number | null;
+  unescoId?: number | null;
+}): string {
+  const suffixes: string[] = [];
+  if (pin.personalReview) suffixes.push('review');
+  if (pin.visited && !pin.personalReview) suffixes.push('visit notes');
+  if (pin.hours) suffixes.push('hours');
+  if (pin.priceText || pin.priceAmount != null) suffixes.push('tickets');
+  if (pin.unescoId != null && suffixes.length === 0) suffixes.push('UNESCO site');
+  // Cap at three suffixes so the title doesn't run long. Google truncates
+  // around 60 characters; this keeps the pin name visible.
+  const tail = suffixes.slice(0, 3).join(', ');
+  return tail ? `${pin.name} — ${tail}` : pin.name;
 }
 
 // Generic breadcrumb builder. Pass items in order from root to leaf.

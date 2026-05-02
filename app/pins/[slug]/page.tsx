@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { fetchPinBySlug, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
+import { fetchPinBySlug, fetchAllPins, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
 import { fetchCountryByName } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
@@ -16,7 +16,7 @@ import {
   bringFacet, monthRange,
 } from '@/lib/pinFacets';
 import JsonLd from '@/components/JsonLd';
-import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd } from '@/lib/seo';
+import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
@@ -28,12 +28,36 @@ export async function generateStaticParams() {
   return [];
 }
 
+/** A pin is "thin" when there's nothing on the page that adds value beyond
+ *  Wikipedia: not visited, no personal review, no curated list membership,
+ *  no hours / price / admission detail. Those pages get noindex,follow so
+ *  Google doesn't treat them as duplicate content while still crawling
+ *  outward through their internal links. They stay in the sitemap so the
+ *  bot picks them up automatically once richer data lands. */
+function isThinPin(pin: Pin, hasFileContent: boolean): boolean {
+  if (hasFileContent) return false; // editorial markdown lifts the floor
+  if (pin.visited) return false;
+  if (pin.personalReview && pin.personalReview.trim().length > 0) return false;
+  if ((pin.lists?.length ?? 0) > 0) return false;
+  if (pin.hours && pin.hours.trim().length > 0) return false;
+  if (pin.priceAmount != null || pin.priceText) return false;
+  if (pin.hoursDetails && Object.keys(pin.hoursDetails).length > 0) return false;
+  if (pin.priceDetails && Object.keys(pin.priceDetails).length > 0) return false;
+  return true;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const pin = await fetchPinBySlug(slug);
   if (!pin) return { title: 'Not found' };
 
+  // Meta description preference order:
+  //   1. The first 155 chars of Mike's personal review when it exists —
+  //      unique, voicey, and what a curious reader wants to see.
+  //   2. The pin's curated `description`.
+  //   3. A generic fallback so the meta tag never empties out.
   const description =
+    clip(pin.personalReview, 155) ??
     clip(pin.description, 155) ??
     `${pin.name}${pin.cityNames[0] ? `, ${pin.cityNames[0]}` : ''}. Travel pin from a personal atlas.`;
 
@@ -43,25 +67,31 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Indexability: a content file can opt the page in via `indexable: true`
   // in its frontmatter. Either source flips noindex off — once you've
   // dropped a /content/pins/<slug>.md with the flag set, the page becomes
-  // crawlable without touching the DB.
+  // crawlable without touching the DB. The thinness gate is the *default*
+  // — even with `indexable=false`, only thin pages get noindex now.
   const fileContent = await readPlaceContent('pins', pin.slug ?? '');
-  const indexable = fileContent?.indexable === true || pin.indexable;
+  const explicitIndexable = fileContent?.indexable === true || pin.indexable;
+  // If the DB / file says yes, trust it. Otherwise auto-decide via thinness.
+  const noindex = explicitIndexable ? false : isThinPin(pin, !!fileContent);
+
+  // Long-tail-friendly title: "Pyramids of Egypt — review, hours, tickets".
+  const richTitle = pinPageTitle(pin);
 
   return {
-    title: pin.name,
+    title: richTitle,
     description,
     alternates: { canonical: url },
-    robots: indexable ? undefined : { index: false, follow: true },
+    robots: noindex ? { index: false, follow: true } : undefined,
     openGraph: {
       type: 'article',
       url,
-      title: `${pin.name} · Mike Lee`,
+      title: `${richTitle} · Mike Lee`,
       description,
       ...(image ? { images: [{ url: image }] } : {}),
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${pin.name} · Mike Lee`,
+      title: `${richTitle} · Mike Lee`,
       description,
       ...(image ? { images: [image] } : {}),
     },
@@ -77,12 +107,21 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
   // Surgical country lookup by name — used to load all 226 countries here
   // and .find() through them. The case-insensitive name match is handled
   // server-side via ilike now.
-  const [countryRecord, wp, personalPhotos, content] = await Promise.all([
+  const [countryRecord, wp, personalPhotos, content, allPinsForRelated] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
     readPlaceContent('pins', pin.slug ?? ''),
+    // Pulled here for the "More near here" footer block. The fetcher is
+    // module-cached so /pins index views and this detail page share the
+    // same hit. We only consume the result if this pin has coords.
+    pin.lat != null && pin.lng != null ? fetchAllPins() : Promise.resolve([] as Pin[]),
   ]);
+
+  // Compute up to 4 nearest pins inside a 5 km radius. Skips the current
+  // pin itself, and skips pins without coords. Sorted by distance asc so
+  // the very-close cluster appears first. Empty array → block hides.
+  const relatedPins = computeRelatedPins(pin, allPinsForRelated);
   const countrySlug = countryRecord?.slug ?? null;
   const flagUrl = flagCircle(countryRecord?.iso2 ?? null);
 
@@ -627,8 +666,110 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           )}
         </aside>
       </div>
+
+      {/* "More near here" — up to four nearest pins inside a 5 km radius.
+          Renders only when this pin has coords AND there's at least one
+          neighbour to surface. Improves crawl depth (Google has another
+          path to follow) and gives travelers an obvious "what else is on
+          this block?" affordance. */}
+      {relatedPins.length > 0 && (
+        <section className="mt-12 pt-8 border-t border-sand">
+          <h2 className="text-h3 text-ink-deep mb-1">More near here</h2>
+          <p className="text-small text-muted mb-4">
+            Other pins within walking distance of {pin.name}.
+          </p>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {relatedPins.map(r => (
+              <li key={r.pin.id}>
+                <Link
+                  href={`/pins/${r.pin.slug ?? r.pin.id}`}
+                  className="block card overflow-hidden hover:shadow-paper transition-shadow"
+                >
+                  {r.pin.images?.[0]?.url ? (
+                    <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={thumbUrl(r.pin.images[0].url, { size: 320 }) ?? r.pin.images[0].url}
+                        alt=""
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      {r.pin.visited && (
+                        <span className="absolute top-1.5 right-1.5 pill bg-teal text-white text-micro">
+                          ✓
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-[0.14em]">
+                      No photo
+                    </div>
+                  )}
+                  <div className="p-2.5">
+                    <h3 className="text-ink-deep font-medium leading-tight truncate text-small">
+                      {r.pin.name}
+                    </h3>
+                    <p className="mt-0.5 text-label text-muted tabular-nums">
+                      {formatDistance(r.distanceKm)} away
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </article>
   );
+}
+
+// === Geo helpers ============================================================
+
+/** Haversine-formula great-circle distance in kilometers. Cheap enough to
+ *  call once per pin in a single render — the sort below dominates. */
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/** Pick up to 4 nearest pins inside `radiusKm`. Skips the source pin and
+ *  any pin without coords. Returned in ascending-distance order. */
+function computeRelatedPins(
+  source: Pin,
+  candidates: Pin[],
+  limit = 4,
+  radiusKm = 5,
+): { pin: Pin; distanceKm: number }[] {
+  if (source.lat == null || source.lng == null) return [];
+  const out: { pin: Pin; distanceKm: number }[] = [];
+  for (const c of candidates) {
+    if (c.id === source.id) continue;
+    if (c.lat == null || c.lng == null) continue;
+    // Cheap pre-filter on lat/lng box before the haversine — at the equator
+    // 5 km is ~0.045°. Saves the trig call on the 99% of pins that are
+    // far away.
+    if (Math.abs(c.lat - source.lat) > 0.1) continue;
+    if (Math.abs(c.lng - source.lng) > 0.1) continue;
+    const d = haversineKm(source.lat, source.lng, c.lat, c.lng);
+    if (d <= radiusKm) out.push({ pin: c, distanceKm: d });
+  }
+  out.sort((a, b) => a.distanceKm - b.distanceKm);
+  return out.slice(0, limit);
+}
+
+/** Human-readable distance string. Keeps three significant figures so
+ *  "0.42 km" / "1.2 km" / "4.8 km" all round naturally. Sub-100m gets
+ *  rendered as meters for a more concrete sense of proximity. */
+function formatDistance(km: number): string {
+  if (km < 0.1) return `${Math.round(km * 1000)} m`;
+  if (km < 1) return `${(km * 1000 / 100 | 0) * 100} m`;
+  return `${km.toFixed(km < 10 ? 1 : 0)} km`;
 }
 
 function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string | null }) {

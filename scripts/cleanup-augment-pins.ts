@@ -225,12 +225,12 @@ function categoryToKind(category: string | null | undefined, name: string, curre
   const c = `${categoryText} ${nameText}`;
   if (/\b([a-z]*hotel|lodging|resort|hostel|inn|motel|guest ?house|guesthouse|lodge|aparthotel|suites|riad|bujtina|hyatt|marriott|sheraton|hilton|conrad|waldorf|courtyard|fairfield|moxy|ritz[- ]?carlton|andaz|westin|kimpton|intercontinental|holiday inn|crowne plaza|radisson|wyndham|ramada|best western|four seasons|mandarin oriental|peninsula|kempinski|sofitel|novotel|mercure|ibis|pullman|accor|melia|barcelo|riu|fairmont|raffles|swissotel|movenpick|jumeirah|rosewood|edition|hoxton|citizenm|premier inn|travelodge|meridien)\b/.test(c)) return 'hotel';
   if (/\b(restaurant|restaurante|cafe|caffe|coffee|coffe|bar|bakery|meal|food|pizza|sushi|tacos|brasserie|bistro|pub|brewery|taproom|grill|diner|noodle|ramen|pasta|steakhouse|takeaway|take away)\b/.test(categoryText)) return 'restaurant';
-  if (/\b(restaurant|restaurante|ristorante|restoran|cafe|caffe|coffee|coffe|bakery|bake|beigel|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata|pizza|pizzeria|sushi|maki|ramen|noodle|dosa|donburi|teishoku|kebab|bao|kitchen|cocina|cucina|krua|tacos|taqueria|brasserie|bistro|pub|tavern|brewery|brewing|bierwerk|cerveceria|cerveza|taproom|grill|diner|cantina|konoba|trattoria|osteria|ostreria|parrilla|asado|bbq|barbecue|burger|falafel|shawarma|empanada|burrito|gelato|ice cream|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b|burger/.test(nameText)) return 'restaurant';
+  if (/\b(restaurant|restaurante|ristorante|restoran|cafe|caffe|coffee|coffe|kavarna|bakery|bake|beigel|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata|pizza|pizzeria|sushi|maki|ramen|noodle|dosa|donburi|teishoku|kebab|bao|bun|kitchen|cocina|cucina|krua|sapori|stuble|tacos|taqueria|brasserie|bistro|pub|tavern|brewery|brewing|bierwerk|cerveceria|cerveza|taproom|grill|diner|cantina|konoba|trattoria|osteria|ostreria|parrilla|asado|bbq|barbecue|burger|falafel|shawarma|empanada|burrito|gelato|ice cream|custard|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b|burger/.test(nameText)) return 'restaurant';
   if (/\bbar\b/.test(nameText) && !/\b(old town of bar|bar,\s*montenegro)\b/.test(nameText)) return 'restaurant';
   if (/\b(airport|station|terminal|transit|metro|subway|rail|ferry)\b/.test(c)) return 'transit';
   if (/\b(park|garden|gardens|botanical|beach|trail|reserve|national park|waterfall|lido)\b/.test(c)) return 'park';
   if (/\b(store|shop|shopping|market|mercado|bazaar|mall|markthal|pharmacy|supermarket|boutique|tailor|barber)\b/.test(c)) return 'shopping';
-  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|wat|ossuary|monasterio|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|theme park|waterbom|windmill|college|viking centre|viking center|plaza|square|skyspace|plopsaland|terra mitica)\b/.test(c)) return 'attraction';
+  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|wat|ossuary|monasterio|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|theme park|waterbom|windmill|college|viking centre|viking center|plaza|square|skyspace|estufa fria|house of the sea|haus des meeres|plopsaland|terra mitica)\b/.test(c)) return 'attraction';
   if (current && ALLOWED_KINDS.has(current)) return current;
   return defaultToAttraction ? 'attraction' : null;
 }
@@ -472,10 +472,14 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'koh samui': { cityNames: ['Ko Samui'], country: 'Thailand' },
   'kusttram stations': { cityNames: [], country: 'Belgium' },
   'lake como': { cityNames: ['Como'], country: 'Italy' },
+  'lax': { cityNames: ['Los Angeles'], country: 'United States of America' },
   'london food and sites': { cityNames: ['London'], country: 'England' },
   'lpq': { cityNames: ['Luang Prabang'], country: 'Laos' },
   'lyon fr': { cityNames: ['Lyon'], country: 'France' },
   'malta': { cityNames: [], country: 'Malta' },
+  'milano': { cityNames: ['Milan'], country: 'Italy' },
+  'montevideo': { cityNames: ['Montevideo'], country: 'Uruguay' },
+  'moselle valley': { cityNames: [], country: 'Germany' },
   'manhattan': { cityNames: ['New York City'], country: 'United States of America' },
   'manhattan ny': { cityNames: ['New York City'], country: 'United States of America' },
   'nyc': { cityNames: ['New York City'], country: 'United States of America' },
@@ -485,6 +489,7 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'pty metro': { cityNames: ['Panama City'], country: 'Panama' },
   'rio': { cityNames: ['Rio de Janeiro'], country: 'Brazil' },
   'saint malo mt sant michel': { cityNames: ['Saint-Malo'], country: 'France' },
+  'salisbury and stonehenge': { cityNames: ['Salisbury'], country: 'England' },
   'saranda ksamil': { cityNames: ['Sarandë', 'Ksamil'], country: 'Albania' },
   'santiago de compostela': { cityNames: ['Santiago de Compostela'], country: 'Spain' },
   'santiago de compostela es': { cityNames: ['Santiago de Compostela'], country: 'Spain' },
@@ -512,6 +517,28 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'utrect nl': { cityNames: ['Utrecht'], country: 'Netherlands' },
   'venezia': { cityNames: ['Venice'], country: 'Italy' },
   'vila joyosa': { cityNames: ['Villajoyosa'], country: 'Spain' },
+};
+
+const CITY_LOCATION_HINTS: Record<string, LocationHint> = {
+  'antalya': { cityNames: ['Antalya'], country: 'Türkiye' },
+  'champasak': { cityNames: ['Champasak'], country: 'Laos' },
+  'cradock': { cityNames: ['Cradock'], country: 'South Africa' },
+  'edirne': { cityNames: ['Edirne'], country: 'Türkiye' },
+  'hoi an': { cityNames: ['Hoi An'], country: 'Viet Nam' },
+  'hue': { cityNames: ['Hue'], country: 'Viet Nam' },
+  'kazan': { cityNames: ['Kazan'], country: 'Russia' },
+  'luang prabang': { cityNames: ['Luang Prabang'], country: 'Laos' },
+  'moscow': { cityNames: ['Moscow'], country: 'Russia' },
+  'nha trang': { cityNames: ['Nha Trang'], country: 'Viet Nam' },
+  'potosi': { cityNames: ['Potosi'], country: 'Bolivia' },
+  'pskov': { cityNames: ['Pskov'], country: 'Russia' },
+  'puerto princesa': { cityNames: ['Puerto Princesa'], country: 'Philippines' },
+  'samaipata': { cityNames: ['Samaipata'], country: 'Bolivia' },
+  'semey': { cityNames: ['Semey'], country: 'Kazakhstan' },
+  'semporna': { cityNames: ['Semporna'], country: 'Malaysia' },
+  'seoul': { cityNames: ['Seoul'], country: 'South Korea' },
+  'sivas': { cityNames: ['Sivas'], country: 'Türkiye' },
+  'suwon': { cityNames: ['Suwon'], country: 'South Korea' },
 };
 
 const GENERIC_SAVED_LIST_NAMES = new Set([
@@ -562,6 +589,9 @@ function buildCityCountryLookup(cities: CityRow[]): Map<string, LocationHint> {
         country: [...value.countries][0],
       });
     }
+  }
+  for (const [key, value] of Object.entries(CITY_LOCATION_HINTS)) {
+    lookup.set(locationKey(key), value);
   }
   for (const [key, value] of Object.entries(SAVED_LIST_LOCATION_HINTS)) {
     lookup.set(locationKey(key), value);
@@ -622,6 +652,20 @@ function savedListNames(pin: PinRow): string[] {
 function hasOnlyGenericSavedLists(pin: PinRow): boolean {
   const lists = savedListNames(pin);
   return lists.length > 0 && lists.every(list => GENERIC_SAVED_LIST_NAMES.has(rawSavedListKey(list)));
+}
+
+function inferLocationFromCityNames(pin: PinRow, cityCountryLookup: Map<string, LocationHint>): LocationHint | null {
+  const cities = Array.isArray(pin.city_names) ? pin.city_names : [];
+  const hints = cities
+    .map(city => cityCountryLookup.get(locationKey(city)))
+    .filter((hint): hint is LocationHint => Boolean(hint?.country));
+  if (!hints.length) return null;
+  const countries = uniqueStrings(hints.map(hint => hint.country));
+  if (countries.length !== 1) return null;
+  return {
+    cityNames: uniqueStrings(hints.flatMap(hint => hint.cityNames)),
+    country: countries[0],
+  };
 }
 
 function inferLocationFromSavedLists(pin: PinRow, cityCountryLookup: Map<string, LocationHint>): LocationHint | null {
@@ -865,6 +909,10 @@ function derivedPatch(pin: PinRow, cityCountryLookup: Map<string, LocationHint>)
   const { city, country } = locationFromAddress(pin.address);
   if (city && (isEmpty(pin.city_names) || hasMessyLocation(pin.city_names))) patch.city_names = [city];
   if (country && (isEmpty(pin.states_names) || hasMessyLocation(pin.states_names))) patch.states_names = [country];
+  const cityNameLocation = inferLocationFromCityNames({ ...pin, ...patch }, cityCountryLookup);
+  if (cityNameLocation?.country && isEmpty(pin.states_names) && isEmpty(patch.states_names)) {
+    patch.states_names = [cityNameLocation.country];
+  }
   const savedListLocation = inferLocationFromSavedLists({ ...pin, ...patch }, cityCountryLookup);
   if (savedListLocation) {
     if (savedListLocation.cityNames.length && isEmpty(pin.city_names) && isEmpty(patch.city_names)) {

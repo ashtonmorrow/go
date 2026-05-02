@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { usePinFilters, togglePinSet, PinSortKey } from './PinFiltersContext';
 import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinLists';
@@ -7,6 +8,18 @@ import YearRangeSlider from './YearRangeSlider';
 import WorldMapPicker from './WorldMapPicker';
 import type { Continent } from './CityFiltersContext';
 import { BRING_FACET, bringFacet } from '@/lib/pinFacets';
+
+// Curated views — short list of /pins/views/<slug> landings the panel
+// surfaces above the filter cockpit. Keeps the registry in lib/pinViews.ts
+// canonical; this is just the "show me these as pills" subset for the
+// sidebar. Order is intentional: highest-intent first.
+const VIEW_PILLS: { slug: string; emoji: string; label: string }[] = [
+  { slug: 'reviewed',     emoji: '✍️', label: 'Reviewed' },
+  { slug: 'visited',      emoji: '✈️', label: 'Visited' },
+  { slug: 'unesco',       emoji: '🌍', label: 'UNESCO' },
+  { slug: 'free',         emoji: '◯',  label: 'Free' },
+  { slug: 'kid-friendly', emoji: '🧒', label: 'Kid-friendly' },
+];
 
 // === PinFilterPanel ========================================================
 // Cockpit UI for /pins. Mirrors the FilterPanel pattern from /cities so the
@@ -50,6 +63,25 @@ export default function PinFilterPanel({
 
   return (
     <div className="flex flex-col gap-5">
+      {/* Curated-views pill row — quick links to the dedicated landing
+          pages at /pins/views/<slug>. Each is a hand-curated angle on the
+          pin set with editorial intro copy. The pills sit above the
+          cockpit header so they read as "here are some pre-baked answers"
+          before the user starts assembling their own filter set. */}
+      <div className="flex flex-wrap gap-1.5 -mx-1 px-1">
+        {VIEW_PILLS.map(v => (
+          <Link
+            key={v.slug}
+            href={`/pins/views/${v.slug}`}
+            className="inline-flex items-center gap-1 pill bg-cream-soft border border-sand text-label text-ink-deep hover:border-ink-deep hover:bg-white transition-colors"
+            title={`Curated view: ${v.label}`}
+          >
+            <span aria-hidden>{v.emoji}</span>
+            {v.label}
+          </Link>
+        ))}
+      </div>
+
       {/* Cockpit header — pinned at the top of the panel. Live result
           count on the left, prominent "Clear all" on the right. */}
       <div className="flex items-center justify-between gap-2 -mx-1 px-1 py-1.5 border-b border-sand">
