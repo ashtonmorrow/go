@@ -187,6 +187,22 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
         <div>
           <h1 className="text-h1 text-ink-deep">{country.name}</h1>
           {country.capital && <p className="text-slate mt-1">Capital: {country.capital}</p>}
+          {/* Saved-list callout — surfaces matching list(s) up at the
+              header so the curated places aren't buried under the
+              country prose. Mirrors the same chip on /cities/[slug]. */}
+          {primaryListName && countryListPins.length > 0 && (
+            <Link
+              href={`/lists/${listNameToSlug(primaryListName)}`}
+              className="mt-3 pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
+              title={`Mike's ${country.name} saved list — ${countryListPins.length} place${countryListPins.length === 1 ? '' : 's'}`}
+            >
+              <span aria-hidden>🗂️</span>
+              <span>
+                {country.name} list · {countryListPins.length} place
+                {countryListPins.length === 1 ? '' : 's'}
+              </span>
+            </Link>
+          )}
         </div>
       </header>
 

@@ -29,6 +29,7 @@ type Counts = {
   go: number;
   saved: number;
   pins: number;
+  lists: number;
 };
 
 // Layer-inspired left rail. Top to bottom:
@@ -44,11 +45,16 @@ type Counts = {
 
 // Object axis. The View axis (Cards / Map / Table / Stats) lives in
 // the per-page <ViewSwitcher>, not here. Sidebar links land on the
-// Cards view of each object — the canonical default.
+// Cards view of each object — the canonical default. Lists is the
+// fourth first-class object: each saved list is a curated collection
+// of pins (typically a 1:1 with a city) and they deserve top-level
+// discoverability the way Spotify treats playlists or Pinterest
+// treats boards.
 const PAGES: { href: string; emoji: string; label: string }[] = [
   { href: '/cities/cards',    emoji: '📮', label: 'Cities' },
   { href: '/countries/cards', emoji: '🌍', label: 'Countries' },
   { href: '/pins/cards',      emoji: '📍', label: 'Pins' },
+  { href: '/lists',           emoji: '🗂️', label: 'Lists' },
 ];
 
 // External links to other Mike Lee subdomains. mike-lee.me itself isn't
@@ -219,14 +225,18 @@ function NavBody({
           and the label was just noise. */}
       <div className="flex flex-col gap-0.5">
         {PAGES.map(p => {
-          // Sidebar items always link to the Cards view of an object, but
-          // the active state should light up for any view of that object,
-          // including the dynamic detail pages — /cities/[slug] etc.
-          // Shared prefix is "/<object>/", which we derive from the link.
-          const objectPrefix = p.href.replace(/\/cards$/, '/');
+          // Sidebar items always link to the canonical entry for an
+          // object — Cards view for objects with a view matrix
+          // (cities/countries/pins), the index page for ones without
+          // (lists). Active state lights up for any view of that
+          // object, including dynamic detail pages — /cities/[slug],
+          // /lists/[slug], etc.
+          const objectPrefix = p.href.endsWith('/cards')
+            ? p.href.replace(/\/cards$/, '/')
+            : p.href + '/';
           const active =
             pathname === p.href ||
-            (objectPrefix.endsWith('/') && pathname.startsWith(objectPrefix));
+            pathname.startsWith(objectPrefix);
           return (
             <Item
               key={p.href}
@@ -268,6 +278,7 @@ function NavBody({
           <Item href="/cities/cards"    emoji="📮" label="Cities"    count={counts.cities}    onClick={onLinkClick} />
           <Item href="/countries/cards" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
           <Item href="/pins/cards"      emoji="📍" label="Pins"      count={counts.pins}      onClick={onLinkClick} />
+          <Item href="/lists"           emoji="🗂️" label="Lists"     count={counts.lists}     onClick={onLinkClick} />
           <Item href="/cities/cards"    emoji="✈️" label="Been"      count={counts.been}      onClick={onLinkClick} />
           <Item href="/cities/cards"    emoji="⭐" label="Go"        count={counts.go}        onClick={onLinkClick} />
           <Item href="/cities/cards"    emoji="💾" label="Saved"     count={counts.saved}     onClick={onLinkClick} />

@@ -20,6 +20,7 @@ import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib
 import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
+import { listNameToSlug } from '@/lib/savedLists';
 
 // Force dynamic rendering. The Sidebar (root layout) reads headers() for
 // pathname-aware fetching, which makes the whole tree dynamic at runtime.
@@ -347,6 +348,24 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           {pin.category && pin.lists.length === 0 && (
             <span className="pill bg-cream-soft text-slate">{pin.category}</span>
           )}
+          {/* Saved-list chips. A pin can be on Mike's "Cape Town" list,
+              "Coffee shops" list, etc. — these are the curated buckets
+              that surface as /lists/<slug>. We render them after curated
+              lists (UNESCO etc.) since they're the lowest-tier signal but
+              the highest-value cross-link: clicking lands on the full
+              list, which is the natural next step after viewing one pin
+              from it. */}
+          {pin.savedLists.map(name => (
+            <Link
+              key={`sl-${name}`}
+              href={`/lists/${listNameToSlug(name)}`}
+              className="pill bg-cream-soft text-slate hover:bg-sand hover:text-ink-deep transition-colors inline-flex items-center gap-1.5"
+              title={`On Mike's ${name} list`}
+            >
+              <span aria-hidden>🗂️</span>
+              <span className="capitalize">{name}</span>
+            </Link>
+          ))}
           </div>
         </div>
       </header>

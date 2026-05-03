@@ -12,6 +12,7 @@
 import { headers } from 'next/headers';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { CANONICAL_LISTS } from '@/lib/pinLists';
 import { getAllArticleEntries } from '@/lib/articles';
 import SidebarShell from './SidebarShell';
@@ -81,7 +82,7 @@ function needsCollectionsBlock(pathname: string): boolean {
 }
 
 const ZERO_COUNTS = {
-  cities: 0, countries: 0, been: 0, go: 0, saved: 0, pins: 0,
+  cities: 0, countries: 0, been: 0, go: 0, saved: 0, pins: 0, lists: 0,
 };
 
 export default async function Sidebar() {
@@ -135,7 +136,7 @@ async function SidebarBody() {
   // of the page already pulled it, this is free. Each fetcher has its own
   // catch so a single Supabase hiccup degrades counts instead of killing
   // the whole sidebar (which would 500 the entire app).
-  const [cities, countries, pins, articleEntries] = await Promise.all([
+  const [cities, countries, pins, articleEntries, listsMeta] = await Promise.all([
     wantsCities || wantsCounts
       ? fetchAllCities().catch(err => {
           console.error('[Sidebar] fetchAllCities failed:', err);
@@ -158,6 +159,14 @@ async function SidebarBody() {
       console.error('[Sidebar] getAllArticleEntries failed:', err);
       return [];
     }),
+    // Lists meta is small (one row per saved list, ~150 rows) and the
+    // primary cost on a cold cache is one Supabase round-trip. Fetching
+    // it unconditionally keeps the Lists nav row showing a count on
+    // every route — discoverability is the win we're after.
+    fetchAllSavedListsMeta().catch(err => {
+      console.error('[Sidebar] fetchAllSavedListsMeta failed:', err);
+      return new Map();
+    }),
   ]);
 
   // Counts only get computed when the bottom-block is going to render.
@@ -170,8 +179,9 @@ async function SidebarBody() {
         go: cities.filter(c => c.go).length,
         saved: cities.filter(c => !!c.myGooglePlaces).length,
         pins: pins.length,
+        lists: listsMeta.size,
       }
-    : ZERO_COUNTS;
+    : { ...ZERO_COUNTS, lists: listsMeta.size };
 
   // City-side filter options — only meaningful on a city cockpit page.
   const countryOptions = wantsCities

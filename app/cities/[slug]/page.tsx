@@ -271,11 +271,29 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         <div>
           <h1 className="text-display text-ink-deep leading-none">{city.name}</h1>
           {city.localName && <p className="mt-2 text-h3 text-slate font-normal">{city.localName}</p>}
-          <div className="mt-3 flex gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {city.been && <span className="pill bg-teal/10 text-teal">Been</span>}
             {city.go && !city.been && <span className="pill bg-sky/20 text-slate">Go</span>}
             {country && <span className="pill">{country.name}</span>}
             {city.koppen && <span className="pill">{city.koppen}</span>}
+            {/* Saved-list callout — when the city has a matching saved
+                list, surface it in the header so visitors don't have to
+                scroll past the city's prose to find the curated places.
+                The same list also renders in full lower on the page; this
+                chip is the click-target for "skip to the goods". */}
+            {primaryListName && cityListPins.length > 0 && (
+              <Link
+                href={`/lists/${listNameToSlug(primaryListName)}`}
+                className="pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
+                title={`Mike's ${city.name} saved list — ${cityListPins.length} place${cityListPins.length === 1 ? '' : 's'}`}
+              >
+                <span aria-hidden>🗂️</span>
+                <span>
+                  {city.name} list · {cityListPins.length} place
+                  {cityListPins.length === 1 ? '' : 's'}
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </header>
