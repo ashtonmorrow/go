@@ -19,6 +19,25 @@ const nextConfig = {
       // as anything we serve from the Stray bucket directly.
       { protocol: 'https', hostname: 'pdjrvlhepiwkshxerkpz.supabase.co' },
     ],
+    // Image sizes Next.js will produce when proxying through /_next/image.
+    // We need the widths used by `thumbUrl` (×2 for retina) — Next 400s
+    // when a request asks for a width not in deviceSizes ∪ imageSizes.
+    //   thumbUrl size 56  → 112  ⇒ snap to 128
+    //   thumbUrl size 96  → 192  ⇒ 192
+    //   thumbUrl size 240 → 480  ⇒ 480
+    //   thumbUrl size 320 → 640  ⇒ 640 (already a deviceSize)
+    //   heroUrl  width 1200 → 2400 ⇒ 2048 (deviceSize)
+    // imageSizes (small) and deviceSizes (large) are concatenated into one
+    // allowed set. Including 64/96/128/192/256/384 covers every <Image>
+    // we'd want for thumbs without slicing pin photos into wasteful sizes.
+    imageSizes: [16, 32, 48, 64, 96, 128, 192, 240, 256, 384, 480],
+    // Cache resized variants for a year — saved-list and pin photos don't
+    // change after upload, so the long TTL keeps Vercel's image-CDN hits
+    // reusable across deploys instead of re-rendering on every revalidate.
+    minimumCacheTTL: 60 * 60 * 24 * 365,
+    // Prefer modern formats when the browser supports them. Next picks
+    // automatically based on the Accept header; both fall back to JPEG.
+    formats: ['image/avif', 'image/webp'],
   },
   // Ship the file-based content collection (lib/content.ts reads from /content
   // at request time) inside the serverless function bundles. Next.js can't
