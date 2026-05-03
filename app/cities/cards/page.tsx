@@ -1,5 +1,6 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import CitiesGrid from '@/components/CitiesGrid';
+import CitiesPageTitle from '@/components/CitiesPageTitle';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
@@ -137,7 +138,7 @@ export default async function CitiesPage() {
     <>
       <JsonLd data={collectionData} />
       <section className="max-w-page mx-auto px-5 pt-6">
-        <h1 className="text-h2 text-ink-deep">Cities I&rsquo;ve traveled to</h1>
+        <CitiesPageTitle />
       </section>
       <CitiesGrid cities={minimal} />
     </>

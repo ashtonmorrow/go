@@ -73,6 +73,19 @@ function placeIdFromUrl(url: string | null | undefined): string | null {
   return null;
 }
 
+/** Custom error type so the generator can distinguish "Google said no
+ *  match for this place" (caller continues) from "Google rejected our
+ *  request entirely" (caller should abort the whole run). */
+export class PlacesApiError extends Error {
+  status: number;
+  body: string;
+  constructor(status: number, body: string) {
+    super(`Places API ${status}: ${body.slice(0, 300)}`);
+    this.status = status;
+    this.body = body;
+  }
+}
+
 async function findPlaceId(
   apiKey: string,
   name: string,
@@ -94,7 +107,14 @@ async function findPlaceId(
     },
     body: JSON.stringify(body),
   });
-  if (!res.ok) return null;
+  if (!res.ok) {
+    // 4xx on a Places API call usually means key/billing/quota — not
+    // a per-pin issue. Throw so the caller can abort the entire run
+    // and surface the reason to the UI rather than silently logging
+    // 32 pins as "no-match".
+    const text = await res.text().catch(() => '');
+    throw new PlacesApiError(res.status, text);
+  }
   const j = await res.json();
   const id = j?.places?.[0]?.id;
   return typeof id === 'string' ? id : null;
@@ -138,7 +158,12 @@ async function fetchPlaceDetails(
       'X-Goog-FieldMask': buildFieldMask(fields),
     },
   });
-  if (!res.ok) return null;
+  if (!res.ok) {
+    // Same reasoning as findPlaceId: a 4xx here is almost always
+    // global (key, billing) rather than per-pin, so abort.
+    const text = await res.text().catch(() => '');
+    throw new PlacesApiError(res.status, text);
+  }
   return (await res.json()) as PlaceDetails;
 }
 

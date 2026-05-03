@@ -225,12 +225,12 @@ function categoryToKind(category: string | null | undefined, name: string, curre
   const c = `${categoryText} ${nameText}`;
   if (/\b([a-z]*hotel|lodging|resort|hostel|inn|motel|guest ?house|guesthouse|lodge|aparthotel|suites|riad|bujtina|hyatt|marriott|sheraton|hilton|conrad|waldorf|courtyard|fairfield|moxy|ritz[- ]?carlton|andaz|westin|kimpton|intercontinental|holiday inn|crowne plaza|radisson|wyndham|ramada|best western|four seasons|mandarin oriental|peninsula|kempinski|sofitel|novotel|mercure|ibis|pullman|accor|melia|barcelo|riu|fairmont|raffles|swissotel|movenpick|jumeirah|rosewood|edition|hoxton|citizenm|premier inn|travelodge|meridien)\b/.test(c)) return 'hotel';
   if (/\b(restaurant|restaurante|cafe|caffe|coffee|coffe|bar|bakery|meal|food|pizza|sushi|tacos|brasserie|bistro|pub|brewery|taproom|grill|diner|noodle|ramen|pasta|steakhouse|takeaway|take away)\b/.test(categoryText)) return 'restaurant';
-  if (/\b(restaurant|restaurante|ristorante|restoran|cafe|caffe|coffee|coffe|kavarna|bakery|bake|beigel|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata|pizza|pizzeria|sushi|maki|ramen|noodle|dosa|donburi|teishoku|kebab|bao|bun|kitchen|cocina|cucina|krua|sapori|stuble|tacos|taqueria|brasserie|bistro|pub|tavern|brewery|brewing|bierwerk|cerveceria|cerveza|taproom|grill|diner|cantina|konoba|trattoria|osteria|ostreria|parrilla|asado|bbq|barbecue|burger|falafel|shawarma|empanada|burrito|gelato|ice cream|custard|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b|burger/.test(nameText)) return 'restaurant';
+  if (/\b(restaurant|restaurante|ristorante|restoran|cafe|caffe|coffee|coffe|kavarna|bakery|bake|beigel|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata|pizza|pizzeria|sushi|maki|hamachi|ramen|noodle|dosa|donburi|teishoku|kebab|bao|bun|kitchen|cocina|comida|cucina|krua|sapori|stuble|tacos|taqueria|brasserie|bistro|bristo|pub|tavern|brewery|brewing|bierwerk|cerveceria|cerveza|beer|taproom|grill|diner|cantina|konoba|trattoria|osteria|ostreria|parrilla|asado|bbq|barbecue|burger|cevicheria|ceviche|ostras|pezetarian|arepa|hornitos|salchicha|falafel|shawarma|empanada|burrito|gelato|ice cream|custard|rooftop|cocktail|wine bar|steakhouse|seafood|tuna|takeaway|take away|pita)\b|burger|cacio and pepe/.test(nameText)) return 'restaurant';
   if (/\bbar\b/.test(nameText) && !/\b(old town of bar|bar,\s*montenegro)\b/.test(nameText)) return 'restaurant';
-  if (/\b(airport|station|terminal|transit|metro|subway|rail|ferry)\b/.test(c)) return 'transit';
+  if (/\b(airport|station|terminal|transit|metro|subway|rail|ferry|cable ?car|teleferico|funicular)\b/.test(c)) return 'transit';
   if (/\b(park|garden|gardens|botanical|beach|trail|reserve|national park|waterfall|lido)\b/.test(c)) return 'park';
   if (/\b(store|shop|shopping|market|mercado|bazaar|mall|markthal|pharmacy|supermarket|boutique|tailor|barber)\b/.test(c)) return 'shopping';
-  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|wat|ossuary|monasterio|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|theme park|waterbom|windmill|college|viking centre|viking center|plaza|square|skyspace|estufa fria|house of the sea|haus des meeres|plopsaland|terra mitica)\b/.test(c)) return 'attraction';
+  if (/\b(museum|gallery|tourist_attraction|tourist attraction|landmark|church|cathedral|mosque|temple|synagogue|wat|ossuary|monasterio|santuario|sanctuary|place_of_worship|point_of_interest|point of interest|castle|fortress|tower|aquarium|zoo|spa|thermal baths|lagoon|theme park|waterbom|windmill|college|viking centre|viking center|plaza|square|skyspace|estufa fria|house of the sea|haus des meeres|plopsaland|terra mitica)\b/.test(c)) return 'attraction';
   if (current && ALLOWED_KINDS.has(current)) return current;
   return defaultToAttraction ? 'attraction' : null;
 }
@@ -278,20 +278,24 @@ function inferCuisine(row: PinRow): string[] | null {
     .replace(/[\u0300-\u036f]/g, '');
   const matches: [RegExp, string][] = [
     [/\blebanese\b/, 'Lebanese'],
-    [/\bitalian|italia|ristorante|trattoria|osteria|ostreria|pizzeria|pizza|cucina|sapori|pasteis|nata\b/, 'Italian'],
-    [/\bjapanese|sushi|ramen|izakaya|donburi|teishoku|ippudo\b/, 'Japanese'],
+    [/\bitalian|italia|ristorante|trattoria|osteria|ostreria|pizzeria|pizza|cacio|cucina|sapori|pasteis|nata\b/, 'Italian'],
+    [/\bjapanese|sushi|hamachi|ramen|izakaya|donburi|teishoku|ippudo\b/, 'Japanese'],
     [/\bthai|krua\b/, 'Thai'],
     [/\bindian\b/, 'Indian'],
     [/\bchinese|dimsum|dim sum\b/, 'Chinese'],
     [/\bvietnamese|pho\b/, 'Vietnamese'],
     [/\bkorean\b/, 'Korean'],
     [/\bmexican|taco|taqueria\b/, 'Mexican'],
+    [/\bperuvian|peruano|peruana|peru fusion\b/, 'Peruvian'],
+    [/\basian\b/, 'Asian'],
     [/\bgeorgian\b/, 'Georgian'],
+    [/\bgerman|alemana|salchicha\b/, 'German'],
     [/\bgreek\b/, 'Greek'],
     [/\bturkish\b/, 'Turkish'],
-    [/\bmoroccan\b/, 'Moroccan'],
+    [/\bmoroccan|marroqui\b/, 'Moroccan'],
+    [/\bargentine|parrilla argentina|cocina argentina\b/, 'Argentine'],
     [/\bspanish|tapas\b/, 'Spanish'],
-    [/\bseafood|oyster|fish\b/, 'Seafood'],
+    [/\bseafood|oyster|fish|ceviche|cevicheria|ostras\b/, 'Seafood'],
     [/\bsteak|grill|asado|parrilla|rodizio\b/, 'Steakhouse'],
     [/\bbbq|barbecue|barbeque\b/, 'Barbecue'],
     [/\bburger\b/, 'Burgers'],
@@ -299,7 +303,9 @@ function inferCuisine(row: PinRow): string[] | null {
     [/\bvegan|vegetarian\b/, 'Vegetarian'],
     [/\bmediterranean\b/, 'Mediterranean'],
     [/\bbar|pub|tavern|lounge|cocktail|brewery|brewing|cerveceria|cerveza|bierwerk|beer|wine\b/, 'Bar'],
-    [/\bbakery|boulangerie|patisserie|patiseria|pasteleria|panaderia|pasteis|nata\b/, 'Bakery'],
+    [/\bkebab|shawarma|falafel|pita\b/, 'Middle Eastern'],
+    [/\bbakery|boulangerie|patisserie|patiseria|pasteleria|panaderia|hornitos|pasteis|nata\b/, 'Bakery'],
+    [/\barepa\b/, 'Latin American'],
     [/\bice cream|gelato|chocolate|dessert|sweet\b/, 'Dessert'],
     [/\bfast food|takeaway|takeout\b/, 'Fast food'],
     [/\bfood court|food hall\b/, 'Food hall'],
@@ -312,7 +318,7 @@ function inferMealTypes(row: PinRow): string[] | null {
   if (row.kind !== 'restaurant') return null;
   const s = `${row.name} ${row.category ?? ''} ${row.description ?? ''}`.toLowerCase();
   if (/\bbar|pub|tavern|lounge|cocktail|brewery|brewing|cerveceria|cerveza|beer|wine\b/.test(s)) return ['drinks'];
-  if (/\bcoffee|coffe|cafe|café|caffe|bakery|boulangerie|patisserie|pâtisserie|patiseria|pasteleria|panaderia|pasteis|nata|breakfast|brunch\b/.test(s)) {
+  if (/\bcoffee|coffe|cafe|café|caffe|bakery|boulangerie|patisserie|pâtisserie|patiseria|pasteleria|panaderia|hornitos|pasteis|nata|breakfast|brunch\b/.test(s)) {
     return ['breakfast', 'lunch'];
   }
   if (/\bice cream|gelato|chocolate|dessert|sweet\b/.test(s)) return ['snack'];
@@ -451,10 +457,14 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'belgian coast': { cityNames: [], country: 'Belgium' },
   'belgian coastal town stops': { cityNames: [], country: 'Belgium' },
   'belluno caviola': { cityNames: ['Belluno'], country: 'Italy' },
+  'bogota': { cityNames: ['Bogota'], country: 'Colombia' },
   'brittany': { cityNames: [], country: 'France' },
   'bruges 1': { cityNames: ['Bruges'], country: 'Belgium' },
+  'cartagena colombia': { cityNames: ['Cartagena'], country: 'Colombia' },
   'delft': { cityNames: ['Delft'], country: 'Netherlands' },
   'cdmx': { cityNames: ['Mexico City'], country: 'Mexico' },
+  'colombia': { cityNames: [], country: 'Colombia' },
+  'colombia misc': { cityNames: [], country: 'Colombia' },
   'cordoba ar food': { cityNames: ['Córdoba'], country: 'Argentina' },
   'croatia non city': { cityNames: [], country: 'Croatia' },
   'den haag': { cityNames: ['The Hague'], country: 'Netherlands' },
@@ -477,6 +487,7 @@ const SAVED_LIST_LOCATION_HINTS: Record<string, LocationHint> = {
   'lpq': { cityNames: ['Luang Prabang'], country: 'Laos' },
   'lyon fr': { cityNames: ['Lyon'], country: 'France' },
   'malta': { cityNames: [], country: 'Malta' },
+  'medellin': { cityNames: ['Medellin'], country: 'Colombia' },
   'milano': { cityNames: ['Milan'], country: 'Italy' },
   'montevideo': { cityNames: ['Montevideo'], country: 'Uruguay' },
   'moselle valley': { cityNames: [], country: 'Germany' },
@@ -748,6 +759,18 @@ async function mergeDuplicatePins(apply: boolean): Promise<{ merged: string[]; d
       keep: 'prambanan',
       remove: 'prambanan-temple-compounds',
     },
+    {
+      keep: 'plaza-botero-medellin',
+      remove: 'plaza-botero-medellin-antioquia',
+    },
+    {
+      keep: 'colombia-craft-brewing-company-cerveza-artesanal-craft-beer',
+      remove: 'colombia-craft-brewing-company',
+    },
+    {
+      keep: 'intercontinental-movich-medell-n-an-ihg-hotel',
+      remove: 'intercontinental-medellin-an-ihg-hotel',
+    },
   ];
   const merged: string[] = [];
   const deleted: string[] = [];
@@ -763,15 +786,35 @@ async function mergeDuplicatePins(apply: boolean): Promise<{ merged: string[]; d
       category: keep.category ?? remove.category,
       description: keep.description ?? remove.description,
       kind: keep.kind ?? remove.kind,
+      visited: Boolean(keep.visited || remove.visited),
+      visit_year: keep.visit_year ?? remove.visit_year,
+      lat: keep.lat ?? remove.lat,
+      lng: keep.lng ?? remove.lng,
+      address: keep.address ?? remove.address,
       city_names: mergeArrays(keep.city_names, remove.city_names),
       states_names: mergeArrays(keep.states_names, remove.states_names),
       lists: mergeArrays(keep.lists, remove.lists),
+      saved_lists: mergeArrays(keep.saved_lists, remove.saved_lists),
       tags: mergeArrays(keep.tags, remove.tags),
+      cuisine: mergeArrays(keep.cuisine, remove.cuisine),
+      meal_types: mergeArrays(keep.meal_types, remove.meal_types),
+      dietary_options: mergeArrays(keep.dietary_options, remove.dietary_options),
+      hotel_vibe: mergeArrays(keep.hotel_vibe, remove.hotel_vibe),
       wikidata_qid: keep.wikidata_qid ?? remove.wikidata_qid,
       wikipedia_url: keep.wikipedia_url ?? remove.wikipedia_url,
       unesco_id: keep.unesco_id ?? remove.unesco_id,
       website: keep.website ?? remove.website,
       google_place_url: keep.google_place_url ?? remove.google_place_url,
+      personal_rating: keep.personal_rating ?? remove.personal_rating,
+      personal_review: keep.personal_review ?? remove.personal_review,
+      price_tier: keep.price_tier ?? remove.price_tier,
+      food_on_site: keep.food_on_site ?? remove.food_on_site,
+      restrooms: keep.restrooms ?? remove.restrooms,
+      wifi: keep.wifi ?? remove.wifi,
+      duration_minutes: keep.duration_minutes ?? remove.duration_minutes,
+      best_time_of_day: keep.best_time_of_day ?? remove.best_time_of_day,
+      indoor_outdoor: keep.indoor_outdoor ?? remove.indoor_outdoor,
+      free_to_visit: keep.free_to_visit ?? remove.free_to_visit,
     };
     if (!apply) {
       merged.push(`${pair.keep} <= ${pair.remove}`);
