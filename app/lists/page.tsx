@@ -25,7 +25,7 @@ import { SITE_URL } from '@/lib/seo';
 // to a real geo entity, not just a theme.
 
 export const metadata: Metadata = {
-  title: 'My saved lists',
+  title: "Mike's Curated Lists",
   description:
     'Mike’s personal Google Maps saved lists — places grouped by city, theme, and intent. Originally curated in Google Maps, now first-party here.',
   alternates: { canonical: `${SITE_URL}/lists` },
@@ -129,13 +129,10 @@ export default async function ListsIndex() {
   return (
     <article className="max-w-page mx-auto px-5 py-8">
       <header className="mb-6">
-        <h1 className="text-display text-ink-deep leading-none">My lists</h1>
-        <p className="mt-3 text-slate max-w-prose">
-          Personal Google Maps collections, exported and re-rendered here.
-          Each list groups places I&rsquo;ve saved for a city, a theme, or a
-          trip. Click through to see what made the cut.
-        </p>
-        <p className="mt-2 text-small text-muted">
+        <h1 className="text-display text-ink-deep leading-none">
+          Mike&rsquo;s Curated Lists
+        </h1>
+        <p className="mt-3 text-small text-muted">
           {lists.length} {lists.length === 1 ? 'list' : 'lists'} ·{' '}
           {lists.reduce((n, l) => n + l.count, 0)} total memberships
         </p>
