@@ -8,7 +8,8 @@ import {
   slugToListName,
   fetchAllSavedListsMeta,
 } from '@/lib/savedLists';
-import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
+import { type SavedListPin } from '@/components/SavedListSection';
+import ListMapAndCards from '@/components/ListMapAndCards';
 import JsonLd from '@/components/JsonLd';
 import {
   SITE_URL,
@@ -39,9 +40,8 @@ type Props = { params: Promise<{ slug: string }> };
 
 async function findList(slug: string) {
   // Resolve slug → list name. The metadata table holds every list name
-  // (seeded after every saved-list import + create), so we don't need to
-  // walk the pin corpus here. This shaved a 5k-row deserialization off
-  // every list-detail render.
+  // (seeded after every saved-list import + create), so the common path
+  // doesn't walk the pin corpus.
   const listsMeta = await fetchAllSavedListsMeta();
   const allNames = new Set<string>(listsMeta.keys());
 
@@ -50,7 +50,44 @@ async function findList(slug: string) {
   for (const name of allNames) {
     if (listNameToSlug(name) === slug) return { name, listsMeta };
   }
+  // Fallback: the meta table may have drifted out of sync with what's
+  // referenced in pins.saved_lists (this happens when a Google Takeout
+  // import lands new pins on a list that was never explicitly created
+  // through admin, like "random saves" with 112 pins but no meta row).
+  // Probe pins.saved_lists for the candidate name; if any pin actually
+  // references this list, render the page and synthesize a meta entry
+  // on the fly so downstream code (CTAs, descriptions, etc) can rely on
+  // listsMeta.get() returning at least a stub.
+  if (await pinsReferenceList(candidate)) {
+    listsMeta.set(candidate, {
+      name: candidate,
+      googleShareUrl: null,
+      description: null,
+      coverPinId: null,
+      updatedAt: null,
+    });
+    return { name: candidate, listsMeta };
+  }
   return null;
+}
+
+/** Cheap server-side existence check: does any pin actually have this
+ *  list name in its saved_lists array? Used as the fallback for slugs
+ *  the meta table doesn't know about. Returns true on the first match
+ *  via .limit(1) — never loads the full pin corpus. */
+async function pinsReferenceList(name: string): Promise<boolean> {
+  if (!name) return false;
+  const { supabase } = await import('@/lib/supabase');
+  const { data, error } = await supabase
+    .from('pins')
+    .select('id')
+    .overlaps('saved_lists', [name])
+    .limit(1);
+  if (error) {
+    console.error('[lists/[slug]] pinsReferenceList probe failed:', error);
+    return false;
+  }
+  return (data?.length ?? 0) > 0;
 }
 
 export async function generateStaticParams() {
@@ -152,6 +189,11 @@ export default async function ListPage({ params }: Props) {
     visitYear: p.visitYear,
     free: !!p.free,
     unesco: p.unescoId != null,
+    // Coordinates power the new map view on /lists/[slug]. Pins
+    // without coords still appear in the cards; they just don't show
+    // on the globe.
+    lat: p.lat,
+    lng: p.lng,
   }));
 
   // Stats — only the non-zero ones render. Avg rating is over rated pins
@@ -322,12 +364,14 @@ export default async function ListPage({ params }: Props) {
           No pins on this list yet.
         </div>
       ) : (
-        // Reusing SavedListSection here means the card grid, sort, and
-        // pagination semantics stay identical to the city/country embeds.
-        // showSort is on for the dedicated page (we have the room); the
-        // city/country embeds keep it off to stay compact. initialSort is
-        // 'rated' so the cards with reviews + ratings surface first.
-        <SavedListSection
+        // ListMapAndCards is a thin client wrapper: it renders a globe
+        // map of every pin with coords above the SavedListSection
+        // grid, and lets a click on a map dot filter the cards down to
+        // that one pin. The SavedListSection inside keeps the same
+        // sort + pagination semantics as the city/country embeds.
+        // listSlug={null} suppresses the "Open list" footer link
+        // since this IS the list page.
+        <ListMapAndCards
           title={`Pins on ${titleCase}`}
           listSlug={null}
           googleShareUrl={meta?.googleShareUrl ?? null}

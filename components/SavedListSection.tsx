@@ -36,6 +36,11 @@ export type SavedListPin = {
   /** Pill flags. Both default false to keep the pill row off when unset. */
   free?: boolean;
   unesco?: boolean;
+  /** Coordinates for the map view on /lists/[slug]. Both nullable since
+   *  Google Takeout pins frequently arrive without lat/lng — those just
+   *  drop off the map but still show in the card grid. */
+  lat?: number | null;
+  lng?: number | null;
 };
 
 export type SavedListSortKey =

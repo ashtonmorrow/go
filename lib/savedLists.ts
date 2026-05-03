@@ -72,7 +72,10 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       updatedAt: (row.updated_at as string | null) ?? null,
     }));
   },
-  ['saved-lists-meta'],
+  // Cache key bumped to v2 to evict the prior cached result that didn't
+  // include "random saves" — a list with 112 pins but no meta row until
+  // it was inserted via SQL. Future inserts will hit the 5-min TTL.
+  ['saved-lists-meta-v2'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 
