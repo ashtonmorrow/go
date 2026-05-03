@@ -103,6 +103,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Inline diagnostic wrapper — same treatment as /pins/[slug]. The
+  // production 500 on city detail pages is bypassing every error
+  // boundary we've added, so we surface the stack inline (with a 200)
+  // until the underlying bug is fixed.
+  try {
+    return await CityPageInner({ params });
+  } catch (err) {
+    const e = err as Error;
+    console.error('[cities/[slug] CityPage] failed:', err);
+    return (
+      <article className="max-w-page mx-auto px-5 py-8">
+        <h1 className="text-h1 text-ink-deep">Couldn&rsquo;t load this city</h1>
+        <p className="mt-3 text-slate text-small">
+          The page render threw an error. Inline diagnostic — will be
+          removed once the underlying bug is fixed.
+        </p>
+        <pre className="mt-4 p-4 rounded bg-cream-soft text-micro overflow-auto whitespace-pre-wrap break-words border border-sand">
+          <strong>{e?.name ?? 'Error'}: {e?.message ?? String(err)}</strong>
+          {'\n\n'}
+          {e?.stack ?? '(no stack)'}
+        </pre>
+      </article>
+    );
+  }
+}
+
+async function CityPageInner({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();

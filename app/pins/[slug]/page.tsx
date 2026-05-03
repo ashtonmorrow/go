@@ -110,6 +110,35 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PinPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Diagnostic wrapper. We've been chasing a production-only 500 on this
+  // route that bypasses every error.tsx we've added — meaning the throw
+  // is happening at a level the App Router can't catch and the bare
+  // pages-router 500.html gets served instead. Capture any error here
+  // and render it inline (as a 200) so the actual stack finally surfaces.
+  // Once the bug is fixed, we can drop the wrapper.
+  try {
+    return await PinPageInner({ params });
+  } catch (err) {
+    const e = err as Error;
+    console.error('[pins/[slug] PinPage] failed:', err);
+    return (
+      <article className="max-w-page mx-auto px-5 py-8">
+        <h1 className="text-h1 text-ink-deep">Couldn&rsquo;t load this pin</h1>
+        <p className="mt-3 text-slate text-small">
+          The page render threw an error. Inline diagnostic — will be
+          removed once the underlying bug is fixed.
+        </p>
+        <pre className="mt-4 p-4 rounded bg-cream-soft text-micro overflow-auto whitespace-pre-wrap break-words border border-sand">
+          <strong>{e?.name ?? 'Error'}: {e?.message ?? String(err)}</strong>
+          {'\n\n'}
+          {e?.stack ?? '(no stack)'}
+        </pre>
+      </article>
+    );
+  }
+}
+
+async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
