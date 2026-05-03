@@ -17,7 +17,9 @@ import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
+import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
+import { fetchPinPhotosForCity } from '@/lib/personalPhotos';
 import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
@@ -122,13 +124,16 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
-  const [blocks, country, sisters, climate, fallbackCover, listsMeta] = await Promise.all([
+  const [blocks, country, sisters, climate, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     content ? Promise.resolve([]) : fetchPageBlocks(city.id),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
     fetchAllSavedListsMeta(),
+    // Personal photos that filter up from any pin in this city. Joined
+    // server-side so we don't load all photos + filter client-side.
+    fetchPinPhotosForCity(city.name, 24),
   ]);
 
   // Match the city's name/slug against saved-list names BEFORE fetching pins
@@ -510,6 +515,18 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           )}
         </aside>
       </div>
+
+      {/* Photos from any pin in this city — full-bleed, mixed orientation,
+          masonry. Personal photos surface up the hierarchy here so a city
+          page actually feels like Mike's been there even before you scroll
+          to the saved-list section. Renders nothing when there are no
+          uploaded photos for the city's pins yet. */}
+      {pinPhotos.length > 0 && (
+        <section className="mt-12 border-t border-sand pt-8">
+          <h2 className="text-h2 text-ink-deep mb-4">Photos from {city.name}</h2>
+          <PinPhotoMasonry photos={pinPhotos} />
+        </section>
+      )}
 
       {sisters.length > 0 && (
         <section className="mt-12 border-t border-sand pt-8">

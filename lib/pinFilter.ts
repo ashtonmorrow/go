@@ -41,7 +41,38 @@ export type PinFilterable = {
   /** Mike's personal Google Maps saved-list memberships (Madrid, Bangkok,
    *  Coffee Shops, etc). Populated by the saved-list import. */
   savedLists?: string[];
+  /** Set by the page after a personal_photos lookup. Truthy means Mike
+   *  has uploaded at least one photo for this pin — the strongest
+   *  "personal investment" signal we have, ahead of even a written review. */
+  personalCoverUrl?: string | null;
+  /** Curated images attached to the pin (Wikipedia thumbnails, source
+   *  photos, etc). Distinct from personal photos — a pin can have one
+   *  without the other. Used as a tier-3 signal in default sort. */
+  images?: { url: string }[];
 };
+
+/** Personal-investment tier used by sortPins() to lead the default sort.
+ *  Lower number wins. The ladder is:
+ *    0 — Mike wrote a review AND uploaded a photo
+ *    1 — Mike wrote a review (no personal photo yet)
+ *    2 — Mike uploaded a photo (no written review)
+ *    3 — At least one curated image attached (Wikipedia/source/etc)
+ *    4 — Visited but no review/photo/image
+ *    5 — Everything else
+ *  Within a tier we fall through to the secondary sort (recent/name).
+ *  This gives /pins/cards a "what Mike has actually engaged with" feel
+ *  on first paint without the user having to touch a sort dropdown. */
+export function pinPersonalTier(p: PinFilterable): number {
+  const hasReview = !!(p.personalReview && p.personalReview.trim());
+  const hasPersonalPhoto = !!p.personalCoverUrl;
+  const hasCuratedImage = !!(p.images && p.images.length > 0);
+  if (hasReview && hasPersonalPhoto) return 0;
+  if (hasReview) return 1;
+  if (hasPersonalPhoto) return 2;
+  if (hasCuratedImage) return 3;
+  if (p.visited) return 4;
+  return 5;
+}
 
 // Words/phrases in the priceText field that imply free admission. Used
 // alongside `priceAmount === 0` to identify the free-entry subset. The
@@ -168,6 +199,18 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
 export function sortPins<T extends PinFilterable>(pins: T[], state: PinFilterState): T[] {
   const out = [...pins];
   out.sort((a, b) => {
+    // Personal-investment tier always leads the sort. The user's
+    // explicit picks (name, recent) become a within-tier tiebreaker.
+    // This means the default landing on /pins/cards leads with pins
+    // Mike has reviewed and photographed, then reviews-only, then
+    // photos-only, then visited, then everything else. The existing
+    // `desc` toggle still flips the secondary order; the tier order
+    // itself is fixed (it never makes sense to push neglected pins
+    // to the top).
+    const tierA = pinPersonalTier(a);
+    const tierB = pinPersonalTier(b);
+    if (tierA !== tierB) return tierA - tierB;
+
     let cmp = 0;
     if (state.sort === 'name') {
       cmp = a.name.localeCompare(b.name);

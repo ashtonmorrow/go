@@ -169,10 +169,18 @@ export function applyLayerVisibility<T extends CityFilterable>(
  *  Lower tier = higher priority. Within a tier, the standard sort
  *  comparator (alphabetical by name) takes over for stable ordering. */
 function curatedTier<T extends CityFilterable>(c: T): number {
-  if (c.savedPlaces) return 0;
-  if (c.personalPhoto) return 1;
-  if (c.heroImage) return 2;
-  return 3;
+  // Mirror the pin-page personal-investment ladder. Been-AND-photographed
+  // is the strongest "Mike was here and it mattered" signal; been alone
+  // comes next; everything else falls through to the older curated ladder
+  // (saved-list, my photo, curated hero) so cities Mike's actively
+  // planning still beat anonymous flyovers.
+  if (c.been && c.personalPhoto) return 0;
+  if (c.been) return 1;
+  if (c.personalPhoto) return 2;
+  if (c.savedPlaces) return 3;
+  if (c.go) return 4;
+  if (c.heroImage) return 5;
+  return 6;
 }
 
 export function sortCities<T extends CityFilterable>(cities: T[], state: CityFilterState): T[] {

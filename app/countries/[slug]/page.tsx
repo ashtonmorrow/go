@@ -12,7 +12,9 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
+import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
+import { fetchPinPhotosForCountry } from '@/lib/personalPhotos';
 import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
@@ -78,12 +80,16 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   // compute matchedLists. Pin data is gated on the result: most countries
   // match at least one list (the country itself), but skipping fetchAllPins
   // entirely on a no-match render is the win we're after.
-  const [cities, fact, blocks, fallbackCover, listsMeta] = await Promise.all([
+  const [cities, fact, blocks, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     fetchCitiesByCountryId(country.id),
     fetchCountryFactByIso2(country.iso2),
     content ? Promise.resolve([]) : fetchPageBlocks(country.id),
     fetchCoverForCountry(country.name),
     fetchAllSavedListsMeta(),
+    // Photos from any pin in this country — joined server-side via
+    // pins.states_names overlap. Larger limit than cities (36 vs 24)
+    // since a country aggregates multiple cities' photos.
+    fetchPinPhotosForCountry(country.name, 36),
   ]);
 
   // Saved-list cards. Match against the country name, slug, and every city
@@ -384,6 +390,18 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           </div>
         </aside>
       </div>
+
+      {/* Photos from any pin in this country — full-bleed masonry of
+          Mike's personal uploads, mixed orientations. Sits above the
+          saved-list section so visiting a country page leads with what
+          Mike actually shot there. Renders nothing for countries with
+          no uploaded photos yet. */}
+      {pinPhotos.length > 0 && (
+        <section className="mt-12 border-t border-sand pt-8">
+          <h2 className="text-h2 text-ink-deep mb-4">Photos from {country.name}</h2>
+          <PinPhotoMasonry photos={pinPhotos} />
+        </section>
+      )}
 
       {/* Saved-list section — pins from any of Mike's saved lists that match
           this country or its cities. Renders nothing for countries with no

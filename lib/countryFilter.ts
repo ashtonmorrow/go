@@ -53,12 +53,30 @@ export function filterCountries<T extends CountryFilterable>(
   return out;
 }
 
+/** Personal-investment tier for countries. Mirrors the pin/city sort
+ *  philosophy — countries Mike's actually been to lead, then countries
+ *  with cities in the atlas but no visit yet, then everything else. We
+ *  don't have per-country personal photos, so the ladder is shallower
+ *  than the pin/city versions. Lower number wins. */
+function countryPersonalTier<T extends CountryFilterable>(c: T): number {
+  if (c.beenCount > 0) return 0;
+  if (c.cityCount > 0) return 1;
+  return 2;
+}
+
 export function sortCountries<T extends CountryFilterable>(
   rows: T[],
   state: CountryFilterState,
 ): T[] {
   const out = [...rows];
   out.sort((a, b) => {
+    // Tier-first. The user-picked sort acts as a within-tier tiebreaker
+    // so countries Mike's been to always cluster at the top regardless
+    // of whether they sort by name, city count, or visited count.
+    const tierA = countryPersonalTier(a);
+    const tierB = countryPersonalTier(b);
+    if (tierA !== tierB) return tierA - tierB;
+
     let cmp = 0;
     if (state.sort === 'name') {
       cmp = a.name.localeCompare(b.name);
