@@ -73,6 +73,35 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<{ updated: number; errors?: string[] } | null>(null);
 
+  // === Places enrichment state =============================================
+  // Tracks one /api/admin/enrich-places run at a time. The stream is
+  // NDJSON; each line is an EnrichEvent that updates this object and
+  // the strip below the toolbar re-renders. Pricing tiers + cost cap
+  // mirror what the API route calculates so the user sees the same
+  // numbers that drive the spend.
+  type EnrichState = {
+    running: boolean;
+    total: number;
+    processed: number;
+    enriched: number;
+    skipped: number;
+    cost: number;
+    note: string | null;
+    error: string | null;
+    abortedAtCap: boolean;
+  };
+  const [enrich, setEnrich] = useState<EnrichState>({
+    running: false,
+    total: 0,
+    processed: 0,
+    enriched: 0,
+    skipped: 0,
+    cost: 0,
+    note: null,
+    error: null,
+    abortedAtCap: false,
+  });
+
   const dirty = useMemo(() => {
     const out: string[] = [];
     for (const [id, v] of current) {
@@ -175,6 +204,118 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     () => [...current.values()].filter(Boolean).length,
     [current],
   );
+
+  // === Places enrichment trigger ==========================================
+  // Confirms with the user (cost preview), POSTs the visible pin IDs to
+  // /api/admin/enrich-places, then reads the NDJSON stream line-by-line
+  // and updates the strip below the toolbar as events come in. Fields
+  // default to price + hours so the typical user click does the most
+  // useful enrichment without prompting for a field set every time.
+  const enrichVisible = async () => {
+    if (filtered.length === 0 || enrich.running) return;
+    const pinIds = filtered.map(r => r.id);
+    // Cost preview using the same model the API + script use:
+    //   Find Place from Text:  $0.017 / pin (only when URL has no place_id)
+    //   Place Details (price + hours):  $0.020 / pin (Enterprise tier)
+    const worst = pinIds.length * (0.017 + 0.020);
+    const best = pinIds.length * 0.020;
+    const ok = window.confirm(
+      `Enrich ${pinIds.length} filtered pin${pinIds.length === 1 ? '' : 's'} with Google Places?\n\n` +
+      `Fields: price_level + opening hours.\n` +
+      `Cost estimate: $${best.toFixed(2)} (best case) — $${worst.toFixed(2)} (worst case).\n\n` +
+      `Pins that already have price_level set will be skipped automatically.\n` +
+      `Click Cancel to abort.`,
+    );
+    if (!ok) return;
+
+    setEnrich({
+      running: true,
+      total: pinIds.length,
+      processed: 0,
+      enriched: 0,
+      skipped: 0,
+      cost: 0,
+      note: 'starting…',
+      error: null,
+      abortedAtCap: false,
+    });
+
+    try {
+      const res = await fetch('/api/admin/enrich-places', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          pinIds,
+          fields: ['price', 'hours'],
+          // Soft ceiling at worst-case + 25% so a long run can't run
+          // away. The user can override by re-running.
+          maxCostUsd: Math.max(worst * 1.25, 1),
+        }),
+      });
+      if (!res.ok || !res.body) {
+        const text = await res.text().catch(() => '');
+        throw new Error(text || `enrichment failed (${res.status})`);
+      }
+
+      // Read the NDJSON stream a chunk at a time. Each line is one
+      // EnrichEvent — we update React state per event so the strip
+      // re-renders smoothly as the run progresses.
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        let idx: number;
+        while ((idx = buffer.indexOf('\n')) >= 0) {
+          const line = buffer.slice(0, idx).trim();
+          buffer = buffer.slice(idx + 1);
+          if (!line) continue;
+          let event: Record<string, unknown>;
+          try { event = JSON.parse(line); } catch { continue; }
+          if (event.type === 'start') {
+            setEnrich(prev => ({
+              ...prev,
+              total: (event.total as number) ?? prev.total,
+              note: `processing ${event.total ?? '?'} pin${(event.total as number) === 1 ? '' : 's'}…`,
+            }));
+          } else if (event.type === 'progress') {
+            const action = event.action as string;
+            setEnrich(prev => ({
+              ...prev,
+              processed: prev.processed + 1,
+              enriched: action === 'enriched' ? prev.enriched + 1 : prev.enriched,
+              skipped: (action === 'no-match' || action === 'no-data') ? prev.skipped + 1 : prev.skipped,
+              cost: typeof event.runningCost === 'number' ? event.runningCost : prev.cost,
+              note: typeof event.pinName === 'string' ? `${action}: ${event.pinName}` : action,
+              abortedAtCap: action === 'cost-cap' ? true : prev.abortedAtCap,
+            }));
+          } else if (event.type === 'done') {
+            setEnrich(prev => ({
+              ...prev,
+              running: false,
+              cost: (event.totalCost as number) ?? prev.cost,
+              note: `done — ${event.written ?? 0} pins updated`,
+              abortedAtCap: !!event.abortedAtCap,
+            }));
+          } else if (event.type === 'error') {
+            setEnrich(prev => ({
+              ...prev,
+              running: false,
+              error: typeof event.message === 'string' ? event.message : 'enrichment error',
+            }));
+          }
+        }
+      }
+    } catch (e) {
+      setEnrich(prev => ({
+        ...prev,
+        running: false,
+        error: e instanceof Error ? e.message : 'enrichment failed',
+      }));
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -288,6 +429,22 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               </button>
             </>
           )}
+          {/* Enrich filtered pins via Google Places API. Only enabled
+              when there's a filtered set and no run already in flight.
+              Cost preview happens in the click handler's confirm()
+              dialog before any server traffic. */}
+          {filtered.length > 0 && (
+            <button
+              type="button"
+              onClick={enrichVisible}
+              disabled={enrich.running}
+              className="text-label px-2 py-1 rounded border border-accent/40 bg-accent/10 text-accent hover:bg-accent/15 disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-1"
+              title="Fetch price level + opening hours from Google Places for the filtered pins"
+            >
+              <span aria-hidden>✨</span>
+              <span>{enrich.running ? 'Enriching…' : `Enrich filtered (${filtered.length})`}</span>
+            </button>
+          )}
           <button
             type="button"
             onClick={reset}
@@ -322,6 +479,46 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           {result.errors?.length
             ? `Save failed: ${result.errors[0]}`
             : `Updated ${result.updated} pin${result.updated === 1 ? '' : 's'}.`}
+        </div>
+      )}
+
+      {/* Places enrichment status strip — visible while a run is in
+          flight or after one finishes. Mirrors the same flat-rounded
+          treatment as the save-status pill so it doesn't introduce
+          new chrome. */}
+      {(enrich.running || enrich.processed > 0 || enrich.error) && (
+        <div
+          className={
+            'px-3 py-2 rounded text-small flex items-center justify-between gap-3 flex-wrap ' +
+            (enrich.error
+              ? 'bg-orange/10 text-orange'
+              : enrich.running
+              ? 'bg-accent/10 text-accent'
+              : 'bg-teal/10 text-teal')
+          }
+        >
+          <div className="tabular-nums">
+            {enrich.error ? (
+              <>Enrichment failed: {enrich.error}</>
+            ) : (
+              <>
+                <strong>
+                  {enrich.processed}/{enrich.total}
+                </strong>{' '}
+                processed · <strong>{enrich.enriched}</strong> enriched
+                {enrich.skipped > 0 && (
+                  <> · <strong>{enrich.skipped}</strong> skipped</>
+                )}
+                <span className="ml-2">~ ${enrich.cost.toFixed(2)}</span>
+                {enrich.abortedAtCap && (
+                  <span className="ml-2">(stopped at cost cap)</span>
+                )}
+              </>
+            )}
+          </div>
+          {enrich.note && !enrich.error && (
+            <div className="text-label text-muted truncate max-w-[40ch]">{enrich.note}</div>
+          )}
         </div>
       )}
 
