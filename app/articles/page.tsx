@@ -85,7 +85,7 @@ function ArticleCard({ item }: { item: ArticleEntry }) {
           <p className="text-slate leading-relaxed">{item.description}</p>
         )}
         {dateLabel && (
-          <p className="mt-3 text-label text-muted uppercase tracking-[0.14em]">
+          <p className="mt-3 text-label text-muted uppercase tracking-wider">
             {dateLabel}
           </p>
         )}

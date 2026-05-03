@@ -185,7 +185,7 @@ export default function AirlineStopoverProgramsPage() {
       {/* Hero — Mike's mosque shot from an Oman Air stopover. Eager-loaded
           and given high priority because it's above the fold and the LCP
           element on this page. */}
-      <figure className="relative mb-8 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+      <figure className="relative mb-8 overflow-hidden rounded-xl bg-cream-soft">
         <div className="relative aspect-[16/9]">
           <Image
             src={HERO_IMAGE}
@@ -199,20 +199,18 @@ export default function AirlineStopoverProgramsPage() {
       </figure>
 
       <header className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
-          {PAGE_TITLE}
-        </h1>
-        <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
-          By {AUTHOR_NAME}. Last updated {LAST_UPDATED_LABEL}.
+        <h1 className="text-h1 text-ink-deep">{PAGE_TITLE}</h1>
+        <p className="mt-3 text-label uppercase tracking-wider text-muted">
+          By {AUTHOR_NAME} · Updated {LAST_UPDATED_LABEL}
         </p>
       </header>
 
       {/* ── Terminology ─────────────────────────────────────────── */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+        <h2 className="text-h2 text-ink-deep mb-4">
           Stopover, layover, direct, nonstop
         </h2>
-        <p className="mt-3 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
+        <p className="text-prose text-ink leading-relaxed">
           The terms get used loosely in airline marketing and even in casual
           conversation. Before getting to the programs themselves, here are
           the four distinctions that actually matter when reading fare rules
@@ -221,28 +219,28 @@ export default function AirlineStopoverProgramsPage() {
         <div className="mt-5 overflow-x-auto">
           <table className="w-full min-w-full border-collapse text-body">
             <thead>
-              <tr className="border-b border-gray-300 dark:border-gray-700">
+              <tr className="border-b border-sand">
                 <th
                   scope="col"
-                  className="py-2 pr-6 text-left font-semibold text-gray-900 dark:text-gray-100"
+                  className="py-2 pr-6 text-left font-semibold text-ink-deep"
                 >
                   Term
                 </th>
                 <th
                   scope="col"
-                  className="py-2 text-left font-semibold text-gray-900 dark:text-gray-100"
+                  className="py-2 text-left font-semibold text-ink-deep"
                 >
                   What it means
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+            <tbody className="divide-y divide-sand">
               {TERMINOLOGY.map((row) => (
                 <tr key={row.term}>
-                  <td className="py-3 pr-6 align-top font-medium text-gray-900 dark:text-gray-100">
+                  <td className="py-3 pr-6 align-top font-medium text-ink-deep">
                     {row.term}
                   </td>
-                  <td className="py-3 align-top text-gray-700 dark:text-gray-300">
+                  <td className="py-3 align-top text-ink">
                     {row.definition}
                   </td>
                 </tr>
@@ -254,10 +252,10 @@ export default function AirlineStopoverProgramsPage() {
 
       {/* ── Alliances ───────────────────────────────────────────── */}
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+        <h2 className="text-h2 text-ink-deep mb-4">
           Alliances and their hubs
         </h2>
-        <p className="mt-3 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
+        <p className="text-prose text-ink leading-relaxed">
           Airlines join alliances to cooperate on ticketing, lounge access,
           and miles. For stopover programs, the practical effect is that each
           program is anchored at the carrier&apos;s hub: an Istanbul stopover
@@ -275,10 +273,10 @@ export default function AirlineStopoverProgramsPage() {
 
       {/* ── Programs I have used ────────────────────────────────── */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+        <h2 className="text-h2 text-ink-deep mb-4">
           Programs I have used
         </h2>
-        <div className="mt-3 space-y-4 text-prose leading-relaxed text-gray-800 dark:text-gray-200">
+        <div className="space-y-4 text-prose text-ink leading-relaxed">
           <p>
             I have used four of these programs personally so far: Oman Air,
             Qatar, Turkish, and Copa. The point of the rest of this page is
@@ -323,18 +321,18 @@ export default function AirlineStopoverProgramsPage() {
               className="scroll-mt-24"
               aria-labelledby={`${sectionId}-heading`}
             >
-              <header className="mb-4 flex items-baseline gap-3 border-b border-gray-200 pb-2 dark:border-gray-800">
+              <header className="mb-4 flex items-baseline gap-3 border-b border-sand pb-2">
                 <span
                   className={`inline-block h-3 w-3 rounded-full ${style.dot}`}
                   aria-hidden="true"
                 />
                 <h2
                   id={`${sectionId}-heading`}
-                  className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
+                  className="text-h2 text-ink-deep"
                 >
                   {style.label}
                 </h2>
-                <span className="text-sm tabular-nums text-gray-500 dark:text-gray-400">
+                <span className="text-small tabular-nums text-muted">
                   {programs.length}{" "}
                   {programs.length === 1 ? "program" : "programs"}
                 </span>
@@ -359,12 +357,12 @@ export default function AirlineStopoverProgramsPage() {
       {stubs.length > 0 && (
         <section
           id="researching"
-          className="mt-16 scroll-mt-24 rounded-xl border border-dashed border-gray-300 bg-gray-50/60 p-5 dark:border-gray-700 dark:bg-gray-900/40"
+          className="mt-16 scroll-mt-24 rounded-xl border border-dashed border-sand bg-cream-soft/60 p-5"
         >
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="text-h3 text-ink-deep">
             Programs pending verification
           </h2>
-          <ul className="mt-3 grid gap-2 text-sm text-gray-700 sm:grid-cols-2 dark:text-gray-300">
+          <ul className="mt-3 grid gap-2 text-small text-ink sm:grid-cols-2">
             {stubs.map((p) => {
               const allianceStyle = p.alliance
                 ? ALLIANCE_STYLES[p.alliance]
@@ -372,9 +370,9 @@ export default function AirlineStopoverProgramsPage() {
               return (
                 <li
                   key={p.airline}
-                  className="flex items-center justify-between rounded-md bg-white px-3 py-2 dark:bg-gray-950/40"
+                  className="flex items-center justify-between rounded-md bg-white px-3 py-2"
                 >
-                  <span className="font-medium text-gray-900 dark:text-gray-100">
+                  <span className="font-medium text-ink-deep">
                     {p.airline}
                   </span>
                   {allianceStyle && (
@@ -392,7 +390,7 @@ export default function AirlineStopoverProgramsPage() {
       )}
 
       {/* ── Footer note ─────────────────────────────────────────── */}
-      <footer className="mt-16 border-t border-gray-200 pt-6 text-xs text-gray-500 dark:border-gray-800 dark:text-gray-400">
+      <footer className="mt-16 border-t border-sand pt-6 text-micro text-muted">
         <p>Last updated {LAST_UPDATED_LABEL}.</p>
       </footer>
     </main>

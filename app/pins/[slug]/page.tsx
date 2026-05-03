@@ -114,35 +114,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PinPage({ params }: { params: Promise<{ slug: string }> }) {
-  // Diagnostic wrapper. We've been chasing a production-only 500 on this
-  // route that bypasses every error.tsx we've added — meaning the throw
-  // is happening at a level the App Router can't catch and the bare
-  // pages-router 500.html gets served instead. Capture any error here
-  // and render it inline (as a 200) so the actual stack finally surfaces.
-  // Once the bug is fixed, we can drop the wrapper.
-  try {
-    return await PinPageInner({ params });
-  } catch (err) {
-    const e = err as Error;
-    console.error('[pins/[slug] PinPage] failed:', err);
-    return (
-      <article className="max-w-page mx-auto px-5 py-8">
-        <h1 className="text-h1 text-ink-deep">Couldn&rsquo;t load this pin</h1>
-        <p className="mt-3 text-slate text-small">
-          The page render threw an error. Inline diagnostic — will be
-          removed once the underlying bug is fixed.
-        </p>
-        <pre className="mt-4 p-4 rounded bg-cream-soft text-micro overflow-auto whitespace-pre-wrap break-words border border-sand">
-          <strong>{e?.name ?? 'Error'}: {e?.message ?? String(err)}</strong>
-          {'\n\n'}
-          {e?.stack ?? '(no stack)'}
-        </pre>
-      </article>
-    );
-  }
-}
-
-async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
@@ -328,7 +299,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
           </p>
           <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
             {pin.visited && (
-              <span className="text-teal text-label uppercase tracking-[0.14em] font-medium inline-flex items-center gap-1.5">
+              <span className="text-teal text-label uppercase tracking-wider font-medium inline-flex items-center gap-1.5">
                 <span aria-hidden>✅</span>
                 <span>Visited</span>
               </span>
@@ -426,7 +397,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {wp?.extract && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">From Wikipedia</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">From Wikipedia</h2>
               <p className="text-ink leading-relaxed text-prose">{wp.extract}</p>
               <a
                 href={wp.url}
@@ -441,7 +412,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {pin.description && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">From the source</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">From the source</h2>
               <p className="text-ink leading-relaxed whitespace-pre-line">{pin.description}</p>
             </section>
           )}
@@ -450,14 +421,14 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {amenityFacets.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">What to expect</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">What to expect</h2>
               <FacetGrid items={amenityFacets} />
             </section>
           )}
 
           {pin.bring.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">What to bring</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">What to bring</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.bring.map(b => (
                   <span key={b} className="pill bg-cream-soft text-ink-deep">
@@ -472,7 +443,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {personalPhotos.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">Your photos</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">Your photos</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {personalPhotos.slice(1).map(p => (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -493,7 +464,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {galleryImages.length > 1 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-3">Gallery</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">Gallery</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {galleryImages.slice(1).map((img, i) => (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -514,7 +485,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
 
           {pin.tags.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h3 text-ink-deep mb-2">Type</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">Type</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.tags.map(t => (
                   <span key={t} className="pill bg-cream-soft text-slate text-label">{t}</span>
@@ -555,7 +526,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
             </figure>
           )}
 
-          <div className="card p-4 space-y-3 text-small">
+          <div className="card p-5 space-y-3 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label">Plan a visit</h3>
 
             {pin.googleMapsUrl ? (
@@ -606,7 +577,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
             )}
           </div>
 
-          <div className="card p-4 text-small">
+          <div className="card p-5 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label mb-3">Facts</h3>
             <dl className="space-y-2">
               {country && (
@@ -661,7 +632,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
               copy on the left is now free for the personal review and the
               kind-specific Plan / What to expect / Good to know sections. */}
           {hasGettingThere && (
-            <div className="card p-4 text-small">
+            <div className="card p-5 text-small">
               <h3 className="text-muted uppercase tracking-wider text-label mb-3">Getting there</h3>
               <dl className="space-y-2.5">
                 {pin.address && (
@@ -701,7 +672,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
           )}
 
           {(pin.unescoUrl || pin.wikipediaUrl || pin.wikidataUrl) && (
-            <div className="card p-4 text-small">
+            <div className="card p-5 text-small">
               <h3 className="text-muted uppercase tracking-wider text-label mb-3">References</h3>
               <ul className="space-y-1.5">
                 {pin.unescoUrl && (
@@ -726,7 +697,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
           this block?" affordance. */}
       {relatedPins.length > 0 && (
         <section className="mt-12 pt-8 border-t border-sand">
-          <h2 className="text-h3 text-ink-deep mb-1">More near here</h2>
+          <h2 className="text-h2 text-ink-deep mb-1">More near here</h2>
           <p className="text-small text-muted mb-4">
             Other pins within walking distance of {pin.name}.
           </p>
@@ -753,7 +724,7 @@ async function PinPageInner({ params }: { params: Promise<{ slug: string }> }) {
                       )}
                     </div>
                   ) : (
-                    <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-[0.14em]">
+                    <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
                       No photo
                     </div>
                   )}
@@ -860,7 +831,7 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
 
   return (
     <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h3 text-ink-deep mb-4">{heading}</h2>
+      <h2 className="text-h2 text-ink-deep mb-4">{heading}</h2>
 
       {showStatus && pin.status && (
         <div className="mb-4 px-3 py-2 rounded bg-orange/10 text-orange text-small">
@@ -1045,7 +1016,7 @@ function PersonalSection({ pin }: { pin: Pin }) {
       <header className="flex items-center justify-between gap-3 mb-4">
         <h2 className="text-h3 text-ink-deep leading-tight">{heading}</h2>
         {pin.visitYear != null && (
-          <span className="text-label uppercase tracking-[0.14em] text-muted">
+          <span className="text-label uppercase tracking-wider text-muted">
             Visited {pin.visitYear}
           </span>
         )}
@@ -1183,7 +1154,7 @@ function GoodToKnowSection({
 }) {
   return (
     <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h3 text-ink-deep mb-3">Good to know</h2>
+      <h2 className="text-h2 text-ink-deep mb-4">Good to know</h2>
 
       {facets.length > 0 && <FacetGrid items={facets} className="mb-4" />}
 
@@ -1284,7 +1255,7 @@ function HoursBlock({
                   key={d}
                   className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
                 >
-                  <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
+                  <dt className="w-12 text-micro uppercase tracking-wider flex-shrink-0">
                     {DAY_LABELS[d]}
                     {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
                   </dt>
@@ -1341,7 +1312,7 @@ function HoursBlock({
               key={d}
               className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
             >
-              <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
+              <dt className="w-12 text-micro uppercase tracking-wider flex-shrink-0">
                 {DAY_LABELS[d]}
                 {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
               </dt>
@@ -1374,7 +1345,7 @@ function HoursBlock({
             key={d.day}
             className={'flex items-baseline justify-between gap-3 py-0.5 ' + (isToday ? 'text-teal font-semibold' : 'text-ink')}
           >
-            <dt className="w-12 text-micro uppercase tracking-[0.14em] flex-shrink-0">
+            <dt className="w-12 text-micro uppercase tracking-wider flex-shrink-0">
               {DAY_LABELS[d.day]}
               {isToday && <span aria-hidden className="ml-1 text-micro">●</span>}
             </dt>

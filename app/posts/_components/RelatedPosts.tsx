@@ -29,12 +29,9 @@ export async function RelatedPosts({
   return (
     <section
       aria-labelledby="related-posts-heading"
-      className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800"
+      className="mt-12 border-t border-sand pt-8"
     >
-      <h2
-        id="related-posts-heading"
-        className="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"
-      >
+      <h2 id="related-posts-heading" className="text-h2 text-ink-deep mb-4">
         {heading}
       </h2>
       <ul className="mt-4 space-y-3">
@@ -42,15 +39,13 @@ export async function RelatedPosts({
           <li key={post.slug}>
             <Link
               href={`/posts/${post.slug}`}
-              className="group block rounded-lg border border-gray-200 p-4 transition hover:border-gray-400 dark:border-gray-800 dark:hover:border-gray-600"
+              className="group block rounded-lg border border-sand p-5 transition hover:border-slate"
             >
-              <h3 className="text-base font-medium text-gray-900 group-hover:underline dark:text-gray-100">
+              <h3 className="text-base font-medium text-ink-deep group-hover:underline">
                 {post.title}
               </h3>
               {post.subtitle ? (
-                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  {post.subtitle}
-                </p>
+                <p className="mt-1 text-small text-muted">{post.subtitle}</p>
               ) : null}
             </Link>
           </li>

@@ -175,7 +175,7 @@ export default async function ListsIndex() {
                     )}
                   </div>
                 ) : (
-                  <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-[0.14em]">
+                  <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
                     No photo yet
                   </div>
                 )}

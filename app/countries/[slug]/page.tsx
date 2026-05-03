@@ -229,7 +229,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
 
           {country.wikipediaSummary && (
             <section className={content ? 'mt-8 pt-8 border-t border-sand' : ''}>
-              <h2 className="text-h3 text-ink-deep mb-2">About</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">About</h2>
               <p className="text-ink leading-relaxed">{country.wikipediaSummary}</p>
             </section>
           )}
@@ -242,7 +242,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           )}
 
           <section className="mt-10">
-            <h2 className="text-h3 text-ink-deep mb-3">Cities ({cities.length})</h2>
+            <h2 className="text-h2 text-ink-deep mb-4">Cities ({cities.length})</h2>
             <div className="flex flex-wrap gap-2">
               {cities.map(c => (
                 <Link
@@ -274,7 +274,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
               href={evisaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="card p-4 block text-small hover:bg-cream-soft transition"
+              className="card p-5 block text-small hover:bg-cream-soft transition"
             >
               <div className="text-muted uppercase tracking-wider text-label">eVisa portal</div>
               <div className="mt-2 text-teal font-medium">Apply online →</div>
@@ -384,7 +384,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
       )}
 
       <section className="mt-12 border-t border-sand pt-8">
-        <h2 className="text-h3 text-ink-deep mb-3">Sources</h2>
+        <h2 className="text-h2 text-ink-deep mb-4">Sources</h2>
         <p className="text-small text-slate max-w-prose">
           This page blends public reference data, travel-planning lookups, and personal atlas notes.
           Visa and entry rules move quickly, so treat the travel fields as planning prompts and verify before booking.

@@ -45,11 +45,11 @@ export default function Loading() {
           <div className="h-3 bg-cream-soft rounded w-9/12" />
         </div>
         <aside className="space-y-3">
-          <div className="card p-4">
+          <div className="card p-5">
             <div className="h-3 bg-cream-soft rounded w-20 mb-3" />
             <div className="h-9 bg-cream-soft rounded w-full" />
           </div>
-          <div className="card p-4">
+          <div className="card p-5">
             <div className="h-3 bg-cream-soft rounded w-12 mb-3" />
             <div className="space-y-2">
               <div className="h-3 bg-cream-soft rounded w-full" />

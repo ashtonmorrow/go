@@ -73,7 +73,7 @@ export function AllianceFilter({ counts }: { counts: Counts }) {
 
   return (
     <div
-      className="sticky top-0 z-20 -mx-4 mb-8 flex flex-wrap gap-2 border-b border-gray-200 bg-white/85 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-white/70 sm:-mx-6 sm:px-6 dark:border-gray-800 dark:bg-gray-950/85 dark:supports-[backdrop-filter]:bg-gray-950/70"
+      className="sticky top-0 z-20 -mx-4 mb-8 flex flex-wrap gap-2 border-b border-sand bg-white/85 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-white/70 sm:-mx-6 sm:px-6"
       role="navigation"
       aria-label="Jump to alliance"
     >
@@ -114,10 +114,10 @@ function Pill({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition ${
+      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-small font-medium transition ${
         active
-          ? "border-gray-900 bg-gray-900 text-white dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900"
-          : "border-gray-200 bg-white text-gray-700 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-500"
+          ? "border-ink-deep bg-ink-deep text-white"
+          : "border-sand bg-white text-ink hover:border-slate"
       }`}
     >
       {accent && (
@@ -132,7 +132,7 @@ function Pill({
           className={`rounded-full px-1.5 text-label tabular-nums ${
             active
               ? "bg-white/20"
-              : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+              : "bg-cream-soft text-muted"
           }`}
         >
           {count}

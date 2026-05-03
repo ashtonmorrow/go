@@ -153,7 +153,7 @@ export default async function PostPage({ params }: Props) {
           </p>
         ) : null}
         {(author || dateLabel) && (
-          <p className="mt-4 text-label uppercase tracking-[0.14em] text-muted">
+          <p className="mt-4 text-label uppercase tracking-wider text-muted">
             {author ? `By ${author}` : null}
             {author && dateLabel ? " · " : null}
             {dateLabel ? `Updated ${dateLabel}` : null}
@@ -195,7 +195,7 @@ export default async function PostPage({ params }: Props) {
 
       {placeLinks.length > 0 ? (
         <footer className="mt-12 border-t border-sand pt-6">
-          <h2 className="text-label uppercase tracking-[0.14em] text-muted font-semibold">
+          <h2 className="text-label uppercase tracking-wider text-muted font-semibold">
             Places mentioned
           </h2>
           <ul className="mt-3 flex flex-wrap gap-2">

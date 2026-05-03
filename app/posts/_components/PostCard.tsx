@@ -24,10 +24,10 @@ export function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="group block overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:shadow-md dark:border-gray-800 dark:bg-gray-900"
+      className="group block overflow-hidden rounded-xl border border-sand bg-white transition hover:shadow-md"
     >
       {post.heroImage ? (
-        <div className="aspect-[16/9] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <div className="aspect-[16/9] w-full overflow-hidden bg-cream-soft">
           {/* Plain img so the component works whether or not next/image is
               configured for this host. Swap to next/image when you wire up
               optimization for the /images path. */}
@@ -40,15 +40,11 @@ export function PostCard({ post }: { post: Post }) {
         </div>
       ) : null}
       <div className="p-5">
-        <h3 className="text-lg font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-          {post.title}
-        </h3>
+        <h3 className="text-h3 text-ink-deep">{post.title}</h3>
         {post.subtitle ? (
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {post.subtitle}
-          </p>
+          <p className="mt-1 text-small text-muted">{post.subtitle}</p>
         ) : null}
-        <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-micro text-muted">
           {dateLabel ? <span>{dateLabel}</span> : null}
           {places.length > 0 ? (
             <>
@@ -57,7 +53,7 @@ export function PostCard({ post }: { post: Post }) {
                 {places.map((p) => (
                   <span
                     key={`${p.kind}-${p.slug}`}
-                    className="rounded-full bg-gray-100 px-2 py-0.5 text-label font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    className="rounded-full bg-cream-soft px-2 py-0.5 text-label font-medium text-ink"
                   >
                     {p.slug}
                   </span>

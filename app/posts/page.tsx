@@ -17,16 +17,14 @@ export default async function PostsIndexPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <header className="mb-10">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
-          Posts
-        </h1>
-        <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">
+        <h1 className="text-h1 text-ink-deep">Posts</h1>
+        <p className="mt-3 text-prose text-slate leading-relaxed">
           Travel notes, guides, and reference articles.
         </p>
       </header>
 
       {posts.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">No posts yet.</p>
+        <p className="text-ink">No posts yet.</p>
       ) : (
         <ul className="grid gap-6 sm:grid-cols-2">
           {posts.map((post) => (
