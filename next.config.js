@@ -20,17 +20,23 @@ const nextConfig = {
       { protocol: 'https', hostname: 'pdjrvlhepiwkshxerkpz.supabase.co' },
     ],
     // Image sizes Next.js will produce when proxying through /_next/image.
-    // We need the widths used by `thumbUrl` (×2 for retina) — Next 400s
-    // when a request asks for a width not in deviceSizes ∪ imageSizes.
-    //   thumbUrl size 56  → 112  ⇒ snap to 128
-    //   thumbUrl size 96  → 192  ⇒ 192
-    //   thumbUrl size 240 → 480  ⇒ 480
-    //   thumbUrl size 320 → 640  ⇒ 640 (already a deviceSize)
-    //   heroUrl  width 1200 → 2400 ⇒ 2048 (deviceSize)
-    // imageSizes (small) and deviceSizes (large) are concatenated into one
-    // allowed set. Including 64/96/128/192/256/384 covers every <Image>
-    // we'd want for thumbs without slicing pin photos into wasteful sizes.
-    imageSizes: [16, 32, 48, 64, 96, 128, 192, 240, 256, 384, 480],
+    // Vercel returns 400 INVALID_IMAGE_OPTIMIZE_REQUEST when a `w=` query
+    // doesn't match any value in deviceSizes ∪ imageSizes — so every
+    // width thumbUrl()/heroUrl() can emit (×2 for retina) needs to be
+    // listed here. Current callsites emit widths:
+    //   80  (size 40 retina×2) — country flags
+    //   112 (size 56 retina×2) — pin-card thumbs in PinsGrid
+    //   160 (size 80 retina×2) — country flag detail
+    //   192 (size 96 retina×2) — pin-detail icon tile
+    //   480 (size 240 retina×2) — gallery / saved-list cards
+    //   640 (size 320 retina×2) — list cover / related-pin cards
+    //   800 (size 400 retina×2) — list cards on /lists index
+    //   2400 (heroUrl width 1200 retina×2) — detail-page heroes
+    // Anything not in the union below 400s. Keep the defaults plus the
+    // custom widths we use; lib/imageUrl.ts ALSO snaps to the nearest
+    // allowed size so a stray request for, say, 100px lands on 96.
+    imageSizes: [16, 32, 48, 64, 80, 96, 112, 128, 160, 192, 240, 256, 384, 480],
+    deviceSizes: [640, 750, 800, 828, 1080, 1200, 1920, 2048, 2400, 3840],
     // Cache resized variants for a year — saved-list and pin photos don't
     // change after upload, so the long TTL keeps Vercel's image-CDN hits
     // reusable across deploys instead of re-rendering on every revalidate.

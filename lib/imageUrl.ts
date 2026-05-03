@@ -58,11 +58,31 @@ function isOptimizable(url: string): boolean {
   return OPTIMIZABLE_HOSTS.some(host => url.includes(host));
 }
 
+/** Widths Next.js will accept for `w=` on /_next/image. MUST stay in sync
+ *  with `images.imageSizes` + `images.deviceSizes` in next.config.js. If
+ *  this list and the config diverge, requests for widths not in the
+ *  intersection 400 with INVALID_IMAGE_OPTIMIZE_REQUEST. */
+const ALLOWED_WIDTHS = [
+  16, 32, 48, 64, 80, 96, 112, 128, 160, 192, 240, 256, 384, 480,
+  640, 750, 800, 828, 1080, 1200, 1920, 2048, 2400, 3840,
+];
+
+/** Snap an arbitrary width to the nearest value in ALLOWED_WIDTHS that's
+ *  >= the requested size (so we never DOWNSCALE the caller's intent).
+ *  Falls back to the largest allowed width if the request is bigger
+ *  than anything we've configured. */
+function snapWidth(requested: number): number {
+  for (const w of ALLOWED_WIDTHS) {
+    if (w >= requested) return w;
+  }
+  return ALLOWED_WIDTHS[ALLOWED_WIDTHS.length - 1]!;
+}
+
 /** Build a /_next/image URL with the requested width + quality. The width
- *  has to match a value in next.config's images.imageSizes ∪ deviceSizes;
- *  callers should pick from the existing pool. */
+ *  is snapped to an allowed value via snapWidth() so a stray callsite
+ *  asking for an unconfigured size still renders instead of 400-ing. */
 function nextImageUrl(source: string, width: number, quality: number): string {
-  const w = Math.max(1, Math.round(width));
+  const w = snapWidth(Math.max(1, Math.round(width)));
   const q = Math.max(1, Math.min(100, Math.round(quality)));
   return `/_next/image?url=${encodeURIComponent(source)}&w=${w}&q=${q}`;
 }
