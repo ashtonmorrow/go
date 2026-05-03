@@ -85,6 +85,40 @@ const ZERO_COUNTS = {
 };
 
 export default async function Sidebar() {
+  // Sidebar is rendered from the root layout. If THIS server component
+  // throws, the App Router's per-route error.tsx can't catch it (those
+  // run at the route segment level, below the layout). The whole tree
+  // tips into the pages-router default 500.html — exactly the symptom
+  // we've been seeing on /pins/[slug] and /cities/[slug]. So every
+  // network call below is wrapped in its own try/catch, and the whole
+  // body sits behind a SafeSidebar wrapper that returns a stub on any
+  // unexpected throw rather than tearing down the page.
+  return <SafeSidebar />;
+}
+
+async function SafeSidebar() {
+  try {
+    return await SidebarBody();
+  } catch (err) {
+    console.error('[Sidebar] failed:', err);
+    // Stub render — same shell with empty data. Keeps the layout
+    // navigable instead of 500-ing the page.
+    return (
+      <SidebarShell
+        counts={ZERO_COUNTS}
+        countryOptions={[]}
+        pinCountryOptions={[]}
+        pinCategoryOptions={[]}
+        pinListOptions={[]}
+        pinTagOptions={[]}
+        pinSavedListOptions={[]}
+        articleEntries={[]}
+      />
+    );
+  }
+}
+
+async function SidebarBody() {
   // Pathname is stamped by middleware.ts on every non-static request. If
   // it's missing (local dev edge cases, prerender phase), we conservatively
   // fall back to "fetch everything" so nothing is silently broken.
@@ -98,12 +132,32 @@ export default async function Sidebar() {
 
   // Only fetch what the current route actually consumes. Each fetcher is
   // already module-cached, so when we DO need the data and another part
-  // of the page already pulled it, this is free.
+  // of the page already pulled it, this is free. Each fetcher has its own
+  // catch so a single Supabase hiccup degrades counts instead of killing
+  // the whole sidebar (which would 500 the entire app).
   const [cities, countries, pins, articleEntries] = await Promise.all([
-    wantsCities || wantsCounts ? fetchAllCities() : Promise.resolve([]),
-    wantsCountries || wantsCounts ? fetchAllCountries() : Promise.resolve([]),
-    wantsPins || wantsCounts ? fetchAllPins() : Promise.resolve([]),
-    getAllArticleEntries(),
+    wantsCities || wantsCounts
+      ? fetchAllCities().catch(err => {
+          console.error('[Sidebar] fetchAllCities failed:', err);
+          return [];
+        })
+      : Promise.resolve([]),
+    wantsCountries || wantsCounts
+      ? fetchAllCountries().catch(err => {
+          console.error('[Sidebar] fetchAllCountries failed:', err);
+          return [];
+        })
+      : Promise.resolve([]),
+    wantsPins || wantsCounts
+      ? fetchAllPins().catch(err => {
+          console.error('[Sidebar] fetchAllPins failed:', err);
+          return [];
+        })
+      : Promise.resolve([]),
+    getAllArticleEntries().catch(err => {
+      console.error('[Sidebar] getAllArticleEntries failed:', err);
+      return [];
+    }),
   ]);
 
   // Counts only get computed when the bottom-block is going to render.
