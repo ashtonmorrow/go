@@ -159,6 +159,15 @@ export type Pin = {
 
   airtableModifiedAt: string | null;
   updatedAt: string | null;
+  /** When Mike saved this pin in Google Maps. Distinct from updatedAt
+   *  (last DB write) and visitYear (when he was there). Populated by
+   *  import-google-takeout.ts from each saved-place feature's
+   *  properties.date. Null for pins that never came from Takeout. */
+  savedAt: string | null;
+  /** Google Places API price level — 0 (free) through 4 ($$$$). Distinct
+   *  from priceTier (a restaurant-specific personal pick). Populated
+   *  later by a Places API enrichment pass. */
+  priceLevel: number | null;
 
   address: string | null;
   openingHours: PinOpeningHours | null;
@@ -344,6 +353,8 @@ function rowToPin(row: any): Pin {
 
     airtableModifiedAt: row.airtable_modified_at ?? null,
     updatedAt: row.updated_at ?? null,
+    savedAt: asString(row.saved_at),
+    priceLevel: asNumber(row.price_level),
 
     address: asString(row.address),
     openingHours,

@@ -109,6 +109,10 @@ type AggregatedReview = {
   hasReview: boolean;
   /** True when the place appears in Google Saved Places. */
   saved: boolean;
+  /** Most recent date this place was saved in Google Maps (ISO timestamp).
+   *  Distinct from publishedAt (review post date) — a place can have one,
+   *  the other, or both. Populated only from saved-place features. */
+  savedAt: string | null;
 };
 
 type MatchResult =
@@ -229,6 +233,7 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
   let count = 0;
   let hasReview = false;
   let saved = false;
+  let savedAt: string | null = null;
 
   // Process newest-first so "most recent text" wins, and aspect_ratings
   // last-wins becomes "most-recently-set wins" if you flip the order.
@@ -250,6 +255,9 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
       hasReview = true;
     } else {
       saved = true;
+      // Capture the most-recent save date. Sorted newest-first above, so
+      // the first saved-feature date we hit IS the most recent save.
+      if (!savedAt && p.date) savedAt = p.date;
     }
     if (!text && p.review_text_published && p.review_text_published.trim()) {
       text = p.review_text_published.trim();
@@ -268,7 +276,7 @@ function aggregateReviews(features: TakeoutFeature[]): AggregatedReview {
     }
   }
 
-  return { text, rating, publishedAt, aspectRatings, googlePlaceUrl, count, hasReview, saved };
+  return { text, rating, publishedAt, aspectRatings, googlePlaceUrl, count, hasReview, saved, savedAt };
 }
 
 // === Main ==================================================================
@@ -538,6 +546,11 @@ async function main() {
       if (m.review.publishedAt) patch.visit_year = Number(m.review.publishedAt.slice(0, 4));
       if (m.review.googlePlaceUrl) patch.google_place_url = m.review.googlePlaceUrl;
       if (m.review.saved) patch.lists = [...new Set([...(m.pin.lists ?? []), 'Google Saved Places'])];
+      // saved_at is the date Mike added this place to a Google Maps
+      // saved list. Distinct from review_published_at (post date).
+      // Backfill it whenever Takeout has the data — the column was
+      // null on most existing pins until this run.
+      if (m.review.savedAt) patch.saved_at = m.review.savedAt;
       if (Object.keys(m.review.aspectRatings).length > 0) {
         patch.aspect_ratings = m.review.aspectRatings;
       }
@@ -575,6 +588,7 @@ async function main() {
       if (m.review.rating) row.personal_rating = m.review.rating;
       if (m.review.publishedAt) row.review_published_at = m.review.publishedAt;
       if (m.review.publishedAt) row.visit_year = Number(m.review.publishedAt.slice(0, 4));
+      if (m.review.savedAt) row.saved_at = m.review.savedAt;
       if (Object.keys(m.review.aspectRatings).length > 0) {
         row.aspect_ratings = m.review.aspectRatings;
       }
