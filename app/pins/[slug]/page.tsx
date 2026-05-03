@@ -21,12 +21,16 @@ import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 
-export const revalidate = 604800;
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  return [];
-}
+// Force dynamic rendering. The Sidebar (root layout) reads headers() for
+// pathname-aware fetching, which makes the whole tree dynamic at runtime.
+// Combining that with the previous `revalidate + dynamicParams + empty
+// generateStaticParams` triple told Next to try static-with-ISR; at
+// request time those configs conflict and Next throws "Page changed
+// from static to dynamic at runtime, reason: headers" → bare 500.
+// Per-fetch caching still applies via unstable_cache wrappers in lib/
+// (fetchPinBySlug etc are TTL'd to 24h), so dropping ISR here doesn't
+// turn the page into an N+1.
+export const dynamic = 'force-dynamic';
 
 /** A pin is "thin" when there's nothing on the page that adds value beyond
  *  Wikipedia: not visited, no personal review, no curated list membership,

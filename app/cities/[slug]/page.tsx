@@ -41,16 +41,16 @@ function slugifyCapital(name: string | null | undefined): string | null {
   return slug || null;
 }
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
-export const dynamicParams = true;
-
-// Pre-render nothing at build time; pages are generated on-demand on first visit
-// and then cached for `revalidate` seconds. This keeps the build fast and stays
-// well clear of Notion's rate limits during prerender. First visit to any given
-// city takes ~1-2s; subsequent visits are instant until the cache expires.
-export async function generateStaticParams() {
-  return [];
-}
+// Force dynamic rendering. The Sidebar (root layout) reads headers() for
+// pathname-aware fetching, which makes the whole tree dynamic at runtime.
+// Combining that with the previous `revalidate + dynamicParams + empty
+// generateStaticParams` triple told Next to try static-with-ISR; at
+// request time those configs conflict and Next throws "Page changed
+// from static to dynamic at runtime, reason: headers" → bare 500.
+// Per-fetch caching still applies via unstable_cache wrappers in lib/
+// (fetchCityBySlug etc are TTL'd), so dropping ISR here doesn't turn
+// the page into an N+1.
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   // generateMetadata runs above any route-segment error.tsx boundary,
