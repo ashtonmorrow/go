@@ -1,18 +1,15 @@
 // === /admin/lists/[slug] ===================================================
-// Member editor for a single saved list. Shows the list's metadata header,
-// then a searchable, toggleable roster of every pin: members are pre-checked,
-// non-members can be added with a click. The same control flips a member
-// off the list. The pin itself is never modified beyond its saved_lists
-// array — same contract as the existing rename/delete admin actions.
+// Public-page-shaped editor. The admin sees the same cover hero, stats,
+// and card grid the visitor would see at /lists/[slug] — but every card
+// is admin-clickable. Clicking opens an inline drawer (PinEditDrawer)
+// for fast triage editing of the most-used fields without leaving the
+// page. Membership management moves out of the giant checkbox roster
+// and into a hover-✕ on each card + a + Add pin modal that searches
+// the global pin corpus.
 //
-// Render strategy:
-//   * Server pulls the full pin set + the list metadata once. The client
-//     gets a slim {id, name, city, country, isMember} array — about 100
-//     bytes per row. With 5k pins that's <500 KB shipped, fine for an
-//     admin-only page.
-//   * Client filters by name/city in memory and shows a virtualized-feel
-//     "first N + load more" list so the initial render isn't 5,000 DOM
-//     nodes.
+// Pattern is intentionally template-shaped — same approach will land on
+// /admin/cities/[slug], /admin/countries/[slug], and the general
+// /admin/pins editor in follow-up commits.
 
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -22,8 +19,9 @@ import {
   listNameToSlug,
   slugToListName,
 } from '@/lib/savedLists';
-import ListDetailClient, { type ListDetailPin } from './ListDetailClient';
+import EditableMeta from './EditableMeta';
 import CoverSection from './CoverSection';
+import AdminListEditor, { type AdminPinRow } from './AdminListEditor';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,8 +32,6 @@ async function findList(slug: string) {
     fetchAllPins(),
     fetchAllSavedListsMeta(),
   ]);
-  // Build the union of names from pins + metadata so newly-created empty
-  // lists are reachable via /admin/lists/<slug>.
   const allNames = new Set<string>(listsMeta.keys());
   for (const p of pins) for (const l of p.savedLists ?? []) allNames.add(l);
 
@@ -53,69 +49,113 @@ export default async function ListDetailAdminPage({ params }: Props) {
   if (!found) notFound();
 
   const meta = found.listsMeta.get(found.name) ?? null;
+  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
 
-  // Slim each pin to what the editor actually needs. The full Pin would
-  // ship 30 KB-ish per row; the editor only renders a name + city/country
-  // line and a checkbox.
-  // `isDraft` is a heuristic for the saved-list-import pins that arrived
-  // without coords or geo — they're useful to surface in the editor (the
-  // admin can add/remove them from any list) but worth visually flagging
-  // so they aren't confused with curated pins.
-  const rows: ListDetailPin[] = found.pins.map(p => ({
-    id: p.id,
-    name: p.name,
-    slug: p.slug,
-    city: p.cityNames?.[0] ?? null,
-    country: p.statesNames?.[0] ?? null,
-    visited: p.visited,
-    isDraft:
-      p.lat == null && p.lng == null &&
-      (p.cityNames?.length ?? 0) === 0 &&
-      (p.statesNames?.length ?? 0) === 0,
-    isMember: (p.savedLists ?? []).includes(found.name),
-  }));
+  // Build the slim row shape the editor needs. Members and non-members
+  // share the same shape — `isMember` flips. The grid renders members,
+  // the AddPinModal renders non-members. Sorting members alphabetically
+  // by default; the dropdown that public /lists/[slug] has would be
+  // a future enhancement here too.
+  const rows: AdminPinRow[] = found.pins
+    .map(p => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      city: p.cityNames?.[0] ?? null,
+      country: p.statesNames?.[0] ?? null,
+      cover: p.images?.[0]?.url ?? null,
+      visited: p.visited,
+      kind: p.kind ?? null,
+      personalRating: p.personalRating,
+      personalReview: p.personalReview,
+      visitYear: p.visitYear,
+      free: p.free ?? null,
+      description: p.description ?? null,
+      hours: p.hours ?? null,
+      priceText: p.priceText ?? null,
+      isMember: (p.savedLists ?? []).includes(found.name),
+      isDraft:
+        p.lat == null &&
+        p.lng == null &&
+        (p.cityNames?.length ?? 0) === 0 &&
+        (p.statesNames?.length ?? 0) === 0,
+    }))
+    .sort((a, b) => {
+      // Members first (so the editor lands on them), then alphabetical
+      // within each bucket. The AddPinModal will re-filter to non-members
+      // anyway; this just makes the dataset feel ordered when console-
+      // inspecting it in dev.
+      if (a.isMember !== b.isMember) return a.isMember ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    });
 
-  // Members at top, then by name ascending. Pin sort is stable across
-  // page renders so the checkbox positions don't shuffle when the user
-  // toggles state.
-  rows.sort((a, b) => {
-    if (a.isMember !== b.isMember) return a.isMember ? -1 : 1;
-    return a.name.localeCompare(b.name);
-  });
+  // === Cover resolution ====================================================
+  // Same precedence /lists/[slug] uses, mirrored so the admin sees what
+  // the visitor would see. Anchor city → for the 'city-photo' fallback.
+  // Pin pile → for the visited-first fallback.
+  let coverUrl: string | null = null;
+  let coverSource: 'curated-photo' | 'curated-pin' | 'fallback' | 'none' = 'none';
 
-  const memberCount = rows.filter(r => r.isMember).length;
+  const memberPins = found.pins.filter(p =>
+    (p.savedLists ?? []).includes(found.name),
+  );
 
-  // === Cover resolution =====================================================
-  // Same precedence the public /lists page uses, so the admin tile previews
-  // exactly what the visitor would see if they refreshed right now.
-  //   1. cover_photo_id (curated photo)         → meta.coverPhotoUrl
-  //   2. cover_pin_id    (curated pin's first)  → look up that pin's images[0]
-  //   3. fall back to "no cover" (geo / pin-pile lives only on /lists, but
-  //      we don't preview it on the admin tile to keep the source obvious)
-  let initialCoverUrl: string | null = null;
-  let initialSource: 'curated-photo' | 'curated-pin' | 'fallback' | 'none' = 'none';
   if (meta?.coverPhotoUrl) {
-    initialCoverUrl = meta.coverPhotoUrl;
-    initialSource = 'curated-photo';
+    coverUrl = meta.coverPhotoUrl;
+    coverSource = 'curated-photo';
   } else if (meta?.coverPinId) {
-    const pin = found.pins.find(p => p.id === meta.coverPinId);
-    initialCoverUrl = pin?.images?.[0]?.url ?? null;
-    initialSource = initialCoverUrl ? 'curated-pin' : 'none';
+    const pin = memberPins.find(p => p.id === meta.coverPinId);
+    coverUrl = pin?.images?.[0]?.url ?? null;
+    coverSource = coverUrl ? 'curated-pin' : 'none';
+  }
+  // If still no cover, try a pin-pile fallback so the admin hero isn't
+  // empty when no curated cover is set yet.
+  if (!coverUrl) {
+    const visitedFirst = memberPins
+      .slice()
+      .sort((a, b) => (a.visited === b.visited ? 0 : a.visited ? -1 : 1));
+    for (const p of visitedFirst) {
+      const url = p.images?.[0]?.url;
+      if (url) {
+        coverUrl = url;
+        coverSource = 'fallback';
+        break;
+      }
+    }
   }
 
   return (
     <div className="max-w-page mx-auto px-5 py-8">
       <nav className="text-small text-muted mb-3" aria-label="Breadcrumb">
-        <Link href="/admin/lists" className="hover:text-teal">Saved lists admin</Link>
+        <Link href="/admin/lists" className="hover:text-teal">
+          Saved lists admin
+        </Link>
         <span className="mx-1.5" aria-hidden>›</span>
-        <span className="text-ink-deep capitalize">{found.name}</span>
+        <span className="text-ink-deep capitalize">{titleCase}</span>
       </nav>
 
+      {/* Cover hero — same 21:9 banner the public list page now shows.
+          Renders only when the precedence chain finds an image. The
+          CoverSection editor lives below the hero so the picker stays
+          one click away without competing with the visual. */}
+      {coverUrl && (
+        <div className="mb-5 relative aspect-[21/9] rounded-lg overflow-hidden bg-cream-soft border border-sand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={coverUrl}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
       <header className="mb-6">
-        <h1 className="text-h1 text-ink-deep leading-tight capitalize">{found.name}</h1>
-        <p className="mt-2 text-small text-muted tabular-nums">
-          {memberCount} {memberCount === 1 ? 'pin' : 'pins'} on this list
-        </p>
+        {/* Title + description, both inline-editable. */}
+        <EditableMeta
+          initialName={found.name}
+          initialDescription={meta?.description ?? null}
+        />
+
         <div className="mt-3 flex flex-wrap items-center gap-3 text-label">
           <Link
             href={`/lists/${listNameToSlug(found.name)}`}
@@ -140,15 +180,17 @@ export default async function ListDetailAdminPage({ params }: Props) {
           </Link>
         </div>
 
+        {/* Cover picker editor — sits below the hero in a thin admin
+            strip. Click "Change cover…" to open the photo picker modal. */}
         <CoverSection
           listName={found.name}
           initialCoverPhotoId={meta?.coverPhotoId ?? null}
-          initialCoverUrl={initialCoverUrl}
-          initialSource={initialSource}
+          initialCoverUrl={coverUrl}
+          initialSource={coverSource}
         />
       </header>
 
-      <ListDetailClient listName={found.name} initialRows={rows} />
+      <AdminListEditor listName={found.name} initialRows={rows} />
     </div>
   );
 }
