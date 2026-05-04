@@ -73,6 +73,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics 4 — emitted as raw <script> tags inside <head>
+            so Google's tag detector sees them on first scrape. The
+            CookieBanner OK click dispatches a 'go-cookies-acked' event
+            that the inline script listens for; until then Consent Mode v2
+            keeps analytics_storage in the 'denied' state. */}
+        <GoogleAnalytics />
+      </head>
       <body>
         {/* Sitewide JSON-LD: Person (the author/publisher) and WebSite.
             Detail pages reference the Person via { "@id": AUTHOR_ID }. */}
@@ -95,11 +103,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   about, credits, privacy). Replaces 14 per-page invocations. */}
               <AppHeader />
               <CookieBanner />
-              {/* Analytics — gtag.js loaded via next/script with Consent
-                  Mode v2 default-denied. Storage flips to granted only
-                  after the user acks the cookie banner above (or has
-                  already acked on a prior visit). */}
-              <GoogleAnalytics />
             </PinFiltersProvider>
           </CountryFiltersProvider>
         </CityFiltersProvider>
