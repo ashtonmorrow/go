@@ -14,6 +14,7 @@ import { fetchPersonalCovers } from '@/lib/personalPhotos';
 import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
 import PinsGrid from '@/components/PinsGrid';
+import PinsPageTitle from '@/components/PinsPageTitle';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -68,7 +69,7 @@ export default async function PinsPage() {
       {/* Compact header — matches /cities/cards, /countries/cards, etc.
           Total + visited counts live in the cockpit's "X / Y pins" badge,
           so the page itself doesn't need to repeat them. */}
-      <section className="max-w-page mx-auto px-5 pt-6"><h1 className="text-h2 text-ink-deep">Pins</h1></section>
+      <section className="max-w-page mx-auto px-5 pt-6"><PinsPageTitle /></section>
 
       <PinsGrid pins={pins} countryNameToIso2={countryNameToIso2} />
     </div>
