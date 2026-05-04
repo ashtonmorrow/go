@@ -26,6 +26,12 @@ import { listNameToSlug } from '@/lib/savedLists';
 //   → toggle a single pin's membership in a list. Idempotent on both
 //     sides; safe to spam from a checkbox UI.
 //
+// POST { action: 'setCover', name, cover_photo_id?: uuid|null, cover_pin_id?: uuid|null }
+//   → curate the cover image shown on /lists. Either field can be set or
+//     nulled independently; the cover-resolver on /lists prefers
+//     cover_photo_id over cover_pin_id over the geo / pin-pile fallbacks.
+//     Fields not present on the body are left alone.
+//
 // All ops bust the public-pages cache so /lists and /lists/<slug> reflect
 // the change after a single deploy-free roundtrip.
 
@@ -43,7 +49,21 @@ type UpdateMetaBody = {
 type CreateBody = { action: 'create'; name: string };
 type AddPinBody = { action: 'addPin'; name: string; pinId: string };
 type RemovePinBody = { action: 'removePin'; name: string; pinId: string };
-type Body = RenameBody | DeleteBody | UpdateMetaBody | CreateBody | AddPinBody | RemovePinBody;
+type SetCoverBody = {
+  action: 'setCover';
+  name: string;
+  /** uuid → set; null → clear; undefined → leave alone. */
+  cover_photo_id?: string | null;
+  cover_pin_id?: string | null;
+};
+type Body =
+  | RenameBody
+  | DeleteBody
+  | UpdateMetaBody
+  | CreateBody
+  | AddPinBody
+  | RemovePinBody
+  | SetCoverBody;
 
 function normalizeName(s: string): string {
   // Saved-list names are lowercase + space-separated in the DB. Trim &
@@ -214,8 +234,50 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, changed: true });
   }
 
+  if (body.action === 'setCover') {
+    const name = normalizeName(body.name ?? '');
+    if (!name) {
+      return NextResponse.json({ error: 'setCover requires `name`' }, { status: 400 });
+    }
+    // Build a partial patch — only fields explicitly supplied get touched.
+    // null clears, a uuid string sets, undefined leaves the column alone.
+    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    if (Object.prototype.hasOwnProperty.call(body, 'cover_photo_id')) {
+      const v = body.cover_photo_id;
+      if (v !== null && (typeof v !== 'string' || !v.trim())) {
+        return NextResponse.json(
+          { error: 'cover_photo_id must be a uuid string or null' },
+          { status: 400 },
+        );
+      }
+      patch.cover_photo_id = v;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'cover_pin_id')) {
+      const v = body.cover_pin_id;
+      if (v !== null && (typeof v !== 'string' || !v.trim())) {
+        return NextResponse.json(
+          { error: 'cover_pin_id must be a uuid string or null' },
+          { status: 400 },
+        );
+      }
+      patch.cover_pin_id = v;
+    }
+    // Upsert so a list whose metadata row hasn't been created yet still
+    // gets the cover. ON CONFLICT rebases on `name` (the PK).
+    const { error } = await sb.from('saved_lists').upsert(
+      { name, ...patch },
+      { onConflict: 'name' },
+    );
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    try { revalidateTag('saved-lists-meta'); } catch { /* ignore */ }
+    bustCaches(name);
+    return NextResponse.json({ ok: true });
+  }
+
   return NextResponse.json(
-    { error: 'action must be rename | delete | updateMeta | create | addPin | removePin' },
+    { error: 'action must be rename | delete | updateMeta | create | addPin | removePin | setCover' },
     { status: 400 },
   );
 }

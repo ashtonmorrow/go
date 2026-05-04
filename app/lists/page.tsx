@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { fetchAllPins, type Pin } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
-import { listNameToSlug } from '@/lib/savedLists';
+import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import { thumbUrl } from '@/lib/imageUrl';
 import { SITE_URL } from '@/lib/seo';
 
@@ -13,12 +13,16 @@ import { SITE_URL } from '@/lib/seo';
 // alphabetical for stable order across reloads.
 //
 // Each card carries a cover image picked from a fallback chain:
-//   1. The matching city's hero/personal photo (when the list name matches
+//   1. **Curated cover photo** — saved_lists.cover_photo_id. Set via the
+//      Flavor-2 picker on /admin/lists/[slug]; wins over every fallback.
+//   2. **Curated cover pin** — saved_lists.cover_pin_id's first photo.
+//      Wins over the geo / pin-pile fallbacks below.
+//   3. The matching city's hero/personal photo (when the list name matches
 //      a known atlas city).
-//   2. The matching country's hero photo (same idea, broader).
-//   3. The first photo on any visited pin in the list.
-//   4. The first photo on any pin in the list, period.
-//   5. Nothing — card falls back to a "no photo" placeholder.
+//   4. The matching country's hero photo (same idea, broader).
+//   5. The first photo on any visited pin in the list.
+//   6. The first photo on any pin in the list, period.
+//   7. Nothing — card falls back to a "no photo" placeholder.
 //
 // We also surface the linked place as a small "📮 Madrid" / "🌍 Spain"
 // chip on the card so visitors can see at a glance that the list pivots
@@ -46,13 +50,16 @@ type ListEntry = {
 };
 
 export default async function ListsIndex() {
-  // Three parallel cached fetches — fetchAllPins is shared with /pins routes,
-  // fetchAllCities/Countries are shared with /cities and /countries. None of
-  // these add meaningful load on their own.
-  const [pins, cities, countries] = await Promise.all([
+  // Four parallel cached fetches — fetchAllPins is shared with /pins routes,
+  // fetchAllCities/Countries with /cities and /countries, fetchAllSavedListsMeta
+  // is the lookup for curated covers (cover_photo_id / cover_pin_id) and the
+  // google_share_url chip on /lists/[slug]. None of these add meaningful load
+  // on their own.
+  const [pins, cities, countries, listsMeta] = await Promise.all([
     fetchAllPins(),
     fetchAllCities(),
     fetchAllCountries(),
+    fetchAllSavedListsMeta(),
   ]);
 
   // Build lookup maps once. Cities/countries are keyed by lowercased name so
@@ -101,6 +108,14 @@ export default async function ListsIndex() {
     return null;
   }
 
+  // Pin id → first image url, used to resolve curated coverPinId without a
+  // second pass over `pins`.
+  const pinPrimaryPhoto = new Map<string, string>();
+  for (const p of pins) {
+    const url = p.images?.[0]?.url;
+    if (url) pinPrimaryPhoto.set(p.id, url);
+  }
+
   const lists: ListEntry[] = Array.from(buckets.entries())
     .map(([name, arr]) => {
       const lcName = name.toLowerCase();
@@ -111,10 +126,17 @@ export default async function ListsIndex() {
         : country
         ? { kind: 'country' as const, name: country.name, slug: country.slug }
         : null;
-      // City cover wins; otherwise fall back to any pin photo. Country
-      // covers don't exist on the Country type yet (only flags), so for
-      // country-anchored lists we let the pin photo carry the visual.
-      const cover = city?.cover ?? pickPinCover(arr);
+      // Curated covers always win. The picker stores either a specific
+      // photo (cover_photo_id, joined to its URL at fetch time) or a pin
+      // (cover_pin_id, whose first image we look up here). After the
+      // curated chain, fall back to the matching city's hero photo and
+      // finally to whatever the pin pile turns up.
+      const meta = listsMeta.get(name);
+      const cover =
+        meta?.coverPhotoUrl
+        ?? (meta?.coverPinId ? pinPrimaryPhoto.get(meta.coverPinId) ?? null : null)
+        ?? city?.cover
+        ?? pickPinCover(arr);
       return {
         name,
         slug: listNameToSlug(name),

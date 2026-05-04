@@ -64,6 +64,8 @@ async function findList(slug: string) {
       googleShareUrl: null,
       description: null,
       coverPinId: null,
+      coverPhotoId: null,
+      coverPhotoUrl: null,
       updatedAt: null,
     });
     return { name: candidate, listsMeta };
@@ -196,6 +198,33 @@ export default async function ListPage({ params }: Props) {
     lng: p.lng,
   }));
 
+  // === Cover hero ============================================================
+  // Same precedence as the /lists index card: curated photo > curated pin >
+  // anchor city's hero/personal photo > first visited pin's photo. Renders
+  // a wide banner above the H1 when any tier resolves; otherwise the page
+  // stays text-first (the previous behaviour).
+  const coverFromCurated = meta?.coverPhotoUrl ?? null;
+  const coverFromPin = meta?.coverPinId
+    ? listPins.find(p => p.id === meta.coverPinId)?.images?.[0]?.url ?? null
+    : null;
+  const coverFromCity = cityMatch
+    ? cityMatch.personalPhoto ?? cityMatch.heroImage ?? null
+    : null;
+  const coverFromPinPile = (() => {
+    // Prefer a visited pin's first photo over a draft's so the hero feels
+    // like a real travel snapshot rather than placeholder Wikidata art.
+    const visitedFirst = listPins
+      .slice()
+      .sort((a, b) => (a.visited === b.visited ? 0 : a.visited ? -1 : 1));
+    for (const p of visitedFirst) {
+      const url = p.images?.[0]?.url;
+      if (url) return url;
+    }
+    return null;
+  })();
+  const coverUrl =
+    coverFromCurated ?? coverFromPin ?? coverFromCity ?? coverFromPinPile;
+
   // Stats — only the non-zero ones render. Avg rating is over rated pins
   // only so an empty list with no ratings doesn't show "0.0 stars".
   const visitedCount = onList.filter(p => p.visited).length;
@@ -248,6 +277,21 @@ export default async function ListPage({ params }: Props) {
       <JsonLd data={breadcrumb} />
       <JsonLd data={collection} />
       {article && <JsonLd data={article} />}
+
+      {/* Cover hero — only renders when the precedence chain finds an image,
+          so theme lists with no anchor city and no curated cover stay
+          text-first. The 21:9 aspect keeps it banner-shaped on desktop and
+          legible at narrow widths; rounded edges echo the pin cards. */}
+      {coverUrl && (
+        <div className="mb-5 relative aspect-[21/9] rounded-lg overflow-hidden bg-cream-soft border border-sand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={coverUrl}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
 
       <nav className="text-small text-muted mb-3" aria-label="Breadcrumb">
         <Link href="/lists" className="hover:text-teal">Lists</Link>

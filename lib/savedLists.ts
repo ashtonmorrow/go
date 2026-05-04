@@ -45,6 +45,12 @@ export type SavedListMeta = {
   googleShareUrl: string | null;
   description: string | null;
   coverPinId: string | null;
+  /** Curated cover photo (Flavor-2 picker on /admin/lists/[slug]). When set,
+   *  this URL wins over coverPinId / city-photo / first-pin-photo on the
+   *  /lists index. Resolved by JOINing personal_photos at fetch time so
+   *  consumers don't need to do a second round-trip. */
+  coverPhotoId: string | null;
+  coverPhotoUrl: string | null;
   updatedAt: string | null;
 };
 
@@ -57,25 +63,42 @@ export type SavedListMeta = {
  *  This is the same gotcha task #161 fixed for fetchAllPins. */
 const _fetchAllSavedListsMetaArray = unstable_cache(
   async (): Promise<SavedListMeta[]> => {
+    // We JOIN personal_photos via PostgREST embedding so the cover photo
+    // URL travels with the row. cover_photo_id has ON DELETE SET NULL so a
+    // dangling reference is impossible — if the JOIN comes back null, it
+    // just means no cover was picked.
     const { data, error } = await supabase
       .from('saved_lists')
-      .select('name, google_share_url, description, cover_pin_id, updated_at');
+      .select(
+        'name, google_share_url, description, cover_pin_id, cover_photo_id, updated_at, ' +
+        'cover_photo:personal_photos!cover_photo_id(url)'
+      );
     if (error) {
       console.error('[savedLists] fetch failed:', error);
       return [];
     }
-    return (data ?? []).map(row => ({
-      name: row.name as string,
-      googleShareUrl: (row.google_share_url as string | null) ?? null,
-      description: (row.description as string | null) ?? null,
-      coverPinId: (row.cover_pin_id as string | null) ?? null,
-      updatedAt: (row.updated_at as string | null) ?? null,
-    }));
+    return (data ?? []).map(row => {
+      // PostgREST embedding returns a single object (or null) when the FK
+      // is one-to-one. Be defensive in case it ever ships an array form.
+      const photo = (row as Record<string, unknown>).cover_photo;
+      const photoUrl =
+        Array.isArray(photo)
+          ? (photo[0] as { url?: string } | undefined)?.url ?? null
+          : (photo as { url?: string } | null)?.url ?? null;
+      return {
+        name: row.name as string,
+        googleShareUrl: (row.google_share_url as string | null) ?? null,
+        description: (row.description as string | null) ?? null,
+        coverPinId: (row.cover_pin_id as string | null) ?? null,
+        coverPhotoId: (row.cover_photo_id as string | null) ?? null,
+        coverPhotoUrl: photoUrl,
+        updatedAt: (row.updated_at as string | null) ?? null,
+      };
+    });
   },
-  // Cache key bumped to v2 to evict the prior cached result that didn't
-  // include "random saves" — a list with 112 pins but no meta row until
-  // it was inserted via SQL. Future inserts will hit the 5-min TTL.
-  ['saved-lists-meta-v2'],
+  // v3: schema gained `cover_photo_id` + JOIN on personal_photos. Bumping
+  // the key evicts every cached row that was missing those fields.
+  ['saved-lists-meta-v3'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

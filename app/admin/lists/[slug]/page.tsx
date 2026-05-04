@@ -23,6 +23,7 @@ import {
   slugToListName,
 } from '@/lib/savedLists';
 import ListDetailClient, { type ListDetailPin } from './ListDetailClient';
+import CoverSection from './CoverSection';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,6 +85,24 @@ export default async function ListDetailAdminPage({ params }: Props) {
 
   const memberCount = rows.filter(r => r.isMember).length;
 
+  // === Cover resolution =====================================================
+  // Same precedence the public /lists page uses, so the admin tile previews
+  // exactly what the visitor would see if they refreshed right now.
+  //   1. cover_photo_id (curated photo)         → meta.coverPhotoUrl
+  //   2. cover_pin_id    (curated pin's first)  → look up that pin's images[0]
+  //   3. fall back to "no cover" (geo / pin-pile lives only on /lists, but
+  //      we don't preview it on the admin tile to keep the source obvious)
+  let initialCoverUrl: string | null = null;
+  let initialSource: 'curated-photo' | 'curated-pin' | 'fallback' | 'none' = 'none';
+  if (meta?.coverPhotoUrl) {
+    initialCoverUrl = meta.coverPhotoUrl;
+    initialSource = 'curated-photo';
+  } else if (meta?.coverPinId) {
+    const pin = found.pins.find(p => p.id === meta.coverPinId);
+    initialCoverUrl = pin?.images?.[0]?.url ?? null;
+    initialSource = initialCoverUrl ? 'curated-pin' : 'none';
+  }
+
   return (
     <div className="max-w-page mx-auto px-5 py-8">
       <nav className="text-small text-muted mb-3" aria-label="Breadcrumb">
@@ -120,6 +139,13 @@ export default async function ListDetailAdminPage({ params }: Props) {
             ← Back to all lists
           </Link>
         </div>
+
+        <CoverSection
+          listName={found.name}
+          initialCoverPhotoId={meta?.coverPhotoId ?? null}
+          initialCoverUrl={initialCoverUrl}
+          initialSource={initialSource}
+        />
       </header>
 
       <ListDetailClient listName={found.name} initialRows={rows} />

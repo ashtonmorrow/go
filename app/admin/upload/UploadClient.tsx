@@ -1130,7 +1130,7 @@ function CandidateRow({
                       onClick={() => onDetachPhoto(p.id)}
                       aria-label="Wrong place — remove this photo"
                       title="Wrong place — remove this photo"
-                      className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-orange text-white text-micro leading-none flex items-center justify-center shadow opacity-90 hover:opacity-100"
+                      className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-orange text-white text-small leading-none flex items-center justify-center ring-2 ring-white shadow-md hover:bg-orange/90 hover:scale-110 transition-transform"
                     >
                       ✕
                     </button>
