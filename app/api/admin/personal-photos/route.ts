@@ -93,12 +93,18 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const photos: PhotoTile[] = (data ?? []).map(row => {
+  const photos: PhotoTile[] = (data ?? []).map(rawRow => {
+    // supabase-js types the per-row result as `GenericStringError | T`
+    // when an embedded JOIN is involved (the union is there to flag
+    // failed embeds at runtime). Property access trips against the
+    // GenericStringError half of the union even though embedded JOINs
+    // never actually fail this way in practice. Double-cast through
+    // `unknown` once at the top so the rest of this function reads
+    // cleanly. Pattern matches what lib/savedLists.ts does.
+    const row = rawRow as unknown as Record<string, unknown>;
     // PostgREST's embedded one-to-one comes back as a single object, but
     // older versions occasionally shipped an array — be defensive either way.
-    // Double-cast through unknown because supabase-js types the joined cell
-    // as GenericStringError | T which doesn't overlap with Record.
-    const pin = (row as unknown as Record<string, unknown>).pin;
+    const pin = row.pin;
     const pinObj = Array.isArray(pin)
       ? (pin[0] as { id?: string; name?: string; slug?: string | null } | undefined)
       : (pin as { id?: string; name?: string; slug?: string | null } | undefined);
