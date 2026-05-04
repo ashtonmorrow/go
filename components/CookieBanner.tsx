@@ -31,6 +31,13 @@ export default function CookieBanner() {
       /* ignore */
     }
     setDismissed(true);
+    // Tell GoogleAnalytics it can flip Consent Mode from denied → granted
+    // without a page reload. The listener lives in components/GoogleAnalytics.tsx.
+    try {
+      window.dispatchEvent(new Event('go-cookies-acked'));
+    } catch {
+      /* ignore — pre-DOM environments don't get analytics anyway */
+    }
   };
 
   return (

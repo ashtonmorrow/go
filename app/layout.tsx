@@ -7,6 +7,7 @@ import { PinFiltersProvider } from '@/components/PinFiltersContext';
 import { CountryFiltersProvider } from '@/components/CountryFiltersContext';
 import JsonLd from '@/components/JsonLd';
 import CookieBanner from '@/components/CookieBanner';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import {
   SITE_URL,
   SITE_NAME,
@@ -94,6 +95,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   about, credits, privacy). Replaces 14 per-page invocations. */}
               <AppHeader />
               <CookieBanner />
+              {/* Analytics — gtag.js loaded via next/script with Consent
+                  Mode v2 default-denied. Storage flips to granted only
+                  after the user acks the cookie banner above (or has
+                  already acked on a prior visit). */}
+              <GoogleAnalytics />
             </PinFiltersProvider>
           </CountryFiltersProvider>
         </CityFiltersProvider>
