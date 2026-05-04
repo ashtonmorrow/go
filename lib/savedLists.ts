@@ -77,12 +77,17 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       console.error('[savedLists] fetch failed:', error);
       return [];
     }
-    return (data ?? []).map(row => {
+    return (data ?? []).map(rawRow => {
+      // supabase-js types the per-row result as `GenericStringError | T`
+      // when an embedded JOIN is involved. Property access on every field
+      // (not just the embed) trips against the GenericStringError half of
+      // the union. Double-cast through `unknown` once at the top so the
+      // rest of this function reads cleanly. Same pattern as
+      // app/api/admin/personal-photos/route.ts.
+      const row = rawRow as unknown as Record<string, unknown>;
       // PostgREST embedding returns a single object (or null) when the FK
       // is one-to-one. Be defensive in case it ever ships an array form.
-      // Double-cast through unknown because supabase-js types the joined
-      // cell as GenericStringError | T, which doesn't overlap with Record.
-      const photo = (row as unknown as Record<string, unknown>).cover_photo;
+      const photo = row.cover_photo;
       const photoUrl =
         Array.isArray(photo)
           ? (photo[0] as { url?: string } | undefined)?.url ?? null
