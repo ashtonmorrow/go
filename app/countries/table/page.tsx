@@ -38,17 +38,22 @@ export default async function CountriesTablePage() {
 
   // Count cities per country so the table can show "X cities · Y visited"
   // alongside each country row — same affordance as the country cards.
-  const cityCounts = new Map<string, { total: number; been: number }>();
+  // We track `go` too so we can derive the same statusFocus bucket the
+  // cards page uses (visited > short-list > researched).
+  const cityCounts = new Map<string, { total: number; been: number; go: number }>();
   for (const c of cities) {
     if (!c.countryPageId) continue;
-    const cur = cityCounts.get(c.countryPageId) ?? { total: 0, been: 0 };
+    const cur = cityCounts.get(c.countryPageId) ?? { total: 0, been: 0, go: 0 };
     cur.total += 1;
     if (c.been) cur.been += 1;
+    if (c.go) cur.go += 1;
     cityCounts.set(c.countryPageId, cur);
   }
 
   const rows = countries.map(c => {
-    const counts = cityCounts.get(c.id) ?? { total: 0, been: 0 };
+    const counts = cityCounts.get(c.id) ?? { total: 0, been: 0, go: 0 };
+    const status: 'visited' | 'short-list' | 'researched' =
+      counts.been > 0 ? 'visited' : counts.go > 0 ? 'short-list' : 'researched';
     return {
       id: c.id,
       name: c.name,
@@ -72,6 +77,7 @@ export default async function CountriesTablePage() {
       driveSide: driveSide(c.iso2, c.name),
       cityCount: counts.total,
       beenCount: counts.been,
+      status,
     };
   });
 

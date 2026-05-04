@@ -38,33 +38,43 @@ export default async function CountryStatsPage() {
   ]);
 
   // Pre-compute per-country city + been counts so the client doesn't
-  // need to ship the full city list.
+  // need to ship the full city list. We track `go` too so we can derive
+  // the same statusFocus bucket the cards page uses.
   const cityCount = new Map<string, number>();
   const beenCount = new Map<string, number>();
+  const goCount = new Map<string, number>();
   for (const c of cities) {
     if (!c.countryPageId) continue;
     cityCount.set(c.countryPageId, (cityCount.get(c.countryPageId) ?? 0) + 1);
     if (c.been) beenCount.set(c.countryPageId, (beenCount.get(c.countryPageId) ?? 0) + 1);
+    if (c.go) goCount.set(c.countryPageId, (goCount.get(c.countryPageId) ?? 0) + 1);
   }
 
-  const rows: CountryStatsRow[] = countries.map(c => ({
-    id: c.id,
-    name: c.name,
-    slug: c.slug,
-    iso2: c.iso2,
-    capital: c.capital,
-    continent: c.continent,
-    schengen: c.schengen,
-    disputed: c.disputed,
-    // Same fall-through to static lookups when Notion is empty.
-    visa: c.visaUs ?? visaUs(c.iso2, c.name) ?? null,
-    tapWater: c.tapWater ?? tapWater(c.iso2, c.name) ?? null,
-    driveSide: driveSide(c.iso2, c.name),
-    cityCount: cityCount.get(c.id) ?? 0,
-    beenCount: beenCount.get(c.id) ?? 0,
-    // Wikidata baselines, joined by ISO2 from public.country_facts.
-    fact: c.iso2 ? factsByIso2.get(c.iso2.toUpperCase()) ?? null : null,
-  }));
+  const rows: CountryStatsRow[] = countries.map(c => {
+    const been = beenCount.get(c.id) ?? 0;
+    const go = goCount.get(c.id) ?? 0;
+    const status: 'visited' | 'short-list' | 'researched' =
+      been > 0 ? 'visited' : go > 0 ? 'short-list' : 'researched';
+    return {
+      id: c.id,
+      name: c.name,
+      slug: c.slug,
+      iso2: c.iso2,
+      capital: c.capital,
+      continent: c.continent,
+      schengen: c.schengen,
+      disputed: c.disputed,
+      // Same fall-through to static lookups when Notion is empty.
+      visa: c.visaUs ?? visaUs(c.iso2, c.name) ?? null,
+      tapWater: c.tapWater ?? tapWater(c.iso2, c.name) ?? null,
+      driveSide: driveSide(c.iso2, c.name),
+      cityCount: cityCount.get(c.id) ?? 0,
+      beenCount: been,
+      status,
+      // Wikidata baselines, joined by ISO2 from public.country_facts.
+      fact: c.iso2 ? factsByIso2.get(c.iso2.toUpperCase()) ?? null : null,
+    };
+  });
 
   return (
     <div className="max-w-page mx-auto px-5 py-6">

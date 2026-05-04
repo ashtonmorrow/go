@@ -1,7 +1,10 @@
 // === Shared country filter + sort logic ====================================
 // Same pattern as lib/pinFilter.ts — extracted so CountriesGrid (cards)
 // and CountriesTable both run the exact same predicates.
-import type { CountryFilterState } from '@/components/CountryFiltersContext';
+import type {
+  CountryFilterState,
+  CountryLayer,
+} from '@/components/CountryFiltersContext';
 import type { Continent, VisaUs, TapWater, DriveSide } from '@/components/CityFiltersContext';
 
 export type CountryFilterable = {
@@ -19,7 +22,21 @@ export type CountryFilterable = {
   driveSide?: 'L' | 'R' | null;
   cityCount: number;
   beenCount: number;
+  /** Derived from the country's member-city been/go flags at fetch time
+   *  (see app/countries/cards/page.tsx). Optional so older callers still
+   *  typecheck — when absent we fall back to beenCount-based inference,
+   *  which preserves the Visited filter for them but loses the
+   *  short-list / researched split until they're updated. */
+  status?: CountryLayer;
 };
+
+/** Return the country's status, falling back to a coarse inference when
+ *  callers haven't threaded the precomputed field through yet. */
+function statusOf<T extends CountryFilterable>(c: T): CountryLayer {
+  if (c.status) return c.status;
+  // Fallback: best we can do without the city-level data.
+  return c.beenCount > 0 ? 'visited' : 'researched';
+}
 
 export function filterCountries<T extends CountryFilterable>(
   rows: T[],
@@ -32,8 +49,7 @@ export function filterCountries<T extends CountryFilterable>(
       const hay = (r.name + '\n' + (r.capital ?? '')).toLowerCase();
       if (!hay.includes(needle)) continue;
     }
-    if (state.visitedFilter === 'been' && r.beenCount === 0) continue;
-    if (state.visitedFilter === 'not-been' && r.beenCount > 0) continue;
+    if (state.statusFocus !== null && statusOf(r) !== state.statusFocus) continue;
     if (state.schengenOnly && !r.schengen) continue;
     if (state.disputedOnly && !r.disputed) continue;
     if (state.continents.size > 0) {

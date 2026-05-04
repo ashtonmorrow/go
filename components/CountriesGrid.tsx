@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { flagCircle } from '@/lib/flags';
-import { useCountryFilters } from './CountryFiltersContext';
+import { useCountryFilters, type CountryLayer } from './CountryFiltersContext';
 import { filterCountries, sortCountries } from '@/lib/countryFilter';
 
 type CityRef = { id: string; name: string; slug: string; been: boolean };
@@ -33,6 +33,9 @@ type Country = {
   visa: string | null;
   tapWater: string | null;
   driveSide: 'L' | 'R' | null;
+  /** Derived server-side from member-city been/go flags. Drives the
+   *  statusFocus filter — see lib/countryFilter.ts. */
+  status: CountryLayer;
 };
 
 type Props = { countries: Country[] };

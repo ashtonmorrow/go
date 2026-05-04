@@ -31,11 +31,20 @@ export default async function CountriesPage() {
   // Group cities by country relation so each country card carries the
   // actual list (name + slug + been). The card uses these for the
   // click-to-open dropdown behind the "X cities / Y visited" footer.
-  const citiesByCountry = new Map<string, { id: string; name: string; slug: string; been: boolean }[]>();
+  // We also retain `go` per city — not exposed on the card itself, but
+  // used here to derive the country's statusFocus bucket below.
+  type CityRowFull = { id: string; name: string; slug: string; been: boolean; go: boolean };
+  const citiesByCountry = new Map<string, CityRowFull[]>();
   for (const city of cities) {
     if (!city.countryPageId) continue;
     const list = citiesByCountry.get(city.countryPageId) ?? [];
-    list.push({ id: city.id, name: city.name, slug: city.slug, been: city.been });
+    list.push({
+      id: city.id,
+      name: city.name,
+      slug: city.slug,
+      been: city.been,
+      go: city.go,
+    });
     citiesByCountry.set(city.countryPageId, list);
   }
 
@@ -44,6 +53,18 @@ export default async function CountriesPage() {
       a.name.localeCompare(b.name)
     );
     const beenCount = countryCities.filter(x => x.been).length;
+    const goCount = countryCities.filter(x => x.go).length;
+    // Status ladder, derived from member cities' been/go flags. Mirrors
+    // CityLayer: visited > short-list > researched. A country is on the
+    // "short list" when at least one of its cities is go-marked but none
+    // are been-marked yet — once any city flips to been the country
+    // graduates to "visited."
+    const status: 'visited' | 'short-list' | 'researched' =
+      beenCount > 0
+        ? 'visited'
+        : goCount > 0
+          ? 'short-list'
+          : 'researched';
     return {
       id: c.id,
       name: c.name,
@@ -62,12 +83,15 @@ export default async function CountriesPage() {
       emergencyNumber: c.emergencyNumber,
       cityCount: countryCities.length,
       beenCount,
-      cities: countryCities,
+      // Strip `go` before shipping to the client — it's only needed to
+      // compute `status` above; the card doesn't render it.
+      cities: countryCities.map(({ id, name, slug, been }) => ({ id, name, slug, been })),
       // Visa + tap-water mostly come from the static lookups since Notion's
       // Country DB is sparse on those columns. Notion wins when populated.
       visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
       tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
       driveSide: driveSide(c.iso2 ?? null, c.name),
+      status,
     };
   });
 

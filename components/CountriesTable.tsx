@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { useCountryFilters } from './CountryFiltersContext';
+import { useCountryFilters, type CountryLayer } from './CountryFiltersContext';
 import { filterCountries } from '@/lib/countryFilter';
 
 // === CountriesTable ========================================================
@@ -35,6 +35,9 @@ type Row = {
   driveSide: 'L' | 'R' | null;
   cityCount: number;
   beenCount: number;
+  /** Derived from member-city been/go flags so the table filter
+   *  honors the same statusFocus segmented control as the cards. */
+  status: CountryLayer;
 };
 
 type SortKey =

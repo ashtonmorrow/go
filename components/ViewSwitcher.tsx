@@ -36,7 +36,7 @@ const LABELS: Record<ObjectKey, Record<ViewKey, { icon: string; label: string }>
     stats: { icon: '📊', label: 'Stats' },
   },
   countries: {
-    cards: { icon: '🏳️', label: 'Cards' },
+    cards: { icon: '🏳️', label: 'Flags' },
     map:   { icon: '🌍', label: 'Globe' },
     table: { icon: '🗂️', label: 'Table' },
     stats: { icon: '📊', label: 'Stats' },

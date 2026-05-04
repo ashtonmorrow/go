@@ -111,13 +111,24 @@ export default function CountryFilterPanel() {
       <div>
         <SectionLabel>Status</SectionLabel>
         <div className="flex flex-col gap-1.5">
+          {/* 4-position focus: All / Visited / Short list / Researched.
+              The non-null states map to a country's relationship to me,
+              derived server-side from member-city been/go flags. Mirrors
+              the city Status segmented control for visual + behavioral
+              consistency across the two cockpits. */}
           <TriState
-            value={state.visitedFilter}
-            onChange={v => setState(s => ({ ...s, visitedFilter: v }))}
+            value={state.statusFocus ?? 'all'}
+            onChange={v =>
+              setState(s => ({
+                ...s,
+                statusFocus: v === 'all' ? null : (v as 'visited' | 'short-list' | 'researched'),
+              }))
+            }
             options={[
-              { value: 'all',      label: 'All' },
-              { value: 'been',     label: 'Been' },
-              { value: 'not-been', label: 'Not yet' },
+              { value: 'all',         label: 'All' },
+              { value: 'visited',     label: 'Visited' },
+              { value: 'short-list',  label: 'Short list' },
+              { value: 'researched',  label: 'Researched' },
             ]}
           />
         </div>

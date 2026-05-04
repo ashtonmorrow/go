@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useCountryFilters } from './CountryFiltersContext';
+import { useCountryFilters, type CountryLayer } from './CountryFiltersContext';
 import { filterCountries } from '@/lib/countryFilter';
 import { BigStat, Breakdown, FactList } from './StatBlocks';
 import { compactNumber, compactUsd, gdpPerCapita, type CountryFact } from '@/lib/countryFacts';
@@ -24,6 +24,9 @@ export type CountryStatsRow = {
   driveSide: 'L' | 'R' | null;
   cityCount: number;
   beenCount: number;
+  /** Derived from member-city been/go flags so the stats client filters
+   *  the same way as /countries/cards. */
+  status: CountryLayer;
   capital?: string | null;
   /** Joined by iso2 from public.country_facts. */
   fact?: CountryFact | null;
