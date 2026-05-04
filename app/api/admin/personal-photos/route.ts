@@ -96,7 +96,9 @@ export async function GET(req: Request) {
   const photos: PhotoTile[] = (data ?? []).map(row => {
     // PostgREST's embedded one-to-one comes back as a single object, but
     // older versions occasionally shipped an array — be defensive either way.
-    const pin = (row as Record<string, unknown>).pin;
+    // Double-cast through unknown because supabase-js types the joined cell
+    // as GenericStringError | T which doesn't overlap with Record.
+    const pin = (row as unknown as Record<string, unknown>).pin;
     const pinObj = Array.isArray(pin)
       ? (pin[0] as { id?: string; name?: string; slug?: string | null } | undefined)
       : (pin as { id?: string; name?: string; slug?: string | null } | undefined);

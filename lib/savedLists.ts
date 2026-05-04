@@ -80,7 +80,9 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
     return (data ?? []).map(row => {
       // PostgREST embedding returns a single object (or null) when the FK
       // is one-to-one. Be defensive in case it ever ships an array form.
-      const photo = (row as Record<string, unknown>).cover_photo;
+      // Double-cast through unknown because supabase-js types the joined
+      // cell as GenericStringError | T, which doesn't overlap with Record.
+      const photo = (row as unknown as Record<string, unknown>).cover_photo;
       const photoUrl =
         Array.isArray(photo)
           ? (photo[0] as { url?: string } | undefined)?.url ?? null
