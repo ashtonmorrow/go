@@ -1,28 +1,26 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
-import PinEditDrawer, { type EditablePin } from './PinEditDrawer';
 
 // === AdminListEditor =======================================================
-// Owns the list-detail admin view. Three concerns:
+// Public-page-shaped editor where every card IS the editor — no drawer, no
+// modal jumping. Click any field on a card (name, stars, review, year, free
+// chip, visited check) and it flips into an inline input that autosaves on
+// blur via /api/admin/update-pin. Click outside or hit Enter/Esc to exit
+// edit mode. Stats at the top of the section recompute on every save.
 //
-//   1. Card grid — same shape as /lists/[slug]'s SavedListSection cards but
-//      every card is admin-clickable. Clicking opens PinEditDrawer for the
-//      pin; hovering reveals a "✕ Remove from list" affordance.
+// Hover-✕ in each card's corner removes the pin from the active list
+// (without deleting the pin). + Add pin to list opens a modal that
+// searches the non-member set and adds with one click.
 //
-//   2. PinEditDrawer — the drawer is mounted/unmounted by this component,
-//      and it pipes save commits back through `onChange` so the card
-//      thumbnail updates without a refetch.
+// Fields that don't fit a card cell (description, hours, price text,
+// hotel sub-fields, etc.) live behind the "Full editor →" link in each
+// card's footer — they're rare enough that the round-trip is acceptable.
 //
-//   3. AddPinModal (inline below) — opens when the user clicks the
-//      + Add pin button, lets them search the global pin corpus and add
-//      any non-member to this list.
-//
-// Stats are computed client-side from the in-memory member set so they
-// update instantly when the admin toggles visited / adds a pin / removes
-// a pin without a server round-trip beyond the actual save call.
+// Pattern is intentionally re-usable: same template will land on
+// /admin/cities/[slug] and /admin/countries/[slug] in follow-ups.
 
 export type AdminPinRow = {
   id: string;
@@ -30,9 +28,7 @@ export type AdminPinRow = {
   name: string;
   city: string | null;
   country: string | null;
-  /** Cover image URL — first images[0] or null. */
   cover: string | null;
-  /** Editable fields the drawer mirrors. */
   visited: boolean;
   kind: string | null;
   personalRating: number | null;
@@ -42,11 +38,7 @@ export type AdminPinRow = {
   description: string | null;
   hours: string | null;
   priceText: string | null;
-  /** True when this pin currently has the active list in saved_lists.
-   *  The admin grid shows only members; the AddPinModal shows non-members. */
   isMember: boolean;
-  /** Saved-list-import draft pins (no coords + no geo) — visually flagged
-   *  in the modal so the admin doesn't confuse them for curated entries. */
   isDraft: boolean;
 };
 
@@ -57,7 +49,6 @@ type Props = {
 
 export default function AdminListEditor({ listName, initialRows }: Props) {
   const [rows, setRows] = useState<AdminPinRow[]>(initialRows);
-  const [openPinId, setOpenPinId] = useState<string | null>(null);
   const [showAdd, setShowAdd] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
 
@@ -66,7 +57,9 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
 
   const memberCount = members.length;
   const visitedCount = members.filter(r => r.visited).length;
-  const reviewedCount = members.filter(r => r.personalReview && r.personalReview.trim()).length;
+  const reviewedCount = members.filter(
+    r => r.personalReview && r.personalReview.trim(),
+  ).length;
   const ratedPins = members.filter(
     r => r.personalRating != null && r.personalRating > 0,
   );
@@ -75,18 +68,12 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       ratedPins.length
     : null;
 
-  const openPin = useMemo(
-    () => (openPinId ? rows.find(r => r.id === openPinId) ?? null : null),
-    [openPinId, rows],
-  );
-
   function patchRow(id: string, patch: Partial<AdminPinRow>) {
     setRows(prev => prev.map(r => (r.id === id ? { ...r, ...patch } : r)));
   }
 
   async function toggleMembership(pinId: string, nextState: boolean) {
     setFlash(null);
-    // Optimistic flip.
     patchRow(pinId, { isMember: nextState });
     try {
       const res = await fetch('/api/admin/saved-list', {
@@ -101,7 +88,6 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error ?? 'toggle failed');
     } catch (e) {
-      // Roll back on failure.
       patchRow(pinId, { isMember: !nextState });
       setFlash(e instanceof Error ? e.message : 'toggle failed');
     }
@@ -111,8 +97,8 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
     if (
       !window.confirm(
         `Permanently delete "${pinName}" from the database?\n\n` +
-        `This removes the pin everywhere — not just from this list. ` +
-        `Personal photos attached to it go too. This can't be undone.`,
+          `This removes the pin everywhere — not just from this list. ` +
+          `Personal photos attached to it go too. This can't be undone.`,
       )
     ) {
       return;
@@ -126,10 +112,7 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error ?? 'delete failed');
-      // Drop the row from local state. The drawer was tied to this id;
-      // close it.
       setRows(prev => prev.filter(r => r.id !== pinId));
-      setOpenPinId(null);
       setFlash(`Deleted "${pinName}".`);
     } catch (e) {
       setFlash(e instanceof Error ? e.message : 'delete failed');
@@ -138,8 +121,6 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
 
   return (
     <section>
-      {/* Stats row + actions. Mirrors /lists/[slug]'s stats line so the
-          admin's mental model lines up with what visitors see. */}
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-small text-slate tabular-nums mb-4">
         <span>
           <strong className="text-ink-deep">{memberCount}</strong>{' '}
@@ -176,46 +157,29 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
         </div>
       )}
 
-      {/* Card grid — same column counts as /lists/[slug]. */}
       {members.length === 0 ? (
         <div className="card p-8 text-center text-slate text-small">
           No pins on this list yet. Click <strong>+ Add pin to list</strong> to start adding.
         </div>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {members.map(r => (
-            <PinCard
+            <EditableCard
               key={r.id}
               row={r}
-              onOpen={() => setOpenPinId(r.id)}
-              onRemove={() => toggleMembership(r.id, false)}
+              onPatch={patch => patchRow(r.id, patch)}
+              onRemoveFromList={() => toggleMembership(r.id, false)}
+              onDeletePin={() => deletePin(r.id, r.name)}
             />
           ))}
         </ul>
-      )}
-
-      {/* Drawer — only mounted when a pin is selected so the inputs reset
-          on each open. */}
-      {openPin && (
-        <PinEditDrawer
-          pin={pinToEditable(openPin)}
-          onChange={patch => patchRow(openPin.id, editableToPatch(patch))}
-          onClose={() => setOpenPinId(null)}
-          onRemoveFromList={async () => {
-            await toggleMembership(openPin.id, false);
-            setOpenPinId(null);
-          }}
-          onDeletePin={() => deletePin(openPin.id, openPin.name)}
-        />
       )}
 
       {showAdd && (
         <AddPinModal
           listName={listName}
           nonMembers={nonMembers}
-          onAdd={async pinId => {
-            await toggleMembership(pinId, true);
-          }}
+          onAdd={pinId => toggleMembership(pinId, true)}
           onClose={() => setShowAdd(false)}
         />
       )}
@@ -223,95 +187,492 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
   );
 }
 
-// ─── Pin card ───────────────────────────────────────────────────────────────
+// ─── EditableCard ───────────────────────────────────────────────────────────
+// Each card carries its own draft state + editing-field flag. Save calls
+// hit /api/admin/update-pin with just the changed field.
 
-function PinCard({
+type EditField =
+  | null
+  | 'name'
+  | 'review'
+  | 'visitYear'
+  | 'city'
+  | 'country';
+
+function EditableCard({
   row,
-  onOpen,
-  onRemove,
+  onPatch,
+  onRemoveFromList,
+  onDeletePin,
 }: {
   row: AdminPinRow;
-  onOpen: () => void;
-  onRemove: () => void;
+  onPatch: (patch: Partial<AdminPinRow>) => void;
+  onRemoveFromList: () => void;
+  onDeletePin: () => void;
 }) {
+  const [editing, setEditing] = useState<EditField>(null);
+  // Per-field saving indicator for non-text-input fields (stars, free, visited)
+  // where blur isn't the trigger and we want a brief "saved ✓" flash.
+  type Status = 'saving' | 'saved' | null;
+  const [status, setStatus] = useState<Record<string, Status>>({});
+
+  async function save(apiKey: string, jsField: keyof AdminPinRow, value: unknown) {
+    setStatus(s => ({ ...s, [apiKey]: 'saving' }));
+    try {
+      const res = await fetch('/api/admin/update-pin', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ id: row.id, fields: { [apiKey]: value } }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'save failed');
+      onPatch({ [jsField]: value } as Partial<AdminPinRow>);
+      setStatus(s => ({ ...s, [apiKey]: 'saved' }));
+      setTimeout(() => {
+        setStatus(s => (s[apiKey] === 'saved' ? { ...s, [apiKey]: null } : s));
+      }, 1200);
+    } catch (e) {
+      setStatus(s => ({ ...s, [apiKey]: null }));
+      window.alert(e instanceof Error ? e.message : 'save failed');
+    }
+  }
+
   return (
-    <li className="relative group">
-      <button
-        type="button"
-        onClick={onOpen}
-        className="block w-full text-left card overflow-hidden hover:shadow-paper transition-shadow"
-      >
+    <li className="relative group card overflow-hidden">
+      {/* Cover + status chips overlaid on top */}
+      <div className="relative">
         {row.cover ? (
-          <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
+          <div className="aspect-[4/3] bg-cream-soft overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={thumbUrl(row.cover, { size: 400 }) ?? row.cover}
+              src={thumbUrl(row.cover, { size: 600 }) ?? row.cover}
               alt=""
               loading="lazy"
               className="w-full h-full object-cover"
             />
-            {row.visited && (
-              <span className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro shadow">
-                ✓
-              </span>
-            )}
           </div>
         ) : (
           <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
             No photo
           </div>
         )}
-        <div className="p-3">
-          <h3 className="text-ink-deep font-medium leading-tight truncate">
+        {/* Visited toggle — top-left chip. Click cycles on/off and saves. */}
+        <ToggleChip
+          on={row.visited}
+          onChange={v => save('visited', 'visited', v)}
+          status={status.visited}
+          posClass="top-2 left-2"
+          onLabel="✓ Visited"
+          offLabel="Mark visited"
+        />
+        {/* Free chip — top-right when set; faint placeholder when null. */}
+        <FreeChip
+          value={row.free}
+          onChange={v => save('free', 'free', v)}
+          status={status.free}
+        />
+        {/* Hover-only ✕ — removes from list (different from delete pin). */}
+        <button
+          type="button"
+          onClick={onRemoveFromList}
+          title={`Remove "${row.name}" from this list (keeps the pin)`}
+          aria-label={`Remove ${row.name} from list`}
+          className="absolute -top-1.5 -right-1.5 w-7 h-7 rounded-full bg-orange text-white text-small leading-none
+                     flex items-center justify-center ring-2 ring-white shadow-md
+                     opacity-0 group-hover:opacity-100 hover:bg-orange/90 hover:scale-110 transition-all"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="p-3 space-y-1.5">
+        {/* Name — click to edit. */}
+        {editing === 'name' ? (
+          <InlineInput
+            initial={row.name}
+            onCommit={v => {
+              setEditing(null);
+              const next = v.trim();
+              if (next && next !== row.name) save('name', 'name', next);
+            }}
+            onCancel={() => setEditing(null)}
+            className="text-ink-deep font-medium leading-tight w-full"
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setEditing('name')}
+            className="text-ink-deep font-medium leading-tight text-left w-full hover:bg-cream-soft rounded -mx-1 px-1 -my-0.5 py-0.5 transition-colors"
+            title="Click to rename"
+          >
             {row.name}
-          </h3>
-          {(row.city || row.country) && (
-            <p className="mt-0.5 text-label text-muted truncate">
-              {[row.city, row.country].filter(Boolean).join(' · ')}
-            </p>
-          )}
-          <p className="mt-1 text-label text-slate flex items-center gap-1.5 tabular-nums">
-            {row.personalRating != null && row.personalRating > 0 && (
-              <span className="text-amber-500">
-                {'★'.repeat(row.personalRating)}
-              </span>
-            )}
-            {row.visitYear != null && (
-              <span className="text-muted">{row.visitYear}</span>
-            )}
+          </button>
+        )}
+
+        {/* City · Country — readonly geo line. Edits live on the full pin
+            page since they touch the city/country relations. */}
+        {(row.city || row.country) && (
+          <p className="text-label text-muted truncate">
+            {[row.city, row.country].filter(Boolean).join(' · ')}
           </p>
-          {row.personalReview && (
-            <p className="mt-1 text-label text-slate line-clamp-2">
-              {row.personalReview}
-            </p>
-          )}
+        )}
+
+        {/* Star rating — always click-to-edit (no separate "edit" mode
+            needed; tap a star to set, tap the same one again to clear). */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <StarPicker
+            value={row.personalRating}
+            onChange={v => save('personal_rating', 'personalRating', v)}
+          />
+          <YearField
+            value={row.visitYear}
+            editing={editing === 'visitYear'}
+            onEdit={() => setEditing('visitYear')}
+            onCommit={v => {
+              setEditing(null);
+              if (v !== row.visitYear) save('visit_year', 'visitYear', v);
+            }}
+            onCancel={() => setEditing(null)}
+          />
+          <SaveDot show={status.personalRating === 'saved'} />
         </div>
-      </button>
-      {/* Remove-from-list affordance. Hidden until hover so the card stays
-          visually quiet, then surfaces in the corner. Stops propagation
-          so the click doesn't open the drawer. */}
-      <button
-        type="button"
-        onClick={e => {
-          e.stopPropagation();
-          onRemove();
-        }}
-        title={`Remove "${row.name}" from this list (keeps the pin)`}
-        aria-label={`Remove ${row.name} from list`}
-        className="absolute -top-1.5 -right-1.5 w-6 h-6 rounded-full bg-orange text-white text-small leading-none
-                   flex items-center justify-center ring-2 ring-white shadow-md
-                   opacity-0 group-hover:opacity-100 hover:bg-orange/90 hover:scale-110 transition-all"
-      >
-        ✕
-      </button>
+
+        {/* Personal review — click to edit, expands to a textarea. */}
+        {editing === 'review' ? (
+          <InlineTextarea
+            initial={row.personalReview ?? ''}
+            onCommit={v => {
+              setEditing(null);
+              const next = v.trim() || null;
+              if (next !== row.personalReview)
+                save('personal_review', 'personalReview', next);
+            }}
+            onCancel={() => setEditing(null)}
+          />
+        ) : row.personalReview ? (
+          <button
+            type="button"
+            onClick={() => setEditing('review')}
+            className="text-label text-slate text-left w-full hover:bg-cream-soft rounded -mx-1 px-1 py-0.5 transition-colors line-clamp-3"
+            title="Click to edit review"
+          >
+            {row.personalReview}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setEditing('review')}
+            className="text-label text-muted/80 italic hover:text-slate"
+          >
+            Add review…
+          </button>
+        )}
+
+        <SaveDot show={status.personal_review === 'saved'} />
+
+        {/* Footer row — full editor + delete + draft tag. */}
+        <div className="pt-2 mt-1 border-t border-sand/60 flex items-center gap-3 text-micro">
+          <Link
+            href={`/admin/pins/${row.id}`}
+            className="text-teal hover:underline"
+            title="Open the full pin editor for description, hours, price, hotel/restaurant fields, etc."
+          >
+            Full editor →
+          </Link>
+          {row.slug && (
+            <Link
+              href={`/pins/${row.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate hover:text-ink-deep"
+            >
+              Public ↗
+            </Link>
+          )}
+          {row.isDraft && (
+            <span
+              className="pill bg-cream-soft border border-sand text-slate"
+              title="Imported from Google saved list — no coords yet"
+            >
+              draft
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={onDeletePin}
+            className="ml-auto text-orange hover:text-orange/80 underline-offset-2 hover:underline"
+            title="Permanently delete this pin"
+          >
+            Delete pin
+          </button>
+        </div>
+      </div>
     </li>
   );
 }
 
+// ─── Inline editing primitives ──────────────────────────────────────────────
+
+function InlineInput({
+  initial,
+  onCommit,
+  onCancel,
+  className = '',
+}: {
+  initial: string;
+  onCommit: (v: string) => void;
+  onCancel: () => void;
+  className?: string;
+}) {
+  const [value, setValue] = useState(initial);
+  const ref = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    ref.current?.focus();
+    ref.current?.select();
+  }, []);
+  return (
+    <input
+      ref={ref}
+      value={value}
+      onChange={e => setValue(e.target.value)}
+      onBlur={() => onCommit(value)}
+      onKeyDown={e => {
+        if (e.key === 'Enter') onCommit(value);
+        if (e.key === 'Escape') onCancel();
+      }}
+      className={
+        className +
+        ' bg-white border border-ink-deep rounded px-1.5 py-0.5 outline-none focus:ring-2 focus:ring-ink-deep/20'
+      }
+    />
+  );
+}
+
+function InlineTextarea({
+  initial,
+  onCommit,
+  onCancel,
+}: {
+  initial: string;
+  onCommit: (v: string) => void;
+  onCancel: () => void;
+}) {
+  const [value, setValue] = useState(initial);
+  const ref = useRef<HTMLTextAreaElement | null>(null);
+  useEffect(() => {
+    ref.current?.focus();
+    const len = ref.current?.value.length ?? 0;
+    ref.current?.setSelectionRange(len, len);
+  }, []);
+  return (
+    <textarea
+      ref={ref}
+      value={value}
+      onChange={e => setValue(e.target.value)}
+      onBlur={() => onCommit(value)}
+      onKeyDown={e => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') onCommit(value);
+        if (e.key === 'Escape') onCancel();
+      }}
+      rows={4}
+      placeholder="What was it like? Worth a return?"
+      className="w-full text-label text-slate bg-white border border-ink-deep rounded px-2 py-1.5 outline-none focus:ring-2 focus:ring-ink-deep/20 resize-y"
+    />
+  );
+}
+
+// ─── Click-to-edit primitives ───────────────────────────────────────────────
+
+function YearField({
+  value,
+  editing,
+  onEdit,
+  onCommit,
+  onCancel,
+}: {
+  value: number | null;
+  editing: boolean;
+  onEdit: () => void;
+  onCommit: (v: number | null) => void;
+  onCancel: () => void;
+}) {
+  const [draft, setDraft] = useState<string>(value != null ? String(value) : '');
+  const ref = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    if (editing) {
+      setDraft(value != null ? String(value) : '');
+      ref.current?.focus();
+      ref.current?.select();
+    }
+  }, [editing, value]);
+
+  if (editing) {
+    return (
+      <input
+        ref={ref}
+        type="number"
+        min={1900}
+        max={2100}
+        value={draft}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={() => {
+          const n = draft === '' ? null : Number(draft);
+          onCommit(Number.isFinite(n as number) ? (n as number | null) : null);
+        }}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            const n = draft === '' ? null : Number(draft);
+            onCommit(Number.isFinite(n as number) ? (n as number | null) : null);
+          }
+          if (e.key === 'Escape') onCancel();
+        }}
+        className="w-16 text-label tabular-nums bg-white border border-ink-deep rounded px-1.5 py-0.5 outline-none focus:ring-2 focus:ring-ink-deep/20"
+      />
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onEdit}
+      title="Visit year (click to edit)"
+      className={
+        'text-label tabular-nums px-1.5 py-0.5 rounded transition-colors ' +
+        (value != null
+          ? 'text-muted hover:bg-cream-soft'
+          : 'text-muted/60 italic hover:text-slate hover:bg-cream-soft')
+      }
+    >
+      {value != null ? value : 'add year'}
+    </button>
+  );
+}
+
+function StarPicker({
+  value,
+  onChange,
+}: {
+  value: number | null;
+  onChange: (v: number | null) => void;
+}) {
+  return (
+    <span
+      className="inline-flex items-center"
+      title="Click a star to rate; click the same star again to clear"
+    >
+      {[1, 2, 3, 4, 5].map(n => {
+        const filled = value != null && n <= value;
+        return (
+          <button
+            key={n}
+            type="button"
+            onClick={() => onChange(value === n ? null : n)}
+            className={
+              'w-5 h-5 rounded text-prose leading-none transition-colors ' +
+              (filled
+                ? 'text-amber-500 hover:text-amber-600'
+                : 'text-sand hover:text-amber-500/70')
+            }
+            aria-label={`${n} star${n === 1 ? '' : 's'}`}
+          >
+            ★
+          </button>
+        );
+      })}
+    </span>
+  );
+}
+
+function ToggleChip({
+  on,
+  onChange,
+  posClass,
+  onLabel,
+  offLabel,
+  status,
+}: {
+  on: boolean;
+  onChange: (v: boolean) => void;
+  posClass: string;
+  onLabel: string;
+  offLabel: string;
+  status?: 'saving' | 'saved' | null;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(!on)}
+      className={
+        'absolute pill text-micro shadow backdrop-blur-sm transition-all ' +
+        posClass +
+        ' ' +
+        (on
+          ? 'bg-teal text-white hover:bg-teal/90'
+          : 'bg-white/80 text-slate hover:bg-white border border-sand opacity-0 group-hover:opacity-100')
+      }
+      title={on ? 'Click to mark unvisited' : 'Click to mark visited'}
+    >
+      {status === 'saving' ? '…' : status === 'saved' ? '✓' : on ? onLabel : offLabel}
+    </button>
+  );
+}
+
+function FreeChip({
+  value,
+  onChange,
+  status,
+}: {
+  value: boolean | null;
+  onChange: (v: boolean | null) => void;
+  status?: 'saving' | 'saved' | null;
+}) {
+  // Cycle: null → true → false → null
+  const next = value === null ? true : value === true ? false : null;
+  const label =
+    status === 'saving'
+      ? '…'
+      : value === true
+        ? 'Free'
+        : value === false
+          ? 'Paid'
+          : 'Free?';
+  const styles =
+    value === true
+      ? 'bg-teal/90 text-white'
+      : value === false
+        ? 'bg-slate/80 text-white'
+        : 'bg-white/80 text-slate border border-sand opacity-0 group-hover:opacity-100';
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(next)}
+      className={
+        'absolute top-2 right-2 pill text-micro shadow backdrop-blur-sm transition-all ' +
+        styles
+      }
+      title={
+        value === true
+          ? 'Free entry — click for Paid'
+          : value === false
+            ? 'Paid — click for Unknown'
+            : 'Unknown — click for Free'
+      }
+    >
+      {label}
+    </button>
+  );
+}
+
+function SaveDot({ show }: { show: boolean }) {
+  if (!show) return null;
+  return (
+    <span className="inline-block text-micro text-teal" aria-live="polite">
+      saved ✓
+    </span>
+  );
+}
+
 // ─── AddPinModal ────────────────────────────────────────────────────────────
-// Searches the non-members set, click row to add. Compact list — paginated
-// like the previous ListDetailClient roster but read-only with a single
-// "Add" action per row instead of toggle-checkboxes.
 
 function AddPinModal({
   listName,
@@ -329,7 +690,6 @@ function AddPinModal({
   const [shown, setShown] = useState(PAGE_SIZE);
   const [busyIds, setBusyIds] = useState<Set<string>>(new Set());
 
-  // Esc to close.
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') onClose();
@@ -472,29 +832,4 @@ function AddPinModal({
       </div>
     </div>
   );
-}
-
-// ─── Mappers between AdminPinRow and the drawer's EditablePin shape ─────────
-
-function pinToEditable(r: AdminPinRow): EditablePin {
-  return {
-    id: r.id,
-    slug: r.slug,
-    name: r.name,
-    visited: r.visited,
-    kind: r.kind,
-    personalRating: r.personalRating,
-    personalReview: r.personalReview,
-    visitYear: r.visitYear,
-    free: r.free,
-    description: r.description,
-    hours: r.hours,
-    priceText: r.priceText,
-  };
-}
-
-function editableToPatch(patch: Partial<EditablePin>): Partial<AdminPinRow> {
-  // Same shape — narrow cast keeps the AdminListEditor's row state in sync
-  // with the drawer's edits.
-  return patch as Partial<AdminPinRow>;
 }
