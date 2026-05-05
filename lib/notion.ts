@@ -412,6 +412,27 @@ const _fetchCountryByName = unstable_cache(
 );
 export const fetchCountryByName = cache(_fetchCountryByName);
 
+const _fetchCityByName = unstable_cache(
+  async (name: string): Promise<City | null> => {
+    if (!name) return null;
+    const { data, error } = await supabase
+      .from(TABLE_CITIES)
+      .select('*')
+      .not('slug', 'like', 'delete-%')
+      .ilike('name', name)
+      .order('been', { ascending: false })
+      .order('go', { ascending: false })
+      .order('name')
+      .limit(1)
+      .maybeSingle();
+    if (error || !data) return null;
+    return supaCityRow(data);
+  },
+  ['notion-city-by-name'],
+  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
+);
+export const fetchCityByName = cache(_fetchCityByName);
+
 /** Resolve a list of city ids to City rows. Order in = order out is NOT
  *  preserved (Supabase returns whatever order the query planner picks);
  *  callers that care reorder client-side. */

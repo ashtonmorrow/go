@@ -18,6 +18,10 @@ import {
   AUTHOR_NAME,
 } from '@/lib/seo';
 
+// This route summarizes large city/pin indexes. Generate it on request and
+// rely on HTTP caching rather than stuffing multi-megabyte data into the
+// build-time Next data cache.
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 function header(): string {

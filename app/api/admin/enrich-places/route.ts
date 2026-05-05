@@ -39,7 +39,7 @@ export const dynamic = 'force-dynamic';
 // 10s would clip any non-trivial enrichment.
 export const maxDuration = 300;
 
-const ALLOWED_FIELDS: EnrichField[] = ['price', 'hours', 'website', 'phone'];
+const ALLOWED_FIELDS: EnrichField[] = ['price', 'hours', 'website', 'phone', 'kind'];
 
 export async function POST(req: Request) {
   let body: unknown;

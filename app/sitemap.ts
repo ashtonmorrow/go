@@ -11,6 +11,7 @@ import { SITE_URL } from '@/lib/seo';
 //
 // Built at request time and ISR-cached for 1 hour, same window as the page
 // data. Search engines fetch this rarely so the per-build cost is fine.
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

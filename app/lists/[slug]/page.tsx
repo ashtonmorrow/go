@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchPinsForLists } from '@/lib/pins';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchCityByName, fetchCountryByName } from '@/lib/notion';
 import {
   listNameToSlug,
   slugToListName,
@@ -154,22 +154,17 @@ export default async function ListPage({ params }: Props) {
 
   // City / country anchor detection — when the list name exactly matches a
   // known city or country name, surface a clear link in the header so the
-  // reader can pivot to the place page. Both fetchers are cached at the
-  // module level so this doesn't add a network round-trip.
+  // reader can pivot to the place page.
   // Editorial intro + city/country anchor lookups + the pin slice for this
   // list, all in one Promise.all. fetchPinsForLists is a single Supabase
   // query with a server-side `saved_lists && ARRAY[name]` predicate — much
   // cheaper than walking the full corpus to find ~50 matching rows.
-  const [cities, countries, content, listPins] = await Promise.all([
-    fetchAllCities(),
-    fetchAllCountries(),
+  const [cityMatch, countryMatch, content, listPins] = await Promise.all([
+    fetchCityByName(found.name),
+    fetchCountryByName(countryLookupName(found.name)),
     readPlaceContent('lists', slug),
     fetchPinsForLists([found.name]),
   ]);
-  const lcName = found.name.toLowerCase();
-  const cityMatch = cities.find(c => c.name.toLowerCase() === lcName) ?? null;
-  // Country slugs are usually already lowercase, names are not.
-  const countryMatch = countryByName(countries, lcName);
 
   // Pins on this exact list. The component handles sorting client-side via
   // the sort dropdown; we still pass a stable default so SSR HTML is
@@ -446,17 +441,8 @@ export default async function ListPage({ params }: Props) {
   );
 }
 
-/** Lookup helper kept inline because countries' names are stored mixed-case
- *  (United States, Côte d'Ivoire) but list names normalize to lowercase, so
- *  a straight Map<name, slug> miss is common. Doing the case-fold per call
- *  is fine — there are 226 countries and this runs once per request. */
-function countryByName(
-  countries: { name: string; slug: string }[],
-  lcName: string,
-) {
-  const exact = countries.find(c => c.name.toLowerCase() === lcName);
-  if (exact) return exact;
-  // Common alias: "usa" / "uk" / "uae" should still link through.
+function countryLookupName(name: string): string {
+  const lcName = name.toLowerCase();
   const aliases: Record<string, string> = {
     usa: 'united states',
     'u.s.a.': 'united states',
@@ -465,9 +451,5 @@ function countryByName(
     'u.k.': 'united kingdom',
     uae: 'united arab emirates',
   };
-  const alias = aliases[lcName];
-  if (alias) {
-    return countries.find(c => c.name.toLowerCase() === alias) ?? null;
-  }
-  return null;
+  return aliases[lcName] ?? name;
 }

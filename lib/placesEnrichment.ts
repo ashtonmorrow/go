@@ -36,7 +36,7 @@
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-export type EnrichField = 'price' | 'hours' | 'website' | 'phone';
+export type EnrichField = 'price' | 'hours' | 'website' | 'phone' | 'kind';
 
 export type EnrichOptions = {
   /** Supabase client used for both pin reads/writes AND for invoking
@@ -170,7 +170,85 @@ type PlaceDetails = {
   };
   websiteUri?: string;
   internationalPhoneNumber?: string;
+  /** Google's most specific category for the place ("park",
+   *  "italian_restaurant"). Free in the Essentials tier — used to
+   *  auto-classify pin.kind when none is curated. */
+  primaryType?: string;
+  /** Full set of Google types ("restaurant", "food", "establishment").
+   *  Fallback if primaryType doesn't match anything in our map. */
+  types?: string[];
 };
+
+type PinKind = 'attraction' | 'shopping' | 'hotel' | 'park' | 'restaurant' | 'transit';
+
+/** Mapping from Google Places type strings to our internal pin kind enum.
+ *  primaryType wins when it matches; otherwise we walk the types[] list
+ *  in order and take the first match. Anything that doesn't match falls
+ *  back to 'attraction' as the catch-all (museums, landmarks, churches,
+ *  monuments, viewpoints, etc.). */
+const TYPE_TO_KIND: Record<string, PinKind> = {
+  // Restaurants / food / drink
+  restaurant: 'restaurant', food: 'restaurant', cafe: 'restaurant',
+  bar: 'restaurant', pub: 'restaurant', bakery: 'restaurant',
+  meal_takeaway: 'restaurant', meal_delivery: 'restaurant',
+  ice_cream_shop: 'restaurant', coffee_shop: 'restaurant',
+  italian_restaurant: 'restaurant', chinese_restaurant: 'restaurant',
+  japanese_restaurant: 'restaurant', mexican_restaurant: 'restaurant',
+  french_restaurant: 'restaurant', indian_restaurant: 'restaurant',
+  thai_restaurant: 'restaurant', vietnamese_restaurant: 'restaurant',
+  steakhouse: 'restaurant', seafood_restaurant: 'restaurant',
+  pizzeria: 'restaurant', pizza_restaurant: 'restaurant',
+  sandwich_shop: 'restaurant', diner: 'restaurant',
+  brewery: 'restaurant', winery: 'restaurant', distillery: 'restaurant',
+  // Lodging
+  lodging: 'hotel', hotel: 'hotel', motel: 'hotel',
+  resort_hotel: 'hotel', extended_stay_hotel: 'hotel',
+  bed_and_breakfast: 'hotel', hostel: 'hotel',
+  // Parks & green space
+  park: 'park', national_park: 'park', state_park: 'park',
+  campground: 'park', botanical_garden: 'park', dog_park: 'park',
+  // Shopping
+  shopping_mall: 'shopping', store: 'shopping', supermarket: 'shopping',
+  market: 'shopping', clothing_store: 'shopping', shoe_store: 'shopping',
+  jewelry_store: 'shopping', book_store: 'shopping',
+  electronics_store: 'shopping', furniture_store: 'shopping',
+  department_store: 'shopping', convenience_store: 'shopping',
+  grocery_store: 'shopping', florist: 'shopping',
+  // Transit
+  transit_station: 'transit', subway_station: 'transit',
+  train_station: 'transit', bus_station: 'transit',
+  light_rail_station: 'transit', taxi_stand: 'transit',
+  airport: 'transit', heliport: 'transit', ferry_terminal: 'transit',
+  parking: 'transit',
+};
+
+/** Walk Google's primaryType + types[] looking for a match in our map.
+ *  primaryType wins if it matches; otherwise the first matching entry in
+ *  types[] is used. Returns null when nothing matches — caller decides
+ *  whether to fall back to a default kind. */
+function inferKindFromTypes(
+  primaryType: string | undefined,
+  types: string[] | undefined,
+): PinKind | null {
+  const primary = primaryType?.toLowerCase();
+  if (primary && TYPE_TO_KIND[primary]) return TYPE_TO_KIND[primary];
+  if (Array.isArray(types)) {
+    for (const t of types) {
+      const k = TYPE_TO_KIND[t.toLowerCase()];
+      if (k) return k;
+    }
+    // Fallbacks based on broad categories Google attaches when the
+    // specific type wasn't in our map. tourist_attraction is *very*
+    // common for landmarks / monuments / museums / viewpoints — it's
+    // the right catch-all when nothing else matched.
+    const lowered = types.map(t => t.toLowerCase());
+    if (lowered.includes('tourist_attraction')) return 'attraction';
+    if (lowered.includes('museum') || lowered.includes('art_gallery')) return 'attraction';
+    if (lowered.includes('place_of_worship')) return 'attraction';
+    if (lowered.includes('point_of_interest') || lowered.includes('landmark')) return 'attraction';
+  }
+  return null;
+}
 
 async function fetchPlaceDetails(
   supabase: SupabaseClient,
@@ -271,12 +349,12 @@ function mapOpeningHours(
 export async function* enrichPins(
   options: EnrichOptions,
 ): AsyncGenerator<EnrichEvent> {
-  // Default field bundle: price + hours + phone. price/website/phone all
-  // share Google's $0.005 Pro tier — adding phone to the default costs
-  // nothing extra. hours bumps the call to the $0.020 Enterprise tier
-  // regardless. The admin UI can still override fields[] explicitly when
-  // it wants a cheaper run.
-  const fields = options.fields ?? ['price', 'hours', 'phone'];
+  // Default field bundle: price + hours + phone + kind. price/website/
+  // phone share Google's $0.005 Pro tier; hours bumps to the $0.020
+  // Enterprise tier; types/primaryType for kind classification ride in
+  // the free Essentials tier so adding 'kind' to the default costs
+  // nothing. The admin UI can still override fields[] explicitly.
+  const fields = options.fields ?? ['price', 'hours', 'phone', 'kind'];
   const maxCost = options.maxCostUsd ?? Infinity;
   const tier = detailsTier(fields);
   const apply = !options.dryRun;
@@ -286,7 +364,7 @@ export async function* enrichPins(
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, lat, lng, google_place_url, price_level, hours_details, website, phone')
+    .select('id, name, slug, kind, lat, lng, google_place_url, price_level, hours_details, website, phone')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;
@@ -295,6 +373,7 @@ export async function* enrichPins(
     id: string;
     name: string;
     slug: string | null;
+    kind: string | null;
     lat: number | null;
     lng: number | null;
     google_place_url: string | null;
@@ -409,6 +488,15 @@ export async function* enrichPins(
       // runs (refresh=true) re-fetch the row but still respect this guard
       // so the user's hand-corrected values stick.
       patch.phone = details.internationalPhoneNumber;
+    }
+    if (fields.includes('kind') && !pin.kind) {
+      // Only auto-classify when the pin has no curated kind. Refresh
+      // runs preserve any existing kind even if Google would suggest
+      // something different (curator wins, same as the rest of the
+      // merge logic). Skip pins where neither primaryType nor types[]
+      // gave us a usable mapping.
+      const inferred = inferKindFromTypes(details.primaryType, details.types);
+      if (inferred) patch.kind = inferred;
     }
 
     if (Object.keys(patch).length === 0) {

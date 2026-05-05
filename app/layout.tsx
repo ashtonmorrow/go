@@ -17,6 +17,12 @@ import {
   websiteJsonLd,
 } from '@/lib/seo';
 
+// The root chrome reads the request pathname in <Sidebar /> so it can avoid
+// loading heavy city/pin corpuses on pages that do not render filter panels.
+// Marking the shell dynamic makes that contract explicit and stops Next from
+// probing ordinary routes as static, only to trip over headers() during build.
+export const dynamic = 'force-dynamic';
+
 // === Sitewide metadata =====================================================
 // metadataBase makes relative URLs in metadata.openGraph etc. resolve to
 // the production origin instead of localhost. Title template lets every

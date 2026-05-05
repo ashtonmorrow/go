@@ -101,6 +101,12 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     error: null,
     abortedAtCap: false,
   });
+  // Refresh toggle: default false (skip pins that already have price_level
+  // set, the standard "is this enriched?" signal). Flip on for
+  // backfill runs — e.g. when an earlier bulk run pulled price+hours but
+  // not phone, refresh=true re-pulls everything and writes the new fields.
+  // Curated values (priceTier, per-day weekly hours) still win on merge.
+  const [enrichRefresh, setEnrichRefresh] = useState(false);
 
   const dirty = useMemo(() => {
     const out: string[] = [];
@@ -221,9 +227,11 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     const best = pinIds.length * 0.020;
     const ok = window.confirm(
       `Enrich ${pinIds.length} filtered pin${pinIds.length === 1 ? '' : 's'} with Google Places?\n\n` +
-      `Fields: price_level + opening hours.\n` +
+      `Fields: price level, opening hours, and phone.\n` +
       `Cost estimate: $${best.toFixed(2)} (best case) — $${worst.toFixed(2)} (worst case).\n\n` +
-      `Pins that already have price_level set will be skipped automatically.\n` +
+      (enrichRefresh
+        ? `Refresh mode is ON — every filtered pin gets re-fetched, even if it was enriched before. Use this for backfilling new fields like phone.\n\n`
+        : `Pins that already have price_level set will be skipped automatically.\n\n`) +
       `Click Cancel to abort.`,
     );
     if (!ok) return;
@@ -246,7 +254,18 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           pinIds,
-          fields: ['price', 'hours'],
+          // price + hours + phone + kind. price/phone share Google's
+          // Pro tier ($0.005); hours bumps to Enterprise ($0.020); kind
+          // (types + primaryType) rides in the free Essentials tier, so
+          // adding it costs nothing extra and lets the enrichment
+          // auto-classify pins where kind is null — unlocking the
+          // restaurant / hotel / park / etc. rendering on detail pages.
+          fields: ['price', 'hours', 'phone', 'kind'],
+          // refresh=true re-pulls every filtered pin even if it was
+          // already enriched. Used to backfill newly-added fields
+          // (e.g. phone) on prior runs. Toggled via the checkbox next
+          // to the Enrich button.
+          refresh: enrichRefresh,
           // Soft ceiling at worst-case + 25% so a long run can't run
           // away. The user can override by re-running.
           maxCostUsd: Math.max(worst * 1.25, 1),
@@ -434,16 +453,42 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               Cost preview happens in the click handler's confirm()
               dialog before any server traffic. */}
           {filtered.length > 0 && (
-            <button
-              type="button"
-              onClick={enrichVisible}
-              disabled={enrich.running}
-              className="text-label px-2 py-1 rounded border border-accent/40 bg-accent/10 text-accent hover:bg-accent/15 disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-1"
-              title="Fetch price level + opening hours from Google Places for the filtered pins"
-            >
-              <span aria-hidden>✨</span>
-              <span>{enrich.running ? 'Enriching…' : `Enrich filtered (${filtered.length})`}</span>
-            </button>
+            <span className="inline-flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={enrichVisible}
+                disabled={enrich.running}
+                className="text-label px-2 py-1 rounded border border-accent/40 bg-accent/10 text-accent hover:bg-accent/15 disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-1"
+                title={
+                  enrichRefresh
+                    ? 'Re-fetch price level, hours, and phone from Google Places for every filtered pin (overrides prior enrichment).'
+                    : 'Fetch price level, hours, and phone from Google Places for filtered pins that haven\'t been enriched yet.'
+                }
+              >
+                <span aria-hidden>✨</span>
+                <span>{enrich.running ? 'Enriching…' : `Enrich filtered (${filtered.length})`}</span>
+              </button>
+              {/* Refresh toggle — when on, the run re-pulls every pin
+                  including ones already enriched, so newly-added fields
+                  like phone get backfilled without skipping. Off by
+                  default to keep accidental clicks cheap. */}
+              <label
+                className={
+                  'inline-flex items-center gap-1 text-label cursor-pointer ' +
+                  (enrichRefresh ? 'text-accent' : 'text-muted hover:text-ink')
+                }
+                title="When on, re-fetches every filtered pin even if it was enriched before. Curated values still win on merge."
+              >
+                <input
+                  type="checkbox"
+                  checked={enrichRefresh}
+                  onChange={e => setEnrichRefresh(e.target.checked)}
+                  disabled={enrich.running}
+                  className="w-3 h-3 accent-accent"
+                />
+                <span>refresh</span>
+              </label>
+            </span>
           )}
           <button
             type="button"

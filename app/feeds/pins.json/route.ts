@@ -14,6 +14,9 @@
 import { fetchAllPins } from '@/lib/pins';
 import { SITE_URL, SITE_NAME, AUTHOR_NAME, AUTHOR_URL, clip } from '@/lib/seo';
 
+// The feed serializes the pin corpus. Let the CDN cache the response via
+// headers, but do not prerender it into Next's data cache during build.
+export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 export async function GET(): Promise<Response> {
