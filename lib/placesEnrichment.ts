@@ -195,14 +195,71 @@ function priceLevelToInt(p: PlaceDetails['priceLevel']): number | null {
   }
 }
 
+// Day-name to internal key map. The detail page expects weekly to be an
+// object keyed by mon/tue/wed/thu/fri/sat/sun. Earlier this function
+// joined Google's weekdayDescriptions with newlines into a single string,
+// which the page couldn't read — every day looked unpopulated and
+// rendered the "Hours haven't been added yet" placeholder.
+const DAY_NAME_TO_KEY: Record<string, 'mon'|'tue'|'wed'|'thu'|'fri'|'sat'|'sun'> = {
+  monday: 'mon', tuesday: 'tue', wednesday: 'wed', thursday: 'thu',
+  friday: 'fri', saturday: 'sat', sunday: 'sun',
+};
+const WEEKDAY_KEYS = ['mon','tue','wed','thu','fri','sat','sun'] as const;
+type WeekdayKey = (typeof WEEKDAY_KEYS)[number];
+
+function parseWeekdayDescriptions(lines: string[]): Partial<Record<WeekdayKey, string>> {
+  const out: Partial<Record<WeekdayKey, string>> = {};
+  for (const line of lines) {
+    // Format Google returns (en-US default): "Monday: 9:00 AM – 5:00 PM" or
+    // "Sunday: Closed". Split on the first colon so times that contain ":"
+    // (most of them) stay intact.
+    const colon = line.indexOf(':');
+    if (colon < 0) continue;
+    const dayName = line.slice(0, colon).trim().toLowerCase();
+    const value = line.slice(colon + 1).trim();
+    const key = DAY_NAME_TO_KEY[dayName];
+    if (key && value) out[key] = value;
+  }
+  return out;
+}
+
 function mapOpeningHours(
   h: PlaceDetails['regularOpeningHours'],
+  existing: Record<string, unknown> | null,
 ): Record<string, unknown> | null {
   if (!h) return null;
   const out: Record<string, unknown> = {};
   if (Array.isArray(h.weekdayDescriptions) && h.weekdayDescriptions.length > 0) {
-    out.weekly = h.weekdayDescriptions.join('\n');
-    out.source = 'google_places';
+    const fromGoogle = parseWeekdayDescriptions(h.weekdayDescriptions);
+
+    // Curator wins. If the pin already had per-day curation in
+    // hours_details.weekly (or a "daily" string for places open the same
+    // hours every day), preserve that and only fill the blanks from
+    // Google. If the existing weekly is the broken joined-string from a
+    // prior run, treat it as no curation and replace cleanly.
+    const prior = existing?.weekly;
+    const priorObj =
+      prior && typeof prior === 'object' && !Array.isArray(prior)
+        ? (prior as { daily?: string } & Partial<Record<WeekdayKey, string>>)
+        : null;
+
+    const merged: { daily?: string } & Partial<Record<WeekdayKey, string>> = {};
+    if (priorObj?.daily && priorObj.daily.trim().length > 0) {
+      merged.daily = priorObj.daily;
+    }
+    for (const day of WEEKDAY_KEYS) {
+      const curated = priorObj?.[day];
+      const google = fromGoogle[day];
+      if (typeof curated === 'string' && curated.trim().length > 0) {
+        merged[day] = curated;
+      } else if (google) {
+        merged[day] = google;
+      }
+    }
+    if (Object.keys(merged).length > 0) {
+      out.weekly = merged;
+      out.source = 'google_places';
+    }
   }
   if (typeof h.openNow === 'boolean') out.open_now_at_fetch = h.openNow;
   return Object.keys(out).length > 0 ? out : null;
@@ -331,7 +388,12 @@ export async function* enrichPins(
       if (p != null) patch.price_level = p;
     }
     if (fields.includes('hours')) {
-      const mapped = mapOpeningHours(details.regularOpeningHours);
+      // Pass the existing hours_details so mapOpeningHours can preserve
+      // any curator-set per-day values when merging in Google's data.
+      const mapped = mapOpeningHours(
+        details.regularOpeningHours,
+        pin.hours_details ?? null,
+      );
       if (mapped) {
         // Merge into existing hours_details so we don't blow away
         // manually-entered ramadan / parent_site / notes fields.

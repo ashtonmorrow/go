@@ -593,11 +593,11 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v3: bumped after the pins schema gained the `phone` column. Detail
-  // queries grab `select('*')` so they always see new columns, but the
-  // stable-key cache could serve a payload deserialized into the old
-  // Pin shape (phone undefined). Bump to fill from scratch.
-  ['supabase-pin-by-slug-v3'],
+  // v4: bumped after the SQL backfill that converted broken
+  // hours_details.weekly strings into proper per-day objects. The cached
+  // payload still holds the old string shape; bumping forces a fresh
+  // read from the corrected DB rows.
+  ['supabase-pin-by-slug-v4'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(_fetchPinBySlug);
