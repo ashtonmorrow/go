@@ -35,6 +35,10 @@ export type AdminPinRow = {
   personalReview: string | null;
   visitYear: number | null;
   free: boolean | null;
+  /** Restaurant tier — '$' / '$$' / '$$$' / '$$$$' or null. Only meaningful
+   *  when kind === 'restaurant'; ignored for other kinds. The card chip
+   *  cycles this for restaurant pins instead of free/paid. */
+  priceTier: string | null;
   description: string | null;
   hours: string | null;
   priceText: string | null;
@@ -494,12 +498,24 @@ function EditableCard({
           onLabel="✓ Visited"
           offLabel="Mark visited"
         />
-        {/* Free chip — top-right when set; faint placeholder when null. */}
-        <FreeChip
-          value={row.free}
-          onChange={v => save('free', 'free', v)}
-          status={status.free}
-        />
+        {/* Pricing chip — kind-aware. Restaurants get a $-$$$$ tier
+            cycle (writes price_tier); everything else gets the
+            Free/Paid/Unknown cycle (writes free). Hotels intentionally
+            skip this chip — their pricing lives in the kind-specific
+            section on the detail page. */}
+        {row.kind === 'restaurant' ? (
+          <TierChip
+            value={row.priceTier}
+            onChange={v => save('price_tier', 'priceTier', v)}
+            status={status.price_tier}
+          />
+        ) : row.kind === 'hotel' ? null : (
+          <FreeChip
+            value={row.free}
+            onChange={v => save('free', 'free', v)}
+            status={status.free}
+          />
+        )}
         {/* Hover-only ✕ — removes from list (different from delete pin). */}
         <button
           type="button"
@@ -887,6 +903,57 @@ function FreeChip({
           : value === false
             ? 'Paid — click for Unknown'
             : 'Unknown — click for Free'
+      }
+    >
+      {label}
+    </button>
+  );
+}
+
+// Restaurant price-tier chip. Cycles null → $ → $$ → $$$ → $$$$ → null.
+// Bottom-left to share placement with FreeChip — restaurants and other
+// kinds never both render this slot.
+const TIER_CYCLE: (string | null)[] = [null, '$', '$$', '$$$', '$$$$'];
+
+function TierChip({
+  value,
+  onChange,
+  status,
+}: {
+  value: string | null;
+  onChange: (v: string | null) => void;
+  status?: 'saving' | 'saved' | null;
+}) {
+  const idx = TIER_CYCLE.indexOf(value);
+  const next = TIER_CYCLE[(idx + 1) % TIER_CYCLE.length] ?? null;
+  const label =
+    status === 'saving'
+      ? '…'
+      : value
+        ? value
+        : '$?';
+  // Same colour ladder as the public site: $ teal, $$ teal-darker, etc.
+  // Lifted from the StarPicker amber treatment for consistency.
+  const bg =
+    value === '$' ? 'bg-teal/70 text-white'
+    : value === '$$' ? 'bg-teal/85 text-white'
+    : value === '$$$' ? 'bg-teal text-white'
+    : value === '$$$$' ? 'bg-ink-deep text-white'
+    : 'bg-white/80 text-slate border border-sand opacity-0 group-hover:opacity-100';
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(next)}
+      className={
+        // Bottom-left to keep clear of the position input (top-right) and
+        // the visited chip (top-left). Drag handle lives bottom-right.
+        'absolute bottom-2 left-2 pill text-micro shadow backdrop-blur-sm transition-all font-mono ' +
+        bg
+      }
+      title={
+        value
+          ? `${value} per person — click to advance to ${next ?? 'unset'}`
+          : 'Click to set price tier ($ → $$$$)'
       }
     >
       {label}

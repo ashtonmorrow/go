@@ -170,6 +170,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       // click-bait that gets visitors into the pin detail page.
       review: snippet(p.personalReview, 140),
       visitYear: p.visitYear,
+      kind: p.kind ?? null,
+      priceTier: p.priceTier ?? null,
       free: !!p.free,
       unesco: p.unescoId != null,
     }));

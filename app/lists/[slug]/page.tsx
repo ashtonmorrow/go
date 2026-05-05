@@ -198,6 +198,8 @@ export default async function ListPage({ params }: Props) {
     rating: p.personalRating,
     review: reviewSnippet(p.personalReview),
     visitYear: p.visitYear,
+    kind: p.kind ?? null,
+    priceTier: p.priceTier ?? null,
     free: !!p.free,
     unesco: p.unescoId != null,
     // Coordinates power the new map view on /lists/[slug]. Pins

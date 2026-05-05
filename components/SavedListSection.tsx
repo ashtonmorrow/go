@@ -33,6 +33,12 @@ export type SavedListPin = {
   review?: string | null;
   /** Year the pin was visited — small muted byline under the city. */
   visitYear?: number | null;
+  /** Pin kind, used to pick the right pricing pill. Restaurants render
+   *  their priceTier ($–$$$$); everything else renders Free if applicable. */
+  kind?: string | null;
+  /** Restaurant tier ('$' / '$$' / '$$$' / '$$$$'). Only displayed when
+   *  kind === 'restaurant'; ignored otherwise. */
+  priceTier?: string | null;
   /** Pill flags. Both default false to keep the pill row off when unset. */
   free?: boolean;
   unesco?: boolean;
@@ -305,18 +311,33 @@ export default function SavedListSection({
                     {p.review}
                   </p>
                 )}
-                {(p.free || p.unesco) && (
-                  <div className="mt-1.5 flex flex-wrap gap-1">
-                    {p.unesco && (
-                      <span className="pill bg-teal/10 text-teal text-micro">UNESCO</span>
-                    )}
-                    {p.free && (
-                      <span className="pill bg-cream-soft border border-sand text-micro text-slate">
-                        Free
-                      </span>
-                    )}
-                  </div>
-                )}
+                {(() => {
+                  // Kind-aware price pill: restaurants get their tier
+                  // ($-$$$$); attractions / parks / etc keep the Free
+                  // pill when free is true; hotels skip the pill row
+                  // (their pricing lives in the kind-specific section
+                  // on the detail page).
+                  const showTier = p.kind === 'restaurant' && !!p.priceTier;
+                  const showFree = p.kind !== 'restaurant' && p.kind !== 'hotel' && p.free === true;
+                  if (!showTier && !showFree && !p.unesco) return null;
+                  return (
+                    <div className="mt-1.5 flex flex-wrap gap-1">
+                      {p.unesco && (
+                        <span className="pill bg-teal/10 text-teal text-micro">UNESCO</span>
+                      )}
+                      {showTier && (
+                        <span className="pill bg-teal/10 text-teal text-micro font-mono">
+                          {p.priceTier}
+                        </span>
+                      )}
+                      {showFree && (
+                        <span className="pill bg-cream-soft border border-sand text-micro text-slate">
+                          Free
+                        </span>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </Link>
           </li>

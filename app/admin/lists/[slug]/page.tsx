@@ -77,6 +77,7 @@ export default async function ListDetailAdminPage({ params }: Props) {
       personalReview: p.personalReview,
       visitYear: p.visitYear,
       free: p.free ?? null,
+      priceTier: p.priceTier ?? null,
       description: p.description ?? null,
       hours: p.hours ?? null,
       priceText: p.priceText ?? null,

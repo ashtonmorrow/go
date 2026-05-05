@@ -124,6 +124,8 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
       rating: p.personalRating,
       review: snippet(p.personalReview, 140),
       visitYear: p.visitYear,
+      kind: p.kind ?? null,
+      priceTier: p.priceTier ?? null,
       free: !!p.free,
       unesco: p.unescoId != null,
     }));
