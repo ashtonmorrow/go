@@ -23,7 +23,10 @@ links:
     - filisur
     - thusis
     - chur
-  pins: []
+  pins:
+    - bernina-express
+    - rhaetian-railway-in-the-albula-bernina-landscapes
+    - alp-grum
 tags:
   - switzerland
   - italy
@@ -31,7 +34,7 @@ tags:
   - travel-guide
 ---
 
-The Bernina Express is easier to add to a northern Italy trip than it looks on a map. I was in Milan after a few days in Rome, realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
+The [Bernina Express](/pins/bernina-express) is easier to add to a northern Italy trip than it looks on a map. I was in Milan after a few days in Rome, realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
 
 The trip is not complicated, but a few details matter: the Bernina Express is not the only train on the line, seat reservations are separate from rail passes, and the Milan to Tirano connection is part of the day. This is the version I wish I had read before buying my ticket.
 
@@ -47,7 +50,7 @@ The Bernina Express is the named scenic service operated by Rhaetian Railways (R
 
 The route crosses the Bernina Pass at Ospizio Bernina, which sits at 2,253 meters. That makes the Bernina Express the highest adhesion (no rack-and-pinion) railway crossing in the Alps. Higher rack railways exist in Switzerland (the Jungfrau Railway reaches 3,454 meters at the Jungfraujoch, for example), but those are a different mechanical category and most travel writeups conflate the two.
 
-The line was inscribed on the UNESCO World Heritage list in 2008 as the Rhaetian Railway in the Albula and Bernina Cultural Landscape. The engineering, including 55 tunnels and 196 bridges across the Albula and Bernina sections, is the reason for the inscription.
+The line was inscribed on the UNESCO World Heritage list in 2008 as the [Rhaetian Railway in the Albula and Bernina Cultural Landscape](/pins/rhaetian-railway-in-the-albula-bernina-landscapes). The engineering, including 55 tunnels and 196 bridges across the Albula and Bernina sections, is the reason for the inscription.
 
 The trains themselves are panoramic-window railcars in two classes. First class has a 1+2 seating layout, second class is 2+2. Both have reclining seats and air conditioning. Wifi has been added on some services but is not consistent, so do not plan to work the whole way.
 
@@ -71,7 +74,7 @@ The standard Bernina Express stops, in order from Tirano to Chur:
 
 - Tirano (Italy)
 - Poschiavo
-- Alp Grüm
+- [Alp Grüm](/pins/alp-grum)
 - Ospizio Bernina (the high point, 2,253 m)
 - Pontresina
 - Samedan

@@ -21,6 +21,7 @@ export const CANONICAL_LISTS = [
   'UNESCO World Heritage',
   'UNESCO Tentative List',
   'Atlas Obscura',
+  'Michelin Guide',
   'Ramsar Wetland',
   'International Dark Sky Park',
   'IUGS Geological Heritage Site',
@@ -46,6 +47,10 @@ export const LIST_ALIASES: Record<string, CanonicalList> = {
   'Tentative World Heritage Site':      'UNESCO Tentative List',
   // Cult-classic offbeat-places list (cross-referenced via Wikidata P3134)
   'Atlas Obscura':                      'Atlas Obscura',
+  // Michelin Guide — restaurants & hotels recognised by Michelin's
+  // inspectors (Stars / Bib Gourmand / Plate / Recommended). Seeded
+  // by hand on individual pins; no Wikidata-side enrichment yet.
+  'Michelin Guide':                     'Michelin Guide',
   // Wetlands of international importance (RAMSAR convention)
   'Ramsar site':                        'Ramsar Wetland',
   // Stargazer / night-sky preservation
@@ -91,6 +96,7 @@ export const LIST_ICONS: Record<CanonicalList, string> = {
   'UNESCO World Heritage':           '🌐',
   'UNESCO Tentative List':           '🌐',
   'Atlas Obscura':                   '🧭',
+  'Michelin Guide':                  '🍽️',
   'Ramsar Wetland':                  '💧',
   'International Dark Sky Park':     '✨',
   'IUGS Geological Heritage Site':   '⛰️',
@@ -109,6 +115,7 @@ export const LIST_SHORT_LABELS: Record<CanonicalList, string> = {
   'UNESCO World Heritage':           'UNESCO',
   'UNESCO Tentative List':           'UNESCO Tentative',
   'Atlas Obscura':                   'Atlas Obscura',
+  'Michelin Guide':                  'Michelin',
   'Ramsar Wetland':                  'Ramsar',
   'International Dark Sky Park':     'Dark Sky',
   'IUGS Geological Heritage Site':   'IUGS Geo',
@@ -157,6 +164,11 @@ export function getListUrl(list: CanonicalList, ctx: LinkContext): string {
       return ctx.atlasObscuraSlug
         ? `https://www.atlasobscura.com/places/${ctx.atlasObscuraSlug}`
         : 'https://www.atlasobscura.com/places';
+    case 'Michelin Guide':
+      // No per-restaurant URL pattern stable across regions, so we
+      // fall back to the guide's homepage for now. A future enrichment
+      // pass could capture a Michelin slug per pin and deeplink.
+      return 'https://guide.michelin.com/';
     case 'Ramsar Wetland':
       // Per-site URL needs a Ramsar Site ID we don't currently capture.
       // Fall back to the official RIS search; users can paste the pin name.

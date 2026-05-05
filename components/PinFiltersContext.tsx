@@ -31,6 +31,13 @@ export type PinFilterState = {
    *  = "I've been AND wrote a review you can read". The pins matrix has both
    *  because Mike has 1,400+ visited places but only ~600 reviews. */
   reviewedOnly: boolean;
+  /** "Mike's List" — pin appears in at least one of Mike's personal
+   *  saved-list collections (saved_lists is non-empty). The shortcut
+   *  for "anything Mike has actively curated into a list," rather than
+   *  letting the user pick a specific list from the My Lists section.
+   *  Future: also include pins referenced by content/posts/*.md when
+   *  posts grow a pin-link frontmatter field. */
+  mikesListOnly: boolean;
   categories: Set<string>;
   countries: Set<string>;
   continents: Set<Continent>;
@@ -61,6 +68,7 @@ const DEFAULT_STATE: PinFilterState = {
   wheelchairOnly: false,
   kidFriendlyOnly: false,
   reviewedOnly: false,
+  mikesListOnly: false,
   categories: new Set(),
   countries: new Set(),
   continents: new Set(),
@@ -102,6 +110,7 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     if (state.wheelchairOnly !== DEFAULT_STATE.wheelchairOnly) n++;
     if (state.kidFriendlyOnly !== DEFAULT_STATE.kidFriendlyOnly) n++;
     if (state.reviewedOnly !== DEFAULT_STATE.reviewedOnly) n++;
+    if (state.mikesListOnly !== DEFAULT_STATE.mikesListOnly) n++;
     n += state.categories.size > 0 ? 1 : 0;
     n += state.countries.size > 0 ? 1 : 0;
     n += state.continents.size > 0 ? 1 : 0;

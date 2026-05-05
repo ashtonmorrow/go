@@ -53,6 +53,11 @@ export type EnrichOptions = {
   /** When true, also re-fetch pins that already have price_level set.
    *  Default false — re-runs are cheap because we skip already-enriched. */
   refresh?: boolean;
+  /** Skip rows that already had a Google Place Details attempt recently.
+   *  Default true unless refresh=true. */
+  skipRecentAttempts?: boolean;
+  /** Recent-attempt window, in hours. Default 30 days. */
+  recentAttemptHours?: number;
   /** Dry run — collect updates but don't write to Supabase. */
   dryRun?: boolean;
 };
@@ -416,6 +421,108 @@ function mapOpeningHours(
   return Object.keys(out).length > 0 ? out : null;
 }
 
+type AttemptTrackedPin = {
+  price_level: number | null;
+  hours_details: Record<string, unknown> | null;
+  website: string | null;
+  phone: string | null;
+  kind: string | null;
+  enrichment_checked_at: string | null;
+  enrichment_source_type: string | null;
+  enrichment_notes: string | null;
+};
+
+const USEFUL_DATA_KEYS = new Set([
+  'price_level',
+  'hours_details',
+  'website',
+  'phone',
+  'kind',
+  'google_rating',
+  'google_rating_count',
+  'address',
+]);
+
+function hasMeaningfulHours(value: Record<string, unknown> | null | undefined): boolean {
+  if (!value || typeof value !== 'object') return false;
+  const weekly = value.weekly;
+  if (weekly && typeof weekly === 'object' && !Array.isArray(weekly)) {
+    return Object.values(weekly as Record<string, unknown>).some(v =>
+      typeof v === 'string' && v.trim().length > 0,
+    );
+  }
+  return Object.keys(value).length > 0;
+}
+
+function missingRequestedFields(
+  pin: AttemptTrackedPin,
+  dataPatch: Record<string, unknown>,
+  fields: EnrichField[],
+): EnrichField[] {
+  const effective = { ...pin, ...dataPatch };
+  return fields.filter(field => {
+    switch (field) {
+      case 'price':
+        return effective.price_level == null;
+      case 'hours':
+        return !hasMeaningfulHours(effective.hours_details as Record<string, unknown> | null);
+      case 'website':
+        return typeof effective.website !== 'string' || effective.website.trim().length === 0;
+      case 'phone':
+        return typeof effective.phone !== 'string' || effective.phone.trim().length === 0;
+      case 'kind':
+        return typeof effective.kind !== 'string' || effective.kind.trim().length === 0;
+    }
+  });
+}
+
+function shouldReplaceEnrichmentNotes(pin: AttemptTrackedPin): boolean {
+  const notes = pin.enrichment_notes?.trim();
+  if (!notes) return true;
+  const source = pin.enrichment_source_type?.trim() ?? '';
+  return source === 'google-place-details' || notes.startsWith('Google Place Details checked ');
+}
+
+function attemptTrackingPatch(
+  pin: AttemptTrackedPin,
+  dataPatch: Record<string, unknown>,
+  fields: EnrichField[],
+  placeId: string | null,
+  confidence: 'high' | 'medium' | 'none',
+  outcome: 'details' | 'no-match' | 'no-data',
+): Record<string, unknown> {
+  const now = new Date().toISOString();
+  const missing = missingRequestedFields(pin, dataPatch, fields);
+  const hasUsefulData = Object.keys(dataPatch).some(key => USEFUL_DATA_KEYS.has(key));
+  const status =
+    missing.length === 0 ? 'enriched' :
+    hasUsefulData ? 'partial' :
+    'unverified';
+  const patch: Record<string, unknown> = {
+    enrichment_status: status,
+    enrichment_source_type: 'google-place-details',
+    enrichment_confidence: confidence,
+    enrichment_checked_at: now,
+    updated_at: now,
+  };
+  if (hasUsefulData) patch.enriched_at = now;
+  if (shouldReplaceEnrichmentNotes(pin)) {
+    const requested = fields.join(', ');
+    const missingText = missing.length ? `still missing ${missing.join(', ')}` : 'requested fields present';
+    const placeText = placeId ? `place_id ${placeId}` : 'no place_id';
+    patch.enrichment_notes = `Google Place Details checked ${now}; ${outcome}; requested ${requested}; ${missingText}; ${placeText}.`;
+  }
+  return patch;
+}
+
+function wasRecentlyCheckedByGoogle(pin: AttemptTrackedPin, hours: number): boolean {
+  if (pin.enrichment_source_type !== 'google-place-details') return false;
+  if (!pin.enrichment_checked_at) return false;
+  const checkedAt = Date.parse(pin.enrichment_checked_at);
+  if (!Number.isFinite(checkedAt)) return false;
+  return Date.now() - checkedAt < hours * 60 * 60 * 1000;
+}
+
 /** Async generator: yields per-pin events while the enrichment runs.
  *  Caller can stream these straight to a client (NDJSON), pipe into a
  *  console, or collect and summarise. */
@@ -431,13 +538,15 @@ export async function* enrichPins(
   const maxCost = options.maxCostUsd ?? Infinity;
   const tier = detailsTier(fields);
   const apply = !options.dryRun;
+  const skipRecentAttempts = options.skipRecentAttempts ?? !options.refresh;
+  const recentAttemptHours = options.recentAttemptHours ?? 24 * 30;
 
   // Pull the candidate rows. If --refresh is off, skip pins that
   // already have price_level (the most common "is this enriched?"
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, google_place_id, price_level, hours_details, website, phone, address')
+    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, google_place_id, price_level, hours_details, website, phone, address, enrichment_checked_at, enrichment_source_type, enrichment_notes')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;
@@ -462,6 +571,9 @@ export async function* enrichPins(
     website: string | null;
     phone: string | null;
     address: string | null;
+    enrichment_checked_at: string | null;
+    enrichment_source_type: string | null;
+    enrichment_notes: string | null;
   }>;
 
   yield { type: 'start', total: pins.length, fields, tier };
@@ -472,6 +584,19 @@ export async function* enrichPins(
 
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i]!;
+
+    if (skipRecentAttempts && wasRecentlyCheckedByGoogle(pin, recentAttemptHours)) {
+      yield {
+        type: 'progress',
+        index: i,
+        pinId: pin.id,
+        pinName: pin.name,
+        action: 'skipped',
+        placeId: pin.google_place_id,
+        runningCost,
+      };
+      continue;
+    }
 
     // 1. Resolve place_id. Three paths in increasing cost order:
     //    (a) cached resolved place_id from a previous enrichment run
@@ -506,6 +631,14 @@ export async function* enrichPins(
     }
 
     if (!placeId) {
+      const patch = attemptTrackingPatch(pin, {}, fields, null, 'none', 'no-match');
+      if (apply) {
+        const { error: writeErr } = await options.supabase
+          .from('pins')
+          .update(patch)
+          .eq('id', pin.id);
+        if (!writeErr) written++;
+      }
       yield {
         type: 'progress',
         index: i,
@@ -513,6 +646,7 @@ export async function* enrichPins(
         pinName: pin.name,
         action,
         placeId: null,
+        patch,
         runningCost,
       };
       continue;
@@ -535,6 +669,24 @@ export async function* enrichPins(
     const details = await fetchPlaceDetails(options.supabase, placeId, fields);
     runningCost += tier;
     if (!details) {
+      const patch: Record<string, unknown> = !pin.google_place_id && placeId
+        ? { google_place_id: placeId }
+        : {};
+      Object.assign(patch, attemptTrackingPatch(
+        pin,
+        patch,
+        fields,
+        placeId,
+        action === 'resolved' ? 'medium' : 'high',
+        'no-data',
+      ));
+      if (apply) {
+        const { error: writeErr } = await options.supabase
+          .from('pins')
+          .update(patch)
+          .eq('id', pin.id);
+        if (!writeErr) written++;
+      }
       yield {
         type: 'progress',
         index: i,
@@ -542,6 +694,7 @@ export async function* enrichPins(
         pinName: pin.name,
         action: 'no-data',
         placeId,
+        patch,
         runningCost,
       };
       continue;
@@ -616,18 +769,18 @@ export async function* enrichPins(
       patch.google_place_id = placeId;
     }
 
-    if (Object.keys(patch).length === 0) {
-      yield {
-        type: 'progress',
-        index: i,
-        pinId: pin.id,
-        pinName: pin.name,
-        action: 'no-data',
+    const hasUsefulData = Object.keys(patch).some(key => USEFUL_DATA_KEYS.has(key));
+    Object.assign(
+      patch,
+      attemptTrackingPatch(
+        pin,
+        patch,
+        fields,
         placeId,
-        runningCost,
-      };
-      continue;
-    }
+        action === 'resolved' ? 'medium' : 'high',
+        'details',
+      ),
+    );
 
     if (apply) {
       const { error: writeErr } = await options.supabase
@@ -655,7 +808,7 @@ export async function* enrichPins(
       index: i,
       pinId: pin.id,
       pinName: pin.name,
-      action: 'enriched',
+      action: hasUsefulData ? 'enriched' : 'no-data',
       placeId,
       patch,
       runningCost,

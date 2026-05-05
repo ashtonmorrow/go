@@ -13,14 +13,16 @@ links:
     - brazil
   cities:
     - rio-de-janeiro
-  pins: []
+  pins:
+    - botanical-garden-of-rio-de-janeiro
+    - christ-the-redeemer
 tags:
   - rio-de-janeiro
   - brazil
   - gardens
 ---
 
-The Rio Botanical Garden is not filler between beaches, viewpoints, and Christ the Redeemer. It works best as a slow half-day, especially when Rio's heat or rain makes a more scripted sightseeing day feel like work.
+The [Rio Botanical Garden](/pins/botanical-garden-of-rio-de-janeiro) is not filler between beaches, viewpoints, and [Christ the Redeemer](/pins/christ-the-redeemer). It works best as a slow half-day, especially when Rio's heat or rain makes a more scripted sightseeing day feel like work.
 
 I went on a damp afternoon and made the most obvious mistake possible: I forgot insect repellent. That detail matters more than selling it as a pretty garden. The site is humid, mostly flat, exposed in places, and easier to enjoy if you plan the visit like a garden walk rather than a museum stop. Go with time, water, repellent, and a weather window.
 

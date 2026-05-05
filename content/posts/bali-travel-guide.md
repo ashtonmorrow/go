@@ -26,7 +26,9 @@ links:
     - amed
     - sidemen
     - lovina
-  pins: []
+  pins:
+    - sacred-monkey-forest-sanctuary
+    - tanah-lot
 tags:
   - bali
   - indonesia
@@ -68,7 +70,7 @@ The small cultural details matter. Offerings of flowers, leaves, and incense sit
 
 Ubud is busy now, and some of the center feels more arranged for visitors than I would like. I would still use it as a first inland base because it puts several kinds of Bali close together. You can walk rice-field paths in the morning, visit a small museum or market in the afternoon, and see a dance or gamelan performance in the evening without needing to cross the whole island.
 
-The Sacred Monkey Forest is both a temple complex and an animal habitat, not just a place to photograph macaques. Keep food out of sight, give the animals space, and watch what other tourists are doing mostly as a lesson in what not to copy.
+The [Sacred Monkey Forest](/pins/sacred-monkey-forest-sanctuary) is both a temple complex and an animal habitat, not just a place to photograph macaques. Keep food out of sight, give the animals space, and watch what other tourists are doing mostly as a lesson in what not to copy.
 
 The Tegallalang rice terraces north of town are heavily photographed, but they make more sense if you think of them as working irrigation landscape. Bali's subak system links water, fields, temples, and farmer obligations into a cooperative structure. You do not need a technical lecture to see the difference. Once you notice the channels and field edges, the terraces stop being only a view.
 
@@ -90,7 +92,7 @@ These places are not more convenient. They are simply less consumed by the main 
 
 ## What I Would Actually Prioritize
 
-I would hire a driver for one temple and rice-field day rather than pretend the island is easy to stitch together on my own. Tanah Lot is the obvious sunset temple. Uluwatu Temple has the cliff setting and the evening Kecak performance, a dance-drama built around a large seated chorus whose repeated vocal patterns replace instrumental accompaniment.
+I would hire a driver for one temple and rice-field day rather than pretend the island is easy to stitch together on my own. [Tanah Lot](/pins/tanah-lot) is the obvious sunset temple. Uluwatu Temple has the cliff setting and the evening Kecak performance, a dance-drama built around a large seated chorus whose repeated vocal patterns replace instrumental accompaniment.
 
 I would see one performance in Ubud. Gamelan is the Balinese percussion ensemble tradition built around metallophones, gongs, drums, and interlocking rhythmic figures. You can listen without knowing the theory. The simplest thing to notice is how fast repeating patterns sit inside slower gong cycles.
 

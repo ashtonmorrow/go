@@ -19,7 +19,14 @@ links:
     - coca
     - loarre
     - olite
-  pins: []
+  pins:
+    - castell-de-bellver
+    - alhambra
+    - nasrid-palaces
+    - alcazar-de-segovia
+    - castillo-de-coca
+    - loarre-castle
+    - royal-palace-of-olite
 tags:
   - spain
   - castles
@@ -36,12 +43,12 @@ These are the six I would plan around first, with the claims I could verify and 
 
 | Site | Best used as | What to notice | UNESCO status |
 |---|---|---|---|
-| Bellver Castle | Palma half-day | Circular Gothic plan | No |
-| Alhambra | Granada anchor visit | Nasrid palaces, water, geometry | Yes, since 1984 |
-| Alcázar de Segovia | Madrid side trip | Promontory setting, tower view | Part of Segovia inscription |
-| Castillo de Coca | Segovia province detour | Brick Mudéjar construction | No |
-| Castillo de Loarre | Aragon road-trip stop | Romanesque military architecture | Tentative list only |
-| Royal Palace of Olite | Navarra wine-country pairing | Late-Gothic palace reconstruction | No |
+| [Bellver Castle](/pins/castell-de-bellver) | Palma half-day | Circular Gothic plan | No |
+| [Alhambra](/pins/alhambra) | Granada anchor visit | Nasrid palaces, water, geometry | Yes, since 1984 |
+| [Alcázar de Segovia](/pins/alcazar-de-segovia) | Madrid side trip | Promontory setting, tower view | Part of Segovia inscription |
+| [Castillo de Coca](/pins/castillo-de-coca) | Segovia province detour | Brick Mudéjar construction | No |
+| [Castillo de Loarre](/pins/loarre-castle) | Aragon road-trip stop | Romanesque military architecture | Tentative list only |
+| [Royal Palace of Olite](/pins/royal-palace-of-olite) | Navarra wine-country pairing | Late-Gothic palace reconstruction | No |
 
 ## How I Would Use Them in a Trip
 
@@ -61,7 +68,7 @@ A half-day is enough. The roof terrace gives the reason for the climb: Palma, th
 
 The Alhambra is not one building. It is a fortress, palace, and citadel complex built largely under the Nasrid dynasty in the 13th and 14th centuries on the site of an earlier 9th-century fortress. That matters because the visit changes character as you move through it.
 
-The Alcazaba is the military portion. The Nasrid Palaces are the delicate, controlled heart of the site, where water, stucco, tile, carved text, and geometry do the work of courtly display. The Generalife is the garden and retreat above the palace complex. If you only read the Alhambra as a castle, you miss the way it uses enclosure, shade, water, and pattern to organize attention.
+The Alcazaba is the military portion. The [Nasrid Palaces](/pins/nasrid-palaces) are the delicate, controlled heart of the site, where water, stucco, tile, carved text, and geometry do the work of courtly display. The Generalife is the garden and retreat above the palace complex. If you only read the Alhambra as a castle, you miss the way it uses enclosure, shade, water, and pattern to organize attention.
 
 The practical advice is simple: book ahead, especially for the Nasrid Palaces. Entry is timed, demand is high, and official tickets are the safest route. Resellers create needless risk and markup. This is not the place to improvise at the gate.
 

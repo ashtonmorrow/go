@@ -17,7 +17,12 @@ links:
     - valencia
     - madrid
     - barcelona
-  pins: []
+  pins:
+    - santa-barbara-castle
+    - platja-del-postiguet
+    - cala-cantalar
+    - el-campello
+    - palmeral-of-elche
 tags:
   - spain
   - alicante
@@ -50,13 +55,13 @@ You can also fly direct. Alicante-Elche Airport (ALC) is well-served by European
 
 Alicante's beaches break into a few categories, and the best choice depends on the day you want.
 
-**For a beach inside the city.** Postiguet Beach is the urban beach, right at the foot of the old town and the Castle of Santa Bárbara, with showers, kiosks, and lifeguards. It is convenient and decent for a short visit, but it gets crowded.
+**For a beach inside the city.** [Postiguet Beach](/pins/platja-del-postiguet) is the urban beach, right at the foot of the old town and the [Castle of Santa Bárbara](/pins/santa-barbara-castle), with showers, kiosks, and lifeguards. It is convenient and decent for a short visit, but it gets crowded.
 
 **For a longer sand beach.** San Juan Beach, north of the center, is the destination beach if you have a half-day to swim or want the more resort-feeling stretch.
 
-**For clearer water and fewer people.** Cala Cantalar and Cala Palmera, north along the coast, are smaller and quieter. The water is clearer than at the urban beaches; the trade-off is that you walk in over rocks rather than sand.
+**For clearer water and fewer people.** [Cala Cantalar](/pins/cala-cantalar) and Cala Palmera, north along the coast, are smaller and quieter. The water is clearer than at the urban beaches; the trade-off is that you walk in over rocks rather than sand.
 
-**For windsurfing.** El Campello, a short tram ride north of Alicante, has the conditions and the schools.
+**For windsurfing.** [El Campello](/pins/el-campello), a short tram ride north of Alicante, has the conditions and the schools.
 
 ## What to Eat
 
@@ -74,6 +79,6 @@ Two museums are worth a stop if you want a break from the beach circuit: MARQ, t
 
 ## How Long to Stay
 
-Two to three full days is usually right. One day for the city, one day for the beaches, and an optional day for Elche, the UNESCO-listed palm grove, or another stop down the coast.
+Two to three full days is usually right. One day for the city, one day for the beaches, and an optional day for Elche, the [UNESCO-listed palm grove](/pins/palmeral-of-elche), or another stop down the coast.
 
 If the trip is longer, I would slot Alicante between Madrid and Valencia, or use it as a coastal reset before continuing south. It is not the most dramatic city in Spain. It is simply easier, warmer, and more rewarding than many travelers expect.

@@ -120,12 +120,11 @@ export default function PinFilterPanel({
             ]}
           />
           {/* Binary "show only places that…" filters as a single chip group.
-              Click to add the filter, click again to clear. UNESCO used to
-              live up here too but the canonical "UNESCO" filter belongs in
-              the ON LISTS section below — leaving both meant two chips with
-              the same name and overlapping behaviour. The ON LISTS version
-              wins because it composes with the other curated lists (Atlas
-              Obscura, Ramsar, etc.) under one mental model. */}
+              Click to add the filter, click again to clear. The UNESCO /
+              Atlas Obscura / Michelin chips toggle membership in
+              state.lists so they compose with the ON LISTS section below
+              (clicking one of these is equivalent to picking it from
+              that section, just surfaced up here for quick access). */}
           <div className="flex flex-wrap gap-1.5 mt-1">
             <QuickFilterChip
               on={state.freeOnly}
@@ -159,6 +158,58 @@ export default function PinFilterPanel({
               icon="✍️"
               label="Reviewed"
               onChange={v => setState(s => ({ ...s, reviewedOnly: v }))}
+            />
+            {/* Canonical curation lists — UNESCO World Heritage, Atlas
+                Obscura, Michelin Guide. These mirror the chips in the
+                Lists section below; both routes write to the same
+                state.lists Set so toggling either has the same effect.
+                We keep the duplicates here because they're high-traffic
+                "find something cool" filters that travelers expect at
+                the top of a cockpit. */}
+            <QuickFilterChip
+              on={state.lists.has('UNESCO World Heritage')}
+              icon="🌐"
+              label="UNESCO"
+              onChange={() =>
+                setState(s => ({
+                  ...s,
+                  lists: togglePinSet(s.lists, 'UNESCO World Heritage'),
+                }))
+              }
+            />
+            <QuickFilterChip
+              on={state.lists.has('Atlas Obscura')}
+              icon="🧭"
+              label="Atlas Obscura"
+              onChange={() =>
+                setState(s => ({
+                  ...s,
+                  lists: togglePinSet(s.lists, 'Atlas Obscura'),
+                }))
+              }
+            />
+            <QuickFilterChip
+              on={state.lists.has('Michelin Guide')}
+              icon="🍽️"
+              label="Michelin"
+              onChange={() =>
+                setState(s => ({
+                  ...s,
+                  lists: togglePinSet(s.lists, 'Michelin Guide'),
+                }))
+              }
+            />
+            {/* "Mike's List" — pin is on at least one of Mike's saved
+                collections. Different from My Lists multi-select below
+                (which picks specific lists) — this is the catch-all
+                "anything Mike has personally curated into a list."
+                Future: also include pins linked from blog posts when
+                posts grow a pin-link frontmatter field. */}
+            <QuickFilterChip
+              on={state.mikesListOnly}
+              icon="🗂️"
+              label="Mike's List"
+              onChange={v => setState(s => ({ ...s, mikesListOnly: v }))}
             />
           </div>
         </div>

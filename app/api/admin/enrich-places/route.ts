@@ -106,7 +106,11 @@ export async function POST(req: Request) {
           dryRun,
         })) {
           controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'));
-          if (event.type === 'progress' && event.action === 'enriched') {
+          if (
+            event.type === 'progress' &&
+            event.patch &&
+            Object.keys(event.patch).length > 0
+          ) {
             wroteAny = true;
           }
         }

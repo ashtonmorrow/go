@@ -19,7 +19,16 @@ links:
     - chiang-mai
     - phuket-town
     - ko-samui
-  pins: []
+  pins:
+    - khao-san-road
+    - wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan
+    - wat-arun-ratchawararam-ratchawaramahawihan
+    - chatuchak-weekend-market
+    - wat-chedi-luang
+    - phang-nga-bay
+    - the-big-buddha
+    - wat-chaithararam
+    - mu-ko-ang-thong-national-marine-park
 tags:
   - thailand
   - travel-guide
@@ -59,11 +68,11 @@ Most visa-exempt tourists now get up to 60 days in Thailand, depending on nation
 
 Bangkok is usually the entry point, and I think it deserves a few days even if the beach is the emotional reason for the trip. The mistake is treating it like a city you can cross casually by car. Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. If you take a metered taxi, make sure the meter starts. A negotiated flat fare is rarely your friend.
 
-I would stay in Sukhumvit, Silom, or Riverside depending on the trip. Sukhumvit is convenient and international, with hotels, malls, bars, and BTS access. It is not the most distinctive version of Bangkok, but it works. Silom is a good compromise, with business-district order, markets, bars, and Lumpini Park. Riverside is calmer, better for ferries and the old-city temple circuit, and usually more expensive. Khao San Road is backpacker Bangkok. That is useful information, not an insult. Stay there only if that is the trip you want.
+I would stay in Sukhumvit, Silom, or Riverside depending on the trip. Sukhumvit is convenient and international, with hotels, malls, bars, and BTS access. It is not the most distinctive version of Bangkok, but it works. Silom is a good compromise, with business-district order, markets, bars, and Lumpini Park. Riverside is calmer, better for ferries and the old-city temple circuit, and usually more expensive. [Khao San Road](/pins/khao-san-road) is backpacker Bangkok. That is useful information, not an insult. Stay there only if that is the trip you want.
 
-The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, Wat Pho for the reclining Buddha and the massage school, and Wat Arun across the river. The river matters here. It is not just scenery; it is one of the ways Bangkok becomes easier to understand, because the older ceremonial city sits close to the water.
+The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school, and [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) across the river. The river matters here. It is not just scenery; it is one of the ways Bangkok becomes easier to understand, because the older ceremonial city sits close to the water.
 
-For markets, I would choose based on purpose. Chatuchak is the large weekend shopping market. Chinatown is where I would go hungry. The floating markets outside the city can be visually interesting, but many are now visitor circuits rather than ordinary markets. That does not make them worthless. It just means I would treat them as a staged day out, not as a window into normal shopping.
+For markets, I would choose based on purpose. [Chatuchak](/pins/chatuchak-weekend-market) is the large weekend shopping market. Chinatown is where I would go hungry. The floating markets outside the city can be visually interesting, but many are now visitor circuits rather than ordinary markets. That does not make them worthless. It just means I would treat them as a staged day out, not as a window into normal shopping.
 
 February and March are warm and mostly dry in Bangkok. Highs around 30 to 35°C are normal, and the humidity makes the afternoon feel heavier than the number suggests. This is the city where scheduling less can make the day better.
 
@@ -81,7 +90,7 @@ February and March are generally warm and dry here, with cooler mornings. Waterf
 
 Chiang Mai is the part of this itinerary where I would slow down. A few days is fine, but a week makes more sense if you like markets, temples, cafes, and not changing hotels every other morning. The Old City is easy to walk, and the moat gives the center a clear shape, which matters after Bangkok's scale.
 
-The first temples I would point someone toward are Wat Phra That Doi Suthep on the mountain, Wat Chedi Luang in the Old City, and Wat Phra Singh for Lanna architecture. Lanna refers to the historical northern Thai kingdom, and the difference matters visually: rooflines, woodwork, ornament, and temple layouts do not feel like Bangkok copied northward.
+The first temples I would point someone toward are Wat Phra That Doi Suthep on the mountain, [Wat Chedi Luang](/pins/wat-chedi-luang) in the Old City, and Wat Phra Singh for Lanna architecture. Lanna refers to the historical northern Thai kingdom, and the difference matters visually: rooflines, woodwork, ornament, and temple layouts do not feel like Bangkok copied northward.
 
 Food is a good reason to stay longer. Try khao soi early in the trip so you have time to eat it again. Warorot Market is the everyday market; the Sunday Walking Street is the easier visitor-facing version. Nimmanhaemin is better for cafes and work time than for old-city atmosphere, which is not a criticism. Sometimes you need a quiet table and an iced coffee more than another temple.
 
@@ -91,13 +100,13 @@ The problem is smoke season. Late February, March, and often April can bring bad
 
 Phuket is the practical island. It has the airport, the hotel range, the tour infrastructure, and the bluntest version of beach tourism. Patong is nightlife and crowds. Kata and Karon are calmer and easier for families or beginner surfers. Kamala is quieter. Bang Tao is more resort-driven. Phuket Town is the choice if you care more about Sino-Portuguese streets, cafes, and markets than sleeping on the sand.
 
-The good day trips are obvious because everyone else also knows them: Phi Phi Islands, Phang Nga Bay, James Bond Island. They are crowded, but the limestone scenery still explains the boats. On the island itself, Big Buddha, Wat Chalong, Old Phuket Town, Promthep Cape, and the night markets are the practical circuit.
+The good day trips are obvious because everyone else also knows them: Phi Phi Islands, [Phang Nga Bay](/pins/phang-nga-bay), James Bond Island. They are crowded, but the limestone scenery still explains the boats. On the island itself, [Big Buddha](/pins/the-big-buddha), [Wat Chalong](/pins/wat-chaithararam), Old Phuket Town, Promthep Cape, and the night markets are the practical circuit.
 
 The annoyance is transport. Taxis and tuk-tuks cost more than they should. Grab helps, but it does not magically make the island cheap to cross. A scooter gives freedom and risk in the same package. Do not rent one unless you are legal, insured, and honest about your comfort level.
 
 Koh Samui is the quieter beach choice, though not always the cheaper one. The airport is small and pleasant, and Bangkok Airways controls much of the route, which keeps flights expensive. Chaweng is the busy beach. Lamai is quieter without being empty. Bophut and Fisherman's Village are good for food and families. Choeng Mon is calmer and more resort-oriented.
 
-On Samui, I would not overbuild the itinerary. Wat Phra Yai, Wat Plai Laem, Ang Thong Marine National Park, Namuang Waterfall, and the Secret Buddha Garden are enough if you need movement. The better reason to be there is often a slow beach day, a pool, and dinner close to the hotel.
+On Samui, I would not overbuild the itinerary. Wat Phra Yai, Wat Plai Laem, [Ang Thong Marine National Park](/pins/mu-ko-ang-thong-national-marine-park), Namuang Waterfall, and the Secret Buddha Garden are enough if you need movement. The better reason to be there is often a slow beach day, a pool, and dinner close to the hotel.
 
 For February and March, both Phuket and Samui can work well. Phuket and the Andaman coast are in their dry, calmer-sea window. Samui is also usually good then. The question is less about temperature, which will be warm either way, and more about rain, water conditions, and how much island transport you want to negotiate.
 

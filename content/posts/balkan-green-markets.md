@@ -30,7 +30,8 @@ links:
     - kotor
     - budva
     - bar-mne
-  pins: []
+  pins:
+    - historical-complex-of-split-with-the-palace-of-diocletian
 tags:
   - food
   - markets
@@ -38,7 +39,7 @@ tags:
 
 When I stay somewhere for four to eight weeks, I usually end up cooking more than I eat out. Green markets become part of the routine: morning fruit, tomatoes that actually taste like tomatoes, greens for dinner, honey to bring home, and sometimes a bottle of local olive oil or rakija from someone who makes it themselves.
 
-That is different from visiting a market once as a sight. The same place can be both useful and performative, and the balance changes by city. Pazar in [Split](/cities/split), beside Diocletian's Palace, is still worth walking through, but it has become partly a visitor attraction. If you were living in Split for several weeks and bought everything there, you would probably overpay. Many local people do more of their ordinary shopping elsewhere.
+That is different from visiting a market once as a sight. The same place can be both useful and performative, and the balance changes by city. Pazar in [Split](/cities/split), beside [Diocletian's Palace](/pins/historical-complex-of-split-with-the-palace-of-diocletian), is still worth walking through, but it has become partly a visitor attraction. If you were living in Split for several weeks and bought everything there, you would probably overpay. Many local people do more of their ordinary shopping elsewhere.
 
 The cleaner version is somewhere like the market in [Bar, Montenegro](/cities/bar-mne): less English, fewer posted prices, smaller tables, and more produce that looks as if it came from someone's plot that morning. The advice below works best in places like that, but it still helps you read the more touristed markets without treating them as fake.
 

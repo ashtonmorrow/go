@@ -128,6 +128,11 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
       const hasRating = p.personalRating != null && p.personalRating > 0;
       if (!hasText && !hasRating) continue;
     }
+    // "Mike's List" — pin appears in at least one of Mike's saved-list
+    // collections. Distinct from picking specific saved lists in the
+    // My Lists section: this is the broader "anything I've curated"
+    // filter rather than "places on this exact list."
+    if (state.mikesListOnly && (p.savedLists?.length ?? 0) === 0) continue;
     if (state.bring.size > 0) {
       const pinBring = p.bring ?? [];
       let hasAll = true;
