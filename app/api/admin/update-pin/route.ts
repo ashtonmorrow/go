@@ -17,7 +17,7 @@ const ALLOWED_FIELDS = new Set([
   // Location
   'lat', 'lng', 'city_names', 'states_names', 'address',
   // Practical
-  'website', 'hours', 'opening_hours',
+  'website', 'hours', 'opening_hours', 'phone',
   'booking', 'booking_url', 'official_ticket_url', 'booking_required',
   // Cost
   'price_text', 'price_amount', 'price_currency', 'free', 'free_to_visit',

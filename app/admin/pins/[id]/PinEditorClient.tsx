@@ -1,8 +1,29 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { PinEditorState } from './editorData';
+
+// Internal sub-shape we render read-only from hours_details.weekly. Mirrors
+// the public detail page's PinHoursDetails['weekly'] without coupling this
+// admin file to lib/pins.ts.
+type WeeklyShape = {
+  daily?: string;
+  mon?: string; tue?: string; wed?: string; thu?: string;
+  fri?: string; sat?: string; sun?: string;
+};
+const WEEKDAY_DISPLAY: { key: keyof WeeklyShape; label: string }[] = [
+  { key: 'mon', label: 'Mon' }, { key: 'tue', label: 'Tue' },
+  { key: 'wed', label: 'Wed' }, { key: 'thu', label: 'Thu' },
+  { key: 'fri', label: 'Fri' }, { key: 'sat', label: 'Sat' },
+  { key: 'sun', label: 'Sun' },
+];
+
+function priceLevelLabel(n: number | null): string {
+  if (n == null) return '—';
+  if (n === 0) return 'Free';
+  return '$'.repeat(Math.min(4, Math.max(1, n)));
+}
 
 const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 
@@ -12,6 +33,19 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [result, setResult] = useState<{ ok: true } | { error: string } | null>(null);
+
+  // After router.refresh() (e.g. post-enrich), the parent re-renders with a
+  // fresh `initial` reference. useState only seeds once, so without this
+  // effect the form would still show pre-enrich values even though the
+  // server data updated. Reference equality avoids resetting on unrelated
+  // re-renders that pass the same initial object.
+  const lastInitialRef = useRef(initial);
+  useEffect(() => {
+    if (initial !== lastInitialRef.current) {
+      lastInitialRef.current = initial;
+      setState(initial);
+    }
+  }, [initial]);
 
   // === Places enrichment (single-pin) ======================================
   // Mirrors the bulk enrichVisible() flow on /admin/pins, scoped to the row
@@ -251,6 +285,37 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
           Pulls price level, opening hours, and phone. Existing curated
           values win on merge — only blanks get filled.
         </p>
+
+        {/* Read-only summary of what's currently stored from Google. Lets
+            the user confirm the enrichment actually wrote something
+            without having to flip to the public detail page. Hidden when
+            nothing has been pulled yet. */}
+        {(state.price_level != null || isWeeklyPopulated(state.hours_details)) && (
+          <div className="mt-3 rounded border border-sand bg-cream-soft/40 p-3 text-small">
+            <div className="text-label uppercase tracking-wider text-muted mb-2">
+              From Google Places
+            </div>
+
+            {state.price_level != null && (
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-muted text-label w-24 flex-shrink-0">Price level</span>
+                <span className="font-mono text-ink-deep tabular-nums">
+                  {priceLevelLabel(state.price_level)}
+                </span>
+                <span className="text-muted text-label">
+                  (Google's 0–4 scale)
+                </span>
+              </div>
+            )}
+
+            {isWeeklyPopulated(state.hours_details) && (
+              <div className="flex items-start gap-2">
+                <span className="text-muted text-label w-24 flex-shrink-0 pt-0.5">Hours</span>
+                <WeeklyTable hoursDetails={state.hours_details} />
+              </div>
+            )}
+          </div>
+        )}
       </Section>
 
       <Section label="Identity">
@@ -534,6 +599,17 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
         <Field label="Website">
           <Input value={state.website ?? ''} onChange={v => set('website', v || null)} />
         </Field>
+        <Field label="Phone">
+          {/* International format (E.164 ideal — "+1 415 555 0123" works
+              fine too; the public page strips spaces / parens for the
+              tel: link and keeps the formatted text for display). */}
+          <Input
+            value={state.phone ?? ''}
+            onChange={v => set('phone', v || null)}
+            placeholder="+1 415 555 0123"
+            mono
+          />
+        </Field>
       </Section>
 
       <Section label="Cost (legacy)">
@@ -603,6 +679,54 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
         </button>
       </div>
     </form>
+  );
+}
+
+// Read-only weekly hours rendering for the "From Google" panel. Mirrors
+// the public detail page's HoursBlock without the editorial fallbacks
+// (parent_site, ramadan, etc.) — those don't change on this surface.
+function isWeeklyPopulated(hoursDetails: unknown): boolean {
+  if (!hoursDetails || typeof hoursDetails !== 'object' || Array.isArray(hoursDetails)) {
+    return false;
+  }
+  const weekly = (hoursDetails as { weekly?: unknown }).weekly;
+  if (!weekly || typeof weekly !== 'object' || Array.isArray(weekly)) return false;
+  const w = weekly as WeeklyShape;
+  if (typeof w.daily === 'string' && w.daily.trim().length > 0) return true;
+  return WEEKDAY_DISPLAY.some(({ key }) => {
+    const v = w[key];
+    return typeof v === 'string' && v.trim().length > 0;
+  });
+}
+
+function WeeklyTable({ hoursDetails }: { hoursDetails: unknown }) {
+  if (!hoursDetails || typeof hoursDetails !== 'object' || Array.isArray(hoursDetails)) {
+    return null;
+  }
+  const weekly = (hoursDetails as { weekly?: unknown }).weekly as WeeklyShape | undefined;
+  if (!weekly) return null;
+  if (weekly.daily) {
+    return (
+      <span className="font-mono text-ink-deep">
+        Daily {weekly.daily}
+      </span>
+    );
+  }
+  return (
+    <dl className="font-mono text-ink-deep grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5">
+      {WEEKDAY_DISPLAY.map(({ key, label }) => {
+        const value = weekly[key];
+        const has = typeof value === 'string' && value.trim().length > 0;
+        return (
+          <div key={key} className="contents">
+            <dt className="text-micro uppercase tracking-wider text-muted">{label}</dt>
+            <dd className={'tabular-nums ' + (has ? '' : 'text-muted/70')}>
+              {has ? value : '—'}
+            </dd>
+          </div>
+        );
+      })}
+    </dl>
   );
 }
 

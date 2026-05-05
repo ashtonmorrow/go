@@ -115,7 +115,7 @@ const BENEFIT_TYPES: {
     meaning:
       "The ticketing tool lets you pause the itinerary at the hub without adding airfare. The room, meals, and sightseeing are normally on you.",
     examples:
-      "Copa Airlines, TAP Air Portugal, Avianca, Iberia, Icelandair",
+      "Copa Airlines, TAP Air Portugal, Avianca, Iberia, Icelandair, ANA, JAL",
   },
   {
     type: "Transit tour",
@@ -246,16 +246,18 @@ export default function AirlineStopoverProgramsPage() {
         </p>
         <div className="mt-5 space-y-4 text-prose leading-relaxed text-ink">
           <p>
-            Airline stopovers are worth checking when the route already wants
-            to connect through a hub. The right one can add a cheap city break,
-            a free or discounted hotel, a guided layover tour, or a cleaner
-            way to split a long-haul trip.
+            Stopover programs are not exactly a secret, but I am still
+            surprised by how often friends and colleagues have never used one.
+            This guide is meant to get you up to speed quickly: what a stopover
+            can get you, which airline programs are worth checking, and when
+            the whole thing is more trouble than it is worth.
           </p>
           <p>
-            I would not build a trip around most of these programs. I would
-            use them when they make an itinerary I already need to fly cheaper,
-            easier, or more interesting. Start with the airline cards below.
-            The booking logic and examples are at the end.
+            The basic idea is simple. If your route already connects through a
+            hub, a stopover can let you tick the box on a new place without
+            going far out of your way. Sometimes that means a free hotel,
+            sometimes a discounted package, sometimes a domestic add-on, and
+            sometimes just a cleaner way to split a long-haul trip.
           </p>
         </div>
       </header>
@@ -279,7 +281,9 @@ export default function AirlineStopoverProgramsPage() {
             <p className="mt-2 text-body leading-relaxed text-ink">
               Copa, TAP, Iberia, Icelandair, Avianca, and LOT are the kind of
               programs I check when I want to turn a connection into a short
-              city stay without adding airfare.
+              city stay without adding airfare. ANA and JAL are also worth
+              checking for Japan, especially when a domestic add-on can turn a
+              Tokyo trip into a broader Japan itinerary.
             </p>
           </div>
           <div className="rounded-xl border border-sand bg-white/60 p-5">

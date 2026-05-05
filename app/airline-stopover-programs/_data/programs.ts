@@ -106,6 +106,18 @@ export const PROGRAMS: StopoverProgram[] = [
       "https://www.aircanada.com/en-ca/flights-to-toronto/stopover-in-toronto",
   },
   {
+    airline: "All Nippon Airways (ANA)",
+    alliance: "Star Alliance",
+    cities: "Japan via Tokyo and ANA domestic network",
+    hotelNights: "0",
+    duration:
+      "Up to 2 stopovers per direction on eligible Japan itineraries; first free, second chargeable.",
+    commentary:
+      "Useful for turning a Japan trip into a multi-city itinerary on one ANA ticket. ANA markets one free and one USD 100 stopover per direction on eligible Value, Standard, and Full Flex fares when international and domestic travel are booked together.",
+    programUrl:
+      "https://www.ana.co.jp/en/mm/plan-book/promotions/multiple-stopovers-transfers/",
+  },
+  {
     airline: "Avianca",
     alliance: "Star Alliance",
     cities: "Bogotá (BOG)",
@@ -252,6 +264,18 @@ export const PROGRAMS: StopoverProgram[] = [
     commentary:
       "Add a Madrid stopover at no additional airfare. Includes partner discounts at hotels and attractions.",
     programUrl: "https://www.iberia.com/us/en/iberia-stopover/",
+  },
+  {
+    airline: "Japan Airlines (JAL)",
+    alliance: "oneworld",
+    cities: "Japan via Tokyo, Osaka, and JAL domestic network",
+    hotelNights: "0",
+    duration:
+      "Stopovers over 24 hours via multi-city booking; domestic-flight offer varies by origin market.",
+    commentary:
+      "JAL supports multi-city stopover itineraries and has a complimentary domestic-flight offer for international passengers when the domestic and international flights are booked together. Some origin markets pay a stopover charge if the first Japan stay exceeds 24 hours.",
+    programUrl:
+      "https://www.jal.co.jp/jp/en/inter/reservation/multi-city/",
   },
 
   // SkyTeam

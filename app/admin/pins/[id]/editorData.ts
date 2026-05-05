@@ -27,6 +27,16 @@ export type PinEditorState = {
   // Practical
   website: string | null;
   hours: string | null;
+  /** International phone (E.164). Editable; populated by the Google
+   *  Places enrich button on this page or via bulk enrichment. */
+  phone: string | null;
+  /** Google's price level 0-4. Read-only in the form (the enrich button
+   *  is the only writer). Surfaced as a chip in the "From Google" card. */
+  price_level: number | null;
+  /** Full hours_details jsonb. Read-only in the form. Rendered as a
+   *  small weekly table inside the "From Google" card so the user can
+   *  see what came back without leaving the editor. */
+  hours_details: unknown;
 
   // Cost (legacy)
   price_text: string | null;
@@ -94,6 +104,9 @@ export function rowToPinForEdit(row: any): PinEditorState {
 
     website: asStr(row.website),
     hours: asStr(row.hours),
+    phone: asStr(row.phone),
+    price_level: asNum(row.price_level),
+    hours_details: row.hours_details ?? null,
 
     price_text: asStr(row.price_text),
     price_amount: asNum(row.price_amount),
