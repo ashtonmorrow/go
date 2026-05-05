@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           Hi, I&rsquo;m Mike. This site is the way I keep notes about places I&rsquo;ve been
           and places I want to go. I built it for myself, partly to learn, and I&rsquo;m
           sharing it the way you might share a class notebook with a friend who&rsquo;s
-          studying the same thing. There&rsquo;s no monetization here &mdash; no ads, no
+          studying the same thing. There is no monetization here. No ads, no
           subscriptions, no affiliate links, no products. If you want to hire me to build
           something, my LinkedIn is at the bottom of every page.
         </p>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
           Atlas Obscura, Lonely Planet, NatGeo, TIME) and my own photos, ratings, and
           notes. I link to the original source on each page where it applies. I do my best
           to keep things accurate, but please treat this as travel notes, not a guidebook.
-          Hours, prices, and policies change &mdash; double-check anything you&rsquo;re
+          Hours, prices, and policies change, so double-check anything you&rsquo;re
           actually planning around.
         </p>
       </section>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
             LinkedIn
           </a>{' '}
           and I&rsquo;ll fix or remove it. That includes anything you might consider
-          personal &mdash; photos that include you, references, mistakes about a place
+          personal, including photos that include you, references, or mistakes about a place
           you run.
         </p>
       </section>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
             rel="noopener noreferrer"
             className="text-teal hover:underline"
           >
-            LinkedIn &mdash; Mike Lee
+            LinkedIn, Mike Lee
           </a>
         </p>
       </section>

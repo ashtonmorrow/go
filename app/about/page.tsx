@@ -1,65 +1,58 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-// === SEO + structured data =================================================
-// Page voice for /about is first-person and conversational, matching the
-// way Mike actually writes (the postcard prose voice rules — third
-// person, no "I" — apply to city flavor cards, not to this page).
-// No em dashes anywhere; periods and commas instead.
 export const metadata: Metadata = {
   title: 'About Postcards · Mike Lee',
   description:
-    'Why a Notion workspace of 1,341 cities and 213 countries became an interactive atlas of postcards, a globe, and travel notes.',
+    'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
   keywords: [
-    'notion as cms',
-    'next.js notion',
     'travel atlas',
-    'maplibre globe',
-    'wikidata',
-    'köppen climate',
+    'cultural travel',
+    'city guides',
+    'travel notes',
+    'map travel project',
+    'supabase travel database',
   ],
   alternates: { canonical: 'https://go.mike-lee.me/about' },
   openGraph: {
     type: 'article',
-    title: 'About Postcards. Mike Lee.',
+    title: 'About Postcards · Mike Lee',
     description:
-      'Why a Notion workspace of 1,341 cities became an interactive atlas of postcards.',
+      'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
     url: 'https://go.mike-lee.me/about',
     siteName: 'mike-lee.me',
     publishedTime: '2026-04-26',
+    modifiedTime: '2026-05-04',
     authors: ['Mike Lee'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Postcards. Mike Lee.',
+    title: 'About Postcards · Mike Lee',
     description:
-      'Why a Notion workspace of 1,341 cities became an interactive atlas of postcards.',
+      'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
   },
 };
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'TechArticle',
+  '@type': 'AboutPage',
   headline: 'About Postcards',
-  alternativeHeadline: 'A Notion workspace of 1,341 cities, rendered as a website',
   description:
-    'A walkthrough of the travel atlas. Data model, postcard front-end, MapLibre globe.',
+    'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
   datePublished: '2026-04-26',
-  dateModified: '2026-04-26',
+  dateModified: '2026-05-04',
   inLanguage: 'en',
   isAccessibleForFree: true,
-  proficiencyLevel: 'Intermediate',
   about: [
-    { '@type': 'Thing', name: 'Notion API' },
-    { '@type': 'Thing', name: 'Next.js' },
-    { '@type': 'Thing', name: 'MapLibre GL' },
-    { '@type': 'Thing', name: 'Wikidata' },
-    { '@type': 'Thing', name: 'Travel atlas' },
+    { '@type': 'Thing', name: 'Travel writing' },
+    { '@type': 'Thing', name: 'Cultural travel' },
+    { '@type': 'Thing', name: 'Cartography' },
+    { '@type': 'Thing', name: 'Open data' },
   ],
   author: {
     '@type': 'Person',
     name: 'Mike Lee',
-    url: 'https://www.linkedin.com/in/mikelee89/',
+    url: 'https://mike-lee.me/',
   },
   publisher: {
     '@type': 'Person',
@@ -72,8 +65,6 @@ const articleJsonLd = {
   },
 };
 
-// =============================================================================
-
 export default function AboutPage() {
   return (
     <article className="max-w-prose mx-auto px-5 py-10 md:py-14">
@@ -82,7 +73,6 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
-      {/* === Header === */}
       <header className="mb-10">
         <div className="text-small text-muted mb-3">
           <Link href="/cities">Postcards</Link>
@@ -91,131 +81,161 @@ export default function AboutPage() {
         </div>
         <h1 className="text-h1 text-ink-deep">About Postcards</h1>
         <p className="text-h3 text-slate font-normal mt-3">
-          Built on Notion. Connected to 1,341 cities and 213 countries.
+          A public version of my travel notes, built from cities, maps,
+          saved places, and the things I want to remember before I book.
         </p>
         <p className="text-small text-muted mt-4">
-          Published April 2026. Mike Lee.
+          Published April 2026. Updated May 2026. Mike Lee.
         </p>
       </header>
 
-      {/* === The lede ===
-          Mike's actual intro from the Figma mock. First person, casual,
-          tells the origin story. Card-styled callout to set it apart from
-          the body sections that follow. */}
-      <section id="about" className="scroll-mt-6 mb-10">
+      <section id="what-this-is" className="scroll-mt-6 mb-10">
         <div className="card p-5 md:p-6 not-prose space-y-4 text-ink leading-relaxed">
           <p>
-            I keep all my notes about travelling in Notion. Originally this
-            collection started as an Airtable that I used to keep
-            reservations, and itinerary details. Notion works alot better
-            for my purpose today because it is easier to collaborate with
-            small groups in whereas Airtable charges per seat.
+            I have kept travel notes for years because the useful details are
+            easy to lose. I want to remember which neighborhood made sense,
+            which museum needed more time, which airport transfer was
+            annoying, which beach was worth the train ride, and which saved
+            place looked better on a map than it did in person.
           </p>
           <p>
-            After many cancelled reservations and uncomfortable nights in
-            non reclining seats, I figured it might be cool to have a more
-            structured front end to bring this data and other data sources
-            together in a single place.
+            This site turns that private system into a public atlas. It is not
+            a neutral guidebook and it is not a ranked list of places to see.
+            It is closer to a working notebook from a traveler who usually
+            explores on foot, uses public transportation when it is safe and
+            convenient, and takes a taxi or private transfer when that is the
+            sensible choice.
+          </p>
+          <p>
+            Some pages are polished travel writing. Some are still structured
+            notes with facts, photos, and saved places waiting for better
+            prose. I would rather show the state of the notebook honestly than
+            make every page sound finished before it is useful.
           </p>
         </div>
       </section>
 
-      {/* === Table of contents === */}
       <nav aria-label="Contents" className="card p-5 mb-10 not-prose">
         <p className="text-micro uppercase tracking-[0.18em] text-muted font-medium mb-3">
           Contents
         </p>
         <ul className="space-y-1.5 text-small">
-          <li><a href="#about">What this is</a></li>
-          <li><a href="#data">The data model</a></li>
-          <li><a href="#postcards">The postcards</a></li>
-          <li><a href="#map">The map</a></li>
+          <li><a href="#what-this-is">What this is</a></li>
+          <li><a href="#what-i-track">What I track</a></li>
+          <li><a href="#city-pages">How to read the city pages</a></li>
+          <li><a href="#maps-lists-pins">Maps, lists, and pins</a></li>
+          <li><a href="#sources">Sources and judgment</a></li>
           <li><a href="#stack">Stack and hosting</a></li>
           <li><a href="#resources">Resources</a></li>
         </ul>
       </nav>
 
-      {/* === Article body ============================================== */}
       <div className="space-y-10 text-ink leading-relaxed">
-
-        <section id="data" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">The data model</h2>
+        <section id="what-i-track" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">What I Track</h2>
           <p>
-            Two databases sit at the centre of all this, both in Notion. One
-            for cities, one for countries. They link to each other so I only
-            have to fill out the country logistics once, and every city
-            inside that country picks them up.
+            The database starts with cities and countries, then connects them
+            to pins, saved lists, climate data, flags, photos, and practical
+            travel fields. A city page can hold the obvious reference data,
+            such as population, coordinates, time zone, climate, and country.
+            It can also hold the parts that matter more when I am planning a
+            real trip: why I would go, what might make me avoid it, when the
+            weather is difficult, and which nearby places make sense by train,
+            ferry, bus, or short drive.
           </p>
           <p className="mt-4">
-            The cities database has the structured stuff you would expect:
-            population, founding date, climate, time zone, lat and long. The
-            countries database has the practical bits that actually matter
-            when you are planning a trip. Visa requirements for a US
-            passport. Whether the tap water is safe to drink. Plug types
-            and voltage for charging your stuff. Which side of the road
-            they drive on.
-          </p>
-          <p className="mt-4">
-            Most of this data is not me typing things in. The structured
-            facts come from Wikidata and Wikipedia. The climate numbers
-            come from Open-Meteo. I curate the things only I can know,
-            like which places I have actually been to and which Google
-            Maps lists go with which city.
+            The country records keep the slow logistics in one place. Visa
+            rules, tap water, plug types, voltage, driving side, currency, and
+            language are not glamorous details, but they shape the first hour
+            of almost every trip. Keeping them structured means the city pages
+            can stay focused on place rather than repeating the same basics.
           </p>
         </section>
 
-        <section id="postcards" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">The postcards</h2>
+        <section id="city-pages" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">
+            How to Read the City Pages
+          </h2>
           <p>
-            Every city is a Notion page that gets rendered on this site as a
-            postcard. Country flag as the stamp, postmark cancellation over
-            the top that reads VISITED or PLANNING depending on whether I
-            have been there or want to go.
+            A good city page should help you decide whether a place belongs in
+            a trip, not simply decorate it with travel language. The About
+            section gives the main orientation: what the city is like today,
+            what history still shapes it, and how it changes if you have one
+            or two days instead of one or two weeks. The Why Visit section is
+            about culture, architecture, landscape, food, music, museums,
+            books, neighborhoods, and nearby routes. The Avoid section is
+            blunt by design. Crowds, pickpockets, scams, air pollution,
+            difficult weather, weak transit, and disappointing tourist zones
+            are part of the decision.
           </p>
           <p className="mt-4">
-            Hover any postcard and it flips around to show a little map of
-            where the city actually is. Click through and you get the full
-            page with all the structured data, my saved Google Maps list
-            for that city if there is one, and a list of its sister cities
-            you can jump to from there.
+            I try to keep the tone useful. Barcelona, for example, is not just
+            a Gothic Quarter and Gaudi checklist. It is also beaches, commuter
+            rail, wine country, Montserrat, day trips to Sitges, and the
+            practical reality of crowds and pickpockets in the center. The
+            page should help someone plan around both truths.
           </p>
         </section>
 
-        <section id="map" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">The map</h2>
+        <section id="maps-lists-pins" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">
+            Maps, Lists, and Pins
+          </h2>
           <p>
-            The map is a 3D globe of every city in the atlas. Drag to spin
-            it around, scroll to zoom in. The pins are colour coded. Teal
-            for cities I have been to, slate for cities I want to go, and
-            small sand-coloured dots for the wider sister-city network that
-            connects everything together.
+            The map views are there because travel planning is spatial. A
+            place that looks essential in a list can be awkward once you see
+            where it sits. The city globe shows the broader atlas. The pin
+            map shows museums, gardens, restaurants, historic sites, stations,
+            viewpoints, UNESCO places, saved ideas, and places I have actually
+            visited.
           </p>
           <p className="mt-4">
-            Click any pin and that city gets selected. Its sister cities
-            highlight in amber and dashed lines draw between them, so you
-            can see the trade and twinning relationships across continents.
-            A small card pops up in the corner with a link straight to
-            that city&apos;s postcard.
+            The saved lists come from Google Maps, but the goal is to make
+            them more useful than a private pile of stars. A list can become a
+            city research page, a food shortlist, a day-trip cluster, or a
+            reminder that something was saved years ago and still needs a
+            second look.
+          </p>
+        </section>
+
+        <section id="sources" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">Sources and Judgment</h2>
+          <p>
+            Public facts come from sources such as Wikidata, Wikipedia, NASA
+            POWER, OpenStreetMap, UNESCO, and other open or cited reference
+            sources. Personal photographs, ratings, lists, reviews, and
+            practical judgments come from my own travel notes. The two should
+            not be confused. A population figure is a reference fact. Whether
+            a place is worth building a trip around is a judgment, and it
+            should explain itself.
+          </p>
+          <p className="mt-4">
+            I expect the site to keep changing. Hours, prices, airline rules,
+            visa policies, and safety conditions move faster than a personal
+            site can guarantee. Treat this as a well-kept notebook and check
+            live details before you plan around them.
           </p>
         </section>
 
         <section id="stack" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">Stack and hosting</h2>
+          <h2 className="text-h2 text-ink-deep mb-4">Stack and Hosting</h2>
           <p>
-            Everything here runs on free tiers. Nothing on this site costs
-            me anything to keep online.
+            The technical side matters because it lets the project stay
+            maintainable. The goal is not to build a travel startup. It is to
+            keep one careful set of notes online without turning it into a
+            second job.
           </p>
           <Table
             head={['Component', 'Implementation']}
             rows={[
-              ['Framework', 'Next.js 15 with React 19'],
-              ['Language', 'TypeScript 5.7'],
-              ['Styling', 'Tailwind CSS 3.4'],
-              ['Data', 'Notion REST API via @notionhq/client'],
-              ['Map', 'MapLibre GL JS v5 with react-map-gl v8'],
-              ['Tiles', 'OpenFreeMap. Free, no API key.'],
-              ['Hosting', 'Vercel. Free tier.'],
-              ['Repository', 'GitHub. Public.'],
+              ['Framework', 'Next.js with React and TypeScript'],
+              ['Data', 'Supabase Postgres, migrated from an older Notion setup'],
+              ['Images', 'Supabase Storage, Wikimedia Commons, and personal photos'],
+              ['Maps', 'MapLibre GL and OpenStreetMap tiles'],
+              ['Climate', 'NASA POWER and Open-Meteo where available'],
+              ['Structured facts', 'Wikidata, Wikipedia, and curated overrides'],
+              ['Hosting', 'Vercel'],
+              ['Repository', 'GitHub'],
             ]}
           />
         </section>
@@ -224,18 +244,18 @@ export default function AboutPage() {
           <h2 className="text-h2 text-ink-deep mb-4">Resources</h2>
           <ul className="list-disc list-outside pl-6 space-y-2">
             <li>
-              <a href="https://developers.notion.com/" target="_blank" rel="noopener noreferrer">
-                Notion API documentation
+              <a href="https://supabase.com/docs" target="_blank" rel="noopener noreferrer">
+                Supabase documentation
               </a>
             </li>
             <li>
               <a href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank" rel="noopener noreferrer">
-                MapLibre GL JS docs
+                MapLibre GL JS documentation
               </a>
             </li>
             <li>
-              <a href="https://openfreemap.org/" target="_blank" rel="noopener noreferrer">
-                OpenFreeMap
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+                OpenStreetMap
               </a>
             </li>
             <li>
@@ -244,13 +264,8 @@ export default function AboutPage() {
               </a>
             </li>
             <li>
-              <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
-                Open-Meteo
-              </a>
-            </li>
-            <li>
-              <a href="https://ski.mike-lee.me/readme.html" target="_blank" rel="noopener noreferrer">
-                ski.mike-lee.me/readme.html
+              <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener noreferrer">
+                NASA POWER
               </a>
             </li>
             <li>
@@ -260,7 +275,6 @@ export default function AboutPage() {
             </li>
           </ul>
         </section>
-
       </div>
     </article>
   );

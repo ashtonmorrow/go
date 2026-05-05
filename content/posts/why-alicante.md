@@ -4,7 +4,7 @@ subtitle: Notes from six weeks living and working there.
 hero_image: /images/posts/why-alicante.jpg
 hero_alt: The Castle of Santa Bárbara above Postiguet Beach in Alicante at midday.
 published: 2026-04-30
-updated: 2026-04-30
+updated: 2026-05-04
 indexable: true
 authors:
   - Mike Lee
@@ -36,7 +36,7 @@ From Valencia, the AVE is around 1 hour 35 minutes. Worth knowing if you are alr
 
 From Barcelona by rail, the journey is longer (around 5 hours), so most visitors fly that segment.
 
-You can also fly direct. Alicante–Elche Airport (ALC) is well-served by European low-cost carriers (Ryanair, Vueling, easyJet) and is often the simplest option from London, Paris, Amsterdam, or any of the German hubs. I do not know of nonstop transatlantic service to ALC, so for travelers from the Americas the rail-from-Madrid path remains the standard.
+You can also fly direct. Alicante-Elche Airport (ALC) is well-served by European low-cost carriers (Ryanair, Vueling, easyJet) and is often the simplest option from London, Paris, Amsterdam, or any of the German hubs. I do not know of nonstop transatlantic service to ALC, so for travelers from the Americas the rail-from-Madrid path remains the standard.
 
 ## The beaches
 

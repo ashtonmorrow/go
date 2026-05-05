@@ -1,10 +1,10 @@
 ---
 title: A travel brief on Cape Town
-subtitle: Where to stay, where to eat, and what to do, based on a few weeks on the ground.
+subtitle: Where I stayed, what worked, and what I would plan around after a few weeks there.
 hero_image: /images/posts/cape-town-travel-brief.jpg
 hero_alt: Table Mountain rising above the Cape Town city bowl at midday.
 published: 2026-04-30
-updated: 2026-04-30
+updated: 2026-05-04
 indexable: true
 authors:
   - Mike Lee
@@ -20,120 +20,64 @@ tags:
   - travel-guide
 ---
 
-A short brief on Cape Town based on a few weeks I spent there. Mediterranean climate, a striking landscape (Table Mountain and the surrounding coast), an unexpectedly strong food scene, and infrastructure that mostly works. The country is in the southern hemisphere, so seasons are inverted from Europe and North America.
+Cape Town is easy to love and not always easy to move through casually. That combination is the whole point of planning it well.
 
-## Key facts
+I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: Table Mountain above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how easy they made the day.
 
-- **Currency:** South African Rand (ZAR)
-- **Language:** English; Afrikaans and Xhosa are widely spoken
-- **Rideshare:** Uber and Bolt
-- **Food delivery:** Uber Eats, Mr. D (local), Glovo
-- **Population:** roughly 4.7 million in the metropolitan area
-- **Climate:** Mediterranean, with warm dry summers and mild wet winters
-- **Time zone:** South Africa Standard Time (SAST), UTC+2
-- **Visa:** 90 days visa-free for around 60 nationalities, including the United States, the United Kingdom, Canada, Australia, New Zealand, most of the EU, and many others. Check the official list before booking.
+## What I would tell someone first
 
-## Stuff you should know
+Cape Town rewards a little caution without needing paranoia. Phone snatching is common enough that I would not walk around navigating with a phone held out in front of me. Step aside, check the route, put the phone away, and move on. At night, I would rather take a short Uber than turn a poorly lit walk into a test of confidence.
 
-Rolling blackouts (load-shedding) are still a fact of life. Pick a hotel with a generator if you want uninterrupted wifi and power.
+Card payment is the norm in many places, so bring a card with tap-to-pay and a backup. I used very little cash. Uber and Bolt are both useful, and Uber was my default for getting around the city.
 
-Phone snatching is common. Do not walk around with your phone in your hand. If you need to navigate, pull off to the side, look at it, and put it away.
+Power cuts have been part of South African travel planning in recent years, even when the schedule is less disruptive than older writeups make it sound. I would still ask a hotel whether it has generator or backup power if you need reliable wifi, elevators, or air conditioning for work.
 
-Most places do not take cash. A card with tap-to-pay is essential.
+The seasons are inverted from Europe and North America. October through April is the warmer, drier outdoor window. June through August is cooler and wetter, but it is also the better period for whale watching along the coast.
 
-Uber is cheap and one of the safer ways to move around the city. I used it for almost everything.
+## Where I would stay
 
-## Planning the trip
+I stayed long enough to care less about hotel glamour and more about whether the room worked as a base.
 
-### When to go
-
-Southern hemisphere, so winter and summer are inverted relative to Europe and North America. October through April is the warm dry season with the most outdoor time. June through August is cooler and wetter, but it is the better window for whale watching off the coast.
-
-### How to get there
-
-Cape Town International Airport (CPT) is the main entry point. From the airport to a hotel:
-
-- **Uber from the airport** runs R200 to R400, depending on where you are headed.
-- **Pre-booked hotel transfer.** I paid about $25 for a Mercedes transfer to my hotel. The driver was excellent and gave me a lot of useful local advice.
-
-## Where to stay
-
-### Hotels at a glance
-
-| Hotel | Best for | Caveats |
+| Place | Why it worked | The trade-off |
 |---|---|---|
-| Hyatt Regency Cape Town | Long stays, working from the room | Breakfast is ordinary; club lounge is small |
-| The Cellars-Hohenort | Grounds, restaurant, hiking access | Some rooms felt dated; pricey |
-| Protea Cape Town Waterfront | Walkable to V&A, value | Not luxury, but the location is the draw |
+| Hyatt Regency Cape Town | Spacious room, good for working, practical city base | Ordinary breakfast and a small lounge |
+| The Cellars-Hohenort | Grounds, restaurant, access toward Table Mountain | Some rooms felt dated when I stayed |
+| Protea Cape Town Waterfront | Easy V&A Waterfront access, practical value | Not luxury, but that is not the point |
+| De Waterkant | Apartment-friendly, close to restaurants and shopping | More of a pocket than a whole neighborhood |
+| Sea Point | Coastal walks, restaurants, easier daily rhythm | Not as close to the old-city sights |
 
-### Hotels I would stay in again
+The Cellars-Hohenort is the one that felt most like a place rather than a base: garden paths, mountain access, and a restaurant that justified the trip out of the center. The Hyatt was better for a long working stay. The Protea at Breakwater Lodge was useful because the V&A Waterfront was easy at night and the room did not need to pretend to be more than it was.
 
-**Hyatt Regency Cape Town.** I stayed here for several weeks in a suite. The room was spacious and worked well as a daily base. The breakfast was nothing special and the lounge area is small. Not the right pick if a strong club lounge matters to you, but the room itself is good.
+If I were renting an apartment, I would look first at De Waterkant or Sea Point. De Waterkant is convenient and compact. Sea Point gives you the promenade, food, and a calmer daily rhythm near the water.
 
-**The Cellars-Hohenort.** Parts of the property were under renovation when I stayed, and the unrenovated rooms felt dated. The grounds, though, are exceptional, and the restaurant is one of the best I ate at on the trip. Pricier than the average city hotel; the location is also convenient for hiking Table Mountain.
+## How I would structure the days
 
-**Protea Cape Town Waterfront (Breakwater Lodge).** Convenient to the V&A Waterfront restaurants and shopping, walkable at night without feeling unsafe, and not expensive.
+Table Mountain should be planned around weather, not around your preferred slot on the itinerary. The top can be much colder and windier than the city below, and the cable car line gets long on clear days and weekends. I had a twisted ankle when I visited, so I did not hike Platteklip Gorge. If I went back in better shape, I would still bring a jacket and treat the mountain as its own half-day rather than a quick view.
 
-### Where I would stay in a rental
+Kirstenbosch Botanical Gardens is the easier outdoor day: lower effort, beautiful setting on the eastern slopes of Table Mountain, and a canopy walkway with a clear view back across the gardens. It is a better choice than forcing a hike if the weather or your knees are not cooperating.
 
-**De Waterkant.** The small pocket between the Waterfront and the city has good apartments close to restaurants and shopping.
+The V&A Waterfront is commercial, but useful. You can eat, shop, get the Robben Island ferry, and usually walk over to see the working harbor. I had a good meal at Karibu, with most plates in the $10 to $20 range when I went. The free side trip is watching the seals around the harbor.
 
-**Sea Point.** Relaxed, on the coast, with easy access to the Sea Point Promenade and the beaches.
+Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop.
 
-## Places I enjoyed eating (that aren't covered elsewhere)
+For wine, the Hop-on, Hop-off Wine Tram is the easy version. Pick a line, arrange transport in and out, and do not drive yourself. I took the Orange Line; Babylonstoren and Bacco were the two stops I enjoyed most. The flights are good value if your goal is to taste widely rather than commit to one estate.
 
-**Yen's Vietnamese Street Food.** Not strictly authentic, but fresh and well-made.
+## Beaches, coastal walks, and penguins
 
-**Sea Breeze Fish & Shell.** Seafood. Everything I had was good.
+Clifton is a series of smaller coves with sheltered swimming. Camps Bay is wider, more social, and lined with restaurants across the road. Sea Point is not really a beach day in the same way; it is a promenade day, which is often more useful if you just want to walk by the water without turning the afternoon into logistics.
 
-**The Neighbourgoods Market** (at the Old Biscuit Mill). Outdoor, tent-based food hall with limited hours. Some stalls are overpriced and some are reasonable. The venue is the draw.
+Boulders Beach is the penguin trip. The boardwalk lets you photograph the colony near Cape Point, but it is a real drive from the city center, so I would fold it into a longer day rather than treat it as a quick errand. Seaforth Restaurant nearby was fine when I went: good patio, acceptable food, older crowd.
 
-**Eastern Food Bazaar.** Indian, with a Southeast Asian-style hawker feel.
+Bo-Kaap is worth an hour on foot for the painted houses and Cape Malay history, but I would stay aware of the street-by-street feel. If a block feels off, turn around. That is not a moral judgment. It is just how I would move there.
 
-**Heaven Coffee Shop.** A coffee shop inside a former church.
+## Food notes that stuck
 
-**Crankshaft Coffee.** A coffee bar inside a classic car dealership; Rolls-Royces and other expensive cars on the floor.
+The food scene was stronger than I expected. Yen's Vietnamese Street Food was fresh and well-made, though not strictly authentic. Sea Breeze Fish & Shell was reliable for seafood. Eastern Food Bazaar had an Indian and Southeast Asian hawker feel and worked well as an unfussy meal.
 
-## What to do
+The Neighbourgoods Market at the Old Biscuit Mill is more about the venue than any one stall. Some prices are fair, some are tourist prices, and that is normal for a market that has become part of the visitor circuit. Heaven Coffee Shop, inside a former church, is worth a stop for the setting. Crankshaft Coffee sits inside a classic car dealership, which is a very specific kind of Cape Town morning if you like coffee next to expensive machinery.
 
-### Climb Table Mountain
+## What I would handle carefully
 
-Hike up or take the cable car to the summit for the panoramic view. The line for the cable car gets long on weekends and clear days; the skip-the-line ticket is worth the upcharge. The hike up Platteklip Gorge is the standard route. I had a twisted ankle when I visited, so I have not done it. Bring a jacket and rain gear; the top runs much colder and windier than the city below, often a 10 to 15°C swing.
+Aquila Game Reserve is the simple safari add-on from Cape Town. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the long drive is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went.
 
-### Shop and eat at the V&A Waterfront
-
-A retail and dining complex on the harbor. Karibu is a white-tablecloth game restaurant with most plates in the $10 to $20 range. From the Waterfront you can usually walk over to the working harbor and watch the seals, which is a good free side trip.
-
-### Visit Robben Island
-
-Take the ferry from the V&A Waterfront. The former prison where Nelson Mandela was held. The tour is led by former political prisoners.
-
-### Ride the Hop-on, Hop-off Wine Tram
-
-The wine tram has several lines that hit different mixes of vineyards. Pick a line, arrange transport in and out (do not drive yourself; get a driver), and use the day pass to move between wineries. The wine flights are the best value for tasting widely. I took the Orange Line; Babylonstoren and Bacco were the two I enjoyed most.
-
-### Beaches
-
-**Clifton Beach.** A series of small connected coves with sheltered swimming.
-
-**Camps Bay.** The wider beach south of Clifton, with restaurants and bars across the road.
-
-### Explore Kirstenbosch Botanical Gardens
-
-On the eastern slopes of Table Mountain. The Boomslang Walkway is a treetop canopy walk with a clear view across the gardens.
-
-### See the penguins at Boulders Beach
-
-A boardwalk along the beach near Cape Point lets you photograph the penguin colony. (You cannot actually walk on the beach itself.) It is a decent drive from the city center, so plan it as a day trip. Seaforth Restaurant nearby is fine for lunch. The patio is good, the food is OK, and the crowd skews 60 and up.
-
-### Stroll through Bo-Kaap
-
-The brightly painted houses and the Cape Malay neighborhood. Worth an hour of walking. There are some transients in the area; if a street feels off, do not go down it.
-
-### Sea Point
-
-A quieter coastal walk along the promenade with sculptures and food kiosks. Two blocks inland is a denser cluster of hostels, bars, and restaurants. Mojo Market is a food hall with a good atmosphere; the food is fine but not the reason to go. Brad's Grill across the way runs the opposite trade-off, with strong steaks in a forgettable room.
-
-### Aquila Game Reserve safari
-
-A few hours from the city, with a chance to see the Big Five. Take the package where they pick you up; you can sleep in the van both ways. The basic ticket includes a hotel breakfast buffet (slow lines), a two-hour safari drive, and access to the lodge area with a heated pool, bar, and lounges overlooking the savannah. An overnight stay is worth the upgrade if you have the time. Add-ons are available for horseback riding, ATV tours, and similar.
+I would not overfill a Cape Town trip. The city is better when you let the mountain, coast, food, and day trips have room. One large outdoor plan, one meal you care about, and a short Uber back to a sensible base is often the right day.

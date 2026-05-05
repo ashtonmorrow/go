@@ -4,12 +4,10 @@ export type StopoverProgram = {
   airline: string;
   alliance: Alliance | null;
   cities: string; // e.g. "Istanbul (IST)"
-  hotelNights: string; // e.g. "0", "1", "1–2"
+  hotelNights: string; // e.g. "0", "1", "1-2"
   duration: string; // validity window
   commentary: string;
   programUrl: string;
-  /** Stub rows that show up in the "Researching" section at the bottom. */
-  isStub?: boolean;
 };
 
 export const ALLIANCES: Alliance[] = [
@@ -64,16 +62,15 @@ export const ALLIANCE_STYLES: Record<
  * (descending nights) first, then no-hotel programs alphabetically by airline.
  */
 export const PROGRAMS: StopoverProgram[] = [
-  // ── Star Alliance ─────────────────────────────────────────────────────
+  // Star Alliance
   {
     airline: "Turkish Airlines",
     alliance: "Star Alliance",
     cities: "Istanbul (IST)",
-    hotelNights: "1–2",
-    duration:
-      "Stopover program with a free hotel benefit (timing depends on eligibility rules).",
+    hotelNights: "1-2",
+    duration: "Stopover hotel: at least 20 hours and up to 7 days.",
     commentary:
-      "Complimentary hotel for eligible itineraries: typically one night for economy passengers and two nights for business.",
+      "Complimentary hotel for eligible international round-trip itineraries: generally one night in economy or two nights in business. Turkish also runs Touristanbul, a separate guided city tour for eligible 6 to 24-hour layovers.",
     programUrl: "https://www.turkishairlines.com/en-int/flights/stopover/",
   },
   {
@@ -102,9 +99,9 @@ export const PROGRAMS: StopoverProgram[] = [
     alliance: "Star Alliance",
     cities: "Toronto (YYZ)",
     hotelNights: "0",
-    duration: "Up to 48 hours.",
+    duration: "Legacy public page says up to 7 days; verify availability.",
     commentary:
-      "Toronto stopover offered on select itineraries. Positioned as a destination experience rather than a hotel benefit.",
+      "Air Canada has a Toronto stopover page, but the visible public page is old. I would not plan around it unless the booking flow or airline confirms it.",
     programUrl:
       "https://www.aircanada.com/en-ca/flights-to-toronto/stopover-in-toronto",
   },
@@ -124,7 +121,7 @@ export const PROGRAMS: StopoverProgram[] = [
     alliance: "Star Alliance",
     cities: "Panama City (PTY)",
     hotelNights: "0",
-    duration: "24 hours to 7 days.",
+    duration: "24 hours to 15 days.",
     commentary:
       "Add a Panama stopover on eligible itineraries with no additional airfare.",
     programUrl: "https://panama-stopover.com/en/",
@@ -138,6 +135,16 @@ export const PROGRAMS: StopoverProgram[] = [
     commentary:
       "Stopover programme oriented around Munich as an itinerary add-on. The offering centers on partner experiences and bookings rather than included hotel nights.",
     programUrl: "https://www.lufthansa.com/us/en/book-and-manage/stopover",
+  },
+  {
+    airline: "LOT Polish Airlines",
+    alliance: "Star Alliance",
+    cities: "Warsaw (WAW)",
+    hotelNights: "0",
+    duration: "24 hours to 8 days.",
+    commentary:
+      "LOT Stopover is a Warsaw stop on eligible round-trip journeys that do not start in Poland. It gives partner discounts and Polish domestic-flight offers, not an included hotel.",
+    programUrl: "https://www.lot.com/al/en/explore/lot-stopover",
   },
   {
     airline: "Singapore Airlines",
@@ -161,22 +168,22 @@ export const PROGRAMS: StopoverProgram[] = [
     programUrl: "https://www.flytap.com/en-us/stopover",
   },
 
-  // ── oneworld ──────────────────────────────────────────────────────────
+  // oneworld
   {
     airline: "Qatar Airways",
     alliance: "oneworld",
     cities: "Doha (DOH)",
-    hotelNights: "1–4",
+    hotelNights: "1-4",
     duration: "Transit 12 to 96 hours; up to 4 nights.",
     commentary:
-      "Discounted stopover hotel packages sold through Qatar Stopover. Hotel is generally not complimentary.",
+      "Discounted stopover hotel packages sold through Qatar Stopover. Useful, but not the same as a complimentary hotel.",
     programUrl: "https://www.qatarairways.com/en/offers/qatar-stopover.html",
   },
   {
     airline: "Oman Air",
     alliance: "oneworld",
     cities: "Muscat (MCT)",
-    hotelNights: "1–3",
+    hotelNights: "1-3",
     duration: "1 to 3 nights.",
     commentary:
       "Bookable stopover packages with hotel nights included in the bundle. Pricing varies.",
@@ -201,8 +208,18 @@ export const PROGRAMS: StopoverProgram[] = [
     hotelNights: "1",
     duration: "8 to 24 hours.",
     commentary:
-      "Complimentary hotel in Colombo for eligible transit passengers within the stated window. Conditions apply.",
+      "Complimentary Colombo transit hotel for eligible SriLankan-to-SriLankan connections on one through ticket. Published fare thresholds, visa responsibility, and advance confirmation rules apply.",
     programUrl: "https://www.srilankan.com/en_uk/plan-and-book/transit-accommodation",
+  },
+  {
+    airline: "Royal Air Maroc",
+    alliance: "oneworld",
+    cities: "Casablanca (CMN)",
+    hotelNights: "possible",
+    duration: "Over 8 hours; availability and exit permission matter.",
+    commentary:
+      "Royal Air Maroc publishes transit support at Casablanca: meal vouchers after 4 hours and possible hotel accommodation after 8 hours. Treat this as conditional transit handling, not a flexible stopover holiday.",
+    programUrl: "https://www.royalairmaroc.com/ao-en/airport-transit",
   },
   {
     airline: "British Airways",
@@ -237,7 +254,7 @@ export const PROGRAMS: StopoverProgram[] = [
     programUrl: "https://www.iberia.com/us/en/iberia-stopover/",
   },
 
-  // ── SkyTeam ───────────────────────────────────────────────────────────
+  // SkyTeam
   {
     airline: "Saudia",
     alliance: "SkyTeam",
@@ -247,6 +264,37 @@ export const PROGRAMS: StopoverProgram[] = [
     commentary:
       "Stopover visa flow with a one-night accommodation benefit on eligible Saudia itineraries.",
     programUrl: "https://www.saudia.com/transit-visa",
+  },
+  {
+    airline: "XiamenAir",
+    alliance: "SkyTeam",
+    cities: "Xiamen (XMN), Fuzhou (FOC), Quanzhou (JJN), Hangzhou (HGH)",
+    hotelNights: "1",
+    duration: "6 to 24 hours; flights must not depart on the same calendar day.",
+    commentary:
+      "Free transit accommodation for eligible international or regional connecting flights on the same ticket. Hotel level depends on cabin; ground transport is not included.",
+    programUrl:
+      "https://www.xiamenair.com/brandnew_EN/passenger-service/transfer-cf.html",
+  },
+  {
+    airline: "China Airlines",
+    alliance: "SkyTeam",
+    cities: "Taipei (TPE)",
+    hotelNights: "possible",
+    duration: "Campaign-specific; current UK offer covers eligible 2026 dates.",
+    commentary:
+      "China Airlines has active Taipei stopover marketing, including a route-specific free-hotel campaign from London Heathrow for eligible 2026 travel. Useful, but verify the campaign, route, passport, and travel-date rules before booking.",
+    programUrl: "https://taipeistopover.service.china-airlines.com/",
+  },
+  {
+    airline: "China Eastern Airlines",
+    alliance: "SkyTeam",
+    cities: "Selected China Eastern and Shanghai Airlines hubs",
+    hotelNights: "possible",
+    duration: "Long overnight transit on eligible MU or FM itineraries.",
+    commentary:
+      "China Eastern publishes an official overnight transit hotel application, but the public page exposes limited rule detail. Confirm airport, ticket stock, fare eligibility, and application approval before relying on it.",
+    programUrl: "https://us.ceair.com/en/transit-hotel-application.html",
   },
   {
     airline: "Korean Air",
@@ -270,15 +318,26 @@ export const PROGRAMS: StopoverProgram[] = [
     programUrl: "https://www.flysas.com/en/themes/stopover",
   },
 
-  // ── Non-aligned ───────────────────────────────────────────────────────
+  // Non-aligned
+  {
+    airline: "Air Astana",
+    alliance: "Non aligned",
+    cities: "Almaty (ALA), Astana (NQZ)",
+    hotelNights: "1",
+    duration: "Minimum 10-hour international connection.",
+    commentary:
+      "MySTOPOVER offers one hotel night, breakfast, and airport transfers for a small fixed package price on eligible international connections through Kazakhstan. Extra nights may be available for an added fee.",
+    programUrl:
+      "https://ir.airastana.com/en/about-us/company-news/air-astana-resumes-stopover-holiday-program/",
+  },
   {
     airline: "Etihad",
     alliance: "Non aligned",
     cities: "Abu Dhabi (AUH)",
-    hotelNights: "1–2",
-    duration: "Minimum 24-hour stop, commonly up to 96 hours.",
+    hotelNights: "1-2",
+    duration: "24 to 96 hours.",
     commentary:
-      "Abu Dhabi Stopover. Complimentary hotel stay of up to two nights on eligible bookings.",
+      "Abu Dhabi Stopover. Complimentary stay of up to two nights at selected hotels on eligible Etihad bookings.",
     programUrl: "https://www.etihad.com/en/abu-dhabi/stopover",
   },
   {
@@ -299,11 +358,33 @@ export const PROGRAMS: StopoverProgram[] = [
     cities: "Dubai (DXB)",
     hotelNights: "1",
     duration:
-      "Applied to long connections when no better routing is available. Commonly cited as 10 to 24 hours.",
+      "6 or 8 to 26 hours, depending on cabin and itinerary rules.",
     commentary:
-      "Dubai Connect. Complimentary hotel, transfers, and meals for eligible long connections.",
+      "Dubai Connect. Complimentary hotel, transfers, and meals for eligible long connections when the itinerary uses the shortest available connection.",
     programUrl:
       "https://www.emirates.com/english/before-you-fly/dubai-international-airport/dubai-connect/",
+  },
+  {
+    airline: "Gulf Air",
+    alliance: "Non aligned",
+    cities: "Bahrain (BAH)",
+    hotelNights: "1",
+    duration: "Economy over 7 and under 24 hours; Falcon Gold over 6 and under 24 hours.",
+    commentary:
+      "Bahrain Stopover Paid by Carrier can provide a complimentary hotel for qualifying Gulf Air-operated through fares that meet fare-value and connection-time rules. Non-qualifying passengers may be able to buy the service.",
+    programUrl:
+      "https://www.gulfair.com/explore/explore-bahrain/transit-in-bahrain",
+  },
+  {
+    airline: "Hainan Airlines",
+    alliance: "Non aligned",
+    cities: "Haikou (HAK), Chongqing (CKG); Beijing and Shenzhen listed as forthcoming",
+    hotelNights: "1",
+    duration: "Haikou: over 4 to 72 hours; Chongqing hotel: over 8 to 48 hours.",
+    commentary:
+      "Hainan publishes transfer benefits at selected Chinese hubs. Haikou offers one complimentary room voucher for eligible international or regional transfer passengers; Chongqing offers a hotel for eligible overnight transfers, subject to advance QR-code application and daily room limits.",
+    programUrl:
+      "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=US&PAGE=ATST&SITE=CBHZCBHZ",
   },
   {
     airline: "Icelandair",
@@ -315,57 +396,16 @@ export const PROGRAMS: StopoverProgram[] = [
       "Add an Iceland stopover on transatlantic itineraries with no additional airfare.",
     programUrl: "https://www.icelandair.com/flights/stopover/",
   },
-
-  // ── Researching (no details yet) ──────────────────────────────────────
   {
-    airline: "China Airlines",
-    alliance: null,
-    cities: "",
-    hotelNights: "",
-    duration: "",
-    commentary: "",
-    programUrl: "",
-    isStub: true,
-  },
-  {
-    airline: "China Eastern",
-    alliance: null,
-    cities: "",
-    hotelNights: "",
-    duration: "",
-    commentary: "",
-    programUrl: "",
-    isStub: true,
-  },
-  {
-    airline: "Hainan Airlines",
-    alliance: null,
-    cities: "",
-    hotelNights: "",
-    duration: "",
-    commentary: "",
-    programUrl: "",
-    isStub: true,
-  },
-  {
-    airline: "SWISS",
-    alliance: "Star Alliance",
-    cities: "",
-    hotelNights: "",
-    duration: "",
-    commentary: "",
-    programUrl: "",
-    isStub: true,
-  },
-  {
-    airline: "XiamenAir",
-    alliance: "SkyTeam",
-    cities: "",
-    hotelNights: "",
-    duration: "",
-    commentary: "",
-    programUrl: "",
-    isStub: true,
+    airline: "Royal Brunei Airlines",
+    alliance: "Non aligned",
+    cities: "Bandar Seri Begawan (BWN)",
+    hotelNights: "possible",
+    duration: "More than 8 and not more than 24 hours.",
+    commentary:
+      "Royal Brunei has a stopover request program for selected city pairs, valid for tickets purchased from March 4, 2025 through September 30, 2026. Request at least five working days before arrival and verify the exact city-pair, visa, and hotel terms.",
+    programUrl:
+      "https://www.flyroyalbrunei.com/brunei/en/book-manage/stopover-in-brunei/",
   },
 ];
 
@@ -380,12 +420,7 @@ export function groupByAlliance(
     "Non aligned": [],
   };
   for (const p of programs) {
-    if (p.alliance && !p.isStub) out[p.alliance].push(p);
+    if (p.alliance) out[p.alliance].push(p);
   }
   return out;
-}
-
-/** Programs flagged as stubs, rendered in the verification-pending tail section. */
-export function getStubs(programs: StopoverProgram[]): StopoverProgram[] {
-  return programs.filter((p) => p.isStub);
 }

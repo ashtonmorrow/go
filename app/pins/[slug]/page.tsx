@@ -207,7 +207,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     pin.indoorOutdoor ? INDOOR_FACET[pin.indoorOutdoor] : null,
   ].filter((f): f is { label: string; icon: string } => Boolean(f));
 
-  const hasGettingThere = Boolean(pin.address || pin.nearestTransit || pin.parking || pin.accessNotes);
+  const hasGettingThere = Boolean(pin.address || pin.phone || pin.nearestTransit || pin.parking || pin.accessNotes);
 
   // Good-to-know is mostly irrelevant for hotels too; wheelchair_accessible
   // matters but otherwise the personal review carries it.
@@ -515,35 +515,13 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         </div>
 
         <aside className="self-start md:sticky md:top-20 space-y-4">
-          {wp?.thumbnailUrl && wp.thumbnailUrl !== galleryImages[0]?.url && personalPhotos.length === 0 && (
-            <figure className="card p-2">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={wp.thumbnailUrl} alt="" aria-hidden className="w-full rounded bg-cream-soft" />
-              {/* Attribution: per Wikimedia Commons + Wikipedia REST policy,
-                  link to the source article so the upstream author + license
-                  credits travel with the image. The full credit story lives
-                  on /credits. */}
-              <figcaption className="text-micro text-muted mt-1 px-1">
-                Lead image from{' '}
-                {wp.url ? (
-                  <a
-                    href={wp.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-ink-deep underline-offset-2 hover:underline"
-                  >
-                    the Wikipedia article
-                  </a>
-                ) : (
-                  'the Wikipedia article'
-                )}
-                .{' '}
-                <Link href="/credits" className="hover:text-ink-deep underline-offset-2 hover:underline">
-                  Credits
-                </Link>
-              </figcaption>
-            </figure>
-          )}
+          {/* Wikipedia thumbnail card removed: per the user's image-attribution
+              policy (May 2026), Wikimedia images stay only on city/country/pin
+              detail-page heroes where ImageCredit renders alongside them. The
+              sidebar thumbnail was a non-hero render of a Wikipedia REST API
+              image and got stripped along with city heroImage tiles, list
+              covers, etc. The Wikipedia article is still linked from the
+              References card lower in the rail. */}
 
           <div className="card p-5 space-y-3 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label">Plan a visit</h3>
@@ -658,6 +636,23 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                   <div>
                     <dt className="text-muted text-label mb-0.5">Address</dt>
                     <dd className="text-ink-deep leading-snug">{pin.address}</dd>
+                  </div>
+                )}
+                {pin.phone && (
+                  <div>
+                    <dt className="text-muted text-label mb-0.5">Phone</dt>
+                    <dd className="text-ink-deep leading-snug">
+                      {/* tel: link uses E.164 (no spaces / parens) so the
+                          handset dialler picks it up cleanly on iOS / Android.
+                          Display text keeps the human formatting Google
+                          returned for readability. */}
+                      <a
+                        href={`tel:${pin.phone.replace(/[^+0-9]/g, '')}`}
+                        className="text-teal hover:underline tabular-nums"
+                      >
+                        {pin.phone}
+                      </a>
+                    </dd>
                   </div>
                 )}
                 {pin.nearestTransit && (pin.nearestTransit.station || pin.nearestTransit.line) && (
@@ -1015,7 +1010,11 @@ function PersonalSection({ pin }: { pin: Pin }) {
       pin.dietaryOptions.length ||
       pin.reservationRecommended != null ||
       pin.priceTier != null ||
-      pin.pricePerPersonUsd != null);
+      pin.pricePerPersonUsd != null ||
+      // Google's price_level is a kind-of-personal-pick fallback when the
+      // restaurant doesn't have a curated priceTier yet — still worth
+      // unlocking the meal section for it.
+      (pin.priceLevel != null && pin.priceLevel > 0));
 
   if (!universal && !hasHotel && !hasMeal) return null;
 
@@ -1110,12 +1109,23 @@ function PersonalSection({ pin }: { pin: Pin }) {
 
       {hasMeal && (
         <dl className="text-small space-y-1.5 mb-4">
-          {(pin.priceTier || pin.pricePerPersonUsd != null) && (
+          {(pin.priceTier || pin.pricePerPersonUsd != null || (pin.priceLevel != null && pin.priceLevel > 0)) && (
             <FactRow label="Price">
               <span className="inline-flex items-baseline gap-2">
-                {pin.priceTier && (
+                {pin.priceTier ? (
                   <span className="font-mono text-ink-deep tabular-nums">{pin.priceTier}</span>
-                )}
+                ) : pin.priceLevel != null && pin.priceLevel > 0 ? (
+                  // Fallback: render Google's price_level (1-4) as the same
+                  // $-$$$$ glyphs the curated priceTier uses. Marked with
+                  // a muted tone so it visually reads as "approximate, from
+                  // Google" rather than "Mike's pick".
+                  <span
+                    className="font-mono text-slate tabular-nums"
+                    title="Approximate price level from Google"
+                  >
+                    {'$'.repeat(Math.min(4, pin.priceLevel))}
+                  </span>
+                ) : null}
                 {pin.pricePerPersonUsd != null && (
                   <span className="text-muted text-small">
                     ~${pin.pricePerPersonUsd.toLocaleString()}/person

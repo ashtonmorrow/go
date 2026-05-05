@@ -1,25 +1,31 @@
+import Script from 'next/script';
+
 // === Google Analytics 4 ====================================================
-// Server component that emits raw <script> tags. Mounted inside the
-// <head> of app/layout.tsx so the rendered HTML matches the snippet
-// Google's setup wizard hands you — first-pass detection works, GA's
-// "wasn't detected" warning clears.
+// Uses next/script with strategy="beforeInteractive" — the only Next.js 15
+// strategy that injects scripts into the framework's static <head> at
+// server-render time. Earlier attempts (raw <script> inside a JSX <head>,
+// next/script with afterInteractive) put the tags in <body> or in the
+// React Server Components stream, which Google's tag detector can't see
+// because it scrapes static HTML without executing JS.
 //
-// Why not next/script? <Script strategy="afterInteractive"> injects the
-// tag at the end of <body>, not <head>. The site still loads gtag and
-// real analytics works, but Google's first-load detector scrapes only
-// <head> and reports a false negative. Rendering raw <script> tags here
-// puts them where the detector expects.
+// Trade-off: beforeInteractive runs before page hydration, which can
+// theoretically delay first paint. For an async gtag.js snippet plus a
+// tiny inline init this is invisible in practice — the network fetch is
+// non-blocking and the inline script is microseconds of work.
+//
+// MUST be rendered inside the root layout (app/layout.tsx) — Next throws
+// if a beforeInteractive Script is mounted from a leaf component.
 //
 // Consent Mode v2 stays intact: the inline init script defaults
-// analytics_storage to 'denied' and only flips to 'granted' once the
-// user clicks OK on the cookie banner (which dispatches a
-// 'go-cookies-acked' window event) OR once we read the existing
-// localStorage flag from a prior visit. Both code paths inline below
-// so we don't need a separate client component to wire them up.
+// analytics_storage to 'denied'. CookieBanner dispatches a
+// 'go-cookies-acked' window event on the OK click, and on every page
+// load we read the localStorage flag the banner uses so returning
+// visitors get their consent restored immediately. Both flips happen
+// without a page reload.
 //
-// Env var NEXT_PUBLIC_GA_MEASUREMENT_ID overrides the hardcoded ID
-// (useful for staging or forks). The ID is public — it ships in every
-// page's HTML — so a code-level default is fine.
+// Env var NEXT_PUBLIC_GA_MEASUREMENT_ID overrides the hardcoded ID. The
+// ID itself isn't a secret (it ships in every page's HTML), so a
+// code-level default is fine.
 
 const STORAGE_KEY = 'go-cookies-acked-v1';
 const GRANT_EVENT = 'go-cookies-acked';
@@ -33,8 +39,8 @@ export default function GoogleAnalytics() {
   // Inline init script. Order matters: consent default MUST run before
   // the config call so the first pageview honours the deny state. Then
   // we restore consent for returning visitors and wire the event
-  // listener for first-time consent grants — both inside the same
-  // <script> so they run synchronously after gtag is defined.
+  // listener for first-time consent grants. Both inline so they run
+  // synchronously after gtag is defined.
   const init = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -60,11 +66,14 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      <script
-        async
+      <Script
+        id="ga-lib"
+        strategy="beforeInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       />
-      <script dangerouslySetInnerHTML={{ __html: init }} />
+      <Script id="ga-init" strategy="beforeInteractive">
+        {init}
+      </Script>
     </>
   );
 }

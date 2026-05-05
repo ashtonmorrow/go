@@ -73,15 +73,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* Google Analytics 4 — emitted as raw <script> tags inside <head>
-            so Google's tag detector sees them on first scrape. The
-            CookieBanner OK click dispatches a 'go-cookies-acked' event
-            that the inline script listens for; until then Consent Mode v2
-            keeps analytics_storage in the 'denied' state. */}
-        <GoogleAnalytics />
-      </head>
       <body>
+        {/* Google Analytics 4 — uses next/script with strategy
+            'beforeInteractive' which is the only Next.js 15 strategy that
+            injects scripts into the framework's static <head> at
+            server-render time (the earlier raw <script>-in-<head>
+            approach got streamed as part of the RSC payload, which
+            Google's tag detector doesn't see). Mounted at the root of
+            <body> per Next's beforeInteractive constraint; the actual
+            placement in the rendered HTML is in <head>. */}
+        <GoogleAnalytics />
         {/* Sitewide JSON-LD: Person (the author/publisher) and WebSite.
             Detail pages reference the Person via { "@id": AUTHOR_ID }. */}
         <JsonLd data={personJsonLd()} />

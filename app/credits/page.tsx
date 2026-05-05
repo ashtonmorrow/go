@@ -57,7 +57,7 @@ export default function CreditsPage() {
         </p>
         <p>
           If you spot a flag that should be re-licensed or removed, please get
-          in touch &mdash; happy to swap it.
+          in touch. I am happy to swap it.
         </p>
       </Section>
 

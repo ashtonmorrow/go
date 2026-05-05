@@ -1,10 +1,10 @@
 ---
-title: The Ultimate Airline Stopover Cheat Sheet
-subtitle: A side-by-side reference of every major airline stopover program, grouped by alliance.
+title: Mike's Ultimate Airline Stopover Guide
+subtitle: Free and discounted hotels, transit tours, and when a stopover is worth adding to a long-haul trip.
 hero_image: /images/posts/airline-stopover-programs.jpg
-hero_alt: An aircraft on approach to a hub airport at sunset.
+hero_alt: A mosque visited during an Oman Air stopover in Muscat.
 published: 2026-04-30
-updated: 2026-04-30
+updated: 2026-05-05
 indexable: true
 authors:
   - Mike Lee
@@ -19,4 +19,4 @@ tags:
   - airlines
 ---
 
-This article lives at /airline-stopover-programs as a custom-coded reference page. The /posts index uses this stub to surface it alongside the markdown-based posts.
+This article lives at /airline-stopover-programs as a custom-coded reference page. The posts index uses this stub to surface it alongside the markdown-based posts.

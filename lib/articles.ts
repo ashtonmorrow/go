@@ -3,12 +3,12 @@
  *
  * Two flavors of long-form content live under one umbrella:
  *
- * 1. **Hand-coded articles** — bespoke TSX folders under app/<slug>/page.tsx
+ * 1. **Hand-coded articles**: bespoke TSX folders under app/<slug>/page.tsx
  *    with their own _components/ and _data/ co-located (e.g. the airline
- *    cheat sheet with its alliance-grouped program cards). Listed in the
+ *    stopover reference with its alliance-grouped program cards). Listed in the
  *    ARTICLES const below.
  *
- * 2. **File-based posts** — Markdown in /content/posts/<slug>.md, rendered
+ * 2. **File-based posts**: Markdown in /content/posts/<slug>.md, rendered
  *    by app/posts/[slug]/page.tsx via lib/posts.ts. The default surface
  *    when you want to write prose, attach a hero image, and link out to
  *    cities/countries/pins.
@@ -18,7 +18,7 @@
  * server-side function that produces that merged list.
  *
  * Articles aren't always at /articles/<slug>; some are top-level (e.g. the
- * airline cheat sheet at /airline-stopover-programs). The href field carries
+ * airline stopover reference at /airline-stopover-programs). The href field carries
  * the canonical route, the slug is just an internal id for keying.
  */
 
@@ -48,14 +48,14 @@ export const ARTICLES: Article[] = [
   {
     slug: 'airline-stopover-programs',
     href: '/airline-stopover-programs',
-    title: 'Airline Stopover Programs',
+    title: "Mike's Ultimate Airline Stopover Guide",
     description:
-      'The airlines whose long-haul tickets let you break the journey for a day or three at the connecting hub, sometimes with a free hotel. Sorted by alliance.',
+      'Free and discounted hotels, transit tours, and when a stopover is worth adding to a long-haul trip.',
     publishedAt: '2026-04-30',
     emoji: '✈️',
     heroImage: '/images/posts/airline-stopover-programs.jpg',
     heroAlt:
-      'A mosque visited during an Oman Air stopover in Muscat — a real-world example of breaking up a long-haul into a short trip.',
+      'A mosque visited during an Oman Air stopover in Muscat, a real example of breaking up a long-haul flight into a short trip.',
   },
 ];
 
@@ -138,7 +138,7 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
   for (const p of posts) {
     // Skip stub posts whose external_route points at a hand-coded article we
     // already added above. Otherwise /articles would show two cards for the
-    // same content (one per source) — hand-coded ARTICLES wins because that
+    // same content (one per source). Hand-coded ARTICLES wins because that
     // page has the bespoke layout.
     if (p.externalRoute && seenHrefs.has(p.externalRoute)) continue;
 

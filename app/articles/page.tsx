@@ -7,7 +7,7 @@ import { SITE_URL } from '@/lib/seo';
 export const metadata: Metadata = {
   title: 'Articles',
   description:
-    'Long-form cheat sheets and travel notes from the atlas — airline programs, visas, plug types, all the things worth knowing once and looking up forever.',
+    'Travel notes and reference pieces from the atlas: stopovers, gardens, trains, markets, castles, and places worth understanding before booking.',
   alternates: { canonical: `${SITE_URL}/articles` },
 };
 
@@ -22,14 +22,16 @@ export default async function ArticlesIndex() {
       <header className="mb-6">
         <h1 className="text-display text-ink-deep leading-none">Articles</h1>
         <p className="mt-3 text-slate max-w-prose">
-          Cheat sheets, deep dives, and the kinds of notes I&rsquo;d send a friend.
-          Add-as-I-write, no rhythm.
+          Field notes, practical references, and short travel essays from the
+          atlas. Some are written from trips I have taken. Others are working
+          notes for routes, places, and programs I want to understand before I
+          book.
         </p>
       </header>
 
       {entries.length === 0 ? (
         <div className="card p-8 text-center text-slate">
-          No articles yet — first one drops soon.
+          No articles yet. First one drops soon.
         </div>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -47,7 +49,7 @@ export default async function ArticlesIndex() {
 // === ArticleCard ===
 // One layout for both flavors: hero image when one's available (file-based
 // posts always carry one in frontmatter), otherwise the older fields-only
-// layout used by the airline cheat sheet. Same surface, two visual densities.
+// layout used by the airline stopover reference. Same surface, two visual densities.
 function ArticleCard({ item }: { item: ArticleEntry }) {
   const date = item.publishedAt ? new Date(item.publishedAt) : null;
   const dateLabel = date && !Number.isNaN(date.getTime())

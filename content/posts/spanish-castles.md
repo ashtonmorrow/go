@@ -1,10 +1,10 @@
 ---
 title: A guide to Spanish castles
-subtitle: Six worth visiting, with the historical claims I could verify and the ones I corrected.
+subtitle: Six site notes, with the historical claims I could verify and the ones I corrected.
 # TODO uncomment when image lands: hero_image: /images/posts/spanish-castles.jpg
 # TODO uncomment when image lands: hero_alt: The Alcázar de Segovia at golden hour, viewed from the Mirador de la Pradera de San Marcos.
 published: 2026-04-30
-updated: 2026-04-30
+updated: 2026-05-04
 indexable: true
 authors:
   - Mike Lee
@@ -26,65 +26,69 @@ tags:
   - travel-guide
 ---
 
-Spanish castles fall into one of three rough categories: Moorish-era fortresses (or what is left of them), Christian-built medieval castles from the 12th to 15th centuries, and later aristocratic houses dressed up in castle form. Knowing which kind you are looking at changes what to look for. The Alhambra is not the Alcázar de Segovia. Coca is neither.
+Spanish castle lists get messy quickly because the word "castle" is doing too much work.
 
-Below are six worth prioritizing on a Spain itinerary, with what I believe are the historically accurate notes on each. Where I could not confirm something, I say so. A few claims that show up in the travel-blog ecosystem about these castles are wrong, and I have flagged those as I go.
+Some sites are Moorish fortresses or palaces. Some are Christian medieval castles from the 12th to 15th centuries. Some are aristocratic statements that borrow defensive language while functioning as power display. The Alhambra, the Alcázar de Segovia, and Coca do not ask you to look for the same things, and a useful itinerary should not pretend they do.
+
+These are the six I would prioritize, with the claims I could verify and a few common travel-blog errors corrected along the way.
 
 ## Quick reference
 
-| Castle | Region | Era | Style | UNESCO |
+| Site | Region | Period | What to notice | UNESCO status |
 |---|---|---|---|---|
-| Bellver Castle | Mallorca | Early 14th c. | Gothic, circular plan | No |
-| Alhambra | Granada | 13th–14th c. (over 9th c. fortress) | Nasrid / Moorish | Yes (1984) |
-| Alcázar de Segovia | Segovia | 12th c., restored after 1862 fire | Castilian medieval | Part of Segovia inscription (1985) |
-| Castillo de Coca | Segovia province | 1453–1496 | Mudéjar, brick | No |
-| Castillo de Loarre | Huesca | 11th c. | Romanesque | No (tentative list only) |
-| Royal Palace of Olite | Navarra | 1399–1424 | Late-Gothic | No |
+| Bellver Castle | Mallorca | Early 14th century | Circular Gothic plan | No |
+| Alhambra | Granada | 13th and 14th centuries over an earlier fortress | Nasrid palaces, water, geometry | Yes, since 1984 |
+| Alcázar de Segovia | Segovia | 12th century, restored after an 1862 fire | Promontory setting, tower view | Part of Segovia inscription |
+| Castillo de Coca | Segovia province | 1453 to 1496 | Brick Mudéjar construction | No |
+| Castillo de Loarre | Huesca | 11th century | Romanesque military architecture | Tentative list only |
+| Royal Palace of Olite | Navarra | 1399 to 1424 | Late-Gothic palace reconstruction | No |
 
 ## Bellver Castle, Palma de Mallorca
 
-Built in the early 14th century (work started around 1300, finished around 1311) under King James II of Mallorca. (Several travel writeups attribute it to James II of Aragon, which is the wrong James II; the Kingdom of Mallorca was a separate political entity at that point.) The unusual feature is the circular plan, rare in European castle architecture; the keep, the Torre de l'Homenatge, sits separately and is connected by a bridge. The castle has served as a royal residence, a military prison, and, since 1976, the home of the History Museum of the City of Palma.
+Bellver is useful because its oddity is visible before anyone explains it. It is circular, which is rare in European castle architecture. Work began around 1300 under King James II of Mallorca, not James II of Aragon, a mistake that shows up often because the names invite it. The Kingdom of Mallorca was a separate political entity at the time.
 
-A half-day visit is enough. The roof terrace gives a panoramic view over the bay of Palma. Bring water; the walk from the city up the wooded hill is steeper than it looks on a map. Current ticket prices and hours change; check the official site before going rather than relying on numbers in any travel post.
+The keep, the Torre de l'Homenatge, stands apart from the main circle and is connected by a bridge. The building has served as royal residence, military prison, and now the History Museum of the City of Palma.
+
+A half-day is enough. The roof terrace gives the reason for the climb: Palma, the bay, and the wooded hill below. Bring water if you walk up from the city. The hill is steeper than it looks on a casual map check.
 
 ## Alhambra, Granada
 
-The most-visited monument in Spain and one of the strongest standalone reasons to spend time in Andalucía. The Alhambra is a fortress, palace, and citadel complex built largely by the Nasrid dynasty in the 13th and 14th centuries on the site of an earlier 9th-century fortress. UNESCO World Heritage Site since 1984 (extended in 1994 to include the Generalife and the Albayzín neighborhood below).
+The Alhambra is not one building. It is a fortress, palace, and citadel complex built largely under the Nasrid dynasty in the 13th and 14th centuries on the site of an earlier 9th-century fortress. That matters because the visit changes character as you move through it.
 
-The visit splits roughly into three parts: the Alcazaba (the military fortress, the oldest portion), the Nasrid Palaces (the palatial heart, where the Patio of the Lions sits), and the Generalife (the gardens above the palace). The Patio of the Lions has a central fountain with twelve marble lions and is surrounded by a colonnade of 124 marble columns, with capitals carved in muqarnas geometry.
+The Alcazaba is the military portion. The Nasrid Palaces are the delicate, controlled heart of the site, where water, stucco, tile, carved text, and geometry do the work of courtly display. The Generalife is the garden and retreat above the palace complex. If you only read the Alhambra as a castle, you miss the way it uses enclosure, shade, water, and pattern to organize attention.
 
-The practical advice that matters most: book your tickets weeks in advance. The Nasrid Palaces have timed entry slots and they sell out. Same-day tickets are usually impossible during high season. The official site is the only legitimate booking source; resellers will charge a markup and may not deliver a usable ticket.
+The practical advice is simple: book ahead, especially for the Nasrid Palaces. Entry is timed, demand is high, and official tickets are the safest route. Resellers create needless risk and markup.
 
 ## Alcázar de Segovia
 
-A 12th-century stone castle on a rocky promontory above the confluence of two rivers, with the silhouette often compared to a ship's prow. It served as a royal residence, a state prison, the royal artillery academy, and is now a museum. A major fire in 1862 destroyed much of the interior; the current appearance reflects the subsequent restoration. The Alcázar is part of the broader UNESCO inscription that covers the Old Town of Segovia and its Roman aqueduct (1985), rather than a separate Heritage Site.
+The Alcázar de Segovia sits on a rocky promontory above the meeting of two rivers, which is why so many photographs make it look like a stone ship. It has been royal residence, state prison, artillery academy, and museum. A major fire in 1862 damaged much of the interior, so the current appearance reflects later restoration as well as medieval fabric.
 
-The claim that the Alcázar inspired Disney's Cinderella Castle is widespread but not officially documented; Neuschwanstein in Germany is the more consistently cited reference. Worth seeing either way. The view from the tower over the surrounding Castilian plain is the reason most people climb it.
+The Disney claim is the one to treat carefully. It is often said that the Alcázar inspired Cinderella Castle, but that claim is not firmly documented. Neuschwanstein is the more consistently cited reference. I would not visit Segovia for the Disney story. I would visit for the tower view, the location, and the way the castle sits with the aqueduct and old town.
 
 ## Castillo de Coca
 
-The clearest example of Mudéjar military architecture in Spain. Built between roughly 1453 and 1496 by the Fonseca family, the castle is constructed almost entirely in brick rather than stone, with elaborate geometric brickwork that reflects the Christian-Muslim cross-pollination of late-medieval Castilian craftsmanship. Mudéjar architecture emerged when Christian rulers commissioned buildings using Muslim craftsmen and techniques; what you see at Coca is what that produced.
+Coca is the one I would use to explain Mudéjar architecture to someone who has never heard the word. Mudéjar work emerges from Christian commissions using Muslim craftsmen, techniques, and decorative languages. At Coca, that means brick rather than stone, geometric surface treatment, and a late-medieval Castilian building that does not look like a northern European fortress.
 
-A common claim about Coca is that it was built to defend against the Moors. This is wrong. By the 1450s the Reconquista had pushed the Moors south to Granada; Coca is in Castilla y León and was not under threat from al-Andalus by then. The castle is best understood as an aristocratic statement piece by a powerful Castilian family, not a frontier defense.
+It was built between roughly 1453 and 1496 by the Fonseca family. The common claim that it was built to defend against the Moors is wrong. By then, Coca was not a frontier castle facing al-Andalus. It is better understood as an aristocratic statement by a powerful Castilian family.
 
-It now houses a forestry training school, with portions open to visitors.
+The building now houses a forestry training school, with parts open to visitors.
 
 ## Castillo de Loarre
 
-An 11th-century Romanesque castle in the foothills of the Pyrenees, considered one of the best-preserved Romanesque military structures in Europe. The castle was used as a filming location for Ridley Scott's *Kingdom of Heaven* (2005), which is the visual reference most viewers will have for what it looks like.
+Loarre is an 11th-century Romanesque castle in the foothills of the Pyrenees. The setting does a lot of the work: dry stone, open slope, long views, and a chapel within the walls that still makes the climb feel purposeful.
 
-A note on the UNESCO status: several travel writeups state that Loarre is a UNESCO World Heritage Site. It is not. Loarre is on the Spanish tentative list for UNESCO consideration but has not been inscribed. The claim propagates and is worth correcting where you encounter it.
+The UNESCO claim needs correcting. Loarre is often described online as a World Heritage Site. It is not. It is on Spain's tentative list, which means it has been proposed for possible future consideration, not inscribed.
 
-The chapel inside the walls is unusual for surviving largely intact; the round vaulted nave is small but worth the climb up.
+Film viewers may recognize it from Ridley Scott's *Kingdom of Heaven*. That reference is useful visually, but the better reason to go is the survival of the Romanesque chapel and the clarity of the military site.
 
 ## Royal Palace of Olite
 
-A late-Gothic palace in the town of Olite in Navarra, built mostly under Charles III of Navarre between roughly 1399 and 1424. The site has two parts: the Old Palace (Palacio Viejo, now operating as a Parador hotel) and the New Palace (Palacio Nuevo, the more elaborate and famous portion). The structure was heavily damaged by fire in 1813 during the Peninsular War and was extensively restored in the 20th century, so what visitors see today is partly reconstruction.
+Olite is a palace first and a castle only in the loose travel sense. Built mostly under Charles III of Navarre between roughly 1399 and 1424, it has two main parts: the Old Palace, now operating as a Parador hotel, and the New Palace, the portion most visitors come to see.
 
-The "Palace of the Kings and Palace of the Queens" framing that appears in some travel writeups is not the standard local terminology; the buildings are referred to as the Old Palace and the New Palace.
+The building was heavily damaged by fire in 1813 during the Peninsular War and restored extensively in the 20th century. That does not make it fake, but it does mean the visit is partly an encounter with reconstruction. The towers, courtyards, and late-Gothic atmosphere are still the point.
 
-Worth the drive from Pamplona. Often paired with a visit to the surrounding Navarran wine region.
+I would pair Olite with the surrounding Navarran wine region rather than make it a standalone detour from far away.
 
-## A note on what is not on this list
+## What I left off
 
-A few attributions that travel-blog drafts get wrong and that I removed when fact-checking. There is no famous Castillo de San Felipe in Madrid; the well-known Castillo de San Felipe is in Ferrol, in Galicia. The Castell de Montjuïc in Barcelona is sometimes lumped into Spanish castle lists, but it is a 17th-18th century military fortification rather than a medieval castle and serves a different visit. The Alcazaba of Almería is a major Moorish fortress and a fair addition to a serious itinerary, though I have not visited it personally and so have not written it up.
+Several recurring castle-list claims are not useful. There is no famous Castillo de San Felipe in Madrid; the well-known Castillo de San Felipe is in Ferrol, in Galicia. Barcelona's Castell de Montjuïc is a 17th and 18th century military fortification rather than a medieval castle, so it belongs to a different kind of itinerary. The Alcazaba of Almería would be a fair addition to a serious Moorish-fortress route, but I have not visited it personally and did not want to fake the note.

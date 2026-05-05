@@ -63,7 +63,7 @@ export function AllianceFilter({ counts }: { counts: Counts }) {
     }, 800);
 
     if (target === "all") {
-      const top = document.getElementById("cheat-sheet-top");
+      const top = document.getElementById("programs-top");
       top?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }

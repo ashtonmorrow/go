@@ -7,14 +7,14 @@
 // without grep-and-replace.
 //
 // Schema-type choices, page by page:
-//   /cities          — CollectionPage + ItemList    (a curated collection)
-//   /cities/[slug]   — City + BreadcrumbList        (a Place subclass)
-//   /countries/[slug]— Country + BreadcrumbList
-//   /pins            — CollectionPage + ItemList
-//   /pins/[slug]     — TouristAttraction + BreadcrumbList
-//   /map             — WebPage                       (interactive view)
-//   /about           — TechArticle                   (technical write-up)
-//   layout (site)    — Person + WebSite              (sitewide)
+//   /cities          -> CollectionPage + ItemList    (a curated collection)
+//   /cities/[slug]   -> City + BreadcrumbList        (a Place subclass)
+//   /countries/[slug]-> Country + BreadcrumbList
+//   /pins            -> CollectionPage + ItemList
+//   /pins/[slug]     -> TouristAttraction + BreadcrumbList
+//   /map             -> WebPage                       (interactive view)
+//   /about           -> AboutPage
+//   layout (site)    -> Person + WebSite              (sitewide)
 //
 // Meta-description rule: ≤155 characters. Front-loaded with what the page
 // is about. Third-person voice (no "I"; "you" only for direct advice).
@@ -22,13 +22,13 @@
 export const SITE_URL = 'https://go.mike-lee.me';
 export const SITE_NAME = 'Travel · Mike Lee';
 export const SITE_DESCRIPTION =
-  'A travel atlas of 1,341 cities and 213 countries, drawn from a personal Notion workspace. Postcards, an interactive globe, and notes worth keeping.';
+  'A personal travel atlas of cities, countries, saved places, maps, photos, and notes from more than a decade of planning and travel.';
 export const PARENT_SITE_NAME = 'mike-lee.me';
 export const AUTHOR_NAME = 'Mike Lee';
 export const AUTHOR_ALT_NAME = 'Whisker Leaks';
 export const AUTHOR_URL = 'https://mike-lee.me';
 export const AUTHOR_LINKEDIN = 'https://www.linkedin.com/in/mikelee89/';
-// Stable @id for the Person entity — referenced from author/publisher
+// Stable @id for the Person entity. Referenced from author/publisher
 // fields on every JSON-LD block via { "@id": AUTHOR_ID }.
 export const AUTHOR_ID = `${AUTHOR_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -55,7 +55,7 @@ export function personJsonLd() {
     alternateName: AUTHOR_ALT_NAME,
     url: AUTHOR_URL,
     sameAs: [AUTHOR_LINKEDIN],
-    // Topical fingerprint — gives Google + LLM crawlers a clean signal
+    // Topical fingerprint gives Google + LLM crawlers a clean signal
     // about what this Person is an authoritative source for. Kept
     // narrow to the actual content of the site so the entity stays
     // believable. Add jobTitle / worksFor here when ready.
@@ -80,7 +80,7 @@ export function websiteJsonLd() {
     description: SITE_DESCRIPTION,
     publisher: { '@id': AUTHOR_ID },
     inLanguage: 'en-US',
-    // Sitelinks search box — Google reads this and may render an in-result
+    // Sitelinks search box. Google reads this and may render an in-result
     // search input that hits our /search page directly. The site doesn't
     // have a /search route yet, but the schema is harmless: Google won't
     // surface the box until it sees the page actually accept the query
@@ -99,8 +99,8 @@ export function websiteJsonLd() {
 
 /** Build a richer pin-page title that adds context-aware suffixes when the
  *  pin has the data to back them up. Search engines and humans both prefer
- *  "Pyramids of Egypt — visit guide, hours · Mike Lee" over a bare name —
- *  the former tells you what's on the page and earns more long-tail clicks. */
+ *  "Pyramids of Egypt: visit guide, hours · Mike Lee" over a bare name
+ *  because it tells you what's on the page and earns more long-tail clicks. */
 export function pinPageTitle(pin: {
   name: string;
   visited: boolean;
@@ -119,7 +119,7 @@ export function pinPageTitle(pin: {
   // Cap at three suffixes so the title doesn't run long. Google truncates
   // around 60 characters; this keeps the pin name visible.
   const tail = suffixes.slice(0, 3).join(', ');
-  return tail ? `${pin.name} — ${tail}` : pin.name;
+  return tail ? `${pin.name}: ${tail}` : pin.name;
 }
 
 // Generic breadcrumb builder. Pass items in order from root to leaf.

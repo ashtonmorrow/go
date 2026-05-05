@@ -8,28 +8,27 @@ import {
   ALLIANCE_STYLES,
   PROGRAMS,
   groupByAlliance,
-  getStubs,
 } from "./_data/programs";
 
 const SITE_URL = "https://go.mike-lee.me";
 const PAGE_PATH = "/airline-stopover-programs";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 const PUBLISHED_ISO = "2026-04-30";
-const UPDATED_ISO = "2026-04-30";
-const LAST_UPDATED_LABEL = "April 30, 2026";
+const UPDATED_ISO = "2026-05-05";
+const LAST_UPDATED_LABEL = "May 5, 2026";
 const AUTHOR_NAME = "Mike Lee";
 
-// Hero photo — Mike's own shot from a mosque visited on an Oman Air stopover
+// Hero photo: Mike's own shot from a mosque visited on an Oman Air stopover
 // in Muscat. Lives in /public so Next/Image can serve responsive variants and
 // social platforms can fetch the absolute URL for previews.
 const HERO_IMAGE = "/images/posts/airline-stopover-programs.jpg";
 const HERO_IMAGE_URL = `${SITE_URL}${HERO_IMAGE}`;
 const HERO_ALT =
-  "A mosque visited during an Oman Air stopover in Muscat — a real-world example of breaking up a long-haul into a short trip.";
+  "A mosque visited during an Oman Air stopover in Muscat, a real example of breaking up a long-haul flight into a short trip.";
 
-const PAGE_TITLE = "The Ultimate Airline Stopover Cheat Sheet";
+const PAGE_TITLE = "Mike's Ultimate Airline Stopover Guide";
 const PAGE_DESCRIPTION =
-  "A reference for travelers planning stopovers: terminology, the alliance landscape, programs I have used personally, and a side-by-side comparison of every major airline stopover program.";
+  "A practical guide to airline stopover programs, free and discounted hotel offers, transit tours, and when a stopover is worth adding to a long-haul trip.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
@@ -79,23 +78,69 @@ const TERMINOLOGY: { term: string; definition: string }[] = [
   {
     term: "Direct flight",
     definition:
-      "A single flight number that may include intermediate stops, with passengers staying on the same aircraft throughout.",
+      "A single flight number that may include an intermediate stop. It is not the same thing as a nonstop flight.",
   },
   {
     term: "Layover",
     definition:
-      "A connection between two flights of less than 24 hours, used only to transfer to the onward flight.",
+      "A connection between two flights, usually under 24 hours, used mainly to reach the onward flight.",
   },
   {
     term: "Stopover",
     definition:
-      "A connection of more than 24 hours, often planned in advance to spend time in the connecting city. The basis of the airline programs listed below.",
+      "A planned break in the trip, usually over 24 hours, that lets you leave the airport and spend time in the connecting city.",
   },
 ];
 
-function StructuredData() {
-  const verified = PROGRAMS.filter((p) => !p.isStub);
+const BENEFIT_TYPES: {
+  type: string;
+  meaning: string;
+  examples: string;
+}[] = [
+  {
+    type: "Complimentary or conditional hotel",
+    meaning:
+      "The airline may arrange the room because the connection is long and eligible. This is usually a rule-bound transit benefit, not permission to choose any stop you want.",
+    examples:
+      "Turkish Airlines, Ethiopian Airlines, Royal Jordanian, SriLankan Airlines, Gulf Air, Emirates, China Southern, XiamenAir",
+  },
+  {
+    type: "Stopover package",
+    meaning:
+      "The airline sells hotels or local offers around its hub. This can still be a good deal, but the hotel is part of a paid bundle.",
+    examples: "Qatar Airways, Oman Air, Air Astana",
+  },
+  {
+    type: "No-extra-airfare stop",
+    meaning:
+      "The ticketing tool lets you pause the itinerary at the hub without adding airfare. The room, meals, and sightseeing are normally on you.",
+    examples:
+      "Copa Airlines, TAP Air Portugal, Avianca, Iberia, Icelandair",
+  },
+  {
+    type: "Transit tour",
+    meaning:
+      "The benefit is a guided tour during a long layover, usually under 24 hours. This is for seeing the city once, not for turning the hub into a trip.",
+    examples: "Turkish Airlines Touristanbul, Singapore Airlines, Korean Air, Gulf Air",
+  },
+  {
+    type: "Constructed stopover",
+    meaning:
+      "There is no branded stopover program, but a multi-city search or package booking may still price sensibly.",
+    examples: "British Airways",
+  },
+];
 
+const BOOKING_CHECKS: string[] = [
+  "Price it as a normal round trip, a multi-city ticket, and the airline stopover flow if there is one.",
+  "Check whether the stop is voluntary. Some hotel benefits disappear if a shorter connection was available.",
+  "Confirm whether bags come out at the stop or stay checked through.",
+  "Check entry rules before assuming you can leave the airport.",
+  "Look at the transfer, not just the flight time. A free hotel can still waste a day if it is badly located.",
+  "Be honest about the season. Muscat in extreme heat and Helsinki in winter are not the same planning problem.",
+];
+
+function StructuredData() {
   const article = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -130,8 +175,8 @@ function StructuredData() {
     "@type": "ItemList",
     name: PAGE_TITLE,
     itemListOrder: "https://schema.org/ItemListOrderAscending",
-    numberOfItems: verified.length,
-    itemListElement: verified.map((p, i) => ({
+    numberOfItems: PROGRAMS.length,
+    itemListElement: PROGRAMS.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: `${PAGE_URL}#${airlineSlug(p.airline)}`,
@@ -169,7 +214,6 @@ function StructuredData() {
 
 export default function AirlineStopoverProgramsPage() {
   const grouped = groupByAlliance(PROGRAMS);
-  const stubs = getStubs(PROGRAMS);
 
   const counts = {
     "Star Alliance": grouped["Star Alliance"].length,
@@ -182,9 +226,6 @@ export default function AirlineStopoverProgramsPage() {
     <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <StructuredData />
 
-      {/* Hero — Mike's mosque shot from an Oman Air stopover. Eager-loaded
-          and given high priority because it's above the fold and the LCP
-          element on this page. */}
       <figure className="relative mb-8 overflow-hidden rounded-xl bg-cream-soft">
         <div className="relative aspect-[16/9]">
           <Image
@@ -203,106 +244,85 @@ export default function AirlineStopoverProgramsPage() {
         <p className="mt-3 text-label uppercase tracking-wider text-muted">
           By {AUTHOR_NAME} · Updated {LAST_UPDATED_LABEL}
         </p>
+        <div className="mt-5 space-y-4 text-prose leading-relaxed text-ink">
+          <p>
+            Airline stopovers are worth checking when the route already wants
+            to connect through a hub. The right one can add a cheap city break,
+            a free or discounted hotel, a guided layover tour, or a cleaner
+            way to split a long-haul trip.
+          </p>
+          <p>
+            I would not build a trip around most of these programs. I would
+            use them when they make an itinerary I already need to fly cheaper,
+            easier, or more interesting. Start with the airline cards below.
+            The booking logic and examples are at the end.
+          </p>
+        </div>
       </header>
 
-      {/* ── Terminology ─────────────────────────────────────────── */}
       <section className="mb-12">
         <h2 className="text-h2 text-ink-deep mb-4">
-          Stopover, layover, direct, nonstop
+          What Makes a Stopover Worth Checking
         </h2>
-        <p className="text-prose text-ink leading-relaxed">
-          The terms get used loosely in airline marketing and even in casual
-          conversation. Before getting to the programs themselves, here are
-          the four distinctions that actually matter when reading fare rules
-          or deciding which itinerary to book.
-        </p>
-        <div className="mt-5 overflow-x-auto">
-          <table className="w-full min-w-full border-collapse text-body">
-            <thead>
-              <tr className="border-b border-sand">
-                <th
-                  scope="col"
-                  className="py-2 pr-6 text-left font-semibold text-ink-deep"
-                >
-                  Term
-                </th>
-                <th
-                  scope="col"
-                  className="py-2 text-left font-semibold text-ink-deep"
-                >
-                  What it means
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-sand">
-              {TERMINOLOGY.map((row) => (
-                <tr key={row.term}>
-                  <td className="py-3 pr-6 align-top font-medium text-ink-deep">
-                    {row.term}
-                  </td>
-                  <td className="py-3 align-top text-ink">
-                    {row.definition}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">A Real Hotel Benefit</h3>
+            <p className="mt-2 text-body leading-relaxed text-ink">
+              Turkish, Emirates, SriLankan, Gulf Air, Royal Jordanian,
+              Ethiopian, China Southern, and XiamenAir can be useful when the
+              long connection is eligible. Read the rule carefully, because
+              these are usually transit benefits with strict conditions.
+            </p>
+          </div>
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">A Cheap Holiday Extension</h3>
+            <p className="mt-2 text-body leading-relaxed text-ink">
+              Copa, TAP, Iberia, Icelandair, Avianca, and LOT are the kind of
+              programs I check when I want to turn a connection into a short
+              city stay without adding airfare.
+            </p>
+          </div>
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">A Strong Hotel Package</h3>
+            <p className="mt-2 text-body leading-relaxed text-ink">
+              Qatar and Oman Air are more like stopover bundles than free
+              hotel programs. They can still be a good move when the hotel
+              price, transfer, and flight schedule line up.
+            </p>
+          </div>
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">A Guided Layover Tour</h3>
+            <p className="mt-2 text-body leading-relaxed text-ink">
+              Turkish Touristanbul, Singapore Airlines, Korean Air, and Gulf
+              Air are worth checking when you have a long layover but not
+              enough time to plan a proper overnight stop.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ── Alliances ───────────────────────────────────────────── */}
       <section className="mb-8">
         <h2 className="text-h2 text-ink-deep mb-4">
-          Alliances and their hubs
-        </h2>
-        <p className="text-prose text-ink leading-relaxed">
-          Airlines join alliances to cooperate on ticketing, lounge access,
-          and miles. For stopover programs, the practical effect is that each
-          program is anchored at the carrier&apos;s hub: an Istanbul stopover
-          requires flying Turkish Airlines, a Doha stopover requires Qatar,
-          and so on. The alliance affiliation tells you which other carriers
-          can route you into that hub on a single ticket. Star Alliance,
-          oneworld, and SkyTeam each cover several stopover hubs. Emirates,
-          Etihad, Icelandair, and China Southern run programs outside any
-          alliance. The buttons below jump to each section.
-        </p>
-      </section>
-
-      <div id="cheat-sheet-top" className="scroll-mt-24" />
-      <AllianceFilter counts={counts} />
-
-      {/* ── Programs I have used ────────────────────────────────── */}
-      <section className="mb-12">
-        <h2 className="text-h2 text-ink-deep mb-4">
-          Programs I have used
+          Airline Stopover Programs to Check
         </h2>
         <div className="space-y-4 text-prose text-ink leading-relaxed">
           <p>
-            I have used four of these programs personally so far: Oman Air,
-            Qatar, Turkish, and Copa. The point of the rest of this page is
-            the data, but a couple of concrete examples are useful for
-            showing why the program structure matters in practice.
+            Use these cards as a starting point, then confirm the current
+            rules on the airline site before booking. Hotel possible means the
+            benefit is conditional, campaign-based, route-specific, or subject
+            to inventory. No hotel can still be useful if the fare works.
           </p>
           <p>
-            Oman Air is the clearest case. Muscat is not a city most people
-            would build a vacation around, but the program let me spend
-            roughly a day and a half at the Holiday Inn Express 15 minutes
-            from the airport. The ticket was inexpensive, and breaking the
-            journey into two non-stop flights meant I arrived in Kuala Lumpur
-            rested rather than worn down by overnight transit.
-          </p>
-          <p>
-            Copa worked the same way for Panama City. I added a couple of
-            days, saw the Panama Canal on my birthday, and got a real sense
-            of a place I would not have gone out of my way to visit. The
-            pattern across both stopovers is the same: the airline routing
-            you would already have chosen turns into a short, low-pressure
-            trip to a city you would otherwise skip.
+            I group the cards by alliance because that is how most flight
+            searches start. The stopover rule still belongs to the operating
+            airline.
           </p>
         </div>
       </section>
 
-      {/* ── Cheat sheet (alliance-grouped cards) ────────────────── */}
+      <div id="programs-top" className="scroll-mt-24" />
+      <AllianceFilter counts={counts} />
+
       <div className="space-y-12">
         {ALLIANCES.map((alliance) => {
           const programs = grouped[alliance];
@@ -353,45 +373,182 @@ export default function AirlineStopoverProgramsPage() {
         })}
       </div>
 
-      {/* ── Researching ─────────────────────────────────────────── */}
-      {stubs.length > 0 && (
-        <section
-          id="researching"
-          className="mt-16 scroll-mt-24 rounded-xl border border-dashed border-sand bg-cream-soft/60 p-5"
-        >
-          <h2 className="text-h3 text-ink-deep">
-            Programs pending verification
-          </h2>
-          <ul className="mt-3 grid gap-2 text-small text-ink sm:grid-cols-2">
-            {stubs.map((p) => {
-              const allianceStyle = p.alliance
-                ? ALLIANCE_STYLES[p.alliance]
-                : null;
-              return (
-                <li
-                  key={p.airline}
-                  className="flex items-center justify-between rounded-md bg-white px-3 py-2"
-                >
-                  <span className="font-medium text-ink-deep">
-                    {p.airline}
-                  </span>
-                  {allianceStyle && (
-                    <span
-                      className={`text-label font-medium ${allianceStyle.badge} rounded-full px-2 py-0.5`}
-                    >
-                      {allianceStyle.label}
-                    </span>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
+      <section className="mt-16">
+        <h2 className="text-h2 text-ink-deep mb-4">
+          Keep Reading: How to Use a Stopover Well
+        </h2>
+        <div className="space-y-4 text-prose text-ink leading-relaxed">
+          <p>
+            Once a program looks promising, ignore the marketing for a minute
+            and test the itinerary. A stopover should make the trip better. It
+            should not add a worse flight, a useless discount, or a night in a
+            hotel far from both the airport and the city.
+          </p>
+          <p>
+            I start with the trip I actually need to take, then price it as a
+            round trip, a one-way combination, and a multi-city ticket. If the
+            stop keeps the fare close, creates real time on the ground, and
+            does not make the transfer annoying, it is worth considering.
+          </p>
+        </div>
 
-      {/* ── Footer note ─────────────────────────────────────────── */}
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">Worth It When</h3>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-body leading-relaxed text-ink">
+              <li>The hub is already on a sensible route.</li>
+              <li>The stop keeps the fare close, or makes it cheaper.</li>
+              <li>There is something worth doing without a long transfer.</li>
+              <li>The entry rules and airport transfer are straightforward.</li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-sand bg-white/60 p-5">
+            <h3 className="text-h3 text-ink-deep">Usually Skip When</h3>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-body leading-relaxed text-ink">
+              <li>The routing gets worse just to chase a perk.</li>
+              <li>The benefit is a discount you would never use otherwise.</li>
+              <li>Arrival and departure times leave no real city time.</li>
+              <li>The visa, weather, transfer, or hotel location turns it into work.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 className="mt-8 text-h3 text-ink-deep">
+          Terms That Change the Booking
+        </h3>
+        <p className="mt-3 text-prose text-ink leading-relaxed">
+          These terms matter because airline rules often treat them
+          differently. A long layover may qualify for a transit hotel or tour.
+          A stopover may require a multi-city booking or a specific stopover
+          flow.
+        </p>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-full border-collapse text-body">
+            <thead>
+              <tr className="border-b border-sand">
+                <th
+                  scope="col"
+                  className="py-2 pr-6 text-left font-semibold text-ink-deep"
+                >
+                  Term
+                </th>
+                <th
+                  scope="col"
+                  className="py-2 text-left font-semibold text-ink-deep"
+                >
+                  What it means
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-sand">
+              {TERMINOLOGY.map((row) => (
+                <tr key={row.term}>
+                  <td className="py-3 pr-6 align-top font-medium text-ink-deep">
+                    {row.term}
+                  </td>
+                  <td className="py-3 align-top text-ink">
+                    {row.definition}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="mt-8 text-h3 text-ink-deep">
+          What the Airline Is Actually Offering
+        </h3>
+        <p className="mt-3 text-prose text-ink leading-relaxed">
+          The word stopover gets used for different products. Before booking,
+          separate the benefit from the destination.
+        </p>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-full border-collapse text-body">
+            <thead>
+              <tr className="border-b border-sand">
+                <th
+                  scope="col"
+                  className="py-2 pr-6 text-left font-semibold text-ink-deep"
+                >
+                  Benefit type
+                </th>
+                <th
+                  scope="col"
+                  className="py-2 pr-6 text-left font-semibold text-ink-deep"
+                >
+                  What it means
+                </th>
+                <th
+                  scope="col"
+                  className="py-2 text-left font-semibold text-ink-deep"
+                >
+                  Examples
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-sand">
+              {BENEFIT_TYPES.map((row) => (
+                <tr key={row.type}>
+                  <td className="py-3 pr-6 align-top font-medium text-ink-deep">
+                    {row.type}
+                  </td>
+                  <td className="py-3 pr-6 align-top text-ink">
+                    {row.meaning}
+                  </td>
+                  <td className="py-3 align-top text-ink">
+                    {row.examples}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 className="mt-8 text-h3 text-ink-deep">
+          A Few Real Examples
+        </h3>
+        <div className="mt-3 space-y-4 text-prose text-ink leading-relaxed">
+          <p>
+            Panama worked because it solved the fare and gave me enough time
+            to see the canal. A Bogota to Rio itinerary with four nights in
+            Panama City priced better than the direct flight.
+          </p>
+          <p>
+            Oman worked as a short stop, not as a full holiday. Muscat was
+            worth seeing, but the heat changed the way I used the day. That is
+            exactly the kind of destination where a stopover can be the right
+            amount of time.
+          </p>
+          <p>
+            Turkish Touristanbul is useful for a different reason: it makes a
+            first pass through Istanbul easy when you are tired and do not want
+            to negotiate the city from scratch.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="text-h2 text-ink-deep mb-4">
+          Before You Book
+        </h2>
+        <p className="text-prose text-ink leading-relaxed">
+          I would check these before treating the stopover as part of the trip.
+          Airline pages change, and small fare-rule details can decide whether
+          the hotel exists or whether you are just holding an awkward ticket.
+        </p>
+        <ol className="mt-5 list-decimal space-y-2 pl-5 text-prose leading-relaxed text-ink">
+          {BOOKING_CHECKS.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+
       <footer className="mt-16 border-t border-sand pt-6 text-micro text-muted">
-        <p>Last updated {LAST_UPDATED_LABEL}.</p>
+        <p>
+          Last updated {LAST_UPDATED_LABEL}. Check the official airline page
+          before booking, especially when the benefit includes a hotel or
+          depends on a minimum connection time.
+        </p>
       </footer>
     </main>
   );

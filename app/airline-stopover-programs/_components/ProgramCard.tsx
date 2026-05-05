@@ -9,9 +9,16 @@ function HotelBadge({ nights }: { nights: string }) {
       </span>
     );
   }
+  if (nights === "possible") {
+    return (
+      <span className="inline-flex items-center rounded-full border border-teal/30 bg-teal/10 px-2 py-0.5 text-label font-semibold text-teal">
+        Hotel possible
+      </span>
+    );
+  }
   return (
     <span className="inline-flex items-center rounded-full border border-teal/30 bg-teal/10 px-2 py-0.5 text-label font-semibold text-teal">
-      {nights} {nights === "1" ? "night" : "nights"} included
+      {nights} {nights === "1" ? "night" : "nights"} hotel benefit
     </span>
   );
 }
@@ -56,7 +63,7 @@ export function ProgramCard({ program }: { program: StopoverProgram }) {
         {program.duration && (
           <div>
             <dt className="inline font-medium text-muted">
-              Validity:{" "}
+              Window:{" "}
             </dt>
             <dd className="inline">{program.duration}</dd>
           </div>

@@ -242,6 +242,7 @@ function placeType(row: PinRow, category?: string | null): string {
     .trim();
   const lower = raw.toLowerCase();
   if (lower === 'cafe') return 'cafe';
+  if (lower === 'shopping') return 'shopping place';
   if (lower === 'tourist attraction') return 'visitor attraction';
   if (lower === 'lodging') return 'hotel or lodging';
   return lower || 'place';
@@ -990,6 +991,7 @@ function derivedPatch(pin: PinRow, cityCountryLookup: Map<string, LocationHint>)
     pin.description.startsWith(`${pin.name} is `) &&
     (descriptionHasMessyLocation(pin.description) ||
       /\bis a attraction\b/.test(pin.description) ||
+      (pin.visited === true && /saved for future trip planning/i.test(pin.description)) ||
       (hasOnlyGenericSavedLists(pin) && isEmpty(pin.city_names) && isEmpty(pin.states_names) && /\bin England\b/.test(pin.description)) ||
       Boolean(patch.kind) ||
       Boolean(patch.city_names) ||

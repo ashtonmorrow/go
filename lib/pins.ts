@@ -168,6 +168,12 @@ export type Pin = {
    *  from priceTier (a restaurant-specific personal pick). Populated
    *  later by a Places API enrichment pass. */
   priceLevel: number | null;
+  /** E.164 international phone number from Google Places
+   *  (internationalPhoneNumber). Surfaced on the pin detail page Getting
+   *  There card as a `tel:` link. Populated by the same enrichment pass
+   *  as priceLevel — same Pro-tier SKU on Google's side, so requesting
+   *  it costs nothing extra when we're already asking for price/website. */
+  phone: string | null;
 
   address: string | null;
   openingHours: PinOpeningHours | null;
@@ -355,6 +361,7 @@ function rowToPin(row: any): Pin {
     updatedAt: row.updated_at ?? null,
     savedAt: asString(row.saved_at),
     priceLevel: asNumber(row.price_level),
+    phone: asString(row.phone),
 
     address: asString(row.address),
     openingHours,
@@ -443,6 +450,11 @@ const INDEX_COLUMNS = [
   'personal_rating', 'personal_review', 'visit_year',
   // SEO + restaurant pricing on cards
   'indexable', 'price_tier',
+  // Google Places enrichment — surfaced on /pins/cards via the price chip
+  // (kind-aware: $-$$$$ for restaurants, falls back to priceLevel when the
+  // personal priceTier hasn't been set) and on the detail page as a chip +
+  // tel: link in Getting There.
+  'price_level', 'phone',
 ].join(',');
 
 const _fetchAllPins = unstable_cache(
@@ -493,9 +505,9 @@ const _fetchAllPins = unstable_cache(
   },
   // Cache key bumped to force a fresh refetch after the parallel-pagination
   // fix landed and again after the visited=true backfill on Google-imported
-  // pins. The cache is keyed by string; bumping the suffix is the simplest
-  // way to invalidate without waiting on the 24h TTL.
-  ['supabase-pins-v3'],
+  // pins. v4: added price_level + phone to INDEX_COLUMNS so cached payloads
+  // without those columns now look stale; bumping evicts them in one shot.
+  ['supabase-pins-v4'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 export const fetchAllPins = cache(_fetchAllPins);
@@ -557,10 +569,10 @@ const _fetchPinsInBbox = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v2: bumped after a Vercel data-cache deserialization issue caused
-  // every /pins/[slug] page to 500. Forcing a fresh cache fill on the
-  // next request, even though the underlying query shape didn't change.
-  ['supabase-pins-bbox-v2'],
+  // v3: same INDEX_COLUMNS expansion as fetchAllPins (price_level + phone).
+  // bbox queries fall through the same column list, so bump in lockstep
+  // to keep all callers consistent.
+  ['supabase-pins-bbox-v3'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(_fetchPinsInBbox);
@@ -581,10 +593,11 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v2: bumped to evict any stale or oversized cache entry that was
-  // making /pins/[slug] return 500 on Vercel (locally fine). Same fix
-  // pattern used for fetchAllPins → v3.
-  ['supabase-pin-by-slug-v2'],
+  // v3: bumped after the pins schema gained the `phone` column. Detail
+  // queries grab `select('*')` so they always see new columns, but the
+  // stable-key cache could serve a payload deserialized into the old
+  // Pin shape (phone undefined). Bump to fill from scratch.
+  ['supabase-pin-by-slug-v3'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(_fetchPinBySlug);

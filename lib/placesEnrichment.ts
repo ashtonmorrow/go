@@ -214,7 +214,12 @@ function mapOpeningHours(
 export async function* enrichPins(
   options: EnrichOptions,
 ): AsyncGenerator<EnrichEvent> {
-  const fields = options.fields ?? ['price', 'hours'];
+  // Default field bundle: price + hours + phone. price/website/phone all
+  // share Google's $0.005 Pro tier — adding phone to the default costs
+  // nothing extra. hours bumps the call to the $0.020 Enterprise tier
+  // regardless. The admin UI can still override fields[] explicitly when
+  // it wants a cheaper run.
+  const fields = options.fields ?? ['price', 'hours', 'phone'];
   const maxCost = options.maxCostUsd ?? Infinity;
   const tier = detailsTier(fields);
   const apply = !options.dryRun;
@@ -224,7 +229,7 @@ export async function* enrichPins(
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, lat, lng, google_place_url, price_level, hours_details, website')
+    .select('id, name, slug, lat, lng, google_place_url, price_level, hours_details, website, phone')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;
@@ -239,6 +244,7 @@ export async function* enrichPins(
     price_level: number | null;
     hours_details: Record<string, unknown> | null;
     website: string | null;
+    phone: string | null;
   }>;
 
   yield { type: 'start', total: pins.length, fields, tier };
@@ -335,8 +341,13 @@ export async function* enrichPins(
     if (fields.includes('website') && !pin.website && details.websiteUri) {
       patch.website = details.websiteUri;
     }
-    // phone: no column to write to yet; the SKU it's billed under is
-    // already in the response, so we surface it in the event but skip.
+    if (fields.includes('phone') && !pin.phone && details.internationalPhoneNumber) {
+      // Same "only-if-empty" guard as website: if a curated phone number
+      // is already on file, don't clobber it with Google's number. Refresh
+      // runs (refresh=true) re-fetch the row but still respect this guard
+      // so the user's hand-corrected values stick.
+      patch.phone = details.internationalPhoneNumber;
+    }
 
     if (Object.keys(patch).length === 0) {
       yield {

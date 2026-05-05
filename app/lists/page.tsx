@@ -29,9 +29,9 @@ import { SITE_URL } from '@/lib/seo';
 // to a real geo entity, not just a theme.
 
 export const metadata: Metadata = {
-  title: "Mike's Curated Lists",
+  title: "Mike's Saved Lists",
   description:
-    'Mike’s personal Google Maps saved lists — places grouped by city, theme, and intent. Originally curated in Google Maps, now first-party here.',
+    "Mike's saved travel lists: places grouped by city, theme, and intent, originally built in Google Maps and organized here for easier planning.",
   alternates: { canonical: `${SITE_URL}/lists` },
 };
 
@@ -69,10 +69,12 @@ export default async function ListsIndex() {
     cityByName.set(c.name.toLowerCase(), {
       name: c.name,
       slug: c.slug,
-      // City covers come from two columns the migration populated. Hero is
-      // the editorial pick; personal_photo is a Mike-shot fallback that
-      // wins on most cities he's visited. Either one beats nothing.
-      cover: c.personalPhoto ?? c.heroImage ?? null,
+      // List cover comes from the personal photo only — heroImage is a
+      // Wikimedia/Commons photograph and we no longer surface those on
+      // tile/cover surfaces (only on the city detail page hero, which
+      // renders ImageCredit alongside it). When the city has no personal
+      // photo, the list card falls through to a pin-photo fallback below.
+      cover: c.personalPhoto ?? null,
     });
   }
   const countryByName = new Map<string, { name: string; slug: string }>();
@@ -152,17 +154,23 @@ export default async function ListsIndex() {
     <article className="max-w-page mx-auto px-5 py-8">
       <header className="mb-6">
         <h1 className="text-display text-ink-deep leading-none">
-          Mike&rsquo;s Curated Lists
+          Mike&rsquo;s Saved Lists
         </h1>
         <p className="mt-3 text-small text-muted">
           {lists.length} {lists.length === 1 ? 'list' : 'lists'} ·{' '}
-          {lists.reduce((n, l) => n + l.count, 0)} total memberships
+          {lists.reduce((n, l) => n + l.count, 0)} saved places
+        </p>
+        <p className="mt-3 max-w-prose text-slate leading-relaxed">
+          These are the working lists behind the atlas: restaurants, museums,
+          gardens, viewpoints, stations, day-trip ideas, and places I saved
+          while planning. Some are polished enough to use as a short guide.
+          Others are still a research pile, which is useful in its own way.
         </p>
       </header>
 
       {lists.length === 0 ? (
         <div className="card p-8 text-center text-slate">
-          No saved lists yet — the import hasn&rsquo;t been run.
+          No saved lists yet. The import has not been run.
         </div>
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">

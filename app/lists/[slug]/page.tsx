@@ -218,9 +218,11 @@ export default async function ListPage({ params }: Props) {
   const coverFromPin = meta?.coverPinId
     ? listPins.find(p => p.id === meta.coverPinId)?.images?.[0]?.url ?? null
     : null;
-  const coverFromCity = cityMatch
-    ? cityMatch.personalPhoto ?? cityMatch.heroImage ?? null
-    : null;
+  // Anchor city's personal photo only — heroImage is a Wikimedia
+  // photograph and we no longer use Wikimedia images outside the city
+  // detail page hero (which has ImageCredit). When the city has no
+  // personal photo, fall through to coverFromPinPile below.
+  const coverFromCity = cityMatch ? cityMatch.personalPhoto ?? null : null;
   const coverFromPinPile = (() => {
     // Prefer a visited pin's first photo over a draft's so the hero feels
     // like a real travel snapshot rather than placeholder Wikidata art.

@@ -7,7 +7,7 @@ import { PostCard } from "./_components/PostCard";
 export const metadata: Metadata = {
   title: "Posts",
   description:
-    "Travel notes, guides, and reference articles by Mike Lee.",
+    "Travel notes, place essays, and practical references by Mike Lee.",
   alternates: { canonical: "/posts" },
 };
 
@@ -19,7 +19,8 @@ export default async function PostsIndexPage() {
       <header className="mb-10">
         <h1 className="text-h1 text-ink-deep">Posts</h1>
         <p className="mt-3 text-prose text-slate leading-relaxed">
-          Travel notes, guides, and reference articles.
+          Notes from trips, route research, and places I want to understand
+          before I recommend them to anyone else.
         </p>
       </header>
 
