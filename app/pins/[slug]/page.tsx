@@ -598,6 +598,22 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               {pin.cityNames[0] && <Fact label="City">{pin.cityNames[0]}</Fact>}
               {/* Address is in the Getting There card below — not duplicated here. */}
               {pin.category && <Fact label="Category">{pin.category}</Fact>}
+              {/* Price level — Google's 0–4 scale. Rendered in the Facts
+                  card on every kind so the signal isn't trapped inside
+                  the kind-specific "Mike's meal" section (which only
+                  fires for restaurants). For restaurants without a
+                  curated priceTier this surfaces alongside the meal
+                  section's identical chip; redundant but consistent. */}
+              {pin.priceLevel != null && pin.priceLevel > 0 && !pin.priceTier && (
+                <Fact label="Price level">
+                  <span
+                    className="font-mono text-ink-deep tabular-nums"
+                    title="Approximate price level from Google"
+                  >
+                    {'$'.repeat(Math.min(4, pin.priceLevel))}
+                  </span>
+                </Fact>
+              )}
               {pin.durationMinutes != null && (
                 <Fact label="Visit time">{fmtDuration(pin.durationMinutes)}</Fact>
               )}
