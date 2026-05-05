@@ -45,10 +45,24 @@ export type AdminPinRow = {
 type Props = {
   listName: string;
   initialRows: AdminPinRow[];
+  /** Curated pin order from saved_lists.pin_order. Pins listed here are
+   *  the "manual tier" — they render first in the order given. Pins not
+   *  in the array fall through to alphabetical (in admin) and to the
+   *  rated/reviewed sort the visitor picked (on /lists/<slug>). */
+  initialPinOrder?: string[];
 };
 
-export default function AdminListEditor({ listName, initialRows }: Props) {
+export default function AdminListEditor({
+  listName,
+  initialRows,
+  initialPinOrder = [],
+}: Props) {
   const [rows, setRows] = useState<AdminPinRow[]>(initialRows);
+  // pinOrder is the source of truth for reordering. Drag-and-drop and
+  // the per-card number input both mutate it; whenever it changes we
+  // POST setPinOrder. Members are rendered in pinOrder first, then
+  // unpinned tail alphabetical — same shape /lists/<slug> uses.
+  const [pinOrder, setPinOrder] = useState<string[]>(initialPinOrder);
   const [showAdd, setShowAdd] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
   // Drag-reorder state: which pin id is currently being dragged, and
@@ -57,7 +71,25 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [savingOrder, setSavingOrder] = useState(false);
 
-  const members = useMemo(() => rows.filter(r => r.isMember), [rows]);
+  // Members ordered by pinOrder first (in array order), then unpinned
+  // tail alphabetical. Recomputed every time rows or pinOrder change so
+  // optimistic edits land instantly.
+  const members = useMemo(() => {
+    const isMember = new Map(rows.map(r => [r.id, r] as const));
+    const orderedPinned: AdminPinRow[] = [];
+    const seen = new Set<string>();
+    for (const id of pinOrder) {
+      const r = isMember.get(id);
+      if (r && r.isMember && !seen.has(id)) {
+        orderedPinned.push(r);
+        seen.add(id);
+      }
+    }
+    const tail = rows
+      .filter(r => r.isMember && !seen.has(r.id))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    return [...orderedPinned, ...tail];
+  }, [rows, pinOrder]);
   const nonMembers = useMemo(() => rows.filter(r => !r.isMember), [rows]);
 
   const memberCount = members.length;
@@ -80,6 +112,15 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
   async function toggleMembership(pinId: string, nextState: boolean) {
     setFlash(null);
     patchRow(pinId, { isMember: nextState });
+    // Mirror the server's pin_order maintenance locally: add → append,
+    // remove → filter. Keeps the optimistic UI in sync with what
+    // /api/admin/saved-list does on the addPin/removePin path.
+    setPinOrder(prev => {
+      if (nextState) {
+        return prev.includes(pinId) ? prev : [...prev, pinId];
+      }
+      return prev.filter(id => id !== pinId);
+    });
     try {
       const res = await fetch('/api/admin/saved-list', {
         method: 'POST',
@@ -94,6 +135,9 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       if (!res.ok) throw new Error(data?.error ?? 'toggle failed');
     } catch (e) {
       patchRow(pinId, { isMember: !nextState });
+      setPinOrder(prev =>
+        nextState ? prev.filter(id => id !== pinId) : [...prev, pinId],
+      );
       setFlash(e instanceof Error ? e.message : 'toggle failed');
     }
   }
@@ -131,26 +175,54 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       setHoverId(null);
       return;
     }
-    // Reorder rows so that draggingId moves to the position of targetId.
-    // We operate on the full rows array (not just members) so the
-    // member-only render is consistent with what's stored.
-    setRows(prev => {
+    // Mutate pinOrder so dragged pin lands at target's slot. Both pins
+    // must be members (we can't reorder pins outside the list). Pins
+    // not currently in pinOrder are added when dropped onto a pinned
+    // pin's slot, since the user is intentionally pinning them.
+    setPinOrder(prev => {
       const next = prev.slice();
-      const fromIdx = next.findIndex(r => r.id === draggingId);
-      const toIdx = next.findIndex(r => r.id === targetId);
-      if (fromIdx < 0 || toIdx < 0) return prev;
-      const [moved] = next.splice(fromIdx, 1);
-      // Recompute toIdx after the splice — if we were dragging earlier
-      // in the array, the target shifted up by one.
-      const adjusted = fromIdx < toIdx ? toIdx - 1 : toIdx;
-      next.splice(adjusted, 0, moved);
-      // Persist member-only order to the server.
-      const orderedMemberIds = next.filter(r => r.isMember).map(r => r.id);
-      void commitOrder(orderedMemberIds);
+      // Make sure both ids are in the array. The dragged pin must
+      // become pinned at the new slot; the target tells us where.
+      const removeId = (id: string) => {
+        const i = next.indexOf(id);
+        if (i !== -1) next.splice(i, 1);
+      };
+      removeId(draggingId);
+      // Compute the target's index in the (possibly-mutated) array. If
+      // target wasn't pinned yet, fall back to the end.
+      let toIdx = next.indexOf(targetId);
+      if (toIdx === -1) toIdx = next.length;
+      next.splice(toIdx, 0, draggingId);
+      void commitOrder(next);
       return next;
     });
     setDraggingId(null);
     setHoverId(null);
+  }
+
+  // === Number-input reorder ================================================
+  // Each card has a "Position" input — the admin types a number and the
+  // pin lands at that slot. Setting empty / 0 unpins. This is the fast
+  // path for big lists where dragging 150 cards is brutal.
+  //
+  // Numbers are 1-indexed. A position larger than the current pinOrder
+  // length appends to the end. Pins not yet in pinOrder are added when
+  // a positive position is set.
+  function setPosition(pinId: string, raw: number | null) {
+    setPinOrder(prev => {
+      const next = prev.slice();
+      const currentIdx = next.indexOf(pinId);
+      if (currentIdx !== -1) next.splice(currentIdx, 1);
+      if (raw == null || raw < 1) {
+        // Unpin → fall back to alphabetical / the public sort dropdown.
+        void commitOrder(next);
+        return next;
+      }
+      const target = Math.min(raw - 1, next.length);
+      next.splice(target, 0, pinId);
+      void commitOrder(next);
+      return next;
+    });
   }
 
   async function deletePin(pinId: string, pinName: string) {
@@ -224,33 +296,42 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       ) : (
         <>
           <p className="text-label text-muted mb-2 flex items-center gap-2">
-            <span>Tip: drag the ⋮⋮ handle on any card to reorder.</span>
+            <span>
+              Tip: type a number in the <strong>#</strong> field on any card
+              to set its position, or drag the ⋮⋮ handle. Empty / 0 = unpinned.
+            </span>
             {savingOrder && <span className="text-teal">saving order…</span>}
           </p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {members.map(r => (
-              <EditableCard
-                key={r.id}
-                row={r}
-                isDragging={draggingId === r.id}
-                isDropTarget={hoverId === r.id && draggingId !== r.id}
-                onDragStart={() => setDraggingId(r.id)}
-                onDragOver={() => {
-                  if (draggingId && draggingId !== r.id) setHoverId(r.id);
-                }}
-                onDragLeave={() => {
-                  if (hoverId === r.id) setHoverId(null);
-                }}
-                onDragEnd={() => {
-                  setDraggingId(null);
-                  setHoverId(null);
-                }}
-                onDrop={() => handleDrop(r.id)}
-                onPatch={patch => patchRow(r.id, patch)}
-                onRemoveFromList={() => toggleMembership(r.id, false)}
-                onDeletePin={() => deletePin(r.id, r.name)}
-              />
-            ))}
+            {members.map(r => {
+              const pinIdx = pinOrder.indexOf(r.id);
+              const position = pinIdx === -1 ? null : pinIdx + 1;
+              return (
+                <EditableCard
+                  key={r.id}
+                  row={r}
+                  position={position}
+                  onSetPosition={n => setPosition(r.id, n)}
+                  isDragging={draggingId === r.id}
+                  isDropTarget={hoverId === r.id && draggingId !== r.id}
+                  onDragStart={() => setDraggingId(r.id)}
+                  onDragOver={() => {
+                    if (draggingId && draggingId !== r.id) setHoverId(r.id);
+                  }}
+                  onDragLeave={() => {
+                    if (hoverId === r.id) setHoverId(null);
+                  }}
+                  onDragEnd={() => {
+                    setDraggingId(null);
+                    setHoverId(null);
+                  }}
+                  onDrop={() => handleDrop(r.id)}
+                  onPatch={patch => patchRow(r.id, patch)}
+                  onRemoveFromList={() => toggleMembership(r.id, false)}
+                  onDeletePin={() => deletePin(r.id, r.name)}
+                />
+              );
+            })}
           </ul>
         </>
       )}
@@ -281,6 +362,8 @@ type EditField =
 
 function EditableCard({
   row,
+  position,
+  onSetPosition,
   isDragging,
   isDropTarget,
   onDragStart,
@@ -293,6 +376,11 @@ function EditableCard({
   onDeletePin,
 }: {
   row: AdminPinRow;
+  /** Current 1-indexed position in pin_order, or null if unpinned. */
+  position: number | null;
+  /** Set this pin's position. null / 0 unpins (falls through to public
+   *  default sort). */
+  onSetPosition: (n: number | null) => void;
   isDragging: boolean;
   isDropTarget: boolean;
   onDragStart: () => void;
@@ -367,10 +455,19 @@ function EditableCard({
             No photo
           </div>
         )}
+        {/* Position number input — always visible. Type a number to set
+            the pin's slot in pin_order. Empty / 0 unpins. The input is
+            tab-friendly so an admin can rip through 150 pins quickly,
+            whereas dragging would take forever. */}
+        <PositionInput
+          value={position}
+          onCommit={onSetPosition}
+          pinName={row.name}
+        />
         {/* Drag handle — only the handle is `draggable`, so accidental drags
             from the title / stars / review text don't fire. The handle has
-            `cursor-grab` for affordance and shows always (not hover-only)
-            so the reorder mechanic is discoverable. */}
+            `cursor-grab` for affordance and only appears on hover so the
+            position input stays the primary affordance for big lists. */}
         <div
           draggable
           onDragStart={e => {
@@ -382,7 +479,7 @@ function EditableCard({
           onDragEnd={onDragEnd}
           title="Drag to reorder"
           aria-label={`Reorder ${row.name}`}
-          className="absolute top-2 right-12 w-7 h-7 rounded-md bg-white/85 hover:bg-white text-slate hover:text-ink-deep
+          className="absolute bottom-2 right-2 w-7 h-7 rounded-md bg-white/85 hover:bg-white text-slate hover:text-ink-deep
                      flex items-center justify-center cursor-grab active:cursor-grabbing shadow backdrop-blur-sm
                      opacity-0 group-hover:opacity-100 transition-opacity"
         >
@@ -779,7 +876,9 @@ function FreeChip({
       type="button"
       onClick={() => onChange(next)}
       className={
-        'absolute top-2 right-2 pill text-micro shadow backdrop-blur-sm transition-all ' +
+        // Bottom-left to keep clear of the position input (top-right) and
+        // the visited chip (top-left). Drag handle lives bottom-right.
+        'absolute bottom-2 left-2 pill text-micro shadow backdrop-blur-sm transition-all ' +
         styles
       }
       title={
@@ -792,6 +891,76 @@ function FreeChip({
     >
       {label}
     </button>
+  );
+}
+
+function PositionInput({
+  value,
+  onCommit,
+  pinName,
+}: {
+  value: number | null;
+  onCommit: (n: number | null) => void;
+  pinName: string;
+}) {
+  // Local draft so typing isn't fighting the controlled value while the
+  // server round-trip is in flight. Sync down whenever the prop changes
+  // (e.g. another card's reorder shifts our index).
+  const [draft, setDraft] = useState<string>(value != null ? String(value) : '');
+  useEffect(() => {
+    setDraft(value != null ? String(value) : '');
+  }, [value]);
+
+  function commit() {
+    const trimmed = draft.trim();
+    if (trimmed === '') {
+      if (value != null) onCommit(null);
+      return;
+    }
+    const n = Number(trimmed);
+    if (!Number.isFinite(n)) {
+      // Restore last known good if the input was garbage.
+      setDraft(value != null ? String(value) : '');
+      return;
+    }
+    if (n <= 0) {
+      onCommit(null);
+      return;
+    }
+    if (n === value) return;
+    onCommit(Math.round(n));
+  }
+
+  return (
+    <div
+      className="absolute top-2 right-2 inline-flex items-center gap-0.5 bg-white/85 backdrop-blur-sm rounded-md shadow"
+      title={`Position of "${pinName}". Empty / 0 = unpinned (falls back to default sort).`}
+    >
+      <span className="pl-1.5 pr-0.5 text-micro text-slate font-medium select-none">#</span>
+      <input
+        type="number"
+        min={0}
+        value={draft}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            (e.target as HTMLInputElement).blur();
+          }
+          if (e.key === 'Escape') {
+            setDraft(value != null ? String(value) : '');
+            (e.target as HTMLInputElement).blur();
+          }
+        }}
+        placeholder="—"
+        aria-label={`Position for ${pinName}`}
+        className={
+          'w-10 py-0.5 pr-1 text-label text-ink-deep tabular-nums bg-transparent border-0 ' +
+          'focus:outline-none focus:ring-2 focus:ring-ink-deep/20 rounded-r-md'
+        }
+      />
+    </div>
   );
 }
 

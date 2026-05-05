@@ -432,6 +432,10 @@ export default async function ListPage({ params }: Props) {
           pageSize={48}
           showSort
           initialSort="rated"
+          // Curated tier: pinned pins always lead in their assigned
+          // order; the rest of the list falls through to the user's
+          // sort dropdown (default 'rated' = reviewed-first).
+          pinOrder={meta?.pinOrder ?? []}
         />
       )}
     </article>

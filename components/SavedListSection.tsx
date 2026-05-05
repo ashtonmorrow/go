@@ -68,6 +68,11 @@ type Props = {
   /** Initial sort key. Defaults to 'rated' which surfaces the most useful
    *  cards (Mike's reviews + ratings) at the top. */
   initialSort?: SavedListSortKey;
+  /** Curated pin ordering (saved_lists.pin_order). Pins listed here
+   *  render first, in the order given, regardless of which sort key the
+   *  user picks. Pins not in the array fall through to `initialSort` /
+   *  the dropdown selection. */
+  pinOrder?: string[];
 };
 
 const SORT_OPTIONS: { key: SavedListSortKey; label: string }[] = [
@@ -79,7 +84,45 @@ const SORT_OPTIONS: { key: SavedListSortKey; label: string }[] = [
   { key: 'city',    label: 'By city' },
 ];
 
-function sortPins(pins: SavedListPin[], key: SavedListSortKey): SavedListPin[] {
+/**
+ * Two-tier sort.
+ *
+ * Tier 0 (always wins): pins explicitly placed in `pinOrder` — these
+ * render first, in the order the admin curated. Position N renders Nth.
+ *
+ * Tier 1 (fallback): pins NOT in `pinOrder` follow the user's chosen
+ * sort key (rated / rating / recent / visited / alpha / city). The
+ * default 'rated' surfaces reviewed-and-rated pins ahead of everything
+ * else, which matches the experience visitors had before pin_order
+ * existed.
+ *
+ * Result: hand-picked pins always lead, the long tail still self-orders
+ * by signal. The admin only has to renumber the few they care about.
+ */
+function sortPins(
+  pins: SavedListPin[],
+  key: SavedListSortKey,
+  pinOrder: string[] = [],
+): SavedListPin[] {
+  const orderIdx = new Map<string, number>();
+  pinOrder.forEach((id, i) => orderIdx.set(id, i));
+  const fallback = sortByKey(pins, key);
+  // Stable separation: emit pinned pins in their explicit order, then
+  // append the unpinned tail in fallback-sorted order. Single pass each.
+  const pinned: SavedListPin[] = [];
+  const seen = new Set<string>();
+  for (const id of pinOrder) {
+    const found = fallback.find(p => p.id === id);
+    if (found && !seen.has(found.id)) {
+      pinned.push(found);
+      seen.add(found.id);
+    }
+  }
+  const unpinned = fallback.filter(p => !seen.has(p.id));
+  return [...pinned, ...unpinned];
+}
+
+function sortByKey(pins: SavedListPin[], key: SavedListSortKey): SavedListPin[] {
   // Always make a copy — the caller's array is treated as immutable.
   const arr = pins.slice();
   switch (key) {
@@ -134,13 +177,19 @@ export default function SavedListSection({
   pageSize = 24,
   showSort = false,
   initialSort = 'rated',
+  pinOrder = [],
 }: Props) {
   const [sort, setSort] = useState<SavedListSortKey>(initialSort);
   const [shown, setShown] = useState(pageSize);
 
   // Re-sort when the user picks a new sort key. useMemo keeps SSR HTML stable
   // until hydration; reset paging on sort change so the user sees the new top.
-  const sorted = useMemo(() => sortPins(pins, sort), [pins, sort]);
+  // pinOrder is treated as a stable manual tier — pinned pins render first
+  // in the curated order regardless of the dropdown selection.
+  const sorted = useMemo(
+    () => sortPins(pins, sort, pinOrder),
+    [pins, sort, pinOrder],
+  );
 
   if (pins.length === 0) return null;
   const visible = sorted.slice(0, shown);

@@ -202,7 +202,11 @@ export default async function ListDetailAdminPage({ params }: Props) {
         />
       </header>
 
-      <AdminListEditor listName={found.name} initialRows={rows} />
+      <AdminListEditor
+        listName={found.name}
+        initialRows={rows}
+        initialPinOrder={meta?.pinOrder ?? []}
+      />
     </div>
   );
 }

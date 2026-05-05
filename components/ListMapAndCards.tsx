@@ -44,6 +44,10 @@ type Props = {
   pageSize?: number;
   showSort?: boolean;
   initialSort?: 'rated' | 'recent' | 'rating' | 'visited' | 'alpha' | 'city';
+  /** Curated pin ordering forwarded to SavedListSection. Pinned pins
+   *  render first regardless of the sort dropdown; unpinned tail falls
+   *  through to the user's selection. */
+  pinOrder?: string[];
 };
 
 export default function ListMapAndCards({
@@ -54,6 +58,7 @@ export default function ListMapAndCards({
   pageSize,
   showSort,
   initialSort,
+  pinOrder,
 }: Props) {
   // Pins that can actually appear on the map. Sort + render order in the
   // grid is unaffected by this filter; we only use it for the GeoJSON.
@@ -178,6 +183,7 @@ export default function ListMapAndCards({
         pageSize={pageSize}
         showSort={showSort}
         initialSort={initialSort}
+        pinOrder={pinOrder}
       />
     );
   }
@@ -280,6 +286,7 @@ export default function ListMapAndCards({
         pageSize={pageSize}
         showSort={showSort}
         initialSort={initialSort}
+        pinOrder={pinOrder}
       />
     </>
   );
