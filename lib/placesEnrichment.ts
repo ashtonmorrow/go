@@ -183,6 +183,19 @@ type PlaceDetails = {
   /** Full set of Google types ("restaurant", "food", "establishment").
    *  Fallback if primaryType doesn't match anything in our map. */
   types?: string[];
+  /** Average user rating, 0.0–5.0. Free in the tier we already pay
+   *  for. No curated equivalent — we always overwrite. */
+  rating?: number;
+  /** Count of user ratings backing `rating`. "4.5 (12)" reads
+   *  differently than "4.5 (8,431)", so we surface both. */
+  userRatingCount?: number;
+  /** Full street address from Google. Used to fill pin.address only
+   *  when blank — never clobbers a curated address. */
+  formattedAddress?: string;
+  /** "OPERATIONAL" / "CLOSED_TEMPORARILY" / "CLOSED_PERMANENTLY".
+   *  Currently captured for visibility but not auto-written to
+   *  pin.status, since closures need a curator's eye. */
+  businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
 };
 
 type PinKind = 'attraction' | 'shopping' | 'hotel' | 'park' | 'restaurant' | 'transit';
@@ -424,7 +437,7 @@ export async function* enrichPins(
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, price_level, hours_details, website, phone')
+    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, google_place_id, price_level, hours_details, website, phone, address')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;
@@ -440,10 +453,15 @@ export async function* enrichPins(
     city_names: string[] | null;
     states_names: string[] | null;
     google_place_url: string | null;
+    /** Cached resolved place_id from a previous run. When set, we
+     *  skip both the URL parse AND the Find Place hop. Persisted in
+     *  the migration that added google_rating + google_rating_count. */
+    google_place_id: string | null;
     price_level: number | null;
     hours_details: Record<string, unknown> | null;
     website: string | null;
     phone: string | null;
+    address: string | null;
   }>;
 
   yield { type: 'start', total: pins.length, fields, tier };
@@ -455,8 +473,14 @@ export async function* enrichPins(
   for (let i = 0; i < pins.length; i++) {
     const pin = pins[i]!;
 
-    // 1. Resolve place_id (cheap path: pull from URL; fallback: Find Place)
-    let placeId = placeIdFromUrl(pin.google_place_url);
+    // 1. Resolve place_id. Three paths in increasing cost order:
+    //    (a) cached resolved place_id from a previous enrichment run
+    //        (free — place IDs are exempt from Google caching limits)
+    //    (b) parsed out of a saved google_place_url (free)
+    //    (c) Find Place from Text hop ($0.017)
+    // We save the result back to pin.google_place_id whenever we had to
+    // resolve via (b) or (c) so the next run hits (a) for free.
+    let placeId = pin.google_place_id || placeIdFromUrl(pin.google_place_url);
     type Action =
       | 'cached-id' | 'resolving' | 'resolved' | 'no-match'
       | 'enriched' | 'no-data' | 'skipped' | 'cost-cap';
@@ -562,6 +586,34 @@ export async function* enrichPins(
         inferKindFromTypes(details.primaryType, details.types) ??
         inferKindFromText([pin.category, pin.name, details.displayName?.text]);
       if (inferred) patch.kind = inferred;
+    }
+
+    // Free additions in the tier we already pay for. These ride along
+    // with whatever fields the user requested and cost nothing extra.
+
+    // Google rating + count: pure Google data, no curated equivalent,
+    // overwrite freely. Capped to the Postgres numeric(2,1) range we
+    // migrated.
+    if (typeof details.rating === 'number' && Number.isFinite(details.rating)) {
+      patch.google_rating = Math.max(0, Math.min(5, details.rating));
+    }
+    if (typeof details.userRatingCount === 'number' && Number.isFinite(details.userRatingCount)) {
+      patch.google_rating_count = Math.max(0, Math.floor(details.userRatingCount));
+    }
+
+    // Address: only fill when blank — never clobber a curated value.
+    // Some pins have hand-edited addresses that read better than
+    // Google's "12 Some St, City, Country" boilerplate.
+    if (!pin.address && typeof details.formattedAddress === 'string' && details.formattedAddress.trim()) {
+      patch.address = details.formattedAddress.trim();
+    }
+
+    // Cache the resolved place_id for free re-runs. Only writes when
+    // we don't already have one stored — the Find Place hop only
+    // happens when this column is null AND google_place_url couldn't
+    // be parsed, so writing here saves the $0.017 next time.
+    if (!pin.google_place_id && placeId) {
+      patch.google_place_id = placeId;
     }
 
     if (Object.keys(patch).length === 0) {

@@ -1,10 +1,10 @@
 ---
-title: A visit to the Rio Botanical Garden
-subtitle: A rainy afternoon, a wrong-location correction, and the details I would plan around next time.
+title: How to visit the Rio Botanical Garden
+subtitle: Location, timing, tickets, weather, and the slow parts worth seeing.
 # TODO uncomment when image lands: hero_image: /images/posts/rio-botanical-garden.jpg
 # TODO uncomment when image lands: hero_alt: The Avenue of Royal Palms at the Jardim Botânico do Rio de Janeiro on a partly cloudy afternoon.
 published: 2026-04-30
-updated: 2026-05-04
+updated: 2026-05-05
 indexable: true
 authors:
   - Mike Lee
@@ -20,9 +20,9 @@ tags:
   - gardens
 ---
 
-I went to the Rio Botanical Garden on a damp afternoon and made the most obvious mistake possible: I forgot insect repellent.
+The Rio Botanical Garden is not filler between beaches, viewpoints, and Christ the Redeemer. It works best as a slow half-day, especially when Rio's heat or rain makes a more scripted sightseeing day feel like work.
 
-That is the kind of detail that matters more than another paragraph telling you the place is beautiful. It is beautiful, but it is also humid, flat, exposed in places, and easier to enjoy if you plan the visit like a garden rather than a museum. Go with time, water, repellent, and a weather window.
+I went on a damp afternoon and made the most obvious mistake possible: I forgot insect repellent. That detail matters more than selling it as a pretty garden. The site is humid, mostly flat, exposed in places, and easier to enjoy if you plan the visit like a garden walk rather than a museum stop. Go with time, water, repellent, and a weather window.
 
 ## It is not in Quinta da Boa Vista
 
@@ -32,21 +32,21 @@ Quinta da Boa Vista is a different park in the North Zone, tied to the former im
 
 The garden covers about 350 acres, with a smaller portion open to visitors. It is also not the access point for Christ the Redeemer. Corcovado rises behind the area, but the practical route to the statue runs elsewhere. Treat the garden and Cristo as separate outings.
 
-## Getting there
+## Getting there without making it complicated
 
 There is no direct metro stop at the garden. Any guide telling you to take Line 1 to a Jardim Botânico station is not describing the current trip correctly.
 
 I used Uber, which is what I would do again from most of the South Zone. From Copacabana, Ipanema, Leblon, or Botafogo, the ride is usually short enough to be worth the simplicity, though traffic can stretch it. Buses stop near the entrance and can work if you are already on a convenient route, but I would not build a first visit around figuring that out in the rain.
 
-## Tickets and timing
+## Tickets, timing, and weather
 
 Buy tickets online before you go. On-site payment rules and visitor categories change, and this is the kind of small friction that feels silly only until you are standing at the entrance expecting to tap a card.
 
-Prices are tiered by residence and nationality. The standard foreign visitor ticket is currently listed at R$80, about $15. Check the official site before relying on any number in a blog post, including this one.
+Prices are tiered by residence and nationality, and they are exactly the sort of detail that can go stale in a blog post. Check the official site before relying on any number, then buy in advance if the system is working.
 
 Two to three hours is enough for most visitors. A serious plant person can spend longer. For a casual visit, the right version is a slow walk through the main sections, with enough time to stop when the weather changes.
 
-## What I would look for
+## What to look for once you are inside
 
 The Avenue of Royal Palms is the obvious first image: a long formal allée planted in the 19th century, with tall palms pulling the eye down the path. It is worth walking even in rain because the scale is the point.
 

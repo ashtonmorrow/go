@@ -1,10 +1,10 @@
 ---
-title: A travel brief on Cape Town
-subtitle: Where I stayed, what worked, and what I would plan around after a few weeks there.
+title: How I would plan Cape Town after a few weeks there
+subtitle: Where to stay, how to move around, and what I would handle carefully.
 hero_image: /images/posts/cape-town-travel-brief.jpg
 hero_alt: Table Mountain rising above the Cape Town city bowl at midday.
 published: 2026-04-30
-updated: 2026-05-04
+updated: 2026-05-05
 indexable: true
 authors:
   - Mike Lee
@@ -20,11 +20,11 @@ tags:
   - travel-guide
 ---
 
-Cape Town is easy to love and not always easy to move through casually. That combination is the whole point of planning it well.
+Cape Town is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around weather, transport, and where you sleep.
 
-I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: Table Mountain above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how easy they made the day.
+I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: Table Mountain above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from the day.
 
-## What I would tell someone first
+## Start with transport, safety, and power
 
 Cape Town rewards a little caution without needing paranoia. Phone snatching is common enough that I would not walk around navigating with a phone held out in front of me. Step aside, check the route, put the phone away, and move on. At night, I would rather take a short Uber than turn a poorly lit walk into a test of confidence.
 
@@ -50,23 +50,23 @@ The Cellars-Hohenort is the one that felt most like a place rather than a base: 
 
 If I were renting an apartment, I would look first at De Waterkant or Sea Point. De Waterkant is convenient and compact. Sea Point gives you the promenade, food, and a calmer daily rhythm near the water.
 
-## How I would structure the days
+## Let the weather decide the order
 
 Table Mountain should be planned around weather, not around your preferred slot on the itinerary. The top can be much colder and windier than the city below, and the cable car line gets long on clear days and weekends. I had a twisted ankle when I visited, so I did not hike Platteklip Gorge. If I went back in better shape, I would still bring a jacket and treat the mountain as its own half-day rather than a quick view.
 
-Kirstenbosch Botanical Gardens is the easier outdoor day: lower effort, beautiful setting on the eastern slopes of Table Mountain, and a canopy walkway with a clear view back across the gardens. It is a better choice than forcing a hike if the weather or your knees are not cooperating.
+Kirstenbosch Botanical Gardens is the easier outdoor day: lower effort, a strong setting on the eastern slopes of Table Mountain, and a canopy walkway with a clear view back across the gardens. It is a better choice than forcing a hike if the weather or your knees are not cooperating.
 
-The V&A Waterfront is commercial, but useful. You can eat, shop, get the Robben Island ferry, and usually walk over to see the working harbor. I had a good meal at Karibu, with most plates in the $10 to $20 range when I went. The free side trip is watching the seals around the harbor.
+The V&A Waterfront is commercial, but useful. You can eat, shop, get the Robben Island ferry, and usually walk over to see the working harbor. I had a good meal at Karibu, with most plates in the $10 to $20 range when I went. The free side trip is watching the harbor activity before or after dinner.
 
 Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop.
 
 For wine, the Hop-on, Hop-off Wine Tram is the easy version. Pick a line, arrange transport in and out, and do not drive yourself. I took the Orange Line; Babylonstoren and Bacco were the two stops I enjoyed most. The flights are good value if your goal is to taste widely rather than commit to one estate.
 
-## Beaches, coastal walks, and penguins
+## Beaches, Boulders, and coastal walks
 
 Clifton is a series of smaller coves with sheltered swimming. Camps Bay is wider, more social, and lined with restaurants across the road. Sea Point is not really a beach day in the same way; it is a promenade day, which is often more useful if you just want to walk by the water without turning the afternoon into logistics.
 
-Boulders Beach is the penguin trip. The boardwalk lets you photograph the colony near Cape Point, but it is a real drive from the city center, so I would fold it into a longer day rather than treat it as a quick errand. Seaforth Restaurant nearby was fine when I went: good patio, acceptable food, older crowd.
+Boulders Beach is the Cape Peninsula side trip most people ask about. The boardwalk lets you visit the colony near Cape Point, but it is a real drive from the city center, so I would fold it into a longer day rather than treat it as a quick errand. Seaforth Restaurant nearby was fine when I went: good patio, acceptable food, older crowd.
 
 Bo-Kaap is worth an hour on foot for the painted houses and Cape Malay history, but I would stay aware of the street-by-street feel. If a block feels off, turn around. That is not a moral judgment. It is just how I would move there.
 
@@ -76,7 +76,7 @@ The food scene was stronger than I expected. Yen's Vietnamese Street Food was fr
 
 The Neighbourgoods Market at the Old Biscuit Mill is more about the venue than any one stall. Some prices are fair, some are tourist prices, and that is normal for a market that has become part of the visitor circuit. Heaven Coffee Shop, inside a former church, is worth a stop for the setting. Crankshaft Coffee sits inside a classic car dealership, which is a very specific kind of Cape Town morning if you like coffee next to expensive machinery.
 
-## What I would handle carefully
+## What I would book carefully
 
 Aquila Game Reserve is the simple safari add-on from Cape Town. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the long drive is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went.
 

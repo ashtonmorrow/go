@@ -239,6 +239,16 @@ export type Pin = {
 
   googlePlaceUrl: string | null;
   googleMapsUrl: string | null;
+  /** Resolved Google Places place_id, persisted so future enrichment
+   *  runs skip the $0.017 Find Place hop. Distinct from
+   *  googlePlaceUrl which is the user-saved sharing URL. */
+  googlePlaceId: string | null;
+  /** Google's average user rating (0.0–5.0). Refreshed on every
+   *  enrichment call — pure Google data, no curated equivalent. */
+  googleRating: number | null;
+  /** Number of user ratings backing googleRating. "4.5 (3)" reads
+   *  differently than "4.5 (8,431)", so we surface the count too. */
+  googleRatingCount: number | null;
   unescoUrl: string | null;
   wikidataUrl: string | null;
 
@@ -427,6 +437,9 @@ function rowToPin(row: any): Pin {
 
     googlePlaceUrl: asString(row.google_place_url),
     googleMapsUrl,
+    googlePlaceId: asString(row.google_place_id),
+    googleRating: asNumber(row.google_rating),
+    googleRatingCount: asNumber(row.google_rating_count),
     unescoUrl,
     wikidataUrl,
     personalCoverUrl: null,
@@ -460,8 +473,12 @@ const INDEX_COLUMNS = [
   // Google Places enrichment — surfaced on /pins/cards via the price chip
   // (kind-aware: $-$$$$ for restaurants, falls back to priceLevel when the
   // personal priceTier hasn't been set) and on the detail page as a chip +
-  // tel: link in Getting There.
+  // tel: link in Getting There. google_rating + google_rating_count power
+  // a future "sort by rating" / minimum-rating filter on the cards/map
+  // index views; google_place_id rides along so cached enrichment paths
+  // see it without a per-pin extra query.
   'price_level', 'phone',
+  'google_rating', 'google_rating_count', 'google_place_id',
 ].join(',');
 
 const _fetchAllPins = unstable_cache(
@@ -512,11 +529,9 @@ const _fetchAllPins = unstable_cache(
   },
   // Cache key bumped to force a fresh refetch after the parallel-pagination
   // fix landed and again after the visited=true backfill on Google-imported
-  // pins. v5: existing v4 cache filled with pre-enrich snapshots before
-  // the revalidateTag hop in enrich-places landed, so it kept serving
-  // stale data even for pins that had been enriched. Bumping evicts every
-  // stale entry on next deploy in one shot.
-  ['supabase-pins-v5'],
+  // pins. v6: INDEX_COLUMNS now ships google_rating + google_rating_count
+  // + google_place_id, so v5 entries are missing those fields.
+  ['supabase-pins-v6'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 export const fetchAllPins = cache(_fetchAllPins);
@@ -545,7 +560,9 @@ const _fetchPinsForLists = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  ['supabase-pins-for-lists-v1'],
+  // v2: refresh saved-list snapshots after Kusttram station enrichment added
+  // missing stops, coordinates, and route order.
+  ['supabase-pins-for-lists-v2'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
@@ -578,9 +595,10 @@ const _fetchPinsInBbox = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v4: in lockstep with fetchAllPins-v5 — same staleness exposure for
-  // bbox-cached entries that were filled pre-enrich.
-  ['supabase-pins-bbox-v4'],
+  // v5: in lockstep with fetchAllPins-v6 — bbox queries flow through
+  // INDEX_COLUMNS so they need the same eviction as the all-pins cache
+  // when columns are added.
+  ['supabase-pins-bbox-v5'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(_fetchPinsInBbox);
@@ -601,8 +619,11 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v5: include detail-page provenance fields for the Sources card.
-  ['supabase-pin-by-slug-v5'],
+  // v6: detail page now reads google_rating, google_rating_count,
+  // and google_place_id off the pin row — v5 cache entries don't have
+  // those columns. Bump to refill from live DB on first request after
+  // deploy.
+  ['supabase-pin-by-slug-v6'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(_fetchPinBySlug);

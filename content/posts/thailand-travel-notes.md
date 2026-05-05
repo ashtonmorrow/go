@@ -1,10 +1,10 @@
 ---
-title: Notes for a first trip to Thailand
-subtitle: Bangkok, Khao Yai, Chiang Mai, Phuket, and Koh Samui.
+title: How I would plan a first trip to Thailand
+subtitle: A practical route through Bangkok, one inland break, and one beach stop.
 # TODO uncomment when image lands: hero_image: /images/posts/thailand-travel-notes.jpg
 # TODO uncomment when image lands: hero_alt: A Bangkok skyline at dusk with the Chao Phraya River in the foreground.
 published: 2026-04-30
-updated: 2026-05-04
+updated: 2026-05-05
 indexable: true
 authors:
   - Mike Lee
@@ -25,31 +25,31 @@ tags:
   - travel-guide
 ---
 
-For a first Thailand trip, I would not try to see the country evenly. I would choose one version of Bangkok, one break from Bangkok, and one beach.
+For a first Thailand trip, I would resist the urge to see the country evenly. I would give Bangkok enough time to make sense, add one inland break, and then choose one beach base.
 
-That is the cleanest way I know to keep the trip from becoming a chain of airport transfers. Thailand is not difficult to travel through, but it is hot, Bangkok traffic can eat whole afternoons, and the islands do not all solve the same problem. The useful planning question is not "what are the best places in Thailand?" It is "what kind of trip am I actually trying to have?"
+That sounds modest, but it is the version I would actually send to a friend. Thailand is not difficult to travel through, but it is hot, Bangkok traffic can eat whole afternoons, and the islands do not all solve the same problem. The useful planning question is not "what are the best places in Thailand?" It is "what kind of trip am I actually trying to have?"
 
 ## The route I would send to a friend
 
-For ten to fourteen days, I would start with Bangkok, then choose either Chiang Mai or Khao Yai, then choose either Phuket or Koh Samui. That gives you city, culture or nature, and beach without forcing the whole country into one trip.
+For ten to fourteen days, I would start with Bangkok, then choose either Chiang Mai or Khao Yai, then choose either Phuket or Koh Samui. That gives you city, culture or nature, and beach without turning the trip into a transfer puzzle.
 
 | Stop | Why I would include it | How long |
 |---|---|---|
 | Bangkok | Temples, river ferries, street food, markets, transit that actually works | 2 to 4 days |
-| Khao Yai | National park, vineyards, cooler mornings, wildlife | 2 to 3 days |
+| Khao Yai | National park, vineyards, cooler mornings, birdlife and wildlife | 2 to 3 days |
 | Chiang Mai | Northern temples, markets, khao soi, slower city days | 4 to 7 days |
-| Phuket | Easiest big beach island, many hotel styles, direct flights | 3 to 5 days |
+| Phuket | Practical big beach island, many hotel styles, direct flights | 3 to 5 days |
 | Koh Samui | Quieter beach week, resort rhythm, less urge to keep moving | 3 to 5 days |
 
 I would not do both Phuket and Koh Samui on a short trip. You can, but then the beaches become logistics. Pick the island whose inconvenience you prefer: Phuket is easier to reach and busier; Samui is calmer and often pricier to reach.
 
 ## The boring details that make the trip easier
 
-Use Grab. Uber does not operate in Thailand, and Grab solves enough small problems that I would download it before landing. It handles cars, food delivery, and in some cities motorbike taxis. Paying by card also means you are not trying to count baht in the back of a cab at midnight. One of the underrated luxuries of Thailand is ordering pad thai for a few dollars at 2am and having it simply appear.
+Use Grab. Uber does not operate in Thailand, and Grab solves enough small problems that I would download it before landing. It handles cars, food delivery, and in some cities motorbike taxis. Paying by card also means you are not trying to count baht in the back of a cab at midnight. One of the small luxuries of Thailand is ordering pad thai for a few dollars at 2am and having it simply appear.
 
 Use ATMs unless your own bank punishes you for it. Money changers often look cleaner than they are once the spread is included. Bring a card that behaves well abroad and withdraw in Thai baht, not your home currency, when the machine asks.
 
-Sort mobile data before you leave the airport. You will want it for Grab, maps, translation, and the usual moment where you are standing outside a terminal trying to identify which driveway your ride is using. An eSIM is the least dramatic option. Airalo is one option, though prices and plan sizes move around.
+Sort mobile data before you leave the airport. You will want it for Grab, maps, translation, and the usual moment where you are standing outside a terminal trying to identify which driveway your ride is using. An eSIM keeps this simple. Airalo is one option, though prices and plan sizes move around.
 
 Temple clothing is not optional. Shoulders and knees should be covered at major temples and cultural sites. The heat makes this mildly annoying, so pack lightweight layers instead of assuming you will figure it out later. The elephant pants and printed scarves sold around markets are useful in exactly this situation. As a rough local reference, elephant pants are often 100 to 200 THB, about $3 to $6, and simple scarves are often 90 to 150 THB, about $3 to $5. Check the seams, the edge finishing, the thickness of the fabric, and the zipper if there is one. A bad zipper usually tells you everything.
 
@@ -61,9 +61,9 @@ Bangkok is usually the entry point, and I think it deserves a few days even if t
 
 I would stay in Sukhumvit, Silom, or Riverside depending on the trip. Sukhumvit is convenient and international, with hotels, malls, bars, and BTS access. It is not the most distinctive version of Bangkok, but it works. Silom is a good compromise, with business-district order, markets, bars, and Lumpini Park. Riverside is calmer, better for ferries and the old-city temple circuit, and usually more expensive. Khao San Road is backpacker Bangkok. That is useful information, not an insult. Stay there only if that is the trip you want.
 
-The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, Wat Pho for the reclining Buddha and the massage school, and Wat Arun across the river. The river matters here. It is not just scenery; it is one of the ways Bangkok becomes legible.
+The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, Wat Pho for the reclining Buddha and the massage school, and Wat Arun across the river. The river matters here. It is not just scenery; it is one of the ways Bangkok becomes easier to understand, because the older ceremonial city sits close to the water.
 
-For markets, I would choose based on purpose. Chatuchak is the large weekend shopping market. Chinatown is where I would go hungry. The floating markets outside the city can be visually interesting, but many are now visitor circuits rather than ordinary markets. That does not make them worthless. It just means I would not confuse them with daily life.
+For markets, I would choose based on purpose. Chatuchak is the large weekend shopping market. Chinatown is where I would go hungry. The floating markets outside the city can be visually interesting, but many are now visitor circuits rather than ordinary markets. That does not make them worthless. It just means I would treat them as a staged day out, not as a window into normal shopping.
 
 February and March are warm and mostly dry in Bangkok. Highs around 30 to 35°C are normal, and the humidity makes the afternoon feel heavier than the number suggests. This is the city where scheduling less can make the day better.
 
@@ -79,11 +79,11 @@ February and March are generally warm and dry here, with cooler mornings. Waterf
 
 ## Chiang Mai is the better city when the air is good
 
-Chiang Mai is the part of this itinerary where I would slow down. A few days is fine, but a week makes more sense if you like markets, temples, cafes, and not changing hotels every other morning. The Old City is easy to walk, and the moat gives the center a clear shape.
+Chiang Mai is the part of this itinerary where I would slow down. A few days is fine, but a week makes more sense if you like markets, temples, cafes, and not changing hotels every other morning. The Old City is easy to walk, and the moat gives the center a clear shape, which matters after Bangkok's scale.
 
 The first temples I would point someone toward are Wat Phra That Doi Suthep on the mountain, Wat Chedi Luang in the Old City, and Wat Phra Singh for Lanna architecture. Lanna refers to the historical northern Thai kingdom, and the difference matters visually: rooflines, woodwork, ornament, and temple layouts do not feel like Bangkok copied northward.
 
-Food is the stronger reason to stay longer. Try khao soi early in the trip so you have time to eat it again. Warorot Market is the everyday market; the Sunday Walking Street is the easier visitor-facing version. Nimmanhaemin is better for cafes and work time than for old-city atmosphere, which is not a criticism. Sometimes you need a quiet table and an iced coffee more than another temple.
+Food is a good reason to stay longer. Try khao soi early in the trip so you have time to eat it again. Warorot Market is the everyday market; the Sunday Walking Street is the easier visitor-facing version. Nimmanhaemin is better for cafes and work time than for old-city atmosphere, which is not a criticism. Sometimes you need a quiet table and an iced coffee more than another temple.
 
 The problem is smoke season. Late February, March, and often April can bring bad air from agricultural and forest burning across northern Thailand and nearby countries. This is not a small aesthetic issue. In a bad week, views disappear and outdoor plans stop making sense. If Chiang Mai is the reason for the trip, I would rather go November through January or after the rains begin.
 
@@ -109,4 +109,4 @@ I would be careful with elephant sanctuaries. Some are serious rescue operations
 
 I would not schedule Chiang Mai in March without checking air quality. Cheap rooms are not useful if you spend the week inside.
 
-I would also avoid making Thailand too tidy in the itinerary. The best days often come from doing fewer things: one temple, one ferry, one market, one meal that takes longer than planned. That sounds obvious from home. It becomes harder to remember once every guide is telling you to add three more stops.
+I would also avoid making Thailand too tidy in the itinerary. Good days often come from doing fewer things: one temple, one ferry, one market, one meal that takes longer than planned. That sounds obvious from home. It becomes harder to remember once every guide is telling you to add three more stops.

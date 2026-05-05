@@ -8,7 +8,7 @@ import {
   slugToListName,
   fetchAllSavedListsMeta,
 } from '@/lib/savedLists';
-import { type SavedListPin } from '@/components/SavedListSection';
+import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import ListMapAndCards from '@/components/ListMapAndCards';
 import JsonLd from '@/components/JsonLd';
 import {
@@ -19,6 +19,7 @@ import {
   collectionJsonLd,
 } from '@/lib/seo';
 import { readPlaceContent, paragraphs } from '@/lib/content';
+import KusttramRouteMap from '@/components/KusttramRouteMap';
 
 // === /lists/[slug] =========================================================
 // Public list detail page. The dedicated home for one of Mike's saved lists.
@@ -37,6 +38,56 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 // contributes a ListItem so search engines can read the membership directly.
 
 type Props = { params: Promise<{ slug: string }> };
+
+const KUSTTRAM_LIST_SLUG = 'kusttram-stations';
+const KUSTTRAM_OFFICIAL_STOP_COUNT = 67;
+const KUSTTRAM_DESCRIPTION =
+  "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section.";
+
+const KUSTTRAM_GUIDE_CARDS = [
+  {
+    title: 'Good base',
+    body:
+      'Oostende is the easy starting point because mainline trains meet the coast there and the tram is simple to use in pieces.',
+  },
+  {
+    title: 'Good short ride',
+    body:
+      'Oostende to De Haan is the section I would start with: enough coastline to feel the idea, with a town at the end that makes sense on foot.',
+  },
+  {
+    title: 'Keep going if',
+    body:
+      'The weather is decent, you are enjoying the ride, and you want more of the resort-town sequence toward Blankenberge or Knokke.',
+  },
+  {
+    title: 'Skip it if',
+    body:
+      'You are not already nearby and do not care much about trams, public transport, or ordinary coastal towns.',
+  },
+] as const;
+
+const KUSTTRAM_FAQS = [
+  {
+    question: 'Is the Kusttram worth a special trip?',
+    answer:
+      'Not for most travelers. It is more useful as an add-on if you are already near the Belgian coast, Bruges, Ghent, or Brussels and want an easy coastal day.',
+  },
+  {
+    question: 'What is a good short section of the Kusttram?',
+    answer:
+      'I would start with Oostende to De Haan. It is easy to reach by train, gives you a real sample of the line, and ends somewhere pleasant to walk around.',
+  },
+  {
+    question: 'Should I use this page as a timetable?',
+    answer:
+      'No. This page is an atlas index of station pins. Use De Lijn for current times, service changes, works, and ticket rules.',
+  },
+] as const;
+
+function isKusttramList(slug: string): boolean {
+  return slug === KUSTTRAM_LIST_SLUG;
+}
 
 async function findList(slug: string) {
   // Resolve slug → list name. The metadata table holds every list name
@@ -110,7 +161,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Prefer the metadata description for the meta tag — it's the curator's
   // own framing. Fall back to a generic line so we never ship an empty.
   const description =
-    meta?.description ??
+    isKusttramList(slug)
+      ? KUSTTRAM_DESCRIPTION
+      : meta?.description ??
     `Pins on Mike's ${title} list — curated travel saves, mirrored from Google Maps with personal reviews.`;
   return {
     title,
@@ -144,6 +197,130 @@ function reviewSnippet(text: string | null, max = 140): string | null {
   return (lastSpace > max - 30 ? cut.slice(0, lastSpace) : cut).trim() + '…';
 }
 
+function pinUrl(pin: Pick<SavedListPin, 'id' | 'slug'>): string {
+  return `${SITE_URL}/pins/${pin.slug ?? pin.id}`;
+}
+
+function kusttramCollectionJsonLd(url: string, pins: SavedListPin[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: 'Kusttram Stations',
+    description: KUSTTRAM_DESCRIPTION,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: [
+      { '@type': 'Thing', name: 'Kusttram' },
+      { '@type': 'Place', name: 'Belgian coast' },
+      { '@type': 'Country', name: 'Belgium' },
+    ],
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Kusttram station pins in this atlas',
+      description:
+        "Station pins for Belgium's coastal tram, linked to individual pin pages in Mike Lee's travel atlas.",
+      numberOfItems: pins.length,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: pins.map((pin, i) => {
+        const url = pinUrl(pin);
+        return {
+          '@type': 'ListItem',
+          position: i + 1,
+          url,
+          item: {
+            '@type': 'Place',
+            '@id': url,
+            url,
+            name: pin.name,
+            description: `${pin.name} station pin on Mike's Kusttram Stations list.`,
+            address: {
+              '@type': 'PostalAddress',
+              ...(pin.city ? { addressLocality: pin.city } : {}),
+              addressCountry: pin.country ?? 'Belgium',
+            },
+            ...(pin.lat != null && pin.lng != null
+              ? {
+                  geo: {
+                    '@type': 'GeoCoordinates',
+                    latitude: pin.lat,
+                    longitude: pin.lng,
+                  },
+                }
+              : {}),
+          },
+        };
+      }),
+    },
+  };
+}
+
+function kusttramFaqJsonLd(url: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${url}#quick-answers`,
+    mainEntity: KUSTTRAM_FAQS.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+function KusttramListGuide({
+  stationCount,
+  pins,
+}: {
+  stationCount: number;
+  pins: SavedListPin[];
+}) {
+  return (
+    <section className="mt-5 rounded-lg border border-sand bg-cream-soft/60 p-5">
+      <div className="max-w-prose">
+        <h2 className="text-h2 text-ink-deep">How I would use this list</h2>
+        <p className="mt-3 text-prose leading-relaxed text-ink">
+          This is a working list, not a challenge to ride every stop. De Lijn
+          describes the Kusttram as serving {KUSTTRAM_OFFICIAL_STOP_COUNT}{' '}
+          stops; this atlas currently has {stationCount} station pins. That is
+          enough to browse the coast, pick a section, and link through to the
+          places that are already in the atlas.
+        </p>
+      </div>
+
+      <KusttramRouteMap pins={pins} />
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {KUSTTRAM_GUIDE_CARDS.map(card => (
+          <div key={card.title} className="rounded border border-sand bg-white p-4">
+            <h3 className="text-h3 text-ink-deep">{card.title}</h3>
+            <p className="mt-2 text-small leading-relaxed text-slate">
+              {card.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div id="quick-answers" className="mt-6 max-w-prose">
+        <h2 className="text-h2 text-ink-deep">Quick answers</h2>
+        <dl className="mt-3 space-y-4">
+          {KUSTTRAM_FAQS.map(faq => (
+            <div key={faq.question}>
+              <dt className="font-semibold text-ink-deep">{faq.question}</dt>
+              <dd className="mt-1 text-prose leading-relaxed text-ink">
+                {faq.answer}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 export default async function ListPage({ params }: Props) {
   const { slug } = await params;
   const found = await findList(slug);
@@ -151,6 +328,7 @@ export default async function ListPage({ params }: Props) {
 
   const meta = found.listsMeta.get(found.name) ?? null;
   const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const kusttramList = isKusttramList(slug);
 
   // City / country anchor detection — when the list name exactly matches a
   // known city or country name, surface a clear link in the header so the
@@ -250,19 +428,21 @@ export default async function ListPage({ params }: Props) {
     { name: 'Lists', item: `${SITE_URL}/lists` },
     { name: titleCase },
   ]);
-  const collection = collectionJsonLd({
-    url,
-    name: titleCase,
-    description:
-      meta?.description ??
-      `${onList.length} ${onList.length === 1 ? 'pin' : 'pins'} on Mike's ${titleCase} list.`,
-    totalItems: onList.length,
-    items: onList.slice(0, 30).map(p => ({
-      url: `${SITE_URL}/pins/${p.slug ?? p.id}`,
-      name: p.name,
-      image: p.cover,
-    })),
-  });
+  const collection = kusttramList
+    ? kusttramCollectionJsonLd(url, onList)
+    : collectionJsonLd({
+        url,
+        name: titleCase,
+        description:
+          meta?.description ??
+          `${onList.length} ${onList.length === 1 ? 'pin' : 'pins'} on Mike's ${titleCase} list.`,
+        totalItems: onList.length,
+        items: onList.slice(0, 30).map(p => ({
+          url: `${SITE_URL}/pins/${p.slug ?? p.id}`,
+          name: p.name,
+          image: p.cover,
+        })),
+      });
   // Article schema only when there's editorial intro — generic CollectionPage
   // is enough for membership-only lists.
   const article = content
@@ -271,8 +451,10 @@ export default async function ListPage({ params }: Props) {
         '@type': 'Article',
         '@id': url,
         url,
-        headline: titleCase,
-        description: meta?.description ?? `Mike's ${titleCase} list.`,
+        headline: kusttramList ? 'Kusttram station list' : titleCase,
+        description: kusttramList
+          ? KUSTTRAM_DESCRIPTION
+          : meta?.description ?? `Mike's ${titleCase} list.`,
         author: { '@id': AUTHOR_ID },
         publisher: { '@id': AUTHOR_ID },
         isPartOf: { '@id': WEBSITE_ID },
@@ -285,6 +467,7 @@ export default async function ListPage({ params }: Props) {
       <JsonLd data={breadcrumb} />
       <JsonLd data={collection} />
       {article && <JsonLd data={article} />}
+      {kusttramList && <JsonLd data={kusttramFaqJsonLd(url)} />}
 
       {/* Cover hero — only renders when the precedence chain finds an image,
           so theme lists with no anchor city and no curated cover stay
@@ -354,6 +537,10 @@ export default async function ListPage({ params }: Props) {
           </div>
         )}
 
+        {kusttramList && (
+          <KusttramListGuide stationCount={onList.length} pins={onList} />
+        )}
+
         {/* Stats row — only emits items that are non-zero so a list with
             no reviews doesn't show "0 reviewed". Tabular nums keep the
             counts aligned across the row when the user re-sorts. */}
@@ -415,6 +602,17 @@ export default async function ListPage({ params }: Props) {
         <div className="card p-8 text-center text-slate">
           No pins on this list yet.
         </div>
+      ) : kusttramList ? (
+        <SavedListSection
+          title={`Pins on ${titleCase}`}
+          listSlug={null}
+          googleShareUrl={meta?.googleShareUrl ?? null}
+          pins={onList}
+          pageSize={48}
+          showSort
+          initialSort="rated"
+          pinOrder={meta?.pinOrder ?? []}
+        />
       ) : (
         // ListMapAndCards is a thin client wrapper: it renders a globe
         // map of every pin with coords above the SavedListSection

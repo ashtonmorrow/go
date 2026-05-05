@@ -614,6 +614,28 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
                   </span>
                 </Fact>
               )}
+              {/* Google's user rating. Free signal in the Place Details
+                  call we already pay for, distinct from Mike's curated
+                  personalRating which leads the meal/stay/review
+                  section. The "(N)" count gives 4.5 (8) vs 4.5 (8,431)
+                  the calibration they need. Hidden when there are
+                  fewer than 5 ratings — the average is too noisy to
+                  show below that. */}
+              {pin.googleRating != null &&
+                pin.googleRatingCount != null &&
+                pin.googleRatingCount >= 5 && (
+                <Fact label="Google rating">
+                  <span className="inline-flex items-baseline gap-1.5 tabular-nums">
+                    <span className="text-ink-deep font-medium">
+                      {pin.googleRating.toFixed(1)}
+                    </span>
+                    <span aria-hidden className="text-amber-500">★</span>
+                    <span className="text-muted text-label">
+                      ({Intl.NumberFormat('en').format(pin.googleRatingCount)})
+                    </span>
+                  </span>
+                </Fact>
+              )}
               {pin.durationMinutes != null && (
                 <Fact label="Visit time">{fmtDuration(pin.durationMinutes)}</Fact>
               )}
