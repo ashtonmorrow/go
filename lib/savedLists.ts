@@ -51,6 +51,13 @@ export type SavedListMeta = {
    *  consumers don't need to do a second round-trip. */
   coverPhotoId: string | null;
   coverPhotoUrl: string | null;
+  /** Curated pin ordering for this list. Pins listed here render in this
+   *  order on /lists/<slug>; members NOT in the array fall to the end
+   *  in the user's default sort order. Maintained server-side by the
+   *  saved-list admin endpoints so it stays in sync with pin
+   *  membership. Empty array = "no curation, sort however the page
+   *  decides." */
+  pinOrder: string[];
   updatedAt: string | null;
 };
 
@@ -70,7 +77,7 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
     const { data, error } = await supabase
       .from('saved_lists')
       .select(
-        'name, google_share_url, description, cover_pin_id, cover_photo_id, updated_at, ' +
+        'name, google_share_url, description, cover_pin_id, cover_photo_id, pin_order, updated_at, ' +
         'cover_photo:personal_photos!cover_photo_id(url)'
       );
     if (error) {
@@ -99,13 +106,14 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
         coverPinId: (row.cover_pin_id as string | null) ?? null,
         coverPhotoId: (row.cover_photo_id as string | null) ?? null,
         coverPhotoUrl: photoUrl,
+        pinOrder: (row.pin_order as string[] | null) ?? [],
         updatedAt: (row.updated_at as string | null) ?? null,
       };
     });
   },
-  // v3: schema gained `cover_photo_id` + JOIN on personal_photos. Bumping
-  // the key evicts every cached row that was missing those fields.
-  ['saved-lists-meta-v3'],
+  // v4: schema gained `pin_order` (curated drag-reorder). Bumping the key
+  // evicts every cached row that was missing the field.
+  ['saved-lists-meta-v4'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

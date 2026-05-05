@@ -51,6 +51,11 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
   const [rows, setRows] = useState<AdminPinRow[]>(initialRows);
   const [showAdd, setShowAdd] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
+  // Drag-reorder state: which pin id is currently being dragged, and
+  // which pin id is the current hover target (for the drop indicator).
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [hoverId, setHoverId] = useState<string | null>(null);
+  const [savingOrder, setSavingOrder] = useState(false);
 
   const members = useMemo(() => rows.filter(r => r.isMember), [rows]);
   const nonMembers = useMemo(() => rows.filter(r => !r.isMember), [rows]);
@@ -91,6 +96,61 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
       patchRow(pinId, { isMember: !nextState });
       setFlash(e instanceof Error ? e.message : 'toggle failed');
     }
+  }
+
+  // === Drag reorder ========================================================
+  // Native HTML5 drag-and-drop. Each card sets a drag handle (the grip icon
+  // top-right of the cover) so accidental drags from a click on the title
+  // or stars don't fire. We compute the new order on drop, optimistically
+  // reflect it in local state, then POST setPinOrder. On failure we revert
+  // to the previous order.
+  async function commitOrder(orderedIds: string[]) {
+    setSavingOrder(true);
+    try {
+      const res = await fetch('/api/admin/saved-list', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          action: 'setPinOrder',
+          name: listName,
+          pinIds: orderedIds,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'order save failed');
+    } catch (e) {
+      setFlash(e instanceof Error ? e.message : 'order save failed');
+    } finally {
+      setSavingOrder(false);
+    }
+  }
+
+  function handleDrop(targetId: string) {
+    if (!draggingId || draggingId === targetId) {
+      setDraggingId(null);
+      setHoverId(null);
+      return;
+    }
+    // Reorder rows so that draggingId moves to the position of targetId.
+    // We operate on the full rows array (not just members) so the
+    // member-only render is consistent with what's stored.
+    setRows(prev => {
+      const next = prev.slice();
+      const fromIdx = next.findIndex(r => r.id === draggingId);
+      const toIdx = next.findIndex(r => r.id === targetId);
+      if (fromIdx < 0 || toIdx < 0) return prev;
+      const [moved] = next.splice(fromIdx, 1);
+      // Recompute toIdx after the splice — if we were dragging earlier
+      // in the array, the target shifted up by one.
+      const adjusted = fromIdx < toIdx ? toIdx - 1 : toIdx;
+      next.splice(adjusted, 0, moved);
+      // Persist member-only order to the server.
+      const orderedMemberIds = next.filter(r => r.isMember).map(r => r.id);
+      void commitOrder(orderedMemberIds);
+      return next;
+    });
+    setDraggingId(null);
+    setHoverId(null);
   }
 
   async function deletePin(pinId: string, pinName: string) {
@@ -162,17 +222,37 @@ export default function AdminListEditor({ listName, initialRows }: Props) {
           No pins on this list yet. Click <strong>+ Add pin to list</strong> to start adding.
         </div>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {members.map(r => (
-            <EditableCard
-              key={r.id}
-              row={r}
-              onPatch={patch => patchRow(r.id, patch)}
-              onRemoveFromList={() => toggleMembership(r.id, false)}
-              onDeletePin={() => deletePin(r.id, r.name)}
-            />
-          ))}
-        </ul>
+        <>
+          <p className="text-label text-muted mb-2 flex items-center gap-2">
+            <span>Tip: drag the ⋮⋮ handle on any card to reorder.</span>
+            {savingOrder && <span className="text-teal">saving order…</span>}
+          </p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {members.map(r => (
+              <EditableCard
+                key={r.id}
+                row={r}
+                isDragging={draggingId === r.id}
+                isDropTarget={hoverId === r.id && draggingId !== r.id}
+                onDragStart={() => setDraggingId(r.id)}
+                onDragOver={() => {
+                  if (draggingId && draggingId !== r.id) setHoverId(r.id);
+                }}
+                onDragLeave={() => {
+                  if (hoverId === r.id) setHoverId(null);
+                }}
+                onDragEnd={() => {
+                  setDraggingId(null);
+                  setHoverId(null);
+                }}
+                onDrop={() => handleDrop(r.id)}
+                onPatch={patch => patchRow(r.id, patch)}
+                onRemoveFromList={() => toggleMembership(r.id, false)}
+                onDeletePin={() => deletePin(r.id, r.name)}
+              />
+            ))}
+          </ul>
+        </>
       )}
 
       {showAdd && (
@@ -201,11 +281,25 @@ type EditField =
 
 function EditableCard({
   row,
+  isDragging,
+  isDropTarget,
+  onDragStart,
+  onDragOver,
+  onDragLeave,
+  onDragEnd,
+  onDrop,
   onPatch,
   onRemoveFromList,
   onDeletePin,
 }: {
   row: AdminPinRow;
+  isDragging: boolean;
+  isDropTarget: boolean;
+  onDragStart: () => void;
+  onDragOver: () => void;
+  onDragLeave: () => void;
+  onDragEnd: () => void;
+  onDrop: () => void;
   onPatch: (patch: Partial<AdminPinRow>) => void;
   onRemoveFromList: () => void;
   onDeletePin: () => void;
@@ -238,7 +332,24 @@ function EditableCard({
   }
 
   return (
-    <li className="relative group card overflow-hidden">
+    <li
+      onDragOver={e => {
+        // Only react when something is actually being dragged (preventDefault
+        // signals to the browser that the drop is allowed).
+        e.preventDefault();
+        onDragOver();
+      }}
+      onDragLeave={onDragLeave}
+      onDrop={e => {
+        e.preventDefault();
+        onDrop();
+      }}
+      className={
+        'relative group card overflow-hidden transition-all ' +
+        (isDragging ? 'opacity-40 scale-[0.98] ' : '') +
+        (isDropTarget ? 'ring-2 ring-teal ring-offset-2 ring-offset-white ' : '')
+      }
+    >
       {/* Cover + status chips overlaid on top */}
       <div className="relative">
         {row.cover ? (
@@ -256,6 +367,27 @@ function EditableCard({
             No photo
           </div>
         )}
+        {/* Drag handle — only the handle is `draggable`, so accidental drags
+            from the title / stars / review text don't fire. The handle has
+            `cursor-grab` for affordance and shows always (not hover-only)
+            so the reorder mechanic is discoverable. */}
+        <div
+          draggable
+          onDragStart={e => {
+            // setData required for Firefox to fire dragstart at all.
+            e.dataTransfer?.setData('text/plain', row.id);
+            e.dataTransfer.effectAllowed = 'move';
+            onDragStart();
+          }}
+          onDragEnd={onDragEnd}
+          title="Drag to reorder"
+          aria-label={`Reorder ${row.name}`}
+          className="absolute top-2 right-12 w-7 h-7 rounded-md bg-white/85 hover:bg-white text-slate hover:text-ink-deep
+                     flex items-center justify-center cursor-grab active:cursor-grabbing shadow backdrop-blur-sm
+                     opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <span className="text-prose leading-none select-none">⋮⋮</span>
+        </div>
         {/* Visited toggle — top-left chip. Click cycles on/off and saves. */}
         <ToggleChip
           on={row.visited}

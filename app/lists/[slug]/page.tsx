@@ -66,6 +66,7 @@ async function findList(slug: string) {
       coverPinId: null,
       coverPhotoId: null,
       coverPhotoUrl: null,
+      pinOrder: [],
       updatedAt: null,
     });
     return { name: candidate, listsMeta };
@@ -171,12 +172,20 @@ export default async function ListPage({ params }: Props) {
   const countryMatch = countryByName(countries, lcName);
 
   // Pins on this exact list. The component handles sorting client-side via
-  // the sort dropdown; we still pass an alphabetical default so SSR HTML is
-  // stable and accessible without JS. The 'rated' default lives in the
-  // SavedListSection's initialSort prop.
-  const onListPins = listPins
-    .slice()
-    .sort((a, b) => a.name.localeCompare(b.name));
+  // the sort dropdown; we still pass a stable default so SSR HTML is
+  // stable and accessible without JS. When the list has a curated
+  // pin_order, honour it: pins listed there render in that order, and
+  // any members not in the array fall to the end alphabetically. The
+  // 'rated' default lives in the SavedListSection's initialSort prop;
+  // the user can flip the dropdown to override.
+  const orderIndex = new Map<string, number>();
+  (meta?.pinOrder ?? []).forEach((id, i) => orderIndex.set(id, i));
+  const onListPins = listPins.slice().sort((a, b) => {
+    const ai = orderIndex.has(a.id) ? orderIndex.get(a.id)! : Number.MAX_SAFE_INTEGER;
+    const bi = orderIndex.has(b.id) ? orderIndex.get(b.id)! : Number.MAX_SAFE_INTEGER;
+    if (ai !== bi) return ai - bi;
+    return a.name.localeCompare(b.name);
+  });
 
   const onList: SavedListPin[] = onListPins.map(p => ({
     id: p.id,

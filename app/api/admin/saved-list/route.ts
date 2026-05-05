@@ -32,6 +32,12 @@ import { listNameToSlug } from '@/lib/savedLists';
 //     cover_photo_id over cover_pin_id over the geo / pin-pile fallbacks.
 //     Fields not present on the body are left alone.
 //
+// POST { action: 'setPinOrder', name, pinIds: string[] }
+//   → curate the order pins render in on /lists/<slug>. Members not
+//     present in pinIds fall to the end in default sort order. addPin
+//     and removePin auto-maintain the array (append on add, filter on
+//     remove) so callers don't need to reconcile manually.
+//
 // All ops bust the public-pages cache so /lists and /lists/<slug> reflect
 // the change after a single deploy-free roundtrip.
 
@@ -56,6 +62,11 @@ type SetCoverBody = {
   cover_photo_id?: string | null;
   cover_pin_id?: string | null;
 };
+type SetPinOrderBody = {
+  action: 'setPinOrder';
+  name: string;
+  pinIds: string[];
+};
 type Body =
   | RenameBody
   | DeleteBody
@@ -63,7 +74,8 @@ type Body =
   | CreateBody
   | AddPinBody
   | RemovePinBody
-  | SetCoverBody;
+  | SetCoverBody
+  | SetPinOrderBody;
 
 function normalizeName(s: string): string {
   // Saved-list names are lowercase + space-separated in the DB. Trim &
@@ -220,14 +232,43 @@ export async function POST(req: Request) {
       .eq('id', pinId);
     if (updErr) return NextResponse.json({ error: updErr.message }, { status: 500 });
 
-    // Make sure the metadata row exists for newly-touched list names so
-    // the admin UI shows them next render even if no other pin carries
-    // the list yet.
-    if (body.action === 'addPin') {
-      await sb.from('saved_lists').upsert(
-        { name, updated_at: new Date().toISOString() },
-        { onConflict: 'name' },
+    // Maintain saved_lists.pin_order so the curated drag-reorder array
+    // stays in sync with membership: append on add, filter on remove.
+    // Read-modify-write — the metadata row is small and the list is
+    // bounded in practice. Upsert handles the case where the row didn't
+    // exist yet (newly-touched list names).
+    const { data: metaRow, error: metaErr } = await sb
+      .from('saved_lists')
+      .select('name, pin_order')
+      .eq('name', name)
+      .maybeSingle();
+    if (metaErr) {
+      console.error('[saved-list] pin_order read failed:', metaErr);
+    } else {
+      const currentOrder = ((metaRow?.pin_order as string[] | null) ?? []).filter(
+        x => typeof x === 'string',
       );
+      let nextOrder: string[];
+      if (body.action === 'addPin') {
+        nextOrder = currentOrder.includes(pinId)
+          ? currentOrder
+          : [...currentOrder, pinId];
+      } else {
+        nextOrder = currentOrder.filter(id => id !== pinId);
+      }
+      const orderChanged =
+        nextOrder.length !== currentOrder.length ||
+        nextOrder.some((v, i) => v !== currentOrder[i]);
+      if (orderChanged || !metaRow) {
+        await sb.from('saved_lists').upsert(
+          {
+            name,
+            pin_order: nextOrder,
+            updated_at: new Date().toISOString(),
+          },
+          { onConflict: 'name' },
+        );
+      }
     }
     try { revalidateTag('saved-lists-meta'); } catch {/* ignore */}
     bustCaches(name);
@@ -276,8 +317,49 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
+  if (body.action === 'setPinOrder') {
+    const name = normalizeName(body.name ?? '');
+    if (!name) {
+      return NextResponse.json({ error: 'setPinOrder requires `name`' }, { status: 400 });
+    }
+    if (!Array.isArray(body.pinIds)) {
+      return NextResponse.json(
+        { error: 'pinIds must be an array of uuid strings' },
+        { status: 400 },
+      );
+    }
+    // Filter to plain strings + dedupe so we don't trust the client to
+    // hand us a clean array. Order within `pinIds` is preserved
+    // because Set + spread keeps insertion order in V8.
+    const seen = new Set<string>();
+    const cleaned: string[] = [];
+    for (const v of body.pinIds) {
+      if (typeof v !== 'string' || !v.trim()) continue;
+      if (seen.has(v)) continue;
+      seen.add(v);
+      cleaned.push(v);
+    }
+    const { error } = await sb.from('saved_lists').upsert(
+      {
+        name,
+        pin_order: cleaned,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'name' },
+    );
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    try { revalidateTag('saved-lists-meta'); } catch { /* ignore */ }
+    bustCaches(name);
+    return NextResponse.json({ ok: true, count: cleaned.length });
+  }
+
   return NextResponse.json(
-    { error: 'action must be rename | delete | updateMeta | create | addPin | removePin | setCover' },
+    {
+      error:
+        'action must be rename | delete | updateMeta | create | addPin | removePin | setCover | setPinOrder',
+    },
     { status: 400 },
   );
 }

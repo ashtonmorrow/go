@@ -56,6 +56,13 @@ export default async function ListDetailAdminPage({ params }: Props) {
   // the AddPinModal renders non-members. Sorting members alphabetically
   // by default; the dropdown that public /lists/[slug] has would be
   // a future enhancement here too.
+  // Members render in the curated pin_order if set, else alphabetical.
+  // Non-members are alphabetical (they only show in the AddPinModal so
+  // ordering matters less). orderIndex turns the order array into an
+  // O(1) lookup so the sort comparator stays cheap.
+  const orderIndex = new Map<string, number>();
+  (meta?.pinOrder ?? []).forEach((id, i) => orderIndex.set(id, i));
+
   const rows: AdminPinRow[] = found.pins
     .map(p => ({
       id: p.id,
@@ -81,11 +88,16 @@ export default async function ListDetailAdminPage({ params }: Props) {
         (p.statesNames?.length ?? 0) === 0,
     }))
     .sort((a, b) => {
-      // Members first (so the editor lands on them), then alphabetical
-      // within each bucket. The AddPinModal will re-filter to non-members
-      // anyway; this just makes the dataset feel ordered when console-
-      // inspecting it in dev.
+      // Members first (so the editor lands on them).
       if (a.isMember !== b.isMember) return a.isMember ? -1 : 1;
+      // Within the member group, honour the curated pin_order; pins not
+      // listed there fall to the end alphabetically. Non-members are
+      // always alphabetical.
+      if (a.isMember && b.isMember) {
+        const ai = orderIndex.has(a.id) ? orderIndex.get(a.id)! : Number.MAX_SAFE_INTEGER;
+        const bi = orderIndex.has(b.id) ? orderIndex.get(b.id)! : Number.MAX_SAFE_INTEGER;
+        if (ai !== bi) return ai - bi;
+      }
       return a.name.localeCompare(b.name);
     });
 
