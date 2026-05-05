@@ -105,6 +105,11 @@ export class PlacesApiError extends Error {
  * functions. Throws PlacesApiError on transport / upstream errors so
  * the generator can decide whether to abort the whole run.
  */
+type EdgeErrorPayload = {
+  error?: string;
+  upstreamStatus?: number | null;
+};
+
 async function invokePlaceDetailsFn<T>(
   supabase: SupabaseClient,
   body: Record<string, unknown>,
@@ -114,10 +119,10 @@ async function invokePlaceDetailsFn<T>(
     // FunctionsHttpError, FunctionsRelayError, FunctionsFetchError all
     // surface as `error` here. Try to extract the upstream Google
     // status from the response body for a more useful PlacesApiError.
-    let payload: { error?: string; upstreamStatus?: number | null } | null = null;
+    let payload: EdgeErrorPayload | null = null;
     try {
       const ctx = (error as unknown as { context?: { json?: () => Promise<unknown> } }).context;
-      if (ctx?.json) payload = (await ctx.json()) as typeof payload;
+      if (ctx?.json) payload = (await ctx.json()) as EdgeErrorPayload;
     } catch {
       /* ignore — payload extraction is best-effort */
     }
