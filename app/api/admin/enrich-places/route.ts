@@ -17,6 +17,11 @@ import {
 // auth, so by the time a request lands here the caller has the admin
 // password. No additional auth is needed here.
 //
+// One-key architecture: we no longer need a Google API key in this
+// project's env. lib/placesEnrichment.ts invokes Stray's
+// `place-details` Edge Function, which holds the key. Same pattern
+// the photo-upload candidate matcher uses via `location-lookup`.
+//
 // Request body:
 //   { pinIds: string[],           — required, the filtered set
 //     fields?: ('price'|'hours'|'website'|'phone')[],  default ['price','hours']
@@ -36,14 +41,6 @@ export const maxDuration = 300;
 const ALLOWED_FIELDS: EnrichField[] = ['price', 'hours', 'website', 'phone'];
 
 export async function POST(req: Request) {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY not configured' },
-      { status: 500 },
-    );
-  }
-
   let body: unknown;
   try {
     body = await req.json();
@@ -91,7 +88,6 @@ export async function POST(req: Request) {
     async start(controller) {
       try {
         for await (const event of enrichPins({
-          apiKey,
           supabase,
           pinIds,
           fields: fields.length > 0 ? fields : undefined,

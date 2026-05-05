@@ -10,7 +10,16 @@
 // incrementally without holding a long-lived connection open. The
 // script adapter just consumes the events to drive its console output.
 //
-// Pricing model (Places API New, current SKUs):
+// One-key architecture: we no longer call Google Places directly. Both
+// the Find Place hop and the Place Details fetch route through Stray's
+// `place-details` Supabase Edge Function (mirror of the existing
+// `location-lookup` pattern). Stray owns the Google key; the go
+// project just invokes the function. When location-lookup works,
+// place-details works — same key, same auth, same blast radius if
+// either ever expires.
+//
+// Pricing model (Places API New, current SKUs — billed against
+// Stray's GCP project):
 //   Find Place from Text:        $0.017 / call
 //   Place Details "Essentials":  $0      (id, displayName)
 //   Place Details "Pro":         $0.005  (+ priceLevel, types, website, phone)
@@ -20,16 +29,19 @@
 // surface a running cost estimate after every call so the admin button
 // can offer a hard ceiling.
 //
-// All Supabase writes go through the service-role client passed in by
-// the caller — this module never imports lib/supabase directly so it
-// can run in both the public (anon) and admin (service-role) contexts.
+// All Supabase reads/writes go through the service-role client passed
+// in by the caller — this module never imports lib/supabase directly
+// so it can run in both the public (anon) and admin (service-role)
+// contexts. The same client is used to invoke the edge function.
 
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type EnrichField = 'price' | 'hours' | 'website' | 'phone';
 
 export type EnrichOptions = {
-  apiKey: string;
+  /** Supabase client used for both pin reads/writes AND for invoking
+   *  Stray's place-details edge function. The service-role client
+   *  passed in from supabaseAdmin() is the typical caller. */
   supabase: SupabaseClient;
   /** Pin IDs to enrich. Caller does the filtering. */
   pinIds: string[];
@@ -75,7 +87,8 @@ function placeIdFromUrl(url: string | null | undefined): string | null {
 
 /** Custom error type so the generator can distinguish "Google said no
  *  match for this place" (caller continues) from "Google rejected our
- *  request entirely" (caller should abort the whole run). */
+ *  request entirely" (caller should abort the whole run). The Stray
+ *  edge function relays Google's HTTP status as `upstreamStatus`. */
 export class PlacesApiError extends Error {
   status: number;
   body: string;
@@ -86,47 +99,54 @@ export class PlacesApiError extends Error {
   }
 }
 
+/**
+ * Invoke a Stray edge function action. Wraps the supabase-js
+ * functions.invoke contract so the call sites read like local
+ * functions. Throws PlacesApiError on transport / upstream errors so
+ * the generator can decide whether to abort the whole run.
+ */
+async function invokePlaceDetailsFn<T>(
+  supabase: SupabaseClient,
+  body: Record<string, unknown>,
+): Promise<T> {
+  const { data, error } = await supabase.functions.invoke('place-details', { body });
+  if (error) {
+    // FunctionsHttpError, FunctionsRelayError, FunctionsFetchError all
+    // surface as `error` here. Try to extract the upstream Google
+    // status from the response body for a more useful PlacesApiError.
+    let payload: { error?: string; upstreamStatus?: number | null } | null = null;
+    try {
+      const ctx = (error as unknown as { context?: { json?: () => Promise<unknown> } }).context;
+      if (ctx?.json) payload = (await ctx.json()) as typeof payload;
+    } catch {
+      /* ignore — payload extraction is best-effort */
+    }
+    const upstream = payload?.upstreamStatus ?? null;
+    const message = payload?.error ?? error.message ?? 'edge function failed';
+    throw new PlacesApiError(
+      typeof upstream === 'number' ? upstream : 500,
+      message,
+    );
+  }
+  return data as T;
+}
+
 async function findPlaceId(
-  apiKey: string,
+  supabase: SupabaseClient,
   name: string,
   lat: number | null,
   lng: number | null,
 ): Promise<string | null> {
-  const body: Record<string, unknown> = { textQuery: name };
-  if (lat != null && lng != null) {
-    body.locationBias = {
-      circle: { center: { latitude: lat, longitude: lng }, radius: 200 },
-    };
-  }
-  const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Goog-Api-Key': apiKey,
-      'X-Goog-FieldMask': 'places.id',
+  const out = await invokePlaceDetailsFn<{ placeId: string | null }>(
+    supabase,
+    {
+      action: 'find',
+      name,
+      lat: lat ?? undefined,
+      lng: lng ?? undefined,
     },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) {
-    // 4xx on a Places API call usually means key/billing/quota — not
-    // a per-pin issue. Throw so the caller can abort the entire run
-    // and surface the reason to the UI rather than silently logging
-    // 32 pins as "no-match".
-    const text = await res.text().catch(() => '');
-    throw new PlacesApiError(res.status, text);
-  }
-  const j = await res.json();
-  const id = j?.places?.[0]?.id;
-  return typeof id === 'string' ? id : null;
-}
-
-function buildFieldMask(fields: EnrichField[]): string {
-  const mask = new Set<string>(['id', 'displayName']);
-  if (fields.includes('price')) mask.add('priceLevel');
-  if (fields.includes('hours')) mask.add('regularOpeningHours');
-  if (fields.includes('website')) mask.add('websiteUri');
-  if (fields.includes('phone')) mask.add('internationalPhoneNumber');
-  return Array.from(mask).join(',');
+  );
+  return out?.placeId ?? null;
 }
 
 type PlaceDetails = {
@@ -148,23 +168,15 @@ type PlaceDetails = {
 };
 
 async function fetchPlaceDetails(
-  apiKey: string,
+  supabase: SupabaseClient,
   placeId: string,
   fields: EnrichField[],
 ): Promise<PlaceDetails | null> {
-  const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
-    headers: {
-      'X-Goog-Api-Key': apiKey,
-      'X-Goog-FieldMask': buildFieldMask(fields),
-    },
-  });
-  if (!res.ok) {
-    // Same reasoning as findPlaceId: a 4xx here is almost always
-    // global (key, billing) rather than per-pin, so abort.
-    const text = await res.text().catch(() => '');
-    throw new PlacesApiError(res.status, text);
-  }
-  return (await res.json()) as PlaceDetails;
+  const out = await invokePlaceDetailsFn<{ details: PlaceDetails }>(
+    supabase,
+    { action: 'details', placeId, fields },
+  );
+  return out?.details ?? null;
 }
 
 function priceLevelToInt(p: PlaceDetails['priceLevel']): number | null {
@@ -254,7 +266,7 @@ export async function* enrichPins(
         };
         break;
       }
-      placeId = await findPlaceId(options.apiKey, pin.name, pin.lat, pin.lng);
+      placeId = await findPlaceId(options.supabase, pin.name, pin.lat, pin.lng);
       runningCost += PRICE_FIND_PLACE;
       action = placeId ? 'resolved' : 'no-match';
     }
@@ -286,7 +298,7 @@ export async function* enrichPins(
       break;
     }
 
-    const details = await fetchPlaceDetails(options.apiKey, placeId, fields);
+    const details = await fetchPlaceDetails(options.supabase, placeId, fields);
     runningCost += tier;
     if (!details) {
       yield {
