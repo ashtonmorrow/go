@@ -35,8 +35,10 @@
  *                                                  i.e. cid: / data: / url:
  *                                                  forms; ~most pins.)
  *   - Place Details Essentials: $0   (id, displayName, formattedAddress)
- *   - Place Details Pro:        $5   (+ priceLevel, primaryType, types)
- *   - Place Details Enterprise: $20  (+ regularOpeningHours, photos, etc.)
+ *   - Place Details Pro:        $5   (+ primaryType)
+ *   - Place Details Enterprise: $20  (+ priceLevel, websiteUri,
+ *                                       internationalPhoneNumber,
+ *                                       regularOpeningHours)
  *
  *   Default field set (price + hours): $20/1k Enterprise.
  *   Add the Find-Place hop and you're at ~$37/1k worst case.
@@ -85,14 +87,15 @@ const FIELDS = (strArg('--fields') ?? 'price,hours')
 // which SKU Google bills. We assemble it from the requested fields.
 const PRICE_PER_PLACE_DETAILS_USD = (() => {
   // Tier-up to the most expensive bucket we touch:
-  //   Enterprise ($20/k) if we ask for opening hours or photos
-  //   Pro ($5/k)        if we ask for priceLevel / types
+  //   Enterprise ($20/k) if we ask for price, hours, website, or phone
+  //   Pro ($5/k)        for primaryType-only runs
   //   Essentials ($0)   otherwise (we always ask for id/displayName)
-  if (FIELDS.includes('hours')) return 0.020;
-  if (FIELDS.includes('price') || FIELDS.includes('website') || FIELDS.includes('phone')) {
-    // website & phone are Pro-tier in the new API
-    return 0.005;
-  }
+  if (
+    FIELDS.includes('hours') ||
+    FIELDS.includes('price') ||
+    FIELDS.includes('website') ||
+    FIELDS.includes('phone')
+  ) return 0.020;
   return 0;
 })();
 const PRICE_PER_FIND_PLACE_USD = 0.017;
@@ -114,6 +117,7 @@ type PinRow = {
   price_level: number | null;
   hours_details: Record<string, unknown> | null;
   website: string | null;
+  phone: string | null;
 };
 
 type PlacesCache = {
@@ -271,7 +275,25 @@ function mapOpeningHours(
   if (!h) return null;
   const out: Record<string, unknown> = {};
   if (Array.isArray(h.weekdayDescriptions) && h.weekdayDescriptions.length > 0) {
-    out.weekly = h.weekdayDescriptions.join('\n');
+    const byDay: Record<string, string> = {};
+    const keyByDay: Record<string, string> = {
+      monday: 'mon',
+      tuesday: 'tue',
+      wednesday: 'wed',
+      thursday: 'thu',
+      friday: 'fri',
+      saturday: 'sat',
+      sunday: 'sun',
+    };
+    for (const line of h.weekdayDescriptions) {
+      const colon = line.indexOf(':');
+      if (colon < 0) continue;
+      const day = line.slice(0, colon).trim().toLowerCase();
+      const value = line.slice(colon + 1).trim();
+      const key = keyByDay[day];
+      if (key && value) byDay[key] = value;
+    }
+    if (Object.keys(byDay).length > 0) out.weekly = byDay;
     out.source = 'google_places';
   }
   if (typeof h.openNow === 'boolean') {
@@ -308,7 +330,7 @@ async function main() {
   while (pins.length < LIMIT) {
     let q = supabase
       .from('pins')
-      .select('id, name, slug, lat, lng, google_place_url, price_level, hours_details, website')
+      .select('id, name, slug, lat, lng, google_place_url, price_level, hours_details, website, phone')
       .not('google_place_url', 'is', null)
       .order('updated_at', { ascending: false, nullsFirst: false });
     if (!REFRESH) q = q.is('price_level', null);
@@ -420,8 +442,8 @@ async function main() {
       patch.website = details.websiteUri;
       withWebsite++;
     }
-    if (FIELDS.includes('phone') && details.internationalPhoneNumber) {
-      // Keep this on a future column if we add one — for now just log.
+    if (FIELDS.includes('phone') && !pin.phone && details.internationalPhoneNumber) {
+      patch.phone = details.internationalPhoneNumber;
       withPhone++;
     }
 
@@ -442,7 +464,7 @@ async function main() {
   console.log(`  with price_level: ${withPrice}`);
   console.log(`  with opening hours: ${withHours}`);
   console.log(`  with website: ${withWebsite}`);
-  console.log(`  with phone (skipped — no column): ${withPhone}`);
+  console.log(`  with phone: ${withPhone}`);
   console.log('');
 
   // 4. Apply phase

@@ -1,10 +1,10 @@
 ---
-title: A guide to Spanish castles
-subtitle: Six site notes, with the historical claims I could verify and the ones I corrected.
+title: Spanish castles worth planning around
+subtitle: Six places to understand before adding them to a Spain itinerary.
 # TODO uncomment when image lands: hero_image: /images/posts/spanish-castles.jpg
 # TODO uncomment when image lands: hero_alt: The Alcázar de Segovia at golden hour, viewed from the Mirador de la Pradera de San Marcos.
 published: 2026-04-30
-updated: 2026-05-04
+updated: 2026-05-05
 indexable: true
 authors:
   - Mike Lee
@@ -26,22 +26,28 @@ tags:
   - travel-guide
 ---
 
-Spanish castle lists get messy quickly because the word "castle" is doing too much work.
+Spanish castle lists get messy quickly because the word "castle" is doing too much work. The Alhambra, Bellver, Coca, Loarre, and Olite do not belong to one simple category, and they do not fit the same kind of trip.
 
-Some sites are Moorish fortresses or palaces. Some are Christian medieval castles from the 12th to 15th centuries. Some are aristocratic statements that borrow defensive language while functioning as power display. The Alhambra, the Alcázar de Segovia, and Coca do not ask you to look for the same things, and a useful itinerary should not pretend they do.
+Some are Moorish fortresses or palace complexes. Some are Christian medieval castles from the 11th to 15th centuries. Some are aristocratic statements that borrow defensive language while functioning as power display. A useful itinerary should treat those differences as the point, not as a technicality.
 
-These are the six I would prioritize, with the claims I could verify and a few common travel-blog errors corrected along the way.
+These are the six I would plan around first, with the claims I could verify and a few common travel-blog errors corrected along the way.
 
-## Quick reference
+## Quick Reference
 
-| Site | Region | Period | What to notice | UNESCO status |
-|---|---|---|---|---|
-| Bellver Castle | Mallorca | Early 14th century | Circular Gothic plan | No |
-| Alhambra | Granada | 13th and 14th centuries over an earlier fortress | Nasrid palaces, water, geometry | Yes, since 1984 |
-| Alcázar de Segovia | Segovia | 12th century, restored after an 1862 fire | Promontory setting, tower view | Part of Segovia inscription |
-| Castillo de Coca | Segovia province | 1453 to 1496 | Brick Mudéjar construction | No |
-| Castillo de Loarre | Huesca | 11th century | Romanesque military architecture | Tentative list only |
-| Royal Palace of Olite | Navarra | 1399 to 1424 | Late-Gothic palace reconstruction | No |
+| Site | Best used as | What to notice | UNESCO status |
+|---|---|---|---|
+| Bellver Castle | Palma half-day | Circular Gothic plan | No |
+| Alhambra | Granada anchor visit | Nasrid palaces, water, geometry | Yes, since 1984 |
+| Alcázar de Segovia | Madrid side trip | Promontory setting, tower view | Part of Segovia inscription |
+| Castillo de Coca | Segovia province detour | Brick Mudéjar construction | No |
+| Castillo de Loarre | Aragon road-trip stop | Romanesque military architecture | Tentative list only |
+| Royal Palace of Olite | Navarra wine-country pairing | Late-Gothic palace reconstruction | No |
+
+## How I Would Use Them in a Trip
+
+The Alhambra is the only one here that can justify anchoring an entire city stop on its own. Segovia works as a strong day trip from Madrid because the castle, aqueduct, and old town sit together. Bellver belongs naturally inside a Palma stay. Olite makes more sense with Navarra wine country than as a long standalone detour.
+
+Coca and Loarre require more intention. Coca is useful if you care about Mudéjar architecture or are already moving through Castile. Loarre is a better fit for an Aragon or Pyrenees route than for a first Spain itinerary built around Madrid, Barcelona, and Andalusia.
 
 ## Bellver Castle, Palma de Mallorca
 
@@ -57,7 +63,7 @@ The Alhambra is not one building. It is a fortress, palace, and citadel complex 
 
 The Alcazaba is the military portion. The Nasrid Palaces are the delicate, controlled heart of the site, where water, stucco, tile, carved text, and geometry do the work of courtly display. The Generalife is the garden and retreat above the palace complex. If you only read the Alhambra as a castle, you miss the way it uses enclosure, shade, water, and pattern to organize attention.
 
-The practical advice is simple: book ahead, especially for the Nasrid Palaces. Entry is timed, demand is high, and official tickets are the safest route. Resellers create needless risk and markup.
+The practical advice is simple: book ahead, especially for the Nasrid Palaces. Entry is timed, demand is high, and official tickets are the safest route. Resellers create needless risk and markup. This is not the place to improvise at the gate.
 
 ## Alcázar de Segovia
 
@@ -89,6 +95,6 @@ The building was heavily damaged by fire in 1813 during the Peninsular War and r
 
 I would pair Olite with the surrounding Navarran wine region rather than make it a standalone detour from far away.
 
-## What I left off
+## What I Left Off
 
 Several recurring castle-list claims are not useful. There is no famous Castillo de San Felipe in Madrid; the well-known Castillo de San Felipe is in Ferrol, in Galicia. Barcelona's Castell de Montjuïc is a 17th and 18th century military fortification rather than a medieval castle, so it belongs to a different kind of itinerary. The Alcazaba of Almería would be a fair addition to a serious Moorish-fortress route, but I have not visited it personally and did not want to fake the note.

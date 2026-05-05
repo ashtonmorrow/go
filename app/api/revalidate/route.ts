@@ -15,8 +15,12 @@ export async function POST(req: NextRequest) {
     revalidatePath(path);
     revalidateTag('supabase-cities');
     revalidateTag('supabase-countries');
+    revalidateTag('supabase-pins');
     revalidateTag('notion-cities');
     revalidateTag('notion-countries');
+    revalidatePath('/pins');
+    revalidatePath('/pins/cards');
+    revalidatePath('/pins/map');
     return NextResponse.json({ ok: true, revalidated: path });
   } catch (e: any) {
     return NextResponse.json({ ok: false, error: e?.message || 'unknown' }, { status: 500 });

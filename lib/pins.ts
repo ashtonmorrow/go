@@ -172,7 +172,8 @@ export type Pin = {
    *  (internationalPhoneNumber). Surfaced on the pin detail page Getting
    *  There card as a `tel:` link. Populated by the same enrichment pass
    *  as priceLevel — same Pro-tier SKU on Google's side, so requesting
-   *  it costs nothing extra when we're already asking for price/website. */
+   *  it comes back with the same Places Details run that fills price and
+   *  hours. */
   phone: string | null;
 
   address: string | null;

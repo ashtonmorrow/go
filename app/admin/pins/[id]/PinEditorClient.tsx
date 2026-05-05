@@ -71,7 +71,7 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
   const runEnrich = async () => {
     if (enrich.running) return;
     const ok = window.confirm(
-      `Fetch price level, opening hours, and phone from Google Places ` +
+      `Fetch price level, opening hours, phone, and kind from Google Places ` +
       `for "${state.name}"? Estimated cost: up to $0.04. Curated values ` +
       `are preserved on merge.`,
     );
@@ -125,8 +125,26 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
         action: lastAction,
         error: null,
       });
+      // Bust the public-page unstable_cache for this slug. The
+      // revalidateTag/Path calls inside enrich-places' streaming
+      // callback don't reliably fire (the route handler returned its
+      // Response before the stream's start() completes), so we hit a
+      // dedicated endpoint with a clean request context. Wait for it
+      // before router.refresh() so the form re-fetches against fresh
+      // server data, not the stale cached pin.
+      if (lastAction === 'enriched') {
+        try {
+          await fetch('/api/admin/revalidate-pins', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ slugs: state.slug ? [state.slug] : [] }),
+          });
+        } catch {
+          /* best-effort — stale cache will TTL out within 24h */
+        }
+      }
       // Re-fetch the server data so the form reflects what Google wrote
-      // (price_level, hours_details, phone, possibly website).
+      // (price_level, hours_details, phone, kind, possibly website).
       router.refresh();
     } catch (e) {
       setEnrich(prev => ({
@@ -249,7 +267,7 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
                 ? 'border-accent/40 bg-accent/10 text-accent cursor-wait'
                 : 'border-accent/40 bg-accent/10 text-accent hover:bg-accent/15 disabled:opacity-50')
             }
-            title="Pull price level, opening hours, and phone from Google Places. Curated values are preserved."
+            title="Pull price level, opening hours, phone, and kind from Google Places. Curated values are preserved."
           >
             <span aria-hidden>✨</span>
             <span>{enrich.running ? 'Enriching…' : 'Enrich from Google'}</span>
@@ -282,7 +300,7 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
           )}
         </div>
         <p className="text-label text-muted">
-          Pulls price level, opening hours, and phone. Existing curated
+          Pulls price level, opening hours, phone, and kind. Existing curated
           values win on merge — only blanks get filled.
         </p>
 

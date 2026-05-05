@@ -22,8 +22,8 @@
 // Stray's GCP project):
 //   Find Place from Text:        $0.017 / call
 //   Place Details "Essentials":  $0      (id, displayName)
-//   Place Details "Pro":         $0.005  (+ priceLevel, types, website, phone)
-//   Place Details "Enterprise":  $0.020  (+ regularOpeningHours, photos)
+//   Place Details "Pro":         $0.005  (+ primaryType)
+//   Place Details "Enterprise":  $0.020  (+ priceLevel, website, phone, regularOpeningHours)
 //
 // We pick the cheapest tier that still covers the requested fields and
 // surface a running cost estimate after every call so the admin button
@@ -45,7 +45,8 @@ export type EnrichOptions = {
   supabase: SupabaseClient;
   /** Pin IDs to enrich. Caller does the filtering. */
   pinIds: string[];
-  /** Which fields to ask Places API for. Default: ['price', 'hours']. */
+  /** Which fields to ask Places API for.
+   *  Default: ['price', 'hours', 'phone', 'kind']. */
   fields?: EnrichField[];
   /** Hard ceiling on total Places API spend. Aborts cleanly when hit. */
   maxCostUsd?: number;
@@ -68,8 +69,13 @@ export type EnrichEvent =
 const PRICE_FIND_PLACE = 0.017;
 
 function detailsTier(fields: EnrichField[]): number {
-  if (fields.includes('hours')) return 0.020;
-  if (fields.includes('price') || fields.includes('website') || fields.includes('phone')) return 0.005;
+  if (
+    fields.includes('hours') ||
+    fields.includes('price') ||
+    fields.includes('website') ||
+    fields.includes('phone')
+  ) return 0.020;
+  if (fields.includes('kind')) return 0.005;
   return 0;
 }
 
@@ -138,7 +144,7 @@ async function invokePlaceDetailsFn<T>(
 
 async function findPlaceId(
   supabase: SupabaseClient,
-  name: string,
+  query: string,
   lat: number | null,
   lng: number | null,
 ): Promise<string | null> {
@@ -146,7 +152,7 @@ async function findPlaceId(
     supabase,
     {
       action: 'find',
-      name,
+      name: query,
       lat: lat ?? undefined,
       lng: lng ?? undefined,
     },
@@ -171,8 +177,8 @@ type PlaceDetails = {
   websiteUri?: string;
   internationalPhoneNumber?: string;
   /** Google's most specific category for the place ("park",
-   *  "italian_restaurant"). Free in the Essentials tier — used to
-   *  auto-classify pin.kind when none is curated. */
+   *  "italian_restaurant"). Used to auto-classify pin.kind when none
+   *  is curated. */
   primaryType?: string;
   /** Full set of Google types ("restaurant", "food", "establishment").
    *  Fallback if primaryType doesn't match anything in our map. */
@@ -248,6 +254,60 @@ function inferKindFromTypes(
     if (lowered.includes('point_of_interest') || lowered.includes('landmark')) return 'attraction';
   }
   return null;
+}
+
+function foldedText(values: Array<string | null | undefined>): string {
+  return values
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9 ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function inferKindFromText(values: Array<string | null | undefined>): PinKind | null {
+  const text = foldedText(values);
+  if (!text) return null;
+  if (/\b(hotel|hostel|guesthouse|guest house|resort|motel|riad|suites|aparthotel)\b/.test(text)) {
+    return 'hotel';
+  }
+  if (/\b(restaurant|restaurante|ristorante|cafe|coffee|bakery|pastry|pastries|pizzeria|pizza|sushi|ramen|noodle|kebab|cevabdzinica|cevapi|taqueria|tacos|brasserie|bistro|pub|tavern|brewery|beer|grill|diner|trattoria|osteria|parrilla|bbq|barbecue|burger|ceviche|arepa|falafel|shawarma|gelato|ice cream|cocktail|wine bar|steakhouse|seafood|street food|food truck|juice|sandwich)\b|doner/.test(text)) {
+    return 'restaurant';
+  }
+  if (/\b(muji|mall|shopping|store|shop|boutique|bazaar)\b|market/.test(text)) {
+    return 'shopping';
+  }
+  if (/\b(airport|station|terminal|metro|subway|rail|railway|train|ferry|tram|funicular|parking)\b/.test(text)) {
+    return 'transit';
+  }
+  if (/\b(park|garden|gardens|botanical|beach|bay|trail|reserve|forest|waterfall|lake)\b/.test(text)) {
+    return 'park';
+  }
+  if (/\b(museum|gallery|palace|castle|cathedral|church|mosque|temple|synagogue|monument|memorial|old town|fort|fortress|tower|bridge|square|plaza|archaeological|archeological|aquarium|zoo|photopoint)\b/.test(text)) {
+    return 'attraction';
+  }
+  return null;
+}
+
+function placeSearchQuery(pin: {
+  name: string;
+  lat: number | null;
+  lng: number | null;
+  city_names?: string[] | null;
+  states_names?: string[] | null;
+}): string {
+  // When we have coordinates, keep the query narrow and let the edge
+  // function's location bias do the disambiguation. Saved-list rows
+  // often lack coordinates but do have city/country; append that context
+  // so "The Club", "Otium", or "Kyubey" do not resolve globally.
+  if (pin.lat != null && pin.lng != null) return pin.name;
+  const city = Array.isArray(pin.city_names) ? pin.city_names[0] : null;
+  const country = Array.isArray(pin.states_names) ? pin.states_names[0] : null;
+  return [pin.name, city, country].filter(Boolean).join(', ');
 }
 
 async function fetchPlaceDetails(
@@ -349,11 +409,11 @@ function mapOpeningHours(
 export async function* enrichPins(
   options: EnrichOptions,
 ): AsyncGenerator<EnrichEvent> {
-  // Default field bundle: price + hours + phone + kind. price/website/
-  // phone share Google's $0.005 Pro tier; hours bumps to the $0.020
-  // Enterprise tier; types/primaryType for kind classification ride in
-  // the free Essentials tier so adding 'kind' to the default costs
-  // nothing. The admin UI can still override fields[] explicitly.
+  // Default field bundle: price + hours + phone + kind. price, website,
+  // phone, and regularOpeningHours are all in Google's Enterprise
+  // Place Details tier. The type fields used for kind do not increase
+  // the default run's tier once hours/phone are already requested. The
+  // admin UI can still override fields[] explicitly.
   const fields = options.fields ?? ['price', 'hours', 'phone', 'kind'];
   const maxCost = options.maxCostUsd ?? Infinity;
   const tier = detailsTier(fields);
@@ -364,7 +424,7 @@ export async function* enrichPins(
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, kind, lat, lng, google_place_url, price_level, hours_details, website, phone')
+    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, price_level, hours_details, website, phone')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;
@@ -374,8 +434,11 @@ export async function* enrichPins(
     name: string;
     slug: string | null;
     kind: string | null;
+    category: string | null;
     lat: number | null;
     lng: number | null;
+    city_names: string[] | null;
+    states_names: string[] | null;
     google_place_url: string | null;
     price_level: number | null;
     hours_details: Record<string, unknown> | null;
@@ -413,7 +476,7 @@ export async function* enrichPins(
         };
         break;
       }
-      placeId = await findPlaceId(options.supabase, pin.name, pin.lat, pin.lng);
+      placeId = await findPlaceId(options.supabase, placeSearchQuery(pin), pin.lat, pin.lng);
       runningCost += PRICE_FIND_PLACE;
       action = placeId ? 'resolved' : 'no-match';
     }
@@ -495,7 +558,9 @@ export async function* enrichPins(
       // something different (curator wins, same as the rest of the
       // merge logic). Skip pins where neither primaryType nor types[]
       // gave us a usable mapping.
-      const inferred = inferKindFromTypes(details.primaryType, details.types);
+      const inferred =
+        inferKindFromTypes(details.primaryType, details.types) ??
+        inferKindFromText([pin.category, pin.name, details.displayName?.text]);
       if (inferred) patch.kind = inferred;
     }
 

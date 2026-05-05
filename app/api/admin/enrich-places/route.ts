@@ -25,7 +25,8 @@ import {
 //
 // Request body:
 //   { pinIds: string[],           — required, the filtered set
-//     fields?: ('price'|'hours'|'website'|'phone')[],  default ['price','hours']
+//     fields?: ('price'|'hours'|'website'|'phone'|'kind')[],
+//                                      default ['price','hours','phone','kind']
 //     maxCostUsd?: number,         default no ceiling
 //     refresh?: boolean,           default false (skip already-enriched)
 //     dryRun?: boolean }           default false (live writes)
