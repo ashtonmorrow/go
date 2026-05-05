@@ -21,6 +21,7 @@ import { withUtm } from '@/lib/utm';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { listNameToSlug } from '@/lib/savedLists';
+import Lightbox from '@/components/Lightbox';
 
 // Force dynamic rendering. The Sidebar (root layout) reads headers() for
 // pathname-aware fetching, which makes the whole tree dynamic at runtime.
@@ -375,24 +376,37 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
       </header>
 
       {personalPhotos[0] && (
-        <figure className="mt-6 rounded overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroUrl(personalPhotos[0].url, 1200) ?? personalPhotos[0].url}
+        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
+          <Lightbox
+            src={personalPhotos[0].url}
             alt={pin.name}
-            // The hero is the LCP element on this route; tell the browser
-            // not to defer it. Without this, image lazy-load heuristics +
-            // network throttling could push LCP past 30s on slow connections.
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            {...({ fetchpriority: 'high' } as any)}
-            decoding="async"
-            // Width/height from EXIF (when available) prevents the CLS shift
-            // we were seeing when the hero arrived after FCP. Falls back to
-            // a 3:2 placeholder so the layout still reserves space.
-            width={personalPhotos[0].width ?? 1200}
-            height={personalPhotos[0].height ?? 800}
-            className="w-full max-h-[60vh] object-cover bg-cream-soft"
-          />
+            width={personalPhotos[0].width}
+            height={personalPhotos[0].height}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroUrl(personalPhotos[0].url, 1200) ?? personalPhotos[0].url}
+              alt={pin.name}
+              // The hero is the LCP element on this route; tell the browser
+              // not to defer it. Without this, image lazy-load heuristics +
+              // network throttling could push LCP past 30s on slow connections.
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              {...({ fetchpriority: 'high' } as any)}
+              decoding="async"
+              // Width/height from EXIF (when available) prevents the CLS shift
+              // we were seeing when the hero arrived after FCP. Falls back to
+              // a 3:2 placeholder so the layout still reserves space.
+              width={personalPhotos[0].width ?? 1200}
+              height={personalPhotos[0].height ?? 800}
+              // object-contain (vs the prior object-cover) so portrait
+              // photos render fully instead of getting their top + bottom
+              // cropped to fit a wide container. max-h scales with the
+              // viewport so a tall photo can use most of the screen
+              // without scrolling, while a typical landscape stays under
+              // the fold.
+              className="w-full max-h-[70vh] object-contain"
+            />
+          </Lightbox>
         </figure>
       )}
 
@@ -468,19 +482,30 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h2 text-ink-deep mb-4">Your photos</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {personalPhotos.slice(1).map(p => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={p.id}
-                    src={thumbUrl(p.url, { size: 240 }) ?? p.url}
-                    alt={p.caption ?? `${pin.name} — personal photo`}
-                    loading="lazy"
-                    decoding="async"
-                    width={240}
-                    height={240}
-                    className="w-full aspect-square object-cover rounded bg-cream-soft"
-                  />
-                ))}
+                {personalPhotos.slice(1).map(p => {
+                  const altText = p.caption ?? `${pin.name} — personal photo`;
+                  return (
+                    <Lightbox
+                      key={p.id}
+                      src={p.url}
+                      alt={altText}
+                      width={p.width}
+                      height={p.height}
+                      className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={thumbUrl(p.url, { size: 240 }) ?? p.url}
+                        alt={altText}
+                        loading="lazy"
+                        decoding="async"
+                        width={240}
+                        height={240}
+                        className="w-full h-full object-cover"
+                      />
+                    </Lightbox>
+                  );
+                })}
               </div>
             </section>
           )}
@@ -489,19 +514,30 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h2 text-ink-deep mb-4">Gallery</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {galleryImages.slice(1).map((img, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={img.url + i}
-                    src={thumbUrl(img.url, { size: 240 }) ?? img.url}
-                    alt={`${pin.name} — image ${i + 2}`}
-                    loading="lazy"
-                    decoding="async"
-                    width={240}
-                    height={240}
-                    className="w-full aspect-square object-cover rounded bg-cream-soft"
-                  />
-                ))}
+                {galleryImages.slice(1).map((img, i) => {
+                  const altText = `${pin.name} — image ${i + 2}`;
+                  return (
+                    <Lightbox
+                      key={img.url + i}
+                      src={img.url}
+                      alt={altText}
+                      width={img.width}
+                      height={img.height}
+                      className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={thumbUrl(img.url, { size: 240 }) ?? img.url}
+                        alt={altText}
+                        loading="lazy"
+                        decoding="async"
+                        width={240}
+                        height={240}
+                        className="w-full h-full object-cover"
+                      />
+                    </Lightbox>
+                  );
+                })}
               </div>
             </section>
           )}

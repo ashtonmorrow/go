@@ -11,6 +11,7 @@ import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from 
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
+import Lightbox from '@/components/Lightbox';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
@@ -219,18 +220,26 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           pages don't carry their own photo column, so the fallback chain
           is the entire source for this hero. */}
       {fallbackCover && (
-        <figure className="mt-6 rounded overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroUrl(fallbackCover.url, 1200) ?? fallbackCover.url}
+        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
+          <Lightbox
+            src={fallbackCover.url}
             alt={country.name}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            {...({ fetchpriority: 'high' } as any)}
-            decoding="async"
-            width={fallbackCover.width ?? 1200}
-            height={fallbackCover.height ?? 800}
-            className="w-full max-h-[60vh] object-cover"
-          />
+            width={fallbackCover.width}
+            height={fallbackCover.height}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroUrl(fallbackCover.url, 1200) ?? fallbackCover.url}
+              alt={country.name}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              {...({ fetchpriority: 'high' } as any)}
+              decoding="async"
+              width={fallbackCover.width ?? 1200}
+              height={fallbackCover.height ?? 800}
+              // object-contain so portrait pin photos render fully.
+              className="w-full max-h-[70vh] object-contain"
+            />
+          </Lightbox>
           <figcaption className="text-label text-muted px-1 mt-1">
             From a pin in {country.name}
           </figcaption>

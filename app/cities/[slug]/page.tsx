@@ -15,6 +15,7 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
+import Lightbox from '@/components/Lightbox';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -306,22 +307,32 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       </header>
 
       {coverUrl && (
-        <figure className="mt-6 rounded overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroUrl(coverUrl, 1200) ?? coverUrl}
+        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
+          <Lightbox
+            src={coverUrl}
             alt={city.name}
-            // LCP element on this route: tell the browser not to defer it.
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            {...({ fetchpriority: 'high' } as any)}
-            decoding="async"
-            // EXIF dimensions (when the cover came from the personal-photos
-            // fallback) reserve exact layout space; otherwise a 3:2
-            // placeholder. Either way the figure below has zero CLS.
             width={coverDims.width}
             height={coverDims.height}
-            className="w-full max-h-[60vh] object-cover"
-          />
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroUrl(coverUrl, 1200) ?? coverUrl}
+              alt={city.name}
+              // LCP element on this route: tell the browser not to defer it.
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              {...({ fetchpriority: 'high' } as any)}
+              decoding="async"
+              // EXIF dimensions (when the cover came from the personal-photos
+              // fallback) reserve exact layout space; otherwise a 3:2
+              // placeholder. Either way the figure below has zero CLS.
+              width={coverDims.width}
+              height={coverDims.height}
+              // object-contain so portrait sources render fully (no
+              // top/bottom crop). Letterbox fill comes from the parent
+              // figure's bg-cream-soft.
+              className="w-full max-h-[70vh] object-contain"
+            />
+          </Lightbox>
           {/* Attribution priority:
               - heroImage from Commons → author/license/source caption
               - pin-photo fallback → "From a pin in <city>" orientation note

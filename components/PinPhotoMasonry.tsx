@@ -17,6 +17,7 @@
 import Link from 'next/link';
 import { thumbUrl } from '@/lib/imageUrl';
 import type { PinPhoto } from '@/lib/personalPhotos';
+import Lightbox from './Lightbox';
 
 export default function PinPhotoMasonry({
   photos,
@@ -48,41 +49,54 @@ export default function PinPhotoMasonry({
           photo.width && photo.height
             ? `${photo.width} / ${photo.height}`
             : '4 / 3';
-        // Card width is 100% of its column. Picking 480px as the
+        // Card width is 100% of its column. Picking 240px as the
         // serving width gives a sharp 240-ish CSS px column on retina
         // (close to what columns-4 produces at typical viewports).
         const src = thumbUrl(photo.url, { size: 240 }) ?? photo.url;
-        const href = photo.pinSlug ? `/pins/${photo.pinSlug}` : '#';
+        const altText = photo.caption ?? photo.pinName;
+        const href = photo.pinSlug ? `/pins/${photo.pinSlug}` : null;
+        // Two affordances per card without nesting <a> inside <button>:
+        //   - The Lightbox covers the photo area as a single full-size
+        //     button. Tap = open full image.
+        //   - The bottom chip row sits absolutely on top of the image,
+        //     pointer-events disabled by default so taps pass through
+        //     to the lightbox; the pin-name pill re-enables pointer
+        //     events so its own Link click navigates to the pin page.
         return (
-          <Link
+          <div
             key={photo.id}
-            href={href}
             className="
-              group block mb-3 sm:mb-4 break-inside-avoid
-              relative overflow-hidden rounded-lg
+              group relative mb-3 sm:mb-4 break-inside-avoid
+              overflow-hidden rounded-lg
               border border-sand bg-cream-soft
               transition-shadow hover:shadow-paper
             "
             style={{ aspectRatio: aspect }}
-            title={photo.caption ?? photo.pinName}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt={photo.caption ?? photo.pinName}
-              loading="lazy"
-              decoding="async"
-              className="
-                absolute inset-0 w-full h-full object-cover
-                transition-transform duration-500
-                group-hover:scale-[1.02]
-              "
-            />
+            <Lightbox
+              src={photo.url}
+              alt={altText}
+              width={photo.width}
+              height={photo.height}
+              className="block absolute inset-0 w-full h-full"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={altText}
+                loading="lazy"
+                decoding="async"
+                className="
+                  w-full h-full object-cover
+                  transition-transform duration-500
+                  group-hover:scale-[1.02]
+                "
+              />
+            </Lightbox>
             {/* Bottom gradient + chip row. The gradient gives the chips
-                contrast against any image. Chips: pin name (primary,
-                white text on a translucent dark plate so it reads on
-                bright photos) + the pin's kind/tag (smaller, white-
-                outline). */}
+                contrast against any image. pointer-events-none on the
+                row so taps pass through to the lightbox; the inner Link
+                re-enables them so navigation still works. */}
             <div
               aria-hidden
               className="
@@ -91,15 +105,30 @@ export default function PinPhotoMasonry({
                 bg-gradient-to-t from-black/60 via-black/20 to-transparent
               "
             />
-            <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-end gap-1.5">
-              <span
-                className="
-                  pill bg-black/55 text-white border-white/10 backdrop-blur-sm
-                  max-w-full truncate font-medium
-                "
-              >
-                {photo.pinName}
-              </span>
+            <div className="absolute bottom-2 left-2 right-2 flex flex-wrap items-end gap-1.5 pointer-events-none">
+              {href ? (
+                <Link
+                  href={href}
+                  className="
+                    pointer-events-auto
+                    pill bg-black/55 text-white border-white/10 backdrop-blur-sm
+                    max-w-full truncate font-medium
+                    hover:bg-black/75 transition-colors
+                  "
+                  title={`Open ${photo.pinName}`}
+                >
+                  {photo.pinName}
+                </Link>
+              ) : (
+                <span
+                  className="
+                    pill bg-black/55 text-white border-white/10 backdrop-blur-sm
+                    max-w-full truncate font-medium
+                  "
+                >
+                  {photo.pinName}
+                </span>
+              )}
               {photo.pinTag && (
                 <span
                   className="
@@ -111,7 +140,7 @@ export default function PinPhotoMasonry({
                 </span>
               )}
             </div>
-          </Link>
+          </div>
         );
       })}
     </div>
