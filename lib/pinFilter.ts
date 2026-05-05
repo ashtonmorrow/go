@@ -41,6 +41,12 @@ export type PinFilterable = {
   /** Mike's personal Google Maps saved-list memberships (Madrid, Bangkok,
    *  Coffee Shops, etc). Populated by the saved-list import. */
   savedLists?: string[];
+  /** True when this pin is referenced by a blog post via that post's
+   *  frontmatter `links.pins[]` array. Decorated by the fetchers in
+   *  lib/pins.ts via getReferencedSlugs('pins'). Powers the "or blogs"
+   *  half of the Mike's List filter. Optional so callers without the
+   *  field still typecheck. */
+  inBlog?: boolean;
   /** Set by the page after a personal_photos lookup. Truthy means Mike
    *  has uploaded at least one photo for this pin — the strongest
    *  "personal investment" signal we have, ahead of even a written review. */
@@ -129,10 +135,15 @@ export function filterPins<T extends PinFilterable>(pins: T[], state: PinFilterS
       if (!hasText && !hasRating) continue;
     }
     // "Mike's List" — pin appears in at least one of Mike's saved-list
-    // collections. Distinct from picking specific saved lists in the
-    // My Lists section: this is the broader "anything I've curated"
-    // filter rather than "places on this exact list."
-    if (state.mikesListOnly && (p.savedLists?.length ?? 0) === 0) continue;
+    // collections OR is referenced by a blog post via its frontmatter
+    // `links.pins[]` array (decorated as p.inBlog by the fetchers via
+    // getReferencedSlugs). Distinct from picking specific saved lists
+    // in the My Lists section: this is the broader "anything I've
+    // personally curated, in any form" filter.
+    if (state.mikesListOnly) {
+      const onSavedList = (p.savedLists?.length ?? 0) > 0;
+      if (!onSavedList && !p.inBlog) continue;
+    }
     if (state.bring.size > 0) {
       const pinBring = p.bring ?? [];
       let hasAll = true;

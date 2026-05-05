@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
+import { getReferencedSlugs } from './posts';
 
 export type PinImage = {
   url: string;
@@ -255,6 +256,12 @@ export type Pin = {
   /** Set by the page after a separate personal_photos lookup. Cards prefer
    *  this over the first curated image. Null when there's no personal photo. */
   personalCoverUrl: string | null;
+  /** True when at least one post in /content/posts/<slug>.md lists this
+   *  pin's slug under its `links.pins[]` frontmatter array. Powers the
+   *  "Mike's List" filter chip's "or blogs" half — a pin counts as
+   *  curated if it's on a saved list OR Mike has written about it.
+   *  Decorated in fetchers, never stored in Postgres. */
+  inBlog: boolean;
 };
 
 const asString = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
@@ -440,6 +447,10 @@ function rowToPin(row: any): Pin {
     googlePlaceId: asString(row.google_place_id),
     googleRating: asNumber(row.google_rating),
     googleRatingCount: asNumber(row.google_rating_count),
+    // Decorated by fetchers via getReferencedSlugs('pins'); rowToPin
+    // returns a safe default so callers that build Pins without the
+    // post lookup (scripts, isolated tests) don't blow up on it.
+    inBlog: false,
     unescoUrl,
     wikidataUrl,
     personalCoverUrl: null,
@@ -534,7 +545,23 @@ const _fetchAllPins = unstable_cache(
   ['supabase-pins-v6'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
-export const fetchAllPins = cache(_fetchAllPins);
+// Apply post→pin link decoration AFTER the cached DB read. Keeping the
+// decoration outside unstable_cache means the cached payload is just
+// the raw Supabase data (stable across post edits), and we re-apply
+// the blog-tag overlay each request from getReferencedSlugs (which has
+// its own 24h cache, keyed off the posts directory).
+async function decoratePinsWithBlogTags(pins: Pin[]): Promise<Pin[]> {
+  const blogSlugs = await getReferencedSlugs('pins');
+  if (blogSlugs.size === 0) return pins;
+  return pins.map(p =>
+    p.slug && blogSlugs.has(p.slug) ? { ...p, inBlog: true } : p,
+  );
+}
+
+export const fetchAllPins = cache(async (): Promise<Pin[]> => {
+  const pins = await _fetchAllPins();
+  return decoratePinsWithBlogTags(pins);
+});
 
 // === Surgical fetchers ======================================================
 // Index views need all 5k pins; detail / sidebar / list embeds need a small
@@ -568,7 +595,8 @@ const _fetchPinsForLists = unstable_cache(
 export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
   // Sort + dedupe inputs so the cache key is stable across permutations.
   const sorted = Array.from(new Set(names)).sort();
-  return _fetchPinsForLists(sorted);
+  const pins = await _fetchPinsForLists(sorted);
+  return decoratePinsWithBlogTags(pins);
 });
 
 /** Pins inside a lat/lng bounding box, excluding one id. Used by the
@@ -601,7 +629,15 @@ const _fetchPinsInBbox = unstable_cache(
   ['supabase-pins-bbox-v5'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
-export const fetchPinsInBbox = cache(_fetchPinsInBbox);
+export const fetchPinsInBbox = cache(
+  async (
+    minLat: number, maxLat: number, minLng: number, maxLng: number,
+    excludeId: string,
+  ): Promise<Pin[]> => {
+    const pins = await _fetchPinsInBbox(minLat, maxLat, minLng, maxLng, excludeId);
+    return decoratePinsWithBlogTags(pins);
+  },
+);
 
 // Detail page: full row (heavy jsonbs included). unstable_cache is keyed by
 // slug so each pin's detail data is cached independently across requests;
@@ -626,4 +662,11 @@ const _fetchPinBySlug = unstable_cache(
   ['supabase-pin-by-slug-v6'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
-export const fetchPinBySlug = cache(_fetchPinBySlug);
+export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {
+  const pin = await _fetchPinBySlug(slug);
+  if (!pin) return null;
+  // Single-pin variant of decoratePinsWithBlogTags. Same cached
+  // post-slug Set; we just check membership directly.
+  const blogSlugs = await getReferencedSlugs('pins');
+  return pin.slug && blogSlugs.has(pin.slug) ? { ...pin, inBlog: true } : pin;
+});
