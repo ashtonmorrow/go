@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidateTag, revalidatePath } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import {
   enrichPins,
@@ -86,6 +87,14 @@ export async function POST(req: Request) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
+      // Track whether any pin was actually written so we only bust the
+      // public-page cache when there's something new to surface. Track
+      // the slugs of the enriched pins too so we can revalidate their
+      // /pins/[slug] paths individually rather than only relying on the
+      // tag bust (which clears unstable_cache but doesn't always touch
+      // already-rendered route segments).
+      const enrichedSlugs = new Set<string>();
+      let wroteAny = false;
       try {
         for await (const event of enrichPins({
           supabase,
@@ -96,6 +105,35 @@ export async function POST(req: Request) {
           dryRun,
         })) {
           controller.enqueue(encoder.encode(JSON.stringify(event) + '\n'));
+          if (event.type === 'progress' && event.action === 'enriched') {
+            wroteAny = true;
+          }
+        }
+        // Pull slugs once for the pins that were actually enriched. We
+        // could carry the slug through the EnrichEvent type but that's
+        // a wider change; one round-trip after the stream is fine.
+        if (wroteAny && !dryRun) {
+          const { data } = await supabase
+            .from('pins')
+            .select('slug')
+            .in('id', pinIds);
+          for (const row of data ?? []) {
+            if (row.slug) enrichedSlugs.add(row.slug as string);
+          }
+          // Tag bust evicts every unstable_cache entry tagged
+          // 'supabase-pins' (fetchPinBySlug, fetchAllPins, bbox, lists).
+          // The slug-level revalidatePath calls handle any route-segment
+          // cache the dynamic page might still hold.
+          try {
+            revalidateTag('supabase-pins');
+            for (const slug of enrichedSlugs) {
+              revalidatePath(`/pins/${slug}`);
+            }
+            revalidatePath('/pins/cards');
+            revalidatePath('/pins/map');
+          } catch {
+            /* ignore — best-effort cache bust */
+          }
         }
         controller.close();
       } catch (err) {

@@ -232,8 +232,11 @@ export type Pin = {
   enrichmentStatus: string | null;
   enrichmentConfidence: string | null;
   enrichedAt: string | null;
+  enrichmentCheckedAt: string | null;
+  enrichmentSourceType: string | null;
   enrichmentNotes: string | null;
 
+  googlePlaceUrl: string | null;
   googleMapsUrl: string | null;
   unescoUrl: string | null;
   wikidataUrl: string | null;
@@ -417,8 +420,11 @@ function rowToPin(row: any): Pin {
     enrichmentStatus: asString(row.enrichment_status),
     enrichmentConfidence: asString(row.enrichment_confidence),
     enrichedAt: asString(row.enriched_at),
+    enrichmentCheckedAt: asString(row.enrichment_checked_at),
+    enrichmentSourceType: asString(row.enrichment_source_type),
     enrichmentNotes: asString(row.enrichment_notes),
 
+    googlePlaceUrl: asString(row.google_place_url),
     googleMapsUrl,
     unescoUrl,
     wikidataUrl,
@@ -505,9 +511,11 @@ const _fetchAllPins = unstable_cache(
   },
   // Cache key bumped to force a fresh refetch after the parallel-pagination
   // fix landed and again after the visited=true backfill on Google-imported
-  // pins. v4: added price_level + phone to INDEX_COLUMNS so cached payloads
-  // without those columns now look stale; bumping evicts them in one shot.
-  ['supabase-pins-v4'],
+  // pins. v5: existing v4 cache filled with pre-enrich snapshots before
+  // the revalidateTag hop in enrich-places landed, so it kept serving
+  // stale data even for pins that had been enriched. Bumping evicts every
+  // stale entry on next deploy in one shot.
+  ['supabase-pins-v5'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 export const fetchAllPins = cache(_fetchAllPins);
@@ -569,10 +577,9 @@ const _fetchPinsInBbox = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v3: same INDEX_COLUMNS expansion as fetchAllPins (price_level + phone).
-  // bbox queries fall through the same column list, so bump in lockstep
-  // to keep all callers consistent.
-  ['supabase-pins-bbox-v3'],
+  // v4: in lockstep with fetchAllPins-v5 — same staleness exposure for
+  // bbox-cached entries that were filled pre-enrich.
+  ['supabase-pins-bbox-v4'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(_fetchPinsInBbox);
@@ -593,11 +600,8 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v4: bumped after the SQL backfill that converted broken
-  // hours_details.weekly strings into proper per-day objects. The cached
-  // payload still holds the old string shape; bumping forces a fresh
-  // read from the corrected DB rows.
-  ['supabase-pin-by-slug-v4'],
+  // v5: include detail-page provenance fields for the Sources card.
+  ['supabase-pin-by-slug-v5'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(_fetchPinBySlug);

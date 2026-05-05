@@ -228,6 +228,10 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
     pin.languagesOffered.length || pin.minAgeRecommended != null,
   );
 
+  const sourceLinks = buildSourceLinks(pin);
+  const enrichmentSource = enrichmentSourceLabel(pin.enrichmentSourceType);
+  const enrichmentChecked = formatSourceDate(pin.enrichmentCheckedAt);
+
   return (
     <article className="max-w-page mx-auto px-5 py-8">
       <JsonLd
@@ -520,8 +524,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
               detail-page heroes where ImageCredit renders alongside them. The
               sidebar thumbnail was a non-hero render of a Wikipedia REST API
               image and got stripped along with city heroImage tiles, list
-              covers, etc. The Wikipedia article is still linked from the
-              References card lower in the rail. */}
+              covers, etc. The Wikipedia article is still linked from Sources. */}
 
           <div className="card p-5 space-y-3 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label">Plan a visit</h3>
@@ -685,20 +688,33 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             </div>
           )}
 
-          {(pin.unescoUrl || pin.wikipediaUrl || pin.wikidataUrl) && (
+          {sourceLinks.length > 0 && (
             <div className="card p-5 text-small">
-              <h3 className="text-muted uppercase tracking-wider text-label mb-3">References</h3>
+              <h3 className="text-muted uppercase tracking-wider text-label mb-3">Sources</h3>
               <ul className="space-y-1.5">
-                {pin.unescoUrl && (
-                  <li><a href={withUtm(pin.unescoUrl, { medium: 'pin-detail', campaign: 'unesco' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">whc.unesco.org →</a></li>
-                )}
-                {pin.wikipediaUrl && (
-                  <li><a href={withUtm(pin.wikipediaUrl, { medium: 'pin-detail', campaign: 'wikipedia' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikipedia →</a></li>
-                )}
-                {pin.wikidataUrl && (
-                  <li><a href={withUtm(pin.wikidataUrl, { medium: 'pin-detail', campaign: 'wikidata' })} target="_blank" rel="noopener noreferrer" className="text-teal hover:underline">Wikidata ({pin.wikidataQid}) →</a></li>
-                )}
+                {sourceLinks.map(link => (
+                  <li key={`${link.label}-${link.href}`}>
+                    <a
+                      href={withUtm(link.href, { medium: 'pin-detail-source', campaign: link.campaign })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal hover:underline"
+                    >
+                      {link.label} →
+                    </a>
+                  </li>
+                ))}
               </ul>
+              {enrichmentSource && enrichmentChecked && (
+                <p className="mt-3 text-label text-muted leading-relaxed">
+                  {enrichmentSource} checked {enrichmentChecked}.
+                </p>
+              )}
+              {pin.enrichmentConfidence && (
+                <p className="mt-1 text-label text-muted leading-relaxed">
+                  Confidence: {pin.enrichmentConfidence}.
+                </p>
+              )}
             </div>
           )}
         </aside>
@@ -807,6 +823,65 @@ function formatDistance(km: number): string {
   if (km < 0.1) return `${Math.round(km * 1000)} m`;
   if (km < 1) return `${(km * 1000 / 100 | 0) * 100} m`;
   return `${km.toFixed(km < 10 ? 1 : 0)} km`;
+}
+
+type PinSourceLink = {
+  label: string;
+  href: string;
+  campaign: string;
+};
+
+function buildSourceLinks(pin: Pin): PinSourceLink[] {
+  const links: PinSourceLink[] = [];
+  const seen = new Set<string>();
+  const add = (label: string, href: string | null, campaign: string) => {
+    if (!href) return;
+    const key = href.replace(/\/$/, '');
+    if (seen.has(key)) return;
+    seen.add(key);
+    links.push({ label, href, campaign });
+  };
+
+  const hasGoogleSource = !!pin.googlePlaceUrl || !!pin.enrichmentSourceType?.startsWith('google');
+  add('Official website', pin.website, 'official-website');
+  add(
+    pin.enrichmentSourceType === 'google_places_place_details' ? 'Google Places' : 'Google Maps',
+    hasGoogleSource ? (pin.googlePlaceUrl ?? pin.googleMapsUrl) : null,
+    'google-maps',
+  );
+  add('Hours source', pin.hoursSourceUrl, 'hours-source');
+  add('Pricing source', pin.priceSourceUrl, 'pricing-source');
+  add('UNESCO', pin.unescoUrl, 'unesco');
+  add('Wikipedia', pin.wikipediaUrl, 'wikipedia');
+  add(pin.wikidataQid ? `Wikidata (${pin.wikidataQid})` : 'Wikidata', pin.wikidataUrl, 'wikidata');
+
+  return links;
+}
+
+function enrichmentSourceLabel(sourceType: string | null): string | null {
+  switch (sourceType) {
+    case 'google_places_place_details':
+      return 'Google Places data';
+    case 'google-location-lookup':
+      return 'Google location data';
+    case 'wikidata':
+      return 'Wikidata data';
+    case 'manual':
+      return 'Manual data';
+    default:
+      return sourceType ? `${sourceType.replace(/[-_]/g, ' ')} data` : null;
+  }
+}
+
+function formatSourceDate(value: string | null): string | null {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
 }
 
 function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string | null }) {
