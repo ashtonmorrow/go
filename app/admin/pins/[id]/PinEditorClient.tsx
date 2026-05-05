@@ -13,6 +13,96 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
   const [deleting, setDeleting] = useState(false);
   const [result, setResult] = useState<{ ok: true } | { error: string } | null>(null);
 
+  // === Places enrichment (single-pin) ======================================
+  // Mirrors the bulk enrichVisible() flow on /admin/pins, scoped to the row
+  // currently open. refresh=true because the user is explicitly on this
+  // pin's editor — they want fresh data even if price_level was already
+  // populated by an earlier run. Curated curated values are preserved on
+  // merge inside lib/placesEnrichment, so this never clobbers handwork.
+  type EnrichState = {
+    running: boolean;
+    done: boolean;
+    cost: number;
+    action: string | null;
+    error: string | null;
+  };
+  const [enrich, setEnrich] = useState<EnrichState>({
+    running: false,
+    done: false,
+    cost: 0,
+    action: null,
+    error: null,
+  });
+
+  const runEnrich = async () => {
+    if (enrich.running) return;
+    const ok = window.confirm(
+      `Fetch price level, opening hours, and phone from Google Places ` +
+      `for "${state.name}"? Estimated cost: up to $0.04. Curated values ` +
+      `are preserved on merge.`,
+    );
+    if (!ok) return;
+    setEnrich({ running: true, done: false, cost: 0, action: null, error: null });
+    try {
+      const res = await fetch('/api/admin/enrich-places', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinIds: [state.id], refresh: true }),
+      });
+      if (!res.ok || !res.body) {
+        const text = await res.text().catch(() => '');
+        throw new Error(text || `enrichment failed (${res.status})`);
+      }
+      // NDJSON stream — same shape the bulk button consumes.
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      let lastAction: string | null = null;
+      let lastCost = 0;
+      let streamError: string | null = null;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          try {
+            const event = JSON.parse(line) as Record<string, unknown>;
+            if (event.type === 'progress') {
+              if (typeof event.action === 'string') lastAction = event.action;
+              if (typeof event.runningCost === 'number') lastCost = event.runningCost;
+            } else if (event.type === 'done') {
+              if (typeof event.totalCost === 'number') lastCost = event.totalCost;
+            } else if (event.type === 'error') {
+              streamError = typeof event.message === 'string' ? event.message : 'enrichment error';
+            }
+          } catch {
+            // skip unparseable lines
+          }
+        }
+      }
+      if (streamError) throw new Error(streamError);
+      setEnrich({
+        running: false,
+        done: true,
+        cost: lastCost,
+        action: lastAction,
+        error: null,
+      });
+      // Re-fetch the server data so the form reflects what Google wrote
+      // (price_level, hours_details, phone, possibly website).
+      router.refresh();
+    } catch (e) {
+      setEnrich(prev => ({
+        ...prev,
+        running: false,
+        error: e instanceof Error ? e.message : 'enrichment failed',
+      }));
+    }
+  };
+
   const remove = async () => {
     // Two-step confirm: typing the pin name forces us to acknowledge what
     // we're about to nuke. Saves us when the table is sorted oddly and
@@ -110,6 +200,58 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
       {result && 'error' in result && (
         <div className="px-3 py-2 rounded bg-orange/10 text-orange text-small">{result.error}</div>
       )}
+
+      {/* Places enrichment — sits at the top of the form so it's findable
+          when users open the editor specifically to refresh a pin's data. */}
+      <Section label="Google Places">
+        <div className="flex items-center gap-3 flex-wrap">
+          <button
+            type="button"
+            onClick={runEnrich}
+            disabled={enrich.running || saving || deleting}
+            className={
+              'text-small px-3 py-1.5 rounded border inline-flex items-center gap-1.5 transition-colors ' +
+              (enrich.running
+                ? 'border-accent/40 bg-accent/10 text-accent cursor-wait'
+                : 'border-accent/40 bg-accent/10 text-accent hover:bg-accent/15 disabled:opacity-50')
+            }
+            title="Pull price level, opening hours, and phone from Google Places. Curated values are preserved."
+          >
+            <span aria-hidden>✨</span>
+            <span>{enrich.running ? 'Enriching…' : 'Enrich from Google'}</span>
+          </button>
+          {enrich.running && (
+            <span className="text-small text-muted">{enrich.action ?? 'starting…'}</span>
+          )}
+          {enrich.done && !enrich.error && (
+            <span className="text-small text-teal inline-flex items-baseline gap-2">
+              <span>
+                {enrich.action === 'enriched'
+                  ? 'Updated. Form re-loaded with new values.'
+                  : enrich.action === 'no-match'
+                  ? 'No matching place on Google.'
+                  : enrich.action === 'no-data'
+                  ? 'No new data from Google.'
+                  : enrich.action === 'cost-cap'
+                  ? 'Stopped at cost ceiling.'
+                  : `Done${enrich.action ? ` (${enrich.action})` : ''}.`}
+              </span>
+              {enrich.cost > 0 && (
+                <span className="text-muted tabular-nums text-label">
+                  spent ${enrich.cost.toFixed(3)}
+                </span>
+              )}
+            </span>
+          )}
+          {enrich.error && (
+            <span className="text-small text-orange">Error: {enrich.error}</span>
+          )}
+        </div>
+        <p className="text-label text-muted">
+          Pulls price level, opening hours, and phone. Existing curated
+          values win on merge — only blanks get filled.
+        </p>
+      </Section>
 
       <Section label="Identity">
         <Field label="Name">
