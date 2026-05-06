@@ -25,6 +25,11 @@ const HERO_IMAGE = "/images/posts/airline-stopover-programs.jpg";
 const HERO_IMAGE_URL = `${SITE_URL}${HERO_IMAGE}`;
 const HERO_ALT =
   "A mosque visited during an Oman Air stopover in Muscat, a real example of breaking up a long-haul flight into a short trip.";
+const PANAMA_IMAGE = "/images/posts/airline-stopover-panama.jpg";
+const ISTANBUL_IMAGE =
+  "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/pin-images/historic-areas-of-istanbul/a35f7d671ef4.png";
+const SINGAPORE_CLOUD_FOREST_IMAGE =
+  "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/e3/e3a5cc8b0009254abbe6238ca15e17e919ac5e55dd3a5e25e84437b0aa80285b.jpg";
 
 const PAGE_TITLE = "Mike's Ultimate Airline Stopover Guide";
 const PAGE_DESCRIPTION =
@@ -145,6 +150,42 @@ const BOOKING_CHECKS: string[] = [
   "Check entry rules before assuming you can leave the airport.",
   "Look at the transfer, not just the flight time. A free hotel can still waste a day if it is badly located.",
   "Be honest about the season. Muscat in extreme heat and Helsinki in winter are not the same planning problem.",
+];
+
+const STOP_CHECK_CARDS: {
+  title: string;
+  body: string;
+  image?: string;
+  imageAlt?: string;
+}[] = [
+  {
+    title: "A Real Hotel Benefit",
+    body:
+      "Turkish, Emirates, SriLankan, Gulf Air, Royal Jordanian, Ethiopian, China Southern, and XiamenAir can be useful when the long connection is eligible. Read the rule carefully, because these are usually transit benefits with strict conditions.",
+    image: ISTANBUL_IMAGE,
+    imageAlt: "The historic peninsula of Istanbul, a useful example of a stopover city with a guided-tour option.",
+  },
+  {
+    title: "A Cheap Holiday Extension",
+    body:
+      "Copa, TAP, Iberia, Icelandair, Avianca, and LOT are the kind of programs I check when I want to turn a connection into a short city stay without adding airfare. ANA and JAL are also worth checking for Japan, especially when a domestic add-on can turn a Tokyo trip into a broader Japan itinerary.",
+    image: PANAMA_IMAGE,
+    imageAlt: "Silhouetted visitors against an orange sunset during a Panama stopover.",
+  },
+  {
+    title: "A Strong Hotel Package",
+    body:
+      "Qatar and Oman Air are more like stopover bundles than free hotel programs. They can still be a good move when the hotel price, transfer, and flight schedule line up.",
+    image: HERO_IMAGE,
+    imageAlt: HERO_ALT,
+  },
+  {
+    title: "A Guided Layover Tour",
+    body:
+      "Turkish Touristanbul, Singapore Airlines, Korean Air, and Gulf Air are worth checking when you have a long layover but not enough time to plan a proper overnight stop.",
+    image: SINGAPORE_CLOUD_FOREST_IMAGE,
+    imageAlt: "The Cloud Forest conservatory in Singapore, photographed during a short transit stay.",
+  },
 ];
 
 function StructuredData() {
@@ -304,41 +345,30 @@ export default function AirlineStopoverProgramsPage() {
           What Makes a Stopover Worth Checking
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-sand bg-white/60 p-5">
-            <h3 className="text-h3 text-ink-deep">A Real Hotel Benefit</h3>
-            <p className="mt-2 text-body leading-relaxed text-ink">
-              Turkish, Emirates, SriLankan, Gulf Air, Royal Jordanian,
-              Ethiopian, China Southern, and XiamenAir can be useful when the
-              long connection is eligible. Read the rule carefully, because
-              these are usually transit benefits with strict conditions.
-            </p>
-          </div>
-          <div className="rounded-xl border border-sand bg-white/60 p-5">
-            <h3 className="text-h3 text-ink-deep">A Cheap Holiday Extension</h3>
-            <p className="mt-2 text-body leading-relaxed text-ink">
-              Copa, TAP, Iberia, Icelandair, Avianca, and LOT are the kind of
-              programs I check when I want to turn a connection into a short
-              city stay without adding airfare. ANA and JAL are also worth
-              checking for Japan, especially when a domestic add-on can turn a
-              Tokyo trip into a broader Japan itinerary.
-            </p>
-          </div>
-          <div className="rounded-xl border border-sand bg-white/60 p-5">
-            <h3 className="text-h3 text-ink-deep">A Strong Hotel Package</h3>
-            <p className="mt-2 text-body leading-relaxed text-ink">
-              Qatar and Oman Air are more like stopover bundles than free
-              hotel programs. They can still be a good move when the hotel
-              price, transfer, and flight schedule line up.
-            </p>
-          </div>
-          <div className="rounded-xl border border-sand bg-white/60 p-5">
-            <h3 className="text-h3 text-ink-deep">A Guided Layover Tour</h3>
-            <p className="mt-2 text-body leading-relaxed text-ink">
-              Turkish Touristanbul, Singapore Airlines, Korean Air, and Gulf
-              Air are worth checking when you have a long layover but not
-              enough time to plan a proper overnight stop.
-            </p>
-          </div>
+          {STOP_CHECK_CARDS.map((card) => (
+            <article
+              key={card.title}
+              className="overflow-hidden rounded-xl border border-sand bg-white/60"
+            >
+              {card.image ? (
+                <div className="relative aspect-[16/9] bg-cream-soft">
+                  <Image
+                    src={card.image}
+                    alt={card.imageAlt ?? ""}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 28rem"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+              <div className="p-5">
+                <h3 className="text-h3 text-ink-deep">{card.title}</h3>
+                <p className="mt-2 text-body leading-relaxed text-ink">
+                  {card.body}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
