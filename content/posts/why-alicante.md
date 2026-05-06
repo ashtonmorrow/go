@@ -1,5 +1,6 @@
 ---
 title: Why Alicante is worth adding to a Spain itinerary
+nav_title: Why Alicante
 subtitle: A practical coastal stop between Madrid, Valencia, and the Mediterranean.
 hero_image: /images/posts/why-alicante.jpg
 hero_alt: The Castle of Santa Bárbara above Postiguet Beach in Alicante at midday.

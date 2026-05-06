@@ -1,5 +1,6 @@
 ---
 title: Spanish castles worth planning around
+nav_title: Spanish Castles
 subtitle: Six places to understand before adding them to a Spain itinerary.
 # TODO uncomment when image lands: hero_image: /images/posts/spanish-castles.jpg
 # TODO uncomment when image lands: hero_alt: The Alcázar de Segovia at golden hour, viewed from the Mirador de la Pradera de San Marcos.

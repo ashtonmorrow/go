@@ -32,6 +32,10 @@ export type PostStructuredItemList = {
 export type Post = {
   slug: string;
   title: string;
+  /** Short, attractive label used in the sidebar dropdown where space
+   *  is tight. Falls back to `title` when omitted. Stays out of the
+   *  page <h1> + meta — those keep the long, SEO-friendly title. */
+  navTitle: string | null;
   subtitle: string | null;
   heroImage: string | null;
   heroAlt: string | null;
@@ -130,6 +134,10 @@ async function readPostFile(slug: string): Promise<Post | null> {
   return {
     slug,
     title,
+    navTitle:
+      typeof data.nav_title === "string" && data.nav_title.length > 0
+        ? data.nav_title
+        : null,
     subtitle: typeof data.subtitle === "string" ? data.subtitle : null,
     heroImage: typeof data.hero_image === "string" ? data.hero_image : null,
     heroAlt: typeof data.hero_alt === "string" ? data.hero_alt : null,

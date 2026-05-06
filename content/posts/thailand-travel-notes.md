@@ -1,5 +1,6 @@
 ---
 title: How I would plan a first trip to Thailand
+nav_title: Thailand 101
 subtitle: A practical route through Bangkok, one inland break, and one beach stop.
 # TODO uncomment when image lands: hero_image: /images/posts/thailand-travel-notes.jpg
 # TODO uncomment when image lands: hero_alt: A Bangkok skyline at dusk with the Chao Phraya River in the foreground.

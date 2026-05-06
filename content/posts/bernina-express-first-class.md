@@ -1,5 +1,6 @@
 ---
 title: How to ride the Bernina Express from Milan
+nav_title: Bernina Express
 subtitle: Booking, route notes, and what I learned on a last-minute trip to Chur.
 hero_image: /images/posts/bernina-express-first-class.jpg
 hero_alt: A red Bernina Express panoramic train crossing the circular Brusio viaduct in Switzerland.

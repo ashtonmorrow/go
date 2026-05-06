@@ -30,6 +30,10 @@ export type Article = {
   /** Canonical route path. */
   href: string;
   title: string;
+  /** Short, scannable label for the sidebar dropdown. Falls back to
+   *  `title` when omitted. The long title still drives the page <h1>
+   *  + meta + JSON-LD. */
+  navTitle?: string;
   /** One- or two-sentence summary used on the index card and dropdown subtitle. */
   description: string;
   /** ISO date string for the day the article first shipped. */
@@ -49,6 +53,7 @@ export const ARTICLES: Article[] = [
     slug: 'airline-stopover-programs',
     href: '/airline-stopover-programs',
     title: "Mike's Ultimate Airline Stopover Guide",
+    navTitle: 'Airline Stopovers',
     description:
       'Free and discounted hotels, transit tours, and when a stopover is worth adding to a long-haul trip.',
     publishedAt: '2026-04-30',
@@ -74,6 +79,9 @@ export type ArticleEntry = {
   /** Canonical route path. */
   href: string;
   title: string;
+  /** Short label rendered in the tight sidebar row; falls back to
+   *  `title`. Set via Article.navTitle or post frontmatter `nav_title:`. */
+  navTitle: string;
   description: string;
   publishedAt: string | null;
   /** Cover image path (file-based posts always carry one; hand-coded
@@ -127,6 +135,7 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
       key: `article:${a.slug}`,
       href: a.href,
       title: a.title,
+      navTitle: a.navTitle ?? a.title,
       description: a.description,
       publishedAt: a.publishedAt,
       heroImage: a.heroImage ?? null,
@@ -149,6 +158,7 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
       key: `post:${p.slug}`,
       href,
       title: p.title,
+      navTitle: p.navTitle ?? p.title,
       description: p.subtitle ?? '',
       publishedAt: p.published ?? p.updated ?? null,
       heroImage: p.heroImage,

@@ -1,5 +1,6 @@
 ---
 title: How I would plan Cape Town after a few weeks there
+nav_title: Cape Town Brief
 subtitle: Where to stay, how to move around, and what I would handle carefully.
 hero_image: /images/posts/cape-town-travel-brief.jpg
 hero_alt: Table Mountain rising above the Cape Town city bowl at midday.

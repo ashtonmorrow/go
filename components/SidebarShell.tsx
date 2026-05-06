@@ -495,7 +495,7 @@ function ArticlesItem({
                     {a.emoji}
                   </span>
                 )}
-                <span className="flex-1 truncate">{a.title}</span>
+                <span className="flex-1 truncate">{a.navTitle}</span>
               </Link>
             );
           })}
