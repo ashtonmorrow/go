@@ -2,8 +2,8 @@
 title: How to use green markets in the Balkans
 nav_title: Green Markets 101
 subtitle: Notes for longer stays, apartment cooking, and knowing when a market has become part of the tourist circuit.
-# TODO uncomment when image lands: hero_image: /images/posts/balkan-green-markets.jpg
-# TODO uncomment when image lands: hero_alt: Wonky-shaped tomatoes and a bunch of swiss chard piled on a wooden crate at a green market in the Balkans.
+hero_image: /images/posts/balkan-green-markets.jpg
+hero_alt: Vegetable stalls and shoppers at Dolac Market in Zagreb.
 published: 2026-04-30
 updated: 2026-05-05
 indexable: true

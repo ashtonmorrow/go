@@ -2,8 +2,8 @@
 title: How to plan Bali without losing the trip to traffic
 nav_title: Bali Trip Plan
 subtitle: Choose the right base, move less, and let the island slow down.
-# TODO uncomment when image lands: hero_image: /images/posts/bali-travel-guide.jpg
-# TODO uncomment when image lands: hero_alt: Rice terraces north of Ubud at midday with a row of coconut palms in the distance.
+hero_image: /images/posts/bali-travel-guide.jpg
+hero_alt: Rice terraces in Bali bordered by palms and dense tropical trees.
 published: 2026-04-30
 updated: 2026-05-05
 indexable: true

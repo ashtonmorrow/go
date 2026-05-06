@@ -114,4 +114,6 @@ The Neighbourgoods Market at [the Old Biscuit Mill](/pins/the-old-biscuit-mill) 
 
 [Aquila Game Reserve](/pins/aquila-private-game-reserve) is the simple safari add-on from Cape Town. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the long drive is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went.
 
+![A bird standing on a resting hippopotamus at Aquila Game Reserve outside Cape Town.](/images/posts/cape-town-aquila.jpg)
+
 I would not overfill a Cape Town trip. The city is better when you let the mountain, coast, food, and day trips have room. One large outdoor plan, one meal you care about, and a short Uber back to a sensible base is often the right day.

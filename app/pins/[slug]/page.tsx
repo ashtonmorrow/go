@@ -533,13 +533,10 @@ export default async function PinPage({
           {pin.bring.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h2 text-ink-deep mb-4">What to bring</h2>
-              <div className="flex flex-wrap gap-1.5">
-                {pin.bring.map(b => (
-                  <span key={b} className="pill bg-cream-soft text-ink-deep">
-                    {bringFacet(b).label}
-                  </span>
-                ))}
-              </div>
+              {/* Same FacetGrid render as "What to expect" so the two
+                  sections feel consistent — two columns of bullet items
+                  scan faster than a scattered chip wall. */}
+              <FacetGrid items={pin.bring.map(b => bringFacet(b))} />
             </section>
           )}
 

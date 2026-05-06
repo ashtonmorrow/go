@@ -2,8 +2,8 @@
 title: How to visit the Rio Botanical Garden
 nav_title: Rio Botanical Garden
 subtitle: Location, timing, tickets, weather, and the slow parts worth seeing.
-# TODO uncomment when image lands: hero_image: /images/posts/rio-botanical-garden.jpg
-# TODO uncomment when image lands: hero_alt: The Avenue of Royal Palms at the Jardim Botânico do Rio de Janeiro on a partly cloudy afternoon.
+hero_image: /images/posts/rio-botanical-garden.jpg
+hero_alt: A pink tropical flower at the Jardim Botânico do Rio de Janeiro.
 published: 2026-04-30
 updated: 2026-05-05
 indexable: true
