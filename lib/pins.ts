@@ -9,6 +9,11 @@ export type PinImage = {
   height?: number | null;
   filename?: string | null;
   type?: string | null;
+  /** Provenance tag from `pins.images[].source`. The string we care about
+   *  is `'codex-generated'` — those AI-illustrated cards are meant for
+   *  small-thumbnail contexts only and are filtered out of full-size
+   *  hero rendering on the pin detail page. */
+  source?: string | null;
 };
 
 export type PinStatus = 'active' | 'closed' | 'temporarily-closed' | 'seasonal' | 'unknown';
@@ -319,6 +324,7 @@ function rowToPin(row: any): Pin {
       height: typeof i.height === 'number' ? i.height : null,
       filename: i.filename ?? null,
       type: i.type ?? null,
+      source: typeof i.source === 'string' ? i.source : null,
     }));
 
   const admission = row.admission && typeof row.admission === 'object' ? (row.admission as PinAdmission) : null;

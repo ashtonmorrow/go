@@ -290,10 +290,12 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
       </div>
 
       {/* Active-filter chip ribbon — floats top-center. Hidden when no
-          facets are active. */}
+          facets are active. The "X / Y" city count prefix is suppressed
+          here because we're on the countries page; the top-left badge
+          shows the country count, which is what's contextually relevant. */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
         <div className="bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden">
-          <ActiveFilters />
+          <ActiveFilters showCount={false} />
         </div>
       </div>
 
@@ -367,7 +369,11 @@ function CountryHoverTile({
     : 'No cities in current filter';
 
   return (
-    <div className="w-[280px]">
+    // rounded-xl + overflow-hidden so the inner header / footer borders
+    // tuck inside the popup's 12px radius (set by the global maplibre
+    // popup style). Without overflow-hidden the white background filled
+    // edge-to-edge and read as sharp corners.
+    <div className="w-[280px] rounded-xl overflow-hidden">
       {/* Header — flag + name + ISO badge */}
       <div className="flex items-center gap-2.5 px-3 py-2 border-b border-sand">
         {country.flag && (

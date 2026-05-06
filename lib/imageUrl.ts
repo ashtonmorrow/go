@@ -98,7 +98,13 @@ export function thumbUrl(
 ): string | null {
   if (!url) return null;
   if (!isOptimizable(url)) return url;
-  const { size, quality = 80 } = options;
+  // Default quality bumped 80 → 82 to bust /_next/image variant cache for
+  // pin cards where Mike overwrote source files at the same Storage URL.
+  // Vercel's optimizer keys variants by (source URL, w, q); changing the
+  // default q forces a fresh fetch + render of every existing card thumb
+  // and picks up the newly-uploaded bytes. One-time spike in image-render
+  // CPU on Vercel; well within Pro's free variant budget.
+  const { size, quality = 82 } = options;
   // 2x for retina, snapped to the widths declared in next.config.
   return nextImageUrl(url, size * 2, quality);
 }

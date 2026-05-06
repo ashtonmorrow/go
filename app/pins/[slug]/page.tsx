@@ -181,8 +181,15 @@ export default async function PinPage({
     return `${y}`;
   };
 
-  const galleryImages = pin.images.filter((img, i, arr) =>
-    img.url && arr.findIndex(x => x.url === img.url) === i
+  // Dedupe + drop the codex AI-illustrated cards from anything that
+  // expects "real" full-size imagery. They still render on cards
+  // (where the hand-drawn poster style is the point) — this filter
+  // applies only to the detail-page hero / gallery.
+  const galleryImages = pin.images.filter(
+    (img, i, arr) =>
+      img.url &&
+      img.source !== 'codex-generated' &&
+      arr.findIndex(x => x.url === img.url) === i,
   );
 
   const hoursDetailsHasData =

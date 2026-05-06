@@ -37,7 +37,16 @@ function formatPopulation(min: number | null, max: number | null): string {
   return 'Pop';
 }
 
-export default function ActiveFilters({ className = '' }: { className?: string }) {
+export default function ActiveFilters({
+  className = '',
+  showCount = true,
+}: {
+  className?: string;
+  /** When false, suppress the "N / total" prefix. The countries map
+   *  already shows a "63 countries" badge top-left, so the city count
+   *  prefix would be a meaningless duplicate there. */
+  showCount?: boolean;
+}) {
   const ctx = useCityFilters();
   if (!ctx) return null;
   const { state, setState, reset, activeFilterCount, resultCount, totalCount } = ctx;
@@ -125,7 +134,7 @@ export default function ActiveFilters({ className = '' }: { className?: string }
     <div className={'flex items-center gap-1.5 flex-wrap ' + className}>
       {/* Result count anchors the ribbon at the start so users see
           immediately how much their filters narrowed the set. */}
-      {resultCount != null && totalCount != null && (
+      {showCount && resultCount != null && totalCount != null && (
         <span className="text-label text-muted tabular-nums mr-1">
           <span className="text-ink-deep font-medium">{resultCount}</span>
           <span className="mx-1">/</span>

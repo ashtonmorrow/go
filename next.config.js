@@ -66,7 +66,10 @@ const nextConfig = {
     return [
       // Object indexes → cards (the default view)
       { source: '/cities',    destination: '/cities/cards',    permanent: true },
-      { source: '/countries', destination: '/countries/cards', permanent: true },
+      // Countries default to the globe — visited countries on a map is the
+      // headline visual for that object; flag cards lose to it on first
+      // impression. Cards still reachable via the ViewSwitcher.
+      { source: '/countries', destination: '/countries/map', permanent: true },
       { source: '/pins',      destination: '/pins/cards',      permanent: true },
       // Standalone view pages → object/view canonicals
       { source: '/map',   destination: '/cities/map',     permanent: true },
