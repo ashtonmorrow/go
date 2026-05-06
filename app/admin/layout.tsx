@@ -18,7 +18,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span className="text-muted">·</span>
             <span className="text-muted uppercase tracking-wider text-label">Admin</span>
           </div>
-          <nav className="flex items-center gap-4 text-small">
+          <nav className="flex items-center gap-4 text-small flex-wrap">
             <Link href="/admin/upload" className="text-ink hover:text-teal">
               Upload photos
             </Link>
@@ -27,6 +27,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </Link>
             <Link href="/admin/pins" className="text-ink hover:text-teal">
               Edit pins
+            </Link>
+            <Link href="/admin/cities" className="text-ink hover:text-teal">
+              Cities
+            </Link>
+            <Link href="/admin/countries" className="text-ink hover:text-teal">
+              Countries
+            </Link>
+            <Link href="/admin/lists" className="text-ink hover:text-teal">
+              Lists
             </Link>
           </nav>
         </div>
