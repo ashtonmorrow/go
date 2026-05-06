@@ -119,12 +119,18 @@ export default function PinFilterPanel({
               { value: 'not-visited',  label: 'Unvisited' },
             ]}
           />
-          {/* Binary "show only places that…" filters as a single chip group.
-              Click to add the filter, click again to clear. The UNESCO /
-              Atlas Obscura / Michelin chips toggle membership in
-              state.lists so they compose with the ON LISTS section below
-              (clicking one of these is equivalent to picking it from
-              that section, just surfaced up here for quick access). */}
+          {/* One unified chip group. Three flavors of underlying state
+              all render identically:
+                a) Booleans (state.freeOnly, .foodOnSiteOnly, etc.)
+                b) state.mikesListOnly — the meta "any saved list" toggle
+                c) Membership in state.lists (UNESCO, Atlas Obscura,
+                   Michelin, the wonders sets, Ramsar, etc.) — driven
+                   by the dynamic listOptions prop so newly-defined
+                   canonical lists appear automatically.
+              From the user's POV they're all "show only places that…"
+              filters and read as a single visual group. The dispatcher
+              keeps the underlying state shapes separate so the filter
+              pipeline can keep treating them as different signals. */}
           <div className="flex flex-wrap gap-1.5 mt-1">
             <QuickFilterChip
               on={state.freeOnly}
@@ -150,88 +156,47 @@ export default function PinFilterPanel({
               label="Kid-friendly"
               onChange={v => setState(s => ({ ...s, kidFriendlyOnly: v }))}
             />
-            {/* Reviewed = Mike has actually written about this place. Distinct
-                from the Visited tri-state above — Visited (1,400+) is the
-                superset, Reviewed (~600) is the curated narrative subset. */}
+            {/* Reviewed = Mike has actually written about this place.
+                Distinct from the Visited tri-state above — Visited
+                (1,400+) is the superset, Reviewed (~600) is the curated
+                narrative subset. */}
             <QuickFilterChip
               on={state.reviewedOnly}
               icon="✍️"
               label="Reviewed"
               onChange={v => setState(s => ({ ...s, reviewedOnly: v }))}
             />
-            {/* Canonical curation lists — UNESCO World Heritage, Atlas
-                Obscura, Michelin Guide. These mirror the chips in the
-                Lists section below; both routes write to the same
-                state.lists Set so toggling either has the same effect.
-                We keep the duplicates here because they're high-traffic
-                "find something cool" filters that travelers expect at
-                the top of a cockpit. */}
-            <QuickFilterChip
-              on={state.lists.has('UNESCO World Heritage')}
-              icon="🌐"
-              label="UNESCO"
-              onChange={() =>
-                setState(s => ({
-                  ...s,
-                  lists: togglePinSet(s.lists, 'UNESCO World Heritage'),
-                }))
-              }
-            />
-            <QuickFilterChip
-              on={state.lists.has('Atlas Obscura')}
-              icon="🧭"
-              label="Atlas Obscura"
-              onChange={() =>
-                setState(s => ({
-                  ...s,
-                  lists: togglePinSet(s.lists, 'Atlas Obscura'),
-                }))
-              }
-            />
-            <QuickFilterChip
-              on={state.lists.has('Michelin Guide')}
-              icon="🍽️"
-              label="Michelin"
-              onChange={() =>
-                setState(s => ({
-                  ...s,
-                  lists: togglePinSet(s.lists, 'Michelin Guide'),
-                }))
-              }
-            />
-            {/* "Mike's List" — pin is on at least one of Mike's saved
-                collections. Different from My Lists multi-select below
-                (which picks specific lists) — this is the catch-all
-                "anything Mike has personally curated into a list."
-                Future: also include pins linked from blog posts when
-                posts grow a pin-link frontmatter field. */}
             <QuickFilterChip
               on={state.mikesListOnly}
               icon="🗂️"
               label="Mike's List"
               onChange={v => setState(s => ({ ...s, mikesListOnly: v }))}
             />
+            {/* Canonical-list membership chips appended inline. Each
+                writes to state.lists (the same set the filter pipeline
+                consumes) and uses the same icon + short label the cards
+                show, so the visual identity carries between cockpit
+                and tile. */}
+            {listOptions.map(o => {
+              const canonical = o as CanonicalList;
+              return (
+                <QuickFilterChip
+                  key={o}
+                  on={state.lists.has(o)}
+                  icon={LIST_ICONS[canonical] ?? '🏷'}
+                  label={LIST_SHORT_LABELS[canonical] ?? o}
+                  onChange={() =>
+                    setState(s => ({
+                      ...s,
+                      lists: togglePinSet(s.lists, o),
+                    }))
+                  }
+                />
+              );
+            })}
           </div>
         </div>
       </div>
-
-      {/* Lists — UNESCO World Heritage, Atlas Obscura, the wonders sets,
-          etc. Each chip carries the same canonical glyph (globe, compass,
-          droplet…) the cards use, so the cockpit and the cards share a
-          visual language. Short labels keep the chip row from wrapping
-          past two rows. */}
-      {listOptions.length > 0 && (
-        <div>
-          <SectionLabel>Lists</SectionLabel>
-          <ListChipGroup
-            options={listOptions}
-            selected={state.lists}
-            onToggle={v =>
-              setState(s => ({ ...s, lists: togglePinSet(s.lists, v) }))
-            }
-          />
-        </div>
-      )}
 
       {/* Tags — Wikidata "instance of" labels. Long, granular — fits the
           searchable multi-select pattern better than chips. */}
