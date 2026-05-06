@@ -69,7 +69,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function CountryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CountryPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ admin?: string }>;
+}) {
+  const adminMode = (await searchParams)?.admin === '1';
   const { slug } = await params;
   const country = await fetchCountryBySlug(slug);
   if (!country) notFound();
@@ -251,9 +258,10 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           HeroCollage mosaic with personal pin photos / single curated
           cover. */}
       {(() => {
-        if (country.heroPhotoUrls && country.heroPhotoUrls.length > 0) {
+        const countryHeroPicks = country.heroPhotoUrls ?? [];
+        if (countryHeroPicks.length > 0) {
           const meta = new Map(pinPhotos.map(p => [p.url, p]));
-          const galleryImages: GalleryImage[] = country.heroPhotoUrls.map(url => {
+          const galleryImages: GalleryImage[] = countryHeroPicks.map(url => {
             const m = meta.get(url);
             return {
               url,

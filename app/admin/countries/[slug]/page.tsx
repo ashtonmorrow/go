@@ -48,6 +48,7 @@ export default async function AdminCountryEditPage({
     const pin = (r.pins as { name?: string; city_names?: string[] } | undefined) ?? {};
     const cityHint = Array.isArray(pin.city_names) && pin.city_names[0] ? pin.city_names[0] : null;
     return {
+      id: r.id as string,
       url: r.url as string,
       alt: (r.caption as string | null) ?? pin.name ?? country.name,
       width: (r.width as number | null) ?? null,

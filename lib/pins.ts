@@ -553,7 +553,10 @@ const _fetchAllPins = unstable_cache(
   // fix landed and again after the visited=true backfill on Google-imported
   // pins. v6: INDEX_COLUMNS now ships google_rating + google_rating_count
   // + google_place_id, so v5 entries are missing those fields.
-  ['supabase-pins-v6'],
+  // v7: Pin shape gained heroPhotoUrls + atlasObscuraSlug. v6 cache
+  // entries lack those fields, so post-deploy reads were crashing on
+  // `pin.heroPhotoUrls.length` until the 24h TTL expired. Bump evicts.
+  ['supabase-pins-v7'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 // Apply post→pin link decoration AFTER the cached DB read. Keeping the
@@ -600,7 +603,7 @@ const _fetchPinsForLists = unstable_cache(
   },
   // v2: refresh saved-list snapshots after Kusttram station enrichment added
   // missing stops, coordinates, and route order.
-  ['supabase-pins-for-lists-v2'],
+  ['supabase-pins-for-lists-v3'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
@@ -637,7 +640,7 @@ const _fetchPinsInBbox = unstable_cache(
   // v5: in lockstep with fetchAllPins-v6 — bbox queries flow through
   // INDEX_COLUMNS so they need the same eviction as the all-pins cache
   // when columns are added.
-  ['supabase-pins-bbox-v5'],
+  ['supabase-pins-bbox-v6'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(
@@ -666,11 +669,10 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v6: detail page now reads google_rating, google_rating_count,
-  // and google_place_id off the pin row — v5 cache entries don't have
-  // those columns. Bump to refill from live DB on first request after
-  // deploy.
-  ['supabase-pin-by-slug-v6'],
+  // v7: Pin shape gained heroPhotoUrls + atlasObscuraSlug fields. v6
+  // entries crash post-deploy on `pin.heroPhotoUrls.length`. Bump to
+  // force a fresh rowToPin pass on first read.
+  ['supabase-pin-by-slug-v7'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {

@@ -329,7 +329,10 @@ const _fetchAllCities = unstable_cache(
   // capped at 1,000 rows (or held a partial 417-row response from a
   // mid-paginate failure). Once this hits prod the next request misses
   // and refills with the full 1,477-row corpus from the parallel fetch.
-  ['notion-cities-v2'],
+  // v3: City shape gained heroPhotoUrls. v2 entries miss the field;
+  // city detail pages would crash on `city.heroPhotoUrls.length` until
+  // TTL expiry. Same pattern as the pin cache bump in lib/pins.ts.
+  ['notion-cities-v3'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchAllCities = cache(_fetchAllCities);
@@ -342,7 +345,7 @@ const _fetchAllCountries = unstable_cache(
   // Same key bump for symmetry — countries fits comfortably in one page
   // (226 rows), but if a previous build cached an empty array we'd still
   // serve that until the 5-min TTL expired.
-  ['notion-countries-v2'],
+  ['notion-countries-v3'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchAllCountries = cache(_fetchAllCountries);
@@ -362,7 +365,7 @@ const _fetchCityBySlug = unstable_cache(
     if (error || !data) return null;
     return supaCityRow(data);
   },
-  ['notion-city-by-slug'],
+  ['notion-city-by-slug-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchCityBySlug = cache(_fetchCityBySlug);
@@ -378,7 +381,7 @@ const _fetchCountryBySlug = unstable_cache(
     if (error || !data) return null;
     return supaCountryRow(data);
   },
-  ['notion-country-by-slug'],
+  ['notion-country-by-slug-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryBySlug = cache(_fetchCountryBySlug);
@@ -402,7 +405,7 @@ const _fetchCountryById = unstable_cache(
     if (error || !data) return null;
     return supaCountryRow(data);
   },
-  ['notion-country-by-id'],
+  ['notion-country-by-id-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryById = cache(_fetchCountryById);
@@ -419,7 +422,7 @@ const _fetchCountryByName = unstable_cache(
     if (error || !data) return null;
     return supaCountryRow(data);
   },
-  ['notion-country-by-name'],
+  ['notion-country-by-name-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-countries', 'notion-countries'] }
 );
 export const fetchCountryByName = cache(_fetchCountryByName);
@@ -440,7 +443,7 @@ const _fetchCityByName = unstable_cache(
     if (error || !data) return null;
     return supaCityRow(data);
   },
-  ['notion-city-by-name'],
+  ['notion-city-by-name-v2'],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['supabase-cities', 'notion-cities'] }
 );
 export const fetchCityByName = cache(_fetchCityByName);

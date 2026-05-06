@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
 
 // === HeroPicker ============================================================
@@ -14,19 +14,14 @@ import { thumbUrl } from '@/lib/imageUrl';
 //   - app/admin/countries/[slug]/CountryHeroEditor (recommended max 16)
 //
 // Behaviour:
-//   - Top counter shows "Picked X / recommended N" and exposes a Reset
-//     button that clears the curation, falling back to the auto-pick
-//     HeroCollage on the public page.
-//   - Picked rail: thumbnails in display order. Up / Down / Remove
-//     buttons on each. The hard cap is `maxAbsolute` (default 20).
-//   - Available rail: all candidate photos NOT currently picked. Click
-//     to append to the picked list. Includes a "hidden" pill for any
-//     personal photo with `personal_photos.hidden = true` so Mike
-//     remembers why it's not surfacing in auto-pick.
-//
-// Layout notes: thumbnails are square 96px tiles laid out with CSS
-// grid. The buttons row sits on the bottom edge of each picked tile so
-// hovering doesn't steal the click target.
+//   - Top counter shows "Picked X / recommended N" + Reset button.
+//   - Picked rail: drag the tile by its body to reorder; click × to
+//     remove. Hard cap is `maxAbsolute` (default 20).
+//   - Available rail: click a tile to append. Personal photos surface
+//     a small hide / unhide toggle that calls `onToggleHidden(id,
+//     hidden)` so ugly auto-picks can be suppressed without leaving
+//     the picker. Toggling a hidden photo flips it back instantly via
+//     local state.
 
 export type HeroCandidate = {
   url: string;
@@ -34,28 +29,30 @@ export type HeroCandidate = {
   alt?: string;
   width?: number | null;
   height?: number | null;
-  /** Short tag shown on the tile (e.g. "personal", "Wikidata", "From
-   *  Sagrada Familia") so Mike can tell candidates apart. */
+  /** Short tag shown on the tile (e.g. "personal", "Wikidata"). */
   label?: string;
-  /** If true, the candidate currently has `personal_photos.hidden=true`. */
+  /** True when `personal_photos.hidden = true` (suppressed from the
+   *  auto-pick HeroCollage). */
   hidden?: boolean;
+  /** Personal-photo row id. Required to flip `hidden` via
+   *  `onToggleHidden`. Wikidata candidates leave this undefined. */
+  id?: string;
 };
 
 type Props = {
   /** Currently picked URLs in display order. */
   value: string[];
-  /** Full pool of photos that could be picked. The picker hides any
-   *  candidate already in `value`. Order here is "available rail" order. */
+  /** Full pool of photos that could be picked. */
   candidates: HeroCandidate[];
   onChange: (next: string[]) => void;
-  /** Soft cap shown in the counter text. Doesn't block — Mike can pick
-   *  more, the counter just says "+3 over recommended." */
+  /** Called when the user clicks the hide / unhide toggle on a personal
+   *  candidate. The picker is responsible for the API call; the parent
+   *  is responsible for refreshing the candidate list afterwards (or
+   *  letting the picker keep its optimistic state in sync). */
+  onToggleHidden?: (id: string, nextHidden: boolean) => Promise<void> | void;
   maxRecommended?: number;
-  /** Hard cap. Picks beyond this are blocked. Defaults to 20. */
   maxAbsolute?: number;
-  /** Optional title rendered above the counter. */
   title?: string;
-  /** Optional subhead under the title. */
   hint?: string;
 };
 
@@ -63,14 +60,23 @@ export default function HeroPicker({
   value,
   candidates,
   onChange,
+  onToggleHidden,
   maxRecommended = 8,
   maxAbsolute = 20,
   title = 'Hero photos',
   hint = 'Pick photos that should appear in the hero gallery, in the order you want them. Leave empty to use auto-pick.',
 }: Props) {
-  // Build a lookup from URL → candidate so the picked rail can show
-  // the right thumbnail / label even if the candidate list is sorted
-  // differently.
+  // Drag-rank state — index of the picked tile being dragged + current
+  // drop target. Mirrors the AdminListEditor pattern (native HTML5 DnD,
+  // no library).
+  const [draggingIdx, setDraggingIdx] = useState<number | null>(null);
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
+
+  // Optimistic hidden state so toggles feel instant. Keyed by personal
+  // photo id; falsy = follow the candidate prop.
+  const [hiddenOverrides, setHiddenOverrides] = useState<Record<string, boolean>>({});
+  const [togglingId, setTogglingId] = useState<string | null>(null);
+
   const byUrl = useMemo(() => {
     const m = new Map<string, HeroCandidate>();
     for (const c of candidates) m.set(c.url, c);
@@ -83,17 +89,24 @@ export default function HeroPicker({
     [candidates, pickedSet],
   );
 
-  const counterClass = value.length > maxRecommended
-    ? 'text-amber-700'
-    : value.length > 0
-    ? 'text-teal'
-    : 'text-muted';
+  const counterClass =
+    value.length > maxRecommended
+      ? 'text-amber-700'
+      : value.length > 0
+      ? 'text-teal'
+      : 'text-muted';
 
-  function move(idx: number, delta: number) {
-    const target = idx + delta;
-    if (target < 0 || target >= value.length) return;
+  function isHidden(c: HeroCandidate): boolean {
+    if (c.id && c.id in hiddenOverrides) return hiddenOverrides[c.id]!;
+    return !!c.hidden;
+  }
+
+  function moveTo(fromIdx: number, toIdx: number) {
+    if (fromIdx === toIdx) return;
     const next = value.slice();
-    [next[idx], next[target]] = [next[target]!, next[idx]!];
+    const [moved] = next.splice(fromIdx, 1);
+    if (!moved) return;
+    next.splice(toIdx, 0, moved);
     onChange(next);
   }
 
@@ -111,6 +124,25 @@ export default function HeroPicker({
     if (value.length === 0) return;
     if (!confirm('Clear all hero picks and fall back to auto-pick?')) return;
     onChange([]);
+  }
+
+  async function toggleHidden(id: string, currentHidden: boolean) {
+    if (!onToggleHidden) return;
+    if (togglingId) return;
+    const nextHidden = !currentHidden;
+    setHiddenOverrides(o => ({ ...o, [id]: nextHidden }));
+    setTogglingId(id);
+    try {
+      await onToggleHidden(id, nextHidden);
+    } catch {
+      // Roll back on failure.
+      setHiddenOverrides(o => {
+        const { [id]: _drop, ...rest } = o;
+        return rest;
+      });
+    } finally {
+      setTogglingId(null);
+    }
   }
 
   return (
@@ -140,6 +172,11 @@ export default function HeroPicker({
         <div>
           <h4 className="text-label uppercase tracking-wide text-muted mb-2">
             Picked ({value.length})
+            {value.length > 1 && (
+              <span className="ml-2 normal-case font-normal text-muted/80">
+                · drag to reorder
+              </span>
+            )}
           </h4>
           {value.length === 0 ? (
             <p className="text-small text-muted italic">
@@ -149,49 +186,70 @@ export default function HeroPicker({
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
               {value.map((url, idx) => {
                 const cand = byUrl.get(url);
+                const isDragging = draggingIdx === idx;
+                const isDropTarget = hoverIdx === idx && draggingIdx !== idx;
                 return (
                   <figure
                     key={url}
-                    className="relative aspect-square rounded overflow-hidden border border-sand bg-cream-soft group"
+                    draggable
+                    onDragStart={e => {
+                      e.dataTransfer.effectAllowed = 'move';
+                      // Required by Firefox to actually start the drag.
+                      e.dataTransfer.setData('text/plain', String(idx));
+                      setDraggingIdx(idx);
+                    }}
+                    onDragOver={e => {
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = 'move';
+                      if (draggingIdx != null && draggingIdx !== idx) {
+                        setHoverIdx(idx);
+                      }
+                    }}
+                    onDragLeave={() => {
+                      if (hoverIdx === idx) setHoverIdx(null);
+                    }}
+                    onDrop={e => {
+                      e.preventDefault();
+                      if (draggingIdx != null && draggingIdx !== idx) {
+                        moveTo(draggingIdx, idx);
+                      }
+                      setDraggingIdx(null);
+                      setHoverIdx(null);
+                    }}
+                    onDragEnd={() => {
+                      setDraggingIdx(null);
+                      setHoverIdx(null);
+                    }}
+                    className={
+                      'relative aspect-square rounded overflow-hidden border bg-cream-soft group cursor-grab active:cursor-grabbing transition-all ' +
+                      (isDragging
+                        ? 'opacity-40 border-teal'
+                        : isDropTarget
+                        ? 'border-teal ring-2 ring-teal'
+                        : 'border-sand')
+                    }
+                    aria-label={`Hero photo ${idx + 1} of ${value.length}. Drag to reorder.`}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={thumbUrl(url, { size: 192 }) ?? url}
                       alt={cand?.alt ?? `Hero photo ${idx + 1}`}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      draggable={false}
+                      className="w-full h-full object-cover pointer-events-none"
                     />
-                    <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-ink-deep/80 text-white text-[10px] font-medium tabular-nums">
+                    <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-ink-deep/80 text-white text-[10px] font-medium tabular-nums pointer-events-none">
                       {idx + 1}
                     </span>
-                    <div className="absolute bottom-0 left-0 right-0 flex bg-black/60 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
-                      <button
-                        type="button"
-                        onClick={() => move(idx, -1)}
-                        disabled={idx === 0}
-                        className="flex-1 py-1 text-white text-xs hover:bg-white/15 disabled:opacity-30"
-                        aria-label="Move up"
-                      >
-                        ←
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => move(idx, 1)}
-                        disabled={idx === value.length - 1}
-                        className="flex-1 py-1 text-white text-xs hover:bg-white/15 disabled:opacity-30"
-                        aria-label="Move down"
-                      >
-                        →
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => remove(idx)}
-                        className="flex-1 py-1 text-white text-xs hover:bg-white/15"
-                        aria-label="Remove"
-                      >
-                        ×
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => remove(idx)}
+                      className="absolute top-1 right-1 w-5 h-5 inline-flex items-center justify-center rounded-full bg-black/60 text-white text-xs leading-none opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity hover:bg-orange/80"
+                      aria-label="Remove from picks"
+                      title="Remove"
+                    >
+                      ×
+                    </button>
                   </figure>
                 );
               })}
@@ -213,35 +271,67 @@ export default function HeroPicker({
             </p>
           ) : (
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-              {available.map(c => (
-                <button
-                  key={c.url}
-                  type="button"
-                  onClick={() => add(c.url)}
-                  disabled={value.length >= maxAbsolute}
-                  className="relative aspect-square rounded overflow-hidden border border-sand bg-cream-soft cursor-pointer hover:ring-2 hover:ring-teal focus-visible:ring-2 focus-visible:ring-teal disabled:opacity-40 disabled:cursor-not-allowed"
-                  aria-label={`Add ${c.alt ?? 'image'} to hero picks`}
-                  title={c.label ? `${c.label}\n\nClick to add` : 'Click to add'}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={thumbUrl(c.url, { size: 192 }) ?? c.url}
-                    alt={c.alt ?? ''}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
-                  {c.hidden && (
-                    <span className="absolute top-1 right-1 px-1 py-0.5 rounded bg-amber-600/90 text-white text-[9px] font-medium uppercase tracking-wide">
-                      hidden
-                    </span>
-                  )}
-                  {c.label && (
-                    <span className="absolute bottom-0 left-0 right-0 px-1 py-0.5 bg-black/60 text-white text-[10px] truncate">
-                      {c.label}
-                    </span>
-                  )}
-                </button>
-              ))}
+              {available.map(c => {
+                const hidden = isHidden(c);
+                return (
+                  <div
+                    key={c.url}
+                    className={
+                      'relative aspect-square rounded overflow-hidden border bg-cream-soft group ' +
+                      (hidden ? 'border-amber-500/60 opacity-70' : 'border-sand')
+                    }
+                  >
+                    <button
+                      type="button"
+                      onClick={() => add(c.url)}
+                      disabled={value.length >= maxAbsolute}
+                      className="absolute inset-0 cursor-pointer hover:ring-2 hover:ring-teal focus-visible:ring-2 focus-visible:ring-teal disabled:cursor-not-allowed"
+                      aria-label={`Add ${c.alt ?? 'image'} to hero picks`}
+                      title={c.label ? `${c.label}\n\nClick to add` : 'Click to add'}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={thumbUrl(c.url, { size: 192 }) ?? c.url}
+                        alt={c.alt ?? ''}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                    {/* Hide toggle — only available for personal photos
+                        (the only candidates with a row id we can flip in
+                        the DB). Sits above the click target. */}
+                    {c.id && onToggleHidden && (
+                      <button
+                        type="button"
+                        onClick={e => {
+                          e.stopPropagation();
+                          toggleHidden(c.id!, hidden);
+                        }}
+                        disabled={togglingId === c.id}
+                        className={
+                          'absolute top-1 right-1 px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide transition-opacity ' +
+                          (hidden
+                            ? 'bg-amber-600/95 text-white opacity-100 hover:bg-amber-700'
+                            : 'bg-ink-deep/85 text-white opacity-0 group-hover:opacity-100 focus:opacity-100 hover:bg-ink-deep')
+                        }
+                        aria-label={hidden ? 'Unhide from auto-pick' : 'Hide from auto-pick'}
+                        title={
+                          hidden
+                            ? 'Currently hidden from auto-pick. Click to unhide.'
+                            : 'Hide from auto-pick (still pickable here).'
+                        }
+                      >
+                        {togglingId === c.id ? '…' : hidden ? 'hidden' : 'hide'}
+                      </button>
+                    )}
+                    {c.label && (
+                      <span className="absolute bottom-0 left-0 right-0 px-1 py-0.5 bg-black/60 text-white text-[10px] truncate pointer-events-none">
+                        {c.label}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>

@@ -117,8 +117,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default async function PinPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PinPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ admin?: string }>;
+}) {
   const { slug } = await params;
+  const sp = await searchParams;
+  const adminMode = sp?.admin === '1';
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
 
@@ -391,12 +399,15 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           When only one image exists the collage falls through to the same
           single-tile letterbox the page used to render. Mike's personal
           photos lead the priority order so they land in the feature tile. */}
-      {(pin.heroPhotoUrls.length > 0 || personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
+      {(((pin.heroPhotoUrls?.length ?? 0) > 0) || personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
         // Curated path: Mike picked the heroes for this pin in admin.
         // Render via HeroGallery — every image at native aspect, no crop.
-        if (pin.heroPhotoUrls.length > 0) {
+        // Defensive `?? []` so a stale unstable_cache entry from before the
+        // heroPhotoUrls field existed doesn't crash the page render.
+        const heroPicks = pin.heroPhotoUrls ?? [];
+        if (heroPicks.length > 0) {
           const personalByUrl = new Map(personalPhotos.map(p => [p.url, p]));
-          const galleryImagesCurated: GalleryImage[] = pin.heroPhotoUrls.map(url => {
+          const galleryImagesCurated: GalleryImage[] = heroPicks.map(url => {
             const personal = personalByUrl.get(url);
             return {
               url,
@@ -451,6 +462,20 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           />
         );
       })()}
+
+      {/* Admin-only inline edit link, opt in via ?admin=1 so the URL
+          stays bookmarkable without surfacing the link to drive-by
+          visitors. The /admin/* path is still gated by basic auth. */}
+      {adminMode && (
+        <div className="mt-2 text-right">
+          <Link
+            href={`/admin/pins/${pin.id}`}
+            className="text-small text-teal hover:underline"
+          >
+            Edit hero photos →
+          </Link>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">

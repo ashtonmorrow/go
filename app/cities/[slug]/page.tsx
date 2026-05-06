@@ -106,7 +106,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CityPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ admin?: string }>;
+}) {
+  const adminMode = (await searchParams)?.admin === '1';
   const { slug } = await params;
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();
@@ -309,9 +316,12 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         // in the admin panel, render them via HeroGallery — every image at
         // its native aspect ratio, no cropping. Falls back to HeroCollage's
         // auto-pick mosaic when no curation exists.
-        if (city.heroPhotoUrls && city.heroPhotoUrls.length > 0) {
+        // Defensive `?? []` — a stale cache entry from before the
+        // heroPhotoUrls field existed would otherwise crash the page.
+        const cityHeroPicks = city.heroPhotoUrls ?? [];
+        if (cityHeroPicks.length > 0) {
           const meta = new Map(pinPhotos.map(p => [p.url, p]));
-          const galleryImages: GalleryImage[] = city.heroPhotoUrls.map(url => {
+          const galleryImages: GalleryImage[] = cityHeroPicks.map(url => {
             const m = meta.get(url);
             return {
               url,
@@ -404,6 +414,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           </>
         );
       })()}
+
+      {adminMode && (
+        <div className="mt-2 text-right">
+          <Link
+            href={`/admin/cities/${city.slug}`}
+            className="text-small text-teal hover:underline"
+          >
+            Edit hero photos →
+          </Link>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         {/* Main column */}

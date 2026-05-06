@@ -52,6 +52,7 @@ export default async function AdminCityEditPage({
   const candidates: AdminCityPhoto[] = ((photosRes.data ?? []) as unknown as Array<Record<string, unknown>>).map(r => {
     const pin = (r.pins as { name?: string } | undefined) ?? {};
     return {
+      id: r.id as string,
       url: r.url as string,
       alt: (r.caption as string | null) ?? (pin.name ?? city.name),
       width: (r.width as number | null) ?? null,

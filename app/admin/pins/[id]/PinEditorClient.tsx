@@ -224,6 +224,7 @@ export default function PinEditorClient({
     const out: HeroCandidate[] = [];
     for (const p of personalPhotos) {
       out.push({
+        id: p.id,
         url: p.url,
         alt: p.caption ?? state.name,
         width: p.width,
@@ -242,6 +243,20 @@ export default function PinEditorClient({
     }
     return out;
   }, [personalPhotos, state.images, state.name]);
+
+  /** PATCH the photo's hidden flag. The picker keeps optimistic local
+   *  state, so we just need the network call to succeed (or throw). */
+  const togglePhotoHidden = async (id: string, nextHidden: boolean) => {
+    const res = await fetch('/api/admin/personal-photos', {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ id, hidden: nextHidden }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error ?? `toggle failed (${res.status})`);
+    }
+  };
 
   const save = async () => {
     setSaving(true);
@@ -379,9 +394,10 @@ export default function PinEditorClient({
           value={state.hero_photo_urls}
           maxRecommended={6}
           maxAbsolute={20}
-          hint="Pick up to 6 photos that should lead the pin page, in the order you want them. Personal photos appear first in the candidate list, then Wikidata sources."
+          hint="Drag to reorder up to 6 photos. Click hide on any personal photo to suppress it from the auto-pick collage on places without curation."
           candidates={heroCandidates}
           onChange={next => set('hero_photo_urls', next)}
+          onToggleHidden={togglePhotoHidden}
         />
       </Section>
 

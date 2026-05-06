@@ -26,6 +26,18 @@ export default function CityHeroEditor({
     picks.length !== initialHeroPhotoUrls.length ||
     picks.some((u, i) => u !== initialHeroPhotoUrls[i]);
 
+  async function togglePhotoHidden(id: string, nextHidden: boolean) {
+    const res = await fetch('/api/admin/personal-photos', {
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ id, hidden: nextHidden }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error ?? `toggle failed (${res.status})`);
+    }
+  }
+
   async function save() {
     setSaving(true);
     setResult(null);
@@ -61,10 +73,11 @@ export default function CityHeroEditor({
         value={picks}
         candidates={candidates}
         onChange={setPicks}
+        onToggleHidden={togglePhotoHidden}
         maxRecommended={12}
         maxAbsolute={20}
         title="Hero photos"
-        hint="Drag-rank up to 12 photos for this city. Personal photos from your pins land here automatically (most-recent first), plus any curated city covers."
+        hint="Drag to reorder up to 12 photos. Click hide on any personal photo to suppress it from the auto-pick collage on cities without curation."
       />
 
       <div className="flex items-center gap-3 sticky bottom-0 bg-cream/90 backdrop-blur py-3 border-t border-sand">
