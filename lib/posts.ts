@@ -7,12 +7,26 @@ import { unstable_cache } from "next/cache";
 
 const POSTS_DIR = path.join(process.cwd(), "content/posts");
 
-export type PostScope = "pins" | "cities" | "countries";
+export type PostScope = "pins" | "cities" | "countries" | "lists";
 
 export type PostLinks = {
   pins: string[];
   cities: string[];
   countries: string[];
+  lists: string[];
+};
+
+export type PostStructuredItem = {
+  name: string;
+  url: string | null;
+  type: string | null;
+  description: string | null;
+};
+
+export type PostStructuredItemList = {
+  name: string;
+  description: string | null;
+  items: PostStructuredItem[];
 };
 
 export type Post = {
@@ -26,6 +40,7 @@ export type Post = {
   indexable: boolean;
   authors: string[];
   links: PostLinks;
+  structuredItemLists: PostStructuredItemList[];
   tags: string[];
   /** When set, this post is a stub that points at a hand-coded page elsewhere
    *  (e.g. /airline-stopover-programs). Surfaces (article index, related posts)
@@ -37,7 +52,7 @@ export type Post = {
 };
 
 function normalizeLinks(raw: unknown): PostLinks {
-  const empty: PostLinks = { pins: [], cities: [], countries: [] };
+  const empty: PostLinks = { pins: [], cities: [], countries: [], lists: [] };
   if (!raw || typeof raw !== "object") return empty;
   const r = raw as Record<string, unknown>;
   const toSlugArray = (v: unknown): string[] => {
@@ -48,12 +63,45 @@ function normalizeLinks(raw: unknown): PostLinks {
     pins: toSlugArray(r.pins),
     cities: toSlugArray(r.cities),
     countries: toSlugArray(r.countries),
+    lists: toSlugArray(r.lists),
   };
 }
 
 function normalizeStringArray(raw: unknown): string[] {
   if (!Array.isArray(raw)) return [];
   return raw.filter((x): x is string => typeof x === "string");
+}
+
+function normalizeStructuredItemLists(raw: unknown): PostStructuredItemList[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const list = entry as Record<string, unknown>;
+      const name = typeof list.name === "string" ? list.name : null;
+      const items = Array.isArray(list.items) ? list.items : [];
+      if (!name || items.length === 0) return null;
+      return {
+        name,
+        description: typeof list.description === "string" ? list.description : null,
+        items: items
+          .map((rawItem) => {
+            if (!rawItem || typeof rawItem !== "object") return null;
+            const item = rawItem as Record<string, unknown>;
+            const itemName = typeof item.name === "string" ? item.name : null;
+            if (!itemName) return null;
+            return {
+              name: itemName,
+              url: typeof item.url === "string" ? item.url : null,
+              type: typeof item.type === "string" ? item.type : null,
+              description:
+                typeof item.description === "string" ? item.description : null,
+            };
+          })
+          .filter((item): item is PostStructuredItem => item !== null),
+      };
+    })
+    .filter((list): list is PostStructuredItemList => list !== null);
 }
 
 function normalizeIsoDate(raw: unknown): string | null {
@@ -90,6 +138,7 @@ async function readPostFile(slug: string): Promise<Post | null> {
     indexable: data.indexable === true,
     authors: normalizeStringArray(data.authors),
     links: normalizeLinks(data.links),
+    structuredItemLists: normalizeStructuredItemLists(data.structured_item_lists),
     tags: normalizeStringArray(data.tags),
     externalRoute:
       typeof data.external_route === "string" ? data.external_route : null,
@@ -119,7 +168,7 @@ async function readAllPostsUncached(): Promise<Post[]> {
 }
 
 /** Cached read of every post. 24h revalidate, busts on `posts` tag. */
-export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts"], {
+export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts-v4"], {
   revalidate: 60 * 60 * 24,
   tags: ["posts"],
 });

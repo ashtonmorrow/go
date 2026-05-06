@@ -111,9 +111,8 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       };
     });
   },
-  // v4: schema gained `pin_order` (curated drag-reorder). Bumping the key
-  // evicts every cached row that was missing the field.
-  ['saved-lists-meta-v4'],
+  // v5: refresh list metadata after adding editorial list CTAs from posts.
+  ['saved-lists-meta-v5'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

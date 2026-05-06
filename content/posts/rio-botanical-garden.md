@@ -16,6 +16,8 @@ links:
   pins:
     - botanical-garden-of-rio-de-janeiro
     - christ-the-redeemer
+  lists:
+    - rio
 tags:
   - rio-de-janeiro
   - brazil

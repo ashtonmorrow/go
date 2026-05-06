@@ -29,6 +29,11 @@ links:
     - the-big-buddha
     - wat-chaithararam
     - mu-ko-ang-thong-national-marine-park
+  lists:
+    - bangkok
+    - chiang-mai
+    - phuket
+    - koh-samui
 tags:
   - thailand
   - travel-guide
@@ -44,11 +49,11 @@ For ten to fourteen days, I would start with Bangkok, then choose either Chiang 
 
 | Stop | Why I would include it | How long |
 |---|---|---|
-| Bangkok | Temples, river ferries, street food, markets, transit that actually works | 2 to 4 days |
-| Khao Yai | National park, vineyards, cooler mornings, birdlife and wildlife | 2 to 3 days |
-| Chiang Mai | Northern temples, markets, khao soi, slower city days | 4 to 7 days |
-| Phuket | Practical big beach island, many hotel styles, direct flights | 3 to 5 days |
-| Koh Samui | Quieter beach week, resort rhythm, less urge to keep moving | 3 to 5 days |
+| [Bangkok](/cities/bangkok) | Temples, river ferries, street food, markets, transit that actually works | 2 to 4 days |
+| [Khao Yai](/cities/khao-yai) | National park, vineyards, cooler mornings, birdlife and wildlife | 2 to 3 days |
+| [Chiang Mai](/cities/chiang-mai) | Northern temples, markets, khao soi, slower city days | 4 to 7 days |
+| [Phuket](/lists/phuket) | Practical big beach island, many hotel styles, direct flights | 3 to 5 days |
+| [Koh Samui](/cities/ko-samui) | Quieter beach week, resort rhythm, less urge to keep moving | 3 to 5 days |
 
 I would not do both Phuket and Koh Samui on a short trip. You can, but then the beaches become logistics. Pick the island whose inconvenience you prefer: Phuket is easier to reach and busier; Samui is calmer and often pricier to reach.
 

@@ -23,6 +23,8 @@ links:
     - cala-cantalar
     - el-campello
     - palmeral-of-elche
+  lists:
+    - alicante
 tags:
   - spain
   - alicante

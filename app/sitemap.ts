@@ -4,6 +4,7 @@ import { fetchAllPins } from '@/lib/pins';
 import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';
 import { getAllArticleEntries } from '@/lib/articles';
+import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 
 // Dynamic sitemap. Includes:
 //   • static routes  — /cities, /map, /about (and / which redirects)
@@ -16,11 +17,12 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [cities, countries, pins, articleEntries] = await Promise.all([
+  const [cities, countries, pins, articleEntries, listsMeta] = await Promise.all([
     fetchAllCities(),
     fetchAllCountries(),
     fetchAllPins(),
     getAllArticleEntries(),
+    fetchAllSavedListsMeta(),
   ]);
   const now = new Date();
 
@@ -41,7 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/pins/table`,      lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/pins/stats`,      lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/lists`,           lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${SITE_URL}/lists/kusttram-stations`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/about`,           lastModified: '2026-04-25', changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/articles`,        lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/privacy`,         lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
@@ -92,9 +93,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: entry.href.startsWith('/posts/') ? 0.6 : 0.7,
   }));
 
+  const listRoutes: MetadataRoute.Sitemap = Array.from(listsMeta.values()).map(list => ({
+    url: `${SITE_URL}/lists/${listNameToSlug(list.name)}`,
+    lastModified: list.updatedAt ?? now,
+    changeFrequency: 'monthly',
+    priority: list.description ? 0.7 : 0.5,
+  }));
+
   return [
     ...staticRoutes,
     ...articleRoutes,
+    ...listRoutes,
     ...cityRoutes,
     ...countryRoutes,
     ...pinRoutes,

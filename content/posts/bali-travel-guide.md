@@ -29,6 +29,9 @@ links:
   pins:
     - sacred-monkey-forest-sanctuary
     - tanah-lot
+  lists:
+    - ubud-(bali)
+    - seminyak-(bali)
 tags:
   - bali
   - indonesia
@@ -45,14 +48,14 @@ I would not pick a Bali base by asking which town is "best." I would ask what ki
 
 | Base | What it is good for | The trade-off |
 |---|---|---|
-| Ubud | Rice fields, temples, art markets, dance, yoga, slower mornings | Inland, so beach days require a drive |
-| Canggu | Surf, cafes, longer stays, remote work | Traffic has become part of the experience |
-| Seminyak | Restaurants, boutiques, beach access | Polished, pricey, and heavily touristed |
-| Sanur | Families, calm water, a walkable beach path | Quieter at night |
-| Nusa Dua | Resort comfort and low-friction beach days | Gated and detached from daily Balinese life |
-| Uluwatu | Cliffs, surf, temple sunsets | Spread out, so you need transport |
-| Jimbaran | Seafood dinners, calmer sand, airport convenience | Better for a night or two than a whole trip |
-| Amed, Sidemen, Lovina | Slower east and north Bali | Too far for a rushed first visit |
+| [Ubud](/cities/ubud) | Rice fields, temples, art markets, dance, yoga, slower mornings | Inland, so beach days require a drive |
+| [Canggu](/cities/canggu) | Surf, cafes, longer stays, remote work | Traffic has become part of the experience |
+| [Seminyak](/cities/seminyak) | Restaurants, boutiques, beach access | Polished, pricey, and heavily touristed |
+| [Sanur](/cities/sanur) | Families, calm water, a walkable beach path | Quieter at night |
+| [Nusa Dua](/cities/nusa-dua) | Resort comfort and low-friction beach days | Gated and detached from daily Balinese life |
+| [Uluwatu](/cities/uluwatu) | Cliffs, surf, temple sunsets | Spread out, so you need transport |
+| [Jimbaran](/cities/jimbaran) | Seafood dinners, calmer sand, airport convenience | Better for a night or two than a whole trip |
+| [Amed](/cities/amed), [Sidemen](/cities/sidemen), [Lovina](/cities/lovina) | Slower east and north Bali | Too far for a rushed first visit |
 
 For a first trip, I would usually split time between Ubud and one coastal base. Ubud gives you rice fields, temple courtyards, gamelan and dance performances, small museums, and day trips into the hills. Then choose the coast by temperament. Sanur is the gentle option. Canggu is better for surf and cafes if you can tolerate traffic. Uluwatu is for cliffs and surf breaks. Nusa Dua is the resort answer, which is sometimes exactly what people want and sometimes the wrong version of Bali entirely.
 

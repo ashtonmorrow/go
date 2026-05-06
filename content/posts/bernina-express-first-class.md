@@ -27,6 +27,43 @@ links:
     - bernina-express
     - rhaetian-railway-in-the-albula-bernina-landscapes
     - alp-grum
+  lists:
+    - milano
+    - bernina-express-route
+    - chur
+structured_item_lists:
+  - name: Bernina Express stops from Tirano to Chur
+    description: Standard Bernina Express route stops ordered south to north.
+    items:
+      - name: Tirano
+        url: /cities/tirano
+        type: Place
+      - name: Poschiavo
+        url: /cities/poschiavo
+        type: Place
+      - name: Alp Grüm
+        url: /pins/alp-grum
+        type: TrainStation
+      - name: Ospizio Bernina
+        type: TrainStation
+      - name: Pontresina
+        url: /cities/pontresina
+        type: Place
+      - name: Samedan
+        url: /cities/samedan
+        type: Place
+      - name: St. Moritz
+        url: /cities/st-moritz
+        type: Place
+      - name: Filisur
+        url: /cities/filisur
+        type: Place
+      - name: Thusis
+        url: /cities/thusis
+        type: Place
+      - name: Chur
+        url: /cities/chur
+        type: Place
 tags:
   - switzerland
   - italy
@@ -40,7 +77,7 @@ The trip is not complicated, but a few details matter: the Bernina Express is no
 
 ## The Short Version
 
-If you are already in Milan, the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to Tirano, board the Bernina Express there, and ride north through the Alps to Chur. From Chur, you can continue deeper into Switzerland or stay the night and treat it as a small Alpine city stop.
+If you are already in Milan, the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to [Tirano](/cities/tirano), board the Bernina Express there, and ride north through the Alps to [Chur](/cities/chur). From Chur, you can continue deeper into Switzerland or stay the night and treat it as a small Alpine city stop.
 
 Book the Bernina Express directly with Rhaetian Railways if you want the simplest path. If you have more time to plan, compare cheaper options using standard regional RhB trains on the same route. First class is comfortable, but the core experience is the line itself: the viaducts, the climb to Ospizio Bernina, the lakes, and the shift from Italian Lombardy into Graubünden.
 
@@ -72,16 +109,16 @@ Validate your ticket before boarding. Italian regional tickets are open-dated un
 
 The standard Bernina Express stops, in order from Tirano to Chur:
 
-- Tirano (Italy)
-- Poschiavo
+- [Tirano](/cities/tirano) (Italy)
+- [Poschiavo](/cities/poschiavo)
 - [Alp Grüm](/pins/alp-grum)
 - Ospizio Bernina (the high point, 2,253 m)
-- Pontresina
-- Samedan
-- St. Moritz
-- Filisur
-- Thusis
-- Chur
+- [Pontresina](/cities/pontresina)
+- [Samedan](/cities/samedan)
+- [St. Moritz](/cities/st-moritz)
+- [Filisur](/cities/filisur)
+- [Thusis](/cities/thusis)
+- [Chur](/cities/chur)
 
 Two stretches in particular are the photographs everyone takes. Between Brusio and Poschiavo the line spirals through the Brusio circular viaduct (a single-track 360-degree loop on a stone bridge). Between Filisur and Thusis the train crosses the Landwasser Viaduct, where the line emerges from a tunnel directly onto a curving stone arch over the river.
 

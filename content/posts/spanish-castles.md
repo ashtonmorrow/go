@@ -27,6 +27,8 @@ links:
     - castillo-de-coca
     - loarre-castle
     - royal-palace-of-olite
+  lists:
+    - top-castles-in-spain
 tags:
   - spain
   - castles

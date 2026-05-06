@@ -17,6 +17,7 @@ links:
     - table-mountain-national-park
     - hyatt-regency-cape-town
     - the-cellars-hohenort-hotel
+    - protea-hotel-cape-town-waterfront-breakwater-lodge
     - karibu-restaurant
     - robben-island
     - babylonstoren-wine-estate
@@ -31,6 +32,8 @@ links:
     - heaven-coffee-shop
     - crankshaft-cafe-classic-car-coffee-bar
     - aquila-private-game-reserve
+  lists:
+    - cape-town
 tags:
   - cape-town
   - south-africa
@@ -59,11 +62,11 @@ I stayed long enough to care less about hotel glamour and more about whether the
 |---|---|---|
 | [Hyatt Regency Cape Town](/pins/hyatt-regency-cape-town) | Spacious room, good for working, practical city base | Ordinary breakfast and a small lounge |
 | [The Cellars-Hohenort](/pins/the-cellars-hohenort-hotel) | Grounds, restaurant, access toward Table Mountain | Some rooms felt dated when I stayed |
-| Protea Cape Town Waterfront | Easy V&A Waterfront access, practical value | Not luxury, but that is not the point |
+| [Protea Hotel Cape Town Waterfront Breakwater Lodge](/pins/protea-hotel-cape-town-waterfront-breakwater-lodge) | Easy V&A Waterfront access, practical value | Not luxury, but that is not the point |
 | De Waterkant | Apartment-friendly, close to restaurants and shopping | More of a pocket than a whole neighborhood |
 | Sea Point | Coastal walks, restaurants, easier daily rhythm | Not as close to the old-city sights |
 
-The Cellars-Hohenort is the one that felt most like a place rather than a base: garden paths, mountain access, and a restaurant that justified the trip out of the center. The Hyatt was better for a long working stay. The Protea at Breakwater Lodge was useful because the V&A Waterfront was easy at night and the room did not need to pretend to be more than it was.
+The Cellars-Hohenort is the one that felt most like a place rather than a base: garden paths, mountain access, and a restaurant that justified the trip out of the center. The Hyatt was better for a long working stay. The [Protea at Breakwater Lodge](/pins/protea-hotel-cape-town-waterfront-breakwater-lodge) was useful because the V&A Waterfront was easy at night and the room did not need to pretend to be more than it was.
 
 If I were renting an apartment, I would look first at De Waterkant or Sea Point. De Waterkant is convenient and compact. Sea Point gives you the promenade, food, and a calmer daily rhythm near the water.
 
