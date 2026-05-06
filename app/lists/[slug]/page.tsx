@@ -9,7 +9,7 @@ import {
   fetchAllSavedListsMeta,
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
-import ListMapAndCards from '@/components/ListMapAndCards';
+import ListMapAndCards from '@/components/ListMapAndCardsLoader';
 import JsonLd from '@/components/JsonLd';
 import {
   SITE_URL,
@@ -19,7 +19,7 @@ import {
   collectionJsonLd,
 } from '@/lib/seo';
 import { readPlaceContent, paragraphs } from '@/lib/content';
-import KusttramRouteMap from '@/components/KusttramRouteMap';
+import KusttramRouteMap from '@/components/KusttramRouteMapLoader';
 
 // === /lists/[slug] =========================================================
 // Public list detail page. The dedicated home for one of Mike's saved lists.

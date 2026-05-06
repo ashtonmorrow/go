@@ -62,9 +62,10 @@ export default {
         accent: '#b8862e',
       },
       fontFamily: {
-        // Inter loaded via @import in globals.css. System fallbacks ensure
-        // the page is usable before the webfont arrives.
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        // Inter loaded via next/font/google in app/layout.tsx, exposed as
+        // the --font-inter CSS variable. System fallbacks ensure the page
+        // is usable before the webfont arrives.
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         // Tabular monospace for stats / coords / "typed-on-postcard" feel.
         // Using ui-monospace so each platform picks its native mono (SF Mono
         // on macOS, Segoe UI Mono on Windows, etc.).

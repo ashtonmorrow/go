@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Sidebar from '@/components/Sidebar';
 import AppHeader from '@/components/AppHeader';
@@ -16,6 +17,15 @@ import {
   personJsonLd,
   websiteJsonLd,
 } from '@/lib/seo';
+
+// Self-hosted Inter via next/font. Replaces the previous render-blocking
+// `@import url(rsms.me/inter/inter.css)` in globals.css — that was a critical
+// path round-trip, this one inlines the @font-face and preloads the file.
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 // The root chrome reads the request pathname in <Sidebar /> so it can avoid
 // loading heavy city/pin corpuses on pages that do not render filter panels.
@@ -78,8 +88,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={inter.variable}>
+      <body className={inter.className}>
         {/* Google Analytics 4 — uses next/script with strategy
             'beforeInteractive' which is the only Next.js 15 strategy that
             injects scripts into the framework's static <head> at

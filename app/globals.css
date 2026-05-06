@@ -1,5 +1,3 @@
-@import url('https://rsms.me/inter/inter.css');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,9 +6,6 @@
    Body type, link colours, heading colours — the foundation every page
    inherits before any component-specific styling. */
 @layer base {
-  html {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
   body {
     @apply bg-white text-ink antialiased;
     /* Inter alternate-glyph features that look nicer on small UI text */
