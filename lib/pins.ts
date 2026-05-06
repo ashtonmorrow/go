@@ -148,6 +148,10 @@ export type Pin = {
 
   wikidataQid: string | null;
   wikipediaUrl: string | null;
+  /** Atlas Obscura slug used to deep-link the Atlas Obscura chip
+   *  (e.g. https://www.atlasobscura.com/places/<slug>). Falls back to
+   *  the AO browse-all page when null. */
+  atlasObscuraSlug: string | null;
   inceptionYear: number | null;
   durationMinutes: number | null;
   tags: string[];
@@ -371,6 +375,7 @@ function rowToPin(row: any): Pin {
 
     wikidataQid,
     wikipediaUrl: asString(row.wikipedia_url),
+    atlasObscuraSlug: asString(row.atlas_obscura_slug),
     inceptionYear: asNumber(row.inception_year),
     durationMinutes: asNumber(row.duration_minutes),
     tags: asStringArray(row.tags),
@@ -470,7 +475,7 @@ const INDEX_COLUMNS = [
   'category', 'kind', 'description', 'hours',
   'price_text', 'price_amount', 'price_currency',
   'unesco_id', 'website', 'images', 'visited',
-  'wikidata_qid', 'wikipedia_url', 'inception_year',
+  'wikidata_qid', 'wikipedia_url', 'atlas_obscura_slug', 'inception_year',
   'duration_minutes', 'tags', 'lists', 'saved_lists', 'best_months',
   'airtable_modified_at', 'updated_at',
   'free', 'free_to_visit', 'food_on_site',

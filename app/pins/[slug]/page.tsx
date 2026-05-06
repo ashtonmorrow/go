@@ -330,7 +330,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
             const url = icon
               ? getListUrl(canonical, {
                   unescoId: pin.unescoId,
-                  atlasObscuraSlug: null,
+                  atlasObscuraSlug: pin.atlasObscuraSlug,
                   wikidataQid: pin.wikidataQid,
                 })
               : null;
