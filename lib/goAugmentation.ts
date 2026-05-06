@@ -46,6 +46,7 @@ const CITY_FIELDS = new Set([
   'cold_season_name',
   'cooler_wetter_season',
   'my_google_places',
+  'hero_photo_urls',
 ]);
 
 const COUNTRY_FIELDS = new Set([
@@ -68,6 +69,7 @@ const COUNTRY_FIELDS = new Set([
   'wikidata_id',
   'wikipedia_summary',
   'flag',
+  'hero_photo_urls',
 ]);
 
 type JsonRecord = Record<string, unknown>;

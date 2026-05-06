@@ -94,6 +94,10 @@ export type City = {
   heroImage: string | null;
   heroImageAttribution: ImageAttribution | null;
   personalPhoto: string | null;
+  /** Curated, ordered URLs for the city's hero gallery. When non-empty
+   *  the city detail page renders these via <HeroGallery> instead of
+   *  the auto-pick HeroCollage. */
+  heroPhotoUrls: string[];
   cityFlag: string | null;
   cityFlagAttribution: ImageAttribution | null;
   wikidataId: string | null;
@@ -137,6 +141,8 @@ export type Country = {
   wikidataId: string | null;
   wikipediaSummary: string | null;
   flag: string | null;
+  /** Curated, ordered URLs for the country's hero gallery. */
+  heroPhotoUrls: string[];
 };
 
 // Detects curated Flag URLs whose path component is empty — happens when
@@ -194,6 +200,7 @@ function supaCityRow(r: any): City {
     heroImage:            r.hero_image ?? null,
     heroImageAttribution: r.hero_image_attribution ?? null,
     personalPhoto:        r.personal_photo ?? null,
+    heroPhotoUrls:        Array.isArray(r.hero_photo_urls) ? r.hero_photo_urls : [],
     cityFlag:             r.city_flag ?? null,
     cityFlagAttribution:  r.city_flag_attribution ?? null,
     wikidataId:           r.wikidata_id ?? null,
@@ -247,6 +254,7 @@ function supaCountryRow(r: any): Country {
     wikidataId:        r.wikidata_id ?? null,
     wikipediaSummary:  r.wikipedia_summary ?? null,
     flag,
+    heroPhotoUrls:     Array.isArray(r.hero_photo_urls) ? r.hero_photo_urls : [],
   };
 }
 

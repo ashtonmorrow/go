@@ -32,6 +32,8 @@ const ALLOWED_FIELDS = new Set([
   'price_tier', 'price_per_person_usd',
   // SEO
   'indexable',
+  // Curation
+  'hero_photo_urls',
   // Other facets
   'food_on_site', 'water_refill', 'restrooms', 'wifi', 'lockers',
   'shade', 'indoor_outdoor',

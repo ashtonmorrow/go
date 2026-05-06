@@ -7,6 +7,15 @@ import PinEditorClient from './PinEditorClient';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+export type AdminPersonalPhoto = {
+  id: string;
+  url: string;
+  width: number | null;
+  height: number | null;
+  caption: string | null;
+  hidden: boolean;
+};
+
 export default async function AdminPinEditPage({
   params,
 }: {
@@ -14,14 +23,28 @@ export default async function AdminPinEditPage({
 }) {
   const { id } = await params;
   const sb = supabaseAdmin();
-  const { data, error } = await sb
-    .from('pins')
-    .select('*')
-    .eq('id', id)
-    .maybeSingle();
-  if (error || !data) notFound();
+  // Fetch the pin row + personal photos for this pin in parallel. Personal
+  // photos feed the HeroPicker candidate list alongside any Wikidata
+  // images on `pin.images`.
+  const [pinRes, photosRes] = await Promise.all([
+    sb.from('pins').select('*').eq('id', id).maybeSingle(),
+    sb
+      .from('personal_photos')
+      .select('id, url, width, height, caption, hidden')
+      .eq('pin_id', id)
+      .order('taken_at', { ascending: false, nullsFirst: false }),
+  ]);
+  if (pinRes.error || !pinRes.data) notFound();
 
-  const initial = rowToPinForEdit(data);
+  const initial = rowToPinForEdit(pinRes.data);
+  const personalPhotos: AdminPersonalPhoto[] = (photosRes.data ?? []).map(r => ({
+    id: r.id as string,
+    url: r.url as string,
+    width: (r.width as number | null) ?? null,
+    height: (r.height as number | null) ?? null,
+    caption: (r.caption as string | null) ?? null,
+    hidden: !!r.hidden,
+  }));
 
   return (
     <div className="max-w-page mx-auto px-5 py-8">
@@ -45,7 +68,7 @@ export default async function AdminPinEditPage({
       <p className="text-small text-muted mb-6">
         Edit any field. Changes save when you click <strong>Save</strong> at the bottom.
       </p>
-      <PinEditorClient initial={initial} />
+      <PinEditorClient initial={initial} personalPhotos={personalPhotos} />
     </div>
   );
 }

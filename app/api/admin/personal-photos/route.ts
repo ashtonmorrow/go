@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 // === GET /api/admin/personal-photos ========================================
@@ -126,4 +127,45 @@ export async function GET(req: Request) {
     total,
     hasMore: offset + photos.length < total,
   });
+}
+
+// === PATCH /api/admin/personal-photos ======================================
+// Toggle the `hidden` flag on a personal photo. Hidden photos are
+// excluded from the auto-pick HeroCollage, but remain pickable in the
+// HeroPicker so Mike can deliberately surface a "hidden but actually
+// useful" shot if he wants. Body: { id: string, hidden: boolean }.
+
+export async function PATCH(req: Request) {
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+  const id = typeof body?.id === 'string' ? body.id : '';
+  const hidden = typeof body?.hidden === 'boolean' ? body.hidden : null;
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 });
+  if (hidden === null) {
+    return NextResponse.json({ error: 'hidden must be boolean' }, { status: 400 });
+  }
+
+  const sb = supabaseAdmin();
+  const { data, error } = await sb
+    .from('personal_photos')
+    .update({ hidden })
+    .eq('id', id)
+    .select('id, pin_id, hidden')
+    .maybeSingle();
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+  if (!data) {
+    return NextResponse.json({ error: 'photo not found' }, { status: 404 });
+  }
+
+  // Bust the personal-photos tag so detail pages re-derive their auto-pick
+  // pool with the new hidden flag.
+  try { revalidateTag('supabase-personal-photos'); } catch { /* ignore */ }
+
+  return NextResponse.json({ id: data.id, hidden: data.hidden });
 }

@@ -14,10 +14,15 @@ export type PersonalPhoto = {
 
 const _fetchPhotosForPin = unstable_cache(
   async (pinId: string): Promise<PersonalPhoto[]> => {
+    // hidden=true photos are deliberately suppressed from auto-pick
+    // surfaces (see admin curation flow). They remain pickable from the
+    // HeroPicker — that path uses supabaseAdmin and bypasses this
+    // helper.
     const { data, error } = await supabase
       .from('personal_photos')
       .select('id, pin_id, url, taken_at, caption, width, height')
       .eq('pin_id', pinId)
+      .eq('hidden', false)
       .order('taken_at', { ascending: false, nullsFirst: false });
     if (error) {
       console.error('[personalPhotos] fetch failed:', error);
@@ -51,6 +56,7 @@ const _fetchAllPersonalPhotos = unstable_cache(
       const { data, error } = await supabase
         .from('personal_photos')
         .select('id, pin_id, url, taken_at, caption, width, height')
+        .eq('hidden', false)
         .order('taken_at', { ascending: false, nullsFirst: false })
         .range(start, start + PAGE - 1);
       if (error || !data || data.length === 0) break;
@@ -147,6 +153,7 @@ const _fetchPinPhotosForCity = unstable_cache(
         'id, pin_id, url, taken_at, caption, width, height, ' +
         'pins!inner(slug, name, kind, tags, city_names)'
       )
+      .eq('hidden', false)
       .overlaps('pins.city_names', [cityName])
       .order('taken_at', { ascending: false, nullsFirst: false })
       .limit(limit);
@@ -174,6 +181,7 @@ const _fetchPinPhotosForCountry = unstable_cache(
         'id, pin_id, url, taken_at, caption, width, height, ' +
         'pins!inner(slug, name, kind, tags, states_names)'
       )
+      .eq('hidden', false)
       .overlaps('pins.states_names', [countryName])
       .order('taken_at', { ascending: false, nullsFirst: false })
       .limit(limit);

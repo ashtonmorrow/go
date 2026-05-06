@@ -16,6 +16,7 @@ import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
+import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -304,6 +305,33 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           source is available it letterboxes object-contain like the
           old single-cover treatment. */}
       {(() => {
+        // Curated path: when Mike has hand-picked hero photos for this city
+        // in the admin panel, render them via HeroGallery — every image at
+        // its native aspect ratio, no cropping. Falls back to HeroCollage's
+        // auto-pick mosaic when no curation exists.
+        if (city.heroPhotoUrls && city.heroPhotoUrls.length > 0) {
+          const meta = new Map(pinPhotos.map(p => [p.url, p]));
+          const galleryImages: GalleryImage[] = city.heroPhotoUrls.map(url => {
+            const m = meta.get(url);
+            return {
+              url,
+              alt: m?.pinName ?? city.name,
+              width: m?.width ?? null,
+              height: m?.height ?? null,
+              isPersonal: !!m,
+              caption: m?.caption ?? (m ? `From ${m.pinName}` : null),
+            };
+          });
+          return (
+            <HeroGallery
+              className="mt-6"
+              images={galleryImages}
+              title={city.name}
+              caption={`${galleryImages.length} hand-picked photo${galleryImages.length === 1 ? '' : 's'} of ${city.name}`}
+            />
+          );
+        }
+
         const seen = new Set<string>();
         const collageImages: CollageImage[] = [];
         for (const p of pinPhotos) {

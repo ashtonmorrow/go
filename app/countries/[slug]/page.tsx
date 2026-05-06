@@ -12,6 +12,7 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
+import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
@@ -245,18 +246,42 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
         </div>
       </header>
 
-      {/* Hero collage. Personal photos from pins in this country lead;
-          when none exist we fall back to a single curated cover. The
-          collage adapts to image count (1, 2, 3, 4, 5, 6+) and picks the
-          feature tile by orientation/personal-priority — see HeroCollage. */}
-      {countryHeroImages.length > 0 && (
-        <HeroCollage
-          className="mt-6"
-          images={countryHeroImages}
-          title={country.name}
-          caption={countryHeroCaption}
-        />
-      )}
+      {/* Hero. Curated `hero_photo_urls` win — render via HeroGallery
+          (native aspect, no crop). Otherwise fall back to the auto-pick
+          HeroCollage mosaic with personal pin photos / single curated
+          cover. */}
+      {(() => {
+        if (country.heroPhotoUrls && country.heroPhotoUrls.length > 0) {
+          const meta = new Map(pinPhotos.map(p => [p.url, p]));
+          const galleryImages: GalleryImage[] = country.heroPhotoUrls.map(url => {
+            const m = meta.get(url);
+            return {
+              url,
+              alt: m?.pinName ?? country.name,
+              width: m?.width ?? null,
+              height: m?.height ?? null,
+              isPersonal: !!m,
+              caption: m?.caption ?? (m ? `From ${m.pinName}` : null),
+            };
+          });
+          return (
+            <HeroGallery
+              className="mt-6"
+              images={galleryImages}
+              title={country.name}
+              caption={`${galleryImages.length} hand-picked photo${galleryImages.length === 1 ? '' : 's'} of ${country.name}`}
+            />
+          );
+        }
+        return countryHeroImages.length > 0 ? (
+          <HeroCollage
+            className="mt-6"
+            images={countryHeroImages}
+            title={country.name}
+            caption={countryHeroCaption}
+          />
+        ) : null;
+      })()}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         <div className="md:col-span-2 min-w-0">

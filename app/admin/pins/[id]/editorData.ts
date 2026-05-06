@@ -75,7 +75,16 @@ export type PinEditorState = {
 
   // SEO
   indexable: boolean;
+
+  // Curation
+  hero_photo_urls: string[];
+  /** Read-only here — Wikidata / Wikipedia images attached to the pin
+   *  row. Surfaced in the HeroPicker as candidates alongside personal
+   *  photos. */
+  images: { url: string; alt?: string | null }[];
 };
+
+type PinImageRow = { url?: string; alt?: string | null };
 
 const asStr = (v: unknown): string | null => (typeof v === 'string' && v ? v : null);
 const asNum = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
@@ -140,5 +149,12 @@ export function rowToPinForEdit(row: any): PinEditorState {
     price_per_person_usd: asNum(row.price_per_person_usd),
 
     indexable: !!row.indexable,
+
+    hero_photo_urls: asArr(row.hero_photo_urls),
+    images: Array.isArray(row.images)
+      ? (row.images as PinImageRow[])
+          .filter((i): i is { url: string; alt?: string | null } => typeof i?.url === 'string')
+          .map(i => ({ url: i.url, alt: i.alt ?? null }))
+      : [],
   };
 }

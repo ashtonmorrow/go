@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { PinEditorState } from './editorData';
+import HeroPicker, { type HeroCandidate } from '@/components/admin/HeroPicker';
+import type { AdminPersonalPhoto } from './page';
 
 // Internal sub-shape we render read-only from hours_details.weekly. Mirrors
 // the public detail page's PinHoursDetails['weekly'] without coupling this
@@ -27,7 +29,13 @@ function priceLevelLabel(n: number | null): string {
 
 const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 
-export default function PinEditorClient({ initial }: { initial: PinEditorState }) {
+export default function PinEditorClient({
+  initial,
+  personalPhotos,
+}: {
+  initial: PinEditorState;
+  personalPhotos: AdminPersonalPhoto[];
+}) {
   const router = useRouter();
   const [state, setState] = useState<PinEditorState>(initial);
   const [saving, setSaving] = useState(false);
@@ -209,6 +217,32 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
     setState(prev => ({ ...prev, [key]: value }));
   };
 
+  // HeroPicker candidate pool: personal photos for this pin first
+  // (caption + dimensions help the picker), then Wikidata images that
+  // aren't already present as personal uploads.
+  const heroCandidates = useMemo<HeroCandidate[]>(() => {
+    const out: HeroCandidate[] = [];
+    for (const p of personalPhotos) {
+      out.push({
+        url: p.url,
+        alt: p.caption ?? state.name,
+        width: p.width,
+        height: p.height,
+        label: 'personal',
+        hidden: p.hidden,
+      });
+    }
+    for (const i of state.images) {
+      if (out.some(c => c.url === i.url)) continue;
+      out.push({
+        url: i.url,
+        alt: i.alt ?? state.name,
+        label: 'Wikidata',
+      });
+    }
+    return out;
+  }, [personalPhotos, state.images, state.name]);
+
   const save = async () => {
     setSaving(true);
     setResult(null);
@@ -334,6 +368,21 @@ export default function PinEditorClient({ initial }: { initial: PinEditorState }
             )}
           </div>
         )}
+      </Section>
+
+      {/* Hero curation — Mike picks which photos lead the public page,
+          and in what order. Empty list falls back to the auto-pick
+          collage. Candidate pool: personal_photos for this pin + any
+          Wikidata images already attached to the row. */}
+      <Section label="Hero photos">
+        <HeroPicker
+          value={state.hero_photo_urls}
+          maxRecommended={6}
+          maxAbsolute={20}
+          hint="Pick up to 6 photos that should lead the pin page, in the order you want them. Personal photos appear first in the candidate list, then Wikidata sources."
+          candidates={heroCandidates}
+          onChange={next => set('hero_photo_urls', next)}
+        />
       </Section>
 
       <Section label="Identity">

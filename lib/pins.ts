@@ -146,6 +146,11 @@ export type Pin = {
 
   visited: boolean;
 
+  /** Curated, ordered URLs of the photos to render in the hero gallery.
+   *  When non-empty, the detail page uses these instead of the auto-pick
+   *  HeroCollage. URLs match `personal_photos.url` or `pin.images[].url`. */
+  heroPhotoUrls: string[];
+
   wikidataQid: string | null;
   wikipediaUrl: string | null;
   /** Atlas Obscura slug used to deep-link the Atlas Obscura chip
@@ -372,6 +377,7 @@ function rowToPin(row: any): Pin {
     website: row.website ?? null,
     images,
     visited: !!row.visited,
+    heroPhotoUrls: asStringArray(row.hero_photo_urls),
 
     wikidataQid,
     wikipediaUrl: asString(row.wikipedia_url),
@@ -474,7 +480,7 @@ const INDEX_COLUMNS = [
   'lat', 'lng', 'city_names', 'states_names',
   'category', 'kind', 'description', 'hours',
   'price_text', 'price_amount', 'price_currency',
-  'unesco_id', 'website', 'images', 'visited',
+  'unesco_id', 'website', 'images', 'visited', 'hero_photo_urls',
   'wikidata_qid', 'wikipedia_url', 'atlas_obscura_slug', 'inception_year',
   'duration_minutes', 'tags', 'lists', 'saved_lists', 'best_months',
   'airtable_modified_at', 'updated_at',

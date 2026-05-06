@@ -110,7 +110,7 @@ export function thumbUrl(
 export function heroUrl(
   url: string | null | undefined,
   width: number,
-  quality = 82,
+  quality = 85,
 ): string | null {
   if (!url) return null;
   if (!isOptimizable(url)) return url;

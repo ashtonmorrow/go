@@ -23,6 +23,7 @@ import { readPlaceContent, paragraphs } from '@/lib/content';
 import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
+import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 
 // Force dynamic rendering. The Sidebar (root layout) reads headers() for
 // pathname-aware fetching, which makes the whole tree dynamic at runtime.
@@ -390,7 +391,31 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           When only one image exists the collage falls through to the same
           single-tile letterbox the page used to render. Mike's personal
           photos lead the priority order so they land in the feature tile. */}
-      {(personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
+      {(pin.heroPhotoUrls.length > 0 || personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
+        // Curated path: Mike picked the heroes for this pin in admin.
+        // Render via HeroGallery — every image at native aspect, no crop.
+        if (pin.heroPhotoUrls.length > 0) {
+          const personalByUrl = new Map(personalPhotos.map(p => [p.url, p]));
+          const galleryImagesCurated: GalleryImage[] = pin.heroPhotoUrls.map(url => {
+            const personal = personalByUrl.get(url);
+            return {
+              url,
+              alt: pin.name,
+              width: personal?.width ?? null,
+              height: personal?.height ?? null,
+              isPersonal: !!personal,
+              caption: personal?.caption ?? null,
+            };
+          });
+          return (
+            <HeroGallery
+              className="mt-6"
+              images={galleryImagesCurated}
+              title={pin.name}
+            />
+          );
+        }
+        // Fallback: existing auto-pick collage.
         const seen = new Set<string>();
         const collageImages: CollageImage[] = [];
         for (const p of personalPhotos) {
