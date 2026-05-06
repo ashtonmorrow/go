@@ -54,7 +54,7 @@ tags:
   - travel-guide
 ---
 
-Cape Town is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around weather, transport, and where you sleep.
+[Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around weather, transport, and where you sleep.
 
 I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from the day.
 

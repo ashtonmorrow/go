@@ -36,7 +36,7 @@ tags:
   - travel-guide
 ---
 
-Spanish castle lists get messy quickly because the word "castle" is doing too much work. The Alhambra, Bellver, Coca, Loarre, and Olite do not belong to one simple category, and they do not fit the same kind of trip.
+Spanish castle lists get messy quickly because the word "castle" is doing too much work. The Alhambra, Bellver, [Coca](/cities/coca), [Loarre](/cities/loarre), and [Olite](/cities/olite) do not belong to one simple category, and they do not fit the same kind of trip.
 
 Some are Moorish fortresses or palace complexes. Some are Christian medieval castles from the 11th to 15th centuries. Some are aristocratic statements that borrow defensive language while functioning as power display. A useful itinerary should treat those differences as the point, not as a technicality.
 
@@ -47,8 +47,8 @@ These are the six I would plan around first, with the claims I could verify and 
 | Site | Best used as | What to notice | UNESCO status |
 |---|---|---|---|
 | [Bellver Castle](/pins/castell-de-bellver) | Palma half-day | Circular Gothic plan | No |
-| [Alhambra](/pins/alhambra) | Granada anchor visit | Nasrid palaces, water, geometry | Yes, since 1984 |
-| [Alcázar de Segovia](/pins/alcazar-de-segovia) | Madrid side trip | Promontory setting, tower view | Part of Segovia inscription |
+| [Alhambra](/pins/alhambra) | [Granada](/cities/granada) anchor visit | Nasrid palaces, water, geometry | Yes, since 1984 |
+| [Alcázar de Segovia](/pins/alcazar-de-segovia) | [Madrid](/cities/madrid) side trip | Promontory setting, tower view | Part of [Segovia](/cities/segovia) inscription |
 | [Castillo de Coca](/pins/castillo-de-coca) | Segovia province detour | Brick Mudéjar construction | No |
 | [Castillo de Loarre](/pins/loarre-castle) | Aragon road-trip stop | Romanesque military architecture | Tentative list only |
 | [Royal Palace of Olite](/pins/royal-palace-of-olite) | Navarra wine-country pairing | Late-Gothic palace reconstruction | No |
@@ -57,7 +57,7 @@ These are the six I would plan around first, with the claims I could verify and 
 
 The Alhambra is the only one here that can justify anchoring an entire city stop on its own. Segovia works as a strong day trip from Madrid because the castle, aqueduct, and old town sit together. Bellver belongs naturally inside a Palma stay. Olite makes more sense with Navarra wine country than as a long standalone detour.
 
-Coca and Loarre require more intention. Coca is useful if you care about Mudéjar architecture or are already moving through Castile. Loarre is a better fit for an Aragon or Pyrenees route than for a first Spain itinerary built around Madrid, Barcelona, and Andalusia.
+Coca and Loarre require more intention. Coca is useful if you care about Mudéjar architecture or are already moving through Castile. Loarre is a better fit for an Aragon or Pyrenees route than for a first [Spain](/countries/spain) itinerary built around Madrid, [Barcelona](/cities/barcelona), and [Andalusia](/cities/andalusia).
 
 ## Bellver Castle, Palma de Mallorca
 

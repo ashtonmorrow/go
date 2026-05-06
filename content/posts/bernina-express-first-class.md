@@ -72,13 +72,13 @@ tags:
   - travel-guide
 ---
 
-The [Bernina Express](/pins/bernina-express) is easier to add to a northern Italy trip than it looks on a map. I was in Milan after a few days in Rome, realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
+The [Bernina Express](/pins/bernina-express) is easier to add to a northern [Italy](/countries/italy) trip than it looks on a map. I was in [Milan](/cities/milan) after a few days in [Rome](/cities/rome), realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
 
 The trip is not complicated, but a few details matter: the Bernina Express is not the only train on the line, seat reservations are separate from rail passes, and the Milan to Tirano connection is part of the day. This is the version I wish I had read before buying my ticket.
 
 ## The Short Version
 
-If you are already in Milan, the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to [Tirano](/cities/tirano), board the Bernina Express there, and ride north through the Alps to [Chur](/cities/chur). From Chur, you can continue deeper into Switzerland or stay the night and treat it as a small Alpine city stop.
+If you are already in Milan, the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to [Tirano](/cities/tirano), board the Bernina Express there, and ride north through the Alps to [Chur](/cities/chur). From Chur, you can continue deeper into [Switzerland](/countries/switzerland) or stay the night and treat it as a small Alpine city stop.
 
 Book the Bernina Express directly with Rhaetian Railways if you want the simplest path. If you have more time to plan, compare cheaper options using standard regional RhB trains on the same route. First class is comfortable, but the core experience is the line itself: the viaducts, the climb to Ospizio Bernina, the lakes, and the shift from Italian Lombardy into Graubünden.
 

@@ -3,7 +3,7 @@ title: Mike's Ultimate Airline Stopover Guide
 nav_title: Airline Stopovers
 subtitle: Free and discounted hotels, transit tours, and when a stopover is worth adding to a long-haul trip.
 hero_image: /images/posts/airline-stopover-programs.jpg
-hero_alt: A mosque visited during an Oman Air stopover in Muscat.
+hero_alt: A mosque visited during an Turkish Air stopover in Istanbul.
 published: 2026-04-30
 updated: 2026-05-05
 indexable: true

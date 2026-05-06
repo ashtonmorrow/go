@@ -78,7 +78,7 @@ tags:
 
 When I stay somewhere for four to eight weeks, I usually end up cooking more than I eat out. Green markets become part of the routine: morning fruit, tomatoes that actually taste like tomatoes, greens for dinner, honey to bring home, and sometimes a bottle of local olive oil or rakija from someone who makes it themselves.
 
-That is different from visiting a market once as a sight. The same place can be both useful and performative, and the balance changes by city. [Split Green Market, also called Pazar](/pins/split-green-market-pazar), beside [Diocletian's Palace](/pins/historical-complex-of-split-with-the-palace-of-diocletian), is still worth walking through, but it has become partly a visitor attraction. If you were living in Split for several weeks and bought everything there, you would probably overpay. Many local people do more of their ordinary shopping elsewhere.
+That is different from visiting a market once as a sight. The same place can be both useful and performative, and the balance changes by city. [Split Green Market, also called Pazar](/pins/split-green-market-pazar), beside [Diocletian's Palace](/pins/historical-complex-of-split-with-the-palace-of-diocletian), is still worth walking through, but it has become partly a visitor attraction. If you were living in [Split](/cities/split) for several weeks and bought everything there, you would probably overpay. Many local people do more of their ordinary shopping elsewhere.
 
 The cleaner version is somewhere like [Zelena Pijaca Bar](/pins/zelena-pijaca-bar) in [Bar, Montenegro](/cities/bar-mne): less English, fewer posted prices, smaller tables, and more produce that looks as if it came from someone's plot that morning. The advice below works best in places like that, but it still helps you read the more touristed markets without treating them as fake.
 
@@ -86,14 +86,14 @@ The cleaner version is somewhere like [Zelena Pijaca Bar](/pins/zelena-pijaca-ba
 
 The list is not meant to be complete. It is a working set of markets that help explain the range: old-town visitor circuit, everyday neighborhood shopping, and larger city markets where a longer stay starts to feel practical.
 
-- [Dolac Market](/pins/dolac-market), Zagreb
+- [Dolac Market](/pins/dolac-market), [Zagreb](/cities/zagreb)
 - [Split Green Market (Pazar)](/pins/split-green-market-pazar), Split
 - [Zelena Pijaca Bar](/pins/zelena-pijaca-bar), Bar
-- [Kalenić Green Market](/pins/kalenic-green-market), Belgrade
+- [Kalenić Green Market](/pins/kalenic-green-market), [Belgrade](/cities/belgrade)
 - [Zeleni Venac](/pins/zeleni-venac), Belgrade
-- [Pijaca Markale food market](/pins/pijaca-markale-food-market), Sarajevo
-- [Kotor Food Market](/pins/kotor-food-market), Kotor
-- [Obor Market](/pins/obor-market), Bucharest
+- [Pijaca Markale food market](/pins/pijaca-markale-food-market), [Sarajevo](/cities/sarajevo)
+- [Kotor Food Market](/pins/kotor-food-market), [Kotor](/cities/kotor)
+- [Obor Market](/pins/obor-market), [Bucharest](/cities/bucharest)
 
 ## First, Decide What Kind of Market You Are In
 

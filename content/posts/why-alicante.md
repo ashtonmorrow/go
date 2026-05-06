@@ -32,7 +32,7 @@ tags:
   - travel-guide
 ---
 
-I lived and worked out of Alicante for six or seven weeks, and several friends came through while I was there. The pattern surprised me: travelers who know Spain well enough to plan Madrid, Barcelona, Valencia, Seville, or Granada often skip Alicante entirely.
+I lived and worked out of [Alicante](/cities/alicante) for six or seven weeks, and several friends came through while I was there. The pattern surprised me: travelers who know [Spain](/countries/spain) well enough to plan [Madrid](/cities/madrid), [Barcelona](/cities/barcelona), Valencia, [Seville](/cities/seville), or [Granada](/cities/granada) often skip Alicante entirely.
 
 I think that is usually a mistake. Alicante is not the city I would build a whole first Spain trip around, but it is one of the easiest coastal stops to add. It has a real old town, a castle above the center, practical rail links, good food, and beaches that do not require a complicated resort plan.
 
@@ -52,7 +52,7 @@ From Valencia, the AVE is around 1 hour 35 minutes. Worth knowing if you are alr
 
 From Barcelona by rail, the journey is longer (around 5 hours), so most visitors fly that segment.
 
-You can also fly direct. Alicante-Elche Airport (ALC) is well-served by European low-cost carriers (Ryanair, Vueling, easyJet) and is often the simplest option from London, Paris, Amsterdam, or any of the German hubs. I do not know of nonstop transatlantic service to ALC, so for travelers from the Americas the rail-from-Madrid path remains the standard.
+You can also fly direct. Alicante-Elche Airport (ALC) is well-served by European low-cost carriers (Ryanair, Vueling, easyJet) and is often the simplest option from [London](/cities/london), [Paris](/cities/paris), [Amsterdam](/cities/amsterdam), or any of the German hubs. I do not know of nonstop transatlantic service to ALC, so for travelers from the Americas the rail-from-Madrid path remains the standard.
 
 ## Choosing the Right Beach
 

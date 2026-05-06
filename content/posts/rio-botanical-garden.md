@@ -31,7 +31,7 @@ I went on a damp afternoon and made the most obvious mistake possible: I forgot 
 
 ## It is not in Quinta da Boa Vista
 
-The Jardim Botânico do Rio de Janeiro sits in the Jardim Botânico neighborhood of Rio's South Zone, between Lagoa Rodrigo de Freitas and the base of Corcovado. It is not in Quinta da Boa Vista. That may sound like a small correction, but older travel writeups and scraped summaries sometimes confuse the two.
+The Jardim Botânico do [Rio de Janeiro](/cities/rio-de-janeiro) sits in the Jardim Botânico neighborhood of Rio's South Zone, between Lagoa Rodrigo de Freitas and the base of Corcovado. It is not in Quinta da Boa Vista. That may sound like a small correction, but older travel writeups and scraped summaries sometimes confuse the two.
 
 Quinta da Boa Vista is a different park in the North Zone, tied to the former imperial residence and the National Museum. The Botanical Garden is the 1808 royal garden founded after the Portuguese court relocated to Rio during the Napoleonic period. It opened to the public in 1822 and still reads as a 19th-century scientific and imperial landscape, not just a city park with nice planting.
 

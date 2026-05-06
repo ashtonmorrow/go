@@ -73,7 +73,7 @@ tags:
   - travel-guide
 ---
 
-Bali is not hard to enjoy, but it is easy to plan badly. The usual mistake is treating it like a small island where you can sleep anywhere and casually cross the map.
+[Bali](/cities/bali) is not hard to enjoy, but it is easy to plan badly. The usual mistake is treating it like a small island where you can sleep anywhere and casually cross the map.
 
 A beach, a rice terrace, a temple, and dinner somewhere else can look like a sensible day until the road turns it into hours in traffic. Bali works better when you choose the kind of day you want to repeat, stay near it, and resist the urge to stitch the island together one photo stop at a time.
 
@@ -96,9 +96,9 @@ For a first trip, I would usually split time between Ubud and one coastal base. 
 
 ## Sort Out the Arrival
 
-Most visitors arrive at Ngurah Rai International Airport (DPS), just south of Denpasar. Many nationalities can use Indonesia's B1 visa on arrival or e-VOA for 30 days, with one possible 30-day extension. Check the official immigration site before relying on that, because visa rules are the kind of thing that can quietly ruin a good plan.
+Most visitors arrive at Ngurah Rai International Airport (DPS), just south of [Denpasar](/cities/denpasar). Many nationalities can use [Indonesia](/countries/indonesia)'s B1 visa on arrival or e-VOA for 30 days, with one possible 30-day extension. Check the official immigration site before relying on that, because visa rules are the kind of thing that can quietly ruin a good plan.
 
-Pre-book the first airport transfer if you are arriving tired or with luggage. Grab and Gojek are the main ride-hailing apps on the island; Uber does not operate here. A ride from the airport to Kuta or Seminyak can run roughly IDR 150,000 to 300,000, about $9 to $18, but pickup rules and traffic can make arrival messier than the price suggests.
+Pre-book the first airport transfer if you are arriving tired or with luggage. Grab and Gojek are the main ride-hailing apps on the island; Uber does not operate here. A ride from the airport to [Kuta](/cities/kuta) or Seminyak can run roughly IDR 150,000 to 300,000, about $9 to $18, but pickup rules and traffic can make arrival messier than the price suggests.
 
 Do not overpack. Laundry is cheap and easy to arrange through hotels, guesthouses, and street-side laundries, often with same-day or next-day return. Do not bring anything ambiguous in your luggage. Indonesian drug laws are severe, and this is not a place to be casual about what is in a bag.
 

@@ -59,13 +59,13 @@ tags:
   - travel-guide
 ---
 
-For a first Thailand trip, I would resist the urge to see the country evenly. I would give Bangkok enough time to make sense, add one inland break, and then choose one beach base.
+For a first [Thailand](/countries/thailand) trip, I would resist the urge to see the country evenly. I would give Bangkok enough time to make sense, add one inland break, and then choose one beach base.
 
 That sounds modest, but it is the version I would actually send to a friend. Thailand is not difficult to travel through, but it is hot, Bangkok traffic can eat whole afternoons, and the islands do not all solve the same problem. The useful planning question is not "what are the best places in Thailand?" It is "what kind of trip am I actually trying to have?"
 
 ## The route I would send to a friend
 
-For ten to fourteen days, I would start with Bangkok, then choose either Chiang Mai or Khao Yai, then choose either Phuket or Koh Samui. That gives you city, culture or nature, and beach without turning the trip into a transfer puzzle.
+For ten to fourteen days, I would start with Bangkok, then choose either Chiang Mai or Khao Yai, then choose either [Phuket](/cities/phuket) or Koh Samui. That gives you city, culture or nature, and beach without turning the trip into a transfer puzzle.
 
 | Stop | Why I would include it | How long |
 |---|---|---|
@@ -103,7 +103,7 @@ February and March are warm and mostly dry in Bangkok. Highs around 30 to 35°C 
 
 ## Khao Yai is the nature break from Bangkok
 
-Khao Yai makes sense when Bangkok has been enough and you want trees, hills, animals, and cooler mornings. The national park is about three hours from Bangkok by road, with Pak Chong as the practical gateway. You can get to Pak Chong by train or bus, but once you are there, public transit stops being the solution. Hire a driver, join a tour, rent a car, or rent a scooter only if your license and insurance actually cover it.
+Khao Yai makes sense when Bangkok has been enough and you want trees, hills, animals, and cooler mornings. The national park is about three hours from Bangkok by road, with [Pak Chong](/cities/pak-chong) as the practical gateway. You can get to Pak Chong by train or bus, but once you are there, public transit stops being the solution. Hire a driver, join a tour, rent a car, or rent a scooter only if your license and insurance actually cover it.
 
 The park is the point. Haew Narok is the tallest waterfall in the park; Haew Suwat is the one many visitors know from *The Beach*. Morning and evening are better for wildlife. Elephants are possible, not guaranteed. Deer, gibbons, hornbills, and other birdlife are more realistic expectations. Trails range from short walks to longer hikes, so this does not need to become an endurance trip.
 
@@ -123,9 +123,9 @@ The problem is smoke season. Late February, March, and often April can bring bad
 
 ## Phuket and Samui are not interchangeable
 
-Phuket is the practical island. It has the airport, the hotel range, the tour infrastructure, and the bluntest version of beach tourism. Patong is nightlife and crowds. Kata and Karon are calmer and easier for families or beginner surfers. Kamala is quieter. Bang Tao is more resort-driven. Phuket Town is the choice if you care more about Sino-Portuguese streets, cafes, and markets than sleeping on the sand.
+Phuket is the practical island. It has the airport, the hotel range, the tour infrastructure, and the bluntest version of beach tourism. Patong is nightlife and crowds. Kata and Karon are calmer and easier for families or beginner surfers. Kamala is quieter. Bang Tao is more resort-driven. [Phuket Town](/cities/phuket-town) is the choice if you care more about Sino-Portuguese streets, cafes, and markets than sleeping on the sand.
 
-The good day trips are obvious because everyone else also knows them: Phi Phi Islands, [Phang Nga Bay](/pins/phang-nga-bay), James Bond Island. They are crowded, but the limestone scenery still explains the boats. On the island itself, [Big Buddha](/pins/the-big-buddha), [Wat Chalong](/pins/wat-chaithararam), Old Phuket Town, Promthep Cape, and the night markets are the practical circuit.
+The good day trips are obvious because everyone else also knows them: [Phi Phi](/cities/phi-phi) Islands, [Phang Nga Bay](/pins/phang-nga-bay), James Bond Island. They are crowded, but the limestone scenery still explains the boats. On the island itself, [Big Buddha](/pins/the-big-buddha), [Wat Chalong](/pins/wat-chaithararam), Old Phuket Town, Promthep Cape, and the night markets are the practical circuit.
 
 The annoyance is transport. Taxis and tuk-tuks cost more than they should. Grab helps, but it does not magically make the island cheap to cross. A scooter gives freedom and risk in the same package. Do not rent one unless you are legal, insured, and honest about your comfort level.
 
