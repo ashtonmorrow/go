@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { fetchPinsForLists } from "@/lib/pins";
 import { getAllPosts, getPost } from "@/lib/posts";
 import { fetchAllSavedListsMeta, listNameToSlug } from "@/lib/savedLists";
+import { AUTHOR_ID, WEBSITE_ID } from "@/lib/seo";
 
 const SITE_URL = "https://go.mike-lee.me";
 
@@ -71,25 +72,54 @@ function StructuredData({
     if (/^https?:\/\//i.test(href)) return href;
     return `${SITE_URL}${href.startsWith("/") ? href : `/${href}`}`;
   };
+  const linkedEntity = (
+    type: string,
+    scope: "cities" | "countries" | "pins" | "lists",
+    slug: string,
+  ) => ({
+    "@type": type,
+    "@id": `${SITE_URL}/${scope}/${slug}`,
+    url: `${SITE_URL}/${scope}/${slug}`,
+    name: prettifySlug(slug),
+  });
+  const linkedCountries = post.links.countries.map((slug) =>
+    linkedEntity("Country", "countries", slug),
+  );
+  const linkedCities = post.links.cities.map((slug) =>
+    linkedEntity("City", "cities", slug),
+  );
+  const linkedPins = post.links.pins.map((slug) =>
+    linkedEntity("Place", "pins", slug),
+  );
+  const linkedLists = post.links.lists.map((slug) =>
+    linkedEntity("CollectionPage", "lists", slug),
+  );
+  const mentions = [...linkedCountries, ...linkedCities, ...linkedPins, ...linkedLists];
   const article = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": url,
     headline: post.title,
     description: post.subtitle ?? post.title,
     datePublished: post.published ?? undefined,
     dateModified: post.updated ?? post.published ?? undefined,
     author:
       post.authors.length > 0
-        ? post.authors.map((name) => ({ "@type": "Person", name }))
+        ? post.authors.map((name) => ({ "@type": "Person", "@id": AUTHOR_ID, name }))
         : undefined,
     publisher:
       post.authors.length > 0
-        ? { "@type": "Person", name: post.authors[0] }
+        ? { "@type": "Person", "@id": AUTHOR_ID, name: post.authors[0] }
         : undefined,
     image: post.heroImage ? [post.heroImage] : undefined,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
     inLanguage: "en",
+    isPartOf: { "@id": WEBSITE_ID },
+    ...(linkedCountries.length || linkedCities.length
+      ? { about: [...linkedCountries, ...linkedCities] }
+      : {}),
+    ...(mentions.length ? { mentions } : {}),
   };
   const breadcrumb = {
     "@context": "https://schema.org",

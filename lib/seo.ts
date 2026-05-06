@@ -11,7 +11,7 @@
 //   /cities/[slug]   -> City + BreadcrumbList        (a Place subclass)
 //   /countries/[slug]-> Country + BreadcrumbList
 //   /pins            -> CollectionPage + ItemList
-//   /pins/[slug]     -> TouristAttraction + BreadcrumbList
+//   /pins/[slug]     -> Place subtype + BreadcrumbList
 //   /map             -> WebPage                       (interactive view)
 //   /about           -> AboutPage
 //   layout (site)    -> Person + WebSite              (sitewide)
@@ -81,11 +81,7 @@ export function websiteJsonLd() {
     publisher: { '@id': AUTHOR_ID },
     inLanguage: 'en-US',
     // Sitelinks search box. Google reads this and may render an in-result
-    // search input that hits our /search page directly. The site doesn't
-    // have a /search route yet, but the schema is harmless: Google won't
-    // surface the box until it sees the page actually accept the query
-    // string. Wire `urlTemplate` to the eventual route so the schema is
-    // already correct when we add it.
+    // search input that hits our /search page directly.
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -260,11 +256,9 @@ export function collectionJsonLd(opts: {
   };
 }
 
-// Pin (place-of-interest) detail page. Modelled as TouristAttraction
-// (a Place subclass that Google's structured-data documentation
-// explicitly supports) with geo, address, image, isAccessibleForFree,
-// and `sameAs` links pointing at the attraction's official site and the
-// UNESCO World Heritage entry where applicable.
+// Pin (place-of-interest) detail page. Modelled as the most useful Place
+// subtype we can infer from pin.kind: Hotel, Restaurant, Park, Store,
+// transit-specific types, or TouristAttraction as the fallback.
 //
 // Notes on the modelling:
 //   * `additionalType` lifts UNESCO sites into the more specific
@@ -283,6 +277,8 @@ type PinJsonLdAdmission = {
   currency?: string | null;
   notes?: string | null;
 };
+
+type PinJsonLdKind = 'attraction' | 'shopping' | 'hotel' | 'park' | 'restaurant' | 'transit';
 
 type PinJsonLdHours = {
   mon?: string[];
@@ -336,9 +332,60 @@ function admissionToOffers(a: PinJsonLdAdmission) {
   return offers;
 }
 
+function pinSchemaType(pin: {
+  name: string;
+  kind?: PinJsonLdKind | null;
+  category?: string | null;
+}) {
+  switch (pin.kind) {
+    case 'hotel':
+      return 'Hotel';
+    case 'restaurant':
+      return 'Restaurant';
+    case 'park':
+      return 'Park';
+    case 'shopping':
+      return 'Store';
+    case 'transit': {
+      const text = `${pin.name} ${pin.category ?? ''}`.toLowerCase();
+      if (/\bairport\b|\bterminal\b/.test(text)) return 'Airport';
+      if (/\bbus\b|\bcoach\b/.test(text)) return 'BusStation';
+      if (/\btram\b|\btrain\b|\brail\b|\bmetro\b|\bsubway\b|\bstation\b/.test(text)) {
+        return 'TrainStation';
+      }
+      return 'Place';
+    }
+    case 'attraction':
+    default:
+      return 'TouristAttraction';
+  }
+}
+
+function priceRangeFromPin(pin: {
+  kind?: PinJsonLdKind | null;
+  priceTier?: '$' | '$$' | '$$$' | '$$$$' | null;
+  priceLevel?: number | null;
+  pricePerPersonUsd?: number | null;
+  roomPricePerNight?: number | null;
+  roomPriceCurrency?: string | null;
+}) {
+  if (pin.kind === 'restaurant') {
+    if (pin.priceTier) return pin.priceTier;
+    if (pin.priceLevel != null && pin.priceLevel > 0) {
+      return '$'.repeat(Math.min(4, Math.max(1, pin.priceLevel)));
+    }
+    if (pin.pricePerPersonUsd != null) return `~$${pin.pricePerPersonUsd}/person`;
+  }
+  if (pin.kind === 'hotel' && pin.roomPricePerNight != null) {
+    return `${pin.roomPriceCurrency ? `${pin.roomPriceCurrency} ` : ''}${pin.roomPricePerNight}/night`;
+  }
+  return null;
+}
+
 export function pinJsonLd(pin: {
   slug: string;
   name: string;
+  kind?: PinJsonLdKind | null;
   description?: string | null;
   image?: string | null;
   lat?: number | null;
@@ -357,12 +404,23 @@ export function pinJsonLd(pin: {
   wheelchairAccessible?: 'fully' | 'partially' | 'no' | 'unknown' | null;
   kidFriendly?: boolean | null;
   durationMinutes?: number | null;
+  phone?: string | null;
+  cuisine?: string[] | null;
+  priceTier?: '$' | '$$' | '$$$' | '$$$$' | null;
+  priceLevel?: number | null;
+  pricePerPersonUsd?: number | null;
+  roomPricePerNight?: number | null;
+  roomPriceCurrency?: string | null;
+  googleRating?: number | null;
+  googleRatingCount?: number | null;
 }) {
   const url = `${SITE_URL}/pins/${pin.slug}`;
   const sameAs = [pin.website, pin.unescoUrl].filter(Boolean) as string[];
   const isUnesco = pin.unescoId != null;
   const hoursSpec = pin.openingHours ? hoursToSchemaSpec(pin.openingHours) : [];
   const offers = pin.admission ? admissionToOffers(pin.admission) : [];
+  const type = pinSchemaType(pin);
+  const priceRange = priceRangeFromPin(pin);
 
   const accessibilityFeatures: string[] = [];
   if (pin.wheelchairAccessible === 'fully') accessibilityFeatures.push('wheelchairAccessible');
@@ -370,7 +428,7 @@ export function pinJsonLd(pin: {
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'TouristAttraction',
+    '@type': type,
     '@id': url,
     url,
     name: pin.name,
@@ -379,6 +437,20 @@ export function pinJsonLd(pin: {
     ...(pin.category ? { keywords: pin.category } : {}),
     ...(isUnesco
       ? { additionalType: 'https://schema.org/LandmarksOrHistoricalBuildings' }
+      : {}),
+    ...(pin.phone ? { telephone: pin.phone } : {}),
+    ...(pin.kind === 'restaurant' && pin.cuisine?.length
+      ? { servesCuisine: pin.cuisine }
+      : {}),
+    ...(priceRange ? { priceRange } : {}),
+    ...(pin.googleRating != null && pin.googleRatingCount != null && pin.googleRatingCount >= 5
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: pin.googleRating,
+            ratingCount: pin.googleRatingCount,
+          },
+        }
       : {}),
     ...(pin.lat != null && pin.lng != null
       ? {

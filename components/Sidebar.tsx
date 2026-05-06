@@ -1,6 +1,5 @@
-// Server Component sidebar — fetches city + country counts from Notion
-// (cached via React.cache() in lib/notion so no extra API calls beyond what
-// the page already does) and hands them to the interactive client shell.
+// Server Component sidebar — fetches only the data the current route needs
+// and hands it to the interactive client shell.
 //
 // Performance contract: this runs on every page render across the entire
 // site, including chrome-less surfaces (about, privacy, articles, posts,
@@ -10,11 +9,13 @@
 // the current route actually needs, and skip the heavy ones otherwise.
 
 import { headers } from 'next/headers';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { unstable_cache } from 'next/cache';
+import { fetchAllCities, fetchAllCountries, TABLE_CITIES, TABLE_COUNTRIES } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { CANONICAL_LISTS } from '@/lib/pinLists';
 import { getAllArticleEntries } from '@/lib/articles';
+import { supabase } from '@/lib/supabase';
 import SidebarShell from './SidebarShell';
 
 /** Routes that need the full pin corpus to derive sidebar filter options
@@ -35,26 +36,24 @@ function needsPinCorpus(pathname: string): boolean {
   );
 }
 
-/** Routes that need the city corpus for the city-filter cockpit OR for
- *  the read-only Collections counts in the bottom block. The Collections
- *  counts only show on routes that don't otherwise mount a cockpit, so
- *  the cheap fetch is fine. */
+/** Routes that need the city corpus for the city-filter cockpit.
+ *  Detail pages only need the read-only Collections counts, which come
+ *  from lightweight count queries instead of the full city table. */
 function needsCityCorpus(pathname: string): boolean {
   return (
-    pathname === '/' ||
-    pathname === '/cities' ||
-    pathname.startsWith('/cities/') ||
-    pathname === '/world' ||
-    pathname === '/map'
+    pathname === '/cities/cards' ||
+    pathname === '/cities/map' ||
+    pathname === '/cities/table' ||
+    pathname === '/cities/stats' ||
+    pathname === '/countries/map'
   );
 }
 
 function needsCountryCorpus(pathname: string): boolean {
   return (
-    pathname === '/' ||
-    pathname === '/countries' ||
-    pathname.startsWith('/countries/') ||
-    pathname === '/world'
+    pathname === '/countries/cards' ||
+    pathname === '/countries/table' ||
+    pathname === '/countries/stats'
   );
 }
 
@@ -84,6 +83,47 @@ function needsCollectionsBlock(pathname: string): boolean {
 const ZERO_COUNTS = {
   cities: 0, countries: 0, been: 0, go: 0, saved: 0, pins: 0, lists: 0,
 };
+
+const fetchSidebarCounts = unstable_cache(
+  async () => {
+    const [cities, countries, been, go, saved, pins] = await Promise.all([
+      supabase.from(TABLE_CITIES).select('id', { count: 'exact', head: true }),
+      supabase.from(TABLE_COUNTRIES).select('id', { count: 'exact', head: true }),
+      supabase.from(TABLE_CITIES).select('id', { count: 'exact', head: true }).eq('been', true),
+      supabase.from(TABLE_CITIES).select('id', { count: 'exact', head: true }).eq('go', true),
+      supabase
+        .from(TABLE_CITIES)
+        .select('id', { count: 'exact', head: true })
+        .gt('my_google_places', ''),
+      supabase.from('pins').select('id', { count: 'exact', head: true }),
+    ]);
+
+    const countOrZero = (
+      label: string,
+      result: { count: number | null; error: unknown },
+    ) => {
+      if (result.error) {
+        console.error(`[Sidebar] ${label} count failed:`, result.error);
+        return 0;
+      }
+      return result.count ?? 0;
+    };
+
+    return {
+      cities: countOrZero('cities', cities),
+      countries: countOrZero('countries', countries),
+      been: countOrZero('been cities', been),
+      go: countOrZero('go cities', go),
+      saved: countOrZero('saved cities', saved),
+      pins: countOrZero('pins', pins),
+    };
+  },
+  ['sidebar-counts-v2'],
+  {
+    revalidate: 300,
+    tags: ['supabase-cities', 'supabase-countries', 'supabase-pins'],
+  },
+);
 
 export default async function Sidebar() {
   // Sidebar is rendered from the root layout. If THIS server component
@@ -136,20 +176,20 @@ async function SidebarBody() {
   // of the page already pulled it, this is free. Each fetcher has its own
   // catch so a single Supabase hiccup degrades counts instead of killing
   // the whole sidebar (which would 500 the entire app).
-  const [cities, countries, pins, articleEntries, listsMeta] = await Promise.all([
-    wantsCities || wantsCounts
+  const [cities, countries, pins, articleEntries, listsMeta, compactCounts] = await Promise.all([
+    wantsCities
       ? fetchAllCities().catch(err => {
           console.error('[Sidebar] fetchAllCities failed:', err);
           return [];
         })
       : Promise.resolve([]),
-    wantsCountries || wantsCounts
+    wantsCountries
       ? fetchAllCountries().catch(err => {
           console.error('[Sidebar] fetchAllCountries failed:', err);
           return [];
         })
       : Promise.resolve([]),
-    wantsPins || wantsCounts
+    wantsPins
       ? fetchAllPins().catch(err => {
           console.error('[Sidebar] fetchAllPins failed:', err);
           return [];
@@ -167,18 +207,24 @@ async function SidebarBody() {
       console.error('[Sidebar] fetchAllSavedListsMeta failed:', err);
       return new Map();
     }),
+    wantsCounts
+      ? fetchSidebarCounts().catch(err => {
+          console.error('[Sidebar] fetchSidebarCounts failed:', err);
+          return { cities: 0, countries: 0, been: 0, go: 0, saved: 0, pins: 0 };
+        })
+      : Promise.resolve({ cities: 0, countries: 0, been: 0, go: 0, saved: 0, pins: 0 }),
   ]);
 
   // Counts only get computed when the bottom-block is going to render.
   // Skipping the .filter() walks shaves milliseconds on hot paths.
   const counts = wantsCounts
     ? {
-        cities: cities.length,
-        countries: countries.length,
-        been: cities.filter(c => c.been).length,
-        go: cities.filter(c => c.go).length,
-        saved: cities.filter(c => !!c.myGooglePlaces).length,
-        pins: pins.length,
+        cities: cities.length || compactCounts.cities,
+        countries: countries.length || compactCounts.countries,
+        been: cities.length ? cities.filter(c => c.been).length : compactCounts.been,
+        go: cities.length ? cities.filter(c => c.go).length : compactCounts.go,
+        saved: cities.length ? cities.filter(c => !!c.myGooglePlaces).length : compactCounts.saved,
+        pins: pins.length || compactCounts.pins,
         lists: listsMeta.size,
       }
     : { ...ZERO_COUNTS, lists: listsMeta.size };

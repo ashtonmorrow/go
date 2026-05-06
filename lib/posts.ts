@@ -168,7 +168,7 @@ async function readAllPostsUncached(): Promise<Post[]> {
 }
 
 /** Cached read of every post. 24h revalidate, busts on `posts` tag. */
-export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts-v4"], {
+export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts-v5"], {
   revalidate: 60 * 60 * 24,
   tags: ["posts"],
 });

@@ -12,7 +12,8 @@
     "attribution:backfill": "tsx --env-file=.env.local scripts/backfill-image-attribution.ts",
     "facts:backfill": "tsx --env-file=.env.local scripts/backfill-wikidata-city-facts.ts",
     "editorial:cleanup": "tsx --env-file=.env.local scripts/editorial-cleanup-cities.ts",
-    "flags:backfill": "tsx --env-file=.env.local scripts/backfill-city-flags-from-wikidata.ts"
+    "flags:backfill": "tsx --env-file=.env.local scripts/backfill-city-flags-from-wikidata.ts",
+    "validate:content": "tsx --env-file=.env.local scripts/validate-content-links.ts"
   },
   "dependencies": {
     "@notionhq/client": "^2.3.0",

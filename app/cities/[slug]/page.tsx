@@ -12,10 +12,10 @@ import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import { readPlaceContent, paragraphs } from '@/lib/content';
-import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
-import Lightbox from '@/components/Lightbox';
+import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -126,7 +126,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
   const [blocks, country, sisters, climate, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
-    content ? Promise.resolve([]) : fetchPageBlocks(city.id),
+    !content && city.notionSyncedAt ? fetchPageBlocks(city.id) : Promise.resolve([]),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
@@ -154,6 +154,13 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   // future-proofs against the helper expanding its predicate).
   const cityListPins: SavedListPin[] = cityPinsRaw
     .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
+    // Anchor to city AND country. City names collide across countries
+    // (Manchester UK + NH, Salisbury UK + MD, etc.), so list-name
+    // matching alone leaks foreign pins onto the page. Pin must be in
+    // this exact city — and if the city's country is known, also in
+    // that country — to render here.
+    .filter(p => (p.cityNames ?? []).includes(city.name))
+    .filter(p => !country?.name || (p.statesNames ?? []).includes(country.name))
     .sort((a, b) => {
       if (a.visited !== b.visited) return a.visited ? -1 : 1;
       return a.name.localeCompare(b.name);
@@ -189,25 +196,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     })[0]?.name ?? null;
   const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
   const hasBody = blocks.length > 0;
-
-  // Final cover URL: city's own photo wins, otherwise we fall back to the
-  // most recent pin photo from anywhere in the city. Empty when neither
-  // exists; the figure block below renders nothing in that case.
-  // The provenance flags below decide which attribution caption to render:
-  //   - personal photo: no caption (it's mine)
-  //   - heroImage from Commons: real ImageCredit with author + license
-  //   - heroImage from elsewhere: no caption (and we should audit those)
-  //   - pin-photo fallback: borrowed-from-pin caption
-  const coverUrl =
-    city.personalPhoto ||
-    city.heroImage ||
-    fallbackCover?.url ||
-    null;
-  const coverIsHeroImage = !city.personalPhoto && !!city.heroImage;
-  const coverIsFallback = !city.personalPhoto && !city.heroImage && !!fallbackCover;
-  const coverDims = coverIsFallback
-    ? { width: fallbackCover!.width ?? 1200, height: fallbackCover!.height ?? 800 }
-    : { width: 1200, height: 800 };
 
   // Curated cities = ones I've been to or want to go to. The remaining
   // ~1,000 placeholder cities have AI-generated prose that isn't worth
@@ -306,48 +294,88 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
         </div>
       </header>
 
-      {coverUrl && (
-        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
-          <Lightbox
-            src={coverUrl}
-            alt={city.name}
-            width={coverDims.width}
-            height={coverDims.height}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroUrl(coverUrl, 1200) ?? coverUrl}
-              alt={city.name}
-              // LCP element on this route: tell the browser not to defer it.
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              {...({ fetchpriority: 'high' } as any)}
-              decoding="async"
-              // EXIF dimensions (when the cover came from the personal-photos
-              // fallback) reserve exact layout space; otherwise a 3:2
-              // placeholder. Either way the figure below has zero CLS.
-              width={coverDims.width}
-              height={coverDims.height}
-              // object-contain so portrait sources render fully (no
-              // top/bottom crop). Letterbox fill comes from the parent
-              // figure's bg-cream-soft.
-              className="w-full max-h-[70vh] object-contain"
+      {/* Hero collage. Combines (in priority order):
+            1. pinPhotos — Mike's personal photos from pins in this city
+            2. city.personalPhoto — single curated cover for the city
+            3. city.heroImage — Commons cover (curated landscape)
+            4. fallbackCover — picked when no pinPhotos + no curated covers exist
+          The collage component picks the feature tile and adapts the
+          layout to the image count (1, 2, 3, 4, 5, 6+). When only one
+          source is available it letterboxes object-contain like the
+          old single-cover treatment. */}
+      {(() => {
+        const seen = new Set<string>();
+        const collageImages: CollageImage[] = [];
+        for (const p of pinPhotos) {
+          if (seen.has(p.url)) continue;
+          seen.add(p.url);
+          collageImages.push({
+            url: p.url,
+            alt: p.pinName,
+            width: p.width,
+            height: p.height,
+            isPersonal: true,
+            caption: p.caption ?? `From ${p.pinName}`,
+          });
+        }
+        if (city.personalPhoto && !seen.has(city.personalPhoto)) {
+          seen.add(city.personalPhoto);
+          collageImages.push({
+            url: city.personalPhoto,
+            alt: city.name,
+            width: null,
+            height: null,
+            isPersonal: true,
+          });
+        }
+        if (city.heroImage && !seen.has(city.heroImage)) {
+          seen.add(city.heroImage);
+          collageImages.push({
+            url: city.heroImage,
+            alt: city.name,
+            width: null,
+            height: null,
+            isPersonal: false,
+            caption: city.heroImageAttribution
+              ? `Wikipedia / ${city.heroImageAttribution.author ?? 'Commons'}`
+              : null,
+          });
+        }
+        if (collageImages.length === 0 && fallbackCover && !seen.has(fallbackCover.url)) {
+          collageImages.push({
+            url: fallbackCover.url,
+            alt: city.name,
+            width: fallbackCover.width,
+            height: fallbackCover.height,
+            isPersonal: false,
+            caption: `From a pin in ${city.name}`,
+          });
+        }
+        if (collageImages.length === 0) return null;
+        return (
+          <>
+            <HeroCollage
+              className="mt-6"
+              images={collageImages}
+              title={city.name}
+              caption={
+                pinPhotos.length > 0
+                  ? `${pinPhotos.length} photo${pinPhotos.length === 1 ? '' : 's'} from pins in ${city.name}`
+                  : undefined
+              }
             />
-          </Lightbox>
-          {/* Attribution priority:
-              - heroImage from Commons → author/license/source caption
-              - pin-photo fallback → "From a pin in <city>" orientation note
-              - personal photo → nothing (it's mine and the page header
-                already names me)  */}
-          {coverIsHeroImage && city.heroImageAttribution && (
-            <ImageCredit attribution={city.heroImageAttribution} className="px-1 mt-1" />
-          )}
-          {coverIsFallback && (
-            <figcaption className="text-label text-muted px-1 mt-1">
-              From a pin in {city.name}
-            </figcaption>
-          )}
-        </figure>
-      )}
+            {/* Commons attribution still surfaces below the collage when
+                the heroImage made it in — license attribution belongs near
+                the image, not behind a click. */}
+            {city.heroImage && city.heroImageAttribution && (
+              <ImageCredit
+                attribution={city.heroImageAttribution}
+                className="px-1 mt-1"
+              />
+            )}
+          </>
+        );
+      })()}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         {/* Main column */}

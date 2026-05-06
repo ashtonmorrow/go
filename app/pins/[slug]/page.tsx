@@ -22,6 +22,7 @@ import { thumbUrl, heroUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
+import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 
 // Force dynamic rendering. The Sidebar (root layout) reads headers() for
 // pathname-aware fetching, which makes the whole tree dynamic at runtime.
@@ -239,6 +240,7 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         data={pinJsonLd({
           slug: pin.slug ?? pin.id,
           name: pin.name,
+          kind: pin.kind,
           description: pin.description,
           image: pin.images[0]?.url ?? null,
           lat: pin.lat,
@@ -257,6 +259,15 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
           wheelchairAccessible: pin.wheelchairAccessible,
           kidFriendly: pin.kidFriendly,
           durationMinutes: pin.durationMinutes,
+          phone: pin.phone,
+          cuisine: pin.cuisine,
+          priceTier: pin.priceTier,
+          priceLevel: pin.priceLevel,
+          pricePerPersonUsd: pin.pricePerPersonUsd,
+          roomPricePerNight: pin.roomPricePerNight,
+          roomPriceCurrency: pin.roomPriceCurrency,
+          googleRating: pin.googleRating,
+          googleRatingCount: pin.googleRatingCount,
         })}
       />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
@@ -375,40 +386,46 @@ export default async function PinPage({ params }: { params: Promise<{ slug: stri
         </div>
       </header>
 
-      {personalPhotos[0] && (
-        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
-          <Lightbox
-            src={personalPhotos[0].url}
-            alt={pin.name}
-            width={personalPhotos[0].width}
-            height={personalPhotos[0].height}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroUrl(personalPhotos[0].url, 1200) ?? personalPhotos[0].url}
-              alt={pin.name}
-              // The hero is the LCP element on this route; tell the browser
-              // not to defer it. Without this, image lazy-load heuristics +
-              // network throttling could push LCP past 30s on slow connections.
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              {...({ fetchpriority: 'high' } as any)}
-              decoding="async"
-              // Width/height from EXIF (when available) prevents the CLS shift
-              // we were seeing when the hero arrived after FCP. Falls back to
-              // a 3:2 placeholder so the layout still reserves space.
-              width={personalPhotos[0].width ?? 1200}
-              height={personalPhotos[0].height ?? 800}
-              // object-contain (vs the prior object-cover) so portrait
-              // photos render fully instead of getting their top + bottom
-              // cropped to fit a wide container. max-h scales with the
-              // viewport so a tall photo can use most of the screen
-              // without scrolling, while a typical landscape stays under
-              // the fold.
-              className="w-full max-h-[70vh] object-contain"
-            />
-          </Lightbox>
-        </figure>
-      )}
+      {/* Hero collage — combines personal photos + curated gallery images.
+          When only one image exists the collage falls through to the same
+          single-tile letterbox the page used to render. Mike's personal
+          photos lead the priority order so they land in the feature tile. */}
+      {(personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
+        const seen = new Set<string>();
+        const collageImages: CollageImage[] = [];
+        for (const p of personalPhotos) {
+          if (seen.has(p.url)) continue;
+          seen.add(p.url);
+          collageImages.push({
+            url: p.url,
+            alt: pin.name,
+            width: p.width,
+            height: p.height,
+            isPersonal: true,
+            caption: p.caption ?? null,
+          });
+        }
+        for (const img of galleryImages) {
+          if (seen.has(img.url)) continue;
+          seen.add(img.url);
+          collageImages.push({
+            url: img.url,
+            alt: pin.name,
+            width: null,
+            height: null,
+            isPersonal: false,
+            caption: null,
+          });
+        }
+        if (collageImages.length === 0) return null;
+        return (
+          <HeroCollage
+            className="mt-6"
+            images={collageImages}
+            title={pin.name}
+          />
+        );
+      })()}
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">

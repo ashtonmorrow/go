@@ -69,6 +69,13 @@ function airlineSlug(name: string) {
     .replace(/^-|-$/g, "");
 }
 
+function termSlug(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 const TERMINOLOGY: { term: string; definition: string }[] = [
   {
     term: "Nonstop flight",
@@ -154,6 +161,16 @@ function StructuredData() {
     mainEntityOfPage: { "@type": "WebPage", "@id": PAGE_URL },
     url: PAGE_URL,
     inLanguage: "en",
+    about: [
+      { "@type": "Thing", name: "airline stopover programs" },
+      { "@type": "Thing", name: "long-haul flight planning" },
+      { "@type": "Thing", name: "transit hotels" },
+    ],
+    mentions: PROGRAMS.map((p) => ({
+      "@type": "Airline",
+      name: p.airline,
+      ...(p.programUrl ? { url: p.programUrl } : {}),
+    })),
   };
 
   const breadcrumb = {
@@ -194,6 +211,22 @@ function StructuredData() {
     })),
   };
 
+  const definedTerms = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": `${PAGE_URL}#stopover-terms`,
+    name: "Stopover booking terminology",
+    description:
+      "Definitions used in Mike Lee's airline stopover guide to distinguish nonstop flights, direct flights, layovers, and stopovers.",
+    hasDefinedTerm: TERMINOLOGY.map((row) => ({
+      "@type": "DefinedTerm",
+      "@id": `${PAGE_URL}#term-${termSlug(row.term)}`,
+      name: row.term,
+      description: row.definition,
+      inDefinedTermSet: `${PAGE_URL}#stopover-terms`,
+    })),
+  };
+
   return (
     <>
       <script
@@ -207,6 +240,10 @@ function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTerms) }}
       />
     </>
   );
@@ -446,7 +483,7 @@ export default function AirlineStopoverProgramsPage() {
             </thead>
             <tbody className="divide-y divide-sand">
               {TERMINOLOGY.map((row) => (
-                <tr key={row.term}>
+                <tr key={row.term} id={`term-${termSlug(row.term)}`}>
                   <td className="py-3 pr-6 align-top font-medium text-ink-deep">
                     {row.term}
                   </td>

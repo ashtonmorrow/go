@@ -32,6 +32,40 @@ links:
   lists:
     - ubud-(bali)
     - seminyak-(bali)
+structured_item_lists:
+  - name: Bali bases compared in this guide
+    description: The main Bali bases discussed in the planning table.
+    items:
+      - name: Ubud
+        url: /cities/ubud
+        type: Place
+      - name: Canggu
+        url: /cities/canggu
+        type: Place
+      - name: Seminyak
+        url: /cities/seminyak
+        type: Place
+      - name: Sanur
+        url: /cities/sanur
+        type: Place
+      - name: Nusa Dua
+        url: /cities/nusa-dua
+        type: Place
+      - name: Uluwatu
+        url: /cities/uluwatu
+        type: Place
+      - name: Jimbaran
+        url: /cities/jimbaran
+        type: Place
+      - name: Amed
+        url: /cities/amed
+        type: Place
+      - name: Sidemen
+        url: /cities/sidemen
+        type: Place
+      - name: Lovina
+        url: /cities/lovina
+        type: Place
 tags:
   - bali
   - indonesia

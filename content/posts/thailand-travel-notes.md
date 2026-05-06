@@ -34,6 +34,25 @@ links:
     - chiang-mai
     - phuket
     - koh-samui
+structured_item_lists:
+  - name: First Thailand trip route
+    description: The route order recommended in this Thailand planning note.
+    items:
+      - name: Bangkok
+        url: /cities/bangkok
+        type: Place
+      - name: Khao Yai
+        url: /cities/khao-yai
+        type: Place
+      - name: Chiang Mai
+        url: /cities/chiang-mai
+        type: Place
+      - name: Phuket
+        url: /lists/phuket
+        type: Place
+      - name: Koh Samui
+        url: /cities/ko-samui
+        type: Place
 tags:
   - thailand
   - travel-guide

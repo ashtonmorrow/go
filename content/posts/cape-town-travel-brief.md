@@ -34,6 +34,19 @@ links:
     - aquila-private-game-reserve
   lists:
     - cape-town
+structured_item_lists:
+  - name: Cape Town hotel notes in this guide
+    description: Hotels and stay bases discussed in the Cape Town planning notes.
+    items:
+      - name: Hyatt Regency Cape Town
+        url: /pins/hyatt-regency-cape-town
+        type: Hotel
+      - name: The Cellars-Hohenort Hotel
+        url: /pins/the-cellars-hohenort-hotel
+        type: Hotel
+      - name: Protea Hotel Cape Town Waterfront Breakwater Lodge
+        url: /pins/protea-hotel-cape-town-waterfront-breakwater-lodge
+        type: Hotel
 tags:
   - cape-town
   - south-africa

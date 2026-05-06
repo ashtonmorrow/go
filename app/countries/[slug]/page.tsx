@@ -9,9 +9,9 @@ import AdvisoryBadge from '@/components/AdvisoryBadge';
 import { visaPortal } from '@/lib/visaPortals';
 import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
 import { readPlaceContent, paragraphs } from '@/lib/content';
-import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
-import Lightbox from '@/components/Lightbox';
+import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
@@ -84,7 +84,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
   const [cities, fact, blocks, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     fetchCitiesByCountryId(country.id),
     fetchCountryFactByIso2(country.iso2),
-    content ? Promise.resolve([]) : fetchPageBlocks(country.id),
+    !content && country.notionSyncedAt ? fetchPageBlocks(country.id) : Promise.resolve([]),
     fetchCoverForCountry(country.name),
     fetchAllSavedListsMeta(),
     // Photos from any pin in this country — joined server-side via
@@ -110,6 +110,12 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
     : await fetchPinsForLists(matchedLists);
   const countryListPins: SavedListPin[] = countryPinsRaw
     .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
+    // Anchor to country. listsMatchingPlace() walks every city in the
+    // country, so collisions like Manchester (UK + US) or Salisbury (UK + US)
+    // pull in lists meant for the foreign place. Without this filter,
+    // pins from Montevideo, Uruguay would surface on the US country page
+    // because the matching turned up a "Manchester" or "Salisbury" list.
+    .filter(p => (p.statesNames ?? []).includes(country.name))
     .sort((a, b) => {
       if (a.visited !== b.visited) return a.visited ? -1 : 1;
       return a.name.localeCompare(b.name);
@@ -168,6 +174,30 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
     { name: 'Cities', item: `${SITE_URL}/cities` },
     { name: country.name },
   ];
+  const countryHeroImages: CollageImage[] =
+    pinPhotos.length > 0
+      ? pinPhotos.map(p => ({
+          url: p.url,
+          alt: p.pinName,
+          width: p.width,
+          height: p.height,
+          isPersonal: true,
+          caption: p.caption ?? `From ${p.pinName}`,
+        }))
+      : fallbackCover
+      ? [{
+          url: fallbackCover.url,
+          alt: country.name,
+          width: fallbackCover.width,
+          height: fallbackCover.height,
+          isPersonal: false,
+          caption: `From a pin in ${country.name}`,
+        }]
+      : [];
+  const countryHeroCaption =
+    pinPhotos.length > 0
+      ? `${pinPhotos.length} photo${pinPhotos.length === 1 ? '' : 's'} from pins in ${country.name}`
+      : `From a pin in ${country.name}`;
 
   return (
     <article className="max-w-page mx-auto px-5 py-8">
@@ -215,35 +245,17 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
         </div>
       </header>
 
-      {/* Cover hero from a pin in this country — only renders when at least
-          one pin in the country has a personal photo attached. Country
-          pages don't carry their own photo column, so the fallback chain
-          is the entire source for this hero. */}
-      {fallbackCover && (
-        <figure className="mt-6 rounded overflow-hidden bg-cream-soft">
-          <Lightbox
-            src={fallbackCover.url}
-            alt={country.name}
-            width={fallbackCover.width}
-            height={fallbackCover.height}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={heroUrl(fallbackCover.url, 1200) ?? fallbackCover.url}
-              alt={country.name}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              {...({ fetchpriority: 'high' } as any)}
-              decoding="async"
-              width={fallbackCover.width ?? 1200}
-              height={fallbackCover.height ?? 800}
-              // object-contain so portrait pin photos render fully.
-              className="w-full max-h-[70vh] object-contain"
-            />
-          </Lightbox>
-          <figcaption className="text-label text-muted px-1 mt-1">
-            From a pin in {country.name}
-          </figcaption>
-        </figure>
+      {/* Hero collage. Personal photos from pins in this country lead;
+          when none exist we fall back to a single curated cover. The
+          collage adapts to image count (1, 2, 3, 4, 5, 6+) and picks the
+          feature tile by orientation/personal-priority — see HeroCollage. */}
+      {countryHeroImages.length > 0 && (
+        <HeroCollage
+          className="mt-6"
+          images={countryHeroImages}
+          title={country.name}
+          caption={countryHeroCaption}
+        />
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">

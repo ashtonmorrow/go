@@ -65,6 +65,7 @@ export type ImageAttribution = {
 
 export type City = {
   id: string;
+  notionSyncedAt: string | null;
   name: string;
   slug: string;
   country: string | null;
@@ -113,6 +114,7 @@ export type City = {
 
 export type Country = {
   id: string;
+  notionSyncedAt: string | null;
   name: string;
   slug: string;
   iso2: string | null;
@@ -163,6 +165,7 @@ function asNum(v: unknown): number | null {
 function supaCityRow(r: any): City {
   return {
     id:                   r.id,
+    notionSyncedAt:       r.notion_synced_at ?? null,
     name:                 r.name ?? '',
     slug:                 r.slug ?? '',
     country:              r.country ?? null,
@@ -223,6 +226,7 @@ function supaCountryRow(r: any): Country {
     : null;
   return {
     id:                r.id,
+    notionSyncedAt:    r.notion_synced_at ?? null,
     name:              r.name ?? '',
     slug:              r.slug ?? '',
     iso2,
@@ -486,17 +490,27 @@ const _fetchPageBlocks = unstable_cache(
     if (!process.env.NOTION_TOKEN) return [];
     const blocks: any[] = [];
     let cursor: string | undefined;
-    do {
-      const res: any = await withRetry(() =>
-        notion.blocks.children.list({
-          block_id: pageId,
-          start_cursor: cursor,
-          page_size: 100,
-        })
-      );
-      blocks.push(...res.results);
-      cursor = res.has_more ? res.next_cursor : undefined;
-    } while (cursor);
+    try {
+      do {
+        const res: any = await withRetry(() =>
+          notion.blocks.children.list({
+            block_id: pageId,
+            start_cursor: cursor,
+            page_size: 100,
+          })
+        );
+        blocks.push(...res.results);
+        cursor = res.has_more ? res.next_cursor : undefined;
+      } while (cursor);
+    } catch (err) {
+      // Supabase-native records do not have a corresponding Notion block.
+      // Treat a missing legacy block as "no notes" rather than taking down
+      // the whole detail page.
+      if (err instanceof APIResponseError && (err.code === 'object_not_found' || err.status === 404)) {
+        return [];
+      }
+      throw err;
+    }
     return blocks;
   },
   ['notion-page-blocks'],
