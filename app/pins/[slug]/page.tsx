@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { fetchPinBySlug, fetchPinsInBbox, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
-import { fetchCountryByName } from '@/lib/notion';
+import { fetchCountryByName, fetchCityByName } from '@/lib/notion';
 import { fetchWikipediaSummary, titleFromWikipediaUrl } from '@/lib/wikipedia';
 import { flagCircle } from '@/lib/flags';
 import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
@@ -18,7 +18,7 @@ import {
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
-import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { thumbUrl } from '@/lib/imageUrl';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
@@ -130,18 +130,17 @@ export default async function PinPage({
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
 
+  // states_names[0] is, in practice, always the country in our data — Google
+  // Places admin areas land at country level for international pins. Variable
+  // stays named `country` for clarity at call sites.
   const country = pin.statesNames[0] ?? null;
-  // Surgical country lookup by name — used to load all 226 countries here
-  // and .find() through them. The case-insensitive name match is handled
-  // server-side via ilike now.
-  // For "More near here" we only want a small local slice — bbox query is
-  // a single Supabase round-trip with a server-side filter, vs the old
-  // approach which loaded all 5k pins through unstable_cache just to find
-  // ~4 within 5km. Box widens to ~0.07° (~7km at the equator) so the
-  // haversine ranking has slack at the corners.
+  const cityName = pin.cityNames[0] ?? null;
+  // Bbox query is a single Supabase round-trip with a server-side filter
+  // (~7km box at equator, haversine ranking has slack at corners).
   const BBOX_DELTA = 0.07;
-  const [countryRecord, wp, personalPhotos, content, bboxCandidates] = await Promise.all([
+  const [countryRecord, cityRecord, wp, personalPhotos, content, bboxCandidates] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
+    cityName ? fetchCityByName(cityName) : Promise.resolve(null),
     fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
     readPlaceContent('pins', pin.slug ?? ''),
@@ -153,6 +152,7 @@ export default async function PinPage({
         )
       : Promise.resolve([] as Pin[]),
   ]);
+  const citySlug = cityRecord?.slug ?? null;
 
   // Rank the bbox candidates by haversine distance and take the 4 nearest
   // inside the 5km soft radius. Empty array → the block hides entirely.
@@ -302,18 +302,10 @@ export default async function PinPage({
         </nav>
       </div>
 
+      {/* No small header thumbnail — the HeroGallery / HeroCollage block
+          below renders the same image at full size. The thumbnail used to
+          double up on mobile and add no information. */}
       <header className="border-b border-sand pb-5 flex gap-4 items-start">
-        {galleryImages[0] && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={thumbUrl(galleryImages[0].url, { size: 96 }) ?? galleryImages[0].url}
-            alt=""
-            aria-hidden
-            width={96}
-            height={96}
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover bg-cream-soft border border-sand flex-shrink-0"
-          />
-        )}
         <div className="flex-1 min-w-0">
           {pin.lat != null && pin.lng != null && (
             <p className="text-label uppercase tracking-[0.18em] font-mono text-muted mb-1">
@@ -326,7 +318,6 @@ export default async function PinPage({
               parts={[
                 wp?.description ?? null,
                 placeText || null,
-                formatYear(pin.inceptionYear) ? `since ${formatYear(pin.inceptionYear)}` : null,
               ]}
             />
           </p>
@@ -615,7 +606,7 @@ export default async function PinPage({
 
           {pin.tags.length > 0 && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">Type</h2>
+              <h2 className="text-h2 text-ink-deep mb-4">Tags</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.tags.map(t => (
                   <span key={t} className="pill bg-cream-soft text-slate text-label">{t}</span>
@@ -634,7 +625,9 @@ export default async function PinPage({
               covers, etc. The Wikipedia article is still linked from Sources. */}
 
           <div className="card p-5 space-y-3 text-small">
-            <h3 className="text-muted uppercase tracking-wider text-label">Plan a visit</h3>
+            <h3 className="text-muted uppercase tracking-wider text-label">
+              {isHotel ? 'Plan a stay' : isRestaurant ? 'Plan a meal' : 'Plan a visit'}
+            </h3>
 
             {pin.googleMapsUrl ? (
               <a
@@ -656,7 +649,7 @@ export default async function PinPage({
                 rel="noopener noreferrer"
                 className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
               >
-                Book tickets →
+                {isHotel ? 'Book a room →' : isRestaurant ? 'Reserve a table →' : 'Book tickets →'}
               </a>
             )}
 
@@ -702,7 +695,15 @@ export default async function PinPage({
                   </span>
                 </Fact>
               )}
-              {pin.cityNames[0] && <Fact label="City">{pin.cityNames[0]}</Fact>}
+              {pin.cityNames[0] && (
+                <Fact label="City">
+                  {citySlug ? (
+                    <Link href={`/cities/${citySlug}`} className="hover:text-teal">{pin.cityNames[0]}</Link>
+                  ) : (
+                    pin.cityNames[0]
+                  )}
+                </Fact>
+              )}
               {/* Address is in the Getting There card below — not duplicated here. */}
               {pin.category && <Fact label="Category">{pin.category}</Fact>}
               {/* Price level — Google's 0–4 scale. Rendered in the Facts

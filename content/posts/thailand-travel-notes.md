@@ -139,7 +139,7 @@ For February and March, both Phuket and Samui can work well. Phuket and the Anda
 
 I would not build a trip around tuk-tuks. Take one once if you want to, agree on the price first, and then use better transport.
 
-I would be careful with elephant sanctuaries. Some are serious rescue operations. Some have learned the vocabulary of ethical tourism without changing enough of the underlying practice. Look for no riding, no forced bathing shows, limited contact, and clear rescue histories.
+I'm not big on elephant sanctuaries. Some are serious rescue operations. Some have learned the vocabulary of ethical tourism without changing enough of the underlying practice. If you must... any "sanctuary" that offers riding, bathing shows, or lots of contact is not really a santuary.
 
 I would not schedule Chiang Mai in March without checking air quality. Cheap rooms are not useful if you spend the week inside.
 

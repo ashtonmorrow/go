@@ -1,6 +1,6 @@
 ---
 title: Why Alicante is worth adding to a Spain itinerary
-nav_title: Why Alicante
+nav_title: Why Alicante?
 subtitle: A practical coastal stop between Madrid, Valencia, and the Mediterranean.
 hero_image: /images/posts/why-alicante.jpg
 hero_alt: The Castle of Santa Bárbara above Postiguet Beach in Alicante at midday.
@@ -26,6 +26,7 @@ links:
     - palmeral-of-elche
   lists:
     - alicante
+    - alicante-metro-stops
 tags:
   - spain
   - alicante
@@ -57,6 +58,8 @@ You can also fly direct. Alicante-Elche Airport (ALC) is well-served by European
 ## Choosing the Right Beach
 
 Alicante's beaches break into a few categories, and the best choice depends on the day you want.
+
+The tram is what makes this section work. Alicante is compact, but TRAM d'Alacant lets you use the city as a base for San Juan, [El Campello](/pins/el-campello), smaller coves, and even [Benidorm](/pins/benidorm) without treating every beach day as a car trip. I keep a separate [Alicante tram stops list](/lists/alicante-metro-stops) for the station map.
 
 **For a beach inside the city.** [Postiguet Beach](/pins/platja-del-postiguet) is the urban beach, right at the foot of the old town and the [Castle of Santa Bárbara](/pins/santa-barbara-castle), with showers, kiosks, and lifeguards. It is convenient and decent for a short visit, but it gets crowded.
 

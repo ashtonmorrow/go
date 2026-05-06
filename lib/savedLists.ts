@@ -111,8 +111,8 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       };
     });
   },
-  // v5: refresh list metadata after adding editorial list CTAs from posts.
-  ['saved-lists-meta-v5'],
+  // v6: refresh list metadata after Alicante tram stop ordering changed.
+  ['saved-lists-meta-v6'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

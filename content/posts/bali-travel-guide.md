@@ -1,6 +1,6 @@
 ---
 title: How to plan Bali without losing the trip to traffic
-nav_title: Bali Trip Plan
+nav_title: Bali Planning
 subtitle: Choose the right base, move less, and let the island slow down.
 hero_image: /images/posts/bali-travel-guide.jpg
 hero_alt: Rice terraces in Bali bordered by palms and dense tropical trees.

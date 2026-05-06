@@ -24,7 +24,19 @@ export type KusttramRoutePin = {
   lng?: number | null;
 };
 
-export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] }) {
+type KusttramRouteMapProps = {
+  pins: KusttramRoutePin[];
+  label?: string;
+  lineColor?: string;
+  routeSegments?: readonly (readonly string[])[];
+};
+
+export default function KusttramRouteMap({
+  pins,
+  label = 'KT coastal tram',
+  lineColor = '#0d8c8c',
+  routeSegments,
+}: KusttramRouteMapProps) {
   const router = useRouter();
   const mapRef = useRef<MapRef | null>(null);
   const [hovered, setHovered] = useState<KusttramRoutePin | null>(null);
@@ -79,27 +91,79 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
     return map;
   }, [routePins]);
 
-  const lineGeojson = useMemo(
-    () => ({
+  const byRouteKey = useMemo(() => {
+    const map = new Map<string, KusttramRoutePin>();
+    for (const pin of routePins) {
+      map.set(pin.id, pin);
+      if (pin.slug) map.set(pin.slug, pin);
+      map.set(pin.name.toLowerCase(), pin);
+    }
+    return map;
+  }, [routePins]);
+
+  const lineGeojson = useMemo(() => {
+    const features =
+      routeSegments && routeSegments.length > 0
+        ? routeSegments
+            .map((segment, segmentIndex) => {
+              const coordinates = segment
+                .map(key => byRouteKey.get(key) ?? byRouteKey.get(key.toLowerCase()))
+                .filter((pin): pin is KusttramRoutePin => !!pin)
+                .map(pin => [pin.lng as number, pin.lat as number]);
+
+              if (coordinates.length < 2) return null;
+              return {
+                type: 'Feature' as const,
+                geometry: {
+                  type: 'LineString' as const,
+                  coordinates,
+                },
+                properties: { segmentIndex },
+              };
+            })
+            .filter((feature): feature is NonNullable<typeof feature> => feature !== null)
+        : [
+            {
+              type: 'Feature' as const,
+              geometry: {
+                type: 'LineString' as const,
+                coordinates: routePins.map(p => [p.lng as number, p.lat as number]),
+              },
+              properties: { segmentIndex: 0 },
+            },
+          ];
+
+    return {
       type: 'FeatureCollection' as const,
-      features: [
-        {
-          type: 'Feature' as const,
-          geometry: {
-            type: 'LineString' as const,
-            coordinates: routePins.map(p => [p.lng as number, p.lat as number]),
-          },
-          properties: {},
-        },
-      ],
-    }),
-    [routePins],
-  );
+      features,
+    };
+  }, [byRouteKey, routePins, routeSegments]);
+
+  const terminalIds = useMemo(() => {
+    const ids = new Set<string>();
+    if (routeSegments && routeSegments.length > 0) {
+      for (const segment of routeSegments) {
+        const segmentPins = segment
+          .map(key => byRouteKey.get(key) ?? byRouteKey.get(key.toLowerCase()))
+          .filter((pin): pin is KusttramRoutePin => !!pin);
+        const first = segmentPins[0];
+        const last = segmentPins[segmentPins.length - 1];
+        if (first) ids.add(first.id);
+        if (last) ids.add(last.id);
+      }
+    } else {
+      const first = routePins[0];
+      const last = routePins[routePins.length - 1];
+      if (first) ids.add(first.id);
+      if (last) ids.add(last.id);
+    }
+    return ids;
+  }, [byRouteKey, routePins, routeSegments]);
 
   const stopGeojson = useMemo(
     () => ({
       type: 'FeatureCollection' as const,
-      features: routePins.map((pin, index) => ({
+      features: routePins.map(pin => ({
         type: 'Feature' as const,
         geometry: {
           type: 'Point' as const,
@@ -109,11 +173,11 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
           id: pin.id,
           name: pin.name,
           slug: pin.slug ?? pin.id,
-          isTerminal: index === 0 || index === routePins.length - 1 ? 1 : 0,
+          isTerminal: terminalIds.has(pin.id) ? 1 : 0,
         },
       })),
     }),
-    [routePins],
+    [routePins, terminalIds],
   );
 
   const onMove = useCallback(
@@ -136,7 +200,7 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
     [router],
   );
 
-  if (routePins.length < 2) return null;
+  if (routePins.length < 2 || lineGeojson.features.length === 0) return null;
 
   return (
     <div className="mt-5 overflow-hidden rounded-lg border border-sand bg-cream-soft">
@@ -169,7 +233,7 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
               id="kusttram-line"
               type="line"
               paint={{
-                'line-color': '#0d8c8c',
+                'line-color': lineColor,
                 'line-width': 3,
                 'line-opacity': 0.95,
               }}
@@ -191,7 +255,7 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
                   'case',
                   ['==', ['get', 'isTerminal'], 1],
                   '#1c1b19',
-                  '#0d8c8c',
+                  lineColor,
                 ],
                 'circle-stroke-color': '#fbfaf6',
                 'circle-stroke-width': 1.5,
@@ -223,7 +287,7 @@ export default function KusttramRouteMap({ pins }: { pins: KusttramRoutePin[] })
         </MapView>
 
         <div className="pointer-events-none absolute left-3 top-3 rounded-full border border-sand bg-white/95 px-3 py-1 text-label uppercase tracking-wider text-ink-deep shadow-sm">
-          KT coastal tram
+          {label}
         </div>
       </div>
     </div>

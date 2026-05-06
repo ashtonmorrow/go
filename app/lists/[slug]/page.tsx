@@ -40,9 +40,12 @@ import KusttramRouteMap from '@/components/KusttramRouteMap';
 type Props = { params: Promise<{ slug: string }> };
 
 const KUSTTRAM_LIST_SLUG = 'kusttram-stations';
+const ALICANTE_TRAM_LIST_SLUG = 'alicante-metro-stops';
 const KUSTTRAM_OFFICIAL_STOP_COUNT = 67;
 const KUSTTRAM_DESCRIPTION =
   "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section.";
+const ALICANTE_TRAM_DESCRIPTION =
+  "A personal station-pin index for using Alicante as a Costa Blanca tram base, from the city center toward El Campello, Benidorm, and the northern beaches.";
 
 const KUSTTRAM_GUIDE_CARDS = [
   {
@@ -85,8 +88,98 @@ const KUSTTRAM_FAQS = [
   },
 ] as const;
 
+const ALICANTE_TRAM_ROUTE_SEGMENTS = [
+  [
+    'luceros',
+    'mercat',
+    'marq-castillo',
+    'sangueta',
+    'la-isleta',
+    'albufereta',
+    'lucentum',
+    'miriam-blasco',
+    'sergio-cardell',
+    'tridente',
+    'el-campello',
+    'poble-espanyol',
+    'amerador',
+    'coveta-fuma',
+    'cala-piteres',
+    'venta-lanuza',
+    'paradis',
+    'costera-pastor',
+    'creueta',
+    'hospital-vila',
+    'c-c-la-marina-finestrat',
+    'terra-mitica',
+    'benidorm',
+  ],
+  [
+    'luceros',
+    'mercat',
+    'marq-castillo',
+    'la-goteta-plaza-mar-2',
+    'bulevar-del-pla',
+    'garbinet',
+    'hospital',
+    'maestro-alonso',
+    'gaston-castello',
+    'virgen-del-remedio',
+    'ciutat-jardi',
+    'santa-isabel',
+    'universitat',
+    'sant-vicent-del-raspeig',
+  ],
+  ['porta-del-mar', 'la-marina', 'sangueta'],
+] as const;
+
+const ALICANTE_TRAM_GUIDE_CARDS = [
+  {
+    title: 'Best first ride',
+    body:
+      'Ride north from the center toward El Campello. It gives you the practical point of the system without turning the day into a transport project.',
+  },
+  {
+    title: 'Beach logic',
+    body:
+      'Use the tram to treat San Juan, El Campello, Coveta Fuma, and Cala Piteres as choices, not separate car trips.',
+  },
+  {
+    title: 'Longer day',
+    body:
+      'Benidorm is the obvious long target. It is useful if you are curious about the coast, or if you want to transfer farther north.',
+  },
+  {
+    title: 'Skip it if',
+    body:
+      'If you only have one short day in Alicante, stay in the center, walk up to the castle, and use Postiguet Beach instead.',
+  },
+] as const;
+
+const ALICANTE_TRAM_FAQS = [
+  {
+    question: 'Why use the tram in Alicante?',
+    answer:
+      'The tram makes Alicante work as a coastal base. You can stay in the center and still reach northern beaches and towns without renting a car.',
+  },
+  {
+    question: 'What is the easiest beach trip from Alicante by tram?',
+    answer:
+      'El Campello is the easiest first ride. It is far enough from the center to feel different, but simple enough for a half day.',
+  },
+  {
+    question: 'Should I use this page as a timetable?',
+    answer:
+      "No. This page is an atlas index of station pins. Use TRAM d'Alacant or FGV for current times, works, transfers, and ticket rules.",
+  },
+] as const;
+
 function isKusttramList(slug: string): boolean {
   return slug === KUSTTRAM_LIST_SLUG;
+}
+
+function isAlicanteTramList(slug: string): boolean {
+  return slug === ALICANTE_TRAM_LIST_SLUG;
 }
 
 async function findList(slug: string) {
@@ -155,7 +248,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = await findList(slug);
   if (!found) return { title: 'List not found' };
-  const title = found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const title = isAlicanteTramList(slug)
+    ? 'Alicante Tram Stops'
+    : found.name.replace(/\b\w/g, c => c.toUpperCase());
   const url = `${SITE_URL}/lists/${slug}`;
   const meta = found.listsMeta.get(found.name) ?? null;
   // Prefer the metadata description for the meta tag — it's the curator's
@@ -163,6 +258,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     isKusttramList(slug)
       ? KUSTTRAM_DESCRIPTION
+      : isAlicanteTramList(slug)
+      ? ALICANTE_TRAM_DESCRIPTION
       : meta?.description ??
     `Pins on Mike's ${title} list — curated travel saves, mirrored from Google Maps with personal reviews.`;
   return {
@@ -271,6 +368,77 @@ function kusttramFaqJsonLd(url: string) {
   };
 }
 
+function alicanteTramCollectionJsonLd(url: string, pins: SavedListPin[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: 'Alicante Tram Stops',
+    description: ALICANTE_TRAM_DESCRIPTION,
+    isPartOf: { '@id': WEBSITE_ID },
+    about: [
+      { '@type': 'Thing', name: "TRAM d'Alacant" },
+      { '@type': 'Place', name: 'Alicante' },
+      { '@type': 'Place', name: 'Costa Blanca' },
+      { '@type': 'Country', name: 'Spain' },
+    ],
+    mainEntity: {
+      '@type': 'ItemList',
+      name: "TRAM d'Alacant station pins in this atlas",
+      description:
+        "Station pins for using Alicante's tram network as a practical Costa Blanca beach and day-trip tool.",
+      numberOfItems: pins.length,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: pins.map((pin, i) => {
+        const url = pinUrl(pin);
+        return {
+          '@type': 'ListItem',
+          position: i + 1,
+          url,
+          item: {
+            '@type': 'Place',
+            '@id': url,
+            url,
+            name: pin.name,
+            description: `${pin.name} station pin on Mike's Alicante Tram Stops list.`,
+            address: {
+              '@type': 'PostalAddress',
+              ...(pin.city ? { addressLocality: pin.city } : {}),
+              addressCountry: pin.country ?? 'Spain',
+            },
+            ...(pin.lat != null && pin.lng != null
+              ? {
+                  geo: {
+                    '@type': 'GeoCoordinates',
+                    latitude: pin.lat,
+                    longitude: pin.lng,
+                  },
+                }
+              : {}),
+          },
+        };
+      }),
+    },
+  };
+}
+
+function alicanteTramFaqJsonLd(url: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${url}#quick-answers`,
+    mainEntity: ALICANTE_TRAM_FAQS.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 function KusttramListGuide({
   stationCount,
   pins,
@@ -321,14 +489,88 @@ function KusttramListGuide({
   );
 }
 
+function AlicanteTramListGuide({
+  stationCount,
+  pins,
+}: {
+  stationCount: number;
+  pins: SavedListPin[];
+}) {
+  return (
+    <section className="mt-5 rounded-lg border border-sand bg-cream-soft/60 p-5">
+      <div className="max-w-prose">
+        <h2 className="text-h2 text-ink-deep">
+          How I would use the Alicante tram
+        </h2>
+        <p className="mt-3 text-prose leading-relaxed text-ink">
+          The tram is one reason Alicante works better as a base than it looks
+          on the map. You can stay near the old town, Postiguet, or the rail
+          station, then ride north to wider beaches and smaller coastal stops
+          without renting a car.
+        </p>
+        <p className="mt-3 text-prose leading-relaxed text-ink">
+          This atlas currently has {stationCount} station pins from the list.
+          I would treat the map as orientation, not as a timetable. Check{' '}
+          <a
+            href="https://www.tramalacant.es/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-teal hover:underline"
+          >
+            TRAM d&apos;Alacant
+          </a>{' '}
+          before traveling for current service, works, transfers, and ticket
+          rules.
+        </p>
+      </div>
+
+      <KusttramRouteMap
+        pins={pins}
+        label="TRAM d'Alacant"
+        lineColor="#b65f28"
+        routeSegments={ALICANTE_TRAM_ROUTE_SEGMENTS}
+      />
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {ALICANTE_TRAM_GUIDE_CARDS.map(card => (
+          <div key={card.title} className="rounded border border-sand bg-white p-4">
+            <h3 className="text-h3 text-ink-deep">{card.title}</h3>
+            <p className="mt-2 text-small leading-relaxed text-slate">
+              {card.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div id="quick-answers" className="mt-6 max-w-prose">
+        <h2 className="text-h2 text-ink-deep">Quick answers</h2>
+        <dl className="mt-3 space-y-4">
+          {ALICANTE_TRAM_FAQS.map(faq => (
+            <div key={faq.question}>
+              <dt className="font-semibold text-ink-deep">{faq.question}</dt>
+              <dd className="mt-1 text-prose leading-relaxed text-ink">
+                {faq.answer}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 export default async function ListPage({ params }: Props) {
   const { slug } = await params;
   const found = await findList(slug);
   if (!found) notFound();
 
   const meta = found.listsMeta.get(found.name) ?? null;
-  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const titleCase = isAlicanteTramList(slug)
+    ? 'Alicante Tram Stops'
+    : found.name.replace(/\b\w/g, c => c.toUpperCase());
   const kusttramList = isKusttramList(slug);
+  const alicanteTramList = isAlicanteTramList(slug);
+  const routeMapList = kusttramList || alicanteTramList;
 
   // City / country anchor detection — when the list name exactly matches a
   // known city or country name, surface a clear link in the header so the
@@ -430,6 +672,8 @@ export default async function ListPage({ params }: Props) {
   ]);
   const collection = kusttramList
     ? kusttramCollectionJsonLd(url, onList)
+    : alicanteTramList
+    ? alicanteTramCollectionJsonLd(url, onList)
     : collectionJsonLd({
         url,
         name: titleCase,
@@ -451,9 +695,15 @@ export default async function ListPage({ params }: Props) {
         '@type': 'Article',
         '@id': url,
         url,
-        headline: kusttramList ? 'Kusttram station list' : titleCase,
+        headline: kusttramList
+          ? 'Kusttram station list'
+          : alicanteTramList
+          ? 'Alicante tram stop list'
+          : titleCase,
         description: kusttramList
           ? KUSTTRAM_DESCRIPTION
+          : alicanteTramList
+          ? ALICANTE_TRAM_DESCRIPTION
           : meta?.description ?? `Mike's ${titleCase} list.`,
         author: { '@id': AUTHOR_ID },
         publisher: { '@id': AUTHOR_ID },
@@ -468,6 +718,7 @@ export default async function ListPage({ params }: Props) {
       <JsonLd data={collection} />
       {article && <JsonLd data={article} />}
       {kusttramList && <JsonLd data={kusttramFaqJsonLd(url)} />}
+      {alicanteTramList && <JsonLd data={alicanteTramFaqJsonLd(url)} />}
 
       {/* Cover hero — only renders when the precedence chain finds an image,
           so theme lists with no anchor city and no curated cover stay
@@ -541,6 +792,10 @@ export default async function ListPage({ params }: Props) {
           <KusttramListGuide stationCount={onList.length} pins={onList} />
         )}
 
+        {alicanteTramList && (
+          <AlicanteTramListGuide stationCount={onList.length} pins={onList} />
+        )}
+
         {/* Stats row — only emits items that are non-zero so a list with
             no reviews doesn't show "0 reviewed". Tabular nums keep the
             counts aligned across the row when the user re-sorts. */}
@@ -602,7 +857,7 @@ export default async function ListPage({ params }: Props) {
         <div className="card p-8 text-center text-slate">
           No pins on this list yet.
         </div>
-      ) : kusttramList ? (
+      ) : routeMapList ? (
         <SavedListSection
           title={`Pins on ${titleCase}`}
           listSlug={null}

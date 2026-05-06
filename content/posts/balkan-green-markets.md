@@ -1,6 +1,6 @@
 ---
 title: How to use green markets in the Balkans
-nav_title: Green Markets 101
+nav_title: Balkan Green Markets
 subtitle: Notes for longer stays, apartment cooking, and knowing when a market has become part of the tourist circuit.
 hero_image: /images/posts/balkan-green-markets.jpg
 hero_alt: Vegetable stalls and shoppers at Dolac Market in Zagreb.
