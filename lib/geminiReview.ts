@@ -17,13 +17,12 @@ import { supabaseAdmin } from './supabaseAdmin';
 // Returns null on any failure so the caller can fall back to "save the
 // Q&A, retry later".
 
-export type StayReviewInput = {
+export type HotelReviewInput = {
   hotelName: string;
   city: string | null;
   country: string | null;
   roomType: string | null;
   nights: number | null;
-  bookingSource: string | null;
   personalRating: number | null;
   wouldStayAgain: boolean | null;
   // The eight prompts. Any can be null/empty; the model is told to
@@ -38,7 +37,7 @@ export type StayReviewInput = {
   travelerAdvice: string | null;
 };
 
-export type StayReviewResult = {
+export type HotelReviewResult = {
   text: string;
   model: string;
 };
@@ -59,7 +58,7 @@ Constraints:
 
 Output the review text only. No preamble, no headings, no markdown lists.`;
 
-function buildUserPrompt(input: StayReviewInput): string {
+function buildUserPrompt(input: HotelReviewInput): string {
   const parts: string[] = [];
   parts.push(`Hotel: ${input.hotelName}`);
   if (input.city || input.country) {
@@ -67,7 +66,6 @@ function buildUserPrompt(input: StayReviewInput): string {
   }
   if (input.roomType) parts.push(`Room type: ${input.roomType}`);
   if (input.nights) parts.push(`Nights: ${input.nights}`);
-  if (input.bookingSource) parts.push(`Booking source: ${input.bookingSource}`);
   if (input.personalRating != null) {
     parts.push(`Mike's rating: ${input.personalRating}/5`);
   }
@@ -99,9 +97,9 @@ function buildUserPrompt(input: StayReviewInput): string {
   return parts.join('\n');
 }
 
-export async function generateStayReview(
-  input: StayReviewInput,
-): Promise<StayReviewResult | null> {
+export async function generateHotelReview(
+  input: HotelReviewInput,
+): Promise<HotelReviewResult | null> {
   const sb = supabaseAdmin();
   const { data, error } = await sb.functions.invoke('generate-stay-review', {
     body: {

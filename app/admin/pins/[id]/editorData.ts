@@ -57,12 +57,29 @@ export type PinEditorState = {
   room_type: string | null;
   room_price_per_night: number | null;
   room_price_currency: string | null;
+  points_amount: number | null;
+  points_program: string | null;
   would_stay_again: boolean | null;
   hotel_vibe: string[];
   breakfast_quality: string | null;
   wifi_quality: string | null;
   noise_level: string | null;
   location_pitch: string | null;
+  // Q&A prompts that feed the Gemini review helper. Optional: any
+  // combination filled in is fine, the helper skips empty topics.
+  property_likes: string | null;
+  breakfast_notes: string | null;
+  bed_notes: string | null;
+  bathroom_notes: string | null;
+  amenities_notes: string | null;
+  special_touches: string | null;
+  location_notes: string | null;
+  traveler_advice: string | null;
+  // Generated review + provenance. generated_review is the only field
+  // here that gates indexability — a hotel pin without one stays noindex.
+  generated_review: string | null;
+  generated_at: string | null;
+  generated_by: string | null;
 
   // Restaurant
   cuisine: string[];
@@ -133,12 +150,25 @@ export function rowToPinForEdit(row: any): PinEditorState {
     room_type: asStr(row.room_type),
     room_price_per_night: asNum(row.room_price_per_night),
     room_price_currency: asStr(row.room_price_currency),
+    points_amount: asNum(row.points_amount),
+    points_program: asStr(row.points_program),
     would_stay_again: asBool(row.would_stay_again),
     hotel_vibe: asArr(row.hotel_vibe),
     breakfast_quality: asStr(row.breakfast_quality),
     wifi_quality: asStr(row.wifi_quality),
     noise_level: asStr(row.noise_level),
     location_pitch: asStr(row.location_pitch),
+    property_likes: asStr(row.property_likes),
+    breakfast_notes: asStr(row.breakfast_notes),
+    bed_notes: asStr(row.bed_notes),
+    bathroom_notes: asStr(row.bathroom_notes),
+    amenities_notes: asStr(row.amenities_notes),
+    special_touches: asStr(row.special_touches),
+    location_notes: asStr(row.location_notes),
+    traveler_advice: asStr(row.traveler_advice),
+    generated_review: asStr(row.generated_review),
+    generated_at: asStr(row.generated_at),
+    generated_by: asStr(row.generated_by),
 
     cuisine: asArr(row.cuisine),
     meal_types: asArr(row.meal_types),

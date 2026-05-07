@@ -155,54 +155,6 @@ function vibeFromAmenities(p: ParsedReservation): string[] {
   return out;
 }
 
-/**
- * Idempotent insert of a stay row for this reservation. Keyed on
- * reservation_pdf_hash so re-uploading the same PDF won't create a
- * second stay; if a stay already exists for this hash we return its id
- * and leave it alone (the user may already have written notes / a
- * generated review on it).
- *
- * Year, nights, room type, and price are the only non-PII fields the
- * parse exposes — Q&A and rating stay null for the user to fill in
- * later via the stay editor.
- */
-async function upsertStay(
-  pinId: string,
-  parsed: ParsedReservation,
-  pdfHash: string,
-  bookingSource: 'pdf' | 'text',
-): Promise<{ id: string; isNew: boolean } | null> {
-  const sb = supabaseAdmin();
-  const { data: existing } = await sb
-    .from('hotel_stays')
-    .select('id')
-    .eq('reservation_pdf_hash', pdfHash)
-    .maybeSingle();
-  if (existing && (existing as { id?: string }).id) {
-    return { id: (existing as { id: string }).id, isNew: false };
-  }
-  const insert: Record<string, unknown> = {
-    pin_id: pinId,
-    reservation_pdf_hash: pdfHash,
-    booking_source: bookingSource,
-  };
-  if (parsed.year) insert.visit_year = parsed.year;
-  if (parsed.nights) insert.nights = parsed.nights;
-  if (parsed.room_type) insert.room_type = parsed.room_type;
-  if (parsed.total_paid != null) insert.cash_amount = parsed.total_paid;
-  if (parsed.currency) insert.cash_currency = parsed.currency;
-  const { data: created, error } = await sb
-    .from('hotel_stays')
-    .insert(insert)
-    .select('id')
-    .single();
-  if (error || !created) {
-    console.error('[parse-reservation] stay insert failed:', error);
-    return null;
-  }
-  return { id: (created as { id: string }).id, isNew: true };
-}
-
 async function upsertPin(parsed: ParsedReservation): Promise<{ id: string; slug: string | null; isNew: boolean } | null> {
   if (!parsed.hotel_name) return null;
   const sb = supabaseAdmin();
@@ -346,14 +298,6 @@ export async function POST(req: Request) {
   // Dedup check before doing any LLM work.
   const prior = await lookupExistingImport(inputHash);
   if (prior && prior.pinId) {
-    // If this PDF was imported before stays existed, the pin has no
-    // stay yet — backfill one now from the previously stored parse so
-    // the user lands on a hotel page that already has a placeholder
-    // stay row instead of an empty Stays section.
-    const priorParsed = (prior.parsed ?? null) as ParsedReservation | null;
-    const stay = priorParsed
-      ? await upsertStay(prior.pinId, priorParsed, inputHash, sourceKind)
-      : null;
     return NextResponse.json({
       duplicate: true,
       id: prior.pinId,
@@ -361,8 +305,6 @@ export async function POST(req: Request) {
       name: prior.pinName,
       sourceLabel,
       parsed: prior.parsed,
-      stayId: stay?.id ?? null,
-      stayIsNew: stay?.isNew ?? false,
     });
   }
 
@@ -386,11 +328,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'failed to create or update pin', parsed }, { status: 500 });
   }
 
-  // Stay row goes alongside the pin so the user lands on a hotel that
-  // already has a placeholder stay to add notes against. Idempotent on
-  // the input hash so re-parsing the same PDF doesn't pile up duplicates.
-  const stay = await upsertStay(result.id, parsed, inputHash, sourceKind);
-
   // Record the import so a repeat upload short-circuits next time.
   const sb = supabaseAdmin();
   await sb.from('reservation_imports').upsert({
@@ -403,7 +340,6 @@ export async function POST(req: Request) {
 
   try {
     revalidateTag('supabase-pins');
-    revalidateTag('supabase-hotel-stays');
     revalidatePath('/pins/cards');
     if (result.slug) revalidatePath(`/pins/${result.slug}`);
   } catch { /* ignore */ }
@@ -416,7 +352,5 @@ export async function POST(req: Request) {
     sourceLabel,
     parsed,
     duplicate: false,
-    stayId: stay?.id ?? null,
-    stayIsNew: stay?.isNew ?? false,
   });
 }

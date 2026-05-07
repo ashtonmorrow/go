@@ -574,6 +574,29 @@ export default function PinEditorClient({
               />
             </div>
           </Field>
+          <Field label="Points (if redeemed)">
+            <div className="flex gap-2">
+              <input
+                type="number"
+                step="1"
+                value={state.points_amount ?? ''}
+                onChange={e => set('points_amount', e.target.value ? Number(e.target.value) : null)}
+                className={inputCls + ' w-32'}
+                placeholder="40000"
+              />
+              <select
+                value={state.points_program ?? ''}
+                onChange={e => set('points_program', e.target.value || null)}
+                className={inputCls}
+              >
+                <option value="">— program —</option>
+                <option value="ihg">IHG One Rewards</option>
+                <option value="marriott">Marriott Bonvoy</option>
+                <option value="hyatt">World of Hyatt</option>
+                <option value="hilton">Hilton Honors</option>
+              </select>
+            </div>
+          </Field>
           <Field label="Would stay again">
             <BoolTri value={state.would_stay_again} onChange={v => set('would_stay_again', v)} />
           </Field>
@@ -613,6 +636,71 @@ export default function PinEditorClient({
             />
           </Field>
         </Section>
+      )}
+
+      {state.kind === 'hotel' && (
+        <Section label="Hotel notes (any combination — Gemini will skip blank topics)">
+          <Field label="What I liked about the property">
+            <Textarea
+              value={state.property_likes ?? ''}
+              onChange={v => set('property_likes', v || null)}
+              placeholder="Lobby smelled of sandalwood. The art on the walls was actual paintings, not prints."
+            />
+          </Field>
+          <Field label="Breakfast">
+            <Textarea
+              value={state.breakfast_notes ?? ''}
+              onChange={v => set('breakfast_notes', v || null)}
+              placeholder="Hot buffet ran from 6:30 to 10:30. Decent eggs, weak coffee."
+            />
+          </Field>
+          <Field label="Bed">
+            <Textarea
+              value={state.bed_notes ?? ''}
+              onChange={v => set('bed_notes', v || null)}
+              placeholder="Firm mattress, four pillows of the same firmness, room-darkening curtains worked."
+            />
+          </Field>
+          <Field label="Bathroom">
+            <Textarea
+              value={state.bathroom_notes ?? ''}
+              onChange={v => set('bathroom_notes', v || null)}
+              placeholder="Walk-in shower with strong pressure. No tub. Towels were thin."
+            />
+          </Field>
+          <Field label="Amenities">
+            <Textarea
+              value={state.amenities_notes ?? ''}
+              onChange={v => set('amenities_notes', v || null)}
+              placeholder="Small gym with two treadmills. Pool was rooftop."
+            />
+          </Field>
+          <Field label="Anything special or different">
+            <Textarea
+              value={state.special_touches ?? ''}
+              onChange={v => set('special_touches', v || null)}
+              placeholder="Welcome amuse-bouche on arrival. Front desk speaks English, French, Mandarin."
+            />
+          </Field>
+          <Field label="Location">
+            <Textarea
+              value={state.location_notes ?? ''}
+              onChange={v => set('location_notes', v || null)}
+              placeholder="Quiet side street, but only a few minutes from the main drag."
+            />
+          </Field>
+          <Field label="What a traveler should know before booking">
+            <Textarea
+              value={state.traveler_advice ?? ''}
+              onChange={v => set('traveler_advice', v || null)}
+              placeholder="Front-facing rooms get street noise on weekend nights. Ask for a courtyard room."
+            />
+          </Field>
+        </Section>
+      )}
+
+      {state.kind === 'hotel' && (
+        <HotelReviewBlock state={state} set={set} />
       )}
 
       {state.kind === 'restaurant' && (
@@ -998,6 +1086,96 @@ function StarRating({
         </button>
       )}
     </div>
+  );
+}
+
+function HotelReviewBlock({
+  state,
+  set,
+}: {
+  state: PinEditorState;
+  set: <K extends keyof PinEditorState>(key: K, value: PinEditorState[K]) => void;
+}) {
+  const [generating, setGenerating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const generate = async () => {
+    setGenerating(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/admin/pins/generate-review', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ id: state.id }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
+      const review = typeof data.review === 'string' ? data.review : '';
+      if (!review) throw new Error('empty review');
+      set('generated_review', review);
+      set('generated_by', typeof data.model === 'string' ? data.model : null);
+      set('generated_at', new Date().toISOString());
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'unknown');
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  // Empty count of Q&A fields used for the disabled-state hint. Calling
+  // Gemini with no notes will still succeed but the result is generic;
+  // surface that to the user via a soft warning rather than blocking it.
+  const filledCount = [
+    state.property_likes,
+    state.breakfast_notes,
+    state.bed_notes,
+    state.bathroom_notes,
+    state.amenities_notes,
+    state.special_touches,
+    state.location_notes,
+    state.traveler_advice,
+  ].filter(v => v && v.trim()).length;
+
+  return (
+    <Section label="Generated review (gates indexability)">
+      <Field label="Review">
+        <Textarea
+          value={state.generated_review ?? ''}
+          onChange={v => set('generated_review', v || null)}
+          placeholder="Click Generate from notes once you've filled in a few notes above. You can edit the result before saving."
+        />
+      </Field>
+      <div className="flex items-center gap-3 flex-wrap">
+        <button
+          type="button"
+          onClick={generate}
+          disabled={generating}
+          className={
+            'text-small px-3 py-1.5 rounded font-medium ' +
+            (generating
+              ? 'bg-cream-soft text-muted cursor-not-allowed'
+              : 'bg-teal text-white hover:bg-teal/90')
+          }
+        >
+          {generating ? 'Generating…' : 'Generate from notes'}
+        </button>
+        <span className="text-label text-muted">
+          {filledCount === 0
+            ? 'No notes filled in yet — review will be generic without them.'
+            : `${filledCount} of 8 notes filled in.`}
+          {state.generated_at && (
+            <> · last generated {new Date(state.generated_at).toLocaleString()}</>
+          )}
+          {state.generated_by && <> · {state.generated_by}</>}
+        </span>
+      </div>
+      {error && (
+        <p className="text-label text-orange">Generate failed: {error}</p>
+      )}
+      <p className="text-label text-muted">
+        A hotel pin only becomes indexable when this field has text saved on it.
+      </p>
+    </Section>
   );
 }
 

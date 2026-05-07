@@ -6,7 +6,7 @@ import Link from 'next/link';
 type FileStatus =
   | { stage: 'pending' }
   | { stage: 'parsing' }
-  | { stage: 'done'; pinId: string; pinSlug: string | null; name: string; isNew: boolean; duplicate: boolean; stayId: string | null }
+  | { stage: 'done'; pinId: string; pinSlug: string | null; name: string; isNew: boolean; duplicate: boolean }
   | { stage: 'error'; error: string };
 
 type Item = {
@@ -19,7 +19,7 @@ export default function ReservationParserClient() {
   const [items, setItems] = useState<Item[]>([]);
   const [text, setText] = useState('');
   const [pasting, setPasting] = useState(false);
-  const [pasteResult, setPasteResult] = useState<{ pinId: string; pinSlug: string | null; name: string; duplicate: boolean; stayId: string | null } | null>(null);
+  const [pasteResult, setPasteResult] = useState<{ pinId: string; pinSlug: string | null; name: string; duplicate: boolean } | null>(null);
   const [pasteError, setPasteError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -60,7 +60,6 @@ export default function ReservationParserClient() {
                     name: data.name,
                     isNew: !!data.isNew,
                     duplicate: !!data.duplicate,
-                    stayId: data.stayId ?? null,
                   },
                 }
               : p,
@@ -103,7 +102,6 @@ export default function ReservationParserClient() {
         pinSlug: data.slug ?? null,
         name: data.name,
         duplicate: !!data.duplicate,
-        stayId: data.stayId ?? null,
       });
       setText('');
     } catch (e) {
@@ -180,22 +178,11 @@ export default function ReservationParserClient() {
           {pasteResult && (
             <div className={'px-3 py-2 rounded text-small ' + (pasteResult.duplicate ? 'bg-cream-soft text-slate' : 'bg-teal/10 text-teal')}>
               {pasteResult.duplicate
-                ? <>Already imported <strong>{pasteResult.name}</strong>.</>
-                : <>Created <strong>{pasteResult.name}</strong>.</>}
-              {' '}
-              {pasteResult.stayId && (
-                <>
-                  <Link
-                    href={`/admin/pins/${pasteResult.pinId}/stays/${pasteResult.stayId}`}
-                    className="underline"
-                  >
-                    Add notes
-                  </Link>
-                  {' · '}
-                </>
-              )}
+                ? <>Already imported <strong>{pasteResult.name}</strong> — skipped.</>
+                : <>Created <strong>{pasteResult.name}</strong></>}
+              {' · '}
               <Link href={`/admin/pins/${pasteResult.pinId}`} className="underline">
-                edit pin
+                edit
               </Link>
             </div>
           )}
@@ -295,27 +282,12 @@ function PdfRow({ item, onRemove }: { item: Item; onRemove: () => void }) {
         )}
       </div>
       {status.stage === 'done' && (
-        <div className="flex items-center gap-2 flex-shrink-0">
-          {status.stayId && (
-            <Link
-              href={`/admin/pins/${status.pinId}/stays/${status.stayId}`}
-              className="text-label px-3 py-1.5 rounded bg-teal text-white hover:bg-teal/90"
-            >
-              Add notes
-            </Link>
-          )}
-          <Link
-            href={`/admin/pins/${status.pinId}`}
-            className={
-              'text-label px-3 py-1.5 rounded ' +
-              (status.stayId
-                ? 'border border-sand text-ink-deep hover:bg-cream-soft'
-                : 'bg-teal text-white hover:bg-teal/90')
-            }
-          >
-            Edit pin
-          </Link>
-        </div>
+        <Link
+          href={`/admin/pins/${status.pinId}`}
+          className="text-label px-3 py-1.5 rounded bg-teal text-white hover:bg-teal/90"
+        >
+          Edit pin
+        </Link>
       )}
       {(status.stage === 'pending' || status.stage === 'error') && (
         <button

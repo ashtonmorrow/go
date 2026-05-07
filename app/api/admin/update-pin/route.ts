@@ -25,8 +25,14 @@ const ALLOWED_FIELDS = new Set([
   'personal_rating', 'personal_review', 'visit_year', 'personal_notes',
   'companions', 'best_for',
   // Hotel
-  'nights_stayed', 'room_type', 'room_price_per_night', 'room_price_currency', 'would_stay_again',
+  'nights_stayed', 'room_type', 'room_price_per_night', 'room_price_currency',
+  'points_amount', 'points_program', 'would_stay_again',
   'hotel_vibe', 'breakfast_quality', 'wifi_quality', 'noise_level', 'location_pitch',
+  // Hotel Q&A + generated review (the review field gates indexability
+  // for hotels — see app/pins/[slug]/page.tsx isThinPin).
+  'property_likes', 'breakfast_notes', 'bed_notes', 'bathroom_notes',
+  'amenities_notes', 'special_touches', 'location_notes', 'traveler_advice',
+  'generated_review', 'generated_at', 'generated_by',
   // Restaurant
   'cuisine', 'meal_types', 'dishes_tried', 'dietary_options', 'reservation_recommended',
   'price_tier', 'price_per_person_usd',

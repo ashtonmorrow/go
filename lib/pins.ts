@@ -121,12 +121,28 @@ export type Pin = {
   roomType: string | null;
   roomPricePerNight: number | null;
   roomPriceCurrency: string | null;
+  pointsAmount: number | null;
+  pointsProgram: string | null;
   wouldStayAgain: boolean | null;
   hotelVibe: string[];
   breakfastQuality: string | null;
   wifiQuality: string | null;
   noiseLevel: string | null;
   locationPitch: string | null;
+  // Hotel review surface. The Q&A fields feed the Gemini helper in the
+  // admin editor; `generatedReview` is what renders publicly and gates
+  // indexability for kind=hotel pins.
+  propertyLikes: string | null;
+  breakfastNotes: string | null;
+  bedNotes: string | null;
+  bathroomNotes: string | null;
+  amenitiesNotes: string | null;
+  specialTouches: string | null;
+  locationNotes: string | null;
+  travelerAdvice: string | null;
+  generatedReview: string | null;
+  generatedAt: string | null;
+  generatedBy: string | null;
 
   // Restaurant-only
   cuisine: string[];
@@ -359,12 +375,25 @@ function rowToPin(row: any): Pin {
     roomType: asString(row.room_type),
     roomPricePerNight: asNumber(row.room_price_per_night),
     roomPriceCurrency: asString(row.room_price_currency),
+    pointsAmount: asNumber(row.points_amount),
+    pointsProgram: asString(row.points_program),
     wouldStayAgain: asBool(row.would_stay_again),
     hotelVibe: asStringArray(row.hotel_vibe),
     breakfastQuality: asString(row.breakfast_quality),
     wifiQuality: asString(row.wifi_quality),
     noiseLevel: asString(row.noise_level),
     locationPitch: asString(row.location_pitch),
+    propertyLikes: asString(row.property_likes),
+    breakfastNotes: asString(row.breakfast_notes),
+    bedNotes: asString(row.bed_notes),
+    bathroomNotes: asString(row.bathroom_notes),
+    amenitiesNotes: asString(row.amenities_notes),
+    specialTouches: asString(row.special_touches),
+    locationNotes: asString(row.location_notes),
+    travelerAdvice: asString(row.traveler_advice),
+    generatedReview: asString(row.generated_review),
+    generatedAt: asString(row.generated_at),
+    generatedBy: asString(row.generated_by),
 
     cuisine: asStringArray(row.cuisine),
     mealTypes: asStringArray(row.meal_types),
