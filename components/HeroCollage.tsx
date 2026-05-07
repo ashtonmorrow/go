@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 // === HeroCollage ===========================================================
 // Adaptive multi-image hero that replaces the single-photo Lightbox on
@@ -128,7 +129,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
         type="button"
         onClick={() => setOpenIdx(idx)}
         className={
-          'relative block bg-cream-soft cursor-zoom-in overflow-hidden ' +
+          'group relative block bg-cream-soft cursor-zoom-in overflow-hidden ' +
           'focus-visible:outline-2 focus-visible:outline-offset-2 ' +
           'focus-visible:outline-teal ' +
           klass
@@ -143,6 +144,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
           decoding="async"
           className="w-full h-full object-cover"
         />
+        <CommonsAttributionBadge url={img.url} />
         {idx === visible.length - 1 && overflow > 0 && (
           <span
             className={
@@ -168,7 +170,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
         type="button"
         onClick={() => setOpenIdx(0)}
         className={
-          'relative w-full bg-cream-soft cursor-zoom-in overflow-hidden ' +
+          'group relative w-full bg-cream-soft cursor-zoom-in overflow-hidden ' +
           'rounded focus-visible:outline-2 focus-visible:outline-offset-2 ' +
           'focus-visible:outline-teal'
         }
@@ -183,6 +185,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
           decoding="async"
           className="w-full max-h-[70vh] object-contain"
         />
+        <CommonsAttributionBadge url={visible[0].url} />
       </button>
     );
   } else if (N === 2) {
@@ -342,7 +345,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
               inside don't dismiss before the user gets to interact. */}
           <figure
             onClick={e => e.stopPropagation()}
-            className="flex flex-col items-center max-w-full max-h-full gap-3"
+            className="relative flex flex-col items-center max-w-full max-h-full gap-3"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -352,6 +355,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
               height={ordered[openIdx].height ?? undefined}
               className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
             />
+            <CommonsAttributionBadge url={ordered[openIdx].url} variant="always" />
             <figcaption className="text-white/80 text-small text-center max-w-prose">
               {ordered[openIdx].caption ?? ordered[openIdx].alt ?? title}
               <span className="ml-2 text-white/60">

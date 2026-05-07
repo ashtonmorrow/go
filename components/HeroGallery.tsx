@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 // === HeroGallery ===========================================================
 // Bounded "justified rows" hero — Flickr / Google Photos pattern. Total
@@ -228,7 +229,7 @@ export default function HeroGallery({
         <button
           type="button"
           onClick={() => setOpenIdx(0)}
-          className="block w-full bg-cream-soft cursor-zoom-in overflow-hidden rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+          className="group relative block w-full bg-cream-soft cursor-zoom-in overflow-hidden rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           aria-label={`Open ${hero.alt ?? title} full size`}
           style={{ maxHeight }}
         >
@@ -242,6 +243,7 @@ export default function HeroGallery({
             className="w-full h-full object-contain"
             style={{ maxHeight }}
           />
+          <CommonsAttributionBadge url={hero.url} />
         </button>
         {caption && (
           <figcaption className="text-label text-muted px-1 mt-1">{caption}</figcaption>
@@ -279,7 +281,7 @@ export default function HeroGallery({
                     key={img.url + slot.idx}
                     type="button"
                     onClick={() => setOpenIdx(slot.idx)}
-                    className="relative block bg-cream cursor-zoom-in overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                    className="group relative block bg-cream cursor-zoom-in overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
                     style={{
                       flexGrow: slot.aspect,
                       flexBasis: 0,
@@ -303,6 +305,7 @@ export default function HeroGallery({
                       decoding="async"
                       className="w-full h-full object-cover"
                     />
+                    <CommonsAttributionBadge url={img.url} />
                     {showOverflow && (
                       <span
                         className="absolute inset-0 bg-black/55 text-white flex items-center justify-center text-h2 font-medium"
@@ -391,7 +394,7 @@ function renderLightbox(
       )}
       <figure
         onClick={e => e.stopPropagation()}
-        className="flex flex-col items-center max-w-full max-h-full gap-3"
+        className="relative flex flex-col items-center max-w-full max-h-full gap-3"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -401,6 +404,10 @@ function renderLightbox(
           height={img.height ?? undefined}
           className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
         />
+        {/* Lightbox view of a Commons-hosted image — keep the badge
+            permanently visible since the lightbox itself doesn't have
+            a hover/group affordance. */}
+        <CommonsAttributionBadge url={img.url} variant="always" />
         <figcaption className="text-white/80 text-small text-center max-w-prose">
           {img.caption ?? img.alt ?? title}
           <span className="ml-2 text-white/60">

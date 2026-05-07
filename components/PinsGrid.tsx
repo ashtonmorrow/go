@@ -10,6 +10,7 @@ import { parseHours, todayHoursLabel } from '@/lib/parseHours';
 import { thumbUrl } from '@/lib/imageUrl';
 import { snippet } from '@/lib/savedLists';
 import type { PinForCard } from '@/lib/pinsCardData';
+import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 /** Cards rendered on first paint — 60 covers ~3 viewports of grid on
  *  desktop and a long scroll on mobile. The rest stream in via an
@@ -190,19 +191,22 @@ function PinCard({
       href={`/pins/${pin.slug ?? pin.id}`}
       className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
     >
-      <div className="flex-shrink-0">
+      <div className="relative flex-shrink-0">
         {coverUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={coverUrl}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            decoding="async"
-            width={56}
-            height={56}
-            className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
-          />
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={coverUrl}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              width={56}
+              height={56}
+              className="w-14 h-14 rounded-lg object-cover bg-cream-soft border border-sand"
+            />
+            <CommonsAttributionBadge url={coverUrl} />
+          </>
         ) : (
           <div
             aria-hidden

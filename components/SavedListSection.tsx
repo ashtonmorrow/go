@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
+import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 // === SavedListSection ======================================================
 // Cards-on-a-list block that renders at the bottom of city, country, and
@@ -289,6 +290,7 @@ export default function SavedListSection({
                     height={40}
                     className="w-10 h-10 rounded-md object-cover bg-cream-soft border border-sand"
                   />
+                  <CommonsAttributionBadge url={p.cover} />
                   {p.visited && (
                     <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full bg-teal text-white text-[10px] leading-4 text-center border border-white">
                       ✓
