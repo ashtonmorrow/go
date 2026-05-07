@@ -50,6 +50,12 @@ type Props = {
    *  is responsible for refreshing the candidate list afterwards (or
    *  letting the picker keep its optimistic state in sync). */
   onToggleHidden?: (id: string, nextHidden: boolean) => Promise<void> | void;
+  /** Called when the user clicks the delete button on a candidate. The
+   *  parent decides what API to hit based on the candidate shape (`id`
+   *  set → personal photo; otherwise → pin.images entry) and is
+   *  expected to refresh the page or candidate list on success. The
+   *  picker confirms with the user before invoking. */
+  onDelete?: (c: HeroCandidate) => Promise<void> | void;
   maxRecommended?: number;
   maxAbsolute?: number;
   title?: string;
@@ -61,6 +67,7 @@ export default function HeroPicker({
   candidates,
   onChange,
   onToggleHidden,
+  onDelete,
   maxRecommended = 8,
   maxAbsolute = 20,
   title = 'Hero photos',
@@ -76,6 +83,11 @@ export default function HeroPicker({
   // photo id; falsy = follow the candidate prop.
   const [hiddenOverrides, setHiddenOverrides] = useState<Record<string, boolean>>({});
   const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [deletingUrl, setDeletingUrl] = useState<string | null>(null);
+  // URLs the user has just deleted in this session — keep them out of
+  // the available rail optimistically, even before the parent refreshes
+  // its candidate list.
+  const [deletedUrls, setDeletedUrls] = useState<Set<string>>(new Set());
 
   const byUrl = useMemo(() => {
     const m = new Map<string, HeroCandidate>();
@@ -85,8 +97,8 @@ export default function HeroPicker({
 
   const pickedSet = useMemo(() => new Set(value), [value]);
   const available = useMemo(
-    () => candidates.filter(c => !pickedSet.has(c.url)),
-    [candidates, pickedSet],
+    () => candidates.filter(c => !pickedSet.has(c.url) && !deletedUrls.has(c.url)),
+    [candidates, pickedSet, deletedUrls],
   );
 
   const counterClass =
@@ -142,6 +154,35 @@ export default function HeroPicker({
       });
     } finally {
       setTogglingId(null);
+    }
+  }
+
+  async function deleteCandidate(c: HeroCandidate) {
+    if (!onDelete) return;
+    if (deletingUrl) return;
+    const kindLabel = c.id ? 'personal photo' : 'image';
+    const ok = confirm(
+      `Delete this ${kindLabel}?\n\n` +
+        'This permanently removes it from the database and from Storage. ' +
+        'It cannot be undone.',
+    );
+    if (!ok) return;
+    setDeletingUrl(c.url);
+    try {
+      await onDelete(c);
+      // Drop the picked entry too — if we just nuked an image that was
+      // also in the hero picks, the picker shouldn't keep referencing it.
+      onChange(value.filter(u => u !== c.url));
+      setDeletedUrls(prev => {
+        const next = new Set(prev);
+        next.add(c.url);
+        return next;
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'delete failed';
+      alert(`Could not delete: ${msg}`);
+    } finally {
+      setDeletingUrl(null);
     }
   }
 
@@ -322,6 +363,28 @@ export default function HeroPicker({
                         }
                       >
                         {togglingId === c.id ? '…' : hidden ? 'hidden' : 'hide'}
+                      </button>
+                    )}
+                    {/* Delete — irreversible. Distinct red treatment + top-
+                        left so it never sits next to the hide toggle. Only
+                        renders when the parent supplies an onDelete handler. */}
+                    {onDelete && (
+                      <button
+                        type="button"
+                        onClick={e => {
+                          e.stopPropagation();
+                          deleteCandidate(c);
+                        }}
+                        disabled={deletingUrl === c.url}
+                        className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide bg-red-600/90 text-white opacity-0 group-hover:opacity-100 focus:opacity-100 hover:bg-red-700 transition-opacity disabled:opacity-50"
+                        aria-label="Delete this image"
+                        title={
+                          c.id
+                            ? 'Delete this personal photo (removes from DB + Storage).'
+                            : 'Delete this image entry (removes from this pin + Storage if no other pin uses it).'
+                        }
+                      >
+                        {deletingUrl === c.url ? '…' : 'delete'}
                       </button>
                     )}
                     {c.label && (

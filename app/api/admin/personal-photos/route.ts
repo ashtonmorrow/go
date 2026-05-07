@@ -169,3 +169,89 @@ export async function PATCH(req: Request) {
 
   return NextResponse.json({ id: data.id, hidden: data.hidden });
 }
+
+// === DELETE /api/admin/personal-photos =====================================
+// Permanently removes a personal photo: drops the row from personal_photos
+// and deletes the underlying file from the `personal-photos` Storage bucket.
+// Also strips the URL from any pin.hero_photo_urls array that referenced
+// it so the curated hero gallery doesn't render a broken link.
+//
+// Body: { id: string }. Irreversible. Frontend should confirm() before
+// calling.
+
+export async function DELETE(req: Request) {
+  let body: { id?: unknown };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+  const id = typeof body?.id === 'string' ? body.id : '';
+  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 });
+
+  const sb = supabaseAdmin();
+
+  // Pull the row first so we have the URL + pin_id for the storage
+  // delete + hero_photo_urls cleanup.
+  const { data: photo, error: fetchErr } = await sb
+    .from('personal_photos')
+    .select('id, url, pin_id')
+    .eq('id', id)
+    .maybeSingle();
+  if (fetchErr) {
+    return NextResponse.json({ error: fetchErr.message }, { status: 500 });
+  }
+  if (!photo) {
+    return NextResponse.json({ error: 'photo not found' }, { status: 404 });
+  }
+
+  const url = photo.url as string;
+  const pinId = photo.pin_id as string;
+
+  // Storage object path is everything after `/personal-photos/` in the
+  // public URL. If the URL doesn't match the expected pattern, skip the
+  // storage delete (the row gets removed regardless so a bad URL doesn't
+  // wedge the operation).
+  const storageMatch = url.match(/\/storage\/v1\/object\/public\/personal-photos\/(.+)$/);
+  const storagePath = storageMatch ? storageMatch[1] : null;
+
+  // Delete the Storage file before the row so a row-only failure doesn't
+  // leave orphan bytes. Order is best-effort either way; both deletes are
+  // idempotent on the next attempt.
+  if (storagePath) {
+    const { error: storageErr } = await sb.storage
+      .from('personal-photos')
+      .remove([storagePath]);
+    if (storageErr) {
+      console.warn('[personal-photos DELETE] storage remove failed:', storageErr.message);
+      // Continue anyway — DB row deletion is the primary effect.
+    }
+  }
+
+  // Strip from any hero_photo_urls that still reference this URL so the
+  // curated gallery doesn't try to render a now-missing image. Read +
+  // write rather than array_remove() because hero_photo_urls is jsonb-as-
+  // text in places.
+  const { data: pinRow, error: pinErr } = await sb
+    .from('pins')
+    .select('id, hero_photo_urls')
+    .eq('id', pinId)
+    .maybeSingle();
+  if (!pinErr && pinRow) {
+    const heroUrls = Array.isArray(pinRow.hero_photo_urls) ? pinRow.hero_photo_urls : [];
+    if (heroUrls.includes(url)) {
+      const filtered = heroUrls.filter((u: string) => u !== url);
+      await sb.from('pins').update({ hero_photo_urls: filtered }).eq('id', pinId);
+    }
+  }
+
+  const { error: rowErr } = await sb.from('personal_photos').delete().eq('id', id);
+  if (rowErr) {
+    return NextResponse.json({ error: rowErr.message }, { status: 500 });
+  }
+
+  try { revalidateTag('supabase-personal-photos'); } catch { /* ignore */ }
+  try { revalidateTag('supabase-pins'); } catch { /* ignore */ }
+
+  return NextResponse.json({ ok: true, deletedFromStorage: !!storagePath });
+}

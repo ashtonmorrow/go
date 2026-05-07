@@ -258,6 +258,43 @@ export default function PinEditorClient({
     }
   };
 
+  /** DELETE a candidate. Two paths:
+   *   - personal photo (candidate.id set) → /api/admin/personal-photos
+   *     drops the row + Storage file + any hero_photo_urls reference.
+   *   - pin.images entry (no id) → /api/admin/pin-image drops the entry
+   *     from the JSONB array, plus the Storage file when no other pin
+   *     references it.
+   *  After either, refresh the route so the editor re-fetches the
+   *  candidate list with the deletion reflected. */
+  const deleteCandidate = async (c: HeroCandidate) => {
+    let res: Response;
+    if (c.id) {
+      res = await fetch('/api/admin/personal-photos', {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ id: c.id }),
+      });
+    } else {
+      res = await fetch('/api/admin/pin-image', {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinId: state.id, url: c.url }),
+      });
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error ?? `delete failed (${res.status})`);
+    }
+    // Drop from local state's images / hero_photo_urls so the form
+    // doesn't try to save the now-deleted URL on next save click.
+    setState(prev => ({
+      ...prev,
+      images: prev.images.filter(img => img.url !== c.url),
+      hero_photo_urls: prev.hero_photo_urls.filter(u => u !== c.url),
+    }));
+    router.refresh();
+  };
+
   const save = async () => {
     setSaving(true);
     setResult(null);
@@ -394,10 +431,11 @@ export default function PinEditorClient({
           value={state.hero_photo_urls}
           maxRecommended={6}
           maxAbsolute={20}
-          hint="Drag to reorder up to 6 photos. Click hide on any personal photo to suppress it from the auto-pick collage on places without curation."
+          hint="Drag to reorder up to 6 photos. Hover any tile in Available to surface hide (personal photos, reversible) or delete (any image, irreversible)."
           candidates={heroCandidates}
           onChange={next => set('hero_photo_urls', next)}
           onToggleHidden={togglePhotoHidden}
+          onDelete={deleteCandidate}
         />
       </Section>
 
