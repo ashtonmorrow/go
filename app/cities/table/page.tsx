@@ -13,7 +13,10 @@ import type {
 } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+// Dynamic per-request, not ISR. The full 1,341-row city table risks
+// exceeding Vercel's 19.07 MB ISR fallback ceiling. Underlying
+// fetchAllCities is unstable_cache'd so re-rendering stays cheap.
+export const dynamic = 'force-dynamic';
 
 const DESCRIPTION =
   'All 1,341 cities as a sortable data table. Filter by continent, climate, visa, water, drive side. Click any row to open its postcard.';

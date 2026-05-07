@@ -17,7 +17,10 @@ import type {
 } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
-export const revalidate = 604800;
+// Dynamic per-request, not ISR. The full city postcard grid risks
+// exceeding Vercel's 19.07 MB ISR fallback ceiling. Underlying
+// fetchAllCities is unstable_cache'd so re-rendering stays cheap.
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Cities I've traveled to",

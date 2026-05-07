@@ -17,7 +17,11 @@ import PinsGrid from '@/components/PinsGrid';
 import PinsPageTitle from '@/components/PinsPageTitle';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+// Dynamic per-request, not ISR. Rendering ~5,000 pin cards into HTML
+// exceeds Vercel's 19.07 MB ISR fallback ceiling. Underlying
+// fetchAllPins is unstable_cache'd, so re-rendering is fast on warm
+// cache.
+export const dynamic = 'force-dynamic';
 
 const DESCRIPTION =
   'Curated places worth a detour. UNESCO sites, museums, viewpoints. Each pin links straight to Google Maps so you can drop it into your trip.';

@@ -11,7 +11,12 @@ import JsonLd from '@/components/JsonLd';
 import PinsTable from '@/components/PinsTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 
-export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
+// Dynamic per-request, not ISR. The full pin table renders to ~19 MB of
+// HTML which exceeds Vercel's 19.07 MB ISR fallback ceiling and trips
+// FALLBACK_BODY_TOO_LARGE during build. fetchAllPins is unstable_cache'd
+// at the lib layer, so re-rendering is just an in-memory iteration —
+// no Supabase round-trip on warm cache.
+export const dynamic = 'force-dynamic';
 
 const DESCRIPTION =
   'All pins as a sortable data table. Name, category, country, UNESCO ID, coordinates, visited status. Click any row to open the detail page.';
