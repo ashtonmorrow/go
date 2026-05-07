@@ -201,6 +201,8 @@ export default async function PinPage({
     );
   const isHotel = pin.kind === 'hotel';
   const isRestaurant = pin.kind === 'restaurant';
+  const isPark = pin.kind === 'park';
+  const isTransit = pin.kind === 'transit';
   const isHotelOrRestaurant = isHotel || isRestaurant;
   const hasPlanInfo = Boolean(
     (!isHotel && (hoursDetailsHasData || pin.openingHours || pin.hours)) ||
@@ -214,33 +216,48 @@ export default async function PinPage({
 
   // Amenity grid is irrelevant for hotels (of course they have wifi/restrooms;
   // the qualitative wifi_quality/breakfast_quality fields cover what matters).
-  const amenityFacets = isHotel ? [] : [
-    pin.foodOnSite ? FOOD_FACET[pin.foodOnSite] : null,
-    pin.restrooms ? RESTROOMS_FACET[pin.restrooms] : null,
-    pin.waterRefill ? { label: 'Water refill available', icon: 'droplet' } : null,
-    pin.wifi ? { label: 'Wi-Fi available', icon: 'wifi' } : null,
-    pin.lockers ? { label: 'Lockers available', icon: 'package' } : null,
-    pin.shade ? SHADE_FACET[pin.shade] : null,
-    pin.indoorOutdoor ? INDOOR_FACET[pin.indoorOutdoor] : null,
-  ].filter((f): f is { label: string; icon: string } => Boolean(f));
+  // Transit stops mostly don't have food / wifi / lockers either, but a
+  // platform CAN have restrooms or covered shelter, so keep that subset.
+  const amenityFacets = isHotel
+    ? []
+    : isTransit
+      ? [
+          pin.restrooms ? RESTROOMS_FACET[pin.restrooms] : null,
+          pin.shade ? SHADE_FACET[pin.shade] : null,
+          pin.indoorOutdoor ? INDOOR_FACET[pin.indoorOutdoor] : null,
+        ].filter((f): f is { label: string; icon: string } => Boolean(f))
+      : [
+          pin.foodOnSite ? FOOD_FACET[pin.foodOnSite] : null,
+          pin.restrooms ? RESTROOMS_FACET[pin.restrooms] : null,
+          pin.waterRefill ? { label: 'Water refill available', icon: 'droplet' } : null,
+          pin.wifi ? { label: 'Wi-Fi available', icon: 'wifi' } : null,
+          pin.lockers ? { label: 'Lockers available', icon: 'package' } : null,
+          pin.shade ? SHADE_FACET[pin.shade] : null,
+          pin.indoorOutdoor ? INDOOR_FACET[pin.indoorOutdoor] : null,
+        ].filter((f): f is { label: string; icon: string } => Boolean(f));
 
   const hasGettingThere = Boolean(pin.address || pin.phone || pin.nearestTransit || pin.parking || pin.accessNotes);
 
-  // Good-to-know is mostly irrelevant for hotels too; wheelchair_accessible
-  // matters but otherwise the personal review carries it.
-  const goodToKnowFacets = isHotel ? [] : [
-    pin.wheelchairAccessible ? WHEELCHAIR_FACET[pin.wheelchairAccessible] : null,
-    pin.photography ? PHOTOGRAPHY_FACET[pin.photography] : null,
-    pin.requiresGuide ? REQUIRES_GUIDE_FACET[pin.requiresGuide] : null,
-    pin.requiresPermit ? { label: 'Permit required', icon: 'receipt' } : null,
-    pin.kidFriendly === true ? { label: 'Kid-friendly', icon: 'baby' } : null,
-    pin.kidFriendly === false ? { label: 'Not for young kids', icon: 'circle-x' } : null,
-    pin.strollerFriendly === true ? { label: 'Stroller-friendly', icon: 'baby' } : null,
-    pin.petFriendly === true ? { label: 'Pet-friendly', icon: 'paw-print' } : null,
-    pin.difficulty ? DIFFICULTY_FACET[pin.difficulty] : null,
-  ].filter((f): f is { label: string; icon: string } => Boolean(f));
+  // Good-to-know is mostly irrelevant for hotels (the personal review
+  // carries the relevant detail) and for transit (a tram stop doesn't
+  // have a dress code or kid-friendly rating). For parks we keep the
+  // full set because difficulty / pet-friendly / stroller / kid all
+  // matter for "can I do this with my crew today" planning.
+  const goodToKnowFacets = isHotel || isTransit
+    ? []
+    : [
+        pin.wheelchairAccessible ? WHEELCHAIR_FACET[pin.wheelchairAccessible] : null,
+        pin.photography ? PHOTOGRAPHY_FACET[pin.photography] : null,
+        pin.requiresGuide ? REQUIRES_GUIDE_FACET[pin.requiresGuide] : null,
+        pin.requiresPermit ? { label: 'Permit required', icon: 'receipt' } : null,
+        pin.kidFriendly === true ? { label: 'Kid-friendly', icon: 'baby' } : null,
+        pin.kidFriendly === false ? { label: 'Not for young kids', icon: 'circle-x' } : null,
+        pin.strollerFriendly === true ? { label: 'Stroller-friendly', icon: 'baby' } : null,
+        pin.petFriendly === true ? { label: 'Pet-friendly', icon: 'paw-print' } : null,
+        pin.difficulty ? DIFFICULTY_FACET[pin.difficulty] : null,
+      ].filter((f): f is { label: string; icon: string } => Boolean(f));
 
-  const hasGoodToKnow = !isHotel && Boolean(
+  const hasGoodToKnow = !isHotel && !isTransit && Boolean(
     goodToKnowFacets.length || pin.dressCode || pin.safetyNotes || pin.scamWarning ||
     pin.languagesOffered.length || pin.minAgeRecommended != null,
   );
@@ -611,7 +628,15 @@ export default async function PinPage({
 
           <div className="card p-5 space-y-3 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label">
-              {isHotel ? 'Plan a stay' : isRestaurant ? 'Plan a meal' : 'Plan a visit'}
+              {isHotel
+                ? 'Plan a stay'
+                : isRestaurant
+                ? 'Plan a meal'
+                : isPark
+                ? 'When to go'
+                : isTransit
+                ? 'Use this stop'
+                : 'Plan a visit'}
             </h3>
 
             {pin.googleMapsUrl ? (
@@ -634,7 +659,15 @@ export default async function PinPage({
                 rel="noopener noreferrer"
                 className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
               >
-                {isHotel ? 'Book a room →' : isRestaurant ? 'Reserve a table →' : 'Book tickets →'}
+                {isHotel
+                  ? 'Book a room →'
+                  : isRestaurant
+                  ? 'Reserve a table →'
+                  : isPark
+                  ? 'Buy entry →'
+                  : isTransit
+                  ? 'Buy tickets →'
+                  : 'Book tickets →'}
               </a>
             )}
 
@@ -1020,9 +1053,13 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
   // (room_price_per_night, etc.), so admission/cost is suppressed here.
   const isHotel = pin.kind === 'hotel';
   const isRestaurant = pin.kind === 'restaurant';
+  const isPark = pin.kind === 'park';
+  const isTransit = pin.kind === 'transit';
   const heading =
     isHotel ? 'Plan your stay' :
     isRestaurant ? 'Plan your meal' :
+    isPark ? 'When to visit' :
+    isTransit ? 'Using this stop' :
     'Plan your visit';
 
   // Hours: skip empty {} hours_details placeholder.
