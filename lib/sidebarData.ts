@@ -71,17 +71,63 @@ type SidebarCountryChipRow = {
   name: string;
 };
 
+async function selectAllSidebarRows(
+  table: string,
+  columns: string,
+  options: { excludeDeleted?: boolean; order?: string } = {},
+): Promise<Record<string, unknown>[]> {
+  const PAGE_SIZE = 1000;
+  let countQuery = supabase
+    .from(table)
+    .select('id', { count: 'exact', head: true });
+  if (options.excludeDeleted) {
+    countQuery = countQuery.not('slug', 'like', 'delete-%');
+  }
+
+  const { count, error: countError } = await countQuery;
+  if (countError || count == null) {
+    console.error(`[sidebarData] ${table} count failed:`, countError);
+    return [];
+  }
+
+  const ranges = Array.from(
+    { length: Math.max(1, Math.ceil(count / PAGE_SIZE)) },
+    (_, i) => [i * PAGE_SIZE, Math.min((i + 1) * PAGE_SIZE - 1, count - 1)],
+  );
+
+  const pages = await Promise.all(
+    ranges.map(([from, to]) => {
+      let query = supabase
+        .from(table)
+        .select(columns)
+        .range(from, to);
+      if (options.excludeDeleted) {
+        query = query.not('slug', 'like', 'delete-%');
+      }
+      if (options.order) {
+        query = query.order(options.order);
+      }
+      return query.then(res => {
+        if (res.error) {
+          console.error(`[sidebarData] ${table} page ${from}-${to} failed:`, res.error);
+          return [] as Record<string, unknown>[];
+        }
+        return ((res.data ?? []) as unknown) as Record<string, unknown>[];
+      });
+    }),
+  );
+
+  return pages.flat();
+}
+
 const _fetchSidebarCityChipRows = unstable_cache(
   async (): Promise<SidebarCityChipRow[]> => {
-    const { data, error } = await supabase
-      .from(GO_CITIES_TABLE)
-      .select('name, country, been, go, my_google_places')
-      .not('slug', 'like', 'delete-%');
-    if (error) {
-      console.error('[sidebarData] city chip fetch failed:', error);
-      return [];
-    }
-    return (data ?? []).map(row => ({
+    const rows = await selectAllSidebarRows(
+      GO_CITIES_TABLE,
+      'name, country, been, go, my_google_places',
+      { excludeDeleted: true, order: 'name' },
+    );
+    return rows.map(row => ({
       name: (row.name as string | null) ?? '',
       country: (row.country as string | null) ?? null,
       been: !!row.been,
@@ -89,38 +135,33 @@ const _fetchSidebarCityChipRows = unstable_cache(
       myGooglePlaces: (row.my_google_places as string | null) ?? null,
     }));
   },
-  ['sidebar-city-chip-rows-v1'],
+  ['sidebar-city-chip-rows-v2'],
   { revalidate: 300, tags: ['supabase-cities', 'notion-cities'] },
 );
 
 const _fetchSidebarCountryChipRows = unstable_cache(
   async (): Promise<SidebarCountryChipRow[]> => {
-    const { data, error } = await supabase
-      .from(GO_COUNTRIES_TABLE)
-      .select('name')
-      .not('slug', 'like', 'delete-%');
-    if (error) {
-      console.error('[sidebarData] country chip fetch failed:', error);
-      return [];
-    }
-    return (data ?? []).map(row => ({
+    const rows = await selectAllSidebarRows(
+      GO_COUNTRIES_TABLE,
+      'name',
+      { excludeDeleted: true, order: 'name' },
+    );
+    return rows.map(row => ({
       name: (row.name as string | null) ?? '',
     }));
   },
-  ['sidebar-country-chip-rows-v1'],
+  ['sidebar-country-chip-rows-v2'],
   { revalidate: 300, tags: ['supabase-countries', 'notion-countries'] },
 );
 
 const _fetchSidebarPinChipRows = unstable_cache(
   async (): Promise<SidebarPinChipRow[]> => {
-    const { data, error } = await supabase
-      .from('pins')
-      .select('id, states_names, category, lists, tags, saved_lists');
-    if (error) {
-      console.error('[sidebarData] pin chip fetch failed:', error);
-      return [];
-    }
-    return (data ?? []).map(row => ({
+    const rows = await selectAllSidebarRows(
+      'pins',
+      'id, states_names, category, lists, tags, saved_lists',
+      { order: 'name' },
+    );
+    return rows.map(row => ({
       id: row.id as string,
       statesNames: (row.states_names as string[] | null) ?? [],
       category: (row.category as string | null) ?? null,
@@ -129,7 +170,7 @@ const _fetchSidebarPinChipRows = unstable_cache(
       savedLists: (row.saved_lists as string[] | null) ?? [],
     }));
   },
-  ['sidebar-pin-chip-rows-v1'],
+  ['sidebar-pin-chip-rows-v2'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 
@@ -204,7 +245,7 @@ const _fetchSidebarChipData = unstable_cache(
       pinSavedListOptions,
     };
   },
-  ['sidebar-chip-data-v1'],
+  ['sidebar-chip-data-v2'],
   {
     revalidate: 86400,
     tags: [

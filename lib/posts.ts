@@ -176,7 +176,7 @@ async function readAllPostsUncached(): Promise<Post[]> {
 }
 
 /** Cached read of every post. 24h revalidate, busts on `posts` tag. */
-export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts-v5"], {
+export const getAllPosts = unstable_cache(readAllPostsUncached, ["all-posts-v6"], {
   revalidate: 60 * 60 * 24,
   tags: ["posts"],
 });
@@ -196,7 +196,7 @@ export async function getPostsForScope(
   slug: string
 ): Promise<Post[]> {
   const all = await getAllPosts();
-  return all.filter((p) => p.links[scope].includes(slug));
+  return all.filter((p) => p.indexable && p.links[scope].includes(slug));
 }
 
 /** All distinct slugs referenced in any post's links, by scope. */
@@ -206,6 +206,7 @@ export async function getReferencedSlugs(
   const all = await getAllPosts();
   const out = new Set<string>();
   for (const p of all) {
+    if (!p.indexable) continue;
     for (const s of p.links[scope]) out.add(s);
   }
   return out;

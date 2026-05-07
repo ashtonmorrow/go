@@ -145,6 +145,7 @@ export async function getAllArticleEntries(): Promise<ArticleEntry[]> {
   }
 
   for (const p of posts) {
+    if (!p.indexable) continue;
     // Skip stub posts whose external_route points at a hand-coded article we
     // already added above. Otherwise /articles would show two cards for the
     // same content (one per source). Hand-coded ARTICLES wins because that

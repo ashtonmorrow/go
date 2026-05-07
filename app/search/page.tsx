@@ -54,6 +54,7 @@ function excerpt(text: string | null | undefined, max = 150): string | null {
 async function searchPosts(query: string): Promise<SearchHit[]> {
   const posts = await getAllPosts();
   return posts
+    .filter((post) => post.indexable)
     .filter((post) =>
       includesQuery(
         [post.title, post.subtitle, post.bodyMd, ...post.tags],
@@ -92,7 +93,7 @@ async function searchCities(query: string): Promise<SearchHit[]> {
 async function searchCountries(query: string): Promise<SearchHit[]> {
   const { data, error } = await supabase
     .from('go_countries')
-    .select('name, slug, about')
+    .select('name, slug, wikipedia_summary')
     .ilike('name', likePattern(query))
     .order('name', { ascending: true })
     .limit(10);
@@ -104,7 +105,7 @@ async function searchCountries(query: string): Promise<SearchHit[]> {
     href: `/countries/${country.slug}`,
     title: country.name,
     eyebrow: 'Country',
-    description: excerpt(country.about),
+    description: excerpt(country.wikipedia_summary),
   }));
 }
 
