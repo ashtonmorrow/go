@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { uploadEntityPhoto } from '@/lib/admin/uploadEntityPhoto';
+import { isCommonsUrl } from '../CommonsAttributionBadge';
 
 // === EntityCoverPickerModal ================================================
 // Inline quick cover picker for /admin/pins, /admin/cities, /admin/countries.
@@ -363,8 +364,15 @@ export default function EntityCoverPickerModal({
               {filtered.map(p => {
                 const isCurrent = !!currentCoverUrl && p.url === currentCoverUrl;
                 const isCodex = p.imageSource === 'codex-generated';
+                // Wikimedia Commons tiles get a yellow Commons warning
+                // pill instead of the neutral source badge so picking
+                // one is a deliberate choice — promoting a Commons URL
+                // to hero_photo_urls means CC BY-SA attribution travels
+                // with the image on every public render.
+                const isCommons = isCommonsUrl(p.url);
                 const sourceBadge =
-                  p.source === 'city-hero' ? 'City'
+                  isCommons ? 'Commons'
+                  : p.source === 'city-hero' ? 'City'
                   : p.source === 'country-hero' ? 'Country'
                   : isCodex ? 'Codex'
                   : p.source === 'pin-image' ? 'Pin'
@@ -378,7 +386,9 @@ export default function EntityCoverPickerModal({
                       'group relative aspect-square overflow-hidden rounded-md bg-cream-soft border-2 transition-all ' +
                       (isCurrent
                         ? 'border-teal ring-2 ring-teal/30'
-                        : 'border-sand hover:border-slate hover:shadow-paper') +
+                        : isCommons
+                          ? 'border-amber-400 hover:border-amber-500 hover:shadow-paper'
+                          : 'border-sand hover:border-slate hover:shadow-paper') +
                       (isDeleting ? ' opacity-60' : '')
                     }
                   >
@@ -405,11 +415,18 @@ export default function EntityCoverPickerModal({
                       <div
                         className={
                           'pointer-events-none absolute top-1.5 right-1.5 pill text-micro shadow ' +
-                          (isCodex
-                            ? 'bg-orange text-white'
-                            : p.source === 'personal'
-                              ? 'bg-teal text-white'
-                              : 'bg-ink-deep/80 text-white')
+                          (isCommons
+                            ? 'bg-amber-500 text-white'
+                            : isCodex
+                              ? 'bg-orange text-white'
+                              : p.source === 'personal'
+                                ? 'bg-teal text-white'
+                                : 'bg-ink-deep/80 text-white')
+                        }
+                        title={
+                          isCommons
+                            ? 'Wikimedia Commons. Picking this promotes a CC BY-SA image — attribution will display under it on every public render.'
+                            : undefined
                         }
                       >
                         {sourceBadge}

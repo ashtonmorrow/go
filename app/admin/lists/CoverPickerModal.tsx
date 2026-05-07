@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { isCommonsUrl } from '@/components/CommonsAttributionBadge';
 
 // === CoverPickerModal ======================================================
 // Photo-level cover picker for /admin/lists/[slug] and the inline picker on
@@ -456,8 +457,10 @@ export default function CoverPickerModal({
               {filtered.map(p => {
                 const isCurrent = !!currentCoverUrl && p.url === currentCoverUrl;
                 const isCodex = p.imageSource === 'codex-generated';
+                const isCommons = isCommonsUrl(p.url);
                 const sourceBadge =
-                  p.source === 'city-hero' ? 'City'
+                  isCommons ? 'Commons'
+                  : p.source === 'city-hero' ? 'City'
                   : p.source === 'country-hero' ? 'Country'
                   : isCodex ? 'Codex'
                   : p.source === 'pin-image' ? 'Pin'
@@ -471,7 +474,9 @@ export default function CoverPickerModal({
                       'group relative aspect-square overflow-hidden rounded-md bg-cream-soft border-2 transition-all ' +
                       (isCurrent
                         ? 'border-teal ring-2 ring-teal/30'
-                        : 'border-sand hover:border-slate hover:shadow-paper') +
+                        : isCommons
+                          ? 'border-amber-400 hover:border-amber-500 hover:shadow-paper'
+                          : 'border-sand hover:border-slate hover:shadow-paper') +
                       (isDeleting ? ' opacity-60' : '')
                     }
                   >
@@ -498,11 +503,18 @@ export default function CoverPickerModal({
                       <div
                         className={
                           'pointer-events-none absolute top-1.5 right-1.5 pill text-micro shadow ' +
-                          (isCodex
-                            ? 'bg-orange text-white'
-                            : p.source === 'personal'
-                              ? 'bg-teal text-white'
-                              : 'bg-ink-deep/80 text-white')
+                          (isCommons
+                            ? 'bg-amber-500 text-white'
+                            : isCodex
+                              ? 'bg-orange text-white'
+                              : p.source === 'personal'
+                                ? 'bg-teal text-white'
+                                : 'bg-ink-deep/80 text-white')
+                        }
+                        title={
+                          isCommons
+                            ? 'Wikimedia Commons. Picking this promotes a CC BY-SA image — attribution will display under it on every public render.'
+                            : undefined
                         }
                       >
                         {sourceBadge}
