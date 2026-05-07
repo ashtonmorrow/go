@@ -27,14 +27,16 @@ export default async function AdminPinsPage() {
       country: p.statesNames[0] ?? '',
       visited: p.visited,
       kind: p.kind ?? null,
+      indexable: p.indexable,
+      personalRating: p.personalRating,
     }));
 
   return (
     <div className="max-w-page mx-auto px-5 py-8">
-      <h1 className="text-h2 text-ink-deep mb-2">Edit visited</h1>
+      <h1 className="text-h2 text-ink-deep mb-2">Edit pins</h1>
       <p className="text-small text-muted mb-6 max-w-2xl leading-relaxed">
-        Tick the checkbox for any place you&rsquo;ve been. Search to filter the list.
-        Click <strong>Save changes</strong> to commit. Only modified rows are sent.
+        Edit visited, kind, indexable, and rating inline. Search to filter.
+        Click <strong>Save changes</strong> to commit modified rows.
       </p>
       <VisitedEditorClient initialRows={rows} />
     </div>

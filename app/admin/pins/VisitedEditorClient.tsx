@@ -11,6 +11,18 @@ type Row = {
   country: string;
   visited: boolean;
   kind: string | null;
+  indexable: boolean;
+  personalRating: number | null;
+};
+
+// Per-row editable patch. The bulk-edit endpoint at
+// /api/admin/bulk-edit-pins accepts these four fields; everything else
+// on the pin still goes through /admin/pins/[id] one row at a time.
+type RowEdit = {
+  visited: boolean;
+  kind: string | null;
+  indexable: boolean;
+  personalRating: number | null;
 };
 
 type Filter = 'all' | 'visited' | 'not-visited';
@@ -18,17 +30,30 @@ type SortKey = 'recent' | 'name' | 'city' | 'country';
 const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 type Kind = typeof KINDS[number];
 
+const rowToEdit = (r: Row): RowEdit => ({
+  visited: r.visited,
+  kind: r.kind,
+  indexable: r.indexable,
+  personalRating: r.personalRating,
+});
+
+const editsEqual = (a: RowEdit, b: RowEdit): boolean =>
+  a.visited === b.visited &&
+  a.kind === b.kind &&
+  a.indexable === b.indexable &&
+  a.personalRating === b.personalRating;
+
 export default function VisitedEditorClient({ initialRows }: { initialRows: Row[] }) {
   // We splice rows out of the bulk roster as they're deleted server-side,
-  // so the visible table tracks the live database. The original-visited
+  // so the visible table tracks the live database. The original-edits
   // map is keyed by id, so dropping a row keeps the diff math sound.
   const [rows, setRows] = useState<Row[]>(initialRows);
   const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
-  const [originalVisited] = useState<Map<string, boolean>>(
-    () => new Map(initialRows.map(r => [r.id, r.visited])),
+  const [originalEdits] = useState<Map<string, RowEdit>>(
+    () => new Map(initialRows.map(r => [r.id, rowToEdit(r)])),
   );
-  const [current, setCurrent] = useState<Map<string, boolean>>(
-    () => new Map(initialRows.map(r => [r.id, r.visited])),
+  const [current, setCurrent] = useState<Map<string, RowEdit>>(
+    () => new Map(initialRows.map(r => [r.id, rowToEdit(r)])),
   );
 
   async function deletePin(id: string, name: string) {
@@ -55,6 +80,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         next.delete(id);
         return next;
       });
+      originalEdits.delete(id);
     } catch (e) {
       window.alert(e instanceof Error ? e.message : 'delete failed');
     } finally {
@@ -111,10 +137,11 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   const dirty = useMemo(() => {
     const out: string[] = [];
     for (const [id, v] of current) {
-      if (originalVisited.get(id) !== v) out.push(id);
+      const orig = originalEdits.get(id);
+      if (!orig || !editsEqual(orig, v)) out.push(id);
     }
     return out;
-  }, [current, originalVisited]);
+  }, [current, originalEdits]);
 
   const countryOptions = useMemo(() => {
     const set = new Set<string>();
@@ -125,12 +152,14 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
     const out = rows.filter(r => {
-      const visitedNow = current.get(r.id) ?? r.visited;
+      const edit = current.get(r.id);
+      const visitedNow = edit?.visited ?? r.visited;
+      const kindNow = edit?.kind ?? r.kind;
       if (filter === 'visited' && !visitedNow) return false;
       if (filter === 'not-visited' && visitedNow) return false;
       if (country && r.country !== country) return false;
       if (kindFilter.size > 0) {
-        if (!r.kind || !kindFilter.has(r.kind as Kind)) return false;
+        if (!kindNow || !kindFilter.has(kindNow as Kind)) return false;
       }
       if (!needle) return true;
       return (
@@ -161,10 +190,25 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     });
   };
 
+  const updateField = <K extends keyof RowEdit>(id: string, key: K, value: RowEdit[K]) => {
+    setCurrent(prev => {
+      const next = new Map(prev);
+      const existing = next.get(id);
+      const base: RowEdit = existing ?? rowToEdit(rows.find(r => r.id === id) ?? {
+        id, name: '', slug: null, city: '', country: '',
+        visited: false, kind: null, indexable: false, personalRating: null,
+      });
+      next.set(id, { ...base, [key]: value });
+      return next;
+    });
+  };
+
   const toggleRow = (id: string) => {
     setCurrent(prev => {
       const next = new Map(prev);
-      next.set(id, !(next.get(id) ?? false));
+      const existing = next.get(id);
+      if (!existing) return prev;
+      next.set(id, { ...existing, visited: !existing.visited });
       return next;
     });
   };
@@ -172,13 +216,16 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   const setVisitedAllVisible = (value: boolean) => {
     setCurrent(prev => {
       const next = new Map(prev);
-      for (const r of filtered) next.set(r.id, value);
+      for (const r of filtered) {
+        const existing = next.get(r.id) ?? rowToEdit(r);
+        next.set(r.id, { ...existing, visited: value });
+      }
       return next;
     });
   };
 
   const reset = () => {
-    setCurrent(new Map(originalVisited));
+    setCurrent(new Map([...originalEdits].map(([id, e]) => [id, { ...e }])));
     setResult(null);
   };
 
@@ -187,8 +234,19 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     setSaving(true);
     setResult(null);
     try {
-      const changes = dirty.map(id => ({ id, visited: current.get(id) ?? false }));
-      const res = await fetch('/api/admin/update-visited', {
+      const changes = dirty.map(id => {
+        const edit = current.get(id)!;
+        const orig = originalEdits.get(id)!;
+        const fields: Record<string, unknown> = {};
+        if (edit.visited !== orig.visited) fields.visited = edit.visited;
+        if (edit.kind !== orig.kind) fields.kind = edit.kind;
+        if (edit.indexable !== orig.indexable) fields.indexable = edit.indexable;
+        if (edit.personalRating !== orig.personalRating) {
+          fields.personal_rating = edit.personalRating;
+        }
+        return { id, fields };
+      });
+      const res = await fetch('/api/admin/bulk-edit-pins', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ changes }),
@@ -198,7 +256,10 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       setResult({ updated: data.updated ?? 0 });
       // After a successful save, treat current as the new baseline so the
       // dirty count drops to zero and Save disables again.
-      for (const id of dirty) originalVisited.set(id, current.get(id) ?? false);
+      for (const id of dirty) {
+        const edit = current.get(id);
+        if (edit) originalEdits.set(id, { ...edit });
+      }
     } catch (e) {
       setResult({ updated: 0, errors: [e instanceof Error ? e.message : 'unknown'] });
     } finally {
@@ -207,7 +268,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   };
 
   const visitedCount = useMemo(
-    () => [...current.values()].filter(Boolean).length,
+    () => [...current.values()].filter(e => e.visited).length,
     [current],
   );
 
@@ -582,13 +643,15 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       )}
 
       {/* Table */}
-      <div className="border border-sand rounded overflow-hidden">
+      <div className="border border-sand rounded overflow-x-auto">
         <table className="w-full text-small">
           <thead className="bg-cream-soft text-label uppercase tracking-wider text-muted">
             <tr>
-              <th className="text-left px-3 py-2 w-10"></th>
+              <th className="text-left px-3 py-2 w-10" title="Visited">✓</th>
               <th className="text-left px-3 py-2">Name</th>
-              <th className="text-left px-3 py-2 hidden lg:table-cell w-[110px]">Kind</th>
+              <th className="text-left px-3 py-2 w-[130px]">Kind</th>
+              <th className="text-left px-3 py-2 w-[90px]" title="Rating 1-5">Rating</th>
+              <th className="text-left px-3 py-2 w-[90px]" title="Indexable in Google">Index</th>
               <th className="text-left px-3 py-2 hidden sm:table-cell">City</th>
               <th className="text-left px-3 py-2 hidden md:table-cell">Country</th>
               <th className="text-left px-3 py-2 w-10"></th>
@@ -597,14 +660,15 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           <tbody>
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-3 py-6 text-center text-muted text-small">
+                <td colSpan={8} className="px-3 py-6 text-center text-muted text-small">
                   No pins match.
                 </td>
               </tr>
             )}
             {filtered.map(row => {
-              const visitedNow = current.get(row.id) ?? false;
-              const isDirty = originalVisited.get(row.id) !== visitedNow;
+              const edit = current.get(row.id) ?? rowToEdit(row);
+              const orig = originalEdits.get(row.id);
+              const isDirty = !!orig && !editsEqual(orig, edit);
               return (
                 <tr
                   key={row.id}
@@ -616,53 +680,69 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                   <td className="px-3 py-2 align-top">
                     <input
                       type="checkbox"
-                      checked={visitedNow}
+                      checked={edit.visited}
                       onChange={() => toggleRow(row.id)}
                       className="cursor-pointer"
                       aria-label={`Mark ${row.name} as visited`}
                     />
                   </td>
                   <td className="px-3 py-2 align-top text-ink-deep">
-                    <button
-                      type="button"
-                      onClick={() => toggleRow(row.id)}
-                      className="text-left hover:text-teal"
-                    >
-                      {row.name}
-                    </button>
-                    <Link
-                      href={`/admin/pins/${row.id}`}
-                      className="ml-2 text-micro text-teal hover:underline"
-                    >
-                      edit
-                    </Link>
-                    {row.slug && (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span>{row.name}</span>
                       <Link
-                        href={`/pins/${row.slug}`}
-                        target="_blank"
-                        className="ml-2 text-micro text-muted hover:text-teal"
+                        href={`/admin/pins/${row.id}`}
+                        className="text-micro text-teal hover:underline"
                       >
-                        view ↗
+                        edit
                       </Link>
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => deletePin(row.id, row.name)}
-                      disabled={deletingIds.has(row.id)}
-                      className="ml-2 text-micro text-orange hover:underline disabled:opacity-50"
-                      title="Permanently delete this pin"
-                    >
-                      {deletingIds.has(row.id) ? 'deleting…' : 'delete'}
-                    </button>
+                      {row.slug && (
+                        <Link
+                          href={`/pins/${row.slug}`}
+                          target="_blank"
+                          className="text-micro text-muted hover:text-teal"
+                        >
+                          view ↗
+                        </Link>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => deletePin(row.id, row.name)}
+                        disabled={deletingIds.has(row.id)}
+                        className="text-micro text-orange hover:underline disabled:opacity-50"
+                        title="Permanently delete this pin"
+                      >
+                        {deletingIds.has(row.id) ? 'deleting…' : 'delete'}
+                      </button>
+                    </div>
                   </td>
-                  <td className="px-3 py-2 align-top text-slate hidden lg:table-cell">
-                    {row.kind ? (
-                      <span className="capitalize text-label pill bg-cream-soft text-slate">
-                        {row.kind}
-                      </span>
-                    ) : (
-                      <span className="text-muted/60 text-label">—</span>
-                    )}
+                  <td className="px-3 py-2 align-top">
+                    <select
+                      value={edit.kind ?? ''}
+                      onChange={e => updateField(row.id, 'kind', e.target.value || null)}
+                      className="text-small border border-sand rounded px-1.5 py-1 bg-white capitalize w-full"
+                      aria-label={`Kind for ${row.name}`}
+                    >
+                      <option value="">—</option>
+                      {KINDS.map(k => (
+                        <option key={k} value={k}>{k}</option>
+                      ))}
+                    </select>
+                  </td>
+                  <td className="px-3 py-2 align-top">
+                    <RatingPicker
+                      value={edit.personalRating}
+                      onChange={v => updateField(row.id, 'personalRating', v)}
+                      label={`Rating for ${row.name}`}
+                    />
+                  </td>
+                  <td className="px-3 py-2 align-top">
+                    <input
+                      type="checkbox"
+                      checked={edit.indexable}
+                      onChange={e => updateField(row.id, 'indexable', e.target.checked)}
+                      className="cursor-pointer"
+                      aria-label={`Indexable for ${row.name}`}
+                    />
                   </td>
                   <td className="px-3 py-2 align-top text-slate hidden sm:table-cell">
                     {row.city || <span className="text-muted/60">—</span>}
@@ -679,6 +759,42 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           </tbody>
         </table>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Five-button rating picker. Click a star to set, click the active star
+ * to clear. Compact enough to fit in a table cell without wrapping.
+ */
+function RatingPicker({
+  value,
+  onChange,
+  label,
+}: {
+  value: number | null;
+  onChange: (v: number | null) => void;
+  label: string;
+}) {
+  return (
+    <div className="inline-flex items-center" role="group" aria-label={label}>
+      {[1, 2, 3, 4, 5].map(n => {
+        const active = value != null && n <= value;
+        return (
+          <button
+            key={n}
+            type="button"
+            onClick={() => onChange(value === n ? null : n)}
+            aria-label={`${n} of 5`}
+            className={
+              'w-5 h-5 leading-none text-base ' +
+              (active ? 'text-amber-500' : 'text-muted/40 hover:text-amber-500/60')
+            }
+          >
+            ★
+          </button>
+        );
+      })}
     </div>
   );
 }
