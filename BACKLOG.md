@@ -4,6 +4,13 @@ Things to come back to.
 
 ## Recently shipped (this session)
 
+- [x] `/about` AboutPage JSON-LD references sitewide AUTHOR_ID via `@id` (entity reconciliation)
+- [x] Wikipedia attribution footer on `/pins/[slug]`, `/cities/[slug]`, `/countries/[slug]` (CC BY-SA 4.0 compliance)
+- [x] FAQPage schema on `/pins/[slug]` — auto-generated from hours / price / booking / dress code / guide / wheelchair / kid-friendly / duration when ≥2 fields populated
+- [x] Sitewide default OG image via `app/opengraph-image.tsx` (next/og) — replaces favicon-as-social-card on cockpit indexes
+- [x] `productionBrowserSourceMaps: true` in next.config (PSI Best Practices)
+- [x] Person `sameAs` binds Layer author bio + sibling subdomains (ski, pounce, stray)
+- [x] `/lists/[slug]` default noindex,follow unless `.md` says `indexable: true`
 - [x] Self-host Inter via next/font; map components on dynamic loaders
 - [x] Wikipedia section on `/pins/[slug]` streams via `<Suspense>`
 - [x] Typography sweep across pin / city / country / list detail pages
@@ -32,15 +39,9 @@ Things to come back to.
 
 ## SEO — open
 
-- [ ] **Wikipedia attribution footer** on detail-page sections that use Wikipedia summary text or thumbnails. Required by CC BY-SA 4.0. Format: "Text/image from the Wikipedia article *Pyramids of Egypt*, licensed under CC BY-SA 4.0." with a link to the license. Can be small text under the lead paragraph + sidebar thumb.
+- [ ] **Per-route OG image variants.** The sitewide default (`app/opengraph-image.tsx`) covers every page. For higher-value share surfaces, render route-specific cards: pin name + cover photo on `/pins/[slug]`, city name + flag on `/cities/[slug]`, list title + first cover on `/lists/[slug]`. Each is its own opengraph-image.tsx in the route segment.
 
-- [ ] **`Article` (or `AboutPage`) schema on `/about`** instead of generic `WebPage`. Wire `author: personJsonLd()`, `datePublished`, `dateModified`.
-
-- [ ] **OG images per page**. Right now indexes use the favicon. Generate or pick a static branded OG image for each index view. Vercel's `next/og` can render dynamic images per pin if we want to go further later.
-
-- [ ] **`FAQPage` schema on populated pin pages**. When a pin has hours, admission, dress code, etc., emit auto-generated Q&A like "What time does X close?" / "How much does it cost?" — these win long-tail rankings. Pattern already exists for `/lists/[slug]` (frontmatter `faqs:`); extend to pins.
-
-- [ ] **Per-country / per-city "things to do" landing pages**: `/countries/egypt/things-to-do`, `/cities/cairo/things-to-do` showing the city's pins as a curated feed with editorial intro. Strong long-tail target.
+- [ ] **Per-country / per-city "things to do" landing pages**: `/countries/egypt/things-to-do`, `/cities/cairo/things-to-do` showing the city's pins as a curated feed with editorial intro. Strong long-tail target. Needs design care: how does it relate to `/cities/[slug]` (which already shows the city's saved-list pins)? Either make the existing `/cities/[slug]` h1 + title use the "things to do" phrasing, or build a separate route with deliberately different structure (no climate/facts noise; pins-only) to avoid duplicate-content. Recommendation: separate route, canonical to itself, link from the existing city page.
 
 - [ ] **Search Console (user-side)** — click Verify after Vercel deploys, submit `https://go.mike-lee.me/sitemap.xml`. Optionally verify `mike-lee.me` as a Domain property (DNS TXT) so all subdomains roll up under one Search Console view.
 
