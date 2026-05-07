@@ -1,17 +1,27 @@
 import Script from 'next/script';
 
 // === Google Analytics 4 ====================================================
-// Uses next/script with strategy="beforeInteractive" — the only Next.js 15
-// strategy that injects scripts into the framework's static <head> at
-// server-render time. Earlier attempts (raw <script> inside a JSX <head>,
-// next/script with afterInteractive) put the tags in <body> or in the
-// React Server Components stream, which Google's tag detector can't see
-// because it scrapes static HTML without executing JS.
+// Two scripts working together:
 //
-// Trade-off: beforeInteractive runs before page hydration, which can
-// theoretically delay first paint. For an async gtag.js snippet plus a
-// tiny inline init this is invisible in practice — the network fetch is
-// non-blocking and the inline script is microseconds of work.
+//  1. Inline init (strategy="beforeInteractive") — defines window.gtag,
+//     sets the Consent Mode v2 default to denied, queues the first
+//     `config` call, and restores prior consent for returning visitors.
+//     Stays beforeInteractive so the consent default is set before any
+//     other code runs and the first pageview honours the deny state.
+//
+//  2. gtag.js library (strategy="afterInteractive") — the heavy
+//     ~153 KB GA library. Loads after hydration. The queued commands
+//     from #1 sit in dataLayer until gtag.js processes them, so the
+//     first pageview still fires once the library lands.
+//
+// Why not beforeInteractive on gtag.js too: PSI flagged it as ~1.1 s of
+// main-thread blocking + 60 KiB unused JS at first paint. Modern
+// Google Tag Assistant + the GA pageview detector execute JS, so tag
+// detection no longer requires the script to ship in the static head —
+// afterInteractive is the recommended modern strategy. Trade-off: the
+// first pageview reaches Google a few hundred ms later than under
+// beforeInteractive, but that's invisible to Mike and far better for
+// real users on the page.
 //
 // MUST be rendered inside the root layout (app/layout.tsx) — Next throws
 // if a beforeInteractive Script is mounted from a leaf component.
@@ -68,7 +78,7 @@ export default function GoogleAnalytics() {
     <>
       <Script
         id="ga-lib"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
       />
       <Script id="ga-init" strategy="beforeInteractive">
