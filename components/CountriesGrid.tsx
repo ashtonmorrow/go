@@ -152,9 +152,9 @@ function FlagCard({ country, onClick }: { country: Country; onClick: () => void 
         >
           <div className="h-full p-3 flex flex-col">
             <div className="flex items-baseline justify-between gap-2 mb-1.5">
-              <h3 className="text-ink-deep font-semibold text-small leading-tight truncate">
+              <h2 className="text-ink-deep font-semibold text-small leading-tight truncate">
                 {country.name}
-              </h3>
+              </h2>
               {country.iso2 && (
                 <span className="text-micro font-mono text-muted tracking-[0.1em]">{country.iso2}</span>
               )}

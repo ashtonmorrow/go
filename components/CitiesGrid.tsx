@@ -418,9 +418,9 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
           </p>
         )}
         <div className="flex items-baseline gap-2 min-w-0">
-          <h3 className="text-ink-deep font-bold text-xl uppercase tracking-tight leading-none truncate">
+          <h2 className="text-ink-deep font-bold text-xl uppercase tracking-tight leading-none truncate">
             {city.name}
-          </h3>
+          </h2>
           {city.savedPlaces && (
             <a
               href={city.savedPlaces}
