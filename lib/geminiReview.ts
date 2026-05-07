@@ -1,18 +1,21 @@
 import 'server-only';
+import { supabaseAdmin } from './supabaseAdmin';
 
 // === Gemini hotel-review generator =========================================
 // Takes a stay's structured Q&A + price/room metadata and returns a short
-// hotel review in Mike's voice. The prompt holds the rules; this module
-// owns the API call and the input/output shape.
+// hotel review in Mike's voice. The prompt and the actual Gemini call
+// live in the Stray Supabase edge function `generate-stay-review`,
+// matching the pattern parse-reservation already uses, so the Gemini
+// API key stays in one place (Stray's edge env). This module owns
+// the input/output shape and the prompt text we hand the function.
 //
 // The prompt deliberately doesn't quote CLAUDE.md verbatim — Mike's
-// editorial guide reads better in his own hands than as LLM input. What
-// the prompt enforces is the bar: brief, specific, ordered by what
-// stood out, no padding, no superlatives.
+// editorial guide reads better in his own hands than as LLM input.
+// What the prompt enforces is the bar: brief, specific, ordered by
+// what stood out, no padding, no superlatives.
 //
-// API: Google's REST endpoint for Gemini 1.5 Flash. Set GEMINI_API_KEY
-// in the Vercel project. Returns null on any failure so the caller can
-// fall back to "save the Q&A, ask again later".
+// Returns null on any failure so the caller can fall back to "save the
+// Q&A, retry later".
 
 export type StayReviewInput = {
   hotelName: string;
@@ -96,71 +99,33 @@ function buildUserPrompt(input: StayReviewInput): string {
   return parts.join('\n');
 }
 
-const GEMINI_MODEL = 'gemini-2.0-flash';
-
 export async function generateStayReview(
   input: StayReviewInput,
 ): Promise<StayReviewResult | null> {
-  const key = process.env.GEMINI_API_KEY;
-  if (!key) {
-    console.error('[geminiReview] GEMINI_API_KEY not set');
-    return null;
-  }
-
-  const url =
-    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
-
-  const body = {
-    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-    contents: [
-      {
-        role: 'user',
-        parts: [{ text: buildUserPrompt(input) }],
-      },
-    ],
-    generationConfig: {
-      temperature: 0.6,
-      // 180 words ≈ 240 tokens; cap a bit above so the model can finish
-      // a sentence without truncation.
-      maxOutputTokens: 360,
-      topP: 0.9,
+  const sb = supabaseAdmin();
+  const { data, error } = await sb.functions.invoke('generate-stay-review', {
+    body: {
+      system_prompt: SYSTEM_PROMPT,
+      user_prompt: buildUserPrompt(input),
     },
-    safetySettings: [],
-  };
-
-  let res: Response;
-  try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-  } catch (err) {
-    console.error('[geminiReview] network error:', err);
+  });
+  if (error) {
+    let detail = '';
+    try {
+      const ctx = (error as { context?: unknown }).context;
+      if (ctx && typeof (ctx as { json?: unknown }).json === 'function') {
+        const body = await (ctx as { json: () => Promise<unknown> }).json();
+        const obj = body as { error?: string };
+        detail = obj?.error ? `: ${obj.error}` : `: ${JSON.stringify(body).slice(0, 200)}`;
+      }
+    } catch {
+      /* ignore */
+    }
+    console.error('[geminiReview] edge function failed:', error, detail);
     return null;
   }
-
-  if (!res.ok) {
-    const detail = await res.text().catch(() => '');
-    console.error(
-      `[geminiReview] non-ok response (${res.status}): ${detail.slice(0, 300)}`,
-    );
-    return null;
-  }
-
-  type GeminiResponse = {
-    candidates?: {
-      content?: { parts?: { text?: string }[] };
-    }[];
-  };
-  let data: GeminiResponse;
-  try {
-    data = (await res.json()) as GeminiResponse;
-  } catch {
-    return null;
-  }
-  const text =
-    data.candidates?.[0]?.content?.parts?.map(p => p.text ?? '').join('').trim() ?? '';
+  const obj = data as { review?: string; model?: string } | null;
+  const text = (obj?.review ?? '').trim();
   if (!text) return null;
-  return { text, model: GEMINI_MODEL };
+  return { text, model: obj?.model ?? 'gemini-edge' };
 }

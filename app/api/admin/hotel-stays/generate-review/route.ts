@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          'review generation failed (check GEMINI_API_KEY env var and Vercel runtime logs)',
+          'review generation failed (check the Stray generate-stay-review edge function logs and GEMINI_API_KEY in its env)',
       },
       { status: 502 },
     );
