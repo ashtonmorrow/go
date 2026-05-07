@@ -9,7 +9,7 @@ import { LIST_ICONS, LIST_SHORT_LABELS, type CanonicalList } from '@/lib/pinList
 import { parseHours, todayHoursLabel } from '@/lib/parseHours';
 import { thumbUrl } from '@/lib/imageUrl';
 import { snippet } from '@/lib/savedLists';
-import type { Pin } from '@/lib/pins';
+import type { PinForCard } from '@/lib/pinsCardData';
 
 /** Cards rendered on first paint — 60 covers ~3 viewports of grid on
  *  desktop and a long scroll on mobile. The rest stream in via an
@@ -36,7 +36,7 @@ const PAGE_SIZE = 60;
 // Reports the result/total count back to the panel via context so the
 // "X / Y pins" badge stays in sync.
 type Props = {
-  pins: Pin[];
+  pins: PinForCard[];
   countryNameToIso2: Record<string, string>;
 };
 
@@ -124,7 +124,7 @@ function PinCard({
   pin,
   countryIso2,
 }: {
-  pin: Pin;
+  pin: PinForCard;
   countryIso2: string | null;
 }) {
   // Thumbnail transform: tell Supabase Storage to serve a 112x112 (2x of

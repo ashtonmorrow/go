@@ -1,26 +1,22 @@
 // === /pins index ===========================================================
-// Curated places-of-interest (UNESCO sites, museums, viewpoints) sourced
-// from my Airtable Framer/Attractions table and stored in Stray's
-// Supabase.
-//
-// Server fetches the full pin set + the country list (for flag-avatar
-// lookups) and hands them to a client PinsGrid that filters/sorts via
-// PinFiltersContext. The actual filter UI lives in the sidebar
-// (PinFilterPanel) — same cockpit pattern the city views use.
+// Curated places-of-interest. Server fetches the slim aggregated card
+// payload (pin set + country iso2 lookup) from lib/pinsCardData and
+// hands it to the client PinsGrid that filters/sorts via
+// PinFiltersContext.
 //
 import type { Metadata } from 'next';
-import { fetchAllPins } from '@/lib/pins';
-import { fetchPersonalCovers } from '@/lib/personalPhotos';
-import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
 import PinsGrid from '@/components/PinsGrid';
 import PinsPageTitle from '@/components/PinsPageTitle';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
+import { fetchPinsCardData } from '@/lib/pinsCardData';
 
 // Dynamic per-request, not ISR. Rendering ~5,000 pin cards into HTML
-// exceeds Vercel's 19.07 MB ISR fallback ceiling. Underlying
-// fetchAllPins is unstable_cache'd, so re-rendering is fast on warm
-// cache.
+// risks Vercel's 19.07 MB ISR fallback ceiling. The expensive per-render
+// work (corpus fetch + per-pin denormalization + personal-cover lookups)
+// is now cached in fetchPinsCardData (24 h TTL, slim shape that fits
+// under Next's 2 MB data cache), so re-rendering is a single
+// in-memory map lookup once warm.
 export const dynamic = 'force-dynamic';
 
 const DESCRIPTION =
@@ -39,20 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsPage() {
-  const [pinsRaw, countries, personalCovers] = await Promise.all([
-    fetchAllPins(),
-    fetchAllCountries(),
-    fetchPersonalCovers(),
-  ]);
-
-  const pins = pinsRaw.map(p => ({ ...p, personalCoverUrl: personalCovers.get(p.id) ?? null }));
-
-  // Lower-cased name lookup so capitalisation drift between Airtable and
-  // Notion doesn't drop a flag.
-  const countryNameToIso2: Record<string, string> = {};
-  for (const c of countries) {
-    if (c.iso2) countryNameToIso2[c.name.toLowerCase()] = c.iso2;
-  }
+  const { pins, countryNameToIso2 } = await fetchPinsCardData();
 
   return (
     <div className="max-w-page mx-auto px-5 py-6">
@@ -70,9 +53,6 @@ export default async function PinsPage() {
         })}
       />
 
-      {/* Compact header — matches /cities/cards, /countries/cards, etc.
-          Total + visited counts live in the cockpit's "X / Y pins" badge,
-          so the page itself doesn't need to repeat them. */}
       <section className="max-w-page mx-auto px-5 pt-6"><PinsPageTitle /></section>
 
       <PinsGrid pins={pins} countryNameToIso2={countryNameToIso2} />
