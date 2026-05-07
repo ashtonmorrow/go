@@ -17,6 +17,7 @@ import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
+import AdminEditLink from '@/components/AdminEditLink';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -45,11 +46,10 @@ function slugifyCapital(name: string | null | undefined): string | null {
   return slug || null;
 }
 
-// Dynamic per-request: searchParams.admin gates inline-edit affordances,
-// and an ISR'd admin variant would leak edit links to the next visitor.
-// Per-fetch caching still applies via unstable_cache wrappers in lib/
-// so dropping ISR here doesn't turn the page into an N+1.
-export const dynamic = 'force-dynamic';
+// 7-day ISR — bust via /api/revalidate when the city or its content
+// file changes. Admin edit affordance moved into a client-side
+// <AdminEditLink>, so the page can stay statically cached.
+export const revalidate = 604800;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   // generateMetadata runs above any route-segment error.tsx boundary,
@@ -103,12 +103,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CityPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ admin?: string }>;
 }) {
-  const adminMode = (await searchParams)?.admin === '1';
   const { slug } = await params;
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();
@@ -410,16 +407,7 @@ export default async function CityPage({
         );
       })()}
 
-      {adminMode && (
-        <div className="mt-2 text-right">
-          <Link
-            href={`/admin/cities/${city.slug}`}
-            className="text-small text-teal hover:underline"
-          >
-            Edit hero photos →
-          </Link>
-        </div>
-      )}
+      <AdminEditLink href={`/admin/cities/${city.slug}`} />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         {/* Main column */}

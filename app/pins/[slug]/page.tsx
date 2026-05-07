@@ -25,13 +25,13 @@ import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
+import AdminEditLink from '@/components/AdminEditLink';
 
-// Dynamic per-request: this page reads searchParams.admin to flip on the
-// inline-edit affordances, and admin URLs aren't ISR-friendly (a cached
-// admin variant would leak edit links to the next visitor). Per-fetch
-// caching still applies via unstable_cache wrappers in lib/ so dropping
-// ISR here doesn't turn the page into an N+1.
-export const dynamic = 'force-dynamic';
+// 7-day ISR — bust via /api/revalidate when the underlying pin or its
+// content file changes. The admin edit affordance has moved into a
+// client-side <AdminEditLink>, so reading searchParams here is no
+// longer necessary — the page can finally be statically cached.
+export const revalidate = 604800;
 
 /** A pin is "thin" when there's nothing on the page that adds value beyond
  *  Wikipedia: not visited, no personal review, no curated list membership,
@@ -116,14 +116,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function PinPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ admin?: string }>;
 }) {
   const { slug } = await params;
-  const sp = await searchParams;
-  const adminMode = sp?.admin === '1';
   const pin = await fetchPinBySlug(slug);
   if (!pin) notFound();
 
@@ -463,17 +459,10 @@ export default async function PinPage({
 
       {/* Admin-only inline edit link, opt in via ?admin=1 so the URL
           stays bookmarkable without surfacing the link to drive-by
-          visitors. The /admin/* path is still gated by basic auth. */}
-      {adminMode && (
-        <div className="mt-2 text-right">
-          <Link
-            href={`/admin/pins/${pin.id}`}
-            className="text-small text-teal hover:underline"
-          >
-            Edit hero photos →
-          </Link>
-        </div>
-      )}
+          visitors. Rendered client-side so the page itself stays
+          ISR-friendly. The /admin/* path is still gated by basic auth. */}
+      <AdminEditLink href={`/admin/pins/${pin.id}`} />
+
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">
