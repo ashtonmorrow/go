@@ -177,16 +177,18 @@ export default async function PinPage({
     return `${y}`;
   };
 
-  // Dedupe + drop the codex AI-illustrated cards from anything that
-  // expects "real" full-size imagery. They still render on cards
-  // (where the hand-drawn poster style is the point) — this filter
-  // applies only to the detail-page hero / gallery.
-  const galleryImages = pin.images.filter(
+  // Dedupe + prefer real photography. Codex AI-illustrated posters are
+  // fine as fallback hero art when nothing else exists — Mike treats
+  // them as proper covers, not just card thumbnails — but we don't want
+  // them sitting next to a real photo in the gallery. So: if any
+  // non-codex image exists, drop the codex ones; otherwise let the
+  // codex art through as the hero.
+  const dedupedImages = pin.images.filter(
     (img, i, arr) =>
-      img.url &&
-      img.source !== 'codex-generated' &&
-      arr.findIndex(x => x.url === img.url) === i,
+      img.url && arr.findIndex(x => x.url === img.url) === i,
   );
+  const realImages = dedupedImages.filter(img => img.source !== 'codex-generated');
+  const galleryImages = realImages.length > 0 ? realImages : dedupedImages;
 
   const hoursDetailsHasData =
     pin.hoursDetails && (
