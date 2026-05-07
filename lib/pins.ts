@@ -607,9 +607,9 @@ const _fetchPinsForLists = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v4: refresh saved-list snapshots after Alicante tram stop enrichment
-  // added coordinates, route order, and Creueta to the station list.
-  ['supabase-pins-for-lists-v4'],
+  // v5: refresh saved-list snapshots after Kusttram station art backfill
+  // filled previously empty `images` arrays for the full 67-stop list.
+  ['supabase-pins-for-lists-v5'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
