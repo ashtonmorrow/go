@@ -27,11 +27,11 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-// The root chrome reads the request pathname in <Sidebar /> so it can avoid
-// loading heavy city/pin corpuses on pages that do not render filter panels.
-// Marking the shell dynamic makes that contract explicit and stops Next from
-// probing ordinary routes as static, only to trip over headers() during build.
-export const dynamic = 'force-dynamic';
+// Layout is intentionally NOT force-dynamic. The Sidebar fetches corpora
+// through unstable_cache, so the layout can stay static and pages below
+// it use their own per-route revalidate / dynamic strategy. Pages that
+// genuinely need dynamic rendering (anything reading searchParams or
+// cookies) opt in at the page level.
 
 // === Sitewide metadata =====================================================
 // metadataBase makes relative URLs in metadata.openGraph etc. resolve to

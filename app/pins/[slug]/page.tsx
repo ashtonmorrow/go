@@ -26,15 +26,11 @@ import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 
-// Force dynamic rendering. The Sidebar (root layout) reads headers() for
-// pathname-aware fetching, which makes the whole tree dynamic at runtime.
-// Combining that with the previous `revalidate + dynamicParams + empty
-// generateStaticParams` triple told Next to try static-with-ISR; at
-// request time those configs conflict and Next throws "Page changed
-// from static to dynamic at runtime, reason: headers" → bare 500.
-// Per-fetch caching still applies via unstable_cache wrappers in lib/
-// (fetchPinBySlug etc are TTL'd to 24h), so dropping ISR here doesn't
-// turn the page into an N+1.
+// Dynamic per-request: this page reads searchParams.admin to flip on the
+// inline-edit affordances, and admin URLs aren't ISR-friendly (a cached
+// admin variant would leak edit links to the next visitor). Per-fetch
+// caching still applies via unstable_cache wrappers in lib/ so dropping
+// ISR here doesn't turn the page into an N+1.
 export const dynamic = 'force-dynamic';
 
 /** A pin is "thin" when there's nothing on the page that adds value beyond

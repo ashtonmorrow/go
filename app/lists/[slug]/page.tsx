@@ -238,10 +238,16 @@ async function pinsReferenceList(name: string): Promise<boolean> {
 }
 
 export async function generateStaticParams() {
-  // Driven from the metadata table — same source of truth as findList.
-  // Avoids a full fetchAllPins just to discover slug names.
-  const listsMeta = await fetchAllSavedListsMeta();
-  return Array.from(listsMeta.keys()).map(name => ({ slug: listNameToSlug(name) }));
+  // Returning an empty array opts out of build-time prerendering. Each
+  // list page is rendered on first request and cached for `revalidate`
+  // seconds afterward. We previously enumerated every list slug here,
+  // but with the layout now static, Next started actually honoring it
+  // and prerendered every list page at build time — fanning out the
+  // full sidebar corpus + per-list pin queries concurrently and
+  // overwhelming Supabase. On-demand ISR scales much more gracefully:
+  // only slugs that actually get traffic ever fetch, and unstable_cache
+  // smooths the burst.
+  return [];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
