@@ -6,29 +6,38 @@ import { useEffect, useState } from 'react';
 // Photo-level cover picker for /admin/lists/[slug] and the inline picker on
 // /admin/lists. Three tabs:
 //
-//   1. "In this list"     → photos attached to pins that are members of the
-//                           current list. Loaded eagerly on mount.
+//   1. "In this list"     → personal photos AND pin.images entries (codex
+//                           art, Wikidata pictures) for every pin that's
+//                           a member of the current list. Loaded eagerly.
 //   2. "Related places"   → photos from pins in any city or country whose
-//                           name word-matches the list name (so a list
-//                           called "bangkok" surfaces every Bangkok pin
-//                           photo even if those pins aren't members yet).
-//                           Loaded lazily.
+//                           name word-matches the list name, plus the
+//                           hero photos attached to those cities and
+//                           countries themselves. Loaded lazily.
 //   3. "All my photos"    → every personal photo on the site, paginated.
 //                           Loaded lazily when the tab is first activated.
 //
-// Selection sets `saved_lists.cover_photo_id` via the existing
-// /api/admin/saved-list { action: 'setCover' } endpoint. The modal also
-// offers a Clear button that nulls both cover_photo_id and cover_pin_id
-// so the cover reverts to the geo / pin-pile fallback chain on /lists.
+// The endpoint returns tiles tagged with a source discriminator
+// ('personal' | 'pin-image' | 'city-hero' | 'country-hero'). Picking a
+// 'personal' tile commits saved_lists.cover_photo_id (FK uuid). Picking
+// any other tile commits saved_lists.cover_image_url (raw URL) — the
+// /lists resolver prefers cover_image_url over cover_photo_id over
+// cover_pin_id over the geo / pin-pile fallbacks.
 //
-// State is intentionally local — the parent page passes initial values and
-// receives the final committed cover via onCommit so it can update its own
-// preview without a round-trip refetch.
+// State is intentionally local — the parent passes the current cover URL
+// for highlighting and receives the final committed cover via onCommit
+// so it can update its own preview without a round-trip refetch.
+
+export type PhotoSource = 'personal' | 'pin-image' | 'city-hero' | 'country-hero';
 
 export type PhotoTile = {
   id: string;
   url: string;
-  pinId: string;
+  source: PhotoSource;
+  /** For source=pin-image, the value of pin.images[i].source — typically
+   *  'codex-generated', 'wikidata', or null. The picker shows a small
+   *  badge for codex tiles so you can spot AI art at a glance. */
+  imageSource?: string | null;
+  pinId: string | null;
   pinName: string;
   pinSlug: string | null;
   takenAt: string | null;
@@ -38,9 +47,9 @@ export type PhotoTile = {
 
 type Props = {
   listName: string;
-  /** Initial cover photo URL to highlight in the grid (if any). Comes
-   *  from saved_lists.cover_photo_id resolution on the server. */
-  currentCoverPhotoId: string | null;
+  /** Current cover URL — used for highlighting the active tile in the
+   *  grid. Null when the list has no curated cover yet. */
+  currentCoverUrl: string | null;
   /** Called after a successful save with the committed photo (or null
    *  for clear). Parent uses this to update its preview tile. */
   onCommit: (next: { coverPhotoId: string | null; coverUrl: string | null }) => void;
@@ -53,7 +62,7 @@ const PAGE = 200;
 
 export default function CoverPickerModal({
   listName,
-  currentCoverPhotoId,
+  currentCoverUrl,
   onCommit,
   onClose,
 }: Props) {
@@ -93,8 +102,6 @@ export default function CoverPickerModal({
     };
   }, [listName]);
 
-  // Lazy-load the "all" tab the first time it's opened, then paginate on
-  // demand via the "Load more" button at the bottom of the grid.
   async function loadAll(reset = false) {
     setLoading(true);
     setError(null);
@@ -116,9 +123,6 @@ export default function CoverPickerModal({
     }
   }
 
-  // Lazy-load the "related places" tab — photos from pins in cities or
-  // countries whose name word-matches the list name. The API does the
-  // heavy lifting; we just kick the request and stash the result.
   async function loadRelated() {
     setLoading(true);
     setError(null);
@@ -151,21 +155,37 @@ export default function CoverPickerModal({
     setSaving(true);
     setError(null);
     try {
+      // Personal photos commit via the FK column; everything else (pin
+      // images, city/country heroes) commit via the raw URL column. We
+      // null the slot we're not using so precedence is unambiguous on
+      // the resolver side.
+      const body =
+        photo.source === 'personal'
+          ? {
+              action: 'setCover' as const,
+              name: listName,
+              cover_photo_id: photo.id,
+              cover_image_url: null,
+              cover_pin_id: null,
+            }
+          : {
+              action: 'setCover' as const,
+              name: listName,
+              cover_photo_id: null,
+              cover_image_url: photo.url,
+              cover_pin_id: null,
+            };
       const res = await fetch('/api/admin/saved-list', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          action: 'setCover',
-          name: listName,
-          // Setting a curated photo wins over cover_pin_id; null the pin
-          // override so the precedence is unambiguous.
-          cover_photo_id: photo.id,
-          cover_pin_id: null,
-        }),
+        body: JSON.stringify(body),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error ?? 'save failed');
-      onCommit({ coverPhotoId: photo.id, coverUrl: photo.url });
+      onCommit({
+        coverPhotoId: photo.source === 'personal' ? photo.id : null,
+        coverUrl: photo.url,
+      });
       onClose();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'save failed');
@@ -185,6 +205,7 @@ export default function CoverPickerModal({
           action: 'setCover',
           name: listName,
           cover_photo_id: null,
+          cover_image_url: null,
           cover_pin_id: null,
         }),
       });
@@ -274,7 +295,7 @@ export default function CoverPickerModal({
                 }
                 title={
                   t === 'related'
-                    ? 'Photos from pins in any city or country whose name word-matches this list'
+                    ? 'Photos from pins, cities, and countries whose name word-matches this list'
                     : undefined
                 }
               >
@@ -301,7 +322,7 @@ export default function CoverPickerModal({
           ) : photos.length === 0 ? (
             <p className="text-center text-slate text-small py-12">
               {tab === 'in-list'
-                ? 'No personal photos attached to pins on this list yet.'
+                ? 'No photos found. Pins on this list have no personal photos and no pin.images entries (codex / Wikidata).'
                 : tab === 'related'
                 ? 'No related-place photos found. The list name needs to word-match a city or country (e.g. a list called "bangkok" surfaces Bangkok pins).'
                 : 'No personal photos uploaded yet.'}
@@ -309,7 +330,14 @@ export default function CoverPickerModal({
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {photos.map(p => {
-                const isCurrent = p.id === currentCoverPhotoId;
+                const isCurrent = !!currentCoverUrl && p.url === currentCoverUrl;
+                const isCodex = p.imageSource === 'codex-generated';
+                const sourceBadge =
+                  p.source === 'city-hero' ? 'City'
+                  : p.source === 'country-hero' ? 'Country'
+                  : isCodex ? 'Codex'
+                  : p.source === 'pin-image' ? 'Pin'
+                  : null;
                 return (
                   <button
                     key={p.id}
@@ -335,6 +363,20 @@ export default function CoverPickerModal({
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-deep/80 to-transparent p-2 text-white text-micro leading-tight">
                       <p className="truncate">{p.pinName}</p>
                     </div>
+                    {sourceBadge && (
+                      <div
+                        className={
+                          'absolute top-1.5 right-1.5 pill text-micro shadow ' +
+                          (isCodex
+                            ? 'bg-orange text-white'
+                            : p.source === 'personal'
+                              ? 'bg-teal text-white'
+                              : 'bg-ink-deep/80 text-white')
+                        }
+                      >
+                        {sourceBadge}
+                      </div>
+                    )}
                     {isCurrent && (
                       <div className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro shadow">
                         Current

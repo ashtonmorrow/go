@@ -74,6 +74,7 @@ async function findList(slug: string) {
       coverPinId: null,
       coverPhotoId: null,
       coverPhotoUrl: null,
+      coverImageUrl: null,
       pinOrder: [],
       updatedAt: null,
     });
@@ -259,8 +260,10 @@ export default async function ListPage({ params }: Props) {
   // === Cover hero precedence ================================================
   // Frontmatter `hero_image` is the strongest signal — when present it wins
   // unconditionally so an editor can pick exactly the cover they want.
-  // Otherwise fall through: curated saved-list cover photo > curated
-  // cover pin > anchor city's personal photo > first visited pin's photo.
+  // Otherwise fall through: curated cover URL (codex art / city or country
+  // hero / Wikidata pin image) > curated personal photo > curated cover pin
+  // > anchor city's personal photo > first visited pin's photo.
+  const coverFromCuratedUrl = meta?.coverImageUrl ?? null;
   const coverFromCurated = meta?.coverPhotoUrl ?? null;
   const coverFromPin = meta?.coverPinId
     ? listPins.find(p => p.id === meta.coverPinId)?.images?.[0]?.url ?? null
@@ -277,7 +280,7 @@ export default async function ListPage({ params }: Props) {
     return null;
   })();
   const coverUrl =
-    content?.heroImage ?? coverFromCurated ?? coverFromPin ?? coverFromCity ?? coverFromPinPile;
+    content?.heroImage ?? coverFromCuratedUrl ?? coverFromCurated ?? coverFromPin ?? coverFromCity ?? coverFromPinPile;
   const coverAlt = content?.heroAlt ?? '';
 
   const visitedCount = onList.filter(p => p.visited).length;

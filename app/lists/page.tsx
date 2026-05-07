@@ -129,14 +129,17 @@ export default async function ListsIndex() {
         : country
         ? { kind: 'country' as const, name: country.name, slug: country.slug }
         : null;
-      // Curated covers always win. The picker stores either a specific
-      // photo (cover_photo_id, joined to its URL at fetch time) or a pin
-      // (cover_pin_id, whose first image we look up here). After the
-      // curated chain, fall back to the matching city's hero photo and
-      // finally to whatever the pin pile turns up.
+      // Curated covers always win. The picker stores either a raw URL
+      // (cover_image_url — codex art, Wikidata pin image, city/country
+      // hero), a specific personal photo (cover_photo_id, joined to its
+      // URL at fetch time), or a pin (cover_pin_id, whose first image
+      // we look up here). After the curated chain, fall back to the
+      // matching city's hero photo and finally to whatever the pin pile
+      // turns up.
       const meta = listsMeta.get(name);
       const cover =
-        meta?.coverPhotoUrl
+        meta?.coverImageUrl
+        ?? meta?.coverPhotoUrl
         ?? (meta?.coverPinId ? pinPrimaryPhoto.get(meta.coverPinId) ?? null : null)
         ?? city?.cover
         ?? pickPinCover(arr);

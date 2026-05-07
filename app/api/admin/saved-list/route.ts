@@ -26,11 +26,16 @@ import { listNameToSlug } from '@/lib/savedLists';
 //   → toggle a single pin's membership in a list. Idempotent on both
 //     sides; safe to spam from a checkbox UI.
 //
-// POST { action: 'setCover', name, cover_photo_id?: uuid|null, cover_pin_id?: uuid|null }
-//   → curate the cover image shown on /lists. Either field can be set or
-//     nulled independently; the cover-resolver on /lists prefers
-//     cover_photo_id over cover_pin_id over the geo / pin-pile fallbacks.
-//     Fields not present on the body are left alone.
+// POST { action: 'setCover', name,
+//        cover_photo_id?: uuid|null,
+//        cover_pin_id?: uuid|null,
+//        cover_image_url?: string|null }
+//   → curate the cover image shown on /lists. Any subset of the three
+//     fields can be set or nulled independently. Fields not present on
+//     the body are left alone. The /lists cover resolver prefers
+//     cover_image_url (any URL — codex art, city/country hero photo)
+//     over cover_photo_id (personal_photos row) over cover_pin_id
+//     (first image of the pin) over the geo / pin-pile fallbacks.
 //
 // POST { action: 'setPinOrder', name, pinIds: string[] }
 //   → curate the order pins render in on /lists/<slug>. Members not
@@ -61,6 +66,10 @@ type SetCoverBody = {
   /** uuid → set; null → clear; undefined → leave alone. */
   cover_photo_id?: string | null;
   cover_pin_id?: string | null;
+  /** Full URL → set; null → clear; undefined → leave alone. Used when
+   *  the cover comes from a source that isn't a personal_photos row
+   *  (codex art, Wikidata pin image, city/country hero photo). */
+  cover_image_url?: string | null;
 };
 type SetPinOrderBody = {
   action: 'setPinOrder';
@@ -302,6 +311,25 @@ export async function POST(req: Request) {
         );
       }
       patch.cover_pin_id = v;
+    }
+    if (Object.prototype.hasOwnProperty.call(body, 'cover_image_url')) {
+      const v = body.cover_image_url;
+      if (v !== null && (typeof v !== 'string' || !v.trim())) {
+        return NextResponse.json(
+          { error: 'cover_image_url must be a URL string or null' },
+          { status: 400 },
+        );
+      }
+      // Light-touch URL validation — has to start with http(s):// to be
+      // renderable. The picker only ever passes URLs we already render,
+      // but a fat-finger PATCH from outside should fail loudly.
+      if (typeof v === 'string' && !/^https?:\/\//.test(v)) {
+        return NextResponse.json(
+          { error: 'cover_image_url must be an http(s) URL' },
+          { status: 400 },
+        );
+      }
+      patch.cover_image_url = v;
     }
     // Upsert so a list whose metadata row hasn't been created yet still
     // gets the cover. ON CONFLICT rebases on `name` (the PK).

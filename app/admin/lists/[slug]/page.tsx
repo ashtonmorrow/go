@@ -113,7 +113,10 @@ export default async function ListDetailAdminPage({ params }: Props) {
     (p.savedLists ?? []).includes(found.name),
   );
 
-  if (meta?.coverPhotoUrl) {
+  if (meta?.coverImageUrl) {
+    coverUrl = meta.coverImageUrl;
+    coverSource = 'curated-photo';
+  } else if (meta?.coverPhotoUrl) {
     coverUrl = meta.coverPhotoUrl;
     coverSource = 'curated-photo';
   } else if (meta?.coverPinId) {

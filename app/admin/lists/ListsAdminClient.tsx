@@ -498,8 +498,8 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
       {coverPickerFor && (
         <CoverPickerModal
           listName={coverPickerFor}
-          currentCoverPhotoId={
-            lists.find(l => l.name === coverPickerFor)?.coverPhotoId ?? null
+          currentCoverUrl={
+            lists.find(l => l.name === coverPickerFor)?.coverPhotoUrl ?? null
           }
           onCommit={next => handleCoverCommit(coverPickerFor, next)}
           onClose={() => setCoverPickerFor(null)}

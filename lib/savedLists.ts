@@ -51,6 +51,12 @@ export type SavedListMeta = {
    *  consumers don't need to do a second round-trip. */
   coverPhotoId: string | null;
   coverPhotoUrl: string | null;
+  /** Direct image URL chosen via the cover picker — used when the source
+   *  is anything other than a personal_photos row (codex-generated pin
+   *  art, a Wikidata image on a pin, a city or country hero photo).
+   *  Wins over coverPhotoId / coverPinId in the resolution chain so the
+   *  picker can commit any URL without touching personal_photos. */
+  coverImageUrl: string | null;
   /** Curated pin ordering for this list. Pins listed here render in this
    *  order on /lists/<slug>; members NOT in the array fall to the end
    *  in the user's default sort order. Maintained server-side by the
@@ -77,7 +83,7 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
     const { data, error } = await supabase
       .from('saved_lists')
       .select(
-        'name, google_share_url, description, cover_pin_id, cover_photo_id, pin_order, updated_at, ' +
+        'name, google_share_url, description, cover_pin_id, cover_photo_id, cover_image_url, pin_order, updated_at, ' +
         'cover_photo:personal_photos!cover_photo_id(url)'
       );
     if (error) {
@@ -106,13 +112,15 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
         coverPinId: (row.cover_pin_id as string | null) ?? null,
         coverPhotoId: (row.cover_photo_id as string | null) ?? null,
         coverPhotoUrl: photoUrl,
+        coverImageUrl: (row.cover_image_url as string | null) ?? null,
         pinOrder: (row.pin_order as string[] | null) ?? [],
         updatedAt: (row.updated_at as string | null) ?? null,
       };
     });
   },
-  // v7: refresh list metadata after Cape Town list curation.
-  ['saved-lists-meta-v7'],
+  // v8: SavedListMeta gained coverImageUrl. v7 entries miss the field;
+  // /lists cover resolution would skip the new tier until TTL expiry.
+  ['saved-lists-meta-v8'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

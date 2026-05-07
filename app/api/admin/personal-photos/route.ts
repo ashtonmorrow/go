@@ -9,22 +9,32 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin';
 // Three scopes:
 //
 //   ?listName=<list>     → photos attached to pins that are members of that
-//                          saved list. Drives the "In this list" tab.
+//                          saved list (personal photos AND pin.images, so
+//                          codex-generated covers and Wikidata pictures
+//                          surface alongside Mike's own uploads). Drives
+//                          the "In this list" tab.
 //
-//   ?relatedToList=<list>→ photos attached to pins whose city or country
-//                          name word-matches the list name (same heuristic
-//                          as listsMatchingPlace). A list called "bangkok"
-//                          surfaces every photo from any pin in Bangkok,
-//                          even if those pins aren't yet members of the
-//                          list. Drives the "Related places" tab.
+//   ?relatedToList=<list>→ photos from pins whose city or country name
+//                          word-matches the list name (same personal +
+//                          pin.images union as above) PLUS hero photos
+//                          attached to the matched cities and countries
+//                          themselves. A list called "bangkok" surfaces
+//                          every Bangkok pin photo + Bangkok's city
+//                          hero, even if the pins aren't yet members.
+//                          Drives the "Related places" tab.
 //
 //   (no scope)           → every personal photo on the site, ordered by
 //                          taken_at desc with ties broken by created_at.
 //                          Drives the "All my photos" tab. Paginated via
 //                          ?offset=N&limit=N (default 200, hard cap 500).
 //
-// Each row carries enough metadata to render a meaningful tile:
-// {id, url, pinId, pinName, pinSlug, takenAt, lat, lng}.
+// Each tile carries enough metadata to render and to commit:
+//   { id, url, source, pinId?, pinName, pinSlug?, takenAt?, lat?, lng?,
+//     imageSource? }
+//
+// `source` is one of 'personal' | 'pin-image' | 'city-hero' |
+// 'country-hero'. The CoverPickerModal dispatches on source to decide
+// whether to commit cover_photo_id (uuid) or cover_image_url (raw URL).
 //
 // Auth: middleware.ts gates /api/admin/* with HTTP basic so we don't need
 // a separate gate here.
@@ -32,10 +42,17 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+type PhotoSource = 'personal' | 'pin-image' | 'city-hero' | 'country-hero';
+
 type PhotoTile = {
   id: string;
   url: string;
-  pinId: string;
+  source: PhotoSource;
+  /** For source=pin-image, the value of pin.images[i].source — typically
+   *  'codex-generated', 'wikidata', or null. Lets the UI label codex
+   *  tiles distinctly so you don't pick AI art by accident. */
+  imageSource?: string | null;
+  pinId: string | null;
   pinName: string;
   pinSlug: string | null;
   takenAt: string | null;
@@ -76,6 +93,182 @@ function normalizeListName(name: string): string {
     .trim();
 }
 
+/** Pull personal_photos as PhotoTile[] for a (possibly null) pin set. */
+async function fetchPersonalPhotoTiles(
+  sb: ReturnType<typeof supabaseAdmin>,
+  pinIdFilter: string[] | null,
+  offset: number,
+  limit: number,
+): Promise<{ tiles: PhotoTile[]; total: number; hasMore: boolean }> {
+  let query = sb
+    .from('personal_photos')
+    .select(
+      'id, url, taken_at, exif_lat, exif_lng, created_at, ' +
+      'pin:pins!inner(id, name, slug)',
+      { count: 'exact' },
+    )
+    .order('taken_at', { ascending: false, nullsFirst: false })
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1);
+  if (pinIdFilter) query = query.in('pin_id', pinIdFilter);
+  const { data, error, count } = await query;
+  if (error) throw new Error(error.message);
+  const tiles: PhotoTile[] = (data ?? []).map(rawRow => {
+    const row = rawRow as unknown as Record<string, unknown>;
+    const pin = row.pin;
+    const pinObj = Array.isArray(pin)
+      ? (pin[0] as { id?: string; name?: string; slug?: string | null } | undefined)
+      : (pin as { id?: string; name?: string; slug?: string | null } | undefined);
+    return {
+      id: row.id as string,
+      url: row.url as string,
+      source: 'personal',
+      pinId: (pinObj?.id ?? null) as string | null,
+      pinName: (pinObj?.name ?? '') as string,
+      pinSlug: (pinObj?.slug ?? null) as string | null,
+      takenAt: (row.taken_at as string | null) ?? null,
+      lat: (row.exif_lat as number | null) ?? null,
+      lng: (row.exif_lng as number | null) ?? null,
+    };
+  });
+  const total = count ?? tiles.length;
+  return { tiles, total, hasMore: offset + tiles.length < total };
+}
+
+/** Pull pin.images entries for a pin set as PhotoTile[]. Returns one tile
+ *  per non-empty image url, tagged with the pin.images[i].source string so
+ *  the UI can label codex-generated tiles distinctly. */
+async function fetchPinImageTiles(
+  sb: ReturnType<typeof supabaseAdmin>,
+  pinIds: string[],
+): Promise<PhotoTile[]> {
+  if (pinIds.length === 0) return [];
+  const { data, error } = await sb
+    .from('pins')
+    .select('id, name, slug, images')
+    .in('id', pinIds);
+  if (error) throw new Error(error.message);
+  const tiles: PhotoTile[] = [];
+  for (const rawRow of data ?? []) {
+    const row = rawRow as Record<string, unknown>;
+    const pinId = row.id as string;
+    const pinName = (row.name as string | null) ?? '';
+    const pinSlug = (row.slug as string | null) ?? null;
+    const images = Array.isArray(row.images) ? row.images : [];
+    images.forEach((img, idx) => {
+      const r = img as { url?: unknown; source?: unknown };
+      const u = typeof r.url === 'string' ? r.url : '';
+      if (!u) return;
+      tiles.push({
+        id: `pin-image:${pinId}:${idx}`,
+        url: u,
+        source: 'pin-image',
+        imageSource: typeof r.source === 'string' ? r.source : null,
+        pinId,
+        pinName,
+        pinSlug,
+        takenAt: null,
+        lat: null,
+        lng: null,
+      });
+    });
+  }
+  return tiles;
+}
+
+/** Pull go_cities hero/personal photos for cities whose name word-matches
+ *  the given normalized list name. */
+async function fetchCityHeroTiles(
+  sb: ReturnType<typeof supabaseAdmin>,
+  listNorm: string,
+): Promise<PhotoTile[]> {
+  const { data, error } = await sb
+    .from('go_cities')
+    .select('name, slug, hero_image, personal_photo, hero_photo_urls');
+  if (error) throw new Error(error.message);
+  const tiles: PhotoTile[] = [];
+  for (const rawRow of data ?? []) {
+    const row = rawRow as Record<string, unknown>;
+    const name = (row.name as string | null) ?? '';
+    if (!name || !placeWordMatchesList(listNorm, name)) continue;
+    const slug = (row.slug as string | null) ?? null;
+    const urls: string[] = [];
+    const personalPhoto = row.personal_photo;
+    if (typeof personalPhoto === 'string' && personalPhoto) urls.push(personalPhoto);
+    const heroImage = row.hero_image;
+    if (typeof heroImage === 'string' && heroImage && !urls.includes(heroImage)) {
+      urls.push(heroImage);
+    }
+    const heroArr = Array.isArray(row.hero_photo_urls) ? row.hero_photo_urls : [];
+    for (const u of heroArr) {
+      if (typeof u === 'string' && u && !urls.includes(u)) urls.push(u);
+    }
+    urls.forEach((u, idx) => {
+      tiles.push({
+        id: `city-hero:${slug ?? name}:${idx}`,
+        url: u,
+        source: 'city-hero',
+        pinId: null,
+        pinName: `${name} (city)`,
+        pinSlug: slug,
+        takenAt: null,
+        lat: null,
+        lng: null,
+      });
+    });
+  }
+  return tiles;
+}
+
+/** Pull go_countries hero photos for countries whose name word-matches
+ *  the given normalized list name. */
+async function fetchCountryHeroTiles(
+  sb: ReturnType<typeof supabaseAdmin>,
+  listNorm: string,
+): Promise<PhotoTile[]> {
+  const { data, error } = await sb
+    .from('go_countries')
+    .select('name, slug, hero_photo_urls');
+  if (error) throw new Error(error.message);
+  const tiles: PhotoTile[] = [];
+  for (const rawRow of data ?? []) {
+    const row = rawRow as Record<string, unknown>;
+    const name = (row.name as string | null) ?? '';
+    if (!name || !placeWordMatchesList(listNorm, name)) continue;
+    const slug = (row.slug as string | null) ?? null;
+    const heroArr = Array.isArray(row.hero_photo_urls) ? row.hero_photo_urls : [];
+    heroArr.forEach((u, idx) => {
+      if (typeof u !== 'string' || !u) return;
+      tiles.push({
+        id: `country-hero:${slug ?? name}:${idx}`,
+        url: u,
+        source: 'country-hero',
+        pinId: null,
+        pinName: `${name} (country)`,
+        pinSlug: slug,
+        takenAt: null,
+        lat: null,
+        lng: null,
+      });
+    });
+  }
+  return tiles;
+}
+
+/** Drop tiles whose URL has already been seen earlier in the list. Keeps
+ *  the first occurrence — typically a personal photo over a pin image,
+ *  since we concat in that order. */
+function dedupeByUrl(tiles: PhotoTile[]): PhotoTile[] {
+  const seen = new Set<string>();
+  const out: PhotoTile[] = [];
+  for (const t of tiles) {
+    if (seen.has(t.url)) continue;
+    seen.add(t.url);
+    out.push(t);
+  }
+  return out;
+}
+
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const listName = url.searchParams.get('listName')?.trim().toLowerCase() || null;
@@ -88,12 +281,9 @@ export async function GET(req: Request) {
 
   const sb = supabaseAdmin();
 
-  // Step 1: figure out which pin IDs to scope to.
-  //   - listName       → pins whose saved_lists array contains the name
-  //   - relatedToList  → pins whose city_names or states_names contains a
-  //                      word-matching place name
-  //   - neither        → no filter (all personal photos)
-  let pinIdFilter: string[] | null = null;
+  // === Scope: members of a saved list ======================================
+  // Personal photos AND pin.images for every pin in the list — codex art
+  // and Wikidata pictures get equal billing alongside Mike's own uploads.
   if (listName) {
     const { data: memberPins, error: pinErr } = await sb
       .from('pins')
@@ -102,19 +292,33 @@ export async function GET(req: Request) {
     if (pinErr) {
       return NextResponse.json({ error: pinErr.message }, { status: 500 });
     }
-    pinIdFilter = (memberPins ?? []).map(r => r.id as string);
-    if (pinIdFilter.length === 0) {
+    const pinIds = (memberPins ?? []).map(r => r.id as string);
+    if (pinIds.length === 0) {
       return NextResponse.json({ photos: [], total: 0, hasMore: false });
     }
-  } else if (relatedToList) {
+    try {
+      const [{ tiles: personal }, pinImages] = await Promise.all([
+        fetchPersonalPhotoTiles(sb, pinIds, 0, HARD_LIMIT),
+        fetchPinImageTiles(sb, pinIds),
+      ]);
+      const photos = dedupeByUrl([...personal, ...pinImages]);
+      return NextResponse.json({ photos, total: photos.length, hasMore: false });
+    } catch (e) {
+      return NextResponse.json(
+        { error: e instanceof Error ? e.message : 'fetch failed' },
+        { status: 500 },
+      );
+    }
+  }
+
+  // === Scope: places related to a list name ================================
+  // Pin photos for pins in matching cities/countries, plus the hero photos
+  // attached to the cities and countries themselves.
+  if (relatedToList) {
     const listNorm = normalizeListName(relatedToList);
     if (!listNorm) {
       return NextResponse.json({ photos: [], total: 0, hasMore: false });
     }
-    // Pull every pin that has a city or country set; filter in JS for the
-    // word-boundary match. The pin set isn't huge (a few thousand at most)
-    // so this is a single round-trip + an O(n) walk. PostgREST can't
-    // express a regex-on-array-elements check natively without an RPC.
     const { data: candidatePins, error: pinErr } = await sb
       .from('pins')
       .select('id, city_names, states_names')
@@ -122,78 +326,52 @@ export async function GET(req: Request) {
     if (pinErr) {
       return NextResponse.json({ error: pinErr.message }, { status: 500 });
     }
-    const matched: string[] = [];
+    const matchedPinIds: string[] = [];
     for (const row of candidatePins ?? []) {
       const cities = (row.city_names as string[] | null) ?? [];
       const states = (row.states_names as string[] | null) ?? [];
-      const places = [...cities, ...states];
-      if (places.some(p => placeWordMatchesList(listNorm, p))) {
-        matched.push(row.id as string);
+      if ([...cities, ...states].some(p => placeWordMatchesList(listNorm, p))) {
+        matchedPinIds.push(row.id as string);
       }
     }
-    if (matched.length === 0) {
-      return NextResponse.json({ photos: [], total: 0, hasMore: false });
+    try {
+      const [personalRes, pinImages, cityTiles, countryTiles] = await Promise.all([
+        matchedPinIds.length > 0
+          ? fetchPersonalPhotoTiles(sb, matchedPinIds, 0, HARD_LIMIT)
+          : Promise.resolve({ tiles: [] as PhotoTile[], total: 0, hasMore: false }),
+        matchedPinIds.length > 0
+          ? fetchPinImageTiles(sb, matchedPinIds)
+          : Promise.resolve([] as PhotoTile[]),
+        fetchCityHeroTiles(sb, listNorm),
+        fetchCountryHeroTiles(sb, listNorm),
+      ]);
+      // City + country heroes lead so they're easy to spot at the top of
+      // the grid; pin-attached photos follow.
+      const photos = dedupeByUrl([
+        ...cityTiles,
+        ...countryTiles,
+        ...personalRes.tiles,
+        ...pinImages,
+      ]);
+      return NextResponse.json({ photos, total: photos.length, hasMore: false });
+    } catch (e) {
+      return NextResponse.json(
+        { error: e instanceof Error ? e.message : 'fetch failed' },
+        { status: 500 },
+      );
     }
-    pinIdFilter = matched;
   }
 
-  // Step 2: fetch personal_photos, JOINed to pins for name/slug. PostgREST's
-  // !inner ensures the JOIN is required (no orphan photos with a deleted
-  // pin reference). Newest-first by taken_at; falls back to created_at when
-  // EXIF was missing at upload time.
-  let query = sb
-    .from('personal_photos')
-    .select(
-      'id, url, taken_at, exif_lat, exif_lng, created_at, ' +
-      'pin:pins!inner(id, name, slug)',
-      { count: 'exact' },
-    )
-    .order('taken_at', { ascending: false, nullsFirst: false })
-    .order('created_at', { ascending: false })
-    .range(offset, offset + limit - 1);
-
-  if (pinIdFilter) {
-    query = query.in('pin_id', pinIdFilter);
+  // === Scope: all personal photos (paginated) ==============================
+  try {
+    const { tiles, total, hasMore } = await fetchPersonalPhotoTiles(sb, null, offset, limit);
+    return NextResponse.json({ photos: tiles, total, hasMore });
+  } catch (e) {
+    return NextResponse.json(
+      { error: e instanceof Error ? e.message : 'fetch failed' },
+      { status: 500 },
+    );
   }
-
-  const { data, error, count } = await query;
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  const photos: PhotoTile[] = (data ?? []).map(rawRow => {
-    // supabase-js types the per-row result as `GenericStringError | T`
-    // when an embedded JOIN is involved (the union is there to flag
-    // failed embeds at runtime). Property access trips against the
-    // GenericStringError half of the union even though embedded JOINs
-    // never actually fail this way in practice. Double-cast through
-    // `unknown` once at the top so the rest of this function reads
-    // cleanly. Pattern matches what lib/savedLists.ts does.
-    const row = rawRow as unknown as Record<string, unknown>;
-    // PostgREST's embedded one-to-one comes back as a single object, but
-    // older versions occasionally shipped an array — be defensive either way.
-    const pin = row.pin;
-    const pinObj = Array.isArray(pin)
-      ? (pin[0] as { id?: string; name?: string; slug?: string | null } | undefined)
-      : (pin as { id?: string; name?: string; slug?: string | null } | undefined);
-    return {
-      id: row.id as string,
-      url: row.url as string,
-      pinId: (pinObj?.id ?? '') as string,
-      pinName: (pinObj?.name ?? '') as string,
-      pinSlug: (pinObj?.slug ?? null) as string | null,
-      takenAt: (row.taken_at as string | null) ?? null,
-      lat: (row.exif_lat as number | null) ?? null,
-      lng: (row.exif_lng as number | null) ?? null,
-    };
-  });
-
-  const total = count ?? photos.length;
-  return NextResponse.json({
-    photos,
-    total,
-    hasMore: offset + photos.length < total,
-  });
 }
 
 // === PATCH /api/admin/personal-photos ======================================

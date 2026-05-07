@@ -23,13 +23,18 @@ export default async function ListsAdminPage() {
   const lists = Array.from(counts.entries())
     .map(([name, count]) => {
       const meta = listsMeta.get(name);
+      // coverDisplayUrl is what the inline thumbnail shows. Prefer the
+      // direct cover_image_url (codex / city / country / Wikidata) when
+      // set, then fall back to the personal-photo JOIN. cover_photo_id is
+      // still passed through so the picker knows which tile to mark
+      // "Current" for personal-photo selections.
       return {
         name,
         count,
         googleShareUrl: meta?.googleShareUrl ?? null,
         description: meta?.description ?? null,
         coverPhotoId: meta?.coverPhotoId ?? null,
-        coverPhotoUrl: meta?.coverPhotoUrl ?? null,
+        coverPhotoUrl: meta?.coverImageUrl ?? meta?.coverPhotoUrl ?? null,
       };
     })
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));

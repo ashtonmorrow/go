@@ -73,7 +73,7 @@ export default function CoverSection({
       {open && (
         <CoverPickerModal
           listName={listName}
-          currentCoverPhotoId={coverPhotoId}
+          currentCoverUrl={coverUrl}
           onCommit={handleCommit}
           onClose={() => setOpen(false)}
         />
