@@ -125,6 +125,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/lists/${slug}` },
+    // Indexability gate: same pattern as /cities/[slug] and /countries/[slug].
+    // A list is indexed iff its /content/lists/<slug>.md has `indexable: true`
+    // in the frontmatter. Everything else stays noindex,follow so Google
+    // can still walk outward through internal links but doesn't add the
+    // thin variants to its index. Opt any list in by writing a .md file
+    // with `indexable: true` and editorial content.
+    robots: content?.indexable ? undefined : { index: false, follow: true },
     openGraph: {
       title,
       description,
