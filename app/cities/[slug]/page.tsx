@@ -464,13 +464,13 @@ export default async function CityPage({
           {isCurated && city.whyVisit && (
             <section className="mt-8">
               <h2 className="text-h2 text-ink-deep mb-4">Why visit</h2>
-              <p className="text-ink leading-relaxed">{city.whyVisit}</p>
+              <p className="text-ink leading-relaxed text-prose">{city.whyVisit}</p>
             </section>
           )}
           {isCurated && city.avoid && (
             <section className="mt-8">
               <h2 className="text-h2 text-ink-deep mb-4">When to avoid</h2>
-              <p className="text-ink leading-relaxed">{city.avoid}</p>
+              <p className="text-ink leading-relaxed text-prose">{city.avoid}</p>
             </section>
           )}
 
@@ -479,13 +479,13 @@ export default async function CityPage({
               {city.hotSeasonName && (
                 <div>
                   <h3 className="text-ink-deep font-medium">{city.hotSeasonName}</h3>
-                  {city.hotSeasonDescription && <p className="text-small text-slate mt-1">{city.hotSeasonDescription}</p>}
+                  {city.hotSeasonDescription && <p className="text-body text-slate mt-1">{city.hotSeasonDescription}</p>}
                 </div>
               )}
               {city.coldSeasonName && (
                 <div>
                   <h3 className="text-ink-deep font-medium">{city.coldSeasonName}</h3>
-                  {city.coolerWetterSeason && <p className="text-small text-slate mt-1">{city.coolerWetterSeason}</p>}
+                  {city.coolerWetterSeason && <p className="text-body text-slate mt-1">{city.coolerWetterSeason}</p>}
                 </div>
               )}
             </section>
@@ -496,7 +496,7 @@ export default async function CityPage({
           {climate && (
             <section className="mt-8">
               <h2 className="text-h2 text-ink-deep mb-4">Year-round climate</h2>
-              <p className="text-small text-slate mb-3">
+              <p className="text-prose text-slate mb-3">
                 Monthly highs, lows, and rainfall (long-term averages, NASA POWER).
               </p>
               <MonthlyClimateChart data={climate} lat={city.lat} />
@@ -646,7 +646,7 @@ export default async function CityPage({
       {citySourceLinks.length > 0 && (
         <section className="mt-12 border-t border-sand pt-8">
           <h2 className="text-h2 text-ink-deep mb-4">Sources</h2>
-          <p className="text-small text-slate max-w-prose">
+          <p className="text-prose text-slate max-w-prose">
             This page blends public reference data, climate/elevation services, and personal notes.
             Travel requirements can change, so visa and entry details should be checked again before booking.
           </p>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { fetchPinBySlug, fetchPinsInBbox, type Pin, type PinOpeningHours, type PinHoursDetails } from '@/lib/pins';
@@ -138,10 +139,13 @@ export default async function PinPage({
   // Bbox query is a single Supabase round-trip with a server-side filter
   // (~7km box at equator, haversine ranking has slack at corners).
   const BBOX_DELTA = 0.07;
-  const [countryRecord, cityRecord, wp, personalPhotos, content, bboxCandidates] = await Promise.all([
+  // Wikipedia is intentionally NOT in this Promise.all — it's a third-party
+  // call that gates first byte if it stalls (3s timeout cap, but cold cache
+  // is still slow). We render the lede + extract via <Suspense> below so the
+  // rest of the page streams without it.
+  const [countryRecord, cityRecord, personalPhotos, content, bboxCandidates] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
     cityName ? fetchCityByName(cityName) : Promise.resolve(null),
-    fetchWikipediaSummary(titleFromWikipediaUrl(pin.wikipediaUrl)),
     fetchPhotosForPin(pin.id),
     readPlaceContent('pins', pin.slug ?? ''),
     pin.lat != null && pin.lng != null
@@ -313,14 +317,14 @@ export default async function PinPage({
             </p>
           )}
           <h1 className="text-h1 text-ink-deep leading-tight">{pin.name}</h1>
-          <p className="mt-2 text-slate">
-            <SubLine
-              parts={[
-                wp?.description ?? null,
-                placeText || null,
-              ]}
-            />
-          </p>
+          {/* Lede: location only. The Wikipedia short description used to
+              also land here, but it loaded on the critical path and
+              flickered into the SubLine on cold renders. The richer
+              context lives in the streamed "From Wikipedia" section
+              below. */}
+          {placeText && (
+            <p className="mt-2 text-prose text-slate leading-snug">{placeText}</p>
+          )}
           <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
             {pin.visited && (
               <span className="text-teal text-label uppercase tracking-wider font-medium inline-flex items-center gap-1.5">
@@ -497,25 +501,14 @@ export default async function PinPage({
             </section>
           )}
 
-          {wp?.extract && (
-            <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">From Wikipedia</h2>
-              <p className="text-ink leading-relaxed text-prose">{wp.extract}</p>
-              <a
-                href={wp.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block text-small text-teal hover:underline"
-              >
-                Read more on Wikipedia →
-              </a>
-            </section>
-          )}
+          <Suspense fallback={null}>
+            <WikipediaSection wikipediaUrl={pin.wikipediaUrl} />
+          </Suspense>
 
           {pin.description && (
             <section className="mt-8 pt-8 border-t border-sand">
               <h2 className="text-h2 text-ink-deep mb-4">From the source</h2>
-              <p className="text-ink leading-relaxed whitespace-pre-line">{pin.description}</p>
+              <p className="text-ink leading-relaxed text-prose whitespace-pre-line">{pin.description}</p>
             </section>
           )}
 
@@ -609,7 +602,7 @@ export default async function PinPage({
               <h2 className="text-h2 text-ink-deep mb-4">Tags</h2>
               <div className="flex flex-wrap gap-1.5">
                 {pin.tags.map(t => (
-                  <span key={t} className="pill bg-cream-soft text-slate text-label">{t}</span>
+                  <span key={t} className="pill bg-cream-soft text-slate">{t}</span>
                 ))}
               </div>
             </section>
@@ -874,7 +867,7 @@ export default async function PinPage({
       {relatedPins.length > 0 && (
         <section className="mt-12 pt-8 border-t border-sand">
           <h2 className="text-h2 text-ink-deep mb-1">More near here</h2>
-          <p className="text-small text-muted mb-4">
+          <p className="text-prose text-muted mb-4">
             Other pins within walking distance of {pin.name}.
           </p>
           <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -1626,18 +1619,26 @@ function NoHoursPlaceholder() {
   );
 }
 
-function SubLine({ parts }: { parts: (string | null)[] }) {
-  const filled = parts.filter((p): p is string => !!p);
-  if (filled.length === 0) return null;
+/** Streamed Wikipedia block. Lives behind a <Suspense> on the main page so
+ *  the rest of the article doesn't gate first byte on a third-party REST
+ *  call. Returns null on cache miss + slow Wikipedia (the helper has its
+ *  own 3s timeout) so the section is invisible rather than empty. */
+async function WikipediaSection({ wikipediaUrl }: { wikipediaUrl: string | null }) {
+  const wp = await fetchWikipediaSummary(titleFromWikipediaUrl(wikipediaUrl));
+  if (!wp?.extract) return null;
   return (
-    <>
-      {filled.map((p, i) => (
-        <span key={i}>
-          {i > 0 && <span className="mx-1.5 text-muted" aria-hidden>·</span>}
-          {p}
-        </span>
-      ))}
-    </>
+    <section className="mt-8 pt-8 border-t border-sand">
+      <h2 className="text-h2 text-ink-deep mb-4">From Wikipedia</h2>
+      <p className="text-ink leading-relaxed text-prose">{wp.extract}</p>
+      <a
+        href={wp.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-block text-small text-teal hover:underline"
+      >
+        Read more on Wikipedia →
+      </a>
+    </section>
   );
 }
 

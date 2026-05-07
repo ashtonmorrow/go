@@ -233,7 +233,7 @@ export default async function CountryPage({
         )}
         <div>
           <h1 className="text-h1 text-ink-deep">{country.name}</h1>
-          {country.capital && <p className="text-slate mt-1">Capital: {country.capital}</p>}
+          {country.capital && <p className="mt-2 text-prose text-slate leading-snug">Capital: {country.capital}</p>}
           {/* Saved-list callout — surfaces matching list(s) up at the
               header so the curated places aren't buried under the
               country prose. Mirrors the same chip on /cities/[slug]. */}
@@ -308,7 +308,7 @@ export default async function CountryPage({
           {country.wikipediaSummary && (
             <section className={content ? 'mt-8 pt-8 border-t border-sand' : ''}>
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
-              <p className="text-ink leading-relaxed">{country.wikipediaSummary}</p>
+              <p className="text-ink leading-relaxed text-prose">{country.wikipediaSummary}</p>
             </section>
           )}
 
@@ -475,7 +475,7 @@ export default async function CountryPage({
 
       <section className="mt-12 border-t border-sand pt-8">
         <h2 className="text-h2 text-ink-deep mb-4">Sources</h2>
-        <p className="text-small text-slate max-w-prose">
+        <p className="text-prose text-slate max-w-prose">
           This page blends public reference data, travel-planning lookups, and personal atlas notes.
           Visa and entry rules move quickly, so treat the travel fields as planning prompts and verify before booking.
         </p>
