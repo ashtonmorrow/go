@@ -466,13 +466,21 @@ export default async function CityPage({
               {city.hotSeasonName && (
                 <div>
                   <h3 className="text-ink-deep font-medium">{city.hotSeasonName}</h3>
-                  {city.hotSeasonDescription && <p className="text-body text-slate mt-1">{city.hotSeasonDescription}</p>}
+                  {city.hotSeasonDescription && (
+                    <p className="text-body text-ink leading-relaxed mt-2">
+                      {city.hotSeasonDescription}
+                    </p>
+                  )}
                 </div>
               )}
               {city.coldSeasonName && (
                 <div>
                   <h3 className="text-ink-deep font-medium">{city.coldSeasonName}</h3>
-                  {city.coolerWetterSeason && <p className="text-body text-slate mt-1">{city.coolerWetterSeason}</p>}
+                  {city.coolerWetterSeason && (
+                    <p className="text-body text-ink leading-relaxed mt-2">
+                      {city.coolerWetterSeason}
+                    </p>
+                  )}
                 </div>
               )}
             </section>

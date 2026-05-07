@@ -137,10 +137,22 @@ export default function AboutPage() {
             Google Maps saved lists
           </h3>
           <p>
-            Every Bangkok food list, every Seville café shortlist, every
-            Lisbon viewpoint pile sits as a private saved list inside my
-            Google Maps account. I export them through Google Takeout and
-            import each list into the atlas as a curated collection. The{' '}
+            Every{' '}
+            <Link href="/cities/bangkok" className="text-teal hover:underline">
+              Bangkok
+            </Link>{' '}
+            food list, every{' '}
+            <Link href="/cities/seville" className="text-teal hover:underline">
+              Seville
+            </Link>{' '}
+            café shortlist, every{' '}
+            <Link href="/cities/lisbon" className="text-teal hover:underline">
+              Lisbon
+            </Link>{' '}
+            viewpoint pile sits as a private saved list inside my
+            Google Maps account. I export them through Google Takeout
+            and import each list into the atlas as a curated
+            collection. The{' '}
             <Link href="/lists" className="text-teal hover:underline">
               Lists section
             </Link>{' '}
@@ -185,11 +197,15 @@ export default function AboutPage() {
           </p>
 
           <p className="mt-5">
-            A city page like Cape Town surfaces the Google saved list,
-            any Atlas Obscura sites I have logged, the UNESCO sites in
-            or near it, and the Michelin restaurants I have eaten at,
-            all at once. That cross-section is the actual planning
-            artifact.
+            A city page like{' '}
+            <Link href="/cities/cape-town" className="text-teal hover:underline">
+              Cape Town
+            </Link>{' '}
+            surfaces the Google saved list, any Atlas Obscura sites I
+            have logged, the UNESCO sites in or near it, and the
+            Michelin restaurants I have eaten at, all at once. That
+            cross-section is the planning artifact, not the prose
+            around it.
           </p>
         </section>
 
@@ -213,11 +229,18 @@ export default function AboutPage() {
             part of the decision and belong on the page.
           </p>
           <p className="mt-4">
-            Barcelona is not just a Gothic Quarter and Gaudí checklist.
-            It is also beaches, commuter rail, wine country, Montserrat,
-            day trips to Sitges, and the practical reality of
-            pickpockets in the center. The page is meant to help someone
-            plan around both truths.
+            <Link href="/cities/barcelona" className="text-teal hover:underline">
+              Barcelona
+            </Link>{' '}
+            is not just a Gothic Quarter and Gaudí checklist. It is also
+            beaches, commuter rail, wine country, Montserrat, day trips
+            to{' '}
+            <Link href="/cities/sitges" className="text-teal hover:underline">
+              Sitges
+            </Link>
+            , and the practical reality of pickpockets in the center.
+            The page is meant to help someone plan around both truths
+            without flattening either.
           </p>
         </section>
 

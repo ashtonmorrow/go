@@ -23,10 +23,11 @@ export default function CreditsPage() {
         </div>
         <h1 className="text-h1 text-ink-deep">Sources and credits</h1>
         <p className="mt-3 text-prose text-slate leading-snug max-w-prose">
-          The atlas pulls from a few public reference sources for facts
-          and a few open-data libraries for icons and tiles. Each one is
-          credited here so the projects, datasets, and maintainers
-          doing the heavy lifting are visible.
+          The atlas pulls from a handful of public reference sources for
+          facts and a handful of open-data libraries for icons and
+          tiles. Each one is credited below with its license, so the
+          projects, datasets, and maintainers behind them are visible
+          to any reader.
         </p>
       </header>
 
@@ -103,9 +104,11 @@ export default function CreditsPage() {
           Pins tagged Atlas Obscura come from my personal &ldquo;Been
           Here&rdquo; history on{' '}
           <Ext href="https://www.atlasobscura.com/">atlasobscura.com</Ext>
-          . The Atlas Obscura slug on a pin links back to their canonical
-          entry, which is where the editorial copy and photos for that
-          place live. The site is wonderful and worth supporting.
+          . The Atlas Obscura slug on a pin links back to their
+          canonical entry, where the editorial copy and photographs for
+          that place live. Their catalogue is one of the better
+          editorially-curated indexes of unusual places online and
+          worth supporting directly through their membership program.
         </p>
       </Section>
 
