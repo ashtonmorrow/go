@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import Link from 'next/link';
 import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
@@ -16,16 +16,22 @@ type Row = {
   personalRating: number | null;
   coverUrl: string | null;
   heroPhotoUrls: string[];
+  personalReview: string | null;
+  generatedReview: string | null;
 };
 
 // Per-row editable patch. The bulk-edit endpoint at
-// /api/admin/bulk-edit-pins accepts these four fields; everything else
-// on the pin still goes through /admin/pins/[id] one row at a time.
+// /api/admin/bulk-edit-pins accepts these inline fields; everything
+// else on the pin still goes through /admin/pins/[id] one row at a
+// time. Review is dispatched at save time to either generated_review
+// (hotel) or personal_review (anything else) — see save() below.
 type RowEdit = {
   visited: boolean;
   kind: string | null;
   indexable: boolean;
   personalRating: number | null;
+  personalReview: string | null;
+  generatedReview: string | null;
 };
 
 type Filter = 'all' | 'visited' | 'not-visited';
@@ -38,13 +44,17 @@ const rowToEdit = (r: Row): RowEdit => ({
   kind: r.kind,
   indexable: r.indexable,
   personalRating: r.personalRating,
+  personalReview: r.personalReview,
+  generatedReview: r.generatedReview,
 });
 
 const editsEqual = (a: RowEdit, b: RowEdit): boolean =>
   a.visited === b.visited &&
   a.kind === b.kind &&
   a.indexable === b.indexable &&
-  a.personalRating === b.personalRating;
+  a.personalRating === b.personalRating &&
+  a.personalReview === b.personalReview &&
+  a.generatedReview === b.generatedReview;
 
 export default function VisitedEditorClient({ initialRows }: { initialRows: Row[] }) {
   // We splice rows out of the bulk roster as they're deleted server-side,
@@ -218,6 +228,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         id, name: '', slug: null, city: '', country: '',
         visited: false, kind: null, indexable: false, personalRating: null,
         coverUrl: null, heroPhotoUrls: [],
+        personalReview: null, generatedReview: null,
       });
       next.set(id, { ...base, [key]: value });
       return next;
@@ -264,6 +275,12 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         if (edit.indexable !== orig.indexable) fields.indexable = edit.indexable;
         if (edit.personalRating !== orig.personalRating) {
           fields.personal_rating = edit.personalRating;
+        }
+        if (edit.personalReview !== orig.personalReview) {
+          fields.personal_review = edit.personalReview;
+        }
+        if (edit.generatedReview !== orig.generatedReview) {
+          fields.generated_review = edit.generatedReview;
         }
         return { id, fields };
       });
@@ -691,9 +708,20 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
               const edit = current.get(row.id) ?? rowToEdit(row);
               const orig = originalEdits.get(row.id);
               const isDirty = !!orig && !editsEqual(orig, edit);
+              const reviewKind = edit.kind === 'hotel' ? 'generated' : 'personal';
+              const reviewValue =
+                reviewKind === 'generated' ? edit.generatedReview : edit.personalReview;
+              const reviewLabel =
+                reviewKind === 'generated'
+                  ? 'Generated review (gates indexability for hotels)'
+                  : 'Review';
+              const reviewPlaceholder =
+                reviewKind === 'generated'
+                  ? 'Edit the Gemini-written review, or use Generate from notes on the per-pin editor to draft from Q&A.'
+                  : "Mike's voice. Renders in the Review block on the public detail page.";
               return (
+              <Fragment key={row.id}>
                 <tr
-                  key={row.id}
                   className={
                     'border-t border-sand transition-colors ' +
                     (isDirty ? 'bg-teal/5' : 'hover:bg-cream-soft/40')
@@ -803,6 +831,34 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                     {isDirty ? '●' : ''}
                   </td>
                 </tr>
+                <tr
+                  className={
+                    'border-t border-sand/50 ' +
+                    (isDirty ? 'bg-teal/5' : '')
+                  }
+                >
+                  <td colSpan={9} className="px-3 pb-3 pt-1">
+                    <label className="text-label uppercase tracking-wider text-muted block mb-1">
+                      {reviewLabel}
+                    </label>
+                    <textarea
+                      value={reviewValue ?? ''}
+                      onChange={e => {
+                        const next = e.target.value || null;
+                        if (reviewKind === 'generated') {
+                          updateField(row.id, 'generatedReview', next);
+                        } else {
+                          updateField(row.id, 'personalReview', next);
+                        }
+                      }}
+                      rows={2}
+                      placeholder={reviewPlaceholder}
+                      className="w-full text-small font-sans border border-sand rounded px-2 py-1.5 bg-white leading-relaxed resize-y focus:outline-none focus:border-ink-deep"
+                      aria-label={`${reviewLabel} for ${row.name}`}
+                    />
+                  </td>
+                </tr>
+              </Fragment>
               );
             })}
           </tbody>

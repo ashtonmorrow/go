@@ -35,6 +35,12 @@ export default async function AdminPinsPage() {
       // its new pick into.
       coverUrl: p.heroPhotoUrls[0] ?? p.images?.[0]?.url ?? null,
       heroPhotoUrls: p.heroPhotoUrls,
+      // Review fields. Hotel pins surface generated_review (the
+      // public-facing copy that also gates indexability); every other
+      // kind surfaces personal_review (Mike's voice for the universal
+      // detail page block).
+      personalReview: p.personalReview,
+      generatedReview: p.generatedReview,
     }));
 
   return (

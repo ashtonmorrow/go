@@ -24,6 +24,11 @@ type FieldPatch = Partial<{
   kind: string | null;
   indexable: boolean;
   personal_rating: number | null;
+  // /admin/pins inline review (kind-dispatched: hotel pins write to
+  // generated_review which gates indexability; everything else writes
+  // personal_review).
+  personal_review: string | null;
+  generated_review: string | null;
   // /admin/hotels inline cells
   visit_year: number | null;
   nights_stayed: number | null;
@@ -86,6 +91,14 @@ function sanitize(fields: Record<string, unknown>): { ok: FieldPatch; reason?: s
       else if (typeof v === 'string' && ALLOWED_POINTS_PROGRAMS.has(v)) {
         out.points_program = v;
       } else return { ok: out, reason: `invalid points_program: ${String(v)}` };
+    } else if (k === 'personal_review') {
+      if (v === null) out.personal_review = null;
+      else if (typeof v === 'string') out.personal_review = v.trim() || null;
+      else return { ok: out, reason: `personal_review must be string or null` };
+    } else if (k === 'generated_review') {
+      if (v === null) out.generated_review = null;
+      else if (typeof v === 'string') out.generated_review = v.trim() || null;
+      else return { ok: out, reason: `generated_review must be string or null` };
     }
     // anything else: silently ignore (allowlist)
   }
