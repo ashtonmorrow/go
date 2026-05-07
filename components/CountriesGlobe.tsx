@@ -128,34 +128,81 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
     return byLayer;
   }, [layerByIso3]);
 
+  // The Natural-Earth-derived GeoJSON we render leaves `ISO3166-1-Alpha-3`
+  // set to '-99' for a handful of disputed/edge-case features — most
+  // notably France, Norway, and Kosovo. The feature `name` is still
+  // populated correctly, so we mirror every iso3-based lookup with a
+  // name-based one and check both in the paint expressions and the
+  // click/hover handlers. Without this, France never picks up the
+  // visited fill no matter how many French cities are flagged been=true.
+  const nameByLayer = useMemo(() => {
+    const byLayer: Record<CityLayer, string[]> = { visited: [], planning: [], researching: [] };
+    for (const [iso3, l] of Object.entries(layerByIso3)) {
+      const name = countriesByIso3[iso3]?.name;
+      if (name) byLayer[l].push(name);
+    }
+    return byLayer;
+  }, [layerByIso3, countriesByIso3]);
+
   const matchedIso3 = useMemo(() => Object.keys(layerByIso3), [layerByIso3]);
+  const matchedNames = useMemo(
+    () =>
+      Object.keys(layerByIso3)
+        .map(iso => countriesByIso3[iso]?.name)
+        .filter((n): n is string => !!n),
+    [layerByIso3, countriesByIso3],
+  );
+
+  // Reverse lookup name → ISO3 for the click/hover handlers, so a feature
+  // whose iso3 is '-99' still resolves to a real country.
+  const nameToIso3 = useMemo(() => {
+    const m: Record<string, string> = {};
+    for (const [iso3, meta] of Object.entries(countriesByIso3)) {
+      if (meta.name) m[meta.name] = iso3;
+    }
+    return m;
+  }, [countriesByIso3]);
 
   const hoveredIso = hovered?.iso3 ?? '__none__';
+  const hoveredName = hovered ? (countriesByIso3[hovered.iso3]?.name ?? '__none__') : '__none__';
 
   // === Click + hover handlers ===
+  // Resolve a GeoJSON feature to a real ISO3. Falls through to a name
+  // lookup when the source has '-99' as the iso3 (France, Norway, Kosovo).
+  const resolveIso3 = useCallback(
+    (feat: { properties?: Record<string, unknown> | null } | undefined): string | null => {
+      const raw = feat?.properties?.['ISO3166-1-Alpha-3'] as string | undefined;
+      if (raw && raw !== '-99') return raw;
+      const name = feat?.properties?.['name'] as string | undefined;
+      if (name && nameToIso3[name]) return nameToIso3[name];
+      return null;
+    },
+    [nameToIso3],
+  );
+
   const handleClick = useCallback(
     (e: MapMouseEvent) => {
       const feat = e.features?.[0];
-      if (!feat) return;
-      const iso3 = feat.properties?.['ISO3166-1-Alpha-3'] as string | undefined;
+      const iso3 = resolveIso3(feat);
       if (!iso3) return;
       const entry = countriesByIso3[iso3];
       if (entry) router.push(`/countries/${entry.slug}`);
     },
-    [countriesByIso3, router]
+    [countriesByIso3, router, resolveIso3]
   );
 
-  const handleMouseMove = useCallback((e: MapMouseEvent) => {
-    const feat = e.features?.[0];
-    if (feat) {
-      const iso3 = feat.properties?.['ISO3166-1-Alpha-3'] as string | undefined;
+  const handleMouseMove = useCallback(
+    (e: MapMouseEvent) => {
+      const feat = e.features?.[0];
+      const iso3 = resolveIso3(feat);
       if (iso3) {
         setHovered({ iso3, lng: e.lngLat.lng, lat: e.lngLat.lat });
         return;
       }
-    }
-    setHovered(null);
-  }, []);
+      setHovered(null);
+    },
+    [resolveIso3],
+  );
 
   const handleMouseLeave = useCallback(() => setHovered(null), []);
 
@@ -187,16 +234,31 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             paint={{
               'fill-color': [
                 'case',
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.visited]],     COLORS.teal,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.planning]],    COLORS.slate,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.researching]], COLORS.pinIdle,
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.visited]],
+                  ['in', ['get', 'name'],             ['literal', nameByLayer.visited]],
+                ], COLORS.teal,
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.planning]],
+                  ['in', ['get', 'name'],             ['literal', nameByLayer.planning]],
+                ], COLORS.slate,
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', isoByLayer.researching]],
+                  ['in', ['get', 'name'],             ['literal', nameByLayer.researching]],
+                ], COLORS.pinIdle,
                 'transparent',
               ] as unknown as string,
               'fill-opacity': [
                 'case',
-                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                ['any',
+                  ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                  ['==', ['get', 'name'],             hoveredName],
+                ],
                 0.8,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                  ['in', ['get', 'name'],             ['literal', matchedNames]],
+                ],
                 0.55,
                 0,
               ] as unknown as number,
@@ -209,25 +271,32 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
             id="countries-outline"
             type="line"
             paint={{
-              'line-color': [
-                'case',
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
-                COLORS.inkDeep,
-                COLORS.inkDeep,
-              ] as unknown as string,
+              'line-color': COLORS.inkDeep,
               'line-width': [
                 'case',
-                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                ['any',
+                  ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                  ['==', ['get', 'name'],             hoveredName],
+                ],
                 1.6,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                  ['in', ['get', 'name'],             ['literal', matchedNames]],
+                ],
                 0.9,
                 0.4,
               ] as unknown as number,
               'line-opacity': [
                 'case',
-                ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                ['any',
+                  ['==', ['get', 'ISO3166-1-Alpha-3'], hoveredIso],
+                  ['==', ['get', 'name'],             hoveredName],
+                ],
                 0.85,
-                ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                ['any',
+                  ['in', ['get', 'ISO3166-1-Alpha-3'], ['literal', matchedIso3]],
+                  ['in', ['get', 'name'],             ['literal', matchedNames]],
+                ],
                 0.7,
                 0.22,
               ] as unknown as number,
