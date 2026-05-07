@@ -70,7 +70,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     `${city.name}${city.country ? `, ${city.country}` : ''}. Population, climate, currency, language, travel notes.`;
 
   const url = `${SITE_URL}/cities/${city.slug}`;
-  const image = city.personalPhoto ?? city.heroImage ?? undefined;
+  // Cover image for OG/Twitter — only Mike's own photos are eligible.
+  // Wikimedia/Commons heroImage is no longer surfaced as a cover anywhere
+  // on the public site (May 2026 policy: own photos lead, fallback covers
+  // come from personal_photos via fetchCoverForCity, never Wikimedia).
+  const image = city.personalPhoto ?? undefined;
 
   // Pages with a /content/cities/<slug>.md become indexable; everything else
   // stays noindex by default to avoid bloating the search index with stub
@@ -122,7 +126,9 @@ export default async function CityPage({
   // + fetchAllCities here just to find one country and a handful of sister
   // cities, which shipped 1.5 MB of JSON for every cold render. Now we hit
   // exactly the rows we need.
-  const needsCoverFallback = !city.personalPhoto && !city.heroImage;
+  // Wikimedia heroImage no longer counts as a cover. Always reach for the
+  // pin-photo fallback when no personal photo is set.
+  const needsCoverFallback = !city.personalPhoto;
   // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
@@ -218,9 +224,7 @@ export default async function CityPage({
       ? ['Open-Elevation', 'https://open-elevation.com/', 'Coordinate-based elevation backfill.']
       : null,
     city.timeZone ? ['tz database', 'https://www.iana.org/time-zones', 'Coordinate-based IANA timezone lookup.'] : null,
-    city.heroImageAttribution
-      ? ['Hero image source', city.heroImageAttribution.sourceUrl, `${city.heroImageAttribution.license ?? 'License noted at source'}${city.heroImageAttribution.author ? `, ${city.heroImageAttribution.author}` : ''}.`]
-      : null,
+    // heroImage attribution dropped — image no longer rendered.
     city.cityFlagAttribution
       ? ['City flag source', city.cityFlagAttribution.sourceUrl, `${city.cityFlagAttribution.license ?? 'License noted at source'}${city.cityFlagAttribution.author ? `, ${city.cityFlagAttribution.author}` : ''}.`]
       : null,
@@ -234,7 +238,7 @@ export default async function CityPage({
       name: city.name,
       localName: city.localName,
       description: city.about ?? city.wikipediaSummary,
-      image: city.personalPhoto ?? city.heroImage,
+      image: city.personalPhoto,
       lat: city.lat,
       lng: city.lng,
       population: city.population,
@@ -298,12 +302,10 @@ export default async function CityPage({
       {/* Hero collage. Combines (in priority order):
             1. pinPhotos — Mike's personal photos from pins in this city
             2. city.personalPhoto — single curated cover for the city
-            3. city.heroImage — Commons cover (curated landscape)
-            4. fallbackCover — picked when no pinPhotos + no curated covers exist
-          The collage component picks the feature tile and adapts the
-          layout to the image count (1, 2, 3, 4, 5, 6+). When only one
-          source is available it letterboxes object-contain like the
-          old single-cover treatment. */}
+            3. fallbackCover — most recent personal photo on any pin in the city
+          Wikimedia/Commons heroImage was retired from the cover chain
+          (May 2026): own photos only. The collage component picks the
+          feature tile and adapts the layout to the image count. */}
       {(() => {
         // Curated path: when Mike has hand-picked hero photos for this city
         // in the admin panel, render them via HeroGallery — every image at
@@ -359,19 +361,6 @@ export default async function CityPage({
             isPersonal: true,
           });
         }
-        if (city.heroImage && !seen.has(city.heroImage)) {
-          seen.add(city.heroImage);
-          collageImages.push({
-            url: city.heroImage,
-            alt: city.name,
-            width: null,
-            height: null,
-            isPersonal: false,
-            caption: city.heroImageAttribution
-              ? `Wikipedia / ${city.heroImageAttribution.author ?? 'Commons'}`
-              : null,
-          });
-        }
         if (collageImages.length === 0 && fallbackCover && !seen.has(fallbackCover.url)) {
           collageImages.push({
             url: fallbackCover.url,
@@ -395,15 +384,9 @@ export default async function CityPage({
                   : undefined
               }
             />
-            {/* Commons attribution still surfaces below the collage when
-                the heroImage made it in — license attribution belongs near
-                the image, not behind a click. */}
-            {city.heroImage && city.heroImageAttribution && (
-              <ImageCredit
-                attribution={city.heroImageAttribution}
-                className="px-1 mt-1"
-              />
-            )}
+            {/* Wikimedia/Commons attribution row removed — heroImage is no
+                longer surfaced as a cover, so there's no image attribution
+                to render here. */}
           </>
         );
       })()}

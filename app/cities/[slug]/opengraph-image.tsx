@@ -5,9 +5,10 @@ import { fetchCityBySlug } from '@/lib/notion';
 // name + country on the left, full-bleed cover photo on the right. No
 // cover → full-card text layout. 1200x630.
 //
-// Cover precedence: heroPhotoUrls[0] > personalPhoto > heroImage. Same
-// order the public detail page uses for its hero (curated picks lead,
-// then any personal photo, then the Wikimedia heroImage).
+// Cover precedence: heroPhotoUrls[0] > personalPhoto. Wikimedia/Commons
+// heroImage was dropped from the cover chain (May 2026 policy: own
+// photos only). Cities with no curated picks and no personal photo
+// render the text-only layout.
 
 export const alt = 'A city in Mike Lee\'s travel atlas';
 export const size = { width: 1200, height: 630 };
@@ -24,7 +25,7 @@ export default async function CityOgImage({
   const country = city?.country ?? '';
   const status = city?.been ? 'Been' : city?.go ? 'Planned' : null;
   const coverUrl = city
-    ? city.heroPhotoUrls?.[0] ?? city.personalPhoto ?? city.heroImage ?? null
+    ? city.heroPhotoUrls?.[0] ?? city.personalPhoto ?? null
     : null;
 
   const TEXT_PANE_WIDTH = 600;
