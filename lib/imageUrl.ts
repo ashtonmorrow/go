@@ -42,6 +42,12 @@ const OPTIMIZABLE_HOSTS = [
   'v5.airtableusercontent.com',
   's3.us-west-2.amazonaws.com',
   'prod-files-secure.s3.us-west-2.amazonaws.com',
+  // OSM tiles on the back of city postcards. Vercel converts the PNG to
+  // AVIF/WebP per the browser Accept header and caches the result for
+  // a year (next.config.images.minimumCacheTTL), so OSM's free tile
+  // servers see one fetch per unique tile across the whole edge fleet
+  // — well within their usage policy.
+  'tile.openstreetmap.org',
 ];
 
 export type ThumbOptions = {

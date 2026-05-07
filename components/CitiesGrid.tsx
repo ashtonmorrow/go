@@ -9,6 +9,7 @@ import { useFilteredCities } from '@/lib/useFilteredCities';
 import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
 import { imageCreditTitle } from './ImageCredit';
+import { thumbUrl } from '@/lib/imageUrl';
 
 type Props = { cities: City[] };
 
@@ -241,7 +242,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     key={`${t.dx}_${t.dy}`}
-                    src={t.url}
+                    src={thumbUrl(t.url, { size: TILE_SIZE / 2 }) ?? t.url}
                     alt=""
                     style={{
                       position: 'absolute',
@@ -252,6 +253,7 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                       display: 'block',
                     }}
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
                   />
                 ) : null
@@ -359,8 +361,22 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         }
       >
         {flagSrc ? (
+          // The stamp face is ~78x48 (90x60 with 1.5 padding inside the
+          // perforated border); pipe through Next/Image at size:80 so
+          // Vercel's optimizer fetches a 160px retina variant instead of
+          // letting the browser pull the raw Wikimedia 640px source per
+          // card. PSI flagged this as ~1.9 MB of avoidable transfer
+          // because every card's stamp was loading a full 60-600 KB PNG.
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={flagSrc} alt="" className="w-full h-full object-contain" loading="lazy" />
+          <img
+            src={thumbUrl(flagSrc, { size: 80 }) ?? flagSrc}
+            alt=""
+            className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
+            width={80}
+            height={60}
+          />
         ) : (
           <div className="w-full h-full bg-sand" />
         )}

@@ -15,6 +15,15 @@
     "flags:backfill": "tsx --env-file=.env.local scripts/backfill-city-flags-from-wikidata.ts",
     "validate:content": "tsx --env-file=.env.local scripts/validate-content-links.ts"
   },
+  "browserslist": [
+    "chrome >= 100",
+    "edge >= 100",
+    "firefox >= 100",
+    "safari >= 16",
+    "ios >= 16",
+    "not dead",
+    "not op_mini all"
+  ],
   "dependencies": {
     "@notionhq/client": "^2.3.0",
     "@supabase/supabase-js": "^2.104.1",
