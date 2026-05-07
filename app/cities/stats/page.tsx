@@ -9,16 +9,12 @@
 // the user can read coverage either way.
 //
 import type { Metadata } from 'next';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
-import { driveSide } from '@/lib/driveSide';
-import { visaUs } from '@/lib/visaUs';
-import { tapWater } from '@/lib/tapWater';
+import { fetchCitiesCardData } from '@/lib/citiesCardData';
+import { fetchAllCountries } from '@/lib/notion';
 import JsonLd from '@/components/JsonLd';
 import CityStatsClient from '@/components/CityStatsClient';
 import ActiveFilters from '@/components/ActiveFilters';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
-import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
-import type { City } from '@/lib/cityShape';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
 
@@ -37,64 +33,16 @@ export const metadata: Metadata = {
   },
 };
 
-// Same type guards used by /cities/cards + /cities/table — narrow
-// Notion's free-text columns down to the closed unions the cockpit
-// expects.
-const CONTINENT_VALUES: Continent[] = [
-  'Africa', 'Asia', 'Europe', 'North America', 'South America', 'Australia', 'Antartica',
-];
-const VISA_VALUES: VisaUs[] = ['Visa-free', 'eVisa', 'On arrival', 'Required', 'Varies'];
-const TAP_WATER_VALUES: TapWater[] = ['Safe', 'Treat first', 'Not safe', 'Varies'];
-const asContinent = (v: string | null | undefined): Continent | null =>
-  v && (CONTINENT_VALUES as string[]).includes(v) ? (v as Continent) : null;
-const asVisa = (v: string | null | undefined): VisaUs | null =>
-  v && (VISA_VALUES as string[]).includes(v) ? (v as VisaUs) : null;
-const asTapWater = (v: string | null | undefined): TapWater | null =>
-  v && (TAP_WATER_VALUES as string[]).includes(v) ? (v as TapWater) : null;
-
 export default async function CityStatsPage() {
-  const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
-  const countryById = new Map(countries.map(c => [c.id, c]));
-
-  // Same minimal City projection used by /cities/cards. Carries every
-  // axis the cockpit can filter on so CityStatsClient runs the exact
-  // same predicates as CitiesGrid / CitiesTable.
-  const minimal: City[] = cities.map(c => {
-    const country = c.countryPageId ? countryById.get(c.countryPageId) : null;
-    return {
-      id: c.id,
-      name: c.name,
-      slug: c.slug,
-      country: c.country,
-      countryPageId: c.countryPageId ?? null,
-      been: c.been,
-      go: c.go,
-      cityFlag: c.cityFlag ?? null,
-      countryFlag: country?.flag ?? null,
-      personalPhoto: c.personalPhoto,
-      heroImage: c.heroImage,
-      lat: c.lat,
-      lng: c.lng,
-      population: c.population,
-      elevation: c.elevation,
-      avgHigh: c.avgHigh,
-      avgLow: c.avgLow,
-      rainfall: c.rainfall,
-      koppen: c.koppen,
-      founded: c.founded,
-      savedPlaces: c.myGooglePlaces,
-      currency: country?.currency ?? null,
-      language: country?.language ?? null,
-      driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-      continent: asContinent(country?.continent),
-      visa:
-        asVisa(country?.visaUs) ??
-        visaUs(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-      tapWater:
-        asTapWater(country?.tapWater) ??
-        tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-    };
-  });
+  // fetchCitiesCardData carries every filter / sort axis CityStatsClient
+  // touches, plus the countryPageId via the slim shape — same data the
+  // /cities/cards + /cities/table pages already use. Cached at the lib
+  // layer so we don't refetch the 2.2 MB raw city corpus per render.
+  // fetchAllCountries is small enough (~250 rows) to call directly.
+  const [cities, countries] = await Promise.all([
+    fetchCitiesCardData(),
+    fetchAllCountries(),
+  ]);
 
   // Slim country lookup — only what the breakdown needs (name, slug,
   // continent for grouping). Avoids shipping the full country list.
@@ -117,7 +65,7 @@ export default async function CityStatsPage() {
 
       <ActiveFilters className="mb-4" />
 
-      <CityStatsClient cities={minimal} countriesByPageId={countriesByPageId} />
+      <CityStatsClient cities={cities} countriesByPageId={countriesByPageId} />
     </div>
   );
 }

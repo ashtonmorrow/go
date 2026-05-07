@@ -4,7 +4,7 @@
 // stack underneath. Markers are clickable and link to the pin detail page.
 //
 import type { Metadata } from 'next';
-import { fetchAllPins } from '@/lib/pins';
+import { fetchPinsCardData } from '@/lib/pinsCardData';
 import JsonLd from '@/components/JsonLd';
 import PinsMap from '@/components/PinsMapLoader';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
@@ -27,12 +27,12 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsMapPage() {
-  // PinsMap consumes the same PinFiltersContext as the cards/table views,
-  // so we pass the full Pin set and it filters client-side. Slightly
-  // bigger payload than the old marker-only shape, but the filter
-  // cockpit needs the description / city names / unesco_id to do its
-  // job — and the "right answer" is consistency between views.
-  const pins = await fetchAllPins();
+  // Same slim aggregator as /pins/cards. The filter cockpit needs the
+  // category / city / list / tag fields, the map only needs lat / lng /
+  // visited. Both fit into PinForCard, which is cached at the lib
+  // layer (the raw 7.5 MB pin corpus blows past Next's 2 MB cache
+  // ceiling and was hitting Supabase per render before this).
+  const { pins } = await fetchPinsCardData();
 
   const pageData = webPageJsonLd({
     url: `${SITE_URL}/pins/map`,

@@ -559,10 +559,9 @@ const _fetchAllPins = unstable_cache(
   // fix landed and again after the visited=true backfill on Google-imported
   // pins. v6: INDEX_COLUMNS now ships google_rating + google_rating_count
   // + google_place_id, so v5 entries are missing those fields.
-  // v7: Pin shape gained heroPhotoUrls + atlasObscuraSlug. v6 cache
-  // entries lack those fields, so post-deploy reads were crashing on
-  // `pin.heroPhotoUrls.length` until the 24h TTL expired. Bump evicts.
-  ['supabase-pins-v7'],
+  // v8: refresh after the May 2026 Google Places enrichment pass wrote
+  // hours, prices, phones, addresses, and ratings back to Supabase.
+  ['supabase-pins-v8'],
   { revalidate: 86400, tags: ['supabase-pins'] }
 );
 // Apply post→pin link decoration AFTER the cached DB read. Keeping the
@@ -607,9 +606,8 @@ const _fetchPinsForLists = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v5: refresh saved-list snapshots after Kusttram station art backfill
-  // filled previously empty `images` arrays for the full 67-stop list.
-  ['supabase-pins-for-lists-v5'],
+  // v7: refresh saved-list snapshots after Cape Town list curation.
+  ['supabase-pins-for-lists-v7'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
@@ -643,10 +641,9 @@ const _fetchPinsInBbox = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v5: in lockstep with fetchAllPins-v6 — bbox queries flow through
-  // INDEX_COLUMNS so they need the same eviction as the all-pins cache
-  // when columns are added.
-  ['supabase-pins-bbox-v6'],
+  // v7: refresh nearby-pin snapshots after the May 2026 Google Places
+  // enrichment pass wrote practical pin data back to Supabase.
+  ['supabase-pins-bbox-v7'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinsInBbox = cache(
@@ -675,10 +672,9 @@ const _fetchPinBySlug = unstable_cache(
     }
     return data ? rowToPin(data) : null;
   },
-  // v7: Pin shape gained heroPhotoUrls + atlasObscuraSlug fields. v6
-  // entries crash post-deploy on `pin.heroPhotoUrls.length`. Bump to
-  // force a fresh rowToPin pass on first read.
-  ['supabase-pin-by-slug-v7'],
+  // v8: refresh pin detail pages after the May 2026 Google Places
+  // enrichment pass wrote practical pin data back to Supabase.
+  ['supabase-pin-by-slug-v8'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
 export const fetchPinBySlug = cache(async (slug: string): Promise<Pin | null> => {

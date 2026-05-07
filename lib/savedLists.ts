@@ -111,8 +111,8 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       };
     });
   },
-  // v6: refresh list metadata after Alicante tram stop ordering changed.
-  ['saved-lists-meta-v6'],
+  // v7: refresh list metadata after Cape Town list curation.
+  ['saved-lists-meta-v7'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

@@ -5,8 +5,7 @@
 // table and most users will want raw access.
 //
 import type { Metadata } from 'next';
-import { fetchAllPins } from '@/lib/pins';
-import { fetchAllCountries } from '@/lib/notion';
+import { fetchPinsCardData } from '@/lib/pinsCardData';
 import JsonLd from '@/components/JsonLd';
 import PinsTable from '@/components/PinsTable';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
@@ -34,17 +33,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PinsTablePage() {
-  const [pins, countries] = await Promise.all([
-    fetchAllPins(),
-    fetchAllCountries(),
-  ]);
-
-  // Country name → ISO2 lookup so the table can render a small flag in
-  // the country column.
-  const countryNameToIso2: Record<string, string> = {};
-  for (const c of countries) {
-    if (c.iso2) countryNameToIso2[c.name.toLowerCase()] = c.iso2;
-  }
+  const { pins, countryNameToIso2 } = await fetchPinsCardData();
 
   // Featured items for the JSON-LD ItemList — visited pins first.
   const featured = pins

@@ -5,7 +5,7 @@ subtitle: Where to stay, how to move around, and what I would handle carefully.
 hero_image: /images/posts/cape-town-travel-brief.jpg
 hero_alt: Table Mountain rising above the Cape Town city bowl at midday.
 published: 2026-04-30
-updated: 2026-05-05
+updated: 2026-05-07
 indexable: true
 authors:
   - Mike Lee
@@ -57,6 +57,8 @@ tags:
 [Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around weather, transport, and where you sleep.
 
 I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from the day.
+
+I keep the working pin map on my [Cape Town list](/lists/cape-town). This brief explains how I would use those saves rather than treating them as a checklist.
 
 ## Start with transport, safety, and power
 

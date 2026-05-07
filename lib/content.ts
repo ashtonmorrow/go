@@ -276,7 +276,7 @@ const _readListContent = unstable_cache(
       related: parseRelated(data.related),
     };
   },
-  ['list-content-v1'],
+  ['list-content-v2'],
   { revalidate: 86400, tags: ['place-content'] },
 );
 

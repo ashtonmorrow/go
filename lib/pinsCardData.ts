@@ -61,7 +61,25 @@ export type PinForCard = Pick<
   | 'lng'
 > & {
   personalCoverUrl: string | null;
+  /** Derived Google Maps deep-link from coords. Computed at aggregator
+   *  time so consumers don't need lat/lng math, and the URL doesn't
+   *  bloat the cached payload through duplicate string storage. Null
+   *  when the pin lacks coords. */
+  googleMapsUrl: string | null;
 };
+
+/** Description and personalReview can be 100s of characters per pin.
+ *  Across 5,000 pins that's MB of text the cards / filter never need
+ *  in full — pinFilter does a substring search and the card surfaces a
+ *  snippet. Truncating at aggregator time keeps the cached value under
+ *  Next's 2 MB ceiling. The card-side `snippet()` helper still trims
+ *  further to the first sentence-or-two for display. */
+const DESCRIPTION_CAP = 240;
+const REVIEW_CAP = 320;
+function truncate(s: string | null, max: number): string | null {
+  if (!s) return null;
+  return s.length <= max ? s : s.slice(0, max);
+}
 
 const _fetchPinsCardData = unstable_cache(
   async (): Promise<{
@@ -80,13 +98,13 @@ const _fetchPinsCardData = unstable_cache(
       name: p.name,
       kind: p.kind,
       category: p.category,
-      description: p.description,
+      description: truncate(p.description, DESCRIPTION_CAP),
       cityNames: p.cityNames,
       statesNames: p.statesNames,
       visited: p.visited,
       visitYear: p.visitYear,
       personalRating: p.personalRating,
-      personalReview: p.personalReview,
+      personalReview: truncate(p.personalReview, REVIEW_CAP),
       hours: p.hours,
       priceAmount: p.priceAmount,
       priceCurrency: p.priceCurrency,
@@ -101,6 +119,13 @@ const _fetchPinsCardData = unstable_cache(
       bring: p.bring,
       unescoId: p.unescoId,
       unescoUrl: p.unescoUrl,
+      // Re-derive from coords rather than storing the full URL string —
+      // the URL is ~80 chars × 5,000 pins ≈ 400 KB of duplicate text we
+      // don't need in the cached payload.
+      googleMapsUrl:
+        p.lat != null && p.lng != null
+          ? `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`
+          : null,
       lists: p.lists,
       savedLists: p.savedLists,
       tags: p.tags,
@@ -109,11 +134,12 @@ const _fetchPinsCardData = unstable_cache(
       // shave ~50% off the per-pin payload. Array shape preserved so
       // pinFilter's `images.length > 0` check still works.
       images: p.images.length > 0 ? [{ url: p.images[0].url }] : [],
-      // Coords are dropped from the cards bundle; PinsMap fetches its
-      // own lighter coords-only payload. (Set to null here so the type
-      // stays Pin-compatible.)
-      lat: null,
-      lng: null,
+      // Coords cost ~16 bytes per pin (~80 KB across the corpus) and
+      // let /pins/map + /pins/views/[view] reuse this same aggregator
+      // without a parallel coords-only fetch. Net positive — we pay
+      // once for the cache, every cockpit + map view shares it.
+      lat: p.lat,
+      lng: p.lng,
       personalCoverUrl: personalCovers.get(p.id) ?? null,
     }));
 
@@ -124,7 +150,10 @@ const _fetchPinsCardData = unstable_cache(
 
     return { pins, countryNameToIso2 };
   },
-  ['pins-card-data-v1'],
+  // v3: lat/lng + derived googleMapsUrl + truncated description /
+  // personalReview so the cached payload fits under Next's 2 MB cache
+  // ceiling. v2 was rejected at ~16 MB.
+  ['pins-card-data-v3'],
   {
     revalidate: 86400,
     tags: ['supabase-pins', 'supabase-countries'],

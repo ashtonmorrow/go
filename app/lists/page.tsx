@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { fetchAllPins, type Pin } from '@/lib/pins';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchPinsCardData, type PinForCard } from '@/lib/pinsCardData';
+import { fetchCitiesCardData } from '@/lib/citiesCardData';
+import { fetchAllCountries } from '@/lib/notion';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import { thumbUrl } from '@/lib/imageUrl';
 import { SITE_URL } from '@/lib/seo';
@@ -50,14 +51,14 @@ type ListEntry = {
 };
 
 export default async function ListsIndex() {
-  // Four parallel cached fetches — fetchAllPins is shared with /pins routes,
-  // fetchAllCities/Countries with /cities and /countries, fetchAllSavedListsMeta
-  // is the lookup for curated covers (cover_photo_id / cover_pin_id) and the
-  // google_share_url chip on /lists/[slug]. None of these add meaningful load
-  // on their own.
-  const [pins, cities, countries, listsMeta] = await Promise.all([
-    fetchAllPins(),
-    fetchAllCities(),
+  // Slim aggregators carry every field this page touches. Both sit
+  // under Next's 2 MB data cache ceiling so the underlying corpus is
+  // re-fetched at most once per 24 h. Before this, fetchAllPins (7.5
+  // MB) and fetchAllCities (2.2 MB) hit Supabase fresh on every render
+  // because they were silently rejected by the cache.
+  const [{ pins }, cities, countries, listsMeta] = await Promise.all([
+    fetchPinsCardData(),
+    fetchCitiesCardData(),
     fetchAllCountries(),
     fetchAllSavedListsMeta(),
   ]);
@@ -84,7 +85,7 @@ export default async function ListsIndex() {
 
   // Group pins by list name once, then derive every per-list aggregate from
   // the bucket. Avoids three passes over 5k pins.
-  const buckets = new Map<string, Pin[]>();
+  const buckets = new Map<string, PinForCard[]>();
   for (const p of pins) {
     for (const name of p.savedLists ?? []) {
       let arr = buckets.get(name);
@@ -96,7 +97,7 @@ export default async function ListsIndex() {
     }
   }
 
-  function pickPinCover(arr: Pin[]): string | null {
+  function pickPinCover(arr: PinForCard[]): string | null {
     // Prefer a visited pin's first photo over a draft's, since drafts often
     // have no images at all. Either way, take the first usable image.
     const visitedFirst = arr.slice().sort((a, b) => {

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { usePinFilters } from './PinFiltersContext';
 import { filterPins } from '@/lib/pinFilter';
 import { flagCircle } from '@/lib/flags';
-import type { Pin } from '@/lib/pins';
+import type { PinForCard } from '@/lib/pinsCardData';
 
 // === PinsTable =============================================================
 // Sortable pin data table. Columns picked to be high-information per row:
@@ -19,7 +19,7 @@ export default function PinsTable({
   pins,
   countryNameToIso2,
 }: {
-  pins: Pin[];
+  pins: PinForCard[];
   countryNameToIso2: Record<string, string>;
 }) {
   const ctx = usePinFilters();

@@ -14,7 +14,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { usePinFilters } from './PinFiltersContext';
 import { filterPins } from '@/lib/pinFilter';
 import { COLORS } from '@/lib/colors';
-import type { Pin } from '@/lib/pins';
+import type { PinForCard } from '@/lib/pinsCardData';
 
 // === PinsMap ===============================================================
 // Simplified globe view for /pins/map. Renders each pin as a small circle
@@ -31,7 +31,7 @@ import type { Pin } from '@/lib/pins';
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
 
-export default function PinsMap({ pins }: { pins: Pin[] }) {
+export default function PinsMap({ pins }: { pins: PinForCard[] }) {
   const router = useRouter();
   const ctx = usePinFilters();
 
@@ -50,7 +50,7 @@ export default function PinsMap({ pins }: { pins: Pin[] }) {
     ctx?.setCounts(visible.length, totalWithCoords);
   }, [ctx, visible.length, pins]);
 
-  const [hovered, setHovered] = useState<Pin | null>(null);
+  const [hovered, setHovered] = useState<PinForCard | null>(null);
 
   // GeoJSON source from the visible pin set — MapLibre renders the dots
   // in one draw call instead of one React marker per row.
@@ -69,7 +69,7 @@ export default function PinsMap({ pins }: { pins: Pin[] }) {
   }), [visible]);
 
   const byId = useMemo(() => {
-    const m = new Map<string, Pin>();
+    const m = new Map<string, PinForCard>();
     for (const x of visible) m.set(x.id, x);
     return m;
   }, [visible]);

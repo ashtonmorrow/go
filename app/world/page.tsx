@@ -1,11 +1,11 @@
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchCitiesCardData } from '@/lib/citiesCardData';
+import { fetchAllCountries } from '@/lib/notion';
 import CountriesGlobe from '@/components/CountriesGlobeLoader';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 import { driveSide } from '@/lib/driveSide';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
-import type { Continent, VisaUs, TapWater } from '@/components/CityFiltersContext';
 import type { Metadata } from 'next';
 
 export const revalidate = 604800; // 7 days — bust via /api/revalidate when Notion/Supabase data changes
@@ -25,77 +25,21 @@ export const metadata: Metadata = {
   },
 };
 
-// Type guards mirror the /cities + /table pages so the City shape stays
-// consistent across views.
-const CONTINENT_VALUES: Continent[] = [
-  'Africa',
-  'Asia',
-  'Europe',
-  'North America',
-  'South America',
-  'Australia',
-  'Antartica',
-];
-const VISA_VALUES: VisaUs[] = ['Visa-free', 'eVisa', 'On arrival', 'Required', 'Varies'];
-const TAP_WATER_VALUES: TapWater[] = ['Safe', 'Treat first', 'Not safe', 'Varies'];
-const asContinent = (v: string | null | undefined): Continent | null =>
-  v && (CONTINENT_VALUES as string[]).includes(v) ? (v as Continent) : null;
-const asVisa = (v: string | null | undefined): VisaUs | null =>
-  v && (VISA_VALUES as string[]).includes(v) ? (v as VisaUs) : null;
-const asTapWater = (v: string | null | undefined): TapWater | null =>
-  v && (TAP_WATER_VALUES as string[]).includes(v) ? (v as TapWater) : null;
-
 export default async function WorldPage() {
-  const [cities, countries] = await Promise.all([fetchAllCities(), fetchAllCountries()]);
-  const byId = new Map(countries.map(c => [c.id, c]));
-
-  // Cities payload — same minimal shape as /cities and /table so the
-  // useFilteredCities hook works identically. countryPageId comes through
-  // so the client can map cities to ISO3 country fills.
-  const cityPayload = cities.map(c => {
-    const country = c.countryPageId ? byId.get(c.countryPageId) : null;
-    return {
-      id: c.id,
-      name: c.name,
-      slug: c.slug,
-      country: c.country,
-      countryPageId: c.countryPageId ?? null,
-      been: c.been,
-      go: c.go,
-      cityFlag: c.cityFlag,
-      countryFlag: country?.flag ?? null,
-      personalPhoto: c.personalPhoto,
-      lat: c.lat,
-      lng: c.lng,
-      population: c.population,
-      elevation: c.elevation,
-      avgHigh: c.avgHigh,
-      avgLow: c.avgLow,
-      rainfall: c.rainfall,
-      koppen: c.koppen,
-      founded: c.founded,
-      savedPlaces: c.myGooglePlaces,
-      currency: country?.currency ?? null,
-      language: country?.language ?? null,
-      driveSide: driveSide(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-      continent: asContinent(country?.continent),
-      visa:
-        asVisa(country?.visaUs) ??
-        visaUs(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-      tapWater:
-        asTapWater(country?.tapWater) ??
-        tapWater(country?.iso2 ?? null, country?.name ?? c.country ?? null),
-    };
-  });
+  // Cities come from the slim aggregator (every filter axis CountriesGlobe
+  // touches, plus countryPageId for the ISO3 bridge). fetchAllCountries
+  // is small enough (~250 rows) to call directly for the popup metadata.
+  const [cities, countries] = await Promise.all([
+    fetchCitiesCardData(),
+    fetchAllCountries(),
+  ]);
 
   // Country lookup maps for the globe:
   //   countriesByIso3 — full popup metadata for the hover tile + click-to-
-  //                     navigate by ISO3. Carries every practical field on
-  //                     the country, plus a driveSide derivation, so the
-  //                     popup can render a real fact sheet.
+  //                     navigate by ISO3.
   //   countryIdToIso3 — bridge from city.countryPageId to ISO3 (the
   //                     GeoJSON keys on ISO3, but cities reference Notion
-  //                     country page ids)
+  //                     country page ids).
   const countriesByIso3: Record<
     string,
     {
@@ -131,8 +75,6 @@ export default async function WorldPage() {
       schengen: c.schengen,
       voltage: c.voltage,
       plugTypes: c.plugTypes,
-      // Notion's tap-water / visa columns are sparse; fall through to the
-      // static lookups so the popup is populated for most countries.
       tapWater: c.tapWater ?? tapWater(c.iso2 ?? null, c.name) ?? null,
       visa: c.visaUs ?? visaUs(c.iso2 ?? null, c.name) ?? null,
       driveSide: driveSide(c.iso2 ?? null, c.name),
@@ -150,7 +92,7 @@ export default async function WorldPage() {
     <>
       <JsonLd data={pageData} />
       <CountriesGlobe
-        cities={cityPayload}
+        cities={cities}
         countriesByIso3={countriesByIso3}
         countryIdToIso3={countryIdToIso3}
       />

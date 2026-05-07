@@ -15,9 +15,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { fetchAllPins } from '@/lib/pins';
-import { fetchPersonalCovers } from '@/lib/personalPhotos';
-import { fetchAllCountries } from '@/lib/notion';
+import { fetchPinsCardData } from '@/lib/pinsCardData';
 import { getPinView, PIN_VIEW_SLUGS } from '@/lib/pinViews';
 import PinViewPrimer from '@/components/PinViewPrimer';
 import PinsMap from '@/components/PinsMapLoader';
@@ -69,29 +67,12 @@ export default async function PinView({ params }: Props) {
   const surface = view.surface ?? 'map';
   const url = `${SITE_URL}/pins/views/${view.slug}`;
 
-  // Pull the same data the underlying view would on its own. fetchAllPins
-  // is unstable_cache'd so this doesn't add a network round-trip beyond
-  // what /pins/map or /pins/cards already pay for. Cards needs the
-  // personal-cover lookup; map doesn't. Both cards and table want the
-  // ISO2 lookup for flag rendering.
-  const wantsCovers = surface === 'cards';
-  const wantsCountries = surface === 'cards' || surface === 'table';
-  const [pinsRaw, countries, personalCovers] = await Promise.all([
-    fetchAllPins(),
-    wantsCountries ? fetchAllCountries() : Promise.resolve([]),
-    wantsCovers ? fetchPersonalCovers() : Promise.resolve(new Map<string, string>()),
-  ]);
-
-  const pins = wantsCovers
-    ? pinsRaw.map(p => ({ ...p, personalCoverUrl: personalCovers.get(p.id) ?? null }))
-    : pinsRaw;
-
-  const countryNameToIso2: Record<string, string> = {};
-  if (wantsCountries) {
-    for (const c of countries) {
-      if (c.iso2) countryNameToIso2[c.name.toLowerCase()] = c.iso2;
-    }
-  }
+  // Same slim aggregator as /pins/cards, /pins/map, /pins/table — the
+  // PinForCard shape covers every field the three surface components
+  // touch. Cached at the lib layer (24 h TTL); the raw 7.5 MB pin
+  // corpus blows past Next's 2 MB cache ceiling and was hitting
+  // Supabase per render here before this.
+  const { pins, countryNameToIso2 } = await fetchPinsCardData();
 
   // Schema.org Article so each curated view becomes a first-class entity
   // (rather than a generic WebPage). Each view is editorial — short prose

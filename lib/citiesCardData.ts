@@ -83,6 +83,9 @@ const _fetchCitiesCardData = unstable_cache(
         name: c.name,
         slug: c.slug,
         country: c.country,
+        countryPageId: c.countryPageId ?? null,
+        countrySlug: country?.slug ?? null,
+        sisterCities: c.sisterCities,
         been: c.been,
         go: c.go,
         cityFlag:
@@ -119,7 +122,9 @@ const _fetchCitiesCardData = unstable_cache(
       };
     });
   },
-  ['cities-card-data-v1'],
+  // v2: added countrySlug + sisterCities so /cities/map + /world can
+  // share this aggregator instead of fetchAllCities directly.
+  ['cities-card-data-v2'],
   {
     revalidate: 86400,
     tags: ['supabase-cities', 'supabase-countries', 'notion-cities'],

@@ -1,23 +1,20 @@
 import 'server-only';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
-import { fetchAllPins } from './pins';
-import { fetchAllCities, fetchAllCountries } from './notion';
+import { supabase } from './supabase';
 import { fetchAllSavedListsMeta } from './savedLists';
 import { CANONICAL_LISTS } from './pinLists';
+import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE } from './goTables';
 
 // === Sidebar aggregator ===================================================
 // The Sidebar runs on every page render. It needs derived chip arrays
 // (country options, category options, tag options, saved-list options)
 // + a small counts object — total payload to the client is a few KB.
 //
-// Why this exists: fetchAllPins() returns ~7.5 MB of pin data, which
-// Next's data cache rejects (`items over 2MB can not be cached`). That
-// turned the underlying unstable_cache wrapper into a pass-through —
-// every render hit Supabase for the full corpus to derive a few KB of
-// chip data. We aggregate here, cache the small derived payload, and
-// the heavy fetches happen once per cache window instead of per
-// render.
+// Why this exists: the full pin corpus is too large for Next's data
+// cache, but the sidebar only needs a few chip fields. We fetch that
+// narrow shape directly, aggregate it here, and cache the small derived
+// payload instead of pulling every pin detail into every page render.
 //
 // Cache TTL matches the longest-lived source (24h). Bust by hitting
 // /api/revalidate with the source-table tags after Notion / Supabase
@@ -53,14 +50,97 @@ const ZERO: SidebarChipData = {
   pinSavedListOptions: [],
 };
 
+type SidebarPinChipRow = {
+  id: string;
+  statesNames: string[];
+  category: string | null;
+  lists: string[];
+  tags: string[];
+  savedLists: string[];
+};
+
+type SidebarCityChipRow = {
+  name: string;
+  country: string | null;
+  been: boolean;
+  go: boolean;
+  myGooglePlaces: string | null;
+};
+
+type SidebarCountryChipRow = {
+  name: string;
+};
+
+const _fetchSidebarCityChipRows = unstable_cache(
+  async (): Promise<SidebarCityChipRow[]> => {
+    const { data, error } = await supabase
+      .from(GO_CITIES_TABLE)
+      .select('name, country, been, go, my_google_places')
+      .not('slug', 'like', 'delete-%');
+    if (error) {
+      console.error('[sidebarData] city chip fetch failed:', error);
+      return [];
+    }
+    return (data ?? []).map(row => ({
+      name: (row.name as string | null) ?? '',
+      country: (row.country as string | null) ?? null,
+      been: !!row.been,
+      go: !!row.go,
+      myGooglePlaces: (row.my_google_places as string | null) ?? null,
+    }));
+  },
+  ['sidebar-city-chip-rows-v1'],
+  { revalidate: 300, tags: ['supabase-cities', 'notion-cities'] },
+);
+
+const _fetchSidebarCountryChipRows = unstable_cache(
+  async (): Promise<SidebarCountryChipRow[]> => {
+    const { data, error } = await supabase
+      .from(GO_COUNTRIES_TABLE)
+      .select('name')
+      .not('slug', 'like', 'delete-%');
+    if (error) {
+      console.error('[sidebarData] country chip fetch failed:', error);
+      return [];
+    }
+    return (data ?? []).map(row => ({
+      name: (row.name as string | null) ?? '',
+    }));
+  },
+  ['sidebar-country-chip-rows-v1'],
+  { revalidate: 300, tags: ['supabase-countries', 'notion-countries'] },
+);
+
+const _fetchSidebarPinChipRows = unstable_cache(
+  async (): Promise<SidebarPinChipRow[]> => {
+    const { data, error } = await supabase
+      .from('pins')
+      .select('id, states_names, category, lists, tags, saved_lists');
+    if (error) {
+      console.error('[sidebarData] pin chip fetch failed:', error);
+      return [];
+    }
+    return (data ?? []).map(row => ({
+      id: row.id as string,
+      statesNames: (row.states_names as string[] | null) ?? [],
+      category: (row.category as string | null) ?? null,
+      lists: (row.lists as string[] | null) ?? [],
+      tags: (row.tags as string[] | null) ?? [],
+      savedLists: (row.saved_lists as string[] | null) ?? [],
+    }));
+  },
+  ['sidebar-pin-chip-rows-v1'],
+  { revalidate: 86400, tags: ['supabase-pins'] },
+);
+
 const _fetchSidebarChipData = unstable_cache(
   async (): Promise<SidebarChipData> => {
     let cities, countries, pins, listsMeta;
     try {
       [cities, countries, pins, listsMeta] = await Promise.all([
-        fetchAllCities(),
-        fetchAllCountries(),
-        fetchAllPins(),
+        _fetchSidebarCityChipRows(),
+        _fetchSidebarCountryChipRows(),
+        _fetchSidebarPinChipRows(),
         fetchAllSavedListsMeta(),
       ]);
     } catch (err) {

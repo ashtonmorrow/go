@@ -61,4 +61,11 @@ export type City = {
   voltage?: string | null;
   /** Country-level plug type codes, e.g. ["A", "B", "C"]. */
   plugTypes?: string[];
+  /** Country slug for routing to /countries/[slug] from /cities/map and
+   *  /world hover cards. Optional because not every consumer needs it. */
+  countrySlug?: string | null;
+  /** Notion page IDs of sister cities, used by /cities/map + /world to
+   *  draw the sister-city connection graph. Empty array on cities
+   *  without any sister relationships. */
+  sisterCities?: string[];
 };
