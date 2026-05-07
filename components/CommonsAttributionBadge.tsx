@@ -63,8 +63,21 @@ const POSITION_CLS: Record<Position, string> = {
   'top-left': 'top-1.5 left-1.5',
 };
 
+/** Attribution metadata that can be passed into the badge so it renders
+ *  inline credit instead of the generic "via Commons" link. Shape
+ *  matches `lib/commonsAttribution.ts`'s CommonsAttribution. Pages that
+ *  want full inline credit pre-fetch via getCommonsAttribution(url) in
+ *  a server component, then pass the result here. */
+export type CommonsAttributionMeta = {
+  author: string | null;
+  license: string | null;
+  licenseUrl: string | null;
+  sourceUrl: string;
+};
+
 export default function CommonsAttributionBadge({
   url,
+  attribution,
   position = 'bottom-right',
   /** Render style. 'subtle' shows the badge only on hover/focus of the
    *  parent (.group). 'always' keeps it visible at all times. Use
@@ -72,15 +85,55 @@ export default function CommonsAttributionBadge({
   variant = 'subtle',
 }: {
   url: string | null | undefined;
+  /** Optional pre-fetched attribution. When provided, the badge renders
+   *  inline credit ("Photo: <author> · CC BY-SA"). When omitted, the
+   *  badge falls back to a bare link to the Commons file page (which
+   *  has author + license on it). */
+  attribution?: CommonsAttributionMeta | null;
   position?: Position;
   variant?: 'subtle' | 'always';
 }) {
   if (!isCommonsUrl(url)) return null;
-  const href = commonsFilePageUrl(url!);
+  const href = attribution?.sourceUrl ?? commonsFilePageUrl(url!);
   const visibility =
     variant === 'always'
       ? 'opacity-100'
       : 'opacity-0 group-hover:opacity-100 focus-within:opacity-100';
+
+  // Inline credit when we have the metadata. Author + license is the
+  // shape CC BY-SA 4.0 expects; the source URL is the file page.
+  if (attribution && (attribution.author || attribution.license)) {
+    const authorText = attribution.author ?? 'Wikimedia Commons contributor';
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer license"
+        onClick={e => e.stopPropagation()}
+        className={
+          'absolute z-10 max-w-[90%] px-1.5 py-0.5 rounded-sm text-[10px] leading-tight font-medium ' +
+          'bg-ink-deep/80 text-white shadow-sm hover:bg-ink-deep ' +
+          'transition-opacity truncate ' +
+          POSITION_CLS[position] +
+          ' ' +
+          visibility
+        }
+        title={
+          'Photo: ' +
+          authorText +
+          (attribution.license ? ` · ${attribution.license}` : '') +
+          ' (Wikimedia Commons). Click for source.'
+        }
+        aria-label="Photo attribution on Wikimedia Commons"
+      >
+        📷 {authorText}
+        {attribution.license && (
+          <span className="ml-1 opacity-80">· {attribution.license}</span>
+        )}
+      </a>
+    );
+  }
+
   return (
     <a
       href={href}
