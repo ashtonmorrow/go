@@ -7,21 +7,31 @@ export const dynamic = 'force-dynamic';
 
 // === /api/admin/bulk-edit-pins =============================================
 // Accepts a list of per-row patches and writes them in one round trip per
-// pin. The field allowlist is intentionally narrow so this endpoint only
-// covers the four columns the bulk editor on /admin/pins exposes — full
-// pin editing still goes through /api/admin/update-pin where the user
-// sees one row at a time and the surface area is appropriate.
+// pin. The field allowlist covers the columns the inline bulk editors on
+// /admin/pins (visited / kind / indexable / personal_rating) and
+// /admin/hotels (visit_year / nights_stayed / room_type / cash price /
+// points) expose. Full pin editing still goes through /api/admin/update-pin
+// where the user sees one row at a time and the surface area is broader.
 //
-// Body: { changes: [{ id: string, fields: { visited?, kind?, indexable?, personal_rating? } }] }
+// Body: { changes: [{ id: string, fields: <patch> }] }
 
 const ALLOWED_KINDS = new Set(['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit']);
+const ALLOWED_POINTS_PROGRAMS = new Set(['ihg', 'marriott', 'hyatt', 'hilton']);
 
-type FieldName = 'visited' | 'kind' | 'indexable' | 'personal_rating';
 type FieldPatch = Partial<{
+  // /admin/pins inline cells
   visited: boolean;
   kind: string | null;
   indexable: boolean;
   personal_rating: number | null;
+  // /admin/hotels inline cells
+  visit_year: number | null;
+  nights_stayed: number | null;
+  room_type: string | null;
+  room_price_per_night: number | null;
+  room_price_currency: string | null;
+  points_amount: number | null;
+  points_program: string | null;
 }>;
 type Change = { id: string; fields: FieldPatch };
 
@@ -39,6 +49,43 @@ function sanitize(fields: Record<string, unknown>): { ok: FieldPatch; reason?: s
       else if (typeof v === 'number' && Number.isFinite(v) && v >= 1 && v <= 5) {
         out.personal_rating = Math.round(v);
       } else return { ok: out, reason: `personal_rating must be 1-5 or null` };
+    } else if (k === 'visit_year') {
+      if (v === null) out.visit_year = null;
+      else if (typeof v === 'number' && Number.isFinite(v) && v >= 1900 && v <= 2100) {
+        out.visit_year = Math.round(v);
+      } else return { ok: out, reason: `visit_year must be 1900-2100 or null` };
+    } else if (k === 'nights_stayed') {
+      if (v === null) out.nights_stayed = null;
+      else if (typeof v === 'number' && Number.isFinite(v) && v >= 1 && v <= 365) {
+        out.nights_stayed = Math.round(v);
+      } else return { ok: out, reason: `nights_stayed must be 1-365 or null` };
+    } else if (k === 'room_type') {
+      if (v === null) out.room_type = null;
+      else if (typeof v === 'string') out.room_type = v.trim() || null;
+      else return { ok: out, reason: `room_type must be string or null` };
+    } else if (k === 'room_price_per_night') {
+      if (v === null) out.room_price_per_night = null;
+      else if (typeof v === 'number' && Number.isFinite(v) && v >= 0) {
+        out.room_price_per_night = v;
+      } else return { ok: out, reason: `room_price_per_night must be >=0 or null` };
+    } else if (k === 'room_price_currency') {
+      if (v === null) out.room_price_currency = null;
+      else if (typeof v === 'string') {
+        const c = v.trim().toUpperCase();
+        if (c.length === 0) out.room_price_currency = null;
+        else if (c.length <= 4) out.room_price_currency = c;
+        else return { ok: out, reason: `room_price_currency must be a short ISO code` };
+      } else return { ok: out, reason: `room_price_currency must be string or null` };
+    } else if (k === 'points_amount') {
+      if (v === null) out.points_amount = null;
+      else if (typeof v === 'number' && Number.isFinite(v) && v >= 0) {
+        out.points_amount = Math.round(v);
+      } else return { ok: out, reason: `points_amount must be >=0 or null` };
+    } else if (k === 'points_program') {
+      if (v === null) out.points_program = null;
+      else if (typeof v === 'string' && ALLOWED_POINTS_PROGRAMS.has(v)) {
+        out.points_program = v;
+      } else return { ok: out, reason: `invalid points_program: ${String(v)}` };
     }
     // anything else: silently ignore (allowlist)
   }
@@ -98,4 +145,4 @@ export async function POST(req: Request) {
   return NextResponse.json({ updated });
 }
 
-export type BulkEditAllowedField = FieldName;
+export type BulkEditAllowedField = keyof FieldPatch;

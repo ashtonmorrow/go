@@ -304,6 +304,7 @@ function NavBody({
       {pathname.startsWith('/admin') && (
         <Section label="Admin">
           <Item href="/admin/pins"          emoji="📌" label="Pins editor"   onClick={onLinkClick} />
+          <Item href="/admin/hotels"        emoji="⌂" label="Hotel prices"   onClick={onLinkClick} />
           <Item href="/admin/lists"         emoji="🗂️" label="Saved lists"   onClick={onLinkClick} />
           <Item href="/admin/upload"        emoji="📷" label="Upload photos" onClick={onLinkClick} />
           <Item href="/admin/reservations/new" emoji="🛎️" label="Add reservation" onClick={onLinkClick} />
