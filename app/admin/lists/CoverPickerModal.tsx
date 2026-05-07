@@ -76,6 +76,23 @@ export default function CoverPickerModal({
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [savingClear, setSavingClear] = useState(false);
+  // Source-filter pills + per-tile delete state — same shape as
+  // EntityCoverPickerModal so the cleanup workflow feels consistent
+  // across pickers.
+  type SourceFilter = 'all' | 'personal' | 'pin' | 'codex' | 'city' | 'country';
+  const [filter, setFilter] = useState<SourceFilter>('all');
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  // Drop a deleted tile from whichever tab's pool currently holds it.
+  // Tabs can have overlapping members (a personal photo for a member
+  // pin shows up in both in-list and related when the list-name word
+  // also matches the city), so we filter all three pools by id rather
+  // than tracking which tab owns it.
+  function dropTileLocal(id: string) {
+    setInList(prev => (prev ? prev.filter(t => t.id !== id) : prev));
+    setRelated(prev => (prev ? prev.filter(t => t.id !== id) : prev));
+    setAll(prev => prev.filter(t => t.id !== id));
+  }
 
   // Load "in this list" once on mount — the user almost always picks from
   // this scope, so it's worth the eager load.
@@ -143,11 +160,55 @@ export default function CoverPickerModal({
   function switchTab(next: Tab) {
     setTab(next);
     setError(null);
+    setFilter('all');
     if (next === 'all' && all.length === 0) {
       void loadAll(true);
     }
     if (next === 'related' && related === null) {
       void loadRelated();
+    }
+  }
+
+  /** Permanently delete a personal photo or pin.images entry. Same
+   *  semantics as EntityCoverPickerModal — see that file's deleteTile
+   *  comment for the dispatch matrix. */
+  async function deleteTile(p: PhotoTile) {
+    if (deletingId) return;
+    if (p.source !== 'personal' && p.source !== 'pin-image') return;
+    const label = p.source === 'personal' ? 'personal photo' : 'pin image';
+    const ok = window.confirm(
+      `Delete this ${label}?\n\n` +
+        'This permanently removes it from the database and Storage. ' +
+        'It cannot be undone.',
+    );
+    if (!ok) return;
+    setDeletingId(p.id);
+    setError(null);
+    try {
+      let res: Response;
+      if (p.source === 'personal') {
+        res = await fetch('/api/admin/personal-photos', {
+          method: 'DELETE',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ id: p.id }),
+        });
+      } else {
+        if (!p.pinId) throw new Error('pin image is missing pinId');
+        res = await fetch('/api/admin/pin-image', {
+          method: 'DELETE',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ pinId: p.pinId, url: p.url }),
+        });
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error ?? `delete failed (${res.status})`);
+      }
+      dropTileLocal(p.id);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'delete failed');
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -233,6 +294,25 @@ export default function CoverPickerModal({
     tab === 'in-list' ? inList ?? [] :
     tab === 'related' ? related ?? [] :
     all;
+  // Counts come from the active tab's full pool (so they don't shift
+  // with the pill toggle), filtering happens at render time.
+  const tabCounts = {
+    all: photos.length,
+    personal: photos.filter(p => p.source === 'personal').length,
+    pin: photos.filter(p => p.source === 'pin-image').length,
+    codex: photos.filter(p => p.source === 'pin-image' && p.imageSource === 'codex-generated').length,
+    city: photos.filter(p => p.source === 'city-hero').length,
+    country: photos.filter(p => p.source === 'country-hero').length,
+  };
+  const filtered = photos.filter(p => {
+    if (filter === 'all') return true;
+    if (filter === 'personal') return p.source === 'personal';
+    if (filter === 'pin') return p.source === 'pin-image';
+    if (filter === 'codex') return p.source === 'pin-image' && p.imageSource === 'codex-generated';
+    if (filter === 'city') return p.source === 'city-hero';
+    if (filter === 'country') return p.source === 'country-hero';
+    return true;
+  });
   const showLoadMore = tab === 'all' && allHasMore && !loading;
 
   return (
@@ -310,6 +390,46 @@ export default function CoverPickerModal({
           })}
         </div>
 
+        {/* Source filter pills — scope the active tab's grid by source.
+            Reset to 'all' on every tab switch (see switchTab) so the
+            user's mental model stays simple. Hidden when the active
+            tab's pool is empty. */}
+        {photos.length > 0 && (
+          <div className="px-5 pt-2 pb-1 flex flex-wrap items-center gap-1.5">
+            {(
+              [
+                { id: 'all', label: 'All', count: tabCounts.all },
+                { id: 'personal', label: 'Personal', count: tabCounts.personal },
+                { id: 'pin', label: 'Pin', count: tabCounts.pin },
+                { id: 'codex', label: 'Codex', count: tabCounts.codex },
+                { id: 'city', label: 'City', count: tabCounts.city },
+                { id: 'country', label: 'Country', count: tabCounts.country },
+              ] as { id: SourceFilter; label: string; count: number }[]
+            )
+              .filter(p => p.count > 0 || p.id === 'all')
+              .map(p => {
+                const active = filter === p.id;
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => setFilter(p.id)}
+                    aria-pressed={active}
+                    className={
+                      'pill text-micro ' +
+                      (active
+                        ? 'bg-ink-deep text-white border border-ink-deep'
+                        : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')
+                    }
+                  >
+                    {p.label}
+                    <span className="ml-1 tabular-nums opacity-80">({p.count})</span>
+                  </button>
+                );
+              })}
+          </div>
+        )}
+
         {/* Body */}
         <div className="flex-1 overflow-y-auto p-5 bg-cream-soft/40">
           {error && (
@@ -327,9 +447,13 @@ export default function CoverPickerModal({
                 ? 'No related-place photos found. The list name needs to word-match a city or country (e.g. a list called "bangkok" surfaces Bangkok pins).'
                 : 'No personal photos uploaded yet.'}
             </p>
+          ) : filtered.length === 0 ? (
+            <p className="text-center text-slate text-small py-12">
+              Nothing matches that filter. Click <strong>All</strong> to widen.
+            </p>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-              {photos.map(p => {
+              {filtered.map(p => {
                 const isCurrent = !!currentCoverUrl && p.url === currentCoverUrl;
                 const isCodex = p.imageSource === 'codex-generated';
                 const sourceBadge =
@@ -338,35 +462,42 @@ export default function CoverPickerModal({
                   : isCodex ? 'Codex'
                   : p.source === 'pin-image' ? 'Pin'
                   : null;
+                const canDelete = p.source === 'personal' || p.source === 'pin-image';
+                const isDeleting = deletingId === p.id;
                 return (
-                  <button
+                  <div
                     key={p.id}
-                    type="button"
-                    onClick={() => pick(p)}
-                    disabled={saving || savingClear}
                     className={
                       'group relative aspect-square overflow-hidden rounded-md bg-cream-soft border-2 transition-all ' +
                       (isCurrent
                         ? 'border-teal ring-2 ring-teal/30'
-                        : 'border-sand hover:border-slate hover:shadow-paper')
+                        : 'border-sand hover:border-slate hover:shadow-paper') +
+                      (isDeleting ? ' opacity-60' : '')
                     }
-                    title={`${p.pinName}${p.takenAt ? ' · ' + new Date(p.takenAt).toLocaleDateString() : ''}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.url}
-                      alt={p.pinName}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    />
-                    {/* Pin name overlay */}
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-deep/80 to-transparent p-2 text-white text-micro leading-tight">
+                    <button
+                      type="button"
+                      onClick={() => pick(p)}
+                      disabled={saving || savingClear || isDeleting}
+                      className="absolute inset-0 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal disabled:cursor-not-allowed"
+                      title={`${p.pinName}${p.takenAt ? ' · ' + new Date(p.takenAt).toLocaleDateString() : ''}`}
+                      aria-label={`Use ${p.pinName} as cover`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={p.url}
+                        alt={p.pinName}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                      />
+                    </button>
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-deep/80 to-transparent p-2 text-white text-micro leading-tight">
                       <p className="truncate">{p.pinName}</p>
                     </div>
                     {sourceBadge && (
                       <div
                         className={
-                          'absolute top-1.5 right-1.5 pill text-micro shadow ' +
+                          'pointer-events-none absolute top-1.5 right-1.5 pill text-micro shadow ' +
                           (isCodex
                             ? 'bg-orange text-white'
                             : p.source === 'personal'
@@ -378,11 +509,35 @@ export default function CoverPickerModal({
                       </div>
                     )}
                     {isCurrent && (
-                      <div className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro shadow">
+                      <div className="pointer-events-none absolute top-1.5 left-1.5 pill bg-teal text-white text-micro shadow">
                         Current
                       </div>
                     )}
-                  </button>
+                    {canDelete && (
+                      <button
+                        type="button"
+                        onClick={e => {
+                          e.stopPropagation();
+                          void deleteTile(p);
+                        }}
+                        disabled={isDeleting || saving || savingClear}
+                        className={
+                          'absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide bg-red-600/90 text-white transition-opacity disabled:opacity-50 ' +
+                          (isCurrent
+                            ? 'opacity-100'
+                            : 'opacity-0 group-hover:opacity-100 focus:opacity-100')
+                        }
+                        aria-label="Delete this photo"
+                        title={
+                          p.source === 'personal'
+                            ? 'Delete this personal photo (removes from DB + Storage). Cannot be undone.'
+                            : 'Delete this pin image entry (removes from this pin + Storage if no other pin uses it). Cannot be undone.'
+                        }
+                      >
+                        {isDeleting ? '…' : 'delete'}
+                      </button>
+                    )}
+                  </div>
                 );
               })}
             </div>
