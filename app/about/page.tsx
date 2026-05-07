@@ -3,45 +3,37 @@ import Link from 'next/link';
 import { AUTHOR_ID, WEBSITE_ID } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'About Postcards · Mike Lee',
+  title: 'About this travel atlas · Mike Lee',
   description:
-    'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
-  keywords: [
-    'travel atlas',
-    'cultural travel',
-    'city guides',
-    'travel notes',
-    'map travel project',
-    'supabase travel database',
-  ],
+    'How I research a trip. A working notebook that mixes my Google Maps saved lists, my Atlas Obscura history, the UNESCO list, and Michelin Guide restaurants I have eaten at.',
   alternates: { canonical: 'https://go.mike-lee.me/about' },
   openGraph: {
     type: 'article',
-    title: 'About Postcards · Mike Lee',
+    title: 'About this travel atlas · Mike Lee',
     description:
-      'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
+      'How I research a trip. A working notebook that mixes my Google Maps saved lists, my Atlas Obscura history, the UNESCO list, and Michelin Guide restaurants I have eaten at.',
     url: 'https://go.mike-lee.me/about',
     siteName: 'mike-lee.me',
     publishedTime: '2026-04-26',
-    modifiedTime: '2026-05-04',
+    modifiedTime: '2026-05-07',
     authors: ['Mike Lee'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Postcards · Mike Lee',
+    title: 'About this travel atlas · Mike Lee',
     description:
-      'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
+      'How I research a trip. A working notebook that mixes my Google Maps saved lists, my Atlas Obscura history, the UNESCO list, and Michelin Guide restaurants I have eaten at.',
   },
 };
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  headline: 'About Postcards',
+  headline: 'About this travel atlas',
   description:
-    'A personal travel atlas built from more than a decade of notes, maps, photos, and practical city research.',
+    'How I research a trip. A working notebook that mixes my Google Maps saved lists, my Atlas Obscura history, the UNESCO list, and Michelin Guide restaurants I have eaten at.',
   datePublished: '2026-04-26',
-  dateModified: '2026-05-04',
+  dateModified: '2026-05-07',
   inLanguage: 'en',
   isAccessibleForFree: true,
   about: [
@@ -52,8 +44,7 @@ const articleJsonLd = {
   ],
   // Reference the sitewide Person via @id so search engines reconcile
   // this AboutPage's author with the personJsonLd() emitted from the
-  // root layout (which carries sameAs, knowsAbout, etc.). Inline
-  // duplication of name/url here would create a competing entity.
+  // root layout (which carries sameAs, knowsAbout, etc.).
   author: { '@id': AUTHOR_ID },
   publisher: { '@id': AUTHOR_ID },
   isPartOf: { '@id': WEBSITE_ID },
@@ -77,38 +68,40 @@ export default function AboutPage() {
           <span className="mx-1.5">/</span>
           <span>About</span>
         </div>
-        <h1 className="text-h1 text-ink-deep">About Postcards</h1>
-        <p className="text-h3 text-slate font-normal mt-3">
-          A public version of my travel notes, built from cities, maps,
-          saved places, and the things I want to remember before I book.
+        <h1 className="text-h1 text-ink-deep">About this travel atlas</h1>
+        <p className="text-prose text-slate font-normal mt-3 leading-snug">
+          How I research a trip. A working notebook that mixes my Google
+          Maps saved lists, my Atlas Obscura history, the UNESCO list,
+          and Michelin Guide restaurants I have eaten at.
         </p>
         <p className="text-small text-muted mt-4">
           Published April 2026. Updated May 2026. Mike Lee.
         </p>
       </header>
 
-      <section id="what-this-is" className="scroll-mt-6 mb-10">
+      <section id="why-this-exists" className="scroll-mt-6 mb-10">
         <div className="card p-5 md:p-6 not-prose space-y-4 text-ink leading-relaxed">
           <p>
-            I have kept travel notes for years because the useful details are
-            easy to lose. I want to remember which neighborhood made sense,
-            which museum needed more time, which airport transfer was
-            annoying, which beach was worth the train ride, and which saved
-            place looked better on a map than it did in person.
+            I have kept travel notes for years because the useful details
+            do not survive in chat threads or scattered Google Maps pins.
+            Where the food was actually good. Which neighborhood made
+            sense for a one-week stay. Which day-trip was worth two
+            trains. Whether a saved place looked better on a map than it
+            did in person.
           </p>
           <p>
-            This site turns that private system into a public atlas. It is not
-            a neutral guidebook and it is not a ranked list of places to see.
-            It is closer to a working notebook from a traveler who usually
-            explores on foot, uses public transportation when it is safe and
-            convenient, and takes a taxi or private transfer when that is the
-            sensible choice.
+            This site is the public version of that working system. It is
+            not a guidebook. It is closer to a notebook from a traveler
+            who plans deliberately, walks when the city allows, takes
+            public transit as a practical tool, and books a taxi when
+            that is the right call.
           </p>
           <p>
-            Some pages are polished travel writing. Some are still structured
-            notes with facts, photos, and saved places waiting for better
-            prose. I would rather show the state of the notebook honestly than
-            make every page sound finished before it is useful.
+            Some pages are polished travel writing. Some are still
+            structured notes with facts, photos, and saved places waiting
+            for better prose. I would rather show the state of the
+            notebook honestly than make every page sound finished before
+            it is useful.
           </p>
         </div>
       </section>
@@ -118,160 +111,209 @@ export default function AboutPage() {
           Contents
         </p>
         <ul className="space-y-1.5 text-small">
-          <li><a href="#what-this-is">What this is</a></li>
-          <li><a href="#what-i-track">What I track</a></li>
-          <li><a href="#city-pages">How to read the city pages</a></li>
+          <li><a href="#why-this-exists">Why this exists</a></li>
+          <li><a href="#four-sources">The four sources I cross-reference</a></li>
+          <li><a href="#city-pages">How to read a city page</a></li>
           <li><a href="#maps-lists-pins">Maps, lists, and pins</a></li>
           <li><a href="#sources">Sources and judgment</a></li>
           <li><a href="#stack">Stack and hosting</a></li>
-          <li><a href="#resources">Resources</a></li>
+          <li><a href="#contact">If something needs fixing</a></li>
         </ul>
       </nav>
 
       <div className="space-y-10 text-ink leading-relaxed">
-        <section id="what-i-track" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">What I Track</h2>
+        <section id="four-sources" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">
+            The four sources I cross-reference
+          </h2>
           <p>
-            The database starts with cities and countries, then connects them
-            to pins, saved lists, climate data, flags, photos, and practical
-            travel fields. A city page can hold the obvious reference data,
-            such as population, coordinates, time zone, climate, and country.
-            It can also hold the parts that matter more when I am planning a
-            real trip: why I would go, what might make me avoid it, when the
-            weather is difficult, and which nearby places make sense by train,
-            ferry, bus, or short drive.
+            The atlas grows from four streams. They do not blur on the
+            page. A pin can come from any of them, and the cross-product
+            is what makes a city like Barcelona or Cape Town more useful
+            here than in any one of the sources alone.
           </p>
-          <p className="mt-4">
-            The country records keep the slow logistics in one place. Visa
-            rules, tap water, plug types, voltage, driving side, currency, and
-            language are not glamorous details, but they shape the first hour
-            of almost every trip. Keeping them structured means the city pages
-            can stay focused on place rather than repeating the same basics.
+
+          <h3 className="text-h3 text-ink-deep mt-6 mb-2">
+            Google Maps saved lists
+          </h3>
+          <p>
+            Every Bangkok food list, every Seville café shortlist, every
+            Lisbon viewpoint pile sits as a private saved list inside my
+            Google Maps account. I export them through Google Takeout and
+            import each list into the atlas as a curated collection. The{' '}
+            <Link href="/lists" className="text-teal hover:underline">
+              Lists section
+            </Link>{' '}
+            is the home for these. Most lists mirror a real planning
+            thread, not a general-interest collection.
+          </p>
+
+          <h3 className="text-h3 text-ink-deep mt-6 mb-2">
+            Atlas Obscura history
+          </h3>
+          <p>
+            When I review an entry on Atlas Obscura, their site records
+            it. The atlas pulls that history in: every pin tagged
+            &ldquo;Atlas Obscura&rdquo; here is one I have actually
+            shown up to. The chip is not an aspirational filter. It is
+            the intersection of their catalogue with the places I have
+            been.
+          </p>
+
+          <h3 className="text-h3 text-ink-deep mt-6 mb-2">
+            UNESCO World Heritage tracking
+          </h3>
+          <p>
+            I track UNESCO sites I have visited as I go. Each pin with a
+            UNESCO ID carries the canonical number in the Facts card,
+            and the link goes to the official UNESCO page. The
+            &ldquo;visited&rdquo; flag on those pins is meaningful: it
+            marks a real visit, not a drive-past.
+          </p>
+
+          <h3 className="text-h3 text-ink-deep mt-6 mb-2">
+            Michelin Guide restaurants I have eaten at
+          </h3>
+          <p>
+            When the budget allows, I make a point of eating at Michelin
+            Guide restaurants in the city. Bib Gourmand entries get
+            visited more than starred ones for the obvious reason. The
+            atlas only carries Michelin entries I have actually eaten
+            at, with the personal review and price tier filled in. The
+            rest of the Michelin universe is intentionally absent until
+            I get there.
+          </p>
+
+          <p className="mt-5">
+            A city page like Cape Town surfaces the Google saved list,
+            any Atlas Obscura sites I have logged, the UNESCO sites in
+            or near it, and the Michelin restaurants I have eaten at,
+            all at once. That cross-section is the actual planning
+            artifact.
           </p>
         </section>
 
         <section id="city-pages" className="scroll-mt-6">
           <h2 className="text-h2 text-ink-deep mb-4">
-            How to Read the City Pages
+            How to read a city page
           </h2>
           <p>
-            A good city page should help you decide whether a place belongs in
-            a trip, not simply decorate it with travel language. The About
-            section gives the main orientation: what the city is like today,
-            what history still shapes it, and how it changes if you have one
-            or two days instead of one or two weeks. The Why Visit section is
-            about culture, architecture, landscape, food, music, museums,
-            books, neighborhoods, and nearby routes. The Avoid section is
-            blunt by design. Crowds, pickpockets, scams, air pollution,
-            difficult weather, weak transit, and disappointing tourist zones
-            are part of the decision.
+            A good city page should help you decide whether the place
+            belongs in a trip, not decorate it with travel language. The
+            About section gives the orientation: what the city is like
+            today, what history still shapes it, how it changes if you
+            have one or two days instead of one or two weeks.
           </p>
           <p className="mt-4">
-            I try to keep the tone useful. Barcelona, for example, is not just
-            a Gothic Quarter and Gaudi checklist. It is also beaches, commuter
-            rail, wine country, Montserrat, day trips to Sitges, and the
-            practical reality of crowds and pickpockets in the center. The
-            page should help someone plan around both truths.
+            The Why Visit section is about culture, architecture,
+            landscape, food, music, museums, books, neighborhoods, and
+            nearby routes. The When to Avoid section is blunt by design.
+            Crowds, pickpockets, scams, air pollution, difficult
+            weather, weak transit, and disappointing tourist zones are
+            part of the decision and belong on the page.
+          </p>
+          <p className="mt-4">
+            Barcelona is not just a Gothic Quarter and Gaudí checklist.
+            It is also beaches, commuter rail, wine country, Montserrat,
+            day trips to Sitges, and the practical reality of
+            pickpockets in the center. The page is meant to help someone
+            plan around both truths.
           </p>
         </section>
 
         <section id="maps-lists-pins" className="scroll-mt-6">
           <h2 className="text-h2 text-ink-deep mb-4">
-            Maps, Lists, and Pins
+            Maps, lists, and pins
           </h2>
           <p>
-            The map views are there because travel planning is spatial. A
-            place that looks essential in a list can be awkward once you see
-            where it sits. The city globe shows the broader atlas. The pin
-            map shows museums, gardens, restaurants, historic sites, stations,
-            viewpoints, UNESCO places, saved ideas, and places I have actually
-            visited.
+            Travel planning is spatial. A place that looks essential in
+            a list is sometimes awkward once you see where it sits on
+            the map. The country globe shows the broader atlas. The pin
+            map shows museums, gardens, restaurants, historic sites,
+            stations, viewpoints, UNESCO places, saved ideas, and pins
+            I have actually visited.
           </p>
           <p className="mt-4">
-            The saved lists come from Google Maps, but the goal is to make
-            them more useful than a private pile of stars. A list can become a
-            city research page, a food shortlist, a day-trip cluster, or a
-            reminder that something was saved years ago and still needs a
-            second look.
+            The saved-list section on a city or country page surfaces
+            anything I keep in a Google Maps list named after that
+            place. A list can become a city research page, a food
+            shortlist, a day-trip cluster, or a reminder that something
+            was saved years ago and still needs a second look.
           </p>
         </section>
 
         <section id="sources" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">Sources and Judgment</h2>
+          <h2 className="text-h2 text-ink-deep mb-4">
+            Sources and judgment
+          </h2>
           <p>
-            Public facts come from sources such as Wikidata, Wikipedia, NASA
-            POWER, OpenStreetMap, UNESCO, and other open or cited reference
-            sources. Personal photographs, ratings, lists, reviews, and
-            practical judgments come from my own travel notes. The two should
-            not be confused. A population figure is a reference fact. Whether
-            a place is worth building a trip around is a judgment, and it
+            Public reference data comes from Wikidata, Wikipedia, NASA
+            POWER, OpenStreetMap, UNESCO, the Atlas Obscura catalogue,
+            the Michelin Guide, Google Places, and other open or cited
+            sources. The full list is on the{' '}
+            <Link href="/credits" className="text-teal hover:underline">
+              credits page
+            </Link>{' '}
+            with each license noted.
+          </p>
+          <p className="mt-4">
+            Photographs, ratings, lists, reviews, and practical
+            judgments are mine. The two sources do not get confused on a
+            page. A population figure is a reference fact. Whether a
+            place is worth building a trip around is a judgment, and it
             should explain itself.
           </p>
           <p className="mt-4">
-            I expect the site to keep changing. Hours, prices, airline rules,
-            visa policies, and safety conditions move faster than a personal
-            site can guarantee. Treat this as a well-kept notebook and check
-            live details before you plan around them.
+            I expect the site to keep changing. Hours, prices, airline
+            rules, visa policies, and safety conditions move faster than
+            a personal site can guarantee. Treat this as a well-kept
+            notebook and check the live source before booking.
           </p>
         </section>
 
         <section id="stack" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">Stack and Hosting</h2>
+          <h2 className="text-h2 text-ink-deep mb-4">Stack and hosting</h2>
           <p>
-            The technical side matters because it lets the project stay
-            maintainable. The goal is not to build a travel startup. It is to
-            keep one careful set of notes online without turning it into a
-            second job.
+            I use this project partly to test ideas for my professional
+            career. The architecture choices, the editorial tone, the
+            data pipeline, the way structured fields meet personal
+            prose: these are problems I think about in my day job and
+            the site is where I practice them in public.
           </p>
           <Table
             head={['Component', 'Implementation']}
             rows={[
-              ['Framework', 'Next.js with React and TypeScript'],
-              ['Data', 'Supabase Postgres, migrated from an older Notion setup'],
-              ['Images', 'Supabase Storage, Wikimedia Commons, and personal photos'],
-              ['Maps', 'MapLibre GL and OpenStreetMap tiles'],
-              ['Climate', 'NASA POWER and Open-Meteo where available'],
-              ['Structured facts', 'Wikidata, Wikipedia, and curated overrides'],
+              ['Framework', 'Next.js 15 with React 19 and TypeScript'],
+              ['Data', 'Supabase Postgres'],
+              ['Images', 'Supabase Storage, Wikimedia Commons, personal photos'],
+              ['Maps', 'MapLibre GL with OpenStreetMap tiles'],
+              ['Climate', 'NASA POWER and Open-Meteo'],
+              ['Structured facts', 'Wikidata, Wikipedia, curated overrides'],
               ['Hosting', 'Vercel'],
               ['Repository', 'GitHub'],
             ]}
           />
         </section>
 
-        <section id="resources" className="scroll-mt-6">
-          <h2 className="text-h2 text-ink-deep mb-4">Resources</h2>
-          <ul className="list-disc list-outside pl-6 space-y-2">
-            <li>
-              <a href="https://supabase.com/docs" target="_blank" rel="noopener noreferrer">
-                Supabase documentation
-              </a>
-            </li>
-            <li>
-              <a href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank" rel="noopener noreferrer">
-                MapLibre GL JS documentation
-              </a>
-            </li>
-            <li>
-              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
-                OpenStreetMap
-              </a>
-            </li>
-            <li>
-              <a href="https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service" target="_blank" rel="noopener noreferrer">
-                Wikidata SPARQL query service
-              </a>
-            </li>
-            <li>
-              <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener noreferrer">
-                NASA POWER
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/mikelee89/" target="_blank" rel="noopener noreferrer">
-                Mike Lee on LinkedIn
-              </a>
-            </li>
-          </ul>
+        <section id="contact" className="scroll-mt-6">
+          <h2 className="text-h2 text-ink-deep mb-4">
+            If something needs fixing
+          </h2>
+          <p>
+            If a fact is wrong, an attribution missing, a review unfair,
+            or a photo includes you and you would prefer it not,{' '}
+            <a
+              href="https://www.linkedin.com/in/mikelee89/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-teal hover:underline"
+            >
+              message me on LinkedIn
+            </a>
+            . The reviews are my own and I am happy to clarify how I
+            arrived at one. There are no comments here on purpose; a
+            direct line is the way to reach me.
+          </p>
         </section>
       </div>
     </article>
