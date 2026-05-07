@@ -7,6 +7,7 @@ hero_alt: Table Mountain rising above the Cape Town city bowl at midday.
 published: 2026-04-30
 updated: 2026-05-07
 indexable: false
+external_route: /lists/cape-town
 authors:
   - Mike Lee
 links:
