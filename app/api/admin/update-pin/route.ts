@@ -93,6 +93,29 @@ export async function POST(req: Request) {
       update[key] = Math.round(n);
       continue;
     }
+    // Hero photo URL guard. Wikimedia Commons URLs need per-image
+    // attribution to be CC BY-SA compliant. Today no public render
+    // path attaches Commons URLs to hero_photo_urls — block writes
+    // that would change that. The picker already warns; this is the
+    // belt to its suspenders. Reverting a Commons URL out of a hero
+    // array is fine (filtered out at write).
+    if (key === 'hero_photo_urls' && Array.isArray(value)) {
+      const blocked = (value as unknown[]).filter(
+        u => typeof u === 'string' && /(commons\.wikimedia|upload\.wikimedia)/.test(u),
+      );
+      if (blocked.length > 0) {
+        return NextResponse.json(
+          {
+            error:
+              'hero_photo_urls cannot include Wikimedia Commons URLs (CC BY-SA attribution). ' +
+              `Blocked: ${blocked.length} URL(s). Replace with a personal photo or remove.`,
+          },
+          { status: 400 },
+        );
+      }
+      update[key] = value;
+      continue;
+    }
     update[key] = value;
   }
 

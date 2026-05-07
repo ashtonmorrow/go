@@ -29,7 +29,14 @@ export async function POST(req: Request) {
   } catch (e) {
     const message = e instanceof Error ? e.message : 'city update failed';
     console.error('[update-city] failed:', e);
-    const status = message.includes('fields') || message.includes('recognised') ? 400 : 500;
+    // Validation errors come back from goAugmentation as plain throws.
+    // Keywords used to distinguish 400 (caller error) from 500 (server).
+    const status =
+      message.includes('fields') ||
+      message.includes('recognised') ||
+      message.includes('Wikimedia Commons')
+        ? 400
+        : 500;
     return NextResponse.json({ error: message }, { status });
   }
 }

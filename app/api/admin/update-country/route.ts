@@ -29,7 +29,12 @@ export async function POST(req: Request) {
   } catch (e) {
     const message = e instanceof Error ? e.message : 'country update failed';
     console.error('[update-country] failed:', e);
-    const status = message.includes('fields') || message.includes('recognised') ? 400 : 500;
+    const status =
+      message.includes('fields') ||
+      message.includes('recognised') ||
+      message.includes('Wikimedia Commons')
+        ? 400
+        : 500;
     return NextResponse.json({ error: message }, { status });
   }
 }

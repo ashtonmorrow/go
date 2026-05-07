@@ -77,6 +77,39 @@ type JsonRecord = Record<string, unknown>;
 export type GoCityAugmentation = Partial<Record<(typeof CITY_FIELDS extends Set<infer K> ? K : never) & string, unknown>>;
 export type GoCountryAugmentation = Partial<Record<(typeof COUNTRY_FIELDS extends Set<infer K> ? K : never) & string, unknown>>;
 
+/** Reject Wikimedia Commons URLs in any field rendered as a public hero
+ *  (hero_photo_urls + the legacy single-URL covers). Commons content is
+ *  CC BY-SA which requires per-image attribution; nothing in our public
+ *  render path attaches that today, so we keep Commons URLs out of the
+ *  hero arrays at the write boundary. The picker already warns; this
+ *  is the server-side enforcement. */
+const COMMONS_RE = /(commons\.wikimedia|upload\.wikimedia)/;
+
+function rejectCommonsInHeroFields(fields: JsonRecord): void {
+  const value = fields.hero_photo_urls;
+  if (Array.isArray(value)) {
+    const blocked = (value as unknown[]).filter(
+      u => typeof u === 'string' && COMMONS_RE.test(u),
+    );
+    if (blocked.length > 0) {
+      throw new Error(
+        'hero_photo_urls cannot include Wikimedia Commons URLs (CC BY-SA attribution). ' +
+          `Blocked: ${blocked.length} URL(s). Replace with a personal photo or remove.`,
+      );
+    }
+  }
+  // Single-URL covers — only check on writes, not reads.
+  for (const key of ['hero_image', 'personal_photo', 'city_flag', 'flag']) {
+    const v = fields[key];
+    if (typeof v === 'string' && COMMONS_RE.test(v)) {
+      throw new Error(
+        `${key} cannot be a Wikimedia Commons URL (CC BY-SA attribution). ` +
+          'Replace with a personal photo, host the asset locally, or null the field.',
+      );
+    }
+  }
+}
+
 function pickAllowed(fields: unknown, allowed: Set<string>): JsonRecord {
   if (!fields || typeof fields !== 'object' || Array.isArray(fields)) {
     throw new Error('fields object required');
@@ -91,6 +124,8 @@ function pickAllowed(fields: unknown, allowed: Set<string>): JsonRecord {
   if (!Object.keys(update).length) {
     throw new Error('no recognised fields');
   }
+
+  rejectCommonsInHeroFields(update);
 
   update.updated_at = new Date().toISOString();
   return update;
