@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
 type Row = {
   id: string;
@@ -13,6 +14,8 @@ type Row = {
   kind: string | null;
   indexable: boolean;
   personalRating: number | null;
+  coverUrl: string | null;
+  heroPhotoUrls: string[];
 };
 
 // Per-row editable patch. The bulk-edit endpoint at
@@ -49,6 +52,23 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
   // map is keyed by id, so dropping a row keeps the diff math sound.
   const [rows, setRows] = useState<Row[]>(initialRows);
   const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set());
+  // Inline cover-picker state. Only one open at a time; tracks the row
+  // id whose modal is mounted. Picking commits the new hero_photo_urls
+  // to the row so the thumbnail updates without a refetch.
+  const [coverPickerFor, setCoverPickerFor] = useState<string | null>(null);
+
+  function applyCoverCommit(
+    rowId: string,
+    next: { coverUrl: string | null; heroPhotoUrls: string[] },
+  ) {
+    setRows(prev =>
+      prev.map(r =>
+        r.id === rowId
+          ? { ...r, coverUrl: next.coverUrl, heroPhotoUrls: next.heroPhotoUrls }
+          : r,
+      ),
+    );
+  }
   const [originalEdits] = useState<Map<string, RowEdit>>(
     () => new Map(initialRows.map(r => [r.id, rowToEdit(r)])),
   );
@@ -197,6 +217,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       const base: RowEdit = existing ?? rowToEdit(rows.find(r => r.id === id) ?? {
         id, name: '', slug: null, city: '', country: '',
         visited: false, kind: null, indexable: false, personalRating: null,
+        coverUrl: null, heroPhotoUrls: [],
       });
       next.set(id, { ...base, [key]: value });
       return next;
@@ -647,6 +668,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         <table className="w-full text-small">
           <thead className="bg-cream-soft text-label uppercase tracking-wider text-muted">
             <tr>
+              <th className="text-left px-3 py-2 w-[64px]">Cover</th>
               <th className="text-left px-3 py-2 w-10" title="Visited">✓</th>
               <th className="text-left px-3 py-2">Name</th>
               <th className="text-left px-3 py-2 w-[130px]">Kind</th>
@@ -660,7 +682,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           <tbody>
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-3 py-6 text-center text-muted text-small">
+                <td colSpan={9} className="px-3 py-6 text-center text-muted text-small">
                   No pins match.
                 </td>
               </tr>
@@ -677,6 +699,33 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
                     (isDirty ? 'bg-teal/5' : 'hover:bg-cream-soft/40')
                   }
                 >
+                  <td className="px-3 py-2 align-top">
+                    <button
+                      type="button"
+                      onClick={() => setCoverPickerFor(row.id)}
+                      className={
+                        'block w-12 aspect-[4/3] rounded overflow-hidden border-2 transition-colors disabled:opacity-50 ' +
+                        (row.coverUrl
+                          ? 'border-sand hover:border-slate'
+                          : 'border-dashed border-sand bg-cream-soft hover:border-slate text-micro text-muted')
+                      }
+                      title={row.coverUrl ? 'Change cover…' : 'Pick cover…'}
+                      aria-label={row.coverUrl ? `Change cover for ${row.name}` : `Pick cover for ${row.name}`}
+                    >
+                      {row.coverUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={row.coverUrl}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="flex w-full h-full items-center justify-center">
+                          pick
+                        </span>
+                      )}
+                    </button>
+                  </td>
                   <td className="px-3 py-2 align-top">
                     <input
                       type="checkbox"
@@ -759,6 +808,22 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
           </tbody>
         </table>
       </div>
+
+      {coverPickerFor && (() => {
+        const target = rows.find(r => r.id === coverPickerFor);
+        if (!target) return null;
+        return (
+          <EntityCoverPickerModal
+            kind="pin"
+            entityRef={target.id}
+            entityName={target.name}
+            currentCoverUrl={target.coverUrl}
+            existingHeroPhotoUrls={target.heroPhotoUrls}
+            onCommit={next => applyCoverCommit(target.id, next)}
+            onClose={() => setCoverPickerFor(null)}
+          />
+        );
+      })()}
     </div>
   );
 }

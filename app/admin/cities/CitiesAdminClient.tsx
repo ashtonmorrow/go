@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
+import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
 export type AdminCityRow = {
   slug: string;
@@ -25,9 +26,24 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: 'uncurated', label: 'Auto-pick' },
 ];
 
-export default function CitiesAdminClient({ rows }: { rows: AdminCityRow[] }) {
+export default function CitiesAdminClient({ rows: initialRows }: { rows: AdminCityRow[] }) {
+  const [rows, setRows] = useState(initialRows);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<Filter>('visited');
+  const [coverPickerFor, setCoverPickerFor] = useState<string | null>(null);
+
+  function applyCoverCommit(
+    slug: string,
+    next: { coverUrl: string | null; heroPhotoUrls: string[] },
+  ) {
+    setRows(prev =>
+      prev.map(r =>
+        r.slug === slug
+          ? { ...r, coverUrl: next.coverUrl ?? r.coverUrl, heroPhotoUrls: next.heroPhotoUrls }
+          : r,
+      ),
+    );
+  }
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -116,54 +132,81 @@ export default function CitiesAdminClient({ rows }: { rows: AdminCityRow[] }) {
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {filtered.map(c => (
-            <li key={c.slug}>
+            <li
+              key={c.slug}
+              className="group rounded-md border border-sand bg-white hover:border-teal hover:shadow-sm transition-all overflow-hidden"
+            >
+              <button
+                type="button"
+                onClick={() => setCoverPickerFor(c.slug)}
+                className="relative aspect-[4/3] w-full bg-cream-soft block"
+                title="Change cover"
+                aria-label={`Change cover for ${c.name}`}
+              >
+                {c.coverUrl ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={thumbUrl(c.coverUrl, { size: 320 }) ?? c.coverUrl}
+                    alt={c.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted text-label uppercase tracking-wider">
+                    No cover
+                  </div>
+                )}
+                {c.heroPhotoUrls.length > 0 && (
+                  <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-teal/95 text-white text-[10px] font-medium">
+                    {c.heroPhotoUrls.length} {c.heroPhotoUrls.length === 1 ? 'pick' : 'picks'}
+                  </span>
+                )}
+                {c.been && (
+                  <span className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded bg-ink-deep/85 text-white text-[10px] font-medium">
+                    ✓ visited
+                  </span>
+                )}
+                {!c.been && c.go && (
+                  <span className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded bg-amber-500/90 text-white text-[10px] font-medium">
+                    ⌛ short list
+                  </span>
+                )}
+                <span className="absolute inset-x-0 bottom-0 px-2 py-1 text-[10px] uppercase tracking-wider text-white bg-ink-deep/0 group-hover:bg-ink-deep/55 transition-colors text-center">
+                  Change cover
+                </span>
+              </button>
               <Link
                 href={`/admin/cities/${c.slug}`}
-                className="group block rounded-md border border-sand bg-white hover:border-teal hover:shadow-sm transition-all overflow-hidden"
+                className="block p-2.5"
+                title="Open per-city editor"
               >
-                <div className="relative aspect-[4/3] bg-cream-soft">
-                  {c.coverUrl ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      src={thumbUrl(c.coverUrl, { size: 320 }) ?? c.coverUrl}
-                      alt={c.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-muted text-label uppercase tracking-wider">
-                      No cover
-                    </div>
-                  )}
-                  {c.heroPhotoUrls.length > 0 && (
-                    <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded bg-teal/95 text-white text-[10px] font-medium">
-                      {c.heroPhotoUrls.length} {c.heroPhotoUrls.length === 1 ? 'pick' : 'picks'}
-                    </span>
-                  )}
-                  {c.been && (
-                    <span className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded bg-ink-deep/85 text-white text-[10px] font-medium">
-                      ✓ visited
-                    </span>
-                  )}
-                  {!c.been && c.go && (
-                    <span className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded bg-amber-500/90 text-white text-[10px] font-medium">
-                      ⌛ short list
-                    </span>
-                  )}
+                <div className="text-small font-medium text-ink-deep group-hover:text-teal truncate">
+                  {c.name}
                 </div>
-                <div className="p-2.5">
-                  <div className="text-small font-medium text-ink-deep group-hover:text-teal truncate">
-                    {c.name}
-                  </div>
-                  {c.country && (
-                    <div className="text-label text-muted truncate">{c.country}</div>
-                  )}
-                </div>
+                {c.country && (
+                  <div className="text-label text-muted truncate">{c.country}</div>
+                )}
               </Link>
             </li>
           ))}
         </ul>
       )}
+
+      {coverPickerFor && (() => {
+        const target = rows.find(r => r.slug === coverPickerFor);
+        if (!target) return null;
+        return (
+          <EntityCoverPickerModal
+            kind="city"
+            entityRef={target.slug}
+            entityName={target.name}
+            currentCoverUrl={target.coverUrl}
+            existingHeroPhotoUrls={target.heroPhotoUrls}
+            onCommit={next => applyCoverCommit(target.slug, next)}
+            onClose={() => setCoverPickerFor(null)}
+          />
+        );
+      })()}
     </div>
   );
 }

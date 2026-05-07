@@ -29,6 +29,12 @@ export default async function AdminPinsPage() {
       kind: p.kind ?? null,
       indexable: p.indexable,
       personalRating: p.personalRating,
+      // Cover precedence for the inline picker thumbnail: curated first
+      // pick, then any pin.images entry, then nothing. The picker writes
+      // back to heroPhotoUrls[0], so we keep the array for it to merge
+      // its new pick into.
+      coverUrl: p.heroPhotoUrls[0] ?? p.images?.[0]?.url ?? null,
+      heroPhotoUrls: p.heroPhotoUrls,
     }));
 
   return (
