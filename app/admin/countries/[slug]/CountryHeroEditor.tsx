@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import HeroPicker, { type HeroCandidate } from '@/components/admin/HeroPicker';
+import { uploadEntityPhoto } from '@/lib/admin/uploadEntityPhoto';
 
 export type AdminCountryPhoto = HeroCandidate;
 
@@ -18,6 +20,7 @@ export default function CountryHeroEditor({
   initialHeroPhotoUrls,
   candidates,
 }: Props) {
+  const router = useRouter();
   const [picks, setPicks] = useState<string[]>(initialHeroPhotoUrls);
   const [saving, setSaving] = useState(false);
   const [result, setResult] = useState<{ ok: true } | { error: string } | null>(null);
@@ -77,7 +80,18 @@ export default function CountryHeroEditor({
         maxRecommended={16}
         maxAbsolute={20}
         title="Hero photos"
-        hint="Drag to reorder up to 16 photos. Click hide on any personal photo to suppress it from the auto-pick collage on countries without curation."
+        hint="Drag to reorder up to 16 photos. Click hide on any personal photo to suppress it from the auto-pick collage on countries without curation. Upload to add a fresh photo to this country's pool."
+        onUploadFile={async file => {
+          const result = await uploadEntityPhoto({
+            kind: 'country',
+            entityRef: idOrSlug,
+            file,
+            existingHeroPhotoUrls: picks,
+            promoteToCover: false,
+          });
+          router.refresh();
+          return { url: result.url };
+        }}
       />
 
       <div className="flex items-center gap-3 sticky bottom-0 bg-cream/90 backdrop-blur py-3 border-t border-sand">

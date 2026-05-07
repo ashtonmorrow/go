@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
 
 // === HeroPicker ============================================================
@@ -56,6 +56,13 @@ type Props = {
    *  expected to refresh the page or candidate list on success. The
    *  picker confirms with the user before invoking. */
   onDelete?: (c: HeroCandidate) => Promise<void> | void;
+  /** Direct upload affordance. When set, the header gains a "+ Upload"
+   *  button that opens a file picker, hands the selected File to this
+   *  callback, and (on resolve) appends the returned URL to the picked
+   *  array so it lands in the gallery immediately. Parent is expected
+   *  to refresh its candidate list (router.refresh()) so the new tile
+   *  also appears in Available with full metadata next render. */
+  onUploadFile?: (file: File) => Promise<{ url: string }>;
   maxRecommended?: number;
   maxAbsolute?: number;
   title?: string;
@@ -68,6 +75,7 @@ export default function HeroPicker({
   onChange,
   onToggleHidden,
   onDelete,
+  onUploadFile,
   maxRecommended = 8,
   maxAbsolute = 20,
   title = 'Hero photos',
@@ -88,6 +96,12 @@ export default function HeroPicker({
   // the available rail optimistically, even before the parent refreshes
   // its candidate list.
   const [deletedUrls, setDeletedUrls] = useState<Set<string>>(new Set());
+  // Direct-upload state. The picker accepts only one file at a time so
+  // a single in-flight indicator is enough; multi-upload power is the
+  // domain of /admin/upload.
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const uploadInputRef = useRef<HTMLInputElement | null>(null);
 
   const byUrl = useMemo(() => {
     const m = new Map<string, HeroCandidate>();
@@ -136,6 +150,27 @@ export default function HeroPicker({
     if (value.length === 0) return;
     if (!confirm('Clear all hero picks and fall back to auto-pick?')) return;
     onChange([]);
+  }
+
+  async function handleUpload(file: File) {
+    if (!onUploadFile) return;
+    setUploading(true);
+    setUploadError(null);
+    try {
+      const result = await onUploadFile(file);
+      // Auto-pick the new URL: append to the picked array unless we're
+      // already at the absolute max. The parent's Save flow is what
+      // commits the new picks; the upload helper is expected to have
+      // attached the photo to the entity row already (e.g.
+      // personal_photos for pin uploads).
+      if (!value.includes(result.url) && value.length < maxAbsolute) {
+        onChange([...value, result.url]);
+      }
+    } catch (e) {
+      setUploadError(e instanceof Error ? e.message : 'upload failed');
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function toggleHidden(id: string, currentHidden: boolean) {
@@ -198,6 +233,30 @@ export default function HeroPicker({
             Picked {value.length} / {maxRecommended} recommended
             {value.length > maxRecommended && ` (+${value.length - maxRecommended})`}
           </span>
+          {onUploadFile && (
+            <>
+              <input
+                ref={uploadInputRef}
+                type="file"
+                accept="image/*,.heic,.heif"
+                className="hidden"
+                onChange={e => {
+                  const f = e.target.files?.[0];
+                  e.target.value = '';
+                  if (f) void handleUpload(f);
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => uploadInputRef.current?.click()}
+                disabled={uploading}
+                className="text-small px-3 py-1 rounded border border-sand text-ink-deep hover:bg-cream-soft disabled:opacity-50"
+                title="Upload a photo and add it to the picks"
+              >
+                {uploading ? 'Uploading…' : '+ Upload'}
+              </button>
+            </>
+          )}
           <button
             type="button"
             onClick={reset}
@@ -208,6 +267,11 @@ export default function HeroPicker({
           </button>
         </div>
       </header>
+      {uploadError && (
+        <div className="px-4 py-2 text-label text-orange bg-orange/5 border-b border-orange/30">
+          Upload failed: {uploadError}
+        </div>
+      )}
 
       <div className="p-4 space-y-5">
         <div>

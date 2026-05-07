@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { PinEditorState } from './editorData';
 import HeroPicker, { type HeroCandidate } from '@/components/admin/HeroPicker';
+import { uploadEntityPhoto } from '@/lib/admin/uploadEntityPhoto';
 import type { AdminPersonalPhoto } from './page';
 
 // Internal sub-shape we render read-only from hours_details.weekly. Mirrors
@@ -431,11 +432,25 @@ export default function PinEditorClient({
           value={state.hero_photo_urls}
           maxRecommended={6}
           maxAbsolute={20}
-          hint="Drag to reorder up to 6 photos. Hover any tile in Available to surface hide (personal photos, reversible) or delete (any image, irreversible)."
+          hint="Drag to reorder up to 6 photos. Hover any tile in Available to surface hide (personal photos, reversible) or delete (any image, irreversible). Upload to add a fresh photo without leaving this page."
           candidates={heroCandidates}
           onChange={next => set('hero_photo_urls', next)}
           onToggleHidden={togglePhotoHidden}
           onDelete={deleteCandidate}
+          onUploadFile={async file => {
+            const result = await uploadEntityPhoto({
+              kind: 'pin',
+              entityRef: state.id,
+              file,
+              promoteToCover: false,
+            });
+            // Refresh so the new candidate (with full metadata) shows
+            // up in the Available rail. The picker has already
+            // auto-added the URL to value, so the picked rail renders
+            // it before refresh too.
+            router.refresh();
+            return { url: result.url };
+          }}
         />
       </Section>
 

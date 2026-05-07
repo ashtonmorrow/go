@@ -1,10 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { sha256OfFile } from '@/lib/photoHash';
-import { convertHeicIfNeeded } from '@/lib/heicConvert';
-import { extractExifMeta } from '@/lib/exifGps';
-import { supabase } from '@/lib/supabase';
+import { uploadEntityPhoto } from '@/lib/admin/uploadEntityPhoto';
 
 // === EntityCoverPickerModal ================================================
 // Inline quick cover picker for /admin/pins, /admin/cities, /admin/countries.
@@ -119,76 +116,26 @@ export default function EntityCoverPickerModal({
     }
   }
 
-  /** Upload a single file → make it the cover. For pins we attach via
-   *  personal_photos (so it joins the editor's HeroPicker pool too); for
-   *  cities/countries the URL goes straight onto hero_photo_urls. */
+  /** Upload a single file → make it the cover. The shared helper handles
+   *  EXIF / HEIC / hash / Storage upload / personal_photos insert; we
+   *  just stage the UI and surface the merged hero_photo_urls back to
+   *  the parent on success. */
   async function uploadAndUseAsCover(file: File) {
     setUploading(true);
     setError(null);
     try {
-      setUploadStage('preparing…');
-      const { file: working } = await convertHeicIfNeeded(file);
-      const hash = await sha256OfFile(working);
-      const meta = await extractExifMeta(working);
-      const dims = await imageDimensions(working);
-
-      setUploadStage('signing…');
-      const tokenRes = await fetch('/api/admin/upload-photo', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ hash, contentType: working.type }),
+      const result = await uploadEntityPhoto({
+        kind,
+        entityRef,
+        file,
+        existingHeroPhotoUrls,
+        promoteToCover: true,
+        onStage: stage => setUploadStage(stage + '…'),
       });
-      const tokenData = await tokenRes.json().catch(() => ({}));
-      if (!tokenRes.ok) {
-        throw new Error(tokenData?.error ?? `signed-url failed (${tokenRes.status})`);
-      }
-
-      setUploadStage('uploading bytes…');
-      const { error: uploadErr } = await supabase.storage
-        .from('personal-photos')
-        .uploadToSignedUrl(tokenData.path, tokenData.token, working, {
-          contentType: working.type || 'application/octet-stream',
-          upsert: true,
-        });
-      if (uploadErr) throw new Error(uploadErr.message);
-
-      const publicUrl = tokenData.publicUrl as string;
-
-      setUploadStage('saving…');
-      let nextHero: string[];
-      if (kind === 'pin') {
-        // Insert personal_photos row + promote to cover. The endpoint
-        // returns the merged hero_photo_urls so we don't have to round
-        // trip again.
-        const res = await fetch('/api/admin/personal-photos', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            pinId: entityRef,
-            url: publicUrl,
-            hash,
-            takenAt: meta.takenAt ? meta.takenAt.toISOString() : null,
-            exifLat: meta.lat ?? null,
-            exifLng: meta.lng ?? null,
-            width: dims?.width ?? null,
-            height: dims?.height ?? null,
-            bytes: working.size,
-            promoteToCover: true,
-          }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data?.error ?? `save failed (${res.status})`);
-        nextHero = Array.isArray(data?.heroPhotoUrls)
-          ? data.heroPhotoUrls
-          : [publicUrl, ...existingHeroPhotoUrls.filter(u => u && u !== publicUrl)];
-      } else {
-        // City / country — append the URL directly to hero_photo_urls.
-        nextHero = [publicUrl, ...existingHeroPhotoUrls.filter(u => u && u !== publicUrl)];
-        const ok = await writeHero(kind, entityRef, nextHero);
-        if (!ok.success) throw new Error(ok.error ?? 'save failed');
-      }
-
-      onCommit({ coverUrl: publicUrl, heroPhotoUrls: nextHero });
+      const nextHero =
+        result.heroPhotoUrls ??
+        [result.url, ...existingHeroPhotoUrls.filter(u => u && u !== result.url)];
+      onCommit({ coverUrl: result.url, heroPhotoUrls: nextHero });
       onClose();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'upload failed');
@@ -357,26 +304,6 @@ export default function EntityCoverPickerModal({
       </div>
     </div>
   );
-}
-
-/** Resolve the natural dimensions of an image File without keeping the
- *  underlying object URL around. Used to attach width/height to the
- *  personal_photos row on upload. */
-async function imageDimensions(file: File): Promise<{ width: number; height: number } | null> {
-  return new Promise(resolve => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      const out = { width: img.naturalWidth, height: img.naturalHeight };
-      URL.revokeObjectURL(url);
-      resolve(out);
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      resolve(null);
-    };
-    img.src = url;
-  });
 }
 
 /** Persist the new hero_photo_urls array via the matching update
