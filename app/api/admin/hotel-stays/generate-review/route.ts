@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { generateStayReview } from '@/lib/geminiReview';
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       'id, pin_id, room_type, nights, booking_source, personal_rating, would_stay_again, ' +
       'property_likes, breakfast_notes, bed_notes, bathroom_notes, amenities_notes, ' +
       'special_touches, location_notes, traveler_advice, ' +
-      'pins(name, city_names, states_names)',
+      'pins(name, slug, city_names, states_names)',
     )
     .eq('id', id)
     .maybeSingle();
@@ -56,9 +56,10 @@ export async function POST(req: Request) {
   // as a one-element array on older versions — handle both.
   const rawPin = stay.pins;
   const pin = (Array.isArray(rawPin) ? rawPin[0] : rawPin) as
-    | { name?: string; city_names?: string[]; states_names?: string[] }
+    | { name?: string; slug?: string; city_names?: string[]; states_names?: string[] }
     | undefined;
   const hotelName = pin?.name ?? null;
+  const pinSlug = pin?.slug ?? null;
   if (!hotelName) {
     return NextResponse.json(
       { error: 'parent pin missing name; cannot generate review' },
@@ -115,8 +116,18 @@ export async function POST(req: Request) {
     });
   }
 
+  // Bust both the data fetcher caches and the rendered hotel pin page.
+  // Without the path bust, /pins/[slug] sits on its `revalidate=604800`
+  // ISR copy and the freshly-saved review only surfaces when the week
+  // expires. Saving a review also flips the pin from noindex → indexable
+  // (see app/pins/[slug]/page.tsx), so the rendered page must re-emit.
   try { revalidateTag('supabase-hotel-stays'); } catch { /* ignore */ }
   try { revalidateTag('supabase-pins'); } catch { /* ignore */ }
+  try {
+    if (pinSlug) revalidatePath(`/pins/${pinSlug}`);
+    else revalidatePath('/pins/[slug]', 'page');
+    revalidatePath('/pins/cards');
+  } catch { /* ignore */ }
 
   return NextResponse.json({
     review: result.text,

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 import { quarterOfMonth } from '@/lib/hotelStays';
 
@@ -127,9 +127,37 @@ function sanitize(body: Partial<StayPayload>): Record<string, unknown> {
   return out;
 }
 
-function bustCaches() {
+/**
+ * Bust both the data-fetcher cache (tag-keyed unstable_cache wrappers in
+ * lib/) and the rendered route segment cache for the affected pin page.
+ * Without the path bust, the public /pins/[slug] page sits on its
+ * `revalidate = 604800` ISR copy and the freshly-saved review only
+ * appears once the week-long window expires.
+ *
+ * `slug` is optional because some callers don't have it handy (POST
+ * without a join). The dynamic-route bulk form busts every hotel page
+ * — fine on this admin write path since stay edits are rare and the
+ * underlying data fetchers are already tag-busted.
+ */
+async function bustCaches(opts: { slug?: string | null; pinId?: string | null } = {}) {
   try { revalidateTag('supabase-hotel-stays'); } catch { /* ignore */ }
   try { revalidateTag('supabase-pins'); } catch { /* ignore */ }
+  let slug = opts.slug ?? null;
+  if (!slug && opts.pinId) {
+    try {
+      const { data } = await supabaseAdmin()
+        .from('pins')
+        .select('slug')
+        .eq('id', opts.pinId)
+        .maybeSingle();
+      slug = (data as { slug?: string } | null)?.slug ?? null;
+    } catch { /* ignore */ }
+  }
+  try {
+    if (slug) revalidatePath(`/pins/${slug}`);
+    else revalidatePath('/pins/[slug]', 'page');
+    revalidatePath('/pins/cards');
+  } catch { /* ignore */ }
 }
 
 export async function POST(req: Request) {
@@ -157,7 +185,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: error?.message ?? 'insert failed' }, { status: 500 });
   }
 
-  bustCaches();
+  await bustCaches({ pinId: body.pin_id });
   return NextResponse.json({ id: data.id });
 }
 
@@ -175,13 +203,22 @@ export async function PATCH(req: Request) {
   const sb = supabaseAdmin();
   const fields = sanitize(body);
 
+  // Look up the parent pin id BEFORE writing so we can bust its rendered
+  // route after. PATCH bodies don't carry pin_id (the row already has it).
+  const { data: stayRow } = await sb
+    .from('hotel_stays')
+    .select('pin_id')
+    .eq('id', body.id)
+    .maybeSingle();
+  const pinId = (stayRow as { pin_id?: string } | null)?.pin_id ?? null;
+
   const { error } = await sb.from('hotel_stays').update(fields).eq('id', body.id);
   if (error) {
     console.error('[hotel-stays PATCH]', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  bustCaches();
+  await bustCaches({ pinId });
   return NextResponse.json({ ok: true });
 }
 
@@ -196,12 +233,21 @@ export async function DELETE(req: Request) {
   if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 });
 
   const sb = supabaseAdmin();
+  // Capture the pin id before the delete so bustCaches has something to
+  // resolve a slug against. After the delete the row is gone.
+  const { data: stayRow } = await sb
+    .from('hotel_stays')
+    .select('pin_id')
+    .eq('id', id)
+    .maybeSingle();
+  const pinId = (stayRow as { pin_id?: string } | null)?.pin_id ?? null;
+
   const { error } = await sb.from('hotel_stays').delete().eq('id', id);
   if (error) {
     console.error('[hotel-stays DELETE]', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  bustCaches();
+  await bustCaches({ pinId });
   return NextResponse.json({ ok: true });
 }
