@@ -62,6 +62,10 @@ export function personJsonLd() {
     // directions across the entity.
     sameAs: [
       AUTHOR_LINKEDIN,
+      // Author bio on Layer's site — third-party identity assertion is
+      // a stronger E-E-A-T signal than the self-published profiles, so
+      // it leads the list.
+      'https://layer.team/authors/mike-lee',
       'https://ski.mike-lee.me',
       'https://pounce.mike-lee.me',
       'https://app.stray.tips',
