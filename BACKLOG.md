@@ -4,6 +4,11 @@ Things to come back to.
 
 ## Recently shipped (this session)
 
+- [x] About / Privacy / Credits rewritten in editorial voice — about explains the four sources I cross-reference (Google Maps saved lists, Atlas Obscura history, UNESCO list, Michelin Guide); privacy walks through what GA / Vercel / Supabase actually collect and what I don't do; credits adds Atlas Obscura, UNESCO, Michelin Guide, Google Places, Open-Meteo, AI cover art. All with internal /cities/<slug> crosslinks where places are named.
+- [x] Per-route OG image variants for `/pins/[slug]`, `/cities/[slug]`, `/countries/[slug]`, `/lists/[slug]` (next/og ImageResponse, paper/sand/ink-deep/teal palette inline)
+- [x] `/cities/[slug]/things-to-do` long-tail landing page with same anchoring rule as parent, indexable only when at least 4 pins exist, sitemap entry per been/go city, cross-link from parent
+- [x] City-page season columns (Summer / Winter under "When to avoid") promoted from text-slate to text-ink so the body color matches the paragraph above and the columns read as continuations of the section's argument
+- [x] `scripts/audit-thin-pin-descriptions.ts` — emits `scripts/output/thin-pin-descriptions.json` ranked by traffic priority (visited + on a list first), ready to feed into Codex enrichment
 - [x] `/about` AboutPage JSON-LD references sitewide AUTHOR_ID via `@id` (entity reconciliation)
 - [x] Wikipedia attribution footer on `/pins/[slug]`, `/cities/[slug]`, `/countries/[slug]` (CC BY-SA 4.0 compliance)
 - [x] FAQPage schema on `/pins/[slug]` — auto-generated from hours / price / booking / dress code / guide / wheelchair / kid-friendly / duration when ≥2 fields populated
@@ -39,9 +44,9 @@ Things to come back to.
 
 ## SEO — open
 
-- [ ] **Per-route OG image variants.** The sitewide default (`app/opengraph-image.tsx`) covers every page. For higher-value share surfaces, render route-specific cards: pin name + cover photo on `/pins/[slug]`, city name + flag on `/cities/[slug]`, list title + first cover on `/lists/[slug]`. Each is its own opengraph-image.tsx in the route segment.
+- [ ] **OG images with hero photographs.** The current per-route variants are clean text cards. The next upgrade is to fetch the pin's cover photo (or city personal photo) and composite it as a background panel under the title. ImageResponse supports remote images via `<img src=...>` inside the JSX. Higher share-preview impact, more renderer cost.
 
-- [ ] **Per-country / per-city "things to do" landing pages**: `/countries/egypt/things-to-do`, `/cities/cairo/things-to-do` showing the city's pins as a curated feed with editorial intro. Strong long-tail target. Needs design care: how does it relate to `/cities/[slug]` (which already shows the city's saved-list pins)? Either make the existing `/cities/[slug]` h1 + title use the "things to do" phrasing, or build a separate route with deliberately different structure (no climate/facts noise; pins-only) to avoid duplicate-content. Recommendation: separate route, canonical to itself, link from the existing city page.
+- [ ] **Per-country `/countries/[slug]/things-to-do`** landing pages. Same long-tail logic as the city version, but the design call is harder: a country-wide "things to do" lands awkwardly when readers actually plan around a city. Maybe the country version surfaces the cities (with inline pin counts) rather than pins. Defer until the city version has run for a quarter and we can see if Google ranks it.
 
 - [ ] **Search Console (user-side)** — click Verify after Vercel deploys, submit `https://go.mike-lee.me/sitemap.xml`. Optionally verify `mike-lee.me` as a Domain property (DNS TXT) so all subdomains roll up under one Search Console view.
 
