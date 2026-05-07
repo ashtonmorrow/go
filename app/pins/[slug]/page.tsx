@@ -89,10 +89,27 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // dropped a /content/pins/<slug>.md with the flag set, the page becomes
     // crawlable without touching the DB. The thinness gate is the *default*
     // — even with `indexable=false`, only thin pages get noindex now.
+    //
+    // Hotels are stricter. visited=true alone (set by parse-reservation
+    // when a confirmation is imported) does not lift the gate; a hotel
+    // page only gets indexed once at least one row in hotel_stays has a
+    // generated review attached. The page itself still renders for
+    // anyone with the link, but search engines stay out until there's
+    // real prose to read.
     const fileContent = await readPlaceContent('pins', pin.slug ?? '');
     const explicitIndexable = fileContent?.indexable === true || pin.indexable;
-    // If the DB / file says yes, trust it. Otherwise auto-decide via thinness.
-    const noindex = explicitIndexable ? false : isThinPin(pin, !!fileContent);
+    let noindex: boolean;
+    if (explicitIndexable) {
+      noindex = false;
+    } else if (pin.kind === 'hotel') {
+      const stays = await fetchHotelStaysForPin(pin.id);
+      const hasReview = stays.some(
+        s => !!(s.generatedReview && s.generatedReview.trim()),
+      );
+      noindex = !hasReview;
+    } else {
+      noindex = isThinPin(pin, !!fileContent);
+    }
 
     // Long-tail-friendly title: "Pyramids of Egypt — review, hours, tickets".
     const richTitle = pinPageTitle(pin);
