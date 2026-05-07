@@ -56,6 +56,12 @@ const nextConfig = {
   experimental: {
     // Fine-tune if needed
   },
+  // Ship source maps to production so PSI's "Missing source maps for
+  // large first-party JavaScript" check passes and stack traces in
+  // Vercel's runtime logs are readable. Source maps are uploaded
+  // separately from the JS bundles, so users don't pay the byte cost
+  // unless they open DevTools.
+  productionBrowserSourceMaps: true,
   // === Legacy URL redirects =============================================
   // The atlas now uses an Object × View URL shape: /<object>/<view> with
   // <object> ∈ {cities, countries, pins} and <view> ∈ {cards, map, table}.

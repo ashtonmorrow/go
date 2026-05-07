@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { AUTHOR_ID, WEBSITE_ID } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'About Postcards · Mike Lee',
@@ -49,16 +50,13 @@ const articleJsonLd = {
     { '@type': 'Thing', name: 'Cartography' },
     { '@type': 'Thing', name: 'Open data' },
   ],
-  author: {
-    '@type': 'Person',
-    name: 'Mike Lee',
-    url: 'https://mike-lee.me/',
-  },
-  publisher: {
-    '@type': 'Person',
-    name: 'Mike Lee',
-    url: 'https://mike-lee.me/',
-  },
+  // Reference the sitewide Person via @id so search engines reconcile
+  // this AboutPage's author with the personJsonLd() emitted from the
+  // root layout (which carries sameAs, knowsAbout, etc.). Inline
+  // duplication of name/url here would create a competing entity.
+  author: { '@id': AUTHOR_ID },
+  publisher: { '@id': AUTHOR_ID },
+  isPartOf: { '@id': WEBSITE_ID },
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://go.mike-lee.me/about',

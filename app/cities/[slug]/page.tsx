@@ -18,6 +18,7 @@ import ImageCredit from '@/components/ImageCredit';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
+import WikipediaAttribution from '@/components/WikipediaAttribution';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -432,11 +433,14 @@ export default async function CityPage({
           {city.wikipediaSummary && (
             <section className="mt-6">
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
-              <p className="text-ink leading-relaxed">{city.wikipediaSummary}</p>
+              <p className="text-ink leading-relaxed text-prose">{city.wikipediaSummary}</p>
               {city.wikipediaUrl && (
-                <a href={city.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="text-small">
+                <a href={city.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="text-small text-teal hover:underline">
                   Wikipedia →
                 </a>
+              )}
+              {city.wikipediaUrl && (
+                <WikipediaAttribution title={city.name} url={city.wikipediaUrl} />
               )}
             </section>
           )}

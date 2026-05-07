@@ -3,6 +3,7 @@ import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
+import WikipediaAttribution from '@/components/WikipediaAttribution';
 import { SITE_URL, clip, countryJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
@@ -309,6 +310,10 @@ export default async function CountryPage({
             <section className={content ? 'mt-8 pt-8 border-t border-sand' : ''}>
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
               <p className="text-ink leading-relaxed text-prose">{country.wikipediaSummary}</p>
+              <WikipediaAttribution
+                title={country.name}
+                url={`https://en.wikipedia.org/wiki/${encodeURIComponent(country.name.replace(/\s+/g, '_'))}`}
+              />
             </section>
           )}
 

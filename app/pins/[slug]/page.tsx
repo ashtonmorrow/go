@@ -26,6 +26,7 @@ import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
+import WikipediaAttribution from '@/components/WikipediaAttribution';
 
 // 7-day ISR — bust via /api/revalidate when the underlying pin or its
 // content file changes. The admin edit affordance has moved into a
@@ -285,6 +286,10 @@ export default async function PinPage({
         })}
       />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} />
+      {(() => {
+        const faq = pinFaqJsonLd(pin, `${SITE_URL}/pins/${pin.slug ?? pin.id}`);
+        return faq ? <JsonLd data={faq} /> : null;
+      })()}
 
       <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
         <nav className="text-small text-muted" aria-label="Breadcrumb">
@@ -1625,6 +1630,7 @@ async function WikipediaSection({ wikipediaUrl }: { wikipediaUrl: string | null 
       >
         Read more on Wikipedia →
       </a>
+      <WikipediaAttribution title={wp.title} url={wp.url} />
     </section>
   );
 }
@@ -1647,4 +1653,137 @@ function FactRow({ label, children }: { label: string; children: React.ReactNode
       <dd className="text-ink-deep leading-relaxed">{children}</dd>
     </div>
   );
+}
+
+/** Auto-generate a FAQPage JSON-LD from whatever structured fields the pin
+ *  has. Only emits when at least two answer-worthy facts exist (Google's
+ *  rich-result threshold for FAQPage). The generated Q&A is invisible on
+ *  the page itself — it lives in head as schema. Lets pin pages compete
+ *  for "what time does X close" / "how much does X cost" / "is X
+ *  wheelchair accessible" long-tail queries via the People Also Ask
+ *  surface. */
+function pinFaqJsonLd(pin: Pin, url: string): Record<string, unknown> | null {
+  const faqs: { q: string; a: string }[] = [];
+
+  if (pin.hours && pin.hours.trim().length > 4) {
+    faqs.push({
+      q: `What are the opening hours of ${pin.name}?`,
+      a: pin.hours,
+    });
+  }
+
+  if (pin.priceText) {
+    faqs.push({
+      q: `How much does it cost to visit ${pin.name}?`,
+      a: pin.priceText,
+    });
+  } else if (pin.priceAmount != null && pin.priceCurrency) {
+    faqs.push({
+      q: `How much does it cost to visit ${pin.name}?`,
+      a: pin.priceAmount === 0
+        ? `${pin.name} is free to visit.`
+        : `Approximately ${pin.priceCurrency} ${pin.priceAmount} per person.`,
+    });
+  } else if (pin.free === true || pin.freeToVisit === true) {
+    faqs.push({
+      q: `Is ${pin.name} free to visit?`,
+      a: `Yes — ${pin.name} is free to visit.`,
+    });
+  }
+
+  if (pin.bookingRequired === true || pin.booking === 'required') {
+    faqs.push({
+      q: `Do you need to book in advance for ${pin.name}?`,
+      a: 'Yes — advance booking is required.',
+    });
+  } else if (pin.booking === 'recommended') {
+    faqs.push({
+      q: `Do you need to book in advance for ${pin.name}?`,
+      a: 'Booking in advance is recommended, especially during peak season.',
+    });
+  } else if (pin.booking === 'timed-entry-only') {
+    faqs.push({
+      q: `Do you need to book in advance for ${pin.name}?`,
+      a: 'Yes — entry is by timed-ticket only and must be booked in advance.',
+    });
+  }
+
+  if (pin.dressCode && pin.dressCode.trim().length > 0) {
+    faqs.push({
+      q: `Is there a dress code at ${pin.name}?`,
+      a: pin.dressCode,
+    });
+  }
+
+  if (pin.requiresGuide === 'required') {
+    faqs.push({
+      q: `Do you need a guide to visit ${pin.name}?`,
+      a: 'Yes — a guide is required to enter.',
+    });
+  } else if (pin.requiresGuide === 'recommended') {
+    faqs.push({
+      q: `Do you need a guide to visit ${pin.name}?`,
+      a: 'A guide is recommended for context but not required.',
+    });
+  }
+
+  if (pin.wheelchairAccessible === 'fully') {
+    faqs.push({
+      q: `Is ${pin.name} wheelchair accessible?`,
+      a: `Yes — ${pin.name} is fully wheelchair accessible.`,
+    });
+  } else if (pin.wheelchairAccessible === 'partially') {
+    faqs.push({
+      q: `Is ${pin.name} wheelchair accessible?`,
+      a: 'Partially. Some areas are accessible; others are not.',
+    });
+  } else if (pin.wheelchairAccessible === 'no') {
+    faqs.push({
+      q: `Is ${pin.name} wheelchair accessible?`,
+      a: 'No — the site is not wheelchair accessible.',
+    });
+  }
+
+  if (pin.kidFriendly === true) {
+    faqs.push({
+      q: `Is ${pin.name} kid-friendly?`,
+      a: `Yes — ${pin.name} is suitable for visiting with kids.`,
+    });
+  } else if (pin.kidFriendly === false) {
+    faqs.push({
+      q: `Is ${pin.name} kid-friendly?`,
+      a: 'Not recommended for young children.',
+    });
+  }
+
+  if (pin.durationMinutes != null && pin.durationMinutes > 0) {
+    const hours = Math.floor(pin.durationMinutes / 60);
+    const mins = pin.durationMinutes % 60;
+    const dur =
+      hours > 0
+        ? mins > 0
+          ? `${hours} hour${hours === 1 ? '' : 's'} and ${mins} minutes`
+          : `${hours} hour${hours === 1 ? '' : 's'}`
+        : `${mins} minutes`;
+    faqs.push({
+      q: `How long should you spend at ${pin.name}?`,
+      a: `Plan for around ${dur}.`,
+    });
+  }
+
+  if (faqs.length < 2) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${url}#faqs`,
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  };
 }
