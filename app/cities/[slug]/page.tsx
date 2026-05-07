@@ -630,12 +630,25 @@ export default async function CityPage({
           this city's name. Renders nothing if the city has no matching list,
           so it only appears for places he's actively curated. */}
       {cityListPins.length > 0 && primaryListName && (
-        <SavedListSection
-          title={`Saved on my ${city.name} list`}
-          listSlug={listNameToSlug(primaryListName)}
-          googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
-          pins={cityListPins}
-        />
+        <>
+          <SavedListSection
+            title={`Saved on my ${city.name} list`}
+            listSlug={listNameToSlug(primaryListName)}
+            googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
+            pins={cityListPins}
+          />
+          {/* Cross-link to the dedicated /things-to-do landing — same
+              pin set in a focused, planning-query-friendly framing. */}
+          <p className="mt-4 text-prose text-slate">
+            See these as a focused list:{' '}
+            <Link
+              href={`/cities/${city.slug}/things-to-do`}
+              className="text-teal hover:underline"
+            >
+              Things to do in {city.name} →
+            </Link>
+          </p>
+        </>
       )}
 
       {citySourceLinks.length > 0 && (

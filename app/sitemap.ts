@@ -57,6 +57,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: c.been || c.go ? 0.8 : 0.5,
   }));
 
+  // Per-city /things-to-do landing pages. Listed only for curated
+  // cities (been or go); placeholder cities almost never have enough
+  // pins to clear the page's MIN_INDEXABLE_PIN_COUNT gate, so listing
+  // them in the sitemap would just add noindex URLs.
+  const thingsToDoRoutes: MetadataRoute.Sitemap = cities
+    .filter(c => c.been || c.go)
+    .map(c => ({
+      url: `${SITE_URL}/cities/${c.slug}/things-to-do`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+
   const countryRoutes: MetadataRoute.Sitemap = countries.map(c => ({
     url: `${SITE_URL}/countries/${c.slug}`,
     lastModified: now,
@@ -105,6 +118,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...articleRoutes,
     ...listRoutes,
     ...cityRoutes,
+    ...thingsToDoRoutes,
     ...countryRoutes,
     ...pinRoutes,
     ...viewRoutes,
