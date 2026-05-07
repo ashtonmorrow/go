@@ -3,12 +3,18 @@
 import { useEffect, useState } from 'react';
 
 // === CoverPickerModal ======================================================
-// Photo-level cover picker for /admin/lists/[slug]. Two tabs:
+// Photo-level cover picker for /admin/lists/[slug] and the inline picker on
+// /admin/lists. Three tabs:
 //
-//   1. "In this list"   → photos attached to pins that are members of the
-//                         current list. Loaded eagerly on mount.
-//   2. "All my photos"  → every personal photo on the site, paginated.
-//                         Loaded lazily when the tab is first activated.
+//   1. "In this list"     → photos attached to pins that are members of the
+//                           current list. Loaded eagerly on mount.
+//   2. "Related places"   → photos from pins in any city or country whose
+//                           name word-matches the list name (so a list
+//                           called "bangkok" surfaces every Bangkok pin
+//                           photo even if those pins aren't members yet).
+//                           Loaded lazily.
+//   3. "All my photos"    → every personal photo on the site, paginated.
+//                           Loaded lazily when the tab is first activated.
 //
 // Selection sets `saved_lists.cover_photo_id` via the existing
 // /api/admin/saved-list { action: 'setCover' } endpoint. The modal also
@@ -41,7 +47,7 @@ type Props = {
   onClose: () => void;
 };
 
-type Tab = 'in-list' | 'all';
+type Tab = 'in-list' | 'related' | 'all';
 
 const PAGE = 200;
 
@@ -53,6 +59,7 @@ export default function CoverPickerModal({
 }: Props) {
   const [tab, setTab] = useState<Tab>('in-list');
   const [inList, setInList] = useState<PhotoTile[] | null>(null);
+  const [related, setRelated] = useState<PhotoTile[] | null>(null);
   const [all, setAll] = useState<PhotoTile[]>([]);
   const [allOffset, setAllOffset] = useState(0);
   const [allHasMore, setAllHasMore] = useState(true);
@@ -109,11 +116,34 @@ export default function CoverPickerModal({
     }
   }
 
+  // Lazy-load the "related places" tab — photos from pins in cities or
+  // countries whose name word-matches the list name. The API does the
+  // heavy lifting; we just kick the request and stash the result.
+  async function loadRelated() {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(
+        `/api/admin/personal-photos?relatedToList=${encodeURIComponent(listName)}&limit=${PAGE}`,
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'load failed');
+      setRelated(data.photos as PhotoTile[]);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'load failed');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function switchTab(next: Tab) {
     setTab(next);
     setError(null);
     if (next === 'all' && all.length === 0) {
       void loadAll(true);
+    }
+    if (next === 'related' && related === null) {
+      void loadRelated();
     }
   }
 
@@ -178,7 +208,10 @@ export default function CoverPickerModal({
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose, saving, savingClear]);
 
-  const photos = tab === 'in-list' ? inList ?? [] : all;
+  const photos =
+    tab === 'in-list' ? inList ?? [] :
+    tab === 'related' ? related ?? [] :
+    all;
   const showLoadMore = tab === 'all' && allHasMore && !loading;
 
   return (
@@ -217,8 +250,16 @@ export default function CoverPickerModal({
 
         {/* Tabs */}
         <div className="px-5 pt-3 flex gap-1 text-small">
-          {(['in-list', 'all'] as const).map(t => {
+          {(['in-list', 'related', 'all'] as const).map(t => {
             const active = tab === t;
+            const label =
+              t === 'in-list' ? 'In this list' :
+              t === 'related' ? 'Related places' :
+              'All my photos';
+            const count =
+              t === 'in-list' ? inList?.length ?? null :
+              t === 'related' ? related?.length ?? null :
+              null;
             return (
               <button
                 key={t}
@@ -231,11 +272,16 @@ export default function CoverPickerModal({
                     ? 'border-teal text-ink-deep font-medium'
                     : 'border-transparent text-slate hover:text-ink-deep')
                 }
+                title={
+                  t === 'related'
+                    ? 'Photos from pins in any city or country whose name word-matches this list'
+                    : undefined
+                }
               >
-                {t === 'in-list' ? 'In this list' : 'All my photos'}
-                {t === 'in-list' && inList && (
+                {label}
+                {count != null && (
                   <span className="ml-1.5 text-micro text-muted tabular-nums">
-                    ({inList.length})
+                    ({count})
                   </span>
                 )}
               </button>
@@ -256,6 +302,8 @@ export default function CoverPickerModal({
             <p className="text-center text-slate text-small py-12">
               {tab === 'in-list'
                 ? 'No personal photos attached to pins on this list yet.'
+                : tab === 'related'
+                ? 'No related-place photos found. The list name needs to word-match a city or country (e.g. a list called "bangkok" surfaces Bangkok pins).'
                 : 'No personal photos uploaded yet.'}
             </p>
           ) : (

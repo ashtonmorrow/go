@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import CoverPickerModal from './CoverPickerModal';
+import CoverPickerModal from '../CoverPickerModal';
 
 // === CoverSection ==========================================================
 // Wraps the cover preview tile + Change/Clear button on /admin/lists/[slug].

@@ -3,12 +3,15 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { listNameToSlug } from '@/lib/savedLists';
+import CoverPickerModal from './CoverPickerModal';
 
 type ListRow = {
   name: string;
   count: number;
   googleShareUrl: string | null;
   description: string | null;
+  coverPhotoId: string | null;
+  coverPhotoUrl: string | null;
 };
 
 type EditTarget = { name: string; field: 'name' | 'url' | 'desc' };
@@ -24,6 +27,23 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
   // composing a new list name and editing an inline cell at the same
   // time without one stomping on the other.
   const [newName, setNewName] = useState('');
+  // Cover-picker modal state. Only one modal open at a time; clicking
+  // a cover thumbnail opens it for that list, onCommit updates the
+  // row's cover preview without a refetch.
+  const [coverPickerFor, setCoverPickerFor] = useState<string | null>(null);
+
+  function handleCoverCommit(
+    listName: string,
+    next: { coverPhotoId: string | null; coverUrl: string | null },
+  ) {
+    setLists(prev =>
+      prev.map(l =>
+        l.name === listName
+          ? { ...l, coverPhotoId: next.coverPhotoId, coverPhotoUrl: next.coverUrl }
+          : l,
+      ),
+    );
+  }
 
   async function createList() {
     const name = newName.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -43,7 +63,7 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error ?? 'create failed');
       setLists(prev =>
-        [...prev, { name, count: 0, googleShareUrl: null, description: null }].sort(
+        [...prev, { name, count: 0, googleShareUrl: null, description: null, coverPhotoId: null, coverPhotoUrl: null }].sort(
           (a, b) => b.count - a.count || a.name.localeCompare(b.name),
         ),
       );
@@ -234,6 +254,9 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
         <table className="w-full text-small">
           <thead className="bg-cream-soft border-b border-sand">
             <tr>
+              <th className="text-left px-4 py-2 text-label uppercase tracking-[0.1em] text-slate font-medium w-20">
+                Cover
+              </th>
               <th className="text-left px-4 py-2 text-label uppercase tracking-[0.1em] text-slate font-medium">
                 Name
               </th>
@@ -255,6 +278,34 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
               const editingDesc = editing?.name === l.name && editing.field === 'desc';
               return (
                 <tr key={l.name} className="border-b border-sand/60 last:border-0 hover:bg-cream-soft/50">
+                  <td className="px-4 py-2.5 align-middle">
+                    <button
+                      type="button"
+                      onClick={() => setCoverPickerFor(l.name)}
+                      disabled={busy}
+                      className={
+                        'block w-14 aspect-[4/3] rounded overflow-hidden border-2 transition-colors disabled:opacity-50 ' +
+                        (l.coverPhotoUrl
+                          ? 'border-sand hover:border-slate'
+                          : 'border-dashed border-sand bg-cream-soft hover:border-slate text-micro text-muted')
+                      }
+                      title={l.coverPhotoUrl ? 'Change cover…' : 'Pick cover…'}
+                      aria-label={l.coverPhotoUrl ? `Change cover for ${l.name}` : `Pick cover for ${l.name}`}
+                    >
+                      {l.coverPhotoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={l.coverPhotoUrl}
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="flex w-full h-full items-center justify-center">
+                          pick
+                        </span>
+                      )}
+                    </button>
+                  </td>
                   <td className="px-4 py-2.5 align-middle">
                     {editingName ? (
                       <div className="flex items-center gap-2">
@@ -443,6 +494,17 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
           </tbody>
         </table>
       </div>
+
+      {coverPickerFor && (
+        <CoverPickerModal
+          listName={coverPickerFor}
+          currentCoverPhotoId={
+            lists.find(l => l.name === coverPickerFor)?.coverPhotoId ?? null
+          }
+          onCommit={next => handleCoverCommit(coverPickerFor, next)}
+          onClose={() => setCoverPickerFor(null)}
+        />
+      )}
     </div>
   );
 }

@@ -3,13 +3,20 @@ import { revalidateTag } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
 
 // === GET /api/admin/personal-photos ========================================
-// Photo lookup for the list-cover picker on /admin/lists/[slug].
+// Photo lookup for the list-cover picker on /admin/lists/[slug] and the
+// inline cover picker on /admin/lists.
 //
-// Two scopes:
+// Three scopes:
 //
 //   ?listName=<list>     → photos attached to pins that are members of that
-//                          saved list. Drives the "In this list" tab of the
-//                          picker.
+//                          saved list. Drives the "In this list" tab.
+//
+//   ?relatedToList=<list>→ photos attached to pins whose city or country
+//                          name word-matches the list name (same heuristic
+//                          as listsMatchingPlace). A list called "bangkok"
+//                          surfaces every photo from any pin in Bangkok,
+//                          even if those pins aren't yet members of the
+//                          list. Drives the "Related places" tab.
 //
 //   (no scope)           → every personal photo on the site, ordered by
 //                          taken_at desc with ties broken by created_at.
@@ -38,9 +45,41 @@ type PhotoTile = {
 
 const HARD_LIMIT = 500;
 
+/** Same word-boundary check as listsMatchingPlace, but inverted: given a
+ *  list name, decide whether a place name appears as a whole word inside
+ *  it. So a place "Bangkok" matches the list "bangkok 🇹🇭" (normalized to
+ *  "bangkok"); place "Rio" matches "rio botanical garden". Returns false
+ *  for sub-3-character place names so we don't get spurious matches on
+ *  short codes like "us" or "uk". */
+function placeWordMatchesList(listNorm: string, placeRaw: string): boolean {
+  const place = placeRaw
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (place.length < 3) return false;
+  const re = new RegExp(
+    `(?:^|\\s)${place.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:\\s|$)`,
+  );
+  return re.test(listNorm);
+}
+
+function normalizeListName(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9 ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const listName = url.searchParams.get('listName')?.trim().toLowerCase() || null;
+  const relatedToList = url.searchParams.get('relatedToList')?.trim().toLowerCase() || null;
   const offset = Math.max(0, Number(url.searchParams.get('offset') ?? '0') | 0);
   const limit = Math.min(
     HARD_LIMIT,
@@ -49,9 +88,11 @@ export async function GET(req: Request) {
 
   const sb = supabaseAdmin();
 
-  // Step 1: figure out which pin IDs to scope to. For "in this list" we
-  // pull pins whose saved_lists array contains the list name; for the
-  // global tab we don't filter pin IDs at all.
+  // Step 1: figure out which pin IDs to scope to.
+  //   - listName       → pins whose saved_lists array contains the name
+  //   - relatedToList  → pins whose city_names or states_names contains a
+  //                      word-matching place name
+  //   - neither        → no filter (all personal photos)
   let pinIdFilter: string[] | null = null;
   if (listName) {
     const { data: memberPins, error: pinErr } = await sb
@@ -62,12 +103,38 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: pinErr.message }, { status: 500 });
     }
     pinIdFilter = (memberPins ?? []).map(r => r.id as string);
-    // If the list has zero members, short-circuit. Doing the second query
-    // with an empty `in` clause would return everything in personal_photos,
-    // which is the opposite of what we want.
     if (pinIdFilter.length === 0) {
       return NextResponse.json({ photos: [], total: 0, hasMore: false });
     }
+  } else if (relatedToList) {
+    const listNorm = normalizeListName(relatedToList);
+    if (!listNorm) {
+      return NextResponse.json({ photos: [], total: 0, hasMore: false });
+    }
+    // Pull every pin that has a city or country set; filter in JS for the
+    // word-boundary match. The pin set isn't huge (a few thousand at most)
+    // so this is a single round-trip + an O(n) walk. PostgREST can't
+    // express a regex-on-array-elements check natively without an RPC.
+    const { data: candidatePins, error: pinErr } = await sb
+      .from('pins')
+      .select('id, city_names, states_names')
+      .or('city_names.not.is.null,states_names.not.is.null');
+    if (pinErr) {
+      return NextResponse.json({ error: pinErr.message }, { status: 500 });
+    }
+    const matched: string[] = [];
+    for (const row of candidatePins ?? []) {
+      const cities = (row.city_names as string[] | null) ?? [];
+      const states = (row.states_names as string[] | null) ?? [];
+      const places = [...cities, ...states];
+      if (places.some(p => placeWordMatchesList(listNorm, p))) {
+        matched.push(row.id as string);
+      }
+    }
+    if (matched.length === 0) {
+      return NextResponse.json({ photos: [], total: 0, hasMore: false });
+    }
+    pinIdFilter = matched;
   }
 
   // Step 2: fetch personal_photos, JOINed to pins for name/slug. PostgREST's

@@ -28,6 +28,8 @@ export default async function ListsAdminPage() {
         count,
         googleShareUrl: meta?.googleShareUrl ?? null,
         description: meta?.description ?? null,
+        coverPhotoId: meta?.coverPhotoId ?? null,
+        coverPhotoUrl: meta?.coverPhotoUrl ?? null,
       };
     })
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
