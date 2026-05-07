@@ -90,6 +90,23 @@ const SORT_OPTIONS: { key: SavedListSortKey; label: string }[] = [
   { key: 'city',    label: 'By city' },
 ];
 
+const KIND_ICON: Record<string, string> = {
+  attraction: '◎',
+  hotel: '⌂',
+  park: '△',
+  restaurant: '◐',
+  shopping: '□',
+  transit: '↔',
+};
+
+function kindIcon(kind: string | null | undefined): string {
+  return kind ? KIND_ICON[kind] ?? '•' : '•';
+}
+
+function kindLabel(kind: string | null | undefined): string | null {
+  return kind ? kind.replace(/\b\w/g, c => c.toUpperCase()) : null;
+}
+
 /**
  * Two-tier sort.
  *
@@ -253,40 +270,53 @@ export default function SavedListSection({
         </div>
       </header>
 
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
         {visible.map(p => (
           <li key={p.id}>
             <Link
               href={p.slug ? `/pins/${p.slug}` : `/pins/${p.id}`}
-              className="block card overflow-hidden hover:shadow-paper transition-shadow"
+              className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
             >
               {p.cover ? (
-                <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
+                <div className="relative flex-shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={thumbUrl(p.cover, { size: 320 }) ?? p.cover}
+                    src={thumbUrl(p.cover, { size: 80 }) ?? p.cover}
                     alt=""
                     loading="lazy"
-                    className="w-full h-full object-cover"
+                    decoding="async"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 rounded-md object-cover bg-cream-soft border border-sand"
                   />
                   {p.visited && (
-                    <span className="absolute top-1.5 right-1.5 pill bg-teal text-white text-micro">
+                    <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full bg-teal text-white text-[10px] leading-4 text-center border border-white">
                       ✓
                     </span>
                   )}
                 </div>
               ) : (
-                <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-[0.14em]">
-                  No photo
+                <div
+                  aria-hidden
+                  className="w-10 h-10 flex-shrink-0 rounded-md bg-cream-soft border border-sand flex items-center justify-center text-base text-muted"
+                >
+                  {kindIcon(p.kind)}
                 </div>
               )}
-              <div className="p-2.5">
-                <h3 className="text-ink-deep font-medium leading-tight truncate text-small">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-ink-deep font-semibold leading-tight truncate text-small group-hover:text-teal transition-colors">
                   {p.name}
-                </h3>
-                {(p.city || p.country) && (
+                  </h3>
+                  {p.visited && (
+                    <span className="text-micro text-teal font-medium uppercase tracking-wider flex-shrink-0">
+                      Been
+                    </span>
+                  )}
+                </div>
+                {(p.kind || p.city || p.country) && (
                   <p className="mt-0.5 text-label text-muted truncate">
-                    {[p.city, p.country].filter(Boolean).join(' · ')}
+                    {[kindLabel(p.kind), p.city, p.country].filter(Boolean).join(' · ')}
                   </p>
                 )}
                 {p.rating != null && p.rating > 0 && (
@@ -303,11 +333,7 @@ export default function SavedListSection({
                   </p>
                 )}
                 {p.review && (
-                  // The review snippet is the "click bait" — first line of
-                  // Mike's actual prose. line-clamp-2 caps the height so cards
-                  // stay roughly uniform; the truncation is the affordance to
-                  // open the full pin page.
-                  <p className="mt-1 text-label text-slate leading-snug line-clamp-2">
+                  <p className="mt-0.5 text-label text-slate leading-snug line-clamp-2">
                     {p.review}
                   </p>
                 )}
@@ -321,7 +347,7 @@ export default function SavedListSection({
                   const showFree = p.kind !== 'restaurant' && p.kind !== 'hotel' && p.free === true;
                   if (!showTier && !showFree && !p.unesco) return null;
                   return (
-                    <div className="mt-1.5 flex flex-wrap gap-1">
+                    <div className="mt-1 flex flex-wrap gap-1">
                       {p.unesco && (
                         <span className="pill bg-teal/10 text-teal text-micro">UNESCO</span>
                       )}
