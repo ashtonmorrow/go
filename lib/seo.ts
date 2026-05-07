@@ -54,7 +54,18 @@ export function personJsonLd() {
     name: AUTHOR_NAME,
     alternateName: AUTHOR_ALT_NAME,
     url: AUTHOR_URL,
-    sameAs: [AUTHOR_LINKEDIN],
+    // sameAs binds the Mike Lee Person entity across his network of sites
+    // and profiles. Each sibling subdomain is its own search property in
+    // Google Search Console — listing them here tells Google + LLM
+    // crawlers that the author of go.mike-lee.me is also the author of
+    // ski / pounce / stray. Authoritativeness signal flows in both
+    // directions across the entity.
+    sameAs: [
+      AUTHOR_LINKEDIN,
+      'https://ski.mike-lee.me',
+      'https://pounce.mike-lee.me',
+      'https://app.stray.tips',
+    ],
     // Topical fingerprint gives Google + LLM crawlers a clean signal
     // about what this Person is an authoritative source for. Kept
     // narrow to the actual content of the site so the entity stays
