@@ -3,6 +3,8 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 
 /**
  * File-based content collection.
@@ -115,3 +117,172 @@ export function paragraphs(body: string): string[] {
     .map(p => p.trim())
     .filter(Boolean);
 }
+
+// === Rich list content =====================================================
+// Lists support a richer authoring layer than pin / city / country pages:
+// proper markdown rendering (marked + post-prose) plus opt-in frontmatter
+// blocks (faqs, guide_cards, related, route_map) that compose the page.
+// pin / city / country content stays on the leaner readPlaceContent path
+// because their bodies are still flat paragraphs.
+
+export type ListGuideCard = { title: string; body: string };
+export type ListGuideCards = {
+  /** Optional eyebrow heading for the cards section. */
+  title: string | null;
+  /** Optional intro paragraph(s) above the card grid. */
+  intro: string | null;
+  cards: ListGuideCard[];
+};
+
+export type ListFaq = { question: string; answer: string };
+
+export type ListRelated = {
+  city: string | null;
+  country: string | null;
+  posts: string[];
+};
+
+export type ListContent = {
+  /** Trimmed raw markdown — exposed for clients that want their own renderer. */
+  body: string;
+  /** Pre-rendered HTML (marked → string). Render with .post-prose styling. */
+  bodyHtml: string;
+  indexable: boolean;
+  title: string | null;
+  /** Short summary used as the meta description and the page subhead. */
+  description: string | null;
+  heroImage: string | null;
+  heroAlt: string | null;
+  published: string | null;
+  updated: string | null;
+  authors: string[];
+  /** Slug into the route-map registry (lib/listRouteMaps.ts). When set, the
+   *  page renders a styled MapLibre route map above the cards. */
+  routeMap: string | null;
+  guideCards: ListGuideCards | null;
+  faqs: ListFaq[];
+  related: ListRelated;
+};
+
+function asString(v: unknown): string | null {
+  return typeof v === 'string' && v.length > 0 ? v : null;
+}
+
+function asStringArray(v: unknown): string[] {
+  if (!Array.isArray(v)) return [];
+  return v.filter((x): x is string => typeof x === 'string');
+}
+
+function asIsoDate(v: unknown): string | null {
+  if (v instanceof Date) return v.toISOString().slice(0, 10);
+  if (typeof v === 'string' && v.length > 0) return v;
+  return null;
+}
+
+function parseGuideCards(v: unknown): ListGuideCards | null {
+  if (!v || typeof v !== 'object') return null;
+  const obj = v as Record<string, unknown>;
+  // Accept either a bare array (cards: [...]) or the full shape
+  // ({ title, intro, cards: [...] }). The bare-array form keeps simple
+  // cases compact in the markdown frontmatter.
+  if (Array.isArray(v)) {
+    const cards = parseCardArray(v);
+    if (cards.length === 0) return null;
+    return { title: null, intro: null, cards };
+  }
+  const cards = parseCardArray(obj.cards);
+  if (cards.length === 0) return null;
+  return {
+    title: asString(obj.title),
+    intro: asString(obj.intro),
+    cards,
+  };
+}
+
+function parseCardArray(v: unknown): ListGuideCard[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map(entry => {
+      if (!entry || typeof entry !== 'object') return null;
+      const e = entry as Record<string, unknown>;
+      const title = asString(e.title);
+      const body = asString(e.body);
+      if (!title || !body) return null;
+      return { title, body };
+    })
+    .filter((c): c is ListGuideCard => c !== null);
+}
+
+function parseFaqs(v: unknown): ListFaq[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map(entry => {
+      if (!entry || typeof entry !== 'object') return null;
+      const e = entry as Record<string, unknown>;
+      // Accept short keys (q/a) and long keys (question/answer); short
+      // keys make hand-authoring less verbose without sacrificing the
+      // typed shape downstream.
+      const question = asString(e.q) ?? asString(e.question);
+      const answer = asString(e.a) ?? asString(e.answer);
+      if (!question || !answer) return null;
+      return { question, answer };
+    })
+    .filter((f): f is ListFaq => f !== null);
+}
+
+function parseRelated(v: unknown): ListRelated {
+  const empty: ListRelated = { city: null, country: null, posts: [] };
+  if (!v || typeof v !== 'object') return empty;
+  const obj = v as Record<string, unknown>;
+  return {
+    city: asString(obj.city),
+    country: asString(obj.country),
+    posts: asStringArray(obj.posts),
+  };
+}
+
+const _readListContent = unstable_cache(
+  async (slug: string): Promise<ListContent | null> => {
+    if (!SAFE_SLUG.test(slug)) return null;
+    const file = path.join(CONTENT_ROOT, 'lists', `${slug}.md`);
+    let raw: string;
+    try {
+      raw = await fs.readFile(file, 'utf8');
+    } catch {
+      return null;
+    }
+    const parsed = matter(raw);
+    const data = parsed.data as Record<string, unknown>;
+    const bodyMd = parsed.content.trim();
+    if (!bodyMd && !data.faqs && !data.guide_cards && !data.route_map) {
+      // Nothing to render — neither prose nor blocks.
+      return null;
+    }
+    const bodyHtml = bodyMd ? await marked.parse(bodyMd, { async: true }) : '';
+    return {
+      body: bodyMd,
+      bodyHtml,
+      indexable: data.indexable === true,
+      title: asString(data.title),
+      description: asString(data.description),
+      heroImage: asString(data.hero_image),
+      heroAlt: asString(data.hero_alt),
+      published: asIsoDate(data.published),
+      updated: asIsoDate(data.updated),
+      authors: asStringArray(data.authors),
+      routeMap: asString(data.route_map),
+      guideCards: parseGuideCards(data.guide_cards),
+      faqs: parseFaqs(data.faqs),
+      related: parseRelated(data.related),
+    };
+  },
+  ['list-content-v1'],
+  { revalidate: 86400, tags: ['place-content'] },
+);
+
+/**
+ * Read a list's editorial markdown + opt-in frontmatter blocks. Distinct
+ * from readPlaceContent (which serves pin/city/country prose) because
+ * lists can opt into rendered blocks like guide cards and FAQs.
+ */
+export const readListContent = cache(_readListContent);
