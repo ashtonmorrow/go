@@ -27,6 +27,13 @@ import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
 import WikipediaAttribution from '@/components/WikipediaAttribution';
+import {
+  fetchHotelStaysForPin,
+  formatStayPeriod,
+  formatStayNights,
+  formatStayPerNight,
+  type HotelStay,
+} from '@/lib/hotelStays';
 
 // 7-day ISR — bust via /api/revalidate when the underlying pin or its
 // content file changes. The admin edit affordance has moved into a
@@ -136,7 +143,10 @@ export default async function PinPage({
   // call that gates first byte if it stalls (3s timeout cap, but cold cache
   // is still slow). We render the lede + extract via <Suspense> below so the
   // rest of the page streams without it.
-  const [countryRecord, cityRecord, personalPhotos, content, bboxCandidates] = await Promise.all([
+  // Hotel stays are fetched unconditionally (the helper short-circuits if
+  // the pin has no rows in hotel_stays); the cost is a single anon-keyed
+  // Supabase query, cached for 24h.
+  const [countryRecord, cityRecord, personalPhotos, content, bboxCandidates, hotelStays] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
     cityName ? fetchCityByName(cityName) : Promise.resolve(null),
     fetchPhotosForPin(pin.id),
@@ -148,6 +158,7 @@ export default async function PinPage({
           pin.id,
         )
       : Promise.resolve([] as Pin[]),
+    pin.kind === 'hotel' ? fetchHotelStaysForPin(pin.id) : Promise.resolve([] as HotelStay[]),
   ]);
   const citySlug = cityRecord?.slug ?? null;
 
@@ -496,7 +507,11 @@ export default async function PinPage({
               description, hand-written notes from /content/pins/<slug>.md)
               all land below it. Getting There moved out of the main column
               entirely into a card in the right rail. */}
-          <PersonalSection pin={pin} />
+          {hotelStays.length > 0 ? (
+            <HotelStaysSection stays={hotelStays} pinName={pin.name} />
+          ) : (
+            <PersonalSection pin={pin} />
+          )}
 
           {/* Personal-voice notes from /content/pins/<slug>.md, when present —
               long-form companion to the short Google review above. */}
@@ -1225,6 +1240,86 @@ function AdmissionBlock({ pin, fallback }: { pin: Pin; fallback: string | null }
 // transit + parking + access-notes content moved into a card on the right
 // rail (see the aside in PinDetailPage), since reference data reads better
 // alongside the Facts card than as a sibling of the personal review.
+
+/** Hotel pin Stays section. The latest stay's generated review takes
+ *  the lede slot (where PersonalSection would otherwise sit); older
+ *  stays stack underneath with their own quarter+year, room, price,
+ *  rating, and review body. Renders in /pins/[slug] only when the
+ *  pin is kind=hotel AND has at least one row in hotel_stays. */
+function HotelStaysSection({ stays, pinName }: { stays: HotelStay[]; pinName: string }) {
+  if (stays.length === 0) return null;
+  const [latest, ...older] = stays;
+  return (
+    <section>
+      {/* Latest stay leads. Generated review is the page hero copy when
+          present; the metadata strip (period, room type, rating, price)
+          sits above it as a small eyebrow. */}
+      <StayCard stay={latest} pinName={pinName} isLead />
+      {older.length > 0 && (
+        <div className="mt-10 pt-8 border-t border-sand">
+          <h2 className="text-h2 text-ink-deep mb-4">Earlier stays</h2>
+          <div className="space-y-8">
+            {older.map(s => (
+              <StayCard key={s.id} stay={s} pinName={pinName} />
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function StayCard({
+  stay,
+  pinName,
+  isLead = false,
+}: {
+  stay: HotelStay;
+  pinName: string;
+  isLead?: boolean;
+}) {
+  const period = formatStayPeriod(stay);
+  const nights = formatStayNights(stay);
+  const price = formatStayPerNight(stay);
+  const meta = [period, nights, stay.roomType, price]
+    .filter((s): s is string => !!s && s.length > 0)
+    .join(' · ');
+  const ratingStars =
+    stay.personalRating != null && stay.personalRating > 0
+      ? '⭐'.repeat(Math.min(5, stay.personalRating))
+      : null;
+  return (
+    <article>
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-small text-muted">
+        {meta && <span>{meta}</span>}
+        {ratingStars && (
+          <span aria-label={`${stay.personalRating} out of 5`} className="text-amber-500">
+            {ratingStars}
+          </span>
+        )}
+        {stay.bookingSource && (
+          <span className="text-muted">· booked via {stay.bookingSource}</span>
+        )}
+      </div>
+      {stay.generatedReview ? (
+        <div className="mt-3 text-ink leading-relaxed text-prose whitespace-pre-line">
+          {stay.generatedReview}
+        </div>
+      ) : (
+        <p className="mt-3 text-prose text-muted italic">
+          Notes from this stay haven&rsquo;t been written up yet.
+        </p>
+      )}
+      {isLead && stay.wouldStayAgain != null && (
+        <p className="mt-3 text-small text-slate">
+          {stay.wouldStayAgain
+            ? `Would stay at ${pinName} again.`
+            : `Would not stay at ${pinName} again.`}
+        </p>
+      )}
+    </article>
+  );
+}
 
 function PersonalSection({ pin }: { pin: Pin }) {
   const universal =
