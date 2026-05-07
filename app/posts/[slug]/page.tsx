@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import { fetchPinsForLists } from "@/lib/pins";
 import { getAllPosts, getPost } from "@/lib/posts";
@@ -232,7 +232,6 @@ export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
-  if (post.externalRoute) permanentRedirect(post.externalRoute);
 
   const dateLabel = formatDate(post.published ?? post.updated);
   const author = post.authors[0] ?? null;
