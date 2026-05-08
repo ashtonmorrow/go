@@ -571,6 +571,27 @@ export default function UploadClient() {
     await performSave(cand, assignedPhotos);
   };
 
+  /** Bulk assign + save: select N photos in the Review screen, pick one
+   *  candidate, hit save once. Bypasses per-row picking when a whole
+   *  group of photos belongs to the same place. Updates the assignments
+   *  map for UI feedback, then calls performSave directly with the
+   *  resolved photo list (no waiting on React state). */
+  const assignAndSavePhotos = async (photoIds: string[], candidateId: string) => {
+    const cand = candidates.find(c => c.id === candidateId);
+    if (!cand) return;
+    setAssignments(prev => {
+      const next = new Map(prev);
+      for (const id of photoIds) next.set(id, candidateId);
+      return next;
+    });
+    const idSet = new Set(photoIds);
+    const assignedPhotos = photos.filter(
+      p => idSet.has(p.id) && p.hash && p.stage !== 'error',
+    );
+    if (!assignedPhotos.length) return;
+    await performSave(cand, assignedPhotos);
+  };
+
   /** Pin scope save: synthesize a one-shot candidate from pinAnchor,
    *  set state for the Review screen so it shows a single saved-card,
    *  and trigger performSave directly with the args (no waiting on
@@ -787,6 +808,7 @@ export default function UploadClient() {
           onAssign={setAssignment}
           onDetachPhoto={detachPhoto}
           onSaveCandidate={saveCandidate}
+          onAssignAndSavePhotos={assignAndSavePhotos}
           onSearchAgain={searchAgainForPhoto}
           onBack={() => setPhase('pick')}
           onReset={reset}
@@ -903,6 +925,7 @@ function ReviewSheet({
   onAssign,
   onDetachPhoto,
   onSaveCandidate,
+  onAssignAndSavePhotos,
   onSearchAgain,
   onBack,
   onReset,
@@ -914,10 +937,24 @@ function ReviewSheet({
   onAssign: (photoId: string, candId: string) => void;
   onDetachPhoto: (photoId: string) => void;
   onSaveCandidate: (id: string) => void;
+  /** Bulk-assign N photos to one candidate and save them in one shot.
+   *  Drives the multi-select bar above the "Photos still to assign"
+   *  list. */
+  onAssignAndSavePhotos: (photoIds: string[], candidateId: string) => Promise<void>;
   onSearchAgain: (photoId: string, query: string) => Promise<boolean>;
   onBack: () => void;
   onReset: () => void;
 }) {
+  const [selectedPhotoIds, setSelectedPhotoIds] = useState<Set<string>>(new Set());
+  const [bulkSaving, setBulkSaving] = useState(false);
+  const togglePhotoSelected = (id: string) => {
+    setSelectedPhotoIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
   // Include 'no-gps' photos here too — when a city anchor is set, the
   // batch save flow handles them via the anchor candidate pool. The
   // assignments map gates per-photo skip vs. attach.
@@ -986,8 +1023,48 @@ function ReviewSheet({
           <h2 className="text-h3 text-ink-deep mb-1">Photos still to assign</h2>
           <p className="text-small text-muted mb-3">
             Pick the right place from the dropdown and click <strong>Save</strong>.
-            Choose <em>Skip</em> if you don&rsquo;t want to save the photo.
+            Choose <em>Skip</em> if you don&rsquo;t want to save the photo. Tick
+            checkboxes to bulk-assign multiple photos to one place at once.
           </p>
+          {/* Bulk action bar — visible whenever the user has ticked at
+              least one photo. Picks one candidate from the existing pool
+              (any pin loaded for the city anchor counts) and runs
+              upload + save-batch in one shot for every selected photo. */}
+          <BulkAssignBar
+            selectedCount={
+              remainingPhotos.filter(p => selectedPhotoIds.has(p.id)).length
+            }
+            allRemainingSelected={
+              remainingPhotos.length > 0 &&
+              remainingPhotos.every(p => selectedPhotoIds.has(p.id))
+            }
+            onSelectAll={(next: boolean) => {
+              setSelectedPhotoIds(prev => {
+                const updated = new Set(prev);
+                for (const p of remainingPhotos) {
+                  if (next) updated.add(p.id);
+                  else updated.delete(p.id);
+                }
+                return updated;
+              });
+            }}
+            onClearSelection={() => setSelectedPhotoIds(new Set())}
+            candidates={candidates}
+            saving={bulkSaving}
+            onAssignAndSave={async candId => {
+              const ids = remainingPhotos
+                .filter(p => selectedPhotoIds.has(p.id))
+                .map(p => p.id);
+              if (!ids.length) return;
+              setBulkSaving(true);
+              try {
+                await onAssignAndSavePhotos(ids, candId);
+                setSelectedPhotoIds(new Set());
+              } finally {
+                setBulkSaving(false);
+              }
+            }}
+          />
           <ul className="space-y-2">
             {remainingPhotos.map(p => (
               <RemainingPhotoRow
@@ -1000,6 +1077,8 @@ function ReviewSheet({
                     ? candidateStates.get(assignments.get(p.id) as string)
                     : undefined
                 }
+                selected={selectedPhotoIds.has(p.id)}
+                onToggleSelected={() => togglePhotoSelected(p.id)}
                 onAssign={onAssign}
                 onSaveCandidate={onSaveCandidate}
                 onSearchAgain={onSearchAgain}
@@ -1042,6 +1121,8 @@ function RemainingPhotoRow({
   candidates,
   assigned,
   assignedState,
+  selected,
+  onToggleSelected,
   onAssign,
   onSaveCandidate,
   onSearchAgain,
@@ -1050,6 +1131,8 @@ function RemainingPhotoRow({
   candidates: Candidate[];
   assigned: string;
   assignedState: CandidateState | undefined;
+  selected: boolean;
+  onToggleSelected: () => void;
   onAssign: (photoId: string, candId: string) => void;
   onSaveCandidate: (id: string) => void;
   onSearchAgain: (photoId: string, query: string) => Promise<boolean>;
@@ -1064,13 +1147,27 @@ function RemainingPhotoRow({
   })();
 
   return (
-    <li className="rounded border border-sand bg-white">
+    <li
+      className={
+        'rounded border bg-white ' +
+        (selected ? 'border-teal ring-1 ring-teal/30' : 'border-sand')
+      }
+    >
       <div className="flex items-center gap-3 p-2">
+        <input
+          type="checkbox"
+          checked={selected}
+          onChange={onToggleSelected}
+          aria-label={`Select photo ${photo.takenAt?.toLocaleString() ?? photo.id}`}
+          className="cursor-pointer"
+        />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={photo.preview} alt="" className="w-14 h-14 object-cover rounded bg-cream-soft" />
         <div className="flex-1 min-w-0 text-small">
           <p className="font-mono text-label text-muted truncate">
-            {photo.lat?.toFixed(4)}, {photo.lng?.toFixed(4)}
+            {photo.lat != null && photo.lng != null
+              ? `${photo.lat.toFixed(4)}, ${photo.lng.toFixed(4)}`
+              : 'No GPS'}
           </p>
           {photo.takenAt && (
             <p className="text-label text-muted">{photo.takenAt.toLocaleString()}</p>
@@ -1103,6 +1200,93 @@ function RemainingPhotoRow({
         </button>
       </div>
     </li>
+  );
+}
+
+/** Bulk action bar over the "Photos still to assign" list. Renders a
+ *  compact strip with a select-all checkbox, the count, a place picker
+ *  built on the same combobox shape as the per-row picker, and an
+ *  "Assign + Save" button that runs upload + save-batch for every
+ *  ticked photo against the chosen candidate. */
+function BulkAssignBar({
+  selectedCount,
+  allRemainingSelected,
+  onSelectAll,
+  onClearSelection,
+  candidates,
+  saving,
+  onAssignAndSave,
+}: {
+  selectedCount: number;
+  allRemainingSelected: boolean;
+  onSelectAll: (next: boolean) => void;
+  onClearSelection: () => void;
+  candidates: Candidate[];
+  saving: boolean;
+  onAssignAndSave: (candidateId: string) => void | Promise<void>;
+}) {
+  const [pickedId, setPickedId] = useState<string>('skip');
+  const pickedLabel =
+    pickedId === 'skip'
+      ? null
+      : candidates.find(c => c.id === pickedId)?.place.name ?? null;
+  return (
+    <div className="rounded border border-sand bg-cream-soft/40 px-3 py-2 mb-3 flex items-center gap-3 flex-wrap">
+      <label className="inline-flex items-center gap-1.5 text-small cursor-pointer">
+        <input
+          type="checkbox"
+          checked={allRemainingSelected && selectedCount > 0}
+          ref={el => {
+            // Indeterminate when SOME but not all are selected.
+            if (el) el.indeterminate = selectedCount > 0 && !allRemainingSelected;
+          }}
+          onChange={e => onSelectAll(e.target.checked)}
+        />
+        <span className="text-ink">Select all</span>
+      </label>
+      <span className="text-label text-muted tabular-nums">
+        {selectedCount} selected
+      </span>
+      {selectedCount > 0 && (
+        <button
+          type="button"
+          onClick={onClearSelection}
+          className="text-label text-muted hover:text-ink"
+        >
+          clear
+        </button>
+      )}
+      <span className="ml-auto" />
+      <PlaceCombobox
+        assignedId={pickedId}
+        assignedLabel={pickedLabel}
+        candidates={candidates}
+        onPick={id => setPickedId(id)}
+        onSearchPlaces={async () => false /* no Places search from the bulk bar */}
+      />
+      <button
+        type="button"
+        disabled={saving || selectedCount === 0 || pickedId === 'skip'}
+        onClick={() => onAssignAndSave(pickedId)}
+        className={
+          'text-small px-3 py-1.5 rounded font-medium transition-colors ' +
+          (saving || selectedCount === 0 || pickedId === 'skip'
+            ? 'bg-cream-soft text-muted cursor-not-allowed'
+            : 'bg-teal text-white hover:bg-teal/90')
+        }
+        title={
+          pickedId === 'skip'
+            ? 'Pick a place above first'
+            : selectedCount === 0
+              ? 'Tick at least one photo to bulk-assign'
+              : `Assign and save ${selectedCount} photo${selectedCount === 1 ? '' : 's'}`
+        }
+      >
+        {saving
+          ? 'Saving…'
+          : `Assign + Save ${selectedCount > 0 ? `(${selectedCount})` : ''}`}
+      </button>
+    </div>
   );
 }
 
