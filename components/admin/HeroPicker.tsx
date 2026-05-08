@@ -103,6 +103,22 @@ export default function HeroPicker({
   const [uploadError, setUploadError] = useState<string | null>(null);
   const uploadInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Multi-select for bulk hide / delete on the Available rail. Off by
+  // default — clicking a tile adds it to picks (the common case). When
+  // on, clicks toggle selection instead and the action bar surfaces.
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedUrls, setSelectedUrls] = useState<Set<string>>(new Set());
+  const [bulkBusy, setBulkBusy] = useState(false);
+
+  function toggleSelected(url: string) {
+    setSelectedUrls(prev => {
+      const next = new Set(prev);
+      if (next.has(url)) next.delete(url);
+      else next.add(url);
+      return next;
+    });
+  }
+
   const byUrl = useMemo(() => {
     const m = new Map<string, HeroCandidate>();
     for (const c of candidates) m.set(c.url, c);
@@ -218,6 +234,76 @@ export default function HeroPicker({
       alert(`Could not delete: ${msg}`);
     } finally {
       setDeletingUrl(null);
+    }
+  }
+
+  /** Bulk hide every selected personal photo (id-bearing). Pin.images
+   *  entries (no id) can't be hidden — the underlying jsonb array has
+   *  no hidden flag — so they're skipped. One PATCH per photo so each
+   *  failure can be reported, but no per-tile confirm. */
+  async function bulkHideSelected() {
+    if (!onToggleHidden) return;
+    const items = candidates.filter(
+      c => selectedUrls.has(c.url) && c.id && !isHidden(c),
+    );
+    if (!items.length) return;
+    setBulkBusy(true);
+    try {
+      for (const c of items) {
+        if (!c.id) continue;
+        setHiddenOverrides(o => ({ ...o, [c.id!]: true }));
+        try {
+          await onToggleHidden(c.id, true);
+        } catch {
+          setHiddenOverrides(o => {
+            const { [c.id!]: _drop, ...rest } = o;
+            return rest;
+          });
+        }
+      }
+      setSelectedUrls(new Set());
+    } finally {
+      setBulkBusy(false);
+    }
+  }
+
+  /** Bulk delete every selected candidate. One confirm covers the
+   *  whole batch (the per-tile delete confirm is per-action; bulk
+   *  trades that for a one-shot dialog). Failures are reported in
+   *  console.error and the failing tiles stay selected so the user
+   *  can retry. */
+  async function bulkDeleteSelected() {
+    if (!onDelete) return;
+    const items = candidates.filter(c => selectedUrls.has(c.url));
+    if (!items.length) return;
+    const ok = window.confirm(
+      `Delete ${items.length} ${items.length === 1 ? 'image' : 'images'}?\n\n` +
+        'Removes them from the database and Storage. Cannot be undone.',
+    );
+    if (!ok) return;
+    setBulkBusy(true);
+    const failedUrls = new Set<string>();
+    try {
+      for (const c of items) {
+        setDeletingUrl(c.url);
+        try {
+          await onDelete(c);
+          onChange(value.filter(u => u !== c.url));
+          setDeletedUrls(prev => {
+            const next = new Set(prev);
+            next.add(c.url);
+            return next;
+          });
+        } catch (err) {
+          console.error('[HeroPicker] bulk delete failed for', c.url, err);
+          failedUrls.add(c.url);
+        } finally {
+          setDeletingUrl(null);
+        }
+      }
+      setSelectedUrls(failedUrls);
+    } finally {
+      setBulkBusy(false);
     }
   }
 
@@ -363,9 +449,75 @@ export default function HeroPicker({
         </div>
 
         <div>
-          <h4 className="text-label uppercase tracking-wide text-muted mb-2">
-            Available ({available.length})
-          </h4>
+          <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
+            <h4 className="text-label uppercase tracking-wide text-muted">
+              Available ({available.length})
+            </h4>
+            {available.length > 0 && (onToggleHidden || onDelete) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectMode(m => !m);
+                  if (selectMode) setSelectedUrls(new Set());
+                }}
+                className={
+                  'text-label px-2 py-1 rounded border transition-colors ' +
+                  (selectMode
+                    ? 'bg-ink-deep text-white border-ink-deep'
+                    : 'border-sand text-slate hover:text-ink-deep hover:bg-cream-soft')
+                }
+                title="Toggle multi-select to bulk hide or delete"
+              >
+                {selectMode ? 'Done selecting' : 'Select multiple'}
+              </button>
+            )}
+          </div>
+          {selectMode && selectedUrls.size > 0 && (
+            <div className="mb-2 px-3 py-2 rounded border border-sand bg-cream-soft/40 flex items-center gap-3 flex-wrap">
+              <span className="text-label text-muted tabular-nums">
+                {selectedUrls.size} selected
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedUrls(new Set())}
+                className="text-label text-muted hover:text-ink"
+              >
+                clear
+              </button>
+              <span className="ml-auto" />
+              {onToggleHidden && (
+                <button
+                  type="button"
+                  onClick={bulkHideSelected}
+                  disabled={bulkBusy}
+                  className={
+                    'text-label px-2 py-1 rounded ' +
+                    (bulkBusy
+                      ? 'bg-cream-soft text-muted cursor-not-allowed'
+                      : 'bg-amber-600/90 text-white hover:bg-amber-700')
+                  }
+                  title="Hide every selected personal photo from the auto-pick collage. Pin-image entries are skipped (they can't be hidden, only deleted)."
+                >
+                  {bulkBusy ? 'Working…' : 'Hide selected'}
+                </button>
+              )}
+              {onDelete && (
+                <button
+                  type="button"
+                  onClick={bulkDeleteSelected}
+                  disabled={bulkBusy}
+                  className={
+                    'text-label px-2 py-1 rounded ' +
+                    (bulkBusy
+                      ? 'bg-cream-soft text-muted cursor-not-allowed'
+                      : 'bg-red-600/90 text-white hover:bg-red-700')
+                  }
+                >
+                  {bulkBusy ? 'Working…' : 'Delete selected'}
+                </button>
+              )}
+            </div>
+          )}
           {available.length === 0 ? (
             <p className="text-small text-muted italic">
               All candidates are picked. Upload more photos via{' '}
@@ -378,21 +530,39 @@ export default function HeroPicker({
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
               {available.map(c => {
                 const hidden = isHidden(c);
+                const isSelected = selectedUrls.has(c.url);
                 return (
                   <div
                     key={c.url}
                     className={
                       'relative aspect-square rounded overflow-hidden border bg-cream-soft group ' +
-                      (hidden ? 'border-amber-500/60 opacity-70' : 'border-sand')
+                      (isSelected
+                        ? 'border-teal ring-2 ring-teal/40'
+                        : hidden
+                          ? 'border-amber-500/60 opacity-70'
+                          : 'border-sand')
                     }
                   >
                     <button
                       type="button"
-                      onClick={() => add(c.url)}
-                      disabled={value.length >= maxAbsolute}
+                      onClick={() => {
+                        if (selectMode) toggleSelected(c.url);
+                        else add(c.url);
+                      }}
+                      disabled={!selectMode && value.length >= maxAbsolute}
                       className="absolute inset-0 cursor-pointer hover:ring-2 hover:ring-teal focus-visible:ring-2 focus-visible:ring-teal disabled:cursor-not-allowed"
-                      aria-label={`Add ${c.alt ?? 'image'} to hero picks`}
-                      title={c.label ? `${c.label}\n\nClick to add` : 'Click to add'}
+                      aria-label={
+                        selectMode
+                          ? `${isSelected ? 'Deselect' : 'Select'} ${c.alt ?? 'image'}`
+                          : `Add ${c.alt ?? 'image'} to hero picks`
+                      }
+                      title={
+                        selectMode
+                          ? 'Click to toggle selection'
+                          : c.label
+                            ? `${c.label}\n\nClick to add`
+                            : 'Click to add'
+                      }
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -402,6 +572,32 @@ export default function HeroPicker({
                         className="w-full h-full object-cover"
                       />
                     </button>
+                    {selectMode && (
+                      <div
+                        className={
+                          'pointer-events-none absolute top-1 left-1 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ' +
+                          (isSelected
+                            ? 'bg-teal border-teal text-white'
+                            : 'bg-white/90 border-sand')
+                        }
+                        aria-hidden
+                      >
+                        {isSelected && (
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M20 6 9 17l-5-5" />
+                          </svg>
+                        )}
+                      </div>
+                    )}
                     {/* Hide toggle — only available for personal photos
                         (the only candidates with a row id we can flip in
                         the DB). Sits above the click target. */}
