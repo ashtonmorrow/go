@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { fetchLastPhotoAtByPin, sortByPhotoRecency } from '@/lib/admin/pinPhotoRecency';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -117,6 +118,15 @@ export async function GET(req: Request) {
     category: (r.category as string | null) ?? null,
     kind: (r.kind as string | null) ?? null,
   }));
+
+  // Pins that recently received photos rank first so the picker
+  // surfaces "you were just here" at the top of the candidate pool.
+  // Falls back to alphabetical for pins with no photos yet.
+  const lastPhotoAt = await fetchLastPhotoAtByPin(
+    sb,
+    pins.map(p => p.id),
+  );
+  sortByPhotoRecency(pins, lastPhotoAt);
 
   return NextResponse.json({
     city: {

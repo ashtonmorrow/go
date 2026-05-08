@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { fetchLastPhotoAtByPin, sortByPhotoRecency } from '@/lib/admin/pinPhotoRecency';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -36,16 +37,19 @@ export async function GET(req: Request) {
   const escaped = q.replace(/[%_]/g, m => '\\' + m);
   const namePattern = `%${escaped}%`;
 
-  // Two-arm query: name match (broad) + city_names array contains.
-  // We OR them via PostgREST .or() and let the DB do the work. Caps at
-  // 25 since this drives a dropdown.
+  // Pull a wider pool than we'll surface so the recency sort below has
+  // material to work with. Visited-first / name keeps the SQL ordering
+  // sensible if a pin happens to have zero photos (recency falls back
+  // to alphabetical anyway).
+  const POOL = 60;
+  const SURFACE = 25;
   const { data, error } = await sb
     .from('pins')
     .select('id, slug, name, city_names, states_names, visited, kind, lat, lng')
     .ilike('name', namePattern)
     .order('visited', { ascending: false })
     .order('name')
-    .limit(25);
+    .limit(POOL);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -66,5 +70,14 @@ export async function GET(req: Request) {
     };
   });
 
-  return NextResponse.json({ pins });
+  // Bubble pins with the most recently attached photos to the top.
+  // Lets Mike do "I just uploaded 30 photos to Houtong" → search the
+  // same name and find that pin first when he comes back for batch 2.
+  const lastPhotoAt = await fetchLastPhotoAtByPin(
+    sb,
+    pins.map(p => p.id),
+  );
+  sortByPhotoRecency(pins, lastPhotoAt);
+
+  return NextResponse.json({ pins: pins.slice(0, SURFACE) });
 }
