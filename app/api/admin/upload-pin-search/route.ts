@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
-import { fetchLastPhotoAtByPin, sortByPhotoRecency } from '@/lib/admin/pinPhotoRecency';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -37,19 +36,18 @@ export async function GET(req: Request) {
   const escaped = q.replace(/[%_]/g, m => '\\' + m);
   const namePattern = `%${escaped}%`;
 
-  // Pull a wider pool than we'll surface so the recency sort below has
-  // material to work with. Visited-first / name keeps the SQL ordering
-  // sensible if a pin happens to have zero photos (recency falls back
-  // to alphabetical anyway).
-  const POOL = 60;
-  const SURFACE = 25;
+  // Pins with a recently-attached personal photo lead, then visited
+  // pins, then alphabetical. last_photo_at is denormalized on pins
+  // and kept fresh by a trigger on personal_photos, so this sort is
+  // a single indexed query — no aggregate.
   const { data, error } = await sb
     .from('pins')
-    .select('id, slug, name, city_names, states_names, visited, kind, lat, lng')
+    .select('id, slug, name, city_names, states_names, visited, kind, lat, lng, last_photo_at')
     .ilike('name', namePattern)
+    .order('last_photo_at', { ascending: false, nullsFirst: false })
     .order('visited', { ascending: false })
     .order('name')
-    .limit(POOL);
+    .limit(25);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -70,14 +68,5 @@ export async function GET(req: Request) {
     };
   });
 
-  // Bubble pins with the most recently attached photos to the top.
-  // Lets Mike do "I just uploaded 30 photos to Houtong" → search the
-  // same name and find that pin first when he comes back for batch 2.
-  const lastPhotoAt = await fetchLastPhotoAtByPin(
-    sb,
-    pins.map(p => p.id),
-  );
-  sortByPhotoRecency(pins, lastPhotoAt);
-
-  return NextResponse.json({ pins: pins.slice(0, SURFACE) });
+  return NextResponse.json({ pins });
 }

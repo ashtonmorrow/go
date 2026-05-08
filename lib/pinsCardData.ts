@@ -59,6 +59,9 @@ export type PinForCard = Pick<
   | 'images'
   | 'lat'
   | 'lng'
+  | 'lastPhotoAt'
+  | 'updatedAt'
+  | 'airtableModifiedAt'
 > & {
   personalCoverUrl: string | null;
   /** Derived Google Maps deep-link from coords. Computed at aggregator
@@ -140,6 +143,13 @@ const _fetchPinsCardData = unstable_cache(
       // once for the cache, every cockpit + map view shares it.
       lat: p.lat,
       lng: p.lng,
+      // Recency signals — feed the 'recent' sort. lastPhotoAt is the
+      // primary signal (pins where Mike just uploaded photos surface
+      // first), updatedAt + airtableModifiedAt are fallbacks for pins
+      // that have never had a personal photo.
+      lastPhotoAt: p.lastPhotoAt,
+      updatedAt: p.updatedAt,
+      airtableModifiedAt: p.airtableModifiedAt,
       personalCoverUrl: personalCovers.get(p.id) ?? null,
     }));
 

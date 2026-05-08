@@ -33,6 +33,11 @@ export type PinFilterable = {
   bring?: string[];
   airtableModifiedAt?: string | null;
   updatedAt?: string | null;
+  /** When the pin most recently received a personal_photos row.
+   *  Drives the 'recent' sort so pins where Mike just uploaded photos
+   *  surface first. Pins that have never had a photo fall back to
+   *  updatedAt. */
+  lastPhotoAt?: string | null;
   /** Distinct from `visited` — a pin is "reviewed" only when Mike actually
    *  wrote about it. Optional so callers without the field still typecheck;
    *  treated as false when missing. */
@@ -231,10 +236,13 @@ export function sortPins<T extends PinFilterable>(pins: T[], state: PinFilterSta
     if (state.sort === 'name') {
       cmp = a.name.localeCompare(b.name);
     } else {
-      // 'recent' — by updated_at (auto-bumped on every edit + has a NOT NULL
-      // default of now()), with airtable_modified_at as a final fallback.
-      const A = a.updatedAt ?? a.airtableModifiedAt ?? '';
-      const B = b.updatedAt ?? b.airtableModifiedAt ?? '';
+      // 'recent' — pins where Mike just uploaded photos rank first
+      // (last_photo_at, kept fresh by a trigger on personal_photos).
+      // Pins without photos fall back to updated_at, then airtable_-
+      // modified_at. The default 'desc' direction (set in the filter
+      // context) means most-recent first.
+      const A = a.lastPhotoAt ?? a.updatedAt ?? a.airtableModifiedAt ?? '';
+      const B = b.lastPhotoAt ?? b.updatedAt ?? b.airtableModifiedAt ?? '';
       if (!A && !B) cmp = 0;
       else if (!A) cmp = 1;
       else if (!B) cmp = -1;

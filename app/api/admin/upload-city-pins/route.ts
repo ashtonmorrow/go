@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
-import { fetchLastPhotoAtByPin, sortByPhotoRecency } from '@/lib/admin/pinPhotoRecency';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -99,10 +98,14 @@ export async function GET(req: Request) {
   // The atlas convention stores the city's English label (e.g. "Bangkok",
   // "Mexico City") so contains is the right operator — slug matching
   // would miss pins whose city_names has the localized form.
+  // Sort: pins with a recent personal photo first (so the picker
+  // surfaces "you were just here" at the top of the pool), then
+  // alphabetical for the long tail.
   const { data: pinRows, error: pinErr } = await sb
     .from('pins')
     .select('id, name, slug, lat, lng, address, category, kind')
     .contains('city_names', [cityName])
+    .order('last_photo_at', { ascending: false, nullsFirst: false })
     .order('name');
   if (pinErr) {
     return NextResponse.json({ error: pinErr.message }, { status: 500 });
@@ -118,15 +121,6 @@ export async function GET(req: Request) {
     category: (r.category as string | null) ?? null,
     kind: (r.kind as string | null) ?? null,
   }));
-
-  // Pins that recently received photos rank first so the picker
-  // surfaces "you were just here" at the top of the candidate pool.
-  // Falls back to alphabetical for pins with no photos yet.
-  const lastPhotoAt = await fetchLastPhotoAtByPin(
-    sb,
-    pins.map(p => p.id),
-  );
-  sortByPhotoRecency(pins, lastPhotoAt);
 
   return NextResponse.json({
     city: {

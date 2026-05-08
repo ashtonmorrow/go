@@ -190,6 +190,13 @@ export type Pin = {
 
   airtableModifiedAt: string | null;
   updatedAt: string | null;
+  /** When this pin most recently received a personal_photos row. Kept
+   *  fresh by a trigger on personal_photos so the value is always
+   *  accurate. Drives the "recent" sort on /pins/cards (so pins where
+   *  Mike just uploaded photos surface first) and the upload picker
+   *  recency ordering. Null when the pin has never had a personal
+   *  photo. */
+  lastPhotoAt: string | null;
   /** When Mike saved this pin in Google Maps. Distinct from updatedAt
    *  (last DB write) and visitYear (when he was there). Populated by
    *  import-google-takeout.ts from each saved-place feature's
@@ -426,6 +433,7 @@ function rowToPin(row: any): Pin {
 
     airtableModifiedAt: row.airtable_modified_at ?? null,
     updatedAt: row.updated_at ?? null,
+    lastPhotoAt: row.last_photo_at ?? null,
     savedAt: asString(row.saved_at),
     priceLevel: asNumber(row.price_level),
     phone: asString(row.phone),
@@ -518,7 +526,7 @@ const INDEX_COLUMNS = [
   'unesco_id', 'website', 'images', 'visited', 'hero_photo_urls',
   'wikidata_qid', 'wikipedia_url', 'atlas_obscura_slug', 'inception_year',
   'duration_minutes', 'tags', 'lists', 'saved_lists', 'best_months',
-  'airtable_modified_at', 'updated_at',
+  'airtable_modified_at', 'updated_at', 'last_photo_at',
   'free', 'free_to_visit', 'food_on_site',
   'wheelchair_accessible', 'kid_friendly', 'bring',
   // Personal-experience fields used on cards / sort / filters. personal_review
