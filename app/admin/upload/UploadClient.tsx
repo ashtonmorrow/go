@@ -84,6 +84,21 @@ type AnchorPin = {
   kind: string | null;
 };
 
+/** Single-pin scope: every photo in the batch attaches to this one pin
+ *  on save. Skips the per-photo review entirely. */
+type PinAnchor = {
+  id: string;
+  slug: string | null;
+  name: string;
+  city: string | null;
+  country: string | null;
+  kind: string | null;
+  lat: number | null;
+  lng: number | null;
+};
+
+type ScopeMode = 'city' | 'pin';
+
 type Phase = 'pick' | 'review';
 
 type CandidateState = {
@@ -106,6 +121,12 @@ export default function UploadClient() {
   const [globalError, setGlobalError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Scope mode. City: pick a city, drop photos, review per-photo
+  // assignments. Pin: pick one pin, drop photos, save all of them to
+  // it without a review screen. Selecting a mode clears the other
+  // mode's anchor so the UI never shows both.
+  const [scopeMode, setScopeMode] = useState<ScopeMode>('city');
+
   // City scope state. Pre-flight: pick a city before dropping photos so
   // we know which pins to default to. After selection we eagerly load
   // every pin in the city to use as a synthetic candidate pool.
@@ -113,6 +134,9 @@ export default function UploadClient() {
   const [anchorPins, setAnchorPins] = useState<AnchorPin[]>([]);
   const [anchorLoading, setAnchorLoading] = useState(false);
   const [anchorError, setAnchorError] = useState<string | null>(null);
+
+  // Pin scope state. Single pin every photo in the batch attaches to.
+  const [pinAnchor, setPinAnchor] = useState<PinAnchor | null>(null);
 
   const ingestFiles = useCallback(async (files: File[]) => {
     if (!files.length) return;
@@ -418,27 +442,20 @@ export default function UploadClient() {
     setCandidateStates(prev => new Map(prev).set(id, patch));
   };
 
-  const saveCandidate = async (candidateId: string) => {
-    const cand = candidates.find(c => c.id === candidateId);
-    if (!cand) return;
-
-    // No-GPS photos are eligible to save when they've been assigned to
-    // a candidate via the city-anchor flow. Only block the genuine
-    // outs (no hash → never ingested cleanly; error → can't recover).
-    const assignedPhotos = photos.filter(p => {
-      if (!p.hash || p.stage === 'error') return false;
-      return assignments.get(p.id) === candidateId;
-    });
-
+  /** Inner save dance — upload to Storage then call save-batch. Takes
+   *  the candidate + photo set as args so callers that don't depend on
+   *  React state (e.g. the Pin scope flow that synthesizes a one-shot
+   *  candidate) can reuse it without waiting for setState to settle. */
+  const performSave = async (cand: Candidate, assignedPhotos: Photo[]) => {
     if (!assignedPhotos.length) {
-      setCandidateState(candidateId, {
+      setCandidateState(cand.id, {
         status: 'error',
         error: 'No photos assigned to this place.',
       });
       return;
     }
 
-    setCandidateState(candidateId, { status: 'saving' });
+    setCandidateState(cand.id, { status: 'saving' });
 
     const uploadedUrls = new Map<string, string>();
     for (const photo of assignedPhotos) {
@@ -486,7 +503,7 @@ export default function UploadClient() {
             p.id === photo.id ? { ...p, stage: 'error', error: msg } : p,
           ),
         );
-        setCandidateState(candidateId, { status: 'error', error: `Upload failed: ${msg}` });
+        setCandidateState(cand.id, { status: 'error', error: `Upload failed: ${msg}` });
         return;
       }
     }
@@ -517,7 +534,7 @@ export default function UploadClient() {
       if (!res.ok) throw new Error(data?.error ?? `save-batch failed (${res.status})`);
 
       if (data.failed?.length) {
-        setCandidateState(candidateId, {
+        setCandidateState(cand.id, {
           status: 'error',
           error: data.failed[0].error ?? 'save failed',
         });
@@ -526,7 +543,7 @@ export default function UploadClient() {
 
       const created: Array<{ pinId: string; pinSlug: string; isNew: boolean }> = data.created ?? [];
       const first = created[0];
-      setCandidateState(candidateId, {
+      setCandidateState(cand.id, {
         status: 'saved',
         pinId: first?.pinId,
         pinSlug: first?.pinSlug,
@@ -534,11 +551,65 @@ export default function UploadClient() {
         isNew: first?.isNew ?? false,
       });
     } catch (e) {
-      setCandidateState(candidateId, {
+      setCandidateState(cand.id, {
         status: 'error',
         error: e instanceof Error ? e.message : 'save failed',
       });
     }
+  };
+
+  /** Public save handler used by the Review screen. Looks the candidate
+   *  + assigned photos up from React state (which the Review's per-row
+   *  picker has populated), then delegates to performSave. */
+  const saveCandidate = async (candidateId: string) => {
+    const cand = candidates.find(c => c.id === candidateId);
+    if (!cand) return;
+    const assignedPhotos = photos.filter(p => {
+      if (!p.hash || p.stage === 'error') return false;
+      return assignments.get(p.id) === candidateId;
+    });
+    await performSave(cand, assignedPhotos);
+  };
+
+  /** Pin scope save: synthesize a one-shot candidate from pinAnchor,
+   *  set state for the Review screen so it shows a single saved-card,
+   *  and trigger performSave directly with the args (no waiting on
+   *  React state). One commit and the entire batch lands on the pin. */
+  const handleSaveAllToPin = async () => {
+    if (!pinAnchor) return;
+    const usable = photos.filter(
+      p => p.hash && p.stage !== 'duplicate' && p.stage !== 'error',
+    );
+    if (!usable.length) {
+      setGlobalError('No photos to save.');
+      return;
+    }
+    setGlobalError(null);
+    const cand: Candidate = {
+      id: `pin-anchor:${pinAnchor.id}`,
+      place: {
+        name: pinAnchor.name,
+        address: '',
+        city: pinAnchor.city ?? '',
+        country: pinAnchor.country ?? '',
+        lat: pinAnchor.lat ?? 0,
+        lng: pinAnchor.lng ?? 0,
+        category: pinAnchor.kind ?? '',
+        website: '',
+        googleMapsUrl: '',
+        estimatedRating: null,
+        distanceMeters: null,
+      },
+      photoHashes: usable.map(p => p.hash!),
+      existingPinId: pinAnchor.id,
+      existingPinName: pinAnchor.name,
+      existingPinSlug: pinAnchor.slug,
+    };
+    setCandidates([cand]);
+    setCandidateStates(new Map([[cand.id, { status: 'idle' as const }]]));
+    setAssignments(new Map(usable.map(p => [p.id, cand.id])));
+    setPhase('review');
+    await performSave(cand, usable);
   };
 
   const reset = () => {
@@ -565,36 +636,60 @@ export default function UploadClient() {
 
       {phase === 'pick' && (
         <>
-          {/* City anchor — pre-flight scope for the batch. When set,
-              non-GPS photos can progress (otherwise they stick at the
-              no-gps stage), and every pin in the anchor city is
-              preloaded as a synthetic candidate so the picker shows
-              internal pins first instead of leaning on Google Places. */}
-          <CityAnchorPicker
-            anchor={cityAnchor}
-            anchorPins={anchorPins}
-            loading={anchorLoading}
-            error={anchorError}
-            onSelect={async city => {
-              setCityAnchor(city);
-              setAnchorPins([]);
-              setAnchorError(null);
-              if (!city) return;
-              setAnchorLoading(true);
-              try {
-                const res = await fetch(
-                  `/api/admin/upload-city-pins?slug=${encodeURIComponent(city.slug)}`,
-                );
-                const data = await res.json();
-                if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
-                setAnchorPins((data.pins as AnchorPin[]) ?? []);
-              } catch (e) {
-                setAnchorError(e instanceof Error ? e.message : 'failed to load city pins');
-              } finally {
-                setAnchorLoading(false);
+          {/* Scope mode toggle. City: per-photo assignment with the
+              city's pin pool as defaults. Pin: every photo in the
+              batch lands on one pin — skips the Review screen entirely
+              for the bulk "I went to <pin> and shot 80 photos" case. */}
+          <ScopeModeToggle
+            mode={scopeMode}
+            onChange={next => {
+              if (next === scopeMode) return;
+              setScopeMode(next);
+              // Switching modes clears the inactive anchor so the UI
+              // never shows both at once. Photos in the drop tray
+              // stay so the user doesn't lose ingestion progress.
+              if (next === 'pin') {
+                setCityAnchor(null);
+                setAnchorPins([]);
+              } else {
+                setPinAnchor(null);
               }
+              setGlobalError(null);
             }}
           />
+
+          {scopeMode === 'city' ? (
+            <CityAnchorPicker
+              anchor={cityAnchor}
+              anchorPins={anchorPins}
+              loading={anchorLoading}
+              error={anchorError}
+              onSelect={async city => {
+                setCityAnchor(city);
+                setAnchorPins([]);
+                setAnchorError(null);
+                if (!city) return;
+                setAnchorLoading(true);
+                try {
+                  const res = await fetch(
+                    `/api/admin/upload-city-pins?slug=${encodeURIComponent(city.slug)}`,
+                  );
+                  const data = await res.json();
+                  if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
+                  setAnchorPins((data.pins as AnchorPin[]) ?? []);
+                } catch (e) {
+                  setAnchorError(e instanceof Error ? e.message : 'failed to load city pins');
+                } finally {
+                  setAnchorLoading(false);
+                }
+              }}
+            />
+          ) : (
+            <PinAnchorPicker
+              anchor={pinAnchor}
+              onSelect={pin => setPinAnchor(pin)}
+            />
+          )}
           <DropZone
             onDrop={onDrop}
             onPickClick={() => fileInputRef.current?.click()}
@@ -636,24 +731,46 @@ export default function UploadClient() {
                   >
                     Clear
                   </button>
-                  <button
-                    type="button"
-                    onClick={findCandidates}
-                    disabled={
-                      findingCandidates ||
-                      (readyCount === 0 && (!cityAnchor || noGpsCount === 0))
-                    }
-                    className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
-                    title={
-                      readyCount === 0 && !cityAnchor
-                        ? 'Pick a city scope above, or drop photos with EXIF GPS.'
-                        : undefined
-                    }
-                  >
-                    {findingCandidates
-                      ? 'Finding…'
-                      : `Find candidates for ${readyCount + (cityAnchor ? noGpsCount : 0)} photo${readyCount + (cityAnchor ? noGpsCount : 0) === 1 ? '' : 's'}`}
-                  </button>
+                  {scopeMode === 'pin' ? (
+                    <button
+                      type="button"
+                      onClick={handleSaveAllToPin}
+                      disabled={
+                        !pinAnchor ||
+                        photos.length === 0 ||
+                        photos.every(p => p.stage === 'reading' || p.stage === 'duplicate' || p.stage === 'error')
+                      }
+                      className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
+                      title={
+                        !pinAnchor
+                          ? 'Pick a pin above first.'
+                          : `Upload all ${photos.length} photo${photos.length === 1 ? '' : 's'} and attach them to ${pinAnchor.name}.`
+                      }
+                    >
+                      {pinAnchor
+                        ? `Save all ${photos.length} to ${pinAnchor.name}`
+                        : 'Pick a pin first'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={findCandidates}
+                      disabled={
+                        findingCandidates ||
+                        (readyCount === 0 && (!cityAnchor || noGpsCount === 0))
+                      }
+                      className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
+                      title={
+                        readyCount === 0 && !cityAnchor
+                          ? 'Pick a city scope above, or drop photos with EXIF GPS.'
+                          : undefined
+                      }
+                    >
+                      {findingCandidates
+                        ? 'Finding…'
+                        : `Find candidates for ${readyCount + (cityAnchor ? noGpsCount : 0)} photo${readyCount + (cityAnchor ? noGpsCount : 0) === 1 ? '' : 's'}`}
+                    </button>
+                  )}
                 </div>
               </div>
             </>
@@ -1439,6 +1556,200 @@ type CitySearchResult = {
   lat: number | null;
   lng: number | null;
 };
+
+function ScopeModeToggle({
+  mode,
+  onChange,
+}: {
+  mode: ScopeMode;
+  onChange: (next: ScopeMode) => void;
+}) {
+  return (
+    <div className="inline-flex rounded border border-sand bg-white text-small overflow-hidden">
+      {(['city', 'pin'] as ScopeMode[]).map(m => {
+        const active = mode === m;
+        const label = m === 'city' ? 'City' : 'Pin';
+        const hint =
+          m === 'city'
+            ? 'Pick a city, drop photos, assign each to a pin in that city.'
+            : 'Pick one pin, drop photos, save them all to it. No per-photo review.';
+        return (
+          <button
+            key={m}
+            type="button"
+            onClick={() => onChange(m)}
+            aria-pressed={active}
+            title={hint}
+            className={
+              'px-3 py-1.5 transition-colors ' +
+              (active
+                ? 'bg-ink-deep text-white'
+                : 'text-ink hover:bg-cream-soft')
+            }
+          >
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+type PinSearchHit = {
+  id: string;
+  slug: string | null;
+  name: string;
+  city: string | null;
+  country: string | null;
+  visited: boolean;
+  kind: string | null;
+  lat: number | null;
+  lng: number | null;
+};
+
+function PinAnchorPicker({
+  anchor,
+  onSelect,
+}: {
+  anchor: PinAnchor | null;
+  onSelect: (pin: PinAnchor | null) => void;
+}) {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<PinSearchHit[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!query.trim() || query.trim().length < 2) {
+      setResults([]);
+      return;
+    }
+    const handle = setTimeout(async () => {
+      setSearching(true);
+      try {
+        const res = await fetch(
+          `/api/admin/upload-pin-search?q=${encodeURIComponent(query.trim())}`,
+        );
+        const data = await res.json();
+        if (res.ok) setResults((data.pins as PinSearchHit[]) ?? []);
+      } catch {
+        /* swallow */
+      } finally {
+        setSearching(false);
+      }
+    }, 200);
+    return () => clearTimeout(handle);
+  }, [query]);
+
+  if (anchor) {
+    return (
+      <div className="rounded-md border border-teal/40 bg-teal/5 px-4 py-3 flex items-center gap-3 flex-wrap">
+        <div className="flex-1 min-w-0">
+          <div className="text-small text-ink-deep">
+            <span className="text-label uppercase tracking-wider text-muted mr-2">
+              Pin scope
+            </span>
+            <span className="font-medium">{anchor.name}</span>
+            {(anchor.city || anchor.country) && (
+              <span className="text-muted">
+                {' · '}
+                {[anchor.city, anchor.country].filter(Boolean).join(', ')}
+              </span>
+            )}
+          </div>
+          <p className="text-label text-muted mt-0.5">
+            Every photo in this batch will save to this pin. No per-photo review.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => onSelect(null)}
+          className="text-label text-slate hover:text-orange"
+        >
+          Change pin
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-md border border-sand bg-cream-soft/40 px-4 py-3">
+      <div className="flex items-center gap-3 flex-wrap mb-1">
+        <span className="text-label uppercase tracking-wider text-muted">
+          Pin scope
+        </span>
+        <span className="text-label text-muted">
+          Pick a pin. All dropped photos save to it. Skips the per-photo review.
+        </span>
+      </div>
+      <div className="relative">
+        <input
+          type="search"
+          value={query}
+          onChange={e => {
+            setQuery(e.target.value);
+            setOpen(true);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
+          placeholder="Search pins by name…"
+          className="w-full text-small border border-sand rounded px-3 py-2 bg-white focus:outline-none focus:border-ink-deep"
+        />
+        {open && query.trim().length >= 2 && (
+          <div className="absolute left-0 right-0 top-full mt-1 z-20 bg-white border border-sand rounded shadow-paper max-h-72 overflow-y-auto">
+            {searching && (
+              <p className="px-3 py-2 text-label text-muted">Searching…</p>
+            )}
+            {!searching && results.length === 0 && (
+              <p className="px-3 py-2 text-label text-muted">
+                No pins match. Try a different name.
+              </p>
+            )}
+            {results.map(p => (
+              <button
+                key={p.id}
+                type="button"
+                onMouseDown={e => {
+                  e.preventDefault();
+                  onSelect({
+                    id: p.id,
+                    slug: p.slug,
+                    name: p.name,
+                    city: p.city,
+                    country: p.country,
+                    kind: p.kind,
+                    lat: p.lat,
+                    lng: p.lng,
+                  });
+                  setQuery('');
+                  setOpen(false);
+                }}
+                className="w-full text-left px-3 py-2 text-small hover:bg-cream-soft border-b border-sand last:border-0"
+              >
+                <span className="text-ink-deep font-medium">{p.name}</span>
+                {(p.city || p.country) && (
+                  <span className="ml-2 text-label text-muted">
+                    · {[p.city, p.country].filter(Boolean).join(', ')}
+                  </span>
+                )}
+                {p.kind && (
+                  <span className="ml-2 text-label text-muted/70">
+                    · {p.kind}
+                  </span>
+                )}
+                {p.visited && (
+                  <span className="ml-2 pill bg-teal/10 text-teal text-micro">
+                    Been
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function CityAnchorPicker({
   anchor,
