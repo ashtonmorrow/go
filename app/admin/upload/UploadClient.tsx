@@ -6,7 +6,10 @@ import { convertHeicIfNeeded } from '@/lib/heicConvert';
 import { sha256OfFile } from '@/lib/photoHash';
 import { supabase } from '@/lib/supabase';
 
-const MAX_PHOTOS = 30;
+// Per-batch ceiling. Sized to fit a typical "everything from one city"
+// export from Apple Photos without crashing the browser on EXIF reads.
+// Bigger batches: split across sessions; the hash-dedup makes that safe.
+const MAX_PHOTOS = 150;
 
 type PhotoStage =
   | 'reading'
@@ -58,6 +61,29 @@ type Candidate = {
   existingPinSlug: string | null;
 };
 
+/** City scope for a batch upload. When set, every pin in the city is
+ *  preloaded as a synthetic candidate so the picker shows internal
+ *  pins first. Non-GPS photos default to this candidate pool instead
+ *  of getting stuck — Mike picks the right pin from a typeahead. */
+type CityAnchor = {
+  slug: string;
+  name: string;
+  country: string | null;
+  lat: number | null;
+  lng: number | null;
+};
+
+type AnchorPin = {
+  id: string;
+  name: string;
+  slug: string | null;
+  lat: number | null;
+  lng: number | null;
+  address: string | null;
+  category: string | null;
+  kind: string | null;
+};
+
 type Phase = 'pick' | 'review';
 
 type CandidateState = {
@@ -79,6 +105,14 @@ export default function UploadClient() {
   const [findingCandidates, setFindingCandidates] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // City scope state. Pre-flight: pick a city before dropping photos so
+  // we know which pins to default to. After selection we eagerly load
+  // every pin in the city to use as a synthetic candidate pool.
+  const [cityAnchor, setCityAnchor] = useState<CityAnchor | null>(null);
+  const [anchorPins, setAnchorPins] = useState<AnchorPin[]>([]);
+  const [anchorLoading, setAnchorLoading] = useState(false);
+  const [anchorError, setAnchorError] = useState<string | null>(null);
 
   const ingestFiles = useCallback(async (files: File[]) => {
     if (!files.length) return;
@@ -183,37 +217,88 @@ export default function UploadClient() {
   };
 
   const findCandidates = async () => {
-    const ready = photos.filter(p => p.stage === 'ready' && p.hash && p.lat != null && p.lng != null);
-    if (!ready.length) {
-      setGlobalError('Need at least one photo with EXIF GPS to find candidates.');
+    // GPS photos drive the Google Places call (cost-incurring). Non-GPS
+    // photos enter the review only when a city anchor is set — the
+    // anchor's pins become a synthetic candidate pool the user picks
+    // from via the per-photo combobox.
+    const usable = photos.filter(
+      p => p.hash && p.stage !== 'duplicate' && p.stage !== 'error' && p.stage !== 'reading',
+    );
+    const withGps = usable.filter(p => p.lat != null && p.lng != null);
+    const withoutGps = usable.filter(p => p.lat == null || p.lng == null);
+
+    if (withGps.length === 0 && (!cityAnchor || withoutGps.length === 0)) {
+      setGlobalError(
+        cityAnchor
+          ? 'No photos to process. Drop some files first.'
+          : 'Need at least one photo with EXIF GPS, or pick a city scope to allow non-GPS photos.',
+      );
       return;
     }
     setFindingCandidates(true);
     setGlobalError(null);
     try {
-      const res = await fetch('/api/admin/find-candidates', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          photos: ready.map(p => ({ hash: p.hash, lat: p.lat, lng: p.lng })),
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error ?? 'find-candidates failed');
-      const cs: Candidate[] = data.candidates ?? [];
+      // Phase 1: ask Google Places for candidates near each GPS photo.
+      let apiCandidates: Candidate[] = [];
+      if (withGps.length > 0) {
+        const res = await fetch('/api/admin/find-candidates', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            photos: withGps.map(p => ({ hash: p.hash, lat: p.lat, lng: p.lng })),
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error ?? 'find-candidates failed');
+        apiCandidates = (data.candidates as Candidate[]) ?? [];
+      }
+
+      // Phase 2: synthesize anchor candidates from the city's existing
+      // pins. Each anchor candidate covers every photo in the batch
+      // (photoHashes contains all hashes) so the per-photo combobox
+      // shows the city pool regardless of GPS proximity. Saves Google
+      // Places spend for places we've already pinned.
+      const allHashes = usable.map(p => p.hash!).filter(Boolean);
+      const anchorCandidates: Candidate[] = anchorPins.map(p => ({
+        id: `anchor-pin:${p.id}`,
+        place: {
+          name: p.name,
+          address: p.address ?? '',
+          city: cityAnchor?.name ?? '',
+          country: cityAnchor?.country ?? '',
+          lat: p.lat ?? 0,
+          lng: p.lng ?? 0,
+          category: p.category ?? p.kind ?? '',
+          website: '',
+          googleMapsUrl: '',
+          estimatedRating: null,
+          distanceMeters: null,
+        },
+        photoHashes: allHashes,
+        existingPinId: p.id,
+        existingPinName: p.name,
+        existingPinSlug: p.slug,
+      }));
+
+      const cs: Candidate[] = [...apiCandidates, ...anchorCandidates];
       setCandidates(cs);
       setCandidateStates(new Map(cs.map(c => [c.id, { status: 'idle' as const }])));
 
-      // Default per-photo assignment: each photo to its nearest matching candidate.
+      // Default per-photo assignment.
+      // - GPS photo: nearest API candidate by haversine. Anchor
+      //   candidates lose the auto-pick since they're typically farther
+      //   than the Places nearby result; the user can still switch via
+      //   the combobox.
+      // - Non-GPS photo: 'skip'. The user picks from the anchor pool
+      //   via the combobox.
       const defaultAssign = new Map<string, string>();
-      for (const p of ready) {
+      for (const p of withGps) {
         if (!p.hash) continue;
-        const matching = cs.filter(c => c.photoHashes.includes(p.hash!));
+        const matching = apiCandidates.filter(c => c.photoHashes.includes(p.hash!));
         if (!matching.length) {
           defaultAssign.set(p.id, 'skip');
           continue;
         }
-        // Pick whichever matching candidate is geographically closest.
         let best = matching[0];
         let bestDist = haversineKm(p.lat!, p.lng!, best.place.lat, best.place.lng);
         for (let i = 1; i < matching.length; i++) {
@@ -224,6 +309,9 @@ export default function UploadClient() {
           }
         }
         defaultAssign.set(p.id, best.id);
+      }
+      for (const p of withoutGps) {
+        defaultAssign.set(p.id, 'skip');
       }
       setAssignments(defaultAssign);
       setPhase('review');
@@ -318,8 +406,11 @@ export default function UploadClient() {
     const cand = candidates.find(c => c.id === candidateId);
     if (!cand) return;
 
+    // No-GPS photos are eligible to save when they've been assigned to
+    // a candidate via the city-anchor flow. Only block the genuine
+    // outs (no hash → never ingested cleanly; error → can't recover).
     const assignedPhotos = photos.filter(p => {
-      if (!p.hash || p.stage === 'no-gps' || p.stage === 'error') return false;
+      if (!p.hash || p.stage === 'error') return false;
       return assignments.get(p.id) === candidateId;
     });
 
@@ -458,6 +549,36 @@ export default function UploadClient() {
 
       {phase === 'pick' && (
         <>
+          {/* City anchor — pre-flight scope for the batch. When set,
+              non-GPS photos can progress (otherwise they stick at the
+              no-gps stage), and every pin in the anchor city is
+              preloaded as a synthetic candidate so the picker shows
+              internal pins first instead of leaning on Google Places. */}
+          <CityAnchorPicker
+            anchor={cityAnchor}
+            anchorPins={anchorPins}
+            loading={anchorLoading}
+            error={anchorError}
+            onSelect={async city => {
+              setCityAnchor(city);
+              setAnchorPins([]);
+              setAnchorError(null);
+              if (!city) return;
+              setAnchorLoading(true);
+              try {
+                const res = await fetch(
+                  `/api/admin/upload-city-pins?slug=${encodeURIComponent(city.slug)}`,
+                );
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
+                setAnchorPins((data.pins as AnchorPin[]) ?? []);
+              } catch (e) {
+                setAnchorError(e instanceof Error ? e.message : 'failed to load city pins');
+              } finally {
+                setAnchorLoading(false);
+              }
+            }}
+          />
           <DropZone
             onDrop={onDrop}
             onPickClick={() => fileInputRef.current?.click()}
@@ -485,6 +606,9 @@ export default function UploadClient() {
               <div className="flex items-center justify-between gap-3 pt-2">
                 <p className="text-small text-muted">
                   {readyCount} with GPS · {noGpsCount} without GPS
+                  {cityAnchor && noGpsCount > 0 && (
+                    <span className="text-teal"> (will use {cityAnchor.name} pins)</span>
+                  )}
                   {dupeCount > 0 && <> · {dupeCount} already saved</>}
                   {' · '}{photos.length} total
                 </p>
@@ -499,10 +623,20 @@ export default function UploadClient() {
                   <button
                     type="button"
                     onClick={findCandidates}
-                    disabled={readyCount === 0 || findingCandidates}
+                    disabled={
+                      findingCandidates ||
+                      (readyCount === 0 && (!cityAnchor || noGpsCount === 0))
+                    }
                     className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
+                    title={
+                      readyCount === 0 && !cityAnchor
+                        ? 'Pick a city scope above, or drop photos with EXIF GPS.'
+                        : undefined
+                    }
                   >
-                    {findingCandidates ? 'Finding…' : `Find candidates for ${readyCount} photo${readyCount === 1 ? '' : 's'}`}
+                    {findingCandidates
+                      ? 'Finding…'
+                      : `Find candidates for ${readyCount + (cityAnchor ? noGpsCount : 0)} photo${readyCount + (cityAnchor ? noGpsCount : 0) === 1 ? '' : 's'}`}
                   </button>
                 </div>
               </div>
@@ -651,8 +785,11 @@ function ReviewSheet({
   onBack: () => void;
   onReset: () => void;
 }) {
+  // Include 'no-gps' photos here too — when a city anchor is set, the
+  // batch save flow handles them via the anchor candidate pool. The
+  // assignments map gates per-photo skip vs. attach.
   const usable = photos.filter(
-    p => p.hash && p.stage !== 'no-gps' && p.stage !== 'error' && p.stage !== 'duplicate',
+    p => p.hash && p.stage !== 'error' && p.stage !== 'duplicate',
   );
 
   const photosByCandidate = useMemo(() => {
@@ -1275,6 +1412,164 @@ function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): nu
       Math.cos((lat2 * Math.PI) / 180) *
       Math.sin(dLng / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+type CitySearchResult = {
+  id: string;
+  slug: string;
+  name: string;
+  country: string | null;
+  been: boolean;
+  lat: number | null;
+  lng: number | null;
+};
+
+function CityAnchorPicker({
+  anchor,
+  anchorPins,
+  loading,
+  error,
+  onSelect,
+}: {
+  anchor: CityAnchor | null;
+  anchorPins: AnchorPin[];
+  loading: boolean;
+  error: string | null;
+  onSelect: (city: CityAnchor | null) => void | Promise<void>;
+}) {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<CitySearchResult[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // Debounced typeahead. The dropdown opens as soon as the user types
+  // and closes on outside click via the wrapper-level blur handler.
+  useEffect(() => {
+    if (!query.trim() || query.trim().length < 2) {
+      setResults([]);
+      return;
+    }
+    const handle = setTimeout(async () => {
+      setSearching(true);
+      try {
+        const res = await fetch(
+          `/api/admin/upload-city-pins?q=${encodeURIComponent(query.trim())}`,
+        );
+        const data = await res.json();
+        if (res.ok) setResults((data.cities as CitySearchResult[]) ?? []);
+      } catch {
+        /* swallow */
+      } finally {
+        setSearching(false);
+      }
+    }, 200);
+    return () => clearTimeout(handle);
+  }, [query]);
+
+  if (anchor) {
+    return (
+      <div className="rounded-md border border-teal/40 bg-teal/5 px-4 py-3 flex items-center gap-3 flex-wrap">
+        <div className="flex-1 min-w-0">
+          <div className="text-small text-ink-deep">
+            <span className="text-label uppercase tracking-wider text-muted mr-2">
+              City scope
+            </span>
+            <span className="font-medium">{anchor.name}</span>
+            {anchor.country && (
+              <span className="text-muted"> · {anchor.country}</span>
+            )}
+            {loading ? (
+              <span className="ml-2 text-label text-muted">loading pins…</span>
+            ) : (
+              <span className="ml-2 text-label text-muted">
+                {anchorPins.length} pin{anchorPins.length === 1 ? '' : 's'} preloaded
+              </span>
+            )}
+          </div>
+          {error && (
+            <p className="text-label text-orange mt-0.5">{error}</p>
+          )}
+        </div>
+        <button
+          type="button"
+          onClick={() => onSelect(null)}
+          className="text-label text-slate hover:text-orange"
+        >
+          Change city
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-md border border-sand bg-cream-soft/40 px-4 py-3">
+      <div className="flex items-center gap-3 flex-wrap mb-1">
+        <span className="text-label uppercase tracking-wider text-muted">
+          City scope (optional)
+        </span>
+        <span className="text-label text-muted">
+          Pick a city to enable non-GPS photos and preload its pins as candidates.
+        </span>
+      </div>
+      <div className="relative">
+        <input
+          type="search"
+          value={query}
+          onChange={e => {
+            setQuery(e.target.value);
+            setOpen(true);
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 150)}
+          placeholder="Search cities by name or country…"
+          className="w-full text-small border border-sand rounded px-3 py-2 bg-white focus:outline-none focus:border-ink-deep"
+        />
+        {open && query.trim().length >= 2 && (
+          <div className="absolute left-0 right-0 top-full mt-1 z-20 bg-white border border-sand rounded shadow-paper max-h-72 overflow-y-auto">
+            {searching && (
+              <p className="px-3 py-2 text-label text-muted">Searching…</p>
+            )}
+            {!searching && results.length === 0 && (
+              <p className="px-3 py-2 text-label text-muted">
+                No cities match. Try a different name.
+              </p>
+            )}
+            {results.map(c => (
+              <button
+                key={c.id}
+                type="button"
+                onMouseDown={e => {
+                  e.preventDefault();
+                  onSelect({
+                    slug: c.slug,
+                    name: c.name,
+                    country: c.country,
+                    lat: c.lat,
+                    lng: c.lng,
+                  });
+                  setQuery('');
+                  setOpen(false);
+                }}
+                className="w-full text-left px-3 py-2 text-small hover:bg-cream-soft border-b border-sand last:border-0"
+              >
+                <span className="text-ink-deep font-medium">{c.name}</span>
+                {c.country && (
+                  <span className="ml-2 text-label text-muted">
+                    · {c.country}
+                  </span>
+                )}
+                {c.been && (
+                  <span className="ml-2 pill bg-teal/10 text-teal text-micro">
+                    Been
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 async function imageDimensions(file: File): Promise<{ width: number; height: number } | null> {
