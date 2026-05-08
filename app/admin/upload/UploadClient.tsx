@@ -324,19 +324,35 @@ export default function UploadClient() {
 
   /** Re-run the candidate search for one photo with a free-text query.
    *  Useful when the nearby search didn't return the right place. New
-   *  candidates are merged into the candidates list (deduped by id). */
+   *  candidates are merged into the candidates list (deduped by id).
+   *
+   *  Search center fallback: photos without EXIF GPS (typical DSLR
+   *  shots) use the city anchor's lat/lng so a query like
+   *  "houtong cat village" still resolves while we're scoped to
+   *  Taipei. Without that fallback the function used to bail before
+   *  the API call and the user would see a permanent
+   *  "No Google results" message. */
   const searchAgainForPhoto = async (photoId: string, query: string): Promise<boolean> => {
     const photo = photos.find(p => p.id === photoId);
-    if (!photo || !photo.hash || photo.lat == null || photo.lng == null) return false;
+    if (!photo || !photo.hash) return false;
     const trimmed = query.trim();
     if (!trimmed) return false;
+
+    const lat = photo.lat ?? cityAnchor?.lat ?? null;
+    const lng = photo.lng ?? cityAnchor?.lng ?? null;
+    if (lat == null || lng == null) {
+      setGlobalError(
+        'Pick a city scope at the top so non-GPS photos have a search center, then try again.',
+      );
+      return false;
+    }
 
     try {
       const res = await fetch('/api/admin/find-candidates', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          photos: [{ hash: photo.hash, lat: photo.lat, lng: photo.lng, query: trimmed }],
+          photos: [{ hash: photo.hash, lat, lng, query: trimmed }],
         }),
       });
       const data = await res.json();
