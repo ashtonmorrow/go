@@ -480,8 +480,12 @@ export default function HeroPicker({
               <button
                 type="button"
                 onClick={() => {
+                  // Always clear stale selection on toggle. Re-entering
+                  // select mode shouldn't restore a forgotten set from
+                  // an earlier session.
+                  setSelectedUrls(new Set());
+                  setBulkError(null);
                   setSelectMode(m => !m);
-                  if (selectMode) setSelectedUrls(new Set());
                 }}
                 className={
                   'text-label px-2 py-1 rounded border transition-colors ' +

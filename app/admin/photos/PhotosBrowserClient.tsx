@@ -55,6 +55,7 @@ export default function PhotosBrowserClient() {
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [bulkDeleting, setBulkDeleting] = useState(false);
+  const [bulkUnhiding, setBulkUnhiding] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
 
   // Load whenever source / q / offset changes. Debounce search input
@@ -92,9 +93,14 @@ export default function PhotosBrowserClient() {
 
   function switchSource(next: Source) {
     setSource(next);
+    // Reset everything tab-scoped so each tab starts fresh. Carrying
+    // q across tabs is surprising — "bangkok" entered on Personal
+    // shouldn't silently filter the Codex tab.
+    setQ('');
     setOffset(0);
     setSelected(new Set());
     setFlash(null);
+    setError(null);
   }
 
   function toggleSelected(id: string) {
@@ -111,6 +117,61 @@ export default function PhotosBrowserClient() {
       if (prev.size === tiles.length) return new Set();
       return new Set(tiles.map(t => t.id));
     });
+  }
+
+  /** Bulk unhide every selected personal photo. Only meaningful on
+   *  the Hidden tab — pin.images entries can't be hidden, and the
+   *  Personal tab's tiles are already visible. We let the button
+   *  render only on the Hidden tab. */
+  async function bulkUnhide() {
+    const ids = [...selected];
+    if (!ids.length) return;
+    setBulkUnhiding(true);
+    setFlash(null);
+    setError(null);
+    try {
+      const tileById = new Map(tiles.map(t => [t.id, t]));
+      const targetIds = ids.filter(id => {
+        const t = tileById.get(id);
+        return t?.source === 'personal';
+      });
+      const results = await runWithConcurrency(targetIds, 5, async id => {
+        try {
+          const res = await fetch('/api/admin/personal-photos', {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ id, hidden: false }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
+          return { id, ok: true as const };
+        } catch (e) {
+          return {
+            id,
+            ok: false as const,
+            error: e instanceof Error ? e.message : 'unhide failed',
+          };
+        }
+      });
+      const succeeded = results.filter(r => r.ok).length;
+      const failedIds = new Set(results.filter(r => !r.ok).map(r => r.id));
+      // Drop unhidden tiles from the Hidden-tab pool — they no longer
+      // belong here. Failed tiles stay so the user can retry.
+      setTiles(prev =>
+        prev.filter(t => failedIds.has(t.id) || !targetIds.includes(t.id)),
+      );
+      setTotal(prev => Math.max(0, prev - succeeded));
+      setSelected(failedIds);
+      setFlash(
+        failedIds.size > 0
+          ? `Unhid ${succeeded}, ${failedIds.size} failed. Selected rows remain.`
+          : `Unhid ${succeeded} photo${succeeded === 1 ? '' : 's'}.`,
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'bulk unhide failed');
+    } finally {
+      setBulkUnhiding(false);
+    }
   }
 
   async function bulkDelete() {
@@ -256,13 +317,30 @@ export default function PhotosBrowserClient() {
             >
               clear
             </button>
+            <span className="ml-auto" />
+            {source === 'hidden' && (
+              <button
+                type="button"
+                onClick={bulkUnhide}
+                disabled={bulkUnhiding || bulkDeleting}
+                className={
+                  'text-small px-3 py-1.5 rounded font-medium ' +
+                  (bulkUnhiding || bulkDeleting
+                    ? 'bg-cream-soft text-muted cursor-not-allowed'
+                    : 'bg-teal text-white hover:bg-teal/90')
+                }
+                title="Restore selected photos to the Personal pool. They re-enter the auto-pick collage on detail pages."
+              >
+                {bulkUnhiding ? 'Unhiding…' : `Unhide ${selected.size}`}
+              </button>
+            )}
             <button
               type="button"
               onClick={bulkDelete}
-              disabled={bulkDeleting}
+              disabled={bulkDeleting || bulkUnhiding}
               className={
-                'ml-auto text-small px-3 py-1.5 rounded font-medium ' +
-                (bulkDeleting
+                'text-small px-3 py-1.5 rounded font-medium ' +
+                (bulkDeleting || bulkUnhiding
                   ? 'bg-cream-soft text-muted cursor-not-allowed'
                   : 'bg-orange text-white hover:bg-orange/90')
               }
@@ -285,7 +363,21 @@ export default function PhotosBrowserClient() {
       )}
 
       {/* Grid */}
-      {tiles.length === 0 && !loading ? (
+      {loading && tiles.length === 0 ? (
+        // Loading skeleton on initial load / tab switch. Holds layout
+        // so the page doesn't jump when results arrive.
+        <div
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+          aria-hidden
+        >
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              className="aspect-square rounded-md bg-cream-soft border border-sand animate-pulse"
+            />
+          ))}
+        </div>
+      ) : tiles.length === 0 && !loading ? (
         <p className="text-center text-slate text-small py-12">
           {q
             ? 'No photos match this search.'

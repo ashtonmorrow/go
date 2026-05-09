@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { isCommonsUrl } from '@/components/CommonsAttributionBadge';
+import SourceFilterPills, {
+  type SourceFilterValue,
+} from '@/components/admin/SourceFilterPills';
 
 // === CoverPickerModal ======================================================
 // Photo-level cover picker for /admin/lists/[slug] and the inline picker on
@@ -80,8 +83,7 @@ export default function CoverPickerModal({
   // Source-filter pills + per-tile delete state — same shape as
   // EntityCoverPickerModal so the cleanup workflow feels consistent
   // across pickers.
-  type SourceFilter = 'all' | 'personal' | 'pin' | 'codex' | 'city' | 'country';
-  const [filter, setFilter] = useState<SourceFilter>('all');
+  const [filter, setFilter] = useState<SourceFilterValue>('all');
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   // Drop a deleted tile from whichever tab's pool currently holds it.
@@ -393,41 +395,14 @@ export default function CoverPickerModal({
 
         {/* Source filter pills — scope the active tab's grid by source.
             Reset to 'all' on every tab switch (see switchTab) so the
-            user's mental model stays simple. Hidden when the active
-            tab's pool is empty. */}
+            user's mental model stays simple. */}
         {photos.length > 0 && (
-          <div className="px-5 pt-2 pb-1 flex flex-wrap items-center gap-1.5">
-            {(
-              [
-                { id: 'all', label: 'All', count: tabCounts.all },
-                { id: 'personal', label: 'Personal', count: tabCounts.personal },
-                { id: 'pin', label: 'Pin', count: tabCounts.pin },
-                { id: 'codex', label: 'Codex', count: tabCounts.codex },
-                { id: 'city', label: 'City', count: tabCounts.city },
-                { id: 'country', label: 'Country', count: tabCounts.country },
-              ] as { id: SourceFilter; label: string; count: number }[]
-            )
-              .filter(p => p.count > 0 || p.id === 'all')
-              .map(p => {
-                const active = filter === p.id;
-                return (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => setFilter(p.id)}
-                    aria-pressed={active}
-                    className={
-                      'pill text-micro ' +
-                      (active
-                        ? 'bg-ink-deep text-white border border-ink-deep'
-                        : 'bg-cream-soft text-slate border border-sand hover:bg-sand/40')
-                    }
-                  >
-                    {p.label}
-                    <span className="ml-1 tabular-nums opacity-80">({p.count})</span>
-                  </button>
-                );
-              })}
+          <div className="px-5 pt-2 pb-1">
+            <SourceFilterPills
+              active={filter}
+              counts={tabCounts}
+              onChange={setFilter}
+            />
           </div>
         )}
 
