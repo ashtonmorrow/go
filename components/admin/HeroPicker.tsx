@@ -109,6 +109,7 @@ export default function HeroPicker({
   const [selectMode, setSelectMode] = useState(false);
   const [selectedUrls, setSelectedUrls] = useState<Set<string>>(new Set());
   const [bulkBusy, setBulkBusy] = useState(false);
+  const [bulkError, setBulkError] = useState<string | null>(null);
 
   function toggleSelected(url: string) {
     setSelectedUrls(prev => {
@@ -248,22 +249,36 @@ export default function HeroPicker({
     );
     if (!items.length) return;
     setBulkBusy(true);
+    setBulkError(null);
+    const failedUrls = new Set<string>();
     try {
       for (const c of items) {
         if (!c.id) continue;
         setHiddenOverrides(o => ({ ...o, [c.id!]: true }));
         try {
           await onToggleHidden(c.id, true);
-        } catch {
+        } catch (err) {
+          // Roll back the optimistic flip and remember the failure so
+          // the user knows the action was partial. Failed tiles stay
+          // selected so a retry is one click away.
+          console.error('[HeroPicker] bulk hide failed for', c.url, err);
+          failedUrls.add(c.url);
           setHiddenOverrides(o => {
             const { [c.id!]: _drop, ...rest } = o;
             return rest;
           });
         }
       }
-      setSelectedUrls(new Set());
     } finally {
       setBulkBusy(false);
+    }
+    if (failedUrls.size > 0) {
+      setBulkError(
+        `${failedUrls.size} of ${items.length} hides failed. Selected tiles stay selected so you can retry.`,
+      );
+      setSelectedUrls(failedUrls);
+    } else {
+      setSelectedUrls(new Set());
     }
   }
 
@@ -282,6 +297,7 @@ export default function HeroPicker({
     );
     if (!ok) return;
     setBulkBusy(true);
+    setBulkError(null);
     const failedUrls = new Set<string>();
     try {
       for (const c of items) {
@@ -301,9 +317,16 @@ export default function HeroPicker({
           setDeletingUrl(null);
         }
       }
-      setSelectedUrls(failedUrls);
     } finally {
       setBulkBusy(false);
+    }
+    if (failedUrls.size > 0) {
+      setBulkError(
+        `${failedUrls.size} of ${items.length} deletes failed. Selected tiles stay selected so you can retry.`,
+      );
+      setSelectedUrls(failedUrls);
+    } else {
+      setSelectedUrls(new Set());
     }
   }
 
@@ -472,6 +495,11 @@ export default function HeroPicker({
               </button>
             )}
           </div>
+          {bulkError && (
+            <div className="mb-2 px-3 py-2 rounded border border-orange/40 bg-orange/10 text-small text-orange">
+              {bulkError}
+            </div>
+          )}
           {selectMode && selectedUrls.size > 0 && (
             <div className="mb-2 px-3 py-2 rounded border border-sand bg-cream-soft/40 flex items-center gap-3 flex-wrap">
               <span className="text-label text-muted tabular-nums">

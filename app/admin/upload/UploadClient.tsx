@@ -753,25 +753,11 @@ export default function UploadClient() {
                     Clear
                   </button>
                   {scopeMode === 'pin' ? (
-                    <button
-                      type="button"
-                      onClick={handleSaveAllToPin}
-                      disabled={
-                        !pinAnchor ||
-                        photos.length === 0 ||
-                        photos.every(p => p.stage === 'reading' || p.stage === 'duplicate' || p.stage === 'error')
-                      }
-                      className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
-                      title={
-                        !pinAnchor
-                          ? 'Pick a pin above first.'
-                          : `Upload all ${photos.length} photo${photos.length === 1 ? '' : 's'} and attach them to ${pinAnchor.name}.`
-                      }
-                    >
-                      {pinAnchor
-                        ? `Save all ${photos.length} to ${pinAnchor.name}`
-                        : 'Pick a pin first'}
-                    </button>
+                    <PinScopeSaveButton
+                      pinAnchor={pinAnchor}
+                      photos={photos}
+                      onSave={handleSaveAllToPin}
+                    />
                   ) : (
                     <button
                       type="button"
@@ -1740,6 +1726,43 @@ type CitySearchResult = {
   lat: number | null;
   lng: number | null;
 };
+
+/** Pin scope action button. Counts saveable photos using the same
+ *  filter handleSaveAllToPin applies, so the label is honest about
+ *  what will actually save. Photos still reading, duplicate, or in
+ *  error don't make it through the save loop. */
+function PinScopeSaveButton({
+  pinAnchor,
+  photos,
+  onSave,
+}: {
+  pinAnchor: PinAnchor | null;
+  photos: Photo[];
+  onSave: () => void | Promise<void>;
+}) {
+  const saveableCount = photos.filter(
+    p => p.hash && p.stage !== 'duplicate' && p.stage !== 'error',
+  ).length;
+  const skippedCount = photos.length - saveableCount;
+  return (
+    <button
+      type="button"
+      onClick={() => void onSave()}
+      disabled={!pinAnchor || saveableCount === 0}
+      className="px-4 py-2 text-small font-medium rounded bg-teal text-white disabled:bg-muted disabled:text-cream-soft"
+      title={
+        !pinAnchor
+          ? 'Pick a pin above first.'
+          : `Upload ${saveableCount} photo${saveableCount === 1 ? '' : 's'} to ${pinAnchor.name}` +
+            (skippedCount > 0
+              ? ` (${skippedCount} skipped: still reading, duplicate, or error).`
+              : '.')
+      }
+    >
+      {pinAnchor ? `Save ${saveableCount} to ${pinAnchor.name}` : 'Pick a pin first'}
+    </button>
+  );
+}
 
 function ScopeModeToggle({
   mode,

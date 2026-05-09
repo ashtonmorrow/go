@@ -2,6 +2,31 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { thumbUrl } from '@/lib/imageUrl';
+
+/** Run async work over an array with a bounded concurrency so we don't
+ *  fire e.g. 60 parallel deletes against Supabase / Storage. Returns
+ *  results in input order. Failures aren't thrown — they're surfaced
+ *  via the worker's own Result-type return so the caller can react
+ *  per-item. */
+async function runWithConcurrency<T, R>(
+  items: T[],
+  concurrency: number,
+  worker: (item: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  const results: R[] = new Array(items.length);
+  let cursor = 0;
+  async function pull(): Promise<void> {
+    while (cursor < items.length) {
+      const i = cursor++;
+      results[i] = await worker(items[i], i);
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => pull()),
+  );
+  return results;
+}
 
 type Source = 'personal' | 'codex' | 'hidden';
 
@@ -101,10 +126,16 @@ export default function PhotosBrowserClient() {
     setFlash(null);
     setError(null);
     try {
+      // Snapshot tiles + ids so concurrent UI updates don't shift the
+      // map underneath the delete loop.
       const tileById = new Map(tiles.map(t => [t.id, t]));
-      const work = ids.map(async id => {
+      const targetIds = [...ids];
+      // Concurrency-limited so 60 selected photos don't fire 60
+      // parallel HTTP requests + Storage deletes + last_photo_at
+      // trigger fires. 5 in flight is plenty fast and well behaved.
+      const results = await runWithConcurrency(targetIds, 5, async id => {
         const t = tileById.get(id);
-        if (!t) return { id, ok: false, error: 'tile not found in current page' };
+        if (!t) return { id, ok: false as const, error: 'tile not found in current page' };
         try {
           if (t.source === 'personal') {
             const res = await fetch('/api/admin/personal-photos', {
@@ -132,7 +163,6 @@ export default function PhotosBrowserClient() {
           };
         }
       });
-      const results = await Promise.all(work);
       const succeeded = results.filter(r => r.ok).length;
       const failed = results.length - succeeded;
       // Drop succeeded ids from the local list so the UI reflects
@@ -288,9 +318,10 @@ export default function PhotosBrowserClient() {
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={t.url}
+                    src={thumbUrl(t.url, { size: 192 }) ?? t.url}
                     alt={t.pinName}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </button>
