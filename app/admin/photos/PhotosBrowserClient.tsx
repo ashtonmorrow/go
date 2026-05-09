@@ -56,6 +56,7 @@ export default function PhotosBrowserClient() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [bulkDeleting, setBulkDeleting] = useState(false);
   const [bulkUnhiding, setBulkUnhiding] = useState(false);
+  const [bulkHiding, setBulkHiding] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
 
   // Load whenever source / q / offset changes. Debounce search input
@@ -119,28 +120,32 @@ export default function PhotosBrowserClient() {
     });
   }
 
-  /** Bulk unhide every selected personal photo. Only meaningful on
-   *  the Hidden tab — pin.images entries can't be hidden, and the
-   *  Personal tab's tiles are already visible. We let the button
-   *  render only on the Hidden tab. */
-  async function bulkUnhide() {
+  /** Bulk set the hidden flag on every selected personal photo. Used
+   *  by the Hidden tab (target=false → unhide) and the Personal tab
+   *  (target=true → hide). Pin.images entries can't be hidden — the
+   *  jsonb shape has no hidden flag — so they're skipped silently
+   *  here and left for the bulk delete path.
+   *
+   *  Tiles that crossed the visibility boundary leave the current
+   *  tab's pool: hide drops them from Personal (they belong on
+   *  Hidden now), unhide drops them from Hidden. Failed tiles stay
+   *  selected for retry. */
+  async function bulkSetHidden(targetHidden: boolean) {
     const ids = [...selected];
     if (!ids.length) return;
-    setBulkUnhiding(true);
+    const setBusy = targetHidden ? setBulkHiding : setBulkUnhiding;
+    setBusy(true);
     setFlash(null);
     setError(null);
     try {
       const tileById = new Map(tiles.map(t => [t.id, t]));
-      const targetIds = ids.filter(id => {
-        const t = tileById.get(id);
-        return t?.source === 'personal';
-      });
+      const targetIds = ids.filter(id => tileById.get(id)?.source === 'personal');
       const results = await runWithConcurrency(targetIds, 5, async id => {
         try {
           const res = await fetch('/api/admin/personal-photos', {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ id, hidden: false }),
+            body: JSON.stringify({ id, hidden: targetHidden }),
           });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
@@ -149,28 +154,27 @@ export default function PhotosBrowserClient() {
           return {
             id,
             ok: false as const,
-            error: e instanceof Error ? e.message : 'unhide failed',
+            error: e instanceof Error ? e.message : 'patch failed',
           };
         }
       });
       const succeeded = results.filter(r => r.ok).length;
       const failedIds = new Set(results.filter(r => !r.ok).map(r => r.id));
-      // Drop unhidden tiles from the Hidden-tab pool — they no longer
-      // belong here. Failed tiles stay so the user can retry.
       setTiles(prev =>
         prev.filter(t => failedIds.has(t.id) || !targetIds.includes(t.id)),
       );
       setTotal(prev => Math.max(0, prev - succeeded));
       setSelected(failedIds);
+      const verb = targetHidden ? 'Hid' : 'Unhid';
       setFlash(
         failedIds.size > 0
-          ? `Unhid ${succeeded}, ${failedIds.size} failed. Selected rows remain.`
-          : `Unhid ${succeeded} photo${succeeded === 1 ? '' : 's'}.`,
+          ? `${verb} ${succeeded}, ${failedIds.size} failed. Selected rows remain.`
+          : `${verb} ${succeeded} photo${succeeded === 1 ? '' : 's'}.`,
       );
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'bulk unhide failed');
+      setError(e instanceof Error ? e.message : 'bulk patch failed');
     } finally {
-      setBulkUnhiding(false);
+      setBusy(false);
     }
   }
 
@@ -318,14 +322,30 @@ export default function PhotosBrowserClient() {
               clear
             </button>
             <span className="ml-auto" />
+            {source === 'personal' && (
+              <button
+                type="button"
+                onClick={() => bulkSetHidden(true)}
+                disabled={bulkHiding || bulkUnhiding || bulkDeleting}
+                className={
+                  'text-small px-3 py-1.5 rounded font-medium ' +
+                  (bulkHiding || bulkUnhiding || bulkDeleting
+                    ? 'bg-cream-soft text-muted cursor-not-allowed'
+                    : 'bg-amber-600/90 text-white hover:bg-amber-700')
+                }
+                title="Suppress selected photos from the auto-pick collage on detail pages. They stay in storage and are still pickable in the per-pin HeroPicker; click Unhide on the Hidden tab to restore."
+              >
+                {bulkHiding ? 'Hiding…' : `Hide ${selected.size}`}
+              </button>
+            )}
             {source === 'hidden' && (
               <button
                 type="button"
-                onClick={bulkUnhide}
-                disabled={bulkUnhiding || bulkDeleting}
+                onClick={() => bulkSetHidden(false)}
+                disabled={bulkHiding || bulkUnhiding || bulkDeleting}
                 className={
                   'text-small px-3 py-1.5 rounded font-medium ' +
-                  (bulkUnhiding || bulkDeleting
+                  (bulkHiding || bulkUnhiding || bulkDeleting
                     ? 'bg-cream-soft text-muted cursor-not-allowed'
                     : 'bg-teal text-white hover:bg-teal/90')
                 }
@@ -337,10 +357,10 @@ export default function PhotosBrowserClient() {
             <button
               type="button"
               onClick={bulkDelete}
-              disabled={bulkDeleting || bulkUnhiding}
+              disabled={bulkDeleting || bulkHiding || bulkUnhiding}
               className={
                 'text-small px-3 py-1.5 rounded font-medium ' +
-                (bulkDeleting || bulkUnhiding
+                (bulkDeleting || bulkHiding || bulkUnhiding
                   ? 'bg-cream-soft text-muted cursor-not-allowed'
                   : 'bg-orange text-white hover:bg-orange/90')
               }
