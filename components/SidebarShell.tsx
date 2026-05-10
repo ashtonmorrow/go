@@ -215,10 +215,13 @@ function NavBody({
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      {/* Top nav — four content-first items in explicit order:
-          Lists (the destination guides), Articles (expandable inline
-          recent-list), Atlas (the data-views wrapper at /atlas), About.
-          The structure is self-evident; no section label needed. */}
+      {/* Top nav — three content-first items: Lists (destination
+          guides), Atlas (data-views wrapper), About. Articles moved
+          to the footer block (May 2026): the home page now mixes
+          articles into the unified feed alongside guides, so a
+          dedicated primary-nav slot for the same content read as
+          duplicate. Articles still live at /articles as a flat link
+          index, just demoted from the rail's hot real estate. */}
       <div className="flex flex-col gap-0.5">
         <Item
           href="/lists"
@@ -226,11 +229,6 @@ function NavBody({
           label="Lists"
           active={pathname === '/lists' || pathname.startsWith('/lists/')}
           onClick={onLinkClick}
-        />
-        <ArticlesItem
-          onClick={onLinkClick}
-          pathname={pathname}
-          entries={articleEntries}
         />
         <Item
           href="/atlas"
@@ -313,11 +311,20 @@ function NavBody({
         </Section>
       )}
 
-      {/* Bottom block: link out to the parent site, plus the quiet
-          legal-and-attribution links. About moved up into the top
-          nav (May 2026 IA refactor); it no longer doubles here. */}
+      {/* Bottom block: link out to the parent site, the Articles index
+          (demoted from primary nav since the home unified feed already
+          surfaces articles alongside guides), plus the quiet legal-and-
+          attribution links. About moved up into the top nav (May 2026
+          IA refactor); it no longer doubles here. */}
       <div className="mt-auto flex flex-col gap-1 pt-4">
         <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" campaign="mike-lee-home" />
+        <Item
+          href="/articles"
+          emoji="📰"
+          label="Articles"
+          active={pathname === '/articles' || pathname.startsWith('/articles/') || pathname.startsWith('/posts/')}
+          onClick={onLinkClick}
+        />
         <Link
           href="/privacy"
           onClick={onLinkClick}

@@ -24,9 +24,9 @@ import { SITE_URL } from '@/lib/seo';
 //   4. Atlas card — single row, low-visual-weight callout
 
 export const metadata: Metadata = {
-  title: 'Mike Lee — Travel notes, guides, and an atlas',
+  title: "Mike Lee — Oh the places you'll go",
   description:
-    "Travel guides, field notes, and a 1,300-city reference atlas from Mike Lee. The writing I would send a friend, plus the dataset underneath.",
+    "Travel notes, lists of places worth returning to, and long-form destination guides. Written from spending the majority of my adult life on the go.",
   alternates: { canonical: SITE_URL },
 };
 
@@ -126,13 +126,12 @@ export default async function HomePage() {
     <article className="max-w-page mx-auto px-5 py-8">
       <header className="mb-10 max-w-prose">
         <h1 className="text-display text-ink-deep leading-none">
-          A working travel atlas
+          Oh the places you&rsquo;ll go
         </h1>
         <p className="mt-3 text-prose text-slate leading-relaxed">
-          Long-form destination guides, field notes from the road, and a
-          reference dataset of every city and curated pin I've collected.
-          The writing leads. The atlas underneath is for when you want to
-          dig.
+          My travel notes, lists of places I felt were worth returning to,
+          and long-form destination guides. All written up from spending
+          the majority of my adult life on the go.
         </p>
         <p className="mt-3 text-small text-muted tabular-nums">{byNumbers}</p>
       </header>
