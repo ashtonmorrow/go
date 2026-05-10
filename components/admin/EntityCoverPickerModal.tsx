@@ -153,13 +153,72 @@ export default function EntityCoverPickerModal({
     }
   }
 
+  /** Remove a city-hero / country-hero tile from the entity's
+   *  hero_photo_urls array (or null the legacy single-URL covers
+   *  hero_image / personal_photo when the tile id matches). The
+   *  underlying photo isn't destroyed — the URL just stops appearing
+   *  in this entity's curated pool. Use this to prune stale picks
+   *  inline instead of having to drill into /admin/cities/[slug]. */
+  async function removeFromHeroes(p: PhotoTile) {
+    if (deletingId) return;
+    if (p.source !== 'city-hero' && p.source !== 'country-hero') return;
+    if (!p.pinSlug) return; // entity slug carried on the tile's pinSlug
+    const ok = window.confirm(
+      'Remove this image from the curated heroes? The image itself stays in storage and the ' +
+        'public page falls back to the next pick (or auto-pick if this was the last one).',
+    );
+    if (!ok) return;
+    setDeletingId(p.id);
+    setError(null);
+    try {
+      const isCity = p.source === 'city-hero';
+      const endpoint = isCity ? '/api/admin/update-city' : '/api/admin/update-country';
+
+      // Build the updated payload. The synthetic id encodes which
+      // column the URL lives in (`<scope>:<slug>:personal`,
+      // `<scope>:<slug>:hero`, or `<scope>:<slug>:<idx>` for the
+      // hero_photo_urls array). Keep the API contract narrow.
+      const fields: Record<string, unknown> = {};
+      if (isCity && p.id.endsWith(':personal')) {
+        fields.personal_photo = null;
+      } else if (isCity && p.id.endsWith(':hero')) {
+        fields.hero_image = null;
+      } else {
+        // hero_photo_urls array entry
+        fields.hero_photo_urls = existingHeroPhotoUrls.filter(u => u !== p.url);
+      }
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ slug: p.pinSlug, fields }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error ?? `failed (${res.status})`);
+      setPhotos(prev => (prev ? prev.filter(t => t.id !== p.id) : prev));
+      // If we just removed the entity's current cover, propagate the
+      // change up so the parent's table thumbnail stops showing it.
+      if (currentCoverUrl && p.url === currentCoverUrl) {
+        const nextHero =
+          'hero_photo_urls' in fields
+            ? (fields.hero_photo_urls as string[])
+            : existingHeroPhotoUrls;
+        onCommit({ coverUrl: nextHero[0] ?? null, heroPhotoUrls: nextHero });
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'remove failed');
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   /** Permanently delete a tile from its source. Two paths matter for
    *  cleanup: personal photos (full row + Storage drop via DELETE
    *  /api/admin/personal-photos) and pin.images entries (array entry +
    *  Storage drop via DELETE /api/admin/pin-image). City and country
-   *  hero entries aren't destructive of underlying photos — they're
-   *  array memberships managed by the per-entity editor — so the picker
-   *  doesn't expose delete on those tiles. */
+   *  hero entries take a separate "remove from heroes" path that drops
+   *  the URL from the entity's hero arrays without destroying the
+   *  underlying photo (see removeFromHeroes above). */
   async function deleteTile(p: PhotoTile) {
     if (deletingId) return;
     if (p.source !== 'personal' && p.source !== 'pin-image') return;
@@ -352,6 +411,8 @@ export default function EntityCoverPickerModal({
                   : p.source === 'pin-image' ? 'Pin'
                   : null;
                 const canDelete = p.source === 'personal' || p.source === 'pin-image';
+                const canRemoveFromHeroes =
+                  p.source === 'city-hero' || p.source === 'country-hero';
                 const isDeleting = deletingId === p.id;
                 return (
                   <div
@@ -433,6 +494,26 @@ export default function EntityCoverPickerModal({
                         }
                       >
                         {isDeleting ? '…' : 'delete'}
+                      </button>
+                    )}
+                    {canRemoveFromHeroes && (
+                      <button
+                        type="button"
+                        onClick={e => {
+                          e.stopPropagation();
+                          void removeFromHeroes(p);
+                        }}
+                        disabled={isDeleting || saving || savingClear}
+                        className={
+                          'absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-medium uppercase tracking-wide bg-amber-600/90 text-white transition-opacity disabled:opacity-50 ' +
+                          (isCurrent
+                            ? 'opacity-100'
+                            : 'opacity-0 group-hover:opacity-100 focus:opacity-100')
+                        }
+                        aria-label="Remove from heroes"
+                        title="Remove this image from the entity's curated heroes. The underlying photo stays in storage; the public page falls back to the next pick."
+                      >
+                        {isDeleting ? '…' : 'remove'}
                       </button>
                     )}
                   </div>

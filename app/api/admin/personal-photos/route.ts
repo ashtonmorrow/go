@@ -72,6 +72,17 @@ type PhotoTile = {
 
 const HARD_LIMIT = 500;
 
+/** Commons URLs were retired from public render and are blocked at the
+ *  hero_photo_urls write boundary (see lib/goAugmentation.ts and
+ *  app/api/admin/update-pin/route.ts). Surfacing them as picker
+ *  candidates is misleading: the user can't save the pick anyway.
+ *  Filter at the source so the picker only shows tiles the user can
+ *  actually use. */
+const COMMONS_HOSTS_RE = /(commons\.wikimedia|upload\.wikimedia)/;
+function isCommonsHostedUrl(url: string | null | undefined): boolean {
+  return !!url && COMMONS_HOSTS_RE.test(url);
+}
+
 /** Same word-boundary check as listsMatchingPlace, but inverted: given a
  *  list name, decide whether a place name appears as a whole word inside
  *  it. So a place "Bangkok" matches the list "bangkok 🇹🇭" (normalized to
@@ -169,6 +180,9 @@ async function fetchPinImageTiles(
       const r = img as { url?: unknown; source?: unknown };
       const u = typeof r.url === 'string' ? r.url : '';
       if (!u) return;
+      // Same write-guard policy: Commons URLs aren't pickable, so
+      // hide them from the candidate pool.
+      if (isCommonsHostedUrl(u)) return;
       tiles.push({
         id: `pin-image:${pinId}:${idx}`,
         url: u,
@@ -344,7 +358,12 @@ export async function GET(req: Request) {
       const cityHeroes: PhotoTile[] = [];
       const seenUrls = new Set<string>();
       const personalPhoto = city.personal_photo;
-      if (typeof personalPhoto === 'string' && personalPhoto && !seenUrls.has(personalPhoto)) {
+      if (
+        typeof personalPhoto === 'string' &&
+        personalPhoto &&
+        !isCommonsHostedUrl(personalPhoto) &&
+        !seenUrls.has(personalPhoto)
+      ) {
         cityHeroes.push({
           id: `city-hero:${citySlug}:personal`,
           url: personalPhoto,
@@ -359,7 +378,12 @@ export async function GET(req: Request) {
         seenUrls.add(personalPhoto);
       }
       const heroImage = city.hero_image;
-      if (typeof heroImage === 'string' && heroImage && !seenUrls.has(heroImage)) {
+      if (
+        typeof heroImage === 'string' &&
+        heroImage &&
+        !isCommonsHostedUrl(heroImage) &&
+        !seenUrls.has(heroImage)
+      ) {
         cityHeroes.push({
           id: `city-hero:${citySlug}:hero`,
           url: heroImage,
@@ -375,7 +399,9 @@ export async function GET(req: Request) {
       }
       const heroArr = Array.isArray(city.hero_photo_urls) ? city.hero_photo_urls : [];
       heroArr.forEach((u, idx) => {
-        if (typeof u !== 'string' || !u || seenUrls.has(u)) return;
+        if (typeof u !== 'string' || !u) return;
+        if (isCommonsHostedUrl(u)) return;
+        if (seenUrls.has(u)) return;
         cityHeroes.push({
           id: `city-hero:${citySlug}:${idx}`,
           url: u,
@@ -436,7 +462,9 @@ export async function GET(req: Request) {
       const seenUrls = new Set<string>();
       const heroArr = Array.isArray(country.hero_photo_urls) ? country.hero_photo_urls : [];
       heroArr.forEach((u, idx) => {
-        if (typeof u !== 'string' || !u || seenUrls.has(u)) return;
+        if (typeof u !== 'string' || !u) return;
+        if (isCommonsHostedUrl(u)) return;
+        if (seenUrls.has(u)) return;
         heroes.push({
           id: `country-hero:${countrySlug}:${idx}`,
           url: u,
