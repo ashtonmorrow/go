@@ -265,7 +265,7 @@ export default async function HomePage() {
 
       <section className="mb-4">
         <Link
-          href="/atlas"
+          href="/cities/map"
           className="group block card p-5 hover:shadow-paper transition-shadow"
         >
           <div className="flex items-baseline gap-3 flex-wrap">
@@ -273,7 +273,7 @@ export default async function HomePage() {
               🧭
             </span>
             <h2 className="text-h3 text-ink-deep group-hover:text-teal transition-colors flex-1 leading-tight">
-              The atlas
+              Open the atlas
             </h2>
             <span className="text-small text-muted tabular-nums">
               {cities.length.toLocaleString()} cities ·{' '}
@@ -282,9 +282,9 @@ export default async function HomePage() {
             </span>
           </div>
           <p className="mt-2 text-prose text-slate leading-snug">
-            The full reference dataset behind the atlas. Browse cities,
-            countries, and curated pins; filter by climate, visa, water,
-            drive-side; flip the world map.
+            Browse the underlying data on the world map. Switch the lens
+            between cities, pins, and countries; filter by climate, visa,
+            water, drive-side; click any marker for the detail page.
           </p>
         </Link>
       </section>

@@ -24,7 +24,7 @@ const TOP_LEVEL_PAGES: SearchItem[] = [
   { key: 'page:home', href: '/', title: 'Home', subtitle: 'Travel notes, guides, and an atlas', kind: 'page' },
   { key: 'page:lists', href: '/lists', title: 'Lists', subtitle: 'Travel guides and saved lists', kind: 'page' },
   { key: 'page:articles', href: '/articles', title: 'Articles', subtitle: 'Field notes and reference pieces', kind: 'page' },
-  { key: 'page:atlas', href: '/atlas', title: 'Atlas', subtitle: 'Cities, countries, pins, world map', kind: 'page' },
+  { key: 'page:atlas', href: '/cities/map', title: 'Atlas', subtitle: 'Cities, countries, pins, world map', kind: 'page' },
   { key: 'page:about', href: '/about', title: 'About', subtitle: 'About this atlas', kind: 'page' },
 ];
 

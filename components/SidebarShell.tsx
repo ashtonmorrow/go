@@ -246,15 +246,17 @@ function NavBody({
           onClick={onLinkClick}
         />
         <Item
-          href="/atlas"
+          href="/cities/map"
           emoji="🧭"
           label="Atlas"
-          // Active on /atlas itself AND on any of the data views the
-          // Atlas wraps. Strangers reading "Atlas" should still see
-          // the nav highlight when they're flipping through Cities or
-          // Pins, since those routes live conceptually under it now.
+          // Atlas points straight at the cities map. The dedicated
+          // /atlas landing was a step-down for people who already
+          // knew they wanted the map; cutting it removes the click
+          // and lets MapScopeSwitcher handle the scope axis (Cities
+          // / Pins / Countries) once the user is on a map. The
+          // active state still lights up across the whole data
+          // layer so "Atlas" reads as the section, not just one URL.
           active={
-            pathname === '/atlas' ||
             pathname.startsWith('/cities') ||
             pathname.startsWith('/countries') ||
             pathname.startsWith('/pins') ||

@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import ViewSwitcher, { type ObjectKey, type ViewKey } from './ViewSwitcher';
+import MapScopeSwitcher from './MapScopeSwitcher';
 
 /**
  * Single global ViewSwitcher mounted by the root layout.
@@ -59,7 +60,14 @@ export default function AppHeader() {
     : undefined;
 
   return (
-    <div className="fixed top-3 right-3 z-40 hidden md:block">
+    <div className="fixed top-3 right-3 z-40 hidden md:flex items-center gap-2">
+      {/* Map-scope switcher — Cities · Pins · Countries — renders only
+          when the current route is one of the three /<scope>/map URLs.
+          Sits to the left of ViewSwitcher so the data-axis (scope)
+          comes before the view-axis (cards/map/table/stats), matching
+          how Mike narrates the navigation: "I want the country map"
+          before "in cards mode." */}
+      <MapScopeSwitcher />
       <ViewSwitcher object={object} current={current} className="shadow-paper" />
     </div>
   );
