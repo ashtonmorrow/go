@@ -1,5 +1,6 @@
 ---
 indexable: false
+featured: true
 title: Bristol Travel Notes and Map
 description: A practical Bristol travel guide and pin map. Where to stay (and the two central hotels to skip), the harbour markets and cathedrals, a self-guided Banksy walking tour with Wikipedia and Google Maps links, the Clifton Suspension Bridge, a Sunday roast by boat at Beese's, and how Bristol fits a London trip.
 published: 2026-05-10

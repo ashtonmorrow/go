@@ -1,5 +1,6 @@
 ---
 indexable: true
+featured: true
 title: Cape Town Travel Notes and Map
 description: A practical Cape Town guide and pin map for hotels, food, markets, coast, mountain, wine, and day trips.
 published: 2026-05-07
@@ -37,17 +38,17 @@ related:
   country: southafrica
 ---
 
-[Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around weather, transport, and where you sleep.
+[Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around safety, weather, transport, and where you sleep.
 
-I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, paid by card almost everywhere, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from the day.
+I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, never used cash, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from my day.
 
-This page is the working version of my Cape Town notes: the planning brief and the pin map in one place. Use it as a way to group days, not as a checklist to finish.
+This page is the working version of my Cape Town notes and pin map in one place. I'd suggest you use it as a way to group days, rather than a checklist to finish.
 
-## Start with transport, safety, and power
+## Start with safety, power, and transport
 
-Cape Town rewards a little caution without needing paranoia. Phone snatching is common enough that I would not walk around navigating with a phone held out in front of me. Step aside, check the route, put the phone away, and move on. At night, I would rather take a short Uber than turn a poorly lit walk into a test of confidence.
+Cape Town rewards a little caution without needing paranoia. Phone snatching is common enough that I wouldn't walk around navigating with a phone in hand. Step aside, check the route, put the phone away, and move on. At night, take a rideshare if you're going between neighborhoods, full stop.
 
-Card payment is the norm in many places, so bring a card with tap-to-pay and a backup. I used very little cash. Uber and Bolt are both useful, and Uber was my default for getting around the city.
+Card payment is the norm, so bring a card with tap-to-pay and a backup. I never had a need or opportunity to use cash. 
 
 Power cuts have been part of South African travel planning in recent years, even when the schedule is less disruptive than older writeups make it sound. I would still ask a hotel whether it has generator or backup power if you need reliable wifi, elevators, or air conditioning for work.
 

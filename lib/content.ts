@@ -140,6 +140,14 @@ export type ListContent = {
   /** Pre-rendered HTML (marked → string). Render with .post-prose styling. */
   bodyHtml: string;
   indexable: boolean;
+  /** Decoupled from `indexable`. `featured: true` puts the list on the
+   *  home page Travel guides section, regardless of whether Google is
+   *  allowed to index it yet. Use this to surface scaffolded guides
+   *  (Madrid, Bristol, Bangkok) on the home before they're polished
+   *  enough to ship to search; conversely, route-map reference indexes
+   *  (Alicante tram stops, Kusttram station guide) stay indexable for
+   *  search but featured: false so they don't pollute the home. */
+  featured: boolean;
   title: string | null;
   /** Short summary used as the meta description and the page subhead. */
   description: string | null;
@@ -255,6 +263,7 @@ const _readListContent = unstable_cache(
       body: bodyMd,
       bodyHtml,
       indexable: data.indexable === true,
+      featured: data.featured === true,
       title: asString(data.title),
       description: asString(data.description),
       heroImage: asString(data.hero_image),
@@ -268,7 +277,9 @@ const _readListContent = unstable_cache(
       related: parseRelated(data.related),
     };
   },
-  ['list-content-v3'],
+  // v4: schema gained `featured` boolean for home-page surfacing,
+  // decoupled from indexable.
+  ['list-content-v4'],
   { revalidate: 86400, tags: ['place-content'] },
 );
 

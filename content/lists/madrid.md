@@ -1,5 +1,6 @@
 ---
 indexable: false
+featured: true
 title: Madrid Travel Notes and Map
 description: A practical Madrid guide and pin map for hotels, markets, food, museums, and an easy sunset walk to the Templo de Debod.
 published: 2026-05-10

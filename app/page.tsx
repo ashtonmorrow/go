@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import type { Metadata } from 'next';
@@ -7,7 +8,6 @@ import { getAllArticleEntries, type ArticleEntry } from '@/lib/articles';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllSavedListsMeta } from '@/lib/savedLists';
-import { thumbUrl } from '@/lib/imageUrl';
 import { SITE_URL } from '@/lib/seo';
 
 // === Home (/) ==============================================================
@@ -42,8 +42,13 @@ type GuideCard = {
 };
 
 /** Read every /content/lists/*.md file, parse frontmatter, return the
- *  ones flagged indexable. Sorted newest-first by published date. */
-async function listIndexableGuides(): Promise<GuideCard[]> {
+ *  ones flagged `featured: true`. Featured is decoupled from
+ *  `indexable` (see lib/content.ts ListContent.featured): featured
+ *  controls home-page surfacing; indexable controls Google. Cape Town
+ *  is both. Madrid / Bristol / Bangkok are featured but not yet
+ *  indexable while their writeups are scaffolded. Route-map indexes
+ *  (Alicante / Kusttram) are indexable but not featured. */
+async function listFeaturedGuides(): Promise<GuideCard[]> {
   const dir = path.join(process.cwd(), 'content', 'lists');
   let entries: string[] = [];
   try {
@@ -62,7 +67,7 @@ async function listIndexableGuides(): Promise<GuideCard[]> {
   );
   return contents
     .filter((x): x is { slug: string; content: ListContent } => !!x)
-    .filter(({ content }) => content.indexable)
+    .filter(({ content }) => content.featured)
     .map(({ slug, content }) => ({
       slug,
       title: content.title ?? slug,
@@ -93,7 +98,7 @@ function pickGuideCover(
 export default async function HomePage() {
   const [guides, articles, pins, cities, countries, listsMeta] =
     await Promise.all([
-      listIndexableGuides(),
+      listFeaturedGuides(),
       getAllArticleEntries(),
       fetchAllPins(),
       fetchAllCities(),
@@ -224,12 +229,16 @@ function GuideCardLink({
     >
       {cover ? (
         <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={thumbUrl(cover, { size: 480 }) ?? cover}
+          {/* next/image rather than <img> so local /public paths
+              ("/images/posts/...") and the remote allowlist (Supabase /
+              Wikimedia / Airtable / etc) all route through the same
+              optimizer and render reliably. */}
+          <Image
+            src={cover}
             alt={guide.heroAlt ?? guide.title}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
       ) : (
@@ -269,12 +278,12 @@ function ArticleCardLink({ item }: { item: ArticleEntry }) {
     >
       {item.heroImage ? (
         <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={item.heroImage}
             alt={item.heroAlt ?? item.title}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>
       ) : (
