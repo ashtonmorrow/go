@@ -1,31 +1,25 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
 import type { Metadata } from 'next';
-import { readListContent, type ListContent } from '@/lib/content';
-import { getAllArticleEntries, type ArticleEntry } from '@/lib/articles';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
-import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { SITE_URL } from '@/lib/seo';
-import VisitedMap from '@/components/VisitedMap';
+import HomeGlobe from '@/components/HomeGlobe';
 
 // === Home (/) ==============================================================
-// Calm catalog landing in Mike's voice. Three bands stacked vertically:
+// Full-bleed 3D globe of every country visited, with a glass-style stats
+// strip floating at the bottom over the map. No "recent writing" feed,
+// no Atlas card — the sidebar handles Lists / Atlas / Articles
+// navigation; the home is purely the lookback hero.
 //
-//   1. Header — "Oh the places you'll go" + intro paragraph + a stats
-//      tile strip (countries visited, cities visited, pins curated,
-//      guides & articles published)
-//   2. Recent travel writing — UNIFIED feed of featured guides AND
-//      articles, sorted newest-first, with a small kind chip on each
-//      card distinguishing "Guide" from "Article"
-//   3. Atlas card — single-row callout linking the data layer
+// Layout, top to bottom:
+//   1. Quiet text header (title + intro), narrow column, above the map
+//   2. Globe — full available width, vh-sized so it dominates the page
+//   3. Floating stats strip overlaid on the bottom edge of the map
 //
-// The unified feed is what made /articles redundant in primary nav —
-// articles surface here alongside guides automatically. A separate
-// /articles flat-link index still exists, demoted to the sidebar
-// footer.
+// The globe is interactive: drag to spin, click any visited country
+// (shaded teal) to open its detail page. Hover lightens the country
+// boundary. No filter cockpit; that lives at /countries/map (reachable
+// via Atlas in the sidebar) with the full interactive setup.
 
 export const metadata: Metadata = {
   title: "Mike Lee — Oh the places you'll go",
@@ -36,146 +30,44 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600;
 
-type GuideCard = {
-  slug: string;
-  title: string;
-  description: string;
-  heroImage: string | null;
-  heroAlt: string | null;
-  publishedAt: string | null;
-};
-
-/** A unified feed entry. Guides and articles render through the same
- *  card component; the `kind` field drives the chip. */
-type FeedItem = {
-  key: string;
-  href: string;
-  title: string;
-  description: string;
-  heroImage: string | null;
-  heroAlt: string | null;
-  publishedAt: string | null;
-  kind: 'guide' | 'article';
-  emoji: string | null;
-};
-
-/** Read every /content/lists/*.md file, parse frontmatter, return the
- *  ones flagged `featured: true`. Featured is decoupled from
- *  `indexable`: featured controls home-page surfacing; indexable
- *  controls Google. Cape Town is both. Madrid / Bristol / Bangkok /
- *  Amsterdam are featured but not yet indexable while their writeups
- *  are being polished. Route-map indexes (Alicante / Kusttram) are
- *  indexable but not featured. */
-async function listFeaturedGuides(): Promise<GuideCard[]> {
-  const dir = path.join(process.cwd(), 'content', 'lists');
-  let entries: string[] = [];
-  try {
-    entries = await fs.readdir(dir);
-  } catch {
-    return [];
-  }
-  const slugs = entries
-    .filter(f => f.endsWith('.md'))
-    .map(f => f.replace(/\.md$/, ''));
-  const contents = await Promise.all(
-    slugs.map(async slug => {
-      const c = await readListContent(slug);
-      return c ? { slug, content: c } : null;
-    }),
-  );
-  return contents
-    .filter((x): x is { slug: string; content: ListContent } => !!x)
-    .filter(({ content }) => content.featured)
-    .map(({ slug, content }) => ({
-      slug,
-      title: content.title ?? slug,
-      description: content.description ?? '',
-      heroImage: content.heroImage,
-      heroAlt: content.heroAlt,
-      publishedAt: content.published,
-    }))
-    .sort((a, b) => {
-      const ad = a.publishedAt ?? '';
-      const bd = b.publishedAt ?? '';
-      if (ad !== bd) return bd.localeCompare(ad);
-      return a.title.localeCompare(b.title);
-    });
-}
-
-/** Pick a hero image for a guide card when the content frontmatter did
- *  not specify one. Falls back to the saved-list's curated cover. */
-function pickGuideCover(
-  guide: GuideCard,
-  meta:
-    | { coverImageUrl?: string | null; coverPhotoUrl?: string | null }
-    | undefined,
-): string | null {
-  return guide.heroImage || meta?.coverImageUrl || meta?.coverPhotoUrl || null;
-}
-
 export default async function HomePage() {
-  const [guides, articles, pins, cities, countries, listsMeta] =
-    await Promise.all([
-      listFeaturedGuides(),
-      getAllArticleEntries(),
-      fetchAllPins(),
-      fetchAllCities(),
-      fetchAllCountries(),
-      fetchAllSavedListsMeta(),
-    ]);
+  const [pins, cities, countries] = await Promise.all([
+    fetchAllPins(),
+    fetchAllCities(),
+    fetchAllCountries(),
+  ]);
 
-  // ---- Stats: numbers that tell the lookback story ----------------------
-  // Countries visited: derived from pins, since the Country type does
-  // not currently carry a `been` field. Any pin with visited=true
-  // contributes its `states_names[0]` to the visited-country set.
-  // Names are lowercased so VisitedMap can look them up against
-  // TopoJSON country names with the same normalization.
-  const visitedCountries = new Set<string>();
+  // ---- Stats ------------------------------------------------------------
+  // Countries visited: derived from pins.visited where statesNames[0]
+  // matches a country in the atlas. Names are lowercased so the globe
+  // can do case-insensitive lookup against the GeoJSON.
+  const visitedCountryNames = new Set<string>();
   let visitedPinCount = 0;
   for (const p of pins) {
     if (!p.visited) continue;
     visitedPinCount++;
     const c = p.statesNames?.[0];
-    if (c) visitedCountries.add(c.toLowerCase());
+    if (c) visitedCountryNames.add(c.toLowerCase());
   }
   const visitedCities = cities.filter(c => c.been).length;
 
-  // ---- Unified feed: guides + articles, newest-first --------------------
-  const feed: FeedItem[] = [
-    ...guides.map(g => ({
-      key: `guide:${g.slug}`,
-      href: `/lists/${g.slug}`,
-      title: g.title,
-      description: g.description,
-      heroImage: pickGuideCover(g, listsMeta.get(g.slug)),
-      heroAlt: g.heroAlt,
-      publishedAt: g.publishedAt,
-      kind: 'guide' as const,
-      emoji: null,
-    })),
-    ...articles.map(a => ({
-      key: `article:${a.key}`,
-      href: a.href,
-      title: a.title,
-      description: a.description,
-      heroImage: a.heroImage,
-      heroAlt: a.heroAlt,
-      publishedAt: a.publishedAt,
-      kind: 'article' as const,
-      emoji: a.emoji,
-    })),
-  ];
-  feed.sort((a, b) => {
-    const ad = a.publishedAt ?? '';
-    const bd = b.publishedAt ?? '';
-    if (ad !== bd) return bd.localeCompare(ad);
-    return a.title.localeCompare(b.title);
-  });
-  const feedShown = feed.slice(0, 12);
+  // Count featured guides + articles inline by reading the content dir.
+  // Avoids importing the bigger getAllArticleEntries / listFeatured
+  // helpers just to count; the home no longer renders their content.
+  const { guidesCount, articlesCount } = await countPublishedContent();
+
+  // Globe needs the full country list to wire click-to-navigate. The
+  // shape is intentionally slim so the bundle the client downloads is
+  // small.
+  const countryRows = countries.map(c => ({
+    name: c.name,
+    slug: c.slug,
+    iso3: c.iso3 ?? null,
+  }));
 
   return (
-    <article className="max-w-page mx-auto px-5 py-8">
-      <header className="mb-8 max-w-prose">
+    <div className="relative w-full">
+      <header className="max-w-page mx-auto px-5 pt-8 pb-4 max-w-prose">
         <h1 className="text-display text-ink-deep leading-none">
           Oh the places you&rsquo;ll go
         </h1>
@@ -186,116 +78,71 @@ export default async function HomePage() {
         </p>
       </header>
 
-      {/* Visited-world map — server-rendered SVG, no client JS. The
-          point is the lookback: where I've been, shaded teal against
-          a quiet ground. Click opens the country map. */}
-      <section className="mb-8">
-        <VisitedMap
-          visitedCountryNames={visitedCountries}
-          visitedCount={visitedCountries.size}
+      {/* Full-bleed globe. vh-sized so the map dominates the screen on
+          desktop; on mobile it shrinks to a comfortable square so the
+          stats strip below it doesn't get pushed off-screen. The map
+          and its overlays live in one relative container so the stats
+          row can absolute-position against the map's bottom edge. */}
+      <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[78vh] bg-cream-soft">
+        <HomeGlobe
+          visitedCountryNames={visitedCountryNames}
+          countries={countryRows}
         />
-      </section>
 
-      {/* Stats tile strip — five tiles. Visited counts come first so the
-          "lookback" reads up top: where I've been, then how much
-          writing has come out of it. */}
-      <section className="mb-12">
-        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          <StatTile
-            label="Countries visited"
-            value={visitedCountries.size}
-            sublabel={`of ${countries.length}`}
-            href="/countries/cards"
-          />
-          <StatTile
-            label="Cities visited"
-            value={visitedCities}
-            sublabel={`of ${cities.length.toLocaleString()}`}
-            // Cities tile routes to the globe view rather than the
-            // cards index. The map is the place where "all the cities
-            // I've been to" reads at a glance, with visited shaded
-            // teal against the planned and unvisited layers.
-            href="/cities/map"
-          />
-          <StatTile
-            label="Pins curated"
-            value={pins.length}
-            sublabel={`${visitedPinCount.toLocaleString()} visited`}
-            href="/pins/cards"
-          />
-          <StatTile
-            label="Guides published"
-            value={guides.length}
-            sublabel="and growing"
-            href="/lists"
-          />
-          <StatTile
-            label="Articles published"
-            value={articles.length}
-            sublabel="and growing"
-            href="/articles"
-          />
-        </ul>
-      </section>
-
-      {/* Unified recent-writing feed. Guides and articles share a card
-          shape; the chip in the corner says which kind. */}
-      {feedShown.length > 0 && (
-        <section className="mb-12">
-          <header className="flex items-baseline justify-between gap-3 mb-4 flex-wrap">
-            <h2 className="text-h2 text-ink-deep">Recent writing</h2>
-            <div className="flex items-center gap-3 text-small">
-              <Link href="/lists" className="text-teal hover:underline">
-                All guides &amp; lists →
-              </Link>
-              <Link href="/articles" className="text-teal hover:underline">
-                All articles →
-              </Link>
-            </div>
-          </header>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {feedShown.map(item => (
-              <li key={item.key}>
-                <FeedCardLink item={item} />
-              </li>
-            ))}
+        {/* Floating stats strip — absolute-positioned across the bottom
+            of the map. Glass treatment (semi-transparent white +
+            backdrop blur) so the globe stays visible behind it. Each
+            tile is a Link into the relevant data view; click a tile,
+            land on the page that breaks the number down. */}
+        <div className="absolute inset-x-0 bottom-3 sm:bottom-5 px-3 sm:px-5 pointer-events-none">
+          <ul
+            className="
+              pointer-events-auto
+              mx-auto max-w-5xl
+              grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3
+            "
+          >
+            <StatTile
+              label="Countries visited"
+              value={visitedCountryNames.size}
+              sublabel={`of ${countries.length}`}
+              href="/countries/cards"
+            />
+            <StatTile
+              label="Cities visited"
+              value={visitedCities}
+              sublabel={`of ${cities.length.toLocaleString()}`}
+              href="/cities/map"
+            />
+            <StatTile
+              label="Pins curated"
+              value={pins.length}
+              sublabel={`${visitedPinCount.toLocaleString()} visited`}
+              href="/pins/cards"
+            />
+            <StatTile
+              label="Guides published"
+              value={guidesCount}
+              sublabel="and growing"
+              href="/lists"
+            />
+            <StatTile
+              label="Articles published"
+              value={articlesCount}
+              sublabel="and growing"
+              href="/articles"
+            />
           </ul>
-        </section>
-      )}
-
-      <section className="mb-4">
-        <Link
-          href="/cities/map"
-          className="group block card p-5 hover:shadow-paper transition-shadow"
-        >
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <span aria-hidden className="text-h3 leading-none">
-              🧭
-            </span>
-            <h2 className="text-h3 text-ink-deep group-hover:text-teal transition-colors flex-1 leading-tight">
-              Open the atlas
-            </h2>
-            <span className="text-small text-muted tabular-nums">
-              {cities.length.toLocaleString()} cities ·{' '}
-              {countries.length} countries ·{' '}
-              {pins.length.toLocaleString()} pins
-            </span>
-          </div>
-          <p className="mt-2 text-prose text-slate leading-snug">
-            Browse the underlying data on the world map. Switch the lens
-            between cities, pins, and countries; filter by climate, visa,
-            water, drive-side; click any marker for the detail page.
-          </p>
-        </Link>
-      </section>
-    </article>
+        </div>
+      </div>
+    </div>
   );
 }
 
 // === Stat tile =============================================================
-// Single tile in the stats strip. Big number, small label below, optional
-// sublabel for context (e.g. "53 of 226"). Whole tile is a link so the
-// reader can drill into the underlying data view.
+// Glass-style card overlaying the globe. Slightly muted text and a
+// translucent background so the map reads through. Links into the
+// matching data or index page.
 function StatTile({
   label,
   value,
@@ -311,12 +158,18 @@ function StatTile({
     <li>
       <Link
         href={href}
-        className="group block card p-4 hover:shadow-paper transition-shadow h-full"
+        className="
+          group block rounded-md
+          bg-white/85 hover:bg-white backdrop-blur-sm
+          border border-white/40
+          shadow-sm hover:shadow-paper
+          px-3 py-2.5 transition-all h-full
+        "
       >
-        <p className="text-h2 text-ink-deep tabular-nums leading-none group-hover:text-teal transition-colors">
+        <p className="text-h3 text-ink-deep tabular-nums leading-none group-hover:text-teal transition-colors">
           {value.toLocaleString()}
         </p>
-        <p className="mt-1.5 text-label text-ink-deep font-medium leading-tight">
+        <p className="mt-1 text-label text-ink-deep font-medium leading-tight">
           {label}
         </p>
         {sublabel && (
@@ -329,65 +182,30 @@ function StatTile({
   );
 }
 
-// === Feed card =============================================================
-// One card shape for both guides and articles. The chip in the corner is
-// the only visual distinction between kinds; same image treatment, same
-// title + description + date layout.
-function FeedCardLink({ item }: { item: FeedItem }) {
-  const date = item.publishedAt ? new Date(item.publishedAt) : null;
-  const dateLabel =
-    date && !Number.isNaN(date.getTime())
-      ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
-      : null;
-  const kindLabel = item.kind === 'guide' ? 'Guide' : 'Article';
+// === Count helpers =========================================================
+// Cheap published-content counters. Avoids re-importing the full
+// listFeaturedGuides / getAllArticleEntries pipelines now that the
+// home no longer renders that content; we only need the numbers.
 
-  return (
-    <Link
-      href={item.href}
-      className="group block card overflow-hidden hover:shadow-paper transition-shadow h-full"
-    >
-      {item.heroImage ? (
-        <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-          <Image
-            src={item.heroImage}
-            alt={item.heroAlt ?? item.title}
-            fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          />
-          <span className="absolute top-2 left-2 pill bg-black/60 text-white border-white/10 backdrop-blur-sm text-micro font-medium uppercase tracking-wider">
-            {kindLabel}
-          </span>
-        </div>
-      ) : (
-        <div className="relative aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
-          {item.emoji ? (
-            <span aria-hidden className="text-h2">
-              {item.emoji}
-            </span>
-          ) : (
-            kindLabel
-          )}
-          <span className="absolute top-2 left-2 pill bg-ink-deep/80 text-white text-micro font-medium uppercase tracking-wider">
-            {kindLabel}
-          </span>
-        </div>
-      )}
-      <div className="p-3">
-        <h3 className="text-ink-deep font-semibold leading-tight group-hover:text-teal transition-colors">
-          {item.title}
-        </h3>
-        {item.description && (
-          <p className="mt-1.5 text-label text-slate leading-snug line-clamp-2">
-            {item.description}
-          </p>
-        )}
-        {dateLabel && (
-          <p className="mt-2 text-micro text-muted uppercase tracking-wider">
-            {dateLabel}
-          </p>
-        )}
-      </div>
-    </Link>
-  );
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
+import { readListContent } from '@/lib/content';
+import { getAllArticleEntries } from '@/lib/articles';
+
+async function countPublishedContent(): Promise<{
+  guidesCount: number;
+  articlesCount: number;
+}> {
+  const dir = path.join(process.cwd(), 'content', 'lists');
+  let files: string[] = [];
+  try {
+    files = await fs.readdir(dir);
+  } catch {
+    files = [];
+  }
+  const slugs = files.filter(f => f.endsWith('.md')).map(f => f.replace(/\.md$/, ''));
+  const contents = await Promise.all(slugs.map(slug => readListContent(slug)));
+  const guidesCount = contents.filter(c => c?.featured).length;
+  const articles = await getAllArticleEntries();
+  return { guidesCount, articlesCount: articles.length };
 }
