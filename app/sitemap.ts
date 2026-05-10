@@ -95,6 +95,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
+  // Per-city /hotels hub pages. Same gate logic as the page itself
+  // (MIN_INDEXABLE_HOTEL_COUNT = 3) — only cities with at least 3
+  // visited hotels in the atlas ship in the sitemap, so we don't
+  // contradict the page's own noindex on thin clusters.
+  const HOTEL_HUB_MIN = 3;
+  const hotelCountByCity = new Map<string, number>();
+  for (const p of pins) {
+    if (p.kind !== 'hotel') continue;
+    for (const cityName of p.cityNames ?? []) {
+      hotelCountByCity.set(cityName, (hotelCountByCity.get(cityName) ?? 0) + 1);
+    }
+  }
+  const hotelHubRoutes: MetadataRoute.Sitemap = cities
+    .filter(c => (hotelCountByCity.get(c.name) ?? 0) >= HOTEL_HUB_MIN)
+    .map(c => ({
+      url: `${SITE_URL}/cities/${c.slug}/hotels`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      // Hotel hubs are higher-intent than things-to-do (commercial
+      // booking-adjacent search), so prioritize them slightly.
+      priority: 0.75,
+    }));
+
   // Same gate as cities — only countries with an indexable content
   // file ship in the sitemap.
   const countryIndexability = await Promise.all(
@@ -151,6 +174,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...listRoutes,
     ...cityRoutes,
     ...thingsToDoRoutes,
+    ...hotelHubRoutes,
     ...countryRoutes,
     ...pinRoutes,
     ...viewRoutes,

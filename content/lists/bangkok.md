@@ -28,7 +28,7 @@ faqs:
   - q: Where should I stay in Bangkok for a first visit?
     a: Sukhumvit is the easiest base for a first trip, with BTS at the door, restaurants, malls, and hotels at every budget. Silom works if you want a more business-district rhythm and proximity to Lumpini Park. Riverside is calmer and better for the old-city temple circuit but more expensive. Avoid Khao San unless you specifically want backpacker Bangkok.
   - q: How many days should I give Bangkok?
-    a: Two to four days covers the temple circuit, one or two markets, the river, and a Chinatown food night without burning out. Add a day if you want a real museum afternoon (Jim Thompson House and the Bangkok National Museum are both worth the time) or a day trip out of the city.
+    a: Two to four days covers the temple circuit, one or two markets, the river, and a Chinatown food night without burning out. Add a day if you want a real museum afternoon (the Jim Thompson House and the Bangkok National Museum are both worth the time) or a day trip out of the city.
   - q: When is the best time to visit Bangkok?
     a: November through February is the cooler-and-drier window; February and March are warm and mostly dry, with afternoons that feel heavier than the temperature suggests. April is the hottest month. May through October is the wet season; afternoon storms are common but rarely all-day.
   - q: Are the floating markets worth it?
@@ -71,14 +71,10 @@ related:
 # - Sukhumvit / Silom / Riverside / Em District / Thong Lo are areas,
 #   not single pins. The pinned hotels in the stay table are Mike's
 #   actual stays.
-# - Pins to consider creating later for richer cross-linking:
-#     · Grand Palace / Wat Phra Kaew (currently no pin; Mike references
-#       it but the Wat Pho and Wat Arun pins exist alongside)
-#     · Chinatown / Yaowarat (the area, with Yaowarat Road as the anchor)
-#     · Bangkok National Museum
-#     · Lumpini Park
-#     · Chao Phraya Express Boat (the cross-river / north-south ferry
-#       service, useful as a transport reference)
+# - All previously-flagged Bangkok pins now exist and are wired:
+#   grand-palace-wat-phra-kaew, lumpini-park, bangkok-national-museum,
+#   yaowarat-bangkok-chinatown, sathorn-pier-chao-phraya-express. All
+#   indexable: false until reviewed.
 ---
 
 [Bangkok](/cities/bangkok) is the entry point for most Thailand trips and it deserves a few days even when the beach is the emotional reason for the trip. The mistake is treating Bangkok like a city you can cross casually by car. Traffic eats afternoons, the heat eats ambition, and the parts of the city worth seeing are spread along the river and the BTS lines, not along whatever route a taxi will improvise.
@@ -107,7 +103,7 @@ If you have a 6 a.m. departure, the easy answer is the [Hyatt Regency Bangkok Su
 
 Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. Between those four you can reach almost anything you want to see without negotiating a tuk-tuk or guessing whether your driver took the long way. Tuk-tuks are fine for the experience once. Agree on the price first and then go back to better transport.
 
-The river is the part most first-time visitors miss. The Chao Phraya Express Boat runs north-south on a regular schedule, the cross-river ferries are a few baht, and the older ceremonial city sits close to the water for a reason. Use the river when the temple circuit is on the plan; you will save an hour and learn the city's geography in the process.
+The river is the part most first-time visitors miss. The [Chao Phraya Express Boat](/pins/sathorn-pier-chao-phraya-express) runs north-south on a regular schedule from Sathorn Pier (the BTS interchange at Saphan Taksin), the cross-river ferries are a few baht, and the older ceremonial city sits close to the water for a reason. Use the river when the temple circuit is on the plan; you will save an hour and learn the city's geography in the process.
 
 ## Where to stay
 
@@ -119,7 +115,7 @@ I pick the base by the kind of trip I want. Sukhumvit is convenient and internat
 | [Hyatt Place Bangkok Sukhumvit 24](/pins/hyatt-place-bangkok-sukhumvit-24) | My usual base. Smaller rooftop pool, decent gym, a 3–4 minute walk to Phrom Phong BTS, and a good laundry place right next door. Phrom Phong puts the Em District at the doorstep | A Hyatt Place, so the room and the breakfast are not the reason you book it |
 | Thong Lo (Thonglor) | The other area I will pick. Dense food scene along Soi 55, [The Commons](/pins/the-commons-thonglor) at Soi 17 ([FOWLMOUTH](/pins/fowlmouth-thecommons-thonglor) for Nashville hot chicken inside it), [She Bar](/pins/she-bar) for a chill Thong Lo night. The [Staybridge Suites](/pins/staybridge-suites-bangkok-thonglor-an-ihg-hotel) works for longer stays in apartment-style suites | Further out on Sukhumvit, so you will use Grab to and from Asoke and Siam more than from Phrom Phong |
 | [Hotel Indigo Bangkok Wireless Road](/pins/hotel-indigo-bangkok-wireless-road-an-ihg-hotel) | Sukhumvit-side, decent rooms, IHG points | The neighborhood blocks closest to the embassy quarter are quieter than the Asoke buzz |
-| Silom | Compact, MRT and BTS interchange at Sala Daeng, Lumpini Park at the door | Less of an evening neighborhood than Sukhumvit if that matters |
+| Silom | Compact, MRT and BTS interchange at Sala Daeng, [Lumpini Park](/pins/lumpini-park) at the door | Less of an evening neighborhood than Sukhumvit if that matters |
 | [Royal Orchid Sheraton](/pins/royal-orchid-sheraton-bangkok) (Riverside) | Decent older property on the Chao Phraya. The river-facing breakfast terrace is genuinely the best part of the stay; you eat with the boats moving past | Riverside hotels generally skew older; you take a Grab to most of central Bangkok, and it is further from the airport |
 | [Khao San Road](/pins/khao-san-road) | Backpacker Bangkok if that is the trip you want | Loud, chaotic, and not where you want to land if you are tired and have luggage |
 
@@ -141,7 +137,9 @@ The whole sequence runs about 6 km west to east on the BTS Sukhumvit line. You c
 
 ## The temple circuit
 
-The three temples most first-time visitors should see all sit close to the river, which is what makes a half-day version of this work. Start with Wat Phra Kaew and the Grand Palace inside the royal precinct (long trousers and covered shoulders required, and they enforce it). Walk south along the river to [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school. Take the cross-river ferry from the Tha Tien pier to [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) on the Thonburi side. That is the canonical sequence and the one I would do first.
+The three temples most first-time visitors should see all sit close to the river, which is what makes a half-day version of this work. Start with the [Grand Palace and Wat Phra Kaew](/pins/grand-palace-wat-phra-kaew) inside the royal precinct (long trousers and covered shoulders required, and they enforce it; sarongs are loaned at the gate against a deposit). Walk south along the river to [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school. Take the cross-river ferry from the Tha Tien pier to [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) on the Thonburi side. That is the canonical sequence and the one I would do first.
+
+If you want the historical-context version of the temple morning, the [Bangkok National Museum](/pins/bangkok-national-museum) is a 5-minute walk from the Grand Palace and the right complement to it: same era, deeper context, far fewer crowds. Open Wednesday through Sunday; closed Mondays and Tuesdays.
 
 If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add: a 318-step climb to a city view that earns its keep at sunset.
 
@@ -149,7 +147,7 @@ If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden M
 
 For markets, choose by purpose. [Chatuchak Weekend Market](/pins/chatuchak-weekend-market) is the Saturday and Sunday shopping market and the one I would actually plan around. It is hot, crowded, and the right size; go in the morning before it gets unbearable. The malls covered above are the air-conditioned alternative when the weather is bad.
 
-Chinatown is where I would go hungry. The Yaowarat strip turns into one of the best street-food scenes in Asia after dark. Walk it slowly, eat in three or four places, and come back another night for the rest. The food makes the case for itself.
+Chinatown is where I would go hungry. [Yaowarat Road](/pins/yaowarat-bangkok-chinatown) turns into one of the best street-food scenes in Asia after dark. Walk it slowly, eat in three or four places, and come back another night for the rest. The food makes the case for itself. The MRT Wat Mangkon station drops you in the middle of it.
 
 The floating markets outside the city are visually interesting and worth a short visit if you have the time, but they have largely become visitor circuits rather than working markets. I would not build a half-day around one on a short trip; do Chatuchak and Chinatown first.
 

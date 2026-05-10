@@ -658,8 +658,11 @@ export default async function CityPage({
             googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
             pins={cityListPins}
           />
-          {/* Cross-link to the dedicated /things-to-do landing — same
-              pin set in a focused, planning-query-friendly framing. */}
+          {/* Cross-link to the dedicated /things-to-do and /hotels
+              landings. Same pin set, narrowed for planning queries.
+              Both URLs gate their own indexability on a minimum pin /
+              hotel count, so a city with no hotels still links here
+              (the hotels page will noindex itself politely). */}
           <p className="mt-4 text-prose text-slate">
             See these as a focused list:{' '}
             <Link
@@ -668,6 +671,17 @@ export default async function CityPage({
             >
               Things to do in {city.name} →
             </Link>
+            {cityListPins.some(p => p.kind === 'hotel') && (
+              <>
+                {' · '}
+                <Link
+                  href={`/cities/${city.slug}/hotels`}
+                  className="text-teal hover:underline"
+                >
+                  Hotels in {city.name} →
+                </Link>
+              </>
+            )}
           </p>
         </>
       )}

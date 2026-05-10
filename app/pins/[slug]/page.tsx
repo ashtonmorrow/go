@@ -172,6 +172,25 @@ export default async function PinPage({
   // Rank the bbox candidates by haversine distance and take the 4 nearest
   // inside the 5km soft radius. Empty array → the block hides entirely.
   const relatedPins = computeRelatedPins(pin, bboxCandidates);
+
+  // Sibling hotels for the in-cluster cross-link strip on hotel detail
+  // pages. Filter the same bbox pool to kind=hotel, sort by personal
+  // rating then visited, take up to 3. The strip also surfaces a link
+  // to the city's hotel hub (/cities/<slug>/hotels) regardless of
+  // whether siblings exist — that hub page is the cluster anchor.
+  const siblingHotels: Pin[] =
+    pin.kind === 'hotel'
+      ? bboxCandidates
+          .filter(p => p.kind === 'hotel' && p.id !== pin.id)
+          .sort((a, b) => {
+            if (a.visited !== b.visited) return a.visited ? -1 : 1;
+            const ra = a.personalRating ?? 0;
+            const rb = b.personalRating ?? 0;
+            if (ra !== rb) return rb - ra;
+            return a.name.localeCompare(b.name);
+          })
+          .slice(0, 3)
+      : [];
   const countrySlug = countryRecord?.slug ?? null;
   const flagUrl = flagCircle(countryRecord?.iso2 ?? null);
 
@@ -958,6 +977,73 @@ export default async function PinPage({
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* "More hotels Mike has reviewed in <city>" — only on hotel
+          detail pages, only when the pin has a known city. Compounds
+          the city's hotel cluster: 3 sibling cards + a link to the
+          dedicated /cities/<slug>/hotels hub. The hub page handles its
+          own indexability gate (noindex below 3 hotels), so showing
+          the link from a hotel detail page is safe regardless of how
+          many siblings the bbox surfaced. */}
+      {pin.kind === 'hotel' && cityName && citySlug && (siblingHotels.length > 0 || true) && (
+        <section className="mt-12 pt-8 border-t border-sand">
+          <h2 className="text-h2 text-ink-deep mb-1">More hotels in {cityName} I have reviewed</h2>
+          <p className="text-prose text-muted mb-4">
+            Other places in {cityName} I have actually slept at, with the same kind of room-and-breakfast notes you just read.
+          </p>
+          {siblingHotels.length > 0 && (
+            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {siblingHotels.map(h => (
+                <li key={h.id}>
+                  <Link
+                    href={`/pins/${h.slug ?? h.id}`}
+                    className="block card overflow-hidden hover:shadow-paper transition-shadow"
+                  >
+                    {h.images?.[0]?.url ? (
+                      <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={thumbUrl(h.images[0].url, { size: 320 }) ?? h.images[0].url}
+                          alt=""
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                        {h.visited && (
+                          <span className="absolute top-1.5 right-1.5 pill bg-teal text-white text-micro">
+                            ✓
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
+                        No photo
+                      </div>
+                    )}
+                    <div className="p-2.5">
+                      <h3 className="text-ink-deep font-medium leading-tight truncate text-small">
+                        {h.name}
+                      </h3>
+                      {h.personalRating != null && (
+                        <p className="mt-0.5 text-label text-muted tabular-nums">
+                          {h.personalRating}/5
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="mt-4 text-prose">
+            <Link
+              href={`/cities/${citySlug}/hotels`}
+              className="text-teal hover:underline"
+            >
+              See every hotel I have reviewed in {cityName} →
+            </Link>
+          </p>
         </section>
       )}
     </article>

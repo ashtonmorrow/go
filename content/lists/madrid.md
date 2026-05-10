@@ -43,10 +43,10 @@ related:
 #     · museo-del-ferrocarril-de-madrid (Train Museum, Mike's favorite)
 #     · casa-de-campo-madrid (the park west of the city)
 #     · el-rastro (Sunday flea market, anchored at Plaza de Cascorro)
-# - One pin still missing if a separate Hotel Indigo Madrid - Gran Vía
-#   listing is wanted. Mike mentioned it in passing; the Atocha Hotel
-#   Tapestry by Hilton replaces the earlier "Hilton Canopy" placeholder
-#   in the where-to-stay table.
+# - Hotel Indigo Madrid - Gran Vía now exists as its own pin and is
+#   linked in the where-to-stay table. Atocha Hotel Tapestry by Hilton
+#   replaced the earlier "Hilton Canopy" placeholder for the La Latina
+#   side.
 # - The Prado link points at the UNESCO "Paseo del Prado and Buen
 #   Retiro" pin since that is the pin we have. If a standalone Museo del
 #   Prado pin is created later, swap the link.
@@ -69,7 +69,7 @@ I pick a base by which kind of day I want to have. Gran Vía gets you walking di
 | Area | Why it works | The trade-off |
 |---|---|---|
 | Gran Vía | Times Square energy, metro at the door, walking distance to Sol and the museum cluster | Crowds at every meal, and you pay for the central address |
-| Hotel Indigo Madrid - Gran Vía | Decent if you do want to be on Gran Vía and like the brand | Gran Vía is loud and busy by definition |
+| [Hotel Indigo Madrid - Gran Vía](/pins/hotel-indigo-madrid-gran-via-an-ihg-hotel) | Decent IHG-brand option one block off Gran Vía, near Plaza del Carmen and the Sol-Callao triangle | Gran Vía is loud and busy by definition |
 | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Same Gran Vía area; was a solid mid-range pick | I have not stayed since the recent renovation, so confirm the room before booking |
 | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way if you want the Sol and Gran Vía buzz at night |
 | La Latina toward Lavapiés | My personal favorite area for neighborhood restaurants and smaller hotels | Older buildings, more stairs, less polished than the central hotels |
