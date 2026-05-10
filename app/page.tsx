@@ -211,7 +211,11 @@ export default async function HomePage() {
             label="Cities visited"
             value={visitedCities}
             sublabel={`of ${cities.length.toLocaleString()}`}
-            href="/cities/cards"
+            // Cities tile routes to the globe view rather than the
+            // cards index. The map is the place where "all the cities
+            // I've been to" reads at a glance, with visited shaded
+            // teal against the planned and unvisited layers.
+            href="/cities/map"
           />
           <StatTile
             label="Pins curated"
