@@ -5,6 +5,7 @@ import { extractExifMeta } from '@/lib/exifGps';
 import { convertHeicIfNeeded } from '@/lib/heicConvert';
 import { sha256OfFile } from '@/lib/photoHash';
 import { supabase } from '@/lib/supabase';
+import { isVideoFile, videoPosterFromFile } from '@/lib/admin/videoPoster';
 
 // Per-batch ceiling. Sized to fit a typical "everything from one city"
 // export from Apple Photos without crashing the browser on EXIF reads.
@@ -36,6 +37,15 @@ type Photo = {
   height?: number;
   uploadedUrl?: string;
   duplicateOf?: { pinId: string; pinName: string; pinSlug: string | null };
+  /** 'image' (default) or 'video'. Drives ingest branching, the upload
+   *  step (extra poster upload), and the save-batch payload. */
+  mediaType?: 'image' | 'video';
+  /** Captured first-frame JPEG. Only set when mediaType='video' and the
+   *  client-side capture succeeded. Uploaded as a sibling object so the
+   *  renderer has a still to show on tiles. */
+  posterBlob?: Blob;
+  posterUrl?: string;
+  durationSeconds?: number;
 };
 
 type CandidatePlace = {
@@ -157,6 +167,41 @@ export default function UploadClient() {
     const ingestedHashes: string[] = [];
     for (const photo of newPhotos) {
       try {
+        const isVideo = isVideoFile(photo.file);
+        if (isVideo) {
+          // Video branch: skip HEIC + EXIF (HEIC is image-only; EXIF
+          // metadata for QuickTime/MP4 boxes is mostly empty in the
+          // wild). Pull dims + duration from the captured poster
+          // pass instead. Hash the raw video file directly.
+          const hash = await sha256OfFile(photo.file);
+          const meta = await videoPosterFromFile(photo.file);
+          ingestedHashes.push(hash);
+          // Without GPS we always land in 'no-gps'; the city/pin
+          // anchor flow lets the user attach the clip to a place.
+          setPhotos(prev =>
+            prev.map(p =>
+              p.id === photo.id
+                ? {
+                    ...p,
+                    hash,
+                    width: meta?.width,
+                    height: meta?.height,
+                    durationSeconds: meta?.durationSeconds,
+                    posterBlob: meta?.posterBlob,
+                    mediaType: 'video',
+                    // Replace the object-URL preview with the poster
+                    // blob so the tile shows a real still rather than
+                    // a video element with no controls.
+                    preview: meta?.posterBlob
+                      ? URL.createObjectURL(meta.posterBlob)
+                      : p.preview,
+                    stage: 'no-gps',
+                  }
+                : p,
+            ),
+          );
+          continue;
+        }
         const { file: workingFile } = await convertHeicIfNeeded(photo.file);
         const hash = await sha256OfFile(workingFile);
         const meta = await extractExifMeta(workingFile);
@@ -176,6 +221,7 @@ export default function UploadClient() {
                   lng: meta.lng,
                   width: dims?.width,
                   height: dims?.height,
+                  mediaType: 'image',
                   stage: meta.lat == null || meta.lng == null ? 'no-gps' : 'ready',
                 }
               : p,
@@ -225,7 +271,12 @@ export default function UploadClient() {
     (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
       e.stopPropagation();
-      const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/') || /\.(heic|heif)$/i.test(f.name));
+      const files = Array.from(e.dataTransfer.files).filter(
+        f =>
+          f.type.startsWith('image/') ||
+          f.type.startsWith('video/') ||
+          /\.(heic|heif|mp4|mov|webm|m4v)$/i.test(f.name),
+      );
       void ingestFiles(files);
     },
     [ingestFiles],
@@ -458,20 +509,30 @@ export default function UploadClient() {
     setCandidateState(cand.id, { status: 'saving' });
 
     const uploadedUrls = new Map<string, string>();
+    // Per-photo poster URL — only set for video uploads where the
+    // client-side capture succeeded. Lets the renderer show a still
+    // tile + lightbox <video> once the row lands in personal_photos.
+    const uploadedPosterUrls = new Map<string, string>();
     for (const photo of assignedPhotos) {
       if (photo.uploadedUrl) {
         uploadedUrls.set(photo.id, photo.uploadedUrl);
+        if (photo.posterUrl) uploadedPosterUrls.set(photo.id, photo.posterUrl);
         continue;
       }
       try {
         setPhotos(prev => prev.map(p => (p.id === photo.id ? { ...p, stage: 'uploading' } : p)));
 
         // Step 1: ask the server for a one-time signed upload token (small JSON,
-        // safely under any payload limit).
+        // safely under any payload limit). The endpoint extends extFromMime
+        // for video MIME types so .mov / .mp4 / .webm get the right path
+        // suffix.
+        const contentType =
+          photo.file.type ||
+          (photo.mediaType === 'video' ? 'video/mp4' : 'application/octet-stream');
         const tokenRes = await fetch('/api/admin/upload-photo', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ hash: photo.hash, contentType: photo.file.type }),
+          body: JSON.stringify({ hash: photo.hash, contentType }),
         });
         const tokenData = await tokenRes.json().catch(() => ({}));
         if (!tokenRes.ok) {
@@ -483,16 +544,57 @@ export default function UploadClient() {
         const { error: uploadErr } = await supabase.storage
           .from('personal-photos')
           .uploadToSignedUrl(tokenData.path, tokenData.token, photo.file, {
-            contentType: photo.file.type || 'application/octet-stream',
+            contentType,
             upsert: true,
           });
         if (uploadErr) throw new Error(uploadErr.message);
 
         uploadedUrls.set(photo.id, tokenData.publicUrl);
+
+        // Step 3 (video only): upload the captured poster JPG as a
+        // sibling object. Hashed independently so re-uploading the
+        // same video re-uses the same poster file. Failure here is
+        // non-fatal — the video row still saves; the renderer falls
+        // back to drawing the first frame from the video tag.
+        let posterPublicUrl: string | undefined;
+        if (photo.mediaType === 'video' && photo.posterBlob) {
+          try {
+            const posterFile = new File([photo.posterBlob], `${photo.hash}-poster.jpg`, {
+              type: 'image/jpeg',
+            });
+            const posterHash = await sha256OfFile(posterFile);
+            const posterTokenRes = await fetch('/api/admin/upload-photo', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ hash: posterHash, contentType: 'image/jpeg' }),
+            });
+            const posterTokenData = await posterTokenRes.json().catch(() => ({}));
+            if (posterTokenRes.ok) {
+              const { error: posterErr } = await supabase.storage
+                .from('personal-photos')
+                .uploadToSignedUrl(posterTokenData.path, posterTokenData.token, posterFile, {
+                  contentType: 'image/jpeg',
+                  upsert: true,
+                });
+              if (!posterErr && typeof posterTokenData.publicUrl === 'string') {
+                const u: string = posterTokenData.publicUrl;
+                posterPublicUrl = u;
+                uploadedPosterUrls.set(photo.id, u);
+              }
+            }
+          } catch (e) {
+            console.warn('[UploadClient] poster upload failed:', e);
+          }
+        }
         setPhotos(prev =>
           prev.map(p =>
             p.id === photo.id
-              ? { ...p, stage: 'uploaded', uploadedUrl: tokenData.publicUrl }
+              ? {
+                  ...p,
+                  stage: 'uploaded',
+                  uploadedUrl: tokenData.publicUrl,
+                  posterUrl: posterPublicUrl ?? p.posterUrl,
+                }
               : p,
           ),
         );
@@ -520,6 +622,9 @@ export default function UploadClient() {
         height: p.height ?? null,
         bytes: p.file.size ?? null,
         caption: null,
+        mediaType: p.mediaType === 'video' ? ('video' as const) : ('image' as const),
+        posterUrl: uploadedPosterUrls.get(p.id) ?? null,
+        durationSeconds: p.durationSeconds ?? null,
         existingPinId: cand.existingPinId ?? null,
         newPinFromCandidate: cand.existingPinId ? null : cand.place,
       }));
@@ -719,7 +824,7 @@ export default function UploadClient() {
             ref={fileInputRef}
             type="file"
             multiple
-            accept="image/*,.heic,.heif"
+            accept="image/*,video/*,.heic,.heif,.mp4,.mov,.webm,.m4v"
             className="hidden"
             onChange={e => {
               if (e.target.files) void ingestFiles(Array.from(e.target.files));
@@ -856,8 +961,20 @@ function PhotoCard({ photo, onRemove }: { photo: Photo; onRemove: () => void }) 
 
   return (
     <div className={'rounded border overflow-hidden bg-white ' + (stage === 'duplicate' ? 'border-slate/40 opacity-70' : 'border-sand')}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={photo.preview} alt="" className="w-full aspect-square object-cover bg-cream-soft" />
+      <div className="relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photo.preview} alt="" className="w-full aspect-square object-cover bg-cream-soft" />
+        {photo.mediaType === 'video' && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 flex items-center justify-center"
+          >
+            <span className="w-9 h-9 rounded-full bg-black/55 text-white flex items-center justify-center text-sm">
+              ▶
+            </span>
+          </span>
+        )}
+      </div>
       <div className="p-2 text-label">
         <div className="flex items-center justify-between gap-2">
           <span className={'pill ' + tag.cls}>{tag.label}</span>

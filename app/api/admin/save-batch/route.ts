@@ -17,6 +17,17 @@ type Assignment = {
   height: number | null;
   bytes: number | null;
   caption: string | null;
+  /** 'image' (default) or 'video'. Older clients omit this; treat as
+   *  'image' for backward compatibility. */
+  mediaType?: 'image' | 'video';
+  /** Required when mediaType='video': public URL of the captured
+   *  poster JPG. Renderer falls back to drawing the first video frame
+   *  if absent (which can happen when the client-side capture failed
+   *  on a corrupt or hardware-decode-only clip). */
+  posterUrl?: string | null;
+  /** Whole seconds, rounded. Mostly informational today; could surface
+   *  as a "0:42" badge later. */
+  durationSeconds?: number | null;
 
   /** One of these three identifies the destination pin: */
   existingPinId?: string | null;
@@ -97,6 +108,7 @@ export async function POST(req: Request) {
         continue;
       }
 
+      const mediaType = a.mediaType === 'video' ? 'video' : 'image';
       const { error: insertErr } = await sb.from('personal_photos').insert({
         pin_id: pinId,
         url: a.photoUrl,
@@ -108,6 +120,9 @@ export async function POST(req: Request) {
         width: a.width,
         height: a.height,
         bytes: a.bytes,
+        media_type: mediaType,
+        poster_url: mediaType === 'video' ? (a.posterUrl ?? null) : null,
+        duration_seconds: mediaType === 'video' ? (a.durationSeconds ?? null) : null,
       });
 
       if (insertErr && (insertErr as any).code !== '23505') {

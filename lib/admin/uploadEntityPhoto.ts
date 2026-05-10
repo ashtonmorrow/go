@@ -29,6 +29,7 @@ import { sha256OfFile } from '@/lib/photoHash';
 import { convertHeicIfNeeded } from '@/lib/heicConvert';
 import { extractExifMeta } from '@/lib/exifGps';
 import { supabase } from '@/lib/supabase';
+import { isVideoFile, videoPosterFromFile } from '@/lib/admin/videoPoster';
 
 export type UploadEntityKind = 'pin' | 'city' | 'country';
 
@@ -63,11 +64,6 @@ export type UploadEntityPhotoOptions = {
   onStage?: (stage: 'preparing' | 'signing' | 'uploading' | 'saving') => void;
 };
 
-function isVideoFile(file: File): boolean {
-  if (file.type && file.type.startsWith('video/')) return true;
-  return /\.(mp4|mov|webm|m4v)$/i.test(file.name);
-}
-
 async function imageDimensions(
   file: File,
 ): Promise<{ width: number; height: number } | null> {
@@ -84,87 +80,6 @@ async function imageDimensions(
       resolve(null);
     };
     img.src = url;
-  });
-}
-
-/** Capture a poster frame from a video file. Loads the video into a
- *  hidden <video> element, seeks to ~0.5s (or 10% of duration if
- *  shorter), draws to a canvas, exports as JPEG. Returns the poster
- *  blob plus the video's intrinsic dimensions and duration. Returns
- *  null on any failure — caller should treat that as a non-fatal
- *  upload (Storage write still succeeds; the personal_photos row
- *  gets posterUrl=null and the renderer falls back to a generic
- *  video icon). */
-async function videoPosterFromFile(file: File): Promise<{
-  posterBlob: Blob;
-  width: number;
-  height: number;
-  durationSeconds: number;
-} | null> {
-  return new Promise(resolve => {
-    const video = document.createElement('video');
-    video.preload = 'metadata';
-    video.muted = true;
-    video.playsInline = true;
-    const objectUrl = URL.createObjectURL(file);
-    let settled = false;
-    const finish = (
-      result: { posterBlob: Blob; width: number; height: number; durationSeconds: number } | null,
-    ) => {
-      if (settled) return;
-      settled = true;
-      URL.revokeObjectURL(objectUrl);
-      resolve(result);
-    };
-    video.onloadedmetadata = () => {
-      const dur = Number.isFinite(video.duration) ? video.duration : 0;
-      // Seek to 0.5s when the clip is long enough; otherwise 10% in.
-      const seekTo = dur > 1 ? 0.5 : Math.max(0, dur * 0.1);
-      try {
-        video.currentTime = seekTo;
-      } catch {
-        finish(null);
-      }
-    };
-    video.onseeked = () => {
-      try {
-        const w = video.videoWidth;
-        const h = video.videoHeight;
-        if (!w || !h) {
-          finish(null);
-          return;
-        }
-        const canvas = document.createElement('canvas');
-        canvas.width = w;
-        canvas.height = h;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) {
-          finish(null);
-          return;
-        }
-        ctx.drawImage(video, 0, 0, w, h);
-        canvas.toBlob(
-          blob => {
-            if (!blob) {
-              finish(null);
-              return;
-            }
-            finish({
-              posterBlob: blob,
-              width: w,
-              height: h,
-              durationSeconds: Math.round(video.duration || 0),
-            });
-          },
-          'image/jpeg',
-          0.85,
-        );
-      } catch {
-        finish(null);
-      }
-    };
-    video.onerror = () => finish(null);
-    video.src = objectUrl;
   });
 }
 
