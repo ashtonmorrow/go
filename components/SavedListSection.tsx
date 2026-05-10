@@ -80,6 +80,23 @@ type Props = {
    *  user picks. Pins not in the array fall through to `initialSort` /
    *  the dropdown selection. */
   pinOrder?: string[];
+  /** Group pins into per-kind subsections (Attractions, Restaurants,
+   *  Shopping, Parks, Hotels, Transit) instead of rendering one flat
+   *  grid. Each non-empty kind gets its own H3 heading, anchor id, and
+   *  per-section "Load more" button. The section heading is what gives
+   *  the page the "[Restaurants / Attractions / ...] in <city>" search
+   *  surfaces a flat grid cannot. Default false. */
+  groupByKind?: boolean;
+  /** Pin kinds to drop entirely when `groupByKind` is on. The city
+   *  detail page passes ['hotel'] because hotels have their own
+   *  dedicated /cities/<slug>/hotels hub; duplicating them here would
+   *  steal authority from that cluster. Ignored when groupByKind is
+   *  false. */
+  excludeKinds?: string[];
+  /** Per-section initial show count when groupByKind=true. Defaults
+   *  to 8: keeps the page scannable while still showing real options
+   *  per category. Each section has its own "Load more" affordance. */
+  groupedSectionLimit?: number;
 };
 
 const SORT_OPTIONS: { key: SavedListSortKey; label: string }[] = [
@@ -99,6 +116,39 @@ const KIND_ICON: Record<string, string> = {
   shopping: '□',
   transit: '↔',
 };
+
+/** Section ordering for groupByKind=true. Order is planning-relevance:
+ *  attractions first because that is the question most readers come
+ *  with, then restaurants, then shopping (markets and the like), then
+ *  parks, then hotels, then transit. The page can drop kinds via
+ *  `excludeKinds`. Anything not in this list (an unrecognized kind
+ *  string) lands in the "Other" bucket at the end. */
+const KIND_ORDER: readonly string[] = [
+  'attraction',
+  'restaurant',
+  'shopping',
+  'park',
+  'hotel',
+  'transit',
+];
+
+/** Plural section heading per kind. Tuned for SEO surface match:
+ *  "Restaurants in Madrid" reads as a query, "Attractions in Madrid"
+ *  reads as a query. */
+const KIND_SECTION_HEADING: Record<string, string> = {
+  attraction: 'Attractions',
+  restaurant: 'Restaurants',
+  shopping: 'Markets and shopping',
+  park: 'Parks and gardens',
+  hotel: 'Hotels',
+  transit: 'Getting around',
+};
+
+/** URL-safe anchor id for each section. Used for the table-of-contents
+ *  links and for browser-level deep-linking from external pages. */
+function kindAnchorId(kind: string): string {
+  return kind.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
 
 function kindIcon(kind: string | null | undefined): string {
   return kind ? KIND_ICON[kind] ?? '•' : '•';
@@ -202,9 +252,16 @@ export default function SavedListSection({
   showSort = false,
   initialSort = 'rated',
   pinOrder = [],
+  groupByKind = false,
+  excludeKinds = [],
+  groupedSectionLimit = 8,
 }: Props) {
   const [sort, setSort] = useState<SavedListSortKey>(initialSort);
   const [shown, setShown] = useState(pageSize);
+  // Per-section expanded state. Tracks kinds the user has clicked
+  // "Show all" on so each section's overflow expands independently
+  // without affecting siblings. Only used when groupByKind=true.
+  const [expandedKinds, setExpandedKinds] = useState<Set<string>>(new Set());
 
   // Re-sort when the user picks a new sort key. useMemo keeps SSR HTML stable
   // until hydration; reset paging on sort change so the user sees the new top.
@@ -215,7 +272,37 @@ export default function SavedListSection({
     [pins, sort, pinOrder],
   );
 
+  // Group sorted pins by kind, in the canonical KIND_ORDER. Pins
+  // without a kind, or with a kind not in KIND_ORDER, fall into an
+  // "other" bucket appended at the end. Kinds in `excludeKinds`
+  // drop out entirely. Memoized so re-sort + filter only runs when
+  // sort or input changes.
+  const grouped = useMemo(() => {
+    if (!groupByKind) return null;
+    const excludeSet = new Set(excludeKinds);
+    const buckets = new Map<string, SavedListPin[]>();
+    for (const p of sorted) {
+      const k = (p.kind ?? '').toLowerCase();
+      if (excludeSet.has(k)) continue;
+      const bucket = KIND_ORDER.includes(k) ? k : 'other';
+      if (!buckets.has(bucket)) buckets.set(bucket, []);
+      buckets.get(bucket)!.push(p);
+    }
+    // Emit in canonical order, filtering empty buckets. "Other" lands
+    // at the end if anything fell through.
+    const ordered: { kind: string; pins: SavedListPin[] }[] = [];
+    for (const k of KIND_ORDER) {
+      const arr = buckets.get(k);
+      if (arr && arr.length > 0) ordered.push({ kind: k, pins: arr });
+    }
+    const other = buckets.get('other');
+    if (other && other.length > 0) ordered.push({ kind: 'other', pins: other });
+    return ordered;
+  }, [sorted, groupByKind, excludeKinds]);
+
   if (pins.length === 0) return null;
+  // Flat-mode visible window. Grouped mode ignores these and uses
+  // its own per-section logic below.
   const visible = sorted.slice(0, shown);
   const remaining = sorted.length - shown;
 
@@ -271,119 +358,169 @@ export default function SavedListSection({
         </div>
       </header>
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-        {visible.map(p => (
-          <li key={p.id}>
-            <Link
-              href={p.slug ? `/pins/${p.slug}` : `/pins/${p.id}`}
-              className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
-            >
-              {p.cover ? (
-                <div className="relative flex-shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={thumbUrl(p.cover, { size: 80 }) ?? p.cover}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-md object-cover bg-cream-soft border border-sand"
-                  />
-                  <CommonsAttributionBadge url={p.cover} />
-                  {p.visited && (
-                    <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full bg-teal text-white text-[10px] leading-4 text-center border border-white">
-                      ✓
-                    </span>
+      {grouped ? (
+        <div className="space-y-10">
+          {grouped.map(({ kind, pins: kPins }) => {
+            const isExpanded = expandedKinds.has(kind);
+            const limit = isExpanded ? kPins.length : groupedSectionLimit;
+            const sectionVisible = kPins.slice(0, limit);
+            const sectionRemaining = kPins.length - limit;
+            const heading = KIND_SECTION_HEADING[kind] ?? kindLabel(kind) ?? 'Other';
+            return (
+              <div key={kind} id={kindAnchorId(kind)}>
+                <h3 className="text-h3 text-ink-deep mb-1">{heading}</h3>
+                <p className="mb-4 text-label text-muted tabular-nums">
+                  {kPins.length} {kPins.length === 1 ? 'pin' : 'pins'}
+                  {kPins.filter(p => p.visited).length > 0 && (
+                    <> · {kPins.filter(p => p.visited).length} visited</>
                   )}
-                </div>
-              ) : (
-                <div
-                  aria-hidden
-                  className="w-10 h-10 flex-shrink-0 rounded-md bg-cream-soft border border-sand flex items-center justify-center text-base text-muted"
-                >
-                  {kindIcon(p.kind)}
-                </div>
-              )}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-ink-deep font-semibold leading-tight truncate text-small group-hover:text-teal transition-colors">
-                  {p.name}
-                  </h3>
-                  {p.visited && (
-                    <span className="text-micro text-teal font-medium uppercase tracking-wider flex-shrink-0">
-                      Been
-                    </span>
-                  )}
-                </div>
-                {(p.kind || p.city || p.country) && (
-                  <p className="mt-0.5 text-label text-muted truncate">
-                    {[kindLabel(p.kind), p.city, p.country].filter(Boolean).join(' · ')}
-                  </p>
-                )}
-                {p.rating != null && p.rating > 0 && (
-                  <p
-                    className="mt-0.5 text-label"
-                    aria-label={`${p.rating} stars`}
-                  >
-                    {'⭐'.repeat(p.rating)}
-                    {p.visitYear ? (
-                      <span className="ml-1.5 text-muted text-micro tabular-nums">
-                        · {p.visitYear}
+                </p>
+                <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+                  {sectionVisible.map(p => (
+                    <li key={p.id}>{renderPinCard(p)}</li>
+                  ))}
+                </ul>
+                {sectionRemaining > 0 && (
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedKinds(prev => {
+                          const next = new Set(prev);
+                          next.add(kind);
+                          return next;
+                        })
+                      }
+                      className="text-label text-teal hover:underline"
+                    >
+                      Show all {kPins.length} {heading.toLowerCase()}
+                      <span className="text-muted ml-1.5 tabular-nums">
+                        ({sectionRemaining} more)
                       </span>
-                    ) : null}
-                  </p>
+                    </button>
+                  </div>
                 )}
-                {p.review && (
-                  <p className="mt-0.5 text-label text-slate leading-snug line-clamp-2">
-                    {p.review}
-                  </p>
-                )}
-                {(() => {
-                  // Kind-aware price pill: restaurants get their tier
-                  // ($-$$$$); attractions / parks / etc keep the Free
-                  // pill when free is true; hotels skip the pill row
-                  // (their pricing lives in the kind-specific section
-                  // on the detail page).
-                  const showTier = p.kind === 'restaurant' && !!p.priceTier;
-                  const showFree = p.kind !== 'restaurant' && p.kind !== 'hotel' && p.free === true;
-                  if (!showTier && !showFree && !p.unesco) return null;
-                  return (
-                    <div className="mt-1 flex flex-wrap gap-1">
-                      {p.unesco && (
-                        <span className="pill bg-teal/10 text-teal text-micro">UNESCO</span>
-                      )}
-                      {showTier && (
-                        <span className="pill bg-teal/10 text-teal text-micro font-mono">
-                          {p.priceTier}
-                        </span>
-                      )}
-                      {showFree && (
-                        <span className="pill bg-cream-soft border border-sand text-micro text-slate">
-                          Free
-                        </span>
-                      )}
-                    </div>
-                  );
-                })()}
               </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {remaining > 0 && (
-        <div className="mt-5 text-center">
-          <button
-            type="button"
-            onClick={() => setShown(s => s + pageSize)}
-            className="px-4 py-2 rounded-md border border-sand text-small text-ink-deep hover:border-slate hover:bg-cream-soft transition-colors"
-          >
-            Load {Math.min(pageSize, remaining)} more
-            <span className="text-muted ml-2 tabular-nums">({remaining} left)</span>
-          </button>
+            );
+          })}
         </div>
+      ) : (
+        <>
+          <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+            {visible.map(p => (
+              <li key={p.id}>{renderPinCard(p)}</li>
+            ))}
+          </ul>
+
+          {remaining > 0 && (
+            <div className="mt-5 text-center">
+              <button
+                type="button"
+                onClick={() => setShown(s => s + pageSize)}
+                className="px-4 py-2 rounded-md border border-sand text-small text-ink-deep hover:border-slate hover:bg-cream-soft transition-colors"
+              >
+                Load {Math.min(pageSize, remaining)} more
+                <span className="text-muted ml-2 tabular-nums">({remaining} left)</span>
+              </button>
+            </div>
+          )}
+        </>
       )}
     </section>
+  );
+}
+
+/** Single pin card. Extracted so the flat and grouped render paths share
+ *  the same markup; styling and pill rules stay in one place. */
+function renderPinCard(p: SavedListPin) {
+  // Kind-aware price pill: restaurants get their tier ($-$$$$);
+  // attractions / parks / etc keep the Free pill when free is true;
+  // hotels skip the pill row (their pricing lives in the kind-specific
+  // section on the detail page).
+  const showTier = p.kind === 'restaurant' && !!p.priceTier;
+  const showFree =
+    p.kind !== 'restaurant' && p.kind !== 'hotel' && p.free === true;
+  return (
+    <Link
+      href={p.slug ? `/pins/${p.slug}` : `/pins/${p.id}`}
+      className="group card p-2.5 flex items-center gap-3 hover:shadow-paper transition-shadow"
+    >
+      {p.cover ? (
+        <div className="relative flex-shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={thumbUrl(p.cover, { size: 80 }) ?? p.cover}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={40}
+            height={40}
+            className="w-10 h-10 rounded-md object-cover bg-cream-soft border border-sand"
+          />
+          <CommonsAttributionBadge url={p.cover} />
+          {p.visited && (
+            <span className="absolute -top-1 -right-1 h-4 min-w-4 px-1 rounded-full bg-teal text-white text-[10px] leading-4 text-center border border-white">
+              ✓
+            </span>
+          )}
+        </div>
+      ) : (
+        <div
+          aria-hidden
+          className="w-10 h-10 flex-shrink-0 rounded-md bg-cream-soft border border-sand flex items-center justify-center text-base text-muted"
+        >
+          {kindIcon(p.kind)}
+        </div>
+      )}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2">
+          <h3 className="text-ink-deep font-semibold leading-tight truncate text-small group-hover:text-teal transition-colors">
+            {p.name}
+          </h3>
+          {p.visited && (
+            <span className="text-micro text-teal font-medium uppercase tracking-wider flex-shrink-0">
+              Been
+            </span>
+          )}
+        </div>
+        {(p.kind || p.city || p.country) && (
+          <p className="mt-0.5 text-label text-muted truncate">
+            {[kindLabel(p.kind), p.city, p.country].filter(Boolean).join(' · ')}
+          </p>
+        )}
+        {p.rating != null && p.rating > 0 && (
+          <p className="mt-0.5 text-label" aria-label={`${p.rating} stars`}>
+            {'⭐'.repeat(p.rating)}
+            {p.visitYear ? (
+              <span className="ml-1.5 text-muted text-micro tabular-nums">
+                · {p.visitYear}
+              </span>
+            ) : null}
+          </p>
+        )}
+        {p.review && (
+          <p className="mt-0.5 text-label text-slate leading-snug line-clamp-2">
+            {p.review}
+          </p>
+        )}
+        {(showTier || showFree || p.unesco) && (
+          <div className="mt-1 flex flex-wrap gap-1">
+            {p.unesco && (
+              <span className="pill bg-teal/10 text-teal text-micro">UNESCO</span>
+            )}
+            {showTier && (
+              <span className="pill bg-teal/10 text-teal text-micro font-mono">
+                {p.priceTier}
+              </span>
+            )}
+            {showFree && (
+              <span className="pill bg-cream-soft border border-sand text-micro text-slate">
+                Free
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+    </Link>
   );
 }

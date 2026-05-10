@@ -259,6 +259,10 @@ export default async function ThingsToDoPage({ params }: Props) {
           pageSize={48}
           showSort
           initialSort="rated"
+          groupByKind
+          // Drop hotels (own hub at /cities/<slug>/hotels) and
+          // transit (airport / station pins are not "things to do").
+          excludeKinds={['hotel', 'transit']}
         />
       )}
     </article>
