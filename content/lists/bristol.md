@@ -11,7 +11,7 @@ hero_image: ""
 hero_alt: ""
 
 guide_cards:
-  title: How I would use this Bristol map
+  title: Planning Bristol
   intro: Bristol is the underrated half of a London week. Pair it with Bath, ride the direct train in from Paddington, and use the Marriott Royal area as your base so the museums, harbour, and bar streets are all on foot.
   cards:
     - title: Treat Bristol as the London add-on

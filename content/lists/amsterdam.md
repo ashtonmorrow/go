@@ -11,7 +11,7 @@ hero_image: ""
 hero_alt: ""
 
 guide_cards:
-  title: How I would use this Amsterdam map
+  title: Planning Amsterdam
   intro: Land at Schiphol, ride a train into town from the platform under the airport, and accept that the canals are pricey. The Netherlands has the best regional rail in Europe, so basing outside Amsterdam (or in Zuid) and tapping a bank card on every leg often wins.
   cards:
     - title: Schiphol is the easy arrival
@@ -69,78 +69,92 @@ related:
 #   later, the pin would be a generic Hoofddorp area marker.
 ---
 
-[Amsterdam](/cities/amsterdam) Schiphol can feel overwhelming the first time you walk through it, but the airport is one of the easier major arrivals in Europe. The train station is directly under the terminal, so once you've cleared customs and pulled your bag off the belt, you take an escalator down and you're on a platform. Fifteen minutes later you're at [Amsterdam Centraal](/pins/amsterdam-centraal-station). That's the whole airport-to-city experience.
+[Amsterdam](/cities/amsterdam) is more compact than it looks on a map. The city is shaped like a wheel, with [Amsterdam Centraal](/pins/amsterdam-centraal-station) at the hub and the [seventeenth-century canal ring](/pins/seventeenth-century-canal-ring-area-of-amsterdam-inside-the-singelgracht) radiating out from it. That geometry matters for how you pick a base, where the museums and food sit, and how often you actually walk versus take a tram. The other thing worth knowing up front: the Dutch national rail network is the best in Europe, which makes basing outside the city and riding in a real option, not a compromise.
 
-The city itself is shaped like a wheel, with Centraal at the hub and the [seventeenth-century canal ring](/pins/seventeenth-century-canal-ring-area-of-amsterdam-inside-the-singelgracht) radiating out from it. That geography matters for picking a base.
+## On this page
 
-## Getting in from Schiphol
-
-[Amsterdam Airport Schiphol](/pins/amsterdam-airport-schiphol) sits about fifteen kilometers southwest of the city. From the arrivals hall, follow signs to "Trains" or "Spoor"; the escalator drops you onto the NS platforms. Sprinter (the local service) and Intercity trains both run to Centraal in about fifteen minutes, with departures every few minutes day and night.
-
-Tap a contactless bank card or phone wallet at the entry gate and again at the exit gate at Centraal. That's the OVpay system, rolled out across NS, GVB (Amsterdam's metro/trams), and the regional buses; you don't need a paper ticket and you don't need the older OV-chipkaart. Fare to Centraal is about €5–6, charged per kilometer.
-
-If your hotel is near Amsterdam Zuid station, take the train there directly instead of going to Centraal first; some Schiphol services stop at Zuid before continuing.
-
-## Where to stay
-
-I've stayed central once or twice. It's pricey for what you get; €200-plus a night for a small canal-house room is normal. The convenience of being inside the canal ring is real, but with the Dutch rail system being as good as it is, I'm usually fine staying further out and riding in.
-
-| Hotel | Why it works | The trade-off |
-|---|---|---|
-| [Kimpton De Witt Amsterdam](/pins/kimpton-de-witt-amsterdam) | The central pick when I do stay in town. About a four-minute walk to Centraal, IHG points, the building has character | Usually €200+, often more in summer |
-| [Crowne Plaza Amsterdam - South](/pins/crowne-plaza-amsterdam-south-an-ihg-hotel) (Zuid) | Modern, business-district, normally around €100 a night with reasonable IHG points value. The lobby has a Japanese restaurant that's a fair use of IHG dining credit, though I wouldn't pay cash for it | Zuid is a sterile glass-tower district. You ride the train or metro to most of the things you came for |
-| [Hotel Indigo The Hague](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) (basing outside) | If Amsterdam is overpriced, base in The Hague and ride the Intercity in. About 50 minutes door to door, prettier room for the same money | You commit a transit hour to your "Amsterdam" days. For a longer trip the math works |
-| [Crowne Plaza Utrecht - Central Station](/pins/crowne-plaza-utrecht-central-station-an-ihg-hotel) (basing outside) | Same play with Utrecht. Trains run every fifteen minutes, the ride is about 30 minutes, and Utrecht is a real city in its own right | Slightly less character than The Hague; the upside is the shorter train |
-| [Holiday Inn Express Rotterdam - Central Station](/pins/holiday-inn-express-rotterdam-central-station-by-ihg) (basing outside) | The third basing option. Rotterdam is the modern-architecture counterpart to Amsterdam's heritage core; about 40 minutes by Intercity | Furthest of the three, but the cheapest hotels and a different kind of city |
-
-The thing I would not do is book a "Schiphol airport hotel" in **Hoofddorp**. The marketing makes them sound airport-adjacent; in practice they're a separate town several kilometers south of the airport, and you take a shuttle or short train to the terminal anyway. If you want airport convenience, stay at one of the hotels actually attached to Schiphol Plaza. If you want value, base in The Hague, Utrecht, or Rotterdam instead.
-
-## Getting around once you're in town
-
-Amsterdam runs on three networks that all accept the same contactless tap.
-
-**NS** is the national rail. You'll use it for the Schiphol run, the Zaanse Schans day trip, and any inter-city ride to The Hague, Utrecht, Rotterdam, or further. Tap in and out at the station gates.
-
-**GVB** runs Amsterdam's metro, trams, and city buses. Tap on at the entry pole, tap off at the exit pole. The trams are the workhorse for the canal ring and the museum quarter; the metro is faster between Centraal and Zuid.
-
-**Regional buses** (Connexxion, EBS, Arriva) cover the rest. Same tap, same gates.
-
-All of it charges per kilometer with a small boarding fee, and all of it accepts contactless cards or phone wallets directly. You do not need to buy anything in advance. The OV-chipkaart still exists for residents but visitors should just tap a bank card.
-
-## Zaanse Schans is the windmill day
-
-The single coolest thing within easy reach of Amsterdam is [Zaanse Schans](/pins/zaanse-schans), an open-air collection of preserved 17th and 18th century working windmills along the Zaan river in Zaandam. It looks complicated to get to and it isn't.
-
-From Centraal, take the NS Sprinter towards Uitgeest. Get off at **Zaandijk-Zaanse Schans**. About 17 minutes, one tap in at Centraal, one tap out at Zaandijk. From the station it's a 10-minute walk: cross the river bridge and the windmills appear on your left.
-
-Entry to the village is free; individual windmills and museums charge admission if you want to go inside. I'd build a half-day around it: morning train out, walk the windmills, eat at one of the cafés on site, train back by mid-afternoon.
-
-If you'd rather not commit a half-day to the trip, [Brouwerij 't IJ](/pins/brouwerij-t-ij) keeps a windmill on the Amsterdam side. It's a craft brewery built at the foot of the De Gooyer windmill in Amsterdam-Oost, and the taproom is a pleasant place to drink a beer with the windmill turning above you.
-
-## Herring, Foodhallen, and a free boat ride
-
-If it's herring season (roughly late May through summer for Hollandse nieuwe), get one. [Rob Wigboldus](/pins/rob-wigboldus-fishmonger) on Zoutsteeg, just off Damrak, is a tiny standing-only stall that's been in the same family for decades. Order it with chopped onion and pickle, eat it on the bench outside the alley, take a photo if you must.
-
-For groups that can't agree on dinner, [Foodhallen](/pins/foodhallen) in Oud-West is the easy answer. It's a covered hall in a converted tram depot with two dozen food stalls, a bar in the middle, and enough variety that the picky eaters and the adventurous ones both leave fed.
-
-The free thing I always do at least once: take the [Buiksloterweg ferry](/pins/buiksloterweg-ferry-amsterdam) from the docks behind Centraal across the IJ to Amsterdam-Noord. It runs every few minutes, takes about five, and costs nothing. The other side of the river is an easy walking afternoon, and I'll usually pick up a herring and something to drink at Centraal first and eat them on the boat. It's the cheapest distinctive thing in the city.
-
-## The Van Gogh, the Rijks, and the museums to actually book
-
-The [Van Gogh Museum](/pins/van-gogh-museum) is a touristy pick I'd still make. The collection is well-curated, the building is fine, and an hour and a half is the right length for it. The catch: **you must reserve a timed entry online in advance.** Walk-ups are turned away. They post the rule in seven languages at the entrance and the staff still spend most of the day explaining it to people who tried.
-
-The [Rijksmuseum](/pins/rijksmuseum) next door is the broader Dutch-art collection. Same booking advice; the queue without a reservation is its own attraction.
-
-For something different, [NEMO Science Museum](/pins/nemo-science-museum) (the green ship-shaped building near Centraal) is the family-friendly pick, and [Micropia](/pins/micropia) at the zoo is a small museum dedicated to microorganisms that punches well above its size.
-
-## What I would skip or pass on
-
-I'd pass on [De Poezenboot](/pins/de-poezenboot), the cat rescue boat on Singel. The concept is charming and the cause is genuine, but the line is always longer than the time it's worth. I've walked past a dozen times and never gone in.
-
-I'd skip the cigar-and-cheese-shaped boat tours that get sold from sidewalk clipboards. The architecture and small-boat tours are categorically better and not much more expensive.
-
-And I'd not stay in Hoofddorp.
+* [When to go](#when-to-go)
+* [Getting to and from Schiphol](#getting-to-and-from-schiphol)
+* [Getting around once you're in town](#getting-around-once-youre-in-town)
+* [Where to stay](#where-to-stay)
+* [Zaanse Schans is the windmill day](#zaanse-schans-is-the-windmill-day)
+* [Herring, ferry, and Foodhallen](#herring-ferry-and-foodhallen)
+* [The canal boat tour](#the-canal-boat-tour)
+* [Museums to book in advance](#museums-to-book-in-advance)
 
 ## When to go
 
-May through early September is the main tourist window. Late May to August is herring season. The canals freeze rarely now; if they do, the city skates on them, but plan for rain in any month. The light in late June is famously long.
+| Window | Months | What to expect |
+|---|---|---|
+| Peak | May to early September | Long days, the canals at their best, herring season from late May. Hotel prices are at their highest and the central city is busy. |
+| Shoulder | April, September, October | The light is still good, prices ease, museums and markets are easier. Pack a layer; the wind off the IJ has weight. |
+| Quiet and dark | November to March | Short days, rain or sleet in most months, occasional canal-skating cold snap. The museums and cafes carry the trip in this window. |
+
+The light in late June is famously long; sunset can be after 22:00. Rain is possible in any month, so pack accordingly.
+
+## Getting to and from Schiphol
+
+[Amsterdam Airport Schiphol](/pins/amsterdam-airport-schiphol) sits about fifteen kilometers southwest of the city, and it is one of the easier major airport arrivals in Europe because the train station is directly under the terminal. Customs, bags, escalator down to **Spoor**, and you are on a platform.
+
+Trains run to [Amsterdam Centraal](/pins/amsterdam-centraal-station) every few minutes, day and night, taking about fifteen minutes. Sprinter (the local) and Intercity both stop there. Tap a contactless bank card or phone wallet at the entry gate at Schiphol and again at the exit gate at Centraal. That is the OVpay system. Fare is about €5–6, charged per kilometer.
+
+If your hotel is near Amsterdam Zuid station, take the train there directly instead of going to Centraal first; some Schiphol services stop at Zuid before continuing.
+
+## Getting around once you're in town
+
+Three networks, one tap. Bank card or phone wallet works on all of them, no paper ticket and no OV-chipkaart needed. Charged per kilometer with a small boarding fee.
+
+| Network | Covers | How to pay |
+|---|---|---|
+| **NS** | National rail. Schiphol run, Zaanse Schans, and Intercity to The Hague, Utrecht, Rotterdam | Tap in and out at station gates |
+| **GVB** | Amsterdam metro, trams, and city buses. The trams are the workhorse inside the canal ring; the metro is faster between Centraal and Zuid | Tap on at the entry pole, tap off at the exit pole |
+| **Regional buses** (Connexxion, EBS, Arriva) | Suburbs and nearby cities | Same tap |
+
+## Where to stay
+
+Central canal-house rooms are pricey for what you get. €200+ for a small room is normal, and the convenience of being inside the canal ring is real but not always worth the spread. Given how good Dutch rail is, basing further out is a fair option, not a punishment.
+
+| Where | Hotel | Why pick it | Trade-off |
+|---|---|---|---|
+| Central canal ring | [Kimpton De Witt Amsterdam](/pins/kimpton-de-witt-amsterdam) | About a 4-minute walk to Centraal, IHG points, characterful building | Usually €200+, more in summer |
+| Amsterdam Zuid | [Crowne Plaza Amsterdam South](/pins/crowne-plaza-amsterdam-south-an-ihg-hotel) | Modern, around €100/night, decent IHG points value. Lobby Japanese restaurant works as IHG dining credit | Sterile glass-tower district; you ride the train or metro to everything |
+| The Hague (50 min by IC) | [Hotel Indigo The Hague](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | Prettier room for the money, The Hague is a real city in its own right | You commit a transit hour to your Amsterdam days |
+| Utrecht (30 min by IC) | [Crowne Plaza Utrecht Central](/pins/crowne-plaza-utrecht-central-station-an-ihg-hotel) | Shorter commute than The Hague, Utrecht is worth its own time | Slightly less character than The Hague |
+| Rotterdam (40 min by IC) | [Holiday Inn Express Rotterdam Central](/pins/holiday-inn-express-rotterdam-central-station-by-ihg) | Cheapest of the three basing options. Rotterdam is the modernist counterweight to Amsterdam | Furthest of the three; you ride longer |
+
+**Hoofddorp is not Schiphol.** The "Schiphol airport hotels" marketed in Hoofddorp are several kilometers south of the airport in a separate town. You take a shuttle or short train to the terminal anyway. If you want airport convenience, stay at one of the hotels actually attached to Schiphol Plaza. If you want value, base in The Hague, Utrecht, or Rotterdam.
+
+## Zaanse Schans is the windmill day
+
+The single coolest thing within easy reach of Amsterdam is [Zaanse Schans](/pins/zaanse-schans), an open-air collection of preserved 17th and 18th century working windmills along the Zaan river in Zaandam. It looks complicated to get to and it is not.
+
+From Centraal, take the NS Sprinter toward Uitgeest. Get off at **Zaandijk-Zaanse Schans**. About 17 minutes, one tap in at Centraal, one tap out at Zaandijk. From the station it is a 10-minute walk: cross the river bridge and the windmills appear on your left.
+
+Entry to the village is free; individual windmills and museums charge admission if you want to go inside. I would build a half-day around it: morning train out, walk the windmills, eat at one of the cafés on site, train back by mid-afternoon.
+
+If you would rather not commit a half-day, [Brouwerij 't IJ](/pins/brouwerij-t-ij) keeps a windmill on the Amsterdam side. It is a craft brewery built at the foot of the De Gooyer windmill in Amsterdam-Oost, and the taproom is a pleasant place to drink a beer with the windmill turning above you.
+
+## Herring, ferry, and Foodhallen
+
+The free thing I always do at least once: take the [Buiksloterweg ferry](/pins/buiksloterweg-ferry-amsterdam) from the docks behind Centraal across the IJ to Amsterdam-Noord. It runs every few minutes, takes about five, and costs nothing. The other side of the river is an easy walking afternoon, and I will usually pick up a herring and something to drink at Centraal first and eat them on the boat. It is the cheapest distinctive thing in the city.
+
+If it is herring season (roughly late May through summer for Hollandse nieuwe), get one. [Rob Wigboldus](/pins/rob-wigboldus-fishmonger) on Zoutsteeg, just off Damrak, is a tiny standing-only stall that has been in the same family for decades. Order it with chopped onion and pickle, eat it on the bench outside the alley.
+
+For groups that cannot agree on dinner, [Foodhallen](/pins/foodhallen) in Oud-West is the easy answer. A covered hall in a converted tram depot with two dozen food stalls, a bar in the middle, and enough variety that the picky eaters and the adventurous ones both leave fed.
+
+## The canal boat tour
+
+Yes, do one. The classic Amsterdam visitor activity that is actually worth doing. Pick deliberately: a small-boat or architecture-themed tour beats the big-boat sightseeing run, and they cost about the same. Spend ten minutes researching beforehand and book online.
+
+Two things to skip on the canals. Do not buy a ticket from someone with a clipboard on the sidewalk near Centraal; the operators upsell and the boats are mediocre. And [De Poezenboot](/pins/de-poezenboot), the cat rescue boat on Singel, is a charming concept with a real cause, but the line is always longer than the time it is worth. Walk past, donate online if you care, keep going.
+
+## Museums to book in advance
+
+The two big ones at Museumplein both require online timed entry. The booking rule is the part that catches first-time visitors out: walk-ups are turned away, and the staff spend most of the day explaining this to people who tried.
+
+| Museum | What it is | Booking | Time on site |
+|---|---|---|---|
+| [Van Gogh Museum](/pins/van-gogh-museum) | Touristy pick I would still make. Collection is dense and well-curated | **Required online** | ~1.5 hours |
+| [Rijksmuseum](/pins/rijksmuseum) | The broader Dutch-art collection next door. The queue without a reservation is its own attraction | **Required online** | 2–3 hours |
+| [NEMO Science Museum](/pins/nemo-science-museum) | The green ship-shaped building near Centraal. Family-friendly | Walk-up OK | 2 hours |
+| [Micropia](/pins/micropia) | A small museum at the zoo dedicated to microorganisms. Punches above its size | Walk-up OK | 1 hour |

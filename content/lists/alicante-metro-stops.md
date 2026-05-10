@@ -9,7 +9,7 @@ authors:
 route_map: alicante
 
 guide_cards:
-  title: How I would use the Alicante tram
+  title: Using the Alicante tram
   intro: The tram is one reason Alicante works better as a base than it looks on the map. You can stay near the old town, Postiguet, or the rail station, then ride north to wider beaches and smaller coastal stops without renting a car. Treat the map as orientation, not a timetable — check TRAM d'Alacant before traveling for current service, works, transfers, and ticket rules.
   cards:
     - title: Best first ride

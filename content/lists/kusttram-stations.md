@@ -9,7 +9,7 @@ authors:
 route_map: kusttram
 
 guide_cards:
-  title: How I would use this list
+  title: Riding the Kusttram
   intro: This is a working list, not a challenge to ride every stop. De Lijn describes the Kusttram as serving 67 stops; this atlas has station pins for the ones worth saving. Browse the coast, pick a section, and link through to the places already in the atlas.
   cards:
     - title: Good base

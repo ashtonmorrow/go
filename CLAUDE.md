@@ -73,6 +73,8 @@ The published travel guides live in `/content/lists/<slug>.md` (the long-form Ca
 
 **Featured vs indexable.** Two boolean flags on list frontmatter, decoupled. `featured: true` puts the list on the home-page guides feed. `indexable: true` lets Google index it. Use featured to surface a scaffolded guide on the home before its writeup is polished; flip indexable only after the editorial review. Reference utilities (Alicante tram-stop index, Kusttram station guide, Balkan green markets) are indexable but not featured.
 
+**Section titles for guide_cards.** Don't title the block "How I would use this <City> map." The phrasing reads choppy ("this Madrid map" stutters) and edgy ("how I would" performs personality). Use a flat, neutral heading instead: "Planning <City>" for destination guides, "Using <route>" / "Riding <route>" for transit indexes. The intro paragraph beneath the H2 carries Mike's voice; the H2 itself should read like a normal section heading.
+
 **Authoring-notes block.** Every list/city scaffold ends with an HTML-comment block (`# Authoring notes (kept here, not rendered): ...`) inside the closing frontmatter fence. Use it for: pins still to create, soi/address numbers to verify, follow-up cross-links, why a particular pin is linked instead of a more obvious candidate. These notes don't render; they're how Mike picks up the trail when he comes back to edit.
 
 **Indexable gate.** New scaffolds ship with `indexable: false` until Mike reviews voice, facts, and the hero image. Page metadata is gated on `indexable: true` in the page's own metadata generator (see `/cities/[slug]/page.tsx` and the lists equivalent), and the sitemap reads the same flag. Don't flip indexable in a scaffolder commit.

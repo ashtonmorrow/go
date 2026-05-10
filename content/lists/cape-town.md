@@ -11,7 +11,7 @@ hero_image: /images/posts/cape-town-travel-brief.jpg
 hero_alt: Table Mountain rising above the Cape Town city bowl at midday.
 
 guide_cards:
-  title: How I would use this Cape Town map
+  title: Planning Cape Town
   intro: Cape Town is a map-first city. The useful days depend on grouping pins by geography and letting weather decide when to handle the mountain, the coast, the Waterfront, and the wine country.
   cards:
     - title: Pick a practical base

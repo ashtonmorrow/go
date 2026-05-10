@@ -11,7 +11,7 @@ hero_image: ""
 hero_alt: ""
 
 guide_cards:
-  title: How I would use this Bangkok map
+  title: Planning Bangkok
   intro: Bangkok rewards picking a base that fits the kind of day you want, using transit instead of fighting traffic, and grouping the temple circuit on one side of the river. The first day after a long-haul flight, walk the BTS mall spine instead of forcing temples.
   cards:
     - title: Pick a base that matches the trip

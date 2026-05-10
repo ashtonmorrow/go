@@ -11,7 +11,7 @@ hero_image: ""
 hero_alt: ""
 
 guide_cards:
-  title: How I would use this Madrid map
+  title: Planning Madrid
   intro: Madrid rewards picking a base that fits the day you actually want, eating from real neighborhoods over photogenic markets, and saving the Prado for a booked slot rather than a walk-up line.
   cards:
     - title: Pick a base that matches the trip
