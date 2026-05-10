@@ -43,19 +43,15 @@ type Counts = {
 // On screens < md the rail collapses into a top app bar with a hamburger
 // that slides the same nav in from the left as a drawer.
 
-// Object axis. The View axis (Cards / Map / Table / Stats) lives in
-// the per-page <ViewSwitcher>, not here. Sidebar links land on the
-// Cards view of each object — the canonical default. Lists is the
-// fourth first-class object: each saved list is a curated collection
-// of pins (typically a 1:1 with a city) and they deserve top-level
-// discoverability the way Spotify treats playlists or Pinterest
-// treats boards.
-const PAGES: { href: string; emoji: string; label: string }[] = [
-  { href: '/cities/cards',    emoji: '📮', label: 'Cities' },
-  { href: '/countries/cards', emoji: '🌍', label: 'Countries' },
-  { href: '/pins/cards',      emoji: '📍', label: 'Pins' },
-  { href: '/lists',           emoji: '🗂️', label: 'Lists' },
-];
+// Top nav. Re-tiered May 2026 from the old five-object axis (Cities,
+// Countries, Pins, Lists, Articles) to a four-item content-first frame:
+// Lists (the destination guides + raw saved lists), Articles (essays
+// and reference pieces), Atlas (the wrapper landing at /atlas that
+// points at Cities / Countries / Pins / Map), About. The data views
+// are still reachable; they just sit one level deeper, behind /atlas,
+// so the front-of-house leads with the writing rather than 1,341 thin
+// city rows. Items are inlined in the JSX rather than driven from a
+// constant since each row has its own active-state logic.
 
 // External links to other Mike Lee subdomains. mike-lee.me itself isn't
 // listed because the bottom-anchored '🏠 Home' button already points there.
@@ -219,48 +215,62 @@ function NavBody({
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
-      {/* Top object axis — Cities / Countries / Pins. Articles nest inline
-          under Pins as a hover sub-list (driven by lib/articles.ts). The
-          old "Views" section label is gone — the structure is self-evident
-          and the label was just noise. */}
+      {/* Top nav — four content-first items in explicit order:
+          Lists (the destination guides), Articles (expandable inline
+          recent-list), Atlas (the data-views wrapper at /atlas), About.
+          The structure is self-evident; no section label needed. */}
       <div className="flex flex-col gap-0.5">
-        {PAGES.map(p => {
-          // Sidebar items always link to the canonical entry for an
-          // object — Cards view for objects with a view matrix
-          // (cities/countries/pins), the index page for ones without
-          // (lists). Active state lights up for any view of that
-          // object, including dynamic detail pages — /cities/[slug],
-          // /lists/[slug], etc.
-          const objectPrefix = p.href.endsWith('/cards')
-            ? p.href.replace(/\/cards$/, '/')
-            : p.href + '/';
-          const active =
-            pathname === p.href ||
-            pathname.startsWith(objectPrefix);
-          return (
-            <Item
-              key={p.href}
-              href={p.href}
-              emoji={p.emoji}
-              label={p.label}
-              active={active}
-              onClick={onLinkClick}
-            />
-          );
-        })}
-        {/* Articles sit immediately under Pins — hovering the row drops the
-            article list inline beneath it, same nested treatment used for
-            sub-items elsewhere. */}
+        <Item
+          href="/lists"
+          emoji="🗂️"
+          label="Lists"
+          active={pathname === '/lists' || pathname.startsWith('/lists/')}
+          onClick={onLinkClick}
+        />
         <ArticlesItem
           onClick={onLinkClick}
           pathname={pathname}
           entries={articleEntries}
         />
+        <Item
+          href="/atlas"
+          emoji="🧭"
+          label="Atlas"
+          // Active on /atlas itself AND on any of the data views the
+          // Atlas wraps. Strangers reading "Atlas" should still see
+          // the nav highlight when they're flipping through Cities or
+          // Pins, since those routes live conceptually under it now.
+          active={
+            pathname === '/atlas' ||
+            pathname.startsWith('/cities') ||
+            pathname.startsWith('/countries') ||
+            pathname.startsWith('/pins') ||
+            pathname === '/world' ||
+            pathname === '/map'
+          }
+          onClick={onLinkClick}
+        />
+        <Item
+          href="/about"
+          emoji="📖"
+          label="About"
+          active={pathname === '/about'}
+          onClick={onLinkClick}
+        />
       </div>
 
-      {/* Filter cockpits — at most one mounted at a time, picked by
-          which Object × View page we're on. Falls through to a
-          read-only Collections list with counts on detail pages. */}
+      {/* Filter cockpits — only on the Object × View browse routes
+          (cities/countries/pins cards/map/table/stats). Editorial
+          routes (/, /lists, /lists/[slug], /articles, /atlas, /about)
+          render the top nav alone, which keeps the writing-led pages
+          uncluttered and matches the industry pattern: editorial gets
+          full-width content, browse gets the cockpit.
+
+          The old read-only Collections fallback (the count list of
+          Cities / Countries / Pins / Lists / Been / Go / Saved) was
+          removed: it duplicated the top nav and pulled focus on
+          editorial pages where it had nothing to operate on. The
+          counts still live on /atlas where they belong. */}
       {showCityFilters ? (
         <FilterPanel countryOptions={countryOptions} />
       ) : showPinFilters ? (
@@ -273,17 +283,7 @@ function NavBody({
         />
       ) : showCountryFilters ? (
         <CountryFilterPanel />
-      ) : (
-        <Section label="Collections">
-          <Item href="/cities/cards"    emoji="📮" label="Cities"    count={counts.cities}    onClick={onLinkClick} />
-          <Item href="/countries/cards" emoji="🌍" label="Countries" count={counts.countries} onClick={onLinkClick} />
-          <Item href="/pins/cards"      emoji="📍" label="Pins"      count={counts.pins}      onClick={onLinkClick} />
-          <Item href="/lists"           emoji="🗂️" label="Lists"     count={counts.lists}     onClick={onLinkClick} />
-          <Item href="/cities/cards"    emoji="✈️" label="Been"      count={counts.been}      onClick={onLinkClick} />
-          <Item href="/cities/cards"    emoji="⭐" label="Go"        count={counts.go}        onClick={onLinkClick} />
-          <Item href="/cities/cards"    emoji="💾" label="Saved"     count={counts.saved}     onClick={onLinkClick} />
-        </Section>
-      )}
+      ) : null}
 
       {/* Elsewhere — external Mike Lee subdomains. Now sits below the
           Collections / Filters block so the in-section content controls
@@ -313,14 +313,11 @@ function NavBody({
         </Section>
       )}
 
-      {/* Bottom block: Home (= the parent site, mike-lee.me — this is
-          just a sub-section), then a quiet About link below it. About
-          got demoted from the Views section (which is reserved for the
-          three first-class object axes) so it's less prominent but
-          still findable. */}
+      {/* Bottom block: link out to the parent site, plus the quiet
+          legal-and-attribution links. About moved up into the top
+          nav (May 2026 IA refactor); it no longer doubles here. */}
       <div className="mt-auto flex flex-col gap-1 pt-4">
         <ExternalItem href="https://mike-lee.me/" emoji="🏠" label="Home" campaign="mike-lee-home" />
-        <Item href="/about" emoji="📖" label="About this atlas" onClick={onLinkClick} />
         <Link
           href="/privacy"
           onClick={onLinkClick}
