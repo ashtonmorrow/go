@@ -16,7 +16,7 @@ guide_cards:
     - title: Pick a base that matches the trip
       body: Sukhumvit is the convenient international option (Phrom Phong puts the Em District at your doorstep). Silom is the business-and-park compromise. Riverside is calmer and ferry-friendly for the old-city temples. Khao San is backpacker territory; stay there only if that is the trip you actually want.
     - title: Stop fighting the traffic
-      body: Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. Bangkok is still cash-driven, so keep some baht on hand — Grab drivers will sometimes cancel card-payment rides. If you take a metered taxi, make sure the meter starts.
+      body: Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. Bangkok is still cash-driven, so keep some baht on hand. Grab drivers will sometimes cancel card-payment rides; if you take a metered taxi, make sure the meter starts.
     - title: Walk the malls on travel-hangover days
       body: MBK at National Stadium, Siam Center and Siam Paragon at Siam, CentralWorld at Chit Lom, then the Em District (Emporium, EmQuartier, Emsphere) at Phrom Phong. Air-conditioned the whole way, plenty of food, low impact for a jet-lagged first day.
     - title: Group the temple circuit
@@ -26,11 +26,11 @@ faqs:
   - q: How do I get from BKK or DMK to the city center?
     a: Most central hotels are about an hour by road from either airport. From Suvarnabhumi (BKK), the three reasonable options are the Airport Rail Link to Phaya Thai BTS (cheapest, about 30 minutes, plus a final-mile taxi or Grab), Grab (easiest with luggage; keep some cash because some drivers cancel card-payment rides), or the official taxi rank (take a number from the kiosk, go to the assigned stall, confirm the meter is on before you pull away). From Don Mueang (DMK), Grab or the official taxi rank are the cleanest options. Skip anyone offering you a ride inside the terminal.
   - q: Where should I stay in Bangkok for a first visit?
-    a: Sukhumvit is the easiest base for a first trip — BTS at the door, restaurants, malls, hotels at every budget. Silom works if you want a more business-district rhythm and proximity to Lumpini Park. Riverside is calmer and better for the old-city temple circuit but more expensive. Avoid Khao San unless you specifically want backpacker Bangkok.
+    a: Sukhumvit is the easiest base for a first trip, with BTS at the door, restaurants, malls, and hotels at every budget. Silom works if you want a more business-district rhythm and proximity to Lumpini Park. Riverside is calmer and better for the old-city temple circuit but more expensive. Avoid Khao San unless you specifically want backpacker Bangkok.
   - q: How many days should I give Bangkok?
     a: Two to four days covers the temple circuit, one or two markets, the river, and a Chinatown food night without burning out. Add a day if you want a real museum afternoon (Jim Thompson House and the Bangkok National Museum are both worth the time) or a day trip out of the city.
   - q: When is the best time to visit Bangkok?
-    a: November through February is the cooler-and-drier window; February and March are warm and mostly dry, with afternoons that feel heavier than the temperature suggests. April is the hottest month. May through October is the wet season — afternoon storms are common but rarely all-day.
+    a: November through February is the cooler-and-drier window; February and March are warm and mostly dry, with afternoons that feel heavier than the temperature suggests. April is the hottest month. May through October is the wet season; afternoon storms are common but rarely all-day.
   - q: Are the floating markets worth it?
     a: Honestly not for most trips. The famous ones (Damnoen Saduak, Amphawa) are now visitor circuits rather than working markets, and the half-day round-trip in a van is a lot to spend on photos. If you only have a few days, eat in Chinatown and do Chatuchak instead.
   - q: What can I actually do on the first day after a long-haul flight?
@@ -91,7 +91,7 @@ Most central Bangkok hotels are about an hour by road from either airport, give 
 
 [Suvarnabhumi (BKK)](/pins/suvarnabhumi-airport) is the larger of the two airports and the more likely first arrival. Three reasonable ways into the city:
 
-- **The [Airport Rail Link](/pins/airport-rail-link-phaya-thai)** runs to Phaya Thai BTS in about 30 minutes. The cheapest option, useful if your hotel is near a Skytrain stop. Plan on a final-mile Grab or taxi from Phaya Thai unless you are walking distance from the BTS — the train solves the long leg, not the door-to-door.
+- **The [Airport Rail Link](/pins/airport-rail-link-phaya-thai)** runs to Phaya Thai BTS in about 30 minutes. The cheapest option, useful if your hotel is near a Skytrain stop. Plan on a final-mile Grab or taxi from Phaya Thai unless you are walking distance from the BTS. The train solves the long leg, not the door-to-door.
 - **Official metered taxi** from the airport rank, which is its own short ritual. Take a number from the kiosk at the curb and it tells you which numbered stall to go to. The meter side is fine; the catch is that drivers will sometimes still try to negotiate a flat fare or tack on tolls, so make sure the meter actually starts before you pull away. Ignore anyone offering you a ride inside the terminal.
 - **Grab** as the easy default with luggage. Works the same way the app does anywhere else. The one wrinkle: some drivers will quietly cancel card-payment rides because they prefer cash, so make sure you have some baht on you in case the card option keeps falling through.
 
@@ -111,7 +111,7 @@ The river is the part most first-time visitors miss. The Chao Phraya Express Boa
 
 ## Where to stay
 
-I pick the base by the kind of trip I want. Sukhumvit is convenient and international, with BTS access and hotels at every budget. Silom is the business-district compromise — bars, markets, and Lumpini Park within walking distance. Riverside is calmer, ferry-friendly for the old-city temples, and usually more expensive.
+I pick the base by the kind of trip I want. Sukhumvit is convenient and international, with BTS access and hotels at every budget. Silom is the business-district compromise, with bars, markets, and Lumpini Park within walking distance. Riverside is calmer, ferry-friendly for the old-city temples, and usually more expensive.
 
 | Area | Why it works | The trade-off |
 |---|---|---|
@@ -123,7 +123,7 @@ I pick the base by the kind of trip I want. Sukhumvit is convenient and internat
 | [Royal Orchid Sheraton](/pins/royal-orchid-sheraton-bangkok) (Riverside) | Decent older property on the Chao Phraya. The river-facing breakfast terrace is genuinely the best part of the stay; you eat with the boats moving past | Riverside hotels generally skew older; you take a Grab to most of central Bangkok, and it is further from the airport |
 | [Khao San Road](/pins/khao-san-road) | Backpacker Bangkok if that is the trip you want | Loud, chaotic, and not where you want to land if you are tired and have luggage |
 
-A note on the Riverside option: most of the river properties skew older than what you would book on Sukhumvit, and the upside is that the location pays for itself at breakfast. The Royal Orchid Sheraton's terrace looks straight onto the Chao Phraya and you eat while the longtail boats and cargo barges move past — it is one of the genuinely distinctive Bangkok experiences a hotel can give you. The downsides are real too. The Riverside is further from BKK, embedded in narrow lanes off Charoen Krung, and you will Grab to most of the BTS-line city. Pick it deliberately, not by default.
+A note on the Riverside option: most of the river properties skew older than what you would book on Sukhumvit, and the upside is that the location pays for itself at breakfast. The Royal Orchid Sheraton's terrace looks straight onto the Chao Phraya and you eat while the longtail boats and cargo barges move past. It is one of the genuinely distinctive Bangkok experiences a hotel can give you. The downsides are real too. The Riverside is further from BKK, embedded in narrow lanes off Charoen Krung, and you will Grab to most of the BTS-line city. Pick it deliberately, not by default.
 
 ## A first-day mall walk for travel-hangover days
 
@@ -131,9 +131,9 @@ If you arrived on a long-haul flight and the temple circuit is too much for the 
 
 Start at [MBK Center](/pins/mbk-center) at the western end (National Stadium BTS). MBK is the older of the major malls and reads more like a covered market than a department store: hundreds of independent stalls selling phones, electronics, knockoff fashion, tailoring, and tourist goods, plus a sprawling food court that has improved without losing the chaos. It is not where you go for luxury brands. It is where you go for atmosphere and the occasional useful purchase.
 
-Walk the elevated skybridge over to [Siam Center](/pins/siam-center) and [Siam Paragon](/pins/siam-paragon) at Siam BTS. Siam Center leans young — Thai streetwear, designer brands, and a busy food court. Siam Paragon is the upscale neighbor across the courtyard, with international luxury, an aquarium (SEA LIFE), and a bigger restaurant floor.
+Walk the elevated skybridge over to [Siam Center](/pins/siam-center) and [Siam Paragon](/pins/siam-paragon) at Siam BTS. Siam Center leans young, with Thai streetwear, designer brands, and a busy food court. Siam Paragon is the upscale neighbor across the courtyard, with international luxury, an aquarium (SEA LIFE), and a bigger restaurant floor.
 
-One stop east on the BTS, [CentralWorld](/pins/centralworld) at Chit Lom is the largest of the three central-Bangkok malls and the most mainstream — international brands at every price point and a food hall that absorbs travel-hangover crowds well. The [% Arabica on the ground floor](/pins/arabica-bangkok-central-world) is a nice photogenic break if you need a coffee that costs a little more than what you will pay across the street.
+One stop east on the BTS, [CentralWorld](/pins/centralworld) at Chit Lom is the largest of the three central-Bangkok malls and the most mainstream, with international brands at every price point and a food hall that absorbs travel-hangover crowds well. The [% Arabica on the ground floor](/pins/arabica-bangkok-central-world) is a nice photogenic break if you need a coffee that costs a little more than what you will pay across the street.
 
 Get back on the BTS and ride east to Phrom Phong for the Em District: [Emporium](/pins/emporium-bangkok) on the south side of Sukhumvit, [EmQuartier](/pins/emquartier) across the road (skybridge connected), and [Emsphere](/pins/emsphere) one block down. This is the newest cluster and where the food halls are best. EmQuartier's Helix has tiered restaurant levels, Emsphere has the rooftop EM Wonder area and a busy bar scene after dark.
 
@@ -143,11 +143,11 @@ The whole sequence runs about 6 km west to east on the BTS Sukhumvit line. You c
 
 The three temples most first-time visitors should see all sit close to the river, which is what makes a half-day version of this work. Start with Wat Phra Kaew and the Grand Palace inside the royal precinct (long trousers and covered shoulders required, and they enforce it). Walk south along the river to [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school. Take the cross-river ferry from the Tha Tien pier to [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) on the Thonburi side. That is the canonical sequence and the one I would do first.
 
-If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add — a 318-step climb to a city view that earns its keep at sunset.
+If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add: a 318-step climb to a city view that earns its keep at sunset.
 
 ## Markets and Chinatown
 
-For markets, choose by purpose. [Chatuchak Weekend Market](/pins/chatuchak-weekend-market) is the Saturday and Sunday shopping market and the one I would actually plan around. It is hot, crowded, and the right size — go in the morning before it gets unbearable. The malls covered above are the air-conditioned alternative when the weather is bad.
+For markets, choose by purpose. [Chatuchak Weekend Market](/pins/chatuchak-weekend-market) is the Saturday and Sunday shopping market and the one I would actually plan around. It is hot, crowded, and the right size; go in the morning before it gets unbearable. The malls covered above are the air-conditioned alternative when the weather is bad.
 
 Chinatown is where I would go hungry. The Yaowarat strip turns into one of the best street-food scenes in Asia after dark. Walk it slowly, eat in three or four places, and come back another night for the rest. The food makes the case for itself.
 
@@ -165,7 +165,7 @@ I would not stay on [Khao San Road](/pins/khao-san-road), but I will go for an e
 
 ## When to go
 
-November through February is the cooler-and-drier window and the easiest time to be outside in Bangkok. February and March are warm and mostly dry but the afternoons feel heavier than the number suggests; highs around 30 to 35°C are normal. April is the hottest month and Songkran (the water-throwing new year) hits the city in mid-April. May through October is the wet season — afternoon storms are common but rarely all-day, and the city is much less crowded.
+November through February is the cooler-and-drier window and the easiest time to be outside in Bangkok. February and March are warm and mostly dry but the afternoons feel heavier than the number suggests; highs around 30 to 35°C are normal. April is the hottest month and Songkran (the water-throwing new year) hits the city in mid-April. May through October is the wet season; afternoon storms are common but rarely all-day, and the city is much less crowded.
 
 ## What I would skip
 

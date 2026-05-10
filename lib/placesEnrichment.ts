@@ -317,6 +317,7 @@ function placeSearchQuery(pin: {
   lng: number | null;
   city_names?: string[] | null;
   states_names?: string[] | null;
+  saved_lists?: string[] | null;
 }): string {
   // When we have coordinates, keep the query narrow and let the edge
   // function's location bias do the disambiguation. Saved-list rows
@@ -325,7 +326,24 @@ function placeSearchQuery(pin: {
   if (pin.lat != null && pin.lng != null) return pin.name;
   const city = Array.isArray(pin.city_names) ? pin.city_names[0] : null;
   const country = Array.isArray(pin.states_names) ? pin.states_names[0] : null;
-  return [pin.name, city, country].filter(Boolean).join(', ');
+  // Last-resort hint: when there's no city/country and the pin is in a
+  // saved list whose name itself is a place ("malta", "budapest", etc.),
+  // append it as a query hint. Strips parenthetical qualifiers and the
+  // " misc"/" closeby attractions" suffixes that turn up in list names.
+  let listHint: string | null = null;
+  if (!city && !country && Array.isArray(pin.saved_lists) && pin.saved_lists.length > 0) {
+    const raw = pin.saved_lists[0];
+    if (typeof raw === 'string') {
+      const cleaned = raw
+        .replace(/\([^)]*\)/g, '')
+        .replace(/\b(misc|random saves|unexplored|closeby attractions|attractions)\b/gi, '')
+        .replace(/[_]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (cleaned.length > 0 && cleaned.toLowerCase() !== 'random saves') listHint = cleaned;
+    }
+  }
+  return [pin.name, city, country, listHint].filter(Boolean).join(', ');
 }
 
 async function fetchPlaceDetails(
@@ -546,7 +564,7 @@ export async function* enrichPins(
   // signal). Caller-supplied IDs are already a filter; we just narrow.
   let q = options.supabase
     .from('pins')
-    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, google_place_url, google_place_id, price_level, hours_details, website, phone, address, enrichment_checked_at, enrichment_source_type, enrichment_notes')
+    .select('id, name, slug, kind, category, lat, lng, city_names, states_names, saved_lists, google_place_url, google_place_id, price_level, hours_details, website, phone, address, enrichment_checked_at, enrichment_source_type, enrichment_notes')
     .in('id', options.pinIds);
   if (!options.refresh) q = q.is('price_level', null);
   const { data, error } = await q;

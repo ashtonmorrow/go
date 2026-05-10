@@ -1,7 +1,7 @@
 ---
 indexable: false
 title: Bristol Travel Notes and Map
-description: A practical Bristol guide and pin map for the Marriott Royal area, Clifton Suspension Bridge, the harbour markets and churches, the Banksy trail, and a Sunday roast by boat at Beese's. Plus the two central hotels I would skip and why.
+description: A practical Bristol travel guide and pin map. Where to stay (and the two central hotels to skip), the harbour markets and cathedrals, a self-guided Banksy walking tour with Wikipedia and Google Maps links, the Clifton Suspension Bridge, a Sunday roast by boat at Beese's, and how Bristol fits a London trip.
 published: 2026-05-10
 updated: 2026-05-10
 authors:
@@ -23,10 +23,10 @@ guide_cards:
       body: Bristol's airport is small but useful. Ryanair runs cheap routes to regional European cities. If your trip is London first then Europe, leaving from Bristol to somewhere quieter (Alicante, for example) often beats fighting Heathrow for the second leg.
 
 faqs:
-  - q: How do I get from Bristol Airport to the city center?
-    a: Plan on a taxi or Uber; my last few rides have run about £25 to the city center. There is no urban rail in Bristol, and the airport bus is fine but slow with luggage. The direct train from London Paddington goes to Bristol Temple Meads, not the airport.
+  - q: How do I get from Bristol Airport to the city centre?
+    a: Plan on a taxi or Uber; my last few rides have run about £25 to the city centre. There is no urban rail in Bristol, and the airport bus is fine but slow with luggage. The direct train from London Paddington goes to Bristol Temple Meads, not the airport.
   - q: Where should I stay in Bristol?
-    a: The Marriott Royal area near the cathedral and museums is the easiest base. The Moxy is fine if you want a smaller, modern chain. Skip the Holiday Inn at the Bearpit and the Delta Hotels in the city center; both have problems I would not pay for again.
+    a: The Marriott Royal area near the cathedral and museums is the easiest base. The Moxy is fine if you want a smaller, modern chain. Skip the Holiday Inn off the inner ring road and the Delta Hotels in the city centre; both have problems I would not pay for again.
   - q: How does Bristol fit a London trip?
     a: Direct train from London Paddington, under two hours each way. That makes Bristol practical as a Friday-to-Sunday extension on a London week. Add Stonehenge and Bath and you have a full Western England loop without ever needing a car.
   - q: When is the best time to visit Bristol?
@@ -43,14 +43,17 @@ related:
 #   Bristol Marriott Royal Hotel, Clifton Suspension Bridge, St Nicholas
 #   Market, Bristol Cathedral, St Mary Redcliffe, Bristol Temple Meads,
 #   Bristol Airport. Indexable on each is currently false.
-# - Banksy section currently links the three best-known pieces. The
-#   atlas has seven Banksy pins total; list them as a "Bristol Banksy
-#   trail" sub-list later if it's worth building out.
+# - Banksy chart links all six surviving Bristol works (Well Hung Lover,
+#   Castles in the Sky, Pierced Eardrum, Mild Mild West, Cat and Dog,
+#   Valentine's Day). Coords + inception_year + Wikipedia URLs were
+#   backfilled where missing. "Ryan & His Reindeer" was previously
+#   tagged Bristol but is actually in Birmingham; pulled it out of the
+#   bristol saved_list so it no longer pollutes the city map.
 ---
 
-I think Bristol does not get enough love. It is the easy half of a London week, the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, and it lets you build a London / Stonehenge / Bristol / Bath loop that does not need a car. The direct train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads) runs in under two hours.
+I think [Bristol](/cities/bristol) does not get enough love. It is the easy half of a London week, the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, and it lets you build a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car. The direct train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads) runs in under two hours.
 
-Bristol has no urban rail of its own. The buses are fine for short hops, but coming from [Bristol Airport](/pins/bristol-airport) you should plan on a taxi or Uber. My last few rides have run about £25 to the city center. Inside the city, walking covers most of what you would actually want to see. The Bristol & Bath Railway Path and Clifton are walkable from College Green; Stokes Croft is a short Uber.
+Bristol has no urban rail of its own. The buses are fine for short hops, but coming from [Bristol Airport](/pins/bristol-airport) you should plan on a taxi or Uber. My last few rides have run about £25 to the city centre. Inside the city, walking covers most of what you would actually want to see. The Bristol & Bath Railway Path and Clifton are walkable from College Green; Stokes Croft is a short Uber.
 
 ## Where to stay
 
@@ -63,20 +66,20 @@ I pick the area first and the hotel second. The College Green and cathedral side
 
 If the Marriott Royal is full or out of budget, I would push the date or pick the Moxy before either of the two hotels in the next section.
 
-## Hotels I would not book
+## Hotels I would definitely avoid
 
 There are two central Bristol hotels I would actively steer people away from. They both look fine on a booking site at a fair price, which is the part that catches you out.
 
 | Hotel | Why I would skip it |
 |---|---|
 | [Delta Hotels Bristol City Centre](/pins/delta-hotels-bristol-city-centre) | This used to be a Marriott. It has since hosted refugee placements and the building has run down. Rooms, lobby, and service have all slipped from what the brand suggests. |
-| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) (Bearpit) | A hotel worker came into my room while I was in the shower and would not leave. The location around the Bearpit is also not where you want to be at night. The price is the only argument for this hotel and it is not enough. |
+| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) | A hotel worker came into my room while I was in the shower and would not leave. The location off the inner ring road on the north side of the centre is also not where you want to be at night. The price is the only argument for this hotel and it is not enough. |
 
 Both can show up at the top of price-sorted searches because they are central and discounted. That is the trap. The Marriott Royal at full rate will cost more, but you will not spend the trip dealing with the building.
 
-## The center: markets, churches, and the harbour
+## The centre: markets, churches, and the harbour
 
-The center is the easiest day in Bristol on foot. [St Nicholas Market](/pins/st-nicholas-market) is the covered market in the middle of it, running on the same site since 1743. The three connected halls hold food stalls, independent shops, and vintage; a separate flea market sets up on St Nicholas Street on Wednesdays, with food on Fridays and a farmers market on Saturdays. Closed Sundays.
+The centre is the easiest day in Bristol on foot. [St Nicholas Market](/pins/st-nicholas-market) is the covered market in the middle of it, running on the same site since 1743. The three connected halls hold food stalls, independent shops, and vintage; a separate flea market sets up on St Nicholas Street on Wednesdays, with food on Fridays and a farmers market on Saturdays. Closed Sundays.
 
 [Bristol Cathedral](/pins/bristol-cathedral) is on College Green, free to enter, and worth the stop for the rare hall-church choir where the nave, choir, and aisles all reach the same height. [St Mary Redcliffe](/pins/st-mary-redcliffe) is a short walk south across the harbour, also free, with a 14th-15th century interior and the tallest spire of any English parish church. Elizabeth I called it "the fairest, goodliest, and most famous parish church in England," which is a useful piece of marketing copy that has been reused for four centuries.
 
@@ -88,11 +91,33 @@ For dinner, [Seven Lucky Gods](/pins/seven-lucky-gods) is my favorite in the are
 
 ## Clifton in the morning
 
-Clifton sits on the hill west of the center. The [Clifton Suspension Bridge](/pins/clifton-suspension-bridge) is the obvious draw — Brunel's 1864 design across the Avon Gorge — and the lower locks at the harbour entrance are the bonus most people miss. I have done this as a quiet morning walk: up through the village, across the bridge, back down to the river. It works as a half-day before the museums get busy. Pedestrian crossing is free; cars pay a small toll.
+Clifton sits on the hill west of the centre. The [Clifton Suspension Bridge](/pins/clifton-suspension-bridge) is the obvious draw, Brunel's 1864 design across the Avon Gorge, and the lower locks at the harbour entrance are the bonus most people miss. I have done this as a quiet morning walk: up through the village, across the bridge, back down to the river. It works as a half-day before the museums get busy. Pedestrian crossing is free; cars pay a small toll.
 
-## Banksy
+## The Banksy walking tour
 
-Bristol has more Banksy pieces than any other city. The most famous in the city center are [Well Hung Lover](/pins/well-hung-lover) on Park Street, [The Mild Mild West](/pins/banksy-s-the-mild-mild-west) in Stokes Croft, and [Girl with a Pierced Eardrum](/pins/bansky-s-girl-with-a-pierced-eardrum) at Albion Docks. If you have a full day to spare and the weather is dry, the rest of the trail (Cat and Dog, Ryan and his Reindeer, Valentine's Day, Castles in the Sky) makes a self-guided walking loop.
+Bristol is where Banksy started, and the city has more surviving Banksy works than anywhere else in the world. Four of them sit close enough together to walk in one afternoon, and that loop is the version most first-time visitors actually want. Two more sit further out in the BS5 postcodes east of the centre and need a Grab.
+
+### The four-stop city-centre walk
+
+Start at the top of Park Street and end up in Stokes Croft. About 2 miles total walking; plan on 90 minutes if you stop briefly at each.
+
+| # | Work | Year | Where | Wikipedia | Open in Maps |
+|---|------|------|-------|-----------|--------------|
+| 1 | [Well Hung Lover](/pins/well-hung-lover) | 2006 | Park Street at Frogmore Street, side wall of the old sexual-health clinic. Visible from the street; look up | [→](https://en.wikipedia.org/wiki/Well_Hung_Lover) | [Open](https://www.google.com/maps/search/?api=1&query=51.4534,-2.6014) |
+| 2 | [Castles in the Sky](/pins/you-don-t-need-planning-permission-to-build-castles-in-the-sky) | 2011 | Lower Lamb Street, harbourside near M Shed. Walk south down Park Street, cross to the harbour, follow the dock west | [→](https://en.wikipedia.org/wiki/List_of_works_by_Banksy) | [Open](https://www.google.com/maps/search/?api=1&query=51.4502,-2.5990) |
+| 3 | [Girl with a Pierced Eardrum](/pins/bansky-s-girl-with-a-pierced-eardrum) | 2014 | Hanover Place at Albion Docks. Banksy's nod to Vermeer's pearl earring, with a building's alarm box doing the work of the earring | [→](https://en.wikipedia.org/wiki/Girl_with_a_Pierced_Eardrum) | [Open](https://www.google.com/maps/search/?api=1&query=51.4477,-2.6098) |
+| 4 | [The Mild Mild West](/pins/banksy-s-the-mild-mild-west) | 1999 | Jamaica Street, Stokes Croft. The earliest of the four and the most photographed. About a mile north of the harbour; the No. 8 bus from the centre or a 25-minute walk gets you there | [→](https://en.wikipedia.org/wiki/The_Mild_Mild_West) | [Open](https://www.google.com/maps/search/?api=1&query=51.4634,-2.5895) |
+
+### The two further-out works
+
+If you want to round out the trail, two more surviving pieces sit east of the centre in BS5. A Grab in each direction is the right call rather than the bus.
+
+| Work | Year | Where | Open in Maps |
+|------|------|-------|--------------|
+| [Cat and Dog](/pins/banksy-s-cat-and-dog) | 2007 | Robertson Road, Easton (BS5 6JY) | [Open](https://www.google.com/maps/search/?api=1&query=51.4644,-2.5641) |
+| [Valentine's Day](/pins/banksy-s-valentine-s-day) | 2020 | 185 Avonvale Road, Redfield (BS5 9RY) | [Open](https://www.google.com/maps/search/?api=1&query=51.4598,-2.5562) |
+
+A note on the works themselves: outdoor pieces in a wet British city do not last forever. Several of Bristol's Banksys have been damaged by weathering, vandalism, or removal over the years. Plexiglass covers protect a few of them; the others wear visibly. Check the pin pages for the latest condition notes before you walk over.
 
 ## Sunday roast at Beese's
 
@@ -100,7 +125,7 @@ If you have a longer stay, take a boat down the Avon to [Beese's](/pins/beeses) 
 
 ## Bath, day trip or overnight
 
-[Bath](/cities/bath) is the natural pair. The River Avon connects the two cities and there is a continuous canal route upstream past Bath if you ever do a longer narrowboat outing. For day-trip purposes the train is the easier move: a direct service runs about every 15 minutes from Bristol Temple Meads and takes around 12 minutes door to door. If you have an extra night, stay over in Bath and ride back in the morning. I will write up Bath separately later and link it here.
+[Bath](/cities/bath) is the natural pair. The River Avon connects the two cities and there is a continuous canal route upstream past Bath if you ever do a longer narrowboat outing. For day-trip purposes the train is the easier move: a direct service runs about every 15 minutes from Bristol Temple Meads and takes around 12 minutes door to door. If you have an extra night, stay over in Bath and ride back in the morning.
 
 ## When to go
 

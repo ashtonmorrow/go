@@ -52,7 +52,7 @@ related:
 #   Prado pin is created later, swap the link.
 ---
 
-[Madrid](/cities/madrid) is one of those cities I find easy to recommend and easy to mis-plan. The neighborhoods are close together, the food rewards walking, and the public transport works the way you want it to. The trip falls apart when you stay in the wrong base, treat the famous market as a meal, or assume you can walk up to the Prado on a Saturday.
+[Madrid](/cities/madrid) is one of those cities I find easy to recommend and easy to mis-plan. The neighborhoods are close together, the food rewards walking, and the public transport works the way you want it to. The trip falls apart when you stay in the wrong base, treat the famous market as a meal, or assume you can walk up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday.
 
 I have spent enough time in Madrid to care less about hitting headline attractions and more about which streets I want to wake up on. The notes below are in that order: how I would land, where I would sleep, what I would do on a Sunday, where I would actually eat, and the few attractions I would still queue or book for.
 
@@ -106,7 +106,7 @@ If you have to pick one of the headline two, I am partial to the [Reina Sofía](
 
 The [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) is the bigger, denser collection and is the right pick if you came specifically for Velázquez, Goya, or El Greco. Book a timed entry. The walk-up line on weekends is the part of the trip people complain about.
 
-My own favorite museum in Madrid is neither of those: it is the [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid), the railway museum on Paseo de las Delicias. The collection is housed inside the former Estación de Delicias, an 1880 iron-and-glass train shed, and the trains sit on the original platforms. Two practical notes that catch people out: the museum is closed Mondays, and the regular hours run short — Tuesday through Sunday, 9:30 or 10:00 to 15:00. Family weekend programming runs on Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend rather than a Friday if you have kids.
+My own favorite museum in Madrid is neither of those: it is the [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid), the railway museum on Paseo de las Delicias. The collection is housed inside the former Estación de Delicias, an 1880 iron-and-glass train shed, and the trains sit on the original platforms. Two practical notes that catch people out. The museum is closed Mondays. Regular hours also run short, Tuesday through Sunday from 9:30 or 10:00 to 15:00. Family weekend programming runs on Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend rather than a Friday if you have kids.
 
 ## Casa de Campo for a half-day
 

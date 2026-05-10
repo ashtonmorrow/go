@@ -48,6 +48,31 @@ When writing travel, city, country, arts, music, literature, or cultural copy fo
 - Put related works, composers, writers, artists, periods, or traditions into the body where they help the reader. If useful, end with a short reader-facing Further Reading, Further Listening, or Related Works section.
 - Before finalizing, check: no em dashes; no unsupported superlatives; no unnecessary repetition; clear structure; specific headings; complete sentences; literal phrasing where explanation matters; evidence for interpretive claims; reader-focused organization; publish-ready output.
 
+## City / list / pin guides — authoring standards
+
+The published travel guides live in `/content/lists/<slug>.md` (the long-form Cape Town / Madrid / Bristol / Bangkok format) and `/content/{cities,countries,pins}/<slug>.md` (shorter prose attached to a detail page). Every new guide must follow the rules below before `indexable: true` is flipped.
+
+**Cross-linking.** Every place name that has a pin or city/country page in the atlas must link to its detail page on first body mention.
+
+- First mention of the city itself: `[Madrid](/cities/madrid)` in the opener.
+- First mention of any pinned place: `[El Rastro](/pins/el-rastro)`.
+- Subsequent mentions of the same place are plain text. The rule is "first mention only," not "every mention." Don't relink the same place twenty times.
+- Areas, neighborhoods, and streets that are not pins (Sukhumvit, Stokes Croft, College Green, La Latina) stay as plain text. Don't invent links.
+- When a referenced place lacks a pin, mention it in the body as text and flag it in the file's authoring-notes block as a pin to create. Once the pin exists, swap the text for the link.
+- Apply this same rule to guide_cards bodies, FAQ answers, and table cells where it reads naturally. Frontmatter `title` and `description` are summary surfaces and stay plain text.
+
+**Tables for booking-intent and itinerary content.** Where-to-stay should be a table (Hotel | Why it works | Trade-off). Anything you would skip should be its own table in a separate "Hotels I would definitely avoid" section, not mixed into the recommended list. Self-guided walking tours (Banksy in Bristol, the BTS mall walk in Bangkok) work as numbered tables with at least Where, Wikipedia outlink, and Google Maps link columns.
+
+**Local slang.** If a name is local-friend slang ("the Bearpit" for the St James Barton roundabout area), don't lean on it. A first-time visitor will not recognize it. Use the standard name and, if the slang adds color, mention it once with light context.
+
+**Spelling.** British places use British English (centre, harbour, neighbourhood). American places use American spelling. Pages are about the destination, not the writer.
+
+**Em dashes.** None. Use commas, colons, semicolons, periods, or parentheses. The "no em dashes" rule from the editorial-voice section applies to every guide.
+
+**Authoring-notes block.** Every list/city scaffold ends with an HTML-comment block (`# Authoring notes (kept here, not rendered): ...`) inside the closing frontmatter fence. Use it for: pins still to create, soi/address numbers to verify, follow-up cross-links, why a particular pin is linked instead of a more obvious candidate. These notes don't render; they're how Mike picks up the trail when he comes back to edit.
+
+**Indexable gate.** New scaffolds ship with `indexable: false` until Mike reviews voice, facts, and the hero image. Page metadata is gated on `indexable: true` in the page's own metadata generator (see `/cities/[slug]/page.tsx` and the lists equivalent), and the sitemap reads the same flag. Don't flip indexable in a scaffolder commit.
+
 ## Out of scope for this project
 
 This repo is **not** Stray. Don't add cat features, Lovable tooling, Vite, or Capacitor. If a CLAUDE.md elsewhere on your filesystem talks about React+Vite+Lovable cat colonies, that's a different repo entirely — ignore it for this project.
