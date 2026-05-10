@@ -16,7 +16,9 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: 'World',
   description: DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}/countries/map` },
+  // Canonical to /countries/cards (same corpus, different presentation).
+  alternates: { canonical: `${SITE_URL}/countries/cards` },
+  robots: { index: false, follow: true },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/countries/map`,

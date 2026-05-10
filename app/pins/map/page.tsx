@@ -17,7 +17,12 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: 'Pin Map',
   description: DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}/pins/map` },
+  // Same corpus as /pins/cards in a different presentation. Tell Google
+  // the cards URL is canonical so the duplicate-content signal lands
+  // there instead of getting split across views. Crawlable so the
+  // detail-page links still get discovered.
+  alternates: { canonical: `${SITE_URL}/pins/cards` },
+  robots: { index: false, follow: true },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/pins/map`,

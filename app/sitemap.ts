@@ -1,10 +1,29 @@
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 import type { MetadataRoute } from 'next';
+import matter from 'gray-matter';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllPins } from '@/lib/pins';
 import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';
 import { getAllArticleEntries } from '@/lib/articles';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
+
+/** Read /content/<scope>/<slug>.md frontmatter and return the indexable
+ *  flag. Returns false when the file is missing or `indexable !== true`.
+ *  Mirrors the per-page metadata gate in /cities/[slug] and
+ *  /countries/[slug] so sitemap entries match noindex policy exactly:
+ *  no editorial file, no sitemap entry. */
+async function placeIndexable(scope: 'cities' | 'countries', slug: string): Promise<boolean> {
+  const file = path.join(process.cwd(), 'content', scope, `${slug}.md`);
+  try {
+    const raw = await fs.readFile(file, 'utf8');
+    const { data } = matter(raw);
+    return data?.indexable === true;
+  } catch {
+    return false;
+  }
+}
 
 // Dynamic sitemap. Includes:
 //   • static routes  — /cities, /map, /about (and / which redirects)
@@ -29,33 +48,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Object × View matrix — every cell is a real page in the new nav.
   // Cards views get the highest priority (the canonical default for each
   // object); map and table follow.
+  // Only the canonical card view of each corpus ships in the sitemap.
+  // /pins/{map,table,stats} (and the city / country equivalents) are
+  // canonical-tagged + noindex'd against the cards URL — listing them
+  // here would be inconsistent with that signal and waste crawl
+  // budget.
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/cities/cards`,    lastModified: now, changeFrequency: 'daily',  priority: 1.0 },
-    { url: `${SITE_URL}/cities/map`,      lastModified: now, changeFrequency: 'daily',  priority: 0.9 },
-    { url: `${SITE_URL}/cities/table`,    lastModified: now, changeFrequency: 'daily',  priority: 0.8 },
-    { url: `${SITE_URL}/cities/stats`,    lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/countries/cards`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/countries/map`,   lastModified: now, changeFrequency: 'daily',  priority: 0.9 },
-    { url: `${SITE_URL}/countries/table`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/countries/stats`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/pins/cards`,      lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/pins/map`,        lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/pins/table`,      lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${SITE_URL}/pins/stats`,      lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/lists`,           lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/about`,           lastModified: '2026-04-25', changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/articles`,        lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${SITE_URL}/privacy`,         lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ];
 
-  const cityRoutes: MetadataRoute.Sitemap = cities.map(c => ({
-    url: `${SITE_URL}/cities/${c.slug}`,
-    lastModified: now,
-    changeFrequency: 'weekly',
-    // Curated cities (Been / Go) get higher priority than placeholders
-    // so search engines pick them up first.
-    priority: c.been || c.go ? 0.8 : 0.5,
-  }));
+  // City detail pages: indexable iff /content/cities/<slug>.md exists
+  // with `indexable: true` in frontmatter. The page's own metadata
+  // emits `robots: noindex` for the rest. Listing thin pages in the
+  // sitemap would tell Google the opposite of the page directive —
+  // filter to match.
+  const cityIndexability = await Promise.all(
+    cities.map(async c => ({ city: c, indexable: await placeIndexable('cities', c.slug) })),
+  );
+  const cityRoutes: MetadataRoute.Sitemap = cityIndexability
+    .filter(({ indexable }) => indexable)
+    .map(({ city: c }) => ({
+      url: `${SITE_URL}/cities/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      // Curated cities (Been / Go) get higher priority than other
+      // indexable ones so search engines pick them up first.
+      priority: c.been || c.go ? 0.8 : 0.6,
+    }));
 
   // Per-city /things-to-do landing pages. Listed only for curated
   // cities (been or go); placeholder cities almost never have enough
@@ -70,12 +95,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-  const countryRoutes: MetadataRoute.Sitemap = countries.map(c => ({
-    url: `${SITE_URL}/countries/${c.slug}`,
-    lastModified: now,
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
+  // Same gate as cities — only countries with an indexable content
+  // file ship in the sitemap.
+  const countryIndexability = await Promise.all(
+    countries.map(async c => ({ country: c, indexable: await placeIndexable('countries', c.slug) })),
+  );
+  const countryRoutes: MetadataRoute.Sitemap = countryIndexability
+    .filter(({ indexable }) => indexable)
+    .map(({ country: c }) => ({
+      url: `${SITE_URL}/countries/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    }));
 
   const pinRoutes: MetadataRoute.Sitemap = pins
     .filter(p => p.slug)

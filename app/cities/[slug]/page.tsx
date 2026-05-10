@@ -12,6 +12,8 @@ import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
 import { fetchCityClimate } from '@/lib/cityClimate';
 import { readPlaceContent, paragraphs } from '@/lib/content';
+import FaqBlock from '@/components/list-blocks/FaqBlock';
+import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
 import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
@@ -253,10 +255,29 @@ export default async function CityPage({
     { name: city.name },
   ];
 
+  // FAQPage rich-result schema, when the content file ships a `faqs:`
+  // block. Same builder shape as the lists page.
+  const faqs = content?.faqs ?? [];
+  const cityUrl = `${SITE_URL}/cities/${city.slug}`;
+  const faqJsonLd =
+    faqs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          '@id': `${cityUrl}#quick-answers`,
+          mainEntity: faqs.map(f => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        }
+      : null;
+
   return (
     <article className="max-w-page mx-auto px-5 py-8">
       <JsonLd data={cityData} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
+      {faqJsonLd && <JsonLd data={faqJsonLd} />}
       {/* Breadcrumbs + persistent View switcher (no pill highlighted —
           this is a detail page, not any of the four index views). */}
       <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
@@ -415,6 +436,11 @@ export default async function CityPage({
             </section>
           )}
 
+          {/* Opt-in "How I would use this city" cards. Same schema as
+              the lists pages — `guide_cards:` in /content/cities/<slug>.md
+              frontmatter lights this up. */}
+          {content?.guideCards && <GuideCardsBlock data={content.guideCards} />}
+
           {city.wikipediaSummary && (
             <section className="mt-6">
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
@@ -489,6 +515,11 @@ export default async function CityPage({
               <div className="max-w-prose">{renderBlocks(blocks)}</div>
             </section>
           )}
+
+          {/* Optional FAQ block, surfaced from /content/cities/<slug>.md
+              `faqs:` frontmatter. Pairs with the FAQPage JSON-LD emitted
+              at the top of the article so the Q&A is rich-result-eligible. */}
+          {faqs.length > 0 && <FaqBlock items={faqs} />}
         </div>
 
         {/* Sidebar facts */}

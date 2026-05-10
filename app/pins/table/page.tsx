@@ -23,7 +23,9 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: 'Pin Data',
   description: DESCRIPTION,
-  alternates: { canonical: `${SITE_URL}/pins/table` },
+  // Canonical to /pins/cards (same corpus, different presentation).
+  alternates: { canonical: `${SITE_URL}/pins/cards` },
+  robots: { index: false, follow: true },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/pins/table`,

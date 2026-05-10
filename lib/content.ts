@@ -44,6 +44,12 @@ export type PlaceContent = {
   body: string;
   /** When true, the page metadata can drop the noindex robots header. */
   indexable: boolean;
+  /** Optional FAQ block — same shape as the lists schema. When set,
+   *  the page renders a Q&A section + emits FAQPage JSON-LD. Empty
+   *  array when no faqs are authored. */
+  faqs: ListFaq[];
+  /** Optional "how I would use this" card grid. Same shape as lists. */
+  guideCards: ListGuideCards | null;
 };
 
 const CONTENT_ROOT = path.join(process.cwd(), 'content');
@@ -53,29 +59,6 @@ const CONTENT_ROOT = path.join(process.cwd(), 'content');
  * slug is taken straight from the URL.
  */
 const SAFE_SLUG = /^[a-z0-9][a-z0-9-]*$/;
-
-function parseFrontmatter(raw: string): { meta: Record<string, string | boolean | number>; body: string } {
-  // Reject anything that doesn't open with the YAML fence on line one.
-  if (!raw.startsWith('---')) {
-    return { meta: {}, body: raw };
-  }
-  // Find the closing fence on its own line. Search starts past the opener.
-  const close = raw.indexOf('\n---', 3);
-  if (close === -1) return { meta: {}, body: raw };
-  const fmRaw = raw.slice(3, close).replace(/^\r?\n/, '');
-  const body = raw.slice(close + 4).replace(/^\r?\n/, '');
-  const meta: Record<string, string | boolean | number> = {};
-  for (const line of fmRaw.split(/\r?\n/)) {
-    const match = line.match(/^([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(.+?)\s*$/);
-    if (!match) continue;
-    const [, key, raw] = match;
-    if (raw === 'true') meta[key] = true;
-    else if (raw === 'false') meta[key] = false;
-    else if (/^-?\d+(?:\.\d+)?$/.test(raw)) meta[key] = Number(raw);
-    else meta[key] = raw.replace(/^["']|["']$/g, '');
-  }
-  return { meta, body };
-}
 
 const _readContent = unstable_cache(
   async (scope: ContentScope, slug: string): Promise<PlaceContent | null> => {
@@ -87,15 +70,24 @@ const _readContent = unstable_cache(
     } catch {
       return null;
     }
-    const { meta, body } = parseFrontmatter(raw);
-    const trimmed = body.trim();
+    // gray-matter so files can opt into structured blocks (`faqs:`,
+    // `guide_cards:`) the same way list pages do. Existing pin / city
+    // / country files with just `indexable: true` round-trip unchanged.
+    const parsed = matter(raw);
+    const data = (parsed.data ?? {}) as Record<string, unknown>;
+    const trimmed = parsed.content.trim();
     if (!trimmed) return null;
     return {
       body: trimmed,
-      indexable: meta.indexable === true,
+      indexable: data.indexable === true,
+      faqs: parseFaqs(data.faqs),
+      guideCards: parseGuideCards(data.guide_cards),
     };
   },
-  ['place-content'],
+  // v2: shape gained faqs + guideCards. Bumping the cache key forces a
+  // fresh read so v1 entries (which lacked those fields) don't leak
+  // into the new typed shape.
+  ['place-content-v2'],
   { revalidate: 86400, tags: ['place-content'] },
 );
 
