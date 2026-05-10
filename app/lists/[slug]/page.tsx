@@ -345,7 +345,7 @@ export default async function ListPage({ params }: Props) {
   if (cityMatch) {
     relatedItems.push({
       href: `/cities/${cityMatch.slug}`,
-      label: `${cityMatch.name} city page`,
+      label: `${cityMatch.name} detail page`,
       emoji: '📮',
     });
   }
@@ -519,6 +519,7 @@ export default async function ListPage({ params }: Props) {
           showSort
           initialSort="rated"
           pinOrder={meta?.pinOrder ?? []}
+          groupByKind
         />
       ) : (
         <ListMapAndCards
@@ -530,6 +531,7 @@ export default async function ListPage({ params }: Props) {
           showSort
           initialSort="rated"
           pinOrder={meta?.pinOrder ?? []}
+          groupByKind
         />
       )}
 

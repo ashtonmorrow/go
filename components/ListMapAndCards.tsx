@@ -48,6 +48,13 @@ type Props = {
    *  render first regardless of the sort dropdown; unpinned tail falls
    *  through to the user's selection. */
   pinOrder?: string[];
+  /** Forwarded to SavedListSection. When set, the card grid breaks
+   *  into per-kind subsections (Attractions / Restaurants / Markets /
+   *  etc.) instead of rendering one flat list. */
+  groupByKind?: boolean;
+  /** Forwarded to SavedListSection. Pin kinds dropped entirely from
+   *  the grouped layout. Ignored when groupByKind=false. */
+  excludeKinds?: string[];
 };
 
 export default function ListMapAndCards({
@@ -59,6 +66,8 @@ export default function ListMapAndCards({
   showSort,
   initialSort,
   pinOrder,
+  groupByKind,
+  excludeKinds,
 }: Props) {
   // Pins that can actually appear on the map. Sort + render order in the
   // grid is unaffected by this filter; we only use it for the GeoJSON.
@@ -184,6 +193,8 @@ export default function ListMapAndCards({
         showSort={showSort}
         initialSort={initialSort}
         pinOrder={pinOrder}
+        groupByKind={groupByKind}
+        excludeKinds={excludeKinds}
       />
     );
   }
@@ -287,6 +298,8 @@ export default function ListMapAndCards({
         showSort={showSort}
         initialSort={initialSort}
         pinOrder={pinOrder}
+        groupByKind={selectedPin ? false : groupByKind}
+        excludeKinds={excludeKinds}
       />
     </>
   );

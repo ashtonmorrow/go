@@ -657,12 +657,6 @@ export default async function CityPage({
             listSlug={listNameToSlug(primaryListName)}
             googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
             pins={cityListPins}
-            groupByKind
-            // Hotels live on the dedicated /cities/<slug>/hotels hub —
-            // duplicating them here would steal authority from that
-            // cluster. The cross-link footer below directs the user
-            // there.
-            excludeKinds={['hotel']}
           />
           {/* Cross-link to the dedicated /things-to-do and /hotels
               landings. Same pin set, narrowed for planning queries.
