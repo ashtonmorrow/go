@@ -31,7 +31,7 @@ faqs:
   - q: Do I need a transit card?
     a: No. As of the OVpay rollout, you tap a contactless bank card or a phone wallet directly on the gates and poles. Works on NS trains, GVB metro and trams, regional buses. Fares are charged per kilometer, no upfront top-up.
   - q: Is the Van Gogh Museum worth doing?
-    a: Yes, even if "touristy" makes you wary. The collection is dense and well-curated. The catch: you must reserve a timed entry online in advance. Walk-ups are turned away at the door, and the staff there spend most of the day explaining this to people who tried it.
+    a: Yes, even if "touristy" makes you wary. The collection is dense and well-curated. One catch worth knowing in advance is that you must reserve a timed entry online; walk-ups are turned away at the door, and the staff there spend most of the day explaining this to people who tried it.
   - q: Are the canal boat tours worth it?
     a: Yes, but pick deliberately. A small-boat or architecture-themed tour beats the big-boat sightseeing run. Spend ten minutes researching before you book; do not buy a ticket from someone with a clipboard on the street.
 

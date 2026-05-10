@@ -52,9 +52,19 @@ related:
 #   bristol saved_list so it no longer pollutes the city map.
 ---
 
-I think [Bristol](/cities/bristol) does not get enough love. It is the easy half of a London week, the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, and it lets you build a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car. The direct train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads) runs in under two hours.
+I think [Bristol](/cities/bristol) does not get enough love. It is the underrated half of a London week: the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, a direct under-two-hour train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads), and the natural anchor for a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car.
 
-Bristol has no urban rail of its own. The buses are fine for short hops, but coming from [Bristol Airport](/pins/bristol-airport) you should plan on a taxi or Uber. My last few rides have run about £25 to the city centre. Inside the city, walking covers most of what you would actually want to see. The Bristol & Bath Railway Path and Clifton are walkable from College Green; Stokes Croft is a short Uber.
+## When to go
+
+May and June are my favorite weeks. The days are getting long, the parks have come back from winter, and the mornings are still fresh enough to walk without working too hard. Outside that window pack a layer; in winter the daylight runs short and most of the walking I describe below gets less pleasant.
+
+## Getting there and getting around
+
+The train is the move from London. Direct Great Western service from Paddington runs roughly every 30 minutes, takes under two hours, and lands at [Bristol Temple Meads](/pins/bristol-temple-meads) about a 20-minute walk or short Uber from the cathedral side of the centre. Bath is on the same line: 12 minutes from Bristol Temple Meads, every 15 minutes or so.
+
+Inside the city, walk. Bristol has no urban rail of its own; the buses are fine for the longer hops to Stokes Croft or out to BS5, but College Green, the harbour, [Bristol Cathedral](/pins/bristol-cathedral), the Marriott Royal area, and the King Street bar streets all sit together within ten minutes' walking distance. Clifton is up the hill; the Bristol & Bath Railway Path is a 5-minute walk from College Green if you want a longer route on foot.
+
+[Bristol Airport](/pins/bristol-airport) sits south of the city, with no urban rail link. Plan on a taxi or Uber from arrivals. My last few rides have run about £25 to the city centre. The airport bus is fine but slow with luggage.
 
 ## Where to stay
 
@@ -62,23 +72,21 @@ I pick the area first and the hotel second. The College Green and cathedral side
 
 | Hotel | Why it works | The trade-off |
 |---|---|---|
-| [Bristol Marriott Royal Hotel](/pins/bristol-marriott-royal-hotel) | The best central pick in my opinion. In an 1868 building next to the cathedral, walking distance to the museums and the King Street bar area | Top of the price band for the city |
+| [Bristol Marriott Royal Hotel](/pins/bristol-marriott-royal-hotel) | The best central pick. In an 1868 building next to the cathedral, walking distance to the museums and the King Street bar area | Top of the price band for the city |
 | [Moxy Bristol](/pins/moxy-bristol) | Decent modern chain, fine as a base | It is a Moxy, so the room is small and the furniture is sparse |
 
-If the Marriott Royal is full or out of budget, I would push the date or pick the Moxy before either of the two hotels in the next section.
+If the Marriott Royal is full or out of budget, push the date or take the Moxy before either of the two below.
 
-## Hotels I would definitely avoid
-
-There are two central Bristol hotels I would actively steer people away from. They both look fine on a booking site at a fair price, which is the part that catches you out.
+**Two central hotels to skip.** Both look fine on a booking site at a fair price, which is the part that catches you out. They show up at the top of price-sorted searches because they are central and discounted, and that is the trap.
 
 | Hotel | Why I would skip it |
 |---|---|
-| [Delta Hotels Bristol City Centre](/pins/delta-hotels-bristol-city-centre) | This used to be a Marriott. It has since hosted refugee placements and the building has run down. Rooms, lobby, and service have all slipped from what the brand suggests. |
-| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) | A hotel worker came into my room while I was in the shower and would not leave. The location off the inner ring road on the north side of the centre is also not where you want to be at night. The price is the only argument for this hotel and it is not enough. |
+| [Delta Hotels Bristol City Centre](/pins/delta-hotels-bristol-city-centre) | Used to be a Marriott. Has since hosted refugee placements and the building has run down. Rooms, lobby, and service have all slipped from what the brand suggests. |
+| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) | A hotel worker came into my room while I was in the shower and would not leave. The location off the inner ring road on the north side of the centre is also not where you want to be at night. The price is the only argument and it is not enough. |
 
-Both can show up at the top of price-sorted searches because they are central and discounted. That is the trap. The Marriott Royal at full rate will cost more, but you will not spend the trip dealing with the building.
+The Marriott Royal at full rate will cost more, but you will not spend the trip dealing with the building.
 
-## The centre: markets, churches, and the harbour
+## The centre
 
 The centre is the easiest day in Bristol on foot. [St Nicholas Market](/pins/st-nicholas-market) is the covered market in the middle of it, running on the same site since 1743. The three connected halls hold food stalls, independent shops, and vintage; a separate flea market sets up on St Nicholas Street on Wednesdays, with food on Fridays and a farmers market on Saturdays. Closed Sundays.
 
@@ -90,7 +98,7 @@ The bar and pub area centers on King Street. [The Llandoger Trow](/pins/the-llan
 
 For dinner, [Seven Lucky Gods](/pins/seven-lucky-gods) is my favorite in the area. Make a reservation. The walk-up wait gets long fast and the dining room is small.
 
-## Clifton in the morning
+## Clifton and the suspension bridge
 
 Clifton sits on the hill west of the centre. The [Clifton Suspension Bridge](/pins/clifton-suspension-bridge) is the obvious draw, Brunel's 1864 design across the Avon Gorge, and the lower locks at the harbour entrance are the bonus most people miss. I have done this as a quiet morning walk: up through the village, across the bridge, back down to the river. It works as a half-day before the museums get busy. Pedestrian crossing is free; cars pay a small toll.
 
@@ -120,18 +128,14 @@ If you want to round out the trail, two more surviving pieces sit east of the ce
 
 A note on the works themselves: outdoor pieces in a wet British city do not last forever. Several of Bristol's Banksys have been damaged by weathering, vandalism, or removal over the years. Plexiglass covers protect a few of them; the others wear visibly. Check the pin pages for the latest condition notes before you walk over.
 
-## Sunday roast at Beese's
+## If you have a longer weekend
 
-If you have a longer stay, take a boat down the Avon to [Beese's](/pins/beeses) for Sunday roast. The Conham Ferry crosses to the tea garden and the roast is the meal; the trip there is the rest of it. The whole thing is the kind of slow Sunday Bristol does well.
+Two more things, both for stays of three days or more.
 
-## Bath, day trip or overnight
+A Sunday roast at [Beese's](/pins/beeses) is the kind of slow Sunday Bristol does well. The Conham Ferry crosses the Avon to the tea garden and the roast is the meal; the trip there is the rest of it. Allow most of the afternoon.
 
-[Bath](/cities/bath) is the natural pair. The River Avon connects the two cities and there is a continuous canal route upstream past Bath if you ever do a longer narrowboat outing. For day-trip purposes the train is the easier move: a direct service runs about every 15 minutes from Bristol Temple Meads and takes around 12 minutes door to door. If you have an extra night, stay over in Bath and ride back in the morning.
+[Bath](/cities/bath) is the natural pair. The River Avon connects the two cities and there is a continuous canal route upstream past Bath if you ever do a longer narrowboat outing. For day-trip purposes the train is the easier move: every 15 minutes from Bristol Temple Meads, around 12 minutes door to door. If you have an extra night, stay over in Bath and ride back in the morning.
 
-## When to go
+## Leaving Bristol: the European hop
 
-Bristol can be chilly. May and June are my favorite weeks: the days are getting long, the parks have come back, and the mornings are still fresh. Outside that window pack a layer; in winter the daylight runs short and most of the walking I have described above gets less pleasant.
-
-## The European hop
-
-One thing Bristol has that most of these "second city" trips do not is a real airport. [Bristol Airport](/pins/bristol-airport) is small and runs heavy on Ryanair, which makes it useful as the second leg out of a UK trip. If somebody asks me how to see Europe without the crowds of the big cities, the practical version of that answer often starts with Bristol to somewhere like Alicante. The flight is short, the destination is quiet, and you skip Heathrow on the way out.
+One thing Bristol has that most "second city" trips do not is a real airport. [Bristol Airport](/pins/bristol-airport) is small and runs heavy on Ryanair, which makes it useful as the second leg out of a UK trip. If somebody asks me how to see Europe without the crowds of the big cities, the practical version of that answer often starts with Bristol to somewhere quieter, like [Alicante](/cities/alicante). The flight is short, the destination is calm, and you skip Heathrow on the way out.
