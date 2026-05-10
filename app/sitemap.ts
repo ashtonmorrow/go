@@ -53,13 +53,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // canonical-tagged + noindex'd against the cards URL — listing them
   // here would be inconsistent with that signal and waste crawl
   // budget.
+  // Top-level URLs in priority order. The home page (/) ships at 1.0
+  // because the May 2026 IA refactor turned it from a redirect into a
+  // real magazine-style landing; it's the canonical entry point and
+  // distributes link authority to the editorial pages below it.
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/cities/cards`,    lastModified: now, changeFrequency: 'daily',  priority: 1.0 },
-    { url: `${SITE_URL}/countries/cards`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/pins/cards`,      lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/lists`,           lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${SITE_URL}/about`,           lastModified: '2026-04-25', changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${SITE_URL}/articles`,        lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: SITE_URL,                      lastModified: now, changeFrequency: 'daily',  priority: 1.0 },
+    { url: `${SITE_URL}/lists`,           lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/articles`,        lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/atlas`,           lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}/cities/cards`,    lastModified: now, changeFrequency: 'daily',  priority: 0.7 },
+    { url: `${SITE_URL}/countries/cards`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/pins/cards`,      lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/about`,           lastModified: '2026-04-25', changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SITE_URL}/privacy`,         lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ];
 
