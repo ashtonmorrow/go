@@ -25,7 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <nav className="flex items-center gap-4 text-small flex-wrap">
             <Link href="/admin/upload" className="text-ink hover:text-teal">
-              Upload photos
+              Upload
             </Link>
             <Link href="/admin/photos" className="text-ink hover:text-teal">
               Photos

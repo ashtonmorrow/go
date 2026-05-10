@@ -307,7 +307,8 @@ function NavBody({
           <Item href="/admin/pins/enrich"   emoji="✨" label="Enrich descriptions" onClick={onLinkClick} />
           <Item href="/admin/hotels"        emoji="⌂" label="Hotel prices"   onClick={onLinkClick} />
           <Item href="/admin/lists"         emoji="🗂️" label="Saved lists"   onClick={onLinkClick} />
-          <Item href="/admin/upload"        emoji="📷" label="Upload photos" onClick={onLinkClick} />
+          <Item href="/admin/upload"        emoji="📷" label="Upload"         onClick={onLinkClick} />
+          <Item href="/admin/photos"        emoji="🖼️" label="Photos"         onClick={onLinkClick} />
           <Item href="/admin/reservations/new" emoji="🛎️" label="Add reservation" onClick={onLinkClick} />
         </Section>
       )}
