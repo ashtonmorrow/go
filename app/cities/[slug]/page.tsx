@@ -143,7 +143,12 @@ export default async function CityPage({
     fetchAllSavedListsMeta(),
     // Personal photos that filter up from any pin in this city. Joined
     // server-side so we don't load all photos + filter client-side.
-    fetchPinPhotosForCity(city.name, 24),
+    // Bumped from 24 to 80 because PinPhotoMasonry now groups photos
+    // by pin (one card per pin, "+N" indicator for additional shots).
+    // 24 photos can collapse to 2-3 cards if a single pin dominates;
+    // 80 gives the grouping enough room to expose ~20-30 unique pins
+    // on busy cities while staying well under any payload concern.
+    fetchPinPhotosForCity(city.name, 80),
   ]);
 
   // Match the city's name/slug against saved-list names BEFORE fetching pins

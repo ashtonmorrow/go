@@ -99,7 +99,11 @@ export default async function CountryPage({
     // Photos from any pin in this country — joined server-side via
     // pins.states_names overlap. Larger limit than cities (36 vs 24)
     // since a country aggregates multiple cities' photos.
-    fetchPinPhotosForCountry(country.name, 36),
+    // Bumped from 36 to 120 because PinPhotoMasonry now groups photos
+    // by pin (one card per pin, "+N" indicator for additional shots).
+    // 36 photos can collapse to a handful of cards if a few pins
+    // dominate; 120 keeps the country page diverse after grouping.
+    fetchPinPhotosForCountry(country.name, 120),
   ]);
 
   // Saved-list cards. Match against the country name, slug, and every city

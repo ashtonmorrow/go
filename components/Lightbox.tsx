@@ -8,29 +8,46 @@ import { isVideoUrl } from '@/lib/imageUrl';
 // the page wants as `children`, pass the full-resolution `src` separately,
 // and clicking the wrapper opens a fixed overlay showing the full image.
 //
+// Two modes:
+//   - Single-photo (default): pass `src`, `alt`, `width`, `height`,
+//     optionally `caption` and `posterUrl`. The modal shows that one
+//     image (or video) at full size.
+//   - Carousel: pass `photos` (an array). The modal opens at
+//     `startIndex` (default 0), shows prev/next arrows, and reacts to
+//     arrow keys. Useful when the click target represents a group of
+//     photos for the same place. Use this from PinPhotoMasonry where
+//     one card stands in for all the photos of a single pin.
+//
 // Behaviour:
 //   - Esc or backdrop click closes the modal
+//   - ←/→ navigate when `photos.length > 1`
 //   - Body scroll is locked while open
 //   - object-contain on the modal image so portraits show fully
-//   - Width/height props let the browser reserve aspect-correct space
-//     (no layout flash as the high-res image loads)
 //
 // The wrapper is a <button> for keyboard reachability. It carries no
-// background of its own — the children control all the visual presentation.
+// background of its own; the children control the visual presentation.
 
-type Props = {
-  /** Full-resolution image URL shown when the modal is open. The thumbnail
-   *  rendering is up to `children`; this src is what the lightbox
-   *  presents at full size. */
-  src: string;
-  alt: string;
-  /** Native pixel dimensions (when known). Used to size the modal image
-   *  so the browser reserves layout space and centres correctly for both
-   *  portrait and landscape. */
+export type LightboxPhoto = {
+  url: string;
+  alt?: string | null;
   width?: number | null;
   height?: number | null;
-  /** The thumbnail / hero rendering. Anything — img, figure, div with a
-   *  background. The wrapper just adds the click-to-open behaviour. */
+  caption?: string | null;
+  posterUrl?: string | null;
+};
+
+type Props = {
+  /** Full-resolution image URL shown when the modal is open. Required
+   *  unless `photos` is provided. */
+  src?: string;
+  /** Alt for the single-photo mode. Required unless `photos` is set. */
+  alt?: string;
+  /** Native pixel dimensions (when known). Used to size the modal image
+   *  so the browser reserves layout space and centres correctly. */
+  width?: number | null;
+  height?: number | null;
+  /** The thumbnail / hero rendering. Anything; the wrapper just adds
+   *  the click-to-open behaviour. */
   children: ReactNode;
   /** Forwarded to the wrapping button. Use to size the click target
    *  (e.g. `block w-full`) or override default cursor. */
@@ -38,10 +55,15 @@ type Props = {
   /** Optional caption rendered under the image in the open state.
    *  Falls back to `alt` when not provided. */
   caption?: string;
-  /** Optional poster JPG URL when `src` points at a video. Shown in the
-   *  modal until the video loads, and used as the fallback if the
-   *  browser refuses to autoplay metadata. */
+  /** Optional poster JPG URL when `src` points at a video. */
   posterUrl?: string | null;
+  /** Carousel mode: pass an array of photos. When set, src/alt/width/
+   *  height/posterUrl on the single-photo path are ignored in the
+   *  modal; it walks the array instead. */
+  photos?: LightboxPhoto[];
+  /** Where the carousel opens. Defaults to 0. Ignored unless `photos`
+   *  is set. */
+  startIndex?: number;
 };
 
 export default function Lightbox({
@@ -53,25 +75,60 @@ export default function Lightbox({
   className,
   caption,
   posterUrl,
+  photos,
+  startIndex = 0,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const isVideo = isVideoUrl(src);
+  // In carousel mode, track which photo is on screen. When the modal
+  // closes we leave the index where it was; opening it again starts
+  // back at startIndex via a separate effect below.
+  const [index, setIndex] = useState(startIndex);
+  const isCarousel = !!(photos && photos.length > 0);
+  const N = isCarousel ? photos!.length : 1;
+
+  // Active photo for the modal. In carousel mode it comes from
+  // `photos[index]`; in single-photo mode we synthesize one from the
+  // legacy props so the render path below has a single shape to read.
+  const active: LightboxPhoto = isCarousel
+    ? photos![Math.max(0, Math.min(index, photos!.length - 1))]!
+    : {
+        url: src ?? '',
+        alt: alt ?? '',
+        width: width ?? null,
+        height: height ?? null,
+        caption: caption ?? null,
+        posterUrl: posterUrl ?? null,
+      };
+  const activeIsVideo = isVideoUrl(active.url);
+
+  // Reset to startIndex whenever the modal opens. Without this, opening
+  // the same group a second time would resume where the user last left
+  // off, which is rarely what the click on the tile means.
+  useEffect(() => {
+    if (open) setIndex(startIndex);
+  }, [open, startIndex]);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
+      else if (isCarousel && N > 1 && e.key === 'ArrowRight') {
+        setIndex(i => (i + 1) % N);
+      } else if (isCarousel && N > 1 && e.key === 'ArrowLeft') {
+        setIndex(i => (i - 1 + N) % N);
+      }
     };
     document.addEventListener('keydown', onKey);
-    // Lock body scroll while the modal is up so the page underneath
-    // doesn't drift on touch.
+    // Lock body scroll while the modal is up.
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [open]);
+  }, [open, isCarousel, N]);
+
+  const ariaLabel = active.alt ?? alt ?? '';
 
   return (
     <>
@@ -83,7 +140,7 @@ export default function Lightbox({
           'focus-visible:outline-offset-2 focus-visible:outline-teal ' +
           (className ?? 'block w-full')
         }
-        aria-label={`Open ${alt} full size`}
+        aria-label={`Open ${ariaLabel} full size`}
       >
         {children}
       </button>
@@ -92,7 +149,7 @@ export default function Lightbox({
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={alt}
+          aria-label={ariaLabel}
           onClick={() => setOpen(false)}
           className={
             'fixed inset-0 z-[60] bg-black/90 ' +
@@ -117,17 +174,45 @@ export default function Lightbox({
           >
             ×
           </button>
+
+          {isCarousel && N > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  setIndex(i => (i - 1 + N) % N);
+                }}
+                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-12 h-12 inline-flex items-center justify-center rounded-full bg-white/10 text-white text-3xl leading-none hover:bg-white/20 focus-visible:bg-white/20 transition-colors"
+                aria-label="Previous photo"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  setIndex(i => (i + 1) % N);
+                }}
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-12 h-12 inline-flex items-center justify-center rounded-full bg-white/10 text-white text-3xl leading-none hover:bg-white/20 focus-visible:bg-white/20 transition-colors"
+                aria-label="Next photo"
+              >
+                ›
+              </button>
+            </>
+          )}
+
           {/* Stop click propagation on the image so accidental clicks
               don't dismiss before the user gets to drag/zoom on touch. */}
           <figure
             onClick={e => e.stopPropagation()}
             className="flex flex-col items-center max-w-full max-h-full gap-3"
           >
-            {isVideo ? (
+            {activeIsVideo ? (
               <video
-                key={src}
-                src={src}
-                poster={posterUrl ?? undefined}
+                key={active.url}
+                src={active.url}
+                poster={active.posterUrl ?? undefined}
                 controls
                 autoPlay
                 playsInline
@@ -137,16 +222,21 @@ export default function Lightbox({
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={src}
-                alt={alt}
-                width={width ?? undefined}
-                height={height ?? undefined}
+                src={active.url}
+                alt={active.alt ?? ''}
+                width={active.width ?? undefined}
+                height={active.height ?? undefined}
                 className="max-w-full max-h-[calc(100vh-6rem)] object-contain rounded"
               />
             )}
-            {(caption || alt) && (
+            {(active.caption || active.alt) && (
               <figcaption className="text-white/80 text-small text-center max-w-prose">
-                {caption ?? alt}
+                {active.caption ?? active.alt}
+                {isCarousel && N > 1 && (
+                  <span className="ml-2 text-white/60">
+                    {index + 1} / {N}
+                  </span>
+                )}
               </figcaption>
             )}
           </figure>
