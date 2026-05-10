@@ -54,6 +54,14 @@ related:
 #     · airport-rail-link-phaya-thai
 #     · siam-paragon, siam-center
 #     · emporium-bangkok, emquartier, emsphere
+#     · royal-orchid-sheraton-bangkok (the Riverside option Mike has stayed at)
+# - Food cross-references woven into the copy from Mike's bangkok
+#   saved-list pins (those with personal_rating=5 + a personal review):
+#     · the-commons-thonglor + fowlmouth-thecommons-thonglor (Thong Lo row)
+#     · she-bar (Thong Lo row)
+#     · arabica-bangkok-central-world (mall walk, CentralWorld stop)
+#   chitbeer (Ko Kret) is also rated 5/5 — flag for an "If you have an
+#   extra day" Ko Kret section if/when that gets written.
 # - Mike said his usual base is "Hyatt Place Sukhumvit 74"; only Hyatt
 #   Place Sukhumvit 1 (Phloen Chit area) and Sukhumvit 24 (Phrom Phong)
 #   exist in the atlas, and the Soi 24 location matches his clues
@@ -109,11 +117,13 @@ I pick the base by the kind of trip I want. Sukhumvit is convenient and internat
 |---|---|---|
 | Sukhumvit | BTS at the door, malls, restaurants, the international hotel range | The least distinctive version of Bangkok; you could be in any major Asian capital |
 | [Hyatt Place Bangkok Sukhumvit 24](/pins/hyatt-place-bangkok-sukhumvit-24) | My usual base. Smaller rooftop pool, decent gym, a 3–4 minute walk to Phrom Phong BTS, and a good laundry place right next door. Phrom Phong puts the Em District at the doorstep | A Hyatt Place, so the room and the breakfast are not the reason you book it |
-| Thong Lo (Thonglor) | The other area I will pick. Dense food scene, especially the restaurant strip along Soi 55. The [Staybridge Suites](/pins/staybridge-suites-bangkok-thonglor-an-ihg-hotel) works for longer stays in apartment-style suites | Further out on Sukhumvit, so you will use Grab to and from Asoke and Siam more than from Phrom Phong |
+| Thong Lo (Thonglor) | The other area I will pick. Dense food scene along Soi 55, [The Commons](/pins/the-commons-thonglor) at Soi 17 ([FOWLMOUTH](/pins/fowlmouth-thecommons-thonglor) for Nashville hot chicken inside it), [She Bar](/pins/she-bar) for a chill Thong Lo night. The [Staybridge Suites](/pins/staybridge-suites-bangkok-thonglor-an-ihg-hotel) works for longer stays in apartment-style suites | Further out on Sukhumvit, so you will use Grab to and from Asoke and Siam more than from Phrom Phong |
 | [Hotel Indigo Bangkok Wireless Road](/pins/hotel-indigo-bangkok-wireless-road-an-ihg-hotel) | Sukhumvit-side, decent rooms, IHG points | The neighborhood blocks closest to the embassy quarter are quieter than the Asoke buzz |
 | Silom | Compact, MRT and BTS interchange at Sala Daeng, Lumpini Park at the door | Less of an evening neighborhood than Sukhumvit if that matters |
-| Riverside | Cleanest base for the old-city temple circuit; ferries from your doorstep | Furthest from the BTS spine; relies on the river or a longer Grab to most of Sukhumvit |
+| [Royal Orchid Sheraton](/pins/royal-orchid-sheraton-bangkok) (Riverside) | Decent older property on the Chao Phraya. The river-facing breakfast terrace is genuinely the best part of the stay; you eat with the boats moving past | Riverside hotels generally skew older; you take a Grab to most of central Bangkok, and it is further from the airport |
 | [Khao San Road](/pins/khao-san-road) | Backpacker Bangkok if that is the trip you want | Loud, chaotic, and not where you want to land if you are tired and have luggage |
+
+A note on the Riverside option: most of the river properties skew older than what you would book on Sukhumvit, and the upside is that the location pays for itself at breakfast. The Royal Orchid Sheraton's terrace looks straight onto the Chao Phraya and you eat while the longtail boats and cargo barges move past — it is one of the genuinely distinctive Bangkok experiences a hotel can give you. The downsides are real too. The Riverside is further from BKK, embedded in narrow lanes off Charoen Krung, and you will Grab to most of the BTS-line city. Pick it deliberately, not by default.
 
 ## A first-day mall walk for travel-hangover days
 
@@ -123,7 +133,7 @@ Start at [MBK Center](/pins/mbk-center) at the western end (National Stadium BTS
 
 Walk the elevated skybridge over to [Siam Center](/pins/siam-center) and [Siam Paragon](/pins/siam-paragon) at Siam BTS. Siam Center leans young — Thai streetwear, designer brands, and a busy food court. Siam Paragon is the upscale neighbor across the courtyard, with international luxury, an aquarium (SEA LIFE), and a bigger restaurant floor.
 
-One stop east on the BTS, [CentralWorld](/pins/centralworld) at Chit Lom is the largest of the three central-Bangkok malls and the most mainstream — international brands at every price point and a food hall that absorbs travel-hangover crowds well.
+One stop east on the BTS, [CentralWorld](/pins/centralworld) at Chit Lom is the largest of the three central-Bangkok malls and the most mainstream — international brands at every price point and a food hall that absorbs travel-hangover crowds well. The [% Arabica on the ground floor](/pins/arabica-bangkok-central-world) is a nice photogenic break if you need a coffee that costs a little more than what you will pay across the street.
 
 Get back on the BTS and ride east to Phrom Phong for the Em District: [Emporium](/pins/emporium-bangkok) on the south side of Sukhumvit, [EmQuartier](/pins/emquartier) across the road (skybridge connected), and [Emsphere](/pins/emsphere) one block down. This is the newest cluster and where the food halls are best. EmQuartier's Helix has tiered restaurant levels, Emsphere has the rooftop EM Wonder area and a busy bar scene after dark.
 
@@ -144,6 +154,10 @@ Chinatown is where I would go hungry. The Yaowarat strip turns into one of the b
 The floating markets outside the city are visually interesting and worth a short visit if you have the time, but they have largely become visitor circuits rather than working markets. I would not build a half-day around one on a short trip; do Chatuchak and Chinatown first.
 
 For a quieter inner-city stretch, [Khao San Market](/pins/khao-san-market) sits at the head of Khao San Road and is more useful than the road itself if you actually want to buy something.
+
+## Khao San at night, even if you do not stay there
+
+I would not stay on [Khao San Road](/pins/khao-san-road), but I will go for an evening. The street earns its reputation honestly: cheap beer, neon, fried scorpions for the photo, hair-braiding stalls, live cover bands, very loud, very international. If the version of Bangkok you want is "out late, walking, eating bad-for-you things," Khao San delivers and you do not have to wake up there. Take a Grab in around 8 or 9 p.m., walk Khao San and the parallel Soi Rambuttri (which is the calmer adult cousin of the same street), eat one or two stalls, have a drink, Grab back to your hotel. It is a fine night out for a couple of hours, and it pairs well with a temple morning since the old city is right there.
 
 ## A useful museum
 
