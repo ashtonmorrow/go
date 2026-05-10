@@ -41,6 +41,10 @@ export default async function AdminPinsPage() {
       // detail page block).
       personalReview: p.personalReview,
       generatedReview: p.generatedReview,
+      // Neglect signals — feed the "Needs work" filter pills so the
+      // dashboard's orange flags route to actionable lists.
+      hasDescription: !!(p.description && p.description.trim()),
+      hasPersonalPhoto: !!p.lastPhotoAt,
     }));
 
   return (

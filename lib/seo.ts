@@ -436,6 +436,16 @@ export function pinJsonLd(pin: {
   const offers = pin.admission ? admissionToOffers(pin.admission) : [];
   const type = pinSchemaType(pin);
   const priceRange = priceRangeFromPin(pin);
+  // Google's Review snippet docs allow aggregateRating only on a
+  // narrow list of parent types — LocalBusiness (and its subtypes
+  // Hotel, Restaurant, Store) plus a handful of unrelated types
+  // (Book, Movie, Recipe, Product, …). TouristAttraction, Park,
+  // Airport, BusStation, TrainStation, and the bare Place are NOT
+  // valid parents. Search Console's "Invalid object type for field
+  // <parent_node>" warning fires when we attach aggregateRating to
+  // those. Gate it here so only LocalBusiness-shaped pins get it.
+  const acceptsAggregateRating =
+    type === 'Hotel' || type === 'Restaurant' || type === 'Store';
 
   const accessibilityFeatures: string[] = [];
   if (pin.wheelchairAccessible === 'fully') accessibilityFeatures.push('wheelchairAccessible');
@@ -458,7 +468,10 @@ export function pinJsonLd(pin: {
       ? { servesCuisine: pin.cuisine }
       : {}),
     ...(priceRange ? { priceRange } : {}),
-    ...(pin.googleRating != null && pin.googleRatingCount != null && pin.googleRatingCount >= 5
+    ...(acceptsAggregateRating &&
+    pin.googleRating != null &&
+    pin.googleRatingCount != null &&
+    pin.googleRatingCount >= 5
       ? {
           aggregateRating: {
             '@type': 'AggregateRating',

@@ -159,13 +159,21 @@ export default async function AdminDashboardPage() {
           href="/admin/pins"
           rows={[
             { label: 'Visited', value: counts.pinsVisited, of: counts.pinsTotal },
-            { label: 'With personal photo', value: counts.pinsWithPhoto, of: counts.pinsTotal },
+            {
+              label: 'With personal photo',
+              value: counts.pinsWithPhoto,
+              of: counts.pinsTotal,
+              link: '/admin/pins?filter=visited-no-photo',
+              linkLabel: 'see visited without photo',
+            },
             { label: 'Indexable in Google', value: counts.pinsIndexable, of: counts.pinsTotal },
             {
               label: 'Missing description',
               value: counts.pinsNoDescription,
               of: counts.pinsTotal,
               warn: counts.pinsNoDescription > 0,
+              link: '/admin/pins?filter=no-description',
+              linkLabel: 'enrich',
             },
           ]}
         />
@@ -179,6 +187,8 @@ export default async function AdminDashboardPage() {
               value: counts.citiesCurated,
               of: counts.citiesVisited,
               warn: counts.citiesCurated < counts.citiesVisited * 0.1,
+              link: '/admin/cities?filter=needs-curation',
+              linkLabel: 'curate',
             },
           ]}
         />
@@ -224,6 +234,19 @@ export default async function AdminDashboardPage() {
   );
 }
 
+type DashRow = {
+  label: string;
+  value: number;
+  of?: number;
+  warn?: boolean;
+  /** Optional link routed to a filtered subpage. When set, the value
+   *  becomes a clickable link. Useful for routing the dashboard's
+   *  "Missing description: 339" stat directly to the filtered admin
+   *  list. */
+  link?: string;
+  linkLabel?: string;
+};
+
 function DashCard({
   title,
   href,
@@ -233,13 +256,25 @@ function DashCard({
 }: {
   title: string;
   href?: string;
-  rows: { label: string; value: number; of?: number; warn?: boolean }[];
+  rows: DashRow[];
   subtitle?: string;
   links?: { href: string; label: string }[];
 }) {
+  // If any row has its own deep-link, the card itself shouldn't wrap
+  // in <Link> — nested anchors are invalid HTML and break the row
+  // links. Fall back to a plain article in that case; the title
+  // stays clickable via an explicit anchor in the header.
+  const hasRowLinks = rows.some(r => r.link);
   const inner = (
     <article className="rounded-md border border-sand bg-white p-4 hover:border-slate transition-colors h-full">
-      <h2 className="text-h4 text-ink-deep mb-2">{title}</h2>
+      <div className="flex items-baseline justify-between mb-2 gap-2">
+        <h2 className="text-h4 text-ink-deep">{title}</h2>
+        {hasRowLinks && href && (
+          <Link href={href} className="text-label text-teal hover:underline">
+            open →
+          </Link>
+        )}
+      </div>
       {subtitle && <p className="text-label text-muted mb-3">{subtitle}</p>}
       {rows.length > 0 && (
         <dl className="space-y-1.5">
@@ -260,6 +295,14 @@ function DashCard({
                     <span className="ml-1.5 text-label">({pct(r.value, r.of)})</span>
                   </span>
                 )}
+                {r.link && (
+                  <Link
+                    href={r.link}
+                    className="ml-2 text-label text-teal hover:underline"
+                  >
+                    {r.linkLabel ?? 'view'} →
+                  </Link>
+                )}
               </dd>
             </div>
           ))}
@@ -278,11 +321,10 @@ function DashCard({
       )}
     </article>
   );
-  return href ? (
+  if (hasRowLinks || !href) return inner;
+  return (
     <Link href={href} className="block">
       {inner}
     </Link>
-  ) : (
-    inner
   );
 }

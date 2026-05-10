@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { thumbUrl } from '@/lib/imageUrl';
 import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
@@ -15,21 +16,56 @@ export type AdminCityRow = {
   coverUrl: string | null;
 };
 
-type Filter = 'all' | 'visited' | 'short-list' | 'researching' | 'curated' | 'uncurated';
+type Filter =
+  | 'all'
+  | 'visited'
+  | 'short-list'
+  | 'researching'
+  | 'curated'
+  | 'uncurated'
+  // The dashboard's "Curated heroes / Visited" stat at 3% routes here
+  // — visited cities that don't have a curated hero yet. Lets Mike
+  // chew through the curation backlog with the inline cover picker
+  // instead of clicking into each /admin/cities/[slug] separately.
+  | 'needs-curation';
 
-const FILTERS: { id: Filter; label: string }[] = [
+const FILTERS: { id: Filter; label: string; hint?: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'visited', label: 'Visited' },
   { id: 'short-list', label: 'Short list' },
   { id: 'researching', label: 'Researching' },
   { id: 'curated', label: 'Curated' },
   { id: 'uncurated', label: 'Auto-pick' },
+  {
+    id: 'needs-curation',
+    label: 'Needs curation',
+    hint: 'Visited cities without a curated hero. The inline cover picker (click the thumbnail) is the fastest way to clear this list.',
+  },
 ];
 
 export default function CitiesAdminClient({ rows: initialRows }: { rows: AdminCityRow[] }) {
+  // Initial filter from ?filter= so the dashboard's "Curated heroes /
+  // Visited" stat can deep-link straight to the curation backlog.
+  const searchParams = useSearchParams();
+  const initialFilter = ((): Filter => {
+    const raw = searchParams.get('filter');
+    if (
+      raw === 'all' ||
+      raw === 'visited' ||
+      raw === 'short-list' ||
+      raw === 'researching' ||
+      raw === 'curated' ||
+      raw === 'uncurated' ||
+      raw === 'needs-curation'
+    ) {
+      return raw;
+    }
+    return 'visited';
+  })();
+
   const [rows, setRows] = useState(initialRows);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState<Filter>('visited');
+  const [filter, setFilter] = useState<Filter>(initialFilter);
   const [coverPickerFor, setCoverPickerFor] = useState<string | null>(null);
 
   function applyCoverCommit(
@@ -70,6 +106,9 @@ export default function CitiesAdminClient({ rows: initialRows }: { rows: AdminCi
         case 'uncurated':
           if (r.heroPhotoUrls.length > 0) return false;
           break;
+        case 'needs-curation':
+          if (!r.been || r.heroPhotoUrls.length > 0) return false;
+          break;
         case 'all':
           break;
       }
@@ -107,6 +146,7 @@ export default function CitiesAdminClient({ rows: initialRows }: { rows: AdminCi
             key={f.id}
             type="button"
             onClick={() => setFilter(f.id)}
+            title={f.hint}
             className={
               'px-3 py-1 rounded-full text-small transition-colors ' +
               (filter === f.id

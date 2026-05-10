@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
 type Row = {
@@ -18,6 +19,8 @@ type Row = {
   heroPhotoUrls: string[];
   personalReview: string | null;
   generatedReview: string | null;
+  hasDescription: boolean;
+  hasPersonalPhoto: boolean;
 };
 
 // Per-row editable patch. The bulk-edit endpoint at
@@ -34,7 +37,15 @@ type RowEdit = {
   generatedReview: string | null;
 };
 
-type Filter = 'all' | 'visited' | 'not-visited';
+type Filter =
+  | 'all'
+  | 'visited'
+  | 'not-visited'
+  // Neglect filters — surface the dashboard's orange flags as
+  // actionable lists. 'no-description' = pin.description is empty;
+  // 'visited-no-photo' = visited but never had a personal photo.
+  | 'no-description'
+  | 'visited-no-photo';
 type SortKey = 'recent' | 'name' | 'city' | 'country';
 const KINDS = ['attraction', 'shopping', 'hotel', 'park', 'restaurant', 'transit'] as const;
 type Kind = typeof KINDS[number];
@@ -122,7 +133,23 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
     }
   }
   const [q, setQ] = useState('');
-  const [filter, setFilter] = useState<Filter>('all');
+  // Initial filter can be supplied via ?filter= so the dashboard cards
+  // can deep-link "Missing description: 339" → the filtered admin list.
+  const searchParams = useSearchParams();
+  const initialFilter = ((): Filter => {
+    const raw = searchParams.get('filter');
+    if (
+      raw === 'all' ||
+      raw === 'visited' ||
+      raw === 'not-visited' ||
+      raw === 'no-description' ||
+      raw === 'visited-no-photo'
+    ) {
+      return raw;
+    }
+    return 'all';
+  })();
+  const [filter, setFilter] = useState<Filter>(initialFilter);
   const [country, setCountry] = useState<string>('');
   const [kindFilter, setKindFilter] = useState<Set<Kind>>(new Set());
   const [sortKey, setSortKey] = useState<SortKey>('recent');
@@ -187,6 +214,8 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
       const kindNow = edit?.kind ?? r.kind;
       if (filter === 'visited' && !visitedNow) return false;
       if (filter === 'not-visited' && visitedNow) return false;
+      if (filter === 'no-description' && r.hasDescription) return false;
+      if (filter === 'visited-no-photo' && (!visitedNow || r.hasPersonalPhoto)) return false;
       if (country && r.country !== country) return false;
       if (kindFilter.size > 0) {
         if (!kindNow || !kindFilter.has(kindNow as Kind)) return false;
@@ -229,6 +258,7 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         visited: false, kind: null, indexable: false, personalRating: null,
         coverUrl: null, heroPhotoUrls: [],
         personalReview: null, generatedReview: null,
+        hasDescription: false, hasPersonalPhoto: false,
       });
       next.set(id, { ...base, [key]: value });
       return next;
@@ -462,19 +492,36 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
             className="text-small border border-sand rounded px-3 py-2 bg-white w-64"
           />
           <div className="inline-flex rounded border border-sand overflow-hidden text-label">
-            {(['all', 'visited', 'not-visited'] as Filter[]).map(f => (
+            {(
+              [
+                { id: 'all', label: 'All' },
+                { id: 'visited', label: 'Visited' },
+                { id: 'not-visited', label: 'Not yet' },
+                {
+                  id: 'no-description',
+                  label: 'No description',
+                  hint: 'Pins with an empty description column. Route to /admin/pins/enrich to backfill in bulk via Gemini.',
+                },
+                {
+                  id: 'visited-no-photo',
+                  label: 'Visited · no photo',
+                  hint: 'Visited pins that have never had a personal photo. The 10K-photo upload backlog targets this list.',
+                },
+              ] as { id: Filter; label: string; hint?: string }[]
+            ).map(f => (
               <button
-                key={f}
+                key={f.id}
                 type="button"
-                onClick={() => setFilter(f)}
+                onClick={() => setFilter(f.id)}
+                title={f.hint}
                 className={
                   'px-3 py-2 ' +
-                  (filter === f
+                  (filter === f.id
                     ? 'bg-ink-deep text-white'
                     : 'bg-white text-ink hover:bg-cream-soft')
                 }
               >
-                {f === 'all' ? 'All' : f === 'visited' ? 'Visited' : 'Not yet'}
+                {f.label}
               </button>
             ))}
           </div>
