@@ -24,6 +24,9 @@ type Counts = {
   countriesCurated: number;
   personalPhotosVisible: number;
   personalPhotosHidden: number;
+  listsTotal: number;
+  listsWithDescription: number;
+  listsWithCover: number;
   lastUploadAt: string | null;
   recentUploadsThisWeek: number;
 };
@@ -75,6 +78,22 @@ async function fetchCounts(): Promise<Counts | null> {
       .maybeSingle(),
   ]);
 
+  const [listsTotalRes, listsDescriptionRes, listsCoverRes] = await Promise.all([
+    sb.from('saved_lists').select('id', { count: 'exact', head: true }),
+    // PostgREST doesn't expose `length(...) > 0` directly; .neq with
+    // empty string covers blank-string descriptions and `is.not.null`
+    // covers the rest.
+    sb
+      .from('saved_lists')
+      .select('id', { count: 'exact', head: true })
+      .not('description', 'is', null)
+      .neq('description', ''),
+    sb
+      .from('saved_lists')
+      .select('id', { count: 'exact', head: true })
+      .not('cover_photo_id', 'is', null),
+  ]);
+
   // Curated counts can't use head=true with array_length filters via
   // PostgREST — fetch the small subset of curated rows directly.
   const [citiesCuratedRes, countriesCuratedRes] = await Promise.all([
@@ -104,6 +123,9 @@ async function fetchCounts(): Promise<Counts | null> {
     countriesCurated: countriesCuratedRes.count ?? 0,
     personalPhotosVisible: photosVisible.count ?? 0,
     personalPhotosHidden: photosHidden.count ?? 0,
+    listsTotal: listsTotalRes.count ?? 0,
+    listsWithDescription: listsDescriptionRes.count ?? 0,
+    listsWithCover: listsCoverRes.count ?? 0,
     lastUploadAt: (lastUpload.data as { created_at?: string } | null)?.created_at ?? null,
     recentUploadsThisWeek: photosThisWeek.count ?? 0,
   };
@@ -201,6 +223,9 @@ export default async function AdminDashboardPage() {
               label: 'Curated heroes',
               value: counts.countriesCurated,
               of: counts.countriesTotal,
+              warn: counts.countriesCurated === 0,
+              link: '/admin/countries?filter=needs-curation',
+              linkLabel: 'curate',
             },
           ]}
         />
@@ -218,6 +243,25 @@ export default async function AdminDashboardPage() {
           href="/admin/photos?source=codex"
           rows={[{ label: 'Pins with codex art', value: counts.pinsWithCodex }]}
           subtitle="AI illustrations used as fallback covers when no real photo exists."
+        />
+        <DashCard
+          title="Saved lists"
+          href="/admin/lists"
+          rows={[
+            { label: 'Total', value: counts.listsTotal },
+            {
+              label: 'With description',
+              value: counts.listsWithDescription,
+              of: counts.listsTotal,
+              warn: counts.listsWithDescription < counts.listsTotal * 0.25,
+            },
+            {
+              label: 'With curated cover',
+              value: counts.listsWithCover,
+              of: counts.listsTotal,
+              warn: counts.listsWithCover < counts.listsTotal * 0.25,
+            },
+          ]}
         />
         <DashCard
           title="Quick actions"

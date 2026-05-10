@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { thumbUrl } from '@/lib/imageUrl';
 import EntityCoverPickerModal from '@/components/admin/EntityCoverPickerModal';
 
@@ -15,21 +16,55 @@ export type AdminCountryRow = {
   coverUrl: string | null;
 };
 
-type Filter = 'all' | 'visited' | 'short-list' | 'researching' | 'curated' | 'uncurated';
+type Filter =
+  | 'all'
+  | 'visited'
+  | 'short-list'
+  | 'researching'
+  | 'curated'
+  | 'uncurated'
+  // Mirror of the cities filter — visited countries that don't have
+  // a curated hero yet. The dashboard's "Curated heroes / Total"
+  // stat at 0/226 routes here.
+  | 'needs-curation';
 
-const FILTERS: { id: Filter; label: string }[] = [
+const FILTERS: { id: Filter; label: string; hint?: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'visited', label: 'Visited' },
   { id: 'short-list', label: 'Short list' },
   { id: 'researching', label: 'Researching' },
   { id: 'curated', label: 'Curated' },
   { id: 'uncurated', label: 'Auto-pick' },
+  {
+    id: 'needs-curation',
+    label: 'Needs curation',
+    hint: 'Visited countries without a curated hero. Click any thumbnail to pick a cover.',
+  },
 ];
 
 export default function CountriesAdminClient({ rows: initialRows }: { rows: AdminCountryRow[] }) {
+  // Initial filter from ?filter= so the dashboard "Curated heroes" stat
+  // can deep-link to the curation backlog.
+  const searchParams = useSearchParams();
+  const initialFilter = ((): Filter => {
+    const raw = searchParams.get('filter');
+    if (
+      raw === 'all' ||
+      raw === 'visited' ||
+      raw === 'short-list' ||
+      raw === 'researching' ||
+      raw === 'curated' ||
+      raw === 'uncurated' ||
+      raw === 'needs-curation'
+    ) {
+      return raw;
+    }
+    return 'visited';
+  })();
+
   const [rows, setRows] = useState(initialRows);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState<Filter>('visited');
+  const [filter, setFilter] = useState<Filter>(initialFilter);
   const [coverPickerFor, setCoverPickerFor] = useState<string | null>(null);
 
   function applyCoverCommit(
@@ -67,6 +102,9 @@ export default function CountriesAdminClient({ rows: initialRows }: { rows: Admi
         case 'uncurated':
           if (r.heroPhotoUrls.length > 0) return false;
           break;
+        case 'needs-curation':
+          if (r.beenCount === 0 || r.heroPhotoUrls.length > 0) return false;
+          break;
         case 'all':
           break;
       }
@@ -102,6 +140,7 @@ export default function CountriesAdminClient({ rows: initialRows }: { rows: Admi
             key={f.id}
             type="button"
             onClick={() => setFilter(f.id)}
+            title={f.hint}
             className={
               'px-3 py-1 rounded-full text-small transition-colors ' +
               (filter === f.id
