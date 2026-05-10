@@ -9,6 +9,7 @@ import { usePinFilters } from './PinFiltersContext';
 import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
 import type { ArticleEntry } from '@/lib/articles';
+import SearchModal, { type SearchItem } from './SearchModal';
 
 // Filter panels lazy-loaded so chrome-less routes (about, privacy,
 // articles, posts, admin/*) don't pay for the filter-cockpit JavaScript
@@ -72,6 +73,7 @@ export default function SidebarShell({
   pinTagOptions = [],
   pinSavedListOptions = [],
   articleEntries = [],
+  searchItems = [],
 }: {
   counts: Counts;
   countryOptions: string[];
@@ -84,6 +86,9 @@ export default function SidebarShell({
    *  Defaults to [] so existing call sites keep typechecking before the prop
    *  is threaded through; we should always pass it in production. */
   articleEntries?: ArticleEntry[];
+  /** Pre-built suggestion list for the ⌘K SearchModal mounted at the
+   *  top of the rail. See lib/searchItems.buildSearchItems. */
+  searchItems?: SearchItem[];
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -132,6 +137,7 @@ export default function SidebarShell({
           pinTagOptions={pinTagOptions}
           pinSavedListOptions={pinSavedListOptions}
           articleEntries={articleEntries}
+          searchItems={searchItems}
           onLinkClick={() => setDrawerOpen(false)}
         />
       </aside>
@@ -148,6 +154,7 @@ export default function SidebarShell({
           pinTagOptions={pinTagOptions}
           pinSavedListOptions={pinSavedListOptions}
           articleEntries={articleEntries}
+          searchItems={searchItems}
         />
       </aside>
     </>
@@ -170,6 +177,7 @@ function NavBody({
   pinTagOptions,
   pinSavedListOptions,
   articleEntries,
+  searchItems,
   onLinkClick,
 }: {
   counts: Counts;
@@ -180,6 +188,7 @@ function NavBody({
   pinTagOptions: string[];
   pinSavedListOptions: string[];
   articleEntries: ArticleEntry[];
+  searchItems: SearchItem[];
   onLinkClick?: () => void;
 }) {
   const pathname = usePathname() || '';
@@ -215,6 +224,12 @@ function NavBody({
 
   return (
     <div className="flex flex-col h-full p-4 gap-6">
+      {/* Search trigger + ⌘K modal. Listens globally for the keyboard
+          shortcut (⌘K / Ctrl-K) so the click-the-button affordance is
+          a backup; power users hit the keys. The modal renders nothing
+          when closed. */}
+      <SearchModal items={searchItems} />
+
       {/* Top nav — three content-first items: Lists (destination
           guides), Atlas (data-views wrapper), About. Articles moved
           to the footer block (May 2026): the home page now mixes

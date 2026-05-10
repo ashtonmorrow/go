@@ -14,6 +14,7 @@
 
 import { fetchSidebarChipData } from '@/lib/sidebarData';
 import { getAllArticleEntries } from '@/lib/articles';
+import { buildSearchItems } from '@/lib/searchItems';
 import SidebarShell from './SidebarShell';
 
 const ZERO_COUNTS = {
@@ -44,19 +45,24 @@ async function SafeSidebar() {
         pinTagOptions={[]}
         pinSavedListOptions={[]}
         articleEntries={[]}
+        searchItems={[]}
       />
     );
   }
 }
 
 async function SidebarBody() {
-  const [chipData, articleEntries] = await Promise.all([
+  const [chipData, articleEntries, searchItems] = await Promise.all([
     fetchSidebarChipData().catch(err => {
       console.error('[Sidebar] fetchSidebarChipData failed:', err);
       return null;
     }),
     getAllArticleEntries().catch(err => {
       console.error('[Sidebar] getAllArticleEntries failed:', err);
+      return [];
+    }),
+    buildSearchItems().catch(err => {
+      console.error('[Sidebar] buildSearchItems failed:', err);
       return [];
     }),
   ]);
@@ -72,6 +78,7 @@ async function SidebarBody() {
         pinTagOptions={[]}
         pinSavedListOptions={[]}
         articleEntries={articleEntries}
+        searchItems={searchItems}
       />
     );
   }
@@ -86,6 +93,7 @@ async function SidebarBody() {
       pinTagOptions={chipData.pinTagOptions}
       pinSavedListOptions={chipData.pinSavedListOptions}
       articleEntries={articleEntries}
+      searchItems={searchItems}
     />
   );
 }
