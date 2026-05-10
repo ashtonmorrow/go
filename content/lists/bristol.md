@@ -52,10 +52,6 @@ related:
 #       "churches in the center" mention)
 #     · Bristol Airport
 #     · Bristol Temple Meads station
-#     · The Bearpit (the area, not just the Holiday Inn)
-# - Two Llandoger Trow pins exist (`llandoger-trow` and
-#   `the-llandoger-trow`). Only `the-llandoger-trow` has an address.
-#   Worth merging in /admin/pins; the prose links the addressed one.
 # - Banksy section currently links the three best-known pieces. The
 #   atlas has seven Banksy pins total — list them as a "Bristol Banksy
 #   trail" sub-list later if it's worth building out.
@@ -74,7 +70,7 @@ I pick the area first and the hotel second. The College Green and cathedral side
 | Bristol Marriott Royal Hotel | The best central pick in my opinion. Next to the cathedral, the museums, and the evening bar area | Top of the price band for the city |
 | [Moxy Bristol](/pins/moxy-bristol) | Decent modern chain, fine as a base | It is a Moxy, so the room is small and the furniture is sparse |
 | [Delta Hotels Bristol City Centre](/pins/delta-hotels-bristol-city-centre) | Used to be a Marriott | Has since hosted refugees and run down. I would not stay here on this trip |
-| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) (Bearpit) | Cheap, central on paper | Awful in practice. A guy walked into my room while I was showering. Skip |
+| [Holiday Inn Bristol City Centre](/pins/holiday-inn-bristol-city-centre-by-ihg) (Bearpit) | Cheap, central on paper | Awful in practice. A hotel worker came into my room while I was in the shower and would not leave. Skip |
 
 If the Marriott Royal is full or out of budget, I would push the date or pick the Moxy before either of the avoid options.
 

@@ -39,13 +39,15 @@ related:
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews; flip to true to ship.
 # - hero_image is empty; pick one in /admin/lists/madrid via the picker.
-# - Pins still to create (referenced as text only below):
-#     · El Rastro (Sunday flea market) — currently no pin
-#     · Hotel Indigo Madrid - Gran Vía — Mike mentioned, no pin yet
-#     · Hilton Canopy Madrid - La Latina/Lavapiés area — no pin yet
-#     · Casa de Campo (the park visible from Templo de Debod) — no pin yet
-#   Add these in /admin/pins so the prose can link them.
-# - The Prado link below points at the UNESCO "Paseo del Prado and Buen
+# - Three Madrid pins were just created and are now linked from the prose:
+#     · museo-del-ferrocarril-de-madrid (Train Museum, Mike's favorite)
+#     · casa-de-campo-madrid (the park west of the city)
+#     · el-rastro (Sunday flea market, anchored at Plaza de Cascorro)
+# - One pin still missing if a separate Hotel Indigo Madrid - Gran Vía
+#   listing is wanted. Mike mentioned it in passing; the Atocha Hotel
+#   Tapestry by Hilton replaces the earlier "Hilton Canopy" placeholder
+#   in the where-to-stay table.
+# - The Prado link points at the UNESCO "Paseo del Prado and Buen
 #   Retiro" pin since that is the pin we have. If a standalone Museo del
 #   Prado pin is created later, swap the link.
 ---
@@ -71,14 +73,14 @@ I pick a base by which kind of day I want to have. Gran Vía gets you walking di
 | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Same Gran Vía area; was a solid mid-range pick | I have not stayed since the recent renovation, so confirm the room before booking |
 | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way if you want the Sol and Gran Vía buzz at night |
 | La Latina toward Lavapiés | My personal favorite area for neighborhood restaurants and smaller hotels | Older buildings, more stairs, less polished than the central hotels |
-| Hilton Canopy Madrid | Decent chain option in this area; rates have been creeping up | Not always the value it used to be |
+| [Atocha Hotel Madrid, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Decent Hilton soft-brand option on the La Latina / Lavapiés side, walking distance to the Reina Sofía | Rates have been creeping up; not always the value it used to be |
 | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage; treat it as a bed, not a base to relax in |
 
 If you do stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) at Callao has a rooftop terrace with one of the easier sunset views in the center. The [Camino Sacramento](/pins/camino-sacramento) cheap-steak spot is also right there and worth a stop.
 
 ## Sunday at El Rastro
 
-El Rastro is a Sunday-only flea market that runs through La Latina and Lavapiés. I go when it first opens, around 7:30. By mid-morning the lanes are body-to-body, which is when phones come out of pockets. I keep mine away and stop checking the map until I am back on a quieter street.
+[El Rastro](/pins/el-rastro) is a Sunday-only flea market that runs through La Latina and Lavapiés. I go when it first opens, around 7:30. By mid-morning the lanes are body-to-body, which is when phones come out of pockets. I keep mine away and stop checking the map until I am back on a quieter street.
 
 The pre-market warm-up is a paper cone of churros from [Churrería Santa Ana](/pins/churreria-santa-ana). It is greasy, takeaway, and exactly the right thing before walking the market.
 
@@ -100,10 +102,22 @@ For pastries on the way to the Retiro or the museum cluster, [Motteau Pasteleria
 
 ## Museums
 
-If you have to pick one, I am partial to the [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) over the Prado. Reina Sofía tends to be quieter and works as a walk-up, and its twentieth-century collection (Picasso, Miró, Dalí) is what most first-time visitors actually want to see in person.
+If you have to pick one of the headline two, I am partial to the [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) over the Prado. Reina Sofía tends to be quieter and works as a walk-up, and its twentieth-century collection (Picasso, Miró, Dalí) is what most first-time visitors actually want to see in person.
 
 The [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) is the bigger, denser collection and is the right pick if you came specifically for Velázquez, Goya, or El Greco. Book a timed entry. The walk-up line on weekends is the part of the trip people complain about.
 
+My own favorite museum in Madrid is neither of those: it is the [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid), the railway museum on Paseo de las Delicias. The collection is housed inside the former Estación de Delicias, an 1880 iron-and-glass train shed, and the trains sit on the original platforms. Two practical notes that catch people out: the museum is closed Mondays, and the regular hours run short — Tuesday through Sunday, 9:30 or 10:00 to 15:00. Family weekend programming runs on Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend rather than a Friday if you have kids.
+
+## Casa de Campo for a half-day
+
+[Casa de Campo](/pins/casa-de-campo-madrid) is Madrid's largest park, west of the Manzanares river. It is a good half-day or full-day picnic park, with the lake, the city zoo, and the amusement park all inside.
+
+The cable car from Paseo del Pintor Rosales (the [Teleférico](/pins/parque-teleferico-madrid)) is still listed as temporarily closed. I was there in May 2026 and the cable line was missing and the upper station was in bad shape. I think it is finished. The last time I rode it the car stopped mid-air for about ten minutes, so this is probably for the best.
+
+The Metro is the easier way in. Line 10 runs the western edge of the park: Lago drops you next to the lake, Casa de Campo is the east entry, and Batán is the south end near the amusement park. Príncipe Pío on Lines 6, 10, and the R is the most useful interchange for getting back across the river.
+
+The [Zoo Aquarium de Madrid](/pins/zoo-aquarium-de-madrid) sits inside the park and has pandas, which is the easy half-day with kids if the weather cooperates.
+
 ## Templo de Debod for sunset
 
-The [Templo de Debod](/pins/temple-of-debod) is an actual Egyptian temple, gifted by Egypt to Spain in 1968 and reassembled on a low hill west of the city center. Go for sunset. The view looks west over Casa de Campo, which is the easiest cheap photo of the trip and a quiet way to close a day.
+The [Templo de Debod](/pins/temple-of-debod) is an actual Egyptian temple, gifted by Egypt to Spain in 1968 and reassembled on a low hill west of the city center. Go for sunset. The view looks west over [Casa de Campo](/pins/casa-de-campo-madrid), which is the easiest cheap photo of the trip and a quiet way to close a day.
