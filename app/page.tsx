@@ -9,6 +9,7 @@ import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { SITE_URL } from '@/lib/seo';
+import VisitedMap from '@/components/VisitedMap';
 
 // === Home (/) ==============================================================
 // Calm catalog landing in Mike's voice. Three bands stacked vertically:
@@ -127,13 +128,15 @@ export default async function HomePage() {
   // Countries visited: derived from pins, since the Country type does
   // not currently carry a `been` field. Any pin with visited=true
   // contributes its `states_names[0]` to the visited-country set.
+  // Names are lowercased so VisitedMap can look them up against
+  // TopoJSON country names with the same normalization.
   const visitedCountries = new Set<string>();
   let visitedPinCount = 0;
   for (const p of pins) {
     if (!p.visited) continue;
     visitedPinCount++;
     const c = p.statesNames?.[0];
-    if (c) visitedCountries.add(c);
+    if (c) visitedCountries.add(c.toLowerCase());
   }
   const visitedCities = cities.filter(c => c.been).length;
 
@@ -182,6 +185,16 @@ export default async function HomePage() {
           the majority of my adult life on the go.
         </p>
       </header>
+
+      {/* Visited-world map — server-rendered SVG, no client JS. The
+          point is the lookback: where I've been, shaded teal against
+          a quiet ground. Click opens the country map. */}
+      <section className="mb-8">
+        <VisitedMap
+          visitedCountryNames={visitedCountries}
+          visitedCount={visitedCountries.size}
+        />
+      </section>
 
       {/* Stats tile strip — five tiles. Visited counts come first so the
           "lookback" reads up top: where I've been, then how much
