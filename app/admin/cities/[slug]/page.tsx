@@ -42,7 +42,7 @@ export default async function AdminCityEditPage({
   const photosRes = await sb
     .from('personal_photos')
     .select(
-      'id, url, width, height, caption, hidden, ' +
+      'id, url, width, height, caption, hidden, media_type, poster_url, ' +
       'pins!inner(slug, name, kind, city_names)',
     )
     .overlaps('pins.city_names', [city.name])
@@ -51,6 +51,8 @@ export default async function AdminCityEditPage({
 
   const candidates: AdminCityPhoto[] = ((photosRes.data ?? []) as unknown as Array<Record<string, unknown>>).map(r => {
     const pin = (r.pins as { name?: string } | undefined) ?? {};
+    const mediaType: 'image' | 'video' =
+      (r.media_type as string | null) === 'video' ? 'video' : 'image';
     return {
       id: r.id as string,
       url: r.url as string,
@@ -58,7 +60,9 @@ export default async function AdminCityEditPage({
       width: (r.width as number | null) ?? null,
       height: (r.height as number | null) ?? null,
       hidden: !!r.hidden,
-      label: pin.name ?? 'personal',
+      label: mediaType === 'video' ? `${pin.name ?? 'personal'} · video` : (pin.name ?? 'personal'),
+      mediaType,
+      posterUrl: (r.poster_url as string | null) ?? null,
     };
   });
 

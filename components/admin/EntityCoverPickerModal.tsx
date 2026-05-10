@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { uploadEntityPhoto } from '@/lib/admin/uploadEntityPhoto';
 import { isCommonsUrl } from '../CommonsAttributionBadge';
 import SourceFilterPills, { type SourceFilterValue } from './SourceFilterPills';
+import { isVideoUrl } from '@/lib/imageUrl';
 
 // === EntityCoverPickerModal ================================================
 // Inline quick cover picker for /admin/pins, /admin/cities, /admin/countries.
@@ -34,6 +35,8 @@ export type PhotoTile = {
   takenAt: string | null;
   lat: number | null;
   lng: number | null;
+  mediaType?: 'image' | 'video';
+  posterUrl?: string | null;
 };
 
 export type EntityKind = 'pin' | 'city' | 'country';
@@ -336,7 +339,7 @@ export default function EntityCoverPickerModal({
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*,.heic,.heif"
+            accept="image/*,video/*,.heic,.heif,.mp4,.mov,.webm,.m4v"
             className="hidden"
             onChange={e => {
               const f = e.target.files?.[0];
@@ -435,14 +438,51 @@ export default function EntityCoverPickerModal({
                       title={p.pinName}
                       aria-label={`Use ${p.pinName} as cover`}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={p.url}
-                        alt={p.pinName}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                      />
+                      {(() => {
+                        const isVideo = p.mediaType === 'video' || isVideoUrl(p.url);
+                        if (isVideo && p.posterUrl) {
+                          return (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={p.posterUrl}
+                              alt={p.pinName}
+                              loading="lazy"
+                              className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            />
+                          );
+                        }
+                        if (isVideo) {
+                          return (
+                            <video
+                              src={p.url}
+                              muted
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            />
+                          );
+                        }
+                        return (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={p.url}
+                            alt={p.pinName}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          />
+                        );
+                      })()}
                     </button>
+                    {(p.mediaType === 'video' || isVideoUrl(p.url)) && (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                      >
+                        <span className="w-10 h-10 rounded-full bg-black/55 text-white flex items-center justify-center text-base">
+                          ▶
+                        </span>
+                      </span>
+                    )}
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-deep/80 to-transparent p-2 text-white text-micro leading-tight">
                       <p className="truncate">{p.pinName}</p>
                     </div>

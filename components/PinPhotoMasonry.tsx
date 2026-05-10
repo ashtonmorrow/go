@@ -15,7 +15,7 @@
 // (browsing, not chronological) that's fine.
 
 import Link from 'next/link';
-import { thumbUrl } from '@/lib/imageUrl';
+import { thumbUrl, isVideoUrl } from '@/lib/imageUrl';
 import type { PinPhoto } from '@/lib/personalPhotos';
 import Lightbox from './Lightbox';
 
@@ -49,10 +49,16 @@ export default function PinPhotoMasonry({
           photo.width && photo.height
             ? `${photo.width} / ${photo.height}`
             : '4 / 3';
+        const isVideo = isVideoUrl(photo.url);
         // Card width is 100% of its column. Picking 240px as the
         // serving width gives a sharp 240-ish CSS px column on retina
         // (close to what columns-4 produces at typical viewports).
-        const src = thumbUrl(photo.url, { size: 240 }) ?? photo.url;
+        // For videos, prefer the poster; fall back to a hidden-controls
+        // <video preload="metadata"> tile when no poster exists.
+        const thumbSrc =
+          isVideo && photo.posterUrl
+            ? thumbUrl(photo.posterUrl, { size: 240 }) ?? photo.posterUrl
+            : thumbUrl(photo.url, { size: 240 }) ?? photo.url;
         const altText = photo.caption ?? photo.pinName;
         const href = photo.pinSlug ? `/pins/${photo.pinSlug}` : null;
         // Two affordances per card without nesting <a> inside <button>:
@@ -78,20 +84,48 @@ export default function PinPhotoMasonry({
               alt={altText}
               width={photo.width}
               height={photo.height}
+              posterUrl={photo.posterUrl}
               className="block absolute inset-0 w-full h-full"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={altText}
-                loading="lazy"
-                decoding="async"
-                className="
-                  w-full h-full object-cover
-                  transition-transform duration-500
-                  group-hover:scale-[1.02]
-                "
-              />
+              {isVideo && !photo.posterUrl ? (
+                // No poster on file — let the browser draw the first
+                // frame from the video. preload="metadata" keeps the
+                // bytes bounded.
+                <video
+                  src={photo.url}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="
+                    w-full h-full object-cover
+                    transition-transform duration-500
+                    group-hover:scale-[1.02]
+                  "
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={thumbSrc}
+                  alt={altText}
+                  loading="lazy"
+                  decoding="async"
+                  className="
+                    w-full h-full object-cover
+                    transition-transform duration-500
+                    group-hover:scale-[1.02]
+                  "
+                />
+              )}
+              {isVideo && (
+                <span
+                  aria-hidden
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                  <span className="w-12 h-12 rounded-full bg-black/55 text-white flex items-center justify-center text-xl">
+                    ▶
+                  </span>
+                </span>
+              )}
             </Lightbox>
             {/* Bottom gradient + chip row. The gradient gives the chips
                 contrast against any image. pointer-events-none on the

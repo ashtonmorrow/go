@@ -68,6 +68,15 @@ type PhotoTile = {
   takenAt: string | null;
   lat: number | null;
   lng: number | null;
+  /** 'image' (default) or 'video'. Drives picker render dispatch. Pin
+   *  image / city-hero / country-hero tiles are inferred from the URL
+   *  extension via lib/imageUrl.isVideoUrl. */
+  mediaType?: 'image' | 'video';
+  /** For videos, the captured poster JPG URL (only present on
+   *  source=personal where we control the upload pipeline; pin-image
+   *  / hero-array tiles fall back to drawing the first video frame in
+   *  the renderer). */
+  posterUrl?: string | null;
 };
 
 const HARD_LIMIT = 500;
@@ -124,7 +133,7 @@ async function fetchPersonalPhotoTiles(
   let query = sb
     .from('personal_photos')
     .select(
-      'id, url, taken_at, exif_lat, exif_lng, created_at, ' +
+      'id, url, taken_at, exif_lat, exif_lng, created_at, media_type, poster_url, ' +
       'pin:pins!inner(id, name, slug)',
       { count: 'exact' },
     )
@@ -150,6 +159,8 @@ async function fetchPersonalPhotoTiles(
       takenAt: (row.taken_at as string | null) ?? null,
       lat: (row.exif_lat as number | null) ?? null,
       lng: (row.exif_lng as number | null) ?? null,
+      mediaType: (row.media_type as string | null) === 'video' ? 'video' : 'image',
+      posterUrl: (row.poster_url as string | null) ?? null,
     };
   });
   const total = count ?? tiles.length;
@@ -638,9 +649,36 @@ export async function POST(req: Request) {
 
   const sb = supabaseAdmin();
 
+  // mediaType discriminates image vs. video. Videos additionally carry
+  // a poster_url (first-frame JPG captured client-side at upload time)
+  // and duration_seconds for display. Reject unknown values.
+  const mediaTypeRaw = typeof body.mediaType === 'string' ? body.mediaType : 'image';
+  if (mediaTypeRaw !== 'image' && mediaTypeRaw !== 'video') {
+    return NextResponse.json(
+      { error: `mediaType must be 'image' or 'video' (got: ${mediaTypeRaw})` },
+      { status: 400 },
+    );
+  }
+  const posterUrl = typeof body.posterUrl === 'string' ? body.posterUrl.trim() : null;
+  if (mediaTypeRaw === 'video' && !posterUrl) {
+    return NextResponse.json(
+      { error: 'video uploads require a posterUrl' },
+      { status: 400 },
+    );
+  }
+  if (posterUrl && !/^https?:\/\//.test(posterUrl)) {
+    return NextResponse.json({ error: 'posterUrl must be http(s)' }, { status: 400 });
+  }
+
   const insert: Record<string, unknown> = {
     pin_id: pinId,
     url,
+    media_type: mediaTypeRaw,
+    poster_url: posterUrl,
+    duration_seconds:
+      typeof body.durationSeconds === 'number' && Number.isFinite(body.durationSeconds)
+        ? Math.round(body.durationSeconds)
+        : null,
     hash: typeof body.hash === 'string' ? body.hash : null,
     taken_at: typeof body.takenAt === 'string' ? body.takenAt : null,
     exif_lat: typeof body.exifLat === 'number' ? body.exifLat : null,

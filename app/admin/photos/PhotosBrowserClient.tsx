@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { thumbUrl } from '@/lib/imageUrl';
+import { thumbUrl, isVideoUrl } from '@/lib/imageUrl';
 
 /** Run async work over an array with a bounded concurrency so we don't
  *  fire e.g. 60 parallel deletes against Supabase / Storage. Returns
@@ -41,6 +41,8 @@ type Tile = {
   country: string | null;
   takenAt: string | null;
   hidden: boolean;
+  mediaType?: 'image' | 'video';
+  posterUrl?: string | null;
 };
 
 const PAGE_SIZE = 60;
@@ -428,15 +430,53 @@ export default function PhotosBrowserClient() {
                   aria-label={`Select ${t.pinName}`}
                   title={`${t.pinName}${t.takenAt ? ' · ' + new Date(t.takenAt).toLocaleDateString() : ''}`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={thumbUrl(t.url, { size: 192 }) ?? t.url}
-                    alt={t.pinName}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover"
-                  />
+                  {(() => {
+                    const isVideo = t.mediaType === 'video' || isVideoUrl(t.url);
+                    if (isVideo && t.posterUrl) {
+                      return (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={thumbUrl(t.posterUrl, { size: 192 }) ?? t.posterUrl}
+                          alt={t.pinName}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                        />
+                      );
+                    }
+                    if (isVideo) {
+                      return (
+                        <video
+                          src={t.url}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover"
+                        />
+                      );
+                    }
+                    return (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={thumbUrl(t.url, { size: 192 }) ?? t.url}
+                        alt={t.pinName}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    );
+                  })()}
                 </button>
+                {(t.mediaType === 'video' || isVideoUrl(t.url)) && (
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                  >
+                    <span className="w-10 h-10 rounded-full bg-black/55 text-white flex items-center justify-center text-base">
+                      ▶
+                    </span>
+                  </span>
+                )}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-deep/80 to-transparent p-2 text-white text-micro leading-tight">
                   <p className="truncate">{t.pinName}</p>
                   {(t.city || t.country) && (

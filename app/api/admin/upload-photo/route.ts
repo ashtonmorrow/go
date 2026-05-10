@@ -12,6 +12,12 @@ function extFromMime(mime: string): string {
   if (mime === 'image/webp') return 'webp';
   if (mime === 'image/heic') return 'heic';
   if (mime === 'image/heif') return 'heif';
+  // Video types — same pipeline (signed URL, hash-keyed path) as
+  // photos. The render layer dispatches on media_type / extension.
+  if (mime === 'video/mp4') return 'mp4';
+  if (mime === 'video/quicktime') return 'mov';
+  if (mime === 'video/webm') return 'webm';
+  if (mime === 'video/x-m4v' || mime === 'video/m4v') return 'm4v';
   return 'bin';
 }
 

@@ -14,6 +14,8 @@ export type AdminPersonalPhoto = {
   height: number | null;
   caption: string | null;
   hidden: boolean;
+  mediaType: 'image' | 'video';
+  posterUrl: string | null;
 };
 
 export default async function AdminPinEditPage({
@@ -27,7 +29,7 @@ export default async function AdminPinEditPage({
     sb.from('pins').select('*').eq('id', id).maybeSingle(),
     sb
       .from('personal_photos')
-      .select('id, url, width, height, caption, hidden')
+      .select('id, url, width, height, caption, hidden, media_type, poster_url')
       .eq('pin_id', id)
       .order('taken_at', { ascending: false, nullsFirst: false }),
   ]);
@@ -41,6 +43,8 @@ export default async function AdminPinEditPage({
     height: (r.height as number | null) ?? null,
     caption: (r.caption as string | null) ?? null,
     hidden: !!r.hidden,
+    mediaType: (r.media_type as string | null) === 'video' ? 'video' : 'image',
+    posterUrl: (r.poster_url as string | null) ?? null,
   }));
 
   return (

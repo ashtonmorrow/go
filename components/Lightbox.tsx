@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
+import { isVideoUrl } from '@/lib/imageUrl';
 
 // === Lightbox ==============================================================
 // Click-to-zoom wrapper for any image surface. Render whatever thumbnail
@@ -37,6 +38,10 @@ type Props = {
   /** Optional caption rendered under the image in the open state.
    *  Falls back to `alt` when not provided. */
   caption?: string;
+  /** Optional poster JPG URL when `src` points at a video. Shown in the
+   *  modal until the video loads, and used as the fallback if the
+   *  browser refuses to autoplay metadata. */
+  posterUrl?: string | null;
 };
 
 export default function Lightbox({
@@ -47,8 +52,10 @@ export default function Lightbox({
   children,
   className,
   caption,
+  posterUrl,
 }: Props) {
   const [open, setOpen] = useState(false);
+  const isVideo = isVideoUrl(src);
 
   useEffect(() => {
     if (!open) return;
@@ -116,14 +123,27 @@ export default function Lightbox({
             onClick={e => e.stopPropagation()}
             className="flex flex-col items-center max-w-full max-h-full gap-3"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt={alt}
-              width={width ?? undefined}
-              height={height ?? undefined}
-              className="max-w-full max-h-[calc(100vh-6rem)] object-contain rounded"
-            />
+            {isVideo ? (
+              <video
+                key={src}
+                src={src}
+                poster={posterUrl ?? undefined}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="max-w-full max-h-[calc(100vh-6rem)] rounded"
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={src}
+                alt={alt}
+                width={width ?? undefined}
+                height={height ?? undefined}
+                className="max-w-full max-h-[calc(100vh-6rem)] object-contain rounded"
+              />
+            )}
             {(caption || alt) && (
               <figcaption className="text-white/80 text-small text-center max-w-prose">
                 {caption ?? alt}

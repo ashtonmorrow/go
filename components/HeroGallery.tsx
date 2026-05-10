@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react';
-import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { thumbUrl, heroUrl, isVideoUrl } from '@/lib/imageUrl';
 import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 // === HeroGallery ===========================================================
@@ -43,7 +43,25 @@ export type GalleryImage = {
   height?: number | null;
   caption?: string | null;
   isPersonal?: boolean;
+  /** When `url` is a video, an optional poster JPG used for the still
+   *  in tile mode. Without one we render a hidden-controls <video
+   *  preload="metadata"> tile so the browser draws the first frame. */
+  posterUrl?: string | null;
 };
+
+/** Tiny play-glyph overlay reused on every video tile. */
+function VideoBadge() {
+  return (
+    <span
+      aria-hidden
+      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+    >
+      <span className="w-12 h-12 rounded-full bg-black/55 text-white flex items-center justify-center text-xl">
+        ▶
+      </span>
+    </span>
+  );
+}
 
 type Props = {
   images: GalleryImage[];
@@ -224,27 +242,46 @@ export default function HeroGallery({
   // hero envelope instead of cropping.
   if (N === 1) {
     const hero = images[0]!;
+    const heroIsVideo = isVideoUrl(hero.url);
     return (
       <figure className={className} ref={wrapperRef}>
-        <button
-          type="button"
-          onClick={() => setOpenIdx(0)}
-          className="group relative block w-full bg-cream-soft cursor-zoom-in overflow-hidden rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
-          aria-label={`Open ${hero.alt ?? title} full size`}
-          style={{ maxHeight }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroUrl(hero.url, 1600, 88) ?? hero.url}
-            alt={hero.alt ?? title}
-            width={hero.width ?? 1600}
-            height={hero.height ?? 1067}
-            decoding="async"
-            className="w-full h-full object-contain"
+        {heroIsVideo ? (
+          // Single-video hero: inline player. No lightbox indirection.
+          <div
+            className="relative block w-full bg-black overflow-hidden rounded"
             style={{ maxHeight }}
-          />
-          <CommonsAttributionBadge url={hero.url} />
-        </button>
+          >
+            <video
+              src={hero.url}
+              poster={hero.posterUrl ?? undefined}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full"
+              style={{ maxHeight }}
+            />
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setOpenIdx(0)}
+            className="group relative block w-full bg-cream-soft cursor-zoom-in overflow-hidden rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            aria-label={`Open ${hero.alt ?? title} full size`}
+            style={{ maxHeight }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroUrl(hero.url, 1600, 88) ?? hero.url}
+              alt={hero.alt ?? title}
+              width={hero.width ?? 1600}
+              height={hero.height ?? 1067}
+              decoding="async"
+              className="w-full h-full object-contain"
+              style={{ maxHeight }}
+            />
+            <CommonsAttributionBadge url={hero.url} />
+          </button>
+        )}
         {caption && (
           <figcaption className="text-label text-muted px-1 mt-1">{caption}</figcaption>
         )}
@@ -276,6 +313,11 @@ export default function HeroGallery({
                 const img = images[slot.idx]!;
                 const showOverflow =
                   isLastRow && si === row.slots.length - 1 && overflow > 0;
+                const isVideo = isVideoUrl(img.url);
+                const tileSize = Math.max(
+                  240,
+                  Math.ceil(slot.aspect * row.height),
+                );
                 return (
                   <button
                     key={img.url + slot.idx}
@@ -287,25 +329,50 @@ export default function HeroGallery({
                       flexBasis: 0,
                       minWidth: 0,
                     }}
-                    aria-label={`Open ${img.alt ?? title} image ${slot.idx + 1}`}
+                    aria-label={`Open ${img.alt ?? title} ${isVideo ? 'video' : 'image'} ${slot.idx + 1}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={
-                        thumbUrl(img.url, {
-                          // Width estimate for the optimizer: aspect *
-                          // row height (rounded up so the ×2 retina lands
-                          // on a configured width).
-                          size: Math.max(240, Math.ceil(slot.aspect * row.height)),
-                          quality: 85,
-                        }) ?? img.url
-                      }
-                      alt={img.alt ?? title}
-                      loading={ri === 0 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                    <CommonsAttributionBadge url={img.url} />
+                    {isVideo && img.posterUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={
+                          thumbUrl(img.posterUrl, {
+                            size: tileSize,
+                            quality: 85,
+                          }) ?? img.posterUrl
+                        }
+                        alt={img.alt ?? title}
+                        loading={ri === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : isVideo ? (
+                      <video
+                        src={img.url}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={
+                          thumbUrl(img.url, {
+                            // Width estimate for the optimizer: aspect *
+                            // row height (rounded up so the ×2 retina
+                            // lands on a configured width).
+                            size: tileSize,
+                            quality: 85,
+                          }) ?? img.url
+                        }
+                        alt={img.alt ?? title}
+                        loading={ri === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                    {isVideo && <VideoBadge />}
+                    {!isVideo && <CommonsAttributionBadge url={img.url} />}
                     {showOverflow && (
                       <span
                         className="absolute inset-0 bg-black/55 text-white flex items-center justify-center text-h2 font-medium"
@@ -396,18 +463,33 @@ function renderLightbox(
         onClick={e => e.stopPropagation()}
         className="relative flex flex-col items-center max-w-full max-h-full gap-3"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={img.url}
-          alt={img.alt ?? title}
-          width={img.width ?? undefined}
-          height={img.height ?? undefined}
-          className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
-        />
+        {isVideoUrl(img.url) ? (
+          <video
+            key={img.url}
+            src={img.url}
+            poster={img.posterUrl ?? undefined}
+            controls
+            autoPlay
+            playsInline
+            preload="metadata"
+            className="max-w-full max-h-[calc(100vh-9rem)] rounded"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={img.url}
+            alt={img.alt ?? title}
+            width={img.width ?? undefined}
+            height={img.height ?? undefined}
+            className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
+          />
+        )}
         {/* Lightbox view of a Commons-hosted image — keep the badge
             permanently visible since the lightbox itself doesn't have
-            a hover/group affordance. */}
-        <CommonsAttributionBadge url={img.url} variant="always" />
+            a hover/group affordance. Skip for videos. */}
+        {!isVideoUrl(img.url) && (
+          <CommonsAttributionBadge url={img.url} variant="always" />
+        )}
         <figcaption className="text-white/80 text-small text-center max-w-prose">
           {img.caption ?? img.alt ?? title}
           <span className="ml-2 text-white/60">

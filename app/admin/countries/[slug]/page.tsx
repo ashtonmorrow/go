@@ -37,7 +37,7 @@ export default async function AdminCountryEditPage({
   const photosRes = await sb
     .from('personal_photos')
     .select(
-      'id, url, width, height, caption, hidden, ' +
+      'id, url, width, height, caption, hidden, media_type, poster_url, ' +
       'pins!inner(slug, name, kind, states_names, city_names)',
     )
     .overlaps('pins.states_names', [country.name])
@@ -47,6 +47,9 @@ export default async function AdminCountryEditPage({
   const candidates: AdminCountryPhoto[] = ((photosRes.data ?? []) as unknown as Array<Record<string, unknown>>).map(r => {
     const pin = (r.pins as { name?: string; city_names?: string[] } | undefined) ?? {};
     const cityHint = Array.isArray(pin.city_names) && pin.city_names[0] ? pin.city_names[0] : null;
+    const mediaType: 'image' | 'video' =
+      (r.media_type as string | null) === 'video' ? 'video' : 'image';
+    const baseLabel = cityHint ? `${pin.name ?? 'pin'} · ${cityHint}` : (pin.name ?? 'personal');
     return {
       id: r.id as string,
       url: r.url as string,
@@ -54,7 +57,9 @@ export default async function AdminCountryEditPage({
       width: (r.width as number | null) ?? null,
       height: (r.height as number | null) ?? null,
       hidden: !!r.hidden,
-      label: cityHint ? `${pin.name ?? 'pin'} · ${cityHint}` : (pin.name ?? 'personal'),
+      label: mediaType === 'video' ? `${baseLabel} · video` : baseLabel,
+      mediaType,
+      posterUrl: (r.poster_url as string | null) ?? null,
     };
   });
 

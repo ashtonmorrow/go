@@ -192,6 +192,7 @@ export default async function CountryPage({
           height: p.height,
           isPersonal: true,
           caption: p.caption ?? `From ${p.pinName}`,
+          posterUrl: p.posterUrl ?? null,
         }))
       : fallbackCover
       ? [{
@@ -271,6 +272,7 @@ export default async function CountryPage({
               height: m?.height ?? null,
               isPersonal: !!m,
               caption: m?.caption ?? (m ? `From ${m.pinName}` : null),
+              posterUrl: m?.posterUrl ?? null,
             };
           });
           return (

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useRef, useState } from 'react';
-import { thumbUrl } from '@/lib/imageUrl';
+import { thumbUrl, isVideoUrl } from '@/lib/imageUrl';
 
 // === HeroPicker ============================================================
 // Reusable curation widget for picking the hero photos that drive
@@ -37,6 +37,13 @@ export type HeroCandidate = {
   /** Personal-photo row id. Required to flip `hidden` via
    *  `onToggleHidden`. Wikidata candidates leave this undefined. */
   id?: string;
+  /** 'image' (default) or 'video'. Drives picker render dispatch. */
+  mediaType?: 'image' | 'video';
+  /** Poster JPG for videos (set when the candidate came from a
+   *  personal_photos row with media_type='video'). Pin-image / Wikidata
+   *  candidates don't carry one — the picker falls back to drawing the
+   *  first video frame via <video preload="metadata">. */
+  posterUrl?: string | null;
 };
 
 type Props = {
@@ -347,7 +354,7 @@ export default function HeroPicker({
               <input
                 ref={uploadInputRef}
                 type="file"
-                accept="image/*,.heic,.heif"
+                accept="image/*,video/*,.heic,.heif,.mp4,.mov,.webm,.m4v"
                 className="hidden"
                 onChange={e => {
                   const f = e.target.files?.[0];
@@ -444,14 +451,52 @@ export default function HeroPicker({
                     }
                     aria-label={`Hero photo ${idx + 1} of ${value.length}. Drag to reorder.`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={thumbUrl(url, { size: 192 }) ?? url}
-                      alt={cand?.alt ?? `Hero photo ${idx + 1}`}
-                      loading="lazy"
-                      draggable={false}
-                      className="w-full h-full object-cover pointer-events-none"
-                    />
+                    {(() => {
+                      const isVideo = cand?.mediaType === 'video' || isVideoUrl(url);
+                      if (isVideo && cand?.posterUrl) {
+                        return (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={thumbUrl(cand.posterUrl, { size: 192 }) ?? cand.posterUrl}
+                            alt={cand?.alt ?? `Hero photo ${idx + 1}`}
+                            loading="lazy"
+                            draggable={false}
+                            className="w-full h-full object-cover pointer-events-none"
+                          />
+                        );
+                      }
+                      if (isVideo) {
+                        return (
+                          <video
+                            src={url}
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="w-full h-full object-cover pointer-events-none"
+                          />
+                        );
+                      }
+                      return (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={thumbUrl(url, { size: 192 }) ?? url}
+                          alt={cand?.alt ?? `Hero photo ${idx + 1}`}
+                          loading="lazy"
+                          draggable={false}
+                          className="w-full h-full object-cover pointer-events-none"
+                        />
+                      );
+                    })()}
+                    {(cand?.mediaType === 'video' || isVideoUrl(url)) && (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                      >
+                        <span className="w-9 h-9 rounded-full bg-black/55 text-white flex items-center justify-center text-sm">
+                          ▶
+                        </span>
+                      </span>
+                    )}
                     <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-ink-deep/80 text-white text-[10px] font-medium tabular-nums pointer-events-none">
                       {idx + 1}
                     </span>
@@ -596,14 +641,51 @@ export default function HeroPicker({
                             : 'Click to add'
                       }
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={thumbUrl(c.url, { size: 192 }) ?? c.url}
-                        alt={c.alt ?? ''}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
+                      {(() => {
+                        const isVideo = c.mediaType === 'video' || isVideoUrl(c.url);
+                        if (isVideo && c.posterUrl) {
+                          return (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={thumbUrl(c.posterUrl, { size: 192 }) ?? c.posterUrl}
+                              alt={c.alt ?? ''}
+                              loading="lazy"
+                              className="w-full h-full object-cover"
+                            />
+                          );
+                        }
+                        if (isVideo) {
+                          return (
+                            <video
+                              src={c.url}
+                              muted
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-cover"
+                            />
+                          );
+                        }
+                        return (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={thumbUrl(c.url, { size: 192 }) ?? c.url}
+                            alt={c.alt ?? ''}
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                          />
+                        );
+                      })()}
                     </button>
+                    {(c.mediaType === 'video' || isVideoUrl(c.url)) && (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                      >
+                        <span className="w-9 h-9 rounded-full bg-black/55 text-white flex items-center justify-center text-sm">
+                          ▶
+                        </span>
+                      </span>
+                    )}
                     {selectMode && (
                       <div
                         className={

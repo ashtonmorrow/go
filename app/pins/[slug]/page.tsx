@@ -452,6 +452,7 @@ export default async function PinPage({
               height: personal?.height ?? null,
               isPersonal: !!personal,
               caption: personal?.caption ?? null,
+              posterUrl: personal?.posterUrl ?? null,
             };
           });
           return (
@@ -475,6 +476,7 @@ export default async function PinPage({
             height: p.height,
             isPersonal: true,
             caption: p.caption ?? null,
+            posterUrl: p.posterUrl ?? null,
           });
         }
         for (const img of galleryImages) {

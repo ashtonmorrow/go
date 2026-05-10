@@ -325,6 +325,7 @@ export default async function CityPage({
               height: m?.height ?? null,
               isPersonal: !!m,
               caption: m?.caption ?? (m ? `From ${m.pinName}` : null),
+              posterUrl: m?.posterUrl ?? null,
             };
           });
           return (
@@ -349,6 +350,7 @@ export default async function CityPage({
             height: p.height,
             isPersonal: true,
             caption: p.caption ?? `From ${p.pinName}`,
+            posterUrl: p.posterUrl ?? null,
           });
         }
         if (city.personalPhoto && !seen.has(city.personalPhoto)) {

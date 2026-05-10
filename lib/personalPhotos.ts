@@ -10,6 +10,15 @@ export type PersonalPhoto = {
   caption: string | null;
   width: number | null;
   height: number | null;
+  /** 'image' (default) or 'video'. Hero/gallery renderers dispatch on
+   *  this — videos render a <video> tile with the poster as the still
+   *  and play in the lightbox. */
+  mediaType: 'image' | 'video';
+  /** For videos, the public URL of the captured poster JPG. */
+  posterUrl: string | null;
+  /** For videos, runtime in whole seconds (rounded). Mostly informational
+   *  today; could surface as a "0:42" badge later. */
+  durationSeconds: number | null;
 };
 
 const _fetchPhotosForPin = unstable_cache(
@@ -20,7 +29,7 @@ const _fetchPhotosForPin = unstable_cache(
     // helper.
     const { data, error } = await supabase
       .from('personal_photos')
-      .select('id, pin_id, url, taken_at, caption, width, height')
+      .select('id, pin_id, url, taken_at, caption, width, height, media_type, poster_url, duration_seconds')
       .eq('pin_id', pinId)
       .eq('hidden', false)
       .order('taken_at', { ascending: false, nullsFirst: false });
@@ -36,9 +45,13 @@ const _fetchPhotosForPin = unstable_cache(
       caption: (r.caption as string | null) ?? null,
       width: (r.width as number | null) ?? null,
       height: (r.height as number | null) ?? null,
+      mediaType: (r.media_type as string | null) === 'video' ? 'video' : 'image',
+      posterUrl: (r.poster_url as string | null) ?? null,
+      durationSeconds: (r.duration_seconds as number | null) ?? null,
     }));
   },
-  ['supabase-personal-photos'],
+  // v2: surfaces media_type/poster_url/duration_seconds for video support.
+  ['supabase-personal-photos-v2'],
   { revalidate: 86400, tags: ['supabase-personal-photos'] },
 );
 
@@ -55,7 +68,7 @@ const _fetchAllPersonalPhotos = unstable_cache(
     for (let start = 0; ; start += PAGE) {
       const { data, error } = await supabase
         .from('personal_photos')
-        .select('id, pin_id, url, taken_at, caption, width, height')
+        .select('id, pin_id, url, taken_at, caption, width, height, media_type, poster_url, duration_seconds')
         .eq('hidden', false)
         .order('taken_at', { ascending: false, nullsFirst: false })
         .range(start, start + PAGE - 1);
@@ -69,6 +82,9 @@ const _fetchAllPersonalPhotos = unstable_cache(
           caption: (r.caption as string | null) ?? null,
           width: (r.width as number | null) ?? null,
           height: (r.height as number | null) ?? null,
+          mediaType: (r.media_type as string | null) === 'video' ? 'video' : 'image',
+          posterUrl: (r.poster_url as string | null) ?? null,
+          durationSeconds: (r.duration_seconds as number | null) ?? null,
         };
         if (!out[photo.pinId]) out[photo.pinId] = [];
         out[photo.pinId].push(photo);
@@ -77,7 +93,8 @@ const _fetchAllPersonalPhotos = unstable_cache(
     }
     return out;
   },
-  ['supabase-personal-photos-all'],
+  // v2: surfaces media_type/poster_url/duration_seconds.
+  ['supabase-personal-photos-all-v2'],
   { revalidate: 86400, tags: ['supabase-personal-photos'] },
 );
 
@@ -116,6 +133,10 @@ export type PinPhoto = {
   pinName: string;
   pinKind: string | null;
   pinTag: string | null;
+  /** 'image' (default) or 'video'. */
+  mediaType: 'image' | 'video';
+  /** Poster JPG URL when mediaType='video'. */
+  posterUrl: string | null;
 };
 
 /** Shared mapper: a Supabase row from personal_photos JOIN pins becomes
@@ -138,6 +159,8 @@ function mapPinPhotoRow(r: Record<string, unknown>): PinPhoto {
     // (Google Takeout pins often arrive without a kind).
     pinKind: (pin.kind as string | null) ?? null,
     pinTag: (pin.kind as string | null) ?? tags[0] ?? null,
+    mediaType: (r.media_type as string | null) === 'video' ? 'video' : 'image',
+    posterUrl: (r.poster_url as string | null) ?? null,
   };
 }
 
@@ -150,7 +173,7 @@ const _fetchPinPhotosForCity = unstable_cache(
     const { data, error } = await supabase
       .from('personal_photos')
       .select(
-        'id, pin_id, url, taken_at, caption, width, height, ' +
+        'id, pin_id, url, taken_at, caption, width, height, media_type, poster_url, ' +
         'pins!inner(slug, name, kind, tags, city_names)'
       )
       .eq('hidden', false)
@@ -163,7 +186,7 @@ const _fetchPinPhotosForCity = unstable_cache(
     }
     return (data ?? []).map(r => mapPinPhotoRow(r as unknown as Record<string, unknown>));
   },
-  ['supabase-pin-photos-for-city-v1'],
+  ['supabase-pin-photos-for-city-v2'],
   { revalidate: 86400, tags: ['supabase-personal-photos'] },
 );
 
@@ -178,7 +201,7 @@ const _fetchPinPhotosForCountry = unstable_cache(
     const { data, error } = await supabase
       .from('personal_photos')
       .select(
-        'id, pin_id, url, taken_at, caption, width, height, ' +
+        'id, pin_id, url, taken_at, caption, width, height, media_type, poster_url, ' +
         'pins!inner(slug, name, kind, tags, states_names)'
       )
       .eq('hidden', false)
@@ -191,7 +214,7 @@ const _fetchPinPhotosForCountry = unstable_cache(
     }
     return (data ?? []).map(r => mapPinPhotoRow(r as unknown as Record<string, unknown>));
   },
-  ['supabase-pin-photos-for-country-v1'],
+  ['supabase-pin-photos-for-country-v2'],
   { revalidate: 86400, tags: ['supabase-personal-photos'] },
 );
 

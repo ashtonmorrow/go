@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { thumbUrl, heroUrl } from '@/lib/imageUrl';
+import { thumbUrl, heroUrl, isVideoUrl } from '@/lib/imageUrl';
 import CommonsAttributionBadge from './CommonsAttributionBadge';
 
 // === HeroCollage ===========================================================
@@ -38,7 +38,27 @@ export type CollageImage = {
   isPersonal?: boolean;
   /** Optional caption shown in the carousel under the open image. */
   caption?: string | null;
+  /** When `url` points at a video, an optional poster JPG. Tiles render
+   *  the poster as the still; lightbox plays the video. Without one,
+   *  tiles fall back to a hidden-controls <video preload="metadata"> so
+   *  the browser draws the first frame itself. */
+  posterUrl?: string | null;
 };
+
+/** Tiny overlay glyph for video tiles. Sits on top of the still and
+ *  signals "click to play" without taking up much real estate. */
+function VideoBadge() {
+  return (
+    <span
+      aria-hidden
+      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+    >
+      <span className="w-12 h-12 rounded-full bg-black/55 text-white flex items-center justify-center text-xl">
+        ▶
+      </span>
+    </span>
+  );
+}
 
 type Props = {
   images: CollageImage[];
@@ -123,6 +143,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
   // Each tile is a button so the whole grid is keyboard-reachable.
   // Inline the open state to keep this all client-side and simple.
   function tile(img: CollageImage, idx: number, sizePx: number, klass: string) {
+    const isVideo = isVideoUrl(img.url);
     return (
       <button
         key={img.url + idx}
@@ -134,17 +155,39 @@ export default function HeroCollage({ images, title, className, caption }: Props
           'focus-visible:outline-teal ' +
           klass
         }
-        aria-label={`Open ${img.alt ?? title} image ${idx + 1}`}
+        aria-label={`Open ${img.alt ?? title} ${isVideo ? 'video' : 'image'} ${idx + 1}`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={thumbUrl(img.url, { size: sizePx }) ?? img.url}
-          alt={img.alt ?? title}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover"
-        />
-        <CommonsAttributionBadge url={img.url} />
+        {isVideo && img.posterUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={thumbUrl(img.posterUrl, { size: sizePx }) ?? img.posterUrl}
+            alt={img.alt ?? title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
+        ) : isVideo ? (
+          // No poster — let the browser render the first frame from the
+          // video itself. preload="metadata" keeps bandwidth bounded.
+          <video
+            src={img.url}
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={thumbUrl(img.url, { size: sizePx }) ?? img.url}
+            alt={img.alt ?? title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover"
+          />
+        )}
+        {isVideo && <VideoBadge />}
+        {!isVideo && <CommonsAttributionBadge url={img.url} />}
         {idx === visible.length - 1 && overflow > 0 && (
           <span
             className={
@@ -165,7 +208,23 @@ export default function HeroCollage({ images, title, className, caption }: Props
   // images.
   let body: React.ReactNode;
   if (N === 1) {
-    body = (
+    const only = visible[0]!;
+    const onlyIsVideo = isVideoUrl(only.url);
+    body = onlyIsVideo ? (
+      // Single-video hero: render an inline player with controls. No
+      // lightbox indirection — the user sees the player and can hit
+      // play. Keeps the touch target the full hero envelope.
+      <div className="relative w-full bg-black rounded overflow-hidden">
+        <video
+          src={only.url}
+          poster={only.posterUrl ?? undefined}
+          controls
+          playsInline
+          preload="metadata"
+          className="w-full max-h-[70vh]"
+        />
+      </div>
+    ) : (
       <button
         type="button"
         onClick={() => setOpenIdx(0)}
@@ -174,18 +233,18 @@ export default function HeroCollage({ images, title, className, caption }: Props
           'rounded focus-visible:outline-2 focus-visible:outline-offset-2 ' +
           'focus-visible:outline-teal'
         }
-        aria-label={`Open ${visible[0].alt ?? title} full size`}
+        aria-label={`Open ${only.alt ?? title} full size`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={heroUrl(visible[0].url, 1200) ?? visible[0].url}
-          alt={visible[0].alt ?? title}
-          width={visible[0].width ?? 1200}
-          height={visible[0].height ?? 800}
+          src={heroUrl(only.url, 1200) ?? only.url}
+          alt={only.alt ?? title}
+          width={only.width ?? 1200}
+          height={only.height ?? 800}
           decoding="async"
           className="w-full max-h-[70vh] object-contain"
         />
-        <CommonsAttributionBadge url={visible[0].url} />
+        <CommonsAttributionBadge url={only.url} />
       </button>
     );
   } else if (N === 2) {
@@ -253,35 +312,58 @@ export default function HeroCollage({ images, title, className, caption }: Props
   const mobileBody =
     N === 1 ? null : (
       <div className="md:hidden grid grid-cols-2 gap-1.5 mt-2 rounded overflow-hidden">
-        {visible.slice(0, 4).map((img, idx) => (
-          <button
-            key={img.url + idx}
-            type="button"
-            onClick={() => setOpenIdx(idx)}
-            className="relative aspect-square bg-cream-soft cursor-zoom-in overflow-hidden"
-            aria-label={`Open ${img.alt ?? title} image ${idx + 1}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={thumbUrl(img.url, { size: 600 }) ?? img.url}
-              alt={img.alt ?? title}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
-            {idx === 3 && ordered.length > 4 && (
-              <span
-                className={
-                  'absolute inset-0 bg-black/45 text-white ' +
-                  'flex items-center justify-center text-h2 font-medium'
-                }
-                aria-hidden
-              >
-                +{ordered.length - 4}
-              </span>
-            )}
-          </button>
-        ))}
+        {visible.slice(0, 4).map((img, idx) => {
+          const isVideo = isVideoUrl(img.url);
+          return (
+            <button
+              key={img.url + idx}
+              type="button"
+              onClick={() => setOpenIdx(idx)}
+              className="relative aspect-square bg-cream-soft cursor-zoom-in overflow-hidden"
+              aria-label={`Open ${img.alt ?? title} ${isVideo ? 'video' : 'image'} ${idx + 1}`}
+            >
+              {isVideo && img.posterUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={thumbUrl(img.posterUrl, { size: 600 }) ?? img.posterUrl}
+                  alt={img.alt ?? title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              ) : isVideo ? (
+                <video
+                  src={img.url}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={thumbUrl(img.url, { size: 600 }) ?? img.url}
+                  alt={img.alt ?? title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              )}
+              {isVideo && <VideoBadge />}
+              {idx === 3 && ordered.length > 4 && (
+                <span
+                  className={
+                    'absolute inset-0 bg-black/45 text-white ' +
+                    'flex items-center justify-center text-h2 font-medium'
+                  }
+                  aria-hidden
+                >
+                  +{ordered.length - 4}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
     );
 
@@ -347,17 +429,32 @@ export default function HeroCollage({ images, title, className, caption }: Props
             onClick={e => e.stopPropagation()}
             className="relative flex flex-col items-center max-w-full max-h-full gap-3"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={ordered[openIdx].url}
-              alt={ordered[openIdx].alt ?? title}
-              width={ordered[openIdx].width ?? undefined}
-              height={ordered[openIdx].height ?? undefined}
-              className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
-            />
-            <CommonsAttributionBadge url={ordered[openIdx].url} variant="always" />
+            {isVideoUrl(ordered[openIdx]!.url) ? (
+              <video
+                key={ordered[openIdx]!.url}
+                src={ordered[openIdx]!.url}
+                poster={ordered[openIdx]!.posterUrl ?? undefined}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="max-w-full max-h-[calc(100vh-9rem)] rounded"
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={ordered[openIdx]!.url}
+                alt={ordered[openIdx]!.alt ?? title}
+                width={ordered[openIdx]!.width ?? undefined}
+                height={ordered[openIdx]!.height ?? undefined}
+                className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
+              />
+            )}
+            {!isVideoUrl(ordered[openIdx]!.url) && (
+              <CommonsAttributionBadge url={ordered[openIdx]!.url} variant="always" />
+            )}
             <figcaption className="text-white/80 text-small text-center max-w-prose">
-              {ordered[openIdx].caption ?? ordered[openIdx].alt ?? title}
+              {ordered[openIdx]!.caption ?? ordered[openIdx]!.alt ?? title}
               <span className="ml-2 text-white/60">
                 {openIdx + 1} / {ordered.length}
               </span>

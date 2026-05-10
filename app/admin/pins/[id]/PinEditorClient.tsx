@@ -230,8 +230,10 @@ export default function PinEditorClient({
         alt: p.caption ?? state.name,
         width: p.width,
         height: p.height,
-        label: 'personal',
+        label: p.mediaType === 'video' ? 'video' : 'personal',
         hidden: p.hidden,
+        mediaType: p.mediaType,
+        posterUrl: p.posterUrl,
       });
     }
     for (const i of state.images) {

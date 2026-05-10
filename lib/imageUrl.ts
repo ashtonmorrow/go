@@ -50,6 +50,17 @@ const OPTIMIZABLE_HOSTS = [
   'tile.openstreetmap.org',
 ];
 
+/** Detect a video URL by extension. The atlas accepts mp4, mov, webm,
+ *  and m4v end-to-end; anything else falls through as image. The
+ *  hero/picker render paths use this to dispatch between <img> and
+ *  <video> tiles for URLs stored in hero_photo_urls (which is just
+ *  text[] — no media_type discriminator at the row level). */
+const VIDEO_URL_RE = /\.(mp4|mov|webm|m4v)(\?|#|$)/i;
+export function isVideoUrl(url: string | null | undefined): boolean {
+  if (!url) return false;
+  return VIDEO_URL_RE.test(url);
+}
+
 export type ThumbOptions = {
   /** CSS pixel size of the rendered img element. We serve 2x for retina. */
   size: number;

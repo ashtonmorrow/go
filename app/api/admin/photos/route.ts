@@ -51,6 +51,12 @@ type PhotoTile = {
   lng: number | null;
   hidden: boolean;
   imageSource: string | null;
+  /** 'image' (default) or 'video'. Source=codex is always 'image'. */
+  mediaType: 'image' | 'video';
+  /** For videos, the captured poster JPG URL. Null for images and
+   *  for any video without a poster (rare; uploadEntityPhoto tries to
+   *  capture one but a corrupt/long-decode source can fail). */
+  posterUrl: string | null;
 };
 
 const HARD_LIMIT = 200;
@@ -80,7 +86,7 @@ export async function GET(req: Request) {
     let query = sb
       .from('personal_photos')
       .select(
-        'id, url, hidden, taken_at, exif_lat, exif_lng, created_at, ' +
+        'id, url, hidden, taken_at, exif_lat, exif_lng, created_at, media_type, poster_url, ' +
           'pin:pins!inner(id, name, slug, city_names, states_names)',
         { count: 'exact' },
       )
@@ -129,6 +135,8 @@ export async function GET(req: Request) {
         lng: (row.exif_lng as number | null) ?? null,
         hidden: !!row.hidden,
         imageSource: null,
+        mediaType: (row.media_type as string | null) === 'video' ? 'video' : 'image',
+        posterUrl: (row.poster_url as string | null) ?? null,
       };
     });
     const total = count ?? tiles.length;
@@ -185,6 +193,8 @@ export async function GET(req: Request) {
           lng: null,
           hidden: false,
           imageSource: 'codex-generated',
+          mediaType: 'image',
+          posterUrl: null,
         });
       });
     }
