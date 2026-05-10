@@ -11,17 +11,20 @@ import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { SITE_URL } from '@/lib/seo';
 
 // === Home (/) ==============================================================
-// Calm catalog landing. Three equal-weight sections — Guides, Articles,
-// Atlas — no dominant hero image, no "featured story" treatment. The
-// site is a working travel atlas with notes layered on, not a news
-// magazine; the previous magazine-hero rebuild leaned too heavily into
-// news patterns.
+// Calm catalog landing in Mike's voice. Three bands stacked vertically:
 //
-// Layout, top to bottom:
-//   1. Quiet text header with a "by the numbers" line
-//   2. Travel guides — small 4-up grid of indexable lists
-//   3. Articles — small 4-up grid of recent posts
-//   4. Atlas card — single row, low-visual-weight callout
+//   1. Header — "Oh the places you'll go" + intro paragraph + a stats
+//      tile strip (countries visited, cities visited, pins curated,
+//      guides & articles published)
+//   2. Recent travel writing — UNIFIED feed of featured guides AND
+//      articles, sorted newest-first, with a small kind chip on each
+//      card distinguishing "Guide" from "Article"
+//   3. Atlas card — single-row callout linking the data layer
+//
+// The unified feed is what made /articles redundant in primary nav —
+// articles surface here alongside guides automatically. A separate
+// /articles flat-link index still exists, demoted to the sidebar
+// footer.
 
 export const metadata: Metadata = {
   title: "Mike Lee — Oh the places you'll go",
@@ -41,13 +44,27 @@ type GuideCard = {
   publishedAt: string | null;
 };
 
+/** A unified feed entry. Guides and articles render through the same
+ *  card component; the `kind` field drives the chip. */
+type FeedItem = {
+  key: string;
+  href: string;
+  title: string;
+  description: string;
+  heroImage: string | null;
+  heroAlt: string | null;
+  publishedAt: string | null;
+  kind: 'guide' | 'article';
+  emoji: string | null;
+};
+
 /** Read every /content/lists/*.md file, parse frontmatter, return the
  *  ones flagged `featured: true`. Featured is decoupled from
- *  `indexable` (see lib/content.ts ListContent.featured): featured
- *  controls home-page surfacing; indexable controls Google. Cape Town
- *  is both. Madrid / Bristol / Bangkok are featured but not yet
- *  indexable while their writeups are scaffolded. Route-map indexes
- *  (Alicante / Kusttram) are indexable but not featured. */
+ *  `indexable`: featured controls home-page surfacing; indexable
+ *  controls Google. Cape Town is both. Madrid / Bristol / Bangkok /
+ *  Amsterdam are featured but not yet indexable while their writeups
+ *  are being polished. Route-map indexes (Alicante / Kusttram) are
+ *  indexable but not featured. */
 async function listFeaturedGuides(): Promise<GuideCard[]> {
   const dir = path.join(process.cwd(), 'content', 'lists');
   let entries: string[] = [];
@@ -106,25 +123,56 @@ export default async function HomePage() {
       fetchAllSavedListsMeta(),
     ]);
 
-  // Cap each section at 8 — enough to feel like a real catalog page,
-  // small enough to keep the home compact. The full archives are one
-  // click away via "All guides" / "All articles" CTAs.
-  const guidesShown = guides.slice(0, 8);
-  const articlesShown = articles.slice(0, 8);
+  // ---- Stats: numbers that tell the lookback story ----------------------
+  // Countries visited: derived from pins, since the Country type does
+  // not currently carry a `been` field. Any pin with visited=true
+  // contributes its `states_names[0]` to the visited-country set.
+  const visitedCountries = new Set<string>();
+  let visitedPinCount = 0;
+  for (const p of pins) {
+    if (!p.visited) continue;
+    visitedPinCount++;
+    const c = p.statesNames?.[0];
+    if (c) visitedCountries.add(c);
+  }
+  const visitedCities = cities.filter(c => c.been).length;
 
-  // "By the numbers" line under the header. Concrete and honest,
-  // no superlatives.
-  const byNumbers = [
-    `${guides.length} ${guides.length === 1 ? 'guide' : 'guides'}`,
-    `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`,
-    `${cities.length.toLocaleString()} cities`,
-    `${countries.length} countries`,
-    `${pins.length.toLocaleString()} pins`,
-  ].join(' · ');
+  // ---- Unified feed: guides + articles, newest-first --------------------
+  const feed: FeedItem[] = [
+    ...guides.map(g => ({
+      key: `guide:${g.slug}`,
+      href: `/lists/${g.slug}`,
+      title: g.title,
+      description: g.description,
+      heroImage: pickGuideCover(g, listsMeta.get(g.slug)),
+      heroAlt: g.heroAlt,
+      publishedAt: g.publishedAt,
+      kind: 'guide' as const,
+      emoji: null,
+    })),
+    ...articles.map(a => ({
+      key: `article:${a.key}`,
+      href: a.href,
+      title: a.title,
+      description: a.description,
+      heroImage: a.heroImage,
+      heroAlt: a.heroAlt,
+      publishedAt: a.publishedAt,
+      kind: 'article' as const,
+      emoji: a.emoji,
+    })),
+  ];
+  feed.sort((a, b) => {
+    const ad = a.publishedAt ?? '';
+    const bd = b.publishedAt ?? '';
+    if (ad !== bd) return bd.localeCompare(ad);
+    return a.title.localeCompare(b.title);
+  });
+  const feedShown = feed.slice(0, 12);
 
   return (
     <article className="max-w-page mx-auto px-5 py-8">
-      <header className="mb-10 max-w-prose">
+      <header className="mb-8 max-w-prose">
         <h1 className="text-display text-ink-deep leading-none">
           Oh the places you&rsquo;ll go
         </h1>
@@ -133,48 +181,65 @@ export default async function HomePage() {
           and long-form destination guides. All written up from spending
           the majority of my adult life on the go.
         </p>
-        <p className="mt-3 text-small text-muted tabular-nums">{byNumbers}</p>
       </header>
 
-      {guidesShown.length > 0 && (
-        <section className="mb-12">
-          <header className="flex items-baseline justify-between gap-3 mb-4 flex-wrap">
-            <h2 className="text-h2 text-ink-deep">Travel guides</h2>
-            <Link
-              href="/lists"
-              className="text-small text-teal hover:underline"
-            >
-              All guides &amp; saved lists →
-            </Link>
-          </header>
-          <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {guidesShown.map(g => (
-              <li key={g.slug}>
-                <GuideCardLink
-                  guide={g}
-                  cover={pickGuideCover(g, listsMeta.get(g.slug))}
-                />
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {/* Stats tile strip — five tiles. Visited counts come first so the
+          "lookback" reads up top: where I've been, then how much
+          writing has come out of it. */}
+      <section className="mb-12">
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <StatTile
+            label="Countries visited"
+            value={visitedCountries.size}
+            sublabel={`of ${countries.length}`}
+            href="/countries/cards"
+          />
+          <StatTile
+            label="Cities visited"
+            value={visitedCities}
+            sublabel={`of ${cities.length.toLocaleString()}`}
+            href="/cities/cards"
+          />
+          <StatTile
+            label="Pins curated"
+            value={pins.length}
+            sublabel={`${visitedPinCount.toLocaleString()} visited`}
+            href="/pins/cards"
+          />
+          <StatTile
+            label="Guides published"
+            value={guides.length}
+            sublabel="and growing"
+            href="/lists"
+          />
+          <StatTile
+            label="Articles published"
+            value={articles.length}
+            sublabel="and growing"
+            href="/articles"
+          />
+        </ul>
+      </section>
 
-      {articlesShown.length > 0 && (
+      {/* Unified recent-writing feed. Guides and articles share a card
+          shape; the chip in the corner says which kind. */}
+      {feedShown.length > 0 && (
         <section className="mb-12">
           <header className="flex items-baseline justify-between gap-3 mb-4 flex-wrap">
-            <h2 className="text-h2 text-ink-deep">Articles</h2>
-            <Link
-              href="/articles"
-              className="text-small text-teal hover:underline"
-            >
-              All articles →
-            </Link>
+            <h2 className="text-h2 text-ink-deep">Recent writing</h2>
+            <div className="flex items-center gap-3 text-small">
+              <Link href="/lists" className="text-teal hover:underline">
+                All guides &amp; lists →
+              </Link>
+              <Link href="/articles" className="text-teal hover:underline">
+                All articles →
+              </Link>
+            </div>
           </header>
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {articlesShown.map(a => (
-              <li key={a.key}>
-                <ArticleCardLink item={a} />
+            {feedShown.map(item => (
+              <li key={item.key}>
+                <FeedCardLink item={item} />
               </li>
             ))}
           </ul>
@@ -210,65 +275,54 @@ export default async function HomePage() {
   );
 }
 
-// === Guide card ============================================================
-// Compact 4:3 card. Smaller than the previous home-page hero treatment —
-// matches the density of /articles and the "More saved lists" section
-// on /lists so the home reads as a catalog index, not a magazine front.
-function GuideCardLink({
-  guide,
-  cover,
+// === Stat tile =============================================================
+// Single tile in the stats strip. Big number, small label below, optional
+// sublabel for context (e.g. "53 of 226"). Whole tile is a link so the
+// reader can drill into the underlying data view.
+function StatTile({
+  label,
+  value,
+  sublabel,
+  href,
 }: {
-  guide: GuideCard;
-  cover: string | null;
+  label: string;
+  value: number;
+  sublabel?: string;
+  href: string;
 }) {
   return (
-    <Link
-      href={`/lists/${guide.slug}`}
-      className="group block card overflow-hidden hover:shadow-paper transition-shadow h-full"
-    >
-      {cover ? (
-        <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-          {/* next/image rather than <img> so local /public paths
-              ("/images/posts/...") and the remote allowlist (Supabase /
-              Wikimedia / Airtable / etc) all route through the same
-              optimizer and render reliably. */}
-          <Image
-            src={cover}
-            alt={guide.heroAlt ?? guide.title}
-            fill
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          />
-        </div>
-      ) : (
-        <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
-          No hero yet
-        </div>
-      )}
-      <div className="p-3">
-        <h3 className="text-ink-deep font-semibold leading-tight group-hover:text-teal transition-colors">
-          {guide.title}
-        </h3>
-        {guide.description && (
-          <p className="mt-1.5 text-label text-slate leading-snug line-clamp-2">
-            {guide.description}
+    <li>
+      <Link
+        href={href}
+        className="group block card p-4 hover:shadow-paper transition-shadow h-full"
+      >
+        <p className="text-h2 text-ink-deep tabular-nums leading-none group-hover:text-teal transition-colors">
+          {value.toLocaleString()}
+        </p>
+        <p className="mt-1.5 text-label text-ink-deep font-medium leading-tight">
+          {label}
+        </p>
+        {sublabel && (
+          <p className="mt-0.5 text-micro text-muted tabular-nums">
+            {sublabel}
           </p>
         )}
-      </div>
-    </Link>
+      </Link>
+    </li>
   );
 }
 
-// === Article card ==========================================================
-// Same compact shape as the guide card so the two sections render at
-// matching density. Inlined here rather than imported from /articles
-// to keep the visual contract local.
-function ArticleCardLink({ item }: { item: ArticleEntry }) {
+// === Feed card =============================================================
+// One card shape for both guides and articles. The chip in the corner is
+// the only visual distinction between kinds; same image treatment, same
+// title + description + date layout.
+function FeedCardLink({ item }: { item: FeedItem }) {
   const date = item.publishedAt ? new Date(item.publishedAt) : null;
   const dateLabel =
     date && !Number.isNaN(date.getTime())
       ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
       : null;
+  const kindLabel = item.kind === 'guide' ? 'Guide' : 'Article';
 
   return (
     <Link
@@ -284,16 +338,22 @@ function ArticleCardLink({ item }: { item: ArticleEntry }) {
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
+          <span className="absolute top-2 left-2 pill bg-black/60 text-white border-white/10 backdrop-blur-sm text-micro font-medium uppercase tracking-wider">
+            {kindLabel}
+          </span>
         </div>
       ) : (
-        <div className="aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
+        <div className="relative aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
           {item.emoji ? (
             <span aria-hidden className="text-h2">
               {item.emoji}
             </span>
           ) : (
-            'Article'
+            kindLabel
           )}
+          <span className="absolute top-2 left-2 pill bg-ink-deep/80 text-white text-micro font-medium uppercase tracking-wider">
+            {kindLabel}
+          </span>
         </div>
       )}
       <div className="p-3">
