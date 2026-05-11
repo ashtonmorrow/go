@@ -1,5 +1,5 @@
 ---
-indexable: false
+indexable: true
 featured: true
 title: "Amsterdam travel guide: things to do, where to stay, and a Schiphol arrival plan"
 description: "A personal Amsterdam travel guide. Where to stay in the canal ring, Zuid, or The Hague, the Schiphol train, the Buiksloterweg ferry, Zaanse Schans, and museums to book in advance."
