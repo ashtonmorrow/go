@@ -3,28 +3,28 @@ import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { SITE_URL } from '@/lib/seo';
-import HomeGlobe from '@/components/HomeGlobe';
+import HomeCitiesGlobe from '@/components/HomeCitiesGlobe';
 
 // === Home (/) ==============================================================
-// Full-bleed 3D globe of every country visited, with a glass-style stats
-// strip floating at the bottom over the map. No "recent writing" feed,
-// no Atlas card — the sidebar handles Lists / Atlas / Articles
-// navigation; the home is purely the lookback hero.
+// Full-bleed 3D globe of every city in the atlas (teal dot if visited,
+// slate dot if not yet), with a glass-style stats strip floating at the
+// bottom over the map. No text header — the globe is the page. Page
+// title and description live in the document metadata only (SEO).
 //
-// Layout, top to bottom:
-//   1. Quiet text header (title + intro), narrow column, above the map
-//   2. Globe — full available width, vh-sized so it dominates the page
-//   3. Floating stats strip overlaid on the bottom edge of the map
-//
-// The globe is interactive: drag to spin, click any visited country
-// (shaded teal) to open its detail page. Hover lightens the country
-// boundary. No filter cockpit; that lives at /countries/map (reachable
-// via Atlas in the sidebar) with the full interactive setup.
+// The globe is interactive: drag to spin, click any dot to open that
+// city's detail page. No filter cockpit; that lives at /cities/map
+// (reachable via Atlas in the sidebar) with the full setup.
 
 export const metadata: Metadata = {
-  title: "Mike Lee — Oh the places you'll go",
+  // title.absolute skips the layout template ("· Mike Lee" suffix); the
+  // byline is already in the title itself so the appended one would
+  // double up. Description is first-person and names the cities we
+  // have written guides for, so the SERP snippet earns the click
+  // against generic city-name competitors without sounding like a
+  // brochure.
+  title: { absolute: "Mike Lee's travel atlas" },
   description:
-    "Travel notes, lists of places worth returning to, and long-form destination guides. Written from spending the majority of my adult life on the go.",
+    "Every city I have been to, the places I went back to, and written guides for Madrid, Bristol, Bangkok, Cape Town, and Amsterdam.",
   alternates: { canonical: SITE_URL },
 };
 
@@ -56,38 +56,30 @@ export default async function HomePage() {
   // helpers just to count; the home no longer renders their content.
   const { guidesCount, articlesCount } = await countPublishedContent();
 
-  // Globe needs the full country list to wire click-to-navigate. The
-  // shape is intentionally slim so the bundle the client downloads is
-  // small.
-  const countryRows = countries.map(c => ({
+  // Globe needs lat/lng + been + slug to wire dots and click-to-nav.
+  // The shape is intentionally slim so the bundle the client downloads
+  // is small.
+  const cityRows = cities.map(c => ({
     name: c.name,
     slug: c.slug,
-    iso3: c.iso3 ?? null,
+    lat: c.lat ?? null,
+    lng: c.lng ?? null,
+    been: !!c.been,
   }));
 
   return (
     <div className="relative w-full">
-      <header className="max-w-page mx-auto px-5 pt-8 pb-4 max-w-prose">
-        <h1 className="text-display text-ink-deep leading-none">
-          Oh the places you&rsquo;ll go
-        </h1>
-        <p className="mt-3 text-prose text-slate leading-relaxed">
-          My travel notes, lists of places I felt were worth returning to,
-          and long-form destination guides. All written up from spending
-          the majority of my adult life on the go.
-        </p>
-      </header>
-
       {/* Full-bleed globe. vh-sized so the map dominates the screen on
           desktop; on mobile it shrinks to a comfortable square so the
           stats strip below it doesn't get pushed off-screen. The map
           and its overlays live in one relative container so the stats
-          row can absolute-position against the map's bottom edge. */}
-      <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[78vh] bg-cream-soft">
-        <HomeGlobe
-          visitedCountryNames={visitedCountryNames}
-          countries={countryRows}
-        />
+          row can absolute-position against the map's bottom edge.
+
+          No text header above the map — the globe + floating stats strip
+          carry the page on their own; the page title for SEO lives in
+          the document metadata only. */}
+      <div className="relative w-full h-[80vh] md:h-[88vh] bg-cream-soft">
+        <HomeCitiesGlobe cities={cityRows} />
 
         {/* Floating stats strip — absolute-positioned across the bottom
             of the map. Glass treatment (semi-transparent white +

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: Amsterdam Travel Notes and Map
-description: A practical Amsterdam guide and pin map. Schiphol arrivals, where to stay (and where to skip), how to use the train and tram with a tap, the Zaanse Schans day trip, the Buiksloterweg ferry to Noord, herring, Foodhallen, the Van Gogh, and the day-trip move of just basing in The Hague.
+title: "Amsterdam travel guide: things to do, where to stay, and a Schiphol arrival plan"
+description: "A personal Amsterdam travel guide. Where to stay in the canal ring, Zuid, or The Hague, the Schiphol train, the Buiksloterweg ferry, Zaanse Schans, and museums to book in advance."
 published: 2026-05-10
 updated: 2026-05-10
 authors:
