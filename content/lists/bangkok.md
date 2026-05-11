@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: Bangkok Travel Notes and Map
-description: A practical Bangkok guide and pin map. Where to stay (Phrom Phong, Thong Lo, Silom, Riverside), the airport-to-city playbook (taxi kiosk, Grab, ARL), the BTS mall walk for travel-hangover days, the river-grouped temple circuit, Chinatown food, and how to actually move around the city without losing afternoons in traffic.
+title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
+description: "A personal Bangkok travel guide. Where to stay in Sukhumvit, Silom, or Riverside, the BTS mall walk for jet-lagged days, the river-grouped temple circuit, and Yaowarat at night."
 published: 2026-05-10
 updated: 2026-05-10
 authors:

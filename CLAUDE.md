@@ -77,6 +77,14 @@ The published travel guides live in `/content/lists/<slug>.md` (the long-form Ca
 
 **Authoring-notes block.** Every list/city scaffold ends with an HTML-comment block (`# Authoring notes (kept here, not rendered): ...`) inside the closing frontmatter fence. Use it for: pins still to create, soi/address numbers to verify, follow-up cross-links, why a particular pin is linked instead of a more obvious candidate. These notes don't render; they're how Mike picks up the trail when he comes back to edit.
 
+**SEO titles and descriptions.** Frontmatter `title` and `description` are the SEO surface: `title` becomes the HTML `<title>` element (browser tab + Google SERP), and `description` becomes the meta description. They are decoupled from `guide_cards.title`, which is the on-page H2 and stays in Mike's voice ("Planning Madrid"). The two are written for different audiences.
+
+For destination guides, the title pattern that tested well against Semrush keyword volumes (May 2026, US database) is `"[City] travel guide: [hook A], [hook B], and [hook C]"` where the hooks reference the highest-volume intents we have content for. The three highest-volume travel intents for every city we have guides for are, in order: `things to do in [city]`, `where to stay in [city]`, `[city] itinerary`. Lead the title with "travel guide" rather than the bare city name to disambiguate from brand collisions — Madrid alone is dominated by Real Madrid football queries, Bristol alone collides with Bristol Bears rugby and Bristol TN, Amsterdam alone collides with Amsterdam Avenue NYC and the Ben Affleck film. The `"[City] travel guide"` modifier solves all of these in one move.
+
+Descriptions sit at 150–160 characters of natural prose that pack the same high-intent modifiers (where to stay, things to do, itinerary) plus 2–3 distinctive proper nouns from the guide so the snippet earns a click against generic competitors. Wrap the value in double quotes inside YAML to avoid the colon-space hazard.
+
+For route or transit indexes (Alicante tram, Kusttram), the system name on its own is too thin and too brand-ambiguous to compete. Use `"[System name]: [doing-verb] [place context]"` instead — `"Kusttram station guide: riding Belgium's coastal tram"` rather than `"Kusttram station guide"`. The geographic context is the searchable handle.
+
 **Indexable gate.** New scaffolds ship with `indexable: false` until Mike reviews voice, facts, and the hero image. Page metadata is gated on `indexable: true` in the page's own metadata generator (see `/cities/[slug]/page.tsx` and the lists equivalent), and the sitemap reads the same flag. Don't flip indexable in a scaffolder commit.
 
 ## Out of scope for this project

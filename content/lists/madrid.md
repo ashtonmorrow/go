@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: Madrid Travel Notes and Map
-description: A practical Madrid guide and pin map for hotels, markets, food, museums, and an easy sunset walk to the Templo de Debod.
+title: "Madrid travel guide: things to do, where to stay, and what to skip"
+description: "A personal Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset."
 published: 2026-05-10
 updated: 2026-05-10
 authors:
@@ -55,29 +55,51 @@ related:
 
 [Madrid](/cities/madrid) is one of those cities I find easy to recommend and easy to mis-plan. The neighborhoods are close together, the food rewards walking, and the public transport works the way you want it to. The trip falls apart when you stay in the wrong base, treat the famous market as a meal, or assume you can walk up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday.
 
-I have spent enough time in Madrid to care less about hitting headline attractions and more about which streets I want to wake up on. The notes below are in that order: how I would land, where I would sleep, what I would do on a Sunday, where I would actually eat, and the few attractions I would still queue or book for.
+## On this page
+
+* [When to go](#when-to-go)
+* [Getting in from the airport](#getting-in-from-the-airport)
+* [Where to stay](#where-to-stay)
+* [Sunday at El Rastro](#sunday-at-el-rastro)
+* [Markets and where to eat](#markets-and-where-to-eat)
+* [Museums](#museums)
+* [Casa de Campo for a half-day](#casa-de-campo-for-a-half-day)
+* [Templo de Debod for sunset](#templo-de-debod-for-sunset)
+
+## When to go
+
+| Window | Months | What to expect |
+|---|---|---|
+| Spring | April to June | The best weeks. Warm but not hot, longer days, terraces full. Book hotels early |
+| Summer | July to August | Hot and dry, 35°C+ regularly. Many Madrileños leave town in August; some restaurants close for vacation |
+| Autumn | September to November | The other peak window. Warm days, cooler evenings, museum and restaurant rhythm at its strongest |
+| Winter | December to March | Cold but rarely below freezing, mostly dry. Christmas lights along Gran Vía are worth seeing. Indoor-heavy itinerary |
 
 ## Getting in from the airport
 
-The airport taxi is a flat €33 to the city center inside the M-30 ring. It is the simplest move with luggage and avoids surge pricing. Bolt and Uber both work in Madrid; Bolt is usually a few euros cheaper, but the gap closes during peak demand. Pull both up and pick.
+| Option | Cost | Best for | Watch out for |
+|---|---|---|---|
+| Official taxi (flat fare) | €33 to anywhere inside the M-30 ring | Two suitcases, late arrivals | None worth flagging; it is the simplest move |
+| Bolt | A few euros cheaper than the taxi, but the gap closes at peak | Light luggage, you check both apps | Surge pricing on busy nights closes the gap fast |
+| Uber | Same as Bolt, sometimes slightly higher | Same as Bolt | Same |
+| Metro Line 8 + transfer | A few euros | Light bag, hotel near a Line 8 stop | Transfers with luggage get old |
+| Cercanías commuter rail | Cheapest | Hotels near Atocha or Chamartín | Slower than the Metro for most central hotels |
 
-The Metro and the Cercanías commuter rail are the cheaper options. The Metro from Barajas is fine if you have a small bag and your hotel is near a Line 8 stop with a short transfer. With two suitcases, the taxi flat fare is the better trade.
+With two suitcases the €33 flat is the better trade.
 
 ## Where to stay
 
-I pick a base by which kind of day I want to have. Gran Vía gets you walking distance to most things and a noisy street. La Latina toward Lavapiés trades the central crowds for neighborhood restaurants and smaller hotels. The Princesa side is quiet, well connected by metro, and often a better value than equivalent rooms downtown.
+I pick a base by which kind of day I want to have. Gran Vía gets you walking distance to most things and a noisy street. La Latina toward Lavapiés trades the central crowds for neighborhood restaurants and smaller hotels. The Princesa side is quiet, well-connected by metro, and often a better value than equivalent rooms downtown.
 
-| Area | Why it works | The trade-off |
-|---|---|---|
-| Gran Vía | Times Square energy, metro at the door, walking distance to Sol and the museum cluster | Crowds at every meal, and you pay for the central address |
-| [Hotel Indigo Madrid - Gran Vía](/pins/hotel-indigo-madrid-gran-via-an-ihg-hotel) | Decent IHG-brand option one block off Gran Vía, near Plaza del Carmen and the Sol-Callao triangle | Gran Vía is loud and busy by definition |
-| [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Same Gran Vía area; was a solid mid-range pick | I have not stayed since the recent renovation, so confirm the room before booking |
-| [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way if you want the Sol and Gran Vía buzz at night |
-| La Latina toward Lavapiés | My personal favorite area for neighborhood restaurants and smaller hotels | Older buildings, more stairs, less polished than the central hotels |
-| [Atocha Hotel Madrid, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Decent Hilton soft-brand option on the La Latina / Lavapiés side, walking distance to the Reina Sofía | Rates have been creeping up; not always the value it used to be |
-| [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage; treat it as a bed, not a base to relax in |
+| Where | Hotel | Why pick it | Trade-off |
+|---|---|---|---|
+| Gran Vía | [Hotel Indigo Madrid - Gran Vía](/pins/hotel-indigo-madrid-gran-via-an-ihg-hotel) | Decent IHG-brand option one block off Gran Vía, near Plaza del Carmen and the Sol-Callao triangle | Gran Vía is loud and busy by definition |
+| Gran Vía | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Was a solid mid-range pick in the same area | I have not stayed since the recent renovation, so confirm the room before booking |
+| Princesa side | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way for the Sol / Gran Vía buzz at night |
+| La Latina / Lavapiés | [Atocha Hotel, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Hilton soft-brand option, walking distance to the Reina Sofía | Rates have been creeping up; not always the value it used to be |
+| Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage; treat as a bed, not a base |
 
-If you do stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) at Callao has a rooftop terrace with one of the easier sunset views in the center. The [Camino Sacramento](/pins/camino-sacramento) cheap-steak spot is also right there and worth a stop.
+La Latina toward Lavapiés is my personal favorite area when I am picking by neighborhood feel rather than hotel. Older buildings, more stairs, the strongest neighborhood food in the center. If you stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) rooftop at Callao has one of the easier sunset views in the center. The [Camino Sacramento](/pins/camino-sacramento) cheap-steak spot is right there too.
 
 ## Sunday at El Rastro
 
@@ -85,29 +107,33 @@ If you do stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) at 
 
 The pre-market warm-up is a paper cone of churros from [Churrería Santa Ana](/pins/churreria-santa-ana). It is greasy, takeaway, and exactly the right thing before walking the market.
 
-## Markets and a meal nearby
+## Markets and where to eat
 
-The [Mercado de San Miguel](/pins/mercado-de-san-miguel) is the famous one and worth seeing once. It is a beer-and-a-snack stop, not a meal. The food is overpriced and the standing space is uncomfortable. Use it for the building, then leave.
+The food rhythm in Madrid rewards walking ten minutes for a better meal rather than eating the first thing in front of you. Two principles do most of the work: the famous covered market is for a beer and a snack, not for dinner. And the real neighborhood market is a five-minute walk away.
 
-For a sit-down dinner ten minutes away, [El miniBAR](/pins/el-minibar) is the better food pick. It is downstairs in a basement, so skip it if you have anyone in the group with mobility limits. If you want something right next door to San Miguel, [Restaurante Amicis](/pins/restaurante-amicis) beats every place on the same square that has a picture menu out front, and it is on the ground floor.
-
-For a market that locals actually shop and eat at, walk five minutes to the [Mercado de la Cebada](/pins/mercado-de-la-cebada). Cheaper, less polished, more interesting.
-
-## Coffee, beer, pastries
-
-[BREW WILD PIZZA BAR](/pins/brew-wild-pizza-bar) is my craft-beer default in the center; the tap list rotates and the pizza is fine, not a destination.
-
-For chocolate con churros, the famous spot is San Ginés and the line is the point for some people. If you want the same idea without the queue, [Chocolat Madrid](/pins/chocolat-madrid) is better and almost always walk-in.
-
-For pastries on the way to the Retiro or the museum cluster, [Motteau Pasteleria](/pins/motteau-pasteleria) is the best in the city for me.
+| Spot | Best for | Notes |
+|---|---|---|
+| [Mercado de San Miguel](/pins/mercado-de-san-miguel) | Beer and a snack with a view of the building | Overpriced and crowded for a meal. Use for the building, then leave |
+| [Mercado de la Cebada](/pins/mercado-de-la-cebada) | A real working market locals shop at | 5 minutes from San Miguel. Cheaper, less polished, more interesting |
+| [Restaurante Amicis](/pins/restaurante-amicis) | Sit-down dinner next to San Miguel | Beats every picture-menu place on the square. Ground floor |
+| [El miniBAR](/pins/el-minibar) | Sit-down dinner 10 minutes from San Miguel | Basement; skip if anyone in the group has mobility limits |
+| [BREW WILD PIZZA BAR](/pins/brew-wild-pizza-bar) | Craft beer in the center | Tap list rotates; pizza is fine, not a destination |
+| [Chocolat Madrid](/pins/chocolat-madrid) | Chocolate con churros without the San Ginés queue | Almost always walk-in. The famous version is at San Ginés if the queue is the point for you |
+| [Motteau Pasteleria](/pins/motteau-pasteleria) | Pastries on the way to the Retiro or the museums | Best in the city for me |
+| [Camino Sacramento](/pins/camino-sacramento) | Cheap steak near Callao | Worth a stop |
 
 ## Museums
 
-If you have to pick one of the headline two, I am partial to the [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) over the Prado. Reina Sofía tends to be quieter and works as a walk-up, and its twentieth-century collection (Picasso, Miró, Dalí) is what most first-time visitors actually want to see in person.
+The booking pattern is the part that catches first-time visitors out: the Prado requires a timed entry to skip the weekend line, the Reina Sofía generally does not.
 
-The [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) is the bigger, denser collection and is the right pick if you came specifically for Velázquez, Goya, or El Greco. Book a timed entry. The walk-up line on weekends is the part of the trip people complain about.
+| Museum | What it is | Booking | Best for |
+|---|---|---|---|
+| [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) | 20th-century Spanish art (Picasso, Miró, Dalí) | Walk-up works | First-time visitors who want the Picasso |
+| [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) | The big classical collection (Velázquez, Goya, El Greco) | **Book a timed entry** | If you came specifically for the Old Masters |
+| [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid) | Railway museum in the 1880 Estación de Delicias iron-and-glass train shed | Walk-up | My personal favorite. **Closed Mondays. Short hours: 9:30/10:00 to 15:00** |
+| [Zoo Aquarium](/pins/zoo-aquarium-de-madrid) | Inside Casa de Campo, has pandas | Walk-up | Easy half-day with kids |
 
-My own favorite museum in Madrid is neither of those: it is the [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid), the railway museum on Paseo de las Delicias. The collection is housed inside the former Estación de Delicias, an 1880 iron-and-glass train shed, and the trains sit on the original platforms. Two practical notes that catch people out. The museum is closed Mondays. Regular hours also run short, Tuesday through Sunday from 9:30 or 10:00 to 15:00. Family weekend programming runs on Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend rather than a Friday if you have kids.
+If you only have time for one of the headline two, I am partial to the Reina Sofía. The 20th-century collection is what most first-time visitors actually want to see in person, and the queue without a reservation is shorter than the Prado's. Family weekend programming at the Ferrocarril runs Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend if you have kids.
 
 ## Casa de Campo for a half-day
 
@@ -116,8 +142,6 @@ My own favorite museum in Madrid is neither of those: it is the [Museo del Ferro
 The cable car from Paseo del Pintor Rosales (the [Teleférico](/pins/parque-teleferico-madrid)) is still listed as temporarily closed. I was there in May 2026 and the cable line was missing and the upper station was in bad shape. I think it is finished. The last time I rode it the car stopped mid-air for about ten minutes, so this is probably for the best.
 
 The Metro is the easier way in. Line 10 runs the western edge of the park: Lago drops you next to the lake, Casa de Campo is the east entry, and Batán is the south end near the amusement park. Príncipe Pío on Lines 6, 10, and the R is the most useful interchange for getting back across the river.
-
-The [Zoo Aquarium de Madrid](/pins/zoo-aquarium-de-madrid) sits inside the park and has pandas, which is the easy half-day with kids if the weather cooperates.
 
 ## Templo de Debod for sunset
 
