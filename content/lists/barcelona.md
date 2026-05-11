@@ -49,19 +49,19 @@ related:
 #   /lists/barcelona renders the full pin set underneath.
 #
 # - Pins linked from this scaffold (all confirmed in the atlas):
-#     · josep-tarradellas-barcelona-el-prat-airport
+#     · josep-tarradellas-barcelona-el-prat-airport (5/5, reviewed)
 #     · la-sagrada-familia
-#     · holiday-inn-express-barcelona-city-22 (Poblenou / 22@ district)
-#     · four-points-by-sheraton-barcelona-diagonal
+#     · holiday-inn-express-barcelona-city-22 (Poblenou / 22@, 5/5)
+#     · four-points-by-sheraton-barcelona-diagonal (5/5, reviewed)
 #     · durlet-beach-apartments (5/5, reviewed)
 #     · grand-hyatt-barcelona (Diagonal Mar, 5/5)
 #     · the-social-hub-barcelona-poblenou
-#     · renaissance-barcelona-fira-hotel
+#     · renaissance-barcelona-fira-hotel (5/5, reviewed)
 #     · hyatt-regency-barcelona-tower (Fira / L'Hospitalet)
 #     · bar-kiosko-la-cazalla-barcelona (5/5, reviewed)
 #     · cabernet-bar-tapas-copas-y-vinos (5/5, reviewed)
 #     · la-uramakeria (5/5)
-#     · la-nacional-barcelona (food hall off Passeig de Gràcia)
+#     · el-nacional-barcelona (5/5, reviewed)
 #     · mercado-de-la-boqueria
 #     · mercat-de-santa-caterina (5/5)
 #     · sab-tic-sitges-autograph-collection (5/5)
@@ -70,10 +70,24 @@ related:
 #     · hyatt-regency-barcelona-tower (resolves the Hyatt ambiguity:
 #       distinct property from grand-hyatt-barcelona at Diagonal Mar)
 #     · the-social-hub-barcelona-poblenou
-#     · la-nacional-barcelona
-#   All three are indexable: false until reviewed; coordinates are
+#   Both are indexable: false until reviewed; coordinates are
 #   approximate and worth confirming against Google Place data on
 #   first edit.
+#
+# - Other 5/5 Barcelona pins in the atlas that did not fit Mike's
+#   dictated narrative but are good candidates if/when the scaffold
+#   gets expanded (food has the deepest bench):
+#     · attractions: arco-de-triunfo-de-barcelona, tierra-del-fuego
+#     · poblenou alt hotel: feelathome-poblenou-beach-apartments
+#     · restaurants: 4-makis-barcelona, bambu-sushi-and-ramen-bar,
+#       bmc-banh-mi-club, boro-bar, caelum, can-dende,
+#       cocovail-beer-hall-craft-beer-barcelona, dionisos-the-quick-greek,
+#       gamar-espai-sense-alcohol, ikoya-izakaya, kiosko-universal,
+#       la-pepita, labar-laundry-bar, salts-terrassa-bar-montjuic,
+#       slow-and-low, ziryab-fusion-tapas-bar
+#   The saved_list (189 pins) already renders all of these in the
+#   cards/map view at /lists/barcelona; the question is which ones
+#   Mike wants to lift into the prose with personal context.
 #
 # - T-Casual price drifts annually. The current scaffold avoids
 #   quoting a specific euro figure and instead says "more than three
@@ -176,7 +190,7 @@ The rule for eating in central Barcelona is simple: walk one or two streets off 
 | [Cabernet](/pins/cabernet-bar-tapas-copas-y-vinos) | Med-style cooking, slow pace, casual-upscale dinner | Poblenou |
 | [La Uramakeria](/pins/la-uramakeria) | Cheap sushi that works as a casual weeknight | Poblenou |
 | [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona) | Standing caña and a snack before dinner | Just off La Rambla |
-| [La Nacional](/pins/la-nacional-barcelona) | Spanish food hall under restored vaulted ceilings; works for a group that cannot agree on cuisine, or for a slow lunch that lets you graze | Off Passeig de Gràcia |
+| [El Nacional Barcelona](/pins/el-nacional-barcelona) | Multi-vendor Spanish food hall under restored vaulted ceilings; on the tourist drag, but worth a stop for a caña and a graze | Passeig de Gràcia |
 
 Most neighbourhood bars off the main Rambla will do you a fair caña and a small plate of patatas bravas for not much money. The trick is mostly to walk a block. The places with the picture menus and the English-only chalkboards are the ones that price you accordingly.
 
