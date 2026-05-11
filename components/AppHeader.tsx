@@ -60,15 +60,15 @@ export default function AppHeader() {
     : undefined;
 
   return (
-    <div className="fixed top-3 right-3 z-40 hidden md:flex items-center gap-2">
-      {/* Map-scope switcher — Cities · Pins · Countries — renders only
-          when the current route is one of the three /<scope>/map URLs.
-          Sits to the left of ViewSwitcher so the data-axis (scope)
-          comes before the view-axis (cards/map/table/stats), matching
-          how Mike narrates the navigation: "I want the country map"
-          before "in cards mode." */}
+    <div className="fixed top-3 right-3 z-40 hidden md:flex items-center gap-1.5">
+      {/* Map scope (Cities · Pins · Countries) renders only on the three
+          /<scope>/map URLs. Sits left of ViewSwitcher so the data-axis
+          (scope) reads before the view-axis (cards / map / table /
+          stats). Both switchers share container, padding, radius,
+          active-state, and icon set so they read as one coordinated
+          toolbar instead of two competing pills. */}
       <MapScopeSwitcher />
-      <ViewSwitcher object={object} current={current} className="shadow-paper" />
+      <ViewSwitcher object={object} current={current} />
     </div>
   );
 }

@@ -2,40 +2,42 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import SwitcherIcon, { type SwitcherIconName } from './SwitcherIcon';
 
 // === MapScopeSwitcher =======================================================
-// Three-way tab strip on the map pages: Cities · Pins · Countries.
-// Mounted on the corresponding /<scope>/map routes so a reader who
-// landed on the cities map can flip the lens to pins or countries
-// without losing the "I'm browsing the atlas on a map" mode.
+// Three-way segmented control on the /<scope>/map pages:
+// Cities · Pins · Countries. Lets a reader who landed on the cities
+// map flip the lens to pins or countries without leaving the "I'm
+// browsing the atlas on a map" mode.
 //
-// This complements the per-scope ViewSwitcher (Cards / Map / Table /
-// Stats) that lives in AppHeader. ViewSwitcher answers "what shape do
-// I want this corpus in?" Scope switcher answers "which corpus am I
-// looking at?" — the data-axis Mike asked for when he routed Atlas
-// directly into the map view.
+// Sibling of ViewSwitcher; both share container, padding, radius,
+// active-state, icon size, and hover treatment so the two switchers
+// read as one coordinated toolbar instead of two floating debris pills.
+//
+// Mobile (< sm) renders icons only to keep the toolbar from dominating
+// a narrow viewport; labels reappear at sm and up.
 
 type Scope = 'cities' | 'pins' | 'countries';
 
-const SCOPES: { scope: Scope; href: string; label: string; emoji: string }[] = [
-  { scope: 'cities',    href: '/cities/map',    label: 'Cities',    emoji: '📮' },
-  { scope: 'pins',      href: '/pins/map',      label: 'Pins',      emoji: '📍' },
-  { scope: 'countries', href: '/countries/map', label: 'Countries', emoji: '🌍' },
+const SCOPES: { scope: Scope; href: string; label: string; icon: SwitcherIconName }[] = [
+  { scope: 'cities',    href: '/cities/map',    label: 'Cities',    icon: 'cities' },
+  { scope: 'pins',      href: '/pins/map',      label: 'Pins',      icon: 'pins' },
+  { scope: 'countries', href: '/countries/map', label: 'Countries', icon: 'countries' },
 ];
 
 export default function MapScopeSwitcher() {
   const pathname = usePathname() ?? '';
-  // Active scope is whichever map URL we're on. Pages other than the
-  // three map routes hide the switcher entirely (the parent component
-  // is mounted only on those pages).
   const active = SCOPES.find(s => pathname.startsWith(s.href))?.scope ?? null;
   if (!active) return null;
 
   return (
     <nav
-      aria-label="Switch map scope"
+      aria-label="Map scope"
+      role="tablist"
       className="
-        inline-flex rounded-lg border border-sand bg-white p-0.5
+        inline-flex items-center rounded-lg
+        bg-white/95 backdrop-blur border border-sand
+        p-1 shadow-sm
         text-small font-medium
       "
     >
@@ -45,18 +47,18 @@ export default function MapScopeSwitcher() {
           <Link
             key={s.scope}
             href={s.href}
+            role="tab"
+            aria-current={isActive ? 'page' : undefined}
+            aria-selected={isActive}
             className={
-              'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-colors ' +
+              'inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md transition-colors ' +
               (isActive
-                ? 'bg-ink-deep text-white'
+                ? 'bg-ink-deep text-cream-soft'
                 : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
             }
-            aria-current={isActive ? 'page' : undefined}
           >
-            <span aria-hidden className="leading-none">
-              {s.emoji}
-            </span>
-            <span>{s.label}</span>
+            <SwitcherIcon name={s.icon} className="w-4 h-4 shrink-0" />
+            <span className="hidden sm:inline">{s.label}</span>
           </Link>
         );
       })}
