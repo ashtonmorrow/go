@@ -25,7 +25,7 @@ links:
     - thusis
     - chur
   pins:
-    - bernina-express
+    - trenino-rosso-bernina
     - rhaetian-railway-in-the-albula-bernina-landscapes
     - alp-grum
   lists:
