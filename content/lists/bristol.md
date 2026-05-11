@@ -1,5 +1,5 @@
 ---
-indexable: false
+indexable: true
 featured: true
 title: "Bristol travel guide: things to do, where to stay, and the Banksy walk"
 description: "A personal Bristol travel guide. Where to stay (and which central hotels to skip), a self-guided Banksy walking tour, Clifton, and how Bristol fits a London week."
