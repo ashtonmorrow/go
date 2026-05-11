@@ -44,32 +44,49 @@ related:
 # - hero_image is empty; pick one in /admin/lists/barcelona via the picker.
 # - Featured: true so the scaffold appears on the home page Travel
 #   guides section alongside Cape Town / Madrid / Bristol / Bangkok / Amsterdam.
-# - Pins to verify or create (none of these are linked yet; the prose
-#   currently mentions each by plain name and the link should be swapped
-#   in once the pin exists):
-#     · Barcelona-El Prat airport (BCN): confirm slug, may already exist
+# - The Supabase saved_list "barcelona" already has 182 pins curated.
+#   This scaffold is the prose layer on top; the map/cards view at
+#   /lists/barcelona renders the full pin set underneath.
+#
+# - Pins linked from this scaffold (all confirmed in the atlas):
+#     · la-sagrada-familia
+#     · durlet-beach-apartments (5/5, reviewed)
+#     · bar-kiosko-la-cazalla-barcelona (5/5, reviewed)
+#     · cabernet-bar-tapas-copas-y-vinos (5/5, reviewed)
+#     · la-uramakeria (5/5)
+#     · sab-tic-sitges-autograph-collection (5/5)
+#
+# - Pins still missing from the atlas, currently text-only in the body
+#   (create in /admin/pins, then swap text for /pins/<slug> link):
+#     · Barcelona-El Prat airport (BCN)
 #     · Renaissance Barcelona Fira Hotel
-#     · Hyatt Regency Barcelona Tower
+#     · Hyatt Regency Barcelona Tower (L'Hospitalet, near Fira). The
+#       atlas has grand-hyatt-barcelona (Diagonal Mar, 5/5) but Mike's
+#       dictation describes the Tower property in L'Hospitalet near
+#       the airport. Two different Hyatts; create the Tower pin
+#       separately, do not repoint grand-hyatt-barcelona.
 #     · Holiday Inn Express Barcelona Poblenou
-#     · Four Points by Sheraton Barcelona Diagonal: Mike said "Four Points
-#       on the Rambla"; this is the closest brand property. Verify before
-#       linking that this is the one he means
-#     · Aparthotel Durlet Beach Apartments (end of La Rambla)
-#     · The Social Hub Barcelona: confirm exact property name
-#     · Sagrada Família: likely exists in atlas already
-#     · Hotel Sabàtic Sitges
-#     · Cabernet (Poblenou): confirm full restaurant name + address
-#     · La Uramakeria (Poblenou)
-#     · Kiosko La Cazalla (near La Rambla)
-# - Sitges deserves its own scaffold (Mike said he'll write one). The
-#   Sitges section here is a teaser; once that page exists, link the
-#   first mention through to /lists/sitges.
+#     · Four Points by Sheraton Barcelona Diagonal (confirmed by Mike
+#       2026-05-11 as the property he means by "Four Points on the
+#       Rambla")
+#     · The Social Hub Barcelona
+#
+# - Alt Poblenou aparthotel already in the atlas:
+#   feelathome-poblenou-beach-apartments (5/5). Could be added to the
+#   where-to-stay table as a second Poblenou option alongside the
+#   Holiday Inn Express if Mike wants more breadth.
+#
+# - Sitges deserves its own scaffold (Mike said he'll write one).
+#   Existing Sitges pins worth surfacing there:
+#   gaby-s-sitges-restaurante, guria-taberna-sitges, nem-sitges,
+#   sushi-tokio-sitges, lavander-a-sitges. Once /lists/sitges exists,
+#   link the first Sitges mention in this file to it.
 # - Airbnb regulatory situation in Barcelona changes regularly. Verify
 #   the "tightening short-term rentals" claim is still current before
 #   each republish, and update the FAQ if the rules ease.
 ---
 
-[Barcelona](/cities/barcelona) is the city most people get wrong on the first trip, and the way they get it wrong is consistent: they stay in Barri Gòtic, eat on La Rambla, and end up paying tourist prices for tourist food while a quieter, cheaper, better version of the city sits one metro stop east. The version below is the trip I would book for myself.
+[Barcelona](/cities/barcelona) is the city most people get wrong on the first trip, and the way they get it wrong is consistent: they stay in Barri Gòtic, eat on La Rambla, and end up paying tourist prices for tourist food while a quieter, cheaper, better version of the city sits one metro stop east. The version below is the trip I would book for myself. The full pin map for the city sits below; this writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -94,7 +111,7 @@ Plan on roughly €30 to a central hotel via taxi or rideshare outside peak hour
 
 ## Where to stay
 
-Barcelona splits into a few real choices once you know what you actually want from the trip. The city itself rewards staying off the tourist spine; the Sagrada Família area and Barri Gòtic are where the headline crowds and the pickpocket density both live.
+Barcelona splits into a few real choices once you know what you actually want from the trip. The city itself rewards staying off the tourist spine; the [Sagrada Família](/pins/la-sagrada-familia) area and Barri Gòtic are where the headline crowds and the pickpocket density both live.
 
 **Poblenou on the yellow metro line is the one I would book first.** Less tourist-centric food, calmer evenings, and the metro gets you to the headline sights in fifteen minutes. The trade-off is real: you ride the metro to most of them instead of walking out of the lobby.
 
@@ -102,7 +119,7 @@ Barcelona splits into a few real choices once you know what you actually want fr
 |---|---|---|---|
 | Poblenou | Holiday Inn Express Barcelona Poblenou | Basic, clean, safe, often ~€100/night. Three-minute walk to the metro | A Holiday Inn Express; book it for the price and location, not the room |
 | Around La Rambla | Four Points by Sheraton Barcelona Diagonal | Slightly more upscale, central, similar price band | Closer to the tourist spine, which is louder and pricier for food |
-| End of La Rambla | Aparthotel Durlet Beach Apartments | Apartment-style with a kitchen, near the water, better than any Airbnb in the city | Aparthotel rather than full-service; no front-desk theatre |
+| End of La Rambla | [Durlet Beach Apartments](/pins/durlet-beach-apartments) | Apartment-style with a kitchen, near the water, better than any Airbnb in the city | Aparthotel rather than full-service; no front-desk theatre |
 | Working stay | The Social Hub Barcelona | Coworking lobby, decent shared space, useful for longer stays | 10 to 15 minutes from the nearest metro; you commit to walking |
 
 **Avoid Airbnb in Barcelona.** The city has been tightening short-term rental regulation for several years. A listing that looks legal in the app frequently is not, last-minute host cancellations are a known pattern, and the legal exposure is on the traveller more than the platform. The aparthotels above (Durlet, Social Hub, and similar) cover the "I want a kitchen" case without the regulatory mess.
@@ -120,7 +137,7 @@ Both sit close enough to walk to the airport in good weather with light luggage,
 
 ## Sitges as a daytrip or a cheaper base
 
-Sitges sits 45 minutes south of Barcelona by Rodalies commuter train. Smaller beaches, slower pace, locally-owned restaurants, hotel rates that often beat anything central in the city. **Hotel Sabàtic Sitges** is the property I would book first: fair price, location near the old town, easy walk to the beach. Plenty of small holiday apartments and family-run hotels work too.
+Sitges sits 45 minutes south of Barcelona by Rodalies commuter train. Smaller beaches, slower pace, locally-owned restaurants, hotel rates that often beat anything central in the city. [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) is the property I would book first: fair price, location near the old town, easy walk to the beach. Plenty of small holiday apartments and family-run hotels work too.
 
 The town also functions as a daytrip if you are already based in Barcelona and want a break from the city pace: round-trip train, lunch on a terrace, an afternoon at the beach, dinner back in Barcelona. A standalone Sitges guide is in progress and will replace the brief notes above when it lands.
 
@@ -130,9 +147,9 @@ The rule for eating in central Barcelona is simple: walk one or two streets off 
 
 | Spot | Best for | Where |
 |---|---|---|
-| Cabernet | Med-style cooking, slow pace, casual-upscale dinner | Poblenou |
-| La Uramakeria | Cheap sushi that works as a casual weeknight | Poblenou |
-| Kiosko La Cazalla | Standing caña and a snack before dinner | Just off La Rambla |
+| [Cabernet](/pins/cabernet-bar-tapas-copas-y-vinos) | Med-style cooking, slow pace, casual-upscale dinner | Poblenou |
+| [La Uramakeria](/pins/la-uramakeria) | Cheap sushi that works as a casual weeknight | Poblenou |
+| [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona) | Standing caña and a snack before dinner | Just off La Rambla |
 
 Most neighbourhood bars off the main Rambla will do you a fair caña and a small plate of patatas bravas for not much money. The trick is mostly to walk a block. The places with the picture menus and the English-only chalkboards are the ones that price you accordingly.
 
@@ -145,4 +162,4 @@ The warnings are real, especially on the main Rambla and through Barri Gòtic af
 * Cards in a different pocket than your wallet.
 * If a block feels off, it is off. Turn one street up the slope and you are usually back in a normal residential neighbourhood.
 
-A sensible evening in the old city: a beer at **Kiosko La Cazalla**, dinner one or two streets off the Rambla, walk the area in good light, take a Grab back if it is late. Done that way, Barcelona is a calm place to be out at night, even in the parts that get the bad reputation.
+A sensible evening in the old city: a beer at [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona), dinner one or two streets off the Rambla, walk the area in good light, take a Grab back if it is late. Done that way, Barcelona is a calm place to be out at night, even in the parts that get the bad reputation.
