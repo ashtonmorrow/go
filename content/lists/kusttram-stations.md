@@ -1,5 +1,6 @@
 ---
 indexable: true
+featured: true
 title: "Kusttram station guide: riding Belgium's coastal tram"
 description: "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section."
 published: 2026-04-30

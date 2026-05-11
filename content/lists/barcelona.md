@@ -49,32 +49,31 @@ related:
 #   /lists/barcelona renders the full pin set underneath.
 #
 # - Pins linked from this scaffold (all confirmed in the atlas):
+#     · josep-tarradellas-barcelona-el-prat-airport
 #     · la-sagrada-familia
+#     · holiday-inn-express-barcelona-city-22 (Poblenou / 22@ district)
+#     · four-points-by-sheraton-barcelona-diagonal
 #     · durlet-beach-apartments (5/5, reviewed)
 #     · grand-hyatt-barcelona (Diagonal Mar, 5/5)
+#     · the-social-hub-barcelona-poblenou
+#     · renaissance-barcelona-fira-hotel
+#     · hyatt-regency-barcelona-tower (Fira / L'Hospitalet)
 #     · bar-kiosko-la-cazalla-barcelona (5/5, reviewed)
 #     · cabernet-bar-tapas-copas-y-vinos (5/5, reviewed)
 #     · la-uramakeria (5/5)
+#     · la-nacional-barcelona (food hall off Passeig de Gràcia)
 #     · mercado-de-la-boqueria
 #     · mercat-de-santa-caterina (5/5)
 #     · sab-tic-sitges-autograph-collection (5/5)
 #
-# - Hyatt ambiguity resolved 2026-05-11: Mike's dictation referenced
-#   the Hyatt Regency Barcelona Tower (Fira/L'Hospitalet), which does
-#   not exist in the atlas yet. The Grand Hyatt Barcelona at Diagonal
-#   Mar is a separate property and is now a distinct row in the city
-#   stay table with Mike's first-hand notes.
-#
-# - Pins still missing from the atlas, currently text-only in the body
-#   (create in /admin/pins, then swap text for /pins/<slug> link):
-#     · Barcelona-El Prat airport (BCN)
-#     · Renaissance Barcelona Fira Hotel
-#     · Hyatt Regency Barcelona Tower (L'Hospitalet, near Fira)
-#     · Holiday Inn Express Barcelona Poblenou
-#     · Four Points by Sheraton Barcelona Diagonal (confirmed by Mike
-#       2026-05-11)
-#     · The Social Hub Barcelona
-#     · La Nacional (food hall off Passeig de Gràcia)
+# - Pins created 2026-05-11 to support this scaffold:
+#     · hyatt-regency-barcelona-tower (resolves the Hyatt ambiguity:
+#       distinct property from grand-hyatt-barcelona at Diagonal Mar)
+#     · the-social-hub-barcelona-poblenou
+#     · la-nacional-barcelona
+#   All three are indexable: false until reviewed; coordinates are
+#   approximate and worth confirming against Google Place data on
+#   first edit.
 #
 # - T-Casual price drifts annually. The current scaffold avoids
 #   quoting a specific euro figure and instead says "more than three
@@ -111,7 +110,7 @@ related:
 
 ## Getting in from the airport
 
-Barcelona-El Prat (BCN) has two terminals. Most legacy carriers land at T1; low-cost and a handful of others use T2. Check before you walk, because the shuttle bus between the two adds a quarter hour if you guessed wrong.
+[Barcelona-El Prat (BCN)](/pins/josep-tarradellas-barcelona-el-prat-airport) has two terminals. Most legacy carriers land at T1; low-cost and a handful of others use T2. Check before you walk, because the shuttle bus between the two adds a quarter hour if you guessed wrong.
 
 | Option | Best for | Watch out for |
 |---|---|---|
@@ -143,11 +142,11 @@ Barcelona splits into a few real choices once you know what you actually want fr
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Poblenou | Holiday Inn Express Barcelona Poblenou | Basic, clean, safe, often ~€100/night. Three-minute walk to the metro | A Holiday Inn Express; book it for the price and location, not the room |
-| Around La Rambla | Four Points by Sheraton Barcelona Diagonal | Slightly more upscale, central, similar price band | Closer to the tourist spine, which is louder and pricier for food |
+| Poblenou (22@) | [Holiday Inn Express Barcelona City 22@](/pins/holiday-inn-express-barcelona-city-22) | Basic, clean, safe, often ~€100/night. Three-minute walk to the metro | A Holiday Inn Express; book it for the price and location, not the room |
+| Around La Rambla | [Four Points by Sheraton Barcelona Diagonal](/pins/four-points-by-sheraton-barcelona-diagonal) | Slightly more upscale, central, similar price band | Closer to the tourist spine, which is louder and pricier for food |
 | End of La Rambla | [Durlet Beach Apartments](/pins/durlet-beach-apartments) | Apartment-style with a kitchen, near the water, better than any Airbnb in the city | Aparthotel rather than full-service; no front-desk theatre |
 | Diagonal Mar | [Grand Hyatt Barcelona](/pins/grand-hyatt-barcelona) | I have stayed here several times. Rooms are spacious by Barcelona standards. Bathrooms are the thing: high water pressure, walk-in showers, bathtubs with a view in the upper-floor rooms. Safe area, on the L4 (yellow) line so the rest of the city is reachable | Far from the tourist spine. Suites are huge rooms with huge bathrooms, not a separate living area, so do not pay for one expecting the usual suite layout |
-| Working stay | The Social Hub Barcelona | Coworking lobby, decent shared space, useful for longer stays | 10 to 15 minutes from the nearest metro; you commit to walking |
+| Working stay | [The Social Hub Barcelona Poblenou](/pins/the-social-hub-barcelona-poblenou) | Coworking lobby, decent shared space, useful for longer stays | 10 to 15 minutes from the nearest metro; you commit to walking |
 
 **Avoid Airbnb in Barcelona.** The city has been tightening short-term rental regulation for several years. A listing that looks legal in the app frequently is not, last-minute host cancellations are a known pattern, and the legal exposure is on the traveller more than the platform. The aparthotels above (Durlet, Social Hub, and similar) cover the "I want a kitchen" case without the regulatory mess.
 
@@ -157,8 +156,8 @@ The Fira convention area is a different trip. The hotels are cheaper, the transi
 
 | Hotel | Why I have stayed | Trade-off |
 |---|---|---|
-| Renaissance Barcelona Fira Hotel | Jean Nouvel design with hanging gardens worth seeing once | Rooms are all-white and feel sterile; some bathrooms have no doors. Not for everyone |
-| Hyatt Regency Barcelona Tower | Spacious rooms, large club lounge, Globalist upgrades land here often | Hotel food is weak, and you will pay €10 to €15 each way for a taxi to anywhere worth going |
+| [Renaissance Barcelona Fira Hotel](/pins/renaissance-barcelona-fira-hotel) | Jean Nouvel design with hanging gardens worth seeing once | Rooms are all-white and feel sterile; some bathrooms have no doors. Not for everyone |
+| [Hyatt Regency Barcelona Tower](/pins/hyatt-regency-barcelona-tower) | Spacious rooms, large club lounge, Globalist upgrades land here often | Hotel food is weak, and you will pay €10 to €15 each way for a taxi to anywhere worth going |
 
 Both sit close enough to walk to the airport in good weather with light luggage, which is the whole point. For anything else, ride the metro into the centre and book a city hotel.
 
@@ -177,7 +176,7 @@ The rule for eating in central Barcelona is simple: walk one or two streets off 
 | [Cabernet](/pins/cabernet-bar-tapas-copas-y-vinos) | Med-style cooking, slow pace, casual-upscale dinner | Poblenou |
 | [La Uramakeria](/pins/la-uramakeria) | Cheap sushi that works as a casual weeknight | Poblenou |
 | [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona) | Standing caña and a snack before dinner | Just off La Rambla |
-| La Nacional | Spanish food hall under restored vaulted ceilings; works for a group that cannot agree on cuisine, or for a slow lunch that lets you graze | Off Passeig de Gràcia |
+| [La Nacional](/pins/la-nacional-barcelona) | Spanish food hall under restored vaulted ceilings; works for a group that cannot agree on cuisine, or for a slow lunch that lets you graze | Off Passeig de Gràcia |
 
 Most neighbourhood bars off the main Rambla will do you a fair caña and a small plate of patatas bravas for not much money. The trick is mostly to walk a block. The places with the picture menus and the English-only chalkboards are the ones that price you accordingly.
 
