@@ -1,0 +1,95 @@
+---
+indexable: false
+featured: true
+title: "Trogir travel guide: the easy half-day from Split"
+description: "A short Trogir travel guide. Split bus 37, Kamerlengo Castle, the green market, the resident cats, and lunch spots in the old town worth walking to."
+published: 2026-05-11
+updated: 2026-05-11
+authors:
+  - Mike Lee
+hero_image: ""
+hero_alt: ""
+
+guide_cards:
+  title: Planning Trogir
+  intro: Most people on a Split trip skip Trogir, and that is the mistake. It is forty-five minutes up the coast by city bus, the old town is small enough to walk in a morning, and the food is fair without the cruise-ship markup. Treat it as half a day with a long lunch.
+  cards:
+    - title: It is a half-day, not a daytrip
+      body: Trogir's old town is a single small island. You can see the whole thing on foot in two or three hours. Combine it with lunch and you have a clean morning out.
+    - title: Take Bus 37 over
+      body: The local city bus that runs Split to the airport stops in Trogir. Cheap, frequent, slow because it is a local. You trade an hour for a couple of euros instead of thirty.
+    - title: Same market story as Split, less crowded
+      body: The green market on the mainland side of the bridge is smaller and less touristy than Split's Pazar. The visitors are mostly Croatian and other Balkan day trippers, not international cruise.
+    - title: Climb Kamerlengo
+      body: The Venetian fortress at the western tip is worth the small admission for the view back across the rooftops and over to Čiovo island.
+
+faqs:
+  - q: How do I get from Split to Trogir?
+    a: Take Promet Split's Bus 37, the local line that runs from central Split out to the airport with stops along the way. It runs roughly every 20 to 30 minutes during the day, takes around 50 to 60 minutes Split to Trogir (it makes every local stop through Kaštela), and the fare is a couple of euros. The Split-side terminus is near the National Theatre on Sukoišanska. Check Promet's current timetable before you go; the headways drift seasonally.
+  - q: How long do I need in Trogir?
+    a: Three to four hours covers the old town, the castle, the green market, and a long lunch. You do not need to stay overnight.
+  - q: Is the green market in Trogir worth a stop?
+    a: Yes, especially if you have already been to Split's Pazar. It is smaller, less crowded with international visitors, and gives you a working-market sense of the area. The crowd skews Croatian and Balkan rather than cruise day tripper.
+  - q: Should I rent a car for this?
+    a: No. Bus 37 is cheaper and easier. Driving means parking at the bridge, which is its own headache, and you spend the trip handling the car instead of looking out the window.
+
+related:
+  city: trogir
+  country: croatia
+
+# Authoring notes (kept here, not rendered):
+# - indexable: false until Mike reviews; flip to true to ship.
+# - hero_image is empty; pick one in /admin/lists/trogir.
+# - Linked pins (all confirmed in atlas):
+#     · historic-city-of-trogir (UNESCO old town)
+#     · kamerlengo-castle (city_names fixed from "Split" to "Trogir" 2026-05-11)
+#     · trogir-green-market (created 2026-05-11; coords approximate)
+#     · crkva-sv-sebastijana-church-of-st-sebastian
+#     · bus-37-to-trogir
+#     · mirkec (5/5, reviewed)
+#     · konoba-trs, vanjaka, konoba-fortin
+#     · forest-park-marjan (Split-side viewpoint for Trogir)
+# - Cross-link: /posts/balkan-green-markets for the green-market article.
+# - Bus 37 timetable drifts. Verify against promet-split.hr before
+#   each republish; flag in description if the fare or headway changes.
+# - Kamerlengo Castle pin had wrong city tag (Split). Coords + city
+#   corrected; address is still null, fill in next admin pass.
+---
+
+Most people on a Split trip skip [Trogir](/cities/trogir), and that is the mistake. It is barely a daytrip. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan) above [Split](/cities/split), and you see it again from the window when you fly into Split-Resnik, because the airport sits a few hundred metres beyond the old town. Treat it as a clean morning with lunch, not a full day.
+
+## Getting there from Split
+
+The local city bus to the airport, [Bus 37](/pins/bus-37-to-trogir), is the move. Cheap, slow, frequent.
+
+| What | Detail |
+|---|---|
+| Operator | Promet Split |
+| Route | Sukoišanska (central Split, near the National Theatre) to Solin to Kaštela to Trogir to Split-Resnik airport |
+| Frequency | Roughly every 20 to 30 minutes during the day; thinner in the evening |
+| Trip time, Split to Trogir | 50 to 60 minutes (local stops the whole way through Kaštela) |
+| Fare | A couple of euros; tickets at kiosks at the Split terminus or pay the driver |
+| Stop in Trogir | Drops you on the mainland side near the bridge into the old town |
+
+Verify the current timetable with Promet Split before you go; the headways drift seasonally. Driving is an option but the parking at the bridge is its own headache, so skip the rental for this trip.
+
+## A morning in the old town
+
+[The historic city of Trogir](/pins/historic-city-of-trogir) sits on a small island in the channel between the mainland and [Čiovo](/cities/ciovo). The whole place is walkable in a couple of hours, even slowly. The rhythm I would follow:
+
+* Cross the bridge, stop at the [green market](/pins/trogir-green-market) along the waterfront for ten minutes. Same idea as Split's Pazar, smaller, less touristy. For the broader pattern of how to use these markets, see [my notes on Balkan green markets](/posts/balkan-green-markets).
+* Wander into the old town through the gate. The cathedral and bell tower sit on the central square; the [Church of St Sebastian](/pins/crkva-sv-sebastijana-church-of-st-sebastian) is on the same square if you want a quieter chapel for a minute.
+* Walk west to [Kamerlengo Castle](/pins/kamerlengo-castle), the Venetian fortress at the tip of the island. Climb the wall walk for the view back across the rooftops and out to Čiovo. Opening hours are roughly 9 to 8 in summer and shorter the rest of the year; pay at the gate.
+* The cats. Trogir's old town has a resident population of cats that mostly live by the seawall; walking the perimeter you will meet a dozen of them. Bring water in summer, they appreciate it.
+* End on the south promenade for lunch.
+
+## Where to eat
+
+| Spot | Best for |
+|---|---|
+| [Mirkec](/pins/mirkec) | The promenade spot I would book first. Fair prices (25 to 30 USD for a steak plate), quick service, food arrives fast |
+| [Konoba Trs](/pins/konoba-trs) | Konoba (small tavern) inside the old town; traditional Dalmatian, casual |
+| [Vanjaka](/pins/vanjaka) | Another inside-the-walls option, similar register to Trs |
+| [Konoba Fortin](/pins/konoba-fortin) | If the promenade tables at Mirkec are full |
+
+After lunch, walk back across the bridge and catch Bus 37 the other direction to Split. You will be back at the hotel by mid-afternoon.
