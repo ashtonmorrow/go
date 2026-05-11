@@ -1119,7 +1119,7 @@ function buildSourceLinks(pin: Pin): PinSourceLink[] {
   const hasGoogleSource = !!pin.googlePlaceUrl || !!pin.enrichmentSourceType?.startsWith('google');
   add('Official website', pin.website, 'official-website');
   add(
-    pin.enrichmentSourceType === 'google_places_place_details' ? 'Google Places' : 'Google Maps',
+    isGooglePlacesSource(pin.enrichmentSourceType) ? 'Google Places' : 'Google Maps',
     hasGoogleSource ? (pin.googlePlaceUrl ?? pin.googleMapsUrl) : null,
     'google-maps',
   );
@@ -1134,6 +1134,7 @@ function buildSourceLinks(pin: Pin): PinSourceLink[] {
 
 function enrichmentSourceLabel(sourceType: string | null): string | null {
   switch (sourceType) {
+    case 'google-place-details':
     case 'google_places_place_details':
       return 'Google Places data';
     case 'google-location-lookup':
@@ -1145,6 +1146,10 @@ function enrichmentSourceLabel(sourceType: string | null): string | null {
     default:
       return sourceType ? `${sourceType.replace(/[-_]/g, ' ')} data` : null;
   }
+}
+
+function isGooglePlacesSource(sourceType: string | null): boolean {
+  return sourceType === 'google-place-details' || sourceType === 'google_places_place_details';
 }
 
 function formatSourceDate(value: string | null): string | null {
