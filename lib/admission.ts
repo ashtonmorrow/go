@@ -78,6 +78,19 @@ export function admissionView(pin: Pin): AdmissionView {
     if (pdView) return pdView;
   }
 
+  // Transit stops are often free to enter but still have a fare. Treat
+  // positive price_amount as fare data before the free_to_visit flag.
+  const legacyCurrency = pin.priceCurrency;
+  if (pin.kind === 'transit' && typeof pin.priceAmount === 'number' && pin.priceAmount > 0) {
+    return {
+      kind: 'paid',
+      tiers: [{ label: 'Fare', amount: pin.priceAmount, formatted: fmtMoney(pin.priceAmount, legacyCurrency) }],
+      currency: legacyCurrency,
+      note: pin.priceText,
+      notes: [],
+    };
+  }
+
   // Codex's free_to_visit is a strict yes/no.
   if (pin.freeToVisit === true) {
     return { kind: 'free', note: null, notes: [] };
@@ -85,7 +98,6 @@ export function admissionView(pin: Pin): AdmissionView {
 
   // Original admission jsonb (4-tier).
   const admission = pin.admission;
-  const legacyCurrency = pin.priceCurrency;
   if (admission) {
     const tiers: AdmissionTier[] = [];
     for (const key of TIER_ORDER) {

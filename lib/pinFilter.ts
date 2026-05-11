@@ -16,6 +16,7 @@ export type PinFilterable = {
   cityNames?: string[];
   statesNames?: string[];
   category?: string | null;
+  kind?: string | null;
   visited: boolean;
   unescoId?: number | null;
   lists?: string[];
@@ -92,6 +93,9 @@ export function pinPersonalTier(p: PinFilterable): number {
 const FREE_PRICE_TEXT = /\b(free|no charge|no admission|no entry fee|complimentary|gratis|gratuit)\b/i;
 
 function isFreeAdmission(p: PinFilterable): boolean {
+  if (p.kind === 'transit' && typeof p.priceAmount === 'number' && p.priceAmount > 0) {
+    return false;
+  }
   if (p.freeToVisit === true) return true;
   if (p.free === true) return true;
   if (p.priceAmount === 0) return true;

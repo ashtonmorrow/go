@@ -1227,7 +1227,9 @@ function PlanSection({ pin, admissionLabel }: { pin: Pin; admissionLabel: string
 
         {showCost && (
           <div>
-            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">Admission</h3>
+            <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+              {isTransit ? 'Fare' : 'Admission'}
+            </h3>
             <AdmissionBlock pin={pin} fallback={admissionLabel} />
           </div>
         )}
