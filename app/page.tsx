@@ -69,16 +69,18 @@ export default async function HomePage() {
 
   return (
     <div className="relative w-full">
-      {/* Full-bleed globe. vh-sized so the map dominates the screen on
-          desktop; on mobile it shrinks to a comfortable square so the
-          stats strip below it doesn't get pushed off-screen. The map
-          and its overlays live in one relative container so the stats
-          row can absolute-position against the map's bottom edge.
+      {/* Full-bleed globe. Sized to fill the available viewport: on
+          desktop that's the full window (sidebar sits beside, not
+          above); on mobile we subtract the 56px sticky top bar from
+          the small-viewport height so the stats strip lands inside the
+          visible area. The map and its overlays live in one relative
+          container so the stats row can absolute-position against the
+          map's bottom edge.
 
           No text header above the map — the globe + floating stats strip
           carry the page on their own; the page title for SEO lives in
           the document metadata only. */}
-      <div className="relative w-full h-[80vh] md:h-[88vh] bg-cream-soft">
+      <div className="relative w-full h-[calc(100svh-3.5rem)] md:h-screen bg-cream-soft">
         <HomeCitiesGlobe cities={cityRows} />
 
         {/* Floating stats strip — absolute-positioned across the bottom
