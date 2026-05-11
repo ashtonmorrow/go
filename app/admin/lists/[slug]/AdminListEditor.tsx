@@ -255,6 +255,43 @@ export default function AdminListEditor({
     }
   }
 
+  // Clear the cover image for a single pin without leaving the grid.
+  // POSTs DELETE /api/admin/pin-image which drops that one URL from the
+  // pin's images[] (and cleans hero_photo_urls + Storage when nothing
+  // else references the file). Optimistic: we null the local cover so
+  // the card flips to "No photo" immediately; the next page load picks
+  // up whatever the server elects as the new cover from images[].
+  async function clearCover(pinId: string, coverUrl: string | null, pinName: string) {
+    if (!coverUrl) return;
+    if (
+      !window.confirm(
+        `Remove the cover image for "${pinName}"?\n\n` +
+          `Drops this image from the pin and from Storage if no other ` +
+          `pin uses it. The card falls back to "No photo" until you ` +
+          `pick a new cover.`,
+      )
+    ) {
+      return;
+    }
+    setFlash(null);
+    const previous = rows.find(r => r.id === pinId)?.cover ?? null;
+    patchRow(pinId, { cover: null });
+    try {
+      const res = await fetch('/api/admin/pin-image', {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ pinId, url: coverUrl }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error ?? 'clear cover failed');
+    } catch (e) {
+      // Roll back the optimistic null so the card doesn't lie about
+      // server state.
+      patchRow(pinId, { cover: previous });
+      setFlash(e instanceof Error ? e.message : 'clear cover failed');
+    }
+  }
+
   return (
     <section>
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-small text-slate tabular-nums mb-4">
@@ -333,6 +370,7 @@ export default function AdminListEditor({
                   onPatch={patch => patchRow(r.id, patch)}
                   onRemoveFromList={() => toggleMembership(r.id, false)}
                   onDeletePin={() => deletePin(r.id, r.name)}
+                  onClearCover={() => clearCover(r.id, r.cover, r.name)}
                 />
               );
             })}
@@ -378,6 +416,7 @@ function EditableCard({
   onPatch,
   onRemoveFromList,
   onDeletePin,
+  onClearCover,
 }: {
   row: AdminPinRow;
   /** Current 1-indexed position in pin_order, or null if unpinned. */
@@ -395,6 +434,10 @@ function EditableCard({
   onPatch: (patch: Partial<AdminPinRow>) => void;
   onRemoveFromList: () => void;
   onDeletePin: () => void;
+  /** Clear this pin's cover image. Confirms, then DELETEs the image URL
+   *  from the pin and Storage. The card optimistically flips to the
+   *  "No photo" state. */
+  onClearCover: () => void;
 }) {
   const [editing, setEditing] = useState<EditField>(null);
   // Per-field saving indicator for non-text-input fields (stars, free, visited)
@@ -468,6 +511,23 @@ function EditableCard({
           onCommit={onSetPosition}
           pinName={row.name}
         />
+        {/* Hover-✕ to clear the cover image. Sits left of the position
+            input so it doesn't fight for the same corner. Only renders
+            when there is actually a cover to clear, so the placeholder
+            "No photo" state stays uncluttered. */}
+        {row.cover && (
+          <button
+            type="button"
+            onClick={onClearCover}
+            title={`Clear cover image for "${row.name}"`}
+            aria-label={`Clear cover image for ${row.name}`}
+            className="absolute top-2 right-16 w-7 h-7 rounded-md bg-white/85 hover:bg-white text-slate hover:text-orange
+                       flex items-center justify-center shadow backdrop-blur-sm
+                       opacity-0 group-hover:opacity-100 transition-all"
+          >
+            <span className="text-small leading-none select-none">✕</span>
+          </button>
+        )}
         {/* Drag handle — only the handle is `draggable`, so accidental drags
             from the title / stars / review text don't fire. The handle has
             `cursor-grab` for affordance and only appears on hover so the
