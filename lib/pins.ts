@@ -306,6 +306,8 @@ const asNumber = (v: unknown): number | null => (typeof v === 'number' && Number
 const asBool = (v: unknown): boolean | null => (typeof v === 'boolean' ? v : null);
 const asStringArray = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
 const asNumberArray = (v: unknown): number[] => (Array.isArray(v) ? v.filter((x): x is number => typeof x === 'number') : []);
+const asNonEmptyObject = <T extends Record<string, unknown>>(v: unknown): T | null =>
+  v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length > 0 ? (v as T) : null;
 
 function asEnum<T extends string>(v: unknown, allowed: readonly T[]): T | null {
   return typeof v === 'string' && (allowed as readonly string[]).includes(v) ? (v as T) : null;
@@ -483,8 +485,8 @@ function rowToPin(row: any): Pin {
     requiresGuide: asEnum(row.requires_guide, GUIDES),
     languagesOffered: asStringArray(row.languages_offered),
 
-    hoursDetails: row.hours_details && typeof row.hours_details === 'object' ? (row.hours_details as PinHoursDetails) : null,
-    priceDetails: row.price_details && typeof row.price_details === 'object' ? (row.price_details as PinPriceDetails) : null,
+    hoursDetails: asNonEmptyObject<PinHoursDetails>(row.hours_details),
+    priceDetails: asNonEmptyObject<PinPriceDetails>(row.price_details),
     freeToVisit: asBool(row.free_to_visit),
     bookingRequired: asBool(row.booking_required),
     hoursSourceUrl: asString(row.hours_source_url),
