@@ -54,17 +54,37 @@ related:
 
 I think [Bristol](/cities/bristol) does not get enough love. It is the underrated half of a London week: the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, a direct under-two-hour train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads), and the natural anchor for a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car.
 
+## On this page
+
+* [When to go](#when-to-go)
+* [Getting there and getting around](#getting-there-and-getting-around)
+* [Where to stay](#where-to-stay)
+* [The centre](#the-centre)
+* [Clifton and the suspension bridge](#clifton-and-the-suspension-bridge)
+* [The Banksy walking tour](#the-banksy-walking-tour)
+* [If you have a longer weekend](#if-you-have-a-longer-weekend)
+* [Leaving Bristol: the European hop](#leaving-bristol-the-european-hop)
+
 ## When to go
 
-May and June are my favorite weeks. The days are getting long, the parks have come back from winter, and the mornings are still fresh enough to walk without working too hard. Outside that window pack a layer; in winter the daylight runs short and most of the walking I describe below gets less pleasant.
+| Window | Months | What to expect |
+|---|---|---|
+| Best | May to early July | Long days, green parks, mornings still fresh. The window I would actually book |
+| Decent | July to early September | Warm, busier, occasional heat day. Add a layer for the evenings |
+| Shoulder | September to October | Lower prices, light is still good through early October, fewer crowds |
+| Skip if you can | November to March | Short daylight, frequent rain, most of the walking gets less pleasant |
 
 ## Getting there and getting around
 
-The train is the move from London. Direct Great Western service from Paddington runs roughly every 30 minutes, takes under two hours, and lands at [Bristol Temple Meads](/pins/bristol-temple-meads) about a 20-minute walk or short Uber from the cathedral side of the centre. Bath is on the same line: 12 minutes from Bristol Temple Meads, every 15 minutes or so.
+| Leg | How | Notes |
+|---|---|---|
+| London → Bristol | Direct Great Western from Paddington | Every ~30 min, under 2 hours, lands at Bristol Temple Meads. 20-min walk or short Uber from College Green |
+| Bristol → Bath | Same line, opposite direction | Every 15 min, 12 minutes door to door |
+| [Bristol Airport](/pins/bristol-airport) → city | Taxi or Uber | No urban rail link. About £25 to the city centre. Airport bus is fine but slow with luggage |
+| Inside the city | Walk | College Green, the harbour, [Bristol Cathedral](/pins/bristol-cathedral), the Marriott Royal area, and the King Street bar streets all sit within 10 minutes' walking distance |
+| Outliers (Stokes Croft, BS5) | Bus or Uber | Bristol has no urban rail. Buses are fine for the longer hops |
 
-Inside the city, walk. Bristol has no urban rail of its own; the buses are fine for the longer hops to Stokes Croft or out to BS5, but College Green, the harbour, [Bristol Cathedral](/pins/bristol-cathedral), the Marriott Royal area, and the King Street bar streets all sit together within ten minutes' walking distance. Clifton is up the hill; the Bristol & Bath Railway Path is a 5-minute walk from College Green if you want a longer route on foot.
-
-[Bristol Airport](/pins/bristol-airport) sits south of the city, with no urban rail link. Plan on a taxi or Uber from arrivals. My last few rides have run about £25 to the city centre. The airport bus is fine but slow with luggage.
+Clifton is up the hill from the centre. The Bristol & Bath Railway Path is a 5-minute walk from College Green if you want a longer route on foot.
 
 ## Where to stay
 
