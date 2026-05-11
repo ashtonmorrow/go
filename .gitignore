@@ -12,3 +12,6 @@ out
 
 # TypeScript incremental build cache — regenerated on every `tsc` run.
 tsconfig.tsbuildinfo
+
+# Claude Code local-only settings (per-machine permission grants, etc.).
+.claude/settings.local.json
