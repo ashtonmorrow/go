@@ -18,6 +18,7 @@ import { applyLayerVisibility, cityLayer, filterCities, layerCounts as countLaye
 import { COLORS } from '@/lib/colors';
 import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
+import SwitcherIcon from './SwitcherIcon';
 
 /** Compact population formatter — "1.2M", "640K", "23K", "5,200" — sized to
  *  fit the narrow popup without overflowing. Uses Intl when available. */
@@ -720,28 +721,37 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         </div>
       )}
 
-      {/* Projection toggle — top-right */}
-      <div className="absolute top-3 right-3 z-10">
-        <div className="inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 shadow-sm">
+      {/* Projection toggle — bottom-right. Moved out of the top-right
+          to avoid colliding with the fixed AppHeader switcher cluster
+          (top-3 right-3 z-40). Bottom-right matches the convention
+          most map tools use for zoom/projection controls and keeps the
+          top edge clean. Shares the SwitcherIcon vocabulary with the
+          scope + view switchers above. */}
+      <div className="absolute bottom-3 right-3 z-10">
+        <div className="inline-flex items-center rounded-lg bg-white/95 backdrop-blur border border-sand p-1 shadow-sm text-small font-medium">
           <ProjectionPill
             active={projection === 'globe'}
             onClick={() => setProjection('globe')}
-            icon="🌐"
+            iconName="globe"
             label="Globe"
           />
           <ProjectionPill
             active={projection === 'mercator'}
             onClick={() => setProjection('mercator')}
-            icon="🗺️"
+            iconName="flat-map"
             label="Flat"
           />
         </div>
       </div>
 
-      {/* Active-filter chip ribbon — floats top-center on the map. Hidden
-          when no facets are active, so the map stays clean by default. */}
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
-        <div className="bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden">
+      {/* Active-filter chip ribbon — top-center on the map. Hidden when
+          no facets are active. max-w-[80vw] gives the count prefix
+          ("372 / 1,406") plus a couple of chips enough room to read
+          without truncating; on a wide viewport the ribbon stays
+          centered so the controls in the corners are not pushed
+          around. */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[80vw]">
+        <div className="bg-white/95 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden whitespace-nowrap overflow-x-auto">
           <ActiveFilters />
         </div>
       </div>
@@ -754,12 +764,12 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
 function ProjectionPill({
   active,
   onClick,
-  icon,
+  iconName,
   label,
 }: {
   active: boolean;
   onClick: () => void;
-  icon: string;
+  iconName: 'globe' | 'flat-map';
   label: string;
 }) {
   return (
@@ -768,12 +778,14 @@ function ProjectionPill({
       onClick={onClick}
       aria-pressed={active}
       className={
-        'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-small font-medium transition-colors ' +
-        (active ? 'bg-ink-deep text-cream-soft' : 'text-slate hover:text-ink-deep')
+        'inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md transition-colors ' +
+        (active
+          ? 'bg-ink-deep text-cream-soft'
+          : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
       }
     >
-      <span aria-hidden>{icon}</span>
-      <span>{label}</span>
+      <SwitcherIcon name={iconName} className="w-4 h-4 shrink-0" />
+      <span className="hidden sm:inline">{label}</span>
     </button>
   );
 }

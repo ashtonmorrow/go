@@ -1,23 +1,26 @@
 'use client';
 
 import Link from 'next/link';
+import SwitcherIcon, { type SwitcherIconName } from './SwitcherIcon';
 
 // === ViewSwitcher ==========================================================
-// Horizontal pill switcher for the View axis of the unified Object × View
-// nav. Sits inline with each page's H1. The Object axis (Cities /
-// Countries / Pins) lives in the left sidebar; this is the orthogonal
-// "how am I looking at it?" control.
+// Segmented control for the View axis of the Object × View nav model.
+// The Object axis (Cities / Countries / Pins) lives in the sidebar and
+// in MapScopeSwitcher on map pages; this is the orthogonal "how am I
+// looking at it?" control.
 //
 // Usage: <ViewSwitcher object="cities" current="cards" />
 //
-// The same three views — Cards, Map, Table — exist for every object.
-// Each pill links to /<object>/<view>; the active pill is the one
-// matching `current`.
+// Four views — Cards, Map, Table, Stats — exist for every object. Each
+// pill links to /<object>/<view>; the active pill is the one matching
+// `current`. Some object-view combinations have view-specific names
+// that read better in context (e.g. "Globe" rather than "Map" for
+// countries, "Postcards" for cities) — we keep the canonical view keys
+// for routing and label them per-object via the LABELS table.
 //
-// Some object-view combinations have view-specific names that read better
-// in context (e.g. "Globe" rather than "Map" for /countries) — we keep the
-// canonical view keys ('cards' | 'map' | 'table') for routing, and label
-// them per-object via the `LABELS` table below.
+// Mobile (< sm) renders icons only so the bar fits a narrow viewport;
+// the text labels return at sm and up. Shares container + active-state
+// vocabulary with MapScopeSwitcher.
 
 export type ObjectKey = 'cities' | 'countries' | 'pins';
 export type ViewKey = 'cards' | 'map' | 'table' | 'stats';
@@ -25,27 +28,24 @@ export type ViewKey = 'cards' | 'map' | 'table' | 'stats';
 const VIEW_ORDER: ViewKey[] = ['cards', 'map', 'table', 'stats'];
 
 // Per-object labels — keep the verb concrete to the data on screen.
-//   • Cities:    Postcards / Map / Table / Stats
-//   • Countries: Cards / Globe / Table / Stats
-//   • Pins:      Cards / Map / Table / Stats
-const LABELS: Record<ObjectKey, Record<ViewKey, { icon: string; label: string }>> = {
+const LABELS: Record<ObjectKey, Record<ViewKey, { icon: SwitcherIconName; label: string }>> = {
   cities: {
-    cards: { icon: '📮', label: 'Postcards' },
-    map:   { icon: '🗺️', label: 'Map' },
-    table: { icon: '🗂️', label: 'Table' },
-    stats: { icon: '📊', label: 'Stats' },
+    cards: { icon: 'postcards', label: 'Postcards' },
+    map:   { icon: 'map',       label: 'Map' },
+    table: { icon: 'table',     label: 'Table' },
+    stats: { icon: 'stats',     label: 'Stats' },
   },
   countries: {
-    cards: { icon: '🏳️', label: 'Flags' },
-    map:   { icon: '🌍', label: 'Globe' },
-    table: { icon: '🗂️', label: 'Table' },
-    stats: { icon: '📊', label: 'Stats' },
+    cards: { icon: 'flags',     label: 'Flags' },
+    map:   { icon: 'globe',     label: 'Globe' },
+    table: { icon: 'table',     label: 'Table' },
+    stats: { icon: 'stats',     label: 'Stats' },
   },
   pins: {
-    cards: { icon: '📍', label: 'Cards' },
-    map:   { icon: '🗺️', label: 'Map' },
-    table: { icon: '🗂️', label: 'Table' },
-    stats: { icon: '📊', label: 'Stats' },
+    cards: { icon: 'cards',     label: 'Cards' },
+    map:   { icon: 'map',       label: 'Map' },
+    table: { icon: 'table',     label: 'Table' },
+    stats: { icon: 'stats',     label: 'Stats' },
   },
 };
 
@@ -58,40 +58,42 @@ export default function ViewSwitcher({
   /** When omitted (e.g. on detail pages) no pill is highlighted —
    *  every option just acts as a link to the equivalent index view. */
   current?: ViewKey;
-  /** Wrapper class for layout — defaults to inline. Pass 'fixed bottom-…'
-   *  to use as a floating control (e.g. on full-bleed map pages). */
+  /** Wrapper class for layout — defaults to inline. */
   className?: string;
 }) {
   return (
-    <div
+    <nav
+      aria-label="View"
+      role="tablist"
       className={
-        'inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 ' +
+        'inline-flex items-center rounded-lg ' +
+        'bg-white/95 backdrop-blur border border-sand ' +
+        'p-1 shadow-sm text-small font-medium ' +
         (className ?? '')
       }
-      role="tablist"
-      aria-label="Switch view"
     >
       {VIEW_ORDER.map(view => {
-        const active = view === current;
+        const isActive = view === current;
         const { icon, label } = LABELS[object][view];
         return (
           <Link
             key={view}
             href={`/${object}/${view}`}
             role="tab"
-            aria-selected={active}
+            aria-selected={isActive}
+            aria-current={isActive ? 'page' : undefined}
             className={
-              'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-small font-medium transition-colors ' +
-              (active
+              'inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-md transition-colors ' +
+              (isActive
                 ? 'bg-ink-deep text-cream-soft'
-                : 'text-slate hover:text-ink-deep')
+                : 'text-slate hover:text-ink-deep hover:bg-cream-soft')
             }
           >
-            <span aria-hidden>{icon}</span>
-            <span>{label}</span>
+            <SwitcherIcon name={icon} className="w-4 h-4 shrink-0" />
+            <span className="hidden sm:inline">{label}</span>
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }
