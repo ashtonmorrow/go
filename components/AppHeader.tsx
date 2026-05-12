@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import ViewSwitcher, { type ObjectKey, type ViewKey } from './ViewSwitcher';
-import MapScopeSwitcher from './MapScopeSwitcher';
 
 /**
  * Single global ViewSwitcher mounted by the root layout.
@@ -11,6 +10,13 @@ import MapScopeSwitcher from './MapScopeSwitcher';
  * (cities / countries / pins) and which View (cards / map / table /
  * stats), and renders a fixed-position pill switcher in the top-right
  * corner of every applicable page.
+ *
+ * The MapScopeSwitcher (Cities / Pins / Countries pill cluster) that
+ * used to sit alongside this one moved into the sidebar's main nav in
+ * May 2026 — scope is "what" you're looking at, view is "how", and
+ * keeping the scope axis in the rail (alongside Lists / About) made
+ * the two axes mentally cleaner and gave map-route visitors a way
+ * back out to the rest of the site.
  *
  * Why it lives here instead of inside each route:
  *   - Detail and map pages used to render their own ViewSwitcher with
@@ -61,13 +67,6 @@ export default function AppHeader() {
 
   return (
     <div className="fixed top-3 right-3 z-40 hidden md:flex items-center gap-1.5">
-      {/* Map scope (Cities · Pins · Countries) renders only on the three
-          /<scope>/map URLs. Sits left of ViewSwitcher so the data-axis
-          (scope) reads before the view-axis (cards / map / table /
-          stats). Both switchers share container, padding, radius,
-          active-state, and icon set so they read as one coordinated
-          toolbar instead of two competing pills. */}
-      <MapScopeSwitcher />
       <ViewSwitcher object={object} current={current} />
     </div>
   );

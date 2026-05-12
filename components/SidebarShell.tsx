@@ -152,24 +152,24 @@ export default function SidebarShell({
 
       {/* === Desktop sticky rail === always visible md+, fills the viewport
           height. Sits on the left of the page with main content to its
-          right. Suppressed on the three /<scope>/map routes so the globe
-          gets the full viewport; MapFilterDock floats the cockpit into
-          the top-right corner instead. */}
-      {!isMapRoute && (
-        <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-          <NavBody
-            counts={counts}
-            countryOptions={countryOptions}
-            pinCountryOptions={pinCountryOptions}
-            pinCategoryOptions={pinCategoryOptions}
-            pinListOptions={pinListOptions}
-            pinTagOptions={pinTagOptions}
-            pinSavedListOptions={pinSavedListOptions}
-            articleEntries={articleEntries}
-            searchItems={searchItems}
-          />
-        </aside>
-      )}
+          right. On map routes the rail still renders so the user has a
+          way to navigate back to Lists / Atlas / About / Home; we just
+          pass `compact` to NavBody so the in-rail filter cockpit is
+          skipped (the MapFilterDock owns filters on those routes). */}
+      <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
+        <NavBody
+          counts={counts}
+          countryOptions={countryOptions}
+          pinCountryOptions={pinCountryOptions}
+          pinCategoryOptions={pinCategoryOptions}
+          pinListOptions={pinListOptions}
+          pinTagOptions={pinTagOptions}
+          pinSavedListOptions={pinSavedListOptions}
+          articleEntries={articleEntries}
+          searchItems={searchItems}
+          compact={isMapRoute}
+        />
+      </aside>
 
       {/* Floating filter dock for the /<scope>/map routes. Returns null
           when not on one of those three URLs, so this is safe to mount
@@ -193,6 +193,18 @@ export default function SidebarShell({
 // (search, status, geography, practicality, sort) → elsewhere. On every
 // other page the filter panel is hidden and the collections section takes
 // its place.
+// Scope-preserving href helper. When the visitor is already on a
+// /<scope>/<view> URL, pivoting to a different scope keeps the same
+// view (so /cities/map + click Pins → /pins/map). Otherwise it returns
+// the bare /<scope> path and the redirect table in next.config picks
+// the canonical default view (cities → cards, pins → cards, countries
+// → map).
+function scopeHref(scope: 'cities' | 'pins' | 'countries', pathname: string): string {
+  const m = pathname.match(/^\/(cities|pins|countries)\/(cards|map|table|stats)/);
+  if (m && m[2]) return `/${scope}/${m[2]}`;
+  return `/${scope}`;
+}
+
 function NavBody({
   counts,
   countryOptions,
@@ -204,6 +216,7 @@ function NavBody({
   articleEntries,
   searchItems,
   onLinkClick,
+  compact = false,
 }: {
   counts: Counts;
   countryOptions: string[];
@@ -215,6 +228,10 @@ function NavBody({
   articleEntries: ArticleEntry[];
   searchItems: SearchItem[];
   onLinkClick?: () => void;
+  /** When true, suppress the in-rail filter cockpit. Used on the
+   *  /<scope>/map routes where MapFilterDock floats the cockpit
+   *  top-right; rendering it in both surfaces would double the UI. */
+  compact?: boolean;
 }) {
   const pathname = usePathname() || '';
   const cityFiltersAvailable    = useCityFilters() !== null;
@@ -255,13 +272,18 @@ function NavBody({
           when closed. */}
       <SearchModal items={searchItems} />
 
-      {/* Top nav — three content-first items: Lists (destination
-          guides), Atlas (data-views wrapper), About. Articles moved
-          to the footer block (May 2026): the home page now mixes
-          articles into the unified feed alongside guides, so a
-          dedicated primary-nav slot for the same content read as
-          duplicate. Articles still live at /articles as a flat link
-          index, just demoted from the rail's hot real estate. */}
+      {/* Top nav. Lists leads (destination guides + raw saved lists);
+          the Atlas block under it surfaces the three scopes (Cities,
+          Pins, Countries) as their own rail items so the visitor can
+          pivot scope without leaving the canonical primary navigation.
+          The href for each scope preserves the visitor's current view
+          (cards / map / table / stats) when they're already on a
+          /<scope>/<view> URL, so flipping from /cities/map to Pins
+          lands on /pins/map rather than dumping them back to the
+          default. About closes the block. Articles moved to the
+          footer (May 2026); the home page mixes articles into the
+          unified feed, so a primary-nav slot for the same content
+          was duplicative. */}
       <div className="flex flex-col gap-0.5">
         <Item
           href="/lists"
@@ -270,26 +292,33 @@ function NavBody({
           active={pathname === '/lists' || pathname.startsWith('/lists/')}
           onClick={onLinkClick}
         />
+      </div>
+
+      <Section label="Atlas">
         <Item
-          href="/cities/map"
-          emoji="🧭"
-          label="Atlas"
-          // Atlas points straight at the cities map. The dedicated
-          // /atlas landing was a step-down for people who already
-          // knew they wanted the map; cutting it removes the click
-          // and lets MapScopeSwitcher handle the scope axis (Cities
-          // / Pins / Countries) once the user is on a map. The
-          // active state still lights up across the whole data
-          // layer so "Atlas" reads as the section, not just one URL.
-          active={
-            pathname.startsWith('/cities') ||
-            pathname.startsWith('/countries') ||
-            pathname.startsWith('/pins') ||
-            pathname === '/world' ||
-            pathname === '/map'
-          }
+          href={scopeHref('cities', pathname)}
+          emoji="🏙️"
+          label="Cities"
+          active={pathname.startsWith('/cities')}
           onClick={onLinkClick}
         />
+        <Item
+          href={scopeHref('pins', pathname)}
+          emoji="📮"
+          label="Pins"
+          active={pathname.startsWith('/pins')}
+          onClick={onLinkClick}
+        />
+        <Item
+          href={scopeHref('countries', pathname)}
+          emoji="🌍"
+          label="Countries"
+          active={pathname.startsWith('/countries')}
+          onClick={onLinkClick}
+        />
+      </Section>
+
+      <div className="flex flex-col gap-0.5">
         <Item
           href="/about"
           emoji="📖"
@@ -311,7 +340,7 @@ function NavBody({
           removed: it duplicated the top nav and pulled focus on
           editorial pages where it had nothing to operate on. The
           counts still live on /atlas where they belong. */}
-      {showCityFilters ? (
+      {compact ? null : showCityFilters ? (
         <FilterPanel countryOptions={countryOptions} />
       ) : showPinFilters ? (
         <PinFilterPanel
