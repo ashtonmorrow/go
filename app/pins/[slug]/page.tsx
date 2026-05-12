@@ -27,6 +27,7 @@ import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
 import WikipediaAttribution from '@/components/WikipediaAttribution';
+import PinActionBar from '@/components/PinActionBar';
 import {
   formatPerNightPrice,
   formatNightsCount,
@@ -526,6 +527,41 @@ export default async function PinPage({
           ISR-friendly. The /admin/* path is still gated by basic auth. */}
       <AdminEditLink href={`/admin/pins/${pin.id}`} />
 
+      {/* Primary CTAs — Directions, Book/Reserve/Tickets, Website, Call.
+          Industry pattern (Google Maps, Apple Maps, Airbnb, Atlas Obscura
+          all surface this row near the top of the place card). Replaces
+          the right-rail "Plan a visit" card so the rail can carry pure
+          reference data without competing for visual weight. Buttons
+          render in priority order; the first available action is the
+          teal primary, the rest are outline secondaries. */}
+      <PinActionBar
+        candidates={[
+          { href: pin.googleMapsUrl, label: 'Directions', variant: 'directions', campaign: 'google-maps' },
+          // Pick whichever booking-class CTA exists in kind-priority order
+          // so we don't render two competing tickets buttons.
+          pin.bookingUrl
+            ? {
+                href: pin.bookingUrl,
+                label:
+                  isHotel
+                    ? 'Book a room'
+                    : isRestaurant
+                    ? 'Reserve a table'
+                    : isPark
+                    ? 'Buy entry'
+                    : isTransit
+                    ? 'Buy tickets'
+                    : 'Book tickets',
+                variant: 'book',
+                campaign: 'booking',
+              }
+            : pin.officialTicketUrl
+            ? { href: pin.officialTicketUrl, label: 'Buy tickets', variant: 'tickets', campaign: 'official-tickets' }
+            : { href: null, label: '', variant: 'tickets', campaign: 'noop' },
+          { href: pin.website, label: 'Website', variant: 'website', campaign: 'official-website' },
+          { href: pin.phone, label: 'Call', variant: 'phone', campaign: 'phone' },
+        ]}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-10 mt-8">
         <div className="min-w-0">
@@ -558,93 +594,142 @@ export default async function PinPage({
           </Suspense>
 
           {pin.description && (
-            <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">From the source</h2>
-              <p className="text-ink leading-relaxed text-prose whitespace-pre-line">{pin.description}</p>
-            </section>
+            // Collapsed by default since this is the upstream description
+            // (Google / Wikidata / curated source) and is often long,
+            // technical, or repeats what's already in Mike's review +
+            // the Wikipedia extract above. Click to expand.
+            <details className="mt-8 pt-8 border-t border-sand group">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-3">
+                <h2 className="text-h2 text-ink-deep">From the source</h2>
+                <span
+                  aria-hidden
+                  className="text-muted text-small inline-flex items-center gap-1 group-open:rotate-180 transition-transform"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14">
+                    <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="mt-4 text-ink leading-relaxed text-prose whitespace-pre-line">
+                {pin.description}
+              </p>
+            </details>
           )}
 
           {hasPlanInfo && <PlanSection pin={pin} admissionLabel={admissionShortLabel(admission)} />}
 
-          {amenityFacets.length > 0 && (
+          {/* Features &amp; amenities — consolidated section that
+              replaced three parallel ones (What to expect / What to
+              bring / Good to know). Each grouping renders only when it
+              has content; the section as a whole hides when none of
+              the three has anything to show. */}
+          {(amenityFacets.length > 0 || pin.bring.length > 0 || hasGoodToKnow) && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">What to expect</h2>
-              <FacetGrid items={amenityFacets} />
-            </section>
-          )}
-
-          {pin.bring.length > 0 && (
-            <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">What to bring</h2>
-              {/* Same FacetGrid render as "What to expect" so the two
-                  sections feel consistent — two columns of bullet items
-                  scan faster than a scattered chip wall. */}
-              <FacetGrid items={pin.bring.map(b => bringFacet(b))} />
-            </section>
-          )}
-
-          {hasGoodToKnow && <GoodToKnowSection pin={pin} facets={goodToKnowFacets} />}
-
-          {personalPhotos.length > 1 && (
-            <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">Your photos</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {personalPhotos.slice(1).map(p => {
-                  const altText = p.caption ?? `${pin.name} — personal photo`;
-                  return (
-                    <Lightbox
-                      key={p.id}
-                      src={p.url}
-                      alt={altText}
-                      width={p.width}
-                      height={p.height}
-                      className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={thumbUrl(p.url, { size: 240 }) ?? p.url}
-                        alt={altText}
-                        loading="lazy"
-                        decoding="async"
-                        width={240}
-                        height={240}
-                        className="w-full h-full object-cover"
-                      />
-                    </Lightbox>
-                  );
-                })}
+              <h2 className="text-h2 text-ink-deep mb-4">Features &amp; amenities</h2>
+              <div className="space-y-6">
+                {amenityFacets.length > 0 && (
+                  <div>
+                    <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+                      What to expect
+                    </h3>
+                    <FacetGrid items={amenityFacets} />
+                  </div>
+                )}
+                {pin.bring.length > 0 && (
+                  <div>
+                    <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+                      What to bring
+                    </h3>
+                    <FacetGrid items={pin.bring.map(b => bringFacet(b))} />
+                  </div>
+                )}
+                {hasGoodToKnow && (
+                  <div>
+                    <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+                      Good to know
+                    </h3>
+                    <GoodToKnowContent pin={pin} facets={goodToKnowFacets} />
+                  </div>
+                )}
               </div>
             </section>
           )}
 
-          {galleryImages.length > 1 && (
+          {/* More photos — combined section that used to be two parallel
+              ones ("Your photos" / "Gallery"). Personal photos lead under
+              a sub-heading; sourced gallery images follow under their own
+              sub-heading. The hero already pulled the first of each, so
+              both grids start from slice(1). */}
+          {(personalPhotos.length > 1 || galleryImages.length > 1) && (
             <section className="mt-8 pt-8 border-t border-sand">
-              <h2 className="text-h2 text-ink-deep mb-4">Gallery</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {galleryImages.slice(1).map((img, i) => {
-                  const altText = `${pin.name} — image ${i + 2}`;
-                  return (
-                    <Lightbox
-                      key={img.url + i}
-                      src={img.url}
-                      alt={altText}
-                      width={img.width}
-                      height={img.height}
-                      className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={thumbUrl(img.url, { size: 240 }) ?? img.url}
-                        alt={altText}
-                        loading="lazy"
-                        decoding="async"
-                        width={240}
-                        height={240}
-                        className="w-full h-full object-cover"
-                      />
-                    </Lightbox>
-                  );
-                })}
+              <h2 className="text-h2 text-ink-deep mb-4">More photos</h2>
+              <div className="space-y-6">
+                {personalPhotos.length > 1 && (
+                  <div>
+                    <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+                      Personal
+                    </h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {personalPhotos.slice(1).map(p => {
+                        const altText = p.caption ?? `${pin.name} — personal photo`;
+                        return (
+                          <Lightbox
+                            key={p.id}
+                            src={p.url}
+                            alt={altText}
+                            width={p.width}
+                            height={p.height}
+                            className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={thumbUrl(p.url, { size: 240 }) ?? p.url}
+                              alt={altText}
+                              loading="lazy"
+                              decoding="async"
+                              width={240}
+                              height={240}
+                              className="w-full h-full object-cover"
+                            />
+                          </Lightbox>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+                {galleryImages.length > 1 && (
+                  <div>
+                    <h3 className="text-small text-muted uppercase tracking-wider text-label mb-2">
+                      From sources
+                    </h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {galleryImages.slice(1).map((img, i) => {
+                        const altText = `${pin.name} — image ${i + 2}`;
+                        return (
+                          <Lightbox
+                            key={img.url + i}
+                            src={img.url}
+                            alt={altText}
+                            width={img.width}
+                            height={img.height}
+                            className="block w-full aspect-square overflow-hidden rounded bg-cream-soft"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={thumbUrl(img.url, { size: 240 }) ?? img.url}
+                              alt={altText}
+                              loading="lazy"
+                              decoding="async"
+                              width={240}
+                              height={240}
+                              className="w-full h-full object-cover"
+                            />
+                          </Lightbox>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </section>
           )}
@@ -662,81 +747,11 @@ export default async function PinPage({
         </div>
 
         <aside className="self-start md:sticky md:top-20 space-y-4">
-          {/* Wikipedia thumbnail card removed: per the user's image-attribution
-              policy (May 2026), Wikimedia images stay only on city/country/pin
-              detail-page heroes where ImageCredit renders alongside them. The
-              sidebar thumbnail was a non-hero render of a Wikipedia REST API
-              image and got stripped along with city heroImage tiles, list
-              covers, etc. The Wikipedia article is still linked from Sources. */}
-
-          <div className="card p-5 space-y-3 text-small">
-            <h3 className="text-muted uppercase tracking-wider text-label">
-              {isHotel
-                ? 'Plan a stay'
-                : isRestaurant
-                ? 'Plan a meal'
-                : isPark
-                ? 'When to go'
-                : isTransit
-                ? 'Use this stop'
-                : 'Plan a visit'}
-            </h3>
-
-            {pin.googleMapsUrl ? (
-              <a
-                href={withUtm(pin.googleMapsUrl, { medium: 'pin-detail', campaign: 'google-maps' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-3 py-2 rounded bg-teal/10 text-teal hover:bg-teal/15 transition-colors text-center font-medium"
-              >
-                Open in Google Maps →
-              </a>
-            ) : (
-              <p className="text-muted text-label">No coordinates on file.</p>
-            )}
-
-            {pin.bookingUrl && (
-              <a
-                href={withUtm(pin.bookingUrl, { medium: 'pin-detail-cta', campaign: 'booking' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
-              >
-                {isHotel
-                  ? 'Book a room →'
-                  : isRestaurant
-                  ? 'Reserve a table →'
-                  : isPark
-                  ? 'Buy entry →'
-                  : isTransit
-                  ? 'Buy tickets →'
-                  : 'Book tickets →'}
-              </a>
-            )}
-
-            {!pin.bookingUrl && pin.officialTicketUrl && (
-              <a
-                href={withUtm(pin.officialTicketUrl, { medium: 'pin-detail-cta', campaign: 'official-tickets' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-3 py-2 rounded bg-accent/10 text-accent hover:bg-accent/15 transition-colors text-center font-medium"
-              >
-                Buy tickets →
-              </a>
-            )}
-
-            {pin.website && (
-              <a
-                href={withUtm(pin.website, { medium: 'pin-detail', campaign: 'official-website' })}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-teal hover:underline truncate"
-                title={pin.website}
-              >
-                {pin.website.replace(/^https?:\/\//, '').split('/')[0]} →
-              </a>
-            )}
-          </div>
+          {/* The "Plan a visit / stay / meal" CTA card used to live here
+              with Google-Maps + booking + website buttons. Those moved
+              into PinActionBar near the top of the page (May 2026) so
+              the rail now carries reference data exclusively. The same
+              destinations are still present, just not duplicated. */}
 
           <div className="card p-5 text-small">
             <h3 className="text-muted uppercase tracking-wider text-label mb-3">Facts</h3>
@@ -1582,7 +1597,12 @@ function PersonalSection({ pin }: { pin: Pin }) {
   );
 }
 
-function GoodToKnowSection({
+// Render-only body for the "Good to know" content. Used to be wrapped in
+// its own section with an h2; since May 2026 the three parallel facet
+// sections (What to expect / What to bring / Good to know) consolidated
+// into one "Features &amp; amenities" section, so this body now renders
+// under an h3 sub-heading inside that combined section.
+function GoodToKnowContent({
   pin,
   facets,
 }: {
@@ -1590,11 +1610,8 @@ function GoodToKnowSection({
   facets: { label: string; icon: string }[];
 }) {
   return (
-    <section className="mt-8 pt-8 border-t border-sand">
-      <h2 className="text-h2 text-ink-deep mb-4">Good to know</h2>
-
+    <>
       {facets.length > 0 && <FacetGrid items={facets} className="mb-4" />}
-
       <dl className="text-small space-y-2">
         {pin.dressCode && (
           <FactRow label="Dress code">{pin.dressCode}</FactRow>
@@ -1614,7 +1631,7 @@ function GoodToKnowSection({
           </FactRow>
         )}
       </dl>
-    </section>
+    </>
   );
 }
 
