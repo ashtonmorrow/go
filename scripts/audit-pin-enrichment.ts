@@ -14,9 +14,15 @@ type PinAuditRow = {
   slug: string | null;
   kind: string | null;
   category: string | null;
+  description: string | null;
   cuisine: string[] | null;
+  meal_types: string[] | null;
+  price_tier: string | null;
+  price_level: number | null;
   lat: number | null;
   lng: number | null;
+  city_names: string[] | null;
+  states_names: string[] | null;
   visited: boolean | null;
   saved_lists: string[] | null;
   google_place_url: string | null;
@@ -83,8 +89,17 @@ function examples(rows: PinAuditRow[], limit = 15) {
     slug: row.slug,
     name: row.name,
     kind: row.kind,
+    category: row.category,
+    city_names: row.city_names,
+    states_names: row.states_names,
     saved_lists: row.saved_lists,
   }));
+}
+
+const MESSY_CITY_PATTERN = /\d{3,}|\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b|Chang Wat|Cdad\.|ภูเก็ต|Athina|Αθήνα|\bBA\b/;
+
+function hasMessyCity(row: PinAuditRow): boolean {
+  return Array.isArray(row.city_names) && row.city_names.some(city => MESSY_CITY_PATTERN.test(city));
 }
 
 async function fetchAllPins(): Promise<PinAuditRow[]> {
@@ -100,9 +115,15 @@ async function fetchAllPins(): Promise<PinAuditRow[]> {
           'slug',
           'kind',
           'category',
+          'description',
           'cuisine',
+          'meal_types',
+          'price_tier',
+          'price_level',
           'lat',
           'lng',
+          'city_names',
+          'states_names',
           'visited',
           'saved_lists',
           'google_place_url',
@@ -126,12 +147,31 @@ async function fetchAllPins(): Promise<PinAuditRow[]> {
   return rows;
 }
 
+async function fetchCountryNames(): Promise<Set<string>> {
+  const rows: Array<{ name: string | null }> = [];
+  const pageSize = 1000;
+  for (let from = 0; ; from += pageSize) {
+    const { data, error } = await sb
+      .from('go_countries')
+      .select('name')
+      .range(from, from + pageSize - 1);
+    if (error) throw error;
+    if (!data?.length) break;
+    rows.push(...(data as Array<{ name: string | null }>));
+    if (data.length < pageSize) break;
+  }
+  return new Set(rows.map(row => row.name).filter((name): name is string => !!name));
+}
+
 async function main() {
-  const rows = await fetchAllPins();
+  const [rows, countryNames] = await Promise.all([fetchAllPins(), fetchCountryNames()]);
   const visitedOrListed = rows.filter(row => row.visited === true || isListed(row));
   const noCoordsVisitedOrListed = visitedOrListed.filter(missingCoords);
   const noCoordsVisitedOrListedWithPlaceId = noCoordsVisitedOrListed.filter(row => !!row.google_place_id);
   const googleUrlNoPlaceId = rows.filter(row => !!row.google_place_url && !row.google_place_id);
+  const missingKind = rows.filter(row => isEmpty(row.kind));
+  const missingKindVisitedOrListed = visitedOrListed.filter(row => isEmpty(row.kind));
+  const noDescriptionVisitedOrListed = visitedOrListed.filter(row => isEmpty(row.description));
   const transitFreeWithFare = rows.filter(row =>
     row.kind === 'transit' &&
     row.free_to_visit === true &&
@@ -139,11 +179,27 @@ async function main() {
     row.price_amount > 0,
   );
   const restaurantNoCuisine = rows.filter(row => row.kind === 'restaurant' && isEmpty(row.cuisine));
+  const restaurantNoMealTypes = rows.filter(row => row.kind === 'restaurant' && isEmpty(row.meal_types));
+  const restaurantNoPriceTier = rows.filter(row => row.kind === 'restaurant' && isEmpty(row.price_tier));
+  const restaurantWithPriceLevelNoTier = restaurantNoPriceTier.filter(row =>
+    typeof row.price_level === 'number' && row.price_level > 0,
+  );
   const actionableStatusNoCheckedAt = rows.filter(row =>
     !row.enrichment_checked_at &&
     !!row.enrichment_status &&
     !['pending', 'unverified'].includes(row.enrichment_status),
   );
+  const messyCityRows = rows.filter(hasMessyCity);
+  const unmatchedCountryRows = rows.filter(row =>
+    Array.isArray(row.states_names) && row.states_names.some(name => !!name && !countryNames.has(name)),
+  );
+  const unmatchedCountryCounts = rows.reduce<Record<string, number>>((acc, row) => {
+    if (!Array.isArray(row.states_names)) return acc;
+    for (const name of row.states_names) {
+      if (name && !countryNames.has(name)) acc[name] = (acc[name] ?? 0) + 1;
+    }
+    return acc;
+  }, {});
 
   const report = {
     total: rows.length,
@@ -155,6 +211,14 @@ async function main() {
       hoursDetails: rows.filter(row => isEmptyObject(row.hours_details)).length,
       priceDetails: rows.filter(row => isEmptyObject(row.price_details)).length,
     },
+    contentGaps: {
+      missingKind: missingKind.length,
+      missingKindVisitedOrListed: missingKindVisitedOrListed.length,
+      noDescriptionVisitedOrListed: noDescriptionVisitedOrListed.length,
+      messyCity: messyCityRows.length,
+      missingKindExamples: examples(missingKindVisitedOrListed),
+      messyCityExamples: examples(messyCityRows),
+    },
     coordinateGaps: {
       visitedOrListed: noCoordsVisitedOrListed.length,
       visitedOrListedWithPlaceId: noCoordsVisitedOrListedWithPlaceId.length,
@@ -164,9 +228,16 @@ async function main() {
       googleUrlNoPlaceId: googleUrlNoPlaceId.length,
       examples: examples(googleUrlNoPlaceId),
     },
+    countryGaps: {
+      unmatchedCountryLabels: topCounts(unmatchedCountryCounts),
+      examples: examples(unmatchedCountryRows),
+    },
     semanticCleanup: {
       transitFreeToVisitWithPositiveFare: transitFreeWithFare.length,
       restaurantWithoutCuisine: restaurantNoCuisine.length,
+      restaurantWithoutMealTypes: restaurantNoMealTypes.length,
+      restaurantWithoutPriceTier: restaurantNoPriceTier.length,
+      restaurantWithPriceLevelNoTier: restaurantWithPriceLevelNoTier.length,
       actionableStatusWithoutCheckedAt: actionableStatusNoCheckedAt.length,
     },
   };
