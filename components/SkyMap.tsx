@@ -16,15 +16,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Map as MapView, Marker, Popup, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { COLORS } from '@/lib/colors';
-import {
-  boundingBoxAround,
-  parseOpenSkyResponse,
-  type Aircraft,
-} from '@/lib/skyTraffic';
+import type { Aircraft } from '@/lib/skyTraffic';
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/positron';
-const OPENSKY_API = 'https://opensky-network.org/api/states/all';
-const RADIUS_KM = 50;
 const REFRESH_MS = 60_000;
 
 type Props = {
@@ -46,27 +40,33 @@ export default function SkyMap({ cityName, cityLat, cityLng }: Props) {
   const [now, setNow] = useState(() => Math.floor(Date.now() / 1000));
 
   const fetchAircraft = useCallback(async () => {
-    const bbox = boundingBoxAround(cityLat, cityLng, RADIUS_KM);
-    const url =
-      `${OPENSKY_API}?` +
-      `lamin=${bbox.lamin.toFixed(4)}` +
-      `&lomin=${bbox.lomin.toFixed(4)}` +
-      `&lamax=${bbox.lamax.toFixed(4)}` +
-      `&lomax=${bbox.lomax.toFixed(4)}`;
+    // Fetch via our own server proxy at /api/sky. The proxy handles
+    // OpenSky auth (when OPENSKY_USERNAME/PASSWORD are set), caches at
+    // the edge for 60 s, and shields us from CORS quirks.
+    const url = `/api/sky?lat=${cityLat.toFixed(4)}&lng=${cityLng.toFixed(4)}`;
     try {
       const res = await fetch(url);
       if (!res.ok) {
-        setError(res.status === 429 ? 'rate_limit' : 'network');
+        const body = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        setError(body.error === 'rate_limit' ? 'rate_limit' : 'network');
         return;
       }
-      const data = (await res.json()) as unknown;
-      const parsed = parseOpenSkyResponse(data);
-      if (!parsed) {
+      const data = (await res.json()) as {
+        time?: number;
+        aircraft?: Aircraft[];
+      };
+      if (!data || !Array.isArray(data.aircraft)) {
         setError('parse');
         return;
       }
-      setAircraft(parsed.aircraft);
-      setSnapshotTime(parsed.time);
+      setAircraft(data.aircraft);
+      setSnapshotTime(
+        typeof data.time === 'number'
+          ? data.time
+          : Math.floor(Date.now() / 1000),
+      );
       setError(null);
     } catch {
       setError('network');

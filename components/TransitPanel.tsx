@@ -126,7 +126,18 @@ export default function TransitPanel({ cityName, operators }: Props) {
       </div>
 
       <p className="text-micro text-muted mt-4">
-        Operators via TransitLand.
+        Operators and modes aggregated by{' '}
+        <a
+          href="https://www.transit.land/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          TransitLand
+        </a>
+        {' '}from individual transit-agency GTFS feeds. Route classifications
+        (subway / tram / rail / bus / etc) come from each feed&rsquo;s GTFS
+        route_type codes.
       </p>
     </section>
   );
