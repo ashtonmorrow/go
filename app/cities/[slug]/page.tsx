@@ -22,7 +22,6 @@ import { fetchTransitOperators } from '@/lib/transit';
 import LanguageLinkPanel from '@/components/LanguageLinkPanel';
 import ForecastPanel from '@/components/ForecastPanel';
 import { fetchForecast } from '@/lib/forecast';
-import SkyPanel from '@/components/SkyPanel';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
@@ -575,19 +574,6 @@ export default async function CityPage({
               bus / etc). Hides itself when TRANSITLAND_API_KEY is missing
               or coverage is sparse. */}
           <TransitPanel cityName={city.name} operators={transitOperators} />
-
-          {/* In the air near {city}: live aircraft positions within
-              50 km via OpenSky Network. The fetch happens client-side
-              in the visitor's browser to distribute the per-IP rate
-              limit across users. Refreshes every minute while the tab
-              is visible. */}
-          {city.lat != null && city.lng != null && (
-            <SkyPanel
-              cityName={city.name}
-              cityLat={city.lat}
-              cityLng={city.lng}
-            />
-          )}
 
           {/* When things are closed: next 6 public holidays for the
               country this city is in, plus a Sunday-closure note for
