@@ -20,6 +20,9 @@ import ClosedDaysPanel from '@/components/ClosedDaysPanel';
 import TransitPanel from '@/components/TransitPanel';
 import { fetchTransitOperators } from '@/lib/transit';
 import PhrasesPanel from '@/components/PhrasesPanel';
+import ForecastPanel from '@/components/ForecastPanel';
+import { fetchForecast } from '@/lib/forecast';
+import SkyPanel from '@/components/SkyPanel';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
@@ -143,13 +146,14 @@ export default async function CityPage({
   // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
-  const [blocks, country, sisters, climate, airQuality, transitOperators, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
+  const [blocks, country, sisters, climate, airQuality, transitOperators, forecast, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     !content && city.notionSyncedAt ? fetchPageBlocks(city.id) : Promise.resolve([]),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     fetchAirQuality(city.lat, city.lng),
     fetchTransitOperators(city.lat, city.lng),
+    fetchForecast(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
     fetchAllSavedListsMeta(),
     // Personal photos that filter up from any pin in this city. Joined
@@ -513,6 +517,11 @@ export default async function CityPage({
             </section>
           )}
 
+          {/* 7-day forecast from Open-Meteo. The most immediate question
+              a reader has is "what's the weather doing this week";
+              that lives here above the long-term scrubber/climate views. */}
+          <ForecastPanel cityName={city.name} forecast={forecast} />
+
           {/* Year scrubber — drag the slider across the year and the
               air quality, weather, and daylight panels update in lockstep.
               Renders whenever the city has coordinates; if OPENAQ_API_KEY
@@ -566,6 +575,19 @@ export default async function CityPage({
               bus / etc). Hides itself when TRANSITLAND_API_KEY is missing
               or coverage is sparse. */}
           <TransitPanel cityName={city.name} operators={transitOperators} />
+
+          {/* In the air near {city}: live aircraft positions within
+              50 km via OpenSky Network. The fetch happens client-side
+              in the visitor's browser to distribute the per-IP rate
+              limit across users. Refreshes every minute while the tab
+              is visible. */}
+          {city.lat != null && city.lng != null && (
+            <SkyPanel
+              cityName={city.name}
+              cityLat={city.lat}
+              cityLng={city.lng}
+            />
+          )}
 
           {/* When things are closed: next 6 public holidays for the
               country this city is in, plus a Sunday-closure note for

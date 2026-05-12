@@ -18,6 +18,8 @@ import SavedListSection, { type SavedListPin } from '@/components/SavedListSecti
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
 import { fetchPinPhotosForCountry } from '@/lib/personalPhotos';
+import ClosedDaysPanel from '@/components/ClosedDaysPanel';
+import PhrasesPanel from '@/components/PhrasesPanel';
 import {
   fetchAllSavedListsMeta,
   listsMatchingPlace,
@@ -329,6 +331,16 @@ export default async function CountryPage({
               {renderBlocks(blocks)}
             </section>
           )}
+
+          {/* Country-level travel facts: upcoming public holidays + a few
+              survival phrases in the primary language. Both panels return
+              null gracefully when data is unavailable (no ISO-2 code, no
+              language mapping, missing API key). */}
+          <ClosedDaysPanel
+            countryIso2={country.iso2}
+            countryName={country.name}
+          />
+          <PhrasesPanel countryIso2={country.iso2} />
 
           <section className="mt-10">
             <h2 className="text-h2 text-ink-deep mb-4">Cities ({cities.length})</h2>
