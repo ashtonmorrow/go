@@ -4,7 +4,7 @@ featured: true
 title: "Balkan green markets: where to shop, snack, and look around"
 description: "A working list of green markets from longer Balkan city stays, useful for apartment cooking, morning walks, honey, figs, olive oil, and small food gifts."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 
@@ -40,13 +40,13 @@ I started paying attention to green markets because I often stay in apartments f
 
 This is not a ranking of the region's prettiest markets. It is a working list of places I would actually save on a map: some for cooking, some for gifts, some for a short morning walk before the old town fills up. The useful question is not whether a market is authentic. It is whether it still helps you read the city.
 
-## How I Use These Markets
+## How I use these markets
 
 For a short trip, a green market is best as a morning stop. Buy fruit for the room, a bag of figs, a jar of honey, or a small bottle of olive oil, then keep moving. For a longer stay, go once to understand the layout and prices, then decide whether it is a real grocery source or mainly a pleasant stop near the center.
 
 The social rule is simple: do not treat a working market like a souvenir bazaar. Ask the price before touching produce, carry small cash, and do not haggle over tiny amounts. In many Balkan cities you will see older sellers with a few crates rather than a full commercial stall. A kilo of tomatoes or a jar of honey may be part of someone’s pension math.
 
-## Market Notes
+## Market notes
 
 | Market | City | How I would use it | Watch for |
 |---|---|---|---|
@@ -54,12 +54,12 @@ The social rule is simple: do not treat a working market like a souvenir bazaar.
 | [Split Green Market (Pazar)](/pins/split-green-market-pazar) | Split, Croatia | Useful if you are staying near the palace and need fruit, snacks, or a quick look before the ferry | It has partly become an attraction. For a long stay, it may not be where locals do the cheapest full shop |
 | [Kotor Food Market](/pins/kotor-food-market) | Kotor, Montenegro | Best as an early stop by the city walls before the old town fills | The location is convenient, which also makes it visitor-facing |
 | [Zelena Pijaca Bar](/pins/zelena-pijaca-bar) | Bar, Montenegro | More practical than picturesque. Better for apartment cooking than for sightseeing | Go earlier in the day; the useful stalls thin out |
-| [Pijaca Markale food market](/pins/pijaca-markale-food-market) | Sarajevo, Bosnia and Herzegovina | Central produce market with real historical weight nearby. Good for a short, attentive visit | Keep the visit respectful. This is not just a food stop in Sarajevo’s memory |
+| [Pijaca Markale food market](/pins/pijaca-markale-food-market) | Sarajevo, Bosnia and Herzegovina | Central produce market and the site of the 1994 and 1995 Markale massacres. A working market that is also a place of memory; visit briefly and read the memorial | Keep the visit respectful. This is not just a food stop in Sarajevo's history |
 | [Zeleni Venac](/pins/zeleni-venac) | Belgrade, Serbia | Transit-adjacent and practical, good for fruit, bread, and a quick shop while moving around the city | Busy and not polished. That is part of the point |
 | [Kalenić Green Market](/pins/kalenic-green-market) | Belgrade, Serbia | Better neighbourhood-shopping feel than Zeleni Venac. Useful if you are staying longer | Less convenient for a quick tourist walk unless you are already nearby |
 | [Obor Market](/pins/obor-market) | Bucharest, Romania | Large working market with produce, meat, cheese, pickles, and inexpensive cooked food nearby | It is big and functional rather than scenic. Give it time |
 
-## What To Buy
+## What to buy
 
 | Buy | Why it works | Travel note |
 |---|---|---|
@@ -69,7 +69,7 @@ The social rule is simple: do not treat a working market like a souvenir bazaar.
 | Rakija, loza, or local herbal spirits | Small bottles make more sense than full-size glass | Know your alcohol allowance before you buy |
 | Cheese and cured meat | Good for the apartment that day | Usually not the item to bring home through customs |
 
-## Apartment Cooking Rhythm
+## Apartment cooking rhythm
 
 | Time | What works |
 |---|---|

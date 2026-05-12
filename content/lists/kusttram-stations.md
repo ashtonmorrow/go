@@ -4,7 +4,7 @@ featured: true
 title: "Kusttram station guide: riding Belgium's coastal tram"
 description: "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section."
 published: 2026-04-30
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 route_map: kusttram
@@ -40,7 +40,7 @@ It is often billed as the longest tram line in the world, and I wouldn't build a
 
 This is my personal atlas of Kusttram station pins, not an official timetable. The map is meant to help you choose a stretch of coast, then connect it to towns and saved places already in the atlas. Check [De Lijn](https://www.delijn.be) before traveling for current service, works, stop changes, and the small indignities of public transportation.
 
-## Which Section To Ride
+## Which section to ride
 
 | Section | Start | Why pick it | Reader note |
 |---|---|---|---|

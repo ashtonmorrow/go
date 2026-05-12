@@ -4,7 +4,7 @@ featured: true
 title: "Córdoba Argentina travel guide: getting there, the food, and the Sierras"
 description: "A short Córdoba (Argentina) travel guide. Limited international flights, a 500-year-old centre, college-town nightlife, and weekend escapes into the Sierras."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -76,6 +76,15 @@ related:
 ---
 
 [Córdoba, Argentina](/cities/cordoba-ar) is one of those cities most international travelers skip, partly because it is a hassle to fly into and partly because Buenos Aires absorbs the trip. It is worth more than that. The city was founded in 1573, which makes it roughly five hundred years old, with a colonial centre that holds together better than most South American capitals. It is also a college town, which is the other thing to know: dinner is at 10, the bars get going at 2, and the rhythm of the place follows the students.
+
+## On this page
+
+* [Getting in](#getting-in)
+* [The historic centre on foot](#the-historic-centre-on-foot)
+* [Where to eat](#where-to-eat)
+* [Nightlife runs late](#nightlife-runs-late)
+* [Weekends in the Sierras](#weekends-in-the-sierras)
+* [A practical rhythm for a short trip](#a-practical-rhythm-for-a-short-trip)
 
 ## Getting in
 

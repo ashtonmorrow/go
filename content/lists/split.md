@@ -73,8 +73,13 @@ Inside the palace walls is romantic at midday and miserable after midnight. Stay
 | Veli Varoš | The old fisherman's quarter west of the palace. Quieter, characterful, close to Marjan | The pick if you want a walking-base atmosphere |
 | Bačvice | Near the city beach. Slightly further from the palace | Best for swimmers and joggers along the seafront |
 | Manuš | Just north of the palace | Good middle ground. Walking distance to bus station and palace |
-| Inside the palace | Stunning during the day | Loud after 10 p.m., especially on weekends |
-| Mall of Split / suburbs | Cheaper, parking available | Only worth it with a car. Otherwise you taxi to dinner |
+
+### Zones I would skip
+
+| Zone | Why it's not the pick |
+|---|---|
+| Inside the palace walls | Stunning during the day; loud after 10 p.m., especially on weekends |
+| Mall of Split / suburbs | Cheaper and parking is available, but only worth it with a car. Otherwise you taxi to every dinner |
 
 ## Diocletian's Palace
 
