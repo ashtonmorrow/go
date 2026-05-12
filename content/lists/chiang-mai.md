@@ -60,12 +60,25 @@ These are working notes from real time on the ground rather than a checklist. Ch
 
 ## On this page
 
+* [Getting in from the airport](#getting-in-from-the-airport)
 * [When to go](#when-to-go)
 * [Where to stay](#where-to-stay)
 * [The temple cluster](#the-temple-cluster)
 * [Mountains, elephants, and Doi Inthanon](#mountains-elephants-and-doi-inthanon)
 * [Where to eat](#where-to-eat)
 * [Markets](#markets)
+
+## Getting in from the airport
+
+Chiang Mai International (CNX) sits about 5 km southwest of the old city walls. The ride into town is short enough that the option you pick matters less than it does for most airports; even the cheapest moves get you to the moat in twenty minutes.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| Grab | 10 to 20 min | 120 to 200 THB to most of the old city or the Nimman area | The default with luggage. Pickup is a marked rideshare lot a short walk from arrivals; the app shows the bay number |
+| Airport taxi from the rank | 10 to 20 min | 150 THB flat fare to most of central Chiang Mai | Useful when Grab is surging or the app is glitching. Queue at the marked counter inside arrivals; you pay the desk and they hand you a slip for the driver |
+| Songthaew (red truck) | 15 to 30 min | 40 to 80 THB per person, shared | A casual local option if you are travelling light and not in a hurry. Drivers wait outside arrivals; agree the price before you load luggage |
+
+Grab is the easy default. The rank taxi is good as the backup when the app surges in evenings or on weekends. The songthaew is the local way; useful if you are travelling with a backpack and have time, less so on a midnight arrival with a suitcase.
 
 ## When to go
 

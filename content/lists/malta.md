@@ -126,6 +126,7 @@ These are working notes from real time on the ground rather than a checklist. Ma
 
 ## On this page
 
+* [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay: the St Julian's strip, by price](#where-to-stay-the-st-julians-strip-by-price)
 * [Getting around: walking, buses, Uber, ferries](#getting-around-walking-buses-uber-ferries)
 * [Valletta on a walking day](#valletta-on-a-walking-day)
@@ -134,6 +135,18 @@ These are working notes from real time on the ground rather than a checklist. Ma
 * [Gozo and the Blue Lagoon, by ferry](#gozo-and-the-blue-lagoon-by-ferry)
 * [Rabbit, ftira, and the tourist-food question](#rabbit-ftira-and-the-tourist-food-question)
 * [High season, low season, and the bachelor question](#high-season-low-season-and-the-bachelor-question)
+
+## Getting in from the airport
+
+Malta International Airport (MLA) sits about 8 km south of Valletta and even closer to the St Julian's hotel strip where most travellers actually stay. The ride in is short and the rideshare market is healthy, so the choice of transit usually comes down to time of day, luggage volume, and whether you would rather pay €20 to arrive at your room or €2 to ride a bus.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| Uber / Bolt | 20 to 25 min | €15 to €25 to St Julian's or Valletta | The right default. Pickup is a short walk from arrivals at a marked lot; the apps work cleanly. Reasonable for the distance and worth it after a long flight |
+| X2 bus to St Julian's, X4 to Sliema, X3 to Valletta | 30 to 50 min | €2 single (€3 in summer night service) | Cheap and frequent during the day. Slower with luggage and the bus stops are a short walk from many hotels; works if you are travelling light |
+| Taxi from the rank | 20 to 25 min | €25 to €35 (fixed-rate zones) | Marked yellow-and-black cars at the kerb; pay at the desk inside arrivals before you board so the fare is the printed zone rate rather than a negotiation |
+
+Uber or Bolt is the right default for a hotel-to-arrival trip. The X-bus number depends on where you are staying; have it in mind before you walk out so you can find the right stop on the bus signage. The white airport buses run frequently in the day and have luggage racks but get loud and busy in summer; bus is the move for solo light travellers, not couples with bags after a redeye.
 
 ## Where to stay: the St Julian's strip, by price
 

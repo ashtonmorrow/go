@@ -46,6 +46,7 @@ I spent a few weeks there, long enough for the first impression to settle into s
 
 ## On this page
 
+* [Getting in from the airport](#getting-in-from-the-airport)
 * [When to go](#when-to-go)
 * [Practical notes: safety, payment, power](#practical-notes-safety-payment-power)
 * [Where to stay](#where-to-stay)
@@ -54,6 +55,19 @@ I spent a few weeks there, long enough for the first impression to settle into s
 * [The Cape Peninsula coast](#the-cape-peninsula-coast)
 * [Day trips: wine country and safari](#day-trips-wine-country-and-safari)
 * [Where to eat](#where-to-eat)
+
+## Getting in from the airport
+
+Cape Town International (CPT) sits about 20 km east of the City Bowl and is the gateway for almost every international visitor. The road in is straightforward, but the airport transfer market has a few small traps worth knowing about. The metered taxis at the kerb rarely actually run the meter, the hotel-arranged transfers tend to be marked up by a third, and Uber's airport pickup pin has moved a couple of times in the last few years; open the app before you leave the terminal so the lot is fresh.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| Uber / Bolt | 25 to 40 min | R250 to R400 to the City Bowl, R350 to R500 to Camps Bay | The default for most arrivals with luggage. Both apps work from a marked pickup zone outside arrivals; the pin moves occasionally so check the in-app map |
+| MyCiTi airport bus (A1) | 40 to 60 min | R110 plus a one-off R39 myconnect card load | A clean public-transit option to the central Civic Centre on Hertzog Boulevard. Slower with luggage but a fraction of the rideshare cost |
+| Pre-booked transfer | 25 to 40 min | R450 to R700 depending on operator | Late arrivals when you do not want to deal with the app at 23:00; ask your hotel to arrange. Slightly more than Uber but the driver waits at arrivals with a name board |
+| Metered taxi from the rank | 25 to 40 min | Negotiated; typically R400 to R500 | Last resort. Agree the price before you get in; the metered rate is rarely actually run on the meter |
+
+Uber or Bolt is the right default. If you are arriving late and tired, the pre-booked hotel transfer is worth the small premium for the certainty.
 
 ## When to go
 

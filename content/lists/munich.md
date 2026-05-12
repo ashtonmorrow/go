@@ -121,12 +121,27 @@ These are working notes from real time on the ground rather than a checklist. Mu
 
 ## On this page
 
+* [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay: a rail base or the slower trip](#where-to-stay-a-rail-base-or-the-slower-trip)
 * [The Eisbach river surfers](#the-eisbach-river-surfers)
 * [Leberkäse, the Munich snack](#leberk-se-the-munich-snack)
 * [The brewery beer halls](#the-brewery-beer-halls)
 * [Christmas markets and Oktoberfest, honestly](#christmas-markets-and-oktoberfest-honestly)
 * [Museums for a half day](#museums-for-a-half-day)
+
+## Getting in from the airport
+
+Munich Airport (MUC) sits about 35 km north-east of the Hauptbahnhof and is well-connected by S-Bahn. The train is the practical default unless you have heavy luggage or a late arrival. Buy the ticket from the red vending machines on the platform (English language option is on the screen); the same ticket covers any continuing tram or U-Bahn for the rest of the day if you pick the day-pass version.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| S-Bahn S1 or S8 | 40 to 50 min | €13.50 single, or €15.50 day pass that also covers Munich-area transit | The default. Both lines run from the airport (one terminal-side platform serves both) to Hauptbahnhof, Marienplatz, and Ostbahnhof every 10 minutes. Roughly the same time either way; S1 swings west, S8 swings east |
+| Lufthansa Express Bus | 45 to 60 min | €13 single | Direct to Hauptbahnhof with luggage racks. Less frequent than the S-Bahn but a single seat the whole way; useful if you are travelling with a suitcase that does not love S-Bahn stairs |
+| Uber / FreeNow / taxi | 40 to 60 min | €65 to €90 to the centre | Late arrival, heavy luggage, or a group splitting the fare. The taxi rank outside arrivals is reliable; Uber and FreeNow work too but pickup happens at a marked lot a short walk from the terminal |
+
+The S-Bahn day pass is the move for almost every trip into town because it pays for itself within two Munich rides. Validate it once on first use; the system runs on the honour principle but the ticket inspectors are real and the spot fine for an unstamped or expired ticket is €60.
+
+If you are heading **straight to Therme Erding** (the spa-day hack covered in the [spa-day cross-list](/lists/spa-day)), the smarter move is a taxi from MUC; the train route to Erding goes via the centre and adds an hour. From MUC, Erding is 10 to 15 minutes by taxi, about €25 to €35.
 
 ## Where to stay: a rail base or the slower trip
 
