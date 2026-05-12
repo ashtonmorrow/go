@@ -4,7 +4,7 @@ featured: true
 title: "Kuala Lumpur travel guide: where to stay, KLCC vs Bukit Bintang, and Batu Caves"
 description: "A personal Kuala Lumpur travel guide. Where to stay (Bangsar, KLCC, Bukit Bintang), how to do Batu Caves and the Bird Park, getting in from KLIA, and what to skip."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,7 +15,7 @@ guide_cards:
   intro: KL is one of the easier major Southeast Asian capitals. The MRT and Grab cover most of what you need, hotel value is among the best in the region, and the cultural circuit is genuinely fast. Batu Caves, the Bird Park, and KLCC fit comfortably into two days. Pick a base by neighbourhood; Bangsar for food, KLCC for the view, Bukit Bintang for night markets.
   cards:
     - title: Use KLIA Ekspres or Grab from the airport
-      body: KLIA is 50 km out of town. The KLIA Ekspres train hits KL Sentral in 28 minutes. Grab from KLIA is $20 to $30 and takes 60 to 90 minutes in traffic. If you arrive late, take the train.
+      body: KLIA is 50 km out of town. The KLIA Ekspres (the dedicated airport express train) hits KL Sentral in 28 minutes. Grab from KLIA is $20 to $30 and takes 60 to 90 minutes in traffic. If you arrive late, take the train.
     - title: Pick a base by neighbourhood
       body: Bangsar for cafe culture and walkable food (Alila Bangsar is the pick). KLCC for the Petronas Towers view and the mall density. Bukit Bintang for nightlife and street markets. All three are connected by MRT.
     - title: Do Batu Caves before 10 a.m.
@@ -27,7 +27,7 @@ faqs:
   - q: How do I get from KLIA to central KL?
     a: KLIA Ekspres train is the easy choice; 28 minutes nonstop to KL Sentral, about RM55 (~$12), runs every 20 minutes. Grab is $20 to $30 and takes 60 to 90 minutes in traffic. There is also the Skybus to KL Sentral for ~RM12 if you are travelling light. The airport is 50 km out, so taxi is the slowest of the three.
   - q: Where should I stay in KL?
-    a: Bangsar if food matters most; Alila Bangsar is a 5-star property on top of a metro station with the best skyline pool in the city. KLCC if you want the Petronas Towers view and easy mall access; Hyatt Centric City Centre is the pick. Bukit Bintang for night-market energy and walking-distance bars. Avoid the Sheraton Imperial (older property, the rooms have not aged well).
+    a: Bangsar if food matters most; Alila Bangsar is a 5-star property on top of a metro station with the best skyline pool in the city. KLCC (Kuala Lumpur City Centre, the Petronas Towers district) if you want the towers view and easy mall access; Hyatt Centric City Centre is the pick. Bukit Bintang for night-market energy and walking-distance bars. The "Hotels I would skip" section below has the one option I would not book again.
   - q: What is actually worth doing in two days?
     a: Day one is KLCC Park sunrise → Petronas Towers (book skybridge tickets weeks ahead) → KLCC Aquaria or Suria mall → afternoon at the Bird Park and Butterfly Park → dinner in Bangsar. Day two is Batu Caves early → Central Market and Merdeka Square → afternoon at Sentul Depot or the Textile Museum → dinner and night-market at Bukit Bintang.
   - q: Are the Petronas Towers worth booking?
@@ -82,7 +82,7 @@ KL is one of the few major capitals where the cheap pick and the splurge pick ar
 
 ## Getting around
 
-KL's transit is better than its reputation. The LRT (Kelana Jaya and Ampang/Sri Petaling lines), the MRT (Kajang and Putrajaya lines), and the monorail cover most of central KL on contactless tap. Grab is the universal fallback and costs $3 to $8 for most central rides. KL is not a walking city in the middle of the day; the equator-level heat and humidity make even short walks heavy unless you are between malls or on a covered Pedestrian Walkway.
+KL's transit is better than its reputation. The LRT (Kelana Jaya and Ampang/Sri Petaling lines), the MRT (Kajang and Putrajaya lines), and the monorail cover most of central KL on contactless tap; hold a Visa/Mastercard/Amex contactless card or a phone wallet against the gate reader on entry and exit. Grab is the universal fallback and costs $3 to $8 for most central rides. KL is not a walking city in the middle of the day; the equator-level heat and humidity make even short walks heavy unless you are between malls or on a covered Pedestrian Walkway.
 
 ## The cultural day
 
@@ -119,11 +119,11 @@ Food is the reason most repeat visitors come back to KL.
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Atmosphere 360 Restaurant](/pins/atmosphere-360-restaurant) | The revolving KL Tower dinner | Tourist-priced, but the view is the point |
+| Atmosphere 360 Restaurant | The revolving KL Tower dinner | Tourist-priced, but the view is the point |
 | [La Juiceria Superfoods Signature, Nadi Bangsar](/pins/la-juiceria-superfoods-signature-nadi-bangsar) | Health-coded breakfast or lunch in Bangsar | Above the Bangsar metro |
 | [Kappo Takebayashi](/pins/kappo-takebayashi) | Premium Japanese in Pavilion KL | One of the better high-end Japanese kitchens in KL |
 | Jalan Alor | Street-food strip in Bukit Bintang | Crowded, busy, fun. Pick by queue. Lok-lok skewers are the easy starter |
-| [Sentul Depot](/pins/sentul-depot) | Warehouse-district food and bars | Worth a 30-min Grab from KLCC |
+| Sentul Depot | Warehouse-district food and bars | Worth a 30-min Grab from KLCC |
 | [Bukit Bintang Street Art Alleys](/pins/bukit-bintang-street-art-alleys) | Photo walks between bites | Short side-alley circuit, fun midway through a meal crawl |
 
 ## What to skip

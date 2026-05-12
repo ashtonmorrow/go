@@ -4,7 +4,7 @@ featured: true
 title: "Santiago travel guide: where to stay, the wine country, and a Valparaíso daytrip"
 description: "A short Santiago Chile travel guide. Where to stay (Providencia, Bellavista, Lastarria), Cerro San Cristóbal, the Maipo Valley wineries, and a Valparaíso daytrip."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,7 +15,7 @@ guide_cards:
   intro: Santiago is a practical South American capital to plan. The metro works, the food is strong, the wine country is close, and the Andes are visible from much of the city on clear days. The trick is matching the base to the trip, with Providencia for ease, Bellavista for bars, Lastarria for museum days, and one full day for the Maipo Valley wineries.
   cards:
     - title: Use the metro and Cabify
-      body: Santiago's metro is unusually useful by regional standards, clean, fast, and cheap. Cabify and Uber both work for the gaps. Skip street taxis unless you have a fixed price agreed before you get in.
+      body: Santiago's metro is unusually useful by regional standards, clean, fast, and cheap. Cabify (the Spanish-Latin American rideshare app, the regional alternative to Uber) and Uber both work for the gaps. Skip street taxis unless you have a fixed price agreed before you get in.
     - title: One day for Maipo, one for Valparaíso
       body: The Maipo Valley wine region is 40 minutes south by car. Concha y Toro and Santa Rita are the names. Valparaíso is 90 minutes northwest by bus; book the day, do not rush it.
     - title: Stay in Providencia for the first trip
@@ -78,7 +78,7 @@ related:
 * [Valparaíso as a daytrip](#valparaíso-as-a-daytrip)
 * [Cajón del Maipo](#cajón-del-maipo)
 
-## A Practical Four-Day Shape
+## A practical four-day shape
 
 | Day | Focus | Why it works |
 |---|---|---|
@@ -133,7 +133,7 @@ Bellavista is also the nightlife base. Two streets in particular (Pío Nono and 
 The four museums most worth the time:
 
 * **[Museo Nacional de Bellas Artes](/pins/museo-nacional-de-bellas-artes)** (National Museum of Fine Arts). Chilean and Latin American collection in a 1910 Beaux-Arts building. Free; closed Mondays.
-* **[Museo de la Memoria y los Derechos Humanos](/pins/museo-de-la-memoria-y-los-derechos-humanos)** (Museum of Memory and Human Rights). The hardest museum in the city: the Pinochet years, the disappeared, the truth-and-reconciliation process. Free; closed Mondays. Plan 2 to 3 hours and bring tissue.
+* **[Museo de la Memoria y los Derechos Humanos](/pins/museo-de-la-memoria-y-los-derechos-humanos)** (Museum of Memory and Human Rights). The hardest museum in the city: the 1973-1990 military dictatorship under Augusto Pinochet, the disappeared, the truth-and-reconciliation process that followed. Free; closed Mondays. Plan 2 to 3 hours and bring tissue.
 * **Centro Gabriela Mistral (GAM)**. Modernist cultural centre named for the Nobel-winning Chilean poet. Theatre, dance, rotating exhibitions, public spaces. Free entry to public areas; ticketed performances.
 * **Museo de Artes Visuales (MAVI)**. Smaller contemporary art collection in Lastarria. Walkable from Bellas Artes.
 
@@ -148,7 +148,7 @@ All four sit within a 15-minute walk of each other in the **[Lastarria/Bellas Ar
 
 Other estates (Cousiño-Macul, Undurraga, Aquitania) are reasonable add-ons if a single estate does not fill the day. A driver from Santiago for the day runs around $80 to $120 USD; a group tour with vineyard pickup runs around $60 USD per person.
 
-The Cabernet Sauvignon and the Carmenère are the two grapes Chile is known for. Order both. Drink the Carmenère slightly chilled in summer.
+The Cabernet Sauvignon and the Carmenère are the two grapes Chile is known for. Carmenère is the country's signature: originally a Bordeaux variety, declared extinct after the late-19th-century phylloxera plague in Europe, then rediscovered in Chilean vineyards in the 1990s where it had been misidentified as Merlot for decades. Order both. Drink the Carmenère slightly chilled in summer.
 
 ## Valparaíso as a daytrip
 

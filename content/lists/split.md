@@ -4,7 +4,7 @@ featured: true
 title: "Split travel guide: Diocletian's Palace, the islands, and where to eat konoba-style"
 description: "A personal Split travel guide. Diocletian's Palace UNESCO walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay near the old town, and the konobas that locals actually go to."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -59,7 +59,7 @@ Split Airport (SPU) sits 25 km north of the city. Three options into town.
 | Option | Cost | Time | Notes |
 |---|---|---|---|
 | Promet Split airport bus | ~€8 | 30 to 40 min | The default. Runs to Split Bus Station (next to the harbor) and from there it is a 5-minute walk to the palace. Bus 37 (the local that runs Split-Trogir-Airport) is the cheaper alternative if you have time |
-| Uber / Bolt | ~€25 | 25 min | Easier with bags. Bolt is cheaper than Uber in Croatia |
+| Uber / Bolt | ~€25 | 25 min | Easier with bags. Bolt (the Estonian rideshare app widely used across central and eastern Europe) is cheaper than Uber in Croatia |
 | Local taxi | €30 to €40 | 25 min | Avoid unmarked taxis. Use the official rank or app-book |
 
 By bus from Zagreb (5 hours), by train (slow, 6 hours and not as scenic as the bus), by Jadrolinija ferry from Italy (Ancona, 11 hours overnight). Split is also a major Mediterranean cruise stop, which explains the daytime crowd.
@@ -111,7 +111,7 @@ Marjan Hill is the forested peninsula west of the old town. The walk up:
 | [Vrh Telegrin](/pins/vrh-telegrin) | The summit at 178 m. 45-min walk total |
 | [Klisko polje](/pins/klisko-polje) | The plateau between summits. Quiet picnic spot |
 
-Beaches: Bačvice (the famous one, shallow water, picigin players), Kasjuni (further out, quieter, on the south side of Marjan), Trstenik. None of them are Adriatic-postcard beaches; go to Brač or Hvar for those.
+Beaches: Bačvice (the famous one, shallow water; picigin is the local shallow-water paddle game played barefoot in calf-deep water and the reason this beach gets photographed), Kasjuni (further out, quieter, on the south side of Marjan), Trstenik. None of them are Adriatic-postcard beaches; go to Brač or Hvar for those.
 
 ## Where to eat
 
@@ -150,4 +150,4 @@ Beaches: Bačvice (the famous one, shallow water, picigin players), Kasjuni (fur
 | [Beach Bar Lungomare](/pins/beach-bar-lungomare) | A daytime beach bar walk from Bačvice |
 | [Joe's Beach Lounge & Bar](/pins/joe-s-beach-lounge-bar-second-location) | More polished beachfront option |
 
-For wine, almost every konoba has a local list (Pošip, Plavac Mali, Babić). Ask the kitchen what they would drink with what you ordered; it usually beats the menu pick.
+For wine, almost every konoba has a local list. Pošip is the structured Croatian white from Korčula; Plavac Mali is the local red, the heavy ancestor of Zinfandel grown on the Pelješac peninsula; Babić is a lighter red from around Šibenik. Ask the kitchen what they would drink with what you ordered; it usually beats the menu pick.

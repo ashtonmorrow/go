@@ -4,7 +4,7 @@ featured: true
 title: "Djerba travel guide: the beaches, Houmt Souk, and the Djerbahood street art"
 description: "A short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, the Djerbahood murals, and the Matmata daytrip."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -62,7 +62,7 @@ related:
 # - Source: Mike's Djerba travel brief; personal references stripped.
 ---
 
-Djerba is the Tunisian island most North Americans have never heard of. European package travellers have known about it for thirty years; the sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin.
+Djerba is the [Tunisian](/countries/tunisia) island most North Americans have never heard of. European package travellers have known about it for thirty years; the sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin. ("Berber," increasingly called Amazigh, is the indigenous North African population that predates the Arab conquest.)
 
 ## On this page
 
@@ -136,7 +136,7 @@ For lunch, brik (the thin pastry with egg and tuna), couscous, and grilled fish 
 
 ## El Ghriba and Djerbahood
 
-The [El Ghriba Synagogue](/pins/el-ghriba-synagogue), in the inland village of Hara Sghira, is one of the oldest synagogues in the world. The current building is 19th-century, but Jewish settlement on the site goes back centuries earlier. It remains active and is a pilgrimage site each Lag B'Omer. Security is tight; bring a passport, expect a short bag check, and dress conservatively.
+The [El Ghriba Synagogue](/pins/el-ghriba-synagogue), in the inland village of Hara Sghira, is one of the oldest synagogues in the world. The current building is 19th-century, but Jewish settlement on the site goes back centuries earlier. It remains active and is a pilgrimage site each Lag B'Omer (the Jewish festival celebrated 33 days after Passover, in late spring). Security is tight; bring a passport, expect a short bag check, and dress conservatively.
 
 A 10-minute drive south, the village of Erriadh houses **Djerbahood**, the largest open-air street-art project in the world. The 2014 initiative invited 150 artists from over 30 countries to paint more than 250 murals across the village walls. Some originals have faded with sun and weather; new commissions arrive most years. Plan 90 minutes to walk the whole village; bring water and a camera. There is no entry fee; the village just is the gallery.
 

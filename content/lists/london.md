@@ -4,7 +4,7 @@ featured: true
 title: "London travel guide: where to stay, the Bankside walk, and the markets to eat at"
 description: "A personal London travel guide. Where to stay (Canary Wharf, Tower Hill, Liverpool Street, Kensington), the Bankside walk, the markets actually worth eating at, and Sky Garden over the London Eye."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -35,7 +35,7 @@ faqs:
   - q: When is Borough Market open?
     a: Tuesday through Saturday for the full market, with reduced trading on Mondays and a takeaway-only setup on Sundays. The full market hours are 10:00 to 17:00 most days, with Saturday running 09:00 to 17:00. Go early on Saturday before the lunch crowd arrives around 11.
   - q: Can I use my contactless card on the Underground?
-    a: Yes. Tap in at the gate, tap out at the gate, and the daily cap means you never pay more than the equivalent of a one-day Travelcard. Visa, Mastercard, Amex, Apple Pay, Google Pay all work. Do not use a paper ticket; you will pay more.
+    a: Yes. Hold a contactless bank card or your phone wallet against the yellow pad at the gate when you start the journey and again when you exit, and the system charges per leg with a daily cap so you never pay more than the equivalent of a one-day Travelcard. Visa, Mastercard, Amex, Apple Pay, Google Pay all work. Do not use a paper ticket; you will pay more.
 
 related:
   city: london
@@ -70,7 +70,7 @@ related:
 
 ## Getting in from Heathrow
 
-The Elizabeth Line is the move. Direct from every Heathrow terminal into central London with contactless tap-in / tap-out, no paper ticket, no airport-rail surcharge. The fare cap means a round trip plus normal Tube use in the same day is still under the daily limit. Roughly:
+The Elizabeth Line is the move. Direct from every Heathrow terminal into central London on the same contactless bank card or phone wallet you use on the Tube (hold the card against the yellow gate pad on entry and exit, the system charges per leg), no paper ticket, no premium airport-rail surcharge. The fare cap means a round trip plus normal Tube use in the same day is still under the daily limit. Roughly:
 
 | Mode | Heathrow to centre | Time | Cost | When it makes sense |
 |---|---|---|---|---|

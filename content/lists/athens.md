@@ -4,7 +4,7 @@ featured: true
 title: "Athens travel guide: the Acropolis ticket, where to eat in Plaka, and the Cape Sounion day trip"
 description: "A personal Athens travel guide. The Acropolis ticket, Plaka tavernas, the National Archaeological Museum, where to stay, and Cape Sounion at sunset."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,16 +12,16 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Athens
-  intro: Athens rewards two strong days and a third for day trips. The old multi-site combo pass was discontinued in April 2025, so the planning move is to book the Acropolis ticket online (timed entry) and treat the other archaeological sites as individual stops. Plaka and Anafiotika are the walking neighbourhoods worth your evenings. Cape Sounion is the easy half-day for sunset; Aegina is the half-day add-on if you have time.
+  intro: Athens rewards two strong days and a third for day trips. The planning move is to book the Acropolis ticket online (timed entry) and treat every other archaeological site as its own paid stop; the FAQ below covers why the old combo pass that used to bundle them is gone. Plaka and Anafiotika are the walking neighbourhoods worth your evenings. Cape Sounion is the easy half-day for sunset; Aegina is the half-day add-on if you have time.
   cards:
     - title: Book the Acropolis ticket online
-      body: The Acropolis itself is €30 in high season (April-October), €15 in low season (November-March). Reserve the timed entry on the official Hellenic Heritage portal before you fly. The old 7-site combo pass was discontinued April 1, 2025; every other archaeological site is now its own ticket.
+      body: The Acropolis itself is €30 in high season (April-October), €15 in low season (November-March). Reserve the timed entry on the official Hellenic Heritage portal before you fly. Every other archaeological site is its own paid ticket; the body has the per-site fees.
     - title: Stay walking distance from Monastiraki
       body: Monastiraki, Plaka, and Psyrri are the three neighbourhoods worth basing in. Most hotels have a rooftop with an Acropolis view; ask before booking. Grand Hyatt Athens is the upscale pick south of the Acropolis with the best rooftop pool in the city.
     - title: Do the Acropolis at 8 a.m. or late afternoon
       body: The midday queue is the headline complaint about Athens. The 8 a.m. opening is genuinely cooler and quieter. The late-afternoon window catches the warm light and most tour groups have moved on. Avoid 11 a.m. to 3 p.m. unless you have to.
     - title: Take the X80 bus to Cape Sounion
-      body: About two hours each way to the Temple of Poseidon on the southern Attica coast, perfect for sunset. KTEL Bus X80 runs from central Athens for roughly €8 each way. A private taxi-tour at €120 to €150 for the day is the flexibility option.
+      body: About two hours each way to the Temple of Poseidon on the southern Attica coast, perfect for sunset. KTEL (Greece's intercity bus network) runs the X80 from central Athens for roughly €8 each way. A private taxi-tour at €120 to €150 for the day is the flexibility option.
 
 faqs:
   - q: How many days do I need in Athens?
@@ -33,7 +33,7 @@ faqs:
   - q: How do I do the Acropolis without the queue?
     a: 8 a.m. opening or last entry 5 p.m. (in summer; check the season). Skip-the-line tickets exist but are mostly the same as buying the multi-site pass online ahead of time and walking through the prepaid line. The North Slope entrance (Plaka side) is usually shorter than the main entrance.
   - q: Is the metro safe and useful?
-    a: Yes. The Ath.ena ticket is the contactless system; the M1, M2, and M3 lines cover most of central Athens including Piraeus port and the airport. Pickpockets are a real issue on the metro and around Monastiraki, especially on the line to the airport. Keep phones in pockets, bags zipped and to the front.
+    a: Yes. The Ath.ena ticket is the rechargeable transit card (buy at any station vending machine, load credit, tap at the gate); a single-journey paper ticket is also sold but Ath.ena is the default. The M1, M2, and M3 lines cover most of central Athens including Piraeus port and the airport. Pickpockets are a real issue on the metro and around Monastiraki, especially on the line to the airport. Keep phones in pockets, bags zipped and to the front.
 
 related:
   city: athens
@@ -91,7 +91,7 @@ The [Theatre of Dionysus](/pins/theatre-of-dionysus) is on the south slope of th
 
 Separately ticketed: the [Acropolis Museum](/pins/acropolis-museum) (around €15 in high season, €10 in low; verify on theacropolismuseum.gr), in a Bernard Tschumi building south of the Acropolis, holds the actual sculptures, and the [National Archaeological Museum](/pins/national-archeological-museum) (€20 as of January 2026), north of Omonia, the country's most comprehensive collection. Both are worth the price; the Acropolis Museum is the closer pair with the hill, the NAM is its own afternoon.
 
-Third-party resellers like GetYourGuide and Viator package "skip-the-line + multi-site" bundles for €80-€100. These are guided-tour products, not the discontinued government combo; useful for organized walks, expensive if you only wanted the ticket.
+Third-party resellers package "skip-the-line + multi-site" bundles for €80-€100. These are guided-tour products, not a replacement for the discontinued government combo; useful for organized walks, more than you would pay if you only wanted the tickets themselves.
 
 ## Plaka and Anafiotika
 

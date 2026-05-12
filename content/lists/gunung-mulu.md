@@ -4,7 +4,7 @@ featured: true
 title: "Gunung Mulu travel guide: the bats, the caves, and the Marriott in the rainforest"
 description: "A personal Gunung Mulu travel guide. How to route through Kuching or Kota Kinabalu, why the Mulu Marriott is the only sensible base, what to book at the park, and what the Pinnacles trek actually involves."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -77,7 +77,7 @@ From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is th
 |---|---|---|
 | [Mulu Marriott Resort & Spa](/pins/mulu-marriott-resort-and-spa) | The only Western-grade hotel for a long way. ~$100/night, on-demand shuttle at the airport, suite upgrades common for status members | Open-air public floors mean bats and frogs at the bar at night. Wi-Fi only in reception/bar/pool, not in rooms |
 | Park lodge | Closer to the trailheads, hostel beds ~$11 and villas $65+ | No Wi-Fi at all. Spartan |
-| Homestays / Mulu Village guesthouses | Cheapest, most local | Inconsistent. Book the Marriott unless cost is the deciding factor |
+| Homestays / Mulu Village guesthouses | Cheapest, most local | Quality varies; the Marriott is the safer pick unless cost is the deciding factor |
 
 The Marriott runs a free shuttle that meets every flight, so you do not need to pre-book transport. Going back out, the same shuttle drops you at the airport with timing matched to your departure.
 

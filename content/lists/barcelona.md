@@ -4,7 +4,7 @@ featured: true
 title: "Barcelona travel guide: where to stay, where to eat, and a Sitges daytrip"
 description: "A personal Barcelona travel guide. Where to stay (Poblenou over Barri Gòtic), why the city is winding down Airbnb, neighbourhood food, and Sitges as a daytrip."
 published: 2026-05-11
-updated: 2026-05-14
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -111,7 +111,7 @@ related:
 #   each republish, and update the FAQ if the rules ease.
 ---
 
-[Barcelona](/cities/barcelona) in 2026 is a different planning problem than Barcelona ten years ago. The city has spent the last several summers visibly pushing back against its own visitor economy: protest marches against overtourism in Ciutat Vella, the 2024 announcement that every short-term rental licence in the city would be phased out by November 2028, water-guns aimed at sightseers on La Rambla. The reasons are local and substantive. Residential rents in Ciutat Vella roughly doubled over the decade as Airbnb-style conversions pulled long-term flats off the market; pensioners on fixed incomes were forced out of neighbourhoods they grew up in; the city's mayor (Jaume Collboni) framed the phase-out as a housing-affordability move rather than an anti-tourist one. None of this means Barcelona is hostile to a traveller who shows up thoughtfully. It does mean the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic, repeat) lands in 2026 the same way a 2010 Venice gondola playlist would today.
+[Barcelona](/cities/barcelona) in 2026 is a different planning problem than Barcelona ten years ago. The city has spent the last several summers visibly pushing back against its own visitor economy: protest marches against overtourism in Ciutat Vella (the old town district that holds Barri Gòtic, El Raval, and La Ribera), the 2024 announcement that every short-term rental licence in the city would be phased out by November 2028, and the 2024 protest tactic where residents sprayed visitors on La Rambla with water pistols as a low-grade objection to mass tourism. The reasons are local and substantive. Residential rents in Ciutat Vella roughly doubled over the decade as Airbnb-style conversions pulled long-term flats off the market; pensioners on fixed incomes were forced out of neighbourhoods they grew up in; the city's mayor (Jaume Collboni) framed the phase-out as a housing-affordability move rather than an anti-tourist one. None of this means Barcelona is hostile to a traveller who shows up thoughtfully. It does mean the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic, repeat) lands in 2026 the same way a 2010 Venice gondola playlist would today.
 
 The version below is the trip I would book for myself. It centres on staying off the tourist spine, eating in working neighbourhoods, and treating the headline monuments as day-stops you ride the metro to. The full pin map for the city sits below; this writeup covers the parts of it that change the trip.
 
@@ -136,7 +136,7 @@ A note on the word **Rambla** before we go further. When this guide says "La Ram
 |---|---|---|---|
 | Official taxi | ~€39 fixed rate to central Barcelona | Late arrivals, larger parties, hotels off the Aerobús route | Black-and-yellow rank straight outside arrivals. Small surcharge after midnight, Sundays, and to Forum / Diagonal Mar |
 | Uber / Cabify | Similar to taxi, sometimes a few euros higher | Comfortable with luggage and the app | Pickup is inside the airport parking garage. The exact spot has moved several times; check the in-app pin |
-| Aerobús (A1 from T1, A2 from T2) | €7.75 single / €13.30 return | Hotels near Plaça Catalunya or Plaça d'Espanya | Drops at fixed stops only, runs every 5 to 10 minutes, takes about 35 minutes |
+| Aerobús (the dedicated airport express bus; A1 from T1, A2 from T2) | €7.75 single / €13.30 return | Hotels near Plaça Catalunya or Plaça d'Espanya | Drops at fixed stops only, runs every 5 to 10 minutes, takes about 35 minutes |
 | Metro L9 Sud | €5.90 with the special Bitllet Aeroport (T-Casual not valid) | A traveler with one bag and time | Requires a transfer (Torrassa for L1 to Catalunya, Collblanc for L5 to Sagrada Família) |
 
 The fixed-rate taxi is the right default for most arrivals with luggage. The Aerobús is the move when your hotel is on the Catalunya / Espanya spine and you do not want to pay €40 for the door-to-door.
@@ -181,7 +181,7 @@ Barcelona spent the 2010s losing its central housing stock to short-term rentals
 
 The city's response, announced in June 2024 by mayor [Jaume Collboni](https://en.wikipedia.org/wiki/Jaume_Collboni), was the most aggressive in Europe: every short-term rental licence in Barcelona (around 10,000 flats) is being phased out by **November 2028**. The frame the city has used is explicitly housing affordability rather than anti-tourism; the goal is to return that 10,000-flat inventory to the residential rental market.
 
-For a traveller this has three practical consequences. First, the legal status of any given listing is now genuinely uncertain, and bookings have been cancelled mid-stay as licences are pulled. Second, the activity is socially stigmatised; you are the person the neighbourhood is asking the city to remove. Third, hotels and licensed aparthotels are the legitimate replacement and do not put pressure on the residential stock. The aparthotels below ([Durlet](/pins/durlet-beach-apartments) on Rambla del Poblenou, [The Social Hub](/pins/the-social-hub-barcelona-poblenou) in Poblenou) cover the "I want a kitchen" case cleanly.
+For a traveller this has three practical consequences. First, the legal status of any given listing is now genuinely uncertain, and bookings have been cancelled mid-stay as licences are pulled. Second, the activity is socially stigmatised; you are the person the neighbourhood is asking the city to remove. Third, hotels and licensed aparthotels are the legitimate replacement and do not put pressure on the residential stock. The aparthotels below (Durlet on Rambla del Poblenou, The Social Hub in Poblenou) cover the "I want a kitchen" case cleanly.
 
 ## Where to eat, by neighbourhood
 
@@ -222,7 +222,7 @@ The practical rules are the small ones:
 * Cards in a different pocket than your wallet. Cash in a third place.
 * If a block feels off, it is off. Turn one street up the slope and you are usually back in a normal residential neighbourhood within a minute.
 
-A sensible evening in the old city looks like this: a caña at [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona), dinner one or two streets off La Rambla, walk the area in good light, take a taxi back if it is late. Done that way Barcelona is a calm place to be out at night, even in the parts of Ciutat Vella that carry the worst reputation. The harder thing to plan around is that you are, by being there at all, part of the visitor density the residents are pushing back on. Staying off the tourist spine and not booking an Airbnb are the two ways a traveller actually reduces that pressure.
+A sensible evening in the old city looks like this: a caña at Bar Kiosko La Cazalla, dinner one or two streets off La Rambla, walk the area in good light, take a taxi back if it is late. Done that way Barcelona is a calm place to be out at night, even in the parts of Ciutat Vella that carry the worst reputation. The harder thing to plan around is that you are, by being there at all, part of the visitor density the residents are pushing back on. Staying off the tourist spine and not booking an Airbnb are the two ways a traveller actually reduces that pressure.
 
 ## Fira only for an early flight
 
@@ -230,8 +230,8 @@ The Fira convention area is a different trip. The hotels are cheaper, the transi
 
 | Hotel | Why I have stayed | Trade-off |
 |---|---|---|
-| [Renaissance Barcelona Fira Hotel](/pins/renaissance-barcelona-fira-hotel) | Jean Nouvel design with a 26-storey interior vertical garden worth seeing once | Rooms are all-white and feel sterile; some bathrooms have no doors. Not for everyone |
-| [Hyatt Regency Barcelona Tower](/pins/hyatt-regency-barcelona-tower) | Spacious rooms, large club lounge, Globalist upgrades land here often. Actually in L'Hospitalet de Llobregat, not Barcelona proper | Hotel food is weak, and you will pay €10 to €15 each way for a taxi to anywhere worth going |
+| [Renaissance Barcelona Fira Hotel](/pins/renaissance-barcelona-fira-hotel) | Jean Nouvel design with a 26-storey interior vertical garden worth seeing once | Minimalist all-white rooms and open-plan bathrooms that don't suit every traveller |
+| [Hyatt Regency Barcelona Tower](/pins/hyatt-regency-barcelona-tower) | Spacious rooms, large club lounge, Globalist upgrades land here often. Actually in L'Hospitalet de Llobregat, not Barcelona proper | Hotel food is functional rather than a destination, and you will pay €10 to €15 each way for a taxi to anywhere worth going |
 
 Both are a short taxi to the airport, which is the whole point. Walking is not a real option from either property; Gran Via is a wide industrial road, not a pedestrian route. For anything in the city, ride the metro in and book a city hotel.
 

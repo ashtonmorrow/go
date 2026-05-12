@@ -4,7 +4,7 @@ featured: true
 title: "Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk"
 description: "A personal Rotterdam travel guide. The Markthal and Cube Houses walking loop, Depot Boijmans, Euromast, Hotel New York, and Kinderdijk as a day trip. Where to base near Centraal."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Rotterdam
-  intro: Rotterdam is the Netherlands' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the headline modern architecture, the historic harbor walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.
+  intro: Rotterdam is the Netherlands' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the headline modern architecture, the historic harbour walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.
   cards:
     - title: Base near Rotterdam Centraal
       body: Holiday Inn Express Rotterdam Central is the easy budget pick at the station. Hotel New York (the old Holland America Line headquarters across the river) is the splurge with the best history. Both put you on the metro and tram network and within walking distance of the headline sights.
@@ -32,15 +32,15 @@ faqs:
     a: No. Rotterdam has a dense metro/tram/bus network with OVpay (contactless tap, including phone) covering everything. For Kinderdijk, take the WaterShuttle from the Erasmusbrug (Fri/Sat/Sun) or Bus 489 from Centraal on other days. The Dutch trains handle longer day trips to Delft, Gouda, Utrecht.
   - q: How do I do Kinderdijk?
     a: From late 2025 the old Waterbus Line 202 was rebranded as the WaterShuttle Rotterdam-Kinderdijk; it now runs Fridays, Saturdays, and Sundays only, costs €9.75 single / €19.50 return, and takes 30 minutes from the Erasmusbrug. OVpay is no longer accepted on this leg; buy the ticket on the operator's site or at the boat. On other days, take Bus 489 from Rotterdam Centraal. Half-day on site walking the polders between the 19 windmills, entering two that are open as museums. Buy a Kinderdijk combo ticket at the visitor centre. Bring a windbreaker even in summer.
-  - q: What is the historic harbor walk?
-    a: The Oude Haven (old harbor) is right next to the Cube Houses and shows what Rotterdam looked like before the WWII bombing. A 20-minute loop on foot past boat-builders, old warehouses, and the Witte Huis (the first European skyscraper, 1898). Adds context to the modern Rotterdam you walk through elsewhere.
+  - q: What is the historic harbour walk?
+    a: The Oude Haven (old harbour) is right next to the Cube Houses and shows what Rotterdam looked like before the WWII bombing. A 20-minute loop on foot past boat-builders, old warehouses, and the Witte Huis (the first European skyscraper, 1898). Adds context to the modern Rotterdam you walk through elsewhere.
 
 related:
   city: rotterdam
   country: netherlands
 ---
 
-[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. The WWII bombing erased most of the medieval city, the rebuild made it the proving ground for modern Dutch architecture, and the result is the most visually interesting walking city in the [Netherlands](/countries/netherlands). It also has the country's busiest port, a working harbor history that ties to immigration into North America, and a food scene that runs ahead of every other Dutch city outside Amsterdam. The full pin map sits below; this writeup covers the parts of it that change the trip.
+[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. The WWII bombing erased most of the medieval city, the rebuild made it the proving ground for modern Dutch architecture, and the result is the most visually interesting walking city in the [Netherlands](/countries/netherlands). It also has the country's busiest port, a working harbour history that ties to immigration into North America, and a food scene that runs ahead of every other Dutch city outside Amsterdam. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -126,4 +126,4 @@ Combo ticket at the visitor centre covers both museum mills and the windmill vie
 | [Schouwburgplein Kinetic Lamp Posts](/pins/schouwburgplein-kinetic-lamp-posts) | A square, not a bar, but worth a walk through after dark. The four hydraulic light posts are the photo |
 | Witte de Withstraat | The drink strip. Bars, terraces, students |
 
-Boat Quay-style bar hopping does not really exist in Rotterdam; the bars are spread across neighbourhoods. Best to pick one zone (Witte de Withstraat, Katendrecht, or Delfshaven) for the evening rather than try to bar-hop across the city.
+Single-strip bar hopping does not really exist in Rotterdam; the bars are spread across neighbourhoods. Best to pick one zone (Witte de Withstraat, Katendrecht, or Delfshaven) for the evening rather than try to bar-hop across the city.

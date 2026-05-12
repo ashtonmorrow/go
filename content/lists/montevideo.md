@@ -4,7 +4,7 @@ featured: true
 title: "Montevideo travel guide: the Buquebus, the asado, and where to stay"
 description: "A personal Montevideo travel guide. The Buquebus ferry from Buenos Aires beats flying, asado at Mercado del Puerto, beaches along the Rambla, and where to stay near Punta Carretas."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -33,7 +33,7 @@ faqs:
   - q: What is asado, and where do I get the best one?
     a: Asado is the Uruguayan/Argentine grilled-meat tradition, heavy on cuts cooked slowly over wood coals. The classic Montevideo move is Don García inside Mercado del Puerto, right across from the ferry terminal. Order ala carte and plan on a two-hour lunch; portions are large enough to share and arrive as they are ready.
   - q: Are the beaches in Montevideo any good?
-    a: They are good for a walk and a beer, less good for swimming. The Río de la Plata runs brown most of the year; do not expect Caribbean water. Playa Pocitos is the famous one and gets the most traffic; Playa Ramírez is slightly quieter and easier to find space on. The Rambla path runs the whole coast, which is the part most worth your time anyway.
+    a: They are good for a walk and a beer, less good for swimming. The Río de la Plata (the wide silt-laden estuary between Argentina and Uruguay that the city faces) runs brown most of the year; do not expect Caribbean water. Playa Pocitos is the famous one and gets the most traffic; Playa Ramírez is slightly quieter and easier to find space on. The Rambla path runs the whole coast, which is the part most worth your time anyway.
 
 related:
   city: montevideo
@@ -61,7 +61,7 @@ The Buquebus ferry is the move. It leaves from the Terminal Buquebus in Puerto M
 | Buquebus (ferry) | ~2.5 hours | First-class cabin is 20 to 30% more for bigger chairs and a better window. Pre-clear Argentine customs at the terminal |
 | Flight via AEP/EZE | ~1 hour gate-to-gate, more like 4 hours door-to-door | Worth it if you are heading deeper into Uruguay; not worth it for Montevideo alone |
 
-The terminal in Montevideo sits next to Ciudad Vieja and across the street from [Mercado del Puerto](#mercado-del-puerto-and-the-asado). If you only have the day, the asado is right there.
+The terminal in Montevideo sits next to Ciudad Vieja and across the street from the Mercado del Puerto. If you only have the day, the asado is right there.
 
 ## If you flew in instead
 
@@ -79,7 +79,7 @@ Hotel inventory in Montevideo is thinner than you would expect for a capital cit
 
 ## Mercado del Puerto and the asado
 
-Right across the street from the ferry terminal in Ciudad Vieja. The front stalls are a tourist trap in the friendly sense: handicrafts, alfajores boxes, gringo photos of meat hanging over the parrilla. Walk past those and get a table at [Don García](/pins/don-garcia). The cooking is slow, ordering is ala carte, portions land as they are ready, and two hours is a normal lunch. If you only have the day in Montevideo, the asado plus the walk afterwards is the day.
+Right across the street from the ferry terminal in Ciudad Vieja. The front stalls are a tourist trap in the friendly sense: handicrafts, boxes of alfajores (dulce-de-leche sandwich cookies dipped in chocolate, the regional sweet), gringo photos of meat hanging over the parrilla (the wood-fired beef grill that anchors any Uruguayan or Argentine meal). Walk past those and get a table at [Don García](/pins/don-garcia). The cooking is slow, ordering is ala carte, portions land as they are ready, and two hours is a normal lunch. If you only have the day in Montevideo, the asado plus the walk afterwards is the day.
 
 Alfajores from one of the market shops are a fine present to take home; the labelled ones are usually cheaper than buying the same brand at a tourist boutique elsewhere in town.
 

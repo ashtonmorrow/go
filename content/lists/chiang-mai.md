@@ -4,7 +4,7 @@ featured: true
 title: "Chiang Mai travel guide: where to stay, the temples, and a khao soi rotation"
 description: "A personal Chiang Mai travel guide. Where to base (Old City, Nimman, Riverside), Wat Chedi Luang and Doi Suthep, Elephant Nature Park, and the khao soi worth queuing for."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -29,7 +29,7 @@ faqs:
   - q: Where should I stay for a first trip?
     a: Old City if it is your first visit and you want temples on foot. Nimmanhaemin if you care more about cafes and shopping than temples. Riverside if you want a calmer luxury stay. Doi Suthep area if you want mountain quiet and do not mind a daily Grab into town.
   - q: Is the elephant park experience ethical?
-    a: Some are, most are not. Elephant Nature Park is the credible refuge in the area; no riding, focus on rescued animals, transparent in how they operate. Avoid operations that advertise rides or staged photo shows; the elephants in those programmes are typically broken in violently.
+    a: Some are, most are not. Elephant Nature Park is the credible refuge in the area; no riding, focus on rescued animals, transparent in how they operate. Skip operations that advertise rides or staged photo shows; the training for those uses is widely documented as inhumane.
   - q: When is the best time to visit?
     a: Late November through February is the cool dry season and the best window. February in particular is reliably dry, warm in the day, and cool at night. March can be hazy because of agricultural burning; April is the hottest month; May through October is the rainy season with short afternoon storms.
   - q: How do I get around the city?
@@ -107,7 +107,7 @@ For a quieter alternative once the headlines are done, walk the smaller wats sca
 
 [Elephant Nature Park](/pins/elephant-nature-park) is the ethical anchor of any Chiang Mai trip. It is a rescue refuge an hour north of the city; no riding, no staged shows, focused on the animals. Half-day, full-day, and overnight options; full-day is the right balance for the round-trip drive. Book one to two weeks ahead; the visit count is capped daily.
 
-The skip: any tour that markets elephant riding or photo shows. The elephants in those programmes go through phajaan (the "crush"), which is what it sounds like. Read the operator's website carefully; if they advertise rides, do not book.
+The skip: any tour that markets elephant riding or staged photo shows. The training process for those uses (locally called phajaan, the "crush") is widely documented and inhumane. Read the operator's website carefully; if it advertises rides, book somewhere else.
 
 Doi Inthanon National Park is the half-day trip up the mountain, about 90 minutes by car west of the city. The summit (the highest point in Thailand at 2,565 m) has the royal-pagoda viewpoint, walking trails through cloud forest, and a couple of waterfalls along the road up. Best as a hired-driver day rather than a self-drive; the road is narrow and steep.
 

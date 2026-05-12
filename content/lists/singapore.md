@@ -4,7 +4,7 @@ featured: true
 title: "Singapore travel guide: the three-day version that does not break the bank"
 description: "A personal Singapore travel guide. Gardens by the Bay, Marina Bay Sands, the hawker centres, where to stay (Robertson Quay), and how to do the city without spending $200 on a round of drinks."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -17,7 +17,7 @@ guide_cards:
     - title: Stay on Robertson Quay or Tanjong Pagar
       body: InterContinental Singapore Robertson Quay is the easy pick; riverfront, walking distance to Clarke Quay and Boat Quay, and a 15-minute MRT to Marina Bay. Tanjong Pagar is the budget-conscious alternative with the highest food density per block.
     - title: Eat at hawker centres
-      body: Lau Pa Sat, Maxwell, and Tiong Bahru cover the headline three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! are the norm; some stalls take card. Wet markets close around 2 p.m.; evening hawker centres run late.
+      body: Lau Pa Sat, Maxwell, and Tiong Bahru cover the headline three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! (the DBS bank's mobile-wallet app, the local default) are the norm; some stalls take card. Wet markets (the open-air produce and seafood halls) close around 2 p.m.; evening hawker centres run late.
     - title: Plan Gardens by the Bay around the cooler hours
       body: Cloud Forest opens at 9 a.m. and is best before 11. Supertree Grove is best at 7:45 p.m. for the free light show, then again at 8:45. Flower Dome has the best AC if you need a 30-minute heat break. Combo tickets are cheaper than singles.
     - title: Do not drink at the hotel bars unless that is the trip
@@ -27,11 +27,11 @@ faqs:
   - q: How long should I plan in Singapore?
     a: Two full days hits the headline sights and a couple of food neighbourhoods. Three is the sweet spot; adds the Singapore Botanic Gardens, an evening at Tiong Bahru or Joo Chiat, and a day trip to Sentosa if Universal Studios or the beach matters. Anything beyond five days needs a real plan or it gets expensive fast.
   - q: Where should I stay?
-    a: InterContinental Singapore Robertson Quay is the comfortable middle; riverfront walks, the Quay's restaurants and bars at the door, and easy MRT to Marina Bay. The Fullerton Bay Hotel and Marina Bay Sands are the splurges. Tanjong Pagar and Chinatown are the budget plays with the best food density. Avoid Geylang as a first-time base; it is fine but more local than easy.
+    a: InterContinental Singapore Robertson Quay is the comfortable middle; riverfront walks, the Quay's restaurants and bars at the door, and easy MRT to Marina Bay. The Fullerton Bay Hotel and Marina Bay Sands are the splurges. Tanjong Pagar and Chinatown are the budget plays with the best food density. Geylang is fine but more local than easy for a first trip; pick somewhere central instead.
   - q: Is Marina Bay Sands worth it?
     a: As a hotel, only if the SkyPark Pool is the reason; the rooms themselves are dated for the price. As a sight, yes; the SkyPark Observation Deck ticket (without staying) is the same view at a fraction of the cost. The 8 p.m. and 9 p.m. Spectra water-and-light shows from the boardwalk are free and worth the walk.
   - q: How do I get from Changi to my hotel?
-    a: MRT East-West Line is the cheap option; about 30 minutes to City Hall with a change at Tanah Merah from the Changi branch onto the main EWL. Costs about $2 with an EZ-Link card or contactless. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. Grab is the easy pick unless you are travelling light.
+    a: MRT East-West Line is the cheap option; about 30 minutes to City Hall with a change at Tanah Merah from the Changi branch onto the main EWL. Costs about $2 with an EZ-Link card (the local stored-value transit card, buy at any station) or just tap any contactless bank card or phone wallet at the gate. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. Grab is the easy pick unless you are travelling light.
   - q: Is the heat really that bad?
     a: It is 30°C and 80% humidity year-round. The Singaporean strategy is to alternate between air-conditioned interiors and short outdoor walks; buildings are connected by covered walkways and underground tunnels in the central districts. Plan walks for early morning or after 6 p.m. Pack an umbrella for the daily afternoon rain.
 
@@ -87,7 +87,7 @@ The Marina Bay loop is the headline. Done in the right order, it covers the post
 | 1 to 2 p.m. | Lunch at Satay by the Bay | Outdoor hawker food adjacent to the Gardens |
 | 2 to 4 p.m. | [Singapore Flyer](/pins/singapore-flyer) or AC break | Skip the Flyer if you have Marina Bay Sands tickets: same view, much pricier |
 | 7:45 p.m. and 8:45 p.m. | Supertree Grove Garden Rhapsody (free light show) | 15 minutes each. Free. The 8:45 show is usually less crowded |
-| 9 p.m. | [Marina Bay Sands](/pins/marina-bay-sands-singapore) Spectra water-and-light show | Free from the boardwalk |
+| 9 p.m. | Marina Bay Sands Spectra water-and-light show | Free from the boardwalk |
 
 ## Hawker centres and where to eat
 
@@ -118,7 +118,7 @@ For sit-down meals across cuisine ranges:
 
 A morning at [Singapore Botanic Gardens](/pins/singapore-botanic-gardens) (UNESCO, free except the Orchid Garden) into lunch in Tanglin Village, then an afternoon in Chinatown or Tiong Bahru. The Gardens open at 5 a.m. for runners; if you are jet-lagged, this is the best version of the morning.
 
-For history at speed: National Gallery (the old Supreme Court and City Hall combined), Asian Civilisations Museum, and the [ArtScience Museum](/pins/artscience-museum) covers most of the city's curated history in one afternoon's loop along the Civic District.
+For history at speed: National Gallery (the old Supreme Court and City Hall combined), Asian Civilisations Museum, and the ArtScience Museum covers most of the city's curated history in one afternoon's loop along the Civic District.
 
 ## Where to drink without losing your shirt
 
@@ -126,4 +126,4 @@ Singapore is the city where two cocktails routinely costs $40. The way to manage
 
 The splurge picks: Atlas (Parkview Square, art-deco gin temple), Smoke & Mirrors (rooftop at National Gallery), the LeVeL33 brewery (the highest urban craft brewery in the world), or the Marina Bay Sands rooftop. Plan on $25+ a drink at any of these.
 
-The cheap picks: any hawker centre serves Tiger beer at $6 to $8, the Boat Quay strip after happy hour, [Lau Pa Sat](/pins/lau-pa-sat)'s outdoor satay area after dark. [Fun Tea](/pins/fun-tea) and the bubble-tea chains are the daytime equivalent for under $5.
+The cheap picks: any hawker centre serves Tiger beer at $6 to $8, the Boat Quay strip after happy hour, Lau Pa Sat's outdoor satay area after dark. [Fun Tea](/pins/fun-tea) and the bubble-tea chains are the daytime equivalent for under $5.

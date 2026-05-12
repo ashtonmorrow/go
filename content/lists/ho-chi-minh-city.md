@@ -4,7 +4,7 @@ featured: true
 title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
 description: "A personal Ho Chi Minh City travel guide. Vietnam e-visa, where to stay in District 1, the Saigon craft beer crawl (Heart of Darkness, Pasteur Street, Belgo, East West), and a one-day cultural circuit."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -104,7 +104,7 @@ A tight on-foot circuit, starting early to beat the heat.
 | [War Remnants Museum](/pins/war-remnants-museum) | 90 min | Heavy. Plan a coffee break after |
 | [Notre-Dame Cathedral Basilica of Saigon](/pins/notre-dame-cathedral) | 20 min outside | Often under restoration; the exterior is the picture |
 | [Saigon Central Post Office](/pins/saigon-central-post-office) | 30 min | Beautifully preserved French-colonial. Free |
-| [Ho Chi Minh City Opera House](/pins/opera-house) | 15 min outside | The building, not a performance. If A O Show is running, the night ticket is worth it |
+| [Ho Chi Minh City Opera House](/pins/opera-house) | 15 min outside | The building, not a performance. If A O Show (the long-running bamboo-and-acrobatics cultural production) is on, the night ticket is worth it |
 | [Ben Thanh Market](/pins/ben-thanh-market) | As long as you want | Souvenir prices are 2 to 3 times what street stalls charge. Negotiate, or just enjoy the photos |
 
 The [Venerable Thich Quang Duc Monument](/pins/the-venerable-thich-quang-duc-monument) and the [former US Embassy site](/pins/site-of-the-former-us-embassy-to-south-vietnam) sit a short Grab apart and add context if you want a fuller history day.
@@ -117,7 +117,7 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 |---|---|---|
 | [Heart of Darkness Craft Brewery](/pins/heart-of-darkness-craft-brewery) | Cucumber pils, a flight, and the kitchen specials (Sunday tomahawk is the photo) | HOD is dim and air-conditioned, welcome after the walk in. Consistent quality across the menu |
 | [Pasteur Street Brewing Co.](/pins/pasteur-street-brewing-co) | Flight of whatever is new on tap. Check in on social and they often give you a free taster | Off Pasteur Street, up an alley, second floor. The OG. Passion fruit wit and the IPA rotation are the picks |
-| [Belgo Belgian Craft Beer & Restaurant](/pins/belgo-ton-that-thiep-belgian-craft-beer-and-restaurant) | A 33cl Chimay-style ale or a Trappist clone. Not a flight bar; pours are traditional | Belgian-style range done well. Bottled beers for takeaway if you want one for the hotel |
+| [Belgo Belgian Craft Beer & Restaurant](/pins/belgo-ton-that-thiep-belgian-craft-beer-and-restaurant) | A strong Belgian-monastic-style ale at a traditional pour | Belgian-style range done well. Bottled beers for takeaway if you want one for the hotel |
 | [East West Brewing Co.](/pins/craft-beer-east-west-brewing-co-saigon) | Whatever fruit-led local-ingredient beer is on rotation (dragon fruit shows up often) | The biggest taproom of the four, near Ben Thanh, more brunch-spot than brewery. Good landing point for the rest of the night |
 | [Ben Nghe Street Food Market](/pins/ben-nghe-street-food-market) | Heineken, satay, a stagger | The right closing move. Pick stalls by queue length |
 

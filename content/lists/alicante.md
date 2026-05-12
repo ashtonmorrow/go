@@ -4,7 +4,7 @@ featured: true
 title: "Alicante travel guide: how to get there, the beaches, and where to eat"
 description: "A personal Alicante travel guide. How to get there from Madrid by train, the city and rocky beaches, Castell de Santa Bàrbara, the Mercat, and a casual food rotation."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,7 +15,7 @@ guide_cards:
   intro: Alicante is the easiest under-the-radar coastal stop on the Spanish Mediterranean. Among the sunniest cities in continental Europe (~2,900 hours a year), with a real beach in the city itself, a castle on the hill, and food that runs from cheap caña-and-tapas to a proper sit-down dinner. The trick is matching how you arrive (LCC flight, Madrid train, or Bristol Ryanair hop) and what kind of beach day you want.
   cards:
     - title: Most easy flights are LCCs
-      body: Ryanair, easyJet, and Vueling carry the bulk of Alicante traffic. From the US, the cleanest play is Madrid or Barcelona, then the AVE train or a 1-hour domestic flight. Lufthansa Group offers the fewest-stops itineraries from the US directly.
+      body: Ryanair, easyJet, and Vueling carry the bulk of Alicante traffic. From the US, the cleanest play is Madrid or Barcelona, then the AVE (Spain's high-speed rail network) or a 1-hour domestic flight. Lufthansa Group offers the fewest-stops itineraries from the US directly.
     - title: Three train operators on Madrid → Alicante
       body: Renfe (national, reliable), Ouigo (cheapest, sometimes under €10), Iryo (newest, nice interiors). Spanish high-speed trains have airport-style security; build in 15 to 20 minutes. Tickets are dynamically priced; book early.
     - title: Pick the beach by what you want
@@ -146,4 +146,4 @@ Three options that work as a half- or full-day from Alicante:
 * **Jávea (Xàbia)** is 90 minutes by car. The headline old town and the rocky coves at Cala del Moraig and Cala Granadella nearby.
 * **Benidorm** is 40 minutes up the coast. The party-town version of the Costa Blanca; useful if you want a louder evening than Alicante offers.
 
-For a quieter alternative: hop on the Kusttram-equivalent local trains south to Santa Pola and the salt flats; pink flamingos most of the year, and the ferry to Tabarca leaves from the same harbour.
+For a quieter alternative: take a local Cercanías train south to Santa Pola and the salt flats; pink flamingos most of the year, and the ferry to Tabarca leaves from the same harbour.

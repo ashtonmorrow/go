@@ -4,7 +4,7 @@ featured: true
 title: "Bruges travel guide: the chocolate, the beer, and how to do it in a day"
 description: "A personal Bruges travel guide. The UNESCO historic centre, De Halve Maan brewery, the chocolate stops, the Béguinage, and whether to do it as a day trip from Brussels or stay overnight."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -33,7 +33,7 @@ faqs:
   - q: Is the canal boat worth it?
     a: Yes if the weather is dry. €15 for 30 minutes, five operators with similar routes, queue at any of the canal-side boarding points. The view of the Rozenhoedkaai (the famous postcard angle) from the water is what you came for.
   - q: How is the chocolate scene?
-    a: Better than the average European chocolate-tourist city. The Chocolate Line and Dumon are the artisan picks; Délice Brugge is a solid mid-range. Avoid the high-volume Leonidas and Godiva shops on Steenstraat; the same chocolate is everywhere in Belgium.
+    a: Better than the average European chocolate-tourist city. The Chocolate Line and Dumon are the artisan picks; Délice Brugge is a solid mid-range. Leonidas and Godiva have shops on Steenstraat too, but the same chocolate is widely available across Belgium; the artisan windows are the reason to buy chocolate in Bruges specifically.
 
 related:
   city: bruges
@@ -58,9 +58,9 @@ If you overnight, [The Pand Hotel](/pins/the-pand-hotel) is the boutique pick in
 
 ## Getting in
 
-SNCB runs Intercity trains from Brussels-Midi or Brussels-Central every 30 to 60 minutes. 60 minutes' ride, €17.60 single second class. The Weekendticket is half off on Saturday and Sunday. Trains also run from Ghent (~25 min direct) and Antwerp (~75 min, usually via change in Ghent).
+SNCB (Belgium's national rail operator) runs Intercity trains from Brussels-Midi or Brussels-Central every 30 to 60 minutes. 60 minutes' ride, €17.60 single second class. The Weekendticket is half off on Saturday and Sunday. Trains also run from Ghent (~25 min direct) and Antwerp (~75 min, usually via change in Ghent).
 
-From Bruges train station, the historic centre is a 10-minute flat walk or a short De Lijn bus 1/4/5. Walking is easier; the streets between the station and the Markt are flat and well signed.
+From Bruges train station, the historic centre is a 10-minute flat walk or a short ride on De Lijn (the Flemish regional bus and tram network) lines 1, 4, or 5. Walking is easier; the streets between the station and the Markt are flat and well signed.
 
 ## The walking circuit
 
@@ -89,15 +89,15 @@ Bruges is small enough that most central restaurants are within a 5-minute walk 
 | [Lobster Pot](/pins/lobster-pot) | Seafood splurge | Pricier, North Sea catch |
 | [The Chocolate Line](/pins/the-chocolate-line) | The Dominique Persoone artisan chocolate stop | The bacon-and-tomato bonbon and the chocolate-shooter are the signatures |
 | [The Line](/pins/the-line) | Small modern brasserie | Quieter alternative to the main-square restaurants |
-| ['T walpoortje](/pins/t-walpoortje) | A neighbourhood beer cafe outside the tourist core | Pour-perfect Westvleteren if they have it. Cash only |
+| ['T walpoortje](/pins/t-walpoortje) | A neighbourhood beer cafe outside the tourist core | Pour-perfect Westvleteren (the Trappist beer notoriously hard to get outside the abbey gates) if they have it. Cash only |
 
-Avoid the Steenstraat chain shops (Leonidas, Godiva) for chocolate; the same product is in every train station in Belgium. Buy from artisan windows where you can see a kitchen.
+The Steenstraat chain shops (Leonidas, Godiva) are everywhere in Belgium, train stations included; the artisan windows where you can see a kitchen are the reason to buy chocolate in Bruges specifically.
 
 ## The brewery and the chocolate stops
 
 | Brewery | Cost | Tour | Notes |
 |---|---|---|---|
-| [Huisbrouwerij De Halve Maan](/pins/huisbrouwerij-de-halve-maan) | €17 with tasting | 45 min, every hour | Brugse Zot is the flagship. Climb to the rooftop on the tour for the city view. The 3 km beer pipeline to the bottling plant is the anecdote |
+| [Huisbrouwerij De Halve Maan](/pins/huisbrouwerij-de-halve-maan) | €17 with tasting | 45 min, every hour | Brugse Zot (the brewery's flagship blonde) is what to order. Climb to the rooftop on the tour for the city view. The 3 km beer pipeline to the bottling plant is the anecdote |
 | [Brewery Bourgogne des Flandres](/pins/brewery-bourgogne-des-flandres) | €13 with tasting | 30 min, hourly | Sour-style red ale brewer. Smaller, less crowded. Excellent if De Halve Maan is sold out |
 
 Buy a six-pack to take home from either; the in-town beer shops mark up 30 to 50%.

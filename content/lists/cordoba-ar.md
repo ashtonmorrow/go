@@ -4,7 +4,7 @@ featured: true
 title: "Córdoba Argentina travel guide: getting there, the food, and the Sierras"
 description: "A short Córdoba (Argentina) travel guide. Limited international flights, a 500-year-old centre, college-town nightlife, and weekend escapes into the Sierras."
 published: 2026-05-11
-updated: 2026-05-14
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -108,7 +108,7 @@ The [Aeropuerto Internacional Córdoba (COR)](/pins/cordoba-airport-cor) sits ab
 | Within South America | Panama City direct (Copa), and seasonal direct service from Bogotá, Santo Domingo, São Paulo, Florianópolis | Routes drift season to season; check current LATAM, GOL, Copa, Avianca timetables |
 | From Buenos Aires (domestic) | AEP–COR on Aerolíneas Argentinas, JetSmart, or Flybondi. ~1h 15m, multiple daily flights | Flybondi and JetSmart are cheap but cancellation-prone; pay the difference for Aerolíneas if your timing is tight |
 
-A remise (private car) from COR to the centre runs ~$15 to $20 USD equivalent and takes around 25 minutes. Cabify and Uber also work.
+A remise (private car) from COR to the centre runs ~$15 to $20 USD equivalent and takes around 25 minutes. Cabify (the Spanish-Latin American rideshare alternative to Uber) and Uber also work.
 
 ## The historic centre on foot
 

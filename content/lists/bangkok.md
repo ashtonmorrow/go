@@ -4,7 +4,7 @@ featured: true
 title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
 description: "A personal Bangkok travel guide. Where to stay in Sukhumvit, Silom, or Riverside, the BTS mall walk for jet-lagged days, the river-grouped temple circuit, and Yaowarat at night."
 published: 2026-05-10
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -125,7 +125,7 @@ Most central Bangkok hotels sit about an hour by road from either airport, traff
 
 ## Moving around the city
 
-Use the BTS Skytrain, the MRT subway, the [Chao Phraya river ferries](/pins/sathorn-pier-chao-phraya-express), and Grab. Between those four you can reach almost anything you want to see without negotiating a tuk-tuk or guessing whether your driver took the long way. Tuk-tuks are fine for the experience once. Agree on the price first and then go back to better transport.
+Use the BTS Skytrain, the MRT subway, the [Chao Phraya river ferries](/pins/sathorn-pier-chao-phraya-express), and Grab. Between those four you can reach almost anything you want to see without negotiating a tuk-tuk or guessing whether your driver took the long way. The BTS sells single-journey tokens at every station, plus a reusable Rabbit card that stores value and works on the BTS and the airport-side BRT; the MRT runs its own MRT card and accepts contactless bank-card tap at most gates. Tuk-tuks are fine for the experience once. Agree on the price first and then go back to better transport.
 
 The river is the part most first-time visitors miss. The Chao Phraya Express Boat runs north–south on a regular schedule from Sathorn Pier (the BTS interchange at Saphan Taksin), the cross-river ferries are a few baht, and the older ceremonial city sits close to the water for a reason. Use the river when the temple circuit is on the plan; you will save an hour and learn the city's geography in the process.
 
@@ -188,11 +188,11 @@ Choose by purpose, not by hype.
 | [Khao San Market](/pins/khao-san-market) | Quick souvenirs | Anytime | More useful than Khao San Road itself if you actually want to buy something |
 | Floating markets (Damnoen Saduak, Amphawa) | Photos, if at all | Half-day round-trip | Now staged for visitors. Skip on a short trip; do Chatuchak and Chinatown instead |
 
-[Yaowarat](/pins/yaowarat-bangkok-chinatown) is where I would go hungry. Walk it slowly, eat in three or four places, and come back another night for the rest. The food makes the case for itself.
+Yaowarat is where I would go hungry. Walk it slowly, eat in three or four places, and come back another night for the rest. The food makes the case for itself.
 
 ## Khao San at night
 
-I would not stay on [Khao San Road](/pins/khao-san-road), but I will go for an evening. The street earns its reputation honestly: cheap beer, neon, fried scorpions for the photo, hair-braiding stalls, live cover bands, very loud, very international. If the version of Bangkok you want is "out late, walking, eating bad-for-you things," Khao San delivers and you do not have to wake up there.
+I would not stay on Khao San Road, but I will go for an evening. The street earns its reputation honestly: cheap beer, neon, fried scorpions for the photo, hair-braiding stalls, live cover bands, very loud, very international. If the version of Bangkok you want is "out late, walking, eating bad-for-you things," Khao San delivers and you do not have to wake up there.
 
 The version that works: take a Grab in around 8 or 9 p.m., walk Khao San and the parallel Soi Rambuttri (which is the calmer adult cousin of the same street), eat one or two stalls, have a drink, Grab back to your hotel. A couple of hours is the right dose. It pairs well with a temple morning, since the old city is right there.
 

@@ -4,7 +4,7 @@ featured: true
 title: "Phuket travel guide: where to stay, the beaches worth the trip, and what to skip"
 description: "A personal Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -120,7 +120,7 @@ The hotels I have actually stayed at and would book again, by area:
 |---|---|---|---|
 | [Hotel Indigo Phuket Patong](/pins/hotel-indigo-phuket-patong-by-ihg) | Patong | The nicest property in Patong. Close enough to walk to everything, a couple of blocks removed from the noisiest spots so it stays quiet at night. Two pools, six attached restaurants, a 24-hour 7/11 with a coffee bar | A real Patong base; expect a busy street outside |
 | [Hyatt Regency Phuket Resort](/pins/hyatt-regency-phuket-resort) | Kamala | Quiet location, secluded beach with snorkeling, very good pools, great breakfast spread. Checks every box | Limited nightlife at the doorstep; you Grab to Patong |
-| [Four Points by Sheraton Phuket Patong](/pins/four-points-by-sheraton-phuket-patong-beach-resort) | Patong (south end) | Beautiful, well-maintained property. Spacious modern rooms, expansive breakfast | Understaffed when I stayed: 20–30 min waits for front desk, slow room-service coffee, hard to reach reception by phone. Bit far from the center of Patong |
+| [Four Points by Sheraton Phuket Patong](/pins/four-points-by-sheraton-phuket-patong-beach-resort) | Patong (south end) | Beautiful, well-maintained property. Spacious modern rooms, expansive breakfast | Service felt under-resourced when I stayed; expect longer waits at reception. A bit far from the centre of Patong |
 | [The Viva Patong Condo](/pins/the-viva-patong-condo) | Patong (off the strip) | A budget apartment option if you want kitchen and laundry | Off the beaten track; expect to Grab to the beach |
 
 ## The beaches
@@ -176,11 +176,11 @@ Patong has the highest food density. Phuket Town has the highest food quality. T
 | Spot | Area | Best for | Notes |
 |---|---|---|---|
 | [Karlsson's Restaurant Patong](/pins/karlsson-s-restaurant-patong) | Patong | Steakhouse fix on the strip | Reliable, real wine list |
-| [Wine Connection Phuket Town](/pins/wine-connection-phuket-town) | Phuket Town | Salads and Western break from Thai food | Variety of bowls and salads, reasonable prices, good service |
+| Wine Connection Phuket Town | Phuket Town | Salads and Western break from Thai food | Variety of bowls and salads, reasonable prices, good service |
 | [Restaurant by the sea](/pins/restaurant-by-the-sea) | Patong | Patio meal with the sea | Friendly staff, view partly blocked but the patio is spacious. Not cheap but reasonable |
 | [Papazula](/pins/papazula) | Patong | Light Turkish-Thai wrap lunch | Decor is 1950s American rockabilly, which makes no sense and is fine |
-| [Paradise Viewpoint restaurants](/pins/paradise-viewpoint) | Above Paradise Beach, south of Patong | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip. Note: this is the viewpoint above Paradise Beach, not the Big Buddha hill |
-| [Hard Rock Cafe Phuket](/pins/hard-rock-cafe-phuket) | Patong | A beer and a live band, not the food | Food is unremarkable and as expensive as any other restaurant. The band makes the room |
+| Paradise Viewpoint restaurants | Above Paradise Beach, south of Patong | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip. Note: this is the viewpoint above Paradise Beach, not the Big Buddha hill |
+| [Hard Rock Cafe Phuket](/pins/hard-rock-cafe-phuket) | Patong | A beer and a live band | Food is incidental to the live music, which is the reason to come |
 
 ## What to skip
 

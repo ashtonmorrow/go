@@ -4,7 +4,7 @@ featured: true
 title: "Cabo Verde travel guide: which island, the volcano, and the music in Mindelo"
 description: "A short Cabo Verde travel guide. Which island to pick (Sal, São Vicente, Santo Antão, Fogo), the volcanic crater village, Mindelo's music scene, and inter-island travel."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Cabo Verde
-  intro: Cabo Verde is the archipelago off West Africa many travellers have heard of but cannot place. Ten volcanic islands, Portuguese-and-Kriolu speaking, year-round trade winds, and a Morna-and-Funaná music tradition that runs deep. The trip is mostly about choosing the right island. Sal for beaches and resorts, São Vicente for culture, Fogo for the volcano, Santo Antão for hiking.
+  intro: Cabo Verde is the archipelago off West Africa many travellers have heard of but cannot place. Ten volcanic islands, Portuguese-and-Kriolu speaking, year-round trade winds, and the slow Morna ballads (the form Cesária Évora made internationally known) paired with the faster Funaná dance music in the bars. The trip is mostly about choosing the right island. Sal for beaches and resorts, São Vicente for culture, Fogo for the volcano, Santo Antão for hiking.
   cards:
     - title: Pick the island first
       body: Sal for white-sand beach week. São Vicente (Mindelo) for music, art, and a real working port town. Fogo for the volcanic crater village and the high hike. Santo Antão for the dramatic hiking and lush valleys. Most trips combine two.
@@ -29,7 +29,7 @@ faqs:
   - q: Which island should I pick first?
     a: Sal for a beach trip; everything is built around the resorts and the white sand at Santa Maria. São Vicente (Mindelo) for culture, music, and a real town. Fogo for one specific thing (climb the volcano, sleep in the crater village). Santo Antão for hiking the dramatic mountain valleys. Most travellers combine two; Sal-and-Mindelo, or Fogo-and-Santo Antão.
   - q: Do I need a visa?
-    a: Most Western travellers can enter visa-free or buy a visa on arrival; the country eased rules in 2019 and 2022. EU citizens enter free; US, UK, and Canadian visitors typically pay a small Tourism Tax (~30 EUR) at arrival. Verify before travel; the policy has shifted.
+    a: Most Western travellers can enter visa-free or buy a visa on arrival; the country eased rules in 2019 and 2022. EU citizens enter free; US, UK, and Canadian visitors typically pay a small Tourism Tax (about 30 EUR), filed online before departure as the EASE pre-arrival registration (ease.gov.cv). Verify before travel; the policy has shifted.
   - q: Do they speak Portuguese or Kriolu?
     a: Both. Portuguese is the official language; Kriolu (Cabo Verdean Creole, with local variants per island) is the everyday spoken language. English is reasonably common in the resort areas of Sal and Boa Vista, less so on the smaller islands. Portuguese helps everywhere.
   - q: Is it safe?
@@ -79,7 +79,7 @@ related:
 * [Cidade Velha](#cidade-velha)
 * [Watersports and what else](#watersports-and-what-else)
 
-## Match The Trip To The Island
+## Match the trip to the island
 
 | If you want | Start with | Add if you have time |
 |---|---|---|

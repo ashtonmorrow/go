@@ -4,7 +4,7 @@ featured: true
 title: "Kota Kinabalu travel guide: Borneo on the easy setting"
 description: "A personal Kota Kinabalu travel guide. Where to stay (Hyatt Regency or the Marriott), how to do Tunku Abdul Rahman Marine Park, Kinabalu Park as a day trip, and what to expect from a predominantly Muslim, conservative coastal city."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -58,7 +58,7 @@ related:
 
 | Layover hub | Time to city | Sample nightly hotel | Notes |
 |---|---|---|---|
-| Kuala Lumpur (KUL) | ~90 min by car/train | $75 to $125 for nice 5-star | Easy turn-into-a-stopover. KLIA Ekspres is fastest |
+| Kuala Lumpur (KUL) | ~90 min by car/train | $75 to $125 for nice 5-star | Easy turn-into-a-stopover. The KLIA Ekspres (the dedicated airport express train) is fastest |
 | Singapore (SIN) | 15 to 20 min by car/MRT | Much pricier | Faster transit, much steeper drinks and dinners |
 
 Whichever side you pick, the inbound MAS or AirAsia hop into BKI is short and runs frequently.
@@ -112,11 +112,11 @@ KK rewards an afternoon on foot. The downtown waterfront strip is walkable end-t
 
 | Stop | Why |
 |---|---|
-| [Floating Mosque (Kota Kinabalu City Mosque)](/pins/floating-mosque-kota-kinabalu-city-mosque) | Sits on a man-made lagoon and looks like it floats. Dress code applies for entry; outside is photogenic at sunset |
-| [Handicraft Market](/pins/handicraft-market) | Stallholders sell pearls, batik, wood carvings. Haggling expected |
+| Floating Mosque (Kota Kinabalu City Mosque) | Sits on a man-made lagoon and looks like it floats. Dress code applies for entry; outside is photogenic at sunset |
+| Handicraft Market | Stallholders sell pearls, batik, wood carvings. Haggling expected |
 | [Suria Sabah Shopping Mall](/pins/suria-sabah-shopping-mall) | Air-conditioned break, sea-facing top floor, Western and Malaysian food |
 | [Signal Hill Eco Farm](/pins/signal-hill-eco-farm) and [Lorong Signal Hill](/pins/lorong-signal-hill) | The viewpoint above town. Best at golden hour |
-| [Jesselton Point](/pins/jesselton-point-ferry-terminal) | Marine-park departures by day, casual seafood and a bar strip by evening |
+| Jesselton Point | Marine-park departures by day, casual seafood and a bar strip by evening |
 
 ## Where to eat and drink
 

@@ -4,7 +4,7 @@ featured: true
 title: "Khao Yai travel guide: the national park, the wineries, and Pak Chong"
 description: "A short Khao Yai travel guide. The 3-hour drive from Bangkok, the national park entry, two waterfalls, two wineries, and where to base if you only have a day."
 published: 2026-05-12
-updated: 2026-05-13
+updated: 2026-05-15
 authors:
   - Mike Lee
 hero_image: ""
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get to Khao Yai from Bangkok?
-    a: About 3 hours by car. A hired driver from Bangkok runs around 3,500 to 5,000 THB for the round trip; tour-operator day trips with the same itinerary run around 2,500 THB per person. The train from Hua Lamphong (or Krung Thep Aphiwat) to Pak Chong takes 3 to 4 hours; from Pak Chong you take a local taxi or hotel transfer to the park entrance.
+    a: About 3 hours by car. A hired driver from Bangkok runs around 3,500 to 5,000 THB for the round trip; tour-operator day trips with the same itinerary run around 2,500 THB per person. The train from Hua Lamphong or the newer Krung Thep Aphiwat (Bang Sue Grand Station, Bangkok's two main long-distance stations) to Pak Chong takes 3 to 4 hours; from Pak Chong you take a local taxi or hotel transfer to the park entrance.
   - q: How much is the park entry?
     a: 400 THB per foreign adult, 200 THB for children under 14; Thai nationals pay less. Tickets are bought at the gate. The park is open daily 08:00 to 17:00; the safari-style drives run early morning and late afternoon and need to be booked through the visitor centre or your hotel.
   - q: When should I visit?
