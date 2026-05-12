@@ -71,6 +71,8 @@ related:
 
 [Amsterdam](/cities/amsterdam) is more compact than it looks on a map. The city is shaped like a wheel, with [Amsterdam Centraal](/pins/amsterdam-centraal-station) at the hub and the [seventeenth-century canal ring](/pins/seventeenth-century-canal-ring-area-of-amsterdam-inside-the-singelgracht) radiating out from it. That geometry matters for how you pick a base, where the museums and food sit, and how often you actually walk versus take a tram. The other thing worth knowing up front: the Dutch national rail network is the best in Europe, which makes basing outside the city and riding in a real option, not a compromise.
 
+These are working notes from real time on the ground rather than a checklist. Amsterdam rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [When to go](#when-to-go)

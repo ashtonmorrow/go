@@ -58,6 +58,8 @@ related:
 
 [Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits about 4 km east of the old town. Treat it as a clean morning with lunch, not a full day.
 
+These are working notes from real time on the ground rather than a checklist. Trogir rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## A half-day shape
 
 | Time | What to do | Why |

@@ -56,6 +56,8 @@ related:
 
 [Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip. Bangkok is the heat and the energy; Chiang Mai is the temples and the long lunch. The food is, by most measures, better than most of Bangkok. The pace is slower. The temples are denser. The mountains start at the edge of the city. If you are already planning Thailand, three to four days here is the right amount.
 
+These are working notes from real time on the ground rather than a checklist. Chiang Mai rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [When to go](#when-to-go)

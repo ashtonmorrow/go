@@ -63,6 +63,8 @@ related:
 
 [Phuket](/cities/phuket) is the practical Thai island. It has the international airport, the full hotel range from backpacker to resort, the tour infrastructure for Phi Phi and Phang Nga Bay, and the bluntest version of beach tourism in Thailand. None of that is a complaint. If you want a beach week with a real airport at one end and a sit-down dinner choice at the other, Phuket gets the job done.
 
+These are working notes from real time on the ground rather than a checklist. Phuket rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 The trick is matching the side of the island to the trip you actually want, planning around the transport friction, and not skipping the cultural circuit just because everybody else does.
 
 ## On this page

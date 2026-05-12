@@ -55,6 +55,8 @@ related:
 
 [Madrid](/cities/madrid) is one of those cities I find easy to recommend and easy to mis-plan. The neighborhoods are close together, the food rewards walking, and the public transport works the way you want it to. The trip falls apart when you stay in the wrong base, treat the famous market as a meal, or assume you can walk up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday.
 
+These are working notes from real time on the ground rather than a checklist. Madrid rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [When to go](#when-to-go)

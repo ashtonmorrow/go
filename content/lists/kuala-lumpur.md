@@ -42,6 +42,8 @@ related:
 
 [Kuala Lumpur](/cities/kuala-lumpur) is the easy Southeast Asian capital. The metro covers most of what matters, Grab covers the rest, hotel value is among the best in the region for the quality you get, and the cultural circuit is unusually efficient. Most travellers can see the headline sights in two days and leave wanting more food. The full pin map for the city sits below; this writeup covers the parts of it that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. KL rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Getting in from KLIA](#getting-in-from-klia)

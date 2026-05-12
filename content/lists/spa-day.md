@@ -99,6 +99,7 @@ related:
 
 If you fly coach often enough, your body will eventually start charging you for it. The slow-burn version of the cost is a sore back, a stiff neck, a calf that knots up on a four-hour ground stretch on the third trip in a row. The fast version is one specific bad seat next to a screaming infant on a redeye and a week of recovery you cannot quite take.
 
+
 The travel hack this list is built around is the simplest possible fix. Book the first night of the trip into a city that has a serious thermal spa, and book the next morning at the spa. Soak for a few hours, get a massage, eat a long lunch, then keep going. The arrival day stays a buffer for sleep and orientation. The recovery is paid for. The rest of the trip starts on a body that can carry it.
 
 The version below is four destinations where I have used this trick myself and would book the same trip again. Each is on the map and pin set below; this writeup covers when and why each one earns the slot. The list is meant to grow as I find more places that work for the same hack.

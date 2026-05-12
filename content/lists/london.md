@@ -57,6 +57,8 @@ related:
 
 [London](/cities/london) is the easiest world city to plan and the easiest one to overspend on. The transport is the best part of the trip, the markets are the best place to eat, and most of the famous sights are walkable in two long days. The trap is staying somewhere expensive that you do not need and paying for the views you can see for free.
 
+These are working notes from real time on the ground rather than a checklist. London rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Getting in from Heathrow](#getting-in-from-heathrow)

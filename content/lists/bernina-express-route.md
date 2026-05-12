@@ -78,6 +78,8 @@ related:
 
 The Bernina Express is the named scenic train Rhaetian Railways runs through the Alps between Tirano in Italian Lombardy and Chur in Graubünden, Switzerland. It is easier to fit into a Milan-anchored trip than the route map makes it look. You take a regional train two and a half hours from Milan to [Tirano](/cities/tirano), board the panoramic Bernina Express there, and ride four hours through 55 tunnels and 196 bridges across the Alps to [Chur](/cities/chur). The line itself is the point; the panoramic windows are an upgrade rather than the experience.
 
+These are working notes from real time on the ground rather than a checklist. The Bernina Express rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 These are working notes from a real trip that was booked less than a week before departure rather than a polished tour-operator pitch. The point is to give you the version I wish I had read before buying my own ticket.
 
 ## On this page

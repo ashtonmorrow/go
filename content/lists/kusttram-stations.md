@@ -36,6 +36,8 @@ related:
 
 [Belgium](/countries/belgium)'s Kusttram is a daytrip adventure from [Ghent](/cities/ghent), [Brussels](/cities/brussels), or [Bruges](/cities/bruges) disguised as a public transportation system. It runs for roughly 67 kilometers along the Flemish coast, from [De Panne](/cities/de-panne) near [France](/countries/france) to [Knokke-Heist](/cities/knokke) near the [Dutch](/countries/netherlands) border, linking beach towns, dunes, apartment blocks, promenades, and pockets of Belle Époque stubbornness.
 
+These are working notes from real time on the ground rather than a checklist. The Belgian coast rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 It is often billed as the longest tram line in the world, and I wouldn't build a full Belgium trip around the Kusttram unless you are the kind of person who finds a tram depot fascinating. But if you're in the area already, the reason to ride it is that it turns the Belgian seaside into a low cost, low stakes hop-on, hop-off tour. If you feel one town or beach isn't your vibe, it's simple to cruise further up or down the coast to find a place that feels right.
 
 This is my personal atlas of Kusttram station pins, not an official timetable. The map is meant to help you choose a stretch of coast, then connect it to towns and saved places already in the atlas. Check [De Lijn](https://www.delijn.be) before traveling for current service, works, stop changes, and the small indignities of public transportation.

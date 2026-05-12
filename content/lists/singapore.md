@@ -42,6 +42,8 @@ related:
 
 [Singapore](/cities/singapore) is the most efficient major city in Southeast Asia and the easiest to underestimate by budget. Two to three days, mostly on foot and MRT, with the spending on food rather than drinks is the version of the trip I would book. The full pin map for the city sits below; this writeup covers the parts of it that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Singapore rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Getting in from Changi](#getting-in-from-changi)

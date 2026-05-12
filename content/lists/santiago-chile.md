@@ -67,6 +67,8 @@ related:
 
 [Santiago](/cities/santiago) is a practical major South American capital to plan. The metro covers the routes most visitors need, the food scene has more depth than the city's businesslike reputation suggests, the wine country begins within an hour of downtown, and the Andes are visible from much of the city on a clear day. The trip works as a four to five day base, or as one anchor of a longer Chile loop with Valparaíso and the Atacama or Patagonia.
 
+These are working notes from real time on the ground rather than a checklist. Santiago rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Getting in from SCL](#getting-in-from-scl)

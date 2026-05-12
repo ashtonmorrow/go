@@ -42,6 +42,8 @@ related:
 
 [Bruges](/cities/bruges) is the small medieval [Belgian](/countries/belgium) city that everyone tells you to see, and it largely earns the reputation. The historic centre is a small enough loop that the headline sights fit into one full day; the canals, the chocolate, and a brewery tour are the spine of that day. The trick is to be there before 10 a.m. or after 6 p.m. when the day-trip crowd is thinner. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Bruges rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Day trip or overnight?](#day-trip-or-overnight)

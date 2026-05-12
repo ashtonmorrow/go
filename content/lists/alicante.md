@@ -56,6 +56,8 @@ related:
 
 [Alicante](/cities/alicante) is the Spanish Mediterranean city most international travellers do not think about, partly because it is hard to fly to direct and partly because Barcelona and Valencia absorb the headlines. It is worth more than that. The city sits among the sunniest in continental Europe at roughly 2,900 hours a year, with a swimmable beach inside the city itself, a castle on the hill, and an underrated food scene that runs from one-euro tapas to a proper steakhouse dinner.
 
+These are working notes from real time on the ground rather than a checklist. Alicante rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 ## On this page
 
 * [How to get there](#how-to-get-there)

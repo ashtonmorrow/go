@@ -37,6 +37,8 @@ related:
 
 [Alicante](/cities/alicante)'s tram is the trick that makes the city feel larger than it is. The center is compact, but the network lets you stay near the old town or Postiguet and still spend a beach day farther up the Costa Blanca without renting a car.
 
+These are working notes from real time on the ground rather than a checklist. The Alicante tram rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 I would use it less as a commuter map and more as a low-pressure coastal tool. [El Campello](/pins/el-campello) is the easy first ride. If you want smaller coves, keep looking north toward [Coveta Fumà](/pins/coveta-fuma) and [Cala Piteres](/pins/cala-piteres). [Benidorm](/pins/benidorm) is the long obvious target, partly because you can transfer there if you want to continue farther up the line.
 
 ## Which stretch to ride

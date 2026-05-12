@@ -38,6 +38,8 @@ related:
 
 I started paying attention to green markets because I often stay in apartments for four to eight weeks. Eating every meal out gets old, and in this part of Europe the market is still the quickest way to understand how a city feeds itself. You see who is buying for dinner, what is in season, which stalls are for residents, and which stalls are quietly priced for people passing through.
 
+These are working notes from real time on the ground rather than a checklist. A morning walking these markets rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 This is not a ranking of the region's prettiest markets. It is a working list of places I would actually save on a map: some for cooking, some for gifts, some for a short morning walk before the old town fills up. The useful question is not whether a market is authentic. It is whether it still helps you read the city.
 
 ## How I use these markets

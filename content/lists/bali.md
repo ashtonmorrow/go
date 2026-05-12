@@ -103,6 +103,8 @@ related:
 
 Bali is one of the most-photographed islands in the world and also one of the most casually mis-planned, partly because the postcard version (the rice terraces, the Monkey Forest stone steps, the infinity pool over the surf break, the swing on the hillside) lives in three different parts of the island that take real time to move between. The single most useful planning decision is which base or combination of bases matches the trip you actually want. The map below carries the curated pin set; this writeup covers the bases, the rhythm, and the version of the trip I would book.
 
+These are working notes from real time on the ground rather than a checklist. Bali rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
 The current Bali saved list is the May 2026 consolidation of four earlier sub-region lists (bali, canggu, seminyak, ubud) into one. The old slugs continue to resolve via the legacy redirect table; the pins, the curation, and the prose all live under `/lists/bali` now.
 
 ## On this page
