@@ -12,10 +12,10 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Santiago
-  intro: Santiago is the easiest South American capital to plan. The metro works, the food is good, the wine is genuinely world-class, and the Andes are visible from most of the city. The trick is matching the base to the trip (Providencia for ease, Bellavista for the bars, Lastarria for the museum days) and saving a full day for the Maipo Valley wineries.
+  intro: Santiago is a practical South American capital to plan. The metro works, the food is strong, the wine country is close, and the Andes are visible from much of the city on clear days. The trick is matching the base to the trip, with Providencia for ease, Bellavista for bars, Lastarria for museum days, and one full day for the Maipo Valley wineries.
   cards:
     - title: Use the metro and Cabify
-      body: Santiago's metro is the best in South America. Clean, fast, cheap. Cabify and Uber both work for the gaps. Skip street taxis unless you have a fixed price agreed before you get in.
+      body: Santiago's metro is unusually useful by regional standards, clean, fast, and cheap. Cabify and Uber both work for the gaps. Skip street taxis unless you have a fixed price agreed before you get in.
     - title: One day for Maipo, one for Valparaíso
       body: The Maipo Valley wine region is 40 minutes south by car. Concha y Toro and Santa Rita are the names. Valparaíso is 90 minutes northwest by bus; book the day, do not rush it.
     - title: Stay in Providencia for the first trip
@@ -33,7 +33,7 @@ faqs:
   - q: Is Santiago safe?
     a: Generally yes, with normal urban precautions. The tourist zones (Lastarria, Providencia, Las Condes, the city centre during the day) are fine. Avoid flashing valuables on the metro; phone snatching happens. Some neighbourhoods outside the centre warrant Uber rather than walking after dark.
   - q: Is the wine region worth a day?
-    a: Yes. The Maipo Valley produces Chile's best Cabernet Sauvignon and Carmenère, the two grapes the country is known for. A half-day tour covers Concha y Toro (the headline) and one smaller estate. A full day adds a long lunch and a second vineyard.
+    a: Yes. The Maipo Valley is Chile's closest major wine region to Santiago and is especially associated with Cabernet Sauvignon and Carmenère. A half-day tour covers Concha y Toro and one smaller estate. A full day adds a long lunch and a second vineyard.
 
 related:
   city: santiago
@@ -65,7 +65,7 @@ related:
 # - Source: Mike's Santiago travel brief; personal references stripped.
 ---
 
-[Santiago](/cities/santiago) is the easiest major South American capital to plan. The metro is the best on the continent; the food scene is genuinely good and getting better; the wine is world-class and grown 40 minutes from downtown; and the Andes are visible from most of the city on a clear day. The trip works as a four to five day base, or as one anchor of a longer Chile loop with Valparaíso and the Atacama or Patagonia.
+[Santiago](/cities/santiago) is a practical major South American capital to plan. The metro covers the routes most visitors need, the food scene has more depth than the city's businesslike reputation suggests, the wine country begins within an hour of downtown, and the Andes are visible from much of the city on a clear day. The trip works as a four to five day base, or as one anchor of a longer Chile loop with Valparaíso and the Atacama or Patagonia.
 
 ## On this page
 
@@ -77,6 +77,15 @@ related:
 * [The Maipo Valley wineries](#the-maipo-valley-wineries)
 * [Valparaíso as a daytrip](#valparaíso-as-a-daytrip)
 * [Cajón del Maipo](#cajón-del-maipo)
+
+## A Practical Four-Day Shape
+
+| Day | Focus | Why it works |
+|---|---|---|
+| 1 | Providencia or Lastarria, Plaza de Armas, Mercado Central | Keeps the first day central while you learn the metro and city rhythm |
+| 2 | [Cerro San Cristóbal](/pins/cerro-san-cristobal), Bellavista, La Chascona | Pairs the view, Neruda house, and evening neighbourhood without much transit |
+| 3 | Maipo Valley wineries | The wine day needs a driver or tour, so give it its own space |
+| 4 | Valparaíso or Cajón del Maipo | Choose port city and street art, or mountain gorge and reservoir |
 
 ## Getting in from SCL
 

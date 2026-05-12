@@ -4,7 +4,7 @@ featured: true
 title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
 description: "A personal Ho Chi Minh City travel guide. Vietnam e-visa, where to stay in District 1, the Saigon craft beer crawl (Heart of Darkness, Pasteur Street, Belgo, East West), and a one-day cultural circuit."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-12
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,12 +12,12 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Ho Chi Minh City
-  intro: HCMC is hot, loud, full of motorbikes, and home to the best craft beer scene in Southeast Asia. Most western visitors need an e-visa, base in District 1, and underestimate the day-of friction. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centrepiece evening.
+  intro: HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of friction. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centrepiece evening.
   cards:
     - title: Get the e-visa, not from a middleman
       body: Vietnam offers 30-day single and 90-day multiple entry e-visas starting at $25. The application takes 3 business days. Use the official Government of Vietnam portal. There are many lookalike sites charging two to three times more for the same thing.
     - title: Stay in District 1
-      body: Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. Vinpearl Landmark 81 is the splurge with the best view in the country; the InterContinental is the family pick; small boutique 4-stars run $30 to $75 a night.
+      body: Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. Vinpearl Landmark 81 is the view splurge; the InterContinental is the family pick; small boutique 4-stars run $30 to $75 a night.
     - title: Do the craft beer crawl in one evening
       body: Heart of Darkness, Pasteur Street, Belgo, East West Brewing, all within walking distance in District 1. Start at HOD with the cucumber pils because of the heat, eat at one of the early stops, finish at Ben Nghe Street Food Market.
     - title: One day is the culture day
@@ -26,11 +26,10 @@ guide_cards:
 faqs:
   - q: Do I need a visa for Vietnam?
     a: Most western visitors do. Use the official Government of Vietnam e-visa portal (evisa.xuatnhapcanh.gov.vn). The 30-day single-entry visa starts at $25; 90-day multiple-entry is more. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites; they charge two to three times the official rate for the same e-visa.
-    a_text: "Most western visitors do. Use the official Government of Vietnam e-visa portal (evisa.xuatnhapcanh.gov.vn). The 30-day single-entry visa starts at $25; 90-day multiple-entry is more. Processing is 3 business days, so do not file the night before you fly. Avoid third-party 'visa service' sites; they charge two to three times the official rate for the same e-visa."
   - q: Where should I stay in HCMC?
-    a: District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the splurge with the best view in the country and one of the better hotel breakfasts anywhere. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.
-  - q: Is Saigon really the best craft beer city in Asia?
-    a: It is in the running. The scene is dense, the breweries are within walking distance of each other in District 1, the prices are reasonable, and the quality is high. Heart of Darkness, Pasteur Street, Belgo, East West, and 7 Bridges are the names you will see most. The one-evening crawl below covers the four big ones.
+    a: District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the view splurge and has a strong hotel breakfast. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.
+  - q: Is Saigon good for craft beer?
+    a: Yes. The scene is dense, the breweries are within walking distance of each other in District 1, the prices are reasonable, and the quality is high. Heart of Darkness, Pasteur Street, Belgo, East West, and 7 Bridges are the names you will see most. The one-evening crawl below covers the four big ones.
   - q: How do I get from Tan Son Nhat (SGN) to District 1?
     a: Grab is the answer. Around $5 to $10 to most District 1 hotels, 20 to 40 minutes depending on traffic. Avoid the airport taxi touts in arrivals. Official metered taxis (Vinasun, Mai Linh) are fine if you walk to the rank, but Grab is easier with luggage. Bus 109 runs to Ben Thanh for under $1 if you are travelling light.
   - q: Is it safe to walk around at night?
@@ -41,7 +40,7 @@ related:
   country: vietnam
 ---
 
-[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the easiest entry into [Vietnam](/countries/vietnam) and the city most western travellers underestimate by half. It is hot, humid, motorbike-saturated, and home to the best craft beer scene in Southeast Asia. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the actual reason most repeat visitors come back. The full pin map sits below; this writeup covers the parts of it that change the trip.
+[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -75,7 +74,7 @@ District 1 is the default. Inside that, three tiers cover most travellers.
 
 | Tier | Hotel | Why pick it | Notes |
 |---|---|---|---|
-| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | Tallest building in the country, one of the best hotel breakfasts I have ever had, attached shopping, the best views in the city. The hotel to book if you want to impress | In Binh Thanh, 10 minutes from central District 1 by Grab |
+| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | Tallest building in the country, strong hotel breakfast, attached shopping, and wide city views | In Binh Thanh, 10 minutes from central District 1 by Grab |
 | Mid ($100ish) | InterContinental Saigon | Staid but central, next to Book Street. Family-friendly thanks to the Executive Apartments wing | The default IHG choice. Reliable rather than memorable |
 | Boutique ($30 to $75) | Independent 4-star and serviced apartments | District 1 has a deep bench. Many of the new residential towers rent units by the night | Read recent reviews. Quality varies more than at the chains |
 

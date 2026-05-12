@@ -36,7 +36,6 @@ faqs:
     a: Yes for one day, especially if Star Wars or Berber architecture interests you. The original Luke Skywalker home (Hotel Sidi Driss) is in Matmata and still operates as a hotel. It is a 90-minute ferry plus 2-hour drive each way, so book a tour or hire a driver rather than DIY-ing the day.
 
 related:
-  city: djerba
   country: tunisia
 
 # Authoring notes (kept here, not rendered):
@@ -63,7 +62,7 @@ related:
 # - Source: Mike's Djerba travel brief; personal references stripped.
 ---
 
-[Djerba](/cities/djerba) is the Tunisian island most North Americans have never heard of. European package travellers have known about it for thirty years; the sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin.
+Djerba is the Tunisian island most North Americans have never heard of. European package travellers have known about it for thirty years; the sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin.
 
 ## On this page
 

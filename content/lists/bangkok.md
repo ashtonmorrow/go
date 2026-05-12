@@ -61,7 +61,7 @@ related:
 #     · the-commons-thonglor + fowlmouth-thecommons-thonglor (Thong Lo row)
 #     · she-bar (Thong Lo row)
 #     · arabica-bangkok-central-world (mall walk, CentralWorld stop)
-#   chitbeer (Ko Kret) is also rated 5/5 — flag for an "If you have an
+#   chitbeer (Ko Kret) is also rated 5/5, flag for an "If you have an
 #   extra day" Ko Kret section if/when that gets written.
 # - Mike said his usual base is "Hyatt Place Sukhumvit 74"; only Hyatt
 #   Place Sukhumvit 1 (Phloen Chit area) and Sukhumvit 24 (Phrom Phong)

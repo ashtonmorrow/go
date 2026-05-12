@@ -4,7 +4,7 @@ featured: true
 title: "Kusttram station guide: riding Belgium's coastal tram"
 description: "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section."
 published: 2026-04-30
-updated: 2026-05-06
+updated: 2026-05-12
 authors:
   - Mike Lee
 route_map: kusttram
@@ -38,7 +38,16 @@ related:
 
 It is often billed as the longest tram line in the world, and I wouldn't build a full Belgium trip around the Kusttram unless you are the kind of person who finds a tram depot fascinating. But if you're in the area already, the reason to ride it is that it turns the Belgian seaside into a low cost, low stakes hop-on, hop-off tour. If you feel one town or beach isn't your vibe, it's simple to cruise further up or down the coast to find a place that feels right.
 
-This is my personal atlas of Kusttram station pins, not an official timetable. I'll get around to adding some unique spots I enjoyed and adding more photos later. Check [De Lijn](https://www.delijn.be) before traveling for current service, works, stop changes, and the small indignities of public transportation.
+This is my personal atlas of Kusttram station pins, not an official timetable. The map is meant to help you choose a stretch of coast, then connect it to towns and saved places already in the atlas. Check [De Lijn](https://www.delijn.be) before traveling for current service, works, stop changes, and the small indignities of public transportation.
+
+## Which Section To Ride
+
+| Section | Start | Why pick it | Reader note |
+|---|---|---|---|
+| First sample | [Oostende](/cities/oostende) to [De Haan](/cities/de-haan) | Mainline train access at Oostende, a manageable tram ride, and a town at the end that is pleasant on foot | The section I would choose if you only want the idea, not the whole line |
+| Dunes and history | [Oostende](/cities/oostende) to [Raversijde](/pins/raversijde-domein-raversijde) and [Middelkerke](/cities/middelkerke) | Beach infrastructure plus the Atlantikwall museum in the dunes | Better if you want something more specific than a promenade walk |
+| Beach culture | [De Panne](/cities/de-panne) to [Oostduinkerke](/cities/oostduinkerke) | Wide sand, family beach rhythm, and the shrimp-fishing tradition nearby | Check tide and local schedules if the horseback fishermen are the reason you are going |
+| Resort sequence | Blankenberge to [Knokke](/cities/knokke) | Larger resort towns, apartment blocks, shopping streets, and the more polished end of the coast | Useful if you are curious about Belgian seaside development, less necessary for a short day |
 
 ## How a Belgian beach day actually works
 

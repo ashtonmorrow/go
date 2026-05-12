@@ -44,7 +44,7 @@ related:
 # - featured is true so the scaffold appears on the home page Travel
 #   guides section alongside Cape Town / Madrid / Bristol / Bangkok.
 # - hero_image is empty; pick one in /admin/lists/amsterdam via the picker.
-# - related.country = "netherlands" — confirm matches go_countries
+# - related.country = "netherlands", confirm matches go_countries
 #   slug; might need to be a different value (e.g., "the-netherlands").
 # - Pin ops on this commit:
 #     · Deleted the typo'd Brouwerij dupe (slug brouwerij-t-lj)

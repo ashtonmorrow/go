@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Cabo Verde
-  intro: Cabo Verde is the archipelago off West Africa most travellers have heard of but cannot place. Ten volcanic islands, Portuguese-and-Kriolu speaking, year-round trade winds, and a Morna-and-Funaná music tradition that runs deep. The trip is genuinely about choosing the right island. Sal for beaches and resorts, São Vicente for culture, Fogo for the volcano, Santo Antão for hiking.
+  intro: Cabo Verde is the archipelago off West Africa many travellers have heard of but cannot place. Ten volcanic islands, Portuguese-and-Kriolu speaking, year-round trade winds, and a Morna-and-Funaná music tradition that runs deep. The trip is mostly about choosing the right island. Sal for beaches and resorts, São Vicente for culture, Fogo for the volcano, Santo Antão for hiking.
   cards:
     - title: Pick the island first
       body: Sal for white-sand beach week. São Vicente (Mindelo) for music, art, and a real working port town. Fogo for the volcanic crater village and the high hike. Santo Antão for the dramatic hiking and lush valleys. Most trips combine two.
@@ -36,7 +36,7 @@ faqs:
     a: Yes, by general travel standards. The usual urban precautions in Praia and parts of Mindelo at night; small-town and resort areas are very calm. Most travellers report Cabo Verde as one of the easier West African destinations.
 
 related:
-  country: capeverde
+  country: caboverde
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
@@ -67,7 +67,7 @@ related:
 #   stripped.
 ---
 
-[Cabo Verde](/countries/capeverde) is the archipelago most travellers cannot place. Ten volcanic islands off West Africa, 450 km west of Senegal; Portuguese-and-Kriolu speaking; ~550,000 population; year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is genuinely about choosing the right island: Cabo Verde is not one destination.
+[Cabo Verde](/countries/caboverde) is the archipelago many travellers cannot quite place. Ten volcanic islands off West Africa, 450 km west of Senegal; Portuguese-and-Kriolu speaking; about 550,000 people; year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is mostly about choosing the right island: Cabo Verde is not one destination.
 
 ## On this page
 
@@ -78,6 +78,16 @@ related:
 * [Pico do Fogo and the crater village](#pico-do-fogo-and-the-crater-village)
 * [Cidade Velha](#cidade-velha)
 * [Watersports and what else](#watersports-and-what-else)
+
+## Match The Trip To The Island
+
+| If you want | Start with | Add if you have time |
+|---|---|---|
+| A beach week with little planning | Sal | Boa Vista for quieter sand |
+| Culture, music, and a real town | São Vicente, based in Mindelo | Santo Antão by ferry for mountain scenery |
+| A distinctive natural site | Fogo | Santiago for Cidade Velha and Praia |
+| Walking and landscapes | Santo Antão | São Vicente before or after, since the ferry runs from Mindelo |
+| A first trip with two islands | Sal and São Vicente | Keep the transfer simple and avoid trying to see the whole country |
 
 ## When to go
 

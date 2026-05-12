@@ -4,7 +4,7 @@ featured: true
 title: "Trogir travel guide: the easy half-day from Split"
 description: "A short Trogir travel guide. Split bus 37, Kamerlengo Castle, the green market, the resident cats, and lunch spots in the old town worth walking to."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-12
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,14 +12,14 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Trogir
-  intro: Most people on a Split trip skip Trogir, and that is the mistake. It is forty-five minutes up the coast by city bus, the old town is small enough to walk in a morning, and the food is fair without the cruise-ship markup. Treat it as half a day with a long lunch.
+  intro: Trogir works best as a half-day from Split, not as a separate base. It is forty-five to sixty minutes up the coast by city bus, the old town is small enough to walk in a morning, and the food is fair without the central Split markup. Treat it as a clean morning with lunch.
   cards:
     - title: It is a half-day, not a daytrip
       body: Trogir's old town is a single small island. You can see the whole thing on foot in two or three hours. Combine it with lunch and you have a clean morning out.
     - title: Take Bus 37 over
       body: The local city bus that runs Split to the airport stops in Trogir. Cheap, frequent, slow because it is a local. You trade an hour for a couple of euros instead of thirty.
-    - title: Same market story as Split, less crowded
-      body: The green market on the mainland side of the bridge is smaller and less touristy than Split's Pazar. The visitors are mostly Croatian and other Balkan day trippers, not international cruise.
+    - title: Same market story as Split, quieter
+      body: The green market on the mainland side of the bridge is smaller and less visitor-facing than Split's Pazar. It is worth a short look before you cross into the old town.
     - title: Climb Kamerlengo
       body: The Venetian fortress at the western tip is worth the small admission for the view back across the rooftops and over to Čiovo island.
 
@@ -56,7 +56,17 @@ related:
 #   corrected; address is still null, fill in next admin pass.
 ---
 
-Most people on a Split trip skip [Trogir](/cities/trogir), and that is the mistake. It is barely a daytrip. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan) above [Split](/cities/split), and you see it again from the window when you fly into Split-Resnik, because the airport sits a few hundred metres beyond the old town. Treat it as a clean morning with lunch, not a full day.
+[Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits a few hundred metres beyond the old town. Treat it as a clean morning with lunch, not a full day.
+
+## A Half-Day Shape
+
+| Time | What to do | Why |
+|---|---|---|
+| 08:30 | Take [Bus 37](/pins/bus-37-to-trogir) from Split | Slow, cheap, and direct enough for this trip |
+| 09:30 | Stop at [Trogir Green Market](/pins/trogir-green-market) | Gives you the working-town edge before the stone old town |
+| 10:00 | Walk the island old town | The UNESCO core is compact, so wandering works better than over-planning |
+| 11:30 | Climb [Kamerlengo Castle](/pins/kamerlengo-castle) | The view back across the rooftops is the reason to pay the small admission |
+| 12:30 | Lunch on the promenade or inside the walls | Trogir is strongest as a slow lunch stop before returning to Split |
 
 ## Getting there from Split
 
@@ -75,7 +85,7 @@ Verify the current timetable with Promet Split before you go; the headways drift
 
 ## A morning in the old town
 
-[The historic city of Trogir](/pins/historic-city-of-trogir) sits on a small island in the channel between the mainland and [Čiovo](/cities/ciovo). The whole place is walkable in a couple of hours, even slowly. The rhythm I would follow:
+[The historic city of Trogir](/pins/historic-city-of-trogir) sits on a small island in the channel between the mainland and Čiovo. The whole place is walkable in a couple of hours, even slowly. The rhythm I would follow:
 
 * Cross the bridge, stop at the [green market](/pins/trogir-green-market) along the waterfront for ten minutes. Same idea as Split's Pazar, smaller, less touristy. For the broader pattern of how to use these markets, see [my notes on Balkan green markets](/posts/balkan-green-markets).
 * Wander into the old town through the gate. The cathedral and bell tower sit on the central square; the [Church of St Sebastian](/pins/crkva-sv-sebastijana-church-of-st-sebastian) is on the same square if you want a quieter chapel for a minute.
