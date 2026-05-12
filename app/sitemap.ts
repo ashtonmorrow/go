@@ -168,7 +168,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const listRoutes: MetadataRoute.Sitemap = Array.from(listsMeta.values()).map(list => ({
-    url: `${SITE_URL}/lists/${listNameToSlug(list.name)}`,
+    // Prefer the saved_lists.slug column over the derived form. Falls
+    // back to derived for any row that somehow missed the May 2026
+    // backfill so the sitemap stays exhaustive.
+    url: `${SITE_URL}/lists/${list.slug ?? listNameToSlug(list.name)}`,
     lastModified: list.updatedAt ?? now,
     changeFrequency: 'monthly',
     priority: list.description ? 0.7 : 0.5,

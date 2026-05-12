@@ -1,18 +1,30 @@
 // === Saved-list slug helpers =================================================
-// Saved-list names in the DB are already lowercased + emoji-stripped at import
-// time (see scripts/import-google-takeout.ts → slugify_list_name). So a name
-// like "Bangkok 🇹🇭" is stored as "bangkok"; "Coffee Shops" stored as
-// "coffee shops". For URL slugs we only need to swap spaces for dashes and
-// percent-encode anything weird. The reverse mapping is the simple inverse.
+// Saved-list names in the DB are lowercased + emoji-stripped at import time
+// (see scripts/import-google-takeout.ts → slugify_list_name). So a name like
+// "Bangkok 🇹🇭" is stored as "bangkok"; "Coffee Shops" stored as "coffee
+// shops". The URL slug used to be derived from the name on the fly via
+// `listNameToSlug`. As of May 2026 saved_lists.slug is a real column so
+// the URL identifier can be edited independently of the display name
+// without forcing an admin redirect every time a name is changed.
 //
-// We don't try to disambiguate collision cases (two lists that slugify to the
-// same value); the import script's normalize already collapses duplicates.
+// `listNameToSlug` is still exported because:
+//   • The /lists index builds URLs for every unique name it sees on
+//     `pins.saved_lists[]`. Bucket names that don't have a corresponding
+//     `saved_lists` row (rare; ghost entries) fall back to the derived
+//     slug.
+//   • Backward compatibility: any pre-May-2026 link to /lists/<derived>
+//     still resolves because the page-resolution code tries the slug
+//     column first, then falls back to a derived match.
 
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
 
-/** Convert a saved-list name to a URL slug. */
+/** Convert a saved-list name to a URL slug.
+ *
+ *  Use `meta.slug` (the saved_lists.slug column) when you have a
+ *  SavedListMeta row in hand; this helper exists for bucket names that
+ *  aren't backed by a metadata row yet. */
 export function listNameToSlug(name: string): string {
   return name.trim().toLowerCase().replace(/\s+/g, '-');
 }
@@ -42,6 +54,10 @@ export function slugToListName(slug: string): string {
 
 export type SavedListMeta = {
   name: string;
+  /** URL identifier. Editable independently of `name` since May 2026.
+   *  Falls back to `listNameToSlug(name)` for bucket names with no
+   *  metadata row. */
+  slug: string;
   googleShareUrl: string | null;
   description: string | null;
   coverPinId: string | null;
@@ -83,7 +99,7 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
     const { data, error } = await supabase
       .from('saved_lists')
       .select(
-        'name, google_share_url, description, cover_pin_id, cover_photo_id, cover_image_url, pin_order, updated_at, ' +
+        'name, slug, google_share_url, description, cover_pin_id, cover_photo_id, cover_image_url, pin_order, updated_at, ' +
         'cover_photo:personal_photos!cover_photo_id(url)'
       );
     if (error) {
@@ -105,8 +121,14 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
         Array.isArray(photo)
           ? (photo[0] as { url?: string } | undefined)?.url ?? null
           : (photo as { url?: string } | null)?.url ?? null;
+      const name = row.name as string;
       return {
-        name: row.name as string,
+        name,
+        // saved_lists.slug is NOT NULL with a backfill, but we fall back
+        // to the derived form just in case the JOIN ever ships a row that
+        // missed the migration (e.g., concurrent writes during the
+        // backfill window).
+        slug: (row.slug as string | null) ?? listNameToSlug(name),
         googleShareUrl: (row.google_share_url as string | null) ?? null,
         description: (row.description as string | null) ?? null,
         coverPinId: (row.cover_pin_id as string | null) ?? null,
@@ -118,9 +140,10 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
       };
     });
   },
-  // v8: SavedListMeta gained coverImageUrl. v7 entries miss the field;
-  // /lists cover resolution would skip the new tier until TTL expiry.
-  ['saved-lists-meta-v8'],
+  // v9: SavedListMeta gained `slug` (separate from derived). v8 entries
+  // miss the field; URL resolution would silently fall back to derived
+  // values for all lists until TTL expiry, hiding the new column.
+  ['saved-lists-meta-v9'],
   { revalidate: 300, tags: ['saved-lists-meta'] },
 );
 

@@ -32,6 +32,17 @@ async function findList(slug: string) {
     fetchAllPins(),
     fetchAllSavedListsMeta(),
   ]);
+
+  // 1. Canonical lookup: saved_lists.slug column (the column added May
+  //    2026 to decouple URL identifier from display name).
+  for (const meta of listsMeta.values()) {
+    if (meta.slug === slug) return { name: meta.name, pins, listsMeta };
+  }
+
+  // 2. Legacy fallbacks for the transition window: reverse-derive name
+  //    from slug, then scan for matching listNameToSlug(name). Also
+  //    looks at names that only exist in pins.saved_lists[] (no meta
+  //    row yet), so a freshly-created list still resolves.
   const allNames = new Set<string>(listsMeta.keys());
   for (const p of pins) for (const l of p.savedLists ?? []) allNames.add(l);
 
@@ -166,15 +177,18 @@ export default async function ListDetailAdminPage({ params }: Props) {
       )}
 
       <header className="mb-6">
-        {/* Title + description, both inline-editable. */}
+        {/* Title + URL slug + description, all inline-editable. The
+            slug now lives on its own row under the title since May 2026
+            so renames don't kick the admin to a different URL. */}
         <EditableMeta
           initialName={found.name}
+          initialSlug={meta?.slug ?? listNameToSlug(found.name)}
           initialDescription={meta?.description ?? null}
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-3 text-label">
           <Link
-            href={`/lists/${listNameToSlug(found.name)}`}
+            href={`/lists/${meta?.slug ?? listNameToSlug(found.name)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-teal hover:underline"

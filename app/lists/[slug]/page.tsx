@@ -54,9 +54,24 @@ async function findList(slug: string) {
   // Resolve slug → list name. The metadata table holds every list name
   // (seeded after every saved-list import + create), so the common path
   // doesn't walk the pin corpus.
+  //
+  // Resolution order:
+  //   1. saved_lists.slug column exact match (the canonical lookup since
+  //      May 2026 when the slug column shipped).
+  //   2. slugToListName(slug) === name exact match (handles the common
+  //      pre-migration case where slug was just name with dashes for spaces).
+  //   3. listNameToSlug(name) === slug for any name in the meta table
+  //      (covers names with punctuation where slugToListName's reverse
+  //      isn't exact).
+  //   4. Synthesize on the fly if pins.saved_lists still references the
+  //      candidate name even though no meta row exists.
   const listsMeta = await fetchAllSavedListsMeta();
-  const allNames = new Set<string>(listsMeta.keys());
 
+  for (const meta of listsMeta.values()) {
+    if (meta.slug === slug) return { name: meta.name, listsMeta };
+  }
+
+  const allNames = new Set<string>(listsMeta.keys());
   const candidate = slugToListName(slug);
   if (allNames.has(candidate)) return { name: candidate, listsMeta };
   for (const name of allNames) {
@@ -69,6 +84,7 @@ async function findList(slug: string) {
   if (await pinsReferenceList(candidate)) {
     listsMeta.set(candidate, {
       name: candidate,
+      slug: listNameToSlug(candidate),
       googleShareUrl: null,
       description: null,
       coverPinId: null,

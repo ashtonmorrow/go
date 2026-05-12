@@ -56,6 +56,11 @@ type UpdateMetaBody = {
   name: string;
   google_share_url?: string | null;
   description?: string | null;
+  /** When supplied, updates saved_lists.slug for this list. Must be
+   *  URL-safe (lowercase letters, digits, dashes) and globally unique
+   *  across saved_lists. The slug is the URL identifier; the name is
+   *  the display label. Editable independently since May 2026. */
+  slug?: string;
 };
 type CreateBody = { action: 'create'; name: string };
 type AddPinBody = { action: 'addPin'; name: string; pinId: string };
@@ -118,6 +123,7 @@ export async function POST(req: Request) {
     // Postgres doesn't have a native array-rename, so we drive it via SQL:
     // strip the old token, then append the new one (de-duped).
     const { data, error } = await sb.rpc('rename_saved_list', { from, to });
+    let updatedCount: number;
     if (error) {
       // Fall back to client-side if the RPC doesn't exist — this lets the
       // endpoint work without a stored procedure deploy.
@@ -125,11 +131,43 @@ export async function POST(req: Request) {
       if (fallback.error) {
         return NextResponse.json({ error: fallback.error }, { status: 500 });
       }
-      bustCaches(from, to);
-      return NextResponse.json({ updated: fallback.updated });
+      updatedCount = fallback.updated;
+    } else {
+      updatedCount = data ?? 0;
     }
+
+    // Move the metadata row's name. The pins.saved_lists[] rewrite above
+    // points every pin at the new name; the saved_lists row itself still
+    // sat on the old name until this patch (May 2026). Keep the slug
+    // column unchanged: the URL identifier is independent of name now,
+    // so a rename does not flip the URL.
+    const { data: existing, error: selErr } = await sb
+      .from('saved_lists')
+      .select('name')
+      .eq('name', from)
+      .maybeSingle();
+    if (selErr) {
+      console.error('[saved-list] rename: meta-row lookup failed:', selErr);
+    } else if (existing) {
+      const { error: updErr } = await sb
+        .from('saved_lists')
+        .update({ name: to, updated_at: new Date().toISOString() })
+        .eq('name', from);
+      if (updErr) {
+        // Likely a uniqueness collision if `to` already exists as a meta
+        // row. Surface as 409 so the admin can rename around it.
+        if (updErr.code === '23505' || /duplicate key|unique/i.test(updErr.message)) {
+          return NextResponse.json(
+            { error: `meta row for "${to}" already exists; rename to another name or merge manually first` },
+            { status: 409 },
+          );
+        }
+        console.error('[saved-list] rename: meta-row update failed:', updErr);
+      }
+    }
+
     bustCaches(from, to);
-    return NextResponse.json({ updated: data ?? 0 });
+    return NextResponse.json({ updated: updatedCount });
   }
 
   if (body.action === 'delete') {
@@ -172,9 +210,38 @@ export async function POST(req: Request) {
     if (body.description !== undefined) {
       patch.description = body.description?.trim() || null;
     }
+    // Slug: optional explicit override of saved_lists.slug. Validate the
+    // shape (lowercase letters/digits/dashes only, no leading/trailing
+    // dash, no consecutive dashes) and let the unique constraint catch
+    // collisions. If the slug is the only thing changing we still bust
+    // the URL-keyed caches below.
+    if (body.slug !== undefined) {
+      const s = (body.slug ?? '').trim().toLowerCase();
+      if (!s) {
+        return NextResponse.json({ error: 'slug cannot be empty' }, { status: 400 });
+      }
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)) {
+        return NextResponse.json(
+          {
+            error:
+              'slug must be lowercase letters, digits, and dashes (no leading/trailing dash, no consecutive dashes)',
+          },
+          { status: 400 },
+        );
+      }
+      patch.slug = s;
+    }
     // Upsert so the row exists even for lists that haven't gotten metadata yet.
     const { error } = await sb.from('saved_lists').upsert({ name, ...patch });
     if (error) {
+      // Surface the unique-constraint collision as a 409 with a readable
+      // message rather than a generic 500.
+      if (error.code === '23505' || /duplicate key|unique/i.test(error.message)) {
+        return NextResponse.json(
+          { error: 'slug already in use by another list' },
+          { status: 409 },
+        );
+      }
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
     // Bust the saved-lists-meta cache so the new URL surfaces immediately on
@@ -185,6 +252,17 @@ export async function POST(req: Request) {
       /* ignore */
     }
     bustCaches(name);
+    // When the slug column itself changed, also bust the path keyed on
+    // the new slug so the freshly-pointed URL renders without waiting
+    // for the next ISR window.
+    if (patch.slug && typeof patch.slug === 'string') {
+      try {
+        revalidatePath(`/lists/${patch.slug}`);
+        revalidatePath(`/admin/lists/${patch.slug}`);
+      } catch {
+        /* ignore */
+      }
+    }
     return NextResponse.json({ ok: true });
   }
 

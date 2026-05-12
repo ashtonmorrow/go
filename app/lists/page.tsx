@@ -135,9 +135,13 @@ export default async function ListsIndex() {
       ?? (meta?.coverPinId ? pinPrimaryPhoto.get(meta.coverPinId) ?? null : null)
       ?? city?.cover
       ?? pickPinCover(arr);
+    // Prefer the saved_lists.slug column (the URL identifier, editable
+    // independently of name since May 2026). Fall back to the derived form
+    // for bucket names that don't have a meta row yet — that path keeps
+    // pre-meta lists discoverable from /lists.
     return {
       name,
-      slug: listNameToSlug(name),
+      slug: meta?.slug ?? listNameToSlug(name),
       count: arr.length,
       visitedCount: arr.filter(p => p.visited).length,
       cover,

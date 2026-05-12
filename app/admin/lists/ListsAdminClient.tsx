@@ -2,11 +2,14 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { listNameToSlug } from '@/lib/savedLists';
 import CoverPickerModal from './CoverPickerModal';
 
 type ListRow = {
   name: string;
+  /** URL identifier (saved_lists.slug). Editable independently of name
+   *  since May 2026; passed from the server so every link in this admin
+   *  resolves to the canonical URL even when name and slug disagree. */
+  slug: string;
   count: number;
   googleShareUrl: string | null;
   description: string | null;
@@ -63,9 +66,21 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error ?? 'create failed');
       setLists(prev =>
-        [...prev, { name, count: 0, googleShareUrl: null, description: null, coverPhotoId: null, coverPhotoUrl: null }].sort(
-          (a, b) => b.count - a.count || a.name.localeCompare(b.name),
-        ),
+        [
+          ...prev,
+          {
+            name,
+            // The DB backfill / trigger seeds slug from name on insert;
+            // mirror that here so the new row links correctly until the
+            // next page reload pulls authoritative meta from the server.
+            slug: name.trim().toLowerCase().replace(/\s+/g, '-'),
+            count: 0,
+            googleShareUrl: null,
+            description: null,
+            coverPhotoId: null,
+            coverPhotoUrl: null,
+          },
+        ].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
       );
       setNewName('');
       setFlash(`Created "${name}". Click it to add pins.`);
@@ -339,7 +354,7 @@ export default function ListsAdminClient({ initialLists }: { initialLists: ListR
                     ) : (
                       <div>
                         <Link
-                          href={`/admin/lists/${listNameToSlug(l.name)}`}
+                          href={`/admin/lists/${l.slug}`}
                           className="text-ink-deep capitalize hover:underline"
                           title="Edit list members"
                         >

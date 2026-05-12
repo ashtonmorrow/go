@@ -1,5 +1,5 @@
 import { fetchAllPins } from '@/lib/pins';
-import { fetchAllSavedListsMeta } from '@/lib/savedLists';
+import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import ListsAdminClient from './ListsAdminClient';
 
 export const dynamic = 'force-dynamic';
@@ -30,6 +30,9 @@ export default async function ListsAdminPage() {
       // "Current" for personal-photo selections.
       return {
         name,
+        // URL identifier — falls back to derived for bucket names that
+        // exist only in pins.saved_lists[] without a meta row yet.
+        slug: meta?.slug ?? listNameToSlug(name),
         count,
         googleShareUrl: meta?.googleShareUrl ?? null,
         description: meta?.description ?? null,
