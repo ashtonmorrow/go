@@ -215,3 +215,7 @@ The Black Forest in south-west Germany is the destination version of the hack ra
 | [Balinea Thermen](/pins/balinea-thermen) | The sleepier version. Smaller, cheaper, closer to Basel for the fly-in. Read fewer restaurant reviews and lower the expectations on dinner | Bad Bellingen, Black Forest foothills |
 
 The shape of the trip is either airport: BSL (Basel) or STR (Stuttgart), a rental car the rest of the way, two nights at a small hotel in town, two long mornings in the water, and a third day driving the Black Forest road south to Lake Constance or north to Freiburg before flying out.
+
+## The rest of the pin list
+
+The seven cities above are the ones with a writeup so far. The pin map below already carries roughly forty more thermal spas across the atlas that I have either soaked at, want to soak at, or have pinned for a future trip: Sky Lagoon in Reykjavík, Aqua Dome in the Tirolean Längenfeld, Caldea in Andorra, Caracalla and Friedrichsbad in Baden-Baden, the free travertine pools at Cascate del Mulino in Saturnia, Terme di Saturnia itself, Terme Merano and QC Termemilano, Hévíz lake bathing in Hungary, the Furnas hot springs on São Miguel in the Azores, Karlovy Vary and the Czech beer spa, the Polish thermal complexes at Zakopane and Chochołów, Scandinave Spa in Whistler, Vichy Célestins, Pozar in Greece, and a handful of resort properties (Lucknam Park near Bath, Buxton Crescent, Aqualux at Bardolino, Olympic Palace at Karlovy Vary). The on-page writeup will grow into the cities that earn a section; the map is the canonical list.
