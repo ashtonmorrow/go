@@ -88,14 +88,14 @@ The single best ten days are usually the second half of October, after the Europ
 
 ## Getting in and getting around
 
-Djerba-Zarzis International Airport (DJE) sits 9 km southeast of Houmt Souk. The airport is small and clean; arrivals processing takes 30 to 45 minutes most days.
+Djerba-Zarzis International Airport (DJE) sits 9 km southeast of [Houmt Souk](/pins/houmt-souk-medina). The airport is small and clean; arrivals processing takes 30 to 45 minutes most days.
 
 A practical heads-up: **the airport taxi rank is known to overcharge tourists**. The fair fare to Houmt Souk is 20 to 25 TND (~6 to 8 EUR). Drivers will routinely quote 50 to 80 TND. Two ways to handle it:
 
 * Negotiate hard before bags go in the boot. Walk away from the first three drivers; the price drops.
 * Pre-arrange a hotel transfer. Most mid-tier and resort hotels include or sell airport pickups for 20 to 30 TND, and you avoid the rank entirely.
 
-Once on the island, a rental car is the move. The island is roughly 25 km across; the attractions spread from Houmt Souk in the north to the beaches on the east coast to Erriadh in the middle to the south-coast pottery village of Guellala. Without a car, every trip becomes another taxi negotiation. The roads are straightforward; driving on the right.
+Once on the island, a rental car is the move. The island is roughly 25 km across; the attractions spread from Houmt Souk in the north to the beaches on the east coast to [Erriadh](/pins/djerbahood-erriadh) in the middle to the south-coast pottery village of Guellala. Without a car, every trip becomes another taxi negotiation. The roads are straightforward; driving on the right.
 
 Rideshare apps are not reliable on the island. There is no Uber-equivalent.
 
@@ -108,18 +108,18 @@ Five real zones, each with a distinct character:
 | Houmt Souk | The island's biggest town. Walkable medina, markets, restaurants. Good base for non-beach days | Not on a beach; 15-minute taxi to the sand |
 | Midoun | Resort cluster on the eastern beach strip. Hotels at every level | Tourist-dominated; less local feel |
 | Aghir | Quieter beachside, fewer big resorts | Limited food and bar options outside the hotels |
-| Erriadh | Live inside the Djerbahood street art project. Boutique stays with local character | No beach access; you commute to the sand |
+| Erriadh | Live inside the [Djerbahood](/pins/djerbahood-erriadh) street art project. Boutique stays with local character | No beach access; you commute to the sand |
 | Tezdaine | A quieter apartment area between Midoun and the beaches | Less infrastructure than Midoun |
 
-The Iberostar Selection Eolia Djerba is the headline international resort if you want a known brand. Below it, a long list of European-branded all-inclusives in Midoun and Aghir; nothing is meaningfully different at the mid-tier level. For local character, a boutique riad in Houmt Souk or a converted house in Erriadh beats the resort experience.
+The [Iberostar Selection Eolia Djerba](/pins/iberostar-selection-eolia-djerba) is the headline international resort if you want a known brand. Below it, a long list of European-branded all-inclusives in Midoun and Aghir; nothing is meaningfully different at the mid-tier level. For local character, a boutique riad in Houmt Souk or a converted house in Erriadh beats the resort experience.
 
 ## The beaches
 
 The eastern coast is where the sand is. Three beaches worth a specific trip:
 
-* **Sidi Mahrez Beach**. The headline beach on the northeast coast. Wide, white-sand, accessible from most of the Midoun resorts. Get there before 10 a.m. in season to claim shade.
-* **Seguia Beach**. Shallower entry, calmer water, fewer crowds. Best for families and casual swimmers.
-* **Plage Omarit**. The quieter, less-developed alternative on the south side. Worth a half-day if you want the beach to yourself.
+* **[Sidi Mahrez Beach](/pins/sidi-mahrez-beach)**. The headline beach on the northeast coast. Wide, white-sand, accessible from most of the Midoun resorts. Get there before 10 a.m. in season to claim shade.
+* **[Seguia Beach](/pins/seguia-beach-djerba)**. Shallower entry, calmer water, fewer crowds. Best for families and casual swimmers.
+* **[Plage Omarit](/pins/plage-omarit)**. The quieter, less-developed alternative on the south side. Worth a half-day if you want the beach to yourself.
 
 Beach service is minimal compared to a European resort coast: bring water, sunscreen, and patience for the persistent vendors. Topless sunbathing is uncommon; nude bathing is not done.
 
@@ -137,15 +137,15 @@ For lunch, brik (the thin pastry with egg and tuna), couscous, and grilled fish 
 
 ## El Ghriba and Djerbahood
 
-The El Ghriba Synagogue, in the inland village of Hara Sghira, is one of the oldest synagogues in the world. The current building is 19th-century, but Jewish settlement on the site goes back centuries earlier. It remains active and is a pilgrimage site each Lag B'Omer. Security is tight; bring a passport, expect a short bag check, and dress conservatively.
+The [El Ghriba Synagogue](/pins/el-ghriba-synagogue), in the inland village of Hara Sghira, is one of the oldest synagogues in the world. The current building is 19th-century, but Jewish settlement on the site goes back centuries earlier. It remains active and is a pilgrimage site each Lag B'Omer. Security is tight; bring a passport, expect a short bag check, and dress conservatively.
 
 A 10-minute drive south, the village of Erriadh houses **Djerbahood**, the largest open-air street-art project in the world. The 2014 initiative invited 150+ artists from 30+ countries to paint over 250 murals across the village walls. Some originals have faded with sun and weather; new commissions arrive most years. Plan 90 minutes to walk the whole village; bring water and a camera. There is no entry fee; the village just is the gallery.
 
-For a quieter cultural stop, the **Guellala Museum** on the south side of the island shows traditional pottery, Berber clothing, weaving, and a recreated village setting. About 90 minutes; the hill location gives a wide panorama of the south coast.
+For a quieter cultural stop, the **[Guellala Museum](/pins/guellala-museum)** on the south side of the island shows traditional pottery, Berber clothing, weaving, and a recreated village setting. About 90 minutes; the hill location gives a wide panorama of the south coast.
 
 ## Daytrip to Matmata
 
-Matmata is the troglodyte (cave-dwelling) Berber village on the Tunisian mainland, about a 2-hour drive south of the Djerba ferry. The famous draw is **Hotel Sidi Driss**, the underground hotel that was used as Luke Skywalker's childhood home in Star Wars (filmed 1976; the original set decorations remain). It still operates as a real hotel; you can spend the night, or stop for a couple of dinars and a tour during the day.
+Matmata is the troglodyte (cave-dwelling) Berber village on the Tunisian mainland, about a 2-hour drive south of the Djerba ferry. The famous draw is **[Hotel Sidi Driss](/pins/hotel-sidi-driss-matmata)**, the underground hotel that was used as Luke Skywalker's childhood home in Star Wars (filmed 1976; the original set decorations remain). It still operates as a real hotel; you can spend the night, or stop for a couple of dinars and a tour during the day.
 
 Practical notes for the daytrip:
 

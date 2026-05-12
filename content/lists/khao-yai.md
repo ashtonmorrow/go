@@ -79,7 +79,7 @@ Three options, in order of practicality:
 | Mode | Trip time | Cost | When it makes sense |
 |---|---|---|---|
 | Hired car / driver from Bangkok | ~3 hours each way | 3,500 to 5,000 THB round trip | The default. One driver covers the whole day in the park |
-| Train to Pak Chong + taxi | 3 to 4 hours + final mile | ~150 to 300 THB train; 200 to 400 THB last-mile | Cheaper. Pair with a hotel pickup |
+| Train to [Pak Chong](/pins/pak-chong-railway-station) + taxi | 3 to 4 hours + final mile | ~150 to 300 THB train; 200 to 400 THB last-mile | Cheaper. Pair with a hotel pickup |
 | Group day-tour van from Bangkok | ~3 hours each way | ~2,500 THB per person | Easiest if you do not want to plan; trades flexibility for the lower price |
 | Self-drive rental from Bangkok | Same as hired driver | Rental + petrol + tolls | Only if you are comfortable on Thai roads. Inside the park the drive is straightforward |
 
@@ -95,7 +95,7 @@ Three real zones, each with a distinct rhythm:
 | Pak Chong town | Cheaper hotels, real local restaurants, easy train access | 30 to 45 minutes from the park gate; commute eats time |
 | The vineyard belt (Muak Lek / Mu Si) | Boutique stays, vineyard views, slower mornings | You need a car for the park; not a walkable area |
 
-The luxury anchors most travellers consider are Muthi Maya Forest Pool Villa (private pool villas, secluded), Mosaic Khao Yai (kitsch-themed but well-run), and InterContinental Khao Yai Resort (newer build, train-station design throwback). Below those, mid-tier resorts in the Mu Si area run around 3,000 to 5,000 THB a night. A budget room in Pak Chong drops to 800 to 1,500 THB.
+The luxury anchors most travellers consider are [Muthi Maya Forest Pool Villa](/pins/muthi-maya-forest-pool-villa) (private pool villas, secluded), [Mosaic Khao Yai](/pins/mosaic-khao-yai) (kitsch-themed but well-run), and InterContinental Khao Yai Resort (newer build, train-station design throwback). Below those, mid-tier resorts in the Mu Si area run around 3,000 to 5,000 THB a night. A budget room in Pak Chong drops to 800 to 1,500 THB.
 
 ## Inside the national park
 
@@ -105,9 +105,9 @@ Three anchors fit one full day:
 
 | Stop | What | Time on site |
 |---|---|---|
-| Haew Narok Waterfall | The tallest waterfall in the park. Three-tier drop, 80 metres total. Best after the rainy season (October to December) when it actually runs | 60 to 90 minutes including the walk |
-| Haew Suwat Waterfall | The famous one from the 2000 film "The Beach". Lower flow than Haew Narok but more photogenic | 30 to 45 minutes |
-| Pha Diao Dai viewpoint | Cliff-edge panorama across the whole park. Best at golden hour | 30 minutes |
+| [Haew Narok Waterfall](/pins/haew-narok-waterfall) | The tallest waterfall in the park. Three-tier drop, 80 metres total. Best after the rainy season (October to December) when it actually runs | 60 to 90 minutes including the walk |
+| [Haew Suwat Waterfall](/pins/haew-suwat-waterfall) | The famous one from the 2000 film "The Beach". Lower flow than Haew Narok but more photogenic | 30 to 45 minutes |
+| [Pha Diao Dai viewpoint](/pins/pha-diao-dai-viewpoint) | Cliff-edge panorama across the whole park. Best at golden hour | 30 minutes |
 
 For wildlife, the late-afternoon safari drive (book through the visitor centre or your hotel) gives you the highest odds of an elephant sighting at the salt lick near sundown. Gibbons call from the canopy along the trails at dawn; macaques are everywhere and aggressive about food.
 
@@ -117,8 +117,8 @@ For hikers, three short trails are signposted from the visitor centre. Most are 
 
 The Khao Yai wine region sits 20 to 40 minutes south of the park gate in the Mu Si valley. Two wineries are the planning anchors:
 
-* **PB Valley Khao Yai Winery**. The pioneer, established 1989. Tours run on the hour from late morning through mid-afternoon. The Tempranillo and the Pirom Reserve red blend are the two to order. Lunch at the on-site restaurant works as half a day.
-* **GranMonte Estate**. The boutique alternative, family-run, with a tighter range and a more polished tasting room. The Chenin Blanc consistently punches above its price; the Syrah is the red worth a glass.
+* **[PB Valley Khao Yai Winery](/pins/pb-valley-khao-yai-winery)**. The pioneer, established 1989. Tours run on the hour from late morning through mid-afternoon. The Tempranillo and the Pirom Reserve red blend are the two to order. Lunch at the on-site restaurant works as half a day.
+* **[GranMonte Estate](/pins/granmonte-estate)**. The boutique alternative, family-run, with a tighter range and a more polished tasting room. The Chenin Blanc consistently punches above its price; the Syrah is the red worth a glass.
 
 Both wineries run lunch service and have small accommodations on the estate if you want to overnight. Tastings run 250 to 500 THB depending on the flight; lunch with wine pairing runs around 1,500 THB per person.
 
@@ -126,7 +126,7 @@ Both wineries run lunch service and have small accommodations on the estate if y
 
 Khao Yai also has a layer of agritourism that travellers from Bangkok make most of the trip for. Two of them are worth a half-hour each if you are in the area:
 
-* **Palio Khao Yai**. A built-from-scratch Italian-style village with shops, cafes, and a cobbled-square photo backdrop. It is not a real Italian village; it is a tourist development that makes no pretence otherwise. Good for a coffee stop, photos, and small souvenirs.
+* **[Palio Khao Yai](/pins/palio-khao-yai)**. A built-from-scratch Italian-style village with shops, cafes, and a cobbled-square photo backdrop. It is not a real Italian village; it is a tourist development that makes no pretence otherwise. Good for a coffee stop, photos, and small souvenirs.
 * **Granja Chokchai (the Chokchai farm)**. A working dairy farm that runs guided tours, horseback rides, ice cream tasting, and a small ranch experience. Built for Thai families more than international tourists; treat it as a half-day with kids or skip it.
 
 A note on cellphone roaming: even with a Thai SIM, signal inside the park and at the wineries is spotty. Download offline maps for the day. Cash matters more than usual; toll booths, park entry, and the smaller restaurants in Pak Chong all run cash-first.

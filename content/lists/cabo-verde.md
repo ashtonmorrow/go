@@ -101,7 +101,7 @@ From North America, the cleanest play is Lisbon (TAP) or seasonal Boston (TACV/C
 
 Inter-island travel is by plane or ferry:
 
-* **Plane**. Cabo Verde Airlines and BestFly run the most flights. Sal–Mindelo, Sal–Fogo, Praia–most islands. Flights are short (20 to 40 minutes) and reasonably reliable; book ahead of time, prices climb as the date nears.
+* **Plane**. Cabo Verde Airlines and BestFly run the most flights. Sal–[Mindelo](/pins/mindelo-sao-vicente), Sal–Fogo, Praia–most islands. Flights are short (20 to 40 minutes) and reasonably reliable; book ahead of time, prices climb as the date nears.
 * **Ferry**. Cabo Verde Fast Ferry operates Praia to Fogo and Brava; smaller operators serve other routes. Schedules are weather-dependent and frequently disrupted; do not plan a tight onward flight after a ferry.
 
 For most trips, fly between the islands. The cost is not much higher than the ferry once you factor reliability.
@@ -116,8 +116,8 @@ Cabo Verde is a country, not a city. Choosing the wrong island for the trip is t
 | Boa Vista | Sal's sandier, quieter neighbour. Stunning dune-and-beach landscape | Beach week with slightly less infrastructure |
 | São Vicente (Mindelo) | The cultural capital. Music, art, port-town life. Compact and walkable | Culture, music, food, slow afternoons |
 | Santo Antão | Dramatic hiking, lush volcanic valleys, the most photogenic of the islands | Active travel, hiking, nature |
-| Fogo | The volcano island. Climb Pico do Fogo (2,829 m), sleep in the crater village | One distinctive experience |
-| Santiago (Praia + Cidade Velha) | The political capital island. UNESCO-listed Cidade Velha (first European colonial settlement in the tropics) | History and city days |
+| Fogo | The volcano island. Climb [Pico do Fogo](/pins/pico-do-fogo) (2,829 m), sleep in the crater village | One distinctive experience |
+| Santiago (Praia + [Cidade Velha](/pins/cidade-velha)) | The political capital island. UNESCO-listed Cidade Velha (first European colonial settlement in the tropics) | History and city days |
 | Maio | The quietest island. Empty beaches, slow pace | A real off-the-grid week |
 
 Most travellers combine two islands: Sal-and-Mindelo (beach-plus-culture) or Fogo-and-Santo Antão (the adventure pairing). A serious trip is two weeks; a short trip is one island for ten days.
@@ -133,7 +133,7 @@ What to do in two days:
 * In the late afternoon, walk down to **Laginha Beach** on the south edge of town for the sunset.
 * In the evening, work the **bar circuit**: Bar B.Leza, Café Mindelo, the smaller venues near Praça Nova. Live Morna most nights; ask the hotel for the current schedule.
 
-For markets, the **Mindelo Fish Market** runs early-morning auctions and the **Mercado Municipal** is the produce-and-cheap-food market.
+For markets, the **[Mindelo Fish Market](/pins/mindelo-fish-market)** runs early-morning auctions and the **Mercado Municipal** is the produce-and-cheap-food market.
 
 If you can time the trip for August, the **Baía das Gatas festival** is the country's headline music event. International and Cabo Verdean artists across three days on a beach 20 km outside Mindelo; the city fills, hotels book out months ahead.
 
@@ -144,7 +144,7 @@ Fogo is the volcano island. The island is dominated by Pico do Fogo (2,829 m), a
 What the trip looks like:
 
 * **Fly in** to Fogo's small airport (FGS). About 40 minutes from Sal or Praia.
-* **Hire a 4WD or driver** to reach Chã das Caldeiras. The road climbs and the final stretch is rough.
+* **Hire a 4WD or driver** to reach [Chã das Caldeiras](/pins/cha-das-caldeiras). The road climbs and the final stretch is rough.
 * **Sleep in the crater village** at one of the small guesthouses (Pensão Pedra Brabo, Casa Pia). Basic but real; the dinner is whatever was cooked that morning.
 * **Climb the volcano** the next morning. The trek to the summit is 6 to 8 hours round trip; rated moderately strenuous; requires a local guide (the village runs the guiding cooperative). Start at sunrise.
 
@@ -167,7 +167,7 @@ The trade winds make Cabo Verde one of the best windsurf and kitesurf destinatio
 Three other things worth knowing about:
 
 * **Bird-watching**. Endemic species including the Cape Verde Warbler and the Iago Sparrow. Santiago and Fogo have the best concentrations.
-* **Santo Antão hiking**. The Cova Crater walk and the Vale do Paúl valley descent are the two classic routes. Half-day to full-day depending on which leg you do. Hire a local guide.
+* **Santo Antão hiking**. The [Cova Crater](/pins/cova-crater-santo-antao) walk and the Vale do Paúl valley descent are the two classic routes. Half-day to full-day depending on which leg you do. Hire a local guide.
 * **Grogue**. The local sugar-cane spirit. Drunk straight or in cocktails. The Santo Antão grogue is the country's best; visit a small distillery on the island if you go.
 
 For the cuisine, three plates explain the country: **cachupa** (the national stew of corn, beans, and meat or fish), **pastel** (fried half-moon pastries with tuna or vegetable filling), and **lagosta grelhada** (grilled spiny lobster, expensive but the right closing dinner if seafood is the thing). Wash down with grogue or a Strela beer.
