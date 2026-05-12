@@ -101,6 +101,13 @@ const nextConfig = {
       // the eat/stop places along the line.
       ['belgian-coast',                 'kusttram-stations'],
       ['belgian-coastal-town-stops',    'kusttram-stations'],
+
+      // May 2026 rename: the salisbury & stonehenge list had an ampersand
+      // in its auto-derived slug (salisbury-&-stonehenge) which forces
+      // %26 encoding in the URL path and broke double-decode flows. Slug
+      // renamed to salisbury-stonehenge as part of the Bath guide work
+      // since the Bath guide cross-links to it.
+      ['salisbury-&-stonehenge',        'salisbury-stonehenge'],
     ];
     const listSlugRedirects = legacyListSlugs.flatMap(([from, to]) => [
       { source: `/lists/${from}`,       destination: `/lists/${to}`,       permanent: true },
