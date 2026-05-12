@@ -53,6 +53,21 @@ related:
 #   Panorama Mesdag ~€16. Confirm at booking.
 # - Train fare Amsterdam→Den Haag CS via NS Intercity ~€14, runs every
 #   10-15 min, ~50 min.
+# - Mauritshuis €4-after-4pm is Netherlands-resident only (corrected
+#   2026-05-13). Don't soften the "international visitors pay €21" line.
+# - Queen Emma is Willem-Alexander's great-great-grandmother
+#   (Emma → Wilhelmina → Juliana → Beatrix → Willem-Alexander).
+# - Binnenhof: not provably the world's oldest parliament in continuous
+#   use (Tynwald, Althing predate it). Phrasing softened to "one of."
+# - Pins still to create on a later pass (currently plain text in body):
+#   voco The Hague, Hotel Des Indes, Staybridge Suites The Hague Parliament,
+#   De Basiliek, Little V, Baladi Manouche, De Bakkerswinkel, Bouzy,
+#   Ciao Ciao, Boterwaag, Lola Bikes & Coffee, Habana Beach, Panorama Mesdag,
+#   Voorlinden, Strandhuisjes Kijkduin, Royal Delft (Koninklijke Porceleyne
+#   Fles), Nieuwe Kerk, Vermeer Centre, The Hague Tower / Sky Bar.
+# - SEO title pattern: current "36 hours in The Hague" tested fine, but
+#   the audited tested pattern is "[City] travel guide: [hook A], [hook B],
+#   and [hook C]". Consider for the v2 pass.
 ---
 
 [The Hague](/cities/the-hague) is the city most travelers to the Netherlands plan in 24 hours rather than 24 days, which is roughly the right ratio. It is the seat of the Dutch government, the home of the International Court of Justice, and the address of two genuinely top-tier museums. It is also calmer, cheaper, and easier to walk than [Amsterdam](/cities/amsterdam), with a real beach 15 minutes away by tram. Most Amsterdam-week itineraries skip it; the ones that do not usually end up wishing they had given it the longer half.
