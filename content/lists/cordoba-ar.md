@@ -4,7 +4,7 @@ featured: true
 title: "Córdoba Argentina travel guide: getting there, the food, and the Sierras"
 description: "A short Córdoba (Argentina) travel guide. Limited international flights, a 500-year-old centre, college-town nightlife, and weekend escapes into the Sierras."
 published: 2026-05-11
-updated: 2026-05-13
+updated: 2026-05-14
 authors:
   - Mike Lee
 hero_image: ""
@@ -52,17 +52,28 @@ related:
 #       historic-centre-of-cordoba (both Andalusia).
 #     · Added jesuit-block-and-estancias-of-cordoba (Argentine UNESCO).
 #
-# - "Brose Commodore" mentioned in Mike's dictation as his favorite
-#   spot in the city. No matching pin in the atlas. Voice transcript
-#   likely garbled the name. Mike to clarify: real name, address, or
-#   point to an existing pin? Until then, omitted from the prose.
+# - "Brose Commodore" mentioned in Mike's dictation was Bros. Comedor
+#   (confirmed 2026-05-14); pin slug bros-comedor, on 27 de Abril.
+#   Now featured in the eat table.
 #
-# - Standard 69 split: standard-69-villa-warcalde (5/5) is the
-#   suburban location Mike recommends; standard-69 (3/5 with food
-#   safety review from April 2025: undercooked chicken, missing
-#   plates) is the city-centre location that fell off. Body
-#   recommends the Villa Warcalde one explicitly and warns off the
-#   centre branch.
+# - Standard 69: only the Villa Warcalde location is recommended in
+#   the body. The city-centre standard-69 pin still exists in the
+#   atlas and on the saved-list, but Mike's keeping the prose
+#   positive, no public food-safety call-out. If he wants the
+#   city-centre branch fully delisted later, drop the pin's
+#   saved_lists entry; for now it stays available on the map view.
+#
+# - 2026-05-14 edits: removed Antares Nueva Córdoba and Bruxx Cerro
+#   from the eat table. Antares moved to a new "Drinks and supplies"
+#   section as the after-work beer pick. Added Bros. Comedor and
+#   Camelia (brunch) to eat. Added Galo Wines Jardín (self-pour wine
+#   by the ml) and Black Bull (asado supplies) under drinks-and-
+#   supplies. Day plan reshuffled to reflect the new picks.
+#
+# - Saved-list membership cleaned same pass: added standard-69-
+#   villa-warcalde and temple-c-rdoba to 'cordoba ar' (both featured
+#   in prose but were missing); removed stale 'cordoba - ar food'
+#   reference from el-papagayo-restaurant. Total now 73 pins.
 #
 # - Pins still worth creating for stronger cross-linking on next
 #   pass: Catedral de Córdoba, Iglesia de la Compañía de Jesús
@@ -82,6 +93,7 @@ related:
 * [Getting in](#getting-in)
 * [The historic centre on foot](#the-historic-centre-on-foot)
 * [Where to eat](#where-to-eat)
+* [Drinks and supplies](#drinks-and-supplies)
 * [Nightlife runs late](#nightlife-runs-late)
 * [Weekends in the Sierras](#weekends-in-the-sierras)
 * [A practical rhythm for a short trip](#a-practical-rhythm-for-a-short-trip)
@@ -115,19 +127,25 @@ The [Córdoba Botanical Garden](/pins/cordoba-botanical-garden) is the easy gree
 
 ## Where to eat
 
-Córdoba's food scene runs from very casual student spots to one or two genuine fine-dining rooms. Five picks across the range, then everything else on the map below.
+Córdoba's food scene runs from very casual student spots to one or two genuine fine-dining rooms. The picks below cover the range across the day; the full saved list at the bottom of the page has another fifty restaurants for a longer stay.
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [El Papagayo](/pins/el-papagayo-restaurant) | Fancy dinner | The city's headline tasting-menu room. Reserve. |
-| [Standard 69 (Villa Warcalde)](/pins/standard-69-villa-warcalde) | Quality, in the suburbs | The good Standard 69. Worth the Uber out. |
+| [Camelia](/pins/camelia) | Brunch | The reliable late-morning pick; the kind of room that sets the day up without rushing it. |
+| [Bros. Comedor](/pins/bros-comedor) | A proper lunch or relaxed dinner | Modern Argentine in the centre, second floor on 27 de Abril. The room hits the right balance of busy and not loud. |
+| [Standard 69 (Villa Warcalde)](/pins/standard-69-villa-warcalde) | Quality, in the suburbs | Worth the Uber out for the suburban room. |
 | [Temple Córdoba](/pins/temple-c-rdoba) | Casual evening with friends | Nice interior terrace, the kind of place to hang out for two or three hours. |
-| [Antares Nueva Córdoba](/pins/antares-nueva-cordoba) | Craft beer + dinner in the student quarter | Reliable Argentine craft chain. The Güemes branch is also fine. |
-| [Bruxx Cerro](/pins/bruxx-cerro-lomos-and-birra) | Lomito (Cordobese steak sandwich) | The local specialty done well. |
+| [El Papagayo](/pins/el-papagayo-restaurant) | Fancy dinner | The city's headline tasting-menu room. Reserve. |
 
-**Avoid the city-centre Standard 69.** [The Standard 69 location in the centre](/pins/standard-69) used to be one of my favorites, but I had undercooked chicken there in April 2025 and they forgot a paid plate. Go to the Villa Warcalde location instead.
+## Drinks and supplies
 
-The full saved list below covers another fifty restaurants if you are in town longer.
+A few non-restaurant picks that round out a week here.
+
+| Spot | Best for | Notes |
+|---|---|---|
+| [Galo Wines Jardín](/pins/galo-wines-jardin) | Wine | A self-pour wine bar; you tap a card and pour by the millilitre, which makes a flight night actually feasible without a sommelier across the table. The garden seating is the move when the weather agrees. |
+| [Antares Nueva Córdoba](/pins/antares-nueva-cordoba) | Beers after work | The reliable Argentine craft chain. The student-quarter location is the natural early-evening stop; the Güemes branch is the same idea on the other side of the centre. |
+| [Black Bull](/pins/black-bull) | Asado supplies | The shop to hit if you are cooking yourself. Charcoal, cuts of beef, salt, and the small implements (skewers, sharpening stones) you cannot improvise at a supermarket. North of the centre toward Villa Warcalde. |
 
 ## Nightlife runs late
 
@@ -149,8 +167,8 @@ Renting a car at the airport is the cleanest way to do the Sierras. Buses also r
 
 Two or three days covers Córdoba comfortably:
 
-1. **Day one**: Land, settle in Nueva Córdoba. Walk the centre: Plaza San Martín, Cathedral, Cabildo, Jesuit Block. Late dinner at Temple or Antares.
-2. **Day two**: Botanical Garden in the morning, lunch at Bruxx for the lomito, afternoon at one or two of the smaller plazas (Vélez Sarsfield, San Vicente). Fancy dinner at El Papagayo if you want a fixed point in the trip.
-3. **Day three (optional)**: Day trip to La Cumbre or La Cumbrecita; back to the city for dinner.
+1. **Day one**: Land, settle in Nueva Córdoba. Walk the centre: Plaza San Martín, Cathedral, Cabildo, Jesuit Block. After-work beer at Antares, late dinner at Temple.
+2. **Day two**: Brunch at Camelia. Botanical Garden mid-morning, afternoon at one or two of the smaller plazas (Vélez Sarsfield, San Vicente). Drinks at Galo Wines Jardín, then fancy dinner at El Papagayo if you want a fixed point in the trip.
+3. **Day three (optional)**: Day trip to La Cumbre or La Cumbrecita; back to the city for dinner at Bros. Comedor or Standard 69 (Villa Warcalde).
 
 Add a fourth day if you want a real weekend in Carlos Paz or the wider Sierras.
