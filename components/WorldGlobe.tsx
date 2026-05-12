@@ -16,7 +16,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { useCityFilters, type KoppenGroup } from './CityFiltersContext';
 import { applyLayerVisibility, cityLayer, filterCities, layerCounts as countLayers, sortCities } from '@/lib/cityFilter';
 import { COLORS } from '@/lib/colors';
-import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
 import SwitcherIcon from './SwitcherIcon';
 
@@ -744,17 +743,11 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
         </div>
       </div>
 
-      {/* Active-filter chip ribbon — top-center on the map. Hidden when
-          no facets are active. max-w-[80vw] gives the count prefix
-          ("372 / 1,406") plus a couple of chips enough room to read
-          without truncating; on a wide viewport the ribbon stays
-          centered so the controls in the corners are not pushed
-          around. */}
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[80vw]">
-        <div className="bg-white/95 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden whitespace-nowrap overflow-x-auto">
-          <ActiveFilters />
-        </div>
-      </div>
+      {/* The active-filter chip ribbon used to float top-center here.
+          Since the MapFilterDock landed (May 2026) with the cockpit's
+          own "X / Y cities · Clear all" footer, the ribbon was a
+          second copy of the same information in the visitor's
+          line-of-sight. Removed so the globe canvas reads clean. */}
 
       {/* View switcher lives at the page level (app/cities/map/page.tsx). */}
     </div>

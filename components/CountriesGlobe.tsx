@@ -16,7 +16,6 @@ import { COLORS } from '@/lib/colors';
 import { useFilteredCities } from '@/lib/useFilteredCities';
 import { cityLayer } from '@/lib/cityFilter';
 import { useCityFilters, type CityLayer } from './CityFiltersContext';
-import ActiveFilters from './ActiveFilters';
 import type { City } from '@/lib/cityShape';
 
 // Country metadata indexed by ISO 3166-1 alpha-3. Carries every field the
@@ -361,15 +360,10 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         </div>
       </div>
 
-      {/* Active-filter chip ribbon — floats top-center. Hidden when no
-          facets are active. The "X / Y" city count prefix is suppressed
-          here because we're on the countries page; the top-left badge
-          shows the country count, which is what's contextually relevant. */}
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 max-w-[60vw]">
-        <div className="bg-white/90 backdrop-blur border border-sand rounded-md shadow-sm px-2 py-1 empty:hidden">
-          <ActiveFilters showCount={false} />
-        </div>
-      </div>
+      {/* The active-filter chip ribbon used to float top-center here.
+          The MapFilterDock's cockpit footer (May 2026) already shows the
+          "X / Y · Clear all" summary inside its panel, so the floating
+          duplicate over the canvas is gone. */}
 
       {/* View switcher lives at the page level (app/countries/map/page.tsx). */}
     </div>
