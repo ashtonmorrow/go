@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How long should I plan for in Kotor itself?
-    a: One full day for the old town and the walls, plus another half-day if you are slow-walking the bay villages or driving the coast road. Stretch it to three or four nights if you are using a bay base for swimming, day trips to Lovćen national park, and a Perast boat across to Our Lady of the Rocks. The town itself does not need more than a day.
+    a: One full day for the old town and the walls, plus another half-day if you are slow-walking the bay villages or driving the coast road. Stretch it to three or four nights if you are using a bay base for swimming, day trips up to Lovćen National Park (the road switchbacks and the Njegoš Mausoleum), and a Perast boat across to Our Lady of the Rocks. The town itself does not need more than a day.
   - q: Where should I stay if I want to avoid the cruise-ship crowds?
     a: Anywhere on the bay that is not the old town. Iberostar Waves Herceg Novi at the mouth of the bay regularly runs under $100 a night and sits across from Herceg Novi's own old town; the Blue Line bus to Kotor takes about an hour and costs a few euros. Tivat (Regent Porto Montenegro for the luxury end, smaller apartments for less) is the other side of the water and a similar bus ride. Perast halfway up the bay is the photogenic small-village option but is more limited for restaurants and groceries.
   - q: Do I have to pay to climb the walls?
@@ -96,17 +96,19 @@ related:
 #       go in if expanded to industrial heritage)
 #     · restaurant-city (mentioned in the eat table; could be expanded)
 #
-# - Notes for a longer cut:
-#     · Perast and Our Lady of the Rocks deserve their own pins; only
-#       the village name appears in city_names as "Kotor" rather than
-#       "Perast" because the geo-tagging treats it as a Kotor district.
-#       Add a perast pin and a our-lady-of-the-rocks pin on the next
-#       expansion.
-#     · Lovćen National Park (the road switchbacks and the Njegoš
-#       Mausoleum) is the obvious half-day-out destination and lacks
-#       a pin in this saved_list. Add when the guide is expanded.
+# - Pins created or wired in the May 2026 expansion pass:
+#     · perast (new pin for the village; city_names=Perast)
+#     · our-lady-of-the-rocks (existing pin; city_names corrected to
+#       Perast and added to the kotor saved_list, was untagged before)
+#     · lovcen-national-park (new pin for the half-day-out destination
+#       up the switchback road from Kotor; city_names=Cetinje)
+#   All three are indexable:false; coords approximate; wired to the
+#   "kotor" saved_list. Verify and flip indexable when reviewed.
+# - Still to verify before flipping indexable:
 #     · The walls fee figure (€8 to €15) is approximate; verify
-#       against the current municipal page before flipping indexable.
+#       against the current municipal page before flipping.
+#     · The Blue Line bus frequency was hourly in 2023; verify before
+#       the next publish.
 #
 # - Spelling note: British English used throughout (centre, neighbourhood,
 #   travellers) per the editorial standard for European destinations.
@@ -137,14 +139,14 @@ A handful of churches anchor the lanes. **St Tryphon's Cathedral** (Sveti Tripun
 
 ## Where to stay around the bay
 
-The four real bases on the bay are Herceg Novi at the mouth, Tivat across the water, Perast halfway up, and Kotor itself. Pick by rhythm and budget; the bay is small enough that a base in any of these towns gets you into Kotor old town on a manageable day trip.
+The four real bases on the bay are Herceg Novi at the mouth, Tivat across the water, [Perast](/pins/perast) halfway up, and Kotor itself. Pick by rhythm and budget; the bay is small enough that a base in any of these towns gets you into Kotor old town on a manageable day trip.
 
 | Base | Property | Why pick it | Trade-off |
 |---|---|---|---|
 | Herceg Novi (Njivice) | [Iberostar Waves Herceg Novi](/pins/iberostar-waves-herceg-novi) | All-inclusive at the mouth of the bay, regularly runs under $100 a night. Across from Herceg Novi's own walled old town, which is quieter than Kotor. Bus to Kotor takes about an hour | Resort format rather than boutique. The Iberostar's own waterfront is good for a swim, but it is not the Adriatic-coast photo you came for |
 | Tivat (Porto Montenegro) | [Regent Porto Montenegro](/pins/regent-porto-montenegro) | The luxury option. Marina-front, design hotel, walking distance to Tivat airport (TIV) for a fly-in start. A different mood than the medieval-town side of the bay | Expensive. The Porto Montenegro complex is a fully built marina town that does not read like Montenegro elsewhere on the bay; some travellers want exactly that, others want the opposite |
 | Tivat (apartments) | Various | Smaller, cheaper, residential-bay base across from Kotor by water. Easy bus connection or a 25-minute drive around the bay | No single pin to point at; the rental market is the source. Read recent reviews for the walking distance to the ferry pier |
-| Perast | Various small hotels | Halfway up the bay, ten minutes by car from Kotor. The most photogenic small village on the bay, with the two-island view (Our Lady of the Rocks and St George's) directly in front | Small. Limited restaurants, very few groceries, busiest stop on the daytrip-boat circuit between 10 a.m. and 3 p.m. |
+| [Perast](/pins/perast) | Various small hotels | Halfway up the bay, ten minutes by car from Kotor. The most photogenic small village on the bay, with the two-island view ([Our Lady of the Rocks](/pins/our-lady-of-the-rocks) and St George's) directly in front | Small. Limited restaurants, very few groceries, busiest stop on the daytrip-boat circuit between 10 a.m. and 3 p.m. |
 | Kotor old town | Various boutique hotels and apartments | The walk-out-the-door access to the walls and the lanes; the medieval atmosphere in the calm hours before and after the cruise day | Loud during the cruise window, expensive for what you get, and the lanes get genuinely crowded. Worth it only for one or two nights if you want the in-town atmosphere |
 
 My default is the Iberostar at Herceg Novi for an arrival, then either a second base in Tivat or Perast if the trip is longer than three nights. The Iberostar is the value pick on the bay and is the right answer for a traveller who wants a beach base and is comfortable taking the bus into Kotor for the headline day.

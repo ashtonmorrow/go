@@ -78,15 +78,18 @@ related:
 #   The cards/map view at /lists/sitges renders all of these underneath
 #   the prose; the question is which Mike wants to lift into the writeup
 #   with personal context.
-# - Pins that should probably exist for Sitges but do not yet:
-#     · platja-de-la-ribera, platja-de-sant-sebastia, platja-dels-balmins
-#       (the three named beaches the FAQ references)
+# - Pins created in the May 2026 expansion pass to back the body links:
+#     · platja-de-la-ribera-sitges, platja-de-sant-sebastia-sitges,
+#       platja-dels-balmins-sitges (the three named beaches)
 #     · esglesia-de-sant-bartomeu-i-santa-tecla (the parish church on
-#       the headland; the photogenic landmark of the town)
-#     · mercat-municipal-de-sitges (the new market hall; "old market
-#       building" referenced as text only since the original is no longer
-#       in operation as a market and may not warrant a pin)
-#   Add as scaffolds when convenient and swap the body mentions to links.
+#       the headland)
+#   All four are indexable:false; coords are approximate; saved_lists
+#   wired to "sitges" so they render under /lists/sitges. Verify on the
+#   next admin pass and flip indexable when reviewed.
+# - Pin still worth creating later:
+#     · mercat-municipal-de-sitges (the new market hall). The original
+#       building is referenced as text only since it no longer operates
+#       as a market and may not warrant its own pin.
 # - Saved-list name in Supabase is lowercase "sitges" to match the
 #   convention used for barcelona, madrid, bristol, etc. Leave it.
 # - Spelling note: British English used throughout (centre, favourite,
@@ -146,9 +149,9 @@ If you are travelling with family, with friends splitting an apartment, or for l
 
 Sitges has a string of beaches that run east-west around the headland the old town sits on. They read differently and the planning matters.
 
-The southern paseo runs in front of the old town and is the default family-friendly strip. Platja de la Ribera is the long central beach with chair rentals, a few beach bars, and the photogenic view of the parish church on the bluff. Platja de Sant Sebastià sits east of the headland, a little smaller, a little quieter, and is the one I would aim for on a hot Saturday. Both are conventional Mediterranean town beaches: chair, umbrella, swim, lunch, repeat.
+The southern paseo runs in front of the old town and is the default family-friendly strip. [Platja de la Ribera](/pins/platja-de-la-ribera-sitges) is the long central beach with chair rentals, a few beach bars, and the photogenic view of the parish church on the bluff. [Platja de Sant Sebastià](/pins/platja-de-sant-sebastia-sitges) sits east of the headland, a little smaller, a little quieter, and is the one I would aim for on a hot Saturday. Both are conventional Mediterranean town beaches: chair, umbrella, swim, lunch, repeat.
 
-The northern coves are a different proposition. Platja dels Balmins, on the east side of the cemetery headland, is a small cove that has been the town's main nudist and gay-friendly beach since the 1970s. Several smaller coves continue past it. The crowd is part of why Sitges reads the way it does; the signage does not flag any of it explicitly, so it is worth knowing in advance. If the mixed-use cove is not what you have in mind, stay on the southern paseo and you will not run into it by accident.
+The northern coves are a different proposition. [Platja dels Balmins](/pins/platja-dels-balmins-sitges), on the east side of the cemetery headland, is a small cove that has been the town's main nudist and gay-friendly beach since the 1970s. Several smaller coves continue past it. The crowd is part of why Sitges reads the way it does; the signage does not flag any of it explicitly, so it is worth knowing in advance. If the mixed-use cove is not what you have in mind, stay on the southern paseo and you will not run into it by accident.
 
 For lounging, the southern beaches are the right default. Chair-and-umbrella rental from the seafront vendors is a few euros for a half day. Bring water; the beach bars charge a premium and the supermarket two streets back charges normal prices.
 
@@ -171,7 +174,7 @@ The town has a few sights worth a slow walk through, though none of them carry t
 
 The original Mercat Municipal building still stands in the centre of the old town. The working market moved to a newer hall a few blocks inland a few years back, but the old facade is intact and worth a look as part of a walk around the centre. The new market is where you actually buy a piece of fruit or a wedge of cheese for the beach.
 
-Two churches anchor the town. The parish church of Sant Bartomeu i Santa Tecla sits on the bluff between the southern beaches; it is the photographed landmark of Sitges and the one you see in every shot of the town from the water. A second, smaller church, the Església de Sant Joan Baptista, sits in the old town a few streets back from the seafront. Neither needs a long visit; ten minutes apiece on a slow morning is enough.
+Two churches anchor the town. The parish [Església de Sant Bartomeu i Santa Tecla](/pins/esglesia-de-sant-bartomeu-i-santa-tecla) sits on the bluff between the southern beaches; it is the photographed landmark of Sitges and the one you see in every shot of the town from the water. A second, smaller church, the Església de Sant Joan Baptista, sits in the old town a few streets back from the seafront. Neither needs a long visit; ten minutes apiece on a slow morning is enough.
 
 The pace itself is the rest. Sitges runs on a Mediterranean clock: lunch from 1:30 p.m. to about 4 p.m., dinner from 9 p.m., shops closed in the middle of the day. If you arrive with a Barcelona itinerary in your head, you will spend the first day frustrated. Adjust the clock and the town starts working.
 

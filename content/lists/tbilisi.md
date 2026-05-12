@@ -104,16 +104,16 @@ related:
 #   The cards/map view at /lists/tbilisi renders these underneath the
 #   prose; the question is which Mike wants to lift up.
 #
-# - Pins worth creating for Tbilisi if/when this gets expanded:
-#     · orbeliani-baths (the Persian-tile facade bath; currently only
-#       the generic sulfur-baths and the royal-bath-house pin)
-#     · rustaveli-avenue (the main Parisian-feel boulevard; useful as
-#       a navigation anchor)
-#     · mtatsminda-funicular-lower-station (currently only the destination
-#       Mtatsminda Park is pinned; the historic funicular lower station
-#       on Chonkadze Street is the access point and a sight in itself)
-#     · narikala-fortress (the cable car drops here; the fortress itself
-#       deserves a pin separate from the cable car)
+# - Pins created in the May 2026 expansion pass to back the body links:
+#     · orbeliani-baths (the Persian-tile facade bath on Abano Street)
+#     · rustaveli-avenue (the main Parisian-feel boulevard navigation anchor)
+#     · mtatsminda-funicular-lower-station (historic 1905 funicular access
+#       point on Chonkadze Street, separate from the destination Mtatsminda Park)
+#     · narikala-fortress (the cable car drop point; separate from the
+#       cable car pin itself)
+#   All four are indexable:false; coords are approximate; saved_lists
+#   wired to "tbilisi" so they render under /lists/tbilisi. Verify on the
+#   next admin pass and flip indexable when reviewed.
 #
 # - Spelling note: British English used throughout (centre, neighbourhood,
 #   theatre) per the editorial standard for non-American destinations.
@@ -166,7 +166,7 @@ The first thing a traveller registers in Tbilisi is that the city does not have 
 
 A few anchors are worth knowing:
 
-- The **Rustaveli Avenue** spine runs from Freedom Square (Tavisuplebis Moedani) north past the Opera, the National Museum, and the Marriott. The facades along it are the Parisian register: wrought iron balconies, mansard roofs, café terraces.
+- [**Rustaveli Avenue**](/pins/rustaveli-avenue) is the spine that runs from Freedom Square (Tavisuplebis Moedani) north past the Opera, the National Museum, and the Marriott. The facades along it are the Parisian register: wrought iron balconies, mansard roofs, café terraces.
 - The **old town** south of Freedom Square is the medieval and Ottoman layer. Narrow streets, leaning balconies, the sulfur bath district at the bottom of the slope under Narikala fortress.
 - The **[Bank of Georgia headquarters](/pins/bank-of-georgia)** on the Avlabari side of the river is the famous Soviet brutalist landmark: a 1975 horizontal-skyscraper assembly of stacked concrete bars, often called the Tree building or the BoG building. It looks like nothing else in any other city and is a five-minute Uber from the centre.
 - **Sololaki** and **Vera**, the residential neighbourhoods on the slope west of Rustaveli, are the layer where the Parisian register meets the late-Soviet housing stock most directly. A walk through them is the cheapest education in twentieth-century Tbilisi available.
@@ -177,9 +177,9 @@ The unified thing about the city is that none of these layers has won and none o
 
 The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths; a few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze register the Moscow Metro is famous for. Avlabari and Rustaveli are the two to walk through. A ride costs a flat fare (a fraction of a euro) and you pay with a contactless card or a Metro Money card from any station vending machine.
 
-The other line worth riding is the **[Rike-Narikala cable car](/pins/funicular)**, which climbs from Rike Park on the river up to the Narikala fortress and the Mother of Georgia statue in about a minute. It is the cheapest skyline in the city and the right way to take in how the old town and the river sit against the surrounding hills. Ride it up, walk the ridge along the fortress wall, then walk down through the bath district back to the river.
+The other line worth riding is the **[Rike-Narikala cable car](/pins/funicular)**, which climbs from Rike Park on the river up to [Narikala Fortress](/pins/narikala-fortress) and the Mother of Georgia statue in about a minute. It is the cheapest skyline in the city and the right way to take in how the old town and the river sit against the surrounding hills. Ride it up, walk the ridge along the fortress wall, then walk down through the bath district back to the river.
 
-A second vertical line, the **Mtatsminda funicular**, is the older 1905 system that climbs Mount Mtatsminda to the theme park on the other hill. That is the longer trip and is covered in its own section below.
+A second vertical line, the [**Mtatsminda funicular**](/pins/mtatsminda-funicular-lower-station), is the older 1905 system that climbs Mount Mtatsminda to the theme park on the other hill. That is the longer trip and is covered in its own section below.
 
 ## Mtatsminda Park, on the hill
 
@@ -193,7 +193,7 @@ The Abano Street bath district at the southern foot of the old town is the older
 
 The practical model is this. You arrive at one of the bath houses on or near Abano Street ([the Sulfur Baths cluster](/pins/sulfur-baths) is the navigation anchor), book a private room (a *kabini*) for an hour, and the room comes with its own plunge pool fed by the sulfur spring underneath the building. You undress in the room, soak, get out, and either leave or pay extra for a *kisi*, a vigorous mitt scrub and soap massage by an attendant who has been doing the job for thirty years. The kisi is the part most travellers come back to talk about. Bring flip-flops; the floors are wet and warm. Bring your own toiletries if you have a preference; the houses provide soap that smells of the spring.
 
-This is closer to the private-room Russian banya model than the big communal hammams of Istanbul. There is no central steam room shared by strangers; you and your party have your own water for the hour. The famous facade on the bath row is the Orbeliani Baths (the blue-and-yellow Persian-tile front), but the bathing inside is the same model across the row. The pricing is reasonable for the city; budget about an hour and a half for a kabini plus a kisi.
+This is closer to the private-room Russian banya model than the big communal hammams of Istanbul. There is no central steam room shared by strangers; you and your party have your own water for the hour. The famous facade on the bath row is [Orbeliani Baths](/pins/orbeliani-baths) (the blue-and-yellow Persian-tile front), but the bathing inside is the same model across the row. The pricing is reasonable for the city; budget about an hour and a half for a kabini plus a kisi.
 
 ## Where to eat and what to drink
 

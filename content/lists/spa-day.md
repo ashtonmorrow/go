@@ -68,16 +68,14 @@ related:
 # - Pins added to the spa-day saved_list as part of this scaffold:
 #     all 12 above. The list was empty before; now it backs this prose.
 #
-# - 5/5-rated thermal spa pins NOT on the brief but worth lifting in a
-#   later expansion (Mike said "we can add more later"):
-#     · therme-wien (Vienna; close to the airport for the same fly-in-and-soak
-#       hack the Erding section makes)
-#     · therme-bucharest (Bucharest; one of the largest thermal complexes
-#       in Europe, near OTP airport, also fits the hack model)
-#     · cassiopeia-therme-badenweiler, balinea-thermen (Black Forest;
-#       slower-pace destination versions if a quiet weekend is the
-#       goal rather than the airport hack)
-#   Add a fifth and sixth section if Mike wants to expand the list.
+# - Expanded in the May 2026 follow-up pass to seven cities:
+#     · Vienna (therme-wien, the second airport-hack model)
+#     · Bucharest (therme-bucharest, the giant near OTP)
+#     · Black Forest (cassiopeia-therme-badenweiler + balinea-thermen,
+#       the destination-weekend register rather than the airport hack)
+#   therme-wien now carries the "spa day" saved_list (was empty);
+#   therme-bucharest now carries "spa day" alongside "bucharest" so it
+#   renders on both /lists/spa-day and /lists/bucharest grids.
 #
 # - Notes for a later expansion:
 #     · The Bath section could add the Pump Room Restaurant pin
@@ -111,7 +109,9 @@ The version below is four destinations where I have used this trick myself and w
 * [Pamukkale: ancient pools and a hotel with its own thermal water](#pamukkale-ancient-pools-and-a-hotel-with-its-own-thermal-water)
 * [Budapest: Gellért over Széchenyi, and Rudas for the older one](#budapest-gell-rt-over-sz-chenyi-and-rudas-for-the-older-one)
 * [Bath: the rooftop pool, and the Roman baths next door](#bath-the-rooftop-pool-and-the-roman-baths-next-door)
-* [More to come](#more-to-come)
+* [Vienna: Therme Wien, the other airport hack](#vienna-therme-wien-the-other-airport-hack)
+* [Bucharest: Therme Bucharest, biggest in Europe, right by OTP](#bucharest-therme-bucharest-biggest-in-europe-right-by-otp)
+* [Black Forest: a slower weekend in Badenweiler or Bad Bellingen](#black-forest-a-slower-weekend-in-badenweiler-or-bad-bellingen)
 
 ## Munich: Therme Erding, ten minutes from the airport
 
@@ -177,6 +177,41 @@ Next door, the [Roman Baths](/pins/the-roman-baths) is the museum. The original 
 
 The two together make the most coherent half-day in Bath: museum first (an hour and a half), lunch in town, then two or three hours at Thermae Bath. Stay one or two nights in Bath itself, or visit on a day trip from London by Great Western Railway from Paddington (about 90 minutes).
 
-## More to come
+## Vienna: Therme Wien, the other airport hack
 
-This is the first cut. Other thermal spas in the atlas that I have either soaked at or want to soak at, and would fit the same hack, include Therme Wien (Vienna; close to the airport), Therme Bucharest (Bucharest; one of the largest thermal complexes in Europe and a real airport hack from OTP), and the smaller Black Forest spas at Bad Bellingen and Badenweiler. The map below renders the full list as it grows; the writeup will expand as I add cities.
+[Therme Wien](/pins/therme-wien) is the second-largest urban thermal complex in Austria and runs the same fly-in-and-soak hack as Erding, with the trade-off that the bus from Vienna International (VIE) into the centre passes within a few stops of the complex on the U1 metro line. The geometry is not as tight as Erding's ten-minute taxi, but the U-Bahn delivers you to the spa door (Oberlaa station) in about 30 minutes from the city or about 40 minutes from the airport via the CAT or S-Bahn into the centre and a transfer.
+
+The complex itself runs to a quieter Austrian register than Erding's. The water comes from a 1,500-metre well, the indoor and outdoor pool count is high (more than two dozen pools across the main hall, the family world, and the textile-free sauna world), and the day pass is comparable to Erding's. The Vienna add-on is that you are in Vienna; the trip extends naturally into coffee houses, the opera, the Wien Museum, the rest of the city.
+
+| What | Why pick it | Where |
+|---|---|---|
+| [Therme Wien](/pins/therme-wien) | Indoor + outdoor + textile sauna world all under one roof; U-Bahn to the door from Stephansplatz in about 25 minutes | Kurbadstraße 14, 10th district, Oberlaa |
+
+Use it as the recovery morning when you are arriving into Vienna, or as a half-day reset on a longer Vienna stay. The hotel choice is a normal Vienna hotel rather than an airport-adjacent move; the U1 is the connection that makes it work.
+
+## Bucharest: Therme Bucharest, biggest in Europe, right by OTP
+
+[Therme Bucharest](/pins/therme-bucharest) is the giant of this list. The complex opened in 2016 outside Bucharest in Balotești, about 10 kilometres from Henri Coandă International Airport (OTP) and 18 kilometres from the city centre. It bills itself as the largest urban relaxation centre in Europe; the figure that matters more for planning is the seven hectares of indoor pools, palm-tree atriums, sauna world, and a wave pool, all kept at 33°C indoor air year-round. It is the only spa on this list where the building itself is the spectacle.
+
+The hack model works cleanly here. Land at OTP, taxi or rideshare 15 minutes to Therme, soak all day, then either move on to a Bucharest hotel or stay the night at the airport. The complex has its own shuttle from a stop on the OTP side of the airport road; the app is the easier path if you have luggage.
+
+| What | Why pick it | Where |
+|---|---|---|
+| [Therme Bucharest](/pins/therme-bucharest) | The scale. Three zones (Galaxy family pools, Elysium pure-relax pools, The Palm tropical atrium); a day pass covers all three | Calea Bucureşti 1K, Balotești; ~10 km from OTP |
+
+Three to four hours covers the soak if you are using it as an airport-day add-on; a full day plus a massage is the move if Therme is the trip rather than the trip's first stop. Bucharest is a separate visit from there and is worth its own scaffold once that writeup lands.
+
+## Black Forest: a slower weekend in Badenweiler or Bad Bellingen
+
+The Black Forest in south-west Germany is the destination version of the hack rather than the airport one. The towns are small, the spas are older, the trip is a weekend rather than a half-day, and the pace is the point. Two pins in the saved list cover it.
+
+[Cassiopeia Therme Badenweiler](/pins/cassiopeia-therme-badenweiler) sits in the spa town of Badenweiler on the western edge of the Black Forest, about 30 minutes by car from Basel-Mulhouse-Freiburg airport (BSL). The complex is built around a Roman bath ruin that anchors one of the warm-water pools; the rest is the standard German thermal-and-sauna register but in a quieter, smaller, more elegant frame than Erding. The town itself is a 19th-century cure-resort with a small park, a few good hotels, and not much else, which is the right scale for a weekend reset.
+
+[Balinea Thermen](/pins/balinea-thermen) is in Bad Bellingen further south on the Rhine plain, half an hour from Basel. The bath uses warm mineral water from the same Black Forest seam as Badenweiler; the complex is smaller than Cassiopeia and the town is sleepier. The right pick when the goal is to do almost nothing for two days.
+
+| What | Best for | Where |
+|---|---|---|
+| [Cassiopeia Therme](/pins/cassiopeia-therme-badenweiler) | The elegant version. Roman ruin in the pool hall, walkable old town, a few real restaurants. Pair with a night at one of the small Black Forest hotels | Ernst-Eisenlohr-Straße 1, Badenweiler |
+| [Balinea Thermen](/pins/balinea-thermen) | The sleepier version. Smaller, cheaper, closer to Basel for the fly-in. Read fewer restaurant reviews and lower the expectations on dinner | Bad Bellingen, Black Forest foothills |
+
+The shape of the trip is either airport: BSL (Basel) or STR (Stuttgart), a rental car the rest of the way, two nights at a small hotel in town, two long mornings in the water, and a third day driving the Black Forest road south to Lake Constance or north to Freiburg before flying out.
