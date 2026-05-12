@@ -77,15 +77,17 @@ related:
 #   Kotor scaffold flips indexable, the green-markets list could
 #   reciprocate with a link back; flagged for the next pass.
 #
-# - Pins that are dupes / housekeeping flagged for a later cleanup:
-#     · "iberostar-herceg-novi" (no address, unrated, city_names=Kotor)
-#       appears to be the same property as "iberostar-waves-herceg-novi"
-#       (Njivice address, 5/5). The 2022 brand rebrand introduced the
-#       "Waves" sub-brand; the old slug should redirect to the new one
-#       via the next.config.js legacy-pin-slug table.
-#     · "ladder-of-kotor" (no address) and "start-of-the-ladder-of-kotor"
-#       (with address) may be a dupe or may be the trail vs the trailhead.
-#       Verify on the next edit.
+# - Pins that were dupes, merged in the May 2026 cleanup pass driven
+#   by this scaffold (the survivor carried the personal review, address,
+#   and coords; the deletion candidate had no data and was on the
+#   kotor saved_list with a wrong city tag):
+#     · "iberostar-herceg-novi" → "iberostar-waves-herceg-novi". The
+#       2022 brand rebrand introduced the "Waves" sub-brand; the old
+#       slug now 308s via next.config.js legacyPinSlugs.
+#     · "ladder-of-kotor" → "start-of-the-ladder-of-kotor". The
+#       trailhead pin holds Mike's review explaining the bypass-the-fee
+#       use of the route, and is the slug the body of this guide
+#       already links to. Redirect added.
 #
 # - 5/5-rated Kotor and bay pins on the saved_list that did not fit
 #   Mike's dictated narrative but are good candidates if/when this

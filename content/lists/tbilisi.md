@@ -79,18 +79,22 @@ related:
 #       Saarbrucken Square; same area as the Moxy)
 #     · meidan-bazar (5/5 covered souvenir market in the bath district)
 #
-# - Pins that are dupes / housekeeping flagged here for a later cleanup:
-#     · "the-clock-tower" appears to be a dupe of "leaning-tower-tbilisi"
-#       (no coords, no address, same subject). Verify and merge; redirect
-#       the dead slug in next.config.js per the Hopa Taproom pattern.
-#     · "mother-of-georgia-tramway" appears to be a dupe of "funicular"
-#       (the Rike-Narikala cable car drops at the Mother of Georgia statue
-#       on Sololaki ridge; no coords on the tramway pin). Verify and merge.
-#     · "mapshalia" (no coords, unrated) is the same restaurant as
-#       "mafshalia" (5/5, has address). Merge.
-#     · "klike-s-khinkali" has no coords and is one of several
-#       unrated khinkali-adjacent pins; verify it is not a dupe before
-#       a guide-driven expansion.
+# - Pins that were dupes, merged in the May 2026 cleanup pass driven
+#   by this scaffold (the survivor carried the personal review, address,
+#   and coords; the deletion candidate had no data and was only on the
+#   tbilisi saved_list):
+#     · "the-clock-tower" → "leaning-tower-tbilisi". Redirect added in
+#       next.config.js legacyPinSlugs.
+#     · "mother-of-georgia-tramway" → "funicular". Same cable car (the
+#       Rike-Narikala line drops at the Mother of Georgia statue on the
+#       Sololaki ridge). Redirect added.
+#     · "mapshalia" → "mafshalia". Redirect added.
+#   tbilisi saved_list.pin_order rewritten in place so the survivors
+#   keep the curated position the deletion candidates previously held.
+# - Still in the atlas, not a dupe but sparse: "klike-s-khinkali" has
+#   no coords and no rating. It is the only khinkali-named pin in the
+#   set so it is not a merge target; leave it as a stub until the
+#   khinkali section gets expanded.
 #
 # - 5/5-rated Tbilisi pins on the saved_list that did not fit Mike's
 #   dictated narrative but are strong candidates for a longer cut:

@@ -113,6 +113,15 @@ const nextConfig = {
     // old longer slug.
     const legacyPinSlugs = [
       ['hopa-taproom-craft-beer-bar', 'hopa-taproom'], // Tbilisi dup merge
+      // May 2026 dedup pass driven by the Tbilisi and Kotor guide writeups.
+      // For each pair, the deletion candidate had no address or coords; the
+      // survivor carried the personal review, the rating, and the coords,
+      // so the redirect points old bookmarks at the data-rich row.
+      ['the-clock-tower',           'leaning-tower-tbilisi'],         // Gabriadze clock tower
+      ['mother-of-georgia-tramway', 'funicular'],                     // Rike-Narikala cable car
+      ['mapshalia',                 'mafshalia'],                     // Megrelian restaurant typo dup
+      ['iberostar-herceg-novi',     'iberostar-waves-herceg-novi'],   // 2022 "Waves" sub-brand rebrand
+      ['ladder-of-kotor',           'start-of-the-ladder-of-kotor'],  // trail vs trailhead; the trailhead pin holds the visitor data
     ];
     const pinSlugRedirects = legacyPinSlugs.flatMap(([from, to]) => [
       { source: `/pins/${from}`,       destination: `/pins/${to}`,       permanent: true },
