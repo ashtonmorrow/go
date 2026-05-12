@@ -69,6 +69,23 @@ const nextConfig = {
   // them to the canonical paths so existing links and search results
   // don't break.
   async redirects() {
+    // === Legacy saved-list slug redirects ==================================
+    // Saved lists were renamed during the May 2026 dedup pass. Slugs without
+    // an existing meta row would otherwise 404; we permanent-redirect them
+    // at their new canonical slug instead. Add to this table when you
+    // merge or rename a list and want old bookmarks to keep working. The
+    // name/slug split (saved_lists.slug column, May 2026) makes future
+    // renames URL-stable, so this table should not grow much.
+    const legacyListSlugs = [
+      ['cordoba',       'cordoba-ar'],      // Spain vs Argentina disambig
+      ['den-haag',      'the-hague'],       // Dutch name → English canonical
+      ['santiago-de',   'santiago-chile'],  // fragment merged into Chile list
+    ];
+    const listSlugRedirects = legacyListSlugs.flatMap(([from, to]) => [
+      { source: `/lists/${from}`,       destination: `/lists/${to}`,       permanent: true },
+      { source: `/admin/lists/${from}`, destination: `/admin/lists/${to}`, permanent: true },
+    ]);
+
     return [
       // Object indexes → cards (the default view)
       { source: '/cities',    destination: '/cities/cards',    permanent: true },
@@ -81,6 +98,8 @@ const nextConfig = {
       { source: '/map',   destination: '/cities/map',     permanent: true },
       { source: '/table', destination: '/cities/table',   permanent: true },
       { source: '/world', destination: '/countries/map', permanent: true },
+      // Merged/renamed saved-list slugs
+      ...listSlugRedirects,
     ];
   },
 };
