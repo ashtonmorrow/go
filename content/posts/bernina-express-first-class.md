@@ -72,7 +72,7 @@ tags:
   - travel-guide
 ---
 
-The [Bernina Express](/pins/bernina-express) is easier to add to a northern [Italy](/countries/italy) trip than it looks on a map. I was in [Milan](/cities/milan) after a few days in [Rome](/cities/rome), realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
+The [Bernina Express](/pins/trenino-rosso-bernina) is easier to add to a northern [Italy](/countries/italy) trip than it looks on a map. I was in [Milan](/cities/milan) after a few days in [Rome](/cities/rome), realized Tirano was only a regional train ride away, and booked the scenic train to Chur less than a week before departure.
 
 The trip is not complicated, but a few details matter: the Bernina Express is not the only train on the line, seat reservations are separate from rail passes, and the Milan to Tirano connection is part of the day. This is the version I wish I had read before buying my ticket.
 
