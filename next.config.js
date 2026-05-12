@@ -52,6 +52,17 @@ const nextConfig = {
     '/pins/[slug]':      ['./content/**/*'],
     '/cities/[slug]':    ['./content/**/*'],
     '/countries/[slug]': ['./content/**/*'],
+    // /lists/[slug] also reads /content/lists/<slug>.md via readListContent;
+    // without this, new scaffolds land in git but never reach the prod
+    // serverless function bundle, so the page renders as a plain saved
+    // list rather than a featured Guide. Same hazard the other three
+    // dynamic routes had until this entry was added (May 2026).
+    '/lists/[slug]':     ['./content/**/*'],
+    // The /lists index also reads the content/lists directory directly
+    // (countPublishedContent on app/page.tsx + the readListContent loop
+    // in app/lists/page.tsx) so include it on those route entries too.
+    '/lists':            ['./content/**/*'],
+    '/':                 ['./content/**/*'],
   },
   experimental: {
     // Fine-tune if needed
