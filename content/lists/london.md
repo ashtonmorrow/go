@@ -107,9 +107,9 @@ This is the half-day every first London trip should anchor on. About two miles, 
 | [Borough Market](/pins/borough-market) | The best food market in the city | Closed Sunday; full market Tue–Sat. Go by 10:30 or after 14:00 to beat the lunch zoo |
 | [BAO Borough](/pins/bao-borough) | Taiwanese steamed buns | Queue lines around the block at peak; arrive early or skip to a stall |
 | [Lobos Meat and Tapas](/pins/lobos-meat-and-tapas) | Small-plate Spanish in the market, properly cooked | Opens at noon; book ahead on weekends |
-| [Anchor Bankside](/pins/anchor-bankside) | The riverside pub at the next bend | Touristy but a real Bankside view. One pint and move on |
+| Anchor Bankside | The riverside pub at the next bend | Touristy but a real Bankside view. One pint and move on |
 | Shakespeare's Globe | Reconstructed Elizabethan theatre | Tours daily; performances summer through autumn |
-| [Tate Modern](/pins/tate-modern) | Modern-art collection in the old Bankside Power Station | Free entry to the permanent collection. Climb to the Switch House top for the view back across the river |
+| Tate Modern | Modern-art collection in the old Bankside Power Station | Free entry to the permanent collection. Climb to the Switch House top for the view back across the river |
 | [London Eye](/pins/london-eye) | The wheel | Optional; see Sky Garden first |
 
 End at Westminster Bridge for the Houses of Parliament view, or walk five more minutes to St James's Park if the weather is decent.
@@ -142,7 +142,7 @@ The big nationals are free and the queue is the price. The two that consistently
 * [Imperial War Museum](/pins/imperial-war-museum) in Lambeth. Striking exhibits, dense Holocaust gallery, well-curated 20th-century history. Most visitors arrive without expectations and leave reconsidering them.
 * The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum; book a timed entry to skip the door queue.
 
-For modern art the [Tate Modern](/pins/tate-modern) is the headline. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
+For modern art the Tate Modern is the headline. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
 
 ## Canary Wharf and the Docklands
 
@@ -158,6 +158,6 @@ Pubs in central London skew touristy and overcooked; the ones that actually earn
 
 * [The George](/pins/the-george) in Canary Wharf for a proper old-school pint without the City crowds.
 * [The Astronomer EC1](/pins/the-astronomer-ec1) for a Sunday roast; close earlier than you'd expect, so book lunch not dinner.
-* [Anchor Bankside](/pins/anchor-bankside) for the Bankside view on the walk. Touristy but unbeatable for the location.
+* Anchor Bankside for the Bankside view on the walk. Touristy but unbeatable for the location.
 
 For something more particular: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal toward Camden, end at one of the canal-side pubs along the way.

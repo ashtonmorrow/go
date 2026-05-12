@@ -111,7 +111,7 @@ The coastal beaches divide into three rhythms.
 | Clifton | Sheltered swimming, calmer water | Series of small coves; better with kids than Camps Bay |
 | Camps Bay | Social beach day, restaurants across the road | Wider beach, lined with cafes and bars |
 | Sea Point | Promenade walks, not really swimming | Coastal walkway, easy daily rhythm |
-| [Boulders Penguin Colony](/pins/boulders-penguin-colony) | African penguins on the boardwalk | Real drive from the center; fold into a Cape Peninsula day, not a quick errand |
+| [Boulders Penguin Colony](/pins/boulders-beach-penguin-sanctuary) | African penguins on the boardwalk | Real drive from the center; fold into a Cape Peninsula day, not a quick errand |
 
 Boulders pairs naturally with Cape Point and the Cape of Good Hope as a single long day. [Seaforth Restaurant](/pins/seaforth-restaurant) near Boulders was fine when I went: good patio, acceptable food, older crowd.
 
