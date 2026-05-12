@@ -340,8 +340,11 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         <span className="ml-1">{matchedIso3.length === 1 ? 'country' : 'countries'}</span>
       </div>
 
-      {/* === Projection toggle === top-right */}
-      <div className="absolute top-3 right-3 z-10">
+      {/* === Projection toggle === bottom-right. Was top-right until
+          MapFilterDock (May 2026) took over the top-right corner with the
+          filter cockpit. Moved here for parity with WorldGlobe, which has
+          always lived bottom-right. */}
+      <div className="absolute bottom-3 right-3 z-10">
         <div className="inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 shadow-sm">
           <ProjectionPill
             active={projection === 'globe'}

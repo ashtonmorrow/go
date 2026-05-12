@@ -10,6 +10,11 @@ import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
 import type { ArticleEntry } from '@/lib/articles';
 import SearchModal, { type SearchItem } from './SearchModal';
+import MapFilterDock from './MapFilterDock';
+
+// Map routes get a full-bleed globe with a floating filter dock in the
+// top-right; the persistent desktop rail hides itself on these URLs.
+const MAP_ROUTES = new Set(['/cities/map', '/pins/map', '/countries/map']);
 
 // Filter panels lazy-loaded so chrome-less routes (about, privacy,
 // articles, posts, admin/*) don't pay for the filter-cockpit JavaScript
@@ -91,12 +96,15 @@ export default function SidebarShell({
   searchItems?: SearchItem[];
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname() ?? '';
+  const isMapRoute = MAP_ROUTES.has(pathname);
 
   return (
     <>
       {/* === Mobile top bar === only visible below md. Just the hamburger —
           no brand label, since it would duplicate what the URL bar already
-          says and clutter the narrow viewport. === */}
+          says and clutter the narrow viewport. Stays on map routes too;
+          the drawer slides in over the globe when summoned. === */}
       <div className="md:hidden sticky top-0 z-40 bg-white border-b border-sand">
         <div className="flex items-center gap-3 px-4 py-3">
           <button
@@ -143,20 +151,37 @@ export default function SidebarShell({
       </aside>
 
       {/* === Desktop sticky rail === always visible md+, fills the viewport
-          height. Sits on the left of the page with main content to its right. */}
-      <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-        <NavBody
-          counts={counts}
-          countryOptions={countryOptions}
-          pinCountryOptions={pinCountryOptions}
-          pinCategoryOptions={pinCategoryOptions}
-          pinListOptions={pinListOptions}
-          pinTagOptions={pinTagOptions}
-          pinSavedListOptions={pinSavedListOptions}
-          articleEntries={articleEntries}
-          searchItems={searchItems}
-        />
-      </aside>
+          height. Sits on the left of the page with main content to its
+          right. Suppressed on the three /<scope>/map routes so the globe
+          gets the full viewport; MapFilterDock floats the cockpit into
+          the top-right corner instead. */}
+      {!isMapRoute && (
+        <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
+          <NavBody
+            counts={counts}
+            countryOptions={countryOptions}
+            pinCountryOptions={pinCountryOptions}
+            pinCategoryOptions={pinCategoryOptions}
+            pinListOptions={pinListOptions}
+            pinTagOptions={pinTagOptions}
+            pinSavedListOptions={pinSavedListOptions}
+            articleEntries={articleEntries}
+            searchItems={searchItems}
+          />
+        </aside>
+      )}
+
+      {/* Floating filter dock for the /<scope>/map routes. Returns null
+          when not on one of those three URLs, so this is safe to mount
+          unconditionally from the sidebar tree. */}
+      <MapFilterDock
+        countryOptions={countryOptions}
+        pinCountryOptions={pinCountryOptions}
+        pinCategoryOptions={pinCategoryOptions}
+        pinListOptions={pinListOptions}
+        pinTagOptions={pinTagOptions}
+        pinSavedListOptions={pinSavedListOptions}
+      />
     </>
   );
 }

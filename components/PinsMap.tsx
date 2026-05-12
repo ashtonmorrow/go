@@ -101,7 +101,9 @@ export default function PinsMap({ pins }: { pins: PinForCard[] }) {
         onClick={onClick}
         cursor={hovered ? 'pointer' : 'grab'}
       >
-        <NavigationControl position="top-right" />
+        {/* bottom-left to match WorldGlobe + CountriesGlobe convention and
+            keep the top-right corner clear for the MapFilterDock. */}
+        <NavigationControl position="bottom-left" />
         <Source id="pins" type="geojson" data={geojson as never}>
           <Layer
             id="pin-dots"
