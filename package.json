@@ -16,7 +16,8 @@
     "validate:content": "tsx --env-file=.env.local scripts/validate-content-links.ts",
     "pins:audit": "tsx --env-file=.env.local scripts/audit-pin-enrichment.ts",
     "pins:coords": "tsx --env-file=.env.local scripts/backfill-pin-coordinates-from-places.ts",
-    "airports:sync": "tsx scripts/sync-airports.ts"
+    "airports:sync": "tsx scripts/sync-airports.ts",
+    "languages:sync": "tsx --env-file=.env.local scripts/sync-language-phrases.ts"
   },
   "browserslist": [
     "chrome >= 100",

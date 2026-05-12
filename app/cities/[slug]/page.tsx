@@ -19,7 +19,7 @@ import { nearbyAirports } from '@/lib/airports';
 import ClosedDaysPanel from '@/components/ClosedDaysPanel';
 import TransitPanel from '@/components/TransitPanel';
 import { fetchTransitOperators } from '@/lib/transit';
-import PhrasesPanel from '@/components/PhrasesPanel';
+import LanguageLinkPanel from '@/components/LanguageLinkPanel';
 import ForecastPanel from '@/components/ForecastPanel';
 import { fetchForecast } from '@/lib/forecast';
 import SkyPanel from '@/components/SkyPanel';
@@ -599,11 +599,11 @@ export default async function CityPage({
             countryName={country?.name ?? city.country}
           />
 
-          {/* A few words in {language}: twelve standard survival phrases
-              translated into the country's primary language via DeepL.
-              Hides itself for English-speaking countries (no language
-              mapping) and when DEEPL_API_KEY is missing. */}
-          <PhrasesPanel countryIso2={country?.iso2 ?? null} />
+          {/* Local language link: a small card with the country's
+              primary travel language, pointing at /languages/[slug] for
+              the twelve-phrase guide. Hides on English-speaking
+              countries and when the guide page has no phrases yet. */}
+          <LanguageLinkPanel countryIso2={country?.iso2 ?? null} />
 
           {hasBody && (
             <section className="mt-10 border-t border-sand pt-8">
