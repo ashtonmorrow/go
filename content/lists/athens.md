@@ -55,7 +55,16 @@ These are working notes from real time on the ground rather than a checklist. At
 
 ## Getting in
 
-Athens International Airport (ATH) is 33 km from central Athens. The metro M3 runs straight from the airport to Syntagma Square in 40 minutes for €9 single (€16 return). Express buses run 24 hours for €6. Taxis are flat-rate €40 daytime, €55 nighttime to central Athens; make sure the meter starts at zero and confirm the flat rate before pulling away.
+Athens International Airport "Eleftherios Venizelos" (ATH) sits about 33 km east of central Athens. The journey into town is well-served by both rail and bus, with rideshare as the third option.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| Metro M3 (blue line) | 40 min to Syntagma | €9 single, €16 return | The default. Trains run every 30 minutes from the airport platform, direct to Syntagma Square; the entry point is signed inside the terminal |
+| Express bus | 50 to 70 min | €6 single, 24-hour service | X95 to Syntagma, X96 to Piraeus (the port for ferries), X93 to Kifisos coach terminal. The X95 runs every 15 to 30 minutes day and night, which is why it is the late-arrival pick |
+| Taxi from the rank | 35 to 50 min | €40 daytime / €55 night (flat rate) | The flat fare is set by law for airport-to-central runs. Confirm the rate with the driver before pulling away; the meter should start at zero |
+| Uber via Beat / FreeNow | 35 to 50 min | €40 to €55 | Beat is the dominant Greek rideshare app (Athens-based); FreeNow also works. Both connect to standard licensed taxis rather than private drivers, so the rate is essentially the same as the rank |
+
+The M3 is the right default with manageable luggage; the X95 is the right default with a redeye arrival because it runs all night. Taxi flat rates are honest in Athens (more so than in most southern European capitals); the lawful daytime rate of €40 is the price every legal taxi charges, so do not negotiate, just confirm before you get in.
 
 ## Where to stay
 

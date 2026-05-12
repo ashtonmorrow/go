@@ -56,9 +56,19 @@ These are working notes from real time on the ground rather than a checklist. Ro
 
 ## Getting in
 
-Rotterdam Centraal is the gateway. From Schiphol, the Intercity Direct takes 26 minutes (€18.20, fare is the same with OVpay tap-in/tap-out as with a printed ticket). From Amsterdam Centraal, the same train is 42 minutes. From outside the Netherlands, fly into Schiphol or Eindhoven; Rotterdam Den Haag Airport is a small regional with limited connections.
+Rotterdam Centraal is the gateway. The small regional Rotterdam The Hague Airport (RTM) handles a handful of European low-cost routes, but almost every traveller arrives via Schiphol (AMS) or Eindhoven (EIN) and finishes on the train.
 
-Walking from Centraal to the Markthal is 12 minutes; to the Cube Houses 15. Most of central Rotterdam is walkable end-to-end in under 30 minutes.
+| From | Route | Time | Cost | When to use |
+|---|---|---|---|---|
+| [Amsterdam Schiphol (AMS)](/pins/amsterdam-airport-schiphol) | NS Intercity Direct | 26 min | €18.20 on OVpay | The default. Direct from the airport platform under the terminal; tap a contactless card at the entry gate and again at Rotterdam Centraal |
+| Amsterdam Centraal | NS Intercity Direct | 42 min | €17.50 on OVpay | Coming from an Amsterdam stay; the same train one stop down the line |
+| Eindhoven Airport (EIN) | Bus 401 + NS train via Eindhoven Centraal | 90 min | €18 to €22 total | If a low-cost carrier dropped you at EIN. Slower and a bit awkward; the bus into Eindhoven Centraal adds 25 minutes |
+| Brussels-Midi | Thalys / Eurostar high-speed | 75 min | €40 to €90 advance | Worth it from London Eurostar via Brussels, or as a connection from Paris |
+| Rotterdam The Hague Airport (RTM) | RET bus 33 to Centraal | 25 min | €4 on OVpay | The local option; bus 33 from outside arrivals, every 10 to 15 minutes |
+
+**OVpay** is the contactless tap-and-go system across the Dutch rail network and on RET buses, trams, and metro. Tap a Visa, Mastercard, Maestro, Apple Pay, or Google Pay at the yellow gate or the bus reader on entry, ride, tap again on exit. The fare is the same as a printed ticket and the system charges per kilometre. The Underground-shape gotcha applies: forget to tap out and the system charges the maximum possible fare for that leg. Always tap out.
+
+Walking from Centraal to the Markthal is 12 minutes; to the Cube Houses 15. Most of central Rotterdam is walkable end-to-end in under 30 minutes, which is why most visitors do not bother with a metro ticket beyond the airport leg.
 
 ## Where to stay
 

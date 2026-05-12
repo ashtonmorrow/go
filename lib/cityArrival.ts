@@ -147,6 +147,79 @@ export const CITY_ARRIVAL: Record<string, CityArrival> = {
     ],
   },
 
+  'amsterdam': {
+    airport: {
+      iata: 'AMS',
+      name: 'Amsterdam Airport Schiphol',
+      distanceKm: 9,
+      driveTimeMin: [15, 20],
+    },
+    contextSentence:
+      'sits about 9 km southwest of Centraal and is one of the easier major airport arrivals in Europe; the train station is directly under the terminal, so the path from baggage to platform is a single escalator down',
+    options: [
+      { mode: 'NS train (Sprinter or Intercity) to Centraal',  timeMin: [15, 20], cost: '~€5 to €6 on OVpay (charged per km)',         bestFor: 'The default for almost every arrival. Trains every few minutes day and night' },
+      { mode: 'NS train direct to Zuid',                       timeMin: [8, 10],  cost: '~€4 on OVpay',                                 bestFor: 'Hotels in De Pijp, the museum quarter, or south of the centre; skips the Centraal transfer' },
+      { mode: 'Uber / Bolt',                                   timeMin: [25, 45], cost: '€40 to €60 to the centre',                     bestFor: 'Late arrival, heavy luggage, or a group splitting the fare' },
+      { mode: 'Taxi from the rank',                            timeMin: [25, 45], cost: '€50 to €65',                                   bestFor: 'Yellow-and-blue rank cars; reliable when the app surges' },
+    ],
+  },
+
+  'athens': {
+    airport: {
+      iata: 'ATH',
+      name: 'Athens International Eleftherios Venizelos',
+      distanceKm: 33,
+      driveTimeMin: [35, 50],
+    },
+    contextSentence:
+      'sits about 33 km east of central Athens; the journey into town is well-served by both rail and bus, with rideshare as the third option',
+    options: [
+      { mode: 'Metro M3 (blue line) to Syntagma',  timeMin: [40, 40], cost: '€9 single, €16 return',     bestFor: 'The default. Trains every 30 minutes from the airport platform' },
+      { mode: 'Express bus X95 to Syntagma',       timeMin: [50, 70], cost: '€6 single (24-hour)',       bestFor: 'Late-arrival pick because it runs all night' },
+      { mode: 'Taxi from the rank',                timeMin: [35, 50], cost: '€40 day / €55 night flat',  bestFor: 'Confirm the flat fare with the driver before pulling away; the meter should start at zero' },
+      { mode: 'Uber via Beat / FreeNow',           timeMin: [35, 50], cost: '€40 to €55',                bestFor: 'Beat is the dominant Greek rideshare; FreeNow also works. Both connect to licensed taxis' },
+    ],
+  },
+
+  // Bruges and Rotterdam have no major international airport of their
+  // own; arrival is by train from elsewhere. The "options" table on each
+  // guide lists the rail routes rather than airport modes.
+  'bruges': {
+    airport: {
+      iata: 'BRU',
+      name: 'Brussels Airport (the nearest with international service)',
+      distanceKm: 120,
+      driveTimeMin: [90, 120],
+    },
+    contextSentence:
+      'has no commercial airport of its own; almost every visitor arrives by train via Brussels or Ghent. SNCB runs the Intercity service that connects the Belgian rail network, and Bruges sits at the western end of the Ghent-Antwerp-Brussels axis',
+    options: [
+      { mode: 'SNCB Intercity from Brussels-Midi or Brussels-Central',       timeMin: [60, 60], cost: '€17.60 single second class',          bestFor: 'The default for visitors arriving via Brussels Airport (BRU) or Eurostar from London/Paris/Amsterdam' },
+      { mode: 'SNCB Intercity from Ghent-Sint-Pieters',                      timeMin: [25, 25], cost: '~€10 single',                         bestFor: 'The pivot from Ghent; trains every 30 minutes' },
+      { mode: 'SNCB IC from Antwerp-Centraal (via Ghent)',                   timeMin: [75, 75], cost: '~€18 single',                         bestFor: 'Through-ticketed from Antwerp; change at Ghent-Sint-Pieters' },
+      { mode: 'Direct InterCity from Brussels Airport (BRU)',                timeMin: [90, 90], cost: '€20 to €25',                         bestFor: 'The cleanest path from a BRU arrival; direct service or one change at Brussels-Midi' },
+      { mode: 'Charleroi (CRL) low-cost via bus + IC',                       timeMin: [120, 150], cost: '€30 to €40 total',                  bestFor: 'If a low-cost carrier dropped you at CRL; longer but workable' },
+    ],
+  },
+
+  'rotterdam': {
+    airport: {
+      iata: 'AMS',
+      name: 'Amsterdam Schiphol (the practical international gateway; RTM is a small regional)',
+      distanceKm: 70,
+      driveTimeMin: [26, 45],
+    },
+    contextSentence:
+      'has its own small regional airport (RTM) that handles a handful of European low-cost routes, but almost every visitor arrives via Schiphol (AMS) or Eindhoven (EIN) and finishes on the train. Rotterdam Centraal is the rail gateway',
+    options: [
+      { mode: 'NS Intercity Direct from Schiphol (AMS)',                     timeMin: [26, 26], cost: '€18.20 on OVpay',           bestFor: 'The default. Direct from the airport platform under the terminal' },
+      { mode: 'NS Intercity Direct from Amsterdam Centraal',                 timeMin: [42, 42], cost: '€17.50 on OVpay',           bestFor: 'Coming from an Amsterdam stay; same train one stop down the line' },
+      { mode: 'Bus 401 + NS train via Eindhoven Centraal (from EIN)',        timeMin: [90, 90], cost: '€18 to €22 total',          bestFor: 'If a low-cost carrier dropped you at EIN' },
+      { mode: 'Thalys / Eurostar from Brussels-Midi',                        timeMin: [75, 75], cost: '€40 to €90 advance',        bestFor: 'From London Eurostar via Brussels, or as a connection from Paris' },
+      { mode: 'RET bus 33 from Rotterdam The Hague Airport (RTM)',           timeMin: [25, 25], cost: '€4 on OVpay',               bestFor: 'The local option if a low-cost carrier brought you to RTM directly' },
+    ],
+  },
+
   'valletta': {
     airport: {
       iata: 'MLA',

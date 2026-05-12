@@ -60,9 +60,19 @@ If you overnight, [The Pand Hotel](/pins/the-pand-hotel) is the boutique pick in
 
 ## Getting in
 
-SNCB (Belgium's national rail operator) runs Intercity trains from Brussels-Midi or Brussels-Central every 30 to 60 minutes. 60 minutes' ride, €17.60 single second class. The Weekendticket is half off on Saturday and Sunday. Trains also run from Ghent (~25 min direct) and Antwerp (~75 min, usually via change in Ghent).
+Bruges does not have its own commercial airport; almost every visitor arrives by train from elsewhere in Belgium or from one of the international rail connections at Brussels. SNCB (the Belgian national rail operator) runs the Intercity service that connects the country, and Bruges sits at the western end of the Ghent-Antwerp-Brussels axis.
 
-From Bruges train station, the historic centre is a 10-minute flat walk or a short ride on De Lijn (the Flemish regional bus and tram network) lines 1, 4, or 5. Walking is easier; the streets between the station and the Markt are flat and well signed.
+| From | Route | Time | Cost | When to use |
+|---|---|---|---|---|
+| Brussels-Midi or Brussels-Central | SNCB Intercity direct | 60 min | €17.60 single, second class | The default for any visitor coming via Brussels Airport (BRU) or Eurostar from London / Paris / Amsterdam. Trains every 30 to 60 minutes |
+| Ghent-Sint-Pieters | SNCB Intercity direct | 25 min | ~€10 single | The natural pivot if you are already in Ghent. Trains every 30 minutes |
+| Antwerp-Centraal | SNCB IC via Ghent | 75 min | ~€18 single | Usually requires a change at Ghent-Sint-Pieters. Tickets are issued through to Bruges |
+| Brussels Airport (BRU) | Direct InterCity train | 90 min | €20 to €25 | One change at Brussels-Midi or direct service depending on the hour. The cleanest path from a flight into BRU |
+| Charleroi airport (CRL) | Bus to Charleroi Sud + IC via Brussels | 2 to 2.5 hr | €30 to €40 total | If you are flying in on a low-cost carrier; longer but workable |
+
+**Weekendticket** halves the fare on Saturday and Sunday return-trip travel, which is worth knowing if you are day-tripping from Brussels. Buy at the station ticket window or the SNCB app.
+
+From Bruges train station, the historic centre is a 10-minute flat walk or a short ride on De Lijn (the Flemish regional bus and tram network) lines 1, 4, or 5. Walking is easier; the streets between the station and the Markt are flat and well signed, and the De Lijn ride is only worth the bother if you have heavy luggage.
 
 ## The walking circuit
 

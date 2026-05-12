@@ -98,9 +98,16 @@ The light in late June is famously long; sunset can be after 22:00. Rain is poss
 
 [Amsterdam Airport Schiphol](/pins/amsterdam-airport-schiphol) sits about 9 km southwest of Centraal, and it is one of the easier major airport arrivals in Europe because the train station is directly under the terminal. Customs, bags, escalator down to the platforms (the Dutch signage uses *spoor*, meaning track or platform), and you are on a train within minutes.
 
-Trains run to [Amsterdam Centraal](/pins/amsterdam-centraal-station) every few minutes, day and night, taking about fifteen minutes. Sprinter (the local) and Intercity both stop there. Tap a contactless bank card or phone wallet at the entry gate at Schiphol and again at the exit gate at Centraal. That is the OVpay system. Fare is about €5–6, charged per kilometer.
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| NS train to [Centraal](/pins/amsterdam-centraal-station) | 15 to 20 min | ~€5 to €6 on OVpay, charged per km | The default for almost every arrival. Sprinter (local) and Intercity both run; trains every few minutes day and night |
+| NS train, direct to Zuid | 8 to 10 min | ~€4 on OVpay | If your hotel is in De Pijp, the museum quarter, or anywhere south of the centre; skips the Centraal transfer |
+| Uber / Bolt | 25 to 45 min | €40 to €60 to the centre | Late arrival, heavy luggage, or a group splitting the fare. Pickup is at a marked lot a short walk from arrivals |
+| Taxi from the rank | 25 to 45 min | €50 to €65 to the centre | Marked yellow-and-blue rank cars. Slightly more than rideshare; reliable when the app surges |
 
-If your hotel is near Amsterdam Zuid station, take the train there directly instead of going to Centraal first; some Schiphol services stop at Zuid before continuing.
+The train is the right default. **The fare is OVpay**: tap a contactless bank card or phone wallet at the yellow gate at Schiphol, ride, tap out at the destination gate. The system charges per kilometre and pairs the entry and exit taps to calculate the leg. If you forget to tap out, it charges the maximum possible fare for that journey, the same shape as the London Underground gotcha. Always tap out, even if the gate is open and the crowd is walking through. Visa, Mastercard, Maestro, Apple Pay, and Google Pay all work; Amex and Discover are less reliably accepted.
+
+If your hotel is near **Amsterdam Zuid** station, take the train there directly instead of going to Centraal first; some Schiphol services stop at Zuid before continuing. The southern hotels save 15 to 20 minutes of metro transfer time by going there straight from the airport.
 
 ## Getting around once you're in town
 
