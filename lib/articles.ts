@@ -105,13 +105,15 @@ export type ArticleEntry = {
  */
 const POST_EMOJI: Record<string, string> = {
   'thailand-travel-notes': '🇹🇭',
-  'bali-travel-guide': '🌴',
   'cape-town-travel-brief': '🏔️',
   'spanish-castles': '🏰',
-  'bernina-express-first-class': '🚂',
   'balkan-green-markets': '🥬',
-  'why-alicante': '🏖️',
   'rio-botanical-garden': '🌿',
+  // The bali-travel-guide, bernina-express-first-class, and why-alicante
+  // posts were folded into their corresponding /lists/<slug> scaffolds
+  // (May 2026) and deleted to remove the duplicate prose that was
+  // cannibalising the list pages in search. The /posts/<slug> URLs now
+  // 308-redirect to the list equivalents via next.config.js.
 };
 
 function emojiForPost(slug: string): string {

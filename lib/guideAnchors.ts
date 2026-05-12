@@ -34,6 +34,10 @@ const THEMATIC_ANCHORS: Record<string, string[]> = {
   'kusttram-stations':    ['oostende'],
   // Multi-base lists where every base is worth its own pin
   'bali':                 ['ubud', 'seminyak', 'canggu'],
+  // Route guides: anchor at the southern and northern endpoints plus
+  // the two big intermediate stops, so the home globe shows the line
+  // as a thread of pins rather than a single dot.
+  'bernina-express-route': ['tirano', 'st-moritz', 'chur'],
 };
 
 export type GuideAnchor = {

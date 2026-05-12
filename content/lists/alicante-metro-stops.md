@@ -33,8 +33,6 @@ faqs:
 related:
   city: alicante
   country: spain
-  posts:
-    - why-alicante
 ---
 
 [Alicante](/cities/alicante)'s tram is the trick that makes the city feel larger than it is. The center is compact, but the network lets you stay near the old town or Postiguet and still spend a beach day farther up the Costa Blanca without renting a car.

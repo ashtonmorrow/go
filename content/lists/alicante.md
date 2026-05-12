@@ -138,6 +138,21 @@ Alicante's eating runs from one-euro tapas with a beer to a 30-euro steak dinner
 
 A note on chocolate: [Xocolateria Valor](/pins/xocolateria-valor) does the traditional Spanish thick chocolate-and-churros and is the right closing move on a cool evening.
 
+### Local specialties worth ordering once
+
+Three dishes carry the Alicante identity and are worth seeking out by name rather than ordering whatever the menu suggests:
+
+- **Arroz a banda**. Rice cooked in fish broth, traditionally served in two courses (the broth and rice together, then the fish on its own afterwards). Lighter than paella, more about the rice and the broth. Most Alicante seafood restaurants do a version; ask for the local style rather than paella when you see both on the menu.
+- **Gazpacho alicantino**. Not the cold tomato soup of Andalucía. This is a meat-and-flatbread game stew (rabbit, chicken, or both) ladled over thin torta gazpachera bread, slow-cooked into a savoury bowl. Lunch dish, hearty, weather-dependent. Order it in autumn or winter.
+- **Turrón**. The almond-and-honey nougat with its Denominación de Origen Protegida centred in Jijona, a town an hour inland. Available year-round at the Mercat and the Christmas-market kiosks in December. The hard Alicante variety (turrón duro) and the soft Jijona variety (turrón blando) are the two classic forms; the rest are modern variations.
+
+## Museums worth a break from the beach
+
+Two urban museums are worth a stop on a beach-resting day or if a summer afternoon needs an air-conditioned middle:
+
+- **MARQ** (the Museo Arqueológico Provincial de Alicante). The provincial archaeology museum, well-curated, with Iberian, Roman, and Islamic-era collections from the surrounding region. A natural follow-up if you have already walked through Lucentum and want the wider context.
+- **MACA** (the Museo de Arte Contemporáneo de Alicante). Smaller, contemporary art focused, sits in a quiet square in the old town. Free entry. About an hour does it.
+
 ## Day trips up the Costa Blanca
 
 Three options that work as a half- or full-day from Alicante:

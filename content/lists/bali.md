@@ -114,19 +114,27 @@ The current Bali saved list is the May 2026 consolidation of four earlier sub-re
 * [Canggu: the surf, the cafés, the build-up](#canggu-the-surf-the-caf-s-the-build-up)
 * [Ubud: the cooler air and the temples](#ubud-the-cooler-air-and-the-temples)
 * [The beach clubs are the trip](#the-beach-clubs-are-the-trip)
+* [Sunset temples and the things to handle carefully](#sunset-temples-and-the-things-to-handle-carefully)
 * [When to go](#when-to-go)
 
 ## Picking your base
 
-The three bases this list is built around are Seminyak, Canggu, and Ubud. They are not interchangeable, and most first Bali trips work better as two of them rather than one.
+The three bases this list is built around are Seminyak, Canggu, and Ubud, and those are the three the main sections below cover. The broader set of bases that the island actually offers is wider; a second or third Bali trip pulls from the table below.
 
-| Base | Trip it suits | Rough character | Distance from DPS |
+| Base | What it is good for | The trade-off | Distance from DPS |
 |---|---|---|---|
-| Seminyak | The pool-deck-and-beach-club coast trip; the more polished resort base | Built-up, paved, glossy. Most of the brand-name hotels. The most expensive beach-club nights | 30 to 45 minutes |
-| Canggu | The surf-and-café version of the coast; digital-nomad density; more casual | More relaxed pace than Seminyak, but urbanising quickly. Rice fields and apartment blocks now share the same plot | 45 to 75 minutes |
-| Ubud | The inland, cooler-air, temple-and-ridge-walk trip | Quieter (in town centre), greener, slower; a different climate register than the coast | 90 to 120 minutes |
+| Ubud | Rice fields, temples, art markets, dance, yoga, slower mornings | Inland; beach days require a drive | 90 to 120 minutes |
+| Canggu | Surf, cafés, longer stays, remote work | Traffic has become part of the experience | 45 to 75 minutes |
+| Seminyak | Restaurants, boutiques, beach access | Polished, pricey, heavily touristed | 30 to 45 minutes |
+| Sanur | Families, calm water, a walkable beach path | Quieter at night; under-rated for a first visit | 25 to 35 minutes |
+| Nusa Dua | Resort comfort and low-friction beach days | Gated and detached from daily Balinese life | 15 to 25 minutes |
+| Uluwatu | Cliffs, surf breaks, temple sunsets | Spread out; you need transport for everything | 45 to 70 minutes |
+| Jimbaran | Seafood dinners on the sand, calmer beach, airport convenience | Better for a night or two than a whole stay; great for the final night before an early flight | 20 to 30 minutes |
+| Amed / Sidemen / Lovina | Slower east and north Bali; black sand, snorkelling, rice-terrace walks, weaving workshops | Too far for a rushed first visit; save for a longer second trip | 2.5 to 3.5 hours |
 
 The most-recommended shape for a week is three or four nights on the coast plus three or four nights in Ubud. Mid-trip transfers are easy enough (private car about 60 to 90 minutes, less in low traffic) that the swap is the natural rhythm. A week in only one of these bases tends to under-use the island; a coast-only trip misses the Ubud register and an Ubud-only trip misses the swim.
+
+For a first trip, Sanur is also under-rated as the coast pick if calm water and a flat beach path matter more than the beach-club register. Nusa Dua is sometimes exactly the right answer (low-friction beach reset) and sometimes the wrong version of Bali entirely (gated, separated from the rest of the island); know which trip you are taking before you book it.
 
 ## Getting in via Ngurah Rai (DPS)
 
@@ -135,6 +143,10 @@ Most travellers arrive at Ngurah Rai International (DPS), south of the Kuta beac
 Visa on arrival for most nationalities is currently US$35 for 30 days, payable at the immigration desk in cash or card on arrival; the e-VOA option pre-arrival speeds the queue. Customs declarations are now electronic via the QR code at the kiosks before baggage claim.
 
 A note on the airport-to-Ubud transfer: at 90 to 120 minutes (longer in bad traffic), this is the longest of the three transfers and the one most travellers wish they had factored in. Land at DPS in the evening and book the first night somewhere on the coast (Seminyak is the closest 4- or 5-star cluster); save the Ubud leg for the morning.
+
+A few cultural details that matter on arrival. Small woven offerings of flowers, leaves, and incense (canang sari) sit on sidewalks, thresholds, and in shrines across the island; step around them rather than over them. Take your shoes off when you enter a home or a temple. Carry a sarong or light scarf for temple visits; many sites loan one at the entrance but bringing your own is the easier move. The point is not to perform reverence perfectly. It is to avoid behaving as if the island is only a backdrop. The other practical note: Indonesian drug laws are severe. Do not pack anything ambiguous, do not accept anything from strangers in the airport queue, and do not be casual about what is in your luggage. The penalties are real and not negotiable.
+
+Pack light. Laundry is cheap and quick everywhere on the island, often same-day or next-day through your hotel or any street-side laundry. A capsule of warm-weather clothes plus a layer for cooler Ubud evenings is more practical than overpacking for an island that does laundry on every block.
 
 ## Where to stay
 
@@ -174,6 +186,10 @@ For meals, [Restaurant Locavore](/pins/restaurant-locavore) is the formal-modern
 
 The rural day-trips out of Ubud are the rest of the Ubud stay: the Tegallalang rice terraces 20 minutes north, the Tegenungan Waterfall 30 minutes south, the Tirta Empul water-purification temple 40 minutes north, the Gunung Kawi rock-cut shrines next door. None of those are pinned in this list yet; flagged in the authoring notes for a later expansion.
 
+The terraces read better if you think of them as working irrigation landscape rather than only a photograph. Bali's subak system links water, fields, temples, and farmer obligations into a single cooperative structure dating back over a thousand years; UNESCO listed it in 2012. You do not need a technical lecture to see the difference. Once you notice the channels, the small concrete weirs, and the field edges, the terraces stop being only a view. After harvest you may also see ducks moving through the paddies; farmers use them to eat pests, disturb the soil, and fertilise the fields. A slow morning walking the field paths past those details is the version of Ubud I would book over chasing three more famous stops.
+
+A note on the cultural performances Ubud is famous for. Most evenings the Ubud Palace courtyard hosts a Legong dance show; smaller venues across town run Kecak (the seated-chorus dance-drama built around the repeating "cak-cak-cak" vocal pattern) and gamelan ensembles. Gamelan is the Balinese percussion tradition built around metallophones, gongs, drums, and interlocking rhythmic figures; you can listen without knowing the theory and the easiest thing to notice is how fast repeating patterns sit inside slower gong cycles. One show is plenty for most travellers; two if you want to compare the registers.
+
 ## The beach clubs are the trip
 
 The Bali beach club is its own format and worth knowing before you arrive. A daybed or pool-deck reservation runs a deposit (typically Rp 500,000 to 2,000,000 per person depending on the venue and the day), which becomes a food and drink credit. You arrive late morning or at lunch, eat, swim, drink, lounge through the afternoon, and stay for sunset. The full day is the format; you do not bar-hop them.
@@ -184,6 +200,16 @@ A reasonable shortlist by base:
 - **Canggu**: La Brisa is the rustic timber-and-bamboo registered favourite; Finns is the bigger family-friendly water-park option; Café del Mar is the polished Ibiza-import; COMO is the design-hotel-spinoff version; The Lawn is the budget-friendly bay-front sunset option.
 
 Reservations are essential weekends and in peak (July, August, the December-January period); midweek in the shoulder months you can walk in but the better daybeds will be gone by lunch.
+
+## Sunset temples and the things to handle carefully
+
+Two temples earn the sunset slot if your trip has time for either. [Tanah Lot](/pins/tanah-lot) is the offshore rock temple on the southwest coast about 45 minutes from Canggu, photographed everywhere, crowded but worth one evening. Uluwatu Temple on the cliffs of the Bukit peninsula has the more dramatic setting plus the evening Kecak performance the cultural-performance section above touches on; pair the two if you base near Uluwatu.
+
+A few things on the island that look like easy add-ons but reward saying no to:
+
+- **Luwak coffee.** The civets used to produce it are commonly caged and force-fed; the ethical versions are difficult to verify casually. Easy skip.
+- **Mount Batur sunrise hikes.** Good in clear weather, but they require a brutally early start and the trail is crowded. Not the quiet nature experience some tours imply; book it only if a sunrise volcano summit is the trip and you have read recent reviews.
+- **Nusa Penida day trips.** The island is visually dramatic and the photographs are real, but the day-trip version is physically annoying: rough roads, rushed itinerary, lines arranged around cliffs. Stay overnight if you want to see it properly, or save it for a second Bali trip when you have the time to do it slowly.
 
 ## When to go
 

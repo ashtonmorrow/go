@@ -146,6 +146,18 @@ const nextConfig = {
       { source: `/admin/pins/${from}`, destination: `/admin/pins/${to}`, permanent: true },
     ]);
 
+    // === Post → list consolidation =========================================
+    // Three legacy /posts/<slug> articles were folded into the matching
+    // /lists/<slug> scaffolds in May 2026 to stop the post and the list
+    // cannibalising each other in search. The posts have been deleted from
+    // /content/posts. These redirects 308 any old bookmarks at the post
+    // URL to the list URL it merged into.
+    const consolidatedPostRedirects = [
+      { source: '/posts/why-alicante',              destination: '/lists/alicante',              permanent: true },
+      { source: '/posts/bali-travel-guide',         destination: '/lists/bali',                  permanent: true },
+      { source: '/posts/bernina-express-first-class', destination: '/lists/bernina-express-route', permanent: true },
+    ];
+
     return [
       // Object indexes → cards (the default view)
       { source: '/cities',    destination: '/cities/cards',    permanent: true },
@@ -162,6 +174,8 @@ const nextConfig = {
       ...listSlugRedirects,
       // Merged/renamed pin slugs
       ...pinSlugRedirects,
+      // Consolidated posts → lists (post and list both existed; post deleted)
+      ...consolidatedPostRedirects,
     ];
   },
 };
