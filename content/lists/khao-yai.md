@@ -4,7 +4,7 @@ featured: true
 title: "Khao Yai travel guide: the national park, the wineries, and Pak Chong"
 description: "A short Khao Yai travel guide. The 3-hour drive from Bangkok, the national park entry, two waterfalls, two wineries, and where to base if you only have a day."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -27,7 +27,7 @@ faqs:
   - q: How do I get to Khao Yai from Bangkok?
     a: About 3 hours by car. A hired driver from Bangkok runs around 3,500 to 5,000 THB for the round trip; tour-operator day trips with the same itinerary run around 2,500 THB per person. The train from Hua Lamphong (or Krung Thep Aphiwat) to Pak Chong takes 3 to 4 hours; from Pak Chong you take a local taxi or hotel transfer to the park entrance.
   - q: How much is the park entry?
-    a: Around 400 to 500 THB per foreigner; Thai nationals pay less. Tickets are bought at the gate. The park is open daily 06:00 to 18:00 and the safari-style drives run early morning and late afternoon.
+    a: 400 THB per foreign adult, 200 THB for children under 14; Thai nationals pay less. Tickets are bought at the gate. The park is open daily 08:00 to 17:00; the safari-style drives run early morning and late afternoon and need to be booked through the visitor centre or your hotel.
   - q: When should I visit?
     a: November to February is the cool dry season and the easiest visit. The waterfalls run lower in March and April; the wettest months (June to October) bring afternoon storms but greener landscapes. Songkran in mid-April closes some operations and opens others.
   - q: Is the wildlife really there?
@@ -99,15 +99,15 @@ The luxury anchors most travellers consider are [Muthi Maya Forest Pool Villa](/
 
 ## Inside the national park
 
-The park entrance fee for foreigners runs **400 to 500 THB** in 2026 and is good for one calendar day. Open 06:00 to 18:00. Drive in via the northern (Pak Chong) or southern gate; the northern gate is closer to most Bangkok arrivals.
+The park entrance fee for foreigners is **400 THB** in 2026 (200 THB for children under 14) and is good for one calendar day. Open daily 08:00 to 17:00. Drive in via the northern (Pak Chong) or southern gate; the northern gate is closer to most Bangkok arrivals.
 
 Three anchors fit one full day:
 
 | Stop | What | Time on site |
 |---|---|---|
-| [Haew Narok Waterfall](/pins/haew-narok-waterfall) | The tallest waterfall in the park. Three-tier drop, 80 metres total. Best after the rainy season (October to December) when it actually runs | 60 to 90 minutes including the walk |
+| [Haew Narok Waterfall](/pins/haew-narok-waterfall) | The tallest waterfall in the park. Three-tier drop, 150 metres total. Best after the rainy season (October to December) when it actually runs | 60 to 90 minutes including the walk |
 | [Haew Suwat Waterfall](/pins/haew-suwat-waterfall) | The famous one from the 2000 film "The Beach". Lower flow than Haew Narok but more photogenic | 30 to 45 minutes |
-| [Pha Diao Dai viewpoint](/pins/pha-diao-dai-viewpoint) | Cliff-edge panorama across the whole park. Best at golden hour | 30 minutes |
+| [Pha Diao Dai viewpoint](/pins/pha-diao-dai-viewpoint) | Cliff-edge panorama across the whole park. Best at golden hour. Closed annually June 1 to September 30 for trail maintenance | 30 minutes |
 
 For wildlife, the late-afternoon safari drive (book through the visitor centre or your hotel) gives you the highest odds of an elephant sighting at the salt lick near sundown. Gibbons call from the canopy along the trails at dawn; macaques are everywhere and aggressive about food.
 

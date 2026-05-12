@@ -4,7 +4,7 @@ featured: true
 title: "Santiago travel guide: where to stay, the wine country, and a Valparaíso daytrip"
 description: "A short Santiago Chile travel guide. Where to stay (Providencia, Bellavista, Lastarria), Cerro San Cristóbal, the Maipo Valley wineries, and a Valparaíso daytrip."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -97,7 +97,7 @@ Comodoro Arturo Merino Benítez International Airport (SCL) sits about 15 km nor
 | Uber / Cabify | ~$20 to $30 USD | 30 to 45 min | Pickup at the parking deck; same time, cheaper |
 | TurBus or Centropuerto bus | ~$3 to $5 USD | 30 to 40 min to Pajaritos metro | Cheapest. Bus to Pajaritos, metro Line 1 to the centre |
 
-A note on the metro: a tap fare is CLP 800 to 900 (about $1) for one ride, lower with a Bip! card. Buy the card at any metro station; tap on at the gate. The metro runs roughly 06:00 to 23:00 weekdays, 06:30 to 23:30 Saturdays, 08:00 to 23:00 Sundays.
+A note on the metro: the **Bip! card** is the way you ride; single-use paper tickets are not the standard option. Buy the Bip! at any metro station vending machine, load credit, then tap at the gate. The fare runs CLP 800 to 900 (about $1) per ride depending on time of day. The metro runs roughly 06:00 to 23:00 weekdays, 06:30 to 23:30 Saturdays, 08:00 to 23:00 Sundays.
 
 ## Where to stay
 
@@ -116,7 +116,7 @@ For a working stay or a longer apartment booking, Barrio Italia is the bohemian 
 
 The historic centre is compact. Anchor on **[Plaza de Armas](/pins/plaza-de-armas-santiago)**, the colonial main square. The Metropolitan Cathedral sits on the west side; the Central Post Office and the National History Museum frame the other edges. Plan one morning for the centre: cathedral, museum, a slow walk through the pedestrianised streets toward La Moneda (the presidential palace).
 
-The **[Mercado Central](/pins/mercado-central-santiago)**, just north of Plaza de Armas, is the famous fish market under a wrought-iron 1872 roof. The market is the photogenic part; the restaurants inside are tourist-priced and average. For better seafood, eat at one of the smaller stalls (Augusto, Galleon) rather than the central seated restaurants, or save the seafood meal for La Mar in Vitacura.
+The **[Mercado Central](/pins/mercado-central-santiago)**, just north of Plaza de Armas, is the famous fish market under a cast-iron 1872 roof, prefabricated in Glasgow by R. Laidlaw &amp; Sons and shipped to Santiago. The market is the photogenic part; the restaurants inside are tourist-priced and average. For better seafood, eat at one of the smaller stalls (Augusto, Galleon) rather than the central seated restaurants, or save the seafood meal for La Mar in Vitacura.
 
 ## Cerro San Cristóbal and Bellavista
 
@@ -124,7 +124,7 @@ Cerro San Cristóbal is the hill in the middle of the city. The funicular runs f
 
 The hill sits inside the Santiago Metropolitan Park, which also includes the Chilean National Zoo and a few smaller museums. Pair the funicular with a walk down through the Bellavista neighbourhood at the base.
 
-Bellavista itself is the bohemian-and-bar district. **[La Chascona](/pins/la-chascona)**, Pablo Neruda's Santiago house, sits a few blocks from the funicular base; the museum is small, eccentric (the rooms are shaped like a boat below decks), and one of the most engaging hour-long visits in the city. Tickets around CLP 7,500 ($8); audio guide included.
+Bellavista itself is the bohemian-and-bar district. **[La Chascona](/pins/la-chascona)**, Pablo Neruda's Santiago house, sits a few blocks from the funicular base; the museum is small, eccentric (the rooms are shaped like a boat below decks), and one of the most engaging hour-long visits in the city. Tickets around CLP 8,000 ($10); audio guide included.
 
 Bellavista is also the nightlife base. Two streets in particular (Pío Nono and Constitución) are bar-and-restaurant-dense; the cluster around Patio Bellavista is the tourist-friendly version and works as the easy starting point.
 
@@ -143,7 +143,7 @@ All four sit within a 15-minute walk of each other in the **[Lastarria/Bellas Ar
 
 40 minutes south of the city by car, Maipo is the most famous of Chile's wine valleys and the closest to Santiago. Two estates anchor any visit:
 
-* **[Concha y Toro](/pins/concha-y-toro-winery)**. The largest Chilean producer and the headline tour. Casillero del Diablo and Don Melchor are made here. Tours run hourly; tasting included; tour-and-lunch options work as a half-day. Around 25,000 CLP ($28 USD) for the standard tour.
+* **[Concha y Toro](/pins/concha-y-toro-winery)**. The largest Chilean producer and the headline tour. Casillero del Diablo and Don Melchor are made here. Tours run hourly; tasting included; tour-and-lunch options work as a half-day. The Traditional Tour runs around 50,000 CLP / $55 USD in 2026; premium tours with transport from Santiago push $80 to $128.
 * **[Santa Rita](/pins/santa-rita-winery)**. The classier alternative. Smaller estate, focused on the wines (the 120 series and Carmenère reserves). A combined tour-and-restaurant lunch ("Doña Paula" or "La Casa de Doña Paula") is the right way to do this one.
 
 Other estates (Cousiño-Macul, Undurraga, Aquitania) are reasonable add-ons if a single estate does not fill the day. A driver from Santiago for the day runs around $80 to $120 USD; a group tour with vineyard pickup runs around $60 USD per person.

@@ -4,7 +4,7 @@ featured: true
 title: "Alicante travel guide: how to get there, the beaches, and where to eat"
 description: "A personal Alicante travel guide. How to get there from Madrid by train, the city and rocky beaches, Castell de Santa Bàrbara, the Mercat, and a casual food rotation."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Alicante
-  intro: Alicante is the easiest under-the-radar coastal stop on the Spanish Mediterranean. More sunshine than any other continental European city, a real beach in the city itself, a castle on the hill, and food that runs from cheap caña-and-tapas to a proper sit-down dinner. The trick is matching how you arrive (LCC flight, Madrid train, or Bristol Ryanair hop) and what kind of beach day you want.
+  intro: Alicante is the easiest under-the-radar coastal stop on the Spanish Mediterranean. Among the sunniest cities in continental Europe (~2,900 hours a year), with a real beach in the city itself, a castle on the hill, and food that runs from cheap caña-and-tapas to a proper sit-down dinner. The trick is matching how you arrive (LCC flight, Madrid train, or Bristol Ryanair hop) and what kind of beach day you want.
   cards:
     - title: Most easy flights are LCCs
       body: Ryanair, easyJet, and Vueling carry the bulk of Alicante traffic. From the US, the cleanest play is Madrid or Barcelona, then the AVE train or a 1-hour domestic flight. Lufthansa Group offers the fewest-stops itineraries from the US directly.
@@ -54,7 +54,7 @@ related:
 #   stripped per Mike's standing rule.
 ---
 
-[Alicante](/cities/alicante) is the Spanish Mediterranean city most international travellers do not think about, partly because it is hard to fly to direct and partly because Barcelona and Valencia absorb the headlines. It is worth more than that. The city has more sunshine than any other continental European capital, a swimmable beach inside the city itself, a castle on the hill, and an underrated food scene that runs from one-euro tapas to a proper steakhouse dinner.
+[Alicante](/cities/alicante) is the Spanish Mediterranean city most international travellers do not think about, partly because it is hard to fly to direct and partly because Barcelona and Valencia absorb the headlines. It is worth more than that. The city sits among the sunniest in continental Europe at roughly 2,900 hours a year, with a swimmable beach inside the city itself, a castle on the hill, and an underrated food scene that runs from one-euro tapas to a proper steakhouse dinner.
 
 ## On this page
 
@@ -67,7 +67,7 @@ related:
 
 ## How to get there
 
-Alicante airport (ALC) is Spain's third-busiest by volume, which is the surprise. The trade-off is that almost all the traffic is low-cost carriers: Ryanair, easyJet, Vueling. From Europe or the UK that is cheap and frequent. From North America there are few direct options; the practical play is to connect through Madrid or Barcelona and finish the trip on a train or a domestic flight.
+Alicante airport (ALC) is Spain's fifth-busiest by volume (18M+ passengers a year, behind Madrid, Barcelona, Palma, and Málaga), which is the surprise. The trade-off is that almost all the traffic is low-cost carriers: Ryanair, easyJet, Vueling. From Europe or the UK that is cheap and frequent. From North America there are few direct options; the practical play is to connect through Madrid or Barcelona and finish the trip on a train or a domestic flight.
 
 The train from Madrid is the cleaner finish. Three operators run Madrid Atocha to Alicante:
 

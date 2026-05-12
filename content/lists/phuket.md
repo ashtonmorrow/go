@@ -4,7 +4,7 @@ featured: true
 title: "Phuket travel guide: where to stay, the beaches worth the trip, and what to skip"
 description: "A personal Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -179,7 +179,7 @@ Patong has the highest food density. Phuket Town has the highest food quality. T
 | [Wine Connection Phuket Town](/pins/wine-connection-phuket-town) | Phuket Town | Salads and Western break from Thai food | Variety of bowls and salads, reasonable prices, good service |
 | [Restaurant by the sea](/pins/restaurant-by-the-sea) | Patong | Patio meal with the sea | Friendly staff, view partly blocked but the patio is spacious. Not cheap but reasonable |
 | [Papazula](/pins/papazula) | Patong | Light Turkish-Thai wrap lunch | Decor is 1950s American rockabilly, which makes no sense and is fine |
-| [The Big Buddha viewpoint restaurants](/pins/paradise-viewpoint) | West coast | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip |
+| [Paradise Viewpoint restaurants](/pins/paradise-viewpoint) | Above Paradise Beach, south of Patong | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip. Note: this is the viewpoint above Paradise Beach, not the Big Buddha hill |
 | [Hard Rock Cafe Phuket](/pins/hard-rock-cafe-phuket) | Patong | A beer and a live band, not the food | Food is unremarkable and as expensive as any other restaurant. The band makes the room |
 
 ## What to skip

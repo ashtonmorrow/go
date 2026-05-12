@@ -4,7 +4,7 @@ featured: true
 title: "Gunung Mulu travel guide: the bats, the caves, and the Marriott in the rainforest"
 description: "A personal Gunung Mulu travel guide. How to route through Kuching or Kota Kinabalu, why the Mulu Marriott is the only sensible base, what to book at the park, and what the Pinnacles trek actually involves."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,7 +15,7 @@ guide_cards:
   intro: Gunung Mulu National Park is a UNESCO rainforest in Sarawak with one of the largest cave systems in the world. It is also one of the harder national parks to reach. Plan the airline routing around Kuching or Kota Kinabalu, book the cave tours before you arrive, and accept that the Mulu Marriott is effectively the only adult-comfort hotel within reach.
   cards:
     - title: Route through Kuching or KK
-      body: MasWings runs four daily ATR-72 flights into Mulu Airport (MZV) from Miri, Kuching, or Kota Kinabalu. Round-trip into Mulu is the same price as a one-way, so use Mulu as a stopover between two layovers. Kuching or Kota Kinabalu are the layovers worth turning into a few days.
+      body: MASwings runs roughly four daily ATR-72 rotations into Mulu Airport (MZV) across the three hubs (Miri the most frequent, plus daily service from Kuching and Kota Kinabalu). Round-trip into Mulu is the same price as a one-way, so use Mulu as a stopover between two layovers. Kuching or Kota Kinabalu are the layovers worth turning into a few days.
     - title: Stay at the Mulu Marriott
       body: There are fewer than 10 places to sleep on the whole map. The Mulu Marriott is the only Western-grade hotel, runs about $100 a night, occupancy is low enough that suite upgrades are common, and there is an on-demand airport shuttle that meets every flight.
     - title: Book the guided caves before you go
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I actually get to Gunung Mulu?
-    a: You fly. Mulu Airport (MZV) is a single-runway regional in the Sarawak rainforest, served exclusively by MasWings (the Malaysian Airlines turboprop subsidiary) with four daily ATR-72 rotations from Miri, Kuching, and Kota Kinabalu. Round-trip into Mulu costs the same as a one-way, so the cheap move is to fly in from one city and out to another, using Mulu as the middle leg between two longer stays. From Europe or North America, you connect through Singapore or Kuala Lumpur first.
+    a: You fly. Mulu Airport (MZV) is a single-runway regional in the Sarawak rainforest, served exclusively by MASwings (the Malaysia Airlines turboprop subsidiary, in transition to AirBorneo as of early 2026) with roughly four daily ATR-72 rotations across Miri, Kuching, and Kota Kinabalu. Round-trip into Mulu costs the same as a one-way, so the cheap move is to fly in from one city and out to another, using Mulu as the middle leg between two longer stays. From Europe or North America, you connect through Singapore or Kuala Lumpur first.
   - q: Should I layover in Kuala Lumpur or Singapore?
     a: Kuala Lumpur is the easier choice if you want to spend $75 to $125 a night on a nice 5-star hotel and do not mind a 90-minute taxi from the airport into the city. Singapore is the easier choice for short transits (15 to 20 minutes from Changi to anywhere), but expect $30 to $40 for two beers and hotel rates to match.
   - q: Where do I stay in Mulu?
@@ -40,7 +40,7 @@ related:
   country: malaysia
 ---
 
-[Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also genuinely difficult to reach: a single regional airport, four daily turboprop flights, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below; this writeup covers the parts of it that change the trip.
+[Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also genuinely difficult to reach: a single regional airport, roughly four daily turboprop flights across the three Borneo hubs, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below; this writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -59,13 +59,13 @@ The trip is also worth it for what it is not: a Marriott in a rainforest where b
 
 ## Getting there
 
-[Mulu Airport (MZV)](/pins/mulu-airport-mzv) is the only way in unless you are doing a multi-day river trip from Brunei. MasWings (Malaysia Airlines' regional subsidiary) runs four daily flights on ATR-72 turboprops. The flights are often under 20% full, which means they sometimes move seats around to balance the load on the day.
+[Mulu Airport (MZV)](/pins/mulu-airport-mzv) is the only way in unless you are doing a multi-day river trip from Brunei. MASwings (Malaysia Airlines' regional subsidiary, transitioning to AirBorneo in 2026) runs roughly four daily ATR-72 rotations across the three hubs. The flights are often under 20% full, which means they sometimes move seats around to balance the load on the day.
 
 | Hub | Airline | Notes |
 |---|---|---|
-| Miri (MYY) | MasWings ATR-72 | Shortest hop, but Miri itself is not a destination |
-| Kuching (KCH) | MasWings ATR-72 | Worth turning into a few days. UNESCO old town, food scene |
-| Kota Kinabalu (BKI) | MasWings ATR-72 | The other reasonable layover. Mount Kinabalu, marine park, beaches |
+| Miri (MYY) | MASwings ATR-72 | Shortest hop, but Miri itself is not a destination |
+| Kuching (KCH) | MASwings ATR-72 | Worth turning into a few days. UNESCO old town, food scene |
+| Kota Kinabalu (BKI) | MASwings ATR-72 | The other reasonable layover. Mount Kinabalu, marine park, beaches |
 
 The cheap trick: round-trip pricing into Mulu is the same as one-way, so book in from one of the three and out to another. Combining Kuching and Kota Kinabalu as your two endpoints is the version of this trip I would book.
 

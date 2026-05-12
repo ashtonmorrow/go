@@ -4,7 +4,7 @@ featured: true
 title: "Cabo Verde travel guide: which island, the volcano, and the music in Mindelo"
 description: "A short Cabo Verde travel guide. Which island to pick (Sal, São Vicente, Santo Antão, Fogo), the volcanic crater village, Mindelo's music scene, and inter-island travel."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get to Cabo Verde?
-    a: Two main entry points. Amílcar Cabral International Airport on Sal (SID) handles most package-tourism and seasonal European routes (Lisbon, Manchester, Paris, Munich, sometimes Boston). Nelson Mandela International Airport in Praia, Santiago Island (RAI), is the political and inter-island hub. From North America the cleanest play is Lisbon or Boston (seasonal TACV/Cabo Verde Airlines).
+    a: Two main entry points. Amílcar Cabral International Airport on Sal (SID) handles most package-tourism and seasonal European routes (Lisbon, Manchester, Paris, Munich). Nelson Mandela International Airport in Praia, Santiago Island (RAI), is the political and inter-island hub. From North America the cleanest play is Lisbon (TAP), or Providence, RI (TACV / Cabo Verde Airlines launched nonstop PVD service in 2024; the old Boston route was discontinued).
   - q: Which island should I pick first?
     a: Sal for a beach trip; everything is built around the resorts and the white sand at Santa Maria. São Vicente (Mindelo) for culture, music, and a real town. Fogo for one specific thing (climb the volcano, sleep in the crater village). Santo Antão for hiking the dramatic mountain valleys. Most travellers combine two; Sal-and-Mindelo, or Fogo-and-Santo Antão.
   - q: Do I need a visa?
@@ -67,7 +67,7 @@ related:
 #   stripped.
 ---
 
-[Cabo Verde](/countries/caboverde) is the archipelago many travellers cannot quite place. Ten volcanic islands off West Africa, 450 km west of Senegal; Portuguese-and-Kriolu speaking; about 550,000 people; year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is mostly about choosing the right island: Cabo Verde is not one destination.
+[Cabo Verde](/countries/caboverde) is the archipelago many travellers cannot quite place. Ten volcanic islands off West Africa, roughly 570 km west of Senegal at the nearest point; Portuguese-and-Kriolu speaking; about 525,000 people; year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is mostly about choosing the right island: Cabo Verde is not one destination.
 
 ## On this page
 
@@ -107,7 +107,7 @@ Two main international airports:
 * **Amílcar Cabral International (SID)** on Sal. Most package tourism and seasonal European routes (Lisbon, Manchester, Paris, Munich). Direct TAP flights from Lisbon are the most reliable connection.
 * **Nelson Mandela International (RAI)** in Praia, Santiago Island. Political and inter-island hub; some European service.
 
-From North America, the cleanest play is Lisbon (TAP) or seasonal Boston (TACV/Cabo Verde Airlines), then onward. From the UK, charter and scheduled service runs to Sal weekly.
+From North America, the cleanest play is Lisbon (TAP) or Providence, RI (TACV / Cabo Verde Airlines launched nonstop PVD service in 2024; the old Boston route was discontinued), then onward. From the UK, charter and scheduled service runs to Sal weekly.
 
 Inter-island travel is by plane or ferry:
 
@@ -149,7 +149,7 @@ If you can time the trip for August, the **Baía das Gatas festival** is the cou
 
 ## Pico do Fogo and the crater village
 
-Fogo is the volcano island. The island is dominated by Pico do Fogo (2,829 m), an active volcano that last erupted in 2014 to 2015. Inside the older outer caldera (Chã das Caldeiras) sits a small village population of around 1,500 who farm the volcanic soil and produce a distinctive island wine.
+Fogo is the volcano island. The island is dominated by Pico do Fogo (2,829 m), an active volcano that last erupted in 2014 to 2015. Inside the older outer caldera (Chã das Caldeiras) sits a small village of roughly 700 to 1,000 people across two hamlets (Portela and Bangaeira) who farm the volcanic soil and produce a distinctive island wine. The 2014 eruption displaced about 1,500 residents from the wider crater area; the village itself is smaller.
 
 What the trip looks like:
 

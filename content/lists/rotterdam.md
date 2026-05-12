@@ -4,7 +4,7 @@ featured: true
 title: "Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk"
 description: "A personal Rotterdam travel guide. The Markthal and Cube Houses walking loop, Depot Boijmans, Euromast, Hotel New York, and Kinderdijk as a day trip. Where to base near Centraal."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-12
 authors:
   - Mike Lee
 hero_image: ""
@@ -19,7 +19,7 @@ guide_cards:
     - title: Do the architecture loop in half a day
       body: Markthal → Cube Houses → Erasmusbrug → Hotel New York → Maritime Museum is a 3 km walking loop with the modern Dutch architecture canon along the way. Add Euromast and Depot Boijmans on the second half-day.
     - title: Kinderdijk is the easy day trip
-      body: Mill Network at Kinderdijk-Elshout is a UNESCO site 30 minutes south by waterbus from the Erasmusbrug. 19 windmills, polders, the original Dutch postcard. Half-day at most. Pack a rain shell.
+      body: Mill Network at Kinderdijk-Elshout is a UNESCO site 30 minutes south by water from the Erasmusbrug. The old Waterbus Line 202 was rebranded the WaterShuttle in late 2025 and now runs Fridays, Saturdays, and Sundays only. 19 windmills, polders, the original Dutch postcard. Half-day at most. Pack a rain shell.
     - title: Eat at Foodhallen or Fenix Food Factory
       body: Both are former warehouses redeveloped as multi-vendor halls. Foodhallen is in the city centre near Centraal; Fenix is across the river in Katendrecht next to Hotel New York. Either one solves dinner for a group.
 
@@ -29,9 +29,9 @@ faqs:
   - q: Where should I stay?
     a: Near Rotterdam Centraal. Holiday Inn Express is the budget pick directly across from the station. Hotel New York across the river in Kop van Zuid is the splurge if maritime history matters to you. Anywhere along the Cool district and Witte de Withstraat puts you in walking distance of the centre.
   - q: Do I need a car?
-    a: No. Rotterdam has a dense metro/tram/bus network with OVpay (contactless tap, including phone) covering everything. For Kinderdijk, take the waterbus from Erasmusbrug or Hoek van Holland. The Dutch trains handle longer day trips to Delft, Gouda, Utrecht.
+    a: No. Rotterdam has a dense metro/tram/bus network with OVpay (contactless tap, including phone) covering everything. For Kinderdijk, take the WaterShuttle from the Erasmusbrug (Fri/Sat/Sun) or Bus 489 from Centraal on other days. The Dutch trains handle longer day trips to Delft, Gouda, Utrecht.
   - q: How do I do Kinderdijk?
-    a: Waterbus from Erasmusbrug (Service Line 202) takes 30 minutes to the Kinderdijk dock. Half-day on site walking the polders between the 19 windmills, entering two that are open as museums. Buy a combo ticket at the visitor centre. Bring a windbreaker even in summer.
+    a: From late 2025 the old Waterbus Line 202 was rebranded as the WaterShuttle Rotterdam-Kinderdijk; it now runs Fridays, Saturdays, and Sundays only, costs €9.75 single / €19.50 return, and takes 30 minutes from the Erasmusbrug. OVpay is no longer accepted on this leg; buy the ticket on the operator's site or at the boat. On other days, take Bus 489 from Rotterdam Centraal. Half-day on site walking the polders between the 19 windmills, entering two that are open as museums. Buy a Kinderdijk combo ticket at the visitor centre. Bring a windbreaker even in summer.
   - q: What is the historic harbor walk?
     a: The Oude Haven (old harbor) is right next to the Cube Houses and shows what Rotterdam looked like before the WWII bombing. A 20-minute loop on foot past boat-builders, old warehouses, and the Witte Huis (the first European skyscraper, 1898). Adds context to the modern Rotterdam you walk through elsewhere.
 
@@ -74,9 +74,9 @@ A 3 km walking circuit that covers the modern Rotterdam canon. Start from the Ma
 |---|---|
 | [Market Hall (Markthal)](/pins/market-hall) | The horseshoe building over the indoor food market. Walk through, photograph the painted ceiling, eat a stroopwafel |
 | [Cube Houses](/pins/cube-houses) | Piet Blom's 1984 tilted-cube housing. One is open as a Show Cube museum, the rest are rented apartments |
-| [Rotterdam Historic Harbor](/pins/rotterdam-historic-harbor) and the Witte Huis | The Oude Haven, the boat-builders' workshops, and the 1898 Witte Huis (Europe's first skyscraper). Tells you what Rotterdam looked like before the bombing |
+| [Rotterdam Historic Harbor](/pins/rotterdam-historic-harbor) and the Witte Huis | The Oude Haven, the boat-builders' workshops, and the 1898 Witte Huis (Europe's first high-rise, 45 m). Tells you what Rotterdam looked like before the bombing |
 | [Koningshavenbrug "De Hef"](/pins/koningshavenbrug-de-hef) | The 1927 lift bridge, preserved as a monument after the rail tunnel opened in 1993 |
-| [Erasmusbrug](/cities/rotterdam) | The asymmetric "Swan" bridge across the Nieuwe Maas. The Rotterdam postcard |
+| Erasmusbrug | The asymmetric "Swan" bridge across the Nieuwe Maas (1996, UNStudio / Ben van Berkel). The Rotterdam postcard |
 | [Hotel New York](/pins/hotel-new-york) | Walk across the bridge into Kop van Zuid. Cross the SS Rotterdam if it is open for tours |
 | [The Iron Lady](/pins/the-iron-lady) | A small sculpture and viewpoint on the river. Free |
 
@@ -88,7 +88,7 @@ The two ticketed sights worth booking.
 
 | Sight | Cost | Time | Notes |
 |---|---|---|---|
-| [Depot Boijmans Van Beuningen](/pins/depot-boijmans-van-beuningen) | €23 adult, 2026 | 2 hours | Mirror-clad public museum-storage building. You walk through the actual collection storage, including the conservation labs. The Museumpark sits at the base |
+| [Depot Boijmans Van Beuningen](/pins/depot-boijmans-van-beuningen) | €20 adult, 2026 | 2 hours | Mirror-clad public museum-storage building. You walk through the actual collection storage, including the conservation labs. The Museumpark sits at the base |
 | [Euromast](/pins/euromast) | €17 ground level, €28 with Space Tower | 60 to 90 min | The 1960 observation tower. Sunset slot is the photo. The rotating Space Tower extends to 185 m |
 
 [The Luchtsingel](/pins/the-luchtsingel-rotterdam-netherlands), the crowdfunded yellow pedestrian bridge that connects Centraal to Hofbogen, sits between the two and is a free 10-minute walk in its own right.
@@ -112,8 +112,8 @@ The two ticketed sights worth booking.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|
-| Waterbus Line 202 | €4.80 each way with OVpay | 30 min from Erasmusbrug | The scenic option. Boats every 30 min |
-| Bus 90 / R-Net | ~€5 with OVpay | 45 min | The land option. Less interesting |
+| WaterShuttle Rotterdam-Kinderdijk | €9.75 single, €19.50 return | 30 min from Erasmusbrug | Fri / Sat / Sun only. The scenic option. OVpay is not accepted; buy on the operator's site or at the boat |
+| Bus 489 from Rotterdam Centraal | OVpay tap-in/out | ~45 min | The all-week land option. Less photogenic, simpler logistics |
 
 Combo ticket at the visitor centre covers both museum mills and the windmill viewpoint. Wear something windproof; the polders are 100% exposed.
 

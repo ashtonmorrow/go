@@ -4,7 +4,7 @@ featured: true
 title: "Bruges travel guide: the chocolate, the beer, and how to do it in a day"
 description: "A personal Bruges travel guide. The UNESCO historic centre, De Halve Maan brewery, the chocolate stops, the Béguinage, and whether to do it as a day trip from Brussels or stay overnight."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,7 +15,7 @@ guide_cards:
   intro: Bruges is the Belgian fairy-tale day. Most travellers do it as a day trip from Brussels, but staying one night lets you walk the historic centre after the day-trippers leave and have the canals to yourself in the early morning. The UNESCO old town, De Halve Maan brewery, two top chocolate stops, and a Béguinage walk is the full day.
   cards:
     - title: Bruges in a day from Brussels works
-      body: One hour each way on the IC train from Brussels-Midi or Brussels-Central. €17 single, €33 day-return depending on the operator and time. The historic centre is a 10-minute walk from Bruges station.
+      body: One hour each way on the IC train from Brussels-Midi or Brussels-Central. €17.60 single second class, half off on weekends with the SNCB Weekendticket. The historic centre is a 10-minute walk from Bruges station.
     - title: Stay one night to beat the crowds
       body: Day-trippers clear out by 6 p.m. and do not return until 10 a.m. The Pand Hotel is the small-luxury pick inside the historic centre. Quiet canals, candle-lit restaurants, the version of Bruges the day-trip people do not see.
     - title: Climb the Belfry early or skip it
@@ -27,7 +27,7 @@ faqs:
   - q: Should I do Bruges as a day trip or stay overnight?
     a: Day trip works if you only have one day in Belgium and Brussels is your base. Overnight is better if you have the flexibility. Bruges empties out after 6 p.m., the canals at twilight are the part the day-tripper never sees, and the early morning before 10 a.m. is the same trick in reverse. The Pand Hotel is the pick if you stay; Hotel Dukes' Palace and Hotel Heritage are the larger upmarket options.
   - q: How do I get from Brussels to Bruges?
-    a: SNCB Intercity trains every 30 to 60 minutes from Brussels-Midi or Brussels-Central. 60 minutes' ride, €17 single, €33 day-return (Weekendticket is 50% off on Sat/Sun). Buy at the station kiosk or in the SNCB app. From Bruges station, the centre is a 10-minute walk or a €2 De Lijn bus.
+    a: SNCB Intercity trains every 30 to 60 minutes from Brussels-Midi or Brussels-Central. 60 minutes' ride, €17.60 single second class. The Weekendticket is half off on Saturday and Sunday. Buy at the station kiosk or in the SNCB app. From Bruges station, the centre is a 10-minute walk or a €2 De Lijn bus.
   - q: What is actually worth seeing?
     a: Markt and Burg squares, the Belfry, the Béguinage, the Minnewater (Lake of Love), De Halve Maan brewery, and two chocolate stops. A canal boat ride if the weather is good. That is the day. Adding more rushes it.
   - q: Is the canal boat worth it?
@@ -58,7 +58,7 @@ If you overnight, [The Pand Hotel](/pins/the-pand-hotel) is the boutique pick in
 
 ## Getting in
 
-SNCB runs Intercity trains from Brussels-Midi or Brussels-Central every 30 to 60 minutes. 60 minutes' ride, €17 single, €33 day-return. Weekend day-return is half price (Sat/Sun) and worth checking. Trains also run from Ghent (25 min) and Antwerp (75 min via change).
+SNCB runs Intercity trains from Brussels-Midi or Brussels-Central every 30 to 60 minutes. 60 minutes' ride, €17.60 single second class. The Weekendticket is half off on Saturday and Sunday. Trains also run from Ghent (~25 min direct) and Antwerp (~75 min, usually via change in Ghent).
 
 From Bruges train station, the historic centre is a 10-minute flat walk or a short De Lijn bus 1/4/5. Walking is easier; the streets between the station and the Markt are flat and well signed.
 

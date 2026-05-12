@@ -4,7 +4,7 @@ featured: true
 title: "Montevideo travel guide: the Buquebus, the asado, and where to stay"
 description: "A personal Montevideo travel guide. The Buquebus ferry from Buenos Aires beats flying, asado at Mercado del Puerto, beaches along the Rambla, and where to stay near Punta Carretas."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -25,8 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get from Buenos Aires to Montevideo?
-    a: Take the Buquebus ferry from Puerto Madero in Buenos Aires. The crossing is 2.5 hours, you pre-clear Argentine customs at the terminal, and you disembark at the Port of Montevideo right next to Ciudad Vieja. First class costs 20 to 30% more for noticeably bigger chairs and a better view. Flying is slower door-to-door and the route is sparse outside Miami.
-    a_text: "Take the Buquebus ferry from Puerto Madero in Buenos Aires. The crossing is 2.5 hours, you pre-clear Argentine customs at the terminal, and you disembark at the Port of Montevideo right next to Ciudad Vieja. First class costs 20 to 30% more for noticeably bigger chairs and a better view. Flying is slower door-to-door and the route is sparse outside Miami."
+    a: Take the Buquebus ferry from Puerto Madero in Buenos Aires. The Francisco direct crossing is about 2.5 hours; some sailings go via Colonia and take around 4 hours. You pre-clear Argentine customs at the terminal and disembark at the Port of Montevideo right next to Ciudad Vieja. First class costs 20 to 30% more for noticeably bigger chairs and a better view. Flying is slower door-to-door and the route is sparse outside Miami.
   - q: Where should I stay in Montevideo?
     a: Aloft by Marriott in Punta Carretas. Ask for a high room; the sunsets are the property's best feature. Hyatt Centric is the alternative if you prefer to be in Pocitos directly. Holiday Inn is the only other big-chain option in town, and apartments are everywhere but often skip air conditioning, so check before you book.
   - q: Is Uber any good in Montevideo?
@@ -111,4 +110,4 @@ Uruguayan eating is meat-led, but the city has a decent range once you go lookin
 
 The day trip from Buenos Aires is a real option: board the morning Buquebus, asado for lunch, walk the Old Town and Pocitos, evening Buquebus back. Done that way, Montevideo is a clean one-day add-on.
 
-For longer, the rhythm of the city is what you came for: a slow morning, a walk on the Rambla, lunch somewhere outdoors, an afternoon of nothing in particular, a beer at El Parador, dinner late. If you are travelling on through Uruguay, [Colonia del Sacramento](/cities/montevideo) is the obvious next move: small UNESCO old town, also reachable by Buquebus from Buenos Aires if you want to split the entry.
+For longer, the rhythm of the city is what you came for: a slow morning, a walk on the Rambla, lunch somewhere outdoors, an afternoon of nothing in particular, a beer at El Parador, dinner late. If you are travelling on through Uruguay, Colonia del Sacramento is the obvious next move: small UNESCO old town, also reachable by Buquebus from Buenos Aires if you want to split the entry.

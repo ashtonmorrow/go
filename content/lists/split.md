@@ -4,7 +4,7 @@ featured: true
 title: "Split travel guide: Diocletian's Palace, the islands, and where to eat konoba-style"
 description: "A personal Split travel guide. Diocletian's Palace UNESCO walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay near the old town, and the konobas that locals actually go to."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -58,7 +58,7 @@ Split Airport (SPU) sits 25 km north of the city. Three options into town.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|
-| Pleso Prijevoz airport bus | ~€8 | 30 to 40 min | The default. Runs to Split Bus Station (next to the harbor) and from there it is a 5-minute walk to the palace |
+| Promet Split airport bus | ~€8 | 30 to 40 min | The default. Runs to Split Bus Station (next to the harbor) and from there it is a 5-minute walk to the palace. Bus 37 (the local that runs Split-Trogir-Airport) is the cheaper alternative if you have time |
 | Uber / Bolt | ~€25 | 25 min | Easier with bags. Bolt is cheaper than Uber in Croatia |
 | Local taxi | €30 to €40 | 25 min | Avoid unmarked taxis. Use the official rank or app-book |
 
@@ -86,17 +86,17 @@ Inside the palace walls is romantic at midday and miserable after midnight. Stay
 | Substructures (basement halls) | The vaulted Roman foundation rooms beneath the palace. €7 ticket; underrated |
 | Peristyle | The central courtyard. Look up at the cathedral bell tower |
 | Cathedral of St. Domnius | The emperor's mausoleum, repurposed as a church. €5 entry. The bell tower climb is another €5 |
-| Temple of Jupiter | A 5-minute walk north of the Peristyle. Tiny, dramatic, the headless sphinx is original |
+| Temple of Jupiter | Immediately adjacent to the Peristyle, west side, a one-minute walk. Tiny, dramatic, the headless sphinx is original |
 | Vestibule | The domed entry rotunda. A cappella singers often perform here for tips |
 | Gold, Silver, Iron gates | The four cardinal-direction palace gates. Walk through each |
 | [Gregory of Nin's Big Toe](/pins/gregory-of-nins-big-toe) | The bronze bishop statue outside the Golden Gate. Tradition says rubbing the toe brings good luck |
-| [Crkva Sv. Martina (St. Martin's Church)](/pins/crkva-sv-martina-st-martins-church) | The 7th-century church squeezed into the palace's north wall guard corridor |
+| [Crkva Sv. Martina (St. Martin's Church)](/pins/crkva-sv-martina-st-martins-church) | The early-medieval church (5th-6th century origins) squeezed into the palace's north-wall guardhouse above the Golden Gate |
 
 The [Diocletian Aqueduct](/pins/diocletian-aqueduct-split-croatia) is a 30-minute walk east of the centre, the still-standing Roman aqueduct that fed the palace. Free, photogenic, mostly empty of tourists.
 
 ## Marjan Hill and the beaches
 
-[Marjan Hill](/cities/split) is the forested peninsula west of the old town. The walk up:
+Marjan Hill is the forested peninsula west of the old town. The walk up:
 
 | Stop | Notes |
 |---|---|
@@ -127,7 +127,7 @@ Beaches: Bačvice (the famous one, shallow water, picigin players), Kasjuni (fur
 
 | Destination | Operator | Time | Cost | Notes |
 |---|---|---|---|---|
-| [Trogir](/cities/split) | Bus 37 from Split bus station | 30 min | ~€4 | UNESCO old town. Easy half-day |
+| [Trogir](/cities/trogir) | Bus 37 from Split bus station | 50 to 60 min | ~€2.50 | UNESCO old town. Easy half-day |
 | Klis Fortress | Bus 22 | 30 min | ~€2 | The Game of Thrones Meereen site. Fortress on a saddle above the city |
 | Salona / [Gradina Solin](/pins/gradina-solin) | Bus 1 | 30 min | ~€2 | Roman archaeological park outside Split |
 | Brač (Bol, Zlatni Rat) | Jadrolinija car ferry from Split | 50 min to Supetar + 1 hour bus to Bol | ~€7 ferry | The famous shifting-tip beach. Day-trip works |

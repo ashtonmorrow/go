@@ -4,7 +4,7 @@ featured: true
 title: "Koh Samui travel guide: which beach, which hotel, how to get there"
 description: "A personal Koh Samui travel guide. Chaweng vs Lamai vs Bophut vs Choeng Mon, when to use Bangkok Airways, beach clubs, temples, viewpoints, and what to skip."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -36,6 +36,16 @@ faqs:
 related:
   city: ko-samui
   country: thailand
+
+# Authoring notes (kept here, not rendered):
+# - indexable: false until Mike reviews.
+# - hero_image is empty; pick one in /admin/lists/koh-samui.
+# - There is no Park Hyatt on Koh Samui. Body originally claimed
+#   one; corrected 2026-05-13 to Six Senses / Vana Belle / Kimpton.
+# - Ang Thong day boats run from both Nathon and Bophut piers.
+# - Bangkok Airways owns Koh Samui Airport (USM), which is why
+#   they dominate the schedule and the airfares are out of step
+#   with the rest of the Thai domestic network.
 ---
 
 Koh Samui is the Thai island I would return to first when I want the trip to be simple. It is not the cheapest island, nor the quietest, nor the one to choose if you want to feel off the grid. What it does well is logistics: hotels, airport, food, beach clubs, temples, viewpoints, and enough choice that a week does not have to repeat itself. The full pin map sits below; this writeup covers the parts of it that change the trip.
@@ -70,7 +80,7 @@ The island is a ring road. You will sleep on one beach and visit the others.
 | [Chaweng Beach](/pins/chaweng-beach) | Backpackers, families, honeymooners. The biggest mix | First-timers. Choice in hotels, food, beach clubs, jet ski, nightlife | The most crowded. Faces east, so sunrise yes, sunset no. Close to the airport, planes overhead |
 | [Lamai Beach](/pins/lamai-beach) | Slightly older, slightly slower | Same idea as Chaweng without the volume | Still busy. Same eastern sunrise/no-sunset situation |
 | Bophut / Fisherman's Village | Mature travellers, families | The strongest food base on the island. Holiday Inn Resort sits here | Neither sunrise nor sunset views are optimal |
-| [Choeng Mon Beach](/pins/choeng-mon-beach) | Upscale, honeymooners, remote workers | Quiet, small bays. Park Hyatt and Kimpton properties sit here at $200+ a night | Limited nightlife. Some people find it too quiet |
+| [Choeng Mon Beach](/pins/choeng-mon-beach) | Upscale, honeymooners, remote workers | Quiet, small bays. Six Senses, Vana Belle (Luxury Collection), and Kimpton Kitalay sit on this side of the island at $200+ a night | Limited nightlife. Some people find it too quiet |
 
 The headline rule: the east side gets the planes and the sunrise, the north has the airport and the easiest food rhythm, the south and west are quieter but harder to range from.
 
@@ -96,7 +106,7 @@ A morning covers all three plus coffee. Bring covered legs and shoulders for the
 
 | Sight | Effort | Notes |
 |---|---|---|
-| [Mu Ko Ang Thong National Marine Park](/pins/mu-ko-ang-thong-national-marine-park) | Day boat trip from Nathon Pier | 42 islands of limestone, hidden lagoons, white-sand beaches. The flagship day-trip from Samui |
+| [Mu Ko Ang Thong National Marine Park](/pins/mu-ko-ang-thong-national-marine-park) | Day boat trip from Nathon or Bophut Pier | 42 islands of limestone, hidden lagoons, white-sand beaches. The flagship day-trip from Samui |
 | Secret Buddha Garden (Magic Garden) | Half-day, hill drive | Hidden hilltop sculpture garden by a local fruit farmer. Quirky, quiet, photogenic |
 | Namuang Waterfall | Half-day | Two-stage falls in the centre of the island. First is easy, second needs a moderate hike |
 | [The Cocoon / Samui Viewpoint](/pins/the-cocoon-samui-viewpoint) and [Jungle Club](/pins/jungle-club) | Half-day, hill drive | Cliff-side bar/restaurants with wide inland views. Sunset-timed if you can |

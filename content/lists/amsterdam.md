@@ -4,7 +4,7 @@ featured: true
 title: "Amsterdam travel guide: things to do, where to stay, and a Schiphol arrival plan"
 description: "A personal Amsterdam travel guide. Where to stay in the canal ring, Zuid, or The Hague, the Schiphol train, the Buiksloterweg ferry, Zaanse Schans, and museums to book in advance."
 published: 2026-05-10
-updated: 2026-05-10
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -94,7 +94,7 @@ The light in late June is famously long; sunset can be after 22:00. Rain is poss
 
 ## Getting to and from Schiphol
 
-[Amsterdam Airport Schiphol](/pins/amsterdam-airport-schiphol) sits about fifteen kilometers southwest of the city, and it is one of the easier major airport arrivals in Europe because the train station is directly under the terminal. Customs, bags, escalator down to **Spoor**, and you are on a platform.
+[Amsterdam Airport Schiphol](/pins/amsterdam-airport-schiphol) sits about 9 km southwest of Centraal, and it is one of the easier major airport arrivals in Europe because the train station is directly under the terminal. Customs, bags, escalator down to the platforms (the Dutch signage uses *spoor*, meaning track or platform), and you are on a train within minutes.
 
 Trains run to [Amsterdam Centraal](/pins/amsterdam-centraal-station) every few minutes, day and night, taking about fifteen minutes. Sprinter (the local) and Intercity both stop there. Tap a contactless bank card or phone wallet at the entry gate at Schiphol and again at the exit gate at Centraal. That is the OVpay system. Fare is about €5–6, charged per kilometer.
 
@@ -116,7 +116,7 @@ Central canal-house rooms are pricey for what you get. €200+ for a small room 
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Central canal ring | [Kimpton De Witt Amsterdam](/pins/kimpton-de-witt-amsterdam) | About a 4-minute walk to Centraal, IHG points, characterful building | Usually €200+, more in summer |
+| Central canal ring | [Kimpton De Witt Amsterdam](/pins/kimpton-de-witt-amsterdam) | About a 5-minute walk to Centraal, IHG points, characterful building | Usually €200+, more in summer |
 | Amsterdam Zuid | [Crowne Plaza Amsterdam South](/pins/crowne-plaza-amsterdam-south-an-ihg-hotel) | Modern, around €100/night, decent IHG points value. Lobby Japanese restaurant works as IHG dining credit | Sterile glass-tower district; you ride the train or metro to everything |
 | The Hague (50 min by IC) | [Hotel Indigo The Hague](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | Prettier room for the money, The Hague is a real city in its own right | You commit a transit hour to your Amsterdam days |
 | Utrecht (30 min by IC) | [Crowne Plaza Utrecht Central](/pins/crowne-plaza-utrecht-central-station-an-ihg-hotel) | Shorter commute than The Hague, Utrecht is worth its own time | Slightly less character than The Hague |
@@ -128,7 +128,7 @@ Central canal-house rooms are pricey for what you get. €200+ for a small room 
 
 The single coolest thing within easy reach of Amsterdam is [Zaanse Schans](/pins/zaanse-schans), an open-air collection of preserved 17th and 18th century working windmills along the Zaan river in Zaandam. It looks complicated to get to and it is not.
 
-From Centraal, take the NS Sprinter toward Uitgeest. Get off at **Zaandijk-Zaanse Schans**. About 17 minutes, one tap in at Centraal, one tap out at Zaandijk. From the station it is a 10-minute walk: cross the river bridge and the windmills appear on your left.
+From Centraal, take the NS Sprinter toward Uitgeest. Get off at **Zaandijk-Zaanse Schans**. About 17 minutes, one tap in at Centraal, one tap out at Zaandijk. From the station it is a ~15-minute walk: cross the Julianabrug over the Zaan and the windmills appear on your left.
 
 Entry to the village is free; individual windmills and museums charge admission if you want to go inside. I would build a half-day around it: morning train out, walk the windmills, eat at one of the cafés on site, train back by mid-afternoon.
 

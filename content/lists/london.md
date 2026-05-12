@@ -4,7 +4,7 @@ featured: true
 title: "London travel guide: where to stay, the Bankside walk, and the markets to eat at"
 description: "A personal London travel guide. Where to stay (Canary Wharf, Tower Hill, Liverpool Street, Kensington), the Bankside walk, the markets actually worth eating at, and Sky Garden over the London Eye."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -75,7 +75,7 @@ The Elizabeth Line is the move. Direct from every Heathrow terminal into central
 | Mode | Heathrow to centre | Time | Cost | When it makes sense |
 |---|---|---|---|---|
 | Elizabeth Line | Paddington / Bond St / Liverpool St / Canary Wharf | 30 to 55 min | ~£12 to £14 contactless | The default. Always |
-| Heathrow Express | Paddington only | 15 min | ~£25 to £37 walk-up; ~£12 advance | If you genuinely value the 15 minutes saved |
+| Heathrow Express | Paddington only | 15 min | £25 standard / £32 business walk-up; from ~£5.50 advance | If you genuinely value the 15 minutes saved |
 | Underground (Piccadilly Line) | Slow direct to Earls Court / King's Cross | 50 to 70 min | ~£5.50 contactless | If your hotel is on the Piccadilly Line; cheapest |
 | Black cab | Anywhere | 45 to 90 min depending on traffic | £60 to £100 | Late arrival with bags, no good alternative |
 | Uber | Anywhere | Same | ~£50 to £80 | Same as black cab; cheaper at off-peak |
@@ -89,10 +89,10 @@ Four real bases depending on the kind of trip:
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
 | Liverpool Street / City | [Andaz London Liverpool Street](/pins/andaz-london-liverpool-street-by-hyatt) | Beautiful Victorian building, great breakfast, on the Elizabeth Line, ten-minute walk to the Tower of London | Top of the budget for a normal central hotel |
-| Tower Hill | [citizenM Tower of London](/pins/citizenm-tower-of-london) | Modern, well-priced, on three Tube lines including the DLR. The lobby is one of the better hangout spaces in central London | Small rooms; you pay for the location |
+| Tower Hill | [citizenM Tower of London](/pins/citizenm-tower-of-london) | Modern, well-priced, on the Circle and District lines with Tower Gateway DLR four minutes away. The lobby is one of the better hangout spaces in central London | Small rooms; you pay for the location |
 | Tower Hill (upgrade) | [Hotel Indigo London Tower Hill](/pins/hotel-indigo-london-tower-hill-by-ihg) | Spacious rooms by London standards, walk-in showers with real water pressure, IHG points option | Slightly off the touristy strips, which is the feature not the bug |
 | Kensington | [Hotel Indigo London Kensington](/pins/hotel-indigo-london-kensington-by-ihg) | Two-minute walk to Earls Court Underground, dense food on the same blocks, museum cluster in walking range | Further from the City of London proper |
-| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build, easy on the Jubilee and Elizabeth Lines, the right base for ExCeL conferences | A conference hotel; the bar gets thin on weekends |
+| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel; the Jubilee needs a transfer at Canning Town. The bar gets thin on weekends |
 | Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick; book it for value |
 | Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central; the Jubilee Line gets you back in fast |
 
@@ -129,7 +129,7 @@ Two specific picks if you want a sit-down dinner not at a market: [Flat Iron Wat
 
 ## Sky Garden over the London Eye
 
-The [Sky Garden](/pins/sky-garden) is the rooftop garden on the 35th floor of 20 Fenchurch Street. Entry is **free**. You book a timed slot online at `skygarden.london` roughly three weeks ahead; sunset slots and weekend mornings go fastest. Bring a photo ID; airport-style security on the way up. There are two bars and a restaurant on the level if you want a drink with the view.
+The [Sky Garden](/pins/sky-garden) is the rooftop garden at the top of 20 Fenchurch Street (the "Walkie-Talkie"), occupying the top three floors of the 38-storey tower; the public garden tops out at the 43rd floor, with the bars and restaurant on 35 to 37. Entry is **free**. You book a timed slot online at `skygarden.london` roughly three weeks ahead; sunset slots and weekend mornings go fastest. Bring a photo ID; airport-style security on the way up. There are two bars and a restaurant on the level if you want a drink with the view.
 
 This is the easy beat against the [London Eye](/pins/london-eye), which is around £40 a head for a 30-minute loop. The Sky Garden view is the same skyline, higher up, longer to enjoy, with a glass in your hand. Book the Eye only if you specifically want the south-bank-up-the-Thames angle for a photo.
 

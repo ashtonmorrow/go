@@ -4,7 +4,7 @@ featured: true
 title: "Kuala Lumpur travel guide: where to stay, KLCC vs Bukit Bintang, and Batu Caves"
 description: "A personal Kuala Lumpur travel guide. Where to stay (Bangsar, KLCC, Bukit Bintang), how to do Batu Caves and the Bird Park, getting in from KLIA, and what to skip."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get from KLIA to central KL?
-    a: KLIA Ekspres train is the easy choice; 28 minutes nonstop to KL Sentral, about RM55 (~$12), runs every 15 to 20 minutes. Grab is $20 to $30 and takes 60 to 90 minutes in traffic. There is also the Skybus to KL Sentral for ~RM12 if you are travelling light. The airport is 50 km out, so taxi is the slowest of the three.
+    a: KLIA Ekspres train is the easy choice; 28 minutes nonstop to KL Sentral, about RM55 (~$12), runs every 20 minutes. Grab is $20 to $30 and takes 60 to 90 minutes in traffic. There is also the Skybus to KL Sentral for ~RM12 if you are travelling light. The airport is 50 km out, so taxi is the slowest of the three.
   - q: Where should I stay in KL?
     a: Bangsar if food matters most; Alila Bangsar is a 5-star property on top of a metro station with the best skyline pool in the city. KLCC if you want the Petronas Towers view and easy mall access; Hyatt Centric City Centre is the pick. Bukit Bintang for night-market energy and walking-distance bars. Avoid the Sheraton Imperial (older property, the rooms have not aged well).
   - q: What is actually worth doing in two days?
@@ -62,7 +62,7 @@ related:
 | Grab / taxi | $20 to $30 | 60 to 90 min in traffic | Door-to-door, easier with bags. Avoid at rush hour |
 | Skybus / Aerobus | ~RM12 / $3 | 75 to 90 min | Cheapest, fine if you are travelling light. Skips the rush hour better than a taxi |
 
-From KL Sentral, the MRT and monorail get you to most central neighbourhoods. Bangsar is one stop south on the Kelana Jaya line, KLCC and Bukit Bintang are short rides east.
+From KL Sentral, the LRT, MRT, and monorail get you to most central neighbourhoods. Bangsar is one stop south on the Kelana Jaya LRT line; KLCC and Bukit Bintang are short rides east.
 
 ## Where to stay
 
@@ -77,7 +77,7 @@ KL is one of the few major capitals where the cheap pick and the splurge pick ar
 
 ## Getting around
 
-KL's transit is better than its reputation. The MRT (Kelana Jaya, Putrajaya, Kajang lines) and the monorail cover most of central KL on contactless tap. Grab is the universal fallback and costs $3 to $8 for most central rides. KL is not a walking city in the middle of the day; the equator-level heat and humidity make even short walks heavy unless you are between malls or on a covered Pedestrian Walkway.
+KL's transit is better than its reputation. The LRT (Kelana Jaya and Ampang/Sri Petaling lines), the MRT (Kajang and Putrajaya lines), and the monorail cover most of central KL on contactless tap. Grab is the universal fallback and costs $3 to $8 for most central rides. KL is not a walking city in the middle of the day; the equator-level heat and humidity make even short walks heavy unless you are between malls or on a covered Pedestrian Walkway.
 
 ## The cultural day
 
@@ -106,7 +106,7 @@ A second day is the Bird Park and surrounding [Perdana Botanical Garden](/pins/p
 | KTM Komuter train | <RM2 / under $1 | 30 min from KL Sentral | The local move. Trains every 30 min |
 | Grab | RM25 to RM40 / $5 to $8 each way | 25 to 40 min | Easier door-to-door, peak-traffic adds 50% |
 
-Be there before 10 a.m. The light is better, the macaques are less aggressive, and the climb is bearable. Dress for the cave (knees and shoulders covered), wear shoes you can climb in. Free to enter, RM7 for the Dark Cave optional add-on. Plan on two hours total.
+Be there before 10 a.m. The light is better, the macaques are less aggressive, and the climb is bearable. Dress for the cave (knees and shoulders covered), wear shoes you can climb in. Free to enter the main Temple Cave. The Dark Cave guided tour has been closed since 2019, so do not plan around it. Plan on two hours total.
 
 ## Where to eat
 

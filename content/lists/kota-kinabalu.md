@@ -4,7 +4,7 @@ featured: true
 title: "Kota Kinabalu travel guide: Borneo on the easy setting"
 description: "A personal Kota Kinabalu travel guide. Where to stay (Hyatt Regency or the Marriott), how to do Tunku Abdul Rahman Marine Park, Kinabalu Park as a day trip, and what to expect from a predominantly Muslim, conservative coastal city."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -29,7 +29,7 @@ faqs:
   - q: Should I take a Kuala Lumpur layover or Singapore?
     a: Kuala Lumpur is the cheap one; nice 5-star hotels run $75 to $125, the airport is 90 minutes from the city by car, and a few extra days there is its own pleasant trip. Singapore is 15 to 20 minutes from Changi to anywhere, but two beers can be $30 to $40. KL if you have time, Singapore if you do not.
   - q: Where should I stay in KK?
-    a: The Hyatt Regency Kinabalu sits on the waterfront downtown; closest to Jesselton Point for the marine park, walkable to the Floating Mosque and the night market, and the rooms face the sunset. Kota Kinabalu Marriott is the other reliable in-town option. For a resort feel, the Tanjung Aru side has Shangri-La properties with private beach access.
+    a: The Hyatt Regency Kinabalu sits on the waterfront downtown; closest to Jesselton Point for the marine park, walkable to the Floating Mosque and the night market, and the rooms face the sunset. Kota Kinabalu Marriott is the other reliable in-town option. For a resort feel, the Tanjung Aru side has the Shangri-La Tanjung Aru, Kota Kinabalu with private beach access.
   - q: What should I know before going?
     a: Sabah is predominantly Muslim and more visibly conservative than peninsular Malaysia or Thailand. Breakfast buffets often skip bacon and ham. Alcohol runs $5 to $6 a beer at hotels; cheaper than Singapore, two to three times Thailand. Beachwear leans toward SPF-resistant long-sleeve swim shirts rather than bikinis or tank tops; KK is a good place to stock up on surf skins. Cars drive on the left, fuel is subsidised and very cheap.
   - q: Do I need a rental car?
@@ -83,7 +83,7 @@ KK splits into three viable bases: the downtown waterfront (closest to Jesselton
 |---|---|---|---|
 | Downtown waterfront | [Hyatt Regency Kinabalu](/pins/hyatt-regency-kinabalu) | The easiest base. Walking distance to Jesselton Point, the [Floating Mosque](/pins/floating-mosque-kota-kinabalu-city-mosque), the [Handicraft Market](/pins/handicraft-market), and the sunset on the seafront. Rooms face the water | An older Hyatt, so the room is functional rather than memorable |
 | Downtown waterfront | [Kota Kinabalu Marriott Hotel](/pins/kota-kinabalu-marriott-hotel) | Newer build, Marriott loyalty, same walkable footprint as the Hyatt | Slightly further from Jesselton Point, slightly less convenient for the marine park |
-| Tanjung Aru | Shangri-La's Tanjung Aru Resort | Private beach, the headline KK sunset, resort layout for families | 10 to 15 minutes from town. You commit to taxis/Grab in for dinner |
+| Tanjung Aru | Shangri-La Tanjung Aru, Kota Kinabalu | Private beach, the headline KK sunset, resort layout for families | 10 to 15 minutes from town. You commit to taxis/Grab in for dinner |
 | Kinabalu Park lodges | Sutera Sanctuary Lodges or similar | Sleep at the base of the mountain if you are climbing | Two hours from town. Only worth it if Mount Kinabalu is the trip |
 
 ## Tunku Abdul Rahman Marine Park

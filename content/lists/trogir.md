@@ -4,7 +4,7 @@ featured: true
 title: "Trogir travel guide: the easy half-day from Split"
 description: "A short Trogir travel guide. Split bus 37, Kamerlengo Castle, the green market, the resident cats, and lunch spots in the old town worth walking to."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -56,9 +56,9 @@ related:
 #   corrected; address is still null, fill in next admin pass.
 ---
 
-[Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits a few hundred metres beyond the old town. Treat it as a clean morning with lunch, not a full day.
+[Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits about 4 km east of the old town. Treat it as a clean morning with lunch, not a full day.
 
-## A Half-Day Shape
+## A half-day shape
 
 | Time | What to do | Why |
 |---|---|---|

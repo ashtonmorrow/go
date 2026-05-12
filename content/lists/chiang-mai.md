@@ -4,7 +4,7 @@ featured: true
 title: "Chiang Mai travel guide: where to stay, the temples, and a khao soi rotation"
 description: "A personal Chiang Mai travel guide. Where to base (Old City, Nimman, Riverside), Wat Chedi Luang and Doi Suthep, Elephant Nature Park, and the khao soi worth queuing for."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get to Chiang Mai?
-    a: Fly into Chiang Mai International Airport (CNX). From Bangkok the flight is about 75 minutes; Thai Smile, Thai AirAsia, Nok Air, and Bangkok Airways all run multiple daily. From other Asian capitals direct service is reasonable; from outside Asia almost everyone connects in Bangkok or Singapore.
+    a: Fly into Chiang Mai International Airport (CNX). From Bangkok the flight is about 75 minutes; Thai Airways, Thai AirAsia, Nok Air, and Bangkok Airways all run multiple daily (Thai Smile was folded back into Thai Airways in 2024). From other Asian capitals direct service is reasonable; from outside Asia almost everyone connects in Bangkok or Singapore.
   - q: Where should I stay for a first trip?
     a: Old City if it is your first visit and you want temples on foot. Nimmanhaemin if you care more about cafes and shopping than temples. Riverside if you want a calmer luxury stay. Doi Suthep area if you want mountain quiet and do not mind a daily Grab into town.
   - q: Is the elephant park experience ethical?

@@ -4,7 +4,7 @@ featured: true
 title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
 description: "A personal Ho Chi Minh City travel guide. Vietnam e-visa, where to stay in District 1, the Saigon craft beer crawl (Heart of Darkness, Pasteur Street, Belgo, East West), and a one-day cultural circuit."
 published: 2026-05-11
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -15,9 +15,9 @@ guide_cards:
   intro: HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of friction. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centrepiece evening.
   cards:
     - title: Get the e-visa, not from a middleman
-      body: Vietnam offers 30-day single and 90-day multiple entry e-visas starting at $25. The application takes 3 business days. Use the official Government of Vietnam portal. There are many lookalike sites charging two to three times more for the same thing.
+      body: Vietnam offers 30-day single entry ($25) and 90-day multiple entry ($50) e-visas. The application takes 3 business days. Use the official Government of Vietnam portal at evisa.gov.vn. There are many lookalike sites charging two to three times more for the same thing.
     - title: Stay in District 1
-      body: Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. Vinpearl Landmark 81 is the view splurge; the InterContinental is the family pick; small boutique 4-stars run $30 to $75 a night.
+      body: Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. The InterContinental Saigon is the central family pick, and small boutique 4-stars in District 1 run $30 to $75 a night. Vinpearl Landmark 81 is the view splurge, but sits in Binh Thanh, a 10-minute Grab from central District 1.
     - title: Do the craft beer crawl in one evening
       body: Heart of Darkness, Pasteur Street, Belgo, East West Brewing, all within walking distance in District 1. Start at HOD with the cucumber pils because of the heat, eat at one of the early stops, finish at Ben Nghe Street Food Market.
     - title: One day is the culture day
@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: Do I need a visa for Vietnam?
-    a: Most western visitors do. Use the official Government of Vietnam e-visa portal (evisa.xuatnhapcanh.gov.vn). The 30-day single-entry visa starts at $25; 90-day multiple-entry is more. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites; they charge two to three times the official rate for the same e-visa.
+    a: Most western visitors do. Use the official Government of Vietnam e-visa portal at evisa.gov.vn. The 30-day single-entry visa is $25 and the 90-day multiple-entry is $50. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites; they charge two to three times the official rate for the same e-visa.
   - q: Where should I stay in HCMC?
     a: District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the view splurge and has a strong hotel breakfast. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.
   - q: Is Saigon good for craft beer?
@@ -38,6 +38,20 @@ faqs:
 related:
   city: ho-chi-minh-city
   country: vietnam
+
+# Authoring notes (kept here, not rendered):
+# - indexable: false until Mike reviews.
+# - hero_image is empty; pick one in /admin/lists/ho-chi-minh-city.
+# - Pin slug fixed 2026-05-13: war-remnants-musem → war-remnants-museum.
+# - Ben Dinh vs Ben Duoc: body now flags the Ben Dinh entry; pin
+#   slug ben-dinh-tunnels is specific to that complex. If a Ben Duoc
+#   pin gets created, link both from the Cu Chi paragraph.
+# - E-visa portal: evisa.gov.vn is the canonical 2026 URL; the older
+#   evisa.xuatnhapcanh.gov.vn still works but is being phased out.
+# - Vinpearl Landmark 81 is in Binh Thanh district, not District 1
+#   proper. Body now flags this; previous version misled readers.
+# - Verify the 30-day ($25) and 90-day ($50) e-visa prices at
+#   evisa.gov.vn before each republish; rates have moved historically.
 ---
 
 [Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below; this writeup covers the parts of it that change the trip.
@@ -54,11 +68,11 @@ related:
 
 ## Get the e-visa first
 
-Most western visitors need a visa. Vietnam runs an official e-visa portal that handles 30-day single-entry ($25) and 90-day multi-entry visas, processed in 3 business days. The scam ecosystem around this is large. Search results for "Vietnam visa" surface dozens of lookalike sites that charge $50 to $80 for the same document. The only correct address is **evisa.xuatnhapcanh.gov.vn**. Apply at least four business days before you fly.
+Most western visitors need a visa. Vietnam runs an official e-visa portal that handles 30-day single-entry ($25) and 90-day multi-entry ($50) visas, processed in 3 business days. The scam ecosystem around this is large. Search results for "Vietnam visa" surface dozens of lookalike sites that charge two to three times the official rate for the same document. The only correct address is **evisa.gov.vn**. Apply at least five business days before you fly.
 
 ## Getting in from Tan Son Nhat
 
-Tan Son Nhat International (SGN) sits 7 km from District 1 and is one of the easier major airports in Southeast Asia.
+Tan Son Nhat International (SGN) sits 7 km from District 1.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|
@@ -74,7 +88,7 @@ District 1 is the default. Inside that, three tiers cover most travellers.
 
 | Tier | Hotel | Why pick it | Notes |
 |---|---|---|---|
-| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | Tallest building in the country, strong hotel breakfast, attached shopping, and wide city views | In Binh Thanh, 10 minutes from central District 1 by Grab |
+| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | Tallest building in the country, strong hotel breakfast, attached shopping, and wide city views | In Binh Thanh district, 10 minutes from central District 1 by Grab |
 | Mid ($100ish) | InterContinental Saigon | Staid but central, next to Book Street. Family-friendly thanks to the Executive Apartments wing | The default IHG choice. Reliable rather than memorable |
 | Boutique ($30 to $75) | Independent 4-star and serviced apartments | District 1 has a deep bench. Many of the new residential towers rent units by the night | Read recent reviews. Quality varies more than at the chains |
 
@@ -87,7 +101,7 @@ A tight on-foot circuit, starting early to beat the heat.
 | Stop | Time | Notes |
 |---|---|---|
 | [Reunification Palace](/pins/reunification-palace) | 60 to 75 min | The 1975 surrender site, frozen in 70s decor. Buy tickets at the gate |
-| [War Remnants Museum](/pins/war-remnants-musem) | 90 min | Heavy. Plan a coffee break after |
+| [War Remnants Museum](/pins/war-remnants-museum) | 90 min | Heavy. Plan a coffee break after |
 | [Notre-Dame Cathedral Basilica of Saigon](/pins/notre-dame-cathedral) | 20 min outside | Often under restoration; the exterior is the picture |
 | [Saigon Central Post Office](/pins/saigon-central-post-office) | 30 min | Beautifully preserved French-colonial. Free |
 | [Ho Chi Minh City Opera House](/pins/opera-house) | 15 min outside | The building, not a performance. If A O Show is running, the night ticket is worth it |

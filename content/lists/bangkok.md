@@ -4,7 +4,7 @@ featured: true
 title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
 description: "A personal Bangkok travel guide. Where to stay in Sukhumvit, Silom, or Riverside, the BTS mall walk for jet-lagged days, the river-grouped temple circuit, and Yaowarat at night."
 published: 2026-05-10
-updated: 2026-05-10
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -171,7 +171,7 @@ The three temples most first-time visitors should see all sit close to the river
 
 | # | Temple | Time on site | How to get there |
 |---|---|---|---|
-| 1 | [Grand Palace + Wat Phra Kaew](/pins/grand-palace-wat-phra-kaew) | 1.5–2 hours | Tha Chang pier or Grab. Open 8:30–15:30 |
+| 1 | [Grand Palace + Wat Phra Kaew](/pins/grand-palace-wat-phra-kaew) | 1.5–2 hours | Tha Chang pier or Grab. Gates open 8:30, last admission 15:00, gates close 15:30 |
 | 2 | [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) | 45 minutes | Walk south from the Grand Palace, ~10 minutes |
 | 3 | [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) | 30–45 minutes | Cross-river ferry from Tha Tien pier (a few baht). Best in late afternoon for the porcelain detail |
 
@@ -202,4 +202,4 @@ Two non-temple stops worth slotting into a longer Bangkok trip if you have time 
 
 [Jim Thompson House](/pins/jim-thompson-house-museum) is the museum I would put on a first Bangkok trip if you only have room for one. It is six traditional Thai houses combined into a single compound by an American silk-business expat in the 1950s, and the collection inside is mostly Southeast Asian art he assembled. The compound itself is the reason to go: shaded teak rooms, garden, a working canal-side setting in the middle of the city. Closest BTS is National Stadium.
 
-The [Bangkok National Museum](/pins/bangkok-national-museum) is the deeper-context complement to the Grand Palace. A 5-minute walk from the royal precinct and far less crowded, with the same era covered in more detail. Open Wednesday through Sunday; closed Mondays and Tuesdays. Skip if museums are not the trip; pair with the temple circuit if they are.
+The [Bangkok National Museum](/pins/bangkok-national-museum) is the deeper-context complement to the Grand Palace. About a 10-minute walk across Sanam Luang from the royal precinct and far less crowded, with the same era covered in more detail. Open Wednesday through Sunday; closed Mondays and Tuesdays. Skip if museums are not the trip; pair with the temple circuit if they are.

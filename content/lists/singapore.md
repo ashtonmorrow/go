@@ -4,7 +4,7 @@ featured: true
 title: "Singapore travel guide: the three-day version that does not break the bank"
 description: "A personal Singapore travel guide. Gardens by the Bay, Marina Bay Sands, the hawker centres, where to stay (Robertson Quay), and how to do the city without spending $200 on a round of drinks."
 published: 2026-05-11
-updated: 2026-05-11
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -31,7 +31,7 @@ faqs:
   - q: Is Marina Bay Sands worth it?
     a: As a hotel, only if the SkyPark Pool is the reason; the rooms themselves are dated for the price. As a sight, yes; the SkyPark Observation Deck ticket (without staying) is the same view at a fraction of the cost. The 8 p.m. and 9 p.m. Spectra water-and-light shows from the boardwalk are free and worth the walk.
   - q: How do I get from Changi to my hotel?
-    a: MRT East-West Line via the Changi Airport station is 30 minutes to City Hall and costs about $2 with EZ-Link. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. The MRT is the easy pick unless you have heavy bags or land after midnight.
+    a: MRT East-West Line is the cheap option; about 30 minutes to City Hall with a change at Tanah Merah from the Changi branch onto the main EWL. Costs about $2 with an EZ-Link card or contactless. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. Grab is the easy pick unless you are travelling light.
   - q: Is the heat really that bad?
     a: It is 30°C and 80% humidity year-round. The Singaporean strategy is to alternate between air-conditioned interiors and short outdoor walks; buildings are connected by covered walkways and underground tunnels in the central districts. Plan walks for early morning or after 6 p.m. Pack an umbrella for the daily afternoon rain.
 
@@ -53,11 +53,11 @@ related:
 
 ## Getting in from Changi
 
-[Changi Airport](/cities/singapore) is the easiest major airport in the world, and the connections into town are equally easy.
+Changi Airport is one of the smoothest arrival experiences in the region, and the connections into town are equally easy.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|
-| MRT East-West Line | ~$2 with EZ-Link | 30 min to City Hall | The default. Trains every 5 min. Free Wi-Fi |
+| MRT East-West Line | ~$2 with EZ-Link | ~30 min to City Hall | Change at Tanah Merah from the Changi branch onto the main EWL. Trains every 5 min. Free Wi-Fi |
 | Grab / taxi | $15 to $25 | 15 to 25 min | Worth it with bags or after midnight. Airport surcharges apply |
 | Airport Shuttle | $9 | 30 to 60 min | Hotel drop, slower than MRT. Book in arrivals |
 
@@ -80,7 +80,7 @@ The Marina Bay loop is the headline. Done in the right order, it covers the post
 
 | Time | Stop | Why |
 |---|---|---|
-| 8:30 to 9:00 a.m. | [ArtScience Museum](/pins/artscience-museum) exterior, [Helix Bridge](/cities/singapore) | Cool morning walk. Free |
+| 8:30 to 9:00 a.m. | [ArtScience Museum](/pins/artscience-museum) exterior, the Helix Bridge | Cool morning walk. Free |
 | 9:00 to 10:30 a.m. | [Cloud Forest](/pins/cloud-forest) | Best when the AC is fresh and the indoor mist is dense. Buy combo with Flower Dome |
 | 10:30 to 11:30 a.m. | [Flower Dome](/pins/flower-dome) | The AC is the gift. Photogenic seasonal displays |
 | 11:30 a.m. to 1 p.m. | Outdoor [Gardens by the Bay](/pins/gardens-by-the-bay) | Heritage Gardens, Dragonfly Lake. Walk before the noon heat |

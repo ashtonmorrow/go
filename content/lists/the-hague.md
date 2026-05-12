@@ -4,7 +4,7 @@ featured: true
 title: "36 hours in The Hague: a practical guide to Den Haag's museums, palaces, and coast"
 description: "A 36-hour Hague travel guide. Mauritshuis Vermeer, Escher in het Paleis, the Peace Palace, Madurodam, Scheveningen, and The Hague as a cheap base for Amsterdam."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -29,7 +29,7 @@ faqs:
   - q: Is one day enough for The Hague?
     a: 24 hours covers the Mauritshuis, the Binnenhof, and either Escher or the Peace Palace. 36 hours gets you those plus the beach at Scheveningen and an evening to settle into the city. Two full days lets you add Madurodam, Delft, and a slower museum afternoon.
   - q: Do I need to book the Mauritshuis in advance?
-    a: Yes. The Mauritshuis sells out by mid-afternoon in season and same-day walk-ups are not guaranteed. Book a timed entry online. After 4pm there is also a discounted €4 ticket if you can be flexible.
+    a: Yes. The Mauritshuis sells out by mid-afternoon in season and same-day walk-ups are not guaranteed. Book a timed entry online. The €4-after-4pm ticket exists but is for Netherlands residents only (sold at the ticket office between 16:00 and 17:30, not online, no discount cards stack); international visitors pay the standard €21.
   - q: Can I tour the Peace Palace inside?
     a: Sometimes. The International Court of Justice meets inside the palace, and when the court is in session tours are suspended. Guided tours when offered are around €11 and require advance online booking. Bring your passport or EU ID card.
   - q: Where do I take the kids?
@@ -110,7 +110,7 @@ The Hague city center is compact. Anywhere within a 10-minute walk of the Binnen
 | voco The Hague | City center, blocks from the Binnenhof | One of my favorite hotels in the country. Set in a restored former bank building. Light, airy rooms, great showers, very quiet. Rates often around €125/night | Books out on weekends |
 | [Hotel Indigo The Hague Palace Noordeinde](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | City center, opposite the royal palace | Set in another former bank building. Each room is individually decorated and the dinner-in-the-bank-vault is the kind of trip story that pays for itself | Boutique-property pricing |
 | Staybridge Suites The Hague Parliament | Lange Houtstraat, two blocks from the Binnenhof | Apartment-style suites with kitchenettes, guest laundry, and a weekly happy hour. Best for longer stays. Rates run €100–€200 depending on dates | Has crept up in price; flexible dates required for the lower end |
-| Hotel Des Indes | Lange Voorhout | The historic grand hotel; Tsar Nicholas II, Churchill, and Pavlova stayed | Top of the budget for the city |
+| Hotel Des Indes | Lange Voorhout | The historic grand hotel; Anna Pavlova lived (and died) here in 1931, Churchill stayed, Empress Sisi and Mata Hari are on the documented guest list | Top of the budget for the city |
 
 If you are basing outside Amsterdam to save money, this is the cleanest version of that play. From The Hague you reach Amsterdam in 50 minutes, Rotterdam in 25, and Schiphol in 30. A 4-night trip with the museums split across two cities works better here than in either Amsterdam or Rotterdam alone.
 
@@ -130,7 +130,7 @@ The €4 after-4pm ticket is the move if your day is already packed. The collect
 
 ## The Binnenhof and the city center
 
-The [Binnenhof](/pins/inner-court-hall-of-knights) is the world's oldest house of parliament still in active use. The complex dates from the 13th century and the central courtyard, the Hofvijver, sits as the postcard image of the city. The 13th-century **Ridderzaal (Knights' Hall)** holds the throne where King Willem-Alexander opens parliament every September.
+The [Binnenhof](/pins/inner-court-hall-of-knights) is one of the oldest parliament buildings still in active use anywhere. The complex dates from the 13th century and the central courtyard, the Hofvijver, sits as the postcard image of the city. The 13th-century **Ridderzaal (Knights' Hall)** holds the throne where King Willem-Alexander opens parliament every September.
 
 The buildings are best admired from outside. Guided tours of the interior are organized by **ProDemos** and need advance booking; when the chambers are in session the tours are suspended.
 
@@ -140,7 +140,7 @@ A short walk north of the Binnenhof, the **Paleis Noordeinde** is the working pa
 
 ## Escher in het Paleis
 
-The [Escher in het Paleis](/pins/escher-museum) museum is the second of the city's two top-tier museums. It sits inside the former winter palace of Queen Emma, the great-grandmother of the current king, on the elegant tree-lined Lange Voorhout.
+The [Escher in het Paleis](/pins/escher-museum) museum is the second of the city's two top-tier museums. It sits inside the former winter palace of Queen Emma, the great-great-grandmother of the current king, on the elegant tree-lined Lange Voorhout.
 
 | Field | Detail |
 |---|---|
@@ -191,7 +191,7 @@ Scheveningen is the Hague's seaside neighborhood, 15 minutes by tram from the ci
 
 The pier has a **Ferris wheel** (~€11 per person, 36-car loop, ~20 minutes), a **bungee tower** (60m drop, ~€70), and a **zip line** that runs 350m over the sea (~€35; the longest zip line in the Netherlands). The amusements all run year-round in some form; check before driving up in winter.
 
-The **Strandhuisjes** at Kijkduin are the most photogenic stop on the coast: bright white wooden beach houses rebuilt every summer at the south end of the boardwalk. They are rentable as accommodation (~€300+ a night) but worth walking past either way. The Strandhuisjes change every year, so the photo dates the trip.
+The **Strandhuisjes** at Kijkduin are the most photogenic stop on the coast: bright white wooden beach houses set up every spring and removed for winter at the south end of the boardwalk. They are rentable as accommodation (~€300+ a night) but worth walking past either way. The seasonal install means the photo dates the trip.
 
 For lunch on the coast, **Habana Beach** in Kijkduin is a relaxed bar/restaurant on the sand with a generous breakfast platter and a strong hot chocolate. The Buddha-head terrace decor is its own thing.
 

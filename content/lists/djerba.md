@@ -4,7 +4,7 @@ featured: true
 title: "Djerba travel guide: the beaches, Houmt Souk, and the Djerbahood street art"
 description: "A short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, the Djerbahood murals, and the Matmata daytrip."
 published: 2026-05-12
-updated: 2026-05-12
+updated: 2026-05-13
 authors:
   - Mike Lee
 hero_image: ""
@@ -21,7 +21,7 @@ guide_cards:
     - title: Avoid the airport taxi shakedown
       body: DJE airport taxis are known to overcharge tourists. The fair price to Houmt Souk is 20 to 25 TND; expect quotes of 50 to 80 TND from the rank. Negotiate before you load bags, or arrange a hotel pickup ahead of time.
     - title: Djerbahood is the cultural highlight
-      body: The village of Erriadh hosts the largest open-air street-art project in the world. Murals by 250+ artists from 30+ countries. Walkable in 90 minutes; some pieces have faded since the 2014 origin, but new commissions arrive yearly.
+      body: The village of Erriadh hosts the largest open-air street-art project in the world. 250+ murals by 150 artists from 30+ countries. Walkable in 90 minutes; some pieces have faded since the 2014 origin, but new commissions arrive yearly.
 
 faqs:
   - q: How do I get to Djerba?
@@ -33,7 +33,7 @@ faqs:
   - q: Should I rent a car?
     a: Yes if you want to range. Djerba is small (~25 km across) but the attractions are spread out; Houmt Souk in the north, Erriadh in the centre, beaches on the eastern coast. A car removes the taxi negotiation from each leg. Driving on the right; international permit is recommended.
   - q: Is the Matmata daytrip worth it?
-    a: Yes for one day, especially if Star Wars or Berber architecture interests you. The original Luke Skywalker home (Hotel Sidi Driss) is in Matmata and still operates as a hotel. It is a 90-minute ferry plus 2-hour drive each way, so book a tour or hire a driver rather than DIY-ing the day.
+    a: Yes for one day, especially if Star Wars or Berber architecture interests you. The original Luke Skywalker home (Hotel Sidi Driss) is in Matmata and still operates as a hotel. Cross to the mainland either via the El Kantara causeway (no ferry, just drive) or the short Ajim-Jorf ferry (~20 minutes); then it is a 2-hour drive south. Book a tour or hire a driver rather than DIY-ing the day.
 
 related:
   country: tunisia
@@ -87,7 +87,7 @@ The single best ten days are usually the second half of October, after the Europ
 
 ## Getting in and getting around
 
-Djerba-Zarzis International Airport (DJE) sits 9 km southeast of [Houmt Souk](/pins/houmt-souk-medina). The airport is small and clean; arrivals processing takes 30 to 45 minutes most days.
+Djerba-Zarzis International Airport (DJE) sits about 9 km southwest of [Houmt Souk](/pins/houmt-souk-medina), near Mellita on the west side of the island. The airport is small and clean; arrivals processing takes 30 to 45 minutes most days.
 
 A practical heads-up: **the airport taxi rank is known to overcharge tourists**. The fair fare to Houmt Souk is 20 to 25 TND (~6 to 8 EUR). Drivers will routinely quote 50 to 80 TND. Two ways to handle it:
 
@@ -138,7 +138,7 @@ For lunch, brik (the thin pastry with egg and tuna), couscous, and grilled fish 
 
 The [El Ghriba Synagogue](/pins/el-ghriba-synagogue), in the inland village of Hara Sghira, is one of the oldest synagogues in the world. The current building is 19th-century, but Jewish settlement on the site goes back centuries earlier. It remains active and is a pilgrimage site each Lag B'Omer. Security is tight; bring a passport, expect a short bag check, and dress conservatively.
 
-A 10-minute drive south, the village of Erriadh houses **Djerbahood**, the largest open-air street-art project in the world. The 2014 initiative invited 150+ artists from 30+ countries to paint over 250 murals across the village walls. Some originals have faded with sun and weather; new commissions arrive most years. Plan 90 minutes to walk the whole village; bring water and a camera. There is no entry fee; the village just is the gallery.
+A 10-minute drive south, the village of Erriadh houses **Djerbahood**, the largest open-air street-art project in the world. The 2014 initiative invited 150 artists from over 30 countries to paint more than 250 murals across the village walls. Some originals have faded with sun and weather; new commissions arrive most years. Plan 90 minutes to walk the whole village; bring water and a camera. There is no entry fee; the village just is the gallery.
 
 For a quieter cultural stop, the **[Guellala Museum](/pins/guellala-museum)** on the south side of the island shows traditional pottery, Berber clothing, weaving, and a recreated village setting. About 90 minutes; the hill location gives a wide panorama of the south coast.
 
