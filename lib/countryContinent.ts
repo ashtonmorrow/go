@@ -82,6 +82,20 @@ const NAME_ALIASES: Record<string, string> = {
   'micronesia (federated states of)': 'micronesia',
 };
 
+// Small states / territories that are not present as named features in the
+// simplified Natural Earth bundle used by the map, plus one spelling carried
+// by the shared Continent union.
+const CONTINENT_OVERRIDES: Record<string, Continent> = {
+  'antarctica': 'Antartica',
+  'antartica': 'Antartica',
+  'cabo verde': 'Africa',
+  'gambia': 'Africa',
+  'isle of man': 'Europe',
+  'micronesia': 'Australia',
+  'moldova': 'Europe',
+  'north korea': 'Asia',
+};
+
 /**
  * Resolve a country name to a continent. Returns null when unknown
  * (rather than guessing) so the caller can decide whether to skip the
@@ -91,5 +105,6 @@ export function continentOfCountry(name: string | null | undefined): Continent |
   if (!name) return null;
   const key = name.toLowerCase().trim();
   const aliased = NAME_ALIASES[key] ?? key;
+  if (CONTINENT_OVERRIDES[aliased]) return CONTINENT_OVERRIDES[aliased];
   return NAME_TO_CONTINENT[aliased] ?? null;
 }
