@@ -38,7 +38,7 @@ faqs:
     a: November and early December run cheap. The trade-off is real; the swim is over, day-time temperatures sit around 15 to 18°C, and the rainfall ramps up sharply. The trip becomes a city-walk-and-eat trip rather than a beach trip. If you go in November, pack waterproofs and plan around indoor visits (Valletta museums, the Three Cities, Mdina) rather than the coast.
 
 related:
-  city: ""
+  city: valletta
   country: malta
 
 # Authoring notes (kept here, not rendered):

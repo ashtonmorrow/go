@@ -36,7 +36,7 @@ faqs:
     a: As a visitor stop, yes, with the usual caveats for an old-town market that now serves a heavy cruise traffic. It is small, it has fruit and honey and rakija, and it is a fair gift-shopping stop. For a deeper read on how this market sits inside the wider Balkan green market scene (and where to find the more residents-first ones), the cross-list at /lists/balkan-green-markets covers the region.
 
 related:
-  city: ""
+  city: kotor
   country: montenegro
 
 # Authoring notes (kept here, not rendered):

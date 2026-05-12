@@ -4,6 +4,7 @@ import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { SITE_URL } from '@/lib/seo';
 import { sovereignParent, isSubNational } from '@/lib/sovereignty';
+import { getGuideAnchors } from '@/lib/guideAnchors';
 import HomeCitiesGlobe from '@/components/HomeCitiesGlobe';
 
 // === Home (/) ==============================================================
@@ -78,6 +79,11 @@ export default async function HomePage() {
     been: !!c.been,
   }));
 
+  // Guide anchors: one (or more) lat/lng pins per featured list, layered
+  // on top of the city dots. Multi-base lists like spa-day or bali emit
+  // several anchors — all clicking through to the same /lists/<slug>.
+  const guideAnchors = await getGuideAnchors(cityRows);
+
   return (
     <div className="relative w-full">
       {/* Full-bleed globe. Sized to fill the available viewport: on
@@ -92,7 +98,7 @@ export default async function HomePage() {
           carry the page on their own; the page title for SEO lives in
           the document metadata only. */}
       <div className="relative w-full h-[calc(100svh-3.5rem)] md:h-screen bg-cream-soft">
-        <HomeCitiesGlobe cities={cityRows} />
+        <HomeCitiesGlobe cities={cityRows} guides={guideAnchors} />
 
         {/* Floating stats strip — absolute-positioned across the bottom
             of the map. Glass treatment (semi-transparent white +

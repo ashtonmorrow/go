@@ -38,7 +38,7 @@ faqs:
     a: No. The Rezo Gabriadze clock tower on Ioane Shavteli Street is photogenic, a few minutes outside is enough to take it in, and the Gabriadze puppet theatre next door is the better visit if you can get a ticket. The neighbourhood has a couple of natural-wine bars (Tsangala's is the one); a glass of qvevri amber there with the tower in view is the way to spend the half hour.
 
 related:
-  city: ""
+  city: tbilisi
   country: georgia
 
 # Authoring notes (kept here, not rendered):

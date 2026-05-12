@@ -38,7 +38,7 @@ faqs:
     a: The old town itself is the sight. The original municipal market building still stands even though the market has moved to a newer hall a few blocks inland; you can walk past the facade and continue to the seafront. Two churches anchor the headland between the beaches, the most photographed being the parish church of Sant Bartomeu i Santa Tecla above the sand. None of it takes long; the day is the beach and a slow lunch.
 
 related:
-  city: ""
+  city: sitges
   country: spain
 
 # Authoring notes (kept here, not rendered):
