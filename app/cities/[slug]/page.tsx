@@ -17,6 +17,9 @@ import { computeMonthlyDaylight, todayDayOfYear } from '@/lib/daylight';
 import AirportsPanel from '@/components/AirportsPanel';
 import { nearbyAirports } from '@/lib/airports';
 import ClosedDaysPanel from '@/components/ClosedDaysPanel';
+import TransitPanel from '@/components/TransitPanel';
+import { fetchTransitOperators } from '@/lib/transit';
+import PhrasesPanel from '@/components/PhrasesPanel';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
@@ -140,12 +143,13 @@ export default async function CityPage({
   // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
-  const [blocks, country, sisters, climate, airQuality, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
+  const [blocks, country, sisters, climate, airQuality, transitOperators, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     !content && city.notionSyncedAt ? fetchPageBlocks(city.id) : Promise.resolve([]),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
     fetchAirQuality(city.lat, city.lng),
+    fetchTransitOperators(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
     fetchAllSavedListsMeta(),
     // Personal photos that filter up from any pin in this city. Joined
@@ -557,6 +561,12 @@ export default async function CityPage({
             ) : null;
           })()}
 
+          {/* Getting around: public-transit operators near the city
+              center via TransitLand, grouped by mode (metro / tram /
+              bus / etc). Hides itself when TRANSITLAND_API_KEY is missing
+              or coverage is sparse. */}
+          <TransitPanel cityName={city.name} operators={transitOperators} />
+
           {/* When things are closed: next 6 public holidays for the
               country this city is in, plus a Sunday-closure note for
               countries that enforce one (DE, AT, CH, PL). Source is
@@ -566,6 +576,12 @@ export default async function CityPage({
             countryIso2={country?.iso2 ?? null}
             countryName={country?.name ?? city.country}
           />
+
+          {/* A few words in {language}: twelve standard survival phrases
+              translated into the country's primary language via DeepL.
+              Hides itself for English-speaking countries (no language
+              mapping) and when DEEPL_API_KEY is missing. */}
+          <PhrasesPanel countryIso2={country?.iso2 ?? null} />
 
           {hasBody && (
             <section className="mt-10 border-t border-sand pt-8">
