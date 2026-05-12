@@ -95,6 +95,12 @@ const nextConfig = {
       ['london,-food-&-sites',          'london'],         // subset of the main list
       ['lyon-fr',                       'lyon'],           // redundant country suffix
       ['seoul-(all-sites)',             'seoul'],          // renamed for cleaner slug
+
+      // Belgian-coast consolidation: the destinations lists were folded
+      // into kusttram-stations and the narrative was broadened to cover
+      // the eat/stop places along the line.
+      ['belgian-coast',                 'kusttram-stations'],
+      ['belgian-coastal-town-stops',    'kusttram-stations'],
     ];
     const listSlugRedirects = legacyListSlugs.flatMap(([from, to]) => [
       { source: `/lists/${from}`,       destination: `/lists/${to}`,       permanent: true },

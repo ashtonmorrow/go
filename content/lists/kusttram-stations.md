@@ -1,17 +1,17 @@
 ---
 indexable: true
 featured: true
-title: "Kusttram station guide: riding Belgium's coastal tram"
-description: "A personal station-pin index for Belgium's coastal tram, useful if you are already near the Flemish coast and want to ride a short section."
+title: "Belgian coast travel guide: the Kusttram, where to ride, where to eat"
+description: "A personal Belgian coast guide. Riding the Kusttram, where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen."
 published: 2026-04-30
-updated: 2026-05-13
+updated: 2026-05-14
 authors:
   - Mike Lee
 route_map: kusttram
 
 guide_cards:
   title: Riding the Kusttram
-  intro: This is a working list, not a challenge to ride every stop. De Lijn describes the Kusttram as serving 67 stops; this atlas has station pins for the ones worth saving. Browse the coast, pick a section, and link through to the places already in the atlas.
+  intro: This started as a Kusttram station index and has slowly grown into the working Belgian-coast guide it actually wanted to be. The tram is the thread; the list also pins the cafés, parks, ship museum, and beach towns I have actually stopped at along the route. Browse the coast, pick a section, and link through to the places already in the atlas.
   cards:
     - title: Good base
       body: Oostende is the easy starting point because mainline trains meet the coast there and the tram is simple to use in pieces.
@@ -97,5 +97,18 @@ Two things on the Belgian coast you really cannot see anywhere else:
 
 * **Horseback shrimp fishermen at [Oostduinkerke](/cities/oostduinkerke)**. UNESCO listed. They walk Brabant draft horses through the surf at low tide pulling nets for grey shrimp. Catches are weighed in town and cooked at the local paviljoens. Schedule depends on the tide; check the tourism office.
 * **Atlantikwall bunkers at [Raversijde](/pins/raversijde-domein-raversijde)**. A preserved section of WW2 coastal fortifications still standing in the dunes between [Oostende](/cities/oostende) and [Middelkerke](/cities/middelkerke), with a museum walk through the trenches. A strange thing to see in a beach context, and a useful reminder of what this stretch of coast was being used for eighty years ago.
+
+## Where to get off along the line
+
+The stops below are the ones I have actually used as destinations rather than just transit. Each is anchored at a town and a Kusttram stop within walking distance, so you can drop them into the section table at the top of this page without rebuilding the day.
+
+| Town | Get off at | What is there |
+|---|---|---|
+| [Oostende](/cities/oostende) | Marie-Joséplein or the main Oostende station | [Apero Fish Palace](/pins/apero-fish-palace) for fresh North Sea fish at lunch, the [Mercator](/pins/mercator) (a 1932 three-master in the marina, now a small museum), and [Maria Hendrikapark](/pins/maria-hendrikapark) as the green walk between the train station and the dyke |
+| [De Panne](/cities/de-panne) | [De Panne Plopsaland](/pins/de-panne-plopsaland) | [Plopsaland](/pins/plopsaland), the Flemish family theme park; useful only if you have kids in the right band, but it is genuinely the reason most Belgian families take the tram this far west |
+| Damme (a short ride or bike inland from the Knokke end) | n/a (the tram doesn't reach Damme; the canal-bike or car does) | [Hoeke Windmill](/pins/hoeke-windmill), a working 18th-century post mill on the canal between Bruges and the coast. Pair with a slow canal ride from Bruges if you have a half-day |
+| [Knokke](/cities/knokke) | [Knokke Station](/pins/knokke-station) | [Grand Casino Knokke](/pins/grand-casino-knokke), the 1930 modernist casino with the Magritte and Delvaux murals inside. The "Knokke Casino" pin in the atlas is the same building under its more common short name |
+
+Two more 5/5-rated stops worth flagging without their own row: a quiet **Moeder Lambik** café halfway up [De Panne Kerk](/pins/de-panne-moeder-lambik) for a Trappist between rides, and the broader [Raversijde provincial domain](/pins/raversijde-domein-raversijde) around the Atlantikwall already mentioned above.
 
 Otherwise the coast is what it is: wide flat beaches, modernist apartment blocks behind the dyke, scraps of Belle Époque, and the slow rhythm of a country that takes its lunch seriously.
