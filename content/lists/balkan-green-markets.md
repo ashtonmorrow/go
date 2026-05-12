@@ -1,5 +1,6 @@
 ---
 indexable: true
+featured: true
 ---
 
 This is my working list of green markets. It's useful as orientation points on longer stays in the Balkans. Some are still everyday markets that locals shop at and English will be scarce. Others sit close enough to high traffic visitor routes that they are partly part of the sightseeing circuit now.
