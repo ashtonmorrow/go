@@ -11,6 +11,12 @@ import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, cityJsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import MonthlyClimateChart from '@/components/MonthlyClimateChart';
 import { fetchCityClimate } from '@/lib/cityClimate';
+import EnvironmentalScrubber from '@/components/EnvironmentalScrubber';
+import { fetchAirQuality } from '@/lib/airQuality';
+import { computeMonthlyDaylight, todayDayOfYear } from '@/lib/daylight';
+import AirportsPanel from '@/components/AirportsPanel';
+import { nearbyAirports } from '@/lib/airports';
+import ClosedDaysPanel from '@/components/ClosedDaysPanel';
 import { readPlaceContent, paragraphs } from '@/lib/content';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
@@ -134,11 +140,12 @@ export default async function CityPage({
   // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
   // is needed up front to compute matchedLists, which gates the (potentially
   // expensive) pin query that follows.
-  const [blocks, country, sisters, climate, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
+  const [blocks, country, sisters, climate, airQuality, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     !content && city.notionSyncedAt ? fetchPageBlocks(city.id) : Promise.resolve([]),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
+    fetchAirQuality(city.lat, city.lng),
     needsCoverFallback ? fetchCoverForCity(city.name) : Promise.resolve(null),
     fetchAllSavedListsMeta(),
     // Personal photos that filter up from any pin in this city. Joined
@@ -502,8 +509,26 @@ export default async function CityPage({
             </section>
           )}
 
-          {/* NASA POWER monthly climatology — works for every city with
-              coords, regardless of curation status. Pure data; safe. */}
+          {/* Year scrubber — drag the slider across the year and the
+              air quality, weather, and daylight panels update in lockstep.
+              Renders whenever the city has coordinates; if OPENAQ_API_KEY
+              is missing or no station is nearby, only the weather and
+              daylight panels populate. */}
+          {city.lat != null && city.lng != null && (
+            <EnvironmentalScrubber
+              lat={city.lat}
+              lng={city.lng}
+              timeZone={city.timeZone}
+              climate={climate}
+              airQuality={airQuality}
+              daylight={computeMonthlyDaylight(city.lat, city.lng)}
+              initialDayOfYear={todayDayOfYear()}
+            />
+          )}
+
+          {/* NASA POWER monthly climatology — the full-year overview that
+              sits beneath the scrubber for readers who want the at-a-glance
+              chart rather than the date-specific scrubber view. */}
           {climate && (
             <section className="mt-8">
               <h2 className="text-h2 text-ink-deep mb-4">Year-round climate</h2>
@@ -513,6 +538,34 @@ export default async function CityPage({
               <MonthlyClimateChart data={climate} lat={city.lat} />
             </section>
           )}
+
+          {/* Airports near this city. Interactive: MapLibre map up top
+              with one IATA-labeled marker per airport, click-through
+              cards below, and a detail block for the currently selected
+              airport. Source data is OurAirports (public domain),
+              committed at data/airports.json and re-synced via
+              `npm run airports:sync`. */}
+          {city.lat != null && city.lng != null && (() => {
+            const airports = nearbyAirports(city.lat, city.lng, 100);
+            return airports.length > 0 ? (
+              <AirportsPanel
+                cityName={city.name}
+                cityLat={city.lat}
+                cityLng={city.lng}
+                airports={airports}
+              />
+            ) : null;
+          })()}
+
+          {/* When things are closed: next 6 public holidays for the
+              country this city is in, plus a Sunday-closure note for
+              countries that enforce one (DE, AT, CH, PL). Source is
+              date.nager.at. Renders nothing when the country has no
+              ISO-2 code or the API has no data. */}
+          <ClosedDaysPanel
+            countryIso2={country?.iso2 ?? null}
+            countryName={country?.name ?? city.country}
+          />
 
           {hasBody && (
             <section className="mt-10 border-t border-sand pt-8">
