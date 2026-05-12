@@ -95,7 +95,7 @@ Third-party resellers like GetYourGuide and Viator package "skip-the-line + mult
 
 ## Plaka and Anafiotika
 
-The evening walk worth taking. [Anafiotika](/pins/anafiotika) is the tiny Cycladic-style village built into the north slope of the Acropolis, easy to miss if you do not look up. [Plaka](/cities/athens) is the surrounding neighbourhood: narrow lanes, tavernas with outdoor tables, the [Monastiraki Flea Market](/pins/monastiraki-flea-market) at the bottom of the hill, and the surprising [Monastiraki metro archaeology site](/pins/monastiraki-metro-station-archaelogical-site-greece) which you can walk past for free inside the station.
+The evening walk worth taking. [Anafiotika](/pins/anafiotika) is the tiny Cycladic-style village built into the north slope of the Acropolis, easy to miss if you do not look up. Plaka is the surrounding neighbourhood: narrow lanes, tavernas with outdoor tables, the [Monastiraki Flea Market](/pins/monastiraki-flea-market) at the bottom of the hill, and the surprising [Monastiraki metro archaeology site](/pins/monastiraki-metro-station-archaelogical-site-greece) which you can walk past for free inside the station.
 
 For sunset views without the climb: [Philopappos Monument](/pins/philopappos-monument) hill is a 20-minute walk up with a clear Parthenon view, no ticket, no queue. [Daphne Viewpoint](/pins/daphne-viewpoint) is a quieter alternative. The [Lycabettus Funicular](/pins/lycabettus-funicular) takes you to the city's other peak with the Acropolis on the skyline and 360-degree views.
 

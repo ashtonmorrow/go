@@ -54,7 +54,7 @@ related:
 
 ## Getting in from KLIA
 
-[Kuala Lumpur International Airport (KUL)](/cities/kuala-lumpur) sits about 50 km out. Three sensible options into town.
+Kuala Lumpur International Airport (KUL) sits about 50 km out. Three sensible options into town.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|
