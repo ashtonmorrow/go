@@ -150,26 +150,27 @@ export default function SidebarShell({
         />
       </aside>
 
-      {/* === Desktop sticky rail === always visible md+, fills the viewport
-          height. Sits on the left of the page with main content to its
-          right. On map routes the rail still renders so the user has a
-          way to navigate back to Lists / Atlas / About / Home; we just
-          pass `compact` to NavBody so the in-rail filter cockpit is
-          skipped (the MapFilterDock owns filters on those routes). */}
-      <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-        <NavBody
-          counts={counts}
-          countryOptions={countryOptions}
-          pinCountryOptions={pinCountryOptions}
-          pinCategoryOptions={pinCategoryOptions}
-          pinListOptions={pinListOptions}
-          pinTagOptions={pinTagOptions}
-          pinSavedListOptions={pinSavedListOptions}
-          articleEntries={articleEntries}
-          searchItems={searchItems}
-          compact={isMapRoute}
-        />
-      </aside>
+      {/* === Desktop sticky rail === Visible md+ on every route except
+          the three /<scope>/map URLs. On those URLs the MapFilterDock
+          is the single control surface (scope + view + filters + small
+          nav strip) and the rail would only compete for visual weight.
+          Mobile drawer still works on map routes via the top-bar
+          hamburger above. */}
+      {!isMapRoute && (
+        <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
+          <NavBody
+            counts={counts}
+            countryOptions={countryOptions}
+            pinCountryOptions={pinCountryOptions}
+            pinCategoryOptions={pinCategoryOptions}
+            pinListOptions={pinListOptions}
+            pinTagOptions={pinTagOptions}
+            pinSavedListOptions={pinSavedListOptions}
+            articleEntries={articleEntries}
+            searchItems={searchItems}
+          />
+        </aside>
+      )}
 
       {/* Floating filter dock for the /<scope>/map routes. Returns null
           when not on one of those three URLs, so this is safe to mount
@@ -216,7 +217,6 @@ function NavBody({
   articleEntries,
   searchItems,
   onLinkClick,
-  compact = false,
 }: {
   counts: Counts;
   countryOptions: string[];
@@ -228,10 +228,6 @@ function NavBody({
   articleEntries: ArticleEntry[];
   searchItems: SearchItem[];
   onLinkClick?: () => void;
-  /** When true, suppress the in-rail filter cockpit. Used on the
-   *  /<scope>/map routes where MapFilterDock floats the cockpit
-   *  top-right; rendering it in both surfaces would double the UI. */
-  compact?: boolean;
 }) {
   const pathname = usePathname() || '';
   const cityFiltersAvailable    = useCityFilters() !== null;
@@ -340,7 +336,7 @@ function NavBody({
           removed: it duplicated the top nav and pulled focus on
           editorial pages where it had nothing to operate on. The
           counts still live on /atlas where they belong. */}
-      {compact ? null : showCityFilters ? (
+      {showCityFilters ? (
         <FilterPanel countryOptions={countryOptions} />
       ) : showPinFilters ? (
         <PinFilterPanel

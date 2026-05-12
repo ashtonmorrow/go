@@ -34,6 +34,11 @@ import ViewSwitcher, { type ObjectKey, type ViewKey } from './ViewSwitcher';
 // Routes where the header should NOT render. Mostly chrome-less surfaces
 // (admin, articles, the about/credits/privacy static pages) plus the
 // landing page if/when one exists. Add new exceptions as needed.
+//
+// The three /<scope>/map routes are in this list because MapFilterDock
+// owns the consolidated scope + view + filters surface on those pages;
+// rendering the ViewSwitcher pill separately would split the controls
+// across two corners.
 const HIDDEN_ON: RegExp[] = [
   /^\/admin(\/|$)/,
   /^\/articles(\/|$)/,
@@ -41,6 +46,7 @@ const HIDDEN_ON: RegExp[] = [
   /^\/about(\/|$)/,
   /^\/credits(\/|$)/,
   /^\/privacy(\/|$)/,
+  /^\/(cities|pins|countries)\/map\/?$/,
 ];
 
 const KNOWN_OBJECTS = new Set<ObjectKey>(['cities', 'countries', 'pins']);
