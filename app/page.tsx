@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
 import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
 import { SITE_URL } from '@/lib/seo';
+import { sovereignParent, isSubNational } from '@/lib/sovereignty';
 import HomeCitiesGlobe from '@/components/HomeCitiesGlobe';
 
 // === Home (/) ==============================================================
@@ -39,16 +40,26 @@ export default async function HomePage() {
 
   // ---- Stats ------------------------------------------------------------
   // Countries visited: derived from pins.visited where statesNames[0]
-  // matches a country in the atlas. Names are lowercased so the globe
-  // can do case-insensitive lookup against the GeoJSON.
+  // matches a country in the atlas, then collapsed into sovereign parents
+  // so the UK trip (which has pins tagged across England, Scotland, Wales,
+  // Northern Ireland, plus United Kingdom itself) counts as one country
+  // rather than five. The sovereignParent helper maps sub-national names
+  // back to their sovereign; anything not in the map falls through as-is.
+  // Denominator does the same collapse so the "of X" reads honestly: an
+  // atlas that lists 227 country-rows (UK constituents inflate it) becomes
+  // a smaller sovereign-count that matches what visitors mean by "country".
   const visitedCountryNames = new Set<string>();
   let visitedPinCount = 0;
   for (const p of pins) {
     if (!p.visited) continue;
     visitedPinCount++;
     const c = p.statesNames?.[0];
-    if (c) visitedCountryNames.add(c.toLowerCase());
+    if (c) {
+      const parent = sovereignParent(c);
+      if (parent) visitedCountryNames.add(parent);
+    }
   }
+  const sovereignTotal = countries.filter(c => !isSubNational(c.name)).length;
   const visitedCities = cities.filter(c => c.been).length;
 
   // Count featured guides + articles inline by reading the content dir.
@@ -99,7 +110,7 @@ export default async function HomePage() {
             <StatTile
               label="Countries visited"
               value={visitedCountryNames.size}
-              sublabel={`of ${countries.length}`}
+              sublabel={`of ${sovereignTotal}`}
               href="/countries/cards"
             />
             <StatTile
