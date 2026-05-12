@@ -277,9 +277,16 @@ const _readListContent = unstable_cache(
       related: parseRelated(data.related),
     };
   },
+  // v5: bumped to invalidate the 24-hour cached `null` returns that the
+  // /lists/[slug] route stored while outputFileTracingIncludes was
+  // missing the route entry (May 2026). Without the bump, the cache
+  // keeps serving null for the eight new scaffolds (Sitges, Tbilisi,
+  // Kotor, Spa Day, Bath, Munich, Malta, Bali) until the natural 24-hour
+  // TTL expires, so /lists/<slug> renders the generic pin list rather
+  // than the editorial guide even after the tracing fix lands.
   // v4: schema gained `featured` boolean for home-page surfacing,
   // decoupled from indexable.
-  ['list-content-v4'],
+  ['list-content-v5'],
   { revalidate: 86400, tags: ['place-content'] },
 );
 
