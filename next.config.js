@@ -107,6 +107,18 @@ const nextConfig = {
       { source: `/admin/lists/${from}`, destination: `/admin/lists/${to}`, permanent: true },
     ]);
 
+    // === Legacy pin slug redirects =========================================
+    // When a duplicate pin gets merged and the surviving pin is renamed to
+    // a shorter / cleaner slug, this catches anyone who bookmarked the
+    // old longer slug.
+    const legacyPinSlugs = [
+      ['hopa-taproom-craft-beer-bar', 'hopa-taproom'], // Tbilisi dup merge
+    ];
+    const pinSlugRedirects = legacyPinSlugs.flatMap(([from, to]) => [
+      { source: `/pins/${from}`,       destination: `/pins/${to}`,       permanent: true },
+      { source: `/admin/pins/${from}`, destination: `/admin/pins/${to}`, permanent: true },
+    ]);
+
     return [
       // Object indexes → cards (the default view)
       { source: '/cities',    destination: '/cities/cards',    permanent: true },
@@ -121,6 +133,8 @@ const nextConfig = {
       { source: '/world', destination: '/countries/map', permanent: true },
       // Merged/renamed saved-list slugs
       ...listSlugRedirects,
+      // Merged/renamed pin slugs
+      ...pinSlugRedirects,
     ];
   },
 };
