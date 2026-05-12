@@ -103,6 +103,8 @@ The travel hack this list is built around is the simplest possible fix. Book the
 
 The version below is four destinations where I have used this trick myself and would book the same trip again. Each is on the map and pin set below; this writeup covers when and why each one earns the slot. The list is meant to grow as I find more places that work for the same hack.
 
+The whole point of this list is to give your body a slower day in the middle of a trip; the destinations below reward going at the gentlest pace you can manage. Take what is useful, skip the rest, and do not turn the recovery day into another schedule.
+
 ## On this page
 
 * [Munich: Therme Erding, ten minutes from the airport](#munich-therme-erding-ten-minutes-from-the-airport)

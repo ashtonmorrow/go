@@ -62,6 +62,7 @@ related:
 * [Getting in from Heathrow](#getting-in-from-heathrow)
 * [Where to stay](#where-to-stay)
 * [The Bankside walk](#the-bankside-walk)
+* [Getting around: one card, the fare cap, and the tap-out](#getting-around-one-card-the-fare-cap-and-the-tap-out)
 * [Markets to eat at, not around](#markets-to-eat-at-not-around)
 * [Sky Garden over the London Eye](#sky-garden-over-the-london-eye)
 * [Museums worth the queue](#museums-worth-the-queue)
@@ -97,6 +98,26 @@ Four real bases depending on the kind of trip:
 | Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central; the Jubilee Line gets you back in fast |
 
 If [ExCeL London](/pins/excel-london) is the reason for the trip, [Moxy London Excel](/pins/moxy-london-excel) is two minutes' walk from the convention centre and the right pick for that very specific case.
+
+## Getting around: one card, the fare cap, and the tap-out
+
+The Transport for London system runs on contactless tap-to-pay, and the way the pricing works is the single most useful thing to understand before your first day. Most visitors muddle through it and end up paying more than they had to. A few minutes of context now saves a real amount of money over a week.
+
+The headline rule is that **you only pay up to the daily cap, no matter how many trips you take**. A Zone 1-2 day's worth of unlimited Tube, bus, and most Overground/Elizabeth Line travel currently caps at around £8.90; Zone 1-3 around £10.50. The system charges you per leg as you tap, and the moment your day's tally hits the cap it stops charging. Two trips on a slow day, eight trips on a busy one, same cost. That means you are not "rationing" your moves around London; once you have crossed the cap threshold (usually after two or three Tube journeys) every additional ride is essentially free for the rest of the day. Walk an extra ten minutes to a different station, take a bus for one stop just to see a neighbourhood, double back across town for dinner — all the same fare.
+
+The system can only apply the cap if it sees all of your day's journeys on **one card**. This is the most important practical detail in the whole TfL setup. If you tap in with your phone Wallet on the morning Tube and then tap with your physical bank card after lunch, the system treats them as two different riders, charges them both at the per-leg rate, and neither one hits the cap. Pick one method on your first morning — your phone or one specific contactless card — and stick with it for the whole stay. Tap with the same thing every single time. That one habit is the difference between paying £6 a day and paying £20.
+
+The other gotcha worth a paragraph is the **tap-out**. At every Tube, Elizabeth Line, Overground, and DLR station, you tap your card on the yellow gate pad both on entry and on exit. The system uses the pair of taps to calculate the fare for that journey. If you tap in but forget to tap out (the gate is open, you walk through with the crowd, you exit through a side door because the station is being rebuilt), the system has no exit and charges you the maximum possible fare for that leg, usually £6+ as if you rode end-to-end. Worse, the next time you tap in, the system can sometimes read the tap as your previous trip's missing tap-out, which then mis-charges the leg you just started and corrupts the next one too. Always tap out. Buses are different — bus is a single tap on boarding, no exit tap — but on rail you tap twice.
+
+A few smaller notes that round out the practical picture:
+
+- **Visa, Mastercard, Amex, Apple Pay, and Google Pay all work** on the yellow gates. The system treats them all the same as a paid contactless transaction. Phone watches work too if they are set up for transit.
+- **Do not buy a paper ticket or a paper one-day Travelcard.** Both cost noticeably more than the contactless cap. The Oyster card still exists but contactless is the modern equivalent and slightly cheaper.
+- **Buses do not accept cash.** Tap or do not board; the driver cannot sell you a ticket.
+- **Peak vs off-peak** charging applies on the Underground only. Peak is roughly 06:30 to 09:30 and 16:00 to 19:00 on weekdays. Off-peak fares are cheaper per leg; the daily cap is the same.
+- **Riding the bus uses a single tap on boarding** (entry only). Buses are a flat £1.75 per ride, with a one-hour "hopper" window letting you change to another bus for free. Useful when the Tube is hot and slow in summer.
+
+For a week of normal sightseeing, the right tap-and-cap rhythm makes the Tube feel free after lunch on most days. Walk where it is pleasant, ride when it is far, and stop thinking about per-trip cost.
 
 ## The Bankside walk
 

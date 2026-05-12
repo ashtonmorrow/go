@@ -170,7 +170,7 @@ Ubud is the inland Bali. About an hour and a quarter north of Canggu, 200 metres
 - [Ubud Market](/pins/ubud-market), the central traditional market for textiles, batik, woodcarving, and the standard tourist-aimed crafts
 - [Campuhan Ridge Walk](/pins/campuhan-ridge-walk) on the northwest edge of town, a paved ridge path along the river valley; the right walk is before breakfast or at sunset, not at midday
 
-For meals, [Restaurant Locavore](/pins/restaurant-locavore) is the formal-modern-Indonesian booking and the dinner most Ubud planners build around (reserve weeks ahead); [Herb Library Bali](/pins/herb-library-bali) is the lighter spa-cuisine version.
+For meals, [Restaurant Locavore](/pins/restaurant-locavore) is the formal-modern-Indonesian booking and the dinner most Ubud planners save a slot for (reserve weeks ahead); [Herb Library Bali](/pins/herb-library-bali) is the lighter spa-cuisine version.
 
 The rural day-trips out of Ubud are the rest of the Ubud stay: the Tegallalang rice terraces 20 minutes north, the Tegenungan Waterfall 30 minutes south, the Tirta Empul water-purification temple 40 minutes north, the Gunung Kawi rock-cut shrines next door. None of those are pinned in this list yet; flagged in the authoring notes for a later expansion.
 

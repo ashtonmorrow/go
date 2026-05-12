@@ -122,6 +122,8 @@ Malta is the smallest country in the European Union (and one of the smallest in 
 
 The version below is the trip I would book for myself: three or four nights, a hotel on the St Julian's strip, Valletta on a walking afternoon, the Three Cities on another, a ferry day to Gozo, a swim at Comino on a third, and a meal that includes rabbit at least once. The map and the full pin set sit underneath; this writeup covers the parts of the planning that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Malta is small enough that you do not need to optimise; a long lunch on a marina followed by a slow walk through Valletta is the version of the day most travellers come away talking about. Take what is useful here and let the island set the pace.
+
 ## On this page
 
 * [Where to stay: the St Julian's strip, by price](#where-to-stay-the-st-julians-strip-by-price)

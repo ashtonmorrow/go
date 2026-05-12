@@ -17,7 +17,7 @@ guide_cards:
     - title: Stay around the bay, see the town on a day
       body: The old town itself is small and can be exhausted in a day. The bay has several other bases (Herceg Novi at the mouth, Tivat across the water, Perast halfway in) which all read calmer in the evenings. Pick one to sleep, and budget one full day to walk Kotor's walls, churches, and lanes before the next ship docks.
     - title: Walls climb at 7 a.m., not 11
-      body: The St John Fortress walls climb is the headline experience and the one that punishes timing the most. Start at first light in summer; you are climbing 1,355 steps in heat that gets unfriendly fast, and the lower switchbacks fill with cruise traffic by mid-morning. Pay the small entry fee at the main gate; it supports the site. The back-trail option through Špiljari exists if you want to skip the fee, but the official route is the better walk.
+      body: The St John Fortress walls climb is the headline experience and the one most worth timing well. In summer you are climbing 1,355 steps in heat that gets uncomfortable fast, and the lower switchbacks fill with cruise traffic by mid-morning. The kind move on yourself is to start at first light, climb in the cool, and be down with a coffee in hand before the day-tripper queues start. Pay the small entry fee at the main gate; it supports the site. A back-trail option through Špiljari exists if you would rather skip the fee, but the official route is the better walk and the maintenance money is worth it.
     - title: Cruise ships set the rhythm
       body: Kotor's cruise pier sits a hundred metres from the old town walls and a typical summer day has two or three large ships in the bay at once. The town is calm at 7 a.m., bedlam from 10 a.m. to 4 p.m., then empties out for the evening. Plan the walls climb and the church visits inside the calm windows; come back for dinner.
     - title: The cats are real
@@ -117,6 +117,8 @@ related:
 Kotor is the name of two things at once, and the first piece of planning is to keep them straight. The first is the **Bay of Kotor** (Boka Kotorska), the long inlet on the southern Adriatic coast that residents have always called Europe's southernmost fjord even though geologists call it a ria, a submerged river valley. The second is the medieval walled town of **Kotor** itself, tucked at the back of the bay underneath a vertical wall of mountain, fortified in the Venetian period, UNESCO-listed in 1979, and now visited by enough cruise ships in season that the old town and the cruise terminal have functionally merged into one experience between 10 a.m. and 4 p.m.
 
 The version of the trip I would book is built around that distinction. You stay somewhere around the bay rather than in the old town. You see Kotor on one well-timed day. You sleep somewhere quieter, eat somewhere cheaper, and avoid sharing a stone lane with 6,000 cruise passengers when the ships are in. The map and pin set sit below; this writeup covers the parts of the planning that change the trip.
+
+These are working notes from real time on the ground rather than a checklist. Kotor and the bay reward going slowly; a long lunch on the water and a walk back through Perast at dusk are the version of the trip most people remember. Pick what's useful here and let the bay set the pace.
 
 ## On this page
 

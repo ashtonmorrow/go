@@ -117,6 +117,8 @@ Munich is the Bavarian city most travellers visit for two things they have alrea
 
 The version below is the trip I would book for myself, written for a traveller who is treating Munich as the rail-trip hub rather than the destination. The map and the wider pin set sit underneath; the writeup covers the parts of the planning that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Munich rewards going slowly: a long afternoon at the Eisbach with a Helles in hand is as much "Munich" as ticking off the Hofbräuhaus. Take what's useful, skip the rest.
+
 ## On this page
 
 * [Where to stay: a rail base or the slower trip](#where-to-stay-a-rail-base-or-the-slower-trip)

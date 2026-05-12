@@ -14,12 +14,12 @@ guide_cards:
   title: Planning Bath
   intro: Bath is a day trip first and an overnight second, and the planning decision is which of the two you are taking. The city is small, the headline objects (the Roman Baths, Thermae Bath Spa, the Royal Crescent, the river under the Pulteney Weir) are walkable from each other, and a train from London Paddington takes about 90 minutes. A day works. An overnight extends the trip into the kind of long walk past the viaduct and a Sunday roast that you cannot squeeze around a return train. The other reason to stay in Bath is to use it as the base for Stonehenge, which is more easily reached from Bath via Salisbury than from London direct.
   cards:
-    - title: One day is enough
-      body: Train in by mid-morning, Roman Baths, lunch in town, Thermae Bath Spa rooftop pool for two hours, dinner before the train back. The city fits inside a single day if that is what you have.
-    - title: Stay overnight at the Hotel Indigo
-      body: The Hotel Indigo on South Parade is the overnight pick. Walkable to everything, fair price, the building is the right scale for the city. Stay one or two nights if you want the unhurried version, the long river walk, or a Sunday roast at the Bathwick Boatman before you train out.
-    - title: Sunday roast at the Bathwick is the move
-      body: A 30-to-40 minute walk along the canal and the river takes you to the Bathwick Boatman, an old Georgian boathouse on Forester Road. Sunday roast in the dining room, beer on the terrace overlooking the Avon, walk back through Sydney Gardens. Worth building a Sunday into the trip for.
+    - title: A day is plenty if a day is what you have
+      body: Train in by mid-morning, Roman Baths, lunch in town, Thermae Bath Spa rooftop pool for a couple of hours, dinner before the train back. Bath is small enough that a single day covers the headline experiences without rushing. A second day opens up the slower side; either shape is a real visit.
+    - title: An overnight unlocks the slow side
+      body: The Hotel Indigo on South Parade is the overnight pick. Walkable to everything, fair price, the building is the right scale for the city. Stay one or two nights and you get the long river walk along the canal, an actual dinner in town, and (if a Sunday falls in the window) the roast at the Bathwick Boatman that the day-tripper version of the trip never reaches.
+    - title: Sunday roast at the Bathwick if a Sunday fits
+      body: A 30-to-40 minute walk along the canal and the river takes you to the Bathwick Boatman, an old Georgian boathouse on Forester Road. Sunday roast in the dining room, a beer on the terrace overlooking the Avon, the same walk back through Sydney Gardens. If your Bath weekend overlaps with a Sunday, this is the meal worth building the day around. Book the table when you book the train.
     - title: Stonehenge is a Bath-Salisbury add-on
       body: 'The train to Salisbury runs frequently and takes about an hour from Bath Spa. From Salisbury the Stonehenge Tour bus connects the station to the stones; Salisbury itself eats better than anything around the site, so plan the meal in town and the visit on a side bus. A free walking-path approach exists too, from the Larkhill side of Salisbury Plain.'
 
@@ -96,6 +96,8 @@ related:
 
 Bath is the small Georgian town on the western edge of England that most travellers see in a single day from London. The Roman bath complex (the city's namesake), the medieval abbey, the eighteenth-century townscape, and the river with the weir under the Pulteney Bridge all sit inside an area you can walk across in fifteen minutes. The version of the trip a first visitor takes is the day-trip version, and that is a good trip. The version a second visitor takes, or the visitor who is also doing Stonehenge or is using Bath as a weekend break from London, is an overnight, and that one rewards the stay.
 
+These are working notes from spending real time in Bath rather than a checklist; read what's useful and skip the rest. The town rewards going slowly more than it rewards covering ground.
+
 The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa rooftop pool, the Sacred Spring) lives mostly inside the [spa-day cross-list](/lists/spa-day) for this atlas; this writeup is the rest of the trip. Where to stay, where to eat, the long walk that earns the overnight, and the Stonehenge add-on.
 
 ## On this page
@@ -122,7 +124,7 @@ Plenty of smaller properties work too. The B&Bs in the Bathwick Hill area sit a 
 
 ## Sunday roast at the Bathwick
 
-If the trip overlaps with a Sunday, the move is the roast at the [Bathwick Boatman](/pins/bathwick-boatman) on Forester Road. The boathouse is an old Georgian river building converted into a dining room and terrace overlooking the Avon. The walk there is part of why the visit is worth it: out of the centre of Bath, across Pulteney Bridge, along the Kennet & Avon Canal towpath, past the Sydney Gardens viaduct, then out to Forester Road on the far side of the river. About 30 to 40 minutes on foot, slightly more if you take the long version. The reservation books up; book the table before you book the train.
+If the trip overlaps with a Sunday, the meal worth building the day around is the roast at the [Bathwick Boatman](/pins/bathwick-boatman) on Forester Road. The boathouse is an old Georgian river building converted into a dining room and terrace overlooking the Avon. The walk there is part of why the visit is worth it: out of the centre of Bath, across Pulteney Bridge, along the Kennet & Avon Canal towpath, past the Sydney Gardens viaduct, then out to Forester Road on the far side of the river. About 30 to 40 minutes on foot at a relaxed pace, more if you stop to look at the canal locks. The reservation books up; book the table before you book the train so the meal is set when you arrive.
 
 The roast on the menu rotates through the standard English options (beef, pork, lamb, occasional vegetarian) and is the right scale of meal for the walk it earned. Beer on the terrace afterwards if the day is fair. Then the same walk back along the river toward Pulteney Weir, which by mid-afternoon catches the light off the abbey on the other side. That is the slow version of the Bath afternoon the day-tripper never gets.
 

@@ -100,6 +100,8 @@ Sitges is the small beach town about 40 minutes south of Barcelona that solves a
 
 The version below is the trip I would book for myself: two or three nights, a base near the old town, beach in the day, a slow dinner at a local place, a sunset drink on the sand. The map and pin set sit below; this writeup covers the parts of the planning that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Sitges rewards going slowly more than it rewards covering ground. Take what's useful here, skip the rest, and let the pace of the town set the pace of your day.
+
 ## On this page
 
 * [Why pick Sitges instead of Barcelona](#why-pick-sitges-instead-of-barcelona)

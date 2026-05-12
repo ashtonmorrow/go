@@ -127,6 +127,8 @@ Tbilisi is the kind of trip Americans tend not to take. Georgia spent most of th
 
 The version below is the trip I would book for myself: three days, an Uber in from the airport, a hotel in the centre, time for the cable car and the sulfur baths and a slow evening of khinkali and amber wine. The full map and pin set sits below; this writeup covers the parts of the planning that change the trip.
 
+These are working notes from real time on the ground rather than a checklist. Tbilisi rewards going slowly more than it rewards covering ground. Pick what's useful and let the rest of the city find you.
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -175,7 +177,11 @@ The unified thing about the city is that none of these layers has won and none o
 
 ## Getting around: the metro and the cable car
 
-The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths; a few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze register the Moscow Metro is famous for. Avlabari and Rustaveli are the two to walk through. A ride costs a flat fare (a fraction of a euro) and you pay with a contactless card or a Metro Money card from any station vending machine.
+The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths; a few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze register the Moscow Metro is famous for. Avlabari and Rustaveli are the two stations to walk through if you only see one.
+
+The fare model is the gentle kind. A ride costs a flat 1 GEL (a few cents in dollars), no matter how far you go, with a 90-minute transfer window that lets you switch between metro and city buses on the same fare. You can pay two ways. The simplest is to tap a contactless bank card or your phone wallet at the turnstile; the system reads the tap and charges the flat fare. If contactless tap is not working for your card (some US-issued cards struggle), buy a **Metro Money card** at any station vending machine for 2 GEL and load it with however much you want; you tap that instead. The card is shareable across a group (one tap per person, same card) and is the easier option if you are riding for a week. There is no daily cap on the metro, but the per-ride cost is so low that the question of capping never really comes up.
+
+A couple of small things to know on the platform. The trains are loud and run on close headways; you will rarely wait more than three or four minutes for the next one. The signage at the platform shows the next-station list in Georgian and Latin script, so reading where you are going is straightforward; the platform announcements are Georgian only.
 
 The other line worth riding is the **[Rike-Narikala cable car](/pins/funicular)**, which climbs from Rike Park on the river up to [Narikala Fortress](/pins/narikala-fortress) and the Mother of Georgia statue in about a minute. It is the cheapest skyline in the city and the right way to take in how the old town and the river sit against the surrounding hills. Ride it up, walk the ridge along the fortress wall, then walk down through the bath district back to the river.
 
@@ -183,7 +189,7 @@ A second vertical line, the [**Mtatsminda funicular**](/pins/mtatsminda-funicula
 
 ## Mtatsminda Park, on the hill
 
-[Mtatsminda Park](/pins/mtatsminda-park) sits on top of Mount Mtatsminda above the city and is the slow afternoon I would build around. The funicular up is the historic 1905 line; the ride takes about ten minutes and dramatically changes the temperature and the perspective. At the top there is a small theme park (a few rides, a Ferris wheel, a roller coaster), a Stalin-era observation building that is now a restaurant with a wraparound terrace, gardens to walk through, and (depending on the season) a population of resident cats that the staff and the visiting kids feed.
+[Mtatsminda Park](/pins/mtatsminda-park) sits on top of Mount Mtatsminda above the city and is the unhurried afternoon I always come back to. The funicular up is the historic 1905 line; the ride takes about ten minutes and dramatically changes the temperature and the perspective. At the top there is a small theme park (a few rides, a Ferris wheel, a roller coaster), a Stalin-era observation building that is now a restaurant with a wraparound terrace, gardens to walk through, and (depending on the season) a population of resident cats that the staff and the visiting kids feed.
 
 The park works in every season. In summer it is a clear-air break from the city heat; in winter the rides are partly closed but the view is the same, the restaurant is open, the cats are still there, and the funicular ride alone is worth the trip. Lunch on the terrace with the city spread underneath is the move regardless of which month you arrive in.
 
