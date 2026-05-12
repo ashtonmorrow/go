@@ -59,57 +59,74 @@ export default function TransitPanel({ cityName, operators }: Props) {
   }
 
   const presentModes = MODE_ORDER.filter(m => modeBuckets[m]?.length);
-  if (presentModes.length === 0 && !modeBuckets._other?.length) return null;
+  const otherOps = modeBuckets._other ?? [];
+  if (presentModes.length === 0 && otherOps.length === 0) return null;
+
+  // Render groups in canonical mode order, then the "other" bucket last
+  // (operators whose route-type data we couldn't classify, which can
+  // happen when the operator response excludes route detail).
+  const groups: { key: string; label: string; ops: TransitOperator[] }[] = [
+    ...presentModes.map(m => ({
+      key: m,
+      label: MODE_LABELS[m] ?? m,
+      ops: modeBuckets[m],
+    })),
+  ];
+  if (otherOps.length > 0) {
+    groups.push({
+      key: '_other',
+      label: presentModes.length > 0 ? 'Other operators' : 'Local transit operators',
+      ops: otherOps,
+    });
+  }
 
   return (
     <section className="mt-8">
       <h2 className="text-h2 text-ink-deep mb-2">Getting around {cityName}</h2>
       <p className="text-small text-slate mb-4">
-        Public-transit operators within 8 km of the city center, grouped by mode.
-        Click through to each operator&rsquo;s site for routes, fares, and tickets.
+        Public-transit operators within 8 km of the city center
+        {presentModes.length > 0 && <>, grouped by mode</>}. Click through to each
+        operator&rsquo;s site for routes, fares, and tickets.
       </p>
 
       <div className="space-y-4">
-        {presentModes.map(mode => {
-          const ops = modeBuckets[mode];
-          return (
-            <div key={mode}>
-              <div className="text-micro text-muted uppercase tracking-wide mb-1">
-                {MODE_LABELS[mode] ?? mode}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {ops.map(op => {
-                  const label = op.shortName ?? op.name;
-                  const title = op.shortName ? `${op.name} (${op.shortName})` : op.name;
-                  return op.website ? (
-                    <a
-                      key={`${mode}-${op.onestopId}`}
-                      href={op.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={title}
-                      className="pill bg-cream-soft hover:bg-sand"
-                    >
-                      {label}
-                    </a>
-                  ) : (
-                    <span
-                      key={`${mode}-${op.onestopId}`}
-                      title={title}
-                      className="pill bg-cream-soft cursor-default"
-                    >
-                      {label}
-                    </span>
-                  );
-                })}
-              </div>
+        {groups.map(({ key, label, ops }) => (
+          <div key={key}>
+            <div className="text-micro text-muted uppercase tracking-wide mb-1">
+              {label}
             </div>
-          );
-        })}
+            <div className="flex flex-wrap gap-2">
+              {ops.map(op => {
+                const opLabel = op.shortName ?? op.name;
+                const title = op.shortName ? `${op.name} (${op.shortName})` : op.name;
+                return op.website ? (
+                  <a
+                    key={`${key}-${op.onestopId}`}
+                    href={op.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={title}
+                    className="pill bg-cream-soft hover:bg-sand"
+                  >
+                    {opLabel}
+                  </a>
+                ) : (
+                  <span
+                    key={`${key}-${op.onestopId}`}
+                    title={title}
+                    className="pill bg-cream-soft cursor-default"
+                  >
+                    {opLabel}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
 
       <p className="text-micro text-muted mt-4">
-        Operators and modes via TransitLand.
+        Operators via TransitLand.
       </p>
     </section>
   );
