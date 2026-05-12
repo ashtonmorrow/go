@@ -77,9 +77,24 @@ const nextConfig = {
     // name/slug split (saved_lists.slug column, May 2026) makes future
     // renames URL-stable, so this table should not grow much.
     const legacyListSlugs = [
-      ['cordoba',       'cordoba-ar'],      // Spain vs Argentina disambig
-      ['den-haag',      'the-hague'],       // Dutch name → English canonical
-      ['santiago-de',   'santiago-chile'],  // fragment merged into Chile list
+      ['cordoba',                       'cordoba-ar'],     // Spain vs Argentina disambig
+      ['den-haag',                      'the-hague'],      // Dutch name → English canonical
+      ['santiago-de',                   'santiago-chile'], // fragment merged into Chile list
+
+      // May 2026 Bali consolidation: four sub-region lists folded into a
+      // single 'bali' list since the trip-planning question for visitors
+      // is which Bali base, not whether to keep four separate lists.
+      ['bali-(seminyak)',               'bali'],
+      ['canggu-(bali)',                 'bali'],
+      ['seminyak-(bali)',               'bali'],
+      ['ubud-(bali)',                   'bali'],
+
+      // Misc duplicate-list cleanup at the same pass.
+      ['bruges(1)',                     'bruges'],         // import-time accidental dupe
+      ['budapest-&-closeby-attractions','budapest'],       // subset of the main list
+      ['london,-food-&-sites',          'london'],         // subset of the main list
+      ['lyon-fr',                       'lyon'],           // redundant country suffix
+      ['seoul-(all-sites)',             'seoul'],          // renamed for cleaner slug
     ];
     const listSlugRedirects = legacyListSlugs.flatMap(([from, to]) => [
       { source: `/lists/${from}`,       destination: `/lists/${to}`,       permanent: true },
