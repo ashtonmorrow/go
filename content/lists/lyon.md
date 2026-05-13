@@ -26,9 +26,7 @@ related:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Lyon](/cities/lyon) is the French city that takes its claim to be the food capital of France seriously. The bouchon (a small, casual, Lyon-specific restaurant register) is the local form; the city sits on the confluence of the Rhône and Saône, the old town (Vieux Lyon) is UNESCO-listed, and the modern Confluence neighbourhood gives the south end a different rhythm. Two or three days for the city; longer if you are pairing with the Beaujolais wine villages or the southern Rhône.
-
-These are working notes from real time on the ground rather than a checklist. Lyon rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Lyon](/cities/lyon) is the French city that takes its claim to be the food capital of France seriously. The bouchon (a small, casual, Lyon-specific restaurant side) is the local form; the city sits on the confluence of the Rhône and Saône, the old town (Vieux Lyon) is UNESCO-listed, and the modern Confluence neighbourhood gives the south end a different rhythm. Two or three days for the city; longer if you are pairing with the Beaujolais wine villages or the southern Rhône.
 
 ## On this page
 
@@ -48,7 +46,7 @@ Lyon Lyon Saint-Exupéry (LYS) sits about 25 km east of the centre; the Rhônexp
 
 ## Where to eat
 
-Lyon food is the bouchon register: pork-heavy, butter-heavy, regional, served in small wood-panelled rooms with paper menus. The classic dishes (quenelles, andouillette, salade lyonnaise with the warm bacon-and-poached-egg, tablier de sapeur) plus the modern bistronomie wave the city has produced. The picks below cover both registers.
+Lyon food is the bouchon side: pork-heavy, butter-heavy, regional, served in small wood-panelled rooms with paper menus. The classic dishes (quenelles, andouillette, salade lyonnaise with the warm bacon-and-poached-egg, tablier de sapeur) plus the modern bistronomie wave the city has produced. The picks below cover both registers.
 
 | Spot | Rating |
 |---|---|

@@ -28,8 +28,6 @@ related:
 
 [Bucharest](/cities/bucharest) is the Romanian capital that travellers do not expect to like and frequently end up liking more than the famous cities. The Old Town (Lipscani) is dense and walkable, the food scene has rebuilt since the 2000s into something genuinely competitive, and the brutalist architectural legacy (the Palace of the Parliament is the heaviest building on Earth) is unmistakable. Two or three days for the city; pair with Brașov, Sighișoara, or Sibiu for a Transylvania extension.
 
-These are working notes from real time on the ground rather than a checklist. Bucharest rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

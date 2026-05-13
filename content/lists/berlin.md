@@ -28,9 +28,7 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Berlin](/cities/berlin) is the European capital that runs on its own register. Less polished than Paris, less rich than London, but with the rougher cultural energy that the other two stopped having decades ago. The city is huge by European standards (almost 4 million people, sprawled across the eastern German plain), the transit is excellent, and the food has the dominant Turkish-German register that no other city does as well. A long weekend captures the headlines; a week opens up the neighbourhoods.
-
-These are working notes from real time on the ground rather than a checklist. Berlin rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Berlin](/cities/berlin) is the European capital that runs on its own side. Less polished than Paris, less rich than London, but with the rougher cultural energy that the other two stopped having decades ago. The city is huge by European standards (almost 4 million people, sprawled across the eastern German plain), the transit is excellent, and the food has the dominant Turkish-German style that no other city does as well. A long weekend captures the headlines; a week opens up the neighbourhoods.
 
 ## On this page
 

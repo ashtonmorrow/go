@@ -30,8 +30,6 @@ related:
 
 [Prague](/cities/prague) is the Bohemian capital that earned its tourist reputation early and has lived with it longer than almost any other European city. The old town is small enough to walk in an hour, the river Vltava splits the city into a pair of distinct halves (Staré Město and Malá Strana), and the food and beer culture has caught up with the visitor density in the last decade. A long weekend is the right shape for a first visit; a week if you want to settle.
 
-These are working notes from real time on the ground rather than a checklist. Prague rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

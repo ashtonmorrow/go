@@ -30,8 +30,6 @@ related:
 
 [Dublin](/cities/dublin) is the small capital that runs on its pubs, its writers, and its rebuilding-since-the-2008-crash energy. The Liffey splits the city north and south; almost every visitor stays south of the river, near St Stephen's Green or Temple Bar. The pub scene is the cultural fact; the food has caught up with the visitor density in the last decade and is now respectable enough to plan around. A long weekend covers the city; a week opens up Howth, the Wicklow Mountains, and the Aran Islands.
 
-These are working notes from real time on the ground rather than a checklist. Dublin rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

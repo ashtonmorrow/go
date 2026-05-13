@@ -23,8 +23,6 @@ related:
 
 [Granada](/cities/granada) is the southern Spanish city that earns its reputation hard. The Alhambra (the Moorish palace complex above the city) is one of the most spectacular preserved Islamic-era buildings anywhere; the Albayzín is the medieval Moorish quarter on the opposite hill; the city runs on the free-tapas culture (you order a drink, you get a tapa free, the standard practice every bar follows). Two or three days is the right shape; longer if you are pairing with Córdoba, Seville, or the rest of Andalucía.
 
-These are working notes from real time on the ground rather than a checklist. Granada rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -52,7 +50,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Granada food runs on the free-tapas tradition (you order a caña and the bar puts a small plate down with it; order another and the tapa changes). The food itself draws from both the Andalusian Mediterranean (fried fish, gazpacho, salmorejo) and the Moorish-influenced register (the Albayzín teterías serving Maghrebi tea, the kebab thread). The picks below mix the casual tapas with the imported.
+Granada food runs on the free-tapas tradition (you order a caña and the bar puts a small plate down with it; order another and the tapa changes). The food itself draws from both the Andalusian Mediterranean (fried fish, gazpacho, salmorejo) and the Moorish-influenced side (the Albayzín teterías serving Maghrebi tea, the kebab thread). The picks below mix the casual tapas with the imported.
 
 | Spot | Rating |
 |---|---|

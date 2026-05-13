@@ -42,8 +42,6 @@ related:
 
 [Kota Kinabalu](/cities/kota-kinabalu) is the easy entry into Borneo. It is the capital of [Sabah](/countries/malaysia), sits on the South China Sea, and points west, which is the part the sunset photos do not lie about. The city is a working Malaysian one (bustling markets, halal-led food scene, a call to prayer that wakes anyone staying near a mosque) with three of the region's headline natural sights inside a one-hour drive. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Kota Kinabalu rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in](#getting-in)

@@ -23,8 +23,6 @@ related:
 
 [Málaga](/cities/malaga) is the southern Spanish coastal city that has been reading better year after year. The old town is small, walkable, dense with tapas bars; the city beaches are right there (Playa de la Malagueta is the urban one); the Picasso Museum is the headline cultural stop (Málaga was his birthplace); the Alcazaba and the Gibralfaro castle anchor the medieval Moorish-and-medieval-Spanish layer. Two or three days for the city; longer if you are pairing with the Costa del Sol resort towns (Marbella, Estepona) or the white villages inland.
 
-These are working notes from real time on the ground rather than a checklist. Málaga rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -43,7 +41,7 @@ Málaga Málaga-Costa del Sol (AGP) sits about 8 km west of the centre; the airp
 
 ## Where to eat
 
-Málaga food is the Andalusian register at the coast: pescaíto frito (the small fried fish), espetos de sardinas (the sardines skewered and grilled over open fire at the chiringuitos on the beach), gazpacho and ajoblanco (the cold tomato and almond soups), the Málaga sweet wine. The picks below mix the casual beach with the in-town rotation.
+Málaga food is the Andalusian side at the coast: pescaíto frito (the small fried fish), espetos de sardinas (the sardines skewered and grilled over open fire at the chiringuitos on the beach), gazpacho and ajoblanco (the cold tomato and almond soups), the Málaga sweet wine. The picks below mix the casual beach with the in-town rotation.
 
 | Spot | Rating |
 |---|---|

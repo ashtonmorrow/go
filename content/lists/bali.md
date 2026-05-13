@@ -103,8 +103,6 @@ related:
 
 Bali is one of the most-photographed islands in the world and also one of the most casually mis-planned, partly because the postcard version (the rice terraces, the Monkey Forest stone steps, the infinity pool over the surf break, the swing on the hillside) lives in three different parts of the island that take real time to move between. The single most useful planning decision is which base or combination of bases matches the trip you actually want. The map below carries the curated pin set; this writeup covers the bases, the rhythm, and the version of the trip I would book.
 
-These are working notes from real time on the ground rather than a checklist. Bali rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 The current Bali saved list is the May 2026 consolidation of four earlier sub-region lists (bali, canggu, seminyak, ubud) into one. The old slugs continue to resolve via the legacy redirect table; the pins, the curation, and the prose all live under `/lists/bali` now.
 
 ## On this page
@@ -134,9 +132,9 @@ The three bases this list is built around are Seminyak, Canggu, and Ubud, and th
 | Jimbaran | Seafood dinners on the sand, calmer beach, airport convenience | Better for a night or two than a whole stay; great for the final night before an early flight | 20 to 30 minutes |
 | Amed / Sidemen / Lovina | Slower east and north Bali; black sand, snorkelling, rice-terrace walks, weaving workshops | Too far for a rushed first visit; save for a longer second trip | 2.5 to 3.5 hours |
 
-The most-recommended shape for a week is three or four nights on the coast plus three or four nights in Ubud. Mid-trip transfers are easy enough (private car about 60 to 90 minutes, less in low traffic) that the swap is the natural rhythm. A week in only one of these bases tends to under-use the island; a coast-only trip misses the Ubud register and an Ubud-only trip misses the swim.
+The most-recommended shape for a week is three or four nights on the coast plus three or four nights in Ubud. Mid-trip transfers are easy enough (private car about 60 to 90 minutes, less in low traffic) that the swap is the natural rhythm. A week in only one of these bases tends to under-use the island; a coast-only trip misses the Ubud side and an Ubud-only trip misses the swim.
 
-For a first trip, Sanur is also under-rated as the coast pick if calm water and a flat beach path matter more than the beach-club register. Nusa Dua is sometimes exactly the right answer (low-friction beach reset) and sometimes the wrong version of Bali entirely (gated, separated from the rest of the island); know which trip you are taking before you book it.
+For a first trip, Sanur is also under-rated as the coast pick if calm water and a flat beach path matter more than the beach-club style. Nusa Dua is sometimes exactly the right answer (low-friction beach reset) and sometimes the wrong version of Bali entirely (gated, separated from the rest of the island); know which trip you are taking before you book it.
 
 ## Getting in via Ngurah Rai (DPS)
 

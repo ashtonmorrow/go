@@ -28,8 +28,6 @@ related:
 
 [Tokyo](/cities/tokyo) is the largest metropolitan area in the world by most measures (~37 million people) and reads exactly that big once you arrive. The trade-off of a Tokyo trip is that you are not "seeing the city" so much as picking three or four wards (Shibuya, Shinjuku, Ginza, Asakusa, Roppongi, Shimokitazawa) and going deep on each. The food is the canonical reason; sushi, ramen, izakaya, the seven-eleven sandwich that out-performs most cafe lunches in Europe. A week is the minimum; longer for the day-trips out to Hakone, Kamakura, and Nikko.
 
-These are working notes from real time on the ground rather than a checklist. Tokyo rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -48,7 +46,7 @@ Tokyo Narita International (and Haneda HND for closer landings) (NRT) has two ai
 
 ## Where to eat
 
-Tokyo food is its own argument: the highest concentration of Michelin-starred restaurants in any city on Earth, plus a casual register (the conveyor-belt sushi, the standing-only ramen counter, the depachika department-store basement food halls) that the rest of the world copies. The picks below lean casual and accessible; reservations at the high end need to be made weeks ahead.
+Tokyo food is its own argument: the highest concentration of Michelin-starred restaurants in any city on Earth, plus a casual side (the conveyor-belt sushi, the standing-only ramen counter, the depachika department-store basement food halls) that the rest of the world copies. The picks below lean casual and accessible; reservations at the high end need to be made weeks ahead.
 
 | Spot | Rating |
 |---|---|

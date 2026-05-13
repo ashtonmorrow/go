@@ -30,8 +30,6 @@ related:
 
 [Sarajevo](/cities/sarajevo) is the small Balkan capital that carries an outsized amount of history in a walkable centre. Habsburg-era buildings on one side of Marijin Dvor, Ottoman-era bazaar (Baščaršija) on the other; the meeting of the two civilisational layers is the city's signature. The 1990s siege is still legible in the architecture and in the working-memory of the people you meet; this is not background, it is the story most visitors come to understand. Two or three days for the city; pair with Mostar and Belgrade for a Balkan week.
 
-These are working notes from real time on the ground rather than a checklist. Sarajevo rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

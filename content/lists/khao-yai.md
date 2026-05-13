@@ -64,8 +64,6 @@ related:
 
 [Khao Yai](/cities/khao-yai) is the closest real national park to Bangkok and the easy answer when the heat and the traffic of the capital start to weigh. Three hours by car, a 2,168 km² protected area on the southwestern edge of the Khorat Plateau, and a small wine region that has quietly produced some of Southeast Asia's better Chenin Blanc since the early 2000s. The trip works as one long day for a single sight or two slower days for the park plus the wineries.
 
-These are working notes from real time on the ground rather than a checklist. Khao Yai rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting there](#getting-there)

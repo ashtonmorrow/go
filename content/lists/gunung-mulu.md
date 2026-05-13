@@ -42,8 +42,6 @@ related:
 
 [Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also genuinely difficult to reach: a single regional airport, roughly four daily turboprop flights across the three Borneo hubs, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Gunung Mulu rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Why it is worth the effort](#why-it-is-worth-the-effort)

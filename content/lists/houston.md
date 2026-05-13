@@ -23,8 +23,6 @@ related:
 
 [Houston](/cities/houston) is the most multicultural city in the United States by most measures and a serious food city that is consistently under-recommended next to Austin, Dallas, or the New Orleans coast. The city is huge by US standards (4th largest metro), the neighbourhoods are spread out (you drive everywhere), and the food story is the multi-ethnic immigration that built it. Houston has the best Vietnamese food in the US (the largest Vietnamese-American population outside Orange County), serious Tex-Mex and Houston-style barbecue, plus the crawfish-and-Cajun thread from Louisiana. Three or four days; longer if you are using it as the gateway to the Gulf Coast.
 
-These are working notes from real time on the ground rather than a checklist. Houston rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

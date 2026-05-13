@@ -28,9 +28,7 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Vienna](/cities/vienna) is the imperial capital that still reads like a capital. The Ringstrasse layout (built on the line of the demolished medieval walls in the 1860s), the Habsburg-era civic architecture, the coffee-house tradition that the city has held onto for two centuries, the music scene anchored on Mozart, Beethoven, Schubert, and Brahms. The food is the imperial-Austrian register (Wiener schnitzel, Tafelspitz, sachertorte). A long weekend covers the headline sights; a week opens up the Vienna Woods, the wine villages of Grinzing, and the spa-day cross-link to Therme Wien.
-
-These are working notes from real time on the ground rather than a checklist. Vienna rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Vienna](/cities/vienna) is the imperial capital that still reads like a capital. The Ringstrasse layout (built on the line of the demolished medieval walls in the 1860s), the Habsburg-era civic architecture, the coffee-house tradition that the city has held onto for two centuries, the music scene anchored on Mozart, Beethoven, Schubert, and Brahms. The food is the imperial-Austrian side (Wiener schnitzel, Tafelspitz, sachertorte). A long weekend covers the headline sights; a week opens up the Vienna Woods, the wine villages of Grinzing, and the spa-day cross-link to Therme Wien.
 
 ## On this page
 
@@ -50,7 +48,7 @@ Vienna Vienna International (VIE) sits about 18 km southeast of the centre; the 
 
 ## Where to eat
 
-Wiener cuisine is the imperial register that runs on schnitzel, Tafelspitz (the slow-boiled beef in horseradish), goulash, and the coffee-house cakes (sachertorte, apfelstrudel, esterhazy). The Plachutta family runs the canonical Tafelspitz; the smaller picks below cover the casual end.
+Wiener cuisine is the imperial style that runs on schnitzel, Tafelspitz (the slow-boiled beef in horseradish), goulash, and the coffee-house cakes (sachertorte, apfelstrudel, esterhazy). The Plachutta family runs the canonical Tafelspitz; the smaller picks below cover the casual end.
 
 | Spot | Rating |
 |---|---|

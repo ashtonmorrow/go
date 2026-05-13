@@ -80,8 +80,6 @@ related:
 
 [Bangkok](/cities/bangkok) is the entry point for most Thailand trips and it deserves a few days even when the beach is the emotional reason for the trip. The mistake is treating Bangkok like a city you can cross casually by car. Traffic eats afternoons, the heat eats ambition, and the parts of the city worth seeing are spread along the river and the BTS lines, not along whatever route a taxi will improvise.
 
-These are working notes from real time on the ground rather than a checklist. Bangkok rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 This page is the working version of my Bangkok notes. The country-level version lives in [my Thailand planning guide](/posts/thailand-travel-notes); this one is the closer-in map for the city itself.
 
 ## On this page

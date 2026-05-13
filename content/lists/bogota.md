@@ -28,8 +28,6 @@ related:
 
 [Bogotá](/cities/bogota) is the Colombian capital that surprises most visitors with the altitude (2,640 metres; you will feel it the first day), the cool-mountain weather year-round (15 to 20°C is the normal), and the modern restaurant scene that the post-2000 security improvements built. Zona Rosa, Chapinero, La Macarena, and La Candelaria (the historic centre) are the four neighbourhoods most visitors rotate through. Three to four days for the city; longer if you are pairing with the coffee region or Cartagena.
 
-These are working notes from real time on the ground rather than a checklist. Bogotá rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Bogotá food has modernised faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub register is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
+Bogotá food has modernised faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub side is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
 
 | Spot | Rating |
 |---|---|

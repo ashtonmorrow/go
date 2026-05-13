@@ -42,8 +42,6 @@ related:
 
 [Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. The WWII bombing erased most of the medieval city, the rebuild made it the proving ground for modern Dutch architecture, and the result is the most visually interesting walking city in the [Netherlands](/countries/netherlands). It also has the country's busiest port, a working harbour history that ties to immigration into North America, and a food scene that runs ahead of every other Dutch city outside Amsterdam. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Rotterdam rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in](#getting-in)

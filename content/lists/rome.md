@@ -28,9 +28,7 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Rome](/cities/rome) is the city that does not need an introduction and rewards reading one anyway. Two and a half thousand years of continuous capital-city status, food that is the canonical Italian register, and the headline ancient sights that justify their reputation. The trap of a first Rome visit is to schedule the entire trip around the sights and miss the meals; the real value is in the trattoria culture that the city still runs on. A long weekend is the minimum; a week unlocks the depth.
-
-These are working notes from real time on the ground rather than a checklist. Rome rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Rome](/cities/rome) is the city that does not need an introduction and rewards reading one anyway. Two and a half thousand years of continuous capital-city status, food that is the canonical Italian side, and the headline ancient sights that justify their reputation. The trap of a first Rome visit is to schedule the entire trip around the sights and miss the meals; the real value is in the trattoria culture that the city still runs on. A long weekend is the minimum; a week unlocks the depth.
 
 ## On this page
 
@@ -59,7 +57,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia) plus the supplì, the artichoke (carciofo alla romana or alla giudia in spring), and the trattorias that have been doing them all the same way for fifty years. The picks below cover the pasta-focused register that Rome is at the centre of.
+Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia) plus the supplì, the artichoke (carciofo alla romana or alla giudia in spring), and the trattorias that have been doing them all the same way for fifty years. The picks below cover the pasta-focused style that Rome is at the centre of.
 
 | Spot | Rating |
 |---|---|

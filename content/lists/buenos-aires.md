@@ -28,8 +28,6 @@ related:
 
 [Buenos Aires](/cities/buenos-aires) is the South American capital that travellers fall hardest for. Wide European-style boulevards, a 12-million metropolitan population, the parrilla (Argentine steakhouse) culture, an excellent Japanese-Argentine sushi scene built by mid-20th-century immigration, and a peso economy that has whipsawed enough times that the dollar prices keep shifting. A week is the right length for a first visit; longer if you are pairing with Mendoza wine country, Iguazú, or a Patagonia leg.
 
-These are working notes from real time on the ground rather than a checklist. Buenos Aires rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -48,7 +46,7 @@ Buenos Aires Ezeiza International (Ministro Pistarini) (EZE) has two airports: E
 
 ## Where to eat
 
-Buenos Aires is two food cities at once. The parrilla register (Don Julio is the global headline; Argentina sits among the best beef countries in the world by per-capita consumption and quality) and the Japanese-Argentine sushi scene (built by a wave of Japanese-Peruvian and Japanese immigration that arrived in the 1950s and never left). The picks below cover both registers plus the casual breakfast-and-lunch rotation.
+Buenos Aires is two food cities at once. The parrilla side (Don Julio is the global headline; Argentina sits among the best beef countries in the world by per-capita consumption and quality) and the Japanese-Argentine sushi scene (built by a wave of Japanese-Peruvian and Japanese immigration that arrived in the 1950s and never left). The picks below cover both registers plus the casual breakfast-and-lunch rotation.
 
 | Spot | Rating |
 |---|---|

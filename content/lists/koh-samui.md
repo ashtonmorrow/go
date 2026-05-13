@@ -50,8 +50,6 @@ related:
 
 Koh Samui is the Thai island I would return to first when I want the trip to be simple. It is not the cheapest island, nor the quietest, nor the one to choose if you want to feel off the grid. What it does well is logistics: hotels, airport, food, beach clubs, temples, viewpoints, and enough choice that a week does not have to repeat itself. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Koh Samui rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting there](#getting-there)

@@ -56,8 +56,6 @@ related:
 
 [Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Saigon rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Get the e-visa first](#get-the-e-visa-first)

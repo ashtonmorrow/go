@@ -118,7 +118,7 @@ Kotor is the name of two things at once, and the first piece of planning is to k
 
 The version of the trip I would book is built around that distinction. You stay somewhere around the bay rather than in the old town. You see Kotor on one well-timed day. You sleep somewhere quieter, eat somewhere cheaper, and avoid sharing a stone lane with 6,000 cruise passengers when the ships are in. The map and pin set sit below; this writeup covers the parts of the planning that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Kotor and the bay reward going slowly; a long lunch on the water and a walk back through Perast at dusk are the version of the trip most people remember. Pick what's useful here and let the bay set the pace.
+A long lunch on the water and a walk back through Perast at dusk are the version of the trip most people remember. Build the day around those rather than chasing more stops than the bay can give you.
 
 ## On this page
 
@@ -197,7 +197,7 @@ A few picks from the saved list are worth booking around.
 | [Restaurant City](/pins/restaurant-city) | Sit-down dinner with bay food and a quieter room than the lane-front cafes inside the walls | Outside the old town, north side of Kotor |
 | [BBQ Tanjga](/pins/bbq-tanjga) | The Balkan grill standard; cevapi, pljeskavica, large portions, fair prices, cold beer. The lunch move | Just outside the old town on the E65 |
 | [BUTIGA wine & deli](/pins/butiga-wine-and-deli) | A glass of Montenegrin wine, a board of local cheese, the apartment-snack stop | Just outside the old town |
-| [Konoba Škver](/pins/konoba-skver) | Traditional konoba on the bay, fish-forward, small room, the night when you want the local-tavern register | Outside the walls |
+| [Konoba Škver](/pins/konoba-skver) | Traditional konoba on the bay, fish-forward, small room, the night when you want the local-tavern side | Outside the walls |
 
 The rest of the bay's restaurants render under this writeup on the pin map; the saved list includes Hipnos, Tri Lipe, Pasterija Nautica, Verige 65, Konoba Karaca, and a dozen more for a longer stay. The Kotor restaurant rule is the standard one for a cruise-traffic old town; the rooms that price for one-time visitors are inside the walls along the obvious lanes, and the rooms that price for residents and longer-stay travellers are a few minutes' walk outside the gates.
 

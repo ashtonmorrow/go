@@ -28,8 +28,6 @@ related:
 
 [Sofia](/cities/sofia) is the Bulgarian capital that under-promises and over-delivers. Brutally cheap by EU standards, very walkable centre, a stack of orthodox churches anchored by the Alexander Nevsky Cathedral, an excellent restaurant scene that has caught up with the visitor density in the last few years, and Mount Vitosha rising directly south of the city for a day-trip ski or hike. Two days is the right length; three if you are pairing with Plovdiv or Belogradchik.
 
-These are working notes from real time on the ground rather than a checklist. Sofia rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Bulgarian food carries Ottoman, Balkan, and Slavic threads together: shopska salad, kebapche (the small grilled mince sausages), banitsa (the cheese-and-egg phyllo pie), thick yoghurt, fresh tomato in summer. The picks below cover the modern register; the traditional places are everywhere and cheap.
+Bulgarian food carries Ottoman, Balkan, and Slavic threads together: shopska salad, kebapche (the small grilled mince sausages), banitsa (the cheese-and-egg phyllo pie), thick yoghurt, fresh tomato in summer. The picks below cover the modern side; the traditional places are everywhere and cheap.
 
 | Spot | Rating |
 |---|---|

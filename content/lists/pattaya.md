@@ -23,8 +23,6 @@ related:
 
 [Pattaya](/cities/pattaya) is the beach-resort town on the Gulf of Thailand two hours south-east of Bangkok. The reputation is mixed and earned in both directions; the south end (Jomtien, Pratumnak Hill, Na Jomtien) is family-and-couple friendly, while central Pattaya beach skews toward the older nightlife circuit. The trade-off of a Pattaya trip is that the right neighbourhood matters more than usual; pick the south side and the trip is fine, pick the centre and it can be very different. Three or four days is the right shape if you want a beach base; longer if you are using it as the warm half of a longer Thailand trip.
 
-These are working notes from real time on the ground rather than a checklist. Pattaya rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

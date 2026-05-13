@@ -30,8 +30,6 @@ related:
 
 [Lisbon](/cities/lisbon) is the Atlantic capital that has been climbing the must-visit lists for the last decade for reasons that hold up on arrival: the light, the trams, the food, the affordable hotels in a Western European country, the seven hills that make every corner of the centre a viewpoint. A long weekend covers the headline experiences; a week unlocks the side trips to Sintra, Cascais, and Setúbal.
 
-These are working notes from real time on the ground rather than a checklist. Lisbon rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -59,7 +57,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Portuguese food is the casual Mediterranean register that overlaps with Spain on the surface but diverges in important specifics; bacalhau (salt cod) in every form, pastéis de nata, grilled sardines in summer, ginja cherry liqueur in shot glasses, the casual neighbourhood tasca where lunch costs €10. The picks below lean casual.
+Portuguese food is the casual Mediterranean side that overlaps with Spain on the surface but diverges in important specifics; bacalhau (salt cod) in every form, pastéis de nata, grilled sardines in summer, ginja cherry liqueur in shot glasses, the casual neighbourhood tasca where lunch costs €10. The picks below lean casual.
 
 | Spot | Rating |
 |---|---|

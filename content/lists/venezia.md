@@ -28,8 +28,6 @@ related:
 
 [Venice](/cities/venice) is the Italian island-city that gets a bad-faith reputation it does not earn. Yes, it is crowded in the main San Marco quadrant; yes, the cruise-ship day-tripper density is real. The actual city (Cannaregio, Dorsoduro, Castello away from the spine) is calm, walkable, and exactly what the postcards promise. The trick is staying overnight inside the lagoon rather than day-tripping from the mainland. Two or three nights is the minimum; longer for the islands (Murano, Burano, Torcello) and the lagoon depth.
 
-These are working notes from real time on the ground rather than a checklist. Venice rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -59,7 +57,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Venetian food has its own register inside Italian cooking: cicchetti (the small bar-snack plates eaten standing up), bigoli (the fat hand-rolled pasta), seppie al nero (cuttlefish in its ink), sarde in saor (the sweet-and-sour sardines), the spritz aperitivo (an Italian-Veneto invention). The picks below mix the bacaro (cicchetti bar) register with the sit-down trattorias.
+Venetian food has its own side inside Italian cooking: cicchetti (the small bar-snack plates eaten standing up), bigoli (the fat hand-rolled pasta), seppie al nero (cuttlefish in its ink), sarde in saor (the sweet-and-sour sardines), the spritz aperitivo (an Italian-Veneto invention). The picks below mix the bacaro (cicchetti bar) register with the sit-down trattorias.
 
 | Spot | Rating |
 |---|---|

@@ -42,8 +42,6 @@ related:
 
 [Athens](/cities/athens) is the city most travellers underestimate going in and oversell coming out. Two days is enough to do the headline sights well; three is the sweet spot once you add a day trip; four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets and the midday queue at the Acropolis are the two friction points to plan around. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Athens rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in](#getting-in)

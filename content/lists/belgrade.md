@@ -30,8 +30,6 @@ related:
 
 [Belgrade](/cities/belgrade) is the Balkan capital that has been climbing the under-the-radar lists for the last few years. The city sits on the confluence of the Sava and Danube rivers, the Kalemegdan fortress crowns the old town, and the food and nightlife scene runs much later than most European capitals. Two or three days is the right length for a first visit; the trip pairs cleanly with Sarajevo and Mostar if you have a week in the region.
 
-These are working notes from real time on the ground rather than a checklist. Belgrade rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -50,7 +48,7 @@ Belgrade Nikola Tesla Airport (BEG) sits about 18 km west of the centre; the A1 
 
 ## Where to eat
 
-Serbian food is the Balkan grill register at its most confident: ćevapi (small grilled sausages of mince), pljeskavica (the meat patty), Karadjordje schnitzel (rolled-and-stuffed pork or veal), proja bread, ajvar pepper relish, and rakija to finish. The picks below mix the traditional and the modern.
+Serbian food is the Balkan grill side at its most confident: ćevapi (small grilled sausages of mince), pljeskavica (the meat patty), Karadjordje schnitzel (rolled-and-stuffed pork or veal), proja bread, ajvar pepper relish, and rakija to finish. The picks below mix the traditional and the modern.
 
 | Spot | Rating |
 |---|---|

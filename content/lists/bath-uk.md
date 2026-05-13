@@ -96,8 +96,6 @@ related:
 
 Bath is the small Georgian town on the western edge of England that most travellers see in a single day from London. The Roman bath complex (the city's namesake), the medieval abbey, the eighteenth-century townscape, and the river with the weir under the Pulteney Bridge all sit inside an area you can walk across in fifteen minutes. The version of the trip a first visitor takes is the day-trip version, and that is a good trip. The version a second visitor takes, or the visitor who is also doing Stonehenge or is using Bath as a weekend break from London, is an overnight, and that one rewards the stay.
 
-These are working notes from real time on the ground rather than a checklist. Bath rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa rooftop pool, the Sacred Spring) lives mostly inside the [spa-day cross-list](/lists/spa-day) for this atlas; this writeup is the rest of the trip. Where to stay, where to eat, the long walk that earns the overnight, and the Stonehenge add-on.
 
 ## On this page

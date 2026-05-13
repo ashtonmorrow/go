@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: Where should I stay in Munich?
-    a: For a rail-trip base or a one-night stop, the Aloft on Bayerstraße is the cheap-and-clean pick five minutes from the Hauptbahnhof; clean, basic, modern, on-site laundry, fair price, and right at the station. For a slower Munich trip, the Andaz Munich Schwabinger Tor in Schwabing is the dressed-up alternative; further north on the U6 metro line, more design-hotel register, more expensive. Either works; the choice is whether the train is the trip or the city is.
+    a: For a rail-trip base or a one-night stop, the Aloft on Bayerstraße is the cheap-and-clean pick five minutes from the Hauptbahnhof; clean, basic, modern, on-site laundry, fair price, and right at the station. For a slower Munich trip, the Andaz Munich Schwabinger Tor in Schwabing is the dressed-up alternative; further north on the U6 metro line, more design-hotel side, more expensive. Either works; the choice is whether the train is the trip or the city is.
   - q: Are the brewery beer halls a tourist trap?
     a: Yes and worth doing anyway. The Hofbräuhaus on Platzl is the famous one and the most visited tourist site in Munich; the food is fine, the room is loud, the band plays Bavarian standards every night. Augustiner-Großgaststätten on Neuhauser Straße is the closest the centre has to a beer hall the locals also use. Schneider Bräuhaus in the Tal is the wheat-beer specialty room (Schneider Weisse is its house pour). Spatenhaus an der Oper is the more polished sit-down version. Pick one for the experience, not three.
   - q: Where do I find a leberkäse sandwich?
@@ -117,8 +117,6 @@ Munich is the Bavarian city most travellers visit for two things they have alrea
 
 The version below is the trip I would book for myself, written for a traveller who is treating Munich as the rail-trip hub rather than the destination. The map and the wider pin set sit underneath; the writeup covers the parts of the planning that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Munich rewards going slowly: a long afternoon at the Eisbach with a Helles in hand is as much "Munich" as ticking off the Hofbräuhaus. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -150,7 +148,7 @@ The choice of base is the same choice it is in any rail-hub city. The first kind
 | Where | Property | Why pick it | Trade-off |
 |---|---|---|---|
 | Hauptbahnhof | [Aloft by Marriott Munich](/pins/aloft-by-marriott-munich) | Five minutes walk to [Munich Central Station](/pins/munich-central-station); clean, modern, basic, fair price, laundry on-site. The right base when you are using Munich as the rail hub | The Hauptbahnhof area reads a little rough at street level between dusk and dawn (the standard German city-station mix). The hotel itself is fine; the immediate block is not the slow-coffee street |
-| Schwabing | [Andaz Munich Schwabinger Tor by Hyatt](/pins/andaz-munich-schwabinger-tor-by-hyatt) | The dressed-up alternative. Design-hotel register, on the U6 line ten minutes from the centre, the rooms are a step up. Worth it if Munich is the trip rather than the connection | More expensive. Further from the station, so the rail-stop shape works less cleanly. Schwabing is the right neighbourhood for the slower version of the trip |
+| Schwabing | [Andaz Munich Schwabinger Tor by Hyatt](/pins/andaz-munich-schwabinger-tor-by-hyatt) | The dressed-up alternative. Design-hotel style, on the U6 line ten minutes from the centre, the rooms are a step up. Worth it if Munich is the trip rather than the connection | More expensive. Further from the station, so the rail-stop shape works less cleanly. Schwabing is the right neighbourhood for the slower version of the trip |
 
 The Aloft is the booking I would do nine times out of ten. The on-site laundry is the underrated detail; if you are on a longer rail trip and you need clean clothes before the train south, that one feature earns the night.
 

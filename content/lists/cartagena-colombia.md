@@ -28,8 +28,6 @@ related:
 
 [Cartagena](/cities/cartagena) is the Colombian Caribbean coast city that does the walled-colonial-old-town better than almost any other in the Americas. The Ciudad Amurallada (walled city) is small, photogenic, and dense; Getsemaní just outside the walls is the cheaper-and-younger neighbourhood; the Bocagrande peninsula is the high-rise beach district. The heat is real (28 to 32°C year-round, humidity high) and shapes the rhythm of the day. Two or three days is the right length.
 
-These are working notes from real time on the ground rather than a checklist. Cartagena rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Cartagena food is the Colombian Caribbean register: ceviche from the coast, fried plantains, arepa de huevo, the cocadas sold from the street carts, the sancocho de pescado fish stew. Plus the imported sushi and Peruvian fusion that the visitor density has built. The picks below cover the rooftop and the casual.
+Cartagena food is the Colombian Caribbean side: ceviche from the coast, fried plantains, arepa de huevo, the cocadas sold from the street carts, the sancocho de pescado fish stew. Plus the imported sushi and Peruvian fusion that the visitor density has built. The picks below cover the rooftop and the casual.
 
 | Spot | Rating |
 |---|---|

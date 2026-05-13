@@ -28,8 +28,6 @@ related:
 
 [Medellín](/cities/medellin) is the Colombian city of eternal spring (the elevation puts the temperature at 22 to 28°C all year, no seasons), the rebuilt post-Pablo-Escobar civic story, and the Metrocable cable cars that connect the hillside neighbourhoods (Comuna 13 became the famous one). El Poblado is where almost every visitor stays; Laureles is the more local-feeling neighbourhood for a longer stay; Comuna 13 is the day-trip with a guide. Three or four days for the city; longer if you are pairing with the coffee region.
 
-These are working notes from real time on the ground rather than a checklist. Medellín rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

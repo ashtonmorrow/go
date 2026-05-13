@@ -23,8 +23,6 @@ related:
 
 [Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that earned its reputation centuries before the Game of Thrones years and has been managing the cruise-and-day-tripper density since. The Old Town is small (about 600 metres across), the city walls are walkable in about two hours, and the food has caught up with the visitor pressure. Two nights at minimum to actually experience the city outside the cruise-day window; longer if you are pairing with Korčula, Mljet, or the Pelješac peninsula.
 
-These are working notes from real time on the ground rather than a checklist. Dubrovnik rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -53,7 +51,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Dubrovnik food is the Dalmatian register: black risotto (cuttlefish ink), grilled fish, pršut (Croatian prosciutto), Pošip and Plavac Mali wines, the casual konoba (tavern) format. Prices in the Old Town are real; the picks below mix the value-conscious lunch with the proper-dinner register.
+Dubrovnik food is the Dalmatian side: black risotto (cuttlefish ink), grilled fish, pršut (Croatian prosciutto), Pošip and Plavac Mali wines, the casual konoba (tavern) format. Prices in the Old Town are real; the picks below mix the value-conscious lunch with the proper-dinner style.
 
 | Spot | Rating |
 |---|---|

@@ -23,8 +23,6 @@ related:
 
 [Nuremberg](/cities/nuremberg) is the medieval Bavarian-Franconian city that runs better than Munich for the German Christmas-market trip (covered in the Munich guide cross-link). The Imperial Castle (Kaiserburg) crowns the old town; the city was the historic Nazi-rally site and the post-war Trials venue, so the 20th-century weight is real and clearly presented in the local museums; the small Franconian Nürnberger Rostbratwurst is the food shape. Two or three days for the city; pair with Bamberg or Rothenburg ob der Tauber for a longer Franconia trip.
 
-These are working notes from real time on the ground rather than a checklist. Nuremberg rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -43,7 +41,7 @@ Nuremberg Albrecht Dürer Airport Nuremberg (NUE) sits about 7 km north of the c
 
 ## Where to eat
 
-Nuremberg food has its own register: the Nürnberger Rostbratwurst (the small finger-sized grilled sausages served three on a roll or six on a pewter plate with sauerkraut), Lebkuchen (the spiced Christmas cake the city has been making for centuries), Schäufele (the slow-roasted pork shoulder). The picks below mix the German base with the casual international rotation.
+Nuremberg food has its own side: the Nürnberger Rostbratwurst (the small finger-sized grilled sausages served three on a roll or six on a pewter plate with sauerkraut), Lebkuchen (the spiced Christmas cake the city has been making for centuries), Schäufele (the slow-roasted pork shoulder). The picks below mix the German base with the casual international rotation.
 
 | Spot | Rating |
 |---|---|

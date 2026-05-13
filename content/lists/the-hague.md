@@ -72,8 +72,6 @@ related:
 
 [The Hague](/cities/the-hague) is the city most travelers to the Netherlands plan in 24 hours rather than 24 days, which is roughly the right ratio. It is the seat of the Dutch government, the home of the International Court of Justice, and the address of two genuinely top-tier museums. It is also calmer, cheaper, and easier to walk than [Amsterdam](/cities/amsterdam), with a real beach 15 minutes away by tram. Most Amsterdam-week itineraries skip it; the ones that do not usually end up wishing they had given it the longer half.
 
-These are working notes from real time on the ground rather than a checklist. The Hague rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 The bigger pitch: **hotel rooms in The Hague run roughly 30 to 50 percent cheaper than comparable rooms in Amsterdam**, and Amsterdam is 50 minutes away by train. If you are basing a Netherlands week somewhere, basing here and commuting in is the deal almost nobody takes.
 
 This page is the version I would send a friend who asked how to spend 36 hours in The Hague, or who wanted to base outside Amsterdam without losing the Amsterdam side of the trip.

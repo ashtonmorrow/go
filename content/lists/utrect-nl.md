@@ -23,8 +23,6 @@ related:
 
 [Utrecht](/cities/utrecht) is the small Dutch university city that gets steadily under-recommended next to Amsterdam. The historic centre is canal-laced like Amsterdam but a third the size and a quarter the tourist density, the Dom Tower (the tallest medieval church tower in the Netherlands) anchors the skyline, and the food and cafe scene runs at fair prices. Two or three days is the right length; pair with The Hague, Rotterdam, or a day trip to the Kröller-Müller Museum.
 
-These are working notes from real time on the ground rather than a checklist. Utrecht rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -52,7 +50,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Utrecht food is the Dutch casual register at university-city prices: stroopwafels and herring as the street stops, the bitterballen with cold beer as the standard café snack, and the casual international rotation (ramen, empanadas, sushi) that the student population supports. The picks below cover the casual evening.
+Utrecht food is the Dutch casual side at university-city prices: stroopwafels and herring as the street stops, the bitterballen with cold beer as the standard café snack, and the casual international rotation (ramen, empanadas, sushi) that the student population supports. The picks below cover the casual evening.
 
 | Spot | Rating |
 |---|---|

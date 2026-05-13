@@ -72,7 +72,7 @@ related:
 #     · Vienna (therme-wien, the second airport-hack model)
 #     · Bucharest (therme-bucharest, the giant near OTP)
 #     · Black Forest (cassiopeia-therme-badenweiler + balinea-thermen,
-#       the destination-weekend register rather than the airport hack)
+#       the destination-weekend side rather than the airport hack)
 #   therme-wien now carries the "spa day" saved_list (was empty);
 #   therme-bucharest now carries "spa day" alongside "bucharest" so it
 #   renders on both /lists/spa-day and /lists/bucharest grids.
@@ -104,8 +104,6 @@ The travel hack this list is built around is the simplest possible fix. Book the
 
 The version below is four destinations where I have used this trick myself and would book the same trip again. Each is on the map and pin set below; this writeup covers when and why each one earns the slot. The list is meant to grow as I find more places that work for the same hack.
 
-The whole point of this list is to give your body a slower day in the middle of a trip; the destinations below reward going at the gentlest pace you can manage. Take what is useful, skip the rest, and do not turn the recovery day into another schedule.
-
 ## On this page
 
 * [Munich: Therme Erding, ten minutes from the airport](#munich-therme-erding-ten-minutes-from-the-airport)
@@ -136,7 +134,7 @@ The spa also has its own hotel attached to the complex if you want to stay on-si
 
 The bathing happens in two registers. The famous one is [Cleopatra Antique Pools](/pins/cleopatra-antique-pools), a thermal pool inside the Hierapolis ruin with submerged Roman and Hellenistic column drums and marble fragments scattered across the bottom. You swim around two-thousand-year-old architecture. It is shallow, warm, fizzing slightly from the natural carbonation in the spring water, and unlike anything else on this list.
 
-The other register is the hotel thermal pools. Most properties in the Karahayıt cluster a couple of kilometres from the travertines have their own thermal pool fed by the same springs. I stayed at [Hierapark Thermal & Spa Hotel Deluxe](/pins/hierapark-thermal-spa-hotel-deluxe), which has indoor and outdoor thermal pools, the standard Turkish hotel breakfast, and a fair half-board price that covers dinner.
+The other side is the hotel thermal pools. Most properties in the Karahayıt cluster a couple of kilometres from the travertines have their own thermal pool fed by the same springs. I stayed at [Hierapark Thermal & Spa Hotel Deluxe](/pins/hierapark-thermal-spa-hotel-deluxe), which has indoor and outdoor thermal pools, the standard Turkish hotel breakfast, and a fair half-board price that covers dinner.
 
 | What | Why pick it | Where |
 |---|---|---|
@@ -208,7 +206,7 @@ Three to four hours covers the soak if you are using it as an airport-day add-on
 
 The Black Forest in south-west Germany is the destination version of the hack rather than the airport one. The towns are small, the spas are older, the trip is a weekend rather than a half-day, and the pace is the point. Two pins in the saved list cover it.
 
-[Cassiopeia Therme Badenweiler](/pins/cassiopeia-therme-badenweiler) sits in the spa town of Badenweiler on the western edge of the Black Forest, about 30 minutes by car from Basel-Mulhouse-Freiburg airport (BSL). The complex is built around a Roman bath ruin that anchors one of the warm-water pools; the rest is the standard German thermal-and-sauna register but in a quieter, smaller, more elegant frame than Erding. The town itself is a 19th-century cure-resort with a small park, a few good hotels, and not much else, which is the right scale for a weekend reset.
+[Cassiopeia Therme Badenweiler](/pins/cassiopeia-therme-badenweiler) sits in the spa town of Badenweiler on the western edge of the Black Forest, about 30 minutes by car from Basel-Mulhouse-Freiburg airport (BSL). The complex is built around a Roman bath ruin that anchors one of the warm-water pools; the rest is the standard German thermal-and-sauna style but in a quieter, smaller, more elegant frame than Erding. The town itself is a 19th-century cure-resort with a small park, a few good hotels, and not much else, which is the right scale for a weekend reset.
 
 [Balinea Thermen](/pins/balinea-thermen) is in Bad Bellingen further south on the Rhine plain, half an hour from Basel. The bath uses warm mineral water from the same Black Forest seam as Badenweiler; the complex is smaller than Cassiopeia and the town is sleepier. The right pick when the goal is to do almost nothing for two days.
 

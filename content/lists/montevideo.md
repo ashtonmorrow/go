@@ -42,8 +42,6 @@ related:
 
 [Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip. From Puerto Madero you can be in [Uruguay](/countries/uruguay) in 2.5 hours by ferry, walking out of the terminal into Ciudad Vieja with customs already cleared. The city itself is a slow one: an asado lunch, an afternoon along the Rambla, sunsets from a high floor in Punta Carretas. The full pin map for the city sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Montevideo rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from Buenos Aires](#getting-in-from-buenos-aires)

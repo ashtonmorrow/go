@@ -28,8 +28,6 @@ related:
 
 [Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera that has been on the under-the-radar Mediterranean lists for the last five years. Crystal-clear water, dramatic limestone coves, prices half of Greece across the strait, and the small-town pace that the bigger Mediterranean resorts lost decades ago. Saranda is the larger town; Ksamil is the smaller, photogenic, beach-resort version 20 minutes south. Three to four days for the pair; longer if you are exploring the rest of the Riviera north toward Himara and Dhërmi.
 
-These are working notes from real time on the ground rather than a checklist. The Albanian Riviera rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -59,7 +57,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Albanian Riviera food is the seafood-and-grill register at half-Mediterranean prices: fresh fish, grilled octopus, the Albanian byrek (the savoury pie), and the cheap-and-cold beer that pairs with the beach. The picks below cover the beach bars and the sit-down rotation.
+Albanian Riviera food is the seafood-and-grill side at half-Mediterranean prices: fresh fish, grilled octopus, the Albanian byrek (the savoury pie), and the cheap-and-cold beer that pairs with the beach. The picks below cover the beach bars and the sit-down rotation.
 
 | Spot | Rating |
 |---|---|

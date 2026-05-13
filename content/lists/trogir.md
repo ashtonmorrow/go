@@ -58,8 +58,6 @@ related:
 
 [Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits about 4 km east of the old town. Treat it as a clean morning with lunch, not a full day.
 
-These are working notes from real time on the ground rather than a checklist. Trogir rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## A half-day shape
 
 | Time | What to do | Why |
@@ -101,7 +99,7 @@ Verify the current timetable with Promet Split before you go; the headways drift
 |---|---|
 | [Mirkec](/pins/mirkec) | The promenade spot I would book first. Fair prices (25 to 30 USD for a steak plate), quick service, food arrives fast |
 | [Konoba Trs](/pins/konoba-trs) | Konoba (small tavern) inside the old town; traditional Dalmatian, casual |
-| [Vanjaka](/pins/vanjaka) | Another inside-the-walls option, similar register to Trs |
+| [Vanjaka](/pins/vanjaka) | Another inside-the-walls option, similar side to Trs |
 | [Konoba Fortin](/pins/konoba-fortin) | If the promenade tables at Mirkec are full |
 
 After lunch, walk back across the bridge and catch Bus 37 the other direction to Split. You will be back at the hotel by mid-afternoon.

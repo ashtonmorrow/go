@@ -23,8 +23,6 @@ related:
 
 [Koh Phi Phi](/cities/koh-phi-phi) is the small Thai island in the Andaman Sea that became famous after The Beach (2000) and has been managing the tourism overhang since. Phi Phi Don is the inhabited main island; Phi Phi Leh is the smaller protected sister with Maya Bay where most boat trips go. No cars on either island, no airport; arrival is by ferry from Phuket or Krabi. Two or three days is the right shape for a beach trip; longer only if you really want the island pace.
 
-These are working notes from real time on the ground rather than a checklist. The island rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

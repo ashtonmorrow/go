@@ -28,8 +28,6 @@ related:
 
 [Tirana](/cities/tirana) is the Albanian capital that climbed onto the European travel radar fast after a long isolation. Brutally cheap by Western European standards, generous portions, the cafe-and-rooftop culture that runs late, and the legacy of the Hoxha-era bunker network is still legible in the city. Two or three days for the city; the bigger Albanian trip pairs it with Saranda + Ksamil on the south coast (covered separately at [/lists/saranda-_-ksamil](/lists/saranda-_-ksamil)).
 
-These are working notes from real time on the ground rather than a checklist. Tirana rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -58,7 +56,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Tirana food runs cheap, generous, and surprisingly international. Albanian byrek (the savoury pie), grilled lamb, the fresh-and-cheap Mediterranean register, plus a wave of fusion that arrived with the post-2010 expat scene. The picks below mix the international (sushi, noodle bar, smokehouse) with the casual local rotation.
+Tirana food runs cheap, generous, and surprisingly international. Albanian byrek (the savoury pie), grilled lamb, the fresh-and-cheap Mediterranean side, plus a wave of fusion that arrived with the post-2010 expat scene. The picks below mix the international (sushi, noodle bar, smokehouse) with the casual local rotation.
 
 | Spot | Rating |
 |---|---|

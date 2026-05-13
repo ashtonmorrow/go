@@ -21,9 +21,7 @@ related:
 # - hero_image is empty; pick one in /admin/lists/tenerife via the picker.
 ---
 
-[Tenerife](/cities/tenerife) is the largest of the Canary Islands and the volcanic Atlantic destination that the rest of Europe winters in. The southern coast (Costa Adeje, Los Cristianos, Playa de las Américas) is the resort-and-beach version; the northern coast (Puerto de la Cruz, La Orotava, the laurisilva forests) is the cooler, greener, traditional-villages register; Mount Teide (3,715 m, the highest peak in Spain) is the centre. The two ends of the island are different trips; pick the south for the beach and the north for the slower visit. Four to seven days; longer for a winter escape.
-
-These are working notes from real time on the ground rather than a checklist. Tenerife rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Tenerife](/cities/tenerife) is the largest of the Canary Islands and the volcanic Atlantic destination that the rest of Europe winters in. The southern coast (Costa Adeje, Los Cristianos, Playa de las Américas) is the resort-and-beach version; the northern coast (Puerto de la Cruz, La Orotava, the laurisilva forests) is the cooler, greener, traditional-villages side; Mount Teide (3,715 m, the highest peak in Spain) is the centre. The two ends of the island are different trips; pick the south for the beach and the north for the slower visit. Four to seven days; longer for a winter escape.
 
 ## On this page
 
@@ -43,7 +41,7 @@ Tenerife Tenerife South (the resort-coast airport; TFN is the alternative for th
 
 ## Where to eat
 
-Canarian food has its own register inside Spanish cuisine: papas arrugadas (the salt-crusted small potatoes with mojo rojo and mojo verde sauces), gofio (the toasted-grain flour used for everything), fresh Atlantic fish, and the imported tapas-and-sushi register the resort visitor density built. The picks below mix the local with the international.
+Canarian food has its own style inside Spanish cuisine: papas arrugadas (the salt-crusted small potatoes with mojo rojo and mojo verde sauces), gofio (the toasted-grain flour used for everything), fresh Atlantic fish, and the imported tapas-and-sushi side the resort visitor density built. The picks below mix the local with the international.
 
 | Spot | Rating |
 |---|---|

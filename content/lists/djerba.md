@@ -64,8 +64,6 @@ related:
 
 Djerba is the [Tunisian](/countries/tunisia) island most North Americans have never heard of. European package travellers have known about it for thirty years; the sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin. ("Berber," increasingly called Amazigh, is the indigenous North African population that predates the Arab conquest.)
 
-These are working notes from real time on the ground rather than a checklist. Djerba rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [When to go](#when-to-go)

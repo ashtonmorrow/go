@@ -23,8 +23,6 @@ related:
 
 [Manchester](/cities/manchester) is the northern English industrial-revolution city that has been reinventing itself fast since the 2000s. The Northern Quarter is the small post-industrial neighbourhood the new restaurant and bar scene runs on; Spinningfields and Deansgate are the modern business centre; the curry mile in Rusholme is the South Asian food cluster the city is justly famous for. Pair the trip with a Manchester United match or a Liverpool day-trip for a longer week. Two or three days for the city.
 
-These are working notes from real time on the ground rather than a checklist. Manchester rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

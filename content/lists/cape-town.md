@@ -40,8 +40,6 @@ related:
 
 [Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around safety, weather, transport, and where you sleep.
 
-These are working notes from real time on the ground rather than a checklist. Cape Town rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, never used cash, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from my day.
 
 ## On this page

@@ -28,8 +28,6 @@ related:
 
 [Panama City](/cities/panama-city) is the Central American capital that does not feel like the rest of Central America. The modern Punta Pacífica skyline shares the city with the colonial Casco Viejo, the Panama Canal sits on the doorstep, and the airport is the hemispheric hub for Copa Airlines (which is why Panama makes such a clean stopover). Two or three days for the city; longer for the canal expansion locks tour or for Bocas del Toro on the Caribbean coast.
 
-These are working notes from real time on the ground rather than a checklist. Panama City rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Panama City food is the Central American Pacific register: ceviche, sancocho (the chicken-and-yuca stew), patacones (twice-fried plantain), plus the imported sushi and the new-wave Casco Viejo rooftop scene. The picks below mix the casual seafood with the dressed-up evening rotation.
+Panama City food is the Central American Pacific side: ceviche, sancocho (the chicken-and-yuca stew), patacones (twice-fried plantain), plus the imported sushi and the new-wave Casco Viejo rooftop scene. The picks below mix the casual seafood with the dressed-up evening rotation.
 
 | Spot | Rating |
 |---|---|

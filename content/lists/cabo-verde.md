@@ -69,8 +69,6 @@ related:
 
 [Cabo Verde](/countries/caboverde) is the archipelago many travellers cannot quite place. Ten volcanic islands off West Africa, roughly 570 km west of Senegal at the nearest point; Portuguese-and-Kriolu speaking; about 525,000 people; year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is mostly about choosing the right island: Cabo Verde is not one destination.
 
-These are working notes from real time on the ground rather than a checklist. Cabo Verde rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [When to go](#when-to-go)

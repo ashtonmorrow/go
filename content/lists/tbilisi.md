@@ -127,8 +127,6 @@ Tbilisi is the kind of trip Americans tend not to take. Georgia spent most of th
 
 The version below is the trip I would book for myself: three days, an Uber in from the airport, a hotel in the centre, time for the cable car and the sulfur baths and a slow evening of khinkali and amber wine. The full map and pin set sits below; this writeup covers the parts of the planning that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Tbilisi rewards going slowly more than it rewards covering ground. Pick what's useful and let the rest of the city find you.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -164,20 +162,20 @@ The Moxy at Saarbrucken Square is the right default if you want one set of keys,
 
 ## The architecture, one block at a time
 
-The first thing a traveller registers in Tbilisi is that the city does not have a single architectural register. Russian and European nineteenth-century planners laid out parts of it, the Persians and Ottomans left earlier marks, the Soviets built whole districts of brutalist housing and civic buildings, and contemporary Georgia has added glass-and-steel landmarks (the Bridge of Peace, the new presidential palace) on top of all of it. You walk past the eras as if changing rooms.
+The first thing a traveller registers in Tbilisi is that the city does not have a single architectural side. Russian and European nineteenth-century planners laid out parts of it, the Persians and Ottomans left earlier marks, the Soviets built whole districts of brutalist housing and civic buildings, and contemporary Georgia has added glass-and-steel landmarks (the Bridge of Peace, the new presidential palace) on top of all of it. You walk past the eras as if changing rooms.
 
 A few anchors are worth knowing:
 
-- [**Rustaveli Avenue**](/pins/rustaveli-avenue) is the spine that runs from Freedom Square (Tavisuplebis Moedani) north past the Opera, the National Museum, and the Marriott. The facades along it are the Parisian register: wrought iron balconies, mansard roofs, café terraces.
+- [**Rustaveli Avenue**](/pins/rustaveli-avenue) is the spine that runs from Freedom Square (Tavisuplebis Moedani) north past the Opera, the National Museum, and the Marriott. The facades along it are the Parisian style: wrought iron balconies, mansard roofs, café terraces.
 - The **old town** south of Freedom Square is the medieval and Ottoman layer. Narrow streets, leaning balconies, the sulfur bath district at the bottom of the slope under Narikala fortress.
 - The **[Bank of Georgia headquarters](/pins/bank-of-georgia)** on the Avlabari side of the river is the famous Soviet brutalist landmark: a 1975 horizontal-skyscraper assembly of stacked concrete bars, often called the Tree building or the BoG building. It looks like nothing else in any other city and is a five-minute Uber from the centre.
-- **Sololaki** and **Vera**, the residential neighbourhoods on the slope west of Rustaveli, are the layer where the Parisian register meets the late-Soviet housing stock most directly. A walk through them is the cheapest education in twentieth-century Tbilisi available.
+- **Sololaki** and **Vera**, the residential neighbourhoods on the slope west of Rustaveli, are the layer where the Parisian scene meets the late-Soviet housing stock most directly. A walk through them is the cheapest education in twentieth-century Tbilisi available.
 
 The unified thing about the city is that none of these layers has won and none of them is being put up for tourists. The Soviet bus stops are still bus stops. The Ottoman quarter still has working bakeries. The Bank of Georgia building is, in fact, still a working bank.
 
 ## Getting around: the metro and the cable car
 
-The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths; a few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze register the Moscow Metro is famous for. Avlabari and Rustaveli are the two stations to walk through if you only see one.
+The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths; a few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze version the Moscow Metro is famous for. Avlabari and Rustaveli are the two stations to walk through if you only see one.
 
 The fare model is the gentle kind. A ride costs a flat 1 GEL (a few cents in dollars), no matter how far you go, with a 90-minute transfer window that lets you switch between metro and city buses on the same fare. You can pay two ways. The simplest is to tap a contactless bank card or your phone wallet at the turnstile; the system reads the tap and charges the flat fare. If contactless tap is not working for your card (some US-issued cards struggle), buy a **Metro Money card** at any station vending machine for 2 GEL and load it with however much you want; you tap that instead. The card is shareable across a group (one tap per person, same card) and is the easier option if you are riding for a week. There is no daily cap on the metro, but the per-ride cost is so low that the question of capping never really comes up.
 

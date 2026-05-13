@@ -28,8 +28,6 @@ related:
 
 [Rio de Janeiro](/cities/rio-de-janeiro) is the Brazilian coastal capital where the geography (the Atlantic on one side, the granite peaks of the Tijuca forest on the other, the lagoon and the beaches between them) is the whole reason. The pin set on this list runs heavily through Ipanema, Leblon, and Copacabana where most travellers actually stay; Santa Teresa, Centro, and the Botanical Garden are the day-trip extensions. A long weekend works as a Rio-only trip; a week opens up Búzios and Paraty along the coast.
 
-These are working notes from real time on the ground rather than a checklist. Rio rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Rio food runs from beach kiosk to dressed-up Italian, with the Brazilian default (rice, beans, grilled meat, açaí, the bakery cafezinho) underneath it all. The picks below mix the Ipanema/Leblon sit-down with the casual cafe and the kiosk register.
+Rio food runs from beach kiosk to dressed-up Italian, with the Brazilian default (rice, beans, grilled meat, açaí, the bakery cafezinho) underneath it all. The picks below mix the Ipanema/Leblon sit-down with the casual cafe and the kiosk side.
 
 | Spot | Rating |
 |---|---|

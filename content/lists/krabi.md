@@ -23,8 +23,6 @@ related:
 
 [Krabi](/cities/krabi) is the Andaman-coast Thai province that serves as the gateway to Koh Phi Phi, Railay, and the rest of the limestone-karst coast. Ao Nang is the main beach town and where most travellers stay; Krabi Town is the local commercial centre 20 km inland; Railay is the cliff-bounded beach peninsula accessible only by longtail boat. Three or four days for the area; pair with Phi Phi or Phuket for a longer Andaman beach trip.
 
-These are working notes from real time on the ground rather than a checklist. Krabi rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

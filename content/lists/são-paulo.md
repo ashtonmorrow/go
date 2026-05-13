@@ -23,8 +23,6 @@ related:
 
 [São Paulo](/cities/sao-paulo) is the South American megacity (12 million in the city, 22 million in the metropolitan area) that international travellers visit less than they should. The food culture is among the best in the Americas (the largest Japanese diaspora in the world outside Japan built the sushi scene, the rodízio steakhouse format is the Brazilian invention that the rest of the world copies), the museum slate is real, and the neighbourhoods (Jardins, Vila Madalena, Pinheiros, Itaim) read distinct. Three to four days for the city; pair with Rio for a Brazilian week.
 
-These are working notes from real time on the ground rather than a checklist. São Paulo rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -52,7 +50,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-São Paulo food is the most international register in South America. The Japanese-Brazilian sushi scene (the largest outside Japan; Liberdade is the historic neighbourhood), the rodízio-style churrascarias (Fogo de Chão being the global brand built here), the Peruvian-Brazilian cevicherias, the casual Italian (huge Italian-Brazilian immigration). The picks below cover the breadth.
+São Paulo food is the most international side in South America. The Japanese-Brazilian sushi scene (the largest outside Japan; Liberdade is the historic neighbourhood), the rodízio-style churrascarias (Fogo de Chão being the global brand built here), the Peruvian-Brazilian cevicherias, the casual Italian (huge Italian-Brazilian immigration). The picks below cover the breadth.
 
 | Spot | Rating |
 |---|---|

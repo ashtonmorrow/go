@@ -28,8 +28,6 @@ related:
 
 [Playa del Carmen](/cities/playa-del-carmen) is the Yucatán beach town that grew from a sleepy ferry stop to Cozumel into a serious resort destination. The Quinta Avenida (5th Avenue) pedestrian strip is the spine; the beach is the wide white-sand Caribbean cliché, and the cenote and Mayan-ruin day trips are the depth. Three to five days for a beach trip; longer if you are pairing with Tulum, Holbox, or Cozumel diving.
 
-These are working notes from real time on the ground rather than a checklist. Playa del Carmen rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -58,7 +56,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Yucatán food has its own register inside Mexican cooking: cochinita pibil (slow-roasted pork in achiote and citrus), poc chuc, panuchos, the habanero-and-citrus salsas. Playa's restaurant scene mixes these traditional roots with the international expat-driven rotation. The picks below cover both.
+Yucatán food has its own side inside Mexican cooking: cochinita pibil (slow-roasted pork in achiote and citrus), poc chuc, panuchos, the habanero-and-citrus salsas. Playa's restaurant scene mixes these traditional roots with the international expat-driven rotation. The picks below cover both.
 
 | Spot | Rating |
 |---|---|

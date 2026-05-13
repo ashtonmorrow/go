@@ -88,8 +88,6 @@ related:
 
 [Córdoba, Argentina](/cities/cordoba-ar) is one of those cities most international travelers skip, partly because it is a hassle to fly into and partly because Buenos Aires absorbs the trip. It is worth more than that. The city was founded in 1573, which makes it roughly five hundred years old, with a colonial centre that holds together better than most South American capitals. It is also a college town, which is the other thing to know: dinner is at 10, the bars get going at 2, and the rhythm of the place follows the students.
 
-These are working notes from real time on the ground rather than a checklist. Córdoba rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in](#getting-in)

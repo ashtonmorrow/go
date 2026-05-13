@@ -54,8 +54,6 @@ related:
 
 I think [Bristol](/cities/bristol) does not get enough love. It is the underrated half of a London week: the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, a direct under-two-hour train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads), and the natural anchor for a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car.
 
-These are working notes from real time on the ground rather than a checklist. Bristol rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [When to go](#when-to-go)

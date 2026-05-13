@@ -28,9 +28,7 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Milan](/cities/milan) is the working capital of northern Italy: a design-and-finance city more than a tourist destination, with a smaller historic centre than Rome or Venice but a much denser modern register. The city is the home of aperitivo (the early-evening drink with substantial small plates that has spread across Italy), the Duomo and its rooftop, the Galleria Vittorio Emanuele II, and the Last Supper at Santa Maria delle Grazie. Two or three days is the right length; longer if you are using Milan as a base for Lake Como, Bergamo, or the Bernina Express to Switzerland.
-
-These are working notes from real time on the ground rather than a checklist. Milan rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Milan](/cities/milan) is the working capital of northern Italy: a design-and-finance city more than a tourist destination, with a smaller historic centre than Rome or Venice but a much denser modern side. The city is the home of aperitivo (the early-evening drink with substantial small plates that has spread across Italy), the Duomo and its rooftop, the Galleria Vittorio Emanuele II, and the Last Supper at Santa Maria delle Grazie. Two or three days is the right length; longer if you are using Milan as a base for Lake Como, Bergamo, or the Bernina Express to Switzerland.
 
 ## On this page
 
@@ -50,7 +48,7 @@ Milan Milan Malpensa (the main international gateway) (MXP) is served by three a
 
 ## Where to eat
 
-Milanese food has its own register inside Italian cooking: risotto alla milanese (saffron), osso buco, cotoletta alla milanese (the breaded veal cutlet), and the panettone at Christmas. Aperitivo is the cultural fact; most bars between 18:00 and 21:00 serve a small-plate spread with a €10-€15 drink. The picks below mix the casual evening rotation.
+Milanese food has its own style inside Italian cooking: risotto alla milanese (saffron), osso buco, cotoletta alla milanese (the breaded veal cutlet), and the panettone at Christmas. Aperitivo is the cultural fact; most bars between 18:00 and 21:00 serve a small-plate spread with a €10-€15 drink. The picks below mix the casual evening rotation.
 
 | Spot | Rating |
 |---|---|

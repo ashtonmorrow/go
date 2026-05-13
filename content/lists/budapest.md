@@ -30,8 +30,6 @@ related:
 
 [Budapest](/cities/budapest) is two cities split by the Danube. Buda on the western side is the older, quieter, hillier half; Pest on the eastern side is the flatter, busier capital where almost every visitor stays. The thermal-bath culture is the city's signature (the spa-day cross-list at [/lists/spa-day](/lists/spa-day) covers Gellért, Széchenyi, and Rudas in detail). The food has caught up with the visitor density in the last decade and runs from cheap and excellent to serious-restaurant.
 
-These are working notes from real time on the ground rather than a checklist. Budapest rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

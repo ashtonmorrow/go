@@ -23,8 +23,6 @@ related:
 
 [Frankfurt](/cities/frankfurt) is the German financial capital that most travellers fly into and immediately leave for somewhere else. That is partly the right move (Frankfurt is not the destination Berlin or Munich is) and partly a missed call (Frankfurt has a denser apple-wine-and-traditional-cuisine scene than people expect, plus easy access to the Rhine and the Moselle wine valleys). One or two days at the centre is enough; pair with the Rhine cruise or the Heidelberg-and-Mannheim corridor for a week.
 
-These are working notes from real time on the ground rather than a checklist. Frankfurt rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -43,7 +41,7 @@ Frankfurt Frankfurt Airport (FRA) sits about 12 km southwest of the centre; the 
 
 ## Where to eat
 
-Frankfurt food has its own register: Handkäse mit Musik (sour-milk cheese with vinegar-and-onion), Grüne Soße (the seven-herb green sauce), Frankfurter sausage (the original), and the apple-wine taverns (Apfelweinwirtschaften) of Sachsenhausen across the river. The picks below cover the casual everyday register; the apple-wine sit-down is a different category and worth a Sachsenhausen evening.
+Frankfurt food has its own side: Handkäse mit Musik (sour-milk cheese with vinegar-and-onion), Grüne Soße (the seven-herb green sauce), Frankfurter sausage (the original), and the apple-wine taverns (Apfelweinwirtschaften) of Sachsenhausen across the river. The picks below cover the casual everyday side; the apple-wine sit-down is a different category and worth a Sachsenhausen evening.
 
 | Spot | Rating |
 |---|---|

@@ -114,7 +114,7 @@ related:
 
 This is the version of the trip I would book for someone who has done a few harder destinations before. If you are travelling internationally for the first time, this is not the city to learn on; a guided trip with a private driver and an Egyptologist for the pyramid days will absorb most of the friction and is worth the money. These notes assume you have decided to do the trip.
 
-These are working notes from real time on the ground rather than a checklist. Cairo rewards going slowly more than it rewards covering ground, but the friction makes a long slow morning at one site beat a rushed half-day at three. Take what is useful, skip the rest.
+In Cairo, the friction makes a long slow morning at one site beat a rushed half-day at three. Pick the day you want and protect it.
 
 ## On this page
 

@@ -42,8 +42,6 @@ related:
 
 [Split](/cities/split) is the Croatian Adriatic city that grew up inside a Roman emperor's retirement palace. Diocletian abdicated in 305 CE, built himself a fortified seaside palace at modern-day Split, and after his death the locals moved in and never left. 1,700 years later the palace walls are streets, the basement halls are wine cellars, and the cathedral is the emperor's mausoleum. The full pin map sits below; this writeup covers the parts of it that change the trip.
 
-These are working notes from real time on the ground rather than a checklist. Split rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in](#getting-in)

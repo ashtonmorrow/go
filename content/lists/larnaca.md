@@ -28,8 +28,6 @@ related:
 
 [Larnaca](/cities/larnaca) is the small Cypriot port city that most visitors pass through on their way to the larger Limassol or to Ayia Napa, and that rewards staying. The Finikoudes seafront promenade, the medieval Larnaca Castle, the Hala Sultan Tekke mosque on the salt lake, and the casual taverna scene at fair prices make it a calmer base than the bigger resort towns. Two or three days for the city; pair with Nicosia and the Troodos mountains for a longer Cyprus trip.
 
-These are working notes from real time on the ground rather than a checklist. Larnaca rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
@@ -57,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Cypriot food sits at the Greek-Turkish-Levantine meeting point: meze (the multi-plate small dish parade), souvlaki, halloumi, the kebab register that pulls from Anatolia, plus a strong falafel-and-Lebanese thread. The picks below mix the casual taverna with the imported Middle Eastern.
+Cypriot food sits at the Greek-Turkish-Levantine meeting point: meze (the multi-plate small dish parade), souvlaki, halloumi, the kebab side that pulls from Anatolia, plus a strong falafel-and-Lebanese thread. The picks below mix the casual taverna with the imported Middle Eastern.
 
 | Spot | Rating |
 |---|---|

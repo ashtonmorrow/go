@@ -21,9 +21,7 @@ related:
 # - hero_image is empty; pick one in /admin/lists/hilton-head-sc via the picker.
 ---
 
-[Hilton Head](/cities/hilton-head) is the South Carolina barrier-island resort town that runs at a calmer pace than the Florida coast or the Outer Banks. The wide flat Atlantic beach is the daily anchor, the pine-forest interior of the island is the second register, and the food and golf carry the rest of the trip. Many travellers route through Savannah (an hour away by car) for a half-day or a dinner; the Hilton Head guide pairs cleanly with a Savannah extension. Three to five days for a beach trip; longer for a relaxed week.
-
-These are working notes from real time on the ground rather than a checklist. The island rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+[Hilton Head](/cities/hilton-head) is the South Carolina barrier-island resort town that runs at a calmer pace than the Florida coast or the Outer Banks. The wide flat Atlantic beach is the daily anchor, the pine-forest interior of the island is the second side, and the food and golf carry the rest of the trip. Many travellers route through Savannah (an hour away by car) for a half-day or a dinner; the Hilton Head guide pairs cleanly with a Savannah extension. Three to five days for a beach trip; longer for a relaxed week.
 
 ## On this page
 
@@ -43,7 +41,7 @@ Hilton Head Savannah/Hilton Head International (SAV) is served by a small region
 
 ## Where to eat
 
-Hilton Head food runs through the Low Country register: shrimp and grits, fresh oysters, blue crab, the Gullah heritage in the seasoning. Plus the resort-town imports (Italian, Greek, the brewery rotation) that any beach destination ends up with. The picks below cover both threads.
+Hilton Head food runs through the Low Country style: shrimp and grits, fresh oysters, blue crab, the Gullah heritage in the seasoning. Plus the resort-town imports (Italian, Greek, the brewery rotation) that any beach destination ends up with. The picks below cover both threads.
 
 | Spot | Rating |
 |---|---|
