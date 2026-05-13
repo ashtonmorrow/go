@@ -98,7 +98,7 @@ related:
 
 Sitges is the small beach town 40 minutes south of [Barcelona](/lists/barcelona) by Rodalies R2 Sud, useful as a calmer base near the city (a wedding, a cruise meet-up, the recovery half of a longer trip) or as a beach daytrip from a Barcelona base. The [Barcelona guide](/lists/barcelona) covers the city itself. This one covers Sitges: getting there, where to stay, beach split, what to eat.
 
-Two-night minimum if you base here. The hotel rates beat anything central in Barcelona and the pace is several gears slower than Barceloneta. If your trip needs museums, a music scene, or restaurant depth, base in Barcelona and ride the Rodalies down for an afternoon. If it needs the opposite, base here and ride the Rodalies up when you want a city day.
+Two-night minimum if you base here. The hotel rates beat anything central in Barcelona and the pace is several gears slower than Barceloneta. If your trip needs museums, a music scene, or restaurant depth, base in Barcelona and ride the Rodalies down for an afternoon. If it needs the opposite, base here and ride the Rodalies up when you want a city day. The cava wine country in [Penedès](/lists/penedes) sits 30 minutes inland by Uber and makes a natural half-day side trip from either base.
 
 ## On this page
 

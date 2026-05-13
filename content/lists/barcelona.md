@@ -124,7 +124,7 @@ Quick disambiguation: **La Rambla** is the famous central pedestrian boulevard b
 * [Markets: La Boqueria vs Santa Caterina](#markets-la-boqueria-vs-santa-caterina)
 * [Pickpockets](#pickpockets)
 * [Fira only for an early flight](#fira-only-for-an-early-flight)
-* [Pair with Sitges, 40 minutes south](#pair-with-sitges-40-minutes-south)
+* [Pair with Sitges or Penedès](#pair-with-sitges-or-penedès)
 
 ## Getting in from the airport
 
@@ -221,6 +221,6 @@ Cheaper hotels, short transit to the airport, slow transit to the rest of Barcel
 
 Short taxi to the airport from either. Walking is not a real option (Gran Via is an industrial road). For city sights, ride the metro in or book a city hotel.
 
-## Pair with Sitges, 40 minutes south
+## Pair with Sitges or Penedès
 
-If the beach side of the trip wants more than Barceloneta, [Sitges](/lists/sitges) sits 40 minutes south on Rodalies R2 Sud and works either as a daytrip or as the calmer base for the second half of the week. The Sitges guide covers where to stay, the beach split, and what to eat there.
+Two natural companions to the city. [Sitges](/lists/sitges) sits 40 minutes south on Rodalies R2 Sud and works as a daytrip or as the calmer base for the second half of the week. [Penedès](/lists/penedes), the cava wine country inland, is 30 to 45 minutes by Uber and runs as a half-day cellar tour with lunch on the estate. The natural chain: city morning in Barcelona, cava tour in Penedès, sunset and dinner in Sitges.
