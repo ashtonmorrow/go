@@ -9,6 +9,7 @@ import { useFilteredCities } from '@/lib/useFilteredCities';
 import ActiveFilters from './ActiveFilters';
 import KoppenIcon from './KoppenIcon';
 import { imageCreditTitle } from './ImageCredit';
+import Flag from './Flag';
 import { thumbUrl } from '@/lib/imageUrl';
 
 type Props = { cities: City[] };
@@ -361,19 +362,18 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
         }
       >
         {flagSrc ? (
-          // The stamp face is ~78x48 (90x60 with 1.5 padding inside the
-          // perforated border); pipe through Next/Image at size:80 so
-          // Vercel's optimizer fetches a 160px retina variant instead of
-          // letting the browser pull the raw Wikimedia 640px source per
-          // card. PSI flagged this as ~1.9 MB of avoidable transfer
-          // because every card's stamp was loading a full 60-600 KB PNG.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={thumbUrl(flagSrc, { size: 80 }) ?? flagSrc}
+          // <Flag> handles the city → country fallback at runtime via
+          // onError. The stamp face is ~78x48 (90x60 with 1.5 padding
+          // inside the perforated border). Pipe through the image
+          // optimizer at size:80 so Vercel's optimizer fetches a 160px
+          // retina variant instead of letting the browser pull the raw
+          // Wikimedia 640px source per card.
+          <Flag
+            cityFlag={city.cityFlag}
+            countryFlag={city.countryFlag}
             alt=""
+            size={80}
             className="w-full h-full object-contain"
-            loading="lazy"
-            decoding="async"
             width={80}
             height={60}
           />

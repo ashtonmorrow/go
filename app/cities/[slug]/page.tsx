@@ -32,6 +32,7 @@ import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
 import WikipediaAttribution from '@/components/WikipediaAttribution';
+import WikipediaHero from '@/components/WikipediaHero';
 import LiveClock from '@/components/LiveClock';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
@@ -413,9 +414,8 @@ export default async function CityPage({
             caption: `From a pin in ${city.name}`,
           });
         }
-        if (collageImages.length === 0) return null;
-        return (
-          <>
+        if (collageImages.length > 0) {
+          return (
             <HeroCollage
               className="mt-6"
               images={collageImages}
@@ -426,11 +426,23 @@ export default async function CityPage({
                   : undefined
               }
             />
-            {/* Wikimedia/Commons attribution row removed — heroImage is no
-                longer surfaced as a cover, so there's no image attribution
-                to render here. */}
-          </>
-        );
+          );
+        }
+        // Final fallback: Wikipedia hero from go_cities.hero_image. CC BY-SA
+        // requires attribution, which WikipediaHero supplies via the
+        // CommonsAttributionBadge overlay. The component hides itself
+        // gracefully if the Commons URL fails to load.
+        if (city.heroImage) {
+          return (
+            <WikipediaHero
+              className="mt-6"
+              src={city.heroImage}
+              attribution={city.heroImageAttribution}
+              alt={`${city.name} from Wikipedia`}
+            />
+          );
+        }
+        return null;
       })()}
 
       <AdminEditLink href={`/admin/cities/${city.slug}`} />
