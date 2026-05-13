@@ -1,0 +1,70 @@
+---
+indexable: false
+featured: true
+title: "Bogotá travel guide: where to stay, where to eat, and getting in from BOG"
+description: "A personal Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the steak-and-pasta rotation, and what to know about altitude."
+published: 2026-05-12
+updated: 2026-05-12
+authors:
+  - Mike Lee
+hero_image: ""
+hero_alt: ""
+
+related:
+  city: bogota
+  country: colombia
+
+# Authoring notes (kept here, not rendered):
+# - indexable: false until Mike reviews. This scaffold was generated
+#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
+#   rather than from a personal brief, so the voice pass is the
+#   prerequisite before flipping indexable.
+# - featured: true so the page surfaces as a Guide card on /lists.
+# - hero_image is empty; pick one in /admin/lists/bogota via the picker.
+# - Where-to-stay and Where-to-eat tables are populated from the pinned
+#   hotels and restaurants that already carry a rating; the rest of the
+#   restaurant pin set renders below this prose on the cards/map view.
+---
+
+[Bogotá](/cities/bogota) is the Colombian capital that surprises most visitors with the altitude (2,640 metres; you will feel it the first day), the cool-mountain weather year-round (15 to 20°C is the normal), and the modern restaurant scene that the post-2000 security improvements built. Zona Rosa, Chapinero, La Macarena, and La Candelaria (the historic centre) are the four neighbourhoods most visitors rotate through. Three to four days for the city; longer if you are pairing with the coffee region or Cartagena.
+
+These are working notes from real time on the ground rather than a checklist. Bogotá rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.
+
+## On this page
+
+* [Getting in from the airport](#getting-in-from-the-airport)
+* [Where to stay](#where-to-stay)
+* [Where to eat](#where-to-eat)
+
+## Getting in from the airport
+
+Bogotá El Dorado International (BOG) sits about 15 km west of central Bogotá; rideshare is the practical default since the airport has no rail link and the public bus is slow with luggage.
+
+| Mode | Time | Cost | When to use |
+|---|---|---|---|
+| Uber / Cabify / DiDi | 30 to 60 min | COP 30,000 to 50,000 | The default. All three rideshare apps work; Cabify is the cleanest if Uber drivers push for cash |
+| Pre-booked transfer | 30 to 60 min | COP 80,000 to 120,000 | Late arrival; driver waits with a name board. Worth the premium for the first night |
+| Airport taxi from the rank | 30 to 60 min | COP 50,000 to 80,000 | Use only the marked white taxis at the official rank; the desk inside arrivals issues a zone-based fixed-fare slip |
+| TransMilenio K86 (bus) | 60 to 90 min | COP 3,200 | The cheapest option. Bus to Portal El Dorado station then transfer. Slow with luggage; works for solo light travellers only |
+
+## Where to stay
+
+| Property | Note |
+|---|---|
+| [Hyatt Place Bogotá / Convention Center](/pins/hyatt-place-bogota-convention-center) | Pinned |
+
+These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
+
+## Where to eat
+
+Bogotá food has modernised faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub register is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
+
+| Spot | Rating |
+|---|---|
+| [El Mono Bandido Zona T](/pins/el-mono-bandido-zona-t) | 5/5 |
+| [Tauro Steak House & Bar](/pins/tauro-steak-house-and-bar) | 5/5 |
+| [Beer Lovers Parque 93](/pins/beer-lovers-parque-93) | Pinned |
+| [Cacio & Pepe](/pins/cacio-and-pepe) | Pinned |
+| [Chef Burger Parque 93](/pins/chef-burger-parque-93) | Pinned |
+| [Descortés](/pins/descortes) | Pinned |
+

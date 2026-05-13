@@ -53,6 +53,22 @@ const THEMATIC_ANCHORS: Record<string, string[]> = {
   'dublin':   ['dublin'],
   'belgrade': ['belgrade'],
   'sarajevo': ['sarajevo'],
+  // Second bulk pass
+  'buenos-aires': ['buenos-aires'],
+  'rio': ['rio-de-janeiro'],
+  'tirana': ['tirana'],
+  'bogota': ['bogota'],
+  'sofia': ['sofia'],
+  'bucharest': ['bucharest'],
+  'panama': ['panama-city'],
+  'lyon': ['lyon'],
+  'tokyo': ['tokyo'],
+  'venezia': ['venice'],
+  'cartagena-colombia': ['cartagena'],
+  'medellin': ['medellin'],
+  'playa-del-carmen': ['playa-del-carmen'],
+  'larnaca': ['larnaca'],
+  'saranda-_-ksamil': ['saranda', 'ksamil'],
 };
 
 export type GuideAnchor = {
