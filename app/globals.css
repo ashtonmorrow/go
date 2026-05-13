@@ -182,32 +182,65 @@
   height: auto;
 }
 
-/* Figures — used by the inline pin-photo injector on list pages. A figure
-   wraps the linked <img> with a captioning <figcaption> that points back to
-   the pin's detail page. The figure margin replaces the img's so we don't
-   stack double spacing when an image lives inside a figure. */
-.post-prose figure {
-  margin: 1.5rem 0;
+/* Figures — used by the inline pin-photo injector on list pages. Designed
+   as a quick-reference thumbnail floated alongside the paragraph that
+   mentions the pin, NOT a full-width hero. The text wraps to the left of
+   the photo so the page still scans top-to-bottom without big visual
+   breaks. */
+.post-prose figure.post-prose-figure {
+  float: right;
+  clear: right;
+  width: 200px;
+  max-width: 40%;
+  margin: 0.25rem 0 1rem 1.5rem;
 }
-.post-prose figure img {
+.post-prose figure.post-prose-figure img {
   margin: 0;
   display: block;
   width: 100%;
+  height: auto;
+  /* Cap height so portrait phone photos (4032px tall originals) don't
+     dominate the column when they float next to short paragraphs. */
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
 }
-.post-prose figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: rgb(99 105 113);
-  line-height: 1.45;
+.post-prose figure.post-prose-figure figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: rgb(120 125 132);
 }
-.post-prose figcaption a {
-  color: rgb(99 105 113);
+.post-prose figure.post-prose-figure figcaption a {
+  color: rgb(120 125 132);
   text-decoration: none;
-  border-bottom: 1px dotted rgb(180 188 196);
+  border-bottom: 1px dotted rgb(200 207 214);
 }
-.post-prose figcaption a:hover {
+.post-prose figure.post-prose-figure figcaption a:hover {
   color: rgb(31 124 106);
   border-bottom-color: rgb(31 124 106);
+}
+
+/* H2 and H3 always clear any floated figures above so a section never
+   visually flows out from underneath the previous section's photo. */
+.post-prose h2,
+.post-prose h3 {
+  clear: both;
+}
+
+/* Mobile: drop the float and render as a small landscape strip rather
+   than a half-width thumb that crowds the prose. Capped height keeps
+   portrait phone photos from blowing up the page on a small screen. */
+@media (max-width: 640px) {
+  .post-prose figure.post-prose-figure {
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 1rem 0;
+  }
+  .post-prose figure.post-prose-figure img {
+    max-height: 200px;
+  }
 }
 
 /* === MapLibre Popup theming ================================================

@@ -21,11 +21,10 @@
 // to ~1080px and serves WebP. Bare Supabase URLs would otherwise blow up
 // page weight on a Cairo guide with six figures.
 
-// Widths the next.config.js image optimizer accepts. Keep in sync with the
-// list in lib/imageUrl.ts; we want a width close to the prose column
-// (~720px) at 2x for retina, snapped to a valid value. 1080 is the closest
-// match >= 1440 isn't allowed, 1200 is the next step up.
-const FIGURE_WIDTH = 1080;
+// Figures render at ~200px wide (40% column max), so retina 2x = ~400px.
+// 480 is the closest allowed width >= 400. Quality 82 matches the rest of
+// the atlas.
+const FIGURE_WIDTH = 480;
 const FIGURE_QUALITY = 82;
 const OPTIMIZABLE_HOSTS = [
   'pdjrvlhepiwkshxerkpz.supabase.co',
@@ -104,37 +103,37 @@ export function enhanceBodyWithPinPhotos(
   const out: string[] = [];
 
   for (const rawBlock of blocks) {
-    out.push(rawBlock);
-
     const trimmed = rawBlock.trim();
-    if (!trimmed) continue;
-    if (trimmed.startsWith('#')) continue; // headings
-    if (trimmed.startsWith('|')) continue; // tables
-    if (trimmed.startsWith('>')) continue; // blockquotes
-    if (trimmed.startsWith('<!--')) continue; // HTML comments
-    if (/^[*\-+] /.test(trimmed) || /^\d+\. /.test(trimmed)) continue; // lists
+    const isOrdinaryParagraph =
+      trimmed.length > 0 &&
+      !trimmed.startsWith('#') && // headings
+      !trimmed.startsWith('|') && // tables
+      !trimmed.startsWith('>') && // blockquotes
+      !trimmed.startsWith('<!--') && // HTML comments
+      !/^[*\-+] /.test(trimmed) && // bullet list
+      !/^\d+\. /.test(trimmed); // numbered list
 
-    PIN_LINK_RE.lastIndex = 0;
-    const slugsHere: string[] = [];
-    const seen = new Set<string>();
-    let m: RegExpExecArray | null;
-    while ((m = PIN_LINK_RE.exec(rawBlock))) {
-      const slug = m[1];
-      if (seen.has(slug)) continue;
-      seen.add(slug);
-      if (usedSlugs.has(slug)) continue;
-      const entry = inlineSlugPhotos.get(slug);
-      if (!entry || entry.photos.length === 0) continue;
-      slugsHere.push(slug);
+    // Find any first-mention photo pins in this block before we emit it.
+    // We insert the figure BEFORE the paragraph so CSS `float: right` wraps
+    // the prose text alongside the photo (placing the figure AFTER pushes
+    // it down and the wrap effect is lost).
+    if (isOrdinaryParagraph) {
+      PIN_LINK_RE.lastIndex = 0;
+      const seen = new Set<string>();
+      let m: RegExpExecArray | null;
+      while ((m = PIN_LINK_RE.exec(rawBlock))) {
+        const slug = m[1];
+        if (seen.has(slug)) continue;
+        seen.add(slug);
+        if (usedSlugs.has(slug)) continue;
+        const entry = inlineSlugPhotos.get(slug);
+        if (!entry || entry.photos.length === 0) continue;
+        usedSlugs.add(slug);
+        out.push(renderFigure(slug, entry.pinName, entry.photos[0]!));
+      }
     }
-    if (slugsHere.length === 0) continue;
 
-    for (const slug of slugsHere) {
-      const entry = inlineSlugPhotos.get(slug)!;
-      const photo = entry.photos[0]!;
-      usedSlugs.add(slug);
-      out.push(renderFigure(slug, entry.pinName, photo));
-    }
+    out.push(rawBlock);
   }
 
   return out.join('\n\n');
