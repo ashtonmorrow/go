@@ -13,11 +13,21 @@ export async function POST(req: NextRequest) {
   const path = searchParams.get('path') || '/';
   try {
     revalidatePath(path);
+    // Cache tag inventory must match every tag actually emitted by lib/*
+    // unstable_cache wrappers — otherwise a Notion-data webhook flushes
+    // some surfaces but leaves others stale for up to 24h-7d. Run
+    // `grep -rE "tags: \[" lib/*.ts` to keep this list in sync.
     revalidateTag('supabase-cities');
     revalidateTag('supabase-countries');
     revalidateTag('supabase-pins');
+    revalidateTag('supabase-personal-photos');
     revalidateTag('notion-cities');
     revalidateTag('notion-countries');
+    revalidateTag('notion-page-blocks');
+    revalidateTag('place-cover');
+    revalidateTag('place-content');
+    revalidateTag('saved-lists-meta');
+    revalidateTag('commons-attribution');
     revalidatePath('/pins');
     revalidatePath('/pins/cards');
     revalidatePath('/pins/map');

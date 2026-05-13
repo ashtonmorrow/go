@@ -16,7 +16,10 @@ export const config = {
 };
 
 export function middleware(req: NextRequest) {
-  const expected = process.env.ADMIN_PASSWORD;
+  // Trim the env value so a trailing newline / whitespace (which is easy
+  // to introduce in .env.local or CI secret-paste flows) doesn't quietly
+  // break auth on a password that looks correct in plain text.
+  const expected = process.env.ADMIN_PASSWORD?.trim();
   if (!expected) {
     return new NextResponse('Admin disabled — ADMIN_PASSWORD not set', {
       status: 503,
