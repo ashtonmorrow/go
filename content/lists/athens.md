@@ -96,7 +96,7 @@ Reduced fees apply for everyone November through March, plus EU students, holder
 
 The Acropolis is the only one with a real queue. Book the timed-entry ticket on the official Hellenic Heritage portal before you go. The prepaid line is much shorter than the door line. The other six rarely need a reservation. Just buy at the gate.
 
-The [Theater of Dionysus](/pins/theater-of-dionysus) is on the south slope of the Acropolis and shares its entrance, so the Acropolis ticket gets you in.
+The [Theater of Dionysus](/pins/theatre-of-dionysus) is on the south slope of the Acropolis and shares its entrance, so the Acropolis ticket gets you in.
 
 Separately ticketed: the [Acropolis Museum](/pins/acropolis-museum) (around €15 in high season, €10 in low. Verify on theacropolismuseum.gr), in a Bernard Tschumi building south of the Acropolis, holds the actual sculptures, and the [National Archaeological Museum](/pins/national-archeological-museum) (€20 as of January 2026), north of Omonia, the country's most comprehensive collection. Both are worth the price. The Acropolis Museum is the closer pair with the hill, the NAM is its own afternoon.
 

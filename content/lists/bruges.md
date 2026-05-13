@@ -78,7 +78,7 @@ A 3 to 4 km loop covering the headlines. Start from the Markt (Market Square).
 
 | Stop | Time | Notes |
 |---|---|---|
-| [Historic Center of Brugge](/pins/historic-center-of-brugge), Markt and Belfry | 60 min | The headline square. Climb the Belfry early to avoid the queue. 366 steps, narrow, no elevator |
+| [Historic Center of Brugge](/pins/historic-centre-of-brugge), Markt and Belfry | 60 min | The headline square. Climb the Belfry early to avoid the queue. 366 steps, narrow, no elevator |
 | Burg Square | 20 min | Basilica of the Holy Blood and the Stadhuis. Free to walk through |
 | Rozenhoedkaai | 15 min | The most-photographed canal corner. The view people post |
 | Canal boat ride | 30 min | €15. Five operators with similar routes. Worth it if the weather holds |

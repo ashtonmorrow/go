@@ -71,7 +71,7 @@ KL is one of the few major capitals where the cheap pick and the splurge pick ar
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
 | Bangsar | [Alila Bangsar Kuala Lumpur](/pins/alila-bangsar-kuala-lumpur) | The pick. 5-star property directly above the metro, infinity pool with skyline view, walking distance to Bangsar Baru's food scene | Bangsar is calmer than the tourist spine. You ride two stops to the Petronas Towers |
-| KLCC | [Hyatt Centric City Center Kuala Lumpur](/pins/hyatt-centric-city-center-kuala-lumpur) | Direct on KLCC, Petronas view from many rooms, walking to the park and mall | KLCC is the most touristed zone. Prices peak here |
+| KLCC | [Hyatt Centric City Center Kuala Lumpur](/pins/hyatt-centric-city-centre-kuala-lumpur) | Direct on KLCC, Petronas view from many rooms, walking to the park and mall | KLCC is the most touristed zone. Prices peak here |
 | Bukit Bintang | Various 4-star and 5-star | Best for night-market and bar walks. Easy MRT to KLCC | Less polished than Bangsar or KLCC. Louder evenings |
 
 ### Hotels I would skip

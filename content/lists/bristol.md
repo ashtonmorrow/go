@@ -101,8 +101,8 @@ If the Marriott Royal is full or out of budget, push the date or take the Moxy b
 
 | Hotel | Why I would skip it |
 |---|---|
-| [Delta Hotels Bristol City Center](/pins/delta-hotels-bristol-city-center) | Used to be a Marriott. Has since hosted refugee placements and the building has run down. Rooms, lobby, and service have all slipped from what the brand suggests. |
-| [Holiday Inn Bristol City Center](/pins/holiday-inn-bristol-city-center-by-ihg) | A hotel worker came into my room while I was in the shower and would not leave. The location off the inner ring road on the north side of the center is also not where you want to be at night. The price is the only argument and it is not enough. |
+| [Delta Hotels Bristol City Center](/pins/delta-hotels-bristol-city-centre) | Used to be a Marriott. Has since hosted refugee placements and the building has run down. Rooms, lobby, and service have all slipped from what the brand suggests. |
+| [Holiday Inn Bristol City Center](/pins/holiday-inn-bristol-city-centre-by-ihg) | A hotel worker came into my room while I was in the shower and would not leave. The location off the inner ring road on the north side of the center is also not where you want to be at night. The price is the only argument and it is not enough. |
 
 The Marriott Royal at full rate will cost more, but you will not spend the trip dealing with the building.
 
