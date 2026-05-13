@@ -241,54 +241,59 @@ function parseRelated(v: unknown): ListRelated {
   };
 }
 
-const _readListContent = unstable_cache(
-  async (slug: string): Promise<ListContent | null> => {
-    if (!SAFE_SLUG.test(slug)) return null;
-    const file = path.join(CONTENT_ROOT, 'lists', `${slug}.md`);
-    let raw: string;
-    try {
-      raw = await fs.readFile(file, 'utf8');
-    } catch {
-      return null;
-    }
-    const parsed = matter(raw);
-    const data = parsed.data as Record<string, unknown>;
-    const bodyMd = parsed.content.trim();
-    if (!bodyMd && !data.faqs && !data.guide_cards && !data.route_map) {
-      // Nothing to render — neither prose nor blocks.
-      return null;
-    }
-    const bodyHtml = bodyMd ? await marked.parse(bodyMd, { async: true }) : '';
-    return {
-      body: bodyMd,
-      bodyHtml,
-      indexable: data.indexable === true,
-      featured: data.featured === true,
-      title: asString(data.title),
-      description: asString(data.description),
-      heroImage: asString(data.hero_image),
-      heroAlt: asString(data.hero_alt),
-      published: asIsoDate(data.published),
-      updated: asIsoDate(data.updated),
-      authors: asStringArray(data.authors),
-      routeMap: asString(data.route_map),
-      guideCards: parseGuideCards(data.guide_cards),
-      faqs: parseFaqs(data.faqs),
-      related: parseRelated(data.related),
-    };
-  },
-  // v5: bumped to invalidate the 24-hour cached `null` returns that the
-  // /lists/[slug] route stored while outputFileTracingIncludes was
-  // missing the route entry (May 2026). Without the bump, the cache
-  // keeps serving null for the eight new scaffolds (Sitges, Tbilisi,
-  // Kotor, Spa Day, Bath, Munich, Malta, Bali) until the natural 24-hour
-  // TTL expires, so /lists/<slug> renders the generic pin list rather
-  // than the editorial guide even after the tracing fix lands.
-  // v4: schema gained `featured` boolean for home-page surfacing,
-  // decoupled from indexable.
-  ['list-content-v5'],
-  { revalidate: 86400, tags: ['place-content'] },
-);
+// _readListContent intentionally is NOT wrapped in unstable_cache.
+// Previous versions used a 24-hour cross-request cache on this function,
+// which caused a recurring class of bug: whenever a new /content/lists/<slug>.md
+// file was added, if any request hit /lists/<slug> before the file was in
+// the function bundle (e.g., during a partial deploy window), the function
+// returned null, that null got cached for 24 hours under the v4 or v5 key,
+// and the page kept rendering the generic "Pins on Mike's <slug> list"
+// fallback even after the file was correctly bundled on subsequent
+// deployments. We bumped the key (v4→v5) once after the Tbilisi batch and
+// would have to bump it again after every new bulk-scaffold pass, which
+// is not a sustainable pattern.
+//
+// The fix: do not cross-request-cache this. The file read is a single
+// fs.readFile on a small bundled .md (microseconds). The matter() + marked
+// parse is single-digit milliseconds on a ~5 KB file. React's cache()
+// wrapper at export time still memoises within a single render. Across
+// requests, every call re-reads the file fresh, which means a new
+// deployment's bundled files are picked up immediately on the next
+// request rather than 24 hours later.
+async function _readListContent(slug: string): Promise<ListContent | null> {
+  if (!SAFE_SLUG.test(slug)) return null;
+  const file = path.join(CONTENT_ROOT, 'lists', `${slug}.md`);
+  let raw: string;
+  try {
+    raw = await fs.readFile(file, 'utf8');
+  } catch {
+    return null;
+  }
+  const parsed = matter(raw);
+  const data = parsed.data as Record<string, unknown>;
+  const bodyMd = parsed.content.trim();
+  if (!bodyMd && !data.faqs && !data.guide_cards && !data.route_map) {
+    return null;
+  }
+  const bodyHtml = bodyMd ? await marked.parse(bodyMd, { async: true }) : '';
+  return {
+    body: bodyMd,
+    bodyHtml,
+    indexable: data.indexable === true,
+    featured: data.featured === true,
+    title: asString(data.title),
+    description: asString(data.description),
+    heroImage: asString(data.hero_image),
+    heroAlt: asString(data.hero_alt),
+    published: asIsoDate(data.published),
+    updated: asIsoDate(data.updated),
+    authors: asStringArray(data.authors),
+    routeMap: asString(data.route_map),
+    guideCards: parseGuideCards(data.guide_cards),
+    faqs: parseFaqs(data.faqs),
+    related: parseRelated(data.related),
+  };
+}
 
 /**
  * Read a list's editorial markdown + opt-in frontmatter blocks. Distinct
