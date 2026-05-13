@@ -41,6 +41,18 @@ const THEMATIC_ANCHORS: Record<string, string[]> = {
   // Cairo is its own anchor; Giza is close enough to overlap visually
   // on the globe so the single Cairo pin reads better than two.
   'cairo': ['cairo'],
+  // Bulk-scaffolded city guides (May 2026 pass). Each anchors at the
+  // city slug; multi-anchor variants can be added if a guide grows.
+  'prague':   ['prague'],
+  'budapest': ['budapest'],
+  'berlin':   ['berlin'],
+  'lisbon':   ['lisbon'],
+  'rome':     ['rome'],
+  'milano':   ['milan'],
+  'vienna':   ['vienna'],
+  'dublin':   ['dublin'],
+  'belgrade': ['belgrade'],
+  'sarajevo': ['sarajevo'],
 };
 
 export type GuideAnchor = {

@@ -237,6 +237,107 @@ export const CITY_ARRIVAL: Record<string, CityArrival> = {
     ],
   },
 
+  'prague': {
+    airport: { iata: 'PRG', name: 'Václav Havel Airport Prague', distanceKm: 17, driveTimeMin: [25, 45] },
+    contextSentence: 'sits about 17 km west of the centre; the airport bus is the simplest way in, with a taxi as the easier-with-luggage alternative',
+    options: [
+      { mode: 'Bus 119 + Metro line A',  timeMin: [35, 45], cost: '40 CZK integrated ticket',        bestFor: 'The default. Bus 119 to Nádraží Veleslavín, transfer to the green metro line' },
+      { mode: 'Airport Express (AE) bus', timeMin: [35, 40], cost: '100 CZK',                         bestFor: 'Direct to Praha hlavní nádraží with luggage racks' },
+      { mode: 'Uber / Bolt / Liftago',    timeMin: [25, 45], cost: '350 to 650 CZK',                  bestFor: 'The right call with luggage or after a late arrival' },
+      { mode: 'Taxi from the rank',       timeMin: [25, 45], cost: '600 to 900 CZK',                  bestFor: 'Last resort; use the Fix Taxi or AAA counters inside arrivals' },
+    ],
+  },
+  'budapest': {
+    airport: { iata: 'BUD', name: 'Budapest Ferenc Liszt International', distanceKm: 24, driveTimeMin: [30, 50] },
+    contextSentence: 'sits about 24 km south-east of the city; the 100E airport bus is the cleanest option for most visitors, with rideshare as the alternative',
+    options: [
+      { mode: '100E airport bus',       timeMin: [35, 45], cost: '2,200 HUF single',                  bestFor: 'The default. Direct to Deák Ferenc tér every 20 to 30 minutes' },
+      { mode: 'Bolt / Uber-equivalent', timeMin: [30, 50], cost: '7,000 to 12,000 HUF',               bestFor: 'Late arrival or heavy luggage; Bolt is the dominant Hungarian rideshare' },
+      { mode: 'Bus 200E + Metro M3',    timeMin: [50, 70], cost: '450 HUF',                            bestFor: 'The cheapest path; bus 200E to Kőbánya-Kispest, transfer to the M3 blue metro' },
+      { mode: 'Taxi from the rank',     timeMin: [30, 50], cost: '~9,500 HUF flat via Főtaxi',         bestFor: 'Book at the licensed Főtaxi counter inside arrivals for a fixed fare' },
+    ],
+  },
+  'berlin': {
+    airport: { iata: 'BER', name: 'Berlin Brandenburg Airport', distanceKm: 25, driveTimeMin: [30, 50] },
+    contextSentence: 'sits about 25 km south-east of central Berlin; the FEX express train is the cleanest direct route to the centre, with the regional rail as a slightly slower backup',
+    options: [
+      { mode: 'FEX (Airport Express) train', timeMin: [30, 30], cost: '€4.40 ABC zone single',       bestFor: 'The default. Direct to Berlin Hauptbahnhof every 30 minutes' },
+      { mode: 'S-Bahn S9 or S45',            timeMin: [45, 60], cost: '€4.40 ABC single',             bestFor: 'Cheaper alternative if the FEX timing is wrong; same fare' },
+      { mode: 'Uber / FreeNow / taxi',       timeMin: [40, 60], cost: '€45 to €65 to the centre',     bestFor: 'Late arrival or heavy luggage' },
+      { mode: 'Bus X7 + U-Bahn U7',          timeMin: [60, 75], cost: '€4.40 ABC single',             bestFor: 'For hotels in Neukölln or Kreuzberg; X7 from BER to Rudow connects to U7' },
+    ],
+  },
+  'lisbon': {
+    airport: { iata: 'LIS', name: 'Humberto Delgado Airport (Lisbon)', distanceKm: 7, driveTimeMin: [15, 30] },
+    contextSentence: 'sits about 7 km north of the centre and is one of the closer European airport approaches; the red metro line connects directly into town',
+    options: [
+      { mode: 'Metro Red Line',          timeMin: [20, 30], cost: '€1.85 single + €0.50 Viva Viagem', bestFor: 'The default. Direct from the terminal to São Sebastião, then transfer' },
+      { mode: 'Aerobus',                  timeMin: [20, 30], cost: '€4 single',                       bestFor: 'Direct to Praça do Comércio and Cais do Sodré' },
+      { mode: 'Uber / Bolt / FreeNow',    timeMin: [15, 30], cost: '€10 to €18',                      bestFor: 'Cheap and easy; one of the more reliable rideshare markets in Europe' },
+      { mode: 'Taxi from the rank',       timeMin: [15, 30], cost: '€12 to €20 metered',              bestFor: 'Legal rank cars run a real meter; small luggage surcharge applies' },
+    ],
+  },
+  'rome': {
+    airport: { iata: 'FCO', name: 'Leonardo da Vinci Fiumicino', distanceKm: 32, driveTimeMin: [40, 70] },
+    contextSentence: 'sits about 32 km southwest of the centre; the Leonardo Express direct train to Roma Termini is the right default unless you have late luggage',
+    options: [
+      { mode: 'Leonardo Express train', timeMin: [32, 32], cost: '€14 single',                                 bestFor: 'The default. Direct from FCO to Roma Termini every 15 minutes' },
+      { mode: 'FL1 regional train',      timeMin: [45, 50], cost: '€8 single',                                  bestFor: 'Cheaper; runs to Trastevere, Ostiense, Tiburtina' },
+      { mode: 'Taxi (flat rate)',        timeMin: [40, 70], cost: '€55 flat to within the Aurelian walls',     bestFor: 'Late arrival or heavy luggage; flat fare set by law' },
+      { mode: 'Uber Black / private car',timeMin: [40, 70], cost: '€70 to €120',                                bestFor: "Italy's Uber market is licensed-driver only; price reflects that" },
+    ],
+  },
+  'milano': {
+    airport: { iata: 'MXP', name: 'Milan Malpensa', distanceKm: 50, driveTimeMin: [50, 80] },
+    contextSentence: 'is served by three airports: Malpensa (MXP) for international, Linate (LIN) for European city flights, and Bergamo Orio al Serio (BGY) for low-cost; MXP is the main gateway',
+    options: [
+      { mode: 'Malpensa Express train',   timeMin: [50, 60], cost: '€13 to €16 single',                                 bestFor: 'The default. Direct from MXP to Milano Centrale or Cadorna every 30 minutes' },
+      { mode: 'Linate Metro M4',           timeMin: [15, 20], cost: '€2.20 city ticket',                                 bestFor: 'From Linate; M4 blue line direct to the centre' },
+      { mode: 'Malpensa Shuttle bus',      timeMin: [60, 80], cost: '€10 single',                                        bestFor: 'Cheaper than the train; runs every 20 to 30 minutes' },
+      { mode: 'Uber Black / taxi',         timeMin: [50, 80], cost: '€95 to €120 from MXP, €25 to €40 from LIN',         bestFor: "Italy's Uber is licensed-driver only; taxis run a real meter" },
+    ],
+  },
+  'vienna': {
+    airport: { iata: 'VIE', name: 'Vienna International', distanceKm: 18, driveTimeMin: [25, 45] },
+    contextSentence: 'sits about 18 km southeast of the centre; the CAT express train is the fastest direct option, with the S-Bahn S7 as the cheaper alternative',
+    options: [
+      { mode: 'City Airport Train (CAT)', timeMin: [16, 16], cost: '€14.90 single',                bestFor: 'The fastest path. Non-stop to Wien Mitte every 30 minutes' },
+      { mode: 'S-Bahn S7',                timeMin: [25, 25], cost: '€4.30 single',                 bestFor: 'The cheaper option; same line, slightly slower' },
+      { mode: 'Uber / Bolt / FreeNow',    timeMin: [25, 45], cost: '€40 to €55',                   bestFor: 'Late arrival or heavy luggage' },
+      { mode: 'Taxi from the rank',       timeMin: [25, 45], cost: '€45 to €60 metered',           bestFor: 'Reliable; rank cars run a real meter' },
+    ],
+  },
+  'dublin': {
+    airport: { iata: 'DUB', name: 'Dublin Airport', distanceKm: 10, driveTimeMin: [20, 40] },
+    contextSentence: 'sits about 10 km north of the centre; the Airlink Express bus is the simplest path in, with rideshare as the easier-with-luggage option',
+    options: [
+      { mode: 'Airlink Express (747 / 757)', timeMin: [25, 35], cost: '€8 single',  bestFor: 'The default. Direct to the city centre every 15 minutes day and night' },
+      { mode: 'Aircoach',                     timeMin: [25, 35], cost: '€10 single', bestFor: 'Alternative; serves Ballsbridge and Donnybrook in addition' },
+      { mode: 'Uber / FreeNow / taxi',        timeMin: [20, 40], cost: '€30 to €50',  bestFor: 'Late arrival or heavy luggage; Dublin taxis run a real meter' },
+      { mode: 'Local Dublin Bus 16 / 41 / 102', timeMin: [40, 60], cost: '€2 single', bestFor: 'The cheapest path; limited luggage space' },
+    ],
+  },
+  'belgrade': {
+    airport: { iata: 'BEG', name: 'Nikola Tesla Airport', distanceKm: 18, driveTimeMin: [25, 45] },
+    contextSentence: 'sits about 18 km west of the centre; the A1 minibus is the simplest path in, with rideshare as the easier-with-luggage option',
+    options: [
+      { mode: 'A1 airport minibus',     timeMin: [30, 40], cost: '300 RSD single',     bestFor: 'The default. Direct to Slavija Square every 30 minutes; last departure 23:00' },
+      { mode: 'Bus 72',                  timeMin: [40, 50], cost: '150 RSD single',     bestFor: 'The cheapest option; slower and more crowded' },
+      { mode: 'CarGo / Yandex',          timeMin: [25, 45], cost: '1,500 to 2,500 RSD', bestFor: 'CarGo is the dominant Serbian rideshare; cheaper than kerb taxis' },
+      { mode: 'Taxi from the rank',      timeMin: [25, 45], cost: '~2,500 RSD via airport counter', bestFor: 'Book at the licensed taxi counter inside arrivals; ignore drivers approaching in the hall' },
+    ],
+  },
+  'sarajevo': {
+    airport: { iata: 'SJJ', name: 'Sarajevo International', distanceKm: 12, driveTimeMin: [20, 35] },
+    contextSentence: 'sits about 12 km southwest of the centre; the small airport has no rail link, so taxi or rideshare is the only real option',
+    options: [
+      { mode: 'Taxi from the rank',        timeMin: [20, 35], cost: '~30 BAM (€15) metered, ~40 BAM flat',  bestFor: 'The default. SJJ taxis run a real meter; agree the rate before pulling away for the flat fare' },
+      { mode: 'Bolt / Yandex',             timeMin: [20, 35], cost: '20 to 35 BAM',                          bestFor: 'Bolt is the dominant rideshare; pickup at the marked airport lot' },
+      { mode: 'Centrotrans bus',           timeMin: [30, 40], cost: '5 BAM single',                          bestFor: 'The cheapest path; runs to the bus station Nedjarici, not the historic centre' },
+      { mode: 'Pre-booked hotel transfer', timeMin: [20, 35], cost: '40 to 60 BAM',                          bestFor: 'Most Baščaršija hotels can pre-arrange; useful for late arrivals' },
+    ],
+  },
+
   'valletta': {
     airport: {
       iata: 'MLA',
