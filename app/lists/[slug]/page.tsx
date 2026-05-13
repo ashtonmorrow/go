@@ -418,31 +418,50 @@ export default async function ListPage({ params }: Props) {
           </p>
         )}
 
-        {/* Anchor links — promoted to text-prose so the type doesn't crash
-            from h1 to label-size. */}
+        {/* Anchor pills — the city and country detail pages a visitor is
+            most likely to want next. Originally rendered as inline text
+            links under the H1, which were easy to skip over as body
+            copy; promoted to filled pill buttons with a border and an
+            arrow so the navigational intent reads clearly at a glance. */}
         {(cityMatch || countryMatch) && (
-          <p className="mt-3 text-prose text-slate flex flex-wrap gap-x-5 gap-y-1">
+          <div className="mt-4 flex flex-wrap gap-2">
             {cityMatch && (
               <Link
                 href={`/cities/${cityMatch.slug}`}
-                className="inline-flex items-center gap-1.5 text-teal hover:underline"
+                className="
+                  inline-flex items-center gap-2
+                  rounded-full border border-sand
+                  bg-white px-4 py-2
+                  text-small font-medium text-ink-deep
+                  shadow-sm
+                  hover:bg-cream-soft hover:border-teal hover:text-teal
+                  transition-colors
+                "
               >
-                <span aria-hidden>📮</span>
-                <span>See {cityMatch.name} city page</span>
-                <span aria-hidden>→</span>
+                <span aria-hidden className="text-base leading-none">📮</span>
+                <span>See the {cityMatch.name} city page</span>
+                <span aria-hidden className="text-muted">→</span>
               </Link>
             )}
             {countryMatch && (
               <Link
                 href={`/countries/${countryMatch.slug}`}
-                className="inline-flex items-center gap-1.5 text-teal hover:underline"
+                className="
+                  inline-flex items-center gap-2
+                  rounded-full border border-sand
+                  bg-white px-4 py-2
+                  text-small font-medium text-ink-deep
+                  shadow-sm
+                  hover:bg-cream-soft hover:border-teal hover:text-teal
+                  transition-colors
+                "
               >
-                <span aria-hidden>🌍</span>
-                <span>See {countryMatch.name} country page</span>
-                <span aria-hidden>→</span>
+                <span aria-hidden className="text-base leading-none">🌍</span>
+                <span>See the {countryMatch.name} country page</span>
+                <span aria-hidden className="text-muted">→</span>
               </Link>
             )}
-          </p>
+          </div>
         )}
 
         {/* Editorial body — rendered markdown via marked + post-prose so
