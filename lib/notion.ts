@@ -143,6 +143,11 @@ export type Country = {
   flag: string | null;
   /** Curated, ordered URLs for the country's hero gallery. */
   heroPhotoUrls: string[];
+  /** Wikipedia/Commons hero image (P18 on the country's Wikidata entry).
+   *  Used as the country-page hero fallback when no personal photos
+   *  exist. Populated by scripts/backfill-country-heroes.ts. */
+  heroImage: string | null;
+  heroImageAttribution: ImageAttribution | null;
 };
 
 // Detects curated Flag URLs whose path component is empty — happens when
@@ -255,6 +260,13 @@ function supaCountryRow(r: any): Country {
     wikipediaSummary:  r.wikipedia_summary ?? null,
     flag,
     heroPhotoUrls:     Array.isArray(r.hero_photo_urls) ? r.hero_photo_urls : [],
+    // hero_image / hero_image_attribution may or may not exist on the
+    // table yet. The migration to add them is documented at
+    // scripts/backfill-country-heroes.ts. Default to null so the country
+    // page falls through to the empty-hero state until those columns
+    // land + are backfilled.
+    heroImage:            r.hero_image ?? null,
+    heroImageAttribution: r.hero_image_attribution ?? null,
   };
 }
 

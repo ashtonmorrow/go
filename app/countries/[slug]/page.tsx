@@ -14,6 +14,7 @@ import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
+import WikipediaHero from '@/components/WikipediaHero';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import PinPhotoMasonry from '@/components/PinPhotoMasonry';
 import { fetchPinsForLists } from '@/lib/pins';
@@ -290,14 +291,31 @@ export default async function CountryPage({
             />
           );
         }
-        return countryHeroImages.length > 0 ? (
-          <HeroCollage
-            className="mt-6"
-            images={countryHeroImages}
-            title={country.name}
-            caption={countryHeroCaption}
-          />
-        ) : null;
+        if (countryHeroImages.length > 0) {
+          return (
+            <HeroCollage
+              className="mt-6"
+              images={countryHeroImages}
+              title={country.name}
+              caption={countryHeroCaption}
+            />
+          );
+        }
+        // Final fallback: Wikipedia hero from go_countries.hero_image
+        // (populated by scripts/backfill-country-heroes.ts from Wikidata
+        // P18). Same precedence model as cities: personal photos win,
+        // Wikipedia second, codex is reserved for cards/buttons.
+        if (country.heroImage) {
+          return (
+            <WikipediaHero
+              className="mt-6"
+              src={country.heroImage}
+              attribution={country.heroImageAttribution}
+              alt={`${country.name} from Wikipedia`}
+            />
+          );
+        }
+        return null;
       })()}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
