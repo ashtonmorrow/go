@@ -75,7 +75,7 @@ For ten to fourteen days, I would start with Bangkok, then choose either Chiang 
 | [Phuket](/lists/phuket) | Practical big beach island, many hotel styles, direct flights | 3 to 5 days |
 | [Koh Samui](/cities/ko-samui) | Quieter beach week, resort rhythm, less urge to keep moving | 3 to 5 days |
 
-I would not do both Phuket and Koh Samui on a short trip. You can, but then the beaches become logistics. Pick the island whose inconvenience you prefer: Phuket is easier to reach and busier; Samui is calmer and often pricier to reach.
+I would not do both Phuket and Koh Samui on a short trip. You can, but then the beaches become logistics. Pick the island whose inconvenience you prefer. Phuket is easier to reach and busier. Samui is calmer and often pricier to reach.
 
 ## The boring details that make the trip easier
 
@@ -95,7 +95,7 @@ Bangkok is usually the entry point, and I think it deserves a few days even if t
 
 I would stay in Sukhumvit, Silom, or Riverside depending on the trip. Sukhumvit is convenient and international, with hotels, malls, bars, and BTS access. It is not the most distinctive version of Bangkok, but it works. Silom is a good compromise, with business-district order, markets, bars, and Lumpini Park. Riverside is calmer, better for ferries and the old-city temple circuit, and usually more expensive. [Khao San Road](/pins/khao-san-road) is backpacker Bangkok. That is useful information, not an insult. Stay there only if that is the trip you want.
 
-The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school, and [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) across the river. The river matters here. It is not just scenery; it is one of the ways Bangkok becomes easier to understand, because the older ceremonial city sits close to the water.
+The temple circuit is straightforward: Wat Phra Kaew and the Grand Palace, [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) for the reclining Buddha and the massage school, and [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) across the river. The river matters here. It is not just scenery. It is one of the ways Bangkok becomes easier to understand, because the older ceremonial city sits close to the water.
 
 For markets, I would choose based on purpose. [Chatuchak](/pins/chatuchak-weekend-market) is the large weekend shopping market. Chinatown is where I would go hungry. The floating markets outside the city can be visually interesting, but many are now visitor circuits rather than ordinary markets. That does not make them worthless. It just means I would treat them as a staged day out, not as a window into normal shopping.
 
@@ -105,7 +105,7 @@ February and March are warm and mostly dry in Bangkok. Highs around 30 to 35°C 
 
 Khao Yai makes sense when Bangkok has been enough and you want trees, hills, animals, and cooler mornings. The national park is about three hours from Bangkok by road, with [Pak Chong](/cities/pak-chong) as the practical gateway. You can get to Pak Chong by train or bus, but once you are there, public transit stops being the solution. Hire a driver, join a tour, rent a car, or rent a scooter only if your license and insurance actually cover it.
 
-The park is the point. Haew Narok is the tallest waterfall in the park; Haew Suwat is the one many visitors know from *The Beach*. Morning and evening are better for wildlife. Elephants are possible, not guaranteed. Deer, gibbons, hornbills, and other birdlife are more realistic expectations. Trails range from short walks to longer hikes, so this does not need to become an endurance trip.
+The park is the point. Haew Narok is the tallest waterfall in the park. Haew Suwat is the one many visitors know from *The Beach*. Morning and evening are better for wildlife. Elephants are possible, not guaranteed. Deer, gibbons, hornbills, and other birdlife are more realistic expectations. Trails range from short walks to longer hikes, so this does not need to become an endurance trip.
 
 Outside the park, PB Valley and GranMonte are the better-known wineries. I would treat them as a pleasant half-day rather than a reason to build the whole itinerary around the area. Chokchai Farm, Palio Khao Yai, and the viewpoints are useful filler if you have a driver and time between park visits.
 
@@ -117,7 +117,7 @@ Chiang Mai is the part of this itinerary where I would slow down. A few days is 
 
 The first temples I would point someone toward are Wat Phra That Doi Suthep on the mountain, [Wat Chedi Luang](/pins/wat-chedi-luang) in the Old City, and Wat Phra Singh for Lanna architecture. Lanna refers to the historical northern Thai kingdom, and the difference matters visually: rooflines, woodwork, ornament, and temple layouts do not feel like Bangkok copied northward.
 
-Food is a good reason to stay longer. Try khao soi early in the trip so you have time to eat it again. Warorot Market is the everyday market; the Sunday Walking Street is the easier visitor-facing version. Nimmanhaemin is better for cafes and work time than for old-city atmosphere, which is not a criticism. Sometimes you need a quiet table and an iced coffee more than another temple.
+Food is a good reason to stay longer. Try khao soi early in the trip so you have time to eat it again. Warorot Market is the everyday market. The Sunday Walking Street is the easier visitor-facing version. Nimmanhaemin is better for cafes and work time than for old-city atmosphere, which is not a criticism. Sometimes you need a quiet table and an iced coffee more than another temple.
 
 The problem is smoke season. Late February, March, and often April can bring bad air from agricultural and forest burning across northern Thailand and nearby countries. This is not a small aesthetic issue. In a bad week, views disappear and outdoor plans stop making sense. If Chiang Mai is the reason for the trip, I would rather go November through January or after the rains begin.
 

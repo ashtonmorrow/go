@@ -107,4 +107,4 @@ I would pair Olite with the surrounding Navarran wine region rather than make it
 
 ## What I Left Off
 
-Several recurring castle-list claims are not useful. There is no famous Castillo de San Felipe in Madrid; the well-known Castillo de San Felipe is in Ferrol, in Galicia. Barcelona's Castell de Montjuïc is a 17th and 18th century military fortification rather than a medieval castle, so it belongs to a different kind of itinerary. The Alcazaba of Almería would be a fair addition to a serious Moorish-fortress route, but I have not visited it personally and did not want to fake the note.
+Several recurring castle-list claims are not useful. There is no famous Castillo de San Felipe in Madrid. The well-known Castillo de San Felipe is in Ferrol, in Galicia. Barcelona's Castell de Montjuïc is a 17th and 18th century military fortification rather than a medieval castle, so it belongs to a different kind of itinerary. The Alcazaba of Almería would be a fair addition to a serious Moorish-fortress route, but I have not visited it personally and did not want to fake the note.

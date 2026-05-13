@@ -115,7 +115,7 @@ That usually means:
 - Potatoes with dirt still on them
 - Figs, grapes, or stone fruit only when the season is right
 
-If the table looks like more than one household could grow, it may be wholesale produce being resold as local. That is not a moral failure; it is just not the reason I go to these markets.
+If the table looks like more than one household could grow, it may be wholesale produce being resold as local. That is not a moral failure. It is just not the reason I go to these markets.
 
 ## Ask Before Handling Produce
 
