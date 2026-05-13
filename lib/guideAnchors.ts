@@ -69,6 +69,21 @@ const THEMATIC_ANCHORS: Record<string, string[]> = {
   'playa-del-carmen': ['playa-del-carmen'],
   'larnaca': ['larnaca'],
   'saranda-_-ksamil': ['saranda', 'ksamil'],
+  // Third bulk pass
+  'pattaya':         ['pattaya'],
+  'utrect-nl':       ['utrecht'],
+  'phi-phi':         ['ko-phi-phi'],
+  'frankfurt':       ['frankfurt'],
+  'dubrovnik':       ['dubrovnik'],
+  'hilton-head-sc':  ['hilton-head-island'],
+  'houston':         ['houston'],
+  'nuremberg':       ['nuremberg'],
+  'granada':         ['granada'],
+  'tenerife':        ['santa-cruz-de-tenerife'],
+  'manchester':      ['manchester'],
+  'malaga':          ['malaga'],
+  'são-paulo':       ['sao-paulo'],
+  'krabi':           ['krabi'],
 };
 
 export type GuideAnchor = {
