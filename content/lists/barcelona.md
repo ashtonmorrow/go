@@ -111,11 +111,9 @@ related:
 #   each republish, and update the FAQ if the rules ease.
 ---
 
-[Barcelona](/cities/barcelona) in 2026 is a different planning problem than Barcelona ten years ago. The city has spent the last several summers visibly pushing back against its own visitor economy: protest marches against overtourism in Ciutat Vella (the old town district that holds Barri Gòtic, El Raval, and La Ribera), the 2024 announcement that every short-term rental license in the city would be phased out by November 2028, and the 2024 protest tactic where residents sprayed visitors on La Rambla with water pistols as a low-grade objection to mass tourism. The reasons are local and substantive. Residential rents in Ciutat Vella roughly doubled over the decade as Airbnb-style conversions pulled long-term flats off the market. Pensioners on fixed incomes were forced out of neighborhoods they grew up in. The city's mayor (Jaume Collboni) framed the phase-out as a housing-affordability move rather than an anti-tourist one. None of this means Barcelona is hostile to a traveler who shows up thoughtfully. It does mean the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic, repeat) lands in 2026 the same way a 2010 Venice gondola playlist would today.
+[Barcelona](/cities/barcelona) in 2026 is pushing back hard against overtourism. The city is phasing out all 10,000 short-term rental licenses by November 2028 as a housing-affordability measure, and the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic) is the version most residents are trying to remove. This guide stays off the tourist spine: Poblenou as a base, eating one block off La Rambla, treating the monuments as day-stops you ride the metro to.
 
-The version below is the trip I would book for myself. It centers on staying off the tourist spine, eating in working neighborhoods, and treating the headline monuments as day-stops you ride the metro to. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.
-
-A note on the word **Rambla** before we go further. When this guide says "La Rambla" or "the Rambla," it means the famous central pedestrian boulevard between Plaça Catalunya and Port Vell: the one with the Boqueria on it, the one the pickpocket warnings are about. Poblenou has its own street called **Rambla del Poblenou**, which is a different street in a different neighborhood and the one Durlet Beach Apartments sits on. I'll always specify which.
+Quick disambiguation: **La Rambla** is the famous central pedestrian boulevard between Plaça Catalunya and Port Vell. **Rambla del Poblenou** is a different street in a different neighborhood (where Durlet Beach Apartments sits). The guide always specifies which.
 
 ## On this page
 
@@ -124,7 +122,7 @@ A note on the word **Rambla** before we go further. When this guide says "La Ram
 * [Where to stay](#where-to-stay)
 * [Where to eat, by neighborhood](#where-to-eat-by-neighborhood)
 * [Markets: La Boqueria vs Santa Caterina](#markets-la-boqueria-vs-santa-caterina)
-* [Pickpockets and the visitor-economy strain](#pickpockets-and-the-visitor-economy-strain)
+* [Pickpockets](#pickpockets)
 * [Fira only for an early flight](#fira-only-for-an-early-flight)
 * [Sitges as a daytrip or a cheaper base](#sitges-as-a-daytrip-or-a-cheaper-base)
 
@@ -161,9 +159,7 @@ A quick line key for this guide:
 
 ## Where to stay
 
-Two questions determine where to base in Barcelona. The first is whether you want to wake up inside the headline sights (Barri Gòtic, the [Sagrada Família](/pins/la-sagrada-familia) area) or one metro stop away from them. The second is whether you want a real hotel or a flat with a kitchen. The second question used to have an obvious Airbnb answer. It does not anymore.
-
-**Poblenou on the L4 (yellow) metro line is the one I would book first.** It is one short ride from the center, but it functions as an actual working neighborhood rather than a visitor precinct. Restaurants there price for residents instead of cruise day-trippers, evenings are calmer because the bar crowd is local, and the hotel rates are roughly a third lower for an equivalent room. The trade-off is real: you ride the metro to most of the headline sights rather than walking out of the lobby into them. That is the trade-off I would make.
+**Poblenou on the L4 (yellow) line is the first pick.** One metro stop from the center, working neighborhood rather than visitor precinct, restaurants priced for residents, evenings calmer, hotel rates roughly a third lower. The catch is the metro ride to the headline sights instead of walking out the door.
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
@@ -175,19 +171,11 @@ Two questions determine where to base in Barcelona. The first is whether you wan
 
 ### On Airbnb in Barcelona
 
-The short version: I do not book Airbnb here, and I would not in 2026. The longer version is the part that matters.
-
-Barcelona spent the 2010s losing its central housing stock to short-term rentals. Long-term landlords in Ciutat Vella, Gràcia, and Poblenou figured out that a flat let by the night earned three to five times what a flat let by the month did, and so the long-term flats disappeared. Residential rents roughly doubled across the decade. Pensioners and families on fixed incomes who had lived in those neighborhoods for generations were the first to leave. Ciutat Vella in particular became something residents started calling a "shop window," which is the phrase used in the protest marches.
-
-The city's response, announced in June 2024 by mayor [Jaume Collboni](https://en.wikipedia.org/wiki/Jaume_Collboni), was the most aggressive in Europe: every short-term rental license in Barcelona (around 10,000 flats) is being phased out by **November 2028**. The frame the city has used is explicitly housing affordability rather than anti-tourism. The goal is to return that 10,000-flat inventory to the residential rental market.
-
-For a traveler this has three practical consequences. First, the legal status of any given listing is uncertain, and bookings have been canceled mid-stay as licences are pulled. Second, the activity is socially stigmatized. You are the person the neighborhood is asking the city to remove. Third, hotels and licensed aparthotels are the legitimate replacement and do not put pressure on the residential stock. The aparthotels below (Durlet on Rambla del Poblenou, The Social Hub in Poblenou) cover the "I want a kitchen" case cleanly.
+Don't book one. Barcelona is phasing out all 10,000 short-term rental licenses by November 2028 as a housing-affordability measure, and bookings have been canceled mid-stay as licenses are pulled. Hotels and licensed aparthotels are the replacement. Durlet on Rambla del Poblenou and The Social Hub in Poblenou cover the "I want a kitchen" case.
 
 ## Where to eat, by neighborhood
 
-The economics of eating in central Barcelona work the way they work in every overtouristed European center. A restaurant on La Rambla pays Rambla rent and serves a customer base it will never see again, so the menu prices for a captive market and the kitchen optimises for throughput rather than repeat business. The same restaurant one block off, with a customer base of neighborhood residents and the occasional tourist, runs on different incentives. The food is better and costs less for the same reason: the room has to keep the locals coming back.
-
-The Poblenou picks below are the ones I would build dinners around if I were basing there as recommended. The central-Barcelona picks are the ones I would use on a day in the old city, between sights, when I want a bar stop rather than a destination meal.
+Walk one block off La Rambla in any direction. The Rambla itself prices for a captive market that never returns. Anywhere one street off prices for residents and the food is better for it. Poblenou for dinners if you're basing there. Central picks below for bar stops between sights in the old city.
 
 ### Poblenou
 
@@ -211,32 +199,28 @@ For anything else in the center, the planning rule is the simplest one in this g
 
 For an actual meal, go to [Mercat de Santa Caterina](/pins/mercat-de-santa-caterina) instead, about a 12-minute walk northeast toward the Born. The Miralles wave-roof is the photogenic part from outside. Inside it is a working neighborhood market where locals shop and the produce, fish, and tapas counters run on real prices. There is a sit-down restaurant tucked into the corner that lets you order off the market the same morning. It is the version of the Boqueria experience that the Boqueria stopped being.
 
-## Pickpockets and the visitor-economy strain
+## Pickpockets
 
-The pickpocket warnings travelers see in every Barcelona guide are real, and they are the most visible symptom of the same dynamic the rest of this guide is built around. La Rambla, Barri Gòtic, and the metro line that connects them are dense with daily out-of-town visitors who do not know the city, do not speak the language, and carry phones and wallets in habits the city's pickpocket crews have spent twenty years learning to exploit. The pattern is opportunistic distraction: someone bumps you or asks a question, someone else lifts the phone or the wallet in the same motion. It is rarely violent. It is almost always preventable.
+The risk is real on La Rambla, Barri Gòtic, and L3 between Plaça Catalunya and Drassanes. Pattern is opportunistic distraction (a bump or a question while a second person takes the phone). Rarely violent, almost always preventable:
 
-The practical rules are the small ones:
+* Phone in a pocket when not in use. Don't navigate with it in hand on La Rambla.
+* Bag in front of you in any crowd, especially on L3.
+* Cards in a different pocket than the wallet. Cash in a third.
+* If a block feels off, turn one street up the slope. You're back in a residential block within a minute.
 
-* Phone in a pocket when not in use. Do not navigate with it in hand on La Rambla.
-* Bag in front of you in any crowd, especially on L3 between Plaça Catalunya and Drassanes.
-* Cards in a different pocket than your wallet. Cash in a third place.
-* If a block feels off, it is off. Turn one street up the slope and you are usually back in a normal residential neighborhood within a minute.
-
-A sensible evening in the old city looks like this: a caña at Bar Kiosko La Cazalla, dinner one or two streets off La Rambla, walk the area in good light, take a taxi back if it is late. Done that way Barcelona is a calm place to be out at night, even in the parts of Ciutat Vella that carry the worst reputation. The harder thing to plan around is that you are, by being there at all, part of the visitor density the residents are pushing back on. Staying off the tourist spine and not booking an Airbnb are the two ways a traveler actually reduces that pressure.
+An evening in the old city: a caña at Bar Kiosko La Cazalla, dinner one or two streets off La Rambla, walk in good light, taxi back if late.
 
 ## Fira only for an early flight
 
-The Fira convention area is a different trip. The hotels are cheaper, the transit to the airport is short, and the transit to the rest of Barcelona is slow. Book it when your 6 a.m. flight beats your willingness to negotiate a taxi at 4 a.m., not as a city base.
+Cheaper hotels, short transit to the airport, slow transit to the rest of Barcelona. Book it for a 6 a.m. flight, not as a city base.
 
 | Hotel | Why I have stayed | Trade-off |
 |---|---|---|
 | [Renaissance Barcelona Fira Hotel](/pins/renaissance-barcelona-fira-hotel) | Jean Nouvel design with a 26-storey interior vertical garden worth seeing once | Minimalist all-white rooms and open-plan bathrooms that don't suit every traveler |
 | [Hyatt Regency Barcelona Tower](/pins/hyatt-regency-barcelona-tower) | Spacious rooms, large club lounge, Globalist upgrades land here often. Actually in L'Hospitalet de Llobregat, not Barcelona proper | Hotel food is functional rather than a destination, and you will pay €10 to €15 each way for a taxi to anywhere worth going |
 
-Both are a short taxi to the airport, which is the whole point. Walking is not a real option from either property. Gran Via is a wide industrial road, not a pedestrian route. For anything in the city, ride the metro in and book a city hotel.
+Short taxi to the airport from either. Walking is not a real option (Gran Via is an industrial road). For city sights, ride the metro in or book a city hotel.
 
 ## Sitges as a daytrip or a cheaper base
 
-Sitges sits about 40 minutes south of Barcelona by Rodalies commuter train (R2 Sud from Sants, 35 to 38 minutes on the timetable). Smaller beaches, slower pace, locally-owned restaurants, hotel rates that often beat anything central in the city. [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) is the property I would book first: fair price, location near the old town, easy walk to the beach. Plenty of small holiday apartments and family-run hotels work too.
-
-The town also functions as a daytrip if you are already based in Barcelona and want a break from the city pace: round-trip train, lunch on a terrace, an afternoon at the beach, dinner back in Barcelona. A standalone Sitges guide is in progress and will replace the brief notes above when it lands.
+40 minutes south on Rodalies R2 Sud from Sants. Smaller beaches, locally-owned restaurants, hotel rates that beat central Barcelona. [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) is the booking pick: fair price, near the old town, easy walk to the beach. Works as a daytrip from Barcelona too: train, beach, terrace lunch, dinner back in the city. A standalone Sitges guide is in progress.

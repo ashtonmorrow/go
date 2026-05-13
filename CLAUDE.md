@@ -131,6 +131,22 @@ The AI-default register I produced before this rule existed was a third register
 
 The intro to a destination guide should establish what kind of trip the place is and what a reader who has decided to go would want to know. Three to five sentences. Declarative. Concrete. No "rewards going slowly" type framing, no "rewards travelers who show up prepared" type framing. Open with what the city actually is (population, character, geography), then say what shape of trip it suits, then a one-line on what the rest of the guide covers. The "On this page" TOC sits directly after.
 
+**Logistics over narration. No background dumps.**
+
+These are travel guides. The reader is planning a trip and wants to know what to book, where to go, how to get there, what to avoid. They do not want a magazine essay. The single biggest pattern to avoid: explaining a city's history or politics or sociology before getting to the practical advice.
+
+Concrete example. The Barcelona Airbnb section was 4 paragraphs / 262 words explaining the 2010s rental-conversion crisis, the mayor's name, the protest marches, "the shop-window phrase," and the November 2028 phase-out date — before the practical recommendation. Mike's note: "the city is suffering from an affordability crisis and Airbnb is a part of that, many are unlicensed, so a hotel platform is better — is enough." That's the right shape. One sentence of why, one sentence of what to do, one sentence of which alternative.
+
+Rules:
+
+- **The reader has decided to go.** Background is needed only when it changes a booking decision. "Don't book Airbnb here, the licenses are being phased out and bookings get canceled mid-stay" is enough — the reader doesn't need the history of the housing crisis to make that call.
+- **Cut every paragraph that starts with "The short version: ... The longer version is the part that matters."** That construction is a flag that a background dump is coming. Either give just the short version, or rewrite so the background is one clause inside the practical sentence.
+- **Cut every "the trip falls apart when ..." / "the mistake is treating X like ..." opener.** Replace with the actual rule directly: "Don't drive across the city. Use the BTS and the river."
+- **Don't reach for the dramatic explanatory paragraph in the intro.** "If you fly coach often enough, your body will eventually start charging you for it. The slow-burn version is a sore back..." → "Book a thermal-spa city for the arrival night. Soak the next morning. Start the real trip on a body that can carry it." Same idea, one third the words.
+- **Cut sentence-of-context openers in sections.** "The pickpocket warnings travelers see in every Barcelona guide are real, and they are the most visible symptom of the same dynamic the rest of this guide is built around." → "The risk is real on La Rambla, Barri Gòtic, and L3."
+- **Heuristic: if a paragraph could be deleted entirely and a reader could still book the trip, delete it.** History, etymology, "the city has spent the last several summers visibly pushing back" framing — all candidates.
+- **Per-paragraph word budget.** Aim for 25-60 words per paragraph in practical sections. Anything over 100 is almost always a candidate for compression. The high-narrative guides (Split, Rotterdam, Barcelona pre-cleanup) averaged 150-190 words per paragraph; the well-paced ones (Phuket, Bangkok) average 60-80.
+
 **Length and structure:**
 
 A standard city guide runs 1,200 to 2,500 words. Headline city guides (London, Madrid, Bangkok) can go to 4,000. Smaller-destination guides (Trogir, Sitges, Koh Samui) sit at the low end. Most guides have 5-8 H2 sections. The arrival section is always first after the intro. "Where to stay" is almost always second. The remaining sections vary by destination.

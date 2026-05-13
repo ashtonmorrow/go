@@ -40,7 +40,7 @@ related:
   country: netherlands
 ---
 
-[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. The WWII bombing erased most of the medieval city, the rebuild made it the proving ground for modern Dutch architecture, and the result is the most visually interesting walking city in the [Netherlands](/countries/netherlands). It also has the country's busiest port, a working harbor history that ties to immigration into North America, and a food scene that runs ahead of every other Dutch city outside Amsterdam. The full pin map sits below. This writeup covers the parts of it that change the trip.
+[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. WWII bombing erased the medieval city, and the rebuild made it the proving ground for modern Dutch architecture. Two days for the walking architecture loop and the food scene, plus a half day for Kinderdijk.
 
 ## On this page
 

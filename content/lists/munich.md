@@ -113,7 +113,7 @@ related:
 #   Leberkäs-Semmel) kept in German, the standard form.
 ---
 
-Munich is the Bavarian city most travelers visit for two things they have already seen in pictures: a beer hall with men in leather shorts holding litre glasses, and the surfers on a standing wave in a city park. Both are real, both reliable, and both deserve the visit. The trick to planning the trip is to know that those two postcards are the headline and that the rest of the city is the working capital of Bavaria around them. You build a day or two around the brewery and the wave, you eat a Leberkäs-Semmel on a bench, you spend a half day in a museum if the weather turns, and then you train south for the Alps or east for Vienna.
+Munich is the Bavarian capital that most travelers come for two postcards: the beer halls and the surfers on the Eisbach standing wave. Both deliver. Two days for the city if those are the goal. Use it as a rail hub for the Alps south or Vienna east.
 
 The version below is the trip I would book for myself, written for a traveler who is treating Munich as the rail-trip hub rather than the destination. The map and the wider pin set sit underneath. The writeup covers the parts of the planning that change the trip.
 

@@ -96,7 +96,7 @@ related:
 #   neighborhood) per the editorial standard for European destinations.
 ---
 
-Sitges is the small beach town about 40 minutes south of Barcelona that solves a specific planning problem. You are near Barcelona for a wedding, a cruise embarkation, a family meet-up, or a few quiet days at the end of a bigger trip, and you do not actually need to be inside the city. The Rodalies commuter train makes the connection trivial, the pace is several gears slower than Barceloneta, and the hotel rates often beat anything central. It is not the version of the Mediterranean coast that competes for headlines. It is the version a particular kind of traveler comes back to.
+Sitges is the small beach town 40 minutes south of Barcelona by Rodalies R2 Sud. Slower pace than Barceloneta, hotel rates that beat central Barcelona, useful as a base near the city when you don't need to be inside it (a wedding, a cruise embarkation, a quiet end to a bigger trip).
 
 The version below is the trip I would book for myself: two or three nights, a base near the old town, beach in the day, a slow dinner at a local place, a sunset drink on the sand. The map and pin set sit below. This writeup covers the parts of the planning that change the trip.
 

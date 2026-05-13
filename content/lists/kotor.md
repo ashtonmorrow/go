@@ -114,7 +114,7 @@ related:
 #   travelers) per the editorial standard for European destinations.
 ---
 
-Kotor is the name of two things at once, and the first piece of planning is to keep them straight. The first is the **Bay of Kotor** (Boka Kotorska), the long inlet on the southern Adriatic coast that residents have always called Europe's southernmost fjord even though geologists call it a ria, a submerged river valley. The second is the medieval walled town of **Kotor** itself, tucked at the back of the bay underneath a vertical wall of mountain, fortified in the Venetian period, UNESCO-listed in 1979, and now visited by enough cruise ships in season that the old town and the cruise terminal have functionally merged into one experience between 10 a.m. and 4 p.m.
+Kotor is two things: the **Bay of Kotor** (the long Adriatic inlet often called Europe's southernmost fjord), and the **walled medieval town** at the back of the bay, UNESCO-listed and overrun by cruise ships from 10 a.m. to 4 p.m. in season. The two-line planning rule: base on the bay (Perast or Tivat), visit the old town outside cruise hours.
 
 The version of the trip I would book is built around that distinction. You stay somewhere around the bay rather than in the old town. You see Kotor on one well-timed day. You sleep somewhere quieter, eat somewhere cheaper, and avoid sharing a stone lane with 6,000 cruise passengers when the ships are in. The map and pin set sit below. This writeup covers the parts of the planning that change the trip.
 

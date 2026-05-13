@@ -123,7 +123,7 @@ related:
 #   Italicising in the body is intentional first-mention.
 ---
 
-Tbilisi is the kind of trip Americans tend not to take. Georgia spent most of the twentieth century inside the Soviet Union. It is on the wrong side of the Black Sea for the European budget-airline grid. The flight from anywhere west costs at least one layover. None of that prepares you for what the city actually is. Georgia is firmly its own country with its own ancient language, its own writing system, an Orthodox Christian tradition that predates Russia's by centuries, and a wine culture that the rest of the world is still learning to read. Tbilisi itself is a city of layers. One block reads Parisian, the next reads Soviet, the next reads Ottoman, and they all carry on together without arguing about which one is the real city.
+Tbilisi is one of the cheapest, most underrated European-style city trips an American can take. Cheap flights are scarce (a layover from anywhere west), but once you're there the food is excellent, the wine tradition is 8,000 years old and unlike anything in a European wine bar, and the architecture flips between Parisian, Soviet, and Ottoman block by block. Three days for the city. A week if you're adding Kakheti wine country or driving north into the Caucasus.
 
 The version below is the trip I would book for myself: three days, an Uber in from the airport, a hotel in the center, time for the cable car and the sulfur baths and a slow evening of khinkali and amber wine. The full map and pin set sits below. This writeup covers the parts of the planning that change the trip.
 

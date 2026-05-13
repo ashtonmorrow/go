@@ -44,7 +44,7 @@ related:
 #       for the day-trip section)
 ---
 
-[Buenos Aires](/cities/buenos-aires) is the South American capital that travelers fall hardest for. Wide European-style boulevards, a 12-million metropolitan population, the parrilla (Argentine steakhouse) culture, an excellent Japanese-Argentine sushi scene built by mid-20th-century immigration, and a peso economy that has whipsawed enough times that the dollar prices keep shifting. A week is the right length for a first visit. Longer if you are pairing with Mendoza wine country, Iguazú, or a Patagonia leg.
+[Buenos Aires](/cities/buenos-aires) is the South American capital with European-style boulevards, the parrilla steakhouse culture, an excellent Japanese-Argentine sushi scene, and a peso economy that keeps shifting dollar prices. A week for a first visit, longer if you're adding Mendoza wine country, Iguazú, or a Patagonia leg.
 
 ## On this page
 
