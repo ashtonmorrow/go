@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/rio via the picker.
+# - hero_image is empty. Pick one in /admin/lists/rio via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Rio de Janeiro](/cities/rio-de-janeiro) is the Brazilian coastal capital where the geography (the Atlantic on one side, the granite peaks of the Tijuca forest on the other, the lagoon and the beaches between them) is the whole reason. The pin set on this list runs heavily through Ipanema, Leblon, and Copacabana where most travellers actually stay; Santa Teresa, Centro, and the Botanical Garden are the day-trip extensions. A long weekend works as a Rio-only trip; a week opens up Búzios and Paraty along the coast.
+[Rio de Janeiro](/cities/rio-de-janeiro) is the Brazilian coastal capital where the geography (the Atlantic on one side, the granite peaks of the Tijuca forest on the other, the lagoon and the beaches between them) is the whole reason. The pin set on this list runs heavily through Ipanema, Leblon, and Copacabana where most travelers actually stay. Santa Teresa, Centro, and the Botanical Garden are the day-trip extensions. A long weekend works as a Rio-only trip. A week opens up Búzios and Paraty along the coast.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Rio de Janeiro Galeão / Antonio Carlos Jobim International (GIG) sits about 20 km north of the city centre and 35 km from Ipanema; the Premium airport bus and rideshare are the practical options.
+Rio de Janeiro Galeão / Antonio Carlos Jobim International (GIG) sits about 20 km north of the city center and 35 km from Ipanema. The Premium airport bus and rideshare are the practical options.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| BRT Real / Premium airport bus | 60 to 90 min | BRL 25 to 35 | The cleanest public option; direct service to Copacabana, Ipanema, Leblon, Barra |
-| Uber / 99 | 40 to 80 min | BRL 80 to 150 to Ipanema | The default with luggage. 99 is the local rideshare; Uber works equivalently |
-| Pre-booked transfer | 40 to 80 min | BRL 150 to 250 | Late arrival; driver waits with a name board |
-| Taxi from the rank | 40 to 80 min | BRL 120 to 200 | Look for the official Coopertramo or Easy Taxi rank; agree the meter before pulling away |
+| BRT Real / Premium airport bus | 60 to 90 min | BRL 25 to 35 | The cleanest public option. Direct service to Copacabana, Ipanema, Leblon, Barra |
+| Uber / 99 | 40 to 80 min | BRL 80 to 150 to Ipanema | The default with luggage. 99 is the local rideshare. Uber works equivalently |
+| Pre-booked transfer | 40 to 80 min | BRL 150 to 250 | Late arrival. Driver waits with a name board |
+| Taxi from the rank | 40 to 80 min | BRL 120 to 200 | Look for the official Coopertramo or Easy Taxi rank. Agree the meter before pulling away |
 
 ## Where to stay
 

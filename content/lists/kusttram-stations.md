@@ -11,7 +11,7 @@ route_map: kusttram
 
 guide_cards:
   title: Riding the Kusttram
-  intro: This started as a Kusttram station index and has slowly grown into the working Belgian-coast guide it actually wanted to be. The tram is the thread; the list also pins the cafés, parks, ship museum, and beach towns I have actually stopped at along the route. Browse the coast, pick a section, and link through to the places already in the atlas.
+  intro: This started as a Kusttram station index and has slowly grown into the working Belgian-coast guide it actually wanted to be. The tram is the thread. The list also pins the cafés, parks, ship museum, and beach towns I have actually stopped at along the route. Browse the coast, pick a section, and link through to the places already in the atlas.
   cards:
     - title: Good base
       body: Oostende is the easy starting point because mainline trains meet the coast there and the tram is simple to use in pieces.
@@ -76,7 +76,7 @@ You do not need swim shoes. The sand is fine and shells are uncommon outside the
 
 Belgian beach lunch is a real meal at a real table, not a sand-floor snack run. **Paviljoens** (wooden beach pavilions every few hundred meters along the dyke) serve from roughly 12 to 14:30, then close their kitchens until the early evening. If you walk up at 14:45 hungry, you will be told to come back at 18:00.
 
-What to order: **mosselen-friet** (mussels and fries), September through April when mussels are in season. **Garnaalkroketten** (grey shrimp croquettes) year-round, and worth ordering even if you order nothing else. **Tomaat-garnaal** (a tomato stuffed with grey shrimp) as a traditional cold starter. The garnalen are small, sweet, and locally caught. They are the reason the [Oostduinkerke](/cities/oostduinkerke) shrimp fishermen still ride Brabant draft horses through the surf at low tide.
+What to order: **mosselen-friet** (mussels and fries), September through April when mussels are in season. **Garnaalkroketten** (gray shrimp croquettes) year-round, and worth ordering even if you order nothing else. **Tomaat-garnaal** (a tomato stuffed with gray shrimp) as a traditional cold starter. The garnalen are small, sweet, and locally caught. They are the reason the [Oostduinkerke](/cities/oostduinkerke) shrimp fishermen still ride Brabant draft horses through the surf at low tide.
 
 Tipping is rounded up, not American style. Service charge is included.
 
@@ -95,7 +95,7 @@ The North Sea has a 4 to 5 meter tidal range. The beach you see at high tide is 
 
 Two things on the Belgian coast you really cannot see anywhere else:
 
-* **Horseback shrimp fishermen at [Oostduinkerke](/cities/oostduinkerke)**. UNESCO listed. They walk Brabant draft horses through the surf at low tide pulling nets for grey shrimp. Catches are weighed in town and cooked at the local paviljoens. Schedule depends on the tide; check the tourism office.
+* **Horseback shrimp fishermen at [Oostduinkerke](/cities/oostduinkerke)**. UNESCO listed. They walk Brabant draft horses through the surf at low tide pulling nets for gray shrimp. Catches are weighed in town and cooked at the local paviljoens. Schedule depends on the tide. Check the tourism office.
 * **Atlantikwall bunkers at [Raversijde](/pins/raversijde-domein-raversijde)**. A preserved section of WW2 coastal fortifications still standing in the dunes between [Oostende](/cities/oostende) and [Middelkerke](/cities/middelkerke), with a museum walk through the trenches. A strange thing to see in a beach context, and a useful reminder of what this stretch of coast was being used for eighty years ago.
 
 ## Where to get off along the line
@@ -105,8 +105,8 @@ The stops below are the ones I have actually used as destinations rather than ju
 | Town | Get off at | What is there |
 |---|---|---|
 | [Oostende](/cities/oostende) | Marie-Joséplein or the main Oostende station | [Apero Fish Palace](/pins/apero-fish-palace) for fresh North Sea fish at lunch, the [Mercator](/pins/mercator) (a 1932 three-master in the marina, now a small museum), and [Maria Hendrikapark](/pins/maria-hendrikapark) as the green walk between the train station and the dyke |
-| [De Panne](/cities/de-panne) | [De Panne Plopsaland](/pins/de-panne-plopsaland) | [Plopsaland](/pins/plopsaland), the Flemish family theme park; useful only if you have kids in the right band, but it is genuinely the reason most Belgian families take the tram this far west |
-| Damme (a short ride or bike inland from the Knokke end) | n/a (the tram doesn't reach Damme; the canal-bike or car does) | [Hoeke Windmill](/pins/hoeke-windmill), a working 18th-century post mill on the canal between Bruges and the coast. Pair with a slow canal ride from Bruges if you have a half-day |
+| [De Panne](/cities/de-panne) | [De Panne Plopsaland](/pins/de-panne-plopsaland) | [Plopsaland](/pins/plopsaland), the Flemish family theme park. Useful only if you have kids in the right band, but it is the reason most Belgian families take the tram this far west |
+| Damme (a short ride or bike inland from the Knokke end) | n/a (the tram doesn't reach Damme. The canal-bike or car does) | [Hoeke Windmill](/pins/hoeke-windmill), a working 18th-century post mill on the canal between Bruges and the coast. Pair with a slow canal ride from Bruges if you have a half-day |
 | [Knokke](/cities/knokke) | [Knokke Station](/pins/knokke-station) | [Grand Casino Knokke](/pins/grand-casino-knokke), the 1930 modernist casino with the Magritte and Delvaux murals inside. The "Knokke Casino" pin in the atlas is the same building under its more common short name |
 
 Two more 5/5-rated stops worth flagging without their own row: a quiet **Moeder Lambik** café halfway up [De Panne Kerk](/pins/de-panne-moeder-lambik) for a Trappist between rides, and the broader [Raversijde provincial domain](/pins/raversijde-domein-raversijde) around the Atlantikwall already mentioned above.

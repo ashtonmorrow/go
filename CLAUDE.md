@@ -101,8 +101,12 @@ The AI-default register I produced before this rule existed was a third register
 - `the headline X` / `the canonical X` — overused.
 - `the X postcard` — overused.
 - `genuinely`, `honestly`, `frankly`, `broadly`, `generally` as throat-clearing hedges. Drop them. The sentence is better without.
-- `These are working notes from real time on the ground rather than a checklist. <Place> rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.` — banned outright. This was the standardized pace-note paragraph that appeared on 79 of 80 guides; it's the single biggest AI-tell across the atlas.
+- `These are working notes from real time on the ground rather than a checklist. <Place> rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.` — banned outright. This was the standardized pace-note paragraph that appeared on 79 of 80 guides, the single biggest AI-tell across the atlas.
 - Triadic adjective clusters (`cheap, generous, and surprisingly international` / `quiet, calm, and slower-paced`). One specific adjective beats three vague ones.
+- `This is the trip I would book` / `the trip I would take` / `what I would book for someone` / `the version of the trip I would book` — Mike does not write this way. Make the recommendation directly without staging it through a hypothetical-self framing. "Stay in Giza if the pyramids are the reason you came" beats "this is the trip I would book for a first visit focused on the pyramids".
+- `worth every penny` / `worth every dollar` / `worth every bit of` — never. Either name a specific reason it is worth the money, or do not make the recommendation.
+- `My first pick` / `the right base for me` / `my pick for X` — when describing a hotel or option Mike has used. Mike does not rank his own preferences this way in published writing. State the property, what it gets you, what it does not. The reader decides.
+- `the right call` as a closer ("the X is the right call here") — overused as a closing sentence on practical sections. Drop or rewrite specifically.
 
 **Banned punctuation:**
 

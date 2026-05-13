@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Split
-  intro: Split is the Adriatic city built inside a Roman emperor's palace. The UNESCO old town is small enough to walk in two hours and dense enough to spend two days exploring; the islands (Hvar, Brač, Šolta) sit one ferry hop away. Konoba is the local taverna form and where you should eat for half your meals.
+  intro: Split is the Adriatic city built inside a Roman emperor's palace. The UNESCO old town is small enough to walk in two hours and dense enough to spend two days exploring. The islands (Hvar, Brač, Šolta) sit one ferry hop away. Konoba is the local taverna form and where you should eat for half your meals.
   cards:
     - title: Stay near, not inside, the Palace
       body: The historic core inside the palace walls is loud at night and the rentals overcharge. Stay in Veli Varoš, Bačvice, or just outside the Silver Gate. You walk into the palace in 5 minutes and sleep without club bass.
@@ -25,22 +25,22 @@ guide_cards:
 
 faqs:
   - q: How long should I plan in Split?
-    a: Two full days in Split itself, three with one ferry day. The old town fills one slow day; Marjan Hill, the Bačvice beach area, and a side trip to Trogir (UNESCO, 30 min by bus) fill another. The third day is best spent on a ferry to Hvar, Brač, or Šolta.
+    a: Two full days in Split itself, three with one ferry day. The old town fills one slow day. Marjan Hill, the Bačvice beach area, and a side trip to Trogir (UNESCO, 30 min by bus) fill another. The third day is best spent on a ferry to Hvar, Brač, or Šolta.
   - q: Where should I stay?
     a: Outside the palace walls but within 10 minutes walking. Veli Varoš (the old fisherman's quarter on the west side), Bačvice (near the beach), or Manuš (just north of the palace) are the three best zones. Anything inside the palace will be charming during the day and unsleepable at night.
   - q: How does the ferry to Hvar work?
-    a: Jadrolinija and Krilo Shipping both run Split-Hvar. Jadrolinija is the slower car ferry (~2 hours, ~€8) and lands at Stari Grad on the north of the island. Krilo's fast catamaran goes to Hvar Town directly (~1 hour, ~€12). Book Krilo ahead in summer; it sells out. Jadrolinija never quite sells out for foot passengers.
+    a: Jadrolinija and Krilo Shipping both run Split-Hvar. Jadrolinija is the slower car ferry (~2 hours, ~€8) and lands at Stari Grad on the north of the island. Krilo's fast catamaran goes to Hvar Town directly (~1 hour, ~€12). Book Krilo ahead in summer. It sells out. Jadrolinija never quite sells out for foot passengers.
   - q: Are the cruise crowds really that bad?
     a: Yes between 10 a.m. and 4 p.m. in July and August. Two to four ships dock and disgorge guided tours through the palace. The trick is the early morning (8 to 10 a.m.) and the evening (after 5 p.m.), almost a different city.
   - q: What is a konoba?
-    a: The Croatian rural-style taverna; fixed menu of local dishes, often family-run, often without an English menu. Konoba Fetivi, Konoba Marjan, and Konoba Oliva are three of the better Split ones. Expect pašticada (beef braised in red wine), peka (lamb under an iron bell), brodet (fish stew). Wines are usually local; ask for Pošip or Plavac Mali.
+    a: The Croatian rural-style taverna. Fixed menu of local dishes, often family-run, often without an English menu. Konoba Fetivi, Konoba Marjan, and Konoba Oliva are three of the better Split ones. Expect pašticada (beef braised in red wine), peka (lamb under an iron bell), brodet (fish stew). Wines are usually local. Ask for Pošip or Plavac Mali.
 
 related:
   city: split
   country: croatia
 ---
 
-[Split](/cities/split) is the Croatian Adriatic city that grew up inside a Roman emperor's retirement palace. Diocletian abdicated in 305 CE, built himself a fortified seaside palace at modern-day Split, and after his death the locals moved in and never left. 1,700 years later the palace walls are streets, the basement halls are wine cellars, and the cathedral is the emperor's mausoleum. The full pin map sits below; this writeup covers the parts of it that change the trip.
+[Split](/cities/split) is the Croatian Adriatic city that grew up inside a Roman emperor's retirement palace. Diocletian abdicated in 305 CE, built himself a fortified seaside palace at modern-day Split, and after his death the locals moved in and never left. 1,700 years later the palace walls are streets, the basement halls are wine cellars, and the cathedral is the emperor's mausoleum. The full pin map sits below. This writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -78,7 +78,7 @@ Inside the palace walls is romantic at midday and miserable after midnight. Stay
 
 | Zone | Why it's not the pick |
 |---|---|
-| Inside the palace walls | Stunning during the day; loud after 10 p.m., especially on weekends |
+| Inside the palace walls | Stunning during the day. Loud after 10 p.m., especially on weekends |
 | Mall of Split / suburbs | Cheaper and parking is available, but only worth it with a car. Otherwise you taxi to every dinner |
 
 ## Diocletian's Palace
@@ -88,7 +88,7 @@ Inside the palace walls is romantic at midday and miserable after midnight. Stay
 | Stop | Why |
 |---|---|
 | Bronze Gate (Riva-side entrance) | The south wall opens onto the harbor. Used to face the sea directly |
-| Substructures (basement halls) | The vaulted Roman foundation rooms beneath the palace. €7 ticket; underrated |
+| Substructures (basement halls) | The vaulted Roman foundation rooms beneath the palace. €7 ticket. Underrated |
 | Peristyle | The central courtyard. Look up at the cathedral bell tower |
 | Cathedral of St. Domnius | The emperor's mausoleum, repurposed as a church. €5 entry. The bell tower climb is another €5 |
 | Temple of Jupiter | Immediately adjacent to the Peristyle, west side, a one-minute walk. Tiny, dramatic, the headless sphinx is original |
@@ -97,7 +97,7 @@ Inside the palace walls is romantic at midday and miserable after midnight. Stay
 | [Gregory of Nin's Big Toe](/pins/gregory-of-nins-big-toe) | The bronze bishop statue outside the Golden Gate. Tradition says rubbing the toe brings good luck |
 | [Crkva Sv. Martina (St. Martin's Church)](/pins/crkva-sv-martina-st-martins-church) | The early-medieval church (5th-6th century origins) squeezed into the palace's north-wall guardhouse above the Golden Gate |
 
-The [Diocletian Aqueduct](/pins/diocletian-aqueduct-split-croatia) is a 30-minute walk east of the centre, the still-standing Roman aqueduct that fed the palace. Free, photogenic, mostly empty of tourists.
+The [Diocletian Aqueduct](/pins/diocletian-aqueduct-split-croatia) is a 30-minute walk east of the center, the still-standing Roman aqueduct that fed the palace. Free, photogenic, mostly empty of tourists.
 
 ## Marjan Hill and the beaches
 
@@ -111,7 +111,7 @@ Marjan Hill is the forested peninsula west of the old town. The walk up:
 | [Vrh Telegrin](/pins/vrh-telegrin) | The summit at 178 m. 45-min walk total |
 | [Klisko polje](/pins/klisko-polje) | The plateau between summits. Quiet picnic spot |
 
-Beaches: Bačvice (the famous one, shallow water; picigin is the local shallow-water paddle game played barefoot in calf-deep water and the reason this beach gets photographed), Kasjuni (further out, quieter, on the south side of Marjan), Trstenik. None of them are Adriatic-postcard beaches; go to Brač or Hvar for those.
+Beaches: Bačvice (the famous one, shallow water. Picigin is the local shallow-water paddle game played barefoot in calf-deep water and the reason this beach gets photographed), Kasjuni (further out, quieter, on the south side of Marjan), Trstenik. None of them are Adriatic-postcard beaches. Go to Brač or Hvar for those.
 
 ## Where to eat
 
@@ -138,7 +138,7 @@ Beaches: Bačvice (the famous one, shallow water; picigin is the local shallow-w
 | Brač (Bol, Zlatni Rat) | Jadrolinija car ferry from Split | 50 min to Supetar + 1 hour bus to Bol | ~€7 ferry | The famous shifting-tip beach. Day-trip works |
 | Hvar Town | Krilo or Jadrolinija catamaran | 1 hr (Krilo) or 2 hrs (Jadrolinija) | €12 (Krilo) or €8 (Jadrolinija) | The party island with the better food scene |
 | Šolta | Jadrolinija car ferry | 1 hr | ~€5 | The quietest of the easy island trips |
-| Krka National Park | Bus 26 or organised tour | 90 min | €10 bus + €25 park (high season) | Waterfalls. Plitvice is 3+ hours away and a full overnight |
+| Krka National Park | Bus 26 or organized tour | 90 min | €10 bus + €25 park (high season) | Waterfalls. Plitvice is 3+ hours away and a full overnight |
 
 ## Where to drink
 
@@ -150,4 +150,4 @@ Beaches: Bačvice (the famous one, shallow water; picigin is the local shallow-w
 | [Beach Bar Lungomare](/pins/beach-bar-lungomare) | A daytime beach bar walk from Bačvice |
 | [Joe's Beach Lounge & Bar](/pins/joe-s-beach-lounge-bar-second-location) | More polished beachfront option |
 
-For wine, almost every konoba has a local list. Pošip is the structured Croatian white from Korčula; Plavac Mali is the local red, the heavy ancestor of Zinfandel grown on the Pelješac peninsula; Babić is a lighter red from around Šibenik. Ask the kitchen what they would drink with what you ordered; it usually beats the menu pick.
+For wine, almost every konoba has a local list. Pošip is the structured Croatian white from Korčula. Plavac Mali is the local red, the heavy ancestor of Zinfandel grown on the Pelješac peninsula. Babić is a lighter red from around Šibenik. Ask the kitchen what they would drink with what you ordered. It usually beats the menu pick.

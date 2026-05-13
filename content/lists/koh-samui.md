@@ -21,17 +21,17 @@ guide_cards:
     - title: Stock up in Bangkok before you fly
       body: Samui has limited brand range. Specific Western brands, craft beer selection, and specialty hair products are all easier to find in Bangkok. A quick MBK/Siam run on the way through is the move.
     - title: Budget transport at $20 round-trip between towns
-      body: Local taxis and Grab cost roughly the same; ~300 ฿ between adjacent beaches, which lands at $20 round-trip on a day out. Motorbike rental is about the same per day. A licence is legally required to ride; check what your insurance covers.
+      body: Local taxis and Grab cost roughly the same. ~300 ฿ between adjacent beaches, which lands at $20 round-trip on a day out. Motorbike rental is about the same per day. A license is legally required to ride. Check what your insurance covers.
 
 faqs:
   - q: How do I actually get to Koh Samui?
     a: There are no long-haul direct flights. Fly into Bangkok (BKK), then transfer to Bangkok Airways for the short hop to Koh Samui Airport (USM). They own the airport, run the most frequencies, and tend to be punctual. The alternative is fly into Surat Thani (URT) on a low-cost and ferry across, which is cheaper but adds 3 to 4 hours each way.
   - q: Which beach should I base on?
-    a: Chaweng if it is your first trip and you want choice; biggest beach, most hotels, restaurants, nightlife. Lamai if you want the same idea but quieter, slightly older crowd. Bophut/Fisherman's Village for food and a more local feel. Choeng Mon if you want quiet, upscale, and remote-work friendly. The island has one ring road so anywhere is "everywhere" eventually, but where you sleep is where you spend most of your time.
+    a: Chaweng if it is your first trip and you want choice. Biggest beach, most hotels, restaurants, nightlife. Lamai if you want the same idea but quieter, slightly older crowd. Bophut/Fisherman's Village for food and a more local feel. Choeng Mon if you want quiet, upscale, and remote-work friendly. The island has one ring road so anywhere is "everywhere" eventually, but where you sleep is where you spend most of your time.
   - q: Will I see sunrises or sunsets?
-    a: Both Chaweng and Lamai face east; great sunrises, no sunset over the water. For sunset over the water, the west coast (Lipa Noi, Taling Ngam) is the move, but it is mostly resort-only. Most of the island's tourist infrastructure clusters on the east and north because that is where the airport and ferry pier sit.
+    a: Both Chaweng and Lamai face east. Great sunrises, no sunset over the water. For sunset over the water, the west coast (Lipa Noi, Taling Ngam) is the move, but it is mostly resort-only. Most of the island's tourist infrastructure clusters on the east and north because that is where the airport and ferry pier sit.
   - q: Do I need to rent a scooter?
-    a: It is the cheapest way to range across the island, and you can rent one for about $20 a day. But a motorcycle licence is legally required (and increasingly checked), most rental shops will hold your passport or a large deposit, and the drive into the hills around the viewpoints can be sketchy in wet weather. Grab and local taxis run roughly the same price as elsewhere on the island; for two people, a 300 ฿ short hop is about the same as a scooter day rate.
+    a: It is the cheapest way to range across the island, and you can rent one for about $20 a day. But a motorcycle license is legally required (and increasingly checked), most rental shops will hold your passport or a large deposit, and the drive into the hills around the viewpoints can be sketchy in wet weather. Grab and local taxis run roughly the same price as elsewhere on the island. For two people, a 300 ฿ short hop is about the same as a scooter day rate.
 
 related:
   city: ko-samui
@@ -39,16 +39,16 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - hero_image is empty; pick one in /admin/lists/koh-samui.
+# - hero_image is empty. Pick one in /admin/lists/koh-samui.
 # - There is no Park Hyatt on Koh Samui. Body originally claimed
-#   one; corrected 2026-05-13 to Six Senses / Vana Belle / Kimpton.
+#   one. Corrected 2026-05-13 to Six Senses / Vana Belle / Kimpton.
 # - Ang Thong day boats run from both Nathon and Bophut piers.
 # - Bangkok Airways owns Koh Samui Airport (USM), which is why
 #   they dominate the schedule and the airfares are out of step
 #   with the rest of the Thai domestic network.
 ---
 
-Koh Samui is the Thai island I would return to first when I want the trip to be simple. It is not the cheapest island, nor the quietest, nor the one to choose if you want to feel off the grid. What it does well is logistics: hotels, airport, food, beach clubs, temples, viewpoints, and enough choice that a week does not have to repeat itself. The full pin map sits below; this writeup covers the parts of it that change the trip.
+Koh Samui is the Thai island I would return to first when I want the trip to be simple. It is not the cheapest island, nor the quietest, nor the one to choose if you want to feel off the grid. What it does well is logistics: hotels, airport, food, beach clubs, temples, viewpoints, and enough choice that a week does not have to repeat itself. The full pin map sits below. This writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -79,16 +79,16 @@ The island is a ring road. You will sleep on one beach and visit the others.
 |---|---|---|---|
 | [Chaweng Beach](/pins/chaweng-beach) | Backpackers, families, honeymooners. The biggest mix | First-timers. Choice in hotels, food, beach clubs, jet ski, nightlife | The most crowded. Faces east, so sunrise yes, sunset no. Close to the airport, planes overhead |
 | [Lamai Beach](/pins/lamai-beach) | Slightly older, slightly slower | Same idea as Chaweng without the volume | Still busy. Same eastern sunrise/no-sunset situation |
-| Bophut / Fisherman's Village | Mature travellers, families | The strongest food base on the island. Holiday Inn Resort sits here | Neither sunrise nor sunset views are optimal |
+| Bophut / Fisherman's Village | Mature travelers, families | The strongest food base on the island. Holiday Inn Resort sits here | Neither sunrise nor sunset views are optimal |
 | [Choeng Mon Beach](/pins/choeng-mon-beach) | Upscale, honeymooners, remote workers | Quiet, small bays. Six Senses, Vana Belle (Luxury Collection), and Kimpton Kitalay sit on this side of the island at $200+ a night | Limited nightlife. Some people find it too quiet |
 
 The headline rule: the east side gets the planes and the sunrise, the north has the airport and the easiest food rhythm, the south and west are quieter but harder to range from.
 
 ## Getting around the island
 
-Local taxis and Grab cost roughly the same, with Grab being the easier card-payment option. Plan on roughly **300 ฿ to go between adjacent towns**, which lands at about $20 round-trip on a day out. A scooter rents for about the same per day. Many hotels include a free airport shuttle on arrival; ask before you book a transfer.
+Local taxis and Grab cost roughly the same, with Grab being the easier card-payment option. Plan on roughly **300 ฿ to go between adjacent towns**, which lands at about $20 round-trip on a day out. A scooter rents for about the same per day. Many hotels include a free airport shuttle on arrival. Ask before you book a transfer.
 
-If you rent a scooter, a motorcycle licence is legally required and increasingly checked, and most rental shops will hold your passport or take a large cash deposit.
+If you rent a scooter, a motorcycle license is legally required and increasingly checked, and most rental shops will hold your passport or take a large cash deposit.
 
 ## Temples and culture, half-day
 
@@ -108,7 +108,7 @@ A morning covers all three plus coffee. Bring covered legs and shoulders for the
 |---|---|---|
 | [Mu Ko Ang Thong National Marine Park](/pins/mu-ko-ang-thong-national-marine-park) | Day boat trip from Nathon or Bophut Pier | 42 islands of limestone, hidden lagoons, white-sand beaches. The flagship day-trip from Samui |
 | Secret Buddha Garden (Magic Garden) | Half-day, hill drive | Hidden hilltop sculpture garden by a local fruit farmer. Quirky, quiet, photogenic |
-| Namuang Waterfall | Half-day | Two-stage falls in the centre of the island. First is easy, second needs a moderate hike |
+| Namuang Waterfall | Half-day | Two-stage falls in the center of the island. First is easy, second needs a moderate hike |
 | [The Cocoon / Samui Viewpoint](/pins/the-cocoon-samui-viewpoint) and [Jungle Club](/pins/jungle-club) | Half-day, hill drive | Cliff-side bar/restaurants with wide inland views. Sunset-timed if you can |
 
 ## Beach clubs and where to eat
@@ -126,4 +126,4 @@ The Samui beach club scene has grown sharply. Pricing is European (€10 to €1
 
 ## What to skip
 
-The "floating market" excursions are mainland-Thailand sales, not Samui ones. Sea Walker tours (helmet on the seabed) photograph well but feel staged. The "tiger temple" attractions are not what they appear to be; they have been shut down repeatedly on welfare grounds and should not be on a 2026 itinerary.
+The "floating market" excursions are mainland-Thailand sales, not Samui ones. Sea Walker tours (helmet on the seabed) photograph well but feel staged. The "tiger temple" attractions are not what they appear to be. They have been shut down repeatedly on welfare grounds and should not be on a 2026 itinerary.

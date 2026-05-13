@@ -2,7 +2,7 @@
 indexable: false
 featured: true
 title: "Tenerife travel guide: Mount Teide, the beaches, and getting in from TFS or TFN"
-description: "A personal Tenerife travel guide. Getting in from TFS (south) or TFN (north), the resort-and-volcano shape, and a casual food rotation that earns the trip."
+description: "A personal Tenerife travel guide. Getting in from TFS (south) or TFN (north), the resort-and-volcano shape, and the Canarian food rotation worth booking around."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/tenerife via the picker.
+# - hero_image is empty. Pick one in /admin/lists/tenerife via the picker.
 ---
 
-[Tenerife](/cities/tenerife) is the largest of the Canary Islands and the volcanic Atlantic destination that the rest of Europe winters in. The southern coast (Costa Adeje, Los Cristianos, Playa de las Américas) is the resort-and-beach version; the northern coast (Puerto de la Cruz, La Orotava, the laurisilva forests) is the cooler, greener, traditional-villages side; Mount Teide (3,715 m, the highest peak in Spain) is the centre. The two ends of the island are different trips; pick the south for the beach and the north for the slower visit. Four to seven days; longer for a winter escape.
+[Tenerife](/cities/tenerife) is the largest of the Canary Islands and the volcanic Atlantic destination that the rest of Europe winters in. The southern coast (Costa Adeje, Los Cristianos, Playa de las Américas) is the resort-and-beach version. The northern coast (Puerto de la Cruz, La Orotava, the laurisilva forests) is the cooler, greener, traditional-villages side. Mount Teide (3,715 m, the highest peak in Spain) is the center. The two ends of the island are different trips. Pick the south for the beach and the north for the slower visit. Four to seven days. Longer for a winter escape.
 
 ## On this page
 
@@ -30,14 +30,14 @@ related:
 
 ## Getting in from the airport
 
-Tenerife Tenerife South (the resort-coast airport; TFN is the alternative for the north coast) (TFS) has two airports: Tenerife South (TFS) for the resort coast and most international flights, and Tenerife North (TFN) for inter-island and some peninsular Spain flights. The right one depends on where you are staying.
+Tenerife Tenerife South (the resort-coast airport. TFN is the alternative for the north coast) (TFS) has two airports: Tenerife South (TFS) for the resort coast and most international flights, and Tenerife North (TFN) for inter-island and some peninsular Spain flights. The right one depends on where you are staying.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Rental car from TFS or TFN | 15 to 45 min depending on hotel | From €25/day | The default. Tenerife rewards a car for the cross-island day trips (Teide, the north coast, the Anaga ridge) |
-| TITSA bus 111 from TFS | 50 to 60 min | €10 to €15 to Los Cristianos / Adeje | Cheap public option; the TITSA network covers both airports and most coastal towns |
-| Pre-booked transfer | 15 to 45 min | €30 to €60 | Door-to-door to your hotel; the resort-package version most travellers default to |
-| Taxi from the rank | 15 to 45 min | €25 to €70 depending on distance | Marked white cars; meters run honestly |
+| TITSA bus 111 from TFS | 50 to 60 min | €10 to €15 to Los Cristianos / Adeje | Cheap public option. The TITSA network covers both airports and most coastal towns |
+| Pre-booked transfer | 15 to 45 min | €30 to €60 | Door-to-door to your hotel. The resort-package version most travelers default to |
+| Taxi from the rank | 15 to 45 min | €25 to €70 depending on distance | Marked white cars. Meters run on the regulated rate |
 
 ## Where to eat
 

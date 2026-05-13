@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/cartagena-colombia via the picker.
+# - hero_image is empty. Pick one in /admin/lists/cartagena-colombia via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Cartagena](/cities/cartagena) is the Colombian Caribbean coast city that does the walled-colonial-old-town better than almost any other in the Americas. The Ciudad Amurallada (walled city) is small, photogenic, and dense; Getsemaní just outside the walls is the cheaper-and-younger neighbourhood; the Bocagrande peninsula is the high-rise beach district. The heat is real (28 to 32°C year-round, humidity high) and shapes the rhythm of the day. Two or three days is the right length.
+[Cartagena](/cities/cartagena) is the Colombian Caribbean coast city that does the walled-colonial-old-town better than almost any other in the Americas. The Ciudad Amurallada (walled city) is small, photogenic, and dense. Getsemaní just outside the walls is the cheaper-and-younger neighborhood. The Bocagrande peninsula is the high-rise beach district. The heat is real (28 to 32°C year-round, humidity high) and shapes the rhythm of the day. Two or three days is the right length.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Cartagena Rafael Núñez International (CTG) sits about 3 km from the Ciudad Amurallada (walled city); the airport is one of the closer in Latin America, so rideshare or taxi is a short, cheap ride.
+Cartagena Rafael Núñez International (CTG) sits about 3 km from the Ciudad Amurallada (walled city). The airport is one of the closer in Latin America, so rideshare or taxi is a short, cheap ride.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Uber / inDrive | 15 to 25 min | COP 15,000 to 30,000 | The default. The short ride means even a kerb-quote premium is not painful |
-| Airport taxi | 15 to 25 min | COP 25,000 to 40,000 fixed-zone fare | Use the marked yellow taxis with the airport tariff posted at the kerb |
-| Pre-booked transfer | 15 to 25 min | COP 60,000 to 100,000 | Late arrival; driver waits with a name board |
-| Walk + bus | 40 to 60 min | COP 3,000 | Cheapest path; walk from the terminal to the public-bus stop on the main road. Workable only for solo light travellers |
+| Uber / inDrive | 15 to 25 min | COP 15,000 to 30,000 | The default. The short ride means even a curb-quote premium is not painful |
+| Airport taxi | 15 to 25 min | COP 25,000 to 40,000 fixed-zone fare | Use the marked yellow taxis with the airport tariff posted at the curb |
+| Pre-booked transfer | 15 to 25 min | COP 60,000 to 100,000 | Late arrival. Driver waits with a name board |
+| Walk + bus | 40 to 60 min | COP 3,000 | Cheapest path. Walk from the terminal to the public-bus stop on the main road. Workable only for solo light travelers |
 
 ## Where to stay
 

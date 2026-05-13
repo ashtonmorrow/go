@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/larnaca via the picker.
+# - hero_image is empty. Pick one in /admin/lists/larnaca via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Larnaca](/cities/larnaca) is the small Cypriot port city that most visitors pass through on their way to the larger Limassol or to Ayia Napa, and that rewards staying. The Finikoudes seafront promenade, the medieval Larnaca Castle, the Hala Sultan Tekke mosque on the salt lake, and the casual taverna scene at fair prices make it a calmer base than the bigger resort towns. Two or three days for the city; pair with Nicosia and the Troodos mountains for a longer Cyprus trip.
+[Larnaca](/cities/larnaca) is the small Cypriot port city that most visitors pass through on their way to the larger Limassol or to Ayia Napa, and that rewards staying. The Finikoudes seafront promenade, the medieval Larnaca Castle, the Hala Sultan Tekke mosque on the salt lake, and the casual taverna scene at fair prices make it a calmer base than the bigger resort towns. Two or three days for the city. Pair with Nicosia and the Troodos mountains for a longer Cyprus trip.
 
 ## On this page
 
@@ -36,13 +36,13 @@ related:
 
 ## Getting in from the airport
 
-Larnaca Larnaca International (LCA) sits about 8 km southwest of the city; the airport is the main gateway for all of Cyprus, so rideshare or taxi is the practical default for a short ride into town.
+Larnaca Larnaca International (LCA) sits about 8 km southwest of the city. The airport is the main gateway for all of Cyprus, so rideshare or taxi is the practical default for a short ride into town.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Bus 425 / 429 | 20 to 30 min | €1.50 to €2.50 single | The default for the budget option. Direct to Finikoudes promenade every 30 minutes |
-| Bolt | 15 to 25 min | €10 to €15 | Bolt is the dominant Cypriot rideshare; Uber is not active. Pickup at the marked airport lot |
-| Airport taxi | 15 to 25 min | €15 to €25 metered | Metered cars at the kerb; the rate is regulated. Surcharge for late-night arrivals |
+| Bolt | 15 to 25 min | €10 to €15 | Bolt is the dominant Cypriot rideshare. Uber is not active. Pickup at the marked airport lot |
+| Airport taxi | 15 to 25 min | €15 to €25 metered | Metered cars at the curb. The rate is regulated. Surcharge for late-night arrivals |
 | Pre-booked transfer / car rental | 15 to 25 min | €20 to €40 transfer, €25/day rental | Pick up a rental car at the airport if you are continuing to Limassol, Paphos, or the Troodos mountains |
 
 ## Where to stay

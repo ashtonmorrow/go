@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/tokyo via the picker.
+# - hero_image is empty. Pick one in /admin/lists/tokyo via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Tokyo](/cities/tokyo) is the largest metropolitan area in the world by most measures (~37 million people) and reads exactly that big once you arrive. The trade-off of a Tokyo trip is that you are not "seeing the city" so much as picking three or four wards (Shibuya, Shinjuku, Ginza, Asakusa, Roppongi, Shimokitazawa) and going deep on each. The food is the canonical reason; sushi, ramen, izakaya, the seven-eleven sandwich that out-performs most cafe lunches in Europe. A week is the minimum; longer for the day-trips out to Hakone, Kamakura, and Nikko.
+[Tokyo](/cities/tokyo) is the largest metropolitan area in the world by most measures (~37 million people) and reads exactly that big once you arrive. The trade-off of a Tokyo trip is that you are not "seeing the city" so much as picking three or four wards (Shibuya, Shinjuku, Ginza, Asakusa, Roppongi, Shimokitazawa) and going deep on each. The food is the canonical reason. Sushi, ramen, izakaya, the seven-eleven sandwich that out-performs most cafe lunches in Europe. A week is the minimum. Longer for the day-trips out to Hakone, Kamakura, and Nikko.
 
 ## On this page
 
@@ -35,18 +35,18 @@ related:
 
 ## Getting in from the airport
 
-Tokyo Narita International (and Haneda HND for closer landings) (NRT) has two airports: Narita (NRT) is 60 km east of the centre and handles most international long-haul; Haneda (HND) is 15 km south and handles a growing share of long-haul plus all domestic. The transit options differ.
+Tokyo Narita International (and Haneda HND for closer landings) (NRT) has two airports: Narita (NRT) is 60 km east of the center and handles most international long-haul. Haneda (HND) is 15 km south and handles a growing share of long-haul plus all domestic. The transit options differ.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Narita Express (N'EX) from NRT | 55 to 75 min | ¥3,000 to ¥3,250 | The default from NRT. Direct to Tokyo, Shinjuku, Shibuya stations; reserve seats in advance for peak hours |
-| Keisei Skyliner from NRT | 40 to 50 min | ¥2,580 | Faster than the N'EX but only goes to Nippori and Ueno; useful for hotels on the east side or for Asakusa |
+| Narita Express (N'EX) from NRT | 55 to 75 min | ¥3,000 to ¥3,250 | The default from NRT. Direct to Tokyo, Shinjuku, Shibuya stations. Reserve seats in advance for peak hours |
+| Keisei Skyliner from NRT | 40 to 50 min | ¥2,580 | Faster than the N'EX but only goes to Nippori and Ueno. Useful for hotels on the east side or for Asakusa |
 | Keikyū Line from HND | 15 to 25 min | ¥330 to ¥630 | The default from HND. Direct to Shinagawa with connections to the rest of the JR network |
-| Airport Limousine Bus | 60 to 120 min | ¥3,200 from NRT, ¥1,250 from HND | Direct from either airport to major hotels; useful if you have heavy luggage and are not changing trains |
+| Airport Limousine Bus | 60 to 120 min | ¥3,200 from NRT, ¥1,250 from HND | Direct from either airport to major hotels. Useful if you have heavy luggage and are not changing trains |
 
 ## Where to eat
 
-Tokyo food is its own argument: the highest concentration of Michelin-starred restaurants in any city on Earth, plus a casual side (the conveyor-belt sushi, the standing-only ramen counter, the depachika department-store basement food halls) that the rest of the world copies. The picks below lean casual and accessible; reservations at the high end need to be made weeks ahead.
+Tokyo food is its own argument: the highest concentration of Michelin-starred restaurants in any city on Earth, plus a casual side (the conveyor-belt sushi, the standing-only ramen counter, the depachika department-store basement food halls) that the rest of the world copies. The picks below lean casual and accessible. Reservations at the high end need to be made weeks ahead.
 
 | Spot | Rating |
 |---|---|

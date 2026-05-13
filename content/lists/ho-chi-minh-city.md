@@ -25,15 +25,15 @@ guide_cards:
 
 faqs:
   - q: Do I need a visa for Vietnam?
-    a: Most western visitors do. Use the official Government of Vietnam e-visa portal at evisa.gov.vn. The 30-day single-entry visa is $25 and the 90-day multiple-entry is $50. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites; they charge two to three times the official rate for the same e-visa.
+    a: Most western visitors do. Use the official Government of Vietnam e-visa portal at evisa.gov.vn. The 30-day single-entry visa is $25 and the 90-day multiple-entry is $50. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites. They charge two to three times the official rate for the same e-visa.
   - q: Where should I stay in HCMC?
     a: District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the view splurge and has a strong hotel breakfast. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.
   - q: Is Saigon good for craft beer?
     a: Yes. The scene is dense, the breweries are within walking distance of each other in District 1, the prices are reasonable, and the quality is high. Heart of Darkness, Pasteur Street, Belgo, East West, and 7 Bridges are the names you will see most. The one-evening crawl below covers the four big ones.
   - q: How do I get from Tan Son Nhat (SGN) to District 1?
-    a: Grab is the answer. Around $5 to $10 to most District 1 hotels, 20 to 40 minutes depending on traffic. Avoid the airport taxi touts in arrivals. Official metered taxis (Vinasun, Mai Linh) are fine if you walk to the rank, but Grab is easier with luggage. Bus 109 runs to Ben Thanh for under $1 if you are travelling light.
+    a: Grab is the answer. Around $5 to $10 to most District 1 hotels, 20 to 40 minutes depending on traffic. Avoid the airport taxi touts in arrivals. Official metered taxis (Vinasun, Mai Linh) are fine if you walk to the rank, but Grab is easier with luggage. Bus 109 runs to Ben Thanh for under $1 if you are traveling light.
   - q: Is it safe to walk around at night?
-    a: Yes for District 1, with normal city common sense. Watch crossings; pedestrians have right of way only in theory, and the trick is to walk slowly and predictably so the motorbikes can flow around you. Phones snatched from hands by passing scooters is the petty crime to actually watch for, not muggings.
+    a: Yes for District 1, with normal city common sense. Watch crossings. Pedestrians have right of way only in theory. Walk slowly and predictably so the motorbikes can flow around you. Phones snatched from hands by passing scooters is the petty crime to actually watch for, not muggings.
 
 related:
   city: ho-chi-minh-city
@@ -41,20 +41,20 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - hero_image is empty; pick one in /admin/lists/ho-chi-minh-city.
+# - hero_image is empty. Pick one in /admin/lists/ho-chi-minh-city.
 # - Pin slug fixed 2026-05-13: war-remnants-musem → war-remnants-museum.
-# - Ben Dinh vs Ben Duoc: body now flags the Ben Dinh entry; pin
+# - Ben Dinh vs Ben Duoc: body now flags the Ben Dinh entry. Pin
 #   slug ben-dinh-tunnels is specific to that complex. If a Ben Duoc
 #   pin gets created, link both from the Cu Chi paragraph.
-# - E-visa portal: evisa.gov.vn is the canonical 2026 URL; the older
+# - E-visa portal: evisa.gov.vn is the canonical 2026 URL. The older
 #   evisa.xuatnhapcanh.gov.vn still works but is being phased out.
 # - Vinpearl Landmark 81 is in Binh Thanh district, not District 1
-#   proper. Body now flags this; previous version misled readers.
+#   proper. Body now flags this. Previous version misled readers.
 # - Verify the 30-day ($25) and 90-day ($50) e-visa prices at
-#   evisa.gov.vn before each republish; rates have moved historically.
+#   evisa.gov.vn before each republish. Rates have moved historically.
 ---
 
-[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below; this writeup covers the parts of it that change the trip.
+[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below. This writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -78,13 +78,13 @@ Tan Son Nhat International (SGN) sits 7 km from District 1.
 |---|---|---|---|
 | Grab | $5 to $10 | 20 to 40 min | Pickup is in the multi-storey across from arrivals. App-based, card payment |
 | Vinasun / Mai Linh taxi | $7 to $12 metered | 20 to 40 min | Walk to the official rank, avoid touts |
-| Bus 109 | Under $1 | 45 to 60 min | Goes to Ben Thanh. Fine if you are travelling light |
+| Bus 109 | Under $1 | 45 to 60 min | Goes to Ben Thanh. Fine if you are traveling light |
 
 Traffic is the variable. From 4 to 7 p.m. on weekdays add 50%.
 
 ## Where to stay
 
-District 1 is the default. Inside that, three tiers cover most travellers.
+District 1 is the default. Inside that, three tiers cover most travelers.
 
 | Tier | Hotel | Why pick it | Notes |
 |---|---|---|---|
@@ -102,7 +102,7 @@ A tight on-foot circuit, starting early to beat the heat.
 |---|---|---|
 | [Reunification Palace](/pins/reunification-palace) | 60 to 75 min | The 1975 surrender site, frozen in 70s decor. Buy tickets at the gate |
 | [War Remnants Museum](/pins/war-remnants-museum) | 90 min | Heavy. Plan a coffee break after |
-| [Notre-Dame Cathedral Basilica of Saigon](/pins/notre-dame-cathedral) | 20 min outside | Often under restoration; the exterior is the picture |
+| [Notre-Dame Cathedral Basilica of Saigon](/pins/notre-dame-cathedral) | 20 min outside | Often under restoration. The exterior is the picture |
 | [Saigon Central Post Office](/pins/saigon-central-post-office) | 30 min | Beautifully preserved French-colonial. Free |
 | [Ho Chi Minh City Opera House](/pins/opera-house) | 15 min outside | The building, not a performance. If A O Show (the long-running bamboo-and-acrobatics cultural production) is on, the night ticket is worth it |
 | [Ben Thanh Market](/pins/ben-thanh-market) | As long as you want | Souvenir prices are 2 to 3 times what street stalls charge. Negotiate, or just enjoy the photos |
@@ -121,7 +121,7 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 | [East West Brewing Co.](/pins/craft-beer-east-west-brewing-co-saigon) | Whatever fruit-led local-ingredient beer is on rotation (dragon fruit shows up often) | The biggest taproom of the four, near Ben Thanh, more brunch-spot than brewery. Good landing point for the rest of the night |
 | [Ben Nghe Street Food Market](/pins/ben-nghe-street-food-market) | Heineken, satay, a stagger | The right closing move. Pick stalls by queue length |
 
-[7 Bridges Brewing Co. Saigon Taproom](/pins/7-bridges-brewing-co-saigon-taproom) and [Hoprizon Brewing Company](/pins/hoprizon-brewing-company) are the second-tier additions if you have a second night. The full HCMC brewery list is longer than this; the four-stop crawl is the version that fits one evening.
+[7 Bridges Brewing Co. Saigon Taproom](/pins/7-bridges-brewing-co-saigon-taproom) and [Hoprizon Brewing Company](/pins/hoprizon-brewing-company) are the second-tier additions if you have a second night. The full HCMC brewery list is longer than this. The four-stop crawl is the version that fits one evening.
 
 ## Where to eat
 
@@ -132,11 +132,11 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 | [Pizza 4P's Saigon Pearl](/pins/pizza-4p-s-saigon-pearl) | Vietnamese take on Japanese-style pizza. House-made burrata | The chain is everywhere now, but Saigon Pearl is the better-staffed location |
 | [Vietnam House Restaurant](/pins/vietnam-house-restaurant) | A polished introduction to Vietnamese fine dining | Classic colonial-era space |
 | [Pho Minh](/pins/pho-minh) | A bowl of phở done unfussily | The local-style spot for a cheap, fast lunch |
-| [Bánh Mì Huynh Hoa](/pins/banh-mi-huynh-hoa) | The famous bánh mì. Cash, queue, walk away with two | Take it to the river or to your hotel; do not eat standing up |
+| [Bánh Mì Huynh Hoa](/pins/banh-mi-huynh-hoa) | The famous bánh mì. Cash, queue, walk away with two | Take it to the river or to your hotel. Do not eat standing up |
 | [Soul Classic Rooftop Bar](/pins/soul-classic-rooftop-bar) and [Vi Vu Rooftop](/pins/vi-vu-rooftop) | Skyline drink after the crawl | Both are easy walk-ups |
 
 ## Day trips: Cu Chi and the Mekong
 
-[Cu Chi Tunnels](/pins/ben-dinh-tunnels) is the half-day. Most guided trips run via Ben Dinh (less crowded) rather than Ben Duoc; both are real, both are worth doing. Plan on 4 to 5 hours door-to-door from District 1. Wear clothes you can crawl in.
+[Cu Chi Tunnels](/pins/ben-dinh-tunnels) is the half-day. Most guided trips run via Ben Dinh (less crowded) rather than Ben Duoc. Both are real, both are worth doing. Plan on 4 to 5 hours door-to-door from District 1. Wear clothes you can crawl in.
 
 The Mekong Delta is a separate trip rather than a day add-on. Cai Be and Can Tho both make sense for a one-night out. Tours that promise a day-trip Mekong from HCMC mostly land you at My Tho, which is the least interesting of the options. Fine for the photo, not worth the drive.

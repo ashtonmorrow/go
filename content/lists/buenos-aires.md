@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/buenos-aires via the picker.
+# - hero_image is empty. Pick one in /admin/lists/buenos-aires via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Buenos Aires](/cities/buenos-aires) is the South American capital that travellers fall hardest for. Wide European-style boulevards, a 12-million metropolitan population, the parrilla (Argentine steakhouse) culture, an excellent Japanese-Argentine sushi scene built by mid-20th-century immigration, and a peso economy that has whipsawed enough times that the dollar prices keep shifting. A week is the right length for a first visit; longer if you are pairing with Mendoza wine country, Iguazú, or a Patagonia leg.
+[Buenos Aires](/cities/buenos-aires) is the South American capital that travelers fall hardest for. Wide European-style boulevards, a 12-million metropolitan population, the parrilla (Argentine steakhouse) culture, an excellent Japanese-Argentine sushi scene built by mid-20th-century immigration, and a peso economy that has whipsawed enough times that the dollar prices keep shifting. A week is the right length for a first visit. Longer if you are pairing with Mendoza wine country, Iguazú, or a Patagonia leg.
 
 ## On this page
 
@@ -35,18 +35,18 @@ related:
 
 ## Getting in from the airport
 
-Buenos Aires Ezeiza International (Ministro Pistarini) (EZE) has two airports: Ezeiza (EZE) for international and Aeroparque Jorge Newbery (AEP) for domestic and regional. EZE is 35 km southwest of the centre; the official remis (private car) and rideshare are the practical options, with the kerb taxi as the last resort.
+Buenos Aires Ezeiza International (Ministro Pistarini) (EZE) has two airports: Ezeiza (EZE) for international and Aeroparque Jorge Newbery (AEP) for domestic and regional. EZE is 35 km southwest of the center. The official remis (private car) and rideshare are the practical options, with the curb taxi as the last resort.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Tienda León airport bus | 45 to 75 min | ~US$15 to Plaza Carlos Pellegrini | The traveller default. Comfortable shuttle to the central terminal at Madero, every 30 minutes |
-| Uber / Cabify / DiDi | 45 to 75 min | AR$25,000 to 45,000 to Palermo or Recoleta | Cabify is the cleanest Argentine rideshare; Uber and DiDi both work. Cash-payment friction is real with cards being declined on foreign Uber accounts, so set up cash in advance |
-| Pre-booked remis | 45 to 75 min | ~US$45 to US$60 | The hotel-arranged transfer; driver waits with a name board. Worth the small premium for a late arrival |
-| Taxi from the rank | 45 to 75 min | ~AR$50,000+ negotiated | Last resort. Kerb taxis at EZE have a reputation for fare manipulation; use only with the price written down before pulling away |
+| Tienda León airport bus | 45 to 75 min | ~US$15 to Plaza Carlos Pellegrini | The traveler default. Comfortable shuttle to the central terminal at Madero, every 30 minutes |
+| Uber / Cabify / DiDi | 45 to 75 min | AR$25,000 to 45,000 to Palermo or Recoleta | Cabify is the cleanest Argentine rideshare. Uber and DiDi both work. Cash-payment friction is real with cards being declined on foreign Uber accounts, so set up cash in advance |
+| Pre-booked remis | 45 to 75 min | ~US$45 to US$60 | The hotel-arranged transfer. Driver waits with a name board. Worth the small premium for a late arrival |
+| Taxi from the rank | 45 to 75 min | ~AR$50,000+ negotiated | Last resort. Curb taxis at EZE have a reputation for fare manipulation. Use only with the price written down before pulling away |
 
 ## Where to eat
 
-Buenos Aires is two food cities at once. The parrilla side (Don Julio is the global headline; Argentina sits among the best beef countries in the world by per-capita consumption and quality) and the Japanese-Argentine sushi scene (built by a wave of Japanese-Peruvian and Japanese immigration that arrived in the 1950s and never left). The picks below cover both registers plus the casual breakfast-and-lunch rotation.
+Buenos Aires is two food cities at once. The parrilla side (Don Julio is the global headline. Argentina sits among the best beef countries in the world by per-capita consumption and quality) and the Japanese-Argentine sushi scene (built by a wave of Japanese-Peruvian and Japanese immigration that arrived in the 1950s and never left). The picks below cover both registers plus the casual breakfast-and-lunch rotation.
 
 | Spot | Rating |
 |---|---|

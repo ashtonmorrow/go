@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/dubrovnik via the picker.
+# - hero_image is empty. Pick one in /admin/lists/dubrovnik via the picker.
 ---
 
-[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that earned its reputation centuries before the Game of Thrones years and has been managing the cruise-and-day-tripper density since. The Old Town is small (about 600 metres across), the city walls are walkable in about two hours, and the food has caught up with the visitor pressure. Two nights at minimum to actually experience the city outside the cruise-day window; longer if you are pairing with Korčula, Mljet, or the Pelješac peninsula.
+[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that earned its reputation centuries before the Game of Thrones years and has been managing the cruise-and-day-tripper density since. The Old Town is small (about 600 meters across), the city walls are walkable in about two hours, and the food has caught up with the visitor pressure. Two nights at minimum to actually experience the city outside the cruise-day window. Longer if you are pairing with Korčula, Mljet, or the Pelješac peninsula.
 
 ## On this page
 
@@ -31,14 +31,14 @@ related:
 
 ## Getting in from the airport
 
-Dubrovnik Dubrovnik Airport (DBV) sits about 20 km southeast of the Old Town; the Platanus airport bus is the cleanest path in, with rideshare as the easier-with-luggage alternative.
+Dubrovnik Dubrovnik Airport (DBV) sits about 20 km southeast of the Old Town. The Platanus airport bus is the cleanest path in, with rideshare as the easier-with-luggage alternative.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Platanus airport shuttle | 30 to 45 min | €10 to Pile Gate | The default. Direct from DBV to Pile Gate (the main Old Town entrance) and the main bus station |
-| Uber / Bolt | 25 to 40 min | €30 to €50 | Late arrival or hotel outside the Old Town; both apps work cleanly in Dubrovnik |
-| Taxi from the rank | 25 to 40 min | €40 to €55 metered | Reliable but pricier than rideshare; the meter runs honestly on regulated rates |
-| Public bus 38 | 50 to 60 min | ~€1.50 single | The cheapest path; the local Libertas bus, slower with luggage, runs every 30 to 60 minutes |
+| Uber / Bolt | 25 to 40 min | €30 to €50 | Late arrival or hotel outside the Old Town. Both apps work cleanly in Dubrovnik |
+| Taxi from the rank | 25 to 40 min | €40 to €55 metered | Reliable but pricier than rideshare. The meter runs on regulated rates |
+| Public bus 38 | 50 to 60 min | ~€1.50 single | The cheapest path. The local Libertas bus, slower with luggage, runs every 30 to 60 minutes |
 
 ## Where to stay
 
@@ -51,7 +51,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Dubrovnik food is the Dalmatian side: black risotto (cuttlefish ink), grilled fish, pršut (Croatian prosciutto), Pošip and Plavac Mali wines, the casual konoba (tavern) format. Prices in the Old Town are real; the picks below mix the value-conscious lunch with the proper-dinner style.
+Dubrovnik food is the Dalmatian side: black risotto (cuttlefish ink), grilled fish, pršut (Croatian prosciutto), Pošip and Plavac Mali wines, the casual konoba (tavern) format. Prices in the Old Town are real. The picks below mix the value-conscious lunch with the proper-dinner style.
 
 | Spot | Rating |
 |---|---|

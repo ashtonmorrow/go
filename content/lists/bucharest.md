@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/bucharest via the picker.
+# - hero_image is empty. Pick one in /admin/lists/bucharest via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Bucharest](/cities/bucharest) is the Romanian capital that travellers do not expect to like and frequently end up liking more than the famous cities. The Old Town (Lipscani) is dense and walkable, the food scene has rebuilt since the 2000s into something genuinely competitive, and the brutalist architectural legacy (the Palace of the Parliament is the heaviest building on Earth) is unmistakable. Two or three days for the city; pair with Brașov, Sighișoara, or Sibiu for a Transylvania extension.
+[Bucharest](/cities/bucharest) is the Romanian capital that travelers do not expect to like and frequently end up liking more than the famous cities. The Old Town (Lipscani) is dense and walkable, the food scene has rebuilt since the 2000s into something competitive, and the brutalist architectural legacy (the Palace of the Parliament is the heaviest building on Earth) is unmistakable. Two or three days for the city. Pair with Brașov, Sighișoara, or Sibiu for a Transylvania extension.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Bucharest Henri Coandă International (OTP) sits about 17 km north of the city; the Express bus 783 is the cleanest public option, with rideshare as the easier-with-luggage alternative.
+Bucharest Henri Coandă International (OTP) sits about 17 km north of the city. The Express bus 783 is the cleanest public option, with rideshare as the easier-with-luggage alternative.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Express bus 783 | 40 to 60 min | 7 RON return | The default. Direct to Piața Unirii via Piața Victoriei every 30 minutes |
-| Bolt / Uber | 30 to 60 min | 40 to 70 RON | Bolt is the dominant Romanian rideshare; pickup at the marked airport lot |
-| Train (CFR) | 20 min | 8.30 RON | Direct to Gara de Nord; useful if you are continuing on another train, less useful for hotels in the Old Town |
-| Airport taxi (Black Cab) | 30 to 60 min | 60 to 100 RON | Use only the metered Black Cab kiosks inside arrivals; ignore unsolicited drivers in the hall |
+| Bolt / Uber | 30 to 60 min | 40 to 70 RON | Bolt is the dominant Romanian rideshare. Pickup at the marked airport lot |
+| Train (CFR) | 20 min | 8.30 RON | Direct to Gara de Nord. Useful if you are continuing on another train, less useful for hotels in the Old Town |
+| Airport taxi (Black Cab) | 30 to 60 min | 60 to 100 RON | Use only the metered Black Cab kiosks inside arrivals. Ignore unsolicited drivers in the hall |
 
 ## Where to stay
 
@@ -55,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Romanian food runs through sarmale (the cabbage-rolled-around-meat stew), mici (skinless small grilled sausages), polenta-stuffed ciorbă soups, and the lemon-and-cream-finished palate that distinguishes it from the rest of the Balkans. The picks below cover the modern rotation; the traditional places (Caru' cu Bere is the headline) are casual to find.
+Romanian food runs through sarmale (the cabbage-rolled-around-meat stew), mici (skinless small grilled sausages), polenta-stuffed ciorbă soups, and the lemon-and-cream-finished palate that distinguishes it from the rest of the Balkans. The picks below cover the modern rotation. The traditional places (Caru' cu Bere is the headline) are casual to find.
 
 | Spot | Rating |
 |---|---|

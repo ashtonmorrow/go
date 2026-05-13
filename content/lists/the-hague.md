@@ -29,7 +29,7 @@ faqs:
   - q: Is one day enough for The Hague?
     a: 24 hours covers the Mauritshuis, the Binnenhof, and either Escher or the Peace Palace. 36 hours gets you those plus the beach at Scheveningen and an evening to settle into the city. Two full days lets you add Madurodam, Delft, and a slower museum afternoon.
   - q: Do I need to book the Mauritshuis in advance?
-    a: Yes. The Mauritshuis sells out by mid-afternoon in season and same-day walk-ups are not guaranteed. Book a timed entry online. The €4-after-4pm ticket exists but is for Netherlands residents only (sold at the ticket office between 16:00 and 17:30, not online, no discount cards stack); international visitors pay the standard €21.
+    a: Yes. The Mauritshuis sells out by mid-afternoon in season and same-day walk-ups are not guaranteed. Book a timed entry online. The €4-after-4pm ticket exists but is for Netherlands residents only (sold at the ticket office between 16:00 and 17:30, not online, no discount cards stack). International visitors pay the standard €21.
   - q: Can I tour the Peace Palace inside?
     a: Sometimes. The International Court of Justice meets inside the palace, and when the court is in session tours are suspended. Guided tours when offered are around €11 and require advance online booking. Bring your passport or EU ID card.
   - q: Where do I take the kids?
@@ -40,10 +40,10 @@ related:
   country: netherlands
 
 # Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews; flip to true to ship.
-# - hero_image is empty; pick one in /admin/lists/the-hague via the picker.
+# - indexable is false until Mike reviews. Flip to true to ship.
+# - hero_image is empty. Pick one in /admin/lists/the-hague via the picker.
 # - Hotel pin Hotel Indigo The Hague - Palace Noordeinde already exists in
-#   pins; verify other hotel pins exist or surface them.
+#   pins. Verify other hotel pins exist or surface them.
 # - Source: Mike's existing Hague itinerary notes + competitor SEO research
 #   for "36 hours in the hague" target keyword. Personal references stripped
 #   per Mike's standing rule.
@@ -64,13 +64,13 @@ related:
 #   De Basiliek, Little V, Baladi Manouche, De Bakkerswinkel, Bouzy,
 #   Ciao Ciao, Boterwaag, Lola Bikes & Coffee, Habana Beach, Panorama Mesdag,
 #   Voorlinden, Strandhuisjes Kijkduin, Royal Delft (Koninklijke Porceleyne
-#   Fles), Nieuwe Kerk, Vermeer Centre, The Hague Tower / Sky Bar.
+#   Fles), Nieuwe Kerk, Vermeer Center, The Hague Tower / Sky Bar.
 # - SEO title pattern: current "36 hours in The Hague" tested fine, but
 #   the audited tested pattern is "[City] travel guide: [hook A], [hook B],
 #   and [hook C]". Consider for the v2 pass.
 ---
 
-[The Hague](/cities/the-hague) is the city most travelers to the Netherlands plan in 24 hours rather than 24 days, which is roughly the right ratio. It is the seat of the Dutch government, the home of the International Court of Justice, and the address of two genuinely top-tier museums. It is also calmer, cheaper, and easier to walk than [Amsterdam](/cities/amsterdam), with a real beach 15 minutes away by tram. Most Amsterdam-week itineraries skip it; the ones that do not usually end up wishing they had given it the longer half.
+[The Hague](/cities/the-hague) is the city most travelers to the Netherlands plan in 24 hours rather than 24 days, which is roughly the right ratio. It is the seat of the Dutch government, the home of the International Court of Justice, and the address of two world-class museums. It is also calmer, cheaper, and easier to walk than [Amsterdam](/cities/amsterdam), with a real beach 15 minutes away by tram. Most Amsterdam-week itineraries skip it. The ones that do not usually end up wishing they had given it the longer half.
 
 The bigger pitch: **hotel rooms in The Hague run roughly 30 to 50 percent cheaper than comparable rooms in Amsterdam**, and Amsterdam is 50 minutes away by train. If you are basing a Netherlands week somewhere, basing here and commuting in is the deal almost nobody takes.
 
@@ -82,7 +82,7 @@ This page is the version I would send a friend who asked how to spend 36 hours i
 * [Getting in and getting around](#getting-in-and-getting-around)
 * [Where to stay](#where-to-stay)
 * [The Mauritshuis and the Vermeer](#the-mauritshuis-and-the-vermeer)
-* [The Binnenhof and the city centre](#the-binnenhof-and-the-city-centre)
+* [The Binnenhof and the city center](#the-binnenhof-and-the-city-center)
 * [Escher in het Paleis](#escher-in-het-paleis)
 * [The Peace Palace](#the-peace-palace)
 * [Madurodam: the Netherlands in miniature](#madurodam-the-netherlands-in-miniature)
@@ -96,7 +96,7 @@ This page is the version I would send a friend who asked how to spend 36 hours i
 |---|---|---|
 | Best | May to early September | Long days, warm evenings, the coast usable, café terraces full. Book hotels and the Mauritshuis early |
 | Shoulder | April, late September, October | Cooler, fewer crowds at the museums, café energy holds up indoors. The Christmas lights along Lange Voorhout start in late November |
-| Quiet and grey | November to March | Short days, frequent rain, but the museums and Sky Bar carry the trip. Hotel rates drop |
+| Quiet and gray | November to March | Short days, frequent rain, but the museums and Sky Bar carry the trip. Hotel rates drop |
 
 The Hague rains often enough that an umbrella belongs in your bag any month of the year. A late-June visit can also catch the long-day Dutch summer light, with sunset after 22:00, that makes evening strolls along Lange Voorhout one of the underrated things to do in the city.
 
@@ -107,25 +107,25 @@ The Hague has two stations. **[Den Haag Centraal (CS)](/pins/den-haag-centraal)*
 | Origin | Mode | Time | Notes |
 |---|---|---|---|
 | [Amsterdam Centraal](/pins/amsterdam-centraal-station) | NS Intercity | ~50 min | Every 10–15 min, ~€14, tap a card at the gate |
-| [Schiphol Airport](/pins/amsterdam-airport-schiphol) | NS Sprinter / Intercity | ~30–40 min | Some Schiphol services stop at Den Haag HS first; check the platform display |
+| [Schiphol Airport](/pins/amsterdam-airport-schiphol) | NS Sprinter / Intercity | ~30–40 min | Some Schiphol services stop at Den Haag HS first. Check the platform display |
 | Rotterdam Centraal | NS Intercity | ~25 min | Every 10 min, ~€6 |
 | Brussels | Eurostar / NS Intercity | ~3 hours | Change at Rotterdam if needed |
-| Inside the city | Tram and bus | 5–25 min | HTM operates the tram and bus network; OVpay accepted |
+| Inside the city | Tram and bus | 5–25 min | HTM operates the tram and bus network. OVpay accepted |
 
 The Hague is small enough that most of the museum-and-palace circuit is walkable. The exceptions are Madurodam (tram 9) and Scheveningen (tram 1 or 9). For day trips, NS runs every 10 minutes to Delft, Leiden, [Rotterdam](/cities/rotterdam), and Amsterdam.
 
-A note on cards. All of NS, HTM, and the regional buses accept contactless bank cards or a phone wallet directly under OVpay. Tap in, tap out, charged per kilometer. There is no need to buy a paper ticket or carry an OV-chipkaart. You must have a valid fare to ride; the spot fine for getting caught without one is €50 in cash. Visa, Maestro, and Mastercard all work for the tap. Discover and AMEX are less reliably accepted.
+A note on cards. All of NS, HTM, and the regional buses accept contactless bank cards or a phone wallet directly under OVpay. Tap in, tap out, charged per kilometer. There is no need to buy a paper ticket or carry an OV-chipkaart. You must have a valid fare to ride. The spot fine for getting caught without one is €50 in cash. Visa, Maestro, and Mastercard all work for the tap. Discover and AMEX are less reliably accepted.
 
 ## Where to stay
 
-The Hague city centre is compact. Anywhere within a 10-minute walk of the Binnenhof puts the museums on foot and the trams at hand. Hotels are about a third cheaper than equivalent Amsterdam properties.
+The Hague city center is compact. Anywhere within a 10-minute walk of the Binnenhof puts the museums on foot and the trams at hand. Hotels are about a third cheaper than equivalent Amsterdam properties.
 
 | Hotel | Where | Why pick it | Trade-off |
 |---|---|---|---|
-| voco The Hague | City centre, blocks from the Binnenhof | One of my favorite hotels in the country. Set in a restored former bank building. Light, airy rooms, great showers, very quiet. Rates often around €125/night | Books out on weekends |
-| [Hotel Indigo The Hague Palace Noordeinde](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | City centre, opposite the royal palace | Set in another former bank building. Each room is individually decorated and the dinner-in-the-bank-vault is the kind of trip story that pays for itself | Boutique-property pricing |
-| Staybridge Suites The Hague Parliament | Lange Houtstraat, two blocks from the Binnenhof | Apartment-style suites with kitchenettes, guest laundry, and a weekly happy hour. Best for longer stays. Rates run €100–€200 depending on dates | Has crept up in price; flexible dates required for the lower end |
-| Hotel Des Indes | Lange Voorhout | The historic grand hotel; Anna Pavlova lived (and died) here in 1931, Churchill stayed, Empress Sisi and Mata Hari are on the documented guest list | Top of the budget for the city |
+| voco The Hague | City center, blocks from the Binnenhof | One of my favorite hotels in the country. Set in a restored former bank building. Light, airy rooms, great showers, very quiet. Rates often around €125/night | Books out on weekends |
+| [Hotel Indigo The Hague Palace Noordeinde](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | City center, opposite the royal palace | Set in another former bank building. Each room is individually decorated and the dinner-in-the-bank-vault is the kind of trip story that pays for itself | Boutique-property pricing |
+| Staybridge Suites The Hague Parliament | Lange Houtstraat, two blocks from the Binnenhof | Apartment-style suites with kitchenettes, guest laundry, and a weekly happy hour. Best for longer stays. Rates run €100–€200 depending on dates | Has crept up in price. Flexible dates required for the lower end |
+| Hotel Des Indes | Lange Voorhout | The historic grand hotel. Anna Pavlova lived (and died) here in 1931, Churchill stayed, Empress Sisi and Mata Hari are on the documented guest list | Top of the budget for the city |
 
 If you are basing outside Amsterdam to save money, this is the cleanest version of that play. From The Hague you reach Amsterdam in 50 minutes, Rotterdam in 25, and Schiphol in 30. A 4-night trip with the museums split across two cities works better here than in either Amsterdam or Rotterdam alone.
 
@@ -141,15 +141,15 @@ The [Mauritshuis](/pins/mauritshuis) is the highlight of the city for almost eve
 | **Time on site** | 1.5–2 hours |
 | **Closest station** | Den Haag CS, 8-minute walk |
 
-The €4 after-4pm ticket is the move if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the headline rooms; the new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
+The €4 after-4pm ticket is the move if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the headline rooms. The new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
 
-## The Binnenhof and the city centre
+## The Binnenhof and the city center
 
 The [Binnenhof](/pins/inner-court-hall-of-knights) is one of the oldest parliament buildings still in active use anywhere. The complex dates from the 13th century and the central courtyard, the Hofvijver, sits as the postcard image of the city. The 13th-century **Ridderzaal (Knights' Hall)** holds the throne where King Willem-Alexander opens parliament every September.
 
-The buildings are best admired from outside. Guided tours of the interior are organized by **ProDemos** and need advance booking; when the chambers are in session the tours are suspended.
+The buildings are best admired from outside. Guided tours of the interior are organized by **ProDemos** and need advance booking. When the chambers are in session the tours are suspended.
 
-A 5-minute walk from the Binnenhof takes you through the city centre proper, including the 19th-century covered shopping arcade **De Passage** (UNESCO-listed since 2009 as part of the broader heritage inscription). The arcade still holds the original tile floor, decorated cast-iron columns, and a handful of independent shops, including the **Hop & Stork** chocolate counter where they hand-make the chocolates on site.
+A 5-minute walk from the Binnenhof takes you through the city center proper, including the 19th-century covered shopping arcade **De Passage** (UNESCO-listed since 2009 as part of the broader heritage inscription). The arcade still holds the original tile floor, decorated cast-iron columns, and a handful of independent shops, including the **Hop & Stork** chocolate counter where they hand-make the chocolates on site.
 
 A short walk north of the Binnenhof, the **Paleis Noordeinde** is the working palace of King Willem-Alexander. It is not open to the public, but the exterior and the gardens are visible from the street and are worth a 10-minute stop.
 
@@ -170,19 +170,19 @@ The combination of the Mauritshuis and Escher in het Paleis is the natural museu
 
 ## The Peace Palace
 
-The [Peace Palace](/pins/peace-palace) is one of the genuinely distinctive things about The Hague: the building of the **International Court of Justice**, the principal judicial organ of the United Nations, and the **Permanent Court of Arbitration**. It is the only court of the UN system located outside New York.
+The [Peace Palace](/pins/peace-palace) is one of the distinctive things about The Hague: the building of the **International Court of Justice**, the principal judicial organ of the United Nations, and the **Permanent Court of Arbitration**. It is the only court of the UN system located outside New York.
 
 | Field | Detail |
 |---|---|
-| **Visitor Centre** | Free, open Tue–Sun 11:00–17:00 |
+| **Visitor Center** | Free, open Tue–Sun 11:00–17:00 |
 | **Interior guided tour** | ~€11, ~1 hour, advance booking required |
 | **Tours suspended** | When the Court is in session |
 | **Bring** | Passport or EU ID at the entry |
 | **Closest stop** | Tram 1 to Vredespaleis |
 
-The Visitor Centre is worth a short visit on its own, with exhibits on the history of the building, the international peace movement, and the cases that have shaped the modern court. The interior tour, when it runs, takes you through the great hall, the courtroom, and the library, with stained-glass windows, marble floors, and gifts from member states (a vase from Russia, a jade altar from China, a fence from Germany).
+The Visitor Center is worth a short visit on its own, with exhibits on the history of the building, the international peace movement, and the cases that have shaped the modern court. The interior tour, when it runs, takes you through the great hall, the courtroom, and the library, with stained-glass windows, marble floors, and gifts from member states (a vase from Russia, a jade altar from China, a fence from Germany).
 
-If the Court is sitting the tour is off, and there is no way to know weeks in advance. Booking is online and refundable; treat it as a "see if it works" rather than a fixed plan.
+If the Court is sitting the tour is off, and there is no way to know weeks in advance. Booking is online and refundable. Treat it as a "see if it works" rather than a fixed plan.
 
 ## Madurodam: the Netherlands in miniature
 
@@ -192,25 +192,25 @@ If the Court is sitting the tour is off, and there is no way to know weeks in ad
 |---|---|
 | **Admission** | €22.50 online, €24.50 at the gate |
 | **Hours** | 09:00–20:00 (reduced Sep–Mar) |
-| **Booking** | Online timed entry required; gate tickets only when capacity allows |
+| **Booking** | Online timed entry required. Gate tickets only when capacity allows |
 | **Time on site** | 2 hours minimum, longer with kids |
 | **Closest stop** | Tram 9 from Centraal |
 
-The park is best from late April through September when the model canals are filled with water and the tulip fields are real. Some exhibits go offline for renovation in winter; the website lists which.
+The park is best from late April through September when the model canals are filled with water and the tulip fields are real. Some exhibits go offline for renovation in winter. The website lists which.
 
 Madurodam is the easy half-day with kids, and is a surprisingly engaging stop without them. It is also the only place in the Netherlands where you can see all of the Netherlands without renting a car.
 
 ## Scheveningen and the coast
 
-Scheveningen is the Hague's seaside neighbourhood, 15 minutes by tram from the city centre. The boardwalk runs about 4km along a wide sandy beach, and the Scheveningen Pier carries a small amusement complex over the water at the central point.
+Scheveningen is the Hague's seaside neighborhood, 15 minutes by tram from the city center. The boardwalk runs about 4km along a wide sandy beach, and the Scheveningen Pier carries a small amusement complex over the water at the central point.
 
-The pier has a **Ferris wheel** (~€11 per person, 36-car loop, ~20 minutes), a **bungee tower** (60m drop, ~€70), and a **zip line** that runs 350m over the sea (~€35; the longest zip line in the Netherlands). The amusements all run year-round in some form; check before driving up in winter.
+The pier has a **Ferris wheel** (~€11 per person, 36-car loop, ~20 minutes), a **bungee tower** (60m drop, ~€70), and a **zip line** that runs 350m over the sea (~€35. The longest zip line in the Netherlands). The amusements all run year-round in some form. Check before driving up in winter.
 
 The **Strandhuisjes** at Kijkduin are the most photogenic stop on the coast: bright white wooden beach houses set up every spring and removed for winter at the south end of the boardwalk. They are rentable as accommodation (~€300+ a night) but worth walking past either way. The seasonal install means the photo dates the trip.
 
 For lunch on the coast, **Habana Beach** in Kijkduin is a relaxed bar/restaurant on the sand with a generous breakfast platter and a strong hot chocolate. The Buddha-head terrace decor is its own thing.
 
-A note on **Panorama Mesdag**. A 10-minute walk from the Peace Palace, this small museum holds the largest cylindrical painting in the world: a 360-degree, 14-metre-tall view of the Scheveningen beach as it looked in 1881. It is a 30-minute stop that surprises almost everyone who walks in.
+A note on **Panorama Mesdag**. A 10-minute walk from the Peace Palace, this small museum holds the largest cylindrical painting in the world: a 360-degree, 14-meter-tall view of the Scheveningen beach as it looked in 1881. It is a 30-minute stop that surprises almost everyone who walks in.
 
 ## Day trip to Delft
 
@@ -220,9 +220,9 @@ Three things worth a visit:
 
 | Stop | Why | Notes |
 |---|---|---|
-| **Royal Delft (Koninklijke Porceleyne Fles)** | The factory still producing Delft Blue pottery since 1653 | Tours include the painting studio; pottery for sale on site |
+| **Royal Delft (Koninklijke Porceleyne Fles)** | The factory still producing Delft Blue pottery since 1653 | Tours include the painting studio. Pottery for sale on site |
 | **Nieuwe Kerk and Markt** | The 14th-century church on the main square with the royal crypts | Climb the tower for the city panorama |
-| **Vermeer Centre** | A small museum dedicated to the Delft master | The actual paintings are at the Mauritshuis; the centre gives the context |
+| **Vermeer Center** | A small museum dedicated to the Delft master | The actual paintings are at the Mauritshuis. The center gives the context |
 
 A half-day in Delft works as a morning out of The Hague before an afternoon at the Mauritshuis, or as a full day if you slow it down with lunch on the canal.
 
@@ -238,21 +238,21 @@ The Hague has a deeper international food scene than its size suggests, anchored
 | **De Bakkerswinkel** | Breakfast and brunch | Yoghurt + granola, decent coffee, friendly room. Multiple locations |
 | **Bouzy** | Wine bar | By-the-glass wines and champagnes with bitterballen and bar snacks |
 | **Ciao Ciao** | Italian | Solid wine list, opposite the Binnenhof, reliable |
-| **Boterwaag** | Traditional Dutch | 17th-century weighhouse building on Markt; touristy but the room is worth it |
+| **Boterwaag** | Traditional Dutch | 17th-century weighhouse building on Markt. Touristy but the room is worth it |
 | **Lola Bikes & Coffee** | Coffee | Vintage bikes on the wall, very good coffee, bike-themed bookshop in the back |
 
-The **rijsttafel** ("rice table") is the regional thing to eat in The Hague: a Dutch-Indonesian set of small dishes shared at the table, descended from the colonial era and still better here than anywhere else in the country. Make a reservation; the better rijsttafel restaurants book out on weekends.
+The **rijsttafel** ("rice table") is the regional thing to eat in The Hague: a Dutch-Indonesian set of small dishes shared at the table, descended from the colonial era and still better here than anywhere else in the country. Make a reservation. The better rijsttafel restaurants book out on weekends.
 
 ## Free things worth a half-day
 
 Three things in The Hague cost nothing once you have a tram ticket.
 
-* **The Tweede Kamer (House of Representatives).** Open to the public on Tuesdays, Wednesdays, and Thursdays during session days. Access includes the Statenpassage, the Plenary Hall public gallery, and the Statenlokaal cafe. Pre-register at [bezoekers.tweedekamer.nl](https://bezoekers.tweedekamer.nl); each visitor gets an individual emailed ticket.
+* **The Tweede Kamer (House of Representatives).** Open to the public on Tuesdays, Wednesdays, and Thursdays during session days. Access includes the Statenpassage, the Plenary Hall public gallery, and the Statenlokaal cafe. Pre-register at [bezoekers.tweedekamer.nl](https://bezoekers.tweedekamer.nl). Each visitor gets an individual emailed ticket.
 * **Scheveningen beach.** A tram ticket is the whole cost. Long sandy beach, esplanade, pier, lighthouse, year-round.
-* **Haagse Bos.** One of the oldest remaining forests in the country, stretching from the city centre to the Wassenaar border. Historically a hunting ground for Dutch counts. During WWII it served as a launch site for German V-1 and V-2 rockets. Now a calm walk that almost no visitor bothers with.
+* **Haagse Bos.** One of the oldest remaining forests in the country, stretching from the city center to the Wassenaar border. Historically a hunting ground for Dutch counts. During WWII it served as a launch site for German V-1 and V-2 rockets. Now a calm walk that almost no visitor bothers with.
 
 ## What to skip
 
-* **The Hague Tower observation deck** is fine but not a real attraction; the bar at the top is the better use of the trip.
+* **The Hague Tower observation deck** is fine but not a real attraction. The bar at the top is the better use of the trip.
 * **The "Hague city tour" hop-on-hop-off bus** is not a useful way to see a city this walkable. Walk it.
 * **Anything called "Holland Experience" with red and yellow paint outside.** Save the budget for the actual museums.

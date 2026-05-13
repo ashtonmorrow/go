@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/tirana via the picker.
+# - hero_image is empty. Pick one in /admin/lists/tirana via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Tirana](/cities/tirana) is the Albanian capital that climbed onto the European travel radar fast after a long isolation. Brutally cheap by Western European standards, generous portions, the cafe-and-rooftop culture that runs late, and the legacy of the Hoxha-era bunker network is still legible in the city. Two or three days for the city; the bigger Albanian trip pairs it with Saranda + Ksamil on the south coast (covered separately at [/lists/saranda-_-ksamil](/lists/saranda-_-ksamil)).
+[Tirana](/cities/tirana) is the Albanian capital that climbed onto the European travel radar fast after a long isolation. Brutally cheap by Western European standards, generous portions, the cafe-and-rooftop culture that runs late, and the legacy of the Hoxha-era bunker network is still legible in the city. Two or three days for the city. The bigger Albanian trip pairs it with Saranda + Ksamil on the south coast (covered separately at [/lists/saranda-_-ksamil](/lists/saranda-_-ksamil)).
 
 ## On this page
 
@@ -36,13 +36,13 @@ related:
 
 ## Getting in from the airport
 
-Tirana Tirana International Airport Nënë Tereza (TIA) sits about 17 km north-west of central Tirana; the Rinas Express bus is the cleanest public option, with rideshare as the easier-with-luggage alternative.
+Tirana Tirana International Airport Nënë Tereza (TIA) sits about 17 km north-west of central Tirana. The Rinas Express bus is the cleanest public option, with rideshare as the easier-with-luggage alternative.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Rinas Express bus | 30 to 40 min | 400 ALL (~€4) single | The default. Direct to the National Theatre near Skanderbeg Square; runs hourly |
-| Uber-equivalent (Bolt is not yet active) | 25 to 40 min | €20 to €30 in a pre-booked car | Rideshare in Albania is light; most "Uber" rides are actually pre-booked private cars. Have your hotel arrange in advance |
-| Airport taxi | 25 to 40 min | €20 to €25 fixed rate | The fixed-rate counter inside arrivals is the reliable option; ignore drivers approaching you in the hall |
+| Rinas Express bus | 30 to 40 min | 400 ALL (~€4) single | The default. Direct to the National Theater near Skanderbeg Square. Runs hourly |
+| Uber-equivalent (Bolt is not yet active) | 25 to 40 min | €20 to €30 in a pre-booked car | Rideshare in Albania is light. Most "Uber" rides are actually pre-booked private cars. Have your hotel arrange in advance |
+| Airport taxi | 25 to 40 min | €20 to €25 fixed rate | The fixed-rate counter inside arrivals is the reliable option. Ignore drivers approaching you in the hall |
 | Hertz / private rental car | 25 min | From €20/day | If you are continuing to the coast (Saranda/Ksamil) or the mountains. Albanian roads are workable but speed limits are enforced patchily |
 
 ## Where to stay

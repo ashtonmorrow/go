@@ -20,15 +20,15 @@ related:
 #   than from a personal brief, so the voice pass is the prerequisite
 #   before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/berlin via the picker.
+# - hero_image is empty. Pick one in /admin/lists/berlin via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape; rewrite to
+# - Pace note and arrival options are the standard shape. Rewrite to
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Berlin](/cities/berlin) is the European capital that runs on its own side. Less polished than Paris, less rich than London, but with the rougher cultural energy that the other two stopped having decades ago. The city is huge by European standards (almost 4 million people, sprawled across the eastern German plain), the transit is excellent, and the food has the dominant Turkish-German style that no other city does as well. A long weekend captures the headlines; a week opens up the neighbourhoods.
+[Berlin](/cities/berlin) is the European capital that runs on its own side. Less polished than Paris, less rich than London, but with the rougher cultural energy that the other two stopped having decades ago. The city is huge by European standards (almost 4 million people, sprawled across the eastern German plain), the transit is excellent, and the food has the dominant Turkish-German style that no other city does as well. A long weekend captures the headlines. A week opens up the neighborhoods.
 
 ## On this page
 
@@ -38,14 +38,14 @@ related:
 
 ## Getting in from the airport
 
-Berlin Berlin Brandenburg Airport (BER) sits about 25 km south-east of central Berlin; the FEX express train is the cleanest direct route to the centre, with the regional rail as a slightly slower backup.
+Berlin Berlin Brandenburg Airport (BER) sits about 25 km south-east of central Berlin. The FEX express train is the cleanest direct route to the center, with the regional rail as a slightly slower backup.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| FEX (Airport Express) train | 30 min to Hauptbahnhof | €4.40 on the ABC zone single | The default. Direct to Berlin Hauptbahnhof every 30 minutes; same ticket as any S-Bahn or U-Bahn ride |
-| S-Bahn S9 or S45 | 45 to 60 min | €4.40 ABC single | A cheaper alternative if the FEX timing is wrong; same fare, slightly slower |
-| Uber / FreeNow / taxi | 40 to 60 min | €45 to €65 to the centre | Late arrival or heavy luggage. The taxi rank is reliable; rideshare pickup is at a marked lot |
-| Bus X7 + U-Bahn U7 | 60 to 75 min | €4.40 ABC single | For hotels in Neukölln or Kreuzberg; the X7 from BER to Rudow connects directly to the U7 line |
+| FEX (Airport Express) train | 30 min to Hauptbahnhof | €4.40 on the ABC zone single | The default. Direct to Berlin Hauptbahnhof every 30 minutes. Same ticket as any S-Bahn or U-Bahn ride |
+| S-Bahn S9 or S45 | 45 to 60 min | €4.40 ABC single | A cheaper alternative if the FEX timing is wrong. Same fare, slightly slower |
+| Uber / FreeNow / taxi | 40 to 60 min | €45 to €65 to the center | Late arrival or heavy luggage. The taxi rank is reliable. Rideshare pickup is at a marked lot |
+| Bus X7 + U-Bahn U7 | 60 to 75 min | €4.40 ABC single | For hotels in Neukölln or Kreuzberg. The X7 from BER to Rudow connects directly to the U7 line |
 
 ## Where to stay
 

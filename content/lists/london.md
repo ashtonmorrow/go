@@ -25,33 +25,33 @@ guide_cards:
 
 faqs:
   - q: Where should I stay for a first London trip?
-    a: For sightseeing on foot, Tower Hill or Liverpool Street (Hotel Indigo Tower Hill, citizenM Tower of London, Andaz London Liverpool Street). For business, Canary Wharf (Crowne Plaza Docklands or one of the Hyatt Place options). For a calmer evening rhythm with museum proximity, Kensington (Hotel Indigo London Kensington). Heathrow hotels are only worth it for early flights; the central commute eats two hours each way.
-  - q: How do I get from Heathrow to the centre?
-    a: The Elizabeth Line is the move now. Direct from all Heathrow terminals to Paddington in 30 minutes, Liverpool Street in 50, Canary Wharf in 55. Around £12 to £14 with a contactless card, no need to buy a paper ticket. The Heathrow Express is faster (15 minutes to Paddington) but two to three times the price. Take the Express only if you genuinely value the 15 minutes; otherwise the Elizabeth Line wins.
+    a: For sightseeing on foot, Tower Hill or Liverpool Street (Hotel Indigo Tower Hill, citizenM Tower of London, Andaz London Liverpool Street). For business, Canary Wharf (Crowne Plaza Docklands or one of the Hyatt Place options). For a calmer evening rhythm with museum proximity, Kensington (Hotel Indigo London Kensington). Heathrow hotels are only worth it for early flights. The central commute eats two hours each way.
+  - q: How do I get from Heathrow to the center?
+    a: The Elizabeth Line is the move now. Direct from all Heathrow terminals to Paddington in 30 minutes, Liverpool Street in 50, Canary Wharf in 55. Around £12 to £14 with a contactless card, no need to buy a paper ticket. The Heathrow Express is faster (15 minutes to Paddington) but two to three times the price. Take the Express only if 15 minutes matters more than the price. Otherwise the Elizabeth Line wins.
   - q: Do I need to book the Sky Garden in advance?
     a: Yes. Booking opens roughly three weeks ahead of your visit and the popular slots (sunset, weekend mornings) book out the day they open. Entry is free, you bring a passport or photo ID to the security desk on Fenchurch Street, and you can buy a drink upstairs without a separate ticket. It is the best free view in central London.
   - q: Is the London Eye worth doing?
-    a: For most travellers, no. A standard adult ticket is around £40 (£32 booked ahead, more again for "fast-track"), the loop takes 30 minutes, and the view from Sky Garden across the river is free and arguably better. Book the Eye if you specifically want the south-bank-up-the-Thames angle for a photo. Otherwise spend the money elsewhere.
+    a: For most travelers, no. A standard adult ticket is around £40 (£32 booked ahead, more again for "fast-track"), the loop takes 30 minutes, and the view from Sky Garden across the river is free and arguably better. Book the Eye if you specifically want the south-bank-up-the-Thames angle for a photo. Otherwise spend the money elsewhere.
   - q: When is Borough Market open?
     a: Tuesday through Saturday for the full market, with reduced trading on Mondays and a takeaway-only setup on Sundays. The full market hours are 10:00 to 17:00 most days, with Saturday running 09:00 to 17:00. Go early on Saturday before the lunch crowd arrives around 11.
   - q: Can I use my contactless card on the Underground?
-    a: Yes. Hold a contactless bank card or your phone wallet against the yellow pad at the gate when you start the journey and again when you exit, and the system charges per leg with a daily cap so you never pay more than the equivalent of a one-day Travelcard. Visa, Mastercard, Amex, Apple Pay, Google Pay all work. Do not use a paper ticket; you will pay more.
+    a: Yes. Hold a contactless bank card or your phone wallet against the yellow pad at the gate when you start the journey and again when you exit, and the system charges per leg with a daily cap so you never pay more than the equivalent of a one-day Travelcard. Visa, Mastercard, Amex, Apple Pay, Google Pay all work. Do not use a paper ticket. You will pay more.
 
 related:
   city: london
   country: unitedkingdom
 
 # Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews; flip to true to ship.
-# - hero_image is empty; pick one in /admin/lists/london via the picker.
+# - indexable: false until Mike reviews. Flip to true to ship.
+# - hero_image is empty. Pick one in /admin/lists/london via the picker.
 # - London saved_list will be populated from referenced pins +
 #   geographic city_names match in a follow-up DB write. The atlas
-#   has 160+ London pins; the prose surfaces ~25 anchors and the
+#   has 160+ London pins. The prose surfaces ~25 anchors and the
 #   cards/map view below carries the rest.
-# - Sky Garden ticket pricing: free; book at skygarden.london three
+# - Sky Garden ticket pricing: free. Book at skygarden.london three
 #   weeks ahead. Elizabeth Line / Heathrow Express pricing verified
-#   May 2026; check current Tfl fare table before republishing.
-# - Source material from Mike's July 2019 family itinerary; companion
+#   May 2026. Check current Tfl fare table before republishing.
+# - Source material from Mike's July 2019 family itinerary. Companion
 #   names and trip dates stripped per Mike's standing rule.
 ---
 
@@ -73,13 +73,13 @@ related:
 
 The Elizabeth Line is the move. Direct from every Heathrow terminal into central London on the same contactless bank card or phone wallet you use on the Tube (hold the card against the yellow gate pad on entry and exit, the system charges per leg), no paper ticket, no premium airport-rail surcharge. The fare cap means a round trip plus normal Tube use in the same day is still under the daily limit. Roughly:
 
-| Mode | Heathrow to centre | Time | Cost | When it makes sense |
+| Mode | Heathrow to center | Time | Cost | When it makes sense |
 |---|---|---|---|---|
 | Elizabeth Line | Paddington / Bond St / Liverpool St / Canary Wharf | 30 to 55 min | ~£12 to £14 contactless | The default. Always |
-| Heathrow Express | Paddington only | 15 min | £25 standard / £32 business walk-up; from ~£5.50 advance | If you genuinely value the 15 minutes saved |
-| Underground (Piccadilly Line) | Slow direct to Earls Court / King's Cross | 50 to 70 min | ~£5.50 contactless | If your hotel is on the Piccadilly Line; cheapest |
+| Heathrow Express | Paddington only | 15 min | £25 standard / £32 business walk-up. From ~£5.50 advance | If 15 minutes matters more than the price |
+| Underground (Piccadilly Line) | Slow direct to Earls Court / King's Cross | 50 to 70 min | ~£5.50 contactless | If your hotel is on the Piccadilly Line. Cheapest |
 | Black cab | Anywhere | 45 to 90 min depending on traffic | £60 to £100 | Late arrival with bags, no good alternative |
-| Uber | Anywhere | Same | ~£50 to £80 | Same as black cab; cheaper at off-peak |
+| Uber | Anywhere | Same | ~£50 to £80 | Same as black cab. Cheaper at off-peak |
 
 The skip is the airport hotels. [Moxy London Heathrow Airport](/pins/moxy-london-heathrow-airport) and [Delta Hotels Heathrow Windsor](/pins/delta-hotels-heathrow-windsor) work for a redeye departure, but staying at Heathrow on the first night of a London trip is two hours of commute you do not need.
 
@@ -90,31 +90,31 @@ Four real bases depending on the kind of trip:
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
 | Liverpool Street / City | [Andaz London Liverpool Street](/pins/andaz-london-liverpool-street-by-hyatt) | Beautiful Victorian building, great breakfast, on the Elizabeth Line, ten-minute walk to the Tower of London | Top of the budget for a normal central hotel |
-| Tower Hill | [citizenM Tower of London](/pins/citizenm-tower-of-london) | Modern, well-priced, on the Circle and District lines with Tower Gateway DLR four minutes away. The lobby is one of the better hangout spaces in central London | Small rooms; you pay for the location |
+| Tower Hill | [citizenM Tower of London](/pins/citizenm-tower-of-london) | Modern, well-priced, on the Circle and District lines with Tower Gateway DLR four minutes away. The lobby is one of the better hangout spaces in central London | Small rooms. You pay for the location |
 | Tower Hill (upgrade) | [Hotel Indigo London Tower Hill](/pins/hotel-indigo-london-tower-hill-by-ihg) | Spacious rooms by London standards, walk-in showers with real water pressure, IHG points option | Slightly off the touristy strips, which is the feature not the bug |
 | Kensington | [Hotel Indigo London Kensington](/pins/hotel-indigo-london-kensington-by-ihg) | Two-minute walk to Earls Court Underground, dense food on the same blocks, museum cluster in walking range | Further from the City of London proper |
-| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel; the Jubilee needs a transfer at Canning Town. The bar gets thin on weekends |
-| Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick; book it for value |
-| Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central; the Jubilee Line gets you back in fast |
+| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel. The Jubilee needs a transfer at Canning Town. The bar gets thin on weekends |
+| Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick. Book it for value |
+| Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central. The Jubilee Line gets you back in fast |
 
-If [ExCeL London](/pins/excel-london) is the reason for the trip, [Moxy London Excel](/pins/moxy-london-excel) is two minutes' walk from the convention centre and the right pick for that very specific case.
+If [ExCeL London](/pins/excel-london) is the reason for the trip, [Moxy London Excel](/pins/moxy-london-excel) is two minutes' walk from the convention center and the right pick for that very specific case.
 
 ## Getting around: one card, the fare cap, and the tap-out
 
 The Transport for London system runs on contactless tap-to-pay, and the way the pricing works is the single most useful thing to understand before your first day. Most visitors muddle through it and end up paying more than they had to. A few minutes of context now saves a real amount of money over a week.
 
-The headline rule is that **you only pay up to the daily cap, no matter how many trips you take**. A Zone 1-2 day's worth of unlimited Tube, bus, and most Overground/Elizabeth Line travel currently caps at around £8.90; Zone 1-3 around £10.50. The system charges you per leg as you tap, and the moment your day's tally hits the cap it stops charging. Two trips on a slow day, eight trips on a busy one, same cost. That means you are not "rationing" your moves around London; once you have crossed the cap threshold (usually after two or three Tube journeys) every additional ride is essentially free for the rest of the day. Walk an extra ten minutes to a different station, take a bus for one stop just to see a neighbourhood, double back across town for dinner — all the same fare.
+The headline rule is that **you only pay up to the daily cap, no matter how many trips you take**. A Zone 1-2 day's worth of unlimited Tube, bus, and most Overground/Elizabeth Line travel currently caps at around £8.90. Zone 1-3 around £10.50. The system charges you per leg as you tap, and the moment your day's tally hits the cap it stops charging. Two trips on a slow day, eight trips on a busy one, same cost. That means you are not "rationing" your moves around London. Once you have crossed the cap threshold (usually after two or three Tube journeys) every additional ride is essentially free for the rest of the day. Walk an extra ten minutes to a different station, take a bus for one stop just to see a neighborhood, double back across town for dinner, all the same fare.
 
-The system can only apply the cap if it sees all of your day's journeys on **one card**. This is the most important practical detail in the whole TfL setup. If you tap in with your phone Wallet on the morning Tube and then tap with your physical bank card after lunch, the system treats them as two different riders, charges them both at the per-leg rate, and neither one hits the cap. Pick one method on your first morning — your phone or one specific contactless card — and stick with it for the whole stay. Tap with the same thing every single time. That one habit is the difference between paying £6 a day and paying £20.
+The system can only apply the cap if it sees all of your day's journeys on **one card**. This is the most important practical detail in the whole TfL setup. If you tap in with your phone Wallet on the morning Tube and then tap with your physical bank card after lunch, the system treats them as two different riders, charges them both at the per-leg rate, and neither one hits the cap. Pick one method on your first morning, your phone or one specific contactless card, and stick with it for the whole stay. Tap with the same thing every single time. That one habit is the difference between paying £6 a day and paying £20.
 
-The other gotcha worth a paragraph is the **tap-out**. At every Tube, Elizabeth Line, Overground, and DLR station, you tap your card on the yellow gate pad both on entry and on exit. The system uses the pair of taps to calculate the fare for that journey. If you tap in but forget to tap out (the gate is open, you walk through with the crowd, you exit through a side door because the station is being rebuilt), the system has no exit and charges you the maximum possible fare for that leg, usually £6+ as if you rode end-to-end. Worse, the next time you tap in, the system can sometimes read the tap as your previous trip's missing tap-out, which then mis-charges the leg you just started and corrupts the next one too. Always tap out. Buses are different — bus is a single tap on boarding, no exit tap — but on rail you tap twice.
+The other gotcha worth a paragraph is the **tap-out**. At every Tube, Elizabeth Line, Overground, and DLR station, you tap your card on the yellow gate pad both on entry and on exit. The system uses the pair of taps to calculate the fare for that journey. If you tap in but forget to tap out (the gate is open, you walk through with the crowd, you exit through a side door because the station is being rebuilt), the system has no exit and charges you the maximum possible fare for that leg, usually £6+ as if you rode end-to-end. Worse, the next time you tap in, the system can sometimes read the tap as your previous trip's missing tap-out, which then mis-charges the leg you just started and corrupts the next one too. Always tap out. Buses are different (single tap on boarding, no exit tap), but on rail you tap twice.
 
 A few smaller notes that round out the practical picture:
 
 - **Visa, Mastercard, Amex, Apple Pay, and Google Pay all work** on the yellow gates. The system treats them all the same as a paid contactless transaction. Phone watches work too if they are set up for transit.
 - **Do not buy a paper ticket or a paper one-day Travelcard.** Both cost noticeably more than the contactless cap. The Oyster card still exists but contactless is the modern equivalent and slightly cheaper.
-- **Buses do not accept cash.** Tap or do not board; the driver cannot sell you a ticket.
-- **Peak vs off-peak** charging applies on the Underground only. Peak is roughly 06:30 to 09:30 and 16:00 to 19:00 on weekdays. Off-peak fares are cheaper per leg; the daily cap is the same.
+- **Buses do not accept cash.** Tap or do not board. The driver cannot sell you a ticket.
+- **Peak vs off-peak** charging applies on the Underground only. Peak is roughly 06:30 to 09:30 and 16:00 to 19:00 on weekdays. Off-peak fares are cheaper per leg. The daily cap is the same.
 - **Riding the bus uses a single tap on boarding** (entry only). Buses are a flat £1.75 per ride, with a one-hour "hopper" window letting you change to another bus for free. Useful when the Tube is hot and slow in summer.
 
 For a week of normal sightseeing, the right tap-and-cap rhythm makes the Tube feel free after lunch on most days. Walk where it is pleasant, ride when it is far, and stop thinking about per-trip cost.
@@ -125,13 +125,13 @@ This is the half-day every first London trip should anchor on. About two miles, 
 
 | Stop | Why | Notes |
 |---|---|---|
-| [Borough Market](/pins/borough-market) | The best food market in the city | Closed Sunday; full market Tue–Sat. Go by 10:30 or after 14:00 to beat the lunch zoo |
-| [BAO Borough](/pins/bao-borough) | Taiwanese steamed buns | Queue lines around the block at peak; arrive early or skip to a stall |
-| [Lobos Meat and Tapas](/pins/lobos-meat-and-tapas) | Small-plate Spanish in the market, properly cooked | Opens at noon; book ahead on weekends |
+| [Borough Market](/pins/borough-market) | The best food market in the city | Closed Sunday. Full market Tue–Sat. Go by 10:30 or after 14:00 to beat the lunch zoo |
+| [BAO Borough](/pins/bao-borough) | Taiwanese steamed buns | Queue lines around the block at peak. Arrive early or skip to a stall |
+| [Lobos Meat and Tapas](/pins/lobos-meat-and-tapas) | Small-plate Spanish in the market, properly cooked | Opens at noon. Book ahead on weekends |
 | Anchor Bankside | The riverside pub at the next bend | Touristy but a real Bankside view. One pint and move on |
-| Shakespeare's Globe | Reconstructed Elizabethan theatre | Tours daily; performances summer through autumn |
+| Shakespeare's Globe | Reconstructed Elizabethan theater | Tours daily. Performances summer through autumn |
 | Tate Modern | Modern-art collection in the old Bankside Power Station | Free entry to the permanent collection. Climb to the Switch House top for the view back across the river |
-| [London Eye](/pins/london-eye) | The wheel | Optional; see Sky Garden first |
+| [London Eye](/pins/london-eye) | The wheel | Optional. See Sky Garden first |
 
 End at Westminster Bridge for the Houses of Parliament view, or walk five more minutes to St James's Park if the weather is decent.
 
@@ -141,44 +141,44 @@ The named restaurants in tourist London charge tourist prices. The markets and t
 
 | Market | Best for | Notes |
 |---|---|---|
-| [Borough Market](/pins/borough-market) | Lunch on the Bankside walk | The headline market; the prices have climbed but the quality holds |
-| [Spitalfields Market](/pins/spitalfields-market) | East-end street food | Closes earlier than you expect; visit before 17:00 |
-| [Seven Dials Market](/pins/seven-dials-market) | Theatre-district food hall | Always a zoo. Useful for a fast meal between Covent Garden and Soho |
-| Brixton Village | Caribbean and pan-African food | Best at lunch on a weekday; quieter than the central markets |
+| [Borough Market](/pins/borough-market) | Lunch on the Bankside walk | The headline market. The prices have climbed but the quality holds |
+| [Spitalfields Market](/pins/spitalfields-market) | East-end street food | Closes earlier than you expect. Visit before 17:00 |
+| [Seven Dials Market](/pins/seven-dials-market) | Theater-district food hall | Always a zoo. Useful for a fast meal between Covent Garden and Soho |
+| Brixton Village | Caribbean and pan-African food | Best at lunch on a weekday. Quieter than the central markets |
 
 Two specific picks if you want a sit-down dinner not at a market: [Flat Iron Waterloo](/pins/flat-iron-waterloo) for a £20 ribeye that beats most £40 steaks in the city, and any [Sticks'n'Sushi](/pins/sticks-n-sushi-canary-wharf) (Canary Wharf, Shoreditch, or Victoria) for non-traditional sushi served quickly and well.
 
 ## Sky Garden over the London Eye
 
-The [Sky Garden](/pins/sky-garden) is the rooftop garden at the top of 20 Fenchurch Street (the "Walkie-Talkie"), occupying the top three floors of the 38-storey tower; the public garden tops out at the 43rd floor, with the bars and restaurant on 35 to 37. Entry is **free**. You book a timed slot online at `skygarden.london` roughly three weeks ahead; sunset slots and weekend mornings go fastest. Bring a photo ID; airport-style security on the way up. There are two bars and a restaurant on the level if you want a drink with the view.
+The [Sky Garden](/pins/sky-garden) is the rooftop garden at the top of 20 Fenchurch Street (the "Walkie-Talkie"), occupying the top three floors of the 38-storey tower. The public garden tops out at the 43rd floor, with the bars and restaurant on 35 to 37. Entry is **free**. You book a timed slot online at `skygarden.london` roughly three weeks ahead. Sunset slots and weekend mornings go fastest. Bring a photo ID. Airport-style security on the way up. There are two bars and a restaurant on the level if you want a drink with the view.
 
 This is the easy beat against the [London Eye](/pins/london-eye), which is around £40 a head for a 30-minute loop. The Sky Garden view is the same skyline, higher up, longer to enjoy, with a glass in your hand. Book the Eye only if you specifically want the south-bank-up-the-Thames angle for a photo.
 
-A second free-view option: walk across [Tower Bridge](/pins/tower-bridge) at sunset. The bridge walk is free; only the bridge-experience tower interior is ticketed.
+A second free-view option: walk across [Tower Bridge](/pins/tower-bridge) at sunset. The bridge walk is free. Only the bridge-experience tower interior is ticketed.
 
 ## Museums worth the queue
 
 The big nationals are free and the queue is the price. The two that consistently earn the wait:
 
 * [Imperial War Museum](/pins/imperial-war-museum) in Lambeth. Striking exhibits, dense Holocaust gallery, well-curated 20th-century history. Most visitors arrive without expectations and leave reconsidering them.
-* The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum; book a timed entry to skip the door queue.
+* The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum. Book a timed entry to skip the door queue.
 
 For modern art the Tate Modern is the headline. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
 
 ## Canary Wharf and the Docklands
 
-For travellers in town on business, [Canary Wharf](/pins/canary-wharf) is the easier base than central London. The Elizabeth Line connects it directly to Heathrow and the City; the Jubilee Line covers the rest. The food density per block in the new Docklands is higher than most of central London. The trade-off is that the area dies by 19:00 on weekdays and is almost empty on weekends; you Tube into the centre for nightlife.
+For travelers in town on business, [Canary Wharf](/pins/canary-wharf) is the easier base than central London. The Elizabeth Line connects it directly to Heathrow and the City. The Jubilee Line covers the rest. The food density per block in the new Docklands is higher than most of central London. The trade-off is that the area dies by 19:00 on weekdays and is almost empty on weekends. You Tube into the center for nightlife.
 
 Two specific Canary Wharf picks: [Humble Grape](/pins/humble-grape-canary-wharf-wine-bar-restaurant) for a fair wine selection at reasonable prices, and [The George](/pins/the-george) for a proper pub a few blocks from the office towers.
 
-[Battersea Power Station](/pins/battersea-power-station) is the other adaptive-reuse trip worth taking on a clear afternoon. The Northern Line extension drops you at the building. Inside is a shopping mall and food hall; the exterior and the river walk are the reason to make the trip.
+[Battersea Power Station](/pins/battersea-power-station) is the other adaptive-reuse trip worth taking on a clear afternoon. The Northern Line extension drops you at the building. Inside is a shopping mall and food hall. The exterior and the river walk are the reason to make the trip.
 
 ## Pubs that earn the room
 
-Pubs in central London skew touristy and overcooked; the ones that actually earn the room are usually a few stops out. The reliable picks:
+Pubs in central London skew touristy and overcooked. The ones that actually earn the room are usually a few stops out. The reliable picks:
 
 * [The George](/pins/the-george) in Canary Wharf for a proper old-school pint without the City crowds.
-* [The Astronomer EC1](/pins/the-astronomer-ec1) for a Sunday roast; close earlier than you'd expect, so book lunch not dinner.
+* [The Astronomer EC1](/pins/the-astronomer-ec1) for a Sunday roast. Close earlier than you'd expect, so book lunch not dinner.
 * Anchor Bankside for the Bankside view on the walk. Touristy but unbeatable for the location.
 
 For something more particular: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal toward Camden, end at one of the canal-side pubs along the way.

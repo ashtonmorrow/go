@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/utrect-nl via the picker.
+# - hero_image is empty. Pick one in /admin/lists/utrect-nl via the picker.
 ---
 
-[Utrecht](/cities/utrecht) is the small Dutch university city that gets steadily under-recommended next to Amsterdam. The historic centre is canal-laced like Amsterdam but a third the size and a quarter the tourist density, the Dom Tower (the tallest medieval church tower in the Netherlands) anchors the skyline, and the food and cafe scene runs at fair prices. Two or three days is the right length; pair with The Hague, Rotterdam, or a day trip to the Kröller-Müller Museum.
+[Utrecht](/cities/utrecht) is the small Dutch university city that gets steadily under-recommended next to Amsterdam. The historic center is canal-laced like Amsterdam but a third the size and a quarter the tourist density, the Dom Tower (the tallest medieval church tower in the Netherlands) anchors the skyline, and the food and cafe scene runs at fair prices. Two or three days is the right length. Pair with The Hague, Rotterdam, or a day trip to the Kröller-Müller Museum.
 
 ## On this page
 
@@ -31,14 +31,14 @@ related:
 
 ## Getting in from the airport
 
-Utrecht Amsterdam Schiphol (the international gateway; Utrecht has no major airport) (AMS) has no major international airport; arrival is by train from Schiphol (AMS) or Amsterdam Centraal, both of which connect directly to Utrecht Centraal.
+Utrecht Amsterdam Schiphol (the international gateway. Utrecht has no major airport) (AMS) has no major international airport. Arrival is by train from Schiphol (AMS) or Amsterdam Centraal, both of which connect directly to Utrecht Centraal.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | NS Intercity from Schiphol | 35 to 40 min | €10 to €12 on OVpay | The default. Direct Intercity train from under the AMS terminal to Utrecht Centraal every 15 to 30 minutes |
-| NS Intercity from Amsterdam Centraal | 25 min | €8 to €9 on OVpay | Coming from an Amsterdam stay; the same train one stop down the line |
-| Eindhoven (EIN) via NS train | 70 to 90 min | €15 to €18 | If a low-cost carrier brought you to EIN; bus 401 to Eindhoven Centraal then Intercity to Utrecht |
-| Brussels-Midi (Thalys via Amsterdam) | 160 min | €60 to €110 advance | From a London Eurostar via Brussels; one change at Amsterdam Centraal |
+| NS Intercity from Amsterdam Centraal | 25 min | €8 to €9 on OVpay | Coming from an Amsterdam stay. The same train one stop down the line |
+| Eindhoven (EIN) via NS train | 70 to 90 min | €15 to €18 | If a low-cost carrier brought you to EIN. Bus 401 to Eindhoven Centraal then Intercity to Utrecht |
+| Brussels-Midi (Thalys via Amsterdam) | 160 min | €60 to €110 advance | From a London Eurostar via Brussels. One change at Amsterdam Centraal |
 
 ## Where to stay
 

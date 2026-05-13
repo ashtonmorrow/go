@@ -56,14 +56,14 @@ I spent a few weeks there, long enough for the first impression to settle into s
 
 ## Getting in from the airport
 
-Cape Town International (CPT) sits about 20 km east of the City Bowl and is the gateway for almost every international visitor. The road in is straightforward, but the airport transfer market has a few small traps worth knowing about. The metered taxis at the kerb rarely actually run the meter, the hotel-arranged transfers tend to be marked up by a third, and Uber's airport pickup pin has moved a couple of times in the last few years; open the app before you leave the terminal so the lot is fresh.
+Cape Town International (CPT) sits about 20 km east of the City Bowl and is the gateway for almost every international visitor. The road in is straightforward, but the airport transfer market has a few small traps worth knowing about. The metered taxis at the curb rarely actually run the meter, the hotel-arranged transfers tend to be marked up by a third, and Uber's airport pickup pin has moved a couple of times in the last few years. Open the app before you leave the terminal so the lot is fresh.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Uber / Bolt | 25 to 40 min | R250 to R400 to the City Bowl, R350 to R500 to Camps Bay | The default for most arrivals with luggage. Both apps work from a marked pickup zone outside arrivals; the pin moves occasionally so check the in-app map |
-| MyCiTi airport bus (A1) | 40 to 60 min | R110 plus a one-off R39 myconnect card load | A clean public-transit option to the central Civic Centre on Hertzog Boulevard. Slower with luggage but a fraction of the rideshare cost |
-| Pre-booked transfer | 25 to 40 min | R450 to R700 depending on operator | Late arrivals when you do not want to deal with the app at 23:00; ask your hotel to arrange. Slightly more than Uber but the driver waits at arrivals with a name board |
-| Metered taxi from the rank | 25 to 40 min | Negotiated; typically R400 to R500 | Last resort. Agree the price before you get in; the metered rate is rarely actually run on the meter |
+| Uber / Bolt | 25 to 40 min | R250 to R400 to the City Bowl, R350 to R500 to Camps Bay | The default for most arrivals with luggage. Both apps work from a marked pickup zone outside arrivals. The pin moves occasionally so check the in-app map |
+| MyCiTi airport bus (A1) | 40 to 60 min | R110 plus a one-off R39 myconnect card load | A clean public-transit option to the central Civic Center on Hertzog Boulevard. Slower with luggage but a fraction of the rideshare cost |
+| Pre-booked transfer | 25 to 40 min | R450 to R700 depending on operator | Late arrivals when you do not want to deal with the app at 23:00. Ask your hotel to arrange. Slightly more than Uber but the driver waits at arrivals with a name board |
+| Metered taxi from the rank | 25 to 40 min | Negotiated. Typically R400 to R500 | Last resort. Agree the price before you get in. The metered rate is rarely actually run on the meter |
 
 Uber or Bolt is the right default. If you are arriving late and tired, the pre-booked hotel transfer is worth the small premium for the certainty.
 
@@ -114,7 +114,7 @@ The rule for both: put them on the first clear, low-wind day rather than locking
 
 The V&A Waterfront is commercial, but useful. You can eat, shop, catch the [Robben Island](/pins/robben-island) ferry, and walk over to watch the working harbor. I had a good meal at [Karibu](/pins/karibu-restaurant), with most plates in the $10 to $20 range when I went. The free side trip is the harbor activity itself, before or after dinner.
 
-Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop. Book in advance; it can sell out a few days ahead in peak season.
+Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop. Book in advance. It can sell out a few days ahead in peak season.
 
 ## The Cape Peninsula coast
 
@@ -122,10 +122,10 @@ The coastal beaches divide into three rhythms.
 
 | Spot | Best for | Notes |
 |---|---|---|
-| Clifton | Sheltered swimming, calmer water | Series of small coves; better with kids than Camps Bay |
+| Clifton | Sheltered swimming, calmer water | Series of small coves. Better with kids than Camps Bay |
 | Camps Bay | Social beach day, restaurants across the road | Wider beach, lined with cafes and bars |
 | Sea Point | Promenade walks, not really swimming | Coastal walkway, easy daily rhythm |
-| [Boulders Penguin Colony](/pins/boulders-beach-penguin-sanctuary) | African penguins on the boardwalk | Real drive from the center; fold into a Cape Peninsula day, not a quick errand |
+| [Boulders Penguin Colony](/pins/boulders-beach-penguin-sanctuary) | African penguins on the boardwalk | Real drive from the center. Fold into a Cape Peninsula day, not a quick errand |
 
 Boulders pairs naturally with Cape Point and the Cape of Good Hope as a single long day. [Seaforth Restaurant](/pins/seaforth-restaurant) near Boulders was fine when I went: good patio, acceptable food, older crowd.
 
@@ -133,13 +133,13 @@ Boulders pairs naturally with Cape Point and the Cape of Good Hope as a single l
 
 ## Day trips: wine country and safari
 
-For wine, the Hop-on, Hop-off Wine Tram is the easy version. Pick a line, arrange transport in and out, and do not drive yourself. I took the Orange Line; [Babylonstoren](/pins/babylonstoren-wine-estate) and [Bacco](/pins/bacco-estate-winery) were the two stops I enjoyed most. The flights are good value if your goal is to taste widely rather than commit to one estate.
+For wine, the Hop-on, Hop-off Wine Tram is the easy version. Pick a line, arrange transport in and out, and do not drive yourself. I took the Orange Line. [Babylonstoren](/pins/babylonstoren-wine-estate) and [Bacco](/pins/bacco-estate-winery) were the two stops I enjoyed most. The flights are good value if your goal is to taste widely rather than commit to one estate.
 
 [Aquila Game Reserve](/pins/aquila-private-game-reserve) is the simple safari add-on from Cape Town. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the long drive is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went.
 
 ## Where to eat
 
-The food scene was stronger than I expected. The list below is the version I would actually use as a base; longer-stay finds will rotate, but these worked across the weeks I was there.
+The food scene was stronger than I expected. The list below is the version I would actually use as a base. Longer-stay finds will rotate, but these worked across the weeks I was there.
 
 | Spot | Best for | Notes |
 |---|---|---|
@@ -147,7 +147,7 @@ The food scene was stronger than I expected. The list below is the version I wou
 | [Yen's Vietnamese Street Food](/pins/yen-s-vietnamese-street-food) | Fresh Vietnamese | Not strictly authentic, well-made |
 | [Sea Breeze Fish & Shell](/pins/seabreeze-fish-and-shell) | Seafood | Reliable, lower-key |
 | [Eastern Food Bazaar](/pins/eastern-food-bazaar) | Indian and Southeast Asian hawker-style | Unfussy, fast, cheap |
-| [The Old Biscuit Mill](/pins/the-old-biscuit-mill) | Saturday Neighbourgoods Market | The building is the point; some fair prices, some tourist prices |
+| [The Old Biscuit Mill](/pins/the-old-biscuit-mill) | Saturday Neighbourgoods Market | The building is the point. Some fair prices, some tourist prices |
 | [Heaven Coffee Shop](/pins/heaven-coffee-shop) | Coffee in a former church | Worth a stop for the setting |
 | [Crankshaft Coffee](/pins/crankshaft-cafe-classic-car-coffee-bar) | Coffee inside a classic-car dealership | A specific kind of Cape Town morning |
 

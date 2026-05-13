@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/venezia via the picker.
+# - hero_image is empty. Pick one in /admin/lists/venezia via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Venice](/cities/venice) is the Italian island-city that gets a bad-faith reputation it does not earn. Yes, it is crowded in the main San Marco quadrant; yes, the cruise-ship day-tripper density is real. The actual city (Cannaregio, Dorsoduro, Castello away from the spine) is calm, walkable, and exactly what the postcards promise. The trick is staying overnight inside the lagoon rather than day-tripping from the mainland. Two or three nights is the minimum; longer for the islands (Murano, Burano, Torcello) and the lagoon depth.
+[Venice](/cities/venice) is the Italian island-city that gets a bad-faith reputation it does not earn. Yes, it is crowded in the main San Marco quadrant. Yes, the cruise-ship day-tripper density is real. The actual city (Cannaregio, Dorsoduro, Castello away from the spine) is calm, walkable, and exactly what the postcards promise. The trick is staying overnight inside the lagoon rather than day-tripping from the mainland. Two or three nights is the minimum. Longer for the islands (Murano, Burano, Torcello) and the lagoon depth.
 
 ## On this page
 
@@ -36,13 +36,13 @@ related:
 
 ## Getting in from the airport
 
-Venice Venice Marco Polo Airport (VCE) sits about 12 km north of central Venice; the Alilaguna water-taxi service connects the airport directly to the lagoon, which is the right way to arrive into a water city.
+Venice Venice Marco Polo Airport (VCE) sits about 12 km north of central Venice. The Alilaguna water-taxi service connects the airport directly to the lagoon, which is the right way to arrive into a water city.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Alilaguna water bus | 70 to 90 min | €15 single | The default. The Linea Blu, Linea Arancio, and Linea Rossa lines connect VCE to Murano, Rialto, San Marco, and the Lido. Arrive at your hotel by water, which is the experience |
-| ATVO express bus | 20 min | €10 single | Faster but drops at Piazzale Roma (the bus terminal); you then walk or take a vaporetto into the islands |
-| Private water taxi | 25 to 40 min | €110 to €150 | The headline arrival. Direct to your hotel's water entrance; worth the premium for a special trip or a late night |
+| ATVO express bus | 20 min | €10 single | Faster but drops at Piazzale Roma (the bus terminal). You then walk or take a vaporetto into the islands |
+| Private water taxi | 25 to 40 min | €110 to €150 | The headline arrival. Direct to your hotel's water entrance. Worth the premium for a special trip or a late night |
 | Taxi to Piazzale Roma + vaporetto | 30 to 60 min | €45 land taxi + €9.50 vaporetto | Last resort. The water-taxi is the cleaner premium and the Alilaguna is the cleaner budget |
 
 ## Where to stay

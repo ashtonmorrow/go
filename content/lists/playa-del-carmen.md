@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/playa-del-carmen via the picker.
+# - hero_image is empty. Pick one in /admin/lists/playa-del-carmen via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Playa del Carmen](/cities/playa-del-carmen) is the Yucatán beach town that grew from a sleepy ferry stop to Cozumel into a serious resort destination. The Quinta Avenida (5th Avenue) pedestrian strip is the spine; the beach is the wide white-sand Caribbean cliché, and the cenote and Mayan-ruin day trips are the depth. Three to five days for a beach trip; longer if you are pairing with Tulum, Holbox, or Cozumel diving.
+[Playa del Carmen](/cities/playa-del-carmen) is the Yucatán beach town that grew from a sleepy ferry stop to Cozumel into a serious resort destination. The Quinta Avenida (5th Avenue) pedestrian strip is the spine. The beach is the wide white-sand Caribbean cliché, and the cenote and Mayan-ruin day trips are the depth. Three to five days for a beach trip. Longer if you are pairing with Tulum, Holbox, or Cozumel diving.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Playa del Carmen Cancún International (CUN) is reached primarily through Cancún International (CUN), 65 km north; the Tulum airport (TQO) opened in 2023 as a closer alternative but with much less international service.
+Playa del Carmen Cancún International (CUN) is reached primarily through Cancún International (CUN), 65 km north. The Tulum airport (TQO) opened in 2023 as a closer alternative but with much less international service.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| ADO bus | 60 to 75 min | ~$15 USD per person | The default. Direct ADO coach from CUN Terminal 3 to Playa del Carmen ADO terminal, every 30 minutes; comfortable, air-conditioned |
-| Pre-booked shuttle / private | 60 to 75 min | $50 to $90 USD | Door-to-door service with luggage; worth the premium for a group or a late arrival |
-| Uber | 60 to 75 min | $70 to $100 USD | Works from CUN but the local taxi union has occasional conflicts with Uber drivers at the airport; check current status before relying on it |
-| Airport taxi | 60 to 75 min | $100 to $130 USD | Last resort. The kerb taxi market is the most expensive in the area; agree the price in writing on a phone screen before pulling away |
+| ADO bus | 60 to 75 min | ~$15 USD per person | The default. Direct ADO coach from CUN Terminal 3 to Playa del Carmen ADO terminal, every 30 minutes. Comfortable, air-conditioned |
+| Pre-booked shuttle / private | 60 to 75 min | $50 to $90 USD | Door-to-door service with luggage. Worth the premium for a group or a late arrival |
+| Uber | 60 to 75 min | $70 to $100 USD | Works from CUN but the local taxi union has occasional conflicts with Uber drivers at the airport. Check current status before relying on it |
+| Airport taxi | 60 to 75 min | $100 to $130 USD | Last resort. The curb taxi market is the most expensive in the area. Agree the price in writing on a phone screen before pulling away |
 
 ## Where to stay
 

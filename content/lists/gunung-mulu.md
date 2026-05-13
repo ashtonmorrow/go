@@ -21,7 +21,7 @@ guide_cards:
     - title: Book the guided caves before you go
       body: Deer, Lang, and Clearwater caves are guided-tour only, the park keeps bookings in a physical book, and spots are limited. Email park staff to reserve before you arrive. Unguided boardwalks fill the rest of the time.
     - title: The Pinnacles is a 3-day trek
-      body: Mulu's most photographed feature is the Pinnacles, and reaching them is a 3-day, overnight, properly strenuous climb with hard turnaround checkpoints. It is not a day hike. If you want the photo, plan it as the centre of the trip.
+      body: Mulu's most photographed feature is the Pinnacles, and reaching them is a 3-day, overnight, properly strenuous climb with hard turnaround checkpoints. It is not a day hike. If you want the photo, plan it as the center of the trip.
 
 faqs:
   - q: How do I actually get to Gunung Mulu?
@@ -29,9 +29,9 @@ faqs:
   - q: Should I layover in Kuala Lumpur or Singapore?
     a: Kuala Lumpur is the easier choice if you want to spend $75 to $125 a night on a nice 5-star hotel and do not mind a 90-minute taxi from the airport into the city. Singapore is the easier choice for short transits (15 to 20 minutes from Changi to anywhere), but expect $30 to $40 for two beers and hotel rates to match.
   - q: Where do I stay in Mulu?
-    a: Mulu Marriott Resort & Spa, effectively. It sits about $100 a night, the on-demand airport shuttle meets every flight (you do not need to book it), and occupancy is consistently low enough that Marriott status members tend to get suite upgrades, worth saving suite-night awards for. The alternative is the park lodge with hostel beds at $11 and villas at $65 with no Wi-Fi, or a handful of small homestays. The Marriott is open-air on the public floors and there are bats flying around the bar after dark; some people love this, others do not.
+    a: Mulu Marriott Resort & Spa, effectively. It sits about $100 a night, the on-demand airport shuttle meets every flight (you do not need to book it), and occupancy is consistently low enough that Marriott status members tend to get suite upgrades, worth saving suite-night awards for. The alternative is the park lodge with hostel beds at $11 and villas at $65 with no Wi-Fi, or a handful of small homestays. The Marriott is open-air on the public floors and there are bats flying around the bar after dark. Some people love this, others do not.
   - q: What is actually worth doing in the park?
-    a: The unguided boardwalks (about 10 km total across five routes) cover most of the wildlife and require nothing more than water and bug spray. The guided cave tours (Deer, Lang, Clearwater) are the headline experience and cost under $10 each. Book ahead because the park keeps reservations in a physical book and spots are limited. The Pinnacles is the famous photo, but it is a 3-day overnight trek with hard turnaround windows; plan it as a separate trip rather than an add-on.
+    a: The unguided boardwalks (about 10 km total across five routes) cover most of the wildlife and require nothing more than water and bug spray. The guided cave tours (Deer, Lang, Clearwater) are the headline experience and cost under $10 each. Book ahead because the park keeps reservations in a physical book and spots are limited. The Pinnacles is the famous photo, but it is a 3-day overnight trek with hard turnaround windows. Plan it as a separate trip rather than an add-on.
   - q: Is the Wi-Fi situation really that bad?
     a: At the park lodge, there is no Wi-Fi at all. At the Marriott, Wi-Fi is in the reception, bar, and pool areas only. The rooms and suites do not have it. I had two bars of 4G in my room which was enough for a hotspot, but bring a Malaysian SIM in advance if you need to work.
 
@@ -40,7 +40,7 @@ related:
   country: malaysia
 ---
 
-[Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also genuinely difficult to reach: a single regional airport, roughly four daily turboprop flights across the three Borneo hubs, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below; this writeup covers the parts of it that change the trip.
+[Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also difficult to reach: a single regional airport, roughly four daily turboprop flights across the three Borneo hubs, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below. This writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -53,7 +53,7 @@ related:
 
 ## Why it is worth the effort
 
-Three reasons. The park is a UNESCO site for its flora and fauna, with the bat colonies as the headline draw. The evening flyout from [Deer Cave](/pins/deer-cave) is the kind of thing that gets onto nature documentaries. The cave system itself is among the largest on the planet, with the Deer Cave entrance over 140 metres tall. And the karst formations the caves carved out include the Pinnacles, a field of vertical limestone blades that are the park's most photographed feature.
+Three reasons. The park is a UNESCO site for its flora and fauna, with the bat colonies as the headline draw. The evening flyout from [Deer Cave](/pins/deer-cave) is the kind of thing that gets onto nature documentaries. The cave system itself is among the largest on the planet, with the Deer Cave entrance over 140 meters tall. And the karst formations the caves carved out include the Pinnacles, a field of vertical limestone blades that are the park's most photographed feature.
 
 The trip is also worth it for what it is not: a Marriott in a rainforest where bats fly around the bar at night is a real travel anecdote, and it is one of the few places where a major loyalty program drops you straight into a UNESCO park.
 
@@ -69,7 +69,7 @@ The trip is also worth it for what it is not: a Marriott in a rainforest where b
 
 The cheap trick: round-trip pricing into Mulu is the same as one-way, so book in from one of the three and out to another. Combining Kuching and Kota Kinabalu as your two endpoints is the version of this trip I would book.
 
-From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is the cheaper, easier hotel night if your layover is overnight; Singapore is faster gate-to-bed if your layover is short.
+From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is the cheaper, easier hotel night if your layover is overnight. Singapore is faster gate-to-bed if your layover is short.
 
 ## Where to stay
 
@@ -77,7 +77,7 @@ From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is th
 |---|---|---|
 | [Mulu Marriott Resort & Spa](/pins/mulu-marriott-resort-and-spa) | The only Western-grade hotel for a long way. ~$100/night, on-demand shuttle at the airport, suite upgrades common for status members | Open-air public floors mean bats and frogs at the bar at night. Wi-Fi only in reception/bar/pool, not in rooms |
 | Park lodge | Closer to the trailheads, hostel beds ~$11 and villas $65+ | No Wi-Fi at all. Spartan |
-| Homestays / Mulu Village guesthouses | Cheapest, most local | Quality varies; the Marriott is the safer pick unless cost is the deciding factor |
+| Homestays / Mulu Village guesthouses | Cheapest, most local | Quality varies. The Marriott is the safer pick unless cost is the deciding factor |
 
 The Marriott runs a free shuttle that meets every flight, so you do not need to pre-book transport. Going back out, the same shuttle drops you at the airport with timing matched to your departure.
 
@@ -108,6 +108,6 @@ Total network is about 10 km. None of it requires more than water and bug spray.
 
 ## The Pinnacles is a different trip
 
-The Pinnacles are the photo: rows of vertical limestone blades rising out of the rainforest near the summit of [Mount Mulu](/pins/mount-mulu). Reaching them is a 3-day overnight trek with timed checkpoints; if you do not hit each checkpoint on schedule, you turn back. The climb is physical and the descent is harder. You sleep at Camp 5, where the showers are river-fed and the kitchen is communal.
+The Pinnacles are the photo: rows of vertical limestone blades rising out of the rainforest near the summit of [Mount Mulu](/pins/mount-mulu). Reaching them is a 3-day overnight trek with timed checkpoints. If you do not hit each checkpoint on schedule, you turn back. The climb is physical and the descent is harder. You sleep at Camp 5, where the showers are river-fed and the kitchen is communal.
 
 If the Pinnacles are the reason you are coming, plan the trip around them rather than as an add-on to a Marriott stay. Book months in advance, pack a proper headlamp and ankle-stabilising boots, and budget a recovery day at the Marriott on the back end.

@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/panama via the picker.
+# - hero_image is empty. Pick one in /admin/lists/panama via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Panama City](/cities/panama-city) is the Central American capital that does not feel like the rest of Central America. The modern Punta Pacífica skyline shares the city with the colonial Casco Viejo, the Panama Canal sits on the doorstep, and the airport is the hemispheric hub for Copa Airlines (which is why Panama makes such a clean stopover). Two or three days for the city; longer for the canal expansion locks tour or for Bocas del Toro on the Caribbean coast.
+[Panama City](/cities/panama-city) is the Central American capital that does not feel like the rest of Central America. The modern Punta Pacífica skyline shares the city with the colonial Casco Viejo, the Panama Canal sits on the doorstep, and the airport is the hemispheric hub for Copa Airlines (which is why Panama makes such a clean stopover). Two or three days for the city. Longer for the canal expansion locks tour or for Bocas del Toro on the Caribbean coast.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Panama City Tocumen International (PTY) sits about 25 km east of the city; rideshare is the practical default with the dedicated airport taxi as the alternative.
+Panama City Tocumen International (PTY) sits about 25 km east of the city. Rideshare is the practical default with the dedicated airport taxi as the alternative.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Uber / inDrive | 30 to 60 min | $15 to $25 to Casco Viejo or Bella Vista | The default. Uber pickup is at a marked lot a short walk from arrivals; inDrive is the local cheaper alternative |
-| Airport taxi | 30 to 60 min | $30 to $40 fixed-zone fare | Use the marked yellow taxis at the kerb. The fare is set by zone; pay at the desk inside arrivals or agree before pulling away |
-| Pre-booked transfer | 30 to 60 min | $45 to $70 | Late arrival; driver waits with a name board |
-| Metrobus Corredor Sur | 60 to 90 min | $1.25 plus the Metro card | The cheapest path; runs from PTY to Albrook station via the Corredor Sur highway. Slow with luggage |
+| Uber / inDrive | 30 to 60 min | $15 to $25 to Casco Viejo or Bella Vista | The default. Uber pickup is at a marked lot a short walk from arrivals. InDrive is the local cheaper alternative |
+| Airport taxi | 30 to 60 min | $30 to $40 fixed-zone fare | Use the marked yellow taxis at the curb. The fare is set by zone. Pay at the desk inside arrivals or agree before pulling away |
+| Pre-booked transfer | 30 to 60 min | $45 to $70 | Late arrival. Driver waits with a name board |
+| Metrobus Corredor Sur | 60 to 90 min | $1.25 plus the Metro card | The cheapest path. Runs from PTY to Albrook station via the Corredor Sur highway. Slow with luggage |
 
 ## Where to stay
 

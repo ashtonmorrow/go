@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/bogota via the picker.
+# - hero_image is empty. Pick one in /admin/lists/bogota via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Bogotá](/cities/bogota) is the Colombian capital that surprises most visitors with the altitude (2,640 metres; you will feel it the first day), the cool-mountain weather year-round (15 to 20°C is the normal), and the modern restaurant scene that the post-2000 security improvements built. Zona Rosa, Chapinero, La Macarena, and La Candelaria (the historic centre) are the four neighbourhoods most visitors rotate through. Three to four days for the city; longer if you are pairing with the coffee region or Cartagena.
+[Bogotá](/cities/bogota) is the Colombian capital that surprises most visitors with the altitude (2,640 meters. You will feel it the first day), the cool-mountain weather year-round (15 to 20°C is the normal), and the modern restaurant scene that the post-2000 security improvements built. Zona Rosa, Chapinero, La Macarena, and La Candelaria (the historic center) are the four neighborhoods most visitors rotate through. Three to four days for the city. Longer if you are pairing with the coffee region or Cartagena.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Bogotá El Dorado International (BOG) sits about 15 km west of central Bogotá; rideshare is the practical default since the airport has no rail link and the public bus is slow with luggage.
+Bogotá El Dorado International (BOG) sits about 15 km west of central Bogotá. Rideshare is the practical default since the airport has no rail link and the public bus is slow with luggage.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Uber / Cabify / DiDi | 30 to 60 min | COP 30,000 to 50,000 | The default. All three rideshare apps work; Cabify is the cleanest if Uber drivers push for cash |
-| Pre-booked transfer | 30 to 60 min | COP 80,000 to 120,000 | Late arrival; driver waits with a name board. Worth the premium for the first night |
-| Airport taxi from the rank | 30 to 60 min | COP 50,000 to 80,000 | Use only the marked white taxis at the official rank; the desk inside arrivals issues a zone-based fixed-fare slip |
-| TransMilenio K86 (bus) | 60 to 90 min | COP 3,200 | The cheapest option. Bus to Portal El Dorado station then transfer. Slow with luggage; works for solo light travellers only |
+| Uber / Cabify / DiDi | 30 to 60 min | COP 30,000 to 50,000 | The default. All three rideshare apps work. Cabify is the cleanest if Uber drivers push for cash |
+| Pre-booked transfer | 30 to 60 min | COP 80,000 to 120,000 | Late arrival. Driver waits with a name board. Worth the premium for the first night |
+| Airport taxi from the rank | 30 to 60 min | COP 50,000 to 80,000 | Use only the marked white taxis at the official rank. The desk inside arrivals issues a zone-based fixed-fare slip |
+| TransMilenio K86 (bus) | 60 to 90 min | COP 3,200 | The cheapest option. Bus to Portal El Dorado station then transfer. Slow with luggage. Works for solo light travelers only |
 
 ## Where to stay
 
@@ -55,7 +55,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Bogotá food has modernised faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub side is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
+Bogotá food has modernized faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub side is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
 
 | Spot | Rating |
 |---|---|

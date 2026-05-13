@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/lyon via the picker.
+# - hero_image is empty. Pick one in /admin/lists/lyon via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Lyon](/cities/lyon) is the French city that takes its claim to be the food capital of France seriously. The bouchon (a small, casual, Lyon-specific restaurant side) is the local form; the city sits on the confluence of the Rhône and Saône, the old town (Vieux Lyon) is UNESCO-listed, and the modern Confluence neighbourhood gives the south end a different rhythm. Two or three days for the city; longer if you are pairing with the Beaujolais wine villages or the southern Rhône.
+[Lyon](/cities/lyon) is the French city that takes its claim to be the food capital of France seriously. The bouchon (a small, casual, Lyon-specific restaurant side) is the local form. The city sits on the confluence of the Rhône and Saône, the old town (Vieux Lyon) is UNESCO-listed, and the modern Confluence neighborhood gives the south end a different rhythm. Two or three days for the city. Longer if you are pairing with the Beaujolais wine villages or the southern Rhône.
 
 ## On this page
 
@@ -35,14 +35,14 @@ related:
 
 ## Getting in from the airport
 
-Lyon Lyon Saint-Exupéry (LYS) sits about 25 km east of the centre; the Rhônexpress dedicated tram is the cleanest path in, with rideshare as the easier-with-luggage alternative.
+Lyon Lyon Saint-Exupéry (LYS) sits about 25 km east of the center. The Rhônexpress dedicated tram is the cleanest path in, with rideshare as the easier-with-luggage alternative.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Rhônexpress tram | 30 min | €16.30 single, €28.20 return | The default. Direct from LYS to Lyon Part-Dieu (main rail station) every 15 minutes |
-| Uber / Bolt / FreeNow | 25 to 50 min | €40 to €60 to the centre | Late arrival or heavy luggage; pricier than the tram but door-to-door |
-| Taxi from the rank | 25 to 50 min | €55 to €70 metered | Marked white-light cars at the kerb; meters run honestly |
-| Eurolines / Flixbus coach | 50 to 70 min | €8 to €15 | The cheapest path; runs to Part-Dieu coach station. Useful if you are connecting onward by coach |
+| Uber / Bolt / FreeNow | 25 to 50 min | €40 to €60 to the center | Late arrival or heavy luggage. Pricier than the tram but door-to-door |
+| Taxi from the rank | 25 to 50 min | €55 to €70 metered | Marked white-light cars at the curb. Meters run on the regulated rate |
+| Eurolines / Flixbus coach | 50 to 70 min | €8 to €15 | The cheapest path. Runs to Part-Dieu coach station. Useful if you are connecting onward by coach |
 
 ## Where to eat
 

@@ -10,7 +10,7 @@ authors:
 
 guide_cards:
   title: Using the market list
-  intro: These markets are not all the same kind of place. Some still function as ordinary neighbourhood shopping, while others sit close enough to old towns and cruise routes that they now work partly as attractions. I use them differently depending on the city.
+  intro: These markets are not all the same kind of place. Some still function as ordinary neighborhood shopping, while others sit close enough to old towns and cruise routes that they now work partly as attractions. I use them differently depending on the city.
   cards:
     - title: Go early
       body: Morning is when the produce is best, the fish and dairy counters are active, and the market still feels like part of the city rather than a photo stop.
@@ -29,7 +29,7 @@ faqs:
   - q: Should I haggle?
     a: Usually no. Ask the price, compare a few stalls if you want, and buy from the person whose produce looks good. Haggling over a small purchase is rarely worth the social friction.
   - q: Which markets are better for real grocery shopping?
-    a: Neighbourhood markets such as Kalenić in Belgrade and Obor in Bucharest are more useful for weekly shopping than old-town markets in heavily touristed cities.
+    a: Neighborhood markets such as Kalenić in Belgrade and Obor in Bucharest are more useful for weekly shopping than old-town markets in heavily touristed cities.
 
 related:
   posts:
@@ -53,10 +53,10 @@ The social rule is simple: do not treat a working market like a souvenir bazaar.
 | [Dolac Market](/pins/dolac-market) | Zagreb, Croatia | The big central market. Good first-morning stop for produce, flowers, honey, and the sense of Zagreb above the main square | Central location means visitor pricing on some stalls. Compare before buying gifts |
 | [Split Green Market (Pazar)](/pins/split-green-market-pazar) | Split, Croatia | Useful if you are staying near the palace and need fruit, snacks, or a quick look before the ferry | It has partly become an attraction. For a long stay, it may not be where locals do the cheapest full shop |
 | [Kotor Food Market](/pins/kotor-food-market) | Kotor, Montenegro | Best as an early stop by the city walls before the old town fills. The full Kotor planning context (where to stay around the bay, the walls climb, the cruise-ship rhythm) sits in the [Kotor travel guide](/lists/kotor) | The location is convenient, which also makes it visitor-facing |
-| [Zelena Pijaca Bar](/pins/zelena-pijaca-bar) | Bar, Montenegro | More practical than picturesque. Better for apartment cooking than for sightseeing | Go earlier in the day; the useful stalls thin out |
-| [Pijaca Markale food market](/pins/pijaca-markale-food-market) | Sarajevo, Bosnia and Herzegovina | Central produce market and the site of the 1994 and 1995 Markale massacres. A working market that is also a place of memory; visit briefly and read the memorial | Keep the visit respectful. This is not just a food stop in Sarajevo's history |
+| [Zelena Pijaca Bar](/pins/zelena-pijaca-bar) | Bar, Montenegro | More practical than picturesque. Better for apartment cooking than for sightseeing | Go earlier in the day. The useful stalls thin out |
+| [Pijaca Markale food market](/pins/pijaca-markale-food-market) | Sarajevo, Bosnia and Herzegovina | Central produce market and the site of the 1994 and 1995 Markale massacres. A working market that is also a place of memory. Visit briefly and read the memorial | Keep the visit respectful. This is not just a food stop in Sarajevo's history |
 | [Zeleni Venac](/pins/zeleni-venac) | Belgrade, Serbia | Transit-adjacent and practical, good for fruit, bread, and a quick shop while moving around the city | Busy and not polished. That is part of the point |
-| [Kalenić Green Market](/pins/kalenic-green-market) | Belgrade, Serbia | Better neighbourhood-shopping feel than Zeleni Venac. Useful if you are staying longer | Less convenient for a quick tourist walk unless you are already nearby |
+| [Kalenić Green Market](/pins/kalenic-green-market) | Belgrade, Serbia | Better neighborhood-shopping feel than Zeleni Venac. Useful if you are staying longer | Less convenient for a quick tourist walk unless you are already nearby |
 | [Obor Market](/pins/obor-market) | Bucharest, Romania | Large working market with produce, meat, cheese, pickles, and inexpensive cooked food nearby | It is big and functional rather than scenic. Give it time |
 
 ## What to buy

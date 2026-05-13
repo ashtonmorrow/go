@@ -41,14 +41,14 @@ I would use it less as a commuter map and more as a low-pressure coastal tool. [
 
 ## Which stretch to ride
 
-The Alicante TRAM is multi-line; the coastal corridor north of the city is shared by L1 (limited stops, faster, runs Luceros to Benidorm) and L3 (all-stops local, runs Luceros to El Campello). Smaller coves like Coveta Fumà and Cala Piteres are L3 stops only; Benidorm and Finestrat are L1.
+The Alicante TRAM is multi-line. The coastal corridor north of the city is shared by L1 (limited stops, faster, runs Luceros to Benidorm) and L3 (all-stops local, runs Luceros to El Campello). Smaller coves like Coveta Fumà and Cala Piteres are L3 stops only. Benidorm and Finestrat are L1.
 
 | Stretch | Line(s) | Use it for | Notes |
 |---|---|---|---|
-| [Luceros](/pins/luceros), [Mercat](/pins/mercat), [Marq - Castillo](/pins/marq-castillo) | L1 / L2 / L3 / L4 (city-centre interchange) | City-center movement | Useful if your hotel is near the rail station or the old town. The castle and market are the natural anchors |
+| [Luceros](/pins/luceros), [Mercat](/pins/mercat), [Marq - Castillo](/pins/marq-castillo) | L1 / L2 / L3 / L4 (city-center interchange) | City-center movement | Useful if your hotel is near the rail station or the old town. The castle and market are the natural anchors |
 | [La Isleta](/pins/la-isleta) and [Albufereta](/pins/albufereta) | L1 / L3 (north of Luceros) | A short beach change without committing to a longer ride | Good when Postiguet is too crowded but you still want to stay close |
 | [El Campello](/pins/el-campello) and [Amerador](/pins/amerador) | L1 (limited) and L3 (all stops) | The first proper coastal outing | Better for a half day than for a hurried one-hour errand |
-| [Coveta Fumà](/pins/coveta-fuma) and [Cala Piteres](/pins/cala-piteres) | L3 only | Smaller coves and a quieter coastline | L1 expresses past these stops. Check the walk from the platform; some coves are easier than others in heat |
+| [Coveta Fumà](/pins/coveta-fuma) and [Cala Piteres](/pins/cala-piteres) | L3 only | Smaller coves and a quieter coastline | L1 expresses past these stops. Check the walk from the platform. Some coves are easier than others in heat |
 | [Benidorm](/pins/benidorm) and [C.C. La Marina - Finestrat](/pins/c-c-la-marina-finestrat) | L1 only (transfer at Benidorm to L9 narrow gauge for Dénia) | A longer coastal day or a transfer point farther north | Useful if you are curious about the Costa Blanca resort strip, less useful if you only have one day in Alicante |
 
 ## When the tram changes the trip

@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/pattaya via the picker.
+# - hero_image is empty. Pick one in /admin/lists/pattaya via the picker.
 ---
 
-[Pattaya](/cities/pattaya) is the beach-resort town on the Gulf of Thailand two hours south-east of Bangkok. The reputation is mixed and earned in both directions; the south end (Jomtien, Pratumnak Hill, Na Jomtien) is family-and-couple friendly, while central Pattaya beach skews toward the older nightlife circuit. The trade-off of a Pattaya trip is that the right neighbourhood matters more than usual; pick the south side and the trip is fine, pick the centre and it can be very different. Three or four days is the right shape if you want a beach base; longer if you are using it as the warm half of a longer Thailand trip.
+[Pattaya](/cities/pattaya) is the beach-resort town on the Gulf of Thailand two hours south-east of Bangkok. The reputation is mixed and earned in both directions. The south end (Jomtien, Pratumnak Hill, Na Jomtien) is family-and-couple friendly, while central Pattaya beach skews toward the older nightlife circuit. The trade-off of a Pattaya trip is that the right neighborhood matters more than usual. Pick the south side and the trip is fine, pick the center and it can be very different. Three or four days is the right shape if you want a beach base. Longer if you are using it as the warm half of a longer Thailand trip.
 
 ## On this page
 
@@ -31,14 +31,14 @@ related:
 
 ## Getting in from the airport
 
-Pattaya Bangkok Suvarnabhumi (BKK) is reached from Bangkok Suvarnabhumi (BKK) about 110 km north-west, or from U-Tapao (UTP) 35 km south-east; BKK is the international gateway for almost every traveller.
+Pattaya Bangkok Suvarnabhumi (BKK) is reached from Bangkok Suvarnabhumi (BKK) about 110 km north-west, or from U-Tapao (UTP) 35 km south-east. BKK is the international gateway for almost every traveler.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Bell Travel Service shuttle | 90 min | 400 THB per person | The default. Shared shuttle from BKK direct to Pattaya hotels, every couple of hours; book online ahead of arrival |
-| Pre-booked private car | 90 min | 1,500 to 2,500 THB | Door-to-door with a driver; the easy version for a tired arrival or a group splitting the fare |
-| Bus 389 to Pattaya bus station | 120 min | 124 THB single | The cheapest path; runs from the public transport centre at BKK to Pattaya bus station, then a songthaew or taxi to your hotel |
-| Grab | 90 to 120 min | 1,500 to 2,500 THB | Available from BKK but pricier than the shuttle; useful for late arrivals |
+| Bell Travel Service shuttle | 90 min | 400 THB per person | The default. Shared shuttle from BKK direct to Pattaya hotels, every couple of hours. Book online ahead of arrival |
+| Pre-booked private car | 90 min | 1,500 to 2,500 THB | Door-to-door with a driver. The easy version for a tired arrival or a group splitting the fare |
+| Bus 389 to Pattaya bus station | 120 min | 124 THB single | The cheapest path. Runs from the public transport center at BKK to Pattaya bus station, then a songthaew or taxi to your hotel |
+| Grab | 90 to 120 min | 1,500 to 2,500 THB | Available from BKK but pricier than the shuttle. Useful for late arrivals |
 
 ## Where to stay
 
@@ -52,7 +52,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Pattaya food runs from the casual Thai street stall to the dressed-up resort dinner, with the imported international scene (Italian, German, American, Russian) reflecting the long-stay expat market. The picks below mix the casual evening with the better neighbourhood spots.
+Pattaya food runs from the casual Thai street stall to the dressed-up resort dinner, with the imported international scene (Italian, German, American, Russian) reflecting the long-stay expat market. The picks below mix the casual evening with the better neighborhood spots.
 
 | Spot | Rating |
 |---|---|

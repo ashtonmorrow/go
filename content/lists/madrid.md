@@ -25,7 +25,7 @@ guide_cards:
 
 faqs:
   - q: How do I get from Madrid-Barajas to the city center?
-    a: A taxi to the city center inside the M-30 ring is a €33 flat fare. Bolt and Uber both work in Madrid; Bolt is often a few euros cheaper, but the gap moves with demand. The Metro (Line 8) and the Cercanías commuter rail are the cheapest options if you are not loaded down with luggage.
+    a: A taxi to the city center inside the M-30 ring is a €33 flat fare. Bolt and Uber both work in Madrid. Bolt is often a few euros cheaper, but the gap moves with demand. The Metro (Line 8) and the Cercanías commuter rail are the cheapest options if you are not loaded down with luggage.
   - q: Where should I stay in Madrid for a first visit?
     a: Gran Vía if you want to walk to most things and do not mind crowds. La Latina toward Lavapiés if you want neighborhood restaurants and a quieter daily rhythm. The Princesa side if you want value and a calm street while still being on the metro.
   - q: Is the Mercado de San Miguel worth it?
@@ -38,8 +38,8 @@ related:
   country: spain
 
 # Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews; flip to true to ship.
-# - hero_image is empty; pick one in /admin/lists/madrid via the picker.
+# - indexable is false until Mike reviews. Flip to true to ship.
+# - hero_image is empty. Pick one in /admin/lists/madrid via the picker.
 # - Three Madrid pins were just created and are now linked from the prose:
 #     · museo-del-ferrocarril-de-madrid (Train Museum, Mike's favorite)
 #     · casa-de-campo-madrid (the park west of the city)
@@ -71,7 +71,7 @@ related:
 | Window | Months | What to expect |
 |---|---|---|
 | Spring | April to June | The best weeks. Warm but not hot, longer days, terraces full. Book hotels early |
-| Summer | July to August | Hot and dry, 35°C+ regularly. Many Madrileños leave town in August; some restaurants close for vacation |
+| Summer | July to August | Hot and dry, 35°C+ regularly. Many Madrileños leave town in August. Some restaurants close for vacation |
 | Autumn | September to November | The other peak window. Warm days, cooler evenings, museum and restaurant rhythm at its strongest |
 | Winter | December to March | Cold but rarely below freezing, mostly dry. Christmas lights along Gran Vía are worth seeing. Indoor-heavy itinerary |
 
@@ -79,7 +79,7 @@ related:
 
 | Option | Cost | Best for | Watch out for |
 |---|---|---|---|
-| Official taxi (flat fare) | €33 to anywhere inside the M-30 ring | Two suitcases, late arrivals | None worth flagging; it is the simplest move |
+| Official taxi (flat fare) | €33 to anywhere inside the M-30 ring | Two suitcases, late arrivals | None worth flagging. It is the simplest move |
 | Bolt | A few euros cheaper than the taxi, but the gap closes at peak | Light luggage, you check both apps | Surge pricing on busy nights closes the gap fast |
 | Uber | Same as Bolt, sometimes slightly higher | Same as Bolt | Same |
 | Metro Line 8 + transfer | A few euros | Light bag, hotel near a Line 8 stop | Transfers with luggage get old |
@@ -96,8 +96,8 @@ I pick a base by which kind of day I want to have. Gran Vía gets you walking di
 | Gran Vía | [Hotel Indigo Madrid - Gran Vía](/pins/hotel-indigo-madrid-gran-via-an-ihg-hotel) | Decent IHG-brand option one block off Gran Vía, near Plaza del Carmen and the Sol-Callao triangle | Gran Vía is loud and busy by definition |
 | Gran Vía | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Was a solid mid-range pick in the same area | I have not stayed since the recent renovation, so confirm the room before booking |
 | Princesa side | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way for the Sol / Gran Vía buzz at night |
-| La Latina / Lavapiés | [Atocha Hotel, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Hilton soft-brand option, walking distance to the Reina Sofía | Rates have been creeping up; not always the value it used to be |
-| Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage; treat as a bed, not a base |
+| La Latina / Lavapiés | [Atocha Hotel, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Hilton soft-brand option, walking distance to the Reina Sofía | Rates have been creeping up. Not always the value it used to be |
+| Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage. Treat as a bed, not a base |
 
 La Latina toward Lavapiés is my personal favorite area when I am picking by neighborhood feel rather than hotel. Older buildings, more stairs, the strongest neighborhood food in the center. If you stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) rooftop at Callao has one of the easier sunset views in the center. The [Camino Sacramento](/pins/camino-sacramento) cheap-steak spot is right there too.
 
@@ -116,15 +116,15 @@ The food rhythm in Madrid rewards walking ten minutes for a better meal rather t
 | [Mercado de San Miguel](/pins/mercado-de-san-miguel) | Beer and a snack with a view of the building | Overpriced and crowded for a meal. Use for the building, then leave |
 | [Mercado de la Cebada](/pins/mercado-de-la-cebada) | A real working market locals shop at | 5 minutes from San Miguel. Cheaper, less polished, more interesting |
 | [Restaurante Amicis](/pins/restaurante-amicis) | Sit-down dinner next to San Miguel | Beats every picture-menu place on the square. Ground floor |
-| [El miniBAR](/pins/el-minibar) | Sit-down dinner 10 minutes from San Miguel | Basement; skip if anyone in the group has mobility limits |
-| [BREW WILD PIZZA BAR](/pins/brew-wild-pizza-bar) | Craft beer in the center | Tap list rotates; pizza is fine, not a destination |
+| [El miniBAR](/pins/el-minibar) | Sit-down dinner 10 minutes from San Miguel | Basement. Skip if anyone in the group has mobility limits |
+| [BREW WILD PIZZA BAR](/pins/brew-wild-pizza-bar) | Craft beer in the center | Tap list rotates. Pizza is fine, not a destination |
 | [Chocolat Madrid](/pins/chocolat-madrid) | Chocolate con churros without the San Ginés queue | Almost always walk-in. The famous version is at San Ginés if the queue is the point for you |
 | [Motteau Pasteleria](/pins/motteau-pasteleria) | Pastries on the way to the Retiro or the museums | Best in the city for me |
 | [Camino Sacramento](/pins/camino-sacramento) | Cheap steak near Callao | Worth a stop |
 
 ## Museums
 
-The booking pattern is the part that catches first-time visitors out: the Prado requires a timed entry to skip the weekend line, the Reina Sofía generally does not.
+The booking pattern is the part that catches first-time visitors out: the Prado requires a timed entry to skip the weekend line, the Reina Sofía does not.
 
 | Museum | What it is | Booking | Best for |
 |---|---|---|---|

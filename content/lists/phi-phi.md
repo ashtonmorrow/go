@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/phi-phi via the picker.
+# - hero_image is empty. Pick one in /admin/lists/phi-phi via the picker.
 ---
 
-[Koh Phi Phi](/cities/koh-phi-phi) is the small Thai island in the Andaman Sea that became famous after The Beach (2000) and has been managing the tourism overhang since. Phi Phi Don is the inhabited main island; Phi Phi Leh is the smaller protected sister with Maya Bay where most boat trips go. No cars on either island, no airport; arrival is by ferry from Phuket or Krabi. Two or three days is the right shape for a beach trip; longer only if you really want the island pace.
+[Koh Phi Phi](/cities/koh-phi-phi) is the small Thai island in the Andaman Sea that became famous after The Beach (2000) and has been managing the tourism overhang since. Phi Phi Don is the inhabited main island. Phi Phi Leh is the smaller protected sister with Maya Bay where most boat trips go. No cars on either island, no airport. Arrival is by ferry from Phuket or Krabi. Two or three days is the right shape for a beach trip. Longer only if you really want the island pace.
 
 ## On this page
 
@@ -30,18 +30,18 @@ related:
 
 ## Getting in from the airport
 
-Koh Phi Phi Phuket International (the standard gateway; ferry across is the second leg) (HKT) has no airport; the standard arrival is the 90-to-120-minute ferry from Phuket or Krabi. The nearest international airports are Phuket (HKT) and Krabi (KBV).
+Koh Phi Phi Phuket International (the standard gateway. Ferry across is the second leg) (HKT) has no airport. The standard arrival is the 90-to-120-minute ferry from Phuket or Krabi. The nearest international airports are Phuket (HKT) and Krabi (KBV).
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
 | Ferry from Phuket Rassada Pier | 90 to 120 min | 500 to 800 THB single | The default. Daily ferries via Phuket Ferry, Tigerline, or Andaman Wave Master to Tonsai Pier on Phi Phi Don |
-| Ferry from Krabi Klong Jilad Pier | 90 to 120 min | 350 to 600 THB single | If you flew into Krabi (KBV); the ferry is slightly cheaper and the connection from KBV is smoother |
-| Speedboat transfer | 50 to 70 min | 1,200 to 2,000 THB | Faster than the ferry; rougher in choppy weather. Useful if you are short on time |
-| Private longtail charter | 60 to 90 min | 4,000 to 7,000 THB | A group splitting the cost or arriving outside the ferry schedule; the most flexible option |
+| Ferry from Krabi Klong Jilad Pier | 90 to 120 min | 350 to 600 THB single | If you flew into Krabi (KBV). The ferry is slightly cheaper and the connection from KBV is smoother |
+| Speedboat transfer | 50 to 70 min | 1,200 to 2,000 THB | Faster than the ferry. Rougher in choppy weather. Useful if you are short on time |
+| Private longtail charter | 60 to 90 min | 4,000 to 7,000 THB | A group splitting the cost or arriving outside the ferry schedule. The most flexible option |
 
 ## Where to eat
 
-Phi Phi food runs through casual beachside Thai (with the usual pad thai, green curry, and seafood-on-the-beach grill), Italian and pizza for the European traveller crowd, and the standard banana-pancake breakfast culture every small Thai island runs on. The picks below cover the spread.
+Phi Phi food runs through casual beachside Thai (with the usual pad thai, green curry, and seafood-on-the-beach grill), Italian and pizza for the European traveler crowd, and the standard banana-pancake breakfast culture every small Thai island runs on. The picks below cover the spread.
 
 | Spot | Rating |
 |---|---|

@@ -20,13 +20,13 @@ related:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/saranda-_-ksamil via the picker.
+# - hero_image is empty. Pick one in /admin/lists/saranda-_-ksamil via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating; the rest of the
+#   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera that has been on the under-the-radar Mediterranean lists for the last five years. Crystal-clear water, dramatic limestone coves, prices half of Greece across the strait, and the small-town pace that the bigger Mediterranean resorts lost decades ago. Saranda is the larger town; Ksamil is the smaller, photogenic, beach-resort version 20 minutes south. Three to four days for the pair; longer if you are exploring the rest of the Riviera north toward Himara and Dhërmi.
+[Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera that has been on the under-the-radar Mediterranean lists for the last five years. Crystal-clear water, dramatic limestone coves, prices half of Greece across the strait, and the small-town pace that the bigger Mediterranean resorts lost decades ago. Saranda is the larger town. Ksamil is the smaller, photogenic, beach-resort version 20 minutes south. Three to four days for the pair. Longer if you are exploring the rest of the Riviera north toward Himara and Dhërmi.
 
 ## On this page
 
@@ -36,14 +36,14 @@ related:
 
 ## Getting in from the airport
 
-Saranda and Ksamil Corfu International (Ioannis Kapodistrias) on the Greek side; ferry across to Saranda is the standard arrival (CFU) has no airport; the standard arrival is the 30-minute ferry from Corfu (Greece), or a 3-hour drive from Tirana International (TIA). Most travellers fly into Corfu and ferry across.
+Saranda and Ksamil Corfu International (Ioannis Kapodistrias) on the Greek side. Ferry across to Saranda is the standard arrival (CFU) has no airport. The standard arrival is the 30-minute ferry from Corfu (Greece), or a 3-hour drive from Tirana International (TIA). Most travelers fly into Corfu and ferry across.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Ferry from Corfu (CFU) | 30 to 90 min | €19 to €25 one-way | The standard arrival. Multiple companies (Joy Lines, Finikas, Ionian Cruises) run from Corfu Old Port to Saranda; the fast catamaran is 30 min, the conventional ferry is 90 min |
-| Bus from Tirana (TIA) | 4 to 5 hr | ~€20 to €25 | If you flew into Tirana. The bus runs along the coast; scenic but a real day |
-| Private transfer from Tirana | 3 to 4 hr | €150 to €250 | Door-to-door with a driver; faster than the bus and worth it for a group. Ask your hotel to arrange |
-| Rental car from Tirana | 3 to 4 hr | From €25/day | The best option if you want flexibility to explore the rest of the Riviera; Albanian roads are workable but speed limits are patchy |
+| Ferry from Corfu (CFU) | 30 to 90 min | €19 to €25 one-way | The standard arrival. Multiple companies (Joy Lines, Finikas, Ionian Cruises) run from Corfu Old Port to Saranda. The fast catamaran is 30 min, the conventional ferry is 90 min |
+| Bus from Tirana (TIA) | 4 to 5 hr | ~€20 to €25 | If you flew into Tirana. The bus runs along the coast. Scenic but a real day |
+| Private transfer from Tirana | 3 to 4 hr | €150 to €250 | Door-to-door with a driver. Faster than the bus and worth it for a group. Ask your hotel to arrange |
+| Rental car from Tirana | 3 to 4 hr | From €25/day | The best option if you want flexibility to explore the rest of the Riviera. Albanian roads are workable but speed limits are patchy |
 
 ## Where to stay
 

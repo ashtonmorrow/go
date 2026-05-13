@@ -18,10 +18,10 @@ related:
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty; pick one in /admin/lists/hilton-head-sc via the picker.
+# - hero_image is empty. Pick one in /admin/lists/hilton-head-sc via the picker.
 ---
 
-[Hilton Head](/cities/hilton-head) is the South Carolina barrier-island resort town that runs at a calmer pace than the Florida coast or the Outer Banks. The wide flat Atlantic beach is the daily anchor, the pine-forest interior of the island is the second side, and the food and golf carry the rest of the trip. Many travellers route through Savannah (an hour away by car) for a half-day or a dinner; the Hilton Head guide pairs cleanly with a Savannah extension. Three to five days for a beach trip; longer for a relaxed week.
+[Hilton Head](/cities/hilton-head) is the South Carolina barrier-island resort town that runs at a calmer pace than the Florida coast or the Outer Banks. The wide flat Atlantic beach is the daily anchor, the pine-forest interior of the island is the second side, and the food and golf carry the rest of the trip. Many travelers route through Savannah (an hour away by car) for a half-day or a dinner. The Hilton Head guide pairs cleanly with a Savannah extension. Three to five days for a beach trip. Longer for a relaxed week.
 
 ## On this page
 
@@ -30,14 +30,14 @@ related:
 
 ## Getting in from the airport
 
-Hilton Head Savannah/Hilton Head International (SAV) is served by a small regional airport (HHH) and by Savannah/Hilton Head International (SAV) about 60 km away; SAV handles the bulk of inbound flights and is the practical gateway.
+Hilton Head Savannah/Hilton Head International (SAV) is served by a small regional airport (HHH) and by Savannah/Hilton Head International (SAV) about 60 km away. SAV handles the bulk of inbound flights and is the practical gateway.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
-| Rental car from SAV | 60 to 75 min | From $45/day | The default. Hilton Head is car-dependent; rent at SAV and drive over the bridge |
-| Hilton Head Airport (HHH) | On-island arrival | Limited flights from Atlanta, Charlotte, Washington Dulles | A direct option if you can find a route; very limited schedules |
-| Lowcountry Adventures shuttle | 60 to 75 min | $60 to $100 per person | Pre-booked shuttle from SAV; useful if you are not renting a car |
-| Uber / Lyft from SAV | 60 to 75 min | $120 to $180 | A late arrival; pricier than the rental but works for a quick transfer |
+| Rental car from SAV | 60 to 75 min | From $45/day | The default. Hilton Head is car-dependent. Rent at SAV and drive over the bridge |
+| Hilton Head Airport (HHH) | On-island arrival | Limited flights from Atlanta, Charlotte, Washington Dulles | A direct option if you can find a route. Very limited schedules |
+| Lowcountry Adventures shuttle | 60 to 75 min | $60 to $100 per person | Pre-booked shuttle from SAV. Useful if you are not renting a car |
+| Uber / Lyft from SAV | 60 to 75 min | $120 to $180 | A late arrival. Pricier than the rental but works for a quick transfer |
 
 ## Where to eat
 
