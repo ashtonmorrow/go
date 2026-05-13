@@ -19,16 +19,28 @@ related:
 #   but a Spanish speaker could follow, half-day shape, drove to Sitges
 #   for dinner afterward. That part of the prose is verified.
 #
-# - The comparison table below is the structure Mike asked for: top
-#   popular producers with hours, what's included, languages, cost. The
-#   list of producers is well-known Penedès names. EVERY hours / price /
-#   language cell is marked "verify" until Mike confirms on the next
-#   pass — these change seasonally and I won't ship guessed numbers as
-#   facts.
+# - 2026-05-13: Table data verified against each cellar's own site /
+#   reservation page. Sources by row:
+#     · Codorníu: codorniu.com/en/visits + raventoscodorniu.com press
+#     · Freixenet: freixenet.com/es/en/visit/freixenet-tour
+#     · Torres: torres.es/en/wine-tourism + penedesturisme.cat
+#     · Sabaté i Coca: castellroig.com + penedesturisme.cat (the cellar
+#       is in Subirats, not Sant Pere de Riudebitlles as I'd guessed
+#       in the initial scaffold)
+#     · Recaredo: recaredo.com/en/visitas-recaredo (all 4 tier prices)
+#     · Gramona: gramona.com/en + penedesturisme.cat
+#     · Llopart: llopart.com/en/visitans + reserva-tour pages
+#     · Parés Baltà: paresbalta.com/en/visits (cellar is in Pacs del
+#       Penedès, 5 km from Vilafranca — corrected from "Vilafranca"
+#       in the initial scaffold)
+#   Hours and price cells are accurate as of May 2026. Refresh on every
+#   republish — small producers change reservation windows seasonally
+#   and tier prices nudge yearly.
 #
-# - indexable: false until the producer data is verified and pins exist
-#   (see below). Mike to flip indexable after a pass on the table cells
-#   and the pin set.
+# - indexable: false until pins exist (see below). The table data is
+#   live-quoted from each cellar, but the pin set still needs creating
+#   before this guide is fully wired. Flip indexable after the pin
+#   creation pass.
 #
 # - Pins worth creating to back the body links (none exist yet):
 #     · penedes (the region, as a city/area)
@@ -41,9 +53,10 @@ related:
 #       vineyards experience)
 #     · caves-recaredo (Sant Sadurní, biodynamic premium)
 #     · gramona (Sant Sadurní, premium cava de paraje)
-#     · sabate-i-coca-castellroig (Sant Pere de Riudebitlles, Mike's
-#       lived visit. Verify exact estate name — could trade as
-#       "Castellroig" rather than "Sabaté i Coca")
+#     · sabate-i-coca-castellroig (Subirats, on the C-243A Sant Sadurní
+#       to Vilafranca road at km 1. Mike's lived visit. The estate
+#       trades publicly as both "Sabaté i Coca" and "Castellroig" —
+#       pin should carry both names. Source: castellroig.com)
 #     · llopart (Subirats, family cava)
 #     · pares-balta (Vilafranca, organic)
 #
@@ -84,18 +97,18 @@ The catch with going back the way you came: getting an Uber FROM a small rural c
 
 ## Top producers to book
 
-The Penedès cellar list is long. The ones below are the popular visitor-facing options that consistently run public tours. Hours, prices, and language slots shift seasonally, so verify on each cellar's site before booking.
+The Penedès cellar list is long. The ones below are the popular visitor-facing options that consistently run public tours. Hours and prices verified against each cellar's site in May 2026, but tour schedules shift seasonally and the small biodynamic producers are appointment-only with limited slots. Always confirm on the cellar's site before you book a ride.
 
 | Cellar | Town / Style | Hours | What's included | Languages | Cost | Notes |
 |---|---|---|---|---|---|---|
-| Codorníu | Sant Sadurní d'Anoia. Industrial-scale cava, modernist cellar building by Puig i Cadafalch (a contemporary of Gaudí) | Verify. Typically open 10:00 to 17:00 daily | Cellar tour with the modernist architecture, electric train ride through the underground cellars, 1 to 2 cava tastings | Catalan, Spanish, English | Verify. Typically €20 to €30 | The canonical first cava visit. Big tour groups. The architecture is the reason to come |
-| Freixenet | Sant Sadurní d'Anoia. The other major industrial cava house | Verify | Cellar tour with mini-train through the underground galleries, tasting | Catalan, Spanish, English | Verify | Similar scale and shape to Codorníu. Book one, not both |
-| Torres | Pacs del Penedès (near Vilafranca). Family-owned, still wines plus some cava, a large visitor center | Verify | Estate tour, vineyard train, two-wine tasting. Premium options add reserve tastings | Catalan, Spanish, English, plus French/German seasonally | Verify. Typically €30+ | The biggest still-wine name in Spain. Book the basic tour, not the upsell |
-| Sabaté i Coca (Castellroig) | Sant Pere de Riudebitlles. Small family producer, premium cava and still wines | Verify, by appointment only | Vineyard walk, cellar visit, multi-glass tasting | Catalan and Spanish primarily, some English | Verify | Where I went. Tour was mostly in Catalan but my Spanish-speaking companion followed the wine vocabulary without trouble. Smaller, slower, the opposite of the big-house experience |
-| Caves Recaredo | Sant Sadurní d'Anoia. Biodynamic premium cava, all reserva and gran reserva | Verify, appointment only | Vineyard walk, cellar with the long-aged stocks, multi-glass tasting | Catalan, Spanish, English on request | Verify | The serious cava-nerd visit. Booking ahead is essential |
-| Gramona | Sant Sadurní d'Anoia. Long-aged premium cava, "Cava de Paraje" tier | Verify | Cellar with the disgorgement line, tasting flight | Catalan, Spanish, English | Verify | The other premium cava pick on the same morning as Recaredo if you want a comparison |
-| Llopart | Subirats. Family cava on a hillside estate with views | Verify | Vineyard walk with views over the region, cellar, tasting | Catalan, Spanish, English | Verify | The view + the wine. Easier to combine with lunch on the estate |
-| Parés Baltà | Vilafranca del Penedès. Organic and biodynamic, run by two sisters as winemakers | Verify | Vineyard walk, cellar, tasting of both still and sparkling | Catalan, Spanish, English | Verify | The organic-and-natural pick |
+| Codorníu | Sant Sadurní d'Anoia. Industrial-scale cava, modernist cellar building by Puig i Cadafalch (a contemporary of Gaudí) | Mon-Fri 9:30 to 16:30. Sat-Sun + holidays 9:30 to 13:00 | 90-min Discovery Tour: garden + museum walk, electric train ride through the underground cellars, 2 cava tastings. Iconic Tour adds a third cava paired with chocolates | Catalan 11:15, Spanish 12:00 and 15:00, English 13:00 and 15:30 | Discovery ~€32, Iconic ~€38, Heritage "Memoria de la burbuja" €38 | The canonical first cava visit. Big tour groups. The architecture (one of the headline modernist sites outside Barcelona) is the reason to come |
+| Freixenet | Sant Sadurní d'Anoia. The other major industrial cava house | Tue-Fri 10:00 to 14:30 and 16:00 to 18:00. Sat-Sun 10:00 to 14:00. Closed Mondays | ~90 min: cellar tour with the mini-train through the underground galleries, tasting of 2 cavas (non-alcoholic option for kids) | Catalan, Spanish, English, French, German (subject to availability) | Verify on booking, typically ~€20 | Similar scale and shape to Codorníu. Book one of the two, not both |
+| Torres | Pacs del Penedès (near Vilafranca). Family-owned, still wines plus some cava, a large visitor center | Mon-Sat 9:15 to 18:00 (last tour 16:30). Sun + holidays 9:15 to 14:00 (last tour 12:30) | Estate tour, vineyard train ride, tasting of 2 glasses of wine. Premium options add reserve tastings or cheese pairings | Catalan, Spanish, English, French and German seasonally | €7.80 for the standard visit. Pairing experiences run €20 to €60+ | The biggest still-wine name in Spain. The basic visit is one of the cheapest tickets in the region. On-site restaurant (El Celleret) for lunch by reservation |
+| Sabaté i Coca (Castellroig) | Subirats. Small family producer, the cellar is on the Sant Sadurní – Vilafranca road (C-243A, km 1). Premium cava and still wines | Mon-Fri morning visit at 11:00, store 10:00 to 15:00. Sat-Sun visit at 12:00, store 11:00 to 15:00 | Guided tour of the 4-generation family museum, old and new winery. Tasting of 5 Corpinnat and DO Penedès products (sparkling + still) with snacks: fuet, cheese, bread, arbequina oil, potato chips | Catalan and Spanish primarily, English on request | Verify on booking | Where I went. Tour was mostly in Catalan but my Spanish-speaking companion followed the wine vocabulary without trouble. Smaller, slower, the opposite of the big-house experience |
+| Caves Recaredo | Sant Sadurní d'Anoia. Biodynamic premium cava, all reserva and gran reserva | By appointment only | 4 tours, in order of depth: **ORIGEN** (2h, group): cellar + 2 Corpinnat Brut Nature + 2 Celler Credo whites. **TEMPS** (2.5h, private, min 2): adds the Recaredo Serral del Vell. **SERRAL DEL VELL** (4h, private, 2-6): estate walk + biodynamic education + Intens Rosé + lights. **HOMENATGE** (4h, private, 2-6): in-situ disgorgement + family private cellar | English available | ORIGEN €42. TEMPS €95. SERRAL DEL VELL €130. HOMENATGE €300 | The serious cava-nerd visit. Book through reservas.recaredo.com. ORIGEN is the right starting tier for most travelers |
+| Gramona | Sant Sadurní d'Anoia. Long-aged premium cava (Celler Batlle aged 10+ years), Corpinnat tier | Mon-Fri 9:00 to 19:00. Sat-Sun 10:00 to 14:30 | Tour of the vineyards, the Batlle Winery, and the Old Winery. Tasting of 3 to 4 wines and cavas including the long-aged Celler Batlle | Catalan, Spanish, English (English best for small groups) | Verify on booking. Gastronomic experiences with seasonal pairings priced separately | The other premium cava pick on the same morning as Recaredo. Pair them in one day for a comparison |
+| Llopart | Subirats (Ctra. Sant Sadurní to Ordal, km 4). Family cava on a hillside estate with views | Mon-Fri 9:00 to 18:00. Sat-Sun + holidays 10:00 to 14:00 | Basic tour ~2h: organic vineyard walk, eco-sustainable cellar, tasting of 3 Corpinnat (min 2 people). LEOPARDI tour: 600 years of family history, 5 tastings, traditional breakfast | Catalan, Spanish, English | Basic tour €33. LEOPARDI tour higher (verify on booking) | The view + the wine. Easy to combine with lunch on the estate. Reservation required |
+| Parés Baltà | Pacs del Penedès (5 km from Vilafranca). Organic + biodynamic, run by two sisters as winemakers. Their own flock of sheep fertilizes the vineyards | Mon-Sun 9:30 to 18:30 (closed Jan 1, Jan 6, Jun 24, Dec 25-26) | 2 to 4-hour experiences: commented tastings, chocolate or cheese pairings, 4x4 vineyard tours, vineyard walks, glass tastings in the family courtyard | Catalan, Spanish, English | Verify on booking (price scales with experience length) | The organic-and-natural pick. All wines and cavas are vegan-certified. Wide range of formats so book the one that fits the half-day shape |
 
 ## Language access
 
