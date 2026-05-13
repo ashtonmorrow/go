@@ -98,18 +98,50 @@ export function enhanceBodyWithPinPhotos(
   }
   if (!anyPhotos) return body;
 
-  const blocks = body.split(/\n\n+/);
+  // Split on paragraph boundaries. Handle both Unix (\n\n) and Windows
+  // (\r\n\r\n) line-ending styles so the splitter doesn't see the whole
+  // body as a single paragraph on files saved with CRLF.
+  const blocks = body.split(/(?:\r?\n){2,}/);
   const usedSlugs = new Set<string>();
   const out: string[] = [];
+  // Track whether we're inside a fenced code block (``` or ~~~). When we
+  // are, every block in the fence is preserved verbatim — no figure
+  // injection, no paragraph-shape checks. Without this guard, a code
+  // block whose first line is a comment or whose fence happens to wrap
+  // around a blank line could get processed as prose.
+  let insideFence = false;
 
   for (const rawBlock of blocks) {
     const trimmed = rawBlock.trim();
+    // Toggle fence state on any block whose first non-whitespace token
+    // is a fence marker. A single block may both open and close a fence
+    // (the common case), in which case we flip twice and end up where
+    // we started.
+    const fenceOpens = /^(?:```|~~~)/.test(trimmed);
+    const fenceCloses = /(?:^|\n)(?:```|~~~)\s*$/.test(trimmed);
+    if (insideFence) {
+      out.push(rawBlock);
+      // A trailing fence closes the block. If both open and close are in
+      // the same block, the open already toggled false above; we just
+      // care about whether this block ends with a closing fence.
+      if (fenceCloses) insideFence = false;
+      continue;
+    }
+    if (fenceOpens && !fenceCloses) {
+      // Opening fence with no matching close in the same block — every
+      // subsequent block is inside the fence until we see a close.
+      insideFence = true;
+      out.push(rawBlock);
+      continue;
+    }
     const isOrdinaryParagraph =
       trimmed.length > 0 &&
       !trimmed.startsWith('#') && // headings
       !trimmed.startsWith('|') && // tables
       !trimmed.startsWith('>') && // blockquotes
       !trimmed.startsWith('<!--') && // HTML comments
+      !trimmed.startsWith('```') && // inline-closed fenced code block
+      !trimmed.startsWith('~~~') &&
       !/^[*\-+] /.test(trimmed) && // bullet list
       !/^\d+\. /.test(trimmed); // numbered list
 

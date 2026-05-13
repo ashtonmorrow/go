@@ -499,8 +499,11 @@ function renderLightbox(
             preload="metadata"
             className="max-w-full max-h-[calc(100vh-9rem)] rounded"
             onError={() => {
+              // Defer close to next tick so the brokenUrls update lands
+              // before the lightbox unmounts. Synchronous close() would
+              // race the index recomputation.
               onBroken?.(img.url);
-              close();
+              setTimeout(close, 0);
             }}
           />
         ) : (
@@ -513,7 +516,7 @@ function renderLightbox(
             className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
             onError={() => {
               onBroken?.(img.url);
-              close();
+              setTimeout(close, 0);
             }}
           />
         )}

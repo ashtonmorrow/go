@@ -14,8 +14,14 @@
 //     the case where cityFlag is null. It does NOT handle a cityFlag URL
 //     that's set but 404s (the double-encoded Wikimedia URLs the May 2026
 //     audit surfaced, stale signed S3 URLs, etc).
-//   - onError fires once the browser fails to load the image, which lets
-//     us swap to the country flag without a server round-trip.
+//   - We track the set of URLs that have failed in a Set in state, and
+//     pick the first non-failed URL from the [cityFlag, countryFlag]
+//     priority order on each render. This handles the case where the
+//     parent re-renders with a different `cityFlag` prop: the new URL
+//     isn't in the failed Set, so we try it. (An earlier draft used a
+//     "tier" index in state, which got stuck pointing at countryFlag
+//     when the parent passed a fresh cityFlag — the bug we explicitly
+//     don't want to recreate.)
 
 import { useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
@@ -44,21 +50,24 @@ export default function Flag({
   height,
   style,
 }: Props) {
-  // Tier marker: 0 = trying cityFlag, 1 = trying countryFlag, 2 = both
-  // failed, render nothing. The hook re-renders on each escalation.
-  const initialTier = cityFlag ? 0 : countryFlag ? 1 : 2;
-  const [tier, setTier] = useState<0 | 1 | 2>(initialTier);
-
-  const src = tier === 0 ? cityFlag : tier === 1 ? countryFlag : null;
-  if (!src) {
-    // Nothing to render. Page CSS handles the empty slot.
-    return null;
-  }
+  const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
+  // Pick the first non-failed URL from the priority order. Each render
+  // re-evaluates from scratch, so prop changes naturally surface.
+  const candidates = [cityFlag, countryFlag].filter(
+    (u): u is string => !!u && !failedUrls.has(u),
+  );
+  const src = candidates[0] ?? null;
+  if (!src) return null;
 
   const optimized = thumbUrl(src, { size }) ?? src;
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
+      // The key forces React to drop and rebuild the <img> element when
+      // the candidate URL changes (city flag fails → switch to country).
+      // Without it, the browser may treat the swap as a src update on
+      // the same element and replay the error event from a stale state.
+      key={src}
       src={optimized}
       alt={alt}
       className={className}
@@ -68,11 +77,12 @@ export default function Flag({
       loading="lazy"
       decoding="async"
       onError={() => {
-        // Escalate one tier on failure. If the city flag broke, try the
-        // country flag. If both broke, set tier=2 so the next render
-        // returns null and the slot stays empty (no broken-image icon).
-        if (tier === 0 && countryFlag) setTier(1);
-        else setTier(2);
+        setFailedUrls(prev => {
+          if (prev.has(src)) return prev;
+          const next = new Set(prev);
+          next.add(src);
+          return next;
+        });
       }}
     />
   );

@@ -11,7 +11,7 @@
 // the Commons file page, which displays the author + license. That's the
 // "URI/hyperlink" attribution mode the license explicitly allows.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { thumbUrl } from '@/lib/imageUrl';
 import CommonsAttributionBadge, { type CommonsAttributionMeta } from './CommonsAttributionBadge';
 
@@ -38,6 +38,13 @@ export default function WikipediaHero({
   className,
 }: Props) {
   const [failed, setFailed] = useState(false);
+  // Reset the failed flag when the source URL changes. Otherwise a parent
+  // that re-renders with a different Commons URL after a previous one
+  // 404'd would leave us stuck in the failed state and never try the
+  // new image.
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
   if (failed) return null;
   // size in thumbUrl is treated as CSS pixels then 2x'd, so passing 600
   // gives a 1200px served image. Keep this aligned with the column width.

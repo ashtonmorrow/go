@@ -462,8 +462,14 @@ export default function HeroCollage({ images, title, className, caption }: Props
                 preload="metadata"
                 className="max-w-full max-h-[calc(100vh-9rem)] rounded"
                 onError={() => {
-                  markBroken(ordered[openIdx]!.url);
-                  close();
+                  // Defer close() to the next tick so React lands the
+                  // brokenUrls update first (filtering the failed image
+                  // out of `ordered`), then unmounts the lightbox. Doing
+                  // both synchronously inside onError risks a stale
+                  // `ordered[openIdx]!` deref on the same render pass.
+                  const u = ordered[openIdx]!.url;
+                  markBroken(u);
+                  setTimeout(close, 0);
                 }}
               />
             ) : (
@@ -475,8 +481,9 @@ export default function HeroCollage({ images, title, className, caption }: Props
                 height={ordered[openIdx]!.height ?? undefined}
                 className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
                 onError={() => {
-                  markBroken(ordered[openIdx]!.url);
-                  close();
+                  const u = ordered[openIdx]!.url;
+                  markBroken(u);
+                  setTimeout(close, 0);
                 }}
               />
             )}

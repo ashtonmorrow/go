@@ -44,6 +44,37 @@ if (!SUPABASE_URL || !SERVICE_KEY) {
 const DRY_RUN = process.argv.includes('--dry-run');
 const sb = createClient(SUPABASE_URL, SERVICE_KEY, { auth: { persistSession: false } });
 
+// Max concurrent UPDATE requests to Supabase from a single client. 456+
+// updates fired with Promise.all overwhelms the connection pool and
+// occasionally trips PostgREST's per-instance rate limit. Eight-at-a-time
+// keeps the wire saturated without spiking the backend.
+const UPDATE_CONCURRENCY = 8;
+
+/**
+ * Run a list of update calls in fixed-size concurrent batches. Returns
+ * the array of results in original order so callers can count failures.
+ *
+ * The worker is typed as returning a thenable (PostgrestFilterBuilder
+ * resolves like a Promise but isn't typed as one) — `await` coerces.
+ */
+async function batchedUpdates<T>(
+  inputs: T[],
+  worker: (item: T) => PromiseLike<{ error: unknown }>,
+): Promise<Array<{ error: unknown }>> {
+  const out = new Array<{ error: unknown }>(inputs.length);
+  let next = 0;
+  async function pump() {
+    while (next < inputs.length) {
+      const i = next++;
+      out[i] = await worker(inputs[i]!);
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(UPDATE_CONCURRENCY, inputs.length) }, () => pump()),
+  );
+  return out;
+}
+
 // Matches the double-encoding tells: `%25` followed by what looks like
 // the start of another percent-encoded byte (`%2520`, `%252C`, `%2528`,
 // etc). Don't catch `%25` followed by anything else because there are
@@ -99,12 +130,11 @@ async function fixCityFlags() {
     if (updates.length > 0) {
       console.log(`  page starting ${start}: ${updates.length} rows need fix`);
       if (!DRY_RUN) {
-        // Supabase doesn't support batch update with different values per
-        // row in one call without RPC; loop with Promise.all for parallelism.
-        const results = await Promise.all(
-          updates.map((u) =>
-            sb.from('go_cities').update({ city_flag: u.city_flag }).eq('id', u.id),
-          ),
+        // PostgREST doesn't support batch update with different values per
+        // row in one call without an RPC, so we fan out — but cap to a
+        // small concurrency so we don't saturate the connection pool.
+        const results = await batchedUpdates(updates, (u) =>
+          sb.from('go_cities').update({ city_flag: u.city_flag }).eq('id', u.id),
         );
         const failed = results.filter((r) => r.error);
         if (failed.length > 0) console.error('  update errors:', failed.length);
@@ -136,8 +166,8 @@ async function nullExpiredCityPersonalPhotos() {
     console.log(`    ${r.slug}: ${r.personal_photo?.slice(0, 70)}...`);
   }
   if (!DRY_RUN && rows.length > 0) {
-    const results = await Promise.all(
-      rows.map((r) => sb.from('go_cities').update({ personal_photo: null }).eq('id', r.id)),
+    const results = await batchedUpdates(rows, (r) =>
+      sb.from('go_cities').update({ personal_photo: null }).eq('id', r.id),
     );
     const failed = results.filter((r) => r.error);
     if (failed.length > 0) console.error('  errors:', failed.length);
@@ -170,10 +200,8 @@ async function nullExpiredCityFlags() {
   if (!DRY_RUN && rows.length > 0) {
     // Also null the city_flag_attribution since it's no longer pointing at
     // the real source.
-    const results = await Promise.all(
-      rows.map((r) =>
-        sb.from('go_cities').update({ city_flag: null, city_flag_attribution: null }).eq('id', r.id),
-      ),
+    const results = await batchedUpdates(rows, (r) =>
+      sb.from('go_cities').update({ city_flag: null, city_flag_attribution: null }).eq('id', r.id),
     );
     const failed = results.filter((r) => r.error);
     if (failed.length > 0) console.error('  errors:', failed.length);

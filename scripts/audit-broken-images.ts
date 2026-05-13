@@ -216,52 +216,57 @@ async function collectRefs(): Promise<Ref[]> {
 }
 
 async function headCheck(url: string): Promise<CheckResult['status']> {
-  // AbortController + timeout because some hosts hang.
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   const baseHeaders: Record<string, string> = {
     'User-Agent': USER_AGENT,
     Accept: 'image/*,*/*;q=0.8',
   };
-  try {
-    let resp = await fetch(url, {
-      method: 'HEAD',
-      signal: ctrl.signal,
-      redirect: 'follow',
-      headers: baseHeaders,
-    });
-    // Some hosts (Wikimedia) reject HEAD with 405 but accept GET. Retry GET
-    // with a Range header so we don't pull the whole file. Also retry on
-    // 429 (Wikimedia throttle) once with a short backoff.
-    if (resp.status === 405 || resp.status === 403) {
-      resp = await fetch(url, {
-        method: 'GET',
+
+  // Run a single fetch attempt with its own AbortController + timeout.
+  // Reusing one controller across the initial HEAD + retries would cause
+  // every retry after a timeout to fail immediately on the already-aborted
+  // signal — the bug fixed here.
+  async function attempt(
+    method: 'HEAD' | 'GET',
+    headers: Record<string, string>,
+  ): Promise<Response | 'timeout' | 'error'> {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+    try {
+      return await fetch(url, {
+        method,
         signal: ctrl.signal,
         redirect: 'follow',
-        headers: { ...baseHeaders, Range: 'bytes=0-0' },
+        headers,
       });
+    } catch (err) {
+      if ((err as Error).name === 'AbortError') return 'timeout';
+      return 'error';
+    } finally {
+      clearTimeout(timer);
     }
-    if (resp.status === 429) {
-      // Pause and retry once. Wikimedia's hint is in the Retry-After
-      // header when present.
-      const retryAfter = Number(resp.headers.get('retry-after') ?? '2');
-      const wait = Math.min(8000, Math.max(1000, retryAfter * 1000));
-      await new Promise((r) => setTimeout(r, wait));
-      resp = await fetch(url, {
-        method: 'GET',
-        signal: ctrl.signal,
-        redirect: 'follow',
-        headers: { ...baseHeaders, Range: 'bytes=0-0' },
-      });
-    }
-    if (resp.ok || resp.status === 206) return 'ok';
-    return resp.status;
-  } catch (err) {
-    if ((err as Error).name === 'AbortError') return 'timeout';
-    return 'error';
-  } finally {
-    clearTimeout(t);
   }
+
+  let resp = await attempt('HEAD', baseHeaders);
+  if (resp === 'timeout' || resp === 'error') return resp;
+  // Some hosts (Wikimedia) reject HEAD with 405 but accept GET. Retry GET
+  // with a Range header so we don't pull the whole file.
+  if (resp.status === 405 || resp.status === 403) {
+    const next = await attempt('GET', { ...baseHeaders, Range: 'bytes=0-0' });
+    if (next === 'timeout' || next === 'error') return next;
+    resp = next;
+  }
+  if (resp.status === 429) {
+    // Pause and retry once. Wikimedia's hint is in the Retry-After
+    // header when present.
+    const retryAfter = Number(resp.headers.get('retry-after') ?? '2');
+    const wait = Math.min(8000, Math.max(1000, retryAfter * 1000));
+    await new Promise((r) => setTimeout(r, wait));
+    const next = await attempt('GET', { ...baseHeaders, Range: 'bytes=0-0' });
+    if (next === 'timeout' || next === 'error') return next;
+    resp = next;
+  }
+  if (resp.ok || resp.status === 206) return 'ok';
+  return resp.status;
 }
 
 async function runWithConcurrency<T, R>(
