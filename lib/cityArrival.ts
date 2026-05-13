@@ -220,6 +220,23 @@ export const CITY_ARRIVAL: Record<string, CityArrival> = {
     ],
   },
 
+  'cairo': {
+    airport: {
+      iata: 'CAI',
+      name: 'Cairo International',
+      distanceKm: 22,
+      driveTimeMin: [45, 75],
+    },
+    contextSentence:
+      'sits about 22 km north-east of central Cairo and 30 km north-east of Giza; the arrival can be the worst part of the trip if you let it, so the cleanest move for a late or red-eye landing is to skip the city transfer that first night entirely and overnight at the connected airport hotel',
+    options: [
+      { mode: 'Le Méridien Cairo Airport (overnight)',      timeMin: [0, 0],   cost: 'A standard 4-star room rate', bestFor: 'Late or red-eye arrivals. Connected to Terminal 3 by a jetbridge; you never exit the secure side of the airport' },
+      { mode: 'Uber',                                       timeMin: [45, 75], cost: '200 to 400 EGP shown in-app; expect cash-push',  bestFor: 'The default for rested arrivals; have the app fare in small EGP notes ready, set payment to cash before the first ride' },
+      { mode: 'Pre-booked hotel transfer',                  timeMin: [45, 90], cost: '600 to 1,200 EGP depending on hotel', bestFor: 'Driver waits with a name board; worth the premium for a first trip or a late arrival' },
+      { mode: 'Airport taxi from the rank',                 timeMin: [45, 90], cost: '500 to 1,500 EGP after negotiation',  bestFor: 'Last resort. Agree the price in writing on a phone screen before loading luggage' },
+    ],
+  },
+
   'valletta': {
     airport: {
       iata: 'MLA',

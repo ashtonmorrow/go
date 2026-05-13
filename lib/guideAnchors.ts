@@ -38,6 +38,9 @@ const THEMATIC_ANCHORS: Record<string, string[]> = {
   // the two big intermediate stops, so the home globe shows the line
   // as a thread of pins rather than a single dot.
   'bernina-express-route': ['tirano', 'st-moritz', 'chur'],
+  // Cairo is its own anchor; Giza is close enough to overlap visually
+  // on the globe so the single Cairo pin reads better than two.
+  'cairo': ['cairo'],
 };
 
 export type GuideAnchor = {
