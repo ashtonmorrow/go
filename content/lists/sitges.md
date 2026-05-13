@@ -96,60 +96,40 @@ related:
 #   neighborhood) per the editorial standard for European destinations.
 ---
 
-Sitges is the small beach town 40 minutes south of Barcelona by Rodalies R2 Sud. Slower pace than Barceloneta, hotel rates that beat central Barcelona, useful as a base near the city when you don't need to be inside it (a wedding, a cruise embarkation, a quiet end to a bigger trip).
+Sitges is the small beach town 40 minutes south of [Barcelona](/lists/barcelona) by Rodalies R2 Sud, useful as a calmer base near the city (a wedding, a cruise meet-up, the recovery half of a longer trip) or as a beach daytrip from a Barcelona base. The [Barcelona guide](/lists/barcelona) covers the city itself. This one covers Sitges: getting there, where to stay, beach split, what to eat.
 
-The version below is the trip I would book for myself: two or three nights, a base near the old town, beach in the day, a slow dinner at a local place, a sunset drink on the sand. The map and pin set sit below. This writeup covers the parts of the planning that change the trip.
+Two-night minimum if you base here. The hotel rates beat anything central in Barcelona and the pace is several gears slower than Barceloneta. If your trip needs museums, a music scene, or restaurant depth, base in Barcelona and ride the Rodalies down for an afternoon. If it needs the opposite, base here and ride the Rodalies up when you want a city day.
 
 ## On this page
 
-* [Why pick Sitges instead of Barcelona](#why-pick-sitges-instead-of-barcelona)
 * [Getting there](#getting-there)
 * [Where to stay](#where-to-stay)
 * [The beaches: south for the family side, north for the rest](#the-beaches-south-for-the-family-side-north-for-the-rest)
 * [Where to eat and drink](#where-to-eat-and-drink)
 * [The old market, the churches, the pace](#the-old-market-the-churches-the-pace)
-* [As a daytrip from Barcelona](#as-a-daytrip-from-barcelona)
-
-## Why pick Sitges instead of Barcelona
-
-The cases where Sitges is the better base than Barcelona are specific and worth naming. You have a wedding on the coast and the venue is closer to Sitges than Barceloneta. You are meeting family in town after a Mediterranean cruise and want a calmer landing pad than a hotel near the port. You are flying in and out of BCN for work and you want the back end of the trip to feel like decompression rather than another city. You have been to Barcelona before and want a slower week in the same orbit.
-
-None of those cases benefit from being inside the city. They benefit from being close enough that a 40-minute train solves it.
-
-The trade-off is real. Sitges does not have a museum slate, a music scene, or anything close to Barcelona's restaurant depth. The town is small and the menu of things to do is short by design. If your trip needs density, you base in Barcelona and ride the Rodalies down for an afternoon. If your trip needs the opposite, you base in Sitges and ride the Rodalies up when you want a city day.
-
-The demographic on the ground is part of why it works. The summer holiday-maker crowd in Sitges skews older European: a lot of Germans and Dutch on longer stays, a fair number of Northern Italians in August, and a notable LGBT contingent that has been part of the town's identity since the 1970s. You see fewer young American backpackers and fewer cruise day-trippers than at the Barceloneta beach bars. The pace lines up with that mix.
 
 ## Getting there
 
-There are two real ways into Sitges from a Barcelona arrival, and the right one depends on where you are coming from.
-
 | From | Route | Time | Cost | Notes |
 |---|---|---|---|---|
-| Barcelona-Sants or Passeig de Gràcia | Rodalies R2 Sud commuter train | ~35 to 40 minutes | A few euros each way | Trains every 20 to 30 minutes through the day. Pay at the station vending machine or contactless at the gate. The Sitges stop drops you at the edge of the old town |
-| Barcelona-El Prat (BCN) airport | Taxi or Cabify direct to Sitges | ~30 to 40 minutes | Reasonable shared, more if solo | The cleanest option from the airport. There is no direct train. The rail route requires riding into Barcelona-Sants and changing, which is awkward with luggage |
-| Barcelona city center | Same Cabify / taxi | ~40 to 50 minutes | More than the train. Depends on traffic | Use it when you have a tight wedding schedule, a lot of luggage, or you are traveling late at night after the R2 frequency thins out |
+| Barcelona-Sants or Passeig de Gràcia | Rodalies R2 Sud commuter train | ~35 to 40 minutes | A few euros each way | The default. Every 20 to 30 minutes through the day. Pay at the vending machine or contactless at the gate. The Sitges stop drops you at the edge of the old town |
+| Barcelona-El Prat (BCN) airport | Taxi or Cabify direct to Sitges | ~30 to 40 minutes | Reasonable shared, more if solo | No direct train from BCN. The rail route requires going into Barcelona-Sants and changing, which is awkward with luggage. Worth the fare at the start or end of an international flight |
+| Barcelona city center | Taxi / Cabify | ~40 to 50 minutes | More than the train, depending on traffic | Use it for a tight wedding schedule, a lot of luggage, or late at night after the R2 frequency thins out |
 
-The default is the Rodalies. The airport taxi exists because the rail alternative from BCN is not graceful and a taxi at the start or end of an international flight is worth the fare.
-
-The Sitges station is small, in the modernist style, and sits four or five minutes' walk from the seafront. Wheel a suitcase down the slope toward the church and you are in the old town in under ten minutes. The street is gentle enough that most travelers manage it without a cab. The walk back uphill to the station with luggage is the harder direction.
+The Sitges station sits four or five minutes' walk from the seafront. The slope down toward the church gets you to the old town in under ten minutes. The walk back uphill with luggage is the harder direction.
 
 ## Where to stay
 
-Two questions decide the base. The first is whether you want to be inside the old town or on the calmer edge a few minutes' walk out. The second is whether you want a hotel or a flat with a kitchen. Sitges has the licensed-aparthotel and small-property side that Barcelona has clamped down on, so a short-term rental in the town is a normal and legitimate choice here in a way it no longer is in central Barcelona.
+Inside the old town for the walk to dinner, or on the calmer edge (the Sabàtic side) for the pool and the quiet. Hotel for two or three nights as a couple. Licensed apartment for family or longer stays. Sitges did not get caught up in the Barcelona STR phase-out, so short-term rentals here are legitimate and easy to book.
 
 | Where | Property | Why pick it | Trade-off |
 |---|---|---|---|
 | Edge of town (Avinguda Sofia) | [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) | Yoga-leaning property, two pools, quiet residential block, calm enough to actually unwind | Outside the old town. The walk to the beach and the station is short but the return is uphill, and the dinner radius is "take a taxi or walk back" |
 | In the old town | Small family-run hotels and licensed holiday apartments | Walk to the beach in five minutes, walk to dinner in two, the church bells in the morning are part of the package | No single pin to point at yet. The town runs on dozens of small properties and which one is open at your dates matters more than the brand. Book on the usual sites and read the recent reviews |
 
-If you are traveling with family, with friends splitting an apartment, or for longer than three nights, the in-town apartment is the better answer. The kitchen and the laundry pay off fast. If you are traveling as a couple for two or three nights and the trip is meant to feel restorative, the [Sabàtic](/pins/sab-tic-sitges-autograph-collection) move is the one that lands.
-
 ## The beaches: south for the family side, north for the rest
 
-Sitges has a string of beaches that run east-west around the headland the old town sits on. They read differently and the planning matters.
-
-The southern paseo runs in front of the old town and is the default family-friendly strip. [Platja de la Ribera](/pins/platja-de-la-ribera-sitges) is the long central beach with chair rentals, a few beach bars, and the photogenic view of the parish church on the bluff. [Platja de Sant Sebastià](/pins/platja-de-sant-sebastia-sitges) sits east of the headland, a little smaller, a little quieter, and is the one I would aim for on a hot Saturday. Both are conventional Mediterranean town beaches: chair, umbrella, swim, lunch, repeat.
+The southern paseo in front of the old town is the default family-friendly strip. [Platja de la Ribera](/pins/platja-de-la-ribera-sitges) is the long central beach with chair rentals, a few beach bars, and the photogenic view of the parish church on the bluff. [Platja de Sant Sebastià](/pins/platja-de-sant-sebastia-sitges) sits east of the headland, a little smaller, a little quieter, and is the one I would aim for on a hot Saturday. Both are conventional Mediterranean town beaches: chair, umbrella, swim, lunch, repeat.
 
 The northern coves are a different proposition. [Platja dels Balmins](/pins/platja-dels-balmins-sitges), on the east side of the cemetery headland, is a small cove that has been the town's main nudist and gay-friendly beach since the 1970s. Several smaller coves continue past it. The crowd is part of why Sitges reads the way it does. The signage does not flag any of it explicitly, so it is worth knowing in advance. If the mixed-use cove is not what you have in mind, stay on the southern paseo and you will not run into it by accident.
 
@@ -178,8 +158,4 @@ Two churches anchor the town. The parish [Església de Sant Bartomeu i Santa Tec
 
 The pace itself is the rest. Sitges runs on a Mediterranean clock: lunch from 1:30 p.m. to about 4 p.m., dinner from 9 p.m., shops closed in the middle of the day. If you arrive with a Barcelona itinerary in your head, you will spend the first day frustrated. Adjust the clock and the town starts working.
 
-## As a daytrip from Barcelona
-
-If two nights in Sitges does not fit the trip, the town also works as a daytrip from a Barcelona base. The shape is: morning Rodalies down from Sants or Passeig de Gràcia, lunch on a terrace, an afternoon on Sant Sebastià, sunset drink at [Vivero](/pins/vivero-beach-club-sitges), evening train back to Barcelona. The R2 Sud runs frequently enough that you do not need to book the return. The last Sitges-to-Barcelona service is late evening and easy to catch after dinner.
-
-It is also a sensible weather hedge. If a Barcelona day forecasts gray and a Sitges day forecasts sun, the train fare is a few euros and you have changed the trip for the cost of a coffee in the center.
+If you're only doing Sitges as a daytrip from a Barcelona base, the shape is: morning Rodalies down, lunch on a terrace, afternoon on [Sant Sebastià](/pins/platja-de-sant-sebastia-sitges), sunset drink at [Vivero](/pins/vivero-beach-club-sitges), evening train back. The R2 runs frequently enough that you don't need to book the return.

@@ -101,11 +101,11 @@ related:
 #   where-to-stay table as a second Poblenou option alongside the
 #   Holiday Inn Express if Mike wants more breadth.
 #
-# - Sitges deserves its own scaffold (Mike said he'll write one).
-#   Existing Sitges pins worth surfacing there:
-#   gaby-s-sitges-restaurante, guria-taberna-sitges, nem-sitges,
-#   sushi-tokio-sitges, lavander-a-sitges. Once /lists/sitges exists,
-#   link the first Sitges mention in this file to it.
+# - /lists/sitges now exists as the companion guide. This page's Sitges
+#   section is intentionally a one-paragraph pointer rather than a
+#   mini-guide — anything that's about staying or eating in Sitges
+#   belongs in /lists/sitges, not here. Same rule applies in reverse:
+#   /lists/sitges points back here for the city.
 # - Airbnb regulatory situation in Barcelona changes regularly. Verify
 #   the "tightening short-term rentals" claim is still current before
 #   each republish, and update the FAQ if the rules ease.
@@ -124,7 +124,7 @@ Quick disambiguation: **La Rambla** is the famous central pedestrian boulevard b
 * [Markets: La Boqueria vs Santa Caterina](#markets-la-boqueria-vs-santa-caterina)
 * [Pickpockets](#pickpockets)
 * [Fira only for an early flight](#fira-only-for-an-early-flight)
-* [Sitges as a daytrip or a cheaper base](#sitges-as-a-daytrip-or-a-cheaper-base)
+* [Pair with Sitges, 40 minutes south](#pair-with-sitges-40-minutes-south)
 
 ## Getting in from the airport
 
@@ -221,6 +221,6 @@ Cheaper hotels, short transit to the airport, slow transit to the rest of Barcel
 
 Short taxi to the airport from either. Walking is not a real option (Gran Via is an industrial road). For city sights, ride the metro in or book a city hotel.
 
-## Sitges as a daytrip or a cheaper base
+## Pair with Sitges, 40 minutes south
 
-40 minutes south on Rodalies R2 Sud from Sants. Smaller beaches, locally-owned restaurants, hotel rates that beat central Barcelona. [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) is the booking pick: fair price, near the old town, easy walk to the beach. Works as a daytrip from Barcelona too: train, beach, terrace lunch, dinner back in the city. A standalone Sitges guide is in progress.
+If the beach side of the trip wants more than Barceloneta, [Sitges](/lists/sitges) sits 40 minutes south on Rodalies R2 Sud and works either as a daytrip or as the calmer base for the second half of the week. The Sitges guide covers where to stay, the beach split, and what to eat there.
