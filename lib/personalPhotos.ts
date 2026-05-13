@@ -113,6 +113,129 @@ export const fetchPersonalCovers = cache(async (): Promise<Map<string, string>> 
   return out;
 });
 
+// === Slug-keyed lookup ======================================================
+// List page bodies reference pins by slug in markdown links (`[X](/pins/foo)`).
+// To inject photos inline we need to resolve slug → photos in one batch
+// rather than running 14 queries from the Cairo guide. This helper does that
+// in two passes: pins → ids, then photos → grouped by pin_id, joined back to
+// slug.
+
+type SlugPhotoRow = {
+  /** Pin row ('s slug, name, id) merged with first-photo extras. */
+  slug: string;
+  pinId: string;
+  pinName: string;
+  photos: PersonalPhoto[];
+};
+
+const _fetchPersonalPhotosBySlugs = unstable_cache(
+  async (slugsKey: string): Promise<Record<string, SlugPhotoRow>> => {
+    const slugs = slugsKey ? slugsKey.split(',') : [];
+    if (slugs.length === 0) return {};
+
+    // Pass 1: slug → (id, name). Batched in chunks for the .in() limit.
+    const CHUNK = 100;
+    type PinRow = { id: string; slug: string; name: string };
+    const pins: PinRow[] = [];
+    for (let i = 0; i < slugs.length; i += CHUNK) {
+      const chunk = slugs.slice(i, i + CHUNK);
+      const { data, error } = await supabase
+        .from('pins')
+        .select('id, slug, name')
+        .in('slug', chunk);
+      if (error) {
+        console.error('[personalPhotos] slug→id lookup failed:', error);
+        return {};
+      }
+      if (data) pins.push(...(data as PinRow[]));
+    }
+
+    if (pins.length === 0) return {};
+
+    // Pass 2: pin_id → photos. Same batching.
+    const idToPin = new Map<string, PinRow>();
+    for (const p of pins) idToPin.set(p.id, p);
+    type PhotoDbRow = {
+      id: string;
+      pin_id: string;
+      url: string;
+      taken_at: string | null;
+      caption: string | null;
+      width: number | null;
+      height: number | null;
+      media_type: string | null;
+      poster_url: string | null;
+      duration_seconds: number | null;
+    };
+    const photoRows: PhotoDbRow[] = [];
+    const ids = pins.map((p) => p.id);
+    for (let i = 0; i < ids.length; i += CHUNK) {
+      const chunk = ids.slice(i, i + CHUNK);
+      const { data, error } = await supabase
+        .from('personal_photos')
+        .select(
+          'id, pin_id, url, taken_at, caption, width, height, media_type, poster_url, duration_seconds',
+        )
+        .in('pin_id', chunk)
+        .eq('hidden', false)
+        .order('taken_at', { ascending: false, nullsFirst: false });
+      if (error) {
+        console.error('[personalPhotos] photo fetch failed:', error);
+        continue;
+      }
+      if (data) photoRows.push(...(data as PhotoDbRow[]));
+    }
+
+    // Bucket photos by pin_id, then key the final map by slug so the consumer
+    // can look up by what the markdown reference holds.
+    const out: Record<string, SlugPhotoRow> = {};
+    for (const p of pins) {
+      out[p.slug] = { slug: p.slug, pinId: p.id, pinName: p.name, photos: [] };
+    }
+    for (const r of photoRows) {
+      const pin = idToPin.get(r.pin_id);
+      if (!pin) continue;
+      const photo: PersonalPhoto = {
+        id: r.id,
+        pinId: r.pin_id,
+        url: r.url,
+        takenAt: r.taken_at,
+        caption: r.caption,
+        width: r.width,
+        height: r.height,
+        mediaType: r.media_type === 'video' ? 'video' : 'image',
+        posterUrl: r.poster_url,
+        durationSeconds: r.duration_seconds,
+      };
+      out[pin.slug]?.photos.push(photo);
+    }
+    return out;
+  },
+  ['supabase-personal-photos-by-slug-v1'],
+  { revalidate: 86400, tags: ['supabase-personal-photos'] },
+);
+
+/**
+ * Resolve a list of pin slugs to their personal photos.
+ *
+ * Returns a Map keyed by slug. Slugs that resolve to a pin but have no
+ * personal photos still appear in the map (with an empty `photos` array)
+ * so callers can distinguish "no such pin" (absent) from "pin exists but
+ * I haven't uploaded photos yet" (present, empty).
+ */
+export const fetchPersonalPhotosBySlugs = cache(
+  async (slugs: string[]): Promise<Map<string, SlugPhotoRow>> => {
+    // unstable_cache keys on argument identity, so a stable string key beats
+    // passing the array. Sort + dedupe so [a,b,a] and [b,a] hit the same cache
+    // entry.
+    const key = Array.from(new Set(slugs)).sort().join(',');
+    const record = await _fetchPersonalPhotosBySlugs(key);
+    return new Map(Object.entries(record ?? {}));
+  },
+);
+
+export type { SlugPhotoRow };
+
 // === Place-scoped personal photos ===========================================
 // City and country detail pages render a "from my pins" gallery — the
 // personal photos Mike's uploaded for any pin in that place. We don't

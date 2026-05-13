@@ -24,7 +24,14 @@ import {
   breadcrumbJsonLd,
   collectionJsonLd,
 } from '@/lib/seo';
-import { readListContent, type ListFaq } from '@/lib/content';
+import {
+  readListContent,
+  extractPinSlugsFromBody,
+  renderListBodyWithPinPhotos,
+  type ListFaq,
+  type InlinePinPhotoEntry,
+} from '@/lib/content';
+import { fetchPersonalPhotosBySlugs } from '@/lib/personalPhotos';
 import { getPost, getPostsForScope } from '@/lib/posts';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
@@ -299,6 +306,35 @@ export default async function ListPage({ params }: Props) {
     content?.heroImage ?? coverFromCuratedUrl ?? coverFromCurated ?? coverFromPin ?? coverFromCity ?? coverFromPinPile;
   const coverAlt = content?.heroAlt ?? '';
 
+  // === Inline pin photos in the body ========================================
+  // For every `/pins/<slug>` link in the body, pull personal photos and
+  // splice the most recent one in after the paragraph of first mention.
+  // Falls back to the pre-rendered bodyHtml when there's no body or no
+  // referenced slugs (the common case for thin scaffolds).
+  let renderedBodyHtml = content?.bodyHtml ?? '';
+  if (content?.body) {
+    const referencedSlugs = extractPinSlugsFromBody(content.body);
+    if (referencedSlugs.length > 0) {
+      const slugPhotoMap = await fetchPersonalPhotosBySlugs(referencedSlugs);
+      const inlineMap = new Map<string, InlinePinPhotoEntry>();
+      for (const [slug, row] of slugPhotoMap) {
+        if (row.photos.length === 0) continue;
+        inlineMap.set(slug, {
+          pinName: row.pinName,
+          photos: row.photos.map((p) => ({
+            url: p.url,
+            caption: p.caption,
+            width: p.width,
+            height: p.height,
+          })),
+        });
+      }
+      if (inlineMap.size > 0) {
+        renderedBodyHtml = await renderListBodyWithPinPhotos(content.body, inlineMap);
+      }
+    }
+  }
+
   const visitedCount = onList.filter(p => p.visited).length;
   const reviewedCount = onList.filter(p => p.review).length;
   const ratedPins = onList.filter(p => p.rating != null && p.rating > 0);
@@ -465,11 +501,14 @@ export default async function ListPage({ params }: Props) {
         )}
 
         {/* Editorial body — rendered markdown via marked + post-prose so
-            authors get headings, lists, links, blockquotes, etc. */}
-        {content?.bodyHtml && (
+            authors get headings, lists, links, blockquotes, etc. When the
+            body references pins with personal photos, those photos are
+            spliced in as <figure> blocks after first mention (see
+            renderListBodyWithPinPhotos in lib/content.ts). */}
+        {renderedBodyHtml && (
           <div
             className="post-prose mt-5 max-w-prose"
-            dangerouslySetInnerHTML={{ __html: content.bodyHtml }}
+            dangerouslySetInnerHTML={{ __html: renderedBodyHtml }}
           />
         )}
 

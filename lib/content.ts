@@ -301,3 +301,35 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
  * lists can opt into rendered blocks like guide cards and FAQs.
  */
 export const readListContent = cache(_readListContent);
+
+// === Inline pin photo injection =============================================
+// The pure markdown-rewriting helpers live in lib/inlinePinPhotos.ts so they
+// can be exercised from /scripts (tsx) without dragging the `server-only`
+// import in this file. We re-export them here so callers have a single
+// import surface, and add the rendered-HTML convenience that needs `marked`.
+
+export {
+  extractPinSlugsFromBody,
+  enhanceBodyWithPinPhotos,
+} from './inlinePinPhotos';
+export type {
+  InlinePinPhoto,
+  InlinePinPhotoEntry,
+} from './inlinePinPhotos';
+
+import { enhanceBodyWithPinPhotos as _enhanceBody } from './inlinePinPhotos';
+import type { InlinePinPhotoEntry as _Entry } from './inlinePinPhotos';
+
+/**
+ * Take a body markdown + the slug→photos map, run the inline-photo pass,
+ * and return the final HTML. Lives here so the list page doesn't have to
+ * know about marked.
+ */
+export async function renderListBodyWithPinPhotos(
+  body: string,
+  inlineSlugPhotos: Map<string, _Entry>,
+): Promise<string> {
+  if (!body) return '';
+  const enhanced = _enhanceBody(body, inlineSlugPhotos);
+  return await marked.parse(enhanced, { async: true });
+}
