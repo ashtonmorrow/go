@@ -65,7 +65,7 @@ The published travel guides live in `/content/lists/<slug>.md` (the long-form Ca
 
 **Local slang.** If a name is local-friend slang ("the Bearpit" for the St James Barton roundabout area), don't lean on it. A first-time visitor will not recognize it. Use the standard name and, if the slang adds color, mention it once with light context.
 
-**Spelling.** British places use British English (centre, harbour, neighbourhood). American places use American spelling. Pages are about the destination, not the writer.
+**Spelling.** American English throughout, regardless of destination. The destination's own name keeps its own spelling (Britain stays Britain, "centre" stays "centre" inside a quoted English street name). But the prose voice is American: "neighborhood", "favorite", "traveler", "center", "color". The earlier rule that European destinations used British English was an over-application that read as machine compliance; Mike's actual published writing is American.
 
 **Em dashes.** None. Use commas, colons, semicolons, periods, or parentheses. The "no em dashes" rule from the editorial-voice section applies to every guide.
 
@@ -86,6 +86,52 @@ Descriptions sit at 150–160 characters of natural prose that pack the same hig
 For route or transit indexes (Alicante tram, Kusttram), the system name on its own is too thin and too brand-ambiguous to compete. Use `"[System name]: [doing-verb] [place context]"` instead — `"Kusttram station guide: riding Belgium's coastal tram"` rather than `"Kusttram station guide"`. The geographic context is the searchable handle.
 
 **Indexable gate.** New scaffolds ship with `indexable: false` until Mike reviews voice, facts, and the hero image. Page metadata is gated on `indexable: true` in the page's own metadata generator (see `/cities/[slug]/page.tsx` and the lists equivalent), and the sitemap reads the same flag. Don't flip indexable in a scaffolder commit.
+
+## Voice for travel guides
+
+Mike has two registers in his writing: the casual private trip-planning notes (date+place+action fragments, dollar amounts and points balances, brand names dropped in directly, mixed-language asides) and the published professional explainer on layer.team (question-as-H2 structure, bold-key-term-then-definition, comparison tables, plain declarative sentences, American spelling, no semicolons, no literary flourishes, no transition crutches). **The travel guides should sit between these two registers**, closer to the layer.team published voice with first-person personal asides surfaced where the lived experience earns them.
+
+The AI-default register I produced before this rule existed was a third register that doesn't match either: literary-magazine travel prose, British spelling, triadic adjective clusters, semicolons everywhere, "the trade-off is" / "the trick is" / "the X register" / "earns the X" transitions, no specific dollar amounts in prose, hedged numbers ("about X km"). That register reads as obviously AI-written. The rules below pull guides toward Mike's actual voice.
+
+**Banned phrases and patterns** (these are AI tells; if you find yourself reaching for one, the sentence wants to be rewritten):
+
+- `the X register` — never. Use "the X side", "the X style", "what X cooks", "the X scene", or just name what you mean.
+- `the trade-off is` / `the right move is` / `the trick is` / `the move is` — drop. Make the assertion directly. "Stay in Giza if you want a calmer evening" beats "the right move is to stay in Giza."
+- `earns the X` / `earns its reputation` / `earns the visit` / `earns the trip` — overused.
+- `the headline X` / `the canonical X` — overused.
+- `the X postcard` — overused.
+- `genuinely`, `honestly`, `frankly`, `broadly`, `generally` as throat-clearing hedges. Drop them. The sentence is better without.
+- `These are working notes from real time on the ground rather than a checklist. <Place> rewards going slowly more than it rewards covering ground. Take what's useful, skip the rest.` — banned outright. This was the standardized pace-note paragraph that appeared on 79 of 80 guides; it's the single biggest AI-tell across the atlas.
+- Triadic adjective clusters (`cheap, generous, and surprisingly international` / `quiet, calm, and slower-paced`). One specific adjective beats three vague ones.
+
+**Banned punctuation:**
+
+- **No em dashes** (rule from the editorial-voice section above).
+- **No semicolons.** Use periods or commas. Mike's published writing on layer.team has zero semicolons. The semicolon is the AI's preferred connector and reads as overly polished.
+
+**Required positive patterns:**
+
+- **Question-as-H2** structure for practical sections where a reader is asking a real question. `## How do I get from Cairo Airport to Giza?` reads more like the layer.team voice than `## Getting in from the airport.` Use the question form for at least half the H2s in any new guide.
+- **Bold-key-term-then-explanation** for practical detail. `**The X95 bus** runs every 30 minutes from Athens airport to Syntagma for €6.` Not `There is a 24-hour bus called the X95 that runs every 30 minutes...`. The bold term is the noun, the rest of the sentence explains it.
+- **Comparison tables with side-by-side columns** for any "with X vs without X" or "approach A vs approach B" pattern. Already widely used; keep using them.
+- **American spelling** everywhere (see the Spelling section above).
+- **Specific dollar amounts and brand names in prose**, not only in tables. `Le Méridien Cairo Airport on 60,000 Marriott points` reads more like Mike's actual writing than `the airport-connected hotel runs at the standard 4-star rate`. Use real numbers, real brand names, real point balances.
+- **Plain declarative sentences, mostly short to medium length.** Vary length, but skew shorter than what an AI default produces. Mike's published writing averages about 18-22 words per sentence.
+- **First-person where the lived experience genuinely earns it**, not as a default voice. `I came in on a 3 a.m. Lufthansa from Munich and the Uber was the right call.` Yes. `I think Cairo is interesting because...` No, just say it.
+- **Practical transitions** that are not the AI defaults. `In practice`, `In most cases`, `When the X is busy`, `If you have only one day`. Not `the trick is`.
+- **Self-aware caveats about data skew** are welcome where they apply. Mike's UX-notes voice includes lines like "if you're dropping $150/night on a Marriott in Tirana, it's going to feel like a city in Germany versus the guy who spent $25/night on an Airbnb next door." That kind of caveat earns its place when the recommendation is about category-of-trip.
+
+**Tone for the introduction paragraph:**
+
+The intro to a destination guide should establish what kind of trip the place is and what a reader who has decided to go would want to know. Three to five sentences. Declarative. Concrete. No "rewards going slowly" type framing, no "rewards travelers who show up prepared" type framing. Open with what the city actually is (population, character, geography), then say what shape of trip it suits, then a one-line on what the rest of the guide covers. The "On this page" TOC sits directly after.
+
+**Length and structure:**
+
+A standard city guide runs 1,200 to 2,500 words. Headline city guides (London, Madrid, Bangkok) can go to 4,000. Smaller-destination guides (Trogir, Sitges, Koh Samui) sit at the low end. Most guides have 5-8 H2 sections. The arrival section is always first after the intro. "Where to stay" is almost always second. The remaining sections vary by destination.
+
+**Voice check before flipping indexable:**
+
+Before a guide goes `indexable: true`, scan for the banned phrases above. The fastest check: search the file for "register", "trade-off is", "trick is", "right move is", "earns the", "genuinely", "honestly", "frankly", semicolons. If any hit, the sentence wants a rewrite.
 
 ## Out of scope for this project
 
