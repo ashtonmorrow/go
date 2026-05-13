@@ -145,6 +145,42 @@ async function nullExpiredCityPersonalPhotos() {
   }
 }
 
+// --- 2b. city_flag stale Notion URLs -------------------------------------
+//
+// Same class of stale-signed-URL as the personal_photo case: Notion's S3
+// presigned URLs expire after an hour or so and have been pasted into
+// city_flag rows for hand-drawn city flags (Bath, Brighton, Eastbourne,
+// Galapagos Islands, plus the delete-wallonia row that is itself a
+// scheduled cleanup target). Null them so the runtime <Flag> component's
+// fallback chain renders the country flag instead.
+
+async function nullExpiredCityFlags() {
+  console.log('\n--- Nulling expired go_cities.city_flag Notion S3 URLs ---');
+  const PATTERN = 'prod-files-secure.s3.us-west-2.amazonaws.com';
+  const { data, error } = await sb
+    .from('go_cities')
+    .select('id, slug, city_flag')
+    .like('city_flag', `%${PATTERN}%`);
+  if (error) throw error;
+  const rows = (data ?? []) as Array<{ id: string; slug: string | null; city_flag: string | null }>;
+  console.log(`  ${rows.length} cities have stale Notion S3 city_flag URLs`);
+  for (const r of rows) {
+    console.log(`    ${r.slug}: ${r.city_flag?.slice(0, 80)}...`);
+  }
+  if (!DRY_RUN && rows.length > 0) {
+    // Also null the city_flag_attribution since it's no longer pointing at
+    // the real source.
+    const results = await Promise.all(
+      rows.map((r) =>
+        sb.from('go_cities').update({ city_flag: null, city_flag_attribution: null }).eq('id', r.id),
+      ),
+    );
+    const failed = results.filter((r) => r.error);
+    if (failed.length > 0) console.error('  errors:', failed.length);
+    console.log(`  nulled ${rows.length - failed.length} rows`);
+  }
+}
+
 // --- 3. pin.images bad-URL filter -----------------------------------------
 
 async function filterBrokenPinImageUrls() {
@@ -245,6 +281,7 @@ async function main() {
   console.log(`Running image data fixes${DRY_RUN ? ' (DRY RUN)' : ''}...`);
   await fixCityFlags();
   await nullExpiredCityPersonalPhotos();
+  await nullExpiredCityFlags();
   await filterBrokenPinImageUrls();
   await fixCapeTownFrontmatter();
   console.log('\nDone.');

@@ -160,7 +160,7 @@ function packRows(
 }
 
 export default function HeroGallery({
-  images,
+  images: rawImages,
   title,
   className,
   caption,
@@ -170,7 +170,26 @@ export default function HeroGallery({
   const [containerWidth, setContainerWidth] = useState<number>(SSR_CONTAINER_WIDTH);
   const [maxHeightPx, setMaxHeightPx] = useState<number>(560);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  // URLs that 404 / 403 on first load. Filtered out so a single bad
+  // personal photo (deleted file, stale signed URL) doesn't leave a
+  // broken-image tile next to the working ones.
+  const [brokenUrls, setBrokenUrls] = useState<Set<string>>(() => new Set());
+  const markBroken = useCallback((url: string) => {
+    setBrokenUrls(prev => {
+      if (prev.has(url)) return prev;
+      const next = new Set(prev);
+      next.add(url);
+      return next;
+    });
+  }, []);
 
+  // Filter out URLs that 404'd or 403'd at render time. The justified-rows
+  // layout math (next useMemo block) keys on this `images` array, so the
+  // gallery re-arranges automatically when a tile fails.
+  const images = useMemo(
+    () => rawImages.filter(i => !brokenUrls.has(i.url)),
+    [rawImages, brokenUrls],
+  );
   const N = images.length;
 
   // Measure container width + max-height in pixels on mount and resize.
@@ -259,6 +278,7 @@ export default function HeroGallery({
               preload="metadata"
               className="w-full h-full"
               style={{ maxHeight }}
+              onError={() => markBroken(hero.url)}
             />
           </div>
         ) : (
@@ -278,6 +298,7 @@ export default function HeroGallery({
               decoding="async"
               className="w-full h-full object-contain"
               style={{ maxHeight }}
+              onError={() => markBroken(hero.url)}
             />
             <CommonsAttributionBadge url={hero.url} />
           </button>
@@ -285,7 +306,7 @@ export default function HeroGallery({
         {caption && (
           <figcaption className="text-label text-muted px-1 mt-1">{caption}</figcaption>
         )}
-        {renderLightbox(images, openIdx, close, next, prev, title, N)}
+        {renderLightbox(images, openIdx, close, next, prev, title, N, markBroken)}
       </figure>
     );
   }
@@ -344,6 +365,7 @@ export default function HeroGallery({
                         loading={ri === 0 ? 'eager' : 'lazy'}
                         decoding="async"
                         className="w-full h-full object-cover"
+                        onError={() => markBroken(img.url)}
                       />
                     ) : isVideo ? (
                       <video
@@ -352,6 +374,7 @@ export default function HeroGallery({
                         playsInline
                         preload="metadata"
                         className="w-full h-full object-cover"
+                        onError={() => markBroken(img.url)}
                       />
                     ) : (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -369,6 +392,7 @@ export default function HeroGallery({
                         loading={ri === 0 ? 'eager' : 'lazy'}
                         decoding="async"
                         className="w-full h-full object-cover"
+                        onError={() => markBroken(img.url)}
                       />
                     )}
                     {isVideo && <VideoBadge />}
@@ -391,7 +415,7 @@ export default function HeroGallery({
       {caption && (
         <figcaption className="text-label text-muted px-1 mt-1">{caption}</figcaption>
       )}
-      {renderLightbox(images, openIdx, close, next, prev, title, N)}
+      {renderLightbox(images, openIdx, close, next, prev, title, N, markBroken)}
     </figure>
   );
 }
@@ -411,6 +435,7 @@ function renderLightbox(
   prev: () => void,
   title: string,
   N: number,
+  onBroken?: (url: string) => void,
 ) {
   if (openIdx == null) return null;
   const img = images[openIdx]!;
@@ -473,6 +498,10 @@ function renderLightbox(
             playsInline
             preload="metadata"
             className="max-w-full max-h-[calc(100vh-9rem)] rounded"
+            onError={() => {
+              onBroken?.(img.url);
+              close();
+            }}
           />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
@@ -482,6 +511,10 @@ function renderLightbox(
             width={img.width ?? undefined}
             height={img.height ?? undefined}
             className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
+            onError={() => {
+              onBroken?.(img.url);
+              close();
+            }}
           />
         )}
         {/* Lightbox view of a Commons-hosted image — keep the badge

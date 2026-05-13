@@ -104,7 +104,21 @@ function arrange(images: CollageImage[]): CollageImage[] {
 
 export default function HeroCollage({ images, title, className, caption }: Props) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-  const ordered = arrange(images);
+  // Track URLs that 404 / 403 at the browser. Filtering them out of the
+  // image set at render time keeps the grid math correct (a 5-image
+  // collage with one broken URL collapses cleanly to the 4-image
+  // layout) instead of leaving a broken-image icon in one tile.
+  const [brokenUrls, setBrokenUrls] = useState<Set<string>>(() => new Set());
+  const markBroken = useCallback((url: string) => {
+    setBrokenUrls(prev => {
+      if (prev.has(url)) return prev;
+      const next = new Set(prev);
+      next.add(url);
+      return next;
+    });
+  }, []);
+  const filtered = images.filter(i => !brokenUrls.has(i.url));
+  const ordered = arrange(filtered);
   const visible = ordered.slice(0, 6);
   const overflow = ordered.length - visible.length;
   const N = visible.length;
@@ -165,6 +179,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"
+            onError={() => markBroken(img.url)}
           />
         ) : isVideo ? (
           // No poster — let the browser render the first frame from the
@@ -175,6 +190,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
             playsInline
             preload="metadata"
             className="w-full h-full object-cover"
+            onError={() => markBroken(img.url)}
           />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
@@ -184,6 +200,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"
+            onError={() => markBroken(img.url)}
           />
         )}
         {isVideo && <VideoBadge />}
@@ -222,6 +239,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
           playsInline
           preload="metadata"
           className="w-full max-h-[70vh]"
+          onError={() => markBroken(only.url)}
         />
       </div>
     ) : (
@@ -243,6 +261,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
           height={only.height ?? 800}
           decoding="async"
           className="w-full max-h-[70vh] object-contain"
+          onError={() => markBroken(only.url)}
         />
         <CommonsAttributionBadge url={only.url} />
       </button>
@@ -330,6 +349,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover"
+                  onError={() => markBroken(img.url)}
                 />
               ) : isVideo ? (
                 <video
@@ -338,6 +358,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
                   playsInline
                   preload="metadata"
                   className="w-full h-full object-cover"
+                  onError={() => markBroken(img.url)}
                 />
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -347,6 +368,7 @@ export default function HeroCollage({ images, title, className, caption }: Props
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover"
+                  onError={() => markBroken(img.url)}
                 />
               )}
               {isVideo && <VideoBadge />}
@@ -439,6 +461,10 @@ export default function HeroCollage({ images, title, className, caption }: Props
                 playsInline
                 preload="metadata"
                 className="max-w-full max-h-[calc(100vh-9rem)] rounded"
+                onError={() => {
+                  markBroken(ordered[openIdx]!.url);
+                  close();
+                }}
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
@@ -448,6 +474,10 @@ export default function HeroCollage({ images, title, className, caption }: Props
                 width={ordered[openIdx]!.width ?? undefined}
                 height={ordered[openIdx]!.height ?? undefined}
                 className="max-w-full max-h-[calc(100vh-9rem)] object-contain rounded"
+                onError={() => {
+                  markBroken(ordered[openIdx]!.url);
+                  close();
+                }}
               />
             )}
             {!isVideoUrl(ordered[openIdx]!.url) && (

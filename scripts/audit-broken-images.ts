@@ -38,8 +38,32 @@ const SUPABASE_KEY =
   'sb_publishable_NrfBsFhfj0DSKqDEKeUCMQ_H5oDG-Zv';
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
 
+// Global concurrency cap for the fetch pool. Wikimedia rate-limits
+// anonymous clients aggressively — 429 false positives dominated the
+// first audit run. Two countermeasures:
+//   1. Identify ourselves with a real User-Agent + contact info per
+//      Wikimedia's policy: https://meta.wikimedia.org/wiki/User-Agent_policy
+//   2. Throttle Wikimedia hosts to a small concurrent budget on top of
+//      the global cap.
 const CONCURRENCY = 25;
-const TIMEOUT_MS = 10_000;
+const WIKIMEDIA_CONCURRENCY = 4;
+const TIMEOUT_MS = 12_000;
+const USER_AGENT =
+  'go.mike-lee.me/1.0 image-audit (contact: mikeyle3@gmail.com)';
+
+const WIKIMEDIA_HOSTS = new Set([
+  'commons.wikimedia.org',
+  'upload.wikimedia.org',
+  'en.wikipedia.org',
+]);
+
+function isWikimedia(url: string): boolean {
+  try {
+    return WIKIMEDIA_HOSTS.has(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
 
 type Surface =
   | 'city.hero_image'
@@ -195,16 +219,39 @@ async function headCheck(url: string): Promise<CheckResult['status']> {
   // AbortController + timeout because some hosts hang.
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  const baseHeaders: Record<string, string> = {
+    'User-Agent': USER_AGENT,
+    Accept: 'image/*,*/*;q=0.8',
+  };
   try {
-    let resp = await fetch(url, { method: 'HEAD', signal: ctrl.signal, redirect: 'follow' });
+    let resp = await fetch(url, {
+      method: 'HEAD',
+      signal: ctrl.signal,
+      redirect: 'follow',
+      headers: baseHeaders,
+    });
     // Some hosts (Wikimedia) reject HEAD with 405 but accept GET. Retry GET
-    // with a Range header so we don't pull the whole file.
+    // with a Range header so we don't pull the whole file. Also retry on
+    // 429 (Wikimedia throttle) once with a short backoff.
     if (resp.status === 405 || resp.status === 403) {
       resp = await fetch(url, {
         method: 'GET',
         signal: ctrl.signal,
         redirect: 'follow',
-        headers: { Range: 'bytes=0-0' },
+        headers: { ...baseHeaders, Range: 'bytes=0-0' },
+      });
+    }
+    if (resp.status === 429) {
+      // Pause and retry once. Wikimedia's hint is in the Retry-After
+      // header when present.
+      const retryAfter = Number(resp.headers.get('retry-after') ?? '2');
+      const wait = Math.min(8000, Math.max(1000, retryAfter * 1000));
+      await new Promise((r) => setTimeout(r, wait));
+      resp = await fetch(url, {
+        method: 'GET',
+        signal: ctrl.signal,
+        redirect: 'follow',
+        headers: { ...baseHeaders, Range: 'bytes=0-0' },
       });
     }
     if (resp.ok || resp.status === 206) return 'ok';
@@ -238,6 +285,50 @@ async function runWithConcurrency<T, R>(
   return results;
 }
 
+/**
+ * Run URL checks across two pools so Wikimedia hosts can use a much
+ * smaller concurrent budget. Returns results in the same order as input.
+ */
+async function checkUrlsSplitPools(
+  urls: string[],
+  onProgress: (done: number, total: number) => void,
+): Promise<Array<{ url: string; status: CheckResult['status'] }>> {
+  const wikiIdxs: number[] = [];
+  const otherIdxs: number[] = [];
+  for (let i = 0; i < urls.length; i++) {
+    (isWikimedia(urls[i]!) ? wikiIdxs : otherIdxs).push(i);
+  }
+  const results = new Array(urls.length) as Array<{
+    url: string;
+    status: CheckResult['status'];
+  }>;
+  let done = 0;
+  const tick = () => {
+    done++;
+    if (done % 100 === 0 || done === urls.length) onProgress(done, urls.length);
+  };
+  // Run the two pools concurrently. Wikimedia pool is throttled.
+  await Promise.all([
+    runWithConcurrency(
+      wikiIdxs,
+      async (i) => {
+        results[i] = { url: urls[i]!, status: await headCheck(urls[i]!) };
+        tick();
+      },
+      WIKIMEDIA_CONCURRENCY,
+    ),
+    runWithConcurrency(
+      otherIdxs,
+      async (i) => {
+        results[i] = { url: urls[i]!, status: await headCheck(urls[i]!) };
+        tick();
+      },
+      CONCURRENCY,
+    ),
+  ]);
+  return results;
+}
+
 async function main() {
   const refs = await collectRefs();
   console.error(`Collected ${refs.length} refs.`);
@@ -247,14 +338,10 @@ async function main() {
   const uniqUrls = Array.from(new Set(refs.map((r) => r.url)));
   console.error(`Deduped to ${uniqUrls.length} unique URLs. Checking...`);
   const t0 = Date.now();
-  const statuses = await runWithConcurrency(
-    uniqUrls,
-    async (url) => ({ url, status: await headCheck(url) }),
-    CONCURRENCY,
-    (done, total) =>
-      console.error(
-        `  ${done}/${total} checked (${((Date.now() - t0) / 1000).toFixed(0)}s)`,
-      ),
+  const statuses = await checkUrlsSplitPools(uniqUrls, (done, total) =>
+    console.error(
+      `  ${done}/${total} checked (${((Date.now() - t0) / 1000).toFixed(0)}s)`,
+    ),
   );
   const byUrl = new Map(statuses.map((s) => [s.url, s.status] as const));
 
