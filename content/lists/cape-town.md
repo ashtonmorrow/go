@@ -104,7 +104,11 @@ If you are renting an apartment, look at De Waterkant or Sea Point first. De Wat
 
 ## Table Mountain and the gardens
 
-Table Mountain should be planned around weather, not around your preferred slot on the itinerary. The top can be much colder and windier than the city below, and the cable-car line gets long on clear days and weekends. I had a twisted ankle when I visited, so I did not hike Platteklip Gorge. If I went back in better shape, I would still bring a jacket and treat the mountain as its own half-day rather than a quick view.
+Plan Table Mountain around the weather, not the itinerary. The top can be 10 to 15°C colder and far windier than the city below, and the cableway closes entirely when the wind crosses a safety threshold (which it does often). Treat the first clear, low-wind morning as the mountain morning, and move other plans around it.
+
+**Book the cableway online at tablemountain.net before you go.** Same-day tickets are sold at the lower-station kiosk and queue ~45 to 90 minutes on clear weekends. The online ticket is the same price (~ZAR 460 return adult in 2026) and skips the kiosk line entirely. Check the live status on the site or the cableway's social before leaving the hotel. They post wind closures hourly.
+
+For the climb, Platteklip Gorge is the direct foot route up (2 to 3 hours, steep, no shade). Wear real shoes and bring two liters of water. The cableway runs both ways if you're descending tired.
 
 Kirstenbosch Botanical Gardens is the easier outdoor day: lower effort, a strong setting on the eastern slopes of Table Mountain, and a canopy walkway with a clear view back across the gardens. It is a better choice than forcing a hike if the weather or your knees are not cooperating.
 
@@ -114,7 +118,7 @@ The rule for both: put them on the first clear, low-wind day rather than locking
 
 The V&A Waterfront is commercial, but useful. You can eat, shop, catch the [Robben Island](/pins/robben-island) ferry, and walk over to watch the working harbor. I had a good meal at [Karibu](/pins/karibu-restaurant), with most plates in the $10 to $20 range when I went. The free side trip is the harbor activity itself, before or after dinner.
 
-Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop. Book in advance. It can sell out a few days ahead in peak season.
+Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop. **Book on robben-island.org.za a week or two ahead**. Ferries leave four times a day from Nelson Mandela Gateway at the V&A and the full visit (ferry + island bus tour + prison walk + ferry back) runs about 3.5 hours. Sailings cancel in rough weather, so leave a buffer day if Robben Island is on the must-do list. Sells out a few days ahead in December-January and over major South African public holidays.
 
 ## The Cape Peninsula coast
 

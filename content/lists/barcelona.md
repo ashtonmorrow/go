@@ -120,6 +120,7 @@ related:
 * [Where to stay](#where-to-stay)
 * [Where to eat, by neighborhood](#where-to-eat-by-neighborhood)
 * [Markets: La Boqueria vs Santa Caterina](#markets-la-boqueria-vs-santa-caterina)
+* [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Pickpockets](#pickpockets)
 * [Fira only for an early flight](#fira-only-for-an-early-flight)
 * [Pair with Sitges or Penedès](#pair-with-sitges-or-penedès)
@@ -196,6 +197,26 @@ For anything else in the center, the planning rule is the simplest one in this g
 [Mercado de La Boqueria](/pins/mercado-de-la-boqueria) on La Rambla is the famous one and is worth a walk-through once. It is also a working tourist trap: the front stalls are arranged for camera phones, the juices and fruit cups are marked up, and the seated counters fill with day trippers by 11 a.m. Have a look, take the photo, do not plan a meal there.
 
 For an actual meal, go to [Mercat de Santa Caterina](/pins/mercat-de-santa-caterina) instead, about a 12-minute walk northeast toward the Born. The Miralles wave-roof is the photogenic part from outside. Inside it is a working neighborhood market where locals shop and the produce, fish, and tapas counters run on real prices. There is a sit-down restaurant tucked into the corner that lets you order off the market the same morning. It is the version of the Boqueria experience that the Boqueria stopped being.
+
+## The famous sights, and how to book them
+
+Every major Barcelona attraction now requires an online timed ticket. Walk-up tickets either don't exist or come with a two-hour queue in peak. Book before you land.
+
+| Sight | What to know | Booking |
+|---|---|---|
+| [Sagrada Família](/pins/la-sagrada-familia) | Gaudí's basilica, still under construction since 1882. The most-visited attraction in Spain. 90-minute self-guided visit, longer if you climb a tower | sagradafamilia.org. Book 3 to 6 weeks ahead in peak (May to October). The basic ticket is ~€26. The Towers add-on is ~€10 more and worth it for one of the two towers (Passion is the better climb) |
+| [Park Güell](/pins/park-guell) | Gaudí park on the hill in Gràcia. The Monumental Zone (the headline mosaic terrace) is ticketed. The surrounding park is free | parkguell.barcelona. Timed entry, ~€18, sells out the day-of in peak. Free zones around the perimeter are open without a ticket |
+| Casa Batlló | Gaudí house on Passeig de Gràcia. The interior tour is the photogenic one | casabatllo.es. €35+ for a basic ticket. The "Silver" pass with the AR glasses is the upsell most visitors take. Book a few days ahead in peak |
+| La Pedrera (Casa Milà) | The other Passeig de Gràcia Gaudí house, less staged than Batlló | lapedrera.com. ~€28. Day-of tickets usually available outside July-August |
+| Picasso Museum | Five connected medieval palaces in Born holding the early Picasso work | museupicassobcn.cat. Free on Thursday afternoons (4 to 7 p.m., book a free timed ticket online) and the first Sunday of the month. Otherwise ~€14 |
+| Camp Nou stadium tour | FC Barcelona's home. Currently under reconstruction with limited access through 2026 | fcbarcelona.com. Verify whether the experience is open before you book |
+
+A few practical notes:
+
+- **The free-entry windows are real but require booking the timed slot online.** The Picasso Museum's free Thursday afternoon is the cleanest example. Show up without one and you're queueing for the day-of slots, which are usually gone by 4:05 p.m.
+- **Tour-guide vs self-guide.** Sagrada Família's audio guide is included with the ticket and is good enough. Don't pay for a third-party "skip the line + private guide" combo. The line is the ticket queue, which you've already skipped by booking online. Casa Batlló's AR-glasses experience is more interesting than a human guide for that property.
+- **Avoid the "skip the line" sellers outside the gates.** Same shape as the Vatican equivalent. The tickets are either real (at 2-3x markup) or invalid.
+- **Plan the Gaudí stops by geography, not by booking time.** Sagrada Família is in the Eixample. Park Güell is a 20-minute Uber north of there. Casa Batlló and La Pedrera are two blocks apart on Passeig de Gràcia. Cluster them in one half-day rather than zigzagging.
 
 ## Pickpockets
 

@@ -35,6 +35,7 @@ related:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
+* [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Common scams to know going in](#common-scams-to-know-going-in)
 
 ## Getting in from the airport
@@ -68,6 +69,21 @@ Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia
 | [Pastasciutta](/pins/pastasciutta) | 5/5 |
 | [al42 by Pasta Chef Monti](/pins/al42-by-pasta-chef-monti) | Pinned |
 | [Bono Bottega Nostrana](/pins/bono-bottega-nostrana) | Pinned |
+
+## The famous sights, and how to book them
+
+Rome's headline sights all require advance booking. The Vatican line is a half day on a hot afternoon if you walk up. The Colosseum line is comparable. Borghese Gallery limits visitors per slot and sells out weeks ahead.
+
+| Sight | What to know | Booking |
+|---|---|---|
+| Vatican Museums + Sistine Chapel | Open Monday to Saturday (closed Sundays except the last of the month, which is free entry and consequently the worst day). 3 to 4 hours including the Sistine. The Sistine sits at the far end of the route, so plan the bathroom and water break before you reach it | museivaticani.va. Standard ticket ~€20 + €5 booking fee. Book 2 to 4 weeks ahead in peak (April to October). The "early entry" 7:30 a.m. tickets are sold by third parties at 3-4x markup and worth it only if you'd rather pay than wait |
+| St. Peter's Basilica | Separate building from the Vatican Museums, free to enter, but the security line is long. The dome climb is the photo. Modest dress is enforced (shoulders + knees covered) | Free. No advance booking required for the basilica itself. The dome climb (€10 to €15) can be paid at the door inside |
+| Colosseum + Roman Forum + Palatine | One combo ticket covers all three. The Forum and Palatine are walk-throughs. The Colosseum is the timed-entry slot | coopculture.it (the official seller). ~€24 standard. The "Arena floor" or "Underground" tickets (~€30+) sell out fastest and need 2 to 4 weeks ahead. Book the morning slot (~9:00) before the building gets brutal by midday |
+| Borghese Gallery | Bernini sculptures and Caravaggio paintings in a small palazzo. The single best museum in Rome for the ratio of greatness to crowd | tosc.it (Ticket One). **Two-hour timed slots, strictly enforced, limited to ~360 visitors per slot.** Books out 3 to 6 weeks ahead. The booking is the whole battle. Once inside it's quiet |
+| Pantheon | The ancient Roman temple turned church on Piazza della Rotonda. Free for years, **now €5 to enter** (introduced 2023). Lines move quickly | museiitaliani.it. Quick online booking saves the line. Sundays are free |
+| Castel Sant'Angelo | The Hadrian-mausoleum-turned-fortress on the Tiber, with the bridge of Bernini angels in front. The terrace view of St. Peter's is the reason | Walk-up usually fine. Book online if you want a specific slot in peak |
+
+Tour-guide note: the Vatican is the rare case where a guided tour is worth it for a first visit. The geography is confusing and the unexplained Sistine Chapel is a wall of unreferenced art. Book through the Vatican's own "Vatican Highlights" guided tour rather than a sidewalk operator. The Colosseum is the opposite. The audio guide is fine and a guided tour spends more time on the queue than the building. Borghese, Pantheon, and the Forum reward a quiet wander with the Wikipedia article on your phone.
 
 ## Common scams to know going in
 
