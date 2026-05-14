@@ -28,13 +28,14 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Prague](/cities/prague) is the Bohemian capital that earned its tourist reputation early and has lived with it longer than almost any other European city. The old town is small enough to walk in an hour, the river Vltava splits the city into a pair of distinct halves (Staré Město and Malá Strana), and the food and beer culture has caught up with the visitor density in the last decade. A long weekend is the right shape for a first visit. A week if you want to settle.
+[Prague](/cities/prague) is the Bohemian capital and one of the most-walked old towns in Europe. The river Vltava splits the city into Staré Město on the east bank and Malá Strana below the castle on the west. A long weekend covers the headlines: Old Town Square, the Charles Bridge, the castle complex, and one beer hall. A week unlocks the smaller neighborhoods.
 
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
+* [Common scams to know going in](#common-scams-to-know-going-in)
 
 ## Getting in from the airport
 
@@ -66,4 +67,17 @@ Czech food is heavier than its neighbours. Cured meats, dumplings, roast pork kn
 | [Good Food Coffee & Bakery](/pins/good-food-coffee-bakery) | 5/5 |
 | [Alebrijes, Cocina Mexicana (Malá Strana)](/pins/alebrijes-cocina-mexicana-mala-strana) | Pinned |
 | [Arepas De Lyna](/pins/arepas-de-lyna) | Pinned |
+
+## Common scams to know going in
+
+Prague's scams are mostly soft and easy to side-step once named. They cluster in the Old Town, on the Charles Bridge, and in the taxi market.
+
+- **Currency exchange in the Old Town.** The street kiosks advertising "0% commission" between Old Town Square and the Charles Bridge are running a worse rate than the bank or the airport. The board lists buy and sell on the same line and the actual rate you receive is on the wrong column. Use a bank ATM (ČSOB, Komerční banka, Raiffeisen), withdraw CZK directly, skip the kiosks entirely. The notable exception is Exchange.cz on Kaprova, which is a real fair-rate operator.
+- **Tipped-meter taxis.** The traditional Prague taxi scam was a doctored meter charging 4x the real fare. Use Bolt or Liftago instead. If you have to take a curb taxi, confirm the rate before pulling away (max ~36 CZK/km inside the city) and ask for a printed receipt at the end.
+- **Restaurant bill scams in Old Town Square and Wenceslas Square.** Same pattern as Rome. Bread basket added at 80 CZK, sparkling water you didn't order at 120 CZK, "tourist menu" at 2-3x the local rate. The signal is a touter outside the door, picture menus, and English-only chalkboards. Walk one street back from any major square.
+- **The "drink with us" bar scam.** A friendly local invites you for a beer at a club he insists is the best in Prague. The bill arrives at the end with charges of 10,000+ CZK for "VIP service" or "private room." The doormen will make sure you pay. This is a real pattern in the area south of Wenceslas Square at night. If a stranger insists on a specific venue, go to a different venue.
+- **The "free walking tour" pressure tip.** The free walking tours that meet at the Astronomical Clock are legitimate, but the guide will spend the last ten minutes explaining that the "free" tour runs on tips and that "the locals tip 500 CZK" (they don't). 200 CZK is fair if the tour was good. Pay what you think the value was, walk away.
+- **The Charles Bridge pickpocket press.** Mid-bridge during the noon-to-6 p.m. window. The bridge fills, the crowd compresses around the statues, and the wallet leaves with someone behind you. Phone in a zipped pocket, bag in front. Cross the bridge before 9 a.m. or after 8 p.m. for the photo and the air.
+
+None of this makes Prague difficult. The metro is safe, the city is safe at every hour, and Czech beer is the cheapest in the EU. The scams are the friction.
 

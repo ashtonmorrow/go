@@ -28,13 +28,14 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Rome](/cities/rome) is the city that does not need an introduction and rewards reading one anyway. Two and a half thousand years of continuous capital-city status, food that is the canonical Italian side, and the headline ancient sights that justify their reputation. The trap of a first Rome visit is to schedule the entire trip around the sights and miss the meals. The real value is in the trattoria culture that the city still runs on. A long weekend is the minimum. A week unlocks the depth.
+[Rome](/cities/rome) is the canonical European capital and an ancient-city headliner that delivers. Long weekend minimum. The Roman pasta canon (cacio e pepe, carbonara, amatriciana, gricia) is the trip's other half, and most first-time visitors miss it by booking restaurants on TripAdvisor near the major sights.
 
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
+* [Common scams to know going in](#common-scams-to-know-going-in)
 
 ## Getting in from the airport
 
@@ -67,4 +68,17 @@ Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia
 | [Pastasciutta](/pins/pastasciutta) | 5/5 |
 | [al42 by Pasta Chef Monti](/pins/al42-by-pasta-chef-monti) | Pinned |
 | [Bono Bottega Nostrana](/pins/bono-bottega-nostrana) | Pinned |
+
+## Common scams to know going in
+
+Rome's scams are old, well-known, and never go away. They cluster at the Trevi Fountain, the Spanish Steps, the Colosseum entrance, and Termini station.
+
+- **The "free" friendship bracelet or rose.** Someone at the Spanish Steps or Trevi Fountain ties a string bracelet on your wrist, hands a woman a rose, then demands payment. Don't accept anything physical. Hands in pockets if necessary.
+- **The Colosseum "centurion" photo.** Men in plastic gladiator costumes wave you over for a photo, then demand €20 to €50. Photographing them at all (even from across the plaza) gets a demand. Don't engage. The actual ticket line at the Colosseum has its own marked entrance. Everything else outside is freelance.
+- **Restaurant bill creep near the major sights.** A trattoria on the square near the Trevi or the Pantheon will quietly add a €5 coperto (cover charge) per person, charge €8 for "still water," include a bread basket nobody ordered at €4, and list pasta at €24 when the same plate is €14 one street over. Read the menu and the receipt. The single best rule is to walk five minutes off the nearest monument before sitting down.
+- **The Vatican / Colosseum "skip the line" tout.** Someone in a fake official polo outside the Vatican Museums or Colosseum offers to "skip the line" for €40 to €60. The line is rarely as long as advertised, the ticket they sell is sometimes legitimate (with the price marked up 3x) and sometimes worthless. Book official tickets at the Vatican Museums or Colosseum sites before you arrive.
+- **Pickpocket teams on Metro Line A and at Termini.** The classic Rome pickpocket move is a crowd-press at the Spagna or Repubblica stop on Line A, especially around the Vatican-direction trains in the morning. Phone in a zipped pocket, bag in front. The Termini main concourse runs the same pattern. Cross it quickly and don't stop for a "lost tourist" asking for directions.
+- **The taxi-from-Termini overcharge.** The flat €55 FCO airport fare is law, but a taxi from Termini to a hotel two km away should be €10 to €15 metered. If the driver wants a flat €40 to your hotel, get out and find a different cab from the line. The cars in the official rank are required to meter inside the city walls.
+
+The metro is safe at normal hours. The center is safe at normal hours. The scams are friction, not danger.
 

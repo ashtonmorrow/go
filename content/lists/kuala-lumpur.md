@@ -50,6 +50,7 @@ related:
 * [The cultural day](#the-cultural-day)
 * [Batu Caves](#batu-caves)
 * [Where to eat](#where-to-eat)
+* [Common scams to know going in](#common-scams-to-know-going-in)
 * [What to skip](#what-to-skip)
 
 ## Getting in from KLIA
@@ -125,6 +126,18 @@ Food is the reason most repeat visitors come back to KL.
 | Jalan Alor | Street-food strip in Bukit Bintang | Crowded, busy, fun. Pick by queue. Lok-lok skewers are the easy starter |
 | Sentul Depot | Warehouse-district food and bars | Worth a 30-min Grab from KLCC |
 | [Bukit Bintang Street Art Alleys](/pins/bukit-bintang-street-art-alleys) | Photo walks between bites | Short side-alley circuit, fun midway through a meal crawl |
+
+## Common scams to know going in
+
+KL is one of the easier major Southeast Asian capitals to navigate. The scams that do exist cluster around Bukit Bintang at night and the area outside the Petronas Towers.
+
+- **The fake-meter taxi.** The classic KL airport-and-tourist-area taxi scam: the driver claims the meter is broken and quotes a flat fare 3 to 5x the real one. Use Grab for everything. It works at the airport (designated pickup zone), at KL Sentral, and across the city. If you must take a curb taxi, get a coupon from the airport's taxi counter instead of negotiating with the driver.
+- **The "friend" who walks you to a bar.** Someone friendly strikes up a conversation in Bukit Bintang and suggests a "great local club" or "karaoke bar nearby." The bill at the end is unreasonable and the bouncers make sure you pay. This is the same playbook as Bangkok and Prague. If a stranger insists on a specific venue, go somewhere else.
+- **Henna and friendship-bracelet tie-ons near the Petronas Towers.** Someone offers to put henna on your hand or ties a bracelet, then demands payment. Don't engage. Hands in pockets if necessary.
+- **Money changer shortchange on Bukit Bintang.** Several small kiosks on Bukit Bintang advertise rates better than the bank and short-change on the count. Use a bank ATM (Maybank, CIMB, Public Bank) or a chain currency-changer with a fixed posted board.
+- **Casino chip swap at Genting.** If you do the Genting Highlands day trip, the casino floor is fine, but the buses and taxis around the bus terminal occasionally run a chip-for-cash swap on tourists who are flush after a session. Cash out at the cage, not on the curb.
+
+The MRT and KLCC are safe at every hour. Bukit Bintang stays busy and well-lit but the bar-tout pattern is the live risk after 11 p.m.
 
 ## What to skip
 

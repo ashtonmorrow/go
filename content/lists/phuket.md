@@ -75,6 +75,7 @@ The trick is matching the side of the island to the trip you actually want, plan
 * [The cultural circuit](#the-cultural-circuit)
 * [Phi Phi and Phang Nga as day trips](#phi-phi-and-phang-nga-as-day-trips)
 * [Where to eat](#where-to-eat)
+* [Common scams to know going in](#common-scams-to-know-going-in)
 * [What to skip](#what-to-skip)
 
 ## When to go
@@ -181,6 +182,19 @@ Patong has the highest food density. Phuket Town has the highest food quality. T
 | [Papazula](/pins/papazula) | Patong | Light Turkish-Thai wrap lunch | Decor is 1950s American rockabilly, which makes no sense and is fine |
 | Paradise Viewpoint restaurants | Above Paradise Beach, south of Patong | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip. Note: this is the viewpoint above Paradise Beach, not the Big Buddha hill |
 | [Hard Rock Cafe Phuket](/pins/hard-rock-cafe-phuket) | Patong | A beer and a live band | Food is incidental to the live music, which is the reason to come |
+
+## Common scams to know going in
+
+Phuket runs a few patterns that are well-known to anyone in the tourism business and never named in the brochure. They cluster in Patong.
+
+- **The jet-ski "damage" scam.** This is the most consistent one and the most expensive. You rent a jet ski on Patong Beach, ride it for twenty minutes, return it. The operator points at a scratch and demands 20,000 to 100,000 ฿ for the "damage." The scratch was there when you rented it. The intimidation phase is real. The clean answer is to not rent a jet ski on Patong Beach. Rent in Kata or Karon if you want to ride, or use a hotel water-sports operator with a paper-trail invoice.
+- **Tuk-tuk pricing.** Phuket tuk-tuks are not Bangkok tuk-tuks. The minimum fare for any ride is 200 to 400 ฿ regardless of distance, often more than a metered taxi for ten times the distance. The drivers have a near-monopoly on certain routes and will block Grab pickups on the curb. Use Grab and walk one block off the beach road to meet the car.
+- **Bar bill switching in Bangla Road.** Same pattern as Bangkok's bargirl bars. The drink menu has one price, the bill has another, and the woman who sat down next to you cost 800 ฿ for "her drink" that was a glass of tea. Read the bill before you pay and expect to negotiate. The simpler answer is to drink at a normal bar or in your hotel.
+- **The closed-temple tuk-tuk.** Wat Chalong is open every day. If someone tells you it's closed for a "Buddhist holiday" and offers a "special tour" instead, that's the gem-shop / tailor-shop route. Same shape as the Bangkok temple scam, slightly less common here.
+- **Currency exchange in Patong.** Several Patong money changers advertise rates better than the bank and short-change on the count. Use the airport, the SuperRich kiosk, or a bank ATM. Avoid the tiny booths on Bangla Road.
+- **"Free" wristband at the beach.** Someone hands you a flower or a bracelet, then demands payment when you accept. Same as the Bali temple version. Walk past.
+
+The rest of Phuket is straightforward. The scams above all sit on one strip in Patong. The southern beaches (Kata, Karon, Nai Harn) and the Old Town do not run any of this.
 
 ## What to skip
 
