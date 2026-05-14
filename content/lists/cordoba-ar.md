@@ -31,7 +31,7 @@ faqs:
   - q: How late does the city actually go?
     a: Late. Dinner reservations at 10 p.m. are normal. Bars do not fill until midnight or 1 a.m. The full "salí" (going out) cycle ends at 6 or 7 a.m., and you will see students walking home in the early morning. Plan dinner accordingly or you will be eating alone.
   - q: How does Córdoba compare to Buenos Aires?
-    a: Smaller, older, less polished, less expensive. The center feels collegiate rather than cosmopolitan. The food scene is solid but quieter than Buenos Aires. The colonial and Jesuit history is denser. Most travelers do not need both on the same trip.
+    a: Smaller, older, less polished, less expensive. The center feels collegiate rather than cosmopolitan. The food scene is good but quieter than Buenos Aires. The colonial and Jesuit history is denser. Most travelers do not need both on the same trip.
   - q: What do people do on weekends?
     a: Drive to the Sierras. Villa Carlos Paz is the popular escape (lake, gondola, busy in summer). La Cumbre, La Cumbrecita, and the smaller mountain towns are quieter and walkable. Locals make the day trip year-round.
 

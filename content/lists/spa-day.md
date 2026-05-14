@@ -175,7 +175,7 @@ The two together make the most coherent half-day in Bath: museum first (an hour 
 
 ## Vienna: Therme Wien, the other airport hack
 
-[Therme Wien](/pins/therme-wien) is the second-largest urban thermal complex in Austria and runs the same fly-in-and-soak hack as Erding, with the trade-off that the bus from Vienna International (VIE) into the center passes within a few stops of the complex on the U1 metro line. The geometry is not as tight as Erding's ten-minute taxi, but the U-Bahn delivers you to the spa door (Oberlaa station) in about 30 minutes from the city or about 40 minutes from the airport via the CAT or S-Bahn into the center and a transfer.
+[Therme Wien](/pins/therme-wien) is the second-largest urban thermal complex in Austria and runs the same fly-in-and-soak hack as Erding, with the trade-off that the bus from Vienna International (VIE) into the center passes within a few stops of the complex on the U1 metro line. The geometry is not as tight as Erding's ten-minute taxi, but the U-Bahn drops you at the spa door (Oberlaa station) in about 30 minutes from the city or about 40 minutes from the airport via the CAT or S-Bahn into the center and a transfer.
 
 The complex itself runs to a quieter Austrian register than Erding's. The water comes from a 1,500-meter well, the indoor and outdoor pool count is high (more than two dozen pools across the main hall, the family world, and the textile-free sauna world), and the day pass is comparable to Erding's. The Vienna add-on is that you are in Vienna. The trip extends naturally into coffee houses, the opera, the Wien Museum, the rest of the city.
 

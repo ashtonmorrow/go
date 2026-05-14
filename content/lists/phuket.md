@@ -16,7 +16,7 @@ guide_cards:
   cards:
     - title: Pick the beach that matches the trip
       body: Patong for nightlife and walkability. Kata and Karon for families and beginner surf. Kamala for boutique-resort quiet. Bang Tao for resort-on-a-beach. Phuket Town for Sino-Portuguese cafes, not for sleeping near sand.
-    - title: Plan for transport friction
+    - title: Transport is expensive and slow
       body: Taxis and tuk-tuks cost more than they should. Grab helps but does not make the island cheap to cross. If you want freedom, rent a scooter only if you are legal, insured, and honest about your comfort level on Thai roads.
     - title: Group the cultural circuit
       body: Big Buddha, Wat Chalong, Old Phuket Town, Promthep Cape, and a viewpoint or two fit into a single hired-driver day. Most Phuket trips never bother. The day pays off.
@@ -63,7 +63,7 @@ related:
 
 [Phuket](/cities/phuket) is the practical Thai island. It has the international airport, the full hotel range from backpacker to resort, the tour infrastructure for Phi Phi and Phang Nga Bay, and the bluntest version of beach tourism in Thailand. None of that is a complaint. If you want a beach week with a real airport at one end and a sit-down dinner choice at the other, Phuket gets the job done.
 
-The trick is matching the side of the island to the trip you actually want, planning around the transport friction, and not skipping the cultural circuit just because everybody else does.
+Match the side of the island to the trip you actually want, budget for the slow expensive taxis, and don't skip the cultural circuit just because everyone else does.
 
 ## On this page
 

@@ -79,5 +79,5 @@ Prague's scams are mostly soft and easy to side-step once named. They cluster in
 - **The "free walking tour" pressure tip.** The free walking tours that meet at the Astronomical Clock are legitimate, but the guide will spend the last ten minutes explaining that the "free" tour runs on tips and that "the locals tip 500 CZK" (they don't). 200 CZK is fair if the tour was good. Pay what you think the value was, walk away.
 - **The Charles Bridge pickpocket press.** Mid-bridge during the noon-to-6 p.m. window. The bridge fills, the crowd compresses around the statues, and the wallet leaves with someone behind you. Phone in a zipped pocket, bag in front. Cross the bridge before 9 a.m. or after 8 p.m. for the photo and the air.
 
-None of this makes Prague difficult. The metro is safe, the city is safe at every hour, and Czech beer is the cheapest in the EU. The scams are the friction.
+None of this makes Prague difficult. The metro is safe, the city is safe at every hour, and Czech beer is the cheapest in the EU. The scams are easy to side-step once named.
 

@@ -15,7 +15,7 @@ guide_cards:
   intro: KK is the easiest way into Borneo. The marine park is a short boat ride from town, Kinabalu Park and the hot springs are a day trip, and the waterfront sunsets are some of the best in Southeast Asia. Plan for a Muslim, conservative city where beer is not as cheap as in Thailand, and you connect via KL or Singapore on the way in.
   cards:
     - title: Book a sunset view
-      body: KK faces west across the South China Sea. The waterfront hotels and the Tanjung Aru area deliver some of the best sunsets in Southeast Asia. The Hyatt Regency Kinabalu is the in-town pick. The Tanjung Aru side is quieter and more resort-shaped.
+      body: KK faces west across the South China Sea. The waterfront hotels and the Tanjung Aru area sit at some of the best sunset angles in Southeast Asia. The Hyatt Regency Kinabalu is the in-town pick. The Tanjung Aru side is quieter and more resort-shaped.
     - title: Half-day to the marine park
       body: Tunku Abdul Rahman Marine Park is a short boat ride from Jesselton Point. Manukan and Sapi are the two beach islands worth your time. Hire snorkel gear at Jesselton before you leave. Pricing on the islands is worse.
     - title: Day trip to Kinabalu Park

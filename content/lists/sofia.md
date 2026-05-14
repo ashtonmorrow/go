@@ -26,7 +26,7 @@ related:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Sofia](/cities/sofia) is the Bulgarian capital that under-promises and over-delivers. Brutally cheap by EU standards, very walkable center, a stack of orthodox churches anchored by the Alexander Nevsky Cathedral, an excellent restaurant scene that has caught up with the visitor density in the last few years, and Mount Vitosha rising directly south of the city for a day-trip ski or hike. Two days is the right length. Three if you are pairing with Plovdiv or Belogradchik.
+[Sofia](/cities/sofia) is the Bulgarian capital travelers come away surprised by. Brutally cheap by EU standards, very walkable center, a stack of orthodox churches anchored by the Alexander Nevsky Cathedral, an excellent restaurant scene that has caught up with the visitor density in the last few years, and Mount Vitosha rising directly south of the city for a day-trip ski or hike. Two days is the right length. Three if you are pairing with Plovdiv or Belogradchik.
 
 ## On this page
 

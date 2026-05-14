@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Ho Chi Minh City
-  intro: HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of friction. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centrepiece evening.
+  intro: HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of pace. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centerpiece evening.
   cards:
     - title: Get the e-visa, not from a middleman
       body: Vietnam offers 30-day single entry ($25) and 90-day multiple entry ($50) e-visas. The application takes 3 business days. Use the official Government of Vietnam portal at evisa.gov.vn. There are many lookalike sites charging two to three times more for the same thing.

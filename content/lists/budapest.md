@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -45,6 +46,22 @@ Budapest Budapest Ferenc Liszt International (BUD) sits about 24 km south-east o
 | Bolt / Uber-equivalent | 30 to 50 min | 7,000 to 12,000 HUF | Late arrival or heavy luggage. Bolt is the dominant Hungarian rideshare. Pickup at the marked airport lot |
 | Bus 200E + Metro M3 | 50 to 70 min | 450 HUF (one-way + transfer) | The cheapest path. Bus 200E to Kőbánya-Kispest, transfer to the M3 blue metro into the center |
 | Taxi from the rank | 30 to 50 min | ~9,500 HUF flat rate via Főtaxi | Főtaxi is the licensed airport rank. Queue at the desk inside arrivals for a fixed-fare booking |
+
+## The famous sights, and how to book them
+
+| Sight | What to know | Booking |
+|---|---|---|
+| Hungarian Parliament tour | Neo-Gothic riverfront landmark, Europe's third-largest parliament building. The Holy Crown of Saint Stephen is inside. The tour is the only way to see the interior | jegymester.hu (the only official seller). **45-min English tours sell out 1 to 2 weeks ahead in peak.** ~9,000 HUF for non-EU visitors. Book before you land. Tours are not refundable and run on time |
+| Széchenyi Thermal Bath | Largest medicinal bath in Europe, neo-baroque yellow building in City Park. The Pest-side mass-scale option, less atmospheric than Gellért but with the outdoor pools that produce the headline winter steam photo | szechenyibath.hu. ~8,500-12,000 HUF depending on weekday/weekend, all day. Cabin (private) costs slightly more than locker. Book online to skip the kiosk line on weekends |
+| Gellért Thermal Bath | Art Nouveau bath inside the Hotel Gellért, the more photogenic option. Smaller, more architectural | gellertbath.hu. Similar pricing to Széchenyi. Book online. Reopened after a 2024-25 renovation, so verify the bath is open for your dates |
+| Rudas Thermal Bath | The 16th-century Ottoman-era bath, octagonal pool under a dome. The most historically interesting | rudasbath.hu. Smaller, cheaper (~5,500-8,000 HUF). Mixed-gender only on weekends. Weekdays alternate single-gender. Check the schedule before booking |
+| St. Stephen's Basilica | The dome climb has the best central-Pest view. The Holy Right Hand of Saint Stephen is in a side chapel. Free entry. The dome and treasury are ticketed | bazilika.biz. ~3,200 HUF for the dome. Walk-up usually fine |
+| Buda Castle + Fisherman's Bastion | Free to walk the grounds and the Bastion terraces (the photogenic white-stone fairy-tale walls overlooking the river). Castle interior houses the Hungarian National Gallery, ticketed separately | The walk is free. Buda Castle Funicular is ~4,500 HUF return. The climb is fine, the funicular is the queue trap |
+| Dohány Street Synagogue | The largest synagogue in Europe and the center of the Jewish Quarter | jewishtourhungary.com. ~10,000 HUF including the Hungarian Jewish Museum and the Holocaust Memorial garden. Book a day or two ahead in peak |
+
+The thermal baths are the city's signature. The [spa-day cross-list](/lists/spa-day) covers the choice between Gellért, Széchenyi, and Rudas in more depth. A short version: Széchenyi for the outdoor steam-and-snow photo, Gellért for the building, Rudas for the Ottoman dome.
+
+Tour-guide note: the Parliament tour is the rare case where the guide is the only way in. The building isn't a self-walk. The baths are the opposite, no guide needed. The Buda Castle hill walk benefits from a guide if you care about the layered medieval / Ottoman / Habsburg history, but Wikipedia plus a slow walk works fine.
 
 ## Where to eat
 

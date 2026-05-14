@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Koh Samui
-  intro: Koh Samui is the Thai island I would return to first when I want the trip to work without much friction. The headline decision is which beach you base on, since the island is a single ring road. Chaweng for choice, Lamai for slower, Bophut for food, Choeng Mon for quiet. Fly via Bangkok unless you really want to ferry.
+  intro: Koh Samui is the Thai island I would return to first when I want the trip to work without effort. The headline decision is which beach you base on, since the island is a single ring road. Chaweng for choice, Lamai for slower, Bophut for food, Choeng Mon for quiet. Fly via Bangkok unless you really want to ferry.
   cards:
     - title: Fly Bangkok Airways via BKK
       body: There are no long-haul direct flights to Samui. Connect in Bangkok and fly Bangkok Airways into Koh Samui Airport (USM). They own the airport, run the most frequencies, and tend to be punctual. Stay a couple of days in Bangkok on the way in or out.

@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -45,6 +46,22 @@ Vienna Vienna International (VIE) sits about 18 km southeast of the center. The 
 | S-Bahn S7 | 25 min | €4.30 single | The cheaper option. Stops at Wien Mitte and continues to Praterstern and Floridsdorf. Same line, slower, costs a third of the CAT |
 | Uber / Bolt / FreeNow | 25 to 45 min | €40 to €55 to the center | Late arrival or heavy luggage. Works as well as taxi at a slightly lower price |
 | Taxi from the rank | 25 to 45 min | €45 to €60 metered | Reliable but pricier than rideshare. The rank cars run a real meter |
+
+## The famous sights, and how to book them
+
+Most Vienna headliners run timed entry. Walk-up is usually possible off-peak, but the gap between online and walk-up is the difference between a 5-minute and a 45-minute queue in summer.
+
+| Sight | What to know | Booking |
+|---|---|---|
+| Schönbrunn Palace | The Habsburg summer residence, 1,441 rooms, gardens behind. The "Imperial Tour" covers 22 rooms in 30-40 min. The "Grand Tour" covers 40 rooms in ~60 min and includes the rococo Vieux Laque Room | schoenbrunn.at. Book 1 to 2 weeks ahead in peak (May to September). Imperial Tour ~€26, Grand Tour ~€32. Get the morning slot (~9:00 to 11:00) before the day-tripper coaches arrive |
+| Belvedere (Upper Palace) | Klimt's *The Kiss* and most of the major Klimt holdings live here. The building is also one of the better baroque palaces in Europe | belvedere.at. Book the morning slot online, ~€16. The Lower Belvedere is a separate ticket and skippable on a short trip |
+| Albertina | Habsburg art collection: Dürer, Picasso, Monet, Klimt drawings. Less crowded than Belvedere | albertina.at. ~€20, walk-up usually fine outside peak weekends |
+| Kunsthistorisches Museum | The imperial art collection. Bruegel's *Hunters in the Snow* and the most-visited Vermeer in Europe (*The Art of Painting*) | khm.at. ~€21, walk-up usually fine |
+| Hofburg / Imperial Apartments / Sisi Museum | The winter residence in the city center, three small museums in one ticket | hofburg-wien.at. ~€19. The combined Sisi ticket (Hofburg + Schönbrunn + Imperial Furniture Collection) is ~€44 and worth it if you're doing all three |
+| Spanish Riding School | The Lipizzaner horses. Morning training (~€16) is the affordable version. The Sunday performance (~€26 to €230) is the splurge | srs.at. Book performances 4 to 6 weeks ahead. Morning training is usually walk-up |
+| Vienna Opera (Wiener Staatsoper) | One of the great opera houses. Standing-room tickets at €15 are the steal of the city if you can wait in the day-of line at 1.5 hours before curtain | wiener-staatsoper.at. Seated tickets €30 to €250+, book weeks ahead in peak. Tour-only tickets (the building without a performance) are ~€15 |
+
+Tour-guide note: Schönbrunn's audio guide is included and is the right call. The English-guided tour adds €5 and isn't materially better. Belvedere, Albertina, and the KHM are all walk-and-read with the audio guide. The Hofburg's audio guide leans heavy on Sisi mythology and is the one place where a self-walk with Wikipedia open is faster.
 
 ## Where to eat
 

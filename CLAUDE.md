@@ -109,6 +109,9 @@ The AI-default register I produced before this rule existed was a third register
 - `worth every penny` / `worth every dollar` / `worth every bit of` — never. Either name a specific reason it is worth the money, or do not make the recommendation.
 - `My first pick` / `the right base for me` / `my pick for X` — when describing a hotel or option Mike has used. Mike does not rank his own preferences this way in published writing. State the property, what it gets you, what it does not. The reader decides.
 - `the right call` as a closer ("the X is the right call here") — overused as a closing sentence on practical sections. Drop or rewrite specifically.
+- `friction` as filler — Mike spotted this as a creeping AI-ism (May 2026 review). It has a legitimate UX-precise sense ("cash-payment friction is real", "the lowest-friction option") that's fine to use sparingly. The lazy use is the abstraction: "the friction is real", "the scams are the friction", "the two friction points to plan around". When you mean "the hustle", "the slow taxis", "the cash push", say that instead. Hard cap: roughly one `friction` per guide.
+- `solid` as a quality descriptor — Mike called this out alongside `friction`. "Solid pick", "solid mid-range", "another solid classic", "the food scene is solid" all read as filler. Name what's actually good: "the lamb shoulder is the order", "fair price for the room", "ribbon-cut from the same cured supplier". If you don't have a specific positive, leave the qualifier out and let the pin's presence on the list speak.
+- `delivers` / `over-delivers` / `under-delivers` — pure marketing diction. "Rome delivers" is the AI version. "The ancient sights are as good as advertised" is the human version.
 
 **Banned punctuation:**
 
@@ -182,7 +185,7 @@ Same rule for "the city is the name of two things at once" intros, "a note on th
 
 **Voice check before flipping indexable:**
 
-Before a guide goes `indexable: true`, scan for the banned phrases above. The fastest check: search the file for "register", "trade-off is", "trick is", "right move is", "earns the", "genuinely", "honestly", "frankly", semicolons, "Quick disambiguation", "is the name of two", "to keep them straight". If any hit, the sentence wants a rewrite.
+Before a guide goes `indexable: true`, scan for the banned phrases above. The fastest check: search the file for "register", "trade-off is", "trick is", "right move is", "earns the", "genuinely", "honestly", "frankly", semicolons, "Quick disambiguation", "is the name of two", "to keep them straight", "delivers", "over-delivers", and the lazy-`solid` patterns (`is solid`, `are solid`, `solid pick`, `solid choice`, `solid option`, `another solid`). For `friction`, count instances per guide. One or two with a precise UX sense is fine. Three or more is the AI-ism creeping back in. If any hit, the sentence wants a rewrite.
 
 ## Out of scope for this project
 

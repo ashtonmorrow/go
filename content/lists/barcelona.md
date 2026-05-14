@@ -33,7 +33,7 @@ faqs:
   - q: Are the pickpocket warnings real?
     a: Yes, especially on La Rambla and through Barri Gòtic after dark. The pattern is opportunistic distraction. Phone in pocket when not in use, bag in front of you in crowds, cards in a different pocket than your wallet.
   - q: What about Sitges as an alternative?
-    a: A 45-minute train ride south. Smaller, beach-oriented, locally-owned restaurants, slower rhythm. Hotel Sabàtic is a fair pick if you want a property near the old town. There are plenty of small holiday apartments too. A solid daytrip from Barcelona or a budget alternative base.
+    a: A 45-minute train ride south. Smaller, beach-oriented, locally-owned restaurants, slower rhythm. Hotel Sabàtic is a fair pick if you want a property near the old town. There are plenty of small holiday apartments too. Works as a daytrip from Barcelona or a budget alternative base.
 
 related:
   city: barcelona

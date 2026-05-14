@@ -120,9 +120,9 @@ Most central Bangkok hotels sit about an hour by road from either airport, traff
 
 **What it should cost you, May 2026.** The realistic range to a central Sukhumvit, Silom, or Riverside hotel via metered taxi is **around 400 to 500 ฿ all-in** (the meter runs 250–400 ฿, plus a 50 ฿ airport surcharge, plus 25–75 ฿ in expressway tolls that you pay in cash from the back seat). Grab runs roughly the same with mild surge during peak hours. The catch is that even official drivers will sometimes refuse to start the meter and try to agree on a flat fare instead. Flat quotes at the rank typically come in at **500 to 800 ฿** for the same trip. **If a flat fare is the only thing on offer, "500 baht" is a fair price** to a central hotel and a clean confident number to push back with. Drivers will often agree to that rather than re-queue. Above 600 you are overpaying. Prices change, fuel and tolls drift, so check a current source on arrival day if you want a tighter number.
 
-**Cash matters more than most travelers expect.** Bangkok is still a cash-friendly city. Pull a few thousand baht from an airport ATM on the way out so tolls, taxis, and street food are not friction.
+**Cash matters more than most travelers expect.** Bangkok is still a cash-friendly city. Pull a few thousand baht from an airport ATM on the way out so tolls, taxis, and street food don't slow you down.
 
-**For an early flight.** If you have a 6 a.m. departure out of BKK, the easy answer is the [Hyatt Regency Bangkok Suvarnabhumi](/pins/hyatt-regency-bangkok-suvarnabhumi-airport). It is older but solid: large pools, an outdoor bar, a couple of restaurants, FoodPanda delivery if those are closed by the time you check in, and a walk-over to the terminal in the morning. The walk has a few curbs to negotiate with luggage, but it beats fighting the airport at 4 a.m. with a Grab.
+**For an early flight.** If you have a 6 a.m. departure out of BKK, the easy answer is the [Hyatt Regency Bangkok Suvarnabhumi](/pins/hyatt-regency-bangkok-suvarnabhumi-airport). Older property, large pools, an outdoor bar, a couple of restaurants, FoodPanda delivery if those are closed by the time you check in, and a walk-over to the terminal in the morning. The walk has a few curbs to negotiate with luggage, but it beats fighting the airport at 4 a.m. with a Grab.
 
 ## Moving around the city
 
@@ -205,7 +205,7 @@ Yaowarat is where I would go hungry. Walk it slowly, eat in three or four places
 
 ## Khao San at night
 
-I would not stay on Khao San Road, but I will go for an evening. The street is what it advertises: cheap beer, neon, fried scorpions for the photo, hair-braiding stalls, live cover bands, very loud, very international. If the version of Bangkok you want is "out late, walking, eating bad-for-you things," Khao San delivers and you do not have to wake up there.
+I would not stay on Khao San Road, but I will go for an evening. The street is what it advertises: cheap beer, neon, fried scorpions for the photo, hair-braiding stalls, live cover bands, very loud, very international. If the version of Bangkok you want is "out late, walking, eating bad-for-you things," Khao San is that street and you do not have to wake up there.
 
 The version that works: take a Grab in around 8 or 9 p.m., walk Khao San and the parallel Soi Rambuttri (which is the calmer adult cousin of the same street), eat one or two stalls, have a drink, Grab back to your hotel. A couple of hours is the right dose. It pairs well with a temple morning, since the old city is right there.
 

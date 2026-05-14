@@ -33,7 +33,7 @@ faqs:
   - q: Is the canal boat worth it?
     a: Yes if the weather is dry. €15 for 30 minutes, five operators with similar routes, queue at any of the canal-side boarding points. The view of the Rozenhoedkaai (the famous postcard angle) from the water is what you came for.
   - q: How is the chocolate scene?
-    a: Better than the average European chocolate-tourist city. The Chocolate Line and Dumon are the artisan picks. Délice Brugge is a solid mid-range. Leonidas and Godiva have shops on Steenstraat too, but the same chocolate is widely available across Belgium. The artisan windows are the reason to buy chocolate in Bruges specifically.
+    a: Better than the average European chocolate-tourist city. The Chocolate Line and Dumon are the artisan picks. Délice Brugge is a fair mid-range. Leonidas and Godiva have shops on Steenstraat too, but the same chocolate is widely available across Belgium. The artisan windows are the reason to buy chocolate in Bruges specifically.
 
 related:
   city: bruges

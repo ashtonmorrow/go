@@ -125,7 +125,7 @@ related:
 
 Tbilisi is one of the cheapest, most underrated European-style city trips an American can take. Cheap flights are scarce (a layover from anywhere west), but once you're there the food is excellent, the wine tradition is 8,000 years old and unlike anything in a European wine bar, and the architecture flips between Parisian, Soviet, and Ottoman block by block. Three days for the city. A week if you're adding Kakheti wine country or driving north into the Caucasus.
 
-The version below is the trip I would book for myself: three days, an Uber in from the airport, a hotel in the center, time for the cable car and the sulfur baths and a slow evening of khinkali and amber wine. The full map and pin set sits below. This writeup covers the parts of the planning that change the trip.
+Three days covers the city: Uber in from the airport, a hotel in the center, the cable car and the sulfur baths on one afternoon, a slow evening of khinkali and amber wine on each of the three. The map and pin set sit below.
 
 ## On this page
 
@@ -145,7 +145,7 @@ Tbilisi International (TBS) is a small airport about 17 kilometers east of the c
 
 Uber is the answer for the ride into town. The app works at the airport, the ride to a central hotel runs a reasonable fare even at the worst hour, and the cars come within a few minutes. Use it.
 
-The one wrinkle is matching the car. Georgian uses its own alphabet, Mkhedruli, which is unrelated to Latin or Cyrillic. The driver's profile name on the in-app pin will often render in Georgian script, and signage at the curb queue is mostly Georgian. License plates use Latin characters in the modern AA-NNN-AA format and are fine to read. The friction is matching a Georgian-script name to the car that pulled up, which takes a beat the first few times. After day one the script stops being surprising and starts being a useful navigational signal: a sign you cannot read is almost always a local business, and that is usually the one you want.
+The one wrinkle is matching the car. Georgian uses its own alphabet, Mkhedruli, which is unrelated to Latin or Cyrillic. The driver's profile name on the in-app pin will often render in Georgian script, and signage at the curb queue is mostly Georgian. License plates use Latin characters in the modern AA-NNN-AA format and are fine to read. Matching a Georgian-script driver name to the car that pulled up takes a beat the first few times. After day one the script stops being surprising and starts being a useful navigational signal: a sign you cannot read is almost always a local business, and that is usually the one you want.
 
 The curb taxi rank outside arrivals will quote a higher fare than the city meter, and the meter does not run cleanly for airport pickups. If the app is somehow down, agree the fare before you get in. The 337 city bus runs into the center cheaply but takes 35 to 40 minutes and is not the move with luggage at 3 a.m.
 

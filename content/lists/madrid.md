@@ -94,7 +94,7 @@ I pick a base by which kind of day I want to have. Gran Vía gets you walking di
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
 | Gran Vía | [Hotel Indigo Madrid - Gran Vía](/pins/hotel-indigo-madrid-gran-via-an-ihg-hotel) | Decent IHG-brand option one block off Gran Vía, near Plaza del Carmen and the Sol-Callao triangle | Gran Vía is loud and busy by definition |
-| Gran Vía | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Was a solid mid-range pick in the same area | I have not stayed since the recent renovation, so confirm the room before booking |
+| Gran Vía | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Was a fair mid-range pick in the same area | I have not stayed since the recent renovation, so confirm the room before booking |
 | Princesa side | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way for the Sol / Gran Vía buzz at night |
 | La Latina / Lavapiés | [Atocha Hotel, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Hilton soft-brand option, walking distance to the Reina Sofía | Rates have been creeping up. Not always the value it used to be |
 | Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage. Treat as a bed, not a base |

@@ -28,7 +28,7 @@ related:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Rome](/cities/rome) is the canonical European capital and an ancient-city headliner that delivers. Long weekend minimum. The Roman pasta canon (cacio e pepe, carbonara, amatriciana, gricia) is the trip's other half, and most first-time visitors miss it by booking restaurants on TripAdvisor near the major sights.
+[Rome](/cities/rome) is the European capital that built the template every other European capital draws from, and the ancient sights are as good as advertised. Long weekend minimum. The Roman pasta canon (cacio e pepe, carbonara, amatriciana, gricia) is the trip's other half, and most first-time visitors miss it by booking restaurants on TripAdvisor near the major sights.
 
 ## On this page
 
@@ -96,5 +96,5 @@ Rome's scams are old, well-known, and never go away. They cluster at the Trevi F
 - **Pickpocket teams on Metro Line A and at Termini.** The classic Rome pickpocket move is a crowd-press at the Spagna or Repubblica stop on Line A, especially around the Vatican-direction trains in the morning. Phone in a zipped pocket, bag in front. The Termini main concourse runs the same pattern. Cross it quickly and don't stop for a "lost tourist" asking for directions.
 - **The taxi-from-Termini overcharge.** The flat €55 FCO airport fare is law, but a taxi from Termini to a hotel two km away should be €10 to €15 metered. If the driver wants a flat €40 to your hotel, get out and find a different cab from the line. The cars in the official rank are required to meter inside the city walls.
 
-The metro is safe at normal hours. The center is safe at normal hours. The scams are friction, not danger.
+The metro is safe at normal hours. The center is safe at normal hours. The scams are an annoyance, not a threat.
 

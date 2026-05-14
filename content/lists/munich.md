@@ -113,9 +113,9 @@ related:
 #   Leberkäs-Semmel) kept in German, the standard form.
 ---
 
-Munich is the Bavarian capital that most travelers come for two postcards: the beer halls and the surfers on the Eisbach standing wave. Both deliver. Two days for the city if those are the goal. Use it as a rail hub for the Alps south or Vienna east.
+Munich is the Bavarian capital that most travelers come for two postcards: the beer halls and the surfers on the Eisbach standing wave. Both are as advertised. Two days for the city if those are the goal. Use it as a rail hub for the Alps south or Vienna east.
 
-The version below is the trip I would book for myself, written for a traveler who is treating Munich as the rail-trip hub rather than the destination. The map and the wider pin set sit underneath. The writeup covers the parts of the planning that change the trip.
+This guide treats Munich as a rail-trip hub: a day or two for the city, then south for the Alps or east for Vienna. The map and the wider pin set sit underneath.
 
 ## On this page
 
@@ -126,6 +126,7 @@ The version below is the trip I would book for myself, written for a traveler wh
 * [The brewery beer halls](#the-brewery-beer-halls)
 * [Christmas markets and Oktoberfest](#christmas-markets-and-oktoberfest)
 * [Museums for a half day](#museums-for-a-half-day)
+* [Neuschwanstein as a day trip](#neuschwanstein-as-a-day-trip)
 
 ## Getting in from the airport
 
@@ -208,3 +209,15 @@ When the weather turns or the trip earns a slower morning, Munich's museum slate
 - The **NS-Dokumentationszentrum** on Brienner Strasse is the documentation center on the National-Socialist period in Munich. The city was the founding base of the Nazi party and the museum walks you through the history clearly and seriously. Not a casual visit, but the right context for what the rest of the city is built on top of.
 
 Pair any one of these with a leberkäse stop on the way back and you have the right rainy-day Munich half-day.
+
+## Neuschwanstein as a day trip
+
+Mad King Ludwig's fairy-tale castle on a hill above Hohenschwangau is the textbook Bavaria day trip from Munich. Two and a half hours each way by Bayern-Ticket regional train + bus combo. The catch is the booking.
+
+**Tickets are issued for a specific tour slot (35 min), and the slot sells out 2 to 4 weeks ahead in summer.** Book on hohenschwangau.de before you book the train, not the other way around. ~€21 for the castle alone, ~€33 for the combined Neuschwanstein + Hohenschwangau (Ludwig's childhood castle on the next hill).
+
+The path from the village up to the castle is a 30 to 40-minute walk uphill, or a 5 to 10 EUR horse-carriage ride, or a shuttle bus. Arrive at the village 1 to 1.5 hours before your tour slot to cover the climb plus a queue at the gate. The Marienbrücke bridge view (the photogenic side-on shot of the castle) is a 10-minute walk past the entrance and the reason most photos exist. Closed in winter and during ice events.
+
+The train is two transfers from Munich Hbf (Munich → Buchloe → Füssen, then bus 73 or 78 to Hohenschwangau). A Bayern-Ticket day pass (~€29 for one person, €36 for two) covers the round trip. Most travelers buy through-tickets via bahn.de.
+
+Tour-guide note: the castle interior tour is the only way in, ~35 minutes, audio-guide in your language. Don't pay a third-party "private guide" for Neuschwanstein. The tour is the tour, and your guide can't enter with you. Where a guided day-trip from Munich is worth the price is the logistics (train + bus + scheduled slot + lunch). If logistics aren't your thing, [Gray Line / Viator-style day tours from Munich are €70 to €100](https://www.viator.com) and worth it for the simplicity.

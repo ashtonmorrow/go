@@ -40,7 +40,7 @@ related:
   country: greece
 ---
 
-[Athens](/cities/athens) is the city most travelers underestimate going in and oversell coming out. Two days is enough to do the headline sights well. Three is the sweet spot once you add a day trip. Four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets and the midday queue at the Acropolis are the two friction points to plan around. The full pin map sits below. This writeup covers the parts of it that change the trip.
+[Athens](/cities/athens) is the city most travelers underestimate going in and oversell coming out. Two days is enough to do the headline sights well. Three is the sweet spot once you add a day trip. Four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets on the Syntagma-Monastiraki spine and the midday Acropolis queue are the two things to plan around. The full pin map sits below. This writeup covers the parts of it that change the trip.
 
 ## On this page
 
@@ -116,7 +116,7 @@ For sunset views without the climb: [Philopappos Monument](/pins/philopappos-mon
 | [Bandiera](/pins/bandiera) | A sit-down dinner with strong reviews from locals | Reservations |
 | [Brettos](/pins/brettos) | Oldest distillery in Athens, backlit-bottle bar, drinks-not-meals | The photo. Stop in for a single ouzo |
 | [Anteti Tavern](/pins/anteti-tavern) | Family-style classic taverna | Plaka |
-| [Aris Tavern](/pins/aris-tavern) | Another solid classic taverna | Off-Plaka, less tourist-priced |
+| [Aris Tavern](/pins/aris-tavern) | Classic taverna, lamb and small plates | Off-Plaka, less tourist-priced |
 | [Atlantikos](/pins/atlantikos) | Modern Greek seafood | Reservations |
 | [Maiandros restaurant](/pins/maiandros-restaurant) | Mid-range Greek in Plaka | Reliable, less of a tourist trap than some neighbours |
 | [The Greco's Project](/pins/the-greco-s-project) | A gyros that runs above the queue chains | Cash usually |

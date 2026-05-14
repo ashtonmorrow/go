@@ -88,7 +88,7 @@ related:
 
 Cairo is the Egyptian capital and one of the largest cities in the world. 22 million people in the metro area. Three thousand years of layered history on the streets. The pyramids 30 kilometers from the main airport. The Grand Egyptian Museum opened its full collection in 2024. The food is cheap and good. The traffic runs at all hours.
 
-The friction is also real. Touts at the pyramids, drivers angling for cash on Uber, the occasional friendly stranger whose welcome ends in a sales pitch. None of that lands easily if you are not ready for the hustle.
+The hustle is also real. Touts at the pyramids, drivers angling for cash on Uber, the occasional friendly stranger whose welcome ends in a sales pitch. None of that lands easily if you are not ready for it.
 
 If Cairo is your first international trip outside Western Europe, a guided tour with a private car and an Egyptologist for the pyramid day is the right choice for many travelers. A good guide clears the path, which is most of what the cost is paying for. I don't book tours, so the notes below are written for the way I traveled the city: airport hotel on points, Hyatt in Giza, Uber to the upper gate at 7 a.m., walk the plateau before the heat, fresh Uber to the museum.
 
@@ -143,7 +143,7 @@ The Hyatt Centric and Hyatt Regency are the workhorse Giza bases for a points-dr
 
 Uber covers all of Cairo and Giza and is the default for getting around. Two things to know before your first ride.
 
-The first is that Cairo Uber operates in a hybrid card-and-cash market that is unlike how Uber works in the US or Europe. The second is that the friction is the system, not the individual driver. A few practical rules make every ride cleaner.
+The first is that Cairo Uber operates in a hybrid card-and-cash market that is unlike how Uber works in the US or Europe. The second is that the cash push is the system, not the individual driver. A few practical rules make every ride cleaner.
 
 **Set the Uber payment method to cash before your first Cairo ride.** The app shows the fare, you pay the driver in Egyptian pounds at the destination. Card payment "works" on paper, but a meaningful fraction of drivers will tell you the card system is down once you are in the car and ask for cash anyway. Setting cash as the default skips that negotiation entirely.
 
