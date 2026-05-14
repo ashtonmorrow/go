@@ -113,8 +113,6 @@ related:
 
 [Barcelona](/cities/barcelona) in 2026 is pushing back hard against overtourism. The city is phasing out all 10,000 short-term rental licenses by November 2028 as a housing-affordability measure, and the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic) is the version most residents are trying to remove. This guide stays off the tourist spine: Poblenou as a base, eating one block off La Rambla, treating the monuments as day-stops you ride the metro to.
 
-Quick disambiguation: **La Rambla** is the famous central pedestrian boulevard between Plaça Catalunya and Port Vell. **Rambla del Poblenou** is a different street in a different neighborhood (where Durlet Beach Apartments sits). The guide always specifies which.
-
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

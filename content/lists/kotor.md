@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Kotor
-  intro: Kotor is the name of two things at once. The first is the Bay of Kotor (Boka Kotorska), the long inlet on the southern Adriatic coast of Montenegro that locals are accustomed to calling Europe's southernmost fjord even though it is geologically a submerged river valley. The second is the medieval walled town tucked at the back of the bay, the Venetian Gothic old town that UNESCO listed in 1979 and that cruise ships now visit by the dozen in season. The right plan, almost always, is to stay around the bay rather than in the town. You see Kotor on a day, you sleep somewhere quieter, and you avoid sharing the lanes with 6,000 cruise passengers when the ships are in.
+  intro: Kotor is a UNESCO-listed walled town at the back of a long Adriatic inlet (often called Europe's southernmost fjord) in Montenegro. Stay around the bay, not inside the walls. Visit the old town on a quiet day, climb the walls at sunrise, and avoid the noon-to-4 p.m. cruise window when 6,000 day-passengers crowd the lanes.
   cards:
     - title: Stay around the bay, see the town on a day
       body: The old town itself is small and can be exhausted in a day. The bay has several other bases (Herceg Novi at the mouth, Tivat across the water, Perast halfway in) which all read calmer in the evenings. Pick one to sleep, and budget one full day to walk Kotor's walls, churches, and lanes before the next ship docks.
@@ -114,11 +114,7 @@ related:
 #   travelers) per the editorial standard for European destinations.
 ---
 
-Kotor is two things: the **Bay of Kotor** (the long Adriatic inlet often called Europe's southernmost fjord), and the **walled medieval town** at the back of the bay, UNESCO-listed and overrun by cruise ships from 10 a.m. to 4 p.m. in season. The two-line planning rule: base on the bay (Perast or Tivat), visit the old town outside cruise hours.
-
-The version of the trip I would book is built around that distinction. You stay somewhere around the bay rather than in the old town. You see Kotor on one well-timed day. You sleep somewhere quieter, eat somewhere cheaper, and avoid sharing a stone lane with 6,000 cruise passengers when the ships are in. The map and pin set sit below. This writeup covers the parts of the planning that change the trip.
-
-A long lunch on the water and a walk back through Perast at dusk are the version of the trip most people remember. Build the day around those rather than chasing more stops than the bay can give you.
+Kotor is two things: the **Bay of Kotor** (the long Adriatic inlet often called Europe's southernmost fjord), and the **walled medieval town** at the back of the bay, UNESCO-listed and overrun by cruise ships from 10 a.m. to 4 p.m. in season. Base on the bay (Perast or Tivat), visit the old town outside cruise hours. Two or three days is the right shape: one for the walls, one slow on the water, one for Perast and the islands.
 
 ## On this page
 

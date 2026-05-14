@@ -115,6 +115,7 @@ The current Bali saved list is the May 2026 consolidation of four earlier sub-re
 * [Ubud: the cooler air and the temples](#ubud-the-cooler-air-and-the-temples)
 * [The beach clubs are the trip](#the-beach-clubs-are-the-trip)
 * [Sunset temples and the things to handle carefully](#sunset-temples-and-the-things-to-handle-carefully)
+* [Common scams and hassles](#common-scams-and-hassles)
 * [When to go](#when-to-go)
 
 ## Picking your base
@@ -170,7 +171,7 @@ The Seminyak shape of the day is breakfast at the hotel, a late-morning move to 
 
 Canggu is the more relaxed coast option and the one most digital-nomad pieces are about. The strip runs north from Berawa through Batu Bolong to Echo Beach and Pererenan, with the most concentrated beach-club row in Berawa: [Finns Beach Club](/pins/finns-beach-club), [La Brisa Bali](/pins/la-brisa-bali), [Café del Mar Bali](/pins/cafe-del-mar-bali), [COMO Beach Club](/pins/como-beach-club), [The Lawn](/pins/the-lawn). The breakfast set ([The Avocado Factory](/pins/the-avocado-factory), [Funky Pancakes](/pins/funky-pancakes)) is the morning surface. [Canggu Beach](/pins/canggu-beach) is the surf strip itself, with breaks at Echo Beach and Berawa Beach for intermediate and beginner riders respectively.
 
-The honest planning note is that Canggu has urbanised rapidly since 2018. The rice fields have shrunk, traffic on the Jalan Pantai Berawa main artery is real, and the digital-nomad density has reshaped the rhythm. The trade-off is still favourable for visitors who want the relaxed-coast version of Bali. It is just no longer the sleepy beach village the older guides describe.
+Canggu has urbanized rapidly since 2018. The rice fields have shrunk, traffic on the Jalan Pantai Berawa main artery is real, and the digital-nomad density has reshaped the rhythm. It's still the relaxed-coast version of Bali, just no longer the sleepy beach village the older guides describe.
 
 ## Ubud: the cooler air and the temples
 
@@ -210,6 +211,20 @@ A few things on the island that look like easy add-ons but reward saying no to:
 - **Luwak coffee.** The civets used to produce it are commonly caged and force-fed. The ethical versions are difficult to verify casually. Easy skip.
 - **Mount Batur sunrise hikes.** Good in clear weather, but they require a brutally early start and the trail is crowded. Not the quiet nature experience some tours imply. Book it only if a sunrise volcano summit is the trip and you have read recent reviews.
 - **Nusa Penida day trips.** The island is visually dramatic and the photographs are real, but the day-trip version is physically annoying: rough roads, rushed itinerary, lines arranged around cliffs. Stay overnight if you want to see it properly, or save it for a second Bali trip when you have the time to do it slowly.
+
+## Common scams and hassles
+
+Bali is not Cairo. It's safer, friendlier, less aggressive. But a few patterns recur and they're worth knowing in advance.
+
+- **The money changer short-change.** Street-corner money changers that advertise rates better than the bank are running a sleight-of-hand on the count. The cleaner answer: use a BCA, Mandiri, or BNI ATM, or change at the airport. If you must use a street changer, count the cash on their counter before it goes back into your hand, and use one of the chain locations (PT Central Kuta) rather than an unsigned hut.
+- **Taxi metering at the airport.** The official airport taxi counter is fine. The drivers who approach you in arrivals before you reach the counter are not. Walk past, use the official rank or call a Grab from inside the terminal. Grab does work at Ngurah Rai. The pickup is in the parking structure across the road, not at the curb.
+- **The Bluebird vs fake-Bluebird taxi.** Bluebird (light blue, written on the door) is the metered taxi company everyone recommends. Other taxis paint themselves a similar color and add fake Bluebird stickers. Real Bluebirds have a logo and a driver ID on the dashboard, and the meter starts at ~7,000 IDR. If the meter is "broken" or the driver wants a flat fare, get out.
+- **The "free" wristband / flower / blessing at temples.** Someone at the temple gate hands you a flower or a sash and then asks for money. The actual rule: sarongs and sashes are loaned at the official entrance against a deposit or included in the ticket. Anything handed to you by someone not in temple staff dress is a tip-grab. "No thank you" works.
+- **Monkey Forest monkeys and Uluwatu monkeys.** Not a scam, a known hazard. The macaques at the Monkey Forest in Ubud and at Uluwatu Temple snatch sunglasses, hats, phones, and water bottles. They have learned that the staff will trade fruit for the stolen item back. Empty your pockets and don't wear sunglasses on the temple climb. If a monkey takes something, don't chase it: the staff handle the return.
+- **Surf instructor markup.** The going rate for a beginner surf lesson at Kuta or Canggu is around 250,000 to 400,000 IDR for 90 minutes including the board. Hotel concierges sometimes book a 1,000,000 IDR version. Walk to the beach, ask three instructors, take the median.
+- **Police "fines" for scooter rentals.** If you rent a scooter, the police checkpoints occasionally pull foreign drivers for paperwork issues, real or invented, and ask for a cash "fine." The clean answers: have an International Driving Permit before you go, wear a helmet, drive defensively. If you're stopped without an IDP, the negotiation is part of the ticket.
+
+None of this should keep anyone from going. Bali stays one of the easier first-international destinations for an American traveler. Knowing the shapes above just means you don't pay the visitor tax on top of the normal one.
 
 ## When to go
 

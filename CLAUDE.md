@@ -151,9 +151,38 @@ Rules:
 
 A standard city guide runs 1,200 to 2,500 words. Headline city guides (London, Madrid, Bangkok) can go to 4,000. Smaller-destination guides (Trogir, Sitges, Koh Samui) sit at the low end. Most guides have 5-8 H2 sections. The arrival section is always first after the intro. "Where to stay" is almost always second. The remaining sections vary by destination.
 
+**The first-time-visitor survival lens.**
+
+The guide should make a place accessible to someone who has never been there. The reader's question is "How do I see the famous stuff without waiting in line and without getting stuck with a tour guide who knows less than Wikipedia?" Every section should be answerable from that frame.
+
+Concrete checks:
+- **Skip-the-line advice is named.** Where the famous attraction has a known booking pattern (Acropolis timed entry, Sagrada Família online tickets, GEM advance booking, Vatican-style queue), the guide says so explicitly. Don't make the reader figure out "are we supposed to book ahead here?"
+- **Tour-guide guidance is honest.** Where a guide is worth hiring (Cairo pyramid day, certain archaeology sites), say so. Where Wikipedia + a self-walk is better (most European old-town circuits), say that too. The Cairo guide's "If you're like me and dislike following a guide and would rather read the Wikipedia article and show yourself around" is the right tone.
+- **Hours, prices, and access matter.** Opening times, last-admission cutoffs, and whether the ticket is bought at the gate or online belong in the body, not implied.
+
+**Common-scams sections: direct, no paternalism.**
+
+Every guide for a destination with a known scam culture should have a Common-scams section. The voice is direct, names the player and the move, and assumes the reader is an adult.
+
+The shape Mike uses: state what would-be helpful gestures actually are, name the player, name the move, name the response. "No one is going to offer you a free shoe cleaning out of the kindness of their heart. This is a common scam where the shoeshiner drops a brush in your path, picks it up for you, and demands payment for the favor. Walk past." That's the template.
+
+What to avoid:
+- **Don't lecture the scammers.** "These people are working a tough tourism economy" is editor framing, not advice. Skip it.
+- **Don't lecture the reader.** "Always be careful with your belongings" is condescending and useless. Tell them the specific move instead.
+- **Don't soft-pedal with euphemisms.** "Some drivers may try to take advantage" is mush. "The tuk-tuk driver outside the Grand Palace is taking you to a gem shop, not a temple" is information.
+- **Name the geographic boundary.** "The risk is real on La Rambla, Barri Gòtic, and L3 between Plaça Catalunya and Drassanes" beats "Be aware in tourist areas." Specifics let the reader spend less effort.
+
+The Cairo `## Common Giza scams and how to handle them` and the new Bangkok `## Common scams around the temples` are the worked examples to match.
+
+**No editor-detour paragraphs.**
+
+A "quick disambiguation" paragraph explaining that the city has two things with the same name is editor brain, not reader brain. If the disambiguation matters, fold it into the first sentence where the ambiguity comes up. Example: don't lead a guide with "La Rambla is the famous boulevard. Rambla del Poblenou is a different street." Instead, when the prose first references the Poblenou Rambla, write `Rambla del Poblenou (the local Rambla in Poblenou, not La Rambla in the center)`. Pay the cost where the reader actually needs the information.
+
+Same rule for "the city is the name of two things at once" intros, "a note on the word X before we go further" preambles, and any paragraph that starts with "Quick disambiguation" / "To keep them straight" / "Worth naming up front."
+
 **Voice check before flipping indexable:**
 
-Before a guide goes `indexable: true`, scan for the banned phrases above. The fastest check: search the file for "register", "trade-off is", "trick is", "right move is", "earns the", "genuinely", "honestly", "frankly", semicolons. If any hit, the sentence wants a rewrite.
+Before a guide goes `indexable: true`, scan for the banned phrases above. The fastest check: search the file for "register", "trade-off is", "trick is", "right move is", "earns the", "genuinely", "honestly", "frankly", semicolons, "Quick disambiguation", "is the name of two", "to keep them straight". If any hit, the sentence wants a rewrite.
 
 ## Out of scope for this project
 

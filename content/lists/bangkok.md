@@ -90,6 +90,7 @@ This page is the working version of my Bangkok notes. The country-level version 
 * [Where to stay](#where-to-stay)
 * [A first-day mall walk](#a-first-day-mall-walk)
 * [The temple circuit](#the-temple-circuit)
+* [Common scams around the temples](#common-scams-around-the-temples)
 * [Markets and Chinatown](#markets-and-chinatown)
 * [Khao San at night](#khao-san-at-night)
 * [Cultural deep cuts](#cultural-deep-cuts)
@@ -176,6 +177,18 @@ The three temples most first-time visitors should see all sit close to the river
 | 3 | [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) | 30–45 minutes | Cross-river ferry from Tha Tien pier (a few baht). Best in late afternoon for the porcelain detail |
 
 If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add: a 318-step climb to a city view that earns its keep at sunset.
+
+## Common scams around the temples
+
+The Bangkok scams that affect first-time visitors cluster around the Grand Palace circuit. They are not subtle once you know the shape.
+
+- **"The Grand Palace is closed today."** No one standing outside is going to tell you the truth about whether it's open. The palace runs daily 8:30 to 15:30 and is essentially never closed for a "Buddhist holiday" or a "VIP visit." The person telling you it's closed has a tuk-tuk waiting to take you to a gem shop or a tailor where they earn commission. Walk past, enter the gate yourself, see for yourself.
+- **The "special tour" tuk-tuk for 20 baht.** No tuk-tuk driver is going to give you an hour of their time for 20 baht out of love for the city. The route is: temple, gem shop, tailor, temple, gem shop, tailor. You buy a "ruby" that is glass. Take a metered taxi or a Grab to the temple and ignore the tuk-tuks parked outside.
+- **The gem export "investment."** Anyone explaining how you can buy gems in Bangkok and resell them at home for profit is running a fraud. Thai jewelry from a normal shop at a normal price is fine. Thai jewelry from someone who approached you on the street is not.
+- **Bargirl drinks and bill switching.** This is the Patpong / Soi Cowboy version. A bar will hand you a "menu" with one price and the bill at the end with another. If you sit down anywhere where a woman invited you in, read the bill carefully and expect to negotiate. The cleaner answer is to drink at a normal bar.
+- **The closed-currency-shop / wallet-snatch combo near MBK.** Less common than it used to be but still happens. Use the bank ATMs inside MBK, not a money changer that flagged you down on the sidewalk.
+
+The temples themselves are safe. The walk between them is the part to mind.
 
 ## Markets and Chinatown
 
