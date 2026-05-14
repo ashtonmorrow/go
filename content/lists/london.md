@@ -60,6 +60,7 @@ related:
 ## On this page
 
 * [Getting in from Heathrow](#getting-in-from-heathrow)
+* [London by neighborhood and tube](#london-by-neighborhood-and-tube)
 * [Where to stay](#where-to-stay)
 * [The Bankside walk](#the-bankside-walk)
 * [Getting around: one card, the fare cap, and the tap-out](#getting-around-one-card-the-fare-cap-and-the-tap-out)
@@ -67,7 +68,7 @@ related:
 * [Sky Garden over the London Eye](#sky-garden-over-the-london-eye)
 * [Museums worth the queue](#museums-worth-the-queue)
 * [Canary Wharf and the Docklands](#canary-wharf-and-the-docklands)
-* [Pubs that earn the room](#pubs-that-earn-the-room)
+* [Where to find a good pub](#where-to-find-a-good-pub)
 
 ## Getting in from Heathrow
 
@@ -83,21 +84,63 @@ The Elizabeth Line is the move. Direct from every Heathrow terminal into central
 
 The skip is the airport hotels. [Moxy London Heathrow Airport](/pins/moxy-london-heathrow-airport) and [Delta Hotels Heathrow Windsor](/pins/delta-hotels-heathrow-windsor) work for a redeye departure, but staying at Heathrow on the first night of a London trip is two hours of commute you do not need.
 
+## London by neighborhood and tube
+
+London is much larger than first-time visitors expect. The walkable medieval City of legend is roughly one square mile of glass-and-stone bank towers now, and almost everything most travelers come to see is spread across a dozen neighborhoods loosely connected by the Underground. The right way to think about a London trip is as a tube map with sights clustered around stops, not as a single walkable old town.
+
+The tourist-dense core, roughly clockwise from the river:
+
+- **Westminster (Westminster, St James's Park, Victoria stations).** Big Ben, Parliament, Westminster Abbey, Buckingham Palace. The political-and-monarchy postcard. Walking distance to St James's Park and Trafalgar Square.
+- **Covent Garden / Soho / Leicester Square (Covent Garden, Leicester Square, Tottenham Court Road).** Theatre district, dense restaurants and bars, the central tourist strip. Walking distance to the British Museum.
+- **South Kensington (South Kensington station).** The big-three museum cluster: V&A, Natural History, Science. Leafy residential, family-friendly, embassy row. The Piccadilly Line connects it to Heathrow in one ride.
+- **Bloomsbury (Russell Square, King's Cross).** British Museum, the British Library, the canal walk to Camden. Cheaper hotels than the West End. Easy onward rail north.
+- **The City + Tower Hill (Bank, Liverpool Street, Tower Hill).** Tower of London, Tower Bridge, the financial district, the Sky Garden. Walking distance to Bankside across the river.
+- **Bankside / South Bank (London Bridge, Southwark, Waterloo).** Tate Modern, Borough Market, the Globe, the river walk that connects them. The single best walkable stretch in central London for first-timers.
+- **Camden / Regent's Canal (Camden Town).** Markets, music venues, the canal walk to King's Cross. North London grunge that has aged into a tourist district.
+- **Notting Hill / Portobello (Notting Hill Gate, Ladbroke Grove).** The painted houses, Portobello Market on Saturdays, residential charm. Quieter base, walks well in good weather.
+- **Greenwich (Cutty Sark DLR, Greenwich rail).** Royal Observatory, the Cutty Sark, Greenwich Market, the meridian line. Easy half-day from any central base.
+- **Shoreditch / Spitalfields (Shoreditch High Street, Liverpool Street, Old Street).** East London's food and bar scene, street art, vintage markets. The dinner side of an East London evening.
+
+The "don't base here unless you're working" zones:
+
+- **Canary Wharf (Canary Wharf, Heron Quays).** A purpose-built financial district. Excellent transit (Jubilee + Elizabeth + DLR), modern hotels at fair prices, food that empties out after 7 p.m. on weekdays and stays empty all weekend. **Don't book here on a sightseeing holiday.** Book here if you're at the ExCeL conference center or visiting offices in the Wharf.
+- **ExCeL / Royal Docks (Custom House, Royal Victoria DLR).** Convention center territory. The Elizabeth Line gets you into central London in 15 minutes, but the neighborhood itself is hotels and a half-mile of empty pavement between them. Conference base only.
+- **Stratford (Stratford, Maryland).** The 2012 Olympic Park area, twenty-plus minutes east of the West End. Cheap hotels, excellent transit (Jubilee, Elizabeth, Overground, DLR), but the trip-spent-on-the-tube ratio is the catch. Fine for a budget night or two, not a holiday base.
+- **Heathrow / airport hotels.** Two hours of dead commute per day. Only worth it for an early flight, never as a city base.
+
+The lines themselves are worth knowing in shorthand. **The Elizabeth Line** (purple) runs east-west through Paddington, Bond Street, Tottenham Court Road, Farringdon, Liverpool Street, Canary Wharf and out to ExCeL/Custom House. It is the single best line for connecting Heathrow, central, and the docks. **The Jubilee Line** (gray) runs Westminster → Waterloo → London Bridge → Canary Wharf and is the spine of any sightseeing day from a Canary Wharf or Stratford base. **The Piccadilly Line** (dark blue) runs Heathrow → Earl's Court → South Kensington → Knightsbridge → Hyde Park → Piccadilly Circus → King's Cross, which is the museum-and-shopping spine. **The Northern Line** (black) and **District Line** (green) cover almost everything else central. They are the lines you transfer to.
+
 ## Where to stay
 
-Four real bases depending on the kind of trip:
+Pick the base from the trip type, not from a chain loyalty program. The London hotel market is good enough that whichever brand has a property in the right neighborhood is usually the right brand for that trip.
+
+**For first-time sightseeing.** Base near Tower Hill or Liverpool Street. The Tower of London is walkable, the Bankside walk is one bridge away, the British Museum is one tube stop, and everything else is on the Elizabeth Line or Circle Line.
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Liverpool Street / City | [Andaz London Liverpool Street](/pins/andaz-london-liverpool-street-by-hyatt) | Beautiful Victorian building, great breakfast, on the Elizabeth Line, ten-minute walk to the Tower of London | Top of the budget for a normal central hotel |
 | Tower Hill | [citizenM Tower of London](/pins/citizenm-tower-of-london) | Modern, well-priced, on the Circle and District lines with Tower Gateway DLR four minutes away. The lobby is one of the better hangout spaces in central London | Small rooms. You pay for the location |
 | Tower Hill (upgrade) | [Hotel Indigo London Tower Hill](/pins/hotel-indigo-london-tower-hill-by-ihg) | Spacious rooms by London standards, walk-in showers with real water pressure, IHG points option | Slightly off the touristy strips, which is the feature not the bug |
-| Kensington | [Hotel Indigo London Kensington](/pins/hotel-indigo-london-kensington-by-ihg) | Two-minute walk to Earls Court Underground, dense food on the same blocks, museum cluster in walking range | Further from the City of London proper |
-| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel. The Jubilee needs a transfer at Canning Town. The bar gets thin on weekends |
-| Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick. Book it for value |
-| Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central. The Jubilee Line gets you back in fast |
+| Liverpool Street | [Andaz London Liverpool Street](/pins/andaz-london-liverpool-street-by-hyatt) | Beautiful Victorian building, great breakfast, on the Elizabeth Line, ten-minute walk to the Tower of London | Top of the budget for a normal central hotel |
 
-If [ExCeL London](/pins/excel-london) is the reason for the trip, [Moxy London Excel](/pins/moxy-london-excel) is two minutes' walk from the convention center and the right pick for that very specific case.
+**For the museum trip.** Base in Kensington. Three world-class museums on one block, dense food on the same streets, the Piccadilly Line for everything else.
+
+| Where | Hotel | Why pick it | Trade-off |
+|---|---|---|---|
+| Kensington | [Hotel Indigo London Kensington](/pins/hotel-indigo-london-kensington-by-ihg) | Two-minute walk to Earls Court Underground, dense food on the same blocks, museum cluster in walking range | Further from the City of London proper |
+
+**For the food-and-bars trip.** Base in Shoreditch or Bermondsey. East London is where the modern London restaurant scene actually lives, and the tube ride to the Tower or Westminster on a sightseeing morning is short.
+
+| Where | Hotel | Why pick it | Trade-off |
+|---|---|---|---|
+| Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick. Book it for value |
+
+**For a conference at ExCeL or work in Canary Wharf.** Different rules. Book near the work, not near the sights, and budget the Jubilee or Elizabeth Line into the evening if you want to see central London.
+
+| Where | Hotel | Why pick it | Trade-off |
+|---|---|---|---|
+| Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel. Wrong choice for a sightseeing trip. The neighborhood empties on weekends and every dinner is a tube ride out |
+| ExCeL | [Moxy London Excel](/pins/moxy-london-excel) | Two minutes' walk from the convention center | Conference hotel. Same caveat as Canary Wharf, more so |
+| Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central. Fine for a budget night, wrong as a holiday base |
 
 ## Getting around: one card, the fare cap, and the tap-out
 
@@ -167,18 +210,24 @@ For modern art the Tate Modern is the headline. The Victoria and Albert in South
 
 ## Canary Wharf and the Docklands
 
-For travelers in town on business, [Canary Wharf](/pins/canary-wharf) is the easier base than central London. The Elizabeth Line connects it directly to Heathrow and the City. The Jubilee Line covers the rest. The food density per block in the new Docklands is higher than most of central London. The trade-off is that the area dies by 19:00 on weekdays and is almost empty on weekends. You Tube into the center for nightlife.
+For travelers in town on business, [Canary Wharf](/pins/canary-wharf) is the easier base than central London. The Elizabeth Line connects it directly to Heathrow and the City. The Jubilee Line covers the rest. The food density per block in the new Docklands is higher than most of central London. The catch is that the area dies by 19:00 on weekdays and is almost empty on weekends. You Tube into the center for nightlife.
 
 Two specific Canary Wharf picks: [Humble Grape](/pins/humble-grape-canary-wharf-wine-bar-restaurant) for a fair wine selection at reasonable prices, and [The George](/pins/the-george) for a proper pub a few blocks from the office towers.
 
 [Battersea Power Station](/pins/battersea-power-station) is the other adaptive-reuse trip worth taking on a clear afternoon. The Northern Line extension drops you at the building. Inside is a shopping mall and food hall. The exterior and the river walk are the reason to make the trip.
 
-## Pubs that earn the room
+## Where to find a good pub
 
-Pubs in central London skew touristy and overcooked. The ones that actually earn the room are usually a few stops out. The reliable picks:
+London has more pubs than any visitor can rate, and the truth is that the right pub is almost always whichever one is nearest where you are at 5 p.m. Pubs cluster by neighborhood and a few rules of thumb work better than chasing a named list.
 
-* [The George](/pins/the-george) in Canary Wharf for a proper old-school pint without the City crowds.
-* [The Astronomer EC1](/pins/the-astronomer-ec1) for a Sunday roast. Close earlier than you'd expect, so book lunch not dinner.
-* Anchor Bankside for the Bankside view on the walk. Touristy but unbeatable for the location.
+- **Avoid pubs facing the major sights.** Anything directly across from the Tower, the Houses of Parliament, or Big Ben is paying tourist-strip rent and the pints reflect it. Walk one or two blocks back from the headline and the room changes.
+- **Walking distance from a market is a good signal.** Borough Market, Spitalfields, Brick Lane: the pubs in the same three-block radius tend to serve real food at a real price because the lunch crowd is locals coming off shift.
+- **The "Sunday roast" pub is its own category.** A traditional Sunday lunch (roast beef, Yorkshire pudding, gravy, root vegetables) runs £18 to £28 in a good gastropub. Book by Thursday for the bigger places. The pub-of-the-week press in the *Evening Standard* and *Time Out* is a more useful list than any one writer's perennial favorites.
+- **The good neighborhood pub clusters** for a wandering evening: Hampstead and Highgate in the north (heath-adjacent, classic), Spitalfields and Hackney in the east (gastropub-heavy, food-forward), Bermondsey south of the river (the "Bermondsey Beer Mile" railway-arch breweries), Notting Hill and Maida Vale west (canal-side and quiet), Borough on the south bank (food-market adjacent).
 
-For something more particular: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal toward Camden, end at one of the canal-side pubs along the way.
+A couple I've eaten at and would go back to:
+
+* [The Astronomer, EC1](/pins/the-astronomer-ec1). Sunday roast is the order. Closes earlier than you'd expect, so book lunch, not dinner.
+* [The George](/pins/the-george), Canary Wharf. Decent old-school pint stop if you happen to be at the Wharf anyway. Not worth a special trip in from central London.
+
+For a non-pub London walk that lands you at a pub: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal east toward Camden, end at one of the canal-side pubs along the way.
