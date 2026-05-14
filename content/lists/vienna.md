@@ -76,7 +76,7 @@ Most Vienna headliners run timed entry. Walk-up is usually possible off-peak, bu
 | Spanish Riding School | The Lipizzaner horses. Morning training (~€16) is the affordable version. The Sunday performance (~€26 to €230) is the splurge | srs.at. Book performances 4 to 6 weeks ahead. Morning training is usually walk-up |
 | Vienna Opera (Wiener Staatsoper) | One of the great opera houses. Standing-room tickets at €15 are the steal of the city if you can wait in the day-of line at 1.5 hours before curtain | wiener-staatsoper.at. Seated tickets €30 to €250+, book weeks ahead in peak. Tour-only tickets (the building without a performance) are ~€15 |
 
-Tour-guide note: Schönbrunn's audio guide is included and is the right call. The English-guided tour adds €5 and isn't materially better. Belvedere, Albertina, and the KHM are all walk-and-read with the audio guide. The Hofburg's audio guide leans heavy on Sisi mythology and is the one place where a self-walk with Wikipedia open is faster.
+Tour-guide note: Schönbrunn's audio guide is included and is enough. The English-guided tour adds €5 and isn't materially better. Belvedere, Albertina, and the KHM are all walk-and-read with the audio guide. The Hofburg's audio guide leans heavy on Sisi mythology and is the one place where a self-walk with Wikipedia open is faster.
 
 ## Where to eat
 

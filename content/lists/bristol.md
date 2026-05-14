@@ -139,7 +139,7 @@ Start at the top of Park Street and end up in Stokes Croft. About 2 miles total 
 
 ### The two further-out works
 
-If you want to round out the trail, two more surviving pieces sit east of the center in BS5. A Grab in each direction is the right call rather than the bus.
+If you want to round out the trail, two more surviving pieces sit east of the center in BS5. Take a Grab in each direction rather than the bus.
 
 | Work | Year | Where | Open in Maps |
 |------|------|-------|--------------|

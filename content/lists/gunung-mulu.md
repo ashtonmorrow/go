@@ -67,7 +67,7 @@ The trip is also worth it for what it is not: a Marriott in a rainforest where b
 | Kuching (KCH) | MASwings ATR-72 | Worth turning into a few days. UNESCO old town, food scene |
 | Kota Kinabalu (BKI) | MASwings ATR-72 | The other reasonable layover. Mount Kinabalu, marine park, beaches |
 
-The cheap trick: round-trip pricing into Mulu is the same as one-way, so book in from one of the three and out to another. Combining Kuching and Kota Kinabalu as your two endpoints is the version of this trip I would book.
+Round-trip pricing into Mulu is the same as one-way, so book in from one of the three and out to another. Kuching in, Kota Kinabalu out (or the reverse) is the cleanest pairing.
 
 From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is the cheaper, easier hotel night if your layover is overnight. Singapore is faster gate-to-bed if your layover is short.
 

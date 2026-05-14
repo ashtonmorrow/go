@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Alicante
-  intro: Alicante is the easiest under-the-radar coastal stop on the Spanish Mediterranean. Among the sunniest cities in continental Europe (~2,900 hours a year), with a real beach in the city itself, a castle on the hill, and food that runs from cheap caña-and-tapas to a proper sit-down dinner. The trick is matching how you arrive (LCC flight, Madrid train, or Bristol Ryanair hop) and what kind of beach day you want.
+  intro: Alicante is the easiest under-the-radar coastal stop on the Spanish Mediterranean. Among the sunniest cities in continental Europe (~2,900 hours a year), with a real beach in the city itself, a castle on the hill, and food that runs from cheap caña-and-tapas to a proper sit-down dinner. Pick by how you arrive (LCC flight, Madrid train, or Bristol Ryanair hop) and what kind of beach day you want.
   cards:
     - title: Most easy flights are LCCs
       body: Ryanair, easyJet, and Vueling carry the bulk of Alicante traffic. From the US, the cleanest play is Madrid or Barcelona, then the AVE (Spain's high-speed rail network) or a 1-hour domestic flight. Lufthansa Group offers the fewest-stops itineraries from the US directly.
@@ -67,7 +67,7 @@ related:
 
 ## How to get there
 
-Alicante airport (ALC) is Spain's fifth-busiest by volume (18M+ passengers a year, behind Madrid, Barcelona, Palma, and Málaga), which is the surprise. The trade-off is that almost all the traffic is low-cost carriers: Ryanair, easyJet, Vueling. From Europe or the UK that is cheap and frequent. From North America there are few direct options. The practical play is to connect through Madrid or Barcelona and finish the trip on a train or a domestic flight.
+Alicante airport (ALC) is Spain's fifth-busiest by volume (18M+ passengers a year, behind Madrid, Barcelona, Palma, and Málaga), which is the surprise. The catch is that almost all the traffic is low-cost carriers: Ryanair, easyJet, Vueling. From Europe or the UK that is cheap and frequent. From North America there are few direct options. The practical play is to connect through Madrid or Barcelona and finish the trip on a train or a domestic flight.
 
 The train from Madrid is the cleaner finish. Three operators run Madrid Atocha to Alicante:
 

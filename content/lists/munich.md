@@ -12,7 +12,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Munich
-  intro: Munich is the Bavarian city most travelers know for two things they have not seen in person, and those two things are still the right reasons to come. The brewery beer halls (the Hofbräuhaus most of all) are unembarrassed tourist attractions that earn their place anyway. The surfers riding the standing wave on the Eisbach where the river enters the Englischer Garten are the second Munich postcard, and that one is free. The version below is the trip I would book for myself. A real base near the station for the rail-trip shape, the river surfers and the kiosk for a beer afterwards, a brewery dinner, a leberkäse sandwich on the way somewhere, and the museums for a half day if the weather is wrong for the park.
+  intro: Munich is the Bavarian capital most travelers come for two postcards they have already seen, and both hold up in person. The brewery beer halls (the Hofbräuhaus most of all) are unembarrassed tourist attractions and still fun. The surfers riding the standing wave on the Eisbach where the river enters the Englischer Garten are the second Munich postcard, and that one is free. Base near the Hauptbahnhof for a rail-trip shape. The river surfers and the kiosk for a beer afterwards, a brewery dinner, a leberkäse sandwich on the way somewhere, and the museums for a half day if the weather is wrong for the park.
   cards:
     - title: Base near the Hauptbahnhof for a rail trip
       body: Munich is the hub for trains south to Erding and the Alps and east to Salzburg and Vienna. The Aloft on Bayerstraße sits five minutes walk from the central station. Basic, modern, fair price, laundry on-site. The Hauptbahnhof area itself can read a little rough on the street between dusk and dawn (the typical city-station mix), but the rooms and the access to the platform are the point. The Andaz in Schwabing is the fancier alternative if the rail trip is a few days here rather than a connection.
@@ -21,7 +21,7 @@ guide_cards:
     - title: Drink in a brewery beer hall once
       body: The Hofbräuhaus is the famous one, also the least authentic, also still my favorite. Augustiner-Großgaststätten is the Munich beer the locals actually drink. Schneider is the wheat-beer one. Spatenhaus is the dressed-up Bavarian one across from the Opera. All of them are tourist-aware and all of them are still fun if you keep the expectation honest.
     - title: A leberkäse sandwich is the Munich snack
-      body: Leberkäse is a slab of Bavarian meatloaf served warm in a bread roll with sweet mustard. Three to five euros at any Metzgerei (butcher's shop) in the city. Vinzenzmurr is the chain. Bazi's Schlemmerkucherl in the Glockenbach is a fair sit-down version. The right move is to eat it on a bench in the sun, not on a plate.
+      body: Leberkäse is a slab of Bavarian meatloaf served warm in a bread roll with sweet mustard. Three to five euros at any Metzgerei (butcher's shop) in the city. Vinzenzmurr is the chain. Bazi's Schlemmerkucherl in the Glockenbach is a fair sit-down version. Eat it on a bench in the sun, not on a plate.
 
 faqs:
   - q: Where should I stay in Munich?

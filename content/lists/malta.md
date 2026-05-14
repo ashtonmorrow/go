@@ -35,7 +35,7 @@ faqs:
   - q: Is Malta really the bachelor-party place I have heard about?
     a: Paceville (the nightlife strip a short walk inland from the seafront hotels) is a known stag-do destination for UK and European groups, especially on summer weekends. The clubs there are loud and the crowd is on a specific kind of trip. The hotels on the seafront are usually quiet by comparison. The noise stays where the clubs are. If the bachelor crowd is a deal-breaker, travel outside June to August or stay in Sliema or Valletta rather than Paceville proper.
   - q: When is the cheap season worth booking?
-    a: November and early December run cheap. The trade-off is real. The swim is over, day-time temperatures sit around 15 to 18°C, and the rainfall ramps up sharply. The trip becomes a city-walk-and-eat trip rather than a beach trip. If you go in November, pack waterproofs and plan around indoor visits (Valletta museums, the Three Cities, Mdina) rather than the coast.
+    a: November and early December run cheap and you pay for it in weather. The swim is over, day-time temperatures sit around 15 to 18°C, and the rainfall ramps up sharply. The trip becomes a city-walk-and-eat trip rather than a beach trip. If you go in November, pack waterproofs and plan around indoor visits (Valletta museums, the Three Cities, Mdina) rather than the coast.
 
 related:
   city: valletta
@@ -120,7 +120,7 @@ related:
 
 Malta is the smallest country in the European Union (and one of the smallest in the world), which is the planning fact everything else depends on. The whole archipelago is 27 km long and 14 km across at its widest. You can drive between two random points in under an hour, you can ferry to the second-largest island ([Gozo](/pins/cirkewwa-ferry-terminal)) in 25 minutes, and you can stand on a hotel balcony in [St Julian's](/pins/hyatt-regency-malta) and see the walls of [Valletta](/pins/valletta) across the harbor. One place to stay, and a series of buses, ferries, and short walks to everything else.
 
-The version below is the trip I would book for myself: three or four nights, a hotel on the St Julian's strip, Valletta on a walking afternoon, the Three Cities on another, a ferry day to Gozo, a swim at Comino on a third, and a meal that includes rabbit at least once. The map and the full pin set sit underneath. This writeup covers the parts of the planning that change the trip.
+Three or four nights covers it. Hotel on the St Julian's strip. Valletta on a walking afternoon, the Three Cities on another, a ferry day to Gozo, a swim at Comino on a third, and a meal that includes rabbit at least once.
 
 Malta is small enough that you do not need to optimise the trip. A long lunch on a marina followed by a slow walk through Valletta is the version of the day most travelers come away talking about.
 

@@ -112,7 +112,7 @@ The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa ro
 
 The day-trip shape is the right one for most first visits. Train from London Paddington on Great Western Railway, about 90 minutes each way to Bath Spa station. Out of the station, ten minutes' walk to the [Roman Baths](/pins/the-roman-baths) and the abbey. Lunch in town. The afternoon at [Thermae Bath Spa](/pins/thermae-bath-spa) if you booked the rooftop slot. Dinner before the last train back. The whole day comes in under fifteen hours door-to-door from central London and you have done the small list of things Bath is famous for.
 
-The overnight shape is what you do when the day-trip box is already ticked, or when you want a slower version of the same trip, or when you are using Bath as the base for the Stonehenge add-on. The overnight gives you the long walk along the river, the dinner in a real Bath restaurant rather than a station sandwich, and the morning the day-tripper does not have. If the trip falls on a Sunday at all, an overnight is the right call for the roast at the Bathwick.
+The overnight shape is what you do when the day-trip box is already ticked, or when you want a slower version of the same trip, or when you are using Bath as the base for the Stonehenge add-on. The overnight gives you the long walk along the river, the dinner in a real Bath restaurant rather than a station sandwich, and the morning the day-tripper does not have. If the trip falls on a Sunday at all, build the overnight around the roast at the Bathwick.
 
 ## Where to stay if you stay over
 

@@ -116,7 +116,7 @@ The trains themselves are panoramic-window railcars in two classes. First class 
 
 ## Booking without overthinking it
 
-Tickets sell out, especially in summer. Book directly from Rhaetian Railways at rhb.ch if you want the cleanest path. If you have lead time and want the cheapest fare, the *Man in Seat 61* booking method through Deutsche Bahn saves real money. The trade-off is that the booking flow is less straightforward.
+Tickets sell out, especially in summer. Book directly from Rhaetian Railways at rhb.ch if you want the cleanest path. If you have lead time and want the cheapest fare, the *Man in Seat 61* booking method through Deutsche Bahn saves real money. The catch is that the booking flow is less straightforward.
 
 A seat reservation is mandatory on the Bernina Express even if you hold a Swiss Travel Pass or a Eurail/Interrail pass. The pass covers the underlying transport. You still pay the seat reservation supplement (currently around CHF 32 per leg in summer, CHF 28 in winter).
 

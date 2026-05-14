@@ -100,7 +100,7 @@ Chiang Mai has four real neighborhoods, each with a distinct rhythm:
 | Riverside | The calmer luxury option along the Ping river. Boutique hotels, garden settings | Further from the temple cluster. You Grab into town for evenings |
 | Doi Suthep area | Quietest, mountain quiet, easy temple access | You Grab to anywhere with food density. No walking neighborhood at your door |
 
-For most first-time visitors the Old City is the right pick. The temples and the walking streets are on foot, and you can take a Grab into Nimman for a cafe afternoon and back in fifteen minutes. [Astra Suites Central](/pins/astra-suites-central) is a reasonable mid-tier option inside the walls.
+For most first-time visitors the Old City is the default. The temples and the walking streets are on foot, and you can take a Grab into Nimman for a cafe afternoon and back in fifteen minutes. [Astra Suites Central](/pins/astra-suites-central) is a reasonable mid-tier option inside the walls.
 
 ## The temple cluster
 
