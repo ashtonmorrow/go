@@ -89,6 +89,16 @@ For route or transit indexes (Alicante tram, Kusttram), the system name on its o
 
 **Indexable gate.** New scaffolds ship with `indexable: false` until Mike reviews voice, facts, and the hero image. Page metadata is gated on `indexable: true` in the page's own metadata generator (see `/cities/[slug]/page.tsx` and the lists equivalent), and the sitemap reads the same flag. Don't flip indexable in a scaffolder commit.
 
+**Every new list .md needs a matching saved_lists row.** This caught us once (May 2026): `/content/lists/penedes.md` shipped without an inserted row, the Barcelona cross-link 404'd because `app/lists/[slug]/page.tsx` resolves through `saved_lists` first (slug exact match → name↔slug fallbacks → pins.saved_lists fallback → notFound). Writing the .md and pushing it is not enough. The new-list-scaffold checklist:
+
+1. Write `/content/lists/<slug>.md` with frontmatter + body.
+2. Insert a `saved_lists` row: `{ name: '<slug>', slug: '<slug>', description: '...' }` via the service-role key (lowercase name matches the convention used by sitges/barcelona/cairo/etc., and lets the slug-name fallback land cleanly).
+3. After the next `saved-lists-meta` cache cycle (~5 min on prod), the page resolves. Trigger `/api/revalidate?secret=…&path=/lists/<slug>` if you need it faster.
+
+The inverse case (saved_lists row without a .md file) is fine and common — those pages render as bare pin lists. The hazard is only `.md without row`.
+
+Run `scripts/find-orphan-pin-links.ts` after any structural changes that touch slugs or cross-links — it audits every `[Name](/pins/<slug>)` reference in published prose and reports any that don't resolve.
+
 ## Voice for travel guides
 
 Mike has two registers in his writing: the casual private trip-planning notes (date+place+action fragments, dollar amounts and points balances, brand names dropped in directly, mixed-language asides) and the published professional explainer on layer.team (question-as-H2 structure, bold-key-term-then-definition, comparison tables, plain declarative sentences, American spelling, no semicolons, no literary flourishes, no transition crutches). **The travel guides should sit between these two registers**, closer to the layer.team published voice with first-person personal asides surfaced where the lived experience earns them.

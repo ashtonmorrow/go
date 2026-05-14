@@ -109,7 +109,7 @@ The park is the point. Haew Narok is the tallest waterfall in the park. Haew Suw
 
 Outside the park, PB Valley and GranMonte are the better-known wineries. I would treat them as a pleasant half-day rather than a reason to build the whole itinerary around the area. Chokchai Farm, Palio Khao Yai, and the viewpoints are useful filler if you have a driver and time between park visits.
 
-February and March are generally warm and dry here, with cooler mornings. Waterfalls may be thinner than in the rainy season, but the roads and trails are easier to manage.
+February and March are warm and dry here, with cooler mornings. Waterfalls may be thinner than in the rainy season, but the roads and trails are easier to manage.
 
 ## Chiang Mai is the better city when the air is good
 

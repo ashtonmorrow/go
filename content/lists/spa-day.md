@@ -203,7 +203,7 @@ The Black Forest in south-west Germany is the destination version of the hack ra
 
 [Cassiopeia Therme Badenweiler](/pins/cassiopeia-therme-badenweiler) sits in the spa town of Badenweiler on the western edge of the Black Forest, about 30 minutes by car from Basel-Mulhouse-Freiburg airport (BSL). The complex is built around a Roman bath ruin that anchors one of the warm-water pools. The rest is the standard German thermal-and-sauna style but in a quieter, smaller, more elegant frame than Erding. The town itself is a 19th-century cure-resort with a small park, a few good hotels, and not much else, which is the right scale for a weekend reset.
 
-[Balinea Thermen](/pins/balinea-thermen) is in Bad Bellingen further south on the Rhine plain, half an hour from Basel. The bath uses warm mineral water from the same Black Forest seam as Badenweiler. The complex is smaller than Cassiopeia and the town is sleepier. The right pick when the goal is to do almost nothing for two days.
+[Balinea Thermen](/pins/balinea-thermen) is in Bad Bellingen further south on the Rhine plain, half an hour from Basel. The bath uses warm mineral water from the same Black Forest seam as Badenweiler. The complex is smaller than Cassiopeia and the town is sleepier. Pick it when the goal is to do almost nothing for two days.
 
 | What | Best for | Where |
 |---|---|---|
