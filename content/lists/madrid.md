@@ -128,8 +128,10 @@ The booking pattern is the part that catches first-time visitors out: the Prado 
 
 | Museum | What it is | Booking | Best for |
 |---|---|---|---|
-| [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) | 20th-century Spanish art (Picasso, Miró, Dalí) | Walk-up works | First-time visitors who want the Picasso |
-| [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) | The big classical collection (Velázquez, Goya, El Greco) | **Book a timed entry** | If you came specifically for the Old Masters |
+| [Reina Sofía](/pins/museo-nacional-centro-de-arte-reina-sofia) | 20th-century Spanish art (Picasso, Miró, Dalí). Guernica is here | Walk-up works. Free Mon-Sat after 19:00 and all day Sundays | First-time visitors who want the Picasso |
+| [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) | The big classical collection (Velázquez, Goya, El Greco, Bosch's *Garden of Earthly Delights*) | **Book a timed entry** on museodelprado.es. Free entry Mon-Sat 18:00-20:00, Sun 17:00-19:00 (book the slot online, lines around the block without it) | If you came specifically for the Old Masters |
+| Thyssen-Bornemisza | Private collection that fills the gaps the Prado and Reina Sofía leave (Impressionism, Expressionism, early 20th century). The third leg of the "Golden Triangle of Art" on Paseo del Prado | museothyssen.org. ~€14. Free Mondays 12:00-16:00 (only the permanent collection) | The art trip that doesn't end at the Prado |
+| Royal Palace (Palacio Real) | The 18th-century Bourbon palace, 3,418 rooms (one of the largest royal palaces in Europe). The royal family no longer lives here. The building is now state-ceremonial and museum | patrimonionacional.es. ~€14 for the basic tour, ~€20 for the comprehensive. Book the morning slot before the cruise-day-tripper coaches arrive. Closed during state functions, which the site flags a few days ahead |
 | [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid) | Railway museum in the 1880 Estación de Delicias iron-and-glass train shed | Walk-up | My personal favorite. **Closed Mondays. Short hours: 9:30/10:00 to 15:00** |
 | [Zoo Aquarium](/pins/zoo-aquarium-de-madrid) | Inside Casa de Campo, has pandas | Walk-up | Easy half-day with kids |
 

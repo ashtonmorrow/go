@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Where to stay](#where-to-stay)
 * [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,20 @@ Vienna Vienna International (VIE) sits about 18 km southeast of the center. The 
 | S-Bahn S7 | 25 min | €4.30 single | The cheaper option. Stops at Wien Mitte and continues to Praterstern and Floridsdorf. Same line, slower, costs a third of the CAT |
 | Uber / Bolt / FreeNow | 25 to 45 min | €40 to €55 to the center | Late arrival or heavy luggage. Works as well as taxi at a slightly lower price |
 | Taxi from the rank | 25 to 45 min | €45 to €60 metered | Reliable but pricier than rideshare. The rank cars run a real meter |
+
+## Where to stay
+
+Vienna's center is compact. Most travelers do fine inside the Ringstrasse (the boulevard built on the line of the old city walls) or within a few stops of it. Pick by what kind of trip:
+
+| District | Why pick it | Trade-off |
+|---|---|---|
+| **Innere Stadt (1st)** | The old town inside the Ringstrasse. Walk to St. Stephen's, the Hofburg, the Albertina, and the opera. The most central base | The most expensive rooms. Restaurants on the central streets price for tourists |
+| **Mariahilf (6th)** | Mariahilfer Strasse is the main shopping street, walkable to the Naschmarkt and the museum quarter. One U-Bahn stop from the Ringstrasse | Less of the imperial-Vienna look. A working neighborhood that doubles as a hotel district |
+| **Neubau (7th)** | Boutique area, gallery scene, immediate access to the Museumsquartier. Quieter at night than the 1st, more walkable than further-out districts | Smaller hotel inventory. Book early in peak |
+| **Leopoldstadt (2nd)** | Across the Danube Canal from the center, with the Prater on its eastern edge. Less expensive than the 1st, U-Bahn quickly to anywhere central | Reads more residential than tourist. Less to do at street level after dinner |
+| **Landstraße (3rd)** | Near Wien Mitte and the CAT terminal, useful if you want easy airport in/out. Walking distance to the Belvedere | Further from the Ringstrasse walk. Less atmospheric base |
+
+The Ringstrasse-and-anything-inside-it walk is the heart of the trip. If the budget allows, the 1st district is where it pays off. If it doesn't, the 7th and the 6th are the next-best moves, with the U-Bahn covering the short ride into the center.
 
 ## The famous sights, and how to book them
 

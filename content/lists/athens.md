@@ -49,6 +49,7 @@ related:
 * [The Acropolis and the other archaeological sites](#the-acropolis-and-the-other-archaeological-sites)
 * [Plaka and Anafiotika](#plaka-and-anafiotika)
 * [Where to eat](#where-to-eat)
+* [Common scams to know going in](#common-scams-to-know-going-in)
 * [Day trips](#day-trips)
 
 ## Getting in
@@ -123,6 +124,19 @@ For sunset views without the climb: [Philopappos Monument](/pins/philopappos-mon
 | [Greek Stories](/pins/greek-stories) | A grouped-tasting menu for first-timers | Pricier than tavernas, gentler intro |
 | [Sphika](/pins/sphika) and [Yard](/pins/yard-all-day-bar-restaurant) | All-day brunch/bar for the lighter meal | Modern Greek scene |
 | [Blue Parrot](/pins/blue-parrot) | The reliable rooftop bar near Syntagma | Tourists and locals mix |
+
+## Common scams to know going in
+
+Athens is safer than its old reputation. The actual risks cluster on the Syntagma–Monastiraki Metro Line 1 corridor and around the Acropolis entrance.
+
+- **Pickpockets on Line 1 and at Monastiraki.** The morning Acropolis-bound crowd is the busiest pickpocket window in the city. The classic move is a press in the carriage at Syntagma or Monastiraki where someone bumps you while a second person takes the phone or the wallet. Phone in a zipped pocket, bag in front, no map-reading in the carriage. The buses on the airport-to-center route run the same pattern.
+- **"Tour guides" at the Acropolis gate.** Someone in an official-looking lanyard at the ticket gate offers to walk you in or "show you the best route." They are not site staff. The Acropolis is straightforward to walk on your own with the included audio guide or a Wikipedia tab open. If you want a real guide, book through a registered company before you arrive, not from someone hovering at the gate.
+- **The Plaka bar scam.** A friendly stranger (often a Greek-looking man, sometimes a couple) strikes up a conversation in Plaka or Syntagma and suggests a great local bar nearby. The bill at the end runs €200-€500 for a few drinks, and the bouncers make sure you pay. Same playbook as Bangkok / Prague / KL. If a stranger insists on a specific venue, go anywhere else.
+- **Airport taxi overcharging.** The Athens airport flat-rate is €40 day, €55 night to anywhere in central Athens (the meter shows nothing). The fare is the fare and is posted on a sign at the airport rank. If the driver wants more, point at the sign. Use Beat or Uber from the app for a clean alternative.
+- **Restaurant bill creep in Plaka.** Same pattern as Rome: the bread basket nobody ordered at €5, "sparkling water" at €8, plates priced for tourist-strip rent. Walk one block north of Adrianou Street (the main Plaka pedestrian strip) before sitting down.
+- **The "free" tour pressure tip.** The free walking tours that meet at Syntagma run the same close as the Prague version: the guide closes with the "the locals tip €40" line (they don't). €10 to €15 is fair for a good tour. Pay what you think it was worth, walk away.
+
+The metro is safe at every hour. The center is safe at every hour. The scams are an annoyance, not a threat.
 
 ## Day trips
 
