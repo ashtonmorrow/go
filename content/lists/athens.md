@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The Acropolis and the other archaeological sites](#the-acropolis-and-the-other-archaeological-sites)
 * [Plaka and Anafiotika](#plaka-and-anafiotika)
@@ -64,6 +65,23 @@ Athens International Airport "Eleftherios Venizelos" (ATH) sits about 33 km east
 | Uber via Beat / FreeNow | 35 to 50 min | €40 to €55 | Beat is the dominant Greek rideshare app (Athens-based). FreeNow also works. Both connect to standard licensed taxis rather than private drivers, so the rate is essentially the same as the rank |
 
 The M3 is the right default with manageable luggage. The X95 is the right default with a redeye arrival because it runs all night. Taxi flat rates are honest in Athens (more so than in most southern European capitals). The lawful daytime rate of €40 is the price every legal taxi charges, so do not negotiate, just confirm before you get in.
+
+## Festivals and big annual events
+
+Athens runs on the Greek Orthodox calendar plus a long summer arts season that takes over the city's archaeological venues. The single biggest window for any Greek city is Easter, which is unlike any other European Easter in scale and intensity.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Greek Orthodox Easter (Pascha)** | Usually one to four weeks after Western Easter, in April or May | The most important religious and cultural event in Greece. The Saturday-midnight Resurrection service (Anastasi) is the centerpiece, when church bells ring across the city, fireworks go up, and candles are passed family to family. Most Athenians leave the city for their family villages, so central Athens empties of locals and fills with visitors. Restaurants and shops close for three to four days from Holy Friday. Easter Sunday lunch (lamb on a spit) is the meal of the year. Hotels stay reasonable until the Greek school holidays begin |
+| **Athens Festival (Athens Epidaurus Festival)** | June through early October | The major arts season runs evening concerts, opera, and theater at the Odeon of Herodes Atticus (the 2nd-century Roman theater under the Acropolis), the Lycabettus Theatre, and the ancient theater at Epidaurus on the Peloponnese. Tickets for the Herodes Atticus concerts are the trip-shaper: international artists perform under the Acropolis lights, sell out months ahead |
+| **Carnival (Apokries)** | The three weeks before Lent (February or March) | Smaller than Patras (which is the Greek headliner two hours west) but the Athenian neighborhoods of Plaka and Psyrri run street parties and parades. The final Tsiknopempti (Smoke Thursday) before Lent is when every meat-eating taverna fires up the grill. Worth knowing about. Patras Carnival is the trip to plan around if you want the full Greek version |
+| **March 25 (Independence Day) parade** | March 25 | The big military parade along Vasilissis Amalias avenue past the Greek parliament. National holiday. Most museums open free |
+| **Ohi Day** | October 28 | The second civic holiday, commemorating Greece's "no" to Italy in 1940. Parades through the center, school closures, the Acropolis is at its quietest |
+| **August 15 (Dormition of the Virgin)** | August 15 | National religious holiday. Most Athenians are on the islands. The city is unusually quiet, the temperatures are at their peak (35°C+), and many small restaurants close for the week before and after |
+| **Athens Marathon (Authentic)** | Mid-November | Runs the original Marathon-to-Athens route, ending in the Panathenaic Stadium. Road closures across the city center on the Sunday. Hotel inventory tightens for the weekend |
+| **Christmas and Epiphany** | December 24 to January 6 | Smaller than the Catholic-country versions but real. Syntagma Square hosts the Christmas tree, the Zappeion garden runs a winter market, and January 6 (Theophany) features a blessing-of-the-waters ceremony at Piraeus where a cross is thrown into the sea for swimmers to retrieve |
+
+The two trip-shaping windows are Greek Easter (book early for the Resurrection night experience, or push the trip a week to either side if you want the city's normal rhythm) and the Athens Festival window from June through September (worth booking around if a Herodes Atticus night is on the program). August 15 is the underrated quiet week if heat does not bother you.
 
 ## Where to stay
 

@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in from KLIA](#getting-in-from-klia)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Getting around](#getting-around)
 * [The cultural day](#the-cultural-day)
@@ -64,6 +65,24 @@ Kuala Lumpur International Airport (KUL) sits about 50 km out. Three sensible op
 | Skybus / Aerobus | ~RM12 / $3 | 75 to 90 min | Cheapest, fine if you are traveling light. Skips the rush hour better than a taxi |
 
 From KL Sentral, the LRT, MRT, and monorail get you to most central neighborhoods. Bangsar is one stop south on the Kelana Jaya LRT line. KLCC and Bukit Bintang are short rides east.
+
+## Festivals and big annual events
+
+KL's calendar reflects Malaysia's multi-ethnic and multi-religious makeup: Muslim, Chinese, Indian, and Christian observances all sit on the national calendar with public holidays. The trip-shaping ones are Thaipusam (at [Batu Caves](#batu-caves), one of the most photogenic Hindu festivals in the world), Chinese New Year, and Hari Raya.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Thaipusam** | Late January or early February (full moon of the Tamil month of Thai) | The biggest Hindu festival in Malaysia. The procession from the Sri Mahamariamman Temple in central KL to the Batu Caves north of the city runs through the night and morning, with around 1.5 million devotees and spectators. Devotees climb the 272 steps to the cave carrying kavadi (elaborate burdens, including milk pots and metal-spike structures pierced through the body). The most intense religious festival on the South Asian calendar to watch in person. Hotels along the LRT line to Batu Caves fill |
+| **Chinese New Year** | Late January or February, 15-day festival window | Public holidays for the first two days. KL's Chinatown around Petaling Street fills with lanterns, dragon dances, and CNY food. Many small businesses close for the first week. Less hotel pressure than Singapore because Malaysian Chinese mostly travel to family hometowns, so KL itself empties of locals |
+| **Hari Raya Aidilfitri (Eid al-Fitr)** | End of Ramadan, lunar calendar, varies year to year | The biggest Muslim holiday in Malaysia. Two public holidays. KL goes through a multi-week build-up: Ramadan bazaars in every neighborhood (Bangsar, TTDI, Kampung Baru) running through the month. The bazaar at Kampung Baru in central KL is the most-visited. Hotels stay normal because locals mostly travel home (the *balik kampung* migration empties the city) |
+| **Deepavali (Diwali)** | A day in October or November | Hindu Festival of Lights. Brickfields (KL's Little India) fills with lights, decorations, food stalls, and Indian sweets in the weeks before. National holiday on the day |
+| **National Day (Hari Kebangsaan)** | August 31 | Independence Day from British rule. Civic parades, fireworks at Merdeka Square. National holiday |
+| **Malaysia Day** | September 16 | The commemoration of Malaysia's formation including Sabah and Sarawak. National holiday. Quieter than National Day but a day off |
+| **Wesak Day (Vesak)** | A day in May (full moon of the lunar month of Vaisakh) | The Buddhist celebration of the Buddha's birth, enlightenment, and death. Maha Vihara temple in Brickfields holds a candlelit procession. Public holiday |
+| **George Town Festival** | Most of August, on Penang | Not in KL itself, but the four-week arts festival in [George Town](/cities/george-town) on Penang island (45-minute flight) is the biggest cultural festival in Malaysia, and is a real reason to extend a KL trip. Worth flagging |
+| **F1 Petronas Malaysia Grand Prix** | Suspended | The F1 race at Sepang was the regional motorsport headline through 2017 but has not run since. Local rumors of a return appear most years. Verify before assuming |
+
+The trip-shaping event is Thaipusam at Batu Caves. If the intense religious-festival side of Southeast Asia is the trip, this is the most powerful one to plan around in late January or early February. The Ramadan bazaars are the underrated month-long evening agenda most international travelers do not know to look for.
 
 ## Where to stay
 

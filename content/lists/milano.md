@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -45,6 +46,25 @@ Milan Milan Malpensa (the main international gateway) (MXP) is served by three a
 | Linate Metro M4 | 15 to 20 min | €2.20 single (city ticket) | If you are flying into Linate (LIN). The M4 blue line connects directly to the city center |
 | Malpensa Shuttle bus | 60 to 80 min | €10 single | Cheaper than the train. Runs from MXP to Milano Centrale every 20 to 30 minutes |
 | Uber Black / taxi | 50 to 80 min | €95 to €120 from MXP, €25 to €40 from LIN | Italy's Uber market is licensed-driver only. Taxis run a real meter. Agree the flat rate to MXP only on confirmed schedules |
+
+## Festivals and big annual events
+
+Milan's calendar is built around industry weeks (fashion and design) more than civic festivals. The four fashion weeks and Salone del Mobile are the most expensive hotel weeks of any major European city by some measures.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Salone del Mobile (Milan Design Week)** | A week in mid-April | The international furniture and design fair, around 370,000 attendees over six days. The Fuorisalone runs in parallel across the entire city (Brera, Tortona, Isola, Ventura), with installations and events at hundreds of venues. The single most expensive hotel week of the Milan year, often quadruple normal rates. Book a year ahead or push the dates |
+| **Milan Fashion Week (Women's)** | Late February (autumn/winter collections) and late September (spring/summer collections), each running about six days | Two of the four annual fashion weeks. The press and trade audience books the city. Hotels in Brera, Quadrilatero della Moda, and Porta Venezia fill at premium rates |
+| **Milan Fashion Week (Men's)** | Mid-January and mid-June, each running about four days | The two smaller fashion weeks for menswear. Same hotel-pressure pattern as women's but slightly less intense |
+| **Holy Week and Easter (Settimana Santa, Pasqua)** | The week before Easter | Less dramatic than Rome or Sevilla but a real local-feeling Catholic week. Many Milanese leave for family or the lakes, so the city actually empties. A reasonable window for a quieter Milan trip. Hotels are not particularly pressured |
+| **Festa di Sant'Ambrogio** | December 7 | The city's patron-saint feast day. Public holiday in Milan only. La Scala's opening night of the opera season is held on the same evening, which is one of the most important social events in Italian high culture. The Oh bej! Oh bej! Christmas market opens around the basilica |
+| **Christmas markets** | Late November through early January | The Oh bej! Oh bej! market at the Castello Sforzesco runs four days around Sant'Ambrogio. The Piazza Duomo Christmas market runs through December. Less famous than the Germanic markets but real |
+| **Milano Marathon (Stramilano)** | A Sunday in early April | The popular city-wide running event. The full marathon is held in early April. Road closures across the center. Hotel inventory tightens but does not spike like the design or fashion weeks |
+| **MITO SettembreMusica** | September, three weeks | The classical music festival, jointly with Turin (MI-TO). Multiple venues across both cities. Smaller hotel pressure, real reason to be in Milan if classical music is the trip |
+| **EICMA (Milan Motorcycle Show)** | A week in early November | The biggest motorcycle trade fair in the world, at Fiera Milano Rho. Hotels along the M1 line out to Rho fill heavily. Central hotels less affected |
+| **Ferragosto** | August 15 | Italian national holiday in the middle of the August empty-city window. Most Milanese leave for the coast or mountains for two to three weeks around this date. Many small restaurants and shops close. The city is quiet, hot, and has half its hotel rooms vacant. A reasonable contrarian trip |
+
+The trip-shaping windows are Salone del Mobile in mid-April (the most expensive hotel week of the year) and the four fashion weeks. If you are not in the design or fashion business, do not visit Milan during these. Ferragosto in mid-August is the underrated contrarian window: hot, quiet, cheap, and the locals are gone.
 
 ## Where to eat
 

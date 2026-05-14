@@ -68,6 +68,7 @@ Match the side of the island to the trip you actually want, budget for the slow 
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting in and getting around](#getting-in-and-getting-around)
 * [Where to stay](#where-to-stay)
 * [The beaches](#the-beaches)
@@ -86,6 +87,23 @@ Match the side of the island to the trip you actually want, budget for the slow 
 | Hot and dry | March to early May | Days run 28–34°C with low humidity. Less rain than further north on the same dates |
 | Shoulder | May to early July | Showers most afternoons, prices drop. Boat days are gambling, beach days mostly OK |
 | Heavy rain | July to October | Monsoon. Storms come through in bursts, not all day, but boat tours cancel often. Hotel rates at their lowest |
+
+## Festivals and big annual events
+
+Phuket's calendar runs on Thai festivals plus a few island-specific ones. The Vegetarian Festival is the trip-shaping headline, and the high season around Christmas and New Year is the priciest hotel window of the year.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Phuket Vegetarian Festival** | Nine days in late September or early October (first nine days of the ninth lunar month) | The biggest event on the Phuket calendar and one of the most intense religious festivals in Southeast Asia. Origin: the Chinese-Thai community on the island, marking nine days of vegetarian observance, parades, and extreme body-piercing rituals at the Chinese shrines (the *mah song* spirit mediums who walk on hot coals, climb knife-edged ladders, and pierce their cheeks with metal rods). Yellow flags on every restaurant on the island indicate vegetarian-only food for the run. Phuket Town is the center of the parades. Hotels in Phuket Town fill, beach hotels less so |
+| **Songkran** | April 13 to 15 | The Thai new year water-throwing festival. Patong Beach and Phuket Town are the centers. Less intense than [Bangkok](/lists/bangkok) or [Chiang Mai](/lists/chiang-mai) versions, but real. Beach resort hotels fill |
+| **Loy Krathong** | Full moon of the 12th lunar month, usually early to mid-November | The floating-lantern festival. Patong Beach, the Phang Nga River, and the temple ponds across the island are the main venues. Quieter than Chiang Mai's version |
+| **Phuket Old Town Festival** | A long weekend in February | The annual Sino-Portuguese street festival in [Phuket Town](/cities/phuket-town). Walking streets, food stalls, costumes, live music in the shophouse blocks of Thalang Road. Smaller and more local than the Vegetarian Festival, easier to attend casually |
+| **Christmas and New Year (peak season)** | December 20 to January 5 | The single most expensive hotel window of the Phuket year. Beach hotels in Patong, Kata, Karon, and Surin double or triple their rates. Tour boat operators raise prices and run at capacity. Restaurant reservations tighten. The version of Phuket the island built itself around |
+| **Chinese New Year** | Late January or February | Phuket Town's Chinese-Thai community runs three to five days of dragon dances, lion dances on Thalang Road, and festival food at the Sino-Portuguese shophouses. Hotels in Phuket Town fill, beach hotels less affected |
+| **Phuket King's Cup Regatta** | A week in early December | The biggest yacht race in Southeast Asia, hosted out of Kata Beach. Hotels in Kata and Karon fill for the week. Worth knowing about as a hotel-pressure window even if you are not sailing |
+| **Patong Carnival** | A weekend in mid-November | Beach parade and street parties along Beach Road in Patong. Smaller and more touristy than the Old Town festival, but a real reason to be in Patong if the resort-party version of Phuket is the trip |
+
+The trip-shaping event is the Vegetarian Festival in late September or early October. If you want the intense religious-festival side of Thailand, this is the trip to plan around. The window also coincides with the shoulder-to-monsoon weather, so beach plans are gambling. The Christmas and New Year window is the most expensive non-festival hotel window of the year, worth either committing to or pushing the dates outside of by two weeks.
 
 ## Getting in and getting around
 

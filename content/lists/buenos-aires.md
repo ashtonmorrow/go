@@ -54,6 +54,8 @@ related:
 * [Where to eat](#where-to-eat)
 * [Don Julio and the reservation question](#don-julio-and-the-reservation-question)
 * [Day trip to Tigre](#day-trip-to-tigre)
+* [When should I go?](#when-should-i-go)
+* [What about festivals and big annual events?](#what-about-festivals-and-big-annual-events)
 
 ## How do I get in from the airport?
 
@@ -138,3 +140,24 @@ The train from Buenos Aires Retiro to Tigre runs every 15 to 30 minutes and cost
 The seasons are reversed from the northern hemisphere. **Argentine spring (October to December)** and **autumn (March to May)** are the comfortable shoulder windows: warm days, cool evenings, parrilla weather. **Summer (December to February)** runs hot and humid (28-35°C) and the city empties on weekends as residents flee to Mar del Plata. **Winter (June to August)** is mild but gray and damp.
 
 For a first trip, target **October-November or March-April**. The dinner-on-a-terrace evenings are why people come back.
+
+## What about festivals and big annual events?
+
+Buenos Aires has a strong year-round cultural calendar (tango, milongas, jazz, theater) plus a handful of trip-shaping events. The Argentine peso economy has kept festival ticket prices low for international visitors over the last decade, which is one of the better arguments for timing a trip to a specific event.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Tango BA Festival y Mundial** | Mid-August, two weeks | The biggest tango festival in the world, capped by the World Tango Championship final at the Luna Park arena. Free outdoor milongas across the city, ticketed shows at the headline venues, dance classes for every level. Hotels in Palermo, San Telmo, and Recoleta book early. The reason to be in Buenos Aires in August despite the southern-hemisphere winter |
+| **Día Nacional del Tango** | December 11 (Carlos Gardel's birthday) | National tango day, free outdoor milongas across the city, neighborhood tango halls open their doors. Smaller hotel impact than the August festival, real reason to be in town if tango is the trip |
+| **Carnival (Carnaval)** | Variable, the weeks before Lent (February or March) | Less of a Buenos Aires headline than a Brazilian one, but the city runs a real Carnival now: free murga troupe parades (the Argentine drum-and-dance carnival tradition) on the four "Carnival Mondays" before Lent across multiple neighborhoods (Palermo, Boedo, Caballito). National holiday on the Monday and Tuesday before Ash Wednesday |
+| **Buenos Aires International Book Fair (Feria del Libro)** | Late April to mid-May, three weeks | The biggest book fair in the Spanish-speaking world. La Rural exhibition center in Palermo. International writers, panels, signings. Smaller hotel-pressure impact than the music festivals because it is dispersed across three weeks |
+| **Lollapalooza Argentina** | Mid to late March, three days | The Argentine edition at the Hipódromo de San Isidro, on the city's northern edge. Around 100,000 a day. Hotels north of the center (Belgrano, San Isidro) fill heavily |
+| **Buenos Aires Jazz** | Late November, six days | The international jazz festival across CCK, Usina del Arte, and Boris Club. Smaller hotel pressure but a quieter, more sophisticated festival than the rock and pop options |
+| **BAFICI (Buenos Aires Independent Film Festival)** | Mid-April, two weeks | The biggest independent film festival in Latin America. Multiple cinemas across Palermo, Recoleta, and the center. Smaller hotel impact but a real reason to be in town |
+| **Día del Amigo** | July 20 | "Friend's Day," celebrated more seriously in Argentina than anywhere else. The reservations crisis of the year: every parrilla, bar, and restaurant fills with groups of friends. The single hardest dinner reservation night in Buenos Aires |
+| **Argentine Independence Day** | July 9 | National holiday. Civic ceremonies at Plaza de Mayo, parades, government buildings open free. Most restaurants stay open and crowded |
+| **Quilmes Rock and Personal Fest** | Variable, usually March or April | The big rock festivals, line-ups change year to year. Worth checking the year before booking around |
+
+The trip-shaping window is Tango BA in mid-August. If tango is anywhere in the reason for coming to Buenos Aires, that is the week to book. Carnival murga is the underrated free, local-first weekend most international travelers miss because they associate Carnival with Brazil.
+
+A practical Día del Amigo note. If your travel window overlaps July 20, book any restaurant you actually want to eat at three weeks ahead. The Don Julio reservation question (see [the section above](#don-julio-and-the-reservation-question)) gets harder by an order of magnitude that week.

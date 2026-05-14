@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in from Changi](#getting-in-from-changi)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Marina Bay and Gardens by the Bay](#marina-bay-and-gardens-by-the-bay)
 * [Hawker centers and where to eat](#hawker-centers-and-where-to-eat)
@@ -62,6 +63,25 @@ Changi Airport is one of the smoothest arrival experiences in the region, and th
 | Airport Shuttle | $9 | 30 to 60 min | Hotel drop, slower than MRT. Book in arrivals |
 
 Changi Jewel, the indoor waterfall, is worth the 30 minutes if you have a layover or are arriving with time.
+
+## Festivals and big annual events
+
+Singapore's calendar reflects the four major ethnic and religious traditions that share the city (Chinese, Malay, Indian, Western), plus a small set of national civic events and one giant motorsport weekend that fills the city.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Singapore Grand Prix (F1)** | A weekend in late September or early October | The night race around the Marina Bay street circuit. Around 270,000 attendees across three days. Hotels in Marina Bay, Bugis, and the Central Business District quadruple in price and book a year ahead. Concerts on the support stages (recent headliners: Coldplay, Robbie Williams, Lenny Kravitz). The single biggest hotel-pressure week of the Singapore year |
+| **Chinese New Year** | Late January or February, a 15-day festival window | The biggest cultural festival on the calendar. Public holidays for the first two days. Chinatown fills with red lanterns, food stalls, and the lion-and-dragon dances on Eu Tong Sen Street and Pagoda Street. The River Hongbao at the Marina Bay Floating Platform is a 10-day amusement-park-and-fireworks event. Many small businesses close for the first week. Hotels stay reasonable because locals are mostly at home |
+| **Hari Raya Puasa (Eid al-Fitr)** | End of Ramadan, lunar calendar, varies year to year | Geylang Serai's bazaar runs through the month of Ramadan with food stalls and decorations. Hari Raya itself is a public holiday. Smaller hotel impact than CNY because the celebration is family-home centered |
+| **Deepavali (Diwali)** | A day in October or November | Indian Festival of Lights. Little India fills with lights, decorations, and food stalls in the weeks leading up. Public holiday on the day |
+| **National Day** | August 9 | Singapore's independence day. The National Day Parade at Marina Bay (the Padang in odd years) is a massive military and civic display with aerial flypasts and fireworks. Tickets via ballot. Free to watch the fireworks from anywhere along Marina Bay. Hotels in Marina Bay fill |
+| **Thaipusam** | Late January or early February (full moon of the Tamil month of Thai) | The Hindu festival of devotion. The procession from Sri Srinivasa Perumal Temple in Little India to Sri Thendayuthapani Temple in Tanglin runs through the night and morning. Devotees carry kavadi (elaborate burdens) including milk pots and steel-spike structures driven into the body. Powerful to watch, smaller crowd than the headline festivals |
+| **Mid-Autumn Festival** | A day in September or October (full moon of the eighth lunar month) | Mooncakes everywhere, lantern displays at Chinatown, Gardens by the Bay, and Sentosa. Family-scale, no major hotel impact, an evening worth being out for if dates line up |
+| **Singapore Food Festival** | Across most of June | The annual food festival across multiple venues and hawker centers. Smaller hotel impact, real reason to plan a Singapore trip around June if food is the trip |
+| **i Light Singapore** | A two-week window in May or June | The Marina Bay light-art festival. Free, around the bay. Smaller hotel pressure, the easier evening agenda |
+| **ZoukOut** | A weekend in December | The dance music festival at Siloso Beach on Sentosa. Hotels on Sentosa book heavily |
+
+The trip-shaping event is the F1 weekend in late September or early October. If F1 is the trip, book the hotel and tickets eight to ten months ahead. If F1 is not the trip, do not visit that weekend unless you enjoy paying triple for everything. Chinese New Year is the trip-shaping cultural window, especially the first three days. Thaipusam is the underrated intense religious event that most international travelers miss.
 
 ## Where to stay
 

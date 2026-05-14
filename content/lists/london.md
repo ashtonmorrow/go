@@ -61,6 +61,7 @@ related:
 
 * [Getting in from Heathrow](#getting-in-from-heathrow)
 * [London by neighborhood and tube](#london-by-neighborhood-and-tube)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The Bankside walk](#the-bankside-walk)
 * [Getting around: one card, the fare cap, and the tap-out](#getting-around-one-card-the-fare-cap-and-the-tap-out)
@@ -109,6 +110,27 @@ The "don't base here unless you're working" zones:
 - **Heathrow / airport hotels.** Two hours of dead commute per day. Only worth it for an early flight, never as a city base.
 
 The lines themselves are worth knowing in shorthand. **The Elizabeth Line** (purple) runs east-west through Paddington, Bond Street, Tottenham Court Road, Farringdon, Liverpool Street, Canary Wharf and out to ExCeL/Custom House. It is the single best line for connecting Heathrow, central, and the docks. **The Jubilee Line** (gray) runs Westminster → Waterloo → London Bridge → Canary Wharf and is the spine of any sightseeing day from a Canary Wharf or Stratford base. **The Piccadilly Line** (dark blue) runs Heathrow → Earl's Court → South Kensington → Knightsbridge → Hyde Park → Piccadilly Circus → King's Cross, which is the museum-and-shopping spine. **The Northern Line** (black) and **District Line** (green) cover almost everything else central. They are the lines you transfer to.
+
+## Festivals and big annual events
+
+London's calendar is unusually full of events that are either trip-shaping (book ahead or push the dates) or trip-shading (closures, crowds, transport patterns to know). A short list of the ones that move hotel prices or change a Tube map.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Wimbledon Championships** | Late June to mid-July, two weeks | The tennis Grand Slam at the All England Club. Tickets via the Wimbledon Ballot (year-ahead registration) for show courts, plus "the Queue" for same-day grounds passes (camp out at Wimbledon Park, expect a 4 a.m. queue for a 1 p.m. ground pass on a busy day). Hotels in southwest London (Putney, Wimbledon Village, Earl's Court) book early |
+| **Notting Hill Carnival** | August bank-holiday Sunday and Monday | Europe's biggest street festival, 2.5 million attendees across two days, Caribbean parade and soundsystems through Notting Hill and Ladbroke Grove. Sunday is family day, Monday is the bigger party. Roads in W10/W11 close, Tube stations in the area become exit-only or close entirely (Ladbroke Grove, Westbourne Park, Notting Hill Gate). Hotels in W2/W11 fill, hotels everywhere else are normal |
+| **Trooping the Colour** | A Saturday in mid-June (the monarch's official birthday) | The big military parade from Buckingham Palace down the Mall to Horse Guards Parade and back. Free to watch from the Mall. Closes the Mall and Whitehall from early morning. Tickets to the parade enclosure release by ballot in February |
+| **London Marathon** | A Sunday in late April | One of the World Marathon Majors. 50,000 runners, course winds across south, east, and central London. Major road closures on the Sunday. Hotel inventory tightens months ahead. The expo at ExCeL the days before |
+| **Pride in London** | A Saturday in late June or early July | The parade runs from Hyde Park Corner through Piccadilly to Whitehall. About 1.5 million attendees. Soho fills, hotels in central London book early. The biggest LGBTQ event on the UK calendar |
+| **Chelsea Flower Show** | Late May, five days | The Royal Horticultural Society's headline garden show at the Royal Hospital Chelsea grounds. Members' days early in the week, public days at the end. Hotels in Chelsea, Knightsbridge, and Belgravia tighten. Tickets release the prior year |
+| **New Year's Eve fireworks** | December 31 | Free fireworks launched from the South Bank near the London Eye, viewable from anywhere along the Thames between Westminster and Tower Bridge. Ticketed enclosures along the riverbank sell out months ahead (around £15). Tube runs free for the night from late evening to morning |
+| **Christmas in London** | Mid-November to early January | Oxford Street and Regent Street lights, Hyde Park Winter Wonderland (free entry, paid rides), Somerset House ice rink, the Christmas markets at Leicester Square and Southbank. Not a single event but a six-week window where hotels stay full and central London is busy every day |
+| **London Fashion Week** | Mid-February and mid-September, five days each | The trade-and-press fashion event. Boutique hotels in Marylebone, Mayfair, and Soho fill for the week. Less of a citywide hotel-pressure event than Wimbledon |
+| **The Boat Race** | A Saturday in late March or early April | Oxford vs Cambridge along the Thames between Putney and Mortlake. Free to watch from anywhere along the towpath. Pubs along the route book early |
+| **Lord Mayor's Show** | A Saturday in early November | The City of London's three-mile procession from Mansion House through the financial district to the Royal Courts of Justice and back. Free, 700 years old, smaller crowd than Trooping the Colour |
+| **State Opening of Parliament** | Variable, usually autumn or after an election | Closes Parliament Square, the Mall, and Whitehall to traffic for the procession. Worth knowing about for transport disruption |
+
+The trip-shaping events are Wimbledon (book early if a tickets are part of the plan, otherwise push the dates west London), Notting Hill Carnival (the August bank-holiday weekend is full price across central London, plus the W10/W11 Tube closures), and the New Year's Eve fireworks (ticketed enclosure sells out by autumn). Trooping the Colour is the underrated free London event that looks nothing like its scale until you watch it once.
 
 ## Where to stay
 

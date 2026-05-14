@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,26 @@ Budapest Budapest Ferenc Liszt International (BUD) sits about 24 km south-east o
 | Bolt / Uber-equivalent | 30 to 50 min | 7,000 to 12,000 HUF | Late arrival or heavy luggage. Bolt is the dominant Hungarian rideshare. Pickup at the marked airport lot |
 | Bus 200E + Metro M3 | 50 to 70 min | 450 HUF (one-way + transfer) | The cheapest path. Bus 200E to Kőbánya-Kispest, transfer to the M3 blue metro into the center |
 | Taxi from the rank | 30 to 50 min | ~9,500 HUF flat rate via Főtaxi | Főtaxi is the licensed airport rank. Queue at the desk inside arrivals for a fixed-fare booking |
+
+## Festivals and big annual events
+
+Budapest's calendar runs on Sziget Festival (one of the biggest music festivals in Europe), the Christmas markets, and a few national holidays where the city closes around a civic event. The Easter and Christmas windows are real, especially around the Vörösmarty Square market.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Sziget Festival** | A week in mid-August | One of the biggest music festivals in Europe, held on Óbudai Island (Hajógyári-sziget) in the Danube. Around 500,000 attendees across six days. The headliners are typically the biggest names in international rock, pop, and electronic music. Hotels along the M3 line out to Árpád híd fill heavily, central hotels less so. Day tickets and week passes sell from autumn the previous year |
+| **Budapest Wine Festival** | Early September, four days | The wine festival at Buda Castle. Hungarian producers across the castle courtyards. Smaller hotel pressure, real reason to be in town if Hungarian wine (Tokaj, Eger, Villány) is the appeal |
+| **Christmas markets (Karácsonyi Vásár)** | Mid-November to early January | The Vörösmarty Square market is the main one, plus the smaller Szent István Basilica market with its ice rink. Hungarian craft, mulled wine, kürtőskalács (chimney cake), grilled sausage. Smaller and more compact than the German equivalents, but a real reason to be in town in December |
+| **Budapest Spring Festival (Budapesti Tavaszi Fesztivál)** | Late March to early April, two weeks | Classical music, opera, ballet, theater, and visual arts across the city. Hotels stay reasonable. Smaller hotel pressure but the better trip if classical music is the reason |
+| **St Stephen's Day** | August 20 | The national holiday and the founding of the Hungarian state. Fireworks over the Danube in the evening (around 30 minutes), public ceremonies at the Basilica and Parliament. Hotels are slightly pricier but Sziget Festival the same week pushes prices harder |
+| **Revolution Day** | October 23 | National holiday commemorating the 1956 uprising. Civic ceremonies. Government buildings open free. Quieter than St Stephen's Day, no fireworks |
+| **Budapest Pride** | A Saturday in mid-July | The Pride march through the center. Hotel impact mostly along the march route. Less than half the scale of Madrid or Berlin Pride |
+| **Mangalica Festival** | Early February, three days | The wool-pig (mangalica) festival at Szabadság tér. Pork-product tasting, sausage and salami competition, traditional Hungarian winter food. Smaller and quirkier than the headline festivals, real reason to be in town in winter |
+| **Budapest Marathon** | Mid-October | Road closures along the Danube. Hotel inventory tightens slightly |
+| **Easter Markets** | Two weeks before Easter and one week after | Vörösmarty Square again. Smaller spring version of the Christmas market. Painted eggs, traditional Hungarian crafts, lamb dishes |
+| **Formula 1 Hungarian Grand Prix** | Late July or early August, race weekend | The race at the Hungaroring, 20 km north-east of Budapest. Hotels in Budapest fill across the weekend. If F1 is the trip, book three to six months ahead |
+
+The trip-shaping events are Sziget in mid-August (the music festival to plan around, or push the trip), the Hungarian Grand Prix at the end of July (a hotel-pressure weekend), and the Christmas market window. The Budapest Spring Festival is the underrated classical-music trip most American travelers do not know about.
 
 ## The famous sights, and how to book them
 
