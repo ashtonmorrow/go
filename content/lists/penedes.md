@@ -42,6 +42,13 @@ related:
 #   before this guide is fully wired. Flip indexable after the pin
 #   creation pass.
 #
+# - 2026-05-14: saved_lists row for 'penedes' inserted (the list page
+#   was 404'ing because the route requires a saved_lists row to render
+#   even though /content/lists/penedes.md existed). Row carries the
+#   description from the line above. After the cache TTL (5 min) the
+#   /lists/penedes route resolves cleanly. The Barcelona and Sitges
+#   cross-links to /lists/penedes work after that window.
+#
 # - Pins worth creating to back the body links (none exist yet):
 #     · penedes (the region, as a city/area)
 #     · sant-sadurni-d-anoia (the cava capital town)
