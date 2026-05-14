@@ -74,6 +74,7 @@ related:
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting to and from Schiphol](#getting-to-and-from-schiphol)
 * [Getting around once you're in town](#getting-around-once-youre-in-town)
 * [Where to stay](#where-to-stay)
@@ -91,6 +92,23 @@ related:
 | Quiet and dark | November to March | Short days, rain or sleet in most months, occasional canal-skating cold snap. The museums and cafes carry the trip in this window. |
 
 The light in late June is famously long. Sunset can be after 22:00. Rain is possible in any month, so pack accordingly.
+
+## Festivals and big annual events
+
+Amsterdam is the rare city where the calendar changes the trip. A handful of windows are worth either booking around or planning to be in town for.
+
+| Event | When | What it changes |
+|---|---|---|
+| **King's Day (Koningsdag)** | April 27 | The city turns orange, the canals fill with boats, the streets fill with cash-only flea markets where any resident can sell anything from a blanket. Two of the best days a year to be in Amsterdam. Book a hotel two to three months ahead. The night before (Koningsnacht) is the big party night |
+| **Tulip season** | Mid-March to mid-May, peak around mid-April | Keukenhof (the cut-flower park) is open these eight weeks and only these. Bus 858 from Schiphol direct. The bulb fields between Lisse and Hillegom are visible from any rural road in the window. Pre-book Keukenhof tickets a month ahead. Bike tours from Lisse station are the best version of the fields |
+| **Amsterdam Pride** | First weekend of August | The Canal Parade on the Saturday is the world's only canal-based pride parade. Around half a million spectators. The festival week runs around it with parties along the Prinsengracht. Hotels book heavily |
+| **Liberation Day (Bevrijdingsdag)** | May 5 | Free concerts and city-scale events marking the end of WWII occupation. Combined with Remembrance Day on May 4 (two minutes of silence at 20:00 nationwide, the only minute the city goes truly quiet) |
+| **Amsterdam Light Festival** | Late November to late January, about two months | Light installations along the canals. The boat tour is the way to see them, and operators run dedicated festival routes. The trip-saver for a dark Amsterdam winter |
+| **ADE (Amsterdam Dance Event)** | Mid-October, five days | The world's biggest electronic-music conference and festival. 400,000 attendees across 200+ venues. Hotels book months ahead. Worth knowing about even if you are not attending because the city tilts hard toward the festival |
+| **Sinterklaas arrival** | A Saturday in mid-November | The arrival parade for the Dutch Santa-equivalent, by steamboat. Family-scale rather than visitor-scale. The Zwarte Piet tradition is being phased out in favor of soot-faced Roetveegpiet, which is the version on the streets now in Amsterdam |
+| **New Year's Eve** | December 31 | The Netherlands has near-unrestricted consumer fireworks (with regional bans expanding each year). The center is loud and unpredictable. Not the holiday for a quiet hotel night. Either embrace it (Dam Square, Nieuwmarkt) or sleep south of the center |
+
+The two events worth a deliberate booking are King's Day, which is the single best day to see Amsterdam as the locals actually use it, and tulip season, which only exists for eight weeks. The two worth knowing about as a hotel-pressure warning are Pride weekend and ADE.
 
 ## Getting to and from Schiphol
 

@@ -60,6 +60,7 @@ related:
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The temple cluster](#the-temple-cluster)
 * [Mountains, elephants, and Doi Inthanon](#mountains-elephants-and-doi-inthanon)
@@ -88,6 +89,23 @@ Grab is the easy default. The rank taxi is good as the backup when the app surge
 | Hot and wet | May to October | Afternoon thunderstorms most days. Rarely all-day rain. Hotels at their cheapest, less crowded |
 
 The single best week of the year is the last week of February, give or take.
+
+## Festivals and big annual events
+
+Chiang Mai's calendar runs on the Lanna northern-Thai tradition, which is similar in shape to Bangkok's festivals but with one major difference: Yi Peng, the sky-lantern release, is the local headline. The other one to plan around is Songkran, which the north does even harder than the south.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Yi Peng (the sky lantern festival)** | Full moon of the 12th lunar month, usually early to mid-November, two to three days | The defining Chiang Mai festival. Thousands of sky lanterns released across the city after sunset, plus the floating-water krathong of Loy Krathong on the same nights. The mass-release events outside the old city require pre-booked tickets that sell out months ahead. The version inside the old city is more dispersed and you can walk into it. Hotels triple in price for the window. The most-photographed weekend in northern Thailand |
+| **Loy Krathong** | Same nights as Yi Peng | The water version of the sky festival. Krathong rafts (banana leaf, flowers, candle) floated on the Ping River and the old city moat. Quieter and more reflective. The two festivals run together |
+| **Songkran** | April 13 to 15 | The water-throwing new year. Chiang Mai's old-city moat becomes the world's biggest water reservoir, and the streets around it become a three-day water fight. Louder and wetter than Bangkok's version. Combined with the hottest week of the year, which is the point |
+| **Flower Festival** | First weekend of February | Floats covered in flowers parade through the old city. Two-and-a-half days. Smaller and more local than the headline festivals. A reason to book the first weekend of February if you are choosing dates |
+| **Chiang Mai Design Week** | Early December, around 10 days | The northern Thai design and crafts festival. Smaller venues around the old city and Nimman. Useful if you are a longer-stay traveler interested in workshops, ceramics, and contemporary Lanna craft |
+| **Chinese New Year** | Late January or February | Warorot Market and the Chinatown area on Wichayanon Road run the local version. Lion dances, food, lanterns. Smaller than Bangkok but real |
+
+Yi Peng is the trip-shaping one. If sky lanterns are the reason for the trip, base in Chiang Mai for the November window and book the hotel and any ticketed lantern-release event four to six months ahead. If you are not planning around Yi Peng, push the dates a week in either direction because the city is full and the prices are at their annual peak.
+
+A practical note on the lanterns: the city of Chiang Mai restricts releases tightly during the festival window because of the airport and aviation safety, with legal-release nights and zones changing year to year. The ticketed mass-release events outside the city (CAD Khom Loi, Doi Saket events) are the way to participate in the postcard-version release. Buying a lantern from a market stall and releasing it from your hotel balcony is not the version of the trip you want.
 
 ## Where to stay
 

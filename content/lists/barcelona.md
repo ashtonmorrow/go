@@ -117,6 +117,7 @@ related:
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Getting around the city](#getting-around-the-city)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat, by neighborhood](#where-to-eat-by-neighborhood)
 * [Markets: La Boqueria vs Santa Caterina](#markets-la-boqueria-vs-santa-caterina)
@@ -155,6 +156,24 @@ A quick line key for this guide:
 | L3 | Green | The tourist spine: Liceu (for La Boqueria), Drassanes (bottom of La Rambla), Sants Estació (trains to Sitges), Maria Cristina (the Pedralbes / Grand Hyatt area) |
 | L4 | Yellow | Poblenou (Llacuna for the Holiday Inn Express), Barceloneta, and El Maresme-Fòrum (the Diagonal Mar / Forum stop) |
 | L5 | Blue | Sagrada Família (the other side), Diagonal, Sants Estació |
+
+## Festivals and big annual events
+
+Barcelona runs one of the busier festival calendars in Europe, partly because Catalan civic life is built around it. A handful of weekends each year are worth either planning a trip around or steering clear of, the latter mostly because Mobile World Congress doubles hotel prices for a week.
+
+| Event | When | What it changes |
+|---|---|---|
+| **La Mercè** | Around September 24, four to five days | The city's main fiesta, in honor of the patron saint. Castellers (human towers), correfocs (fire-runners with sparks), gegants (giant papier-mâché figures), free concerts across the city. The version of Barcelona that the locals actually show up for. Worth planning a trip around |
+| **Sant Jordi** | April 23 | Catalonia's Valentine's Day, only the gift is a book and a rose. Las Ramblas and Passeig de Gràcia fill with book stalls and rose vendors. One of the best single days to be in the city. Not a hotel-pressure event because it is a Tuesday or Wednesday most years |
+| **Primavera Sound** | First weekend of June, three days | The big international music festival at the Parc del Fòrum. Around 200,000 across the weekend. Hotels book months ahead, especially near the L4 line out to the Forum. The Friday and Saturday nights spill into Poblenou and the Eixample |
+| **Sónar** | Mid-June, three days | The electronic-music festival. Smaller and more curated than Primavera. Day program at Fira Montjuïc, night program at Fira Gran Via. The two festivals together turn early June into festival month |
+| **Mobile World Congress** | Late February or early March, four days | Not a festival. The huge tech conference at Fira Gran Via. The single most expensive hotel week of the Barcelona year. Rooms triple. Restaurants in the Eixample fill on expense accounts. If you are not attending, do not visit that week |
+| **Festa Major de Gràcia** | Mid-August, around a week | The Gràcia neighborhood's street festival. Each block competes on hand-built decoration of its own street, judged at the end of the week. Free, neighborhood-scale, the version of August Barcelona that locals enjoy while the rest of the city is on the beach |
+| **Festa Major de Sants** | Late August | The same shape as Gràcia, run by the Sants neighborhood. Less famous, less crowded, the local-er version |
+| **Carnaval** | Variable, the week before Lent (mid-February to early March) | Tame in central Barcelona. The bigger version is in [Sitges](/lists/sitges), 35 minutes south on the R2 train. If Carnival is the trip, base in Sitges |
+| **Three Kings Day (Reis)** | January 5 evening parade, January 6 holiday | The Catalan Christmas gift-giving day, with a major parade through the city the evening before. Most museums and many restaurants close January 6 |
+
+The trip-shaping ones are La Mercè (the reason to book Barcelona in late September if you can) and MWC (the reason not to book Barcelona in late February or early March). Primavera and Sónar are reasons to come if the lineup is the trip and reasons to push the dates a week if it is not.
 
 ## Where to stay
 

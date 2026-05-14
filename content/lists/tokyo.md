@@ -47,6 +47,7 @@ related:
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Tokyo by ward and by train](#tokyo-by-ward-and-by-train)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Getting around: Suica, JR vs metro, the JR Pass question](#getting-around-suica-jr-vs-metro-the-jr-pass-question)
 * [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
@@ -91,6 +92,24 @@ Wards off the Yamanote that earn the detour:
 - **Odaiba (Yurikamome line).** Reclaimed island in Tokyo Bay. Statue of Liberty replica, teamLab Borderless's predecessor venues, Odaiba Beach. Family-day-out shape.
 
 Lines to know in shorthand besides the Yamanote: **Ginza Line** (orange) is the oldest subway line, runs Asakusa → Ueno → Shibuya across the east-west tourist spine. **Hibiya Line** (silver) runs Roppongi → Ginza → Akihabara → Asakusa, the second tourist spine. **Oedo Line** (magenta) is the deep ring that connects Roppongi to Tsukiji. **Marunouchi Line** (red) connects Shinjuku to Tokyo Station to Ginza.
+
+## Festivals and big annual events
+
+Japan's calendar is denser than the postcard version (cherry blossoms and that's it) suggests. A short list of windows worth either booking around or avoiding.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Cherry blossom (sakura)** | Late March to early April, about 10 days from first bloom to fall | The most-photographed two weeks in Tokyo. Ueno Park, Shinjuku Gyoen, Meguro River, Chidorigafuchi. Hotel prices climb 40 to 60 percent in the week of peak bloom. Bloom forecasts (the *sakura zensen*) publish weekly from late February. Book hotels in November or December for a March or April trip |
+| **Golden Week** | April 29 to May 5 | The cluster of national holidays. The entire country travels. Domestic trains, hotels, and famous-sight reservations are at their hardest of the year. Tokyo itself thins out as locals leave the city, which is the bonus. Avoid the day trips (Hakone, Kamakura, Nikko) during this week. Stay in central Tokyo and use the quieter city |
+| **Sanja Matsuri** | Third weekend of May | Asakusa's biggest festival. Three days, multiple *mikoshi* (portable shrines) carried through the streets around Senso-ji. Two million attendees across the weekend. Stay near Asakusa or Ueno if this is the reason for the trip |
+| **Sumida River Fireworks** | Last Saturday of July | The biggest fireworks festival in Japan. About 20,000 fireworks over the Sumida River near Asakusa. Half a million spectators. The riverside fills hours before launch |
+| **Obon** | Mid-August, around three days | A second domestic-travel week, this time for ancestral observance. Tokyo empties as locals return to family hometowns. Many small restaurants close. Hotels are easier than Golden Week but the day trips are still busy |
+| **Autumn leaves (koyo)** | Mid-November to early December | The fall version of cherry blossom. Less of a hotel-pressure event in central Tokyo, but the day trips (Nikko, Hakone, Kamakura) book heavily. Rikugien and the Imperial Palace East Garden carry the city version |
+| **Tokyo International Film Festival** | Late October to early November, about 10 days | Hibiya, Yurakucho, Roppongi venues. Hotel inventory tightens around those areas |
+| **Comiket** | Mid-August and late December, three to four days each | The big manga and anime convention at Tokyo Big Sight. Half a million attendees across each run. Odaiba and the Rinkai line get crushed. Worth knowing if you are staying east of the Yamanote |
+| **New Year (Oshogatsu)** | December 31 to January 3 | Many shops, restaurants, and museums close for three days. The big shrines (Meiji Jingu, Senso-ji) fill at midnight for the first temple visit of the year (*hatsumode*). Different trip than a normal Tokyo week. Stock up on convenience-store food, plan for closed places, embrace the quiet |
+
+The two windows that change a trip the most are cherry blossom (every American wants this trip, every American books it, prices reflect that) and Golden Week (where you do not want to be moving around Japan). New Year is the underrated weird one: the city is quiet, the shrines are alive, and the convenience stores carry the country.
 
 ## Where to stay
 

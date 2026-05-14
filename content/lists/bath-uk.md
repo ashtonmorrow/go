@@ -101,6 +101,7 @@ The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa ro
 ## On this page
 
 * [Day trip vs overnight](#day-trip-vs-overnight)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay if you stay over](#where-to-stay-if-you-stay-over)
 * [Sunday roast at the Bathwick](#sunday-roast-at-the-bathwick)
 * [Walking the river, the weir, and the viaduct](#walking-the-river-the-weir-and-the-viaduct)
@@ -113,6 +114,20 @@ The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa ro
 The day-trip shape is the right one for most first visits. Train from London Paddington on Great Western Railway, about 90 minutes each way to Bath Spa station. Out of the station, ten minutes' walk to the [Roman Baths](/pins/the-roman-baths) and the abbey. Lunch in town. The afternoon at [Thermae Bath Spa](/pins/thermae-bath-spa) if you booked the rooftop slot. Dinner before the last train back. The whole day comes in under fifteen hours door-to-door from central London and you have done the small list of things Bath is famous for.
 
 The overnight shape is what you do when the day-trip box is already ticked, or when you want a slower version of the same trip, or when you are using Bath as the base for the Stonehenge add-on. The overnight gives you the long walk along the river, the dinner in a real Bath restaurant rather than a station sandwich, and the morning the day-tripper does not have. If the trip falls on a Sunday at all, build the overnight around the roast at the Bathwick.
+
+## Festivals and big annual events
+
+Bath is small enough that any major event reshapes the town for the weekend. Hotel inventory tightens, the train down from London fills up, and reservations at the better restaurants close out. Plan around the calendar deliberately.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Bath Christmas Market** | Mid-November to mid-December, around 18 days | The big one. Wooden chalets fill the streets around the abbey and Stall Street, lights go up across the Georgian terraces. Two million visitors over the run. Book a hotel weeks ahead for any weekend during the window. If you can do midweek, do |
+| **The Bath Festival** | Mid-to-late May, around 10 days | Classical music, literature, and film across abbey, Guildhall, and theater venues. The Pump Room and the Roman Baths host evening concerts that are the unusual booking of the festival. Sells out early |
+| **Jane Austen Festival** | Mid-September, 10 days | Period costumes, a Grand Regency Promenade through town, balls, talks. Niche but committed: the costume crowd books the hotels first. Worth knowing about even if it is not the reason you came |
+| **Bath Half Marathon** | Mid-March | Road closures across the center, train station crowded both directions. If you are visiting that Sunday and have a car, expect detours |
+| **Great Bath Feast** | October, three weeks | Restaurant-focused. Less of a hotel pressure event, more of a reason to book dinners ahead |
+
+The Christmas Market is the one to plan around hardest. If a winter Bath trip is the goal, that is the window. If a quieter Bath is the goal, do the same trip in late January or February instead, when the spa is at its calmest and the city is back to its normal scale.
 
 ## Where to stay if you stay over
 

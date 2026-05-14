@@ -57,6 +57,7 @@ I think [Bristol](/cities/bristol) does not get enough love. It is the underrate
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting there and getting around](#getting-there-and-getting-around)
 * [Where to stay](#where-to-stay)
 * [The center](#the-center)
@@ -73,6 +74,27 @@ I think [Bristol](/cities/bristol) does not get enough love. It is the underrate
 | Decent | July to early September | Warm, busier, occasional heat day. Add a layer for the evenings |
 | Shoulder | September to October | Lower prices, light is still good through early October, fewer crowds |
 | Skip if you can | November to March | Short daylight, frequent rain, most of the walking gets less pleasant |
+
+## Festivals and big annual events
+
+A few weekends each year rearrange the city. Hotels book months ahead, prices spike, and the trip becomes about the event rather than the place. Plan around them deliberately, either by booking early or by steering well clear.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Glastonbury Festival** | Late June, Wednesday to Sunday | Bristol is the practical airport and rail base for Worthy Farm in Pilton, 30 miles south. Tickets sell out in 30 minutes during the October registration window the year before, so you cannot decide on short notice. Bristol hotels book months ahead. The 2026 dates are 24–28 June |
+| **Bristol International Balloon Fiesta** | Second weekend of August | Free four-day event at Ashton Court Estate. Mass balloon ascents at 6 a.m. and 6 p.m., plus the Night Glow on Friday and Saturday evenings. Around half a million people across the weekend. The city books up, budget hotels first |
+| **Bristol Harbour Festival** | Mid-July | Free music, boats, and food across the harbor. About 250,000 over the weekend. The center is the festival. Walking the docks is the event |
+| **St Pauls Carnival** | Early July | The Caribbean street carnival in St Pauls. Free, all day, neighborhood-based. The northeast side of the center is the event |
+| **Bristol Pride** | Early July | Parade from the city center to Castle Park. Free |
+| **Bristol Christmas Market** | Mid-November to mid-December | Broadmead. Smaller and more compact than Bath's. If Christmas is the reason for the trip, train to [Bath](/cities/bath) or push further to [Nuremberg](/cities/nuremberg) |
+
+The two that change a trip the most are Glastonbury, where Bristol becomes a transit hub for a festival 30 miles away, and the Balloon Fiesta, where the city itself is the event. If you are not specifically traveling for either, book a month earlier than you would otherwise, or push the trip a weekend in either direction.
+
+### Glastonbury logistics from Bristol
+
+If Glasto is the trip, the practical chain is: fly into Bristol Airport, sleep in a Bristol hotel the night before, take a National Express coach package or a paid shuttle to Worthy Farm in the morning. The coach-plus-festival-ticket bundles sell together in the same October registration window and lock in the transport without you having to deal with rural parking at the site. The rail alternative is [Bristol Temple Meads](/pins/bristol-temple-meads) to Castle Cary, with free festival shuttle buses from Castle Cary station to the farm.
+
+A fallow year happens every five years or so to rest the land. 2024 ran, 2025 was fallow, 2026 is running.
 
 ## Getting there and getting around
 

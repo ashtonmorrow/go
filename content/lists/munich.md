@@ -124,7 +124,7 @@ This guide treats Munich as a rail-trip hub: a day or two for the city, then sou
 * [The Eisbach river surfers](#the-eisbach-river-surfers)
 * [Leberkäse, the Munich snack](#leberk-se-the-munich-snack)
 * [The brewery beer halls](#the-brewery-beer-halls)
-* [Christmas markets and Oktoberfest](#christmas-markets-and-oktoberfest)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Museums for a half day](#museums-for-a-half-day)
 * [Neuschwanstein as a day trip](#neuschwanstein-as-a-day-trip)
 
@@ -189,13 +189,23 @@ Hofbräuhaus is my pick despite the lack of authenticity. The room is grand in a
 
 **A note on Erdinger.** [Erdinger Weißbräu](/pins/gasthaus-hotel-zum-erdinger-wei-br-u-erding) is brewed in Erding, 35 minutes north-east of Munich (and 10 to 15 minutes from MUC airport, also the home of Therme Erding). Erdinger pours at most Munich beer halls but does not have its own central flagship in town. The freshest pint of Erdinger you can buy is at the Gasthaus & Hotel zum ERDINGER Weißbräu in Erding old town. The [spa-day cross-list](/lists/spa-day) covers that as part of the Munich/Erding section.
 
-## Christmas markets and Oktoberfest
+## Festivals and big annual events
 
-Munich is one of two cities most American travelers come to for either of these. I have done both and the answer is the same on both: yes, worth doing once, no, not the reason to plan the trip around.
+Munich runs a deeper festival calendar than the two events most American travelers know. Oktoberfest and the Christmas market are the headlines. The others are worth knowing about because they reshape the city on a smaller scale, and a couple of them are better trips than the ones that get the postcards.
 
-The Munich **Christmas market** at Marienplatz is good but is not the version of a Bavarian Christmas market most people are imagining. The city is too big and too spread out for the markets to read as one event. The central Christkindlmarkt is compact and dense, but the experience does not extend outward in the way the smaller Bavarian and Franconian cities give you. If Christmas is the reason for the trip, train to **Nuremberg**. The Christkindlesmarkt there is smaller, more concentrated, more clearly the version of the Christmas-market trip the German tourist board sells. Munich's version works as a bonus if you happen to be in town. It is not the booking reason.
+| Event | When | What to know |
+|---|---|---|
+| **Oktoberfest** | Mid-September to the first Sunday of October, 16 to 18 days | The Wiesn on Theresienwiese. A million-plus people, six brewery tents, the standing-on-benches version of Bavaria. Reserve a tent table months ahead or be at the gates by 9 a.m. on a weekend to hold a bench. One Oktoberfest is enough |
+| **Christmas market (Christkindlmarkt)** | Late November to December 24 | The central market at Marienplatz is compact and dense, but Munich is too big for the markets to read as one event. Good as a bonus if you are in town. Not the booking reason. If Christmas is the trip, train to [Nuremberg](/cities/nuremberg) |
+| **Frühlingsfest** | Two weeks in late April and early May | The "spring Oktoberfest" on the same Theresienwiese, with two of the six big breweries running smaller tents. About a tenth the scale. Locals will tell you this is the better version: same beer, same food, no queue, no global crowd. Worth a serious look if your dates fall here |
+| **Tollwood Summer Festival** | Most of June and July | Olympiapark Süd. Free entry, world-music stages, performance, a market of craft and food from across the world. Closer to a counter-culture summer festival than a Bavarian beer event. The version of Munich most travelers do not see |
+| **Tollwood Winter Festival** | Late November to December 31 | Theresienwiese. The market half is an organic-and-craft alternative to the Marienplatz Christkindlmarkt. The performance half runs theater, circus, and concerts inside heated tents. A New Year's Eve party on the final night |
+| **Starkbierfest** | Two to three weeks in March | The "strong beer season." Paulaner am Nockherberg is the home: the bock beer Salvator is tapped each year with a political-roasting Derbleckung speech that the Bavarian premier is expected to sit through. Hofbräu, Löwenbräu, and Augustiner run their own Starkbier weeks in parallel |
+| **Auer Dult** | Three nine-day runs (early May, late July, mid-October) | A traditional fair on Mariahilfplatz in the Au district. Antiques, crockery, rides, beer tents. Small, local, the opposite of Oktoberfest in scale and tone |
 
-**Oktoberfest** runs from mid-September to the first weekend of October on the Theresienwiese (the Wiesn) in the western part of the city. Reserve a tent table months ahead if you want a guaranteed seat in the big tents. Without a reservation, get to the Wiesn before 9 a.m. on a weekend and hold a bench. The beer is the same beer the same six breweries serve the rest of the year, so do not come for the brewing. The atmosphere is what you came for: a million people, the band, the standing-on-benches, the lederhosen-and-dirndl rule everyone takes very seriously. One Oktoberfest is enough. You do not need to do it twice unless you have a specific reason.
+The two that change a Munich trip the most are Oktoberfest (where the city becomes the event, hotels triple, every restaurant fills) and the Christmas market window (busy enough on weekends that you need to book ahead). Frühlingsfest and the Auer Dult are the local-scale alternatives that most American travelers never hear about and that are usually the better trips.
+
+**A note on hotel prices.** Oktoberfest weekends are the most expensive hotel nights of the Munich year, sometimes by a factor of three or four. The Aloft I recommend in [Where to stay](#where-to-stay-a-rail-base-or-the-slower-trip) for a normal Munich rail-stop sits at €130 to €180 most of the year and €400 to €600 during Oktoberfest. Either book months ahead or push the trip a week in either direction.
 
 ## Museums for a half day
 

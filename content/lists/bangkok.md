@@ -85,6 +85,7 @@ This page is the working version of my Bangkok notes. The country-level version 
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting to and from the airport](#getting-to-and-from-the-airport)
 * [Moving around the city](#moving-around-the-city)
 * [Where to stay](#where-to-stay)
@@ -102,6 +103,22 @@ This page is the working version of my Bangkok notes. The country-level version 
 | Cool and dry | November to February | The easiest time to be outside. Mornings are pleasant, afternoons in the high 20s°C, low humidity. Peak season, so book hotels early. |
 | Hot and dry | February to early April | Daily highs 30–35°C, afternoons feel heavier than the number suggests. April is the hottest month and Songkran (the water-throwing new year) takes over the city in mid-April. |
 | Hot and wet | May to October | Afternoon thunderstorms most days, but rarely all-day rain. The city is much less crowded and hotels drop in price. Pack an umbrella and plan around the storm window. |
+
+## Festivals and big annual events
+
+Bangkok runs on the Thai festival calendar, which is built around the lunar calendar and the rice cycle, plus a few civic events. The two big ones (Songkran in April, Loy Krathong in November) are worth either planning the trip around or steering well clear of.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Songkran** | April 13 to 15 | The Thai new year. The water-throwing on the streets is the visible version: locals and visitors with buckets, hoses, and Super Soakers turn the city into a three-day water fight, focused on Khao San Road and Silom. Hotels book months ahead. April is also the hottest month of the year, so the water makes practical sense as well as cultural. Wear waterproof everything. Phones in a dry bag. The original observance, water poured gently on Buddha images and on elders' hands as a blessing, still happens in temples |
+| **Loy Krathong** | Full moon of the 12th lunar month, usually early to mid-November | The festival of floating offerings. Krathong (banana-leaf rafts holding flowers, incense, and a candle) are floated on rivers, canals, and ponds across the country at dusk. The Chao Phraya at sunset is the central Bangkok version. Quieter and more reflective than Songkran |
+| **Yi Peng** | Same date as Loy Krathong | The northern Lanna sky-lantern release. Bangkok runs a smaller version, but the headline event is up in [Chiang Mai](/lists/chiang-mai). If sky lanterns are the trip, base in Chiang Mai for the November window |
+| **Chinese New Year** | Late January or February, the second new moon after winter solstice | Chinatown (Yaowarat) is the version of the city to see this week. Dragon dances on the main road, lion dances in the side streets, every restaurant and bakery running specials. Two or three days of intensity, then it tapers |
+| **King's Birthday and Mother's Day** | July 28 (the king), August 12 (the late queen / Mother's Day) | National holidays. Many official sites close, the city decorates in royal yellow or blue, parades through the Royal Plaza. Worth knowing about as a closure issue |
+| **Vegetarian Festival** | Nine days in late September or early October | Chinese-Thai festival, observed in Bangkok's Chinatown though [Phuket](/cities/phuket) town is the much bigger version. Street food turns vegetarian for the run, yellow flags on stalls indicate participation |
+| **Royal Barge Procession** | Rare, irregular years | A spectacle when it happens (60 ornate barges on the Chao Phraya, in royal ceremonial use), but only scheduled for specific royal occasions. Check the year before booking around it |
+
+Songkran is the trip-shaping one. If your only spare two weeks in the year fall in mid-April, it is the festival to plan a trip around (book early). If you are flexible on dates and do not want to be in a water fight, push to late April or May. Loy Krathong is the underrated quieter one and pairs well with a Chiang Mai onward leg for the lanterns.
 
 ## Getting to and from the airport
 
