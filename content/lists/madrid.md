@@ -58,6 +58,7 @@ related:
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Where to stay](#where-to-stay)
 * [Sunday at El Rastro](#sunday-at-el-rastro)
@@ -74,6 +75,23 @@ related:
 | Summer | July to August | Hot and dry, 35°C+ regularly. Many Madrileños leave town in August. Some restaurants close for vacation |
 | Autumn | September to November | The other peak window. Warm days, cooler evenings, museum and restaurant rhythm at its strongest |
 | Winter | December to March | Cold but rarely below freezing, mostly dry. Christmas lights along Gran Vía are worth seeing. Indoor-heavy itinerary |
+
+## Festivals and big annual events
+
+Madrid's calendar runs on the Catholic feast-day cycle plus a few summer music weekends. Madrid does not go all-in on tourism around its festivals the way Sevilla does for Semana Santa, but a handful of weekends each year reshape the city.
+
+| Event | When | What it changes |
+|---|---|---|
+| **San Isidro** | Around May 15, about a week | Madrid's patron-saint festival. Chotis dancing in Plaza Mayor, traditional dress, free concerts in Las Vistillas, the Pradera de San Isidro picnic on the south bank of the Manzanares. The version of the city locals actually celebrate. Worth planning around |
+| **Mad Cool Festival** | Early July, four days | The big international music festival at Iberdrola Music. Around 80,000 a day. Hotels in the Chamartín and Las Tablas area book months ahead, the rest of the city less so |
+| **Veranos de la Villa** | Most of July and August | The summer-long arts and music festival the city runs to give Madrid in August. Concerts, theater, dance, cinema in venues across town. Less hotel-pressure than Mad Cool because it is dispersed. A reason to come in summer despite the heat |
+| **Sant Isidro bullfighting fair** | Same window as San Isidro feast | The Plaza de las Ventas hosts the season's most important corridas. The biggest weeks of the Spanish bullfighting calendar. Tickets are sold by the bullfighting circuit, not the standard ticketing apps |
+| **Three Kings Day (Reyes Magos)** | January 5 evening parade, January 6 holiday | The Spanish Christmas gift-giving day. The Cabalgata de Reyes Magos parade through Recoletos and Gran Vía the evening of January 5 is the city event. Most museums and many restaurants close January 6 |
+| **Madrid Pride (MADO)** | Late June or early July, around a week | One of the biggest Pride celebrations in Europe. The Chueca neighborhood is the center. Hotels in Chueca, Gran Vía, and Malasaña book heavily |
+| **Holy Week (Semana Santa)** | The week before Easter (March or April) | Quieter and more solemn than Sevilla or Málaga. Processions through the center on Holy Thursday and Good Friday. Most government offices and many restaurants close. Not the trip-shaper Madrid version, but a window to know about |
+| **FITUR** | Late January, five days | International tourism trade fair at IFEMA Madrid. Hotels in the Chamartín / IFEMA corridor book up. Not a festival, but a hotel-pressure week worth knowing about |
+
+San Isidro and Three Kings are the two locals-first events worth planning a trip around. Mad Cool is the festival to either book early for or push the dates away from.
 
 ## Getting in from the airport
 

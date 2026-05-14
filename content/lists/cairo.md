@@ -101,6 +101,7 @@ If Cairo is your first international trip outside Western Europe, a guided tour 
 * [Common Giza scams and how to handle them](#common-giza-scams-and-how-to-handle-them)
 * [What else is worth doing in Cairo?](#what-else-is-worth-doing-in-cairo)
 * [When should I go?](#when-should-i-go)
+* [What about Ramadan and other big annual events?](#what-about-ramadan-and-other-big-annual-events)
 
 ## How do I get to Cairo from the airport?
 
@@ -206,4 +207,23 @@ Cairo is hot. The best window for almost everyone is **November to March**, when
 
 **June through September** is hot enough that the plateau is uncomfortable from 10 a.m. onward. Daytime temperatures regularly clear 35°C and can hit 40°C. If you can only travel in this window, book accommodation with a real pool, plan the pyramid day for sunrise to 9 a.m., spend the middle of the day indoors at GEM or the older Egyptian Museum.
 
-**Ramadan** moves through the calendar. In 2026 it falls roughly mid-February to mid-March. Daytime food and drink service is reduced in many places, opening hours shift, and the evening Iftar break empties the streets briefly. A good time to be in the city if you are aware of the rhythm, less fun if you have not factored it in.
+**Ramadan** moves through the calendar. In 2026 it falls roughly mid-February to mid-March. Daytime food and drink service is reduced in many places, opening hours shift, and the evening Iftar break empties the streets briefly. A good time to be in the city if you are aware of the rhythm, less fun if you have not factored it in. The full breakdown of Ramadan logistics and the other big windows is in the [next section](#what-about-ramadan-and-other-big-annual-events).
+
+## What about Ramadan and other big annual events?
+
+Egypt's calendar runs on two systems at once: the Islamic lunar calendar (which moves backward about 11 days each year against the Western one) and the Coptic Christian calendar (which is closer to but not identical to the Western one). Plus a couple of secular fixed-date events. The result is a calendar that does not look the same any two years.
+
+| Event | When in 2026 | What it changes |
+|---|---|---|
+| **Ramadan** | Roughly February 17 to March 19 (moves earlier by 11 days each year) | The big one. Muslims fast from dawn to sunset. Daytime food and drink service is reduced (some restaurants close, some open only for non-fasting diners with the windows covered). Banks, government offices, and many shops keep shorter daytime hours. Iftar at sunset empties the streets for about 45 minutes as everyone breaks fast. After Iftar, the city is alive past midnight: lantern decorations across the streets, neighborhood feasts, late-night cafes. A great time to be in Cairo if you know what to expect. Tougher if you are trying to do the pyramid day on a fasting schedule with a fasting Uber driver |
+| **Eid al-Fitr** | Mid-March 2026, three days | The festival ending Ramadan. National holiday, most things close for two or three days. Hotels are at their highest occupancy and prices. Worth knowing about as a closure window. The pyramids and the museums stay open with reduced staff |
+| **Eid al-Adha** | Around late May 2026, four days | The "festival of sacrifice" 70 days after Ramadan. Another national holiday window with closures. Many Egyptians travel to family hometowns. Cairo itself is quieter than usual |
+| **Sham El Nessim** | The Monday after Coptic Easter (around April or May) | A pre-Christian festival, dating back to Pharaonic times, marking the start of spring. The whole country goes on a picnic. The Nile corniche, the Al-Azhar Park, the gardens, and any park in the city are full of families eating fesikh (fermented mullet), spring onions, and colored eggs. National holiday, government and many shops close |
+| **Coptic Christmas** | January 7 | The Coptic Orthodox Christmas. National holiday since 2002. Coptic Cairo (Old Cairo) is the version of the city to see this week. Many Copts travel to family and the Hanging Church holds the Christmas liturgy. Egyptian Museum and pyramid sites stay open |
+| **Revolution Day** | January 25 | The commemoration of the 2011 uprising. National holiday. Tahrir Square sometimes sees protests or memorial events. Watch the news the week before |
+| **Mouled El-Hussein** | Movable, around the Islamic new year | The biggest religious mouled (saint's festival) in Cairo, at the Sayyidna al-Hussein mosque near Khan el-Khalili. Crowds, food stalls, Sufi music and dhikr at night. A specific Cairo experience, not a tourist event |
+| **Cairo International Film Festival** | Mid-November, around ten days | The big regional film festival, at the Cairo Opera House complex in Zamalek. Smaller hotel-pressure impact, bigger restaurant-and-Zamalek-traffic impact |
+
+The two windows that most reshape a Cairo trip are Ramadan (the rhythm of the city changes completely, in good and harder ways depending on your itinerary) and Eid al-Fitr (the closure window at the end of Ramadan). Sham El Nessim is the underrated reason to consider an April or May trip: the whole country is in a good mood and on a picnic.
+
+A practical Ramadan note for the pyramid day. If you are doing the pyramids during Ramadan, plan for an Uber driver who is fasting. The driver may be tired by mid-afternoon, may not want to wait around the plateau for hours, and may suggest paying for the round trip up front to lock in their evening Iftar plans. Hand them a sealed bottle of water and a date as Iftar approaches and you have made a friend. Do not eat in front of them. The fast is taken seriously and respecting it costs you nothing.

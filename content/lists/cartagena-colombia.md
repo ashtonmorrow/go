@@ -31,6 +31,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -44,6 +45,22 @@ Cartagena Rafael Núñez International (CTG) sits about 3 km from the Ciudad Amu
 | Airport taxi | 15 to 25 min | COP 25,000 to 40,000 fixed-zone fare | Use the marked yellow taxis with the airport tariff posted at the curb |
 | Pre-booked transfer | 15 to 25 min | COP 60,000 to 100,000 | Late arrival. Driver waits with a name board |
 | Walk + bus | 40 to 60 min | COP 3,000 | Cheapest path. Walk from the terminal to the public-bus stop on the main road. Workable only for solo light travelers |
+
+## Festivals and big annual events
+
+Cartagena's festival calendar leans on the city's literary and music heritage plus the Colombian Independence and Christmas windows. A short list of weekends to either plan around or steer clear of.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Hay Festival Cartagena** | Late January, four to five days | The Latin American branch of the British literary festival. International writers, novelists, journalists, historians, and the Spanish-language literary scene. Hotels in the Ciudad Amurallada book months ahead. The single biggest hotel-pressure week of the Cartagena year for international visitors |
+| **Cartagena Festival Internacional de Música** | Early to mid-January, around 10 days | The international classical-music festival, mostly at the Teatro Adolfo Mejía inside the walled city. A more focused audience than Hay. Smaller hotel pressure but the better trip if classical music is the reason |
+| **Cartagena Independence Day** | November 11 (the bigger weekend runs four days around it) | The city's biggest civic celebration. The Bandos parades, the Concurso Nacional de Belleza (the national beauty pageant, traditionally held this week), water fights in the streets, sound systems on every corner. Hot, loud, crowded. The version of Cartagena locals come back for |
+| **Festival Internacional de Cine de Cartagena (FICCI)** | Late March to early April, six days | The oldest film festival in Latin America. Screenings at several venues across the walled city and Getsemaní. Smaller hotel-pressure impact than Hay |
+| **Holy Week (Semana Santa)** | The week before Easter | Processions through the Ciudad Amurallada. The walled city has a serious Catholic processional tradition. Quieter than Sevilla, more local-feeling. Hotels book early because it overlaps with Colombian school holidays |
+| **Christmas and New Year** | December 24 to January 6 | The biggest domestic-tourism window. Hotels are at their highest prices of the year. Bocagrande beach is at its busiest. The walled city stays beautiful but is unwalkably crowded on the peak nights |
+| **Carnaval de Barranquilla** | The four days before Lent (February or early March) | Not in Cartagena, but two hours east in Barranquilla. The second-biggest carnival in South America after Rio. A reason to time a regional trip around February if Carnival is the draw. Cartagena hotels also fill that weekend as the international audience uses Cartagena as a base |
+
+The two trip-shaping windows are Hay Festival in late January (book early or push the trip) and the November 11 Independence weekend (the local-energy version of the city). The Christmas-to-New-Year window is the priciest. If you want a quiet walled-city week, aim for May, September, or October outside any of the above.
 
 ## Where to stay
 

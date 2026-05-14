@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 * [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
@@ -48,6 +49,25 @@ Rome Leonardo da Vinci Fiumicino (FCO) sits about 32 km southwest of the center.
 | FL1 regional train | 45 to 50 min | €8 single | Cheaper alternative. Runs to Trastevere, Ostiense, and Tiburtina. Useful if your hotel is not near Termini |
 | Taxi (flat rate) | 40 to 70 min | €55 flat to within the Aurelian walls | Late arrival or heavy luggage. The flat fare is set by law for airport-to-center runs. Confirm with the driver before pulling away |
 | Uber Black / private car | 40 to 70 min | €70 to €120 | Italy's Uber market is licensed-drivers only (Uber Black equivalent). The price reflects that. Bolt also works |
+
+## Festivals and big annual events
+
+Rome runs on the Catholic calendar plus a summer programming tradition that fills the city through the heat. Two of the windows below are the busiest Rome ever gets, and two are the underrated quieter alternatives.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Holy Week and Easter (Settimana Santa, Pasqua)** | The week before Easter, March or April | The biggest hotel week of the Rome year. The Via Crucis at the Colosseum on Good Friday evening, the papal Mass on Easter morning at St Peter's, the Urbi et Orbi blessing afterward. Hotels in Borgo, Prati, and the center book six to nine months ahead. Vatican access requires advance tickets via the Prefecture of the Papal Household for the Easter services |
+| **Estate Romana** | Most of June, July, August, and into September | The summer arts program the city runs in the parks, river embankments, and outdoor venues. Free or low-cost concerts, cinema along the Tiber, theater in the ruins. The reason to consider Rome in summer despite the heat. Dispersed enough that it does not affect hotel prices |
+| **Roma Pride** | A Saturday in mid-June | The parade through the center. One of the larger Pride events in southern Europe. Hotel impact mostly in the center on the Saturday night |
+| **Rome Marathon (Maratona di Roma)** | Mid-to-late March | Road closures across the historic center on the Sunday morning. The expo at Eur the days before |
+| **Natale di Roma** | April 21 | Rome's birthday (legendarily founded April 21, 753 BC). Free parades and re-enactments at the Circus Maximus and along the Imperial Forums. A reasonable mid-April reason to be in town |
+| **Notte Bianca** | A Saturday in early autumn (date moves) | The white night of free museum and cultural access into the small hours. Less consistent year to year than it once was, but a great evening when it runs |
+| **Festa della Madonna della Neve** | August 5 | A white-petal "snow" shower at Santa Maria Maggiore commemorating a fourth-century snowfall in August. Niche, ten-minute spectacle, worth knowing about if you happen to be there |
+| **Christmas and Epiphany** | December 24 to January 6 | Midnight Mass at St Peter's on Christmas Eve (advance tickets required), the Christmas markets at Piazza Navona (more touristy than the German ones), the Befana arrivals at Piazza Navona on January 6. Hotels are pricey through New Year's, ease by Epiphany |
+
+The two trip-shaping windows are Holy Week (book very early or push the trip) and Christmas-to-Epiphany (book early). Estate Romana is the reason to come in summer despite the heat: the city has free cultural programming most nights from mid-June onward, dispersed across riverbanks, parks, and ruins.
+
+A practical note on the Vatican calendar. Papal audiences happen most Wednesday mornings when the Pope is in Rome, in St Peter's Square or the Paul VI Hall depending on weather and season. Free tickets via the Prefecture of the Papal Household (booked a few weeks ahead by email or fax). The Angelus from the Apostolic Palace window happens at noon on Sundays, no ticket required, just show up in St Peter's Square.
 
 ## Where to stay
 

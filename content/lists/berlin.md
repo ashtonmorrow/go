@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,26 @@ Berlin Berlin Brandenburg Airport (BER) sits about 25 km south-east of central B
 | S-Bahn S9 or S45 | 45 to 60 min | €4.40 ABC single | A cheaper alternative if the FEX timing is wrong. Same fare, slightly slower |
 | Uber / FreeNow / taxi | 40 to 60 min | €45 to €65 to the center | Late arrival or heavy luggage. The taxi rank is reliable. Rideshare pickup is at a marked lot |
 | Bus X7 + U-Bahn U7 | 60 to 75 min | €4.40 ABC single | For hotels in Neukölln or Kreuzberg. The X7 from BER to Rudow connects directly to the U7 line |
+
+## Festivals and big annual events
+
+Berlin's calendar is the most varied of any German city, partly because the city itself runs on so many parallel scenes. The film, art, and electronic-music worlds each have their own headline weeks. Plus the Christmas markets, which are the year-end window most American travelers connect to.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Berlinale (Berlin International Film Festival)** | Mid-February, 11 days | One of the world's three biggest film festivals (with Cannes and Venice). Around 400,000 tickets sold. Public tickets go on sale a few days before each screening: lines at the Potsdamer Platz box offices form at 7 a.m. Hotels around Potsdamer Platz, Mitte, and Charlottenburg fill heavily |
+| **Christopher Street Day (Pride)** | A Saturday in late July | The Berlin Pride parade. One of the biggest Pride events in Europe, around 800,000 attendees. The parade runs from Kurfürstendamm to the Brandenburg Gate. Hotels in Schöneberg (the historically gay neighborhood, the Pride center) book early |
+| **Karneval der Kulturen** | Pentecost weekend, late May or early June | The four-day street festival in Kreuzberg celebrating Berlin's immigrant diversity. The parade on Sunday is the centerpiece. Around a million attendees across the weekend. Less hotel-pressure because the festival is local-first |
+| **Lollapalooza Berlin** | Early September, two days | The Berlin branch of the American festival, at the Olympiapark complex. Around 90,000 a day. Hotels in the Charlottenburg / Olympiastadion corridor fill |
+| **Festival of Lights** | Early to mid-October, ten days | Free large-format light installations on the Brandenburg Gate, the cathedral, the Fernsehturm, and dozens of other landmarks. Smaller hotel impact but the city's most-photographed week |
+| **Berlin Christmas markets (Weihnachtsmärkte)** | Late November to December 24 (some run to early January) | Around 80 Christmas markets across the city. Gendarmenmarkt is the prettiest (ticket required for entry, around €2). Charlottenburg Palace is the postcard one. Alexanderplatz is the loud big one. The Spandau Old Town market is the family-friendly version |
+| **CTM and Transmediale** | Late January and early February, around two weeks | The electronic music (CTM) and media-art (Transmediale) festivals run together. Smaller venues across town. The serious electronic-music audience books the city for this week |
+| **Klassik Open Air** | Various summer dates | Free classical concerts at Bebelplatz and Gendarmenmarkt across June and July. The summer-coffee version of Berlin culture |
+| **Berlin Marathon** | Late September | The world-record marathon (10 world records have been set here). Closes most of the central east-west axis. Hotel inventory tightens months ahead |
+| **Tag der Deutschen Einheit** | October 3 | German Unity Day. National holiday. Civic events at the Brandenburg Gate, free entry to several federal-government buildings. Not a hotel-pressure event but a closure window |
+| **Silvester (New Year's Eve)** | December 31 | The Brandenburg Gate hosts a free outdoor concert and the city's biggest fireworks display. Half a million attendees. Hotels are at their highest prices of the year |
+
+The trip-shaping events are Berlinale in February (book early for the screenings you want), CSD in late July (book the hotel two months ahead if it falls in your window), and the Christmas market window. The Festival of Lights in October is the underrated reason to be in town in autumn.
 
 ## Where to stay
 

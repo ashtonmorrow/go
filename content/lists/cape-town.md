@@ -46,6 +46,7 @@ I spent a few weeks there, long enough for the first impression to settle into s
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Practical notes: safety, payment, power](#practical-notes-safety-payment-power)
 * [Where to stay](#where-to-stay)
 * [Table Mountain and the gardens](#table-mountain-and-the-gardens)
@@ -77,6 +78,23 @@ Seasons are inverted from Europe and North America. The window matters more here
 | Autumn | April to early May | Wind drops, days still warm, light is at its best for the coast and the mountain. My favorite window |
 | Winter | June to August | Cooler, wetter, fewer crowds. Southern right whales offshore at Hermanus and False Bay. Pack a windbreak |
 | Spring | September to October | West Coast wildflower window, days warming back up, mountain at its greenest |
+
+## Festivals and big annual events
+
+Cape Town's festival calendar runs through the southern-hemisphere summer (November to March), which is also the peak tourist window. A handful of weekends fill the city.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Cape Town Carnival** | A Saturday in mid-March | Free street parade along Somerset Road in Green Point. Around 80,000 attendees. Costumes, floats, music, the city's most photogenic civic event. Smaller hotel-pressure impact than the festivals below because it is one evening |
+| **Cape Town International Jazz Festival** | Late March or early April, two days | The biggest jazz festival in Africa, at the Cape Town International Convention Centre. International and South African headliners. Hotels in the City Bowl book early |
+| **Two Oceans Marathon** | Easter weekend | The 56 km ultra-marathon and the 21 km half. Around 27,000 runners. The course winds along Chapman's Peak Drive and the Atlantic seaboard. Road closures across the peninsula on race day. Hotels along the route fill |
+| **Cape Town Cycle Tour** | A Sunday in mid-March | The world's largest individually-timed cycle race. Around 35,000 cyclists. Closes most of the peninsula coastal roads from early morning to early afternoon. Worth knowing about as a transport-disruption day even if you are not riding |
+| **New Year's Eve and the Cape Minstrel Carnival** | December 31 to January 2 | The Tweede Nuwe Jaar (Second New Year) parade is the major carnival of the Cape Coloured community. Costumed minstrel troupes march through the Bo-Kaap and the city center on January 2. Hotels are at their highest prices of the year through this window |
+| **Open Book Festival** | Mid-September, around five days | The city's literary festival, at the District Six Homecoming Centre and venues across the center. Smaller hotel-pressure impact, biggest impact on restaurant reservations |
+| **Galileo Open Air Cinema** | Most weekends from November to April | Pop-up outdoor cinema in Kirstenbosch Gardens, the V&A Waterfront, and other locations. Bring a blanket. A pleasant evening, not a hotel-pressure event |
+| **First Thursdays** | First Thursday of every month | Galleries and venues in the central city open late and run free walking-around art evenings. Local, year-round. A reason to time the arrival day for a Thursday |
+
+The trip-shaping windows are the Jazz Festival in late March (book early if the lineup is the trip) and the December 31 to January 2 window (when hotels are at their priciest of the year). Open Book in September is the underrated quieter alternative.
 
 ## Practical notes: safety, payment, power
 

@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,24 @@ Lisbon Humberto Delgado Airport (Lisbon) (LIS) sits about 7 km north of the cent
 | Aerobus | 20 to 30 min | €4 single | Direct to Praça do Comércio and Cais do Sodré. Useful if your hotel is on the riverfront and you do not want to manage the metro transfer |
 | Uber / Bolt / FreeNow | 15 to 30 min | €10 to €18 to the center | Cheap and easy. Lisbon rideshare is one of the more reliable markets in Europe |
 | Taxi from the rank | 15 to 30 min | €12 to €20 metered | The legal rank cars run a real meter. A small luggage surcharge applies. Do not pay anything else outside the meter |
+
+## Festivals and big annual events
+
+Lisbon's festival calendar runs on the Catholic feast cycle, with one weekend in mid-June that is bigger than the rest. The city also sits on the international summer-festival circuit, which moves a few weekends.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Festas de Lisboa (Santo António)** | June 12 evening and June 13, around the whole month | The city's patron-saint festival. Grilled sardines on every street corner, paper decorations strung over the Alfama and Bairro Alto, marriages at the Sé Cathedral on June 13 (Saint Anthony being the patron saint of matchmakers). The Marchas Populares parade along Avenida da Liberdade on the evening of June 12 is the centerpiece. The version of Lisbon that locals come back for |
+| **Carnaval (Carnival)** | The week before Lent, mid-February to early March | Lisbon's version is small compared to Brazil's. The bigger Portuguese Carnival is in Torres Vedras (45 minutes north) and Loulé in the Algarve. Worth knowing about as a hotel-pressure week even if the city itself is quieter than the postcards suggest |
+| **NOS Alive** | Mid-July, three days | The biggest international music festival on the Portuguese calendar. Held at Passeio Marítimo de Algés on the river west of the center. Around 165,000 across the weekend. Hotels along the western waterfront book months ahead |
+| **Rock in Rio Lisboa** | Even-numbered years, two weekends in late June | The Portuguese branch of the Rio megafestival, at Parque Tejo. Around 80,000 a night. Year-on-year-off pattern, so check the calendar before assuming it runs the year you are visiting |
+| **Super Bock Super Rock** | Mid-July, three days | The other big summer festival. Smaller and more rock-leaning than NOS Alive. Held at Meco Beach south of the city |
+| **Web Summit** | Mid-November, four days | The tech conference at Altice Arena. 70,000+ attendees. The single biggest hotel-pressure week of the Lisbon year by some margin. If you are not attending, do not visit that week |
+| **Lisbon Marathon** | Mid-October | Road closures along the riverfront and through Belém. The smaller half-marathon runs in March |
+
+The two trip-shaping events are Santo António in mid-June (the reason to plan a Lisbon trip around mid-June) and Web Summit in mid-November (the reason to avoid mid-November unless you are attending). Both are heavy on hotel inventory and need at least a month's lead time on bookings.
+
+If sardines and city festival are the trip, pair Lisbon with Porto for São João on the night of June 23, which is the slightly wilder northern version of the same kind of evening.
 
 ## Where to stay
 

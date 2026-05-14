@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The famous sights, and how to book them](#the-famous-sights-and-how-to-book-them)
 * [Where to eat](#where-to-eat)
@@ -47,6 +48,23 @@ Vienna Vienna International (VIE) sits about 18 km southeast of the center. The 
 | S-Bahn S7 | 25 min | €4.30 single | The cheaper option. Stops at Wien Mitte and continues to Praterstern and Floridsdorf. Same line, slower, costs a third of the CAT |
 | Uber / Bolt / FreeNow | 25 to 45 min | €40 to €55 to the center | Late arrival or heavy luggage. Works as well as taxi at a slightly lower price |
 | Taxi from the rank | 25 to 45 min | €45 to €60 metered | Reliable but pricier than rideshare. The rank cars run a real meter |
+
+## Festivals and big annual events
+
+Vienna runs two distinct festival seasons most travelers do not connect to the city's brand: the winter ball season (which is the actual reason much of Austrian high society uses Vienna in January and February) and the long summer of free outdoor concerts and film. Plus the Christmas markets, which are the headline window most Americans know about.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Ball season (Ballsaison)** | New Year's Eve to Shrove Tuesday (early to late February), more than 450 balls across about six weeks | The actual reason Vienna fills in January and February. The big ones: the Opera Ball (Opernball) on the Thursday before Ash Wednesday at the Staatsoper, the Imperial Ball (Kaiserball) at the Hofburg on New Year's Eve, the Vienna Philharmonic Ball at the Musikverein in late January, the Coffeehouse Owners' Ball (Kaffeesiederball) in February. Black tie or white tie, dress code is strictly enforced, tickets run from €150 for entry to €1,000+ for table seating. The smaller professional and student balls are cheaper and friendlier. Worth planning a trip around if a ball is the trip |
+| **Vienna Festival (Wiener Festwochen)** | Mid-May to mid-June, around five weeks | The city's big theater, music, and performance festival. Multiple venues across town. The opening night at Rathausplatz is free and is the easier way in if you are not booking specific shows |
+| **New Year's Concert (Neujahrskonzert)** | January 1, 11:15 | The Vienna Philharmonic's televised concert at the Musikverein, broadcast to 90 countries. Tickets are distributed by lottery the year before. Standing tickets occasionally come up. Most travelers in town that morning watch it on TV at a coffeehouse |
+| **Christmas markets (Christkindlmarkt)** | Mid-November to December 26 | About 20 markets across the city. The Rathaus market is the biggest and most touristy. Schönbrunn, Belvedere, and Karlsplatz are the next-most-photographed. The Spittelberg market (a tiny pedestrian neighborhood near MuseumsQuartier) is the most atmospheric. Worth picking three rather than trying for all of them |
+| **Vienna Pride (Regenbogenparade)** | A Saturday in mid-June | The parade along the Ringstrasse. About 300,000 attendees. Smaller hotel impact than Berlin or Madrid Pride |
+| **Donauinselfest** | Late June, three days | One of Europe's biggest free open-air music festivals, on the Danube Island. Around three million attendees across the weekend (no ticket required). The U1 metro to Donauinsel is the way |
+| **Vienna Marathon** | Late April | Road closures along the Ringstrasse and the Prater. The expo at the Messe the days before |
+| **Schubert and Mozart anniversary years** | Variable | The city does serious programming for round-number anniversary years (e.g., Mozart 250th in 2006, Schubert 200th cycle around 2028). Worth checking if a composer's anniversary falls in the year you are planning |
+
+The trip-shaping windows are the ball season (if a ball is the trip), the Christmas market window (if the markets are the trip), and the Vienna Festival in late May and early June. Donauinselfest is the unusual one: free, enormous, and very local.
 
 ## Where to stay
 

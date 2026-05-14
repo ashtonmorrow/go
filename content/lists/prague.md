@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 * [Common scams to know going in](#common-scams-to-know-going-in)
@@ -47,6 +48,23 @@ Prague Václav Havel Airport Prague (PRG) sits about 17 km west of the center. T
 | Airport Express (AE) bus | 35 to 40 min | 100 CZK | Direct to Praha hlavní nádraží (main train station) with luggage racks. Useful if you are arriving with bags or continuing on the train |
 | Uber / Bolt / Liftago | 25 to 45 min | 350 to 650 CZK | The right call with luggage or after a late arrival. Liftago is the Czech rideshare. Bolt and Uber both work too |
 | Taxi from the rank | 25 to 45 min | 600 to 900 CZK | Last resort. Use the Fix Taxi or AAA Taxi counters inside arrivals to avoid the worse street rates |
+
+## Festivals and big annual events
+
+Prague's calendar runs on a small set of headline windows that fill the city, plus a quieter year-round programming layer that does not move hotel prices. The Christmas markets and the spring music festival are the trip-shapers.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Christmas markets (Vánoční trhy)** | Late November to January 6 | The Old Town Square and Wenceslas Square markets are the two big ones. Mulled wine (svařák), trdelník (the chimney cake that is not technically Czech but is sold to every visitor), grilled klobása, hand-blown glass and wooden toys. The most-visited Prague window of the year. Hotels in Staré Město book heavily |
+| **Prague Spring (Pražské jaro) music festival** | Mid-May to early June, three weeks | The international classical-music festival, one of the most important in Europe. The opening concert is Smetana's *Má vlast* on May 12 (the anniversary of Smetana's death) at the Obecní dům. The Rudolfinum, Smetana Hall, and Dvořák Hall host the rest. Tickets sell out for the headline concerts. Smaller hotel-pressure impact because the audience is older and more European than the Christmas-market crowd |
+| **Easter markets (Velikonoční trhy)** | Two weeks before Easter to the week after | The smaller spring equivalent of the Christmas markets, at the same Old Town and Wenceslas Square locations. Painted eggs, pomlázka (the willow whips used in the Easter Monday tradition), spring food. Smaller hotel impact but a real reason to be in town if Easter falls in your travel window |
+| **Signal Festival** | Mid-October, four days | The Prague light festival. Free large-format light installations across the historic center. Around half a million attendees. Hotels in the center fill on the festival weekend |
+| **Bohemia JazzFest** | Mid-July | Free open-air jazz concerts at Old Town Square, plus other Czech cities. Smaller hotel impact, but a reason to spend an evening in the square |
+| **Prague Pride** | Mid-August, around a week | The parade through the center. Smaller than Madrid or Berlin Pride but the biggest LGBTQ event in the Czech Republic |
+| **Prague Marathon** | Early May | Road closures across the Old Town and along the Vltava |
+| **Czech Independence Day** | October 28 | National holiday. Many museums open free. Civic ceremonies at Wenceslas Square |
+
+The two trip-shaping events are the Christmas markets (the busy window to either book early for or push around) and Prague Spring in May (the right window if classical music is the trip). Easter markets are the underrated alternative to the Christmas window if the spring weather appeals.
 
 ## Where to stay
 

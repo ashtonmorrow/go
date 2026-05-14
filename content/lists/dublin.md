@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,23 @@ Dublin Dublin Airport (DUB) sits about 10 km north of the center. The Airlink Ex
 | Aircoach | 25 to 35 min | €10 single | Alternative private operator. Serves a wider set of city-center stops including Ballsbridge and Donnybrook |
 | Uber / FreeNow / taxi | 20 to 40 min | €30 to €50 | Late arrival or heavy luggage. Dublin taxi market is well-regulated and the meter runs on the regulated rate |
 | Local Dublin Bus 16 / 41 / 102 | 40 to 60 min | €2 single | The cheapest path. Slower and with limited luggage space, useful only if you are traveling very light |
+
+## Festivals and big annual events
+
+Dublin's calendar runs on one global headline (St Patrick's Day) and a handful of literary, music, and sport events that fill specific weekends. The hotel inventory is small relative to the demand on the big weekends, so every event below moves prices noticeably.
+
+| Event | When | What it changes |
+|---|---|---|
+| **St Patrick's Day** | March 17, with the parade and festival running the four days around it | The biggest day of the Irish year and the biggest Dublin tourism weekend by some margin. Hotels triple or quadruple in price, often book out months ahead. The parade runs through the center mid-morning. Temple Bar and the south Quays are unwalkable from late morning onward. Either commit fully (book the hotel six months out, queue with the crowds, embrace it) or push the trip a week in either direction |
+| **Bloomsday** | June 16 | The literary festival around Joyce's *Ulysses*, which takes place on June 16, 1904. Readings, period dress, walking tours retracing Bloom's day across the city, breakfast events serving fried kidneys. Niche but committed: the Joyceans book the city. The James Joyce Centre on North Great George's Street is the anchor venue |
+| **TradFest** | Late January, around six days | The traditional Irish music festival across pubs and venues mostly on the north side. The single best week of the year for live traditional music in Dublin. Smaller hotel impact than St Patrick's, but the better trip if music is the reason for the visit |
+| **Six Nations rugby weekends** | February and March, three home weekends in Dublin | Aviva Stadium hosts three home matches in the championship. Match weekends fill the south-side hotels and pubs, especially around Lansdowne Road and the south Quays. Worth knowing about as a hotel-pressure window even if you are not a rugby fan |
+| **Dublin Theatre Festival** | Late September to mid-October, two weeks | The international theater festival across the Gate, the Abbey, the Smock Alley, and dozens of smaller venues. Smaller hotel impact, bigger restaurant impact: the dinner reservations near the theaters get tight |
+| **Culture Night** | A Friday in mid-September | A free city-wide opening of museums, galleries, and cultural venues into the evening. Local-first, not heavy on visitors. A good reason to plan an evening around |
+| **Dublin Marathon** | Late October bank-holiday Monday | Road closures across the city. The expo at the RDS the days before |
+| **Christmas Market** | Late November to late December | Smaller than the German equivalents. A reason to visit Dublin if you are already on a Britain or Ireland trip, not a reason to book Dublin in December over Nuremberg or Bath |
+
+St Patrick's Day is the trip-shaping one and the one to either book early for or avoid. The better local-feel weekend most Americans never hear about is TradFest in late January.
 
 ## Where to stay
 
