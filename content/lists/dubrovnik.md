@@ -26,6 +26,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -39,6 +40,23 @@ Dubrovnik Dubrovnik Airport (DBV) sits about 20 km southeast of the Old Town. Th
 | Uber / Bolt | 25 to 40 min | €30 to €50 | Late arrival or hotel outside the Old Town. Both apps work cleanly in Dubrovnik |
 | Taxi from the rank | 25 to 40 min | €40 to €55 metered | Reliable but pricier than rideshare. The meter runs on regulated rates |
 | Public bus 38 | 50 to 60 min | ~€1.50 single | The cheapest path. The local Libertas bus, slower with luggage, runs every 30 to 60 minutes |
+
+## Festivals and big annual events
+
+Dubrovnik's calendar is dominated by the Summer Festival, one of the oldest continuous arts festivals in Europe. The cruise-ship density also follows a calendar that affects every visit, even outside the official festival window.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Dubrovnik Summer Festival (Dubrovačke ljetne igre)** | July 10 to August 25, 45 days | One of the oldest cultural festivals in the world (since 1950, with classical roots going back centuries). Theater, opera, music, dance, and ballet performed at open-air venues across the Old Town: Lovrijenac Fortress, the Rector's Palace courtyard, St Blaise Church, the Pile Gate forecourt. The opening ceremony on July 10 (the city's patron-saint flag is raised, fireworks, classical concert) is the photo. Hotels in the Old Town and the Lapad bay fill, prices spike |
+| **Feast of St Blaise (Festa svetoga Vlaha)** | February 3 | The city's patron-saint day and the older anchor of the local calendar (UNESCO intangible heritage). Processions of relics through the Old Town, white doves released at Stradun, locals in folk dress. Smaller hotel impact than the summer festival because it falls in low season, but the most local-feeling single day of the year |
+| **Game of Thrones tourism wave** | Year-round, peaks April to October | Not a festival, but a calendar feature. Filming ran 2011 to 2019 (Dubrovnik played King's Landing) and the tourism pull has not faded. Walking-tour density spikes on cruise days. The Old Town is unwalkable from 10 a.m. to 3 p.m. on heavy cruise days. Plan around it: walk the walls before 9 a.m. or after 5 p.m., the visit shifts dramatically |
+| **Day of Defenders of Dubrovnik** | December 6 | The commemoration of the December 6, 1991 Serbian-Montenegrin bombardment during the Croatian War. Civic ceremonies, the Memorial Room at the Sponza Palace is the year-round museum on this history |
+| **Carnival (Maškare)** | The week before Lent (February or March) | Smaller and more local than the better-known Croatian carnivals. The Stradun fills with costumed locals on the Saturday and Tuesday before Lent. Free, photogenic, low-season weekend |
+| **Cake & Bake Festival** | A weekend in late April | The dessert-and-baking festival on Stradun. Free, small-scale, real reason to be in town for a spring weekend |
+| **Dubrovnik Wine Festival** | A weekend in early May | Croatian wine producers on Stradun. Smaller hotel pressure, a reasonable shoulder-season reason |
+| **Christmas in Dubrovnik (Dubrovnik Winter Festival)** | Early December to early January | Stradun fills with wooden chalets, lights, the Christmas tree at Sponza, ice rink. Quieter and more atmospheric than the German equivalents because the cruise ships are gone and the Old Town breathes |
+
+The trip-shaping window is the Summer Festival from July 10 to August 25 (book hotels by spring if you want to be in the Old Town that summer). The Feast of St Blaise on February 3 is the genuine local single-day event that almost no international travelers know about, and it falls in the cheapest hotel window of the year. The cruise calendar is the daily-rhythm reality of every other day of the year.
 
 ## Where to stay
 

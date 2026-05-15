@@ -103,6 +103,7 @@ Two-night minimum if you base here. The hotel rates beat anything central in Bar
 ## On this page
 
 * [Getting there](#getting-there)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The beaches: south for the family side, north for the rest](#the-beaches-south-for-the-family-side-north-for-the-rest)
 * [Where to eat and drink](#where-to-eat-and-drink)
@@ -117,6 +118,22 @@ Two-night minimum if you base here. The hotel rates beat anything central in Bar
 | Barcelona city center | Taxi / Cabify | ~40 to 50 minutes | More than the train, depending on traffic | Use it for a tight wedding schedule, a lot of luggage, or late at night after the R2 frequency thins out |
 
 The Sitges station sits four or five minutes' walk from the seafront. The slope down toward the church gets you to the old town in under ten minutes. The walk back uphill with luggage is the harder direction.
+
+## Festivals and big annual events
+
+Sitges runs an unusually heavy festival calendar for a town its size, partly because it became one of the LGBT-friendly Mediterranean villages early and the cultural programming followed. Two of the events below are genuine international headliners.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Sitges Film Festival (Sitges Festival Internacional de Cinema Fantàstic)** | Early to mid-October, 10 days | One of the top three fantasy and horror film festivals in the world (with Toronto's TIFF Midnight Madness and Brussels). International premieres, the Méliès Award, midnight screenings. Hotels in Sitges fill weeks ahead, and the spillover books out hotels in central [Barcelona](/lists/barcelona) too. If horror cinema is the trip, plan early |
+| **Carnaval de Sitges** | The seven days before Ash Wednesday (February or early March) | One of the biggest carnivals in Spain and the most famous LGBT-friendly carnival in the country. Two parades (Sunday and Tuesday), elaborate costumes, drag culture, dancing in the streets until early morning. Hotels in Sitges triple, hotels in southern Barcelona fill the spillover |
+| **Corpus Christi flower carpets** | Mid-June, two days | The town's streets are covered in carpets of flower petals laid out in geometric patterns over the night before the procession. Free to walk through. A beautiful Sitges-only event most international travelers do not know about. Smaller hotel pressure than Carnival or the Film Festival but the most photogenic single weekend on the calendar |
+| **Festa Major de Sitges (Sant Bartomeu and Santa Tecla)** | Around August 23 to 24 (Sant Bartomeu) and September 23 to 24 (Santa Tecla) | The town's twin patron-saint festivals. Castellers (human towers), correfocs (fire-runners with sparks), gegants (giant figures), fireworks off the church bluff. Real local festivals, free, the Sitges side of the Catalan civic tradition |
+| **Bears Sitges Week** | Mid-September, a week | The major LGBT bears-community gathering in Europe. Hotels in the old town fill |
+| **Sitges Pride** | A weekend in June | Less famous than Madrid or Barcelona Pride but real, with Sitges being one of the more concentrated LGBT-friendly Mediterranean towns. Parade through the seafront |
+| **Sitges Vintage Car Rally** | A weekend in March | Pre-1924 cars parade from Barcelona to Sitges and back. Free to watch from the seafront. Smaller and quainter than the other events, real local Sitges curiosity |
+
+The two trip-shaping events are the Film Festival in October and Carnaval in February. If either is the reason for the trip, book three to six months ahead. Corpus Christi in mid-June is the underrated photogenic weekend that fits naturally into a normal beach trip.
 
 ## Where to stay
 

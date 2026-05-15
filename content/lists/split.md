@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Diocletian's Palace](#diocletians-palace)
 * [Marjan Hill and the beaches](#marjan-hill-and-the-beaches)
@@ -63,6 +64,23 @@ Split Airport (SPU) sits 25 km north of the city. Three options into town.
 | Local taxi | €30 to €40 | 25 min | Avoid unmarked taxis. Use the official rank or app-book |
 
 By bus from Zagreb (5 hours), by train (slow, 6 hours and not as scenic as the bus), by Jadrolinija ferry from Italy (Ancona, 11 hours overnight). Split is also a major Mediterranean cruise stop, which explains the daytime crowd.
+
+## Festivals and big annual events
+
+Split's calendar is built around the summer season (May to September) when ferries run, restaurants open, and the festivals stack. Ultra Europe is the global headline. The Split Summer Festival is the older cultural anchor.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Ultra Europe** | Mid-July, three days plus a closing week | One of the biggest electronic dance music festivals in the world. Around 150,000 attendees across the main three days at Poljud Stadium, plus a Destination Week with parties on Hvar, Brač, and Vis. Hotels in Split triple in price for the week, book by the previous September. The Adriatic coast version of Tomorrowland |
+| **Split Summer Festival (Splitsko ljeto)** | Mid-July to mid-August, five weeks | The classical music, theater, opera, and dance festival inside Diocletian's Palace. The Peristyle square hosts the open-air concerts and operas. Tickets sell out for headline nights, hotels stay reasonable except during Ultra week |
+| **Days of Diocletian (Dani Dioklecijana)** | Late August, three days | The historic re-enactment festival. Locals dress as Roman soldiers and citizens, the emperor returns to the palace, traditional food and entertainment in the squares. Free, photogenic, the most family-friendly weekend on the local calendar |
+| **St Domnius (Sveti Duje)** | May 7 | The city's patron-saint feast day. Public holiday in Split only. Procession through the historic center, fireworks at the Riva, food stalls. A reasonable shoulder-season weekend to be in town |
+| **Mediterranean Film Festival** | A week in early June | The international film festival. Multiple central venues. Smaller hotel pressure, real cultural reason to be in town in June |
+| **Sudamerica Festival** | A weekend in early July | Latin and reggaeton music festival on the beaches at Žnjan. Smaller than Ultra but real |
+| **Christmas market (Advent in Split)** | Late November to early January | Compact and small, on the Riva and inside the palace. Worth a visit if you happen to be in Split in December, not the booking reason |
+| **Carnival** | Around the week before Lent (February or March) | A traditional masked carnival of Riva. Quieter than Venice or Sitges, real local celebration. Smaller hotel impact because it falls outside the summer season |
+
+The trip-shaping event is Ultra Europe in mid-July (book by autumn the year before if Ultra is the trip, push the dates a week if it is not). The Split Summer Festival is the underrated reason to be in Split in late July or August despite the heat: live opera inside Diocletian's Palace is one of the better summer-evening experiences on the Adriatic.
 
 ## Where to stay
 

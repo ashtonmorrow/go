@@ -26,6 +26,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -39,6 +40,26 @@ São Paulo São Paulo / Guarulhos International (the international gateway. CGH 
 | Uber / 99 | 45 to 90 min | BRL 80 to 150 | The standard with luggage. 99 is the local rideshare. Both work equivalently |
 | Metro CPTM Linha 13 Jade | 60 to 90 min | BRL 5 + connections | The cheapest path. Connects GRU to the metro network via Aeroporto-Guarulhos station. Slow with luggage |
 | Pre-booked transfer | 45 to 90 min | BRL 200 to 350 | Late arrival. Driver waits with a name board. Worth it for a tired first night |
+
+## Festivals and big annual events
+
+São Paulo runs the largest single Pride parade in the world plus a calendar of music, fashion, and business events that fill specific weeks. The city does not have the international postcard recognition of Rio Carnival, but it is the bigger and more international festival city by most internal Brazilian measures.
+
+| Event | When | What it changes |
+|---|---|---|
+| **São Paulo Pride Parade (Parada do Orgulho LGBT)** | A Sunday in early to mid-June | The largest Pride parade in the world by attendance. Around three to five million along Avenida Paulista. Hotels along Paulista, in Jardins, and in Vila Madalena book early. The single biggest tourism event of the São Paulo year |
+| **Carnaval** | The five days before Ash Wednesday (February or early March) | São Paulo's Carnival is the underrated second-biggest in Brazil (after Rio) and has been growing fast since the 2010s. The Sambódromo at Anhembi runs the parade competition over two nights, with the smaller blocos (street parties) running across the city during the day. Around 15 million people in attendance across the week. Hotels triple in price, book six months ahead |
+| **São Paulo Fashion Week** | Twice a year, late April or May (autumn/winter) and early November (spring/summer) | The biggest fashion event in Latin America. Held at the Bienal Pavilion in Ibirapuera Park or other venues. The press, trade, and fashion-tourism crowd books central hotels |
+| **Lollapalooza Brasil** | A weekend in late March, three days | Held at Autódromo de Interlagos. Around 100,000 a day. Hotels in the city center fill, with the spillover near the venue south of the city |
+| **Virada Cultural** | A weekend in late May | The 24-hour citywide cultural festival, with free music, theater, dance, and visual art at hundreds of venues across the city. Around four million attendees across the day. Smaller hotel impact, real reason to be in town that weekend |
+| **Bienal de São Paulo** | Even-numbered years, September to December | The second-oldest art biennial in the world (after Venice). Free entry, at the Bienal Pavilion in Ibirapuera Park. Smaller hotel pressure because it runs for three months |
+| **Festival do Rio (Festival Internacional de Cinema)** | Late October to early November, two weeks | The biggest Latin American film festival. Multiple venues. Smaller hotel impact |
+| **Brazilian Grand Prix (F1)** | Late October or early November, race weekend | The race at Autódromo de Interlagos. Hotels in the city fill across the weekend |
+| **Festa Italiana** | A weekend in August | Held in the Mooca neighborhood, the historic Italian-Brazilian quarter. Free street food festival, fairly small-scale, real local reason to be in Mooca |
+| **Feira da Liberdade (Japanese street fair)** | Every Saturday and Sunday | Held in Liberdade, the historic Japanese quarter (the largest Japanese diaspora outside Japan). Year-round, free, the casual evening agenda for any São Paulo Saturday |
+| **Anniversary of São Paulo** | January 25 | The city's founding date. Civic ceremonies, free concerts on Avenida Paulista. Smaller hotel impact |
+
+The trip-shaping windows are Pride in early June (book a hotel three months ahead), Carnaval in February (the same), and the F1 weekend in late October or November. The Virada Cultural is the underrated free citywide weekend most international travelers do not know to look for.
 
 ## Where to stay
 

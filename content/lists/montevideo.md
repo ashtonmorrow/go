@@ -46,6 +46,7 @@ related:
 
 * [Getting in from Buenos Aires](#getting-in-from-buenos-aires)
 * [If you flew in instead](#if-you-flew-in-instead)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Mercado del Puerto and the asado](#mercado-del-puerto-and-the-asado)
 * [The beaches and the Rambla](#the-beaches-and-the-rambla)
@@ -66,6 +67,24 @@ The terminal in Montevideo sits next to Ciudad Vieja and across the street from 
 ## If you flew in instead
 
 [Carrasco International Airport](/pins/carrasco-international-airport-mvd) sits about 40 minutes outside the city. Uber works at MVD on paper, but the driver count is thin and most pickups take 15 to 20 minutes. The official airport taxis are clean and pleasant (often a Mercedes E-Class wagon for around $50 to $60 to the center), and that is the option I would default to with bags.
+
+## Festivals and big annual events
+
+Montevideo's headline event is the longest carnival in the world (around 40 days, beginning in late January). Plus a quieter year-round calendar of music, theater, and Uruguayan civic holidays.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Carnaval de Montevideo** | Late January to early March, around 40 days | The longest carnival in the world by duration. Two parallel traditions: Las Llamadas (the Afro-Uruguayan candombe drum parade through the Sur and Palermo neighborhoods on two Friday nights in early February) and the Murga competition (satirical singing groups performing at neighborhood tablados across the city through six weeks). Less single-night spectacle than Rio, more sustained cultural presence. Hotels in Pocitos and Ciudad Vieja fill across the run, especially the Llamadas nights |
+| **Llamadas (Candombe parade)** | Two consecutive Fridays in early February | The headline two nights of Carnaval. The candombe drum tradition (the Afro-Uruguayan drumming style UNESCO-listed in 2009) takes over the Sur and Palermo neighborhood streets. Free to watch from the curb. Hotels in those neighborhoods fill |
+| **Día del Patrimonio (Heritage Day)** | The first weekend of October | The national heritage weekend. Hundreds of historic buildings, embassies, government offices, and private residences across the city open free to the public. One of the best single weekends to visit Montevideo. Smaller hotel pressure than Carnaval |
+| **Independencia (Uruguayan Independence)** | August 25 | National holiday. Civic ceremonies at Plaza Independencia. Quieter than the Argentine version of the same kind of day |
+| **Día de los Trabajadores** | May 1 | Worker's Day. Civic march along 18 de Julio. Most shops and restaurants closed |
+| **Christmas and New Year (Montevideo)** | December 24 to January 5 | The biggest domestic-tourism window in Uruguay. Hotels in Montevideo are at peak prices, though much of the Argentine and Brazilian holiday crowd skips the city for Punta del Este two hours east |
+| **La Pedrera New Year** | December 31 to January 2 | Not in Montevideo itself, but the small town of La Pedrera (3 hours east on the Atlantic coast, near Cabo Polonio) is one of the most popular South American New Year's destinations for young Argentines and Uruguayans. Worth flagging for anyone planning a Uruguayan New Year |
+| **Montevideo Marathon** | Mid-May | Road closures along the Rambla |
+| **Festival Internacional de Cine** | Late March or April, around 10 days | The Uruguayan international film festival. Multiple central venues. Smaller hotel impact |
+
+The trip-shaping window is Carnaval, especially the Llamadas nights. The Día del Patrimonio in early October is the underrated weekend most international travelers do not know about, with free access to buildings normally closed to visitors.
 
 ## Where to stay
 

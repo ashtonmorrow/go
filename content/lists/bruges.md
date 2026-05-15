@@ -46,6 +46,7 @@ related:
 
 * [Day trip or overnight?](#day-trip-or-overnight)
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [The walking circuit](#the-walking-circuit)
 * [Where to eat and drink](#where-to-eat-and-drink)
 * [The brewery and the chocolate stops](#the-brewery-and-the-chocolate-stops)
@@ -71,6 +72,23 @@ Bruges does not have its own commercial airport. Almost every visitor arrives by
 **Weekendticket** halves the fare on Saturday and Sunday return-trip travel, which is worth knowing if you are day-tripping from Brussels. Buy at the station ticket window or the SNCB app.
 
 From Bruges train station, the historic center is a 10-minute flat walk or a short ride on De Lijn (the Flemish regional bus and tram network) lines 1, 4, or 5. Walking is easier. The streets between the station and the Markt are flat and well signed, and the De Lijn ride is only worth the bother if you have heavy luggage.
+
+## Festivals and big annual events
+
+Bruges runs a handful of events that fill the small medieval center, plus one weekend each year (the Procession of the Holy Blood) that is one of the older continuous religious processions in Europe.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Procession of the Holy Blood (Heilig Bloedprocessie)** | Ascension Day (Thursday, 40 days after Easter) | The annual procession of the Relic of the Holy Blood, dating back to 1304. Costumed actors stage biblical scenes through the historic center, ending at the Basilica of the Holy Blood on the Burg. UNESCO-listed intangible cultural heritage. Free to watch, the most photogenic single day on the Bruges calendar. Hotels in the center fill |
+| **Bruges Triennial (Triënnale Brugge)** | Every three years, summer through September | The contemporary art and architecture triennial across the historic center and the surrounding water. Large-scale installations placed inside and along the canals. Free to walk through. The 2024 edition ran. The 2027 edition is the next |
+| **Snow & Ice Sculpture Festival** | Late November to early January | Held inside a refrigerated tent next to the Bruges train station. Hand-carved snow and ice sculptures on a themed program each year. A reasonable winter add-on but not the trip-shaper of the Christmas markets |
+| **Bruges Christmas market (Wintergloed)** | Late November to early January | The Markt and Simon Stevinplein host wooden chalets and an ice rink. Smaller and more compact than the German equivalents. Worth a visit if you are in town, not the booking reason. If Christmas markets are the trip, [Nuremberg](/cities/nuremberg) is the right answer |
+| **Bruges Beer Festival** | A weekend in early February | The Belgian Beer Festival at the Beurshalle. Around 80 brewers, 400 beers. Smaller hotel pressure. Real reason to be in town if Belgian beer is the appeal |
+| **Cactus Festival** | Second weekend of July, three days | The open-air world-music festival at the Minnewaterpark. Around 20,000 across three days. Smaller and more curated than the big Flemish summer festivals |
+| **Reiefeest (Pageant of the Golden Tree)** | Every five years, late August | The historic pageant featuring 1,500 costumed locals re-enacting the 1468 wedding parade of Charles the Bold and Margaret of York along the canals. The 2024 edition ran. Worth knowing about for future years (2029) |
+| **Belgian National Day** | July 21 | Civic ceremonies and free concerts at the Markt. Smaller hotel impact than in Brussels |
+
+The trip-shaping event is the Holy Blood procession on Ascension Day. If a single Catholic-medieval pageant is something that pulls you, this is one of the better ones in Europe. The Bruges Triennial in 2027 is the underrated reason to consider summer Bruges for art-and-architecture travelers.
 
 ## The walking circuit
 
