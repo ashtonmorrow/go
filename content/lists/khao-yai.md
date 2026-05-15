@@ -67,6 +67,7 @@ related:
 ## On this page
 
 * [Getting there](#getting-there)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Inside the national park](#inside-the-national-park)
 * [The Khao Yai wineries](#the-khao-yai-wineries)
@@ -84,6 +85,22 @@ Three options, in order of practicality:
 | Self-drive rental from Bangkok | Same as hired driver | Rental + petrol + tolls | Only if you are comfortable on Thai roads. Inside the park the drive is straightforward |
 
 A driver pays off because Khao Yai is sprawling. The distances between Haew Narok, the visitor center, and the wineries are 20 to 40 minutes each. Without a car the day fragments into expensive piece-by-piece taxis.
+
+## Festivals and big annual events
+
+Khao Yai is more of a getaway than a festival destination. A few local events fill specific weekends, plus the Christmas-NYE wine-country peak when Bangkokians drive up for the cooler evenings.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Khao Yai Music Festival** | Variable, usually a weekend in February | Open-air music festival at one of the wineries or resorts. Smaller scale, real reason to be in the area for the weekend |
+| **Wonderfruit Festival** | A weekend in mid-December, four days | Not in Khao Yai but at The Fields at Siam Country Club near [Pattaya](/lists/pattaya), the music-and-art festival has a Khao-Yai-adjacent feel. Worth flagging because the wine-country crowd overlaps |
+| **Songkran** | April 13 to 15 | The Thai new year water-throwing. Less intense in Khao Yai than in Bangkok or Chiang Mai. Hotels fill with Bangkokians escaping the heat |
+| **Loy Krathong** | Full moon of the 12th lunar month, usually early to mid-November | Krathongs floated on the resort ponds and local rivers. Quieter than the city versions |
+| **Khao Yai Grape Harvest Festival** | February (the Thai grape harvest), at the wineries | PB Valley and GranMonte run their own harvest events. Smaller scale, the right reason to time a winery visit around February |
+| **Christmas and New Year (peak)** | December 20 to January 5 | The biggest hotel pressure of the Khao Yai year. Bangkokians drive up for the cooler evenings. Resort prices double. NYE bonfire-and-fireworks events at most properties |
+| **Long weekend Thai holidays** | Multiple windows year-round | Khao Yai fills any Thai long-weekend (King's Birthday, Mother's Day, Coronation Day). Plan around them or accept the resort-pricing premium |
+
+The trip-shaping window is the Christmas-NYE peak. If you want the cool-evening side of Khao Yai without the resort markup, target a normal weekday in January or February.
 
 ## Where to stay
 

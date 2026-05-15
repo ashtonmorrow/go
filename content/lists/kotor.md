@@ -119,6 +119,7 @@ Kotor is two things: the **Bay of Kotor** (the long Adriatic inlet often called 
 ## On this page
 
 * [A short history of the bay and the town](#a-short-history-of-the-bay-and-the-town)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay around the bay](#where-to-stay-around-the-bay)
 * [Getting to old Kotor for the day](#getting-to-old-kotor-for-the-day)
 * [The walls and St John Fortress](#the-walls-and-st-john-fortress)
@@ -134,6 +135,24 @@ The Bay of Kotor cuts about 28 kilometers inland from the Adriatic, with a narro
 The fortifications climb the mountain behind the town. The lower walls and the sea gate are the workable medieval base. The long switchback up to **St John Fortress** (Sveti Ivan) at 1,200 feet above the town is the famous photographable line. The town has been hit by major earthquakes (1563, 1667, and the 1979 quake that prompted the UNESCO designation in the first place) and rebuilt each time on the same footprint, which is why the old town reads coherent rather than layered.
 
 A handful of churches anchor the lanes. **St Tryphon's Cathedral** (Sveti Tripun, consecrated 1166) is the Catholic cathedral on the southern side of the town and the oldest substantial church in the old town. **St Luke's** (Sveti Luka, 1195) is the small Romanesque church near the center, unusual for having Catholic and Orthodox altars side by side after the city's confessional split. **St Nicholas** (1909) is the Serbian Orthodox church with the two domes near the northern wall. **St Mary's Collegiate** (Sveti Marija Koleđata, 1221) is the third small medieval one. None takes more than ten minutes inside. The value is the cluster.
+
+## Festivals and big annual events
+
+Kotor's calendar runs on Orthodox feast days plus a few summer events that fill the old town. The cruise-ship calendar matters more for most travelers than any festival.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Kotor Carnival (Winter)** | February | The traditional Venetian-era Carnival, masked processions through the old town on the weekend before Lent. Free, photogenic, in the cheapest hotel month of the year |
+| **Boka Night (Bokeljska Noć)** | A Saturday in mid-August | The single biggest local event of the Kotor year. Decorated boats fill the bay at sunset, fireworks at midnight, traditional Bokelj music and food in the squares of the old town. Around 50,000 attendees. Hotels along the bay fill |
+| **Summer Carnival** | August | The summer version of the Carnival, run for the visitor season. Smaller and more visitor-facing than the Winter Carnival |
+| **KotorArt Festival** | July and August, six weeks | The town's main arts festival: open-air theater and music inside the old town, often at the Church of St Tryphon courtyard. Smaller hotel pressure but the right reason to be in Kotor for a longer summer stay |
+| **St Tryphon Day (Sveti Tripun)** | February 3 | The patron saint of Kotor. Religious procession through the old town with the relic of St Tryphon. Free, photogenic, falls in the quietest hotel month |
+| **Don Branko's Music Days** | July or August | The classical-music festival at the Kotor Cathedral and other historic venues. Smaller scale, real cultural reason |
+| **Montenegrin Statehood Day** | July 13 | National holiday. Civic events in Cetinje (the historic capital, 45 minutes from Kotor) |
+| **Camellia Days** | A weekend in March | Traditional festival celebrating the camellia flower (the bay has a long camellia-growing history). Small-scale, sweet local event |
+| **Christmas (Catholic) and Orthodox Christmas** | December 25 and January 7 | Kotor has both Catholic and Orthodox traditions. Catholic Christmas (December 25) is observed by part of the population. Orthodox Christmas (January 7) is the bigger national day in Montenegro. Restaurants stay open for both |
+
+The trip-shaping event is Boka Night in mid-August. The Winter Carnival in February and St Tryphon Day on February 3 are the underrated low-season reasons to consider a quiet Kotor trip without the cruise-day density.
 
 ## Where to stay around the bay
 

@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -45,6 +46,27 @@ Belgrade Nikola Tesla Airport (BEG) sits about 18 km west of the center. The A1 
 | Bus 72 | 40 to 50 min | 150 RSD single | The cheapest option. Runs to Zeleni Venac near the city center. Slower and more crowded |
 | CarGo / Yandex | 25 to 45 min | 1,500 to 2,500 RSD | CarGo is the dominant Serbian rideshare. Yandex also works. Cheaper and more reliable than the curb taxis |
 | Taxi from the rank | 25 to 45 min | ~2,500 RSD flat rate via the airport counter | Book at the licensed taxi counter inside arrivals. Ignore the drivers who approach you in the hall, they are not the legal rank |
+
+## Festivals and big annual events
+
+Belgrade's calendar runs on Orthodox holidays plus a strong summer music-festival circuit. EXIT in Novi Sad (two hours north) is the regional headline, and Belgrade-specific events fill the rest of the year.
+
+| Event | When | What it changes |
+|---|---|---|
+| **EXIT Festival (Novi Sad)** | A weekend in early to mid-July, four days | Not in Belgrade but in Novi Sad (75 km north). One of the biggest music festivals in Europe, around 200,000 across the weekend, held inside the Petrovaradin Fortress. Hotels in Novi Sad book months ahead, Belgrade hotels fill on the same weekend as the spillover |
+| **Belgrade Beer Fest** | A week in mid-August | Free open-air beer festival at Ušće Park. Around 600,000 attendees across the week. Local and international acts on the main stage |
+| **Beer Days (Dani Piva)** | The August festival in Zaječar (3 hours east), pointer | Smaller-scale than Belgrade Beer Fest but a regional Serbian destination for beer travelers |
+| **Mikser Festival** | Variable, usually June | Creative-and-design festival at the Beton Hala riverfront. Smaller hotel pressure |
+| **Bemus (Belgrade Music Festivities)** | Two to three weeks in October | The classical-music festival, one of the older European festivals (since 1969). Multiple central venues |
+| **FEST (Belgrade International Film Festival)** | Late February to early March, two weeks | Multiple central venues. Smaller hotel pressure |
+| **Belgrade Marathon** | Mid-April | Road closures across the central boulevards. Hotel inventory tightens but does not spike |
+| **Orthodox Christmas** | January 7 | The biggest religious holiday on the Serbian calendar. National holiday. Many shops closed January 6 and 7 |
+| **Orthodox Easter (Vaskrs)** | Usually one to four weeks after Western Easter | Most Belgraders travel to family villages. Restaurants and shops close Good Friday and Easter Saturday. Hotels stay reasonable |
+| **Serbian Statehood Day (Sretenje)** | February 15 to 16 | National holiday. Civic ceremonies, religious services. Many shops closed |
+| **St Vitus Day (Vidovdan)** | June 28 | National-religious day commemorating the 1389 Battle of Kosovo. Civic events, religious services at Saborna Crkva |
+| **Belgrade Pride** | A Saturday in late August or September | The parade has been contested in recent years with hostile counter-protests. The Pride march itself runs as planned most years with heavy police presence. Verify status before assuming it runs |
+
+The trip-shaping window is EXIT in Novi Sad in early to mid-July (a hotel-pressure weekend in Belgrade as well as Novi Sad). Belgrade Beer Fest in mid-August is the underrated free week most international visitors do not know about.
 
 ## Where to eat
 

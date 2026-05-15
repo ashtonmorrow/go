@@ -26,6 +26,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -38,6 +39,25 @@ Hilton Head Savannah/Hilton Head International (SAV) is served by a small region
 | Hilton Head Airport (HHH) | On-island arrival | Limited flights from Atlanta, Charlotte, Washington Dulles | A direct option if you can find a route. Very limited schedules |
 | Lowcountry Adventures shuttle | 60 to 75 min | $60 to $100 per person | Pre-booked shuttle from SAV. Useful if you are not renting a car |
 | Uber / Lyft from SAV | 60 to 75 min | $120 to $180 | A late arrival. Pricier than the rental but works for a quick transfer |
+
+## Festivals and big annual events
+
+Hilton Head's calendar runs on the PGA Tour week in April, the wine festival in spring, and the standard US national holidays. The April golf week is the biggest hotel-pressure window of the year.
+
+| Event | When | What it changes |
+|---|---|---|
+| **RBC Heritage (PGA Tour)** | A week in mid-April | The PGA Tour signature event at the Harbour Town Golf Links in Sea Pines. Around 150,000 across the week. Hotels island-wide double or triple in price, book by January. The single biggest event of the Hilton Head year |
+| **Hilton Head Wine & Food Festival** | A week in mid-March | Wine tastings, chef events, the Public Tasting at Honey Horn. Smaller hotel pressure than the RBC but real |
+| **Hilton Head Concours d'Elegance & Motoring Festival** | A weekend in early November | The classic-car festival across multiple Sea Pines venues. Hotels in Sea Pines fill |
+| **Memorial Day Weekend** | Last Monday of May | Unofficial start of US summer. Hotels at peak summer prices, beaches busy |
+| **Independence Day** | July 4 | Free fireworks display over Shelter Cove and Skull Creek. Hotels at peak prices |
+| **Labor Day Weekend** | First Monday of September | Unofficial end of US summer. Hotels at peak prices |
+| **Spring break season** | March, peaks the third week | Family and college spring break weeks. Hotels along the south beach fill, prices spike |
+| **Savannah St Patrick's Day** | March 17 | Not in Hilton Head but in Savannah (an hour away). One of the largest St Patrick's parades in the US, second only to New York. Hotels in Savannah fill, Hilton Head feels the spillover |
+| **Christmas and New Year** | December 24 to January 2 | Slightly elevated prices, but the off-season for Hilton Head, so much quieter than the summer peaks |
+| **Gullah Geechee Heritage Days** | Variable, usually summer | Celebrations of the Gullah cultural heritage on the island, often centered on Mitchelville Freedom Park. The pre-Civil-War-and-Reconstruction-era African American community on Hilton Head has a serious cultural depth most visitors do not know about |
+
+The trip-shaping window is the RBC Heritage golf tournament in mid-April. If golf is the trip, book by January. If golf is not the trip, do not visit that week unless you enjoy paying triple. The Gullah Geechee heritage events are the underrated cultural depth most international visitors miss.
 
 ## Where to eat
 

@@ -31,6 +31,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -44,6 +45,24 @@ Panama City Tocumen International (PTY) sits about 25 km east of the city. Rides
 | Airport taxi | 30 to 60 min | $30 to $40 fixed-zone fare | Use the marked yellow taxis at the curb. The fare is set by zone. Pay at the desk inside arrivals or agree before pulling away |
 | Pre-booked transfer | 30 to 60 min | $45 to $70 | Late arrival. Driver waits with a name board |
 | Metrobus Corredor Sur | 60 to 90 min | $1.25 plus the Metro card | The cheapest path. Runs from PTY to Albrook station via the Corredor Sur highway. Slow with luggage |
+
+## Festivals and big annual events
+
+Panama's calendar runs on Carnival in late February (the country's biggest event), a long Catholic processional tradition, and the national holidays around Independence in November.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Carnaval de Panamá** | The four days before Ash Wednesday (February or early March) | The biggest national festival. The headline event is in Las Tablas (4 hours from Panama City) where the Calle Arriba and Calle Abajo neighborhoods compete on parades, costumes, and queens. Panama City's own Carnival is smaller but real: parades along the Cinta Costera, water-truck soakings, free outdoor music. Hotels in Panama City fill, prices spike |
+| **Independence Days (Fiestas Patrias)** | November 3 (independence from Colombia), November 5 (Colón Day), November 10 (Grito de la Villa), November 28 (independence from Spain) | A series of national-holiday days through November, with parades and civic ceremonies. November 3 is the biggest. The first week of November is essentially a national holiday week. Most government offices closed, hotels reasonable |
+| **Festival de la Mejorana** | A week in late September | The biggest folk-music festival in Panama, in Guararé (4 hours west). Traditional música típica, costumed dancing, the saloma cattle-driving songs. Worth flagging for trips with rental-car flexibility |
+| **Holy Week (Semana Santa)** | The week before Easter (March or April) | National holiday week, businesses close, locals travel to the beaches and the interior. Hotels in Panama City stay reasonable but Bocas del Toro, San Blas, and the Pacific beaches fill |
+| **Día de los Muertos** | November 2 | National holiday. Quieter than the Mexican version. Cemeteries fill with families |
+| **Festival Internacional de Jazz de Panamá** | A week in mid-January | The international jazz festival across multiple Casco Viejo venues. Smaller hotel pressure, real reason for jazz travelers |
+| **Festival Internacional de Cine de Panamá (IFF Panamá)** | A week in mid-April | The international film festival at Casco Viejo venues |
+| **Christmas and New Year** | December 24 to January 6 | Hotels at peak prices through the New Year window. NYE fireworks from the Cinta Costera |
+| **Diablos Limpios festival (Colón)** | Variable | Traditional Afro-Panamanian devil-mask festival on the Atlantic coast (Portobelo, Colón). Worth knowing about for a day trip if dates align |
+
+The trip-shaping window is Carnival in February. If big-spectacle Carnival is the trip, the Las Tablas version four hours from Panama City is the biggest, with the cheaper option being the Panama City urban version. Mejorana in September is the underrated folk-music festival most international visitors miss.
 
 ## Where to stay
 

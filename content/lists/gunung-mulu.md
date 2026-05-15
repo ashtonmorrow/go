@@ -46,6 +46,7 @@ related:
 
 * [Why it is worth the effort](#why-it-is-worth-the-effort)
 * [Getting there](#getting-there)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [What to book at the park](#what-to-book-at-the-park)
 * [The unguided walks](#the-unguided-walks)
@@ -70,6 +71,22 @@ The trip is also worth it for what it is not: a Marriott in a rainforest where b
 Round-trip pricing into Mulu is the same as one-way, so book in from one of the three and out to another. Kuching in, Kota Kinabalu out (or the reverse) is the cleanest pairing.
 
 From outside Malaysia, you connect via Kuala Lumpur or Singapore first. KL is the cheaper, easier hotel night if your layover is overnight. Singapore is faster gate-to-bed if your layover is short.
+
+## Festivals and big annual events
+
+Gunung Mulu is a national park, so the festival calendar is light. A few regional and indigenous events are worth knowing about for trip extensions or for the cultural side of a Sarawak visit.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Rainforest World Music Festival (Kuching)** | A weekend in late June or early July, three days | Not in Mulu itself but in Kuching (the Sarawak capital, 90 minutes by plane). One of the most respected world-music festivals in Southeast Asia, held at the Sarawak Cultural Village. A reason to extend a Mulu trip with a Kuching stop |
+| **Gawai Dayak (Harvest Festival)** | June 1 to 2 | The biggest indigenous Dayak festival in Sarawak. State public holiday. Most park staff travel home, so the park itself runs at reduced staffing. Longhouse visits across the region open up to visitors for the week |
+| **Hari Raya Aidilfitri (Eid al-Fitr)** | End of Ramadan, lunar calendar | National holiday. Many park staff travel home. Plan around it for tour bookings |
+| **Sarawak Independence Day** | July 22 | State public holiday. Smaller cultural impact at the park |
+| **Malaysia Day** | September 16 | National holiday commemorating Sarawak and Sabah joining the federation |
+| **Mooncake Festival (Chinese-Sarawakian)** | A day in September or October (Mid-Autumn Festival) | Smaller scale in the park, larger in Miri and Kuching where the Chinese-Malaysian community is concentrated |
+| **Borneo Jazz Festival (Miri)** | A weekend in mid-July | In Miri (one of the three Mulu hub airports). A reason to overnight in Miri before or after the park |
+
+The trip-shaping consideration is not a festival but the bat-flyout calendar at [Deer Cave](/pins/deer-cave), which runs nearly nightly weather-permitting. Heavy rain pushes the flyout earlier or cancels it. Plan three or four evenings in the park if seeing the flyout is the priority.
 
 ## Where to stay
 

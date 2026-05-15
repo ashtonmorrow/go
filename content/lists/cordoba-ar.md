@@ -91,6 +91,7 @@ related:
 ## On this page
 
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [The historic center on foot](#the-historic-center-on-foot)
 * [Where to eat](#where-to-eat)
 * [Drinks and supplies](#drinks-and-supplies)
@@ -109,6 +110,24 @@ The [Aeropuerto Internacional Córdoba (COR)](/pins/cordoba-airport-cor) sits ab
 | From Buenos Aires (domestic) | AEP–COR on Aerolíneas Argentinas, JetSmart, or Flybondi. ~1h 15m, multiple daily flights | Flybondi and JetSmart are cheap but cancellation-prone. Pay the difference for Aerolíneas if your timing is tight |
 
 A remise (private car) from COR to the center runs ~$15 to $20 USD equivalent and takes around 25 minutes. Cabify (the Spanish-Latin American rideshare alternative to Uber) and Uber also work.
+
+## Festivals and big annual events
+
+Córdoba runs on the Cosquín Folklore Festival in late January (the biggest folk music festival in Argentina, just 90 minutes north in Cosquín) plus Oktoberfest in Villa General Belgrano two hours south and the standard Argentine national calendar.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Festival Nacional de Folklore de Cosquín** | Late January, nine nights | The biggest folk music festival in Argentina. Held in Cosquín, 50 km north of Córdoba in the Sierras. Around 200,000 attendees across the nine nights. Hotels in Cosquín book a year ahead, Córdoba city hotels fill with the spillover crowd. The single biggest cultural event in the province |
+| **Oktoberfest Villa General Belgrano** | A weekend in early October | Argentina's biggest beer festival, held in the Bavarian-themed mountain town of Villa General Belgrano (two hours south of Córdoba). Hotels in the area book months ahead, Córdoba hotels fill on the same weekends |
+| **Carnaval** | The weekend before Lent (February or March) | Smaller than Buenos Aires or Brazilian versions but real. Murga troupes parade through neighborhoods, free outdoor music. Local-first |
+| **Fiesta del Día de la Tradición (Cosquín-related)** | November 10 | The traditional gaucho festival across Argentina, with the Cosquín version being one of the bigger ones |
+| **Independence Day (Día de la Independencia)** | July 9 | Argentine Independence Day. Civic parades. Many shops closed |
+| **May 25 (Revolution of May)** | May 25 | The other big national holiday. Civic events at the Plaza San Martín |
+| **Doctrina festival of Córdoba** | A weekend in September | Local university-and-culture festival, smaller scale |
+| **Festival de Peñas Cosquín** | Variable, surrounding the main Cosquín festival | The folk-music peña (informal jam-session) circuit that runs across the Cosquín nights |
+| **Christmas and New Year** | December 24 to January 2 | Standard Argentine pattern. Many shops closed Dec 25, most reopen Dec 27 |
+
+The trip-shaping window is the Cosquín Festival in late January. If folk music is the trip, plan a Córdoba base for the Cosquín nights, or push to the Sierras themselves. Oktoberfest Villa General Belgrano is the underrated Argentine-Bavarian curiosity that almost no international traveler knows about.
 
 ## The historic center on foot
 

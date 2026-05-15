@@ -31,6 +31,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -44,6 +45,25 @@ Tirana Tirana International Airport Nënë Tereza (TIA) sits about 17 km north-w
 | Uber-equivalent (Bolt is not yet active) | 25 to 40 min | €20 to €30 in a pre-booked car | Rideshare in Albania is light. Most "Uber" rides are actually pre-booked private cars. Have your hotel arrange in advance |
 | Airport taxi | 25 to 40 min | €20 to €25 fixed rate | The fixed-rate counter inside arrivals is the reliable option. Ignore drivers approaching you in the hall |
 | Hertz / private rental car | 25 min | From €20/day | If you are continuing to the coast (Saranda/Ksamil) or the mountains. Albanian roads are workable but speed limits are enforced patchily |
+
+## Festivals and big annual events
+
+Tirana's calendar is light by European-capital standards (a function of the post-isolation development curve), but a handful of events fill specific weekends. The Independence Day on November 28 is the year's biggest civic event.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Albanian Independence Day (Dita e Pavarësisë)** | November 28 | The biggest national holiday, commemorating the 1912 declaration of independence from the Ottoman Empire. Civic ceremonies at Skanderbeg Square, flag-raising, fireworks. November 29 is Liberation Day (1944 liberation from Nazi occupation), so the two days run as a national holiday weekend. Many shops closed |
+| **Tirana International Film Festival** | A week in mid-November | The Albanian international film festival. Multiple central venues. Smaller hotel pressure |
+| **Tirana Marathon** | A Sunday in October | Road closures across the central boulevards. Hotel inventory tightens but does not spike |
+| **Summer Day (Dita e Verës)** | March 14 | Pre-Christian Albanian celebration of spring, the older pagan-rooted holiday now recognized as a national one. Picnics in parks, traditional sweets (ballakume), free family events |
+| **Nowruz (Day of Sultan Nevruz)** | March 22 | Bektashi Muslim new year, observed by the Albanian Bektashi community (Albania has the world headquarters of the Bektashi order). Religious ceremonies at the World Bektashi Headquarters in Tirana |
+| **Bajram (Eid al-Fitr and Eid al-Adha)** | Lunar calendar, twice a year | Albanian Muslims celebrate the two Eids. National holidays. Family-time focused, not heavily public |
+| **Christmas (Catholic and Orthodox)** | December 25 and January 7 | Albania has Catholic, Orthodox, Sunni Muslim, and Bektashi populations sharing the holiday calendar. Both Christmas dates are national holidays |
+| **TID Tirana International Tattoo Festival** | A weekend in November | The annual tattoo convention, a fast-growing alternative event. Smaller hotel impact |
+| **Mother Teresa Day (Ditëlindja e Nënë Terezës)** | October 19 | Albanian national holiday celebrating the canonization of Mother Teresa (born in Skopje to Albanian parents). Civic ceremonies |
+| **Tirana e re Festival** | Variable, usually summer | The contemporary art and music festival across the new cultural venues (Reja pyramid, Bunk'Art, the National Theatre area). Worth checking for the current year |
+
+The trip-shaping window is the Independence Day weekend in late November. The Film Festival in mid-November is the underrated quieter alternative if you want a cultural Tirana trip without the civic-holiday crowds.
 
 ## Where to stay
 

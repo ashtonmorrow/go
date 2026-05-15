@@ -26,6 +26,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -39,6 +40,26 @@ Utrecht Amsterdam Schiphol (the international gateway. Utrecht has no major airp
 | NS Intercity from Amsterdam Centraal | 25 min | €8 to €9 on OVpay | Coming from an Amsterdam stay. The same train one stop down the line |
 | Eindhoven (EIN) via NS train | 70 to 90 min | €15 to €18 | If a low-cost carrier brought you to EIN. Bus 401 to Eindhoven Centraal then Intercity to Utrecht |
 | Brussels-Midi (Thalys via Amsterdam) | 160 min | €60 to €110 advance | From a London Eurostar via Brussels. One change at Amsterdam Centraal |
+
+## Festivals and big annual events
+
+Utrecht runs a small but real festival calendar, anchored by the Festival Oude Muziek (Festival of Early Music) and the casual energy of a Dutch university town. King's Day is the big national-civic event the same as the rest of the country.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Festival Oude Muziek (Festival of Early Music)** | Late August to early September, 10 days | One of the most important early-music festivals in the world. Multiple venues across the historic center (Domkerk, TivoliVredenburg, Hertz Hall). Smaller hotel pressure than the headline Dutch events but the right reason to be in Utrecht if pre-19th-century music is the trip |
+| **King's Day (Koningsdag)** | April 27 | The Dutch national holiday. Utrecht's version runs heavily on the canals and the city center. Smaller and more student-feeling than the Amsterdam version |
+| **Liberation Day (Bevrijdingsdag)** | May 5 | National holiday. Festivals and free concerts at Park Lepelenburg |
+| **Le Mini Who?** | A Saturday in early October | The free music festival across small venues in the city center. Around 50 emerging acts on small-bar stages. Smaller scale, real local-feel reason to be in town |
+| **Tweetakt** | A week in May | The youth-and-family theater and arts festival across multiple venues. Smaller hotel pressure |
+| **Utrecht Pride** | A Saturday in early June | The parade through the center. Smaller than Amsterdam or Rotterdam Pride |
+| **Smartlappenfestival** | A weekend in June | The traditional Dutch sing-along festival in the historic center. Free, local, the unusual specifically-Dutch experience |
+| **Cultural Sunday (Culturele Zondag)** | Multiple Sundays year-round, themed | Free citywide cultural programming on specific Sundays. The Utrecht version of an open-museums day |
+| **Utrecht Marathon** | A Sunday in early April | Road closures across the city center |
+| **Utrecht Christmas Market** | Mid-December | Small, compact, the Christmas market most international visitors do not know exists |
+| **Trajectum Lumen** | Year-round, evening light walk | Not a festival but worth flagging: a free year-round permanent light-installation trail through the historic center, lit at dusk |
+
+The trip-shaping window is the Festival Oude Muziek in late August. If early music is the trip, this is the one to book around. Otherwise the Utrecht calendar is light enough that almost any week works, which is part of the city's appeal.
 
 ## Where to stay
 

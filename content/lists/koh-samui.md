@@ -53,6 +53,7 @@ Koh Samui is the Thai island I would return to first when I want the trip to be 
 ## On this page
 
 * [Getting there](#getting-there)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Which beach to pick](#which-beach-to-pick)
 * [Getting around the island](#getting-around-the-island)
 * [Temples and culture, half-day](#temples-and-culture-half-day)
@@ -70,6 +71,23 @@ The airport in Samui is a small regional. No jet bridges (you ride a cart in), n
 | Long-haul → BKK → low-cost URT → ferry | Same plus ~4 hours | Cheaper on the regional leg | The ferry route can flip the savings if the wind is bad and they cancel |
 
 While you are in Bangkok, top up on anything you cannot live without. Samui has limited brand range. Specific Western things, craft beer selection, specialty hair products are all easier to find at MBK or one of the Siam malls.
+
+## Festivals and big annual events
+
+Koh Samui runs on the standard Thai festival calendar plus the Full Moon Party scene anchored on neighboring Koh Phangan, which most Samui visitors pair with at least once.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Full Moon Party (Koh Phangan)** | Every full moon, year-round, with peak attendance December to February | Not on Koh Samui itself but on Koh Phangan 30 minutes north by ferry. Around 5,000 to 30,000 attendees depending on the date. The Haad Rin beach party runs from sunset to sunrise. Hotels in Haad Rin book out, hotels on Koh Samui fill on the same dates as the spillover. Ferry runs through the night for the party. Worth knowing about as a hotel-pressure window even if you are not attending |
+| **Half Moon Festival (Koh Phangan)** | Every half moon, year-round | The mid-cycle version of the Full Moon Party, at Ban Tai. Smaller scale, less hotel pressure |
+| **Songkran** | April 13 to 15 | The Thai new year water-throwing. Chaweng beach and Lamai are the centers on Samui. Smaller than the Bangkok or Chiang Mai versions |
+| **Loy Krathong** | Full moon of the 12th lunar month, usually early to mid-November | The floating-lantern festival. Krathongs floated from every hotel beach |
+| **Samui Regatta** | Late May or early June, a week | The annual yacht regatta hosted out of Chaweng Beach. International sailing event. Hotels in Chaweng fill |
+| **Chinese New Year** | Late January or February | The Chinese-Thai community in Maenam runs lion dances and fireworks |
+| **Christmas and New Year peak** | December 20 to January 5 | The most expensive hotel window of the Samui year. NYE fireworks over Chaweng beach |
+| **Vegetarian Festival** | Nine days in late September or early October | Smaller than the [Phuket](/lists/phuket) version but real on Samui. Yellow flags on stalls, vegetarian-only food for the run |
+
+The trip-shaping consideration is the Full Moon Party on Koh Phangan. If you are visiting Samui during a full moon, the ferry routes and Phangan hotels are affected. The Christmas-NYE window is the most expensive non-festival hotel period of the year on Samui.
 
 ## Which beach to pick
 

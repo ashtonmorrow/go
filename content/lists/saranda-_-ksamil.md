@@ -31,6 +31,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -44,6 +45,22 @@ Saranda and Ksamil Corfu International (Ioannis Kapodistrias) on the Greek side.
 | Bus from Tirana (TIA) | 4 to 5 hr | ~€20 to €25 | If you flew into Tirana. The bus runs along the coast. Scenic but a real day |
 | Private transfer from Tirana | 3 to 4 hr | €150 to €250 | Door-to-door with a driver. Faster than the bus and worth it for a group. Ask your hotel to arrange |
 | Rental car from Tirana | 3 to 4 hr | From €25/day | The best option if you want flexibility to explore the rest of the Riviera. Albanian roads are workable but speed limits are patchy |
+
+## Festivals and big annual events
+
+The Albanian Riviera runs on a short summer season. The festival calendar is light, but a few weekends and the peak August window are worth knowing about.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Peak summer (July and August)** | July to mid-September | Not a festival, but the practical pattern: the Riviera fills with Albanian, Kosovan, and Italian families. Hotels in Ksamil book months ahead, restaurant prices climb, beach club loungers run €15 to €30. The single biggest hotel-pressure pattern of the year |
+| **August 15 (Assumption Day in Greece)** | August 15 | The Greek Orthodox high-summer holiday pushes Greek crowds into Albania for the weekend across the Corfu ferry. Hotels in Saranda fill |
+| **Albanian Independence Day** | November 28 | National holiday. Most Riviera hotels are closed for the season but Saranda itself stays open. Civic events at the main square |
+| **Saranda Summer Festival** | Variable, usually a weekend in late July or August | Local open-air music festival at the seafront. Free, smaller scale |
+| **Bajram (Eid al-Fitr and Eid al-Adha)** | Lunar calendar, twice a year | Albanian Muslims observe the Eids. Family-focused, smaller scale impact than civic holidays |
+| **Easter (Catholic and Orthodox)** | Variable | Both observed in Albania. Most restaurants stay open. The shoulder season for the Riviera |
+| **Butrint Music Festival** | Variable, usually July | Open-air classical music concerts at the ancient Roman amphitheater at Butrint (20 minutes south of Saranda). The single most atmospheric venue in the area |
+
+The trip-shaping pattern is the July-August peak, not any one festival. If your dates are flexible, target June or September: water still warm, hotels half the price of August, no boat-rental queues for Ksamil island day trips.
 
 ## Where to stay
 

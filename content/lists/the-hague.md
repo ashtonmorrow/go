@@ -79,6 +79,7 @@ This page is the version I would send a friend who asked how to spend 36 hours i
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting in and getting around](#getting-in-and-getting-around)
 * [Where to stay](#where-to-stay)
 * [The Mauritshuis and the Vermeer](#the-mauritshuis-and-the-vermeer)
@@ -99,6 +100,26 @@ This page is the version I would send a friend who asked how to spend 36 hours i
 | Quiet and gray | November to March | Short days, frequent rain, but the museums and Sky Bar carry the trip. Hotel rates drop |
 
 The Hague rains often enough that an umbrella belongs in your bag any month of the year. A late-June visit can also catch the long-day Dutch summer light, with sunset after 22:00, that makes evening strolls along Lange Voorhout one of the underrated things to do in the city.
+
+## Festivals and big annual events
+
+The Hague's calendar is anchored by Prinsjesdag, the annual State Opening of the Dutch Parliament, and a strong jazz and dance festival circuit. The city behaves differently on Prinsjesdag than any other day of the year.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Prinsjesdag (State Opening of Parliament)** | The third Tuesday of September | The annual State Opening of the Dutch Parliament, with the King reading the Speech from the Throne at the Ridderzaal. Royal procession from Noordeinde Palace to the Ridderzaal in the Golden Coach (currently retired, replaced by the Glass Coach pending restoration). Free to watch along the route. The Hague is dressed for the occasion: hats, royal flags, military pomp. Hotels in the center fill |
+| **North Sea Jazz Festival (Rotterdam)** | A weekend in mid-July | Not in The Hague itself but in Rotterdam (25 minutes by train). One of the biggest jazz festivals in the world. The Hague hotels fill with the spillover |
+| **Tong Tong Fair** | Late May to early June, two weeks | The biggest Indonesian-Dutch cultural festival in the world, held at the Malieveld in central The Hague. Indonesian food stalls, music, dance, culture (the Hague has the largest Indonesian-Dutch diaspora in the Netherlands). Smaller hotel pressure than Prinsjesdag, real cultural reason to be in town |
+| **The Hague Jazz Day (Den Haag Jazz Festival)** | Variable, usually summer | The city's jazz festival across multiple central venues |
+| **Veterans' Day (Veteranendag)** | Last Saturday of June | Civic ceremonies, military parade through the center. Hotel impact mostly along the parade route |
+| **Liberation Day (Bevrijdingsdag)** | May 5 | National holiday. Free concerts and city-scale events |
+| **King's Day (Koningsdag)** | April 27 | The Dutch national holiday. The Hague version is more civic and less party-flooded than Amsterdam. The royal family traditionally visits a different Dutch city each year, occasionally The Hague |
+| **The Hague Marathon (NN CPC Loop)** | Mid-March | One of the bigger half-marathons in the Netherlands, around 35,000 runners. Course winds through The Hague and Scheveningen |
+| **State Opening (Eurovision in May 2020/2021)** | One-off, 2021 | Eurovision was held in Rotterdam in 2021 but The Hague absorbed some of the visitor crowd. The Eurovision return to the Netherlands is not currently scheduled but verify if booking |
+| **Christmas Market at the Plein** | Late November to late December | Smaller than the Germanic equivalents but a real reason to be in The Hague in December |
+| **Day of National Liberation (Scheveningen specific)** | September 8 | Annual commemoration of the 1945 liberation of Scheveningen. Smaller civic event |
+
+The trip-shaping window is Prinsjesdag in mid-September. If a royal procession and a State Opening of Parliament is the unusual interest, this is the day. The Tong Tong Fair in late May is the underrated Indonesian-Dutch cultural festival that connects The Hague to its colonial-era diaspora more directly than any other event.
 
 ## Getting in and getting around
 

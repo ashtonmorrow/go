@@ -72,6 +72,7 @@ related:
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting in and inter-island travel](#getting-in-and-inter-island-travel)
 * [Pick the island](#pick-the-island)
 * [Mindelo and the music](#mindelo-and-the-music)
@@ -99,6 +100,25 @@ related:
 | Best for music | August | The Baía das Gatas festival on São Vicente is the calendar's musical anchor |
 
 The trade winds mean the islands rarely get hot in the way the latitude (around 15° N) suggests. Mid-range temperatures hold 22 to 28°C most of the year.
+
+## Festivals and big annual events
+
+Cabo Verde's calendar is anchored by the Baía das Gatas music festival in August (the country's biggest event), Carnival across multiple islands in February, and the saint's day festas that each island celebrates in its own way.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Festival de Baía das Gatas** | A weekend in August (the full moon) | The biggest music festival in Cabo Verde, on São Vicente island. International and Cabo Verdean artists across three days on a beach 20 km outside Mindelo. The city fills, hotels book out months ahead. The single biggest annual cultural event in the country |
+| **Carnaval de Mindelo** | The week before Lent (February or March) | The Brazilian-influenced carnival in Mindelo (São Vicente) is the biggest in the country. Parades, costumes, music, the spillover from the Brazilian-Lusophone tradition. Hotels in Mindelo fill |
+| **Carnaval de São Nicolau** | Same week | The other major island Carnival, on São Nicolau. Smaller, more traditional, less visitor-facing than the Mindelo version |
+| **Festival da Bandeira (Ribeira Brava)** | August 30 to 31 | The biggest annual festival on São Nicolau island, in the capital Ribeira Brava. Music, food, traditional dance |
+| **Tabanka (multiple islands)** | Variable, around June | The traditional Afro-Cabo Verdean ceremonial festival, with origins in slave-era community organization. Strongest expression on Santiago. Free, local-first |
+| **Cabo Verde Independence Day** | July 5 | National holiday, commemorating 1975 independence from Portugal. Civic ceremonies and parades. Quieter than the music festivals |
+| **Festival of São João Baptista (Porto Novo, Santo Antão)** | June 24 | The biggest summer festival on Santo Antão, with origins in the Portuguese tradition of São João. Bonfires, music, traditional food |
+| **Festival of Santa Cruz (Santiago)** | May 3 | The patron-saint festival of the town of Santa Cruz on Santiago. Smaller scale |
+| **Bo Maritimo Carnival (Sal)** | The week before Lent | The Sal version of Carnival. Smaller and more resort-tourist focused than Mindelo |
+| **Christmas and New Year** | December 24 to January 6 | The main domestic-tourism window. Hotels at peak prices, especially on Sal and Boa Vista |
+
+The trip-shaping window is the Baía das Gatas festival in August. If music and beach are both the trip, this is the weekend to base in Mindelo. Mindelo Carnival in February is the underrated trip for travelers who want a Brazilian-style Carnival but at a fraction of the Rio crowd.
 
 ## Getting in and inter-island travel
 

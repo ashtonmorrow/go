@@ -26,6 +26,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -38,6 +39,20 @@ Koh Phi Phi Phuket International (the standard gateway. Ferry across is the seco
 | Ferry from Krabi Klong Jilad Pier | 90 to 120 min | 350 to 600 THB single | If you flew into Krabi (KBV). The ferry is slightly cheaper and the connection from KBV is smoother |
 | Speedboat transfer | 50 to 70 min | 1,200 to 2,000 THB | Faster than the ferry. Rougher in choppy weather. Useful if you are short on time |
 | Private longtail charter | 60 to 90 min | 4,000 to 7,000 THB | A group splitting the cost or arriving outside the ferry schedule. The most flexible option |
+
+## Festivals and big annual events
+
+Phi Phi is small enough that its festival calendar is largely the Thai pattern overlaid with the island's tourism season. The Christmas-NYE window is the priciest and the busiest of the year by a wide margin.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Christmas and New Year peak** | December 20 to January 5 | The single most expensive hotel window of the Phi Phi year. NYE fire-show beach parties on Tonsai run all night. Reserve hotels months ahead. Ferry tickets sell out for the busiest crossings |
+| **Songkran** | April 13 to 15 | The Thai new year water-throwing. Tonsai village beach road becomes the local water-fight center. Smaller and more relaxed than the city versions |
+| **Loy Krathong** | Full moon of the 12th lunar month, usually early to mid-November | Krathongs floated from the beaches at sunset. Quieter than the city versions, smaller scale |
+| **Maya Bay closure season** | Variable, sometimes August to October | Not a festival, but worth flagging: Maya Bay (the headline beach made famous by *The Beach*, 2000) closes seasonally for coral and reef recovery. Verify the current year's schedule before booking a Phi Phi Leh boat tour |
+| **Full Moon Party (Koh Phangan)** | Every full moon, year-round | Not on Phi Phi but on Koh Phangan, the other side of Thailand. Worth flagging because a small share of the Phi Phi crowd flies between the two |
+
+The trip-shaping pattern is the Christmas-NYE peak. If your dates are flexible, push to mid-January or late November for half the hotel price. The Maya Bay seasonal closure is the practical consideration that affects what most international visitors actually want to do on the island.
 
 ## Where to eat
 

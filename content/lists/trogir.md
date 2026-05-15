@@ -58,6 +58,20 @@ related:
 
 [Trogir](/cities/trogir) is close enough to [Split](/cities/split) that it should not be treated like a full expedition. You can see it from the top of [Forest Park Marjan](/pins/forest-park-marjan), and you see it again from the window when you fly into Split-Resnik, because the airport sits about 4 km east of the old town. Treat it as a clean morning with lunch, not a full day.
 
+## Festivals and big annual events
+
+Trogir is small enough that its festival calendar is mostly the Split overlap, but a few local events fill the old town for a weekend at a time.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Trogir Summer (Trogirsko ljeto)** | Late June to mid-September | The town's summer cultural programming: classical concerts in the cathedral, open-air theater in the Kamerlengo courtyard, traditional klapa singing in the squares. Smaller hotel pressure than [Split](/lists/split) |
+| **Feast of St Lawrence (Sveti Lovre)** | August 10 | The patron-saint feast day. Religious procession through the old town. Quieter than the Split or Dubrovnik equivalents |
+| **Moreška dance and klapa nights** | Most summer weekends | Free outdoor performances of the traditional Adriatic a cappella klapa singing in the old-town squares. Worth being in town for a Saturday evening in July or August |
+| **Ultra Europe spillover** | Mid-July | When Ultra Europe runs in Split, hotels in Trogir fill with the spillover crowd. Trogir itself stays quiet, but accommodation tightens that week |
+| **Christmas Market (Trogir Advent)** | Late November to early January | Compact and small, on the promenade. Worth a visit if you are in the area, not the booking reason |
+
+The festival calendar is light, which is why Trogir reads as the slower half-day stop from Split. If you want festival-heavy Dalmatian travel, base in Split and visit Trogir on a quiet morning between events.
+
 ## A half-day shape
 
 | Time | What to do | Why |

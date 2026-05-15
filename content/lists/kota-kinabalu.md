@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [What to know before you go](#what-to-know-before-you-go)
 * [Where to stay](#where-to-stay)
 * [Tunku Abdul Rahman Marine Park](#tunku-abdul-rahman-marine-park)
@@ -62,6 +63,25 @@ related:
 | Singapore (SIN) | 15 to 20 min by car/MRT | Much pricier | Faster transit, much steeper drinks and dinners |
 
 Whichever side you pick, the inbound MAS or AirAsia hop into BKI is short and runs frequently.
+
+## Festivals and big annual events
+
+Kota Kinabalu's calendar is built around Sabah's distinctive Kadazandusun harvest festival and the broader Malaysian multi-ethnic holiday pattern.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Tadau Kaamatan (Harvest Festival)** | May 30 and 31 | The biggest Sabah-specific cultural festival, celebrating the Kadazandusun rice harvest. Two days of traditional dance, music, food, and the Unduk Ngadau beauty pageant. The Kadazandusun Cultural Association grounds in Penampang (15 minutes from KK) is the main venue, with smaller events across Sabah. Public holiday in Sabah only. Hotels in KK fill |
+| **Sabah Fest** | A week in late April or early May | The state cultural festival, leading up to Kaamatan. Performances of traditional music and dance from across Sabah's indigenous communities at the Magellan Sutera Resort |
+| **Borneo Jazz Festival** | A weekend in mid-July | Not in KK but in Miri (Sarawak, the other half of Malaysian Borneo). One of the longer-running jazz festivals in Southeast Asia. Worth flagging for Borneo trip extensions |
+| **KK Jazz Festival** | A weekend in June or July | Sabah's own jazz festival, multiple central venues |
+| **Mount Kinabalu International Climbathon** | A weekend in October | The annual race up the mountain, the world's oldest mountain race (since 1987). Hotels in Kinabalu Park fill, smaller hotel pressure in KK itself |
+| **Chinese New Year** | Late January or February | KK has a significant Chinese-Malaysian community. Lion dances at the temples and Chinese markets. Public holidays |
+| **Hari Raya Aidilfitri (Eid al-Fitr)** | End of Ramadan, lunar calendar | Most Malays travel home for the *balik kampung* migration. KK quieter than usual, though tourist services run |
+| **Deepavali** | A day in October or November | Hindu Festival of Lights. Smaller scale in KK than in Kuala Lumpur. Public holiday |
+| **Malaysia Day** | September 16 | National holiday commemorating Sabah and Sarawak joining the federation. Bigger significance in Sabah than in peninsular Malaysia. Civic ceremonies |
+| **Bird's Nest Festival (Gomantong Caves)** | Variable, around the harvests | Not in KK but in the Gomantong Caves (5 hours east). The traditional swiftlet-nest harvest. Niche but specifically Bornean |
+
+The trip-shaping window is Tadau Kaamatan on May 30 and 31. If indigenous Sabah culture is the appeal, this is the weekend. The Mount Kinabalu Climbathon in October is the unusual niche reason to base in Kinabalu Park rather than KK city.
 
 ## What to know before you go
 

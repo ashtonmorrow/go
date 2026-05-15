@@ -31,6 +31,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -44,6 +45,25 @@ Playa del Carmen Cancún International (CUN) is reached primarily through Cancú
 | Pre-booked shuttle / private | 60 to 75 min | $50 to $90 USD | Door-to-door service with luggage. Worth the premium for a group or a late arrival |
 | Uber | 60 to 75 min | $70 to $100 USD | Works from CUN but the local taxi union has occasional conflicts with Uber drivers at the airport. Check current status before relying on it |
 | Airport taxi | 60 to 75 min | $100 to $130 USD | Last resort. The curb taxi market is the most expensive in the area. Agree the price in writing on a phone screen before pulling away |
+
+## Festivals and big annual events
+
+Playa del Carmen's calendar runs on the Mexican national festival pattern plus a few resort-town-specific events. The Christmas-and-NYE window and spring break are the trip-shaping pricier weeks.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Día de los Muertos** | November 1 to 2 | The Mexican Day of the Dead. The Yucatán version (Hanal Pixán) has its own Mayan-influenced traditions: family ofrenda altars, the painted-skull face decorations, the tamales and atole offerings. Smaller and more local-feel than Mexico City. Free events on Quinta Avenida and the beach |
+| **Spring Break** | March, peaks the second and third weeks | Large American university-aged crowd descends on Playa for two to three weeks. Beach clubs run wet T-shirt and foam-party events. Hotel prices spike. Whole neighborhoods on Quinta become unwalkable in the evening. Avoid if your trip is the slower beach version |
+| **BPM Festival** | A week in January | The electronic-music festival the town built its dance-music reputation on. Has had complicated recent history (a 2017 mass shooting prompted a multi-year hiatus). Verify current status before assuming it runs |
+| **Christmas and New Year peak** | December 20 to January 5 | The most expensive hotel window of the Playa year. Beach hotels double. NYE fireworks along the beach |
+| **Vernal Equinox at Chichén Itzá** | March 20 or 21 | The famous shadow-snake appearance on the Pyramid of Kukulkán. Crowds at Chichén Itzá spike for the day. Worth knowing about for a day-trip from Playa |
+| **Autumn Equinox at Chichén Itzá** | September 22 or 23 | The autumn version of the same shadow effect. Smaller crowds than the spring date |
+| **Mexican Independence Day** | September 16 | National holiday. Civic ceremonies, parades. Many shops still open in tourist-heavy Quinta. Free events and fireworks |
+| **Riviera Maya Film Festival** | A week in April | The international film festival across multiple Playa venues. Smaller hotel pressure |
+| **Cozumel Carnival** | The four days before Lent (February or March) | Not in Playa itself, but Cozumel (20 minutes by ferry) runs the biggest Carnival in the Yucatán. Worth flagging as a same-week day trip |
+| **Sargassum season** | Variable, peaks April to August | Not a festival, but worth flagging: massive seaweed blooms wash up on the Playa beach periodically from spring through summer. Some weeks the beach is impacted, some weeks it is clear. Check the sargassum tracker before booking specific beach hotels |
+
+The trip-shaping windows are Christmas-NYE peak (most expensive) and spring break in March (most chaotic). Día de los Muertos in early November is the underrated cultural alternative if you want a Mexican holiday with depth rather than the beach-party version.
 
 ## Where to stay
 

@@ -67,6 +67,7 @@ Djerba is the [Tunisian](/countries/tunisia) island most North Americans have ne
 ## On this page
 
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Getting in and getting around](#getting-in-and-getting-around)
 * [Where to stay](#where-to-stay)
 * [The beaches](#the-beaches)
@@ -84,6 +85,24 @@ Djerba is the [Tunisian](/countries/tunisia) island most North Americans have ne
 | Quiet and mild | December to February | 15 to 20°C, mostly dry, some restaurants closed. Strange-light winter trips work here if you want the island to yourself |
 
 The single best ten days are usually the second half of October, after the European school crowd has gone home.
+
+## Festivals and big annual events
+
+Djerba's calendar runs on Tunisian national holidays plus a major Jewish pilgrimage that has been observed on the island for centuries. Ramadan reshapes the daily rhythm.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Lag B'Omer pilgrimage at El Ghriba Synagogue** | The 33rd day of the Omer count (April or May, 33 days after Passover) | One of the older continuous Jewish pilgrimages in the world. Pilgrims arrive from across the diaspora (Israel, France, Argentina, the US) for two days of ceremony at the [El Ghriba Synagogue](/pins/el-ghriba-synagogue) in Hara Sghira. Security is heavy. The 2002 truck-bombing of the synagogue and the May 2023 attack at the same site are part of why. Hotels in Houmt Souk fill during the pilgrimage |
+| **Ramadan** | Lunar calendar, moves earlier by 11 days each year | Tunisia observes Ramadan seriously. Daytime food and drink service is reduced in many restaurants and cafes, with resort hotels running normally. The evening Iftar break empties the streets briefly, and the post-Iftar nights run late with family feasts and night markets. The pace of the day shifts |
+| **Eid al-Fitr (Aid el-Fitr)** | End of Ramadan, lunar calendar | National holiday. Three days. Most shops close, the resort hotels stay open |
+| **Eid al-Adha (Aid el-Kebir)** | About 70 days after Ramadan, lunar calendar | The bigger festival, with the family-sacrifice ritual. National holiday. Many resort restaurants run reduced menus |
+| **Tunisian Independence Day** | March 20 | National holiday commemorating 1956 independence from France. Civic ceremonies |
+| **Revolution Day** | January 14 | National holiday commemorating the 2011 Tunisian revolution. Civic events |
+| **Republic Day** | July 25 | National holiday. Civic ceremonies |
+| **Festival des Plages** | Most of July and August | The summer beach-festival programming the island runs across the resort coast. Music, sports, and entertainment. Smaller hotel pressure than Lag B'Omer, integrated into the standard summer resort experience |
+| **Mouled (Prophet's Birthday)** | Lunar calendar, varies year to year | Religious holiday. Smaller scale in resort areas, larger in the inland villages |
+
+The trip-shaping window is the Lag B'Omer pilgrimage in April or May, the only event that meaningfully changes Houmt Souk and the synagogue area. Otherwise the festival calendar is light enough that almost any week works for the resort-beach version of the trip.
 
 ## Getting in and getting around
 

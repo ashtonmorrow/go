@@ -89,6 +89,7 @@ The natural Catalonia day chain works like this: a city morning in [Barcelona](/
 * [Language access](#language-access)
 * [Booking, lunch, and the return ride](#booking-lunch-and-the-return-ride)
 * [When to visit](#when-to-visit)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 
 ## How do I get to the wineries?
 
@@ -136,3 +137,19 @@ Three practical notes from the half-day shape.
 ## When to visit
 
 The shoulder windows match the rest of Catalonia. **April-May and September-early October** are the comfortable months: warm enough for a vineyard walk, not yet the August heat that makes outdoor tours uncomfortable. **Late September** is harvest (la verema) and the most interesting time to visit, but tour slots tighten. Book 3 to 4 weeks ahead. **July-August** is hot and the cellar tours run, but most of the activity is indoor. **November-March** is quiet, some smaller producers go appointment-only, and the larger ones cut their tour frequency.
+
+## Festivals and big annual events
+
+Penedès runs on the wine calendar. A handful of weekends each year are worth either booking around or planning to be in the region for.
+
+| Event | When | What it changes |
+|---|---|---|
+| **La Verema (Harvest)** | Late August to late September, varies year to year | The grape harvest. The single most interesting time to visit a working winery. Tours run, sometimes with the option to join in for an afternoon of picking. Smaller producers tighten their bookings. Book three to four weeks ahead |
+| **Festa de la Fil·loxera (Sant Sadurní)** | A week in early September | The town festival in Sant Sadurní d'Anoia (the cava capital). Celebrates the late-19th-century phylloxera plague that wiped out the local wine industry and prompted the shift from red wine to cava. Parades, fireworks, free events, the giant 11-meter Filoxera fire-breathing puppet. Hotels in Sant Sadurní fill |
+| **Cava Week (Setmana del Cava)** | A week in early November | Producer-led week of open cellars, tastings, and pairings across the region. Smaller hotel pressure than the harvest |
+| **Festa Major de Vilafranca (Sant Fèlix)** | Around August 30, four days | The Catalan civic festival of Vilafranca del Penedès (the regional capital and the home of the castellers). The Castellers de Vilafranca and Vella de Vilafranca compete on human-tower building (one of the best castellers events of the year). Free, photogenic, the version of Catalan tradition most travelers do not see |
+| **Sant Jordi** | April 23 | Catalonia-wide. Less of a Penedès-specific event. Wineries occasionally run themed events |
+| **Christmas and New Year** | December 24 to January 6 | Most small cellars close for two to three weeks across the holiday window. Plan the visit before December 20 or after January 7 |
+| **Holy Week (Setmana Santa)** | The week before Easter | Most cellars run reduced tour schedules. Hotels in Vilafranca and Sant Sadurní stay open and reasonable |
+
+The trip-shaping window is the harvest (la verema) from late August through late September, when the working winery is most active. Festa de la Fil·loxera in Sant Sadurní in early September is the unusual local festival that combines the wine history with a fire-and-puppet civic tradition.
