@@ -117,6 +117,7 @@ The current Bali saved list is the May 2026 consolidation of four earlier sub-re
 * [Sunset temples and the things to handle carefully](#sunset-temples-and-the-things-to-handle-carefully)
 * [Common scams and hassles](#common-scams-and-hassles)
 * [When to go](#when-to-go)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 
 ## Picking your base
 
@@ -231,3 +232,23 @@ None of this should keep anyone from going. Bali stays one of the easier first-i
 The dry season runs May to October. The rainy season runs November to April with the heaviest rain in January and February. Bali stays warm year-round (daytime temperatures 28 to 32°C all year on the coast, slightly cooler in Ubud), so the rain is the variable, not the temperature.
 
 The right shoulder windows are **April-May** and **September-October**. Warm, mostly dry, less crowded than peak summer, hotel rates softer. **July and August** are the Australian-school-holiday peak and the most crowded weeks. Book hotels and beach clubs months out. **Late December to early January** is the second peak. **November** and **February-March** are the wettest months. The rain is real, and the beach-club afternoons get rained out enough that the trip becomes a sit-indoors-and-wait one.
+
+## Festivals and big annual events
+
+Bali runs on the Balinese Hindu Saka calendar (210 days, two cycles per Western year) plus a few fixed-date civic events. Two of the dates below change the island completely: Nyepi (the silent day) and Galungan (the spirit-of-the-ancestors festival). Knowing them before booking matters.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Nyepi (Day of Silence)** | A day in March (varies year to year, the Balinese lunar new year) | The single most important day on the Balinese calendar. The entire island shuts down for 24 hours: no flights in or out (Ngurah Rai Airport closes), no traffic, no lights at night, no working, no leaving your hotel. The day is for self-reflection. The night before (Pengrupukan) has parades of giant ogoh-ogoh demon effigies through every village, burned at the end of the night to symbolize cleansing. Visitors who happen to be on the island are required to stay inside their hotel for the day. Hotels run the basics. If you are in Bali for Nyepi, treat it as a day-on-the-property experience. If you are flying in, do not book the arrival day on Nyepi |
+| **Galungan and Kuningan** | A 10-day window every 210 days (twice per Western year, varies) | The festival celebrating the victory of dharma over adharma and the return of ancestral spirits to earth. Penjor (the curved bamboo poles decorated with palm fronds and offerings) line every street and house entrance. The biggest visual transformation of the island outside Nyepi. Worth planning a trip around if you want the photogenic version of Balinese ritual |
+| **Bali Arts Festival (Pesta Kesenian Bali)** | Mid-June to mid-July, around a month | The biggest cultural festival on the island, held at the Taman Werdhi Budaya Art Centre in Denpasar. Daily traditional dance and music performances, gamelan competitions, craft exhibitions. Free and ticketed events. Smaller hotel pressure than peak season but a real reason to be in Bali in June or July |
+| **Ubud Writers and Readers Festival** | Late October, five days | One of the most-respected literary festivals in Southeast Asia. International and Indonesian writers, panels, workshops. Hotels in Ubud fill |
+| **Ubud Food Festival** | Late May, three days | The sister event to the Writers festival. Food panels, demos, dinners. Smaller scale |
+| **Bali Spirit Festival** | Variable, usually a week in May | The yoga, dance, and music festival in Ubud. Hotels in Ubud fill |
+| **Saraswati Day** | Every 210 days (the same Saka calendar) | The day for the goddess of knowledge. Books, manuscripts, and laptops are blessed at temples and offices. Smaller scale than Galungan but a normal day to encounter in any local visit |
+| **Indonesian Independence Day** | August 17 | National holiday. Civic ceremonies, sack races and traditional games (panjat pinang, the greasy-pole climb) in every village. Hotels at peak Australian-holiday prices anyway |
+| **Pengerebongan and other regional festivals** | Variable across villages | Most villages have their own odalan (temple anniversary) celebrated every 210 days, with processions, music, and offerings. Worth asking your hotel or driver if one is happening near your base during your stay |
+
+The trip-shaping window is Nyepi. If your Bali dates include Nyepi, plan the day around your hotel (a beach club is not an option) and confirm with the hotel that they have water, food, and basic services laid in. If your dates avoid Nyepi, you can ignore it. Galungan is the underrated photogenic ten-day window that most international travelers do not know about because the dates do not move with the Western calendar.
+
+A practical Nyepi note for flights. Ngurah Rai Airport closes the full 24 hours of Nyepi, including arrivals and departures. Plan flights for the day before or the day after, and confirm at booking time. If your flight schedule lands on Nyepi, the airline will rebook you to the day before or after.

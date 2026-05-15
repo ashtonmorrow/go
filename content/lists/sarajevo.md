@@ -33,6 +33,7 @@ related:
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
@@ -46,6 +47,26 @@ Sarajevo Sarajevo International (SJJ) sits about 12 km southwest of the center. 
 | Bolt / Yandex | 20 to 35 min | 20 to 35 BAM | Bolt is the dominant rideshare in Sarajevo. Pickup is at the marked airport lot |
 | Centrotrans bus | 30 to 40 min | 5 BAM single | The cheapest path. Runs to the main bus station Nedjarici, not to the historic center. Useful only if you are continuing onward by long-distance bus |
 | Pre-booked hotel transfer | 20 to 35 min | 40 to 60 BAM | Most Baščaršija hotels can pre-arrange. Useful for a late arrival when you do not want to negotiate at the rank |
+
+## Festivals and big annual events
+
+Sarajevo's calendar is anchored by the Sarajevo Film Festival, one of the biggest in southeastern Europe, plus a strong summer programming schedule and the Orthodox-Catholic-Muslim three-religion overlap that gives the city more religious holidays than most European capitals.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Sarajevo Film Festival (SFF)** | A week in mid-August | The biggest film festival in southeastern Europe, the most important regional festival between Berlinale and Venice. Started in 1995 during the siege. International and Balkan premieres, the open-air screenings at the Olympic Halls and the Coca-Cola Open Air on Trebevic Hill. Around 100,000 attendees. Hotels in Baščaršija and Marijin Dvor fill |
+| **Baščaršija Nights (Baščaršijske noći)** | All of July | The city's summer festival of music, theater, and dance. Free and ticketed events across the Baščaršija squares, the Vijećnica (City Hall), and several Ottoman-era venues. The version of Sarajevo most international visitors miss because they come for a weekend rather than a week |
+| **Jazz Fest Sarajevo** | A week in early November | One of the most respected jazz festivals in the Balkans. Multiple central venues. Smaller hotel pressure, real reason to be in town in November |
+| **MESS Theatre Festival** | A week in late September or early October | The international theater festival. Multiple venues. Smaller scale, real cultural reason |
+| **Sarajevo Half Marathon** | A Sunday in September | Road closures across the city center |
+| **MFF Pravo Ljudski** | Variable, usually February or March | The human-rights film festival. Multiple venues |
+| **Bajram (Eid al-Fitr and Eid al-Adha)** | Lunar calendar, twice a year | Bosnian Muslims celebrate the two Eids with three to four days of family time. National holidays in the Federation. Many small restaurants close for a day or two. The Baščaršija mosques host the morning prayers |
+| **Christmas (Catholic)** | December 24 to 25 | Catholic Bosnians (mostly Croatian) celebrate. Smaller scale than the Orthodox Christmas |
+| **Orthodox Christmas** | January 7 | Serbian Orthodox Christmas. National holiday in the Republika Srpska entity, partially observed in Sarajevo. Quieter day in the city, religious services at the cathedrals |
+| **Day of Bosnia and Herzegovina (Statehood Day)** | November 25 | National holiday in the Federation entity. Civic ceremonies. The dual political system of BiH means some national holidays apply only in one entity, which can affect business hours by neighborhood |
+| **Sarajevo Winter Festival** | Three weeks in February or March | The international arts festival across multiple venues. Smaller hotel pressure |
+
+The trip-shaping window is the Sarajevo Film Festival in mid-August. Book a hotel six to eight weeks ahead. Baščaršija Nights through July is the underrated month-long summer programming most international visitors do not know about.
 
 ## Where to stay
 

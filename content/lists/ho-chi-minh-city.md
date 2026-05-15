@@ -60,6 +60,7 @@ related:
 
 * [Get the e-visa first](#get-the-e-visa-first)
 * [Getting in from Tan Son Nhat](#getting-in-from-tan-son-nhat)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The cultural day](#the-cultural-day)
 * [The craft beer crawl](#the-craft-beer-crawl)
@@ -81,6 +82,24 @@ Tan Son Nhat International (SGN) sits 7 km from District 1.
 | Bus 109 | Under $1 | 45 to 60 min | Goes to Ben Thanh. Fine if you are traveling light |
 
 Traffic is the variable. From 4 to 7 p.m. on weekdays add 50%.
+
+## Festivals and big annual events
+
+HCMC's calendar runs on the Vietnamese lunar calendar (Tết is the year-defining holiday) plus a small set of civic events. Tết changes the city completely for a week and is worth either timing for or steering clear of.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Tết Nguyên Đán (Lunar New Year)** | Late January or February, the lunar new year week | The single biggest Vietnamese holiday. The whole country travels home, so HCMC empties of locals (most of the city is from somewhere else and goes back). Many restaurants and shops close for three to seven days. Flower markets fill Nguyen Hue Walking Street with the apricot-blossom (mai) and kumquat-tree displays in the days before. Hotels are reasonable because the visitor crowd is small that week, but service is reduced. A trip to consider only if you want a quiet HCMC and are willing to do most meals at hotels and international restaurants |
+| **Mid-Autumn Festival (Tết Trung Thu)** | A day in September or October (full moon of the eighth lunar month) | The children's festival. Lantern shops in District 5 (the Chinese district) fill Luong Nhu Hoc Street with elaborate lanterns. Mooncake stalls open on every corner three weeks before. A reasonable evening to be in Chinatown |
+| **Reunification Day (Ngày Thống Nhất)** | April 30 | National holiday commemorating the fall of Saigon in 1975. Civic ceremonies, military displays, fireworks at the Saigon River. Public holiday, many shops closed |
+| **Labor Day** | May 1 | National holiday, falls the day after Reunification Day, so May 1 to 3 is often a four-day weekend. Hotels in HCMC stay reasonable but domestic tourists fill Da Nang and Phu Quoc |
+| **Vietnamese Independence Day (Quốc Khánh)** | September 2 | National holiday commemorating Ho Chi Minh's 1945 declaration. Civic events. Many shops closed |
+| **Vietnam Grand Prix (cancelled)** | The Hanoi F1 race was contracted to start in 2020 but has not run. HCMC has no F1 event. Verify before assuming any motorsport calendar |
+| **Saigon Pride** | A weekend in September | Smaller and less public than Bangkok or Manila Pride, but real. Various venues across District 1 |
+| **HCMC Ao Dai Festival** | Early March, a week | The traditional Vietnamese costume festival. Free outdoor displays, parades, the Ao Dai workshops. Small-scale but a local-feel city event |
+| **Christmas Eve** | December 24 | Not a national holiday, but HCMC has a serious Catholic minority and the area around Notre-Dame Basilica (currently undergoing restoration) and Tan Dinh Church fills the night of December 24. Crowds, motorbike scooter convoys, decorations |
+
+The trip-shaping window is Tết. Either commit to the quiet-city version and accept the reduced service, or push the trip a week in either direction. The Mid-Autumn Festival in autumn is the underrated lantern-photography evening that most international travelers do not know to look for.
 
 ## Where to stay
 

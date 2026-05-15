@@ -127,6 +127,7 @@ Malta is small enough that you do not need to optimise the trip. A long lunch on
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay: the St Julian's strip, by price](#where-to-stay-the-st-julians-strip-by-price)
 * [Getting around: walking, buses, Uber, ferries](#getting-around-walking-buses-uber-ferries)
 * [Valletta on a walking day](#valletta-on-a-walking-day)
@@ -147,6 +148,24 @@ Malta International Airport (MLA) sits about 8 km south of Valletta and even clo
 | Taxi from the rank | 20 to 25 min | €25 to €35 (fixed-rate zones) | Marked yellow-and-black cars at the curb. Pay at the desk inside arrivals before you board so the fare is the printed zone rate rather than a negotiation |
 
 Uber or Bolt is the right default for a hotel-to-arrival trip. The X-bus number depends on where you are staying. Have it in mind before you walk out so you can find the right stop on the bus signage. The white airport buses run frequently in the day and have luggage racks but get loud and busy in summer. Bus is the move for solo light travelers, not couples with bags after a redeye.
+
+## Festivals and big annual events
+
+Malta runs more festas (saint's-day village festivals) per capita than almost any country in Europe. The big summer pattern is the village festa, where every village runs its own multi-day celebration with fireworks, brass bands, and decorated streets. Plus a few internationally-known music festivals and the carnival window.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Village festas (Maltese feast days)** | Most weekends from late May to mid-September | Each of Malta's 60+ villages celebrates its patron saint with a four-day festa. Decorated streets, brass-band marches, fireworks displays (Maltese pyrotechnics are world-class), the church statue carried through the streets on the patron-saint day itself. The summer pattern. The biggest are St Paul's Shipwreck (Valletta, February 10), Imnarja (June 28-29, the harvest festival), Santa Marija (August 15), and Stella Maris (mid-September). Smaller hotel pressure than the global festivals, real reason to plan around a specific village if your name has one |
+| **Malta Carnival** | The week before Lent (February or March) | The Valletta carnival is the headline (parades through the streets, Italian-influenced costumes, the Gostra greasy-pole competition over the harbor). The Gozo carnival in Nadur is the wilder, more masked, more theatrical alternative. Hotels in Valletta and St Julian's fill |
+| **Isle of MTV** | Variable, usually late June or July | The free outdoor MTV music festival, traditionally held in Floriana Granaries near Valletta. Has run intermittently in recent years, verify before assuming. When it runs, around 50,000 attendees |
+| **Malta International Fireworks Festival** | A weekend in late April | Free outdoor competition of pyrotechnic displays over the Grand Harbour. The Maltese take this seriously (the village festa tradition is partly why) |
+| **Notte Bianca** | A Saturday in early October | The free citywide cultural night in Valletta. Museums, palaces, and venues open late into the morning. Smaller scale than the Roman or Madrid versions but a beautiful Valletta night |
+| **Malta Jazz Festival** | A weekend in mid-July | At Ta' Liesse Wharf in Valletta. International jazz on an open-air stage by the water. Smaller hotel pressure, real reason to be in Valletta in mid-July |
+| **Mnarja (Imnarja)** | June 28 to 29 | The traditional Maltese harvest festival at the Buskett Gardens in Rabat. Folk music, traditional food (especially rabbit stew), agricultural shows. The version of Malta most international travelers do not see |
+| **Malta Pride** | A Saturday in mid-September | The parade through Valletta. Around 12,000 attendees, smaller than the European headliners but real |
+| **Christmas markets in Valletta** | Mid-December to early January | Small wooden chalets at St George's Square. Smaller and less famous than the European equivalents but a real reason to be in Valletta in December |
+
+The trip-shaping windows depend on what you want. For the headline visitor festivals, Carnival in February and the Fireworks Festival in April are the photogenic single-weekend events. For the local-feel version of Malta, the summer festa calendar is the actual cultural year. Pick a village whose patron-saint date aligns with your dates and that becomes the trip's anchor evening.
 
 ## Where to stay: the St Julian's strip, by price
 

@@ -70,6 +70,7 @@ related:
 ## On this page
 
 * [Getting in from SCL](#getting-in-from-scl)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The city center on foot](#the-city-center-on-foot)
 * [Cerro San Cristóbal and Bellavista](#cerro-san-cristóbal-and-bellavista)
@@ -98,6 +99,25 @@ Comodoro Arturo Merino Benítez International Airport (SCL) sits about 15 km nor
 | TurBus or Centropuerto bus | ~$3 to $5 USD | 30 to 40 min to Pajaritos metro | Cheapest. Bus to Pajaritos, metro Line 1 to the center |
 
 A note on the metro: the **Bip! card** is the way you ride. Single-use paper tickets are not the standard option. Buy the Bip! at any metro station vending machine, load credit, then tap at the gate. The fare runs CLP 800 to 900 (about $1) per ride depending on time of day. The metro runs roughly 06:00 to 23:00 weekdays, 06:30 to 23:30 Saturdays, 08:00 to 23:00 Sundays.
+
+## Festivals and big annual events
+
+Santiago's calendar runs on Chilean national holidays plus a small set of music and arts events. The Fiestas Patrias week in September is the year-defining cultural moment.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Fiestas Patrias (Dieciocho)** | September 18 to 19 (and the surrounding week) | Chilean Independence Day. The whole country celebrates with cueca dancing (the national dance), empanadas, asado, chicha (the fermented grape drink), and ramadas/fondas (the temporary fair tents set up in parks). Parque O'Higgins and Parque Padre Hurtado host the biggest fondas in Santiago. Most businesses close for two to four days. Hotels stay reasonable because Chileans are mostly with family but international visitors are well-served |
+| **Festival Internacional de la Canción de Viña del Mar** | A week in late February | Not in Santiago itself, but the Viña del Mar Song Festival, 90 minutes northwest of the city, is the biggest event of the Chilean summer. International and Latin American headliners. Worth flagging because hotels in Santiago fill the same week with the spillover and the Viña hotels triple |
+| **Lollapalooza Chile** | Mid to late March, three days | The Chilean edition at Parque Cerrillos. Around 200,000 across the weekend. Hotels in central Santiago fill heavily |
+| **New Year's Eve** | December 31 | Free fireworks display along the Mapocho river around the Costanera Center, watchable from Bellavista, Providencia, and the Costanera buildings. The Valparaíso fireworks 90 minutes west are the more famous version of the same display. Hotels at peak prices |
+| **Día de la Música** | June 21 | The midwinter free music festival across the city, with concerts at the GAM (Centro Cultural Gabriela Mistral), Plaza de Armas, and dozens of smaller venues |
+| **Festival Internacional de Teatro Santiago a Mil** | Early to mid-January, three weeks | The international theater festival across multiple venues. Around 100 productions. Smaller hotel pressure than the music festivals |
+| **Día de las Glorias del Ejército** | September 19 | Falls inside Fiestas Patrias week. The military parade at the Parque O'Higgins is the big civic event of the second Patrias day |
+| **Festival Internacional de Jazz** | Variable, usually mid-January | Smaller jazz festival, multiple venues |
+| **Maratón de Santiago** | Early April | Marathon along the city's main axes. Road closures, but the city absorbs the disruption well |
+| **Lo Castillo Christmas Market** | Late November to late December | The biggest organized Christmas market in Santiago, in Vitacura. Smaller and newer than the European equivalents |
+
+The trip-shaping window is Fiestas Patrias around September 18 to 19. If you want to see Chile celebrate, this is the week. Many Chileans travel domestically that week so book domestic flights early (especially if you are continuing south to the lakes or Patagonia). Lollapalooza in late March is the hotel-pressure weekend most non-festival visitors miss.
 
 ## Where to stay
 

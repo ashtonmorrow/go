@@ -45,6 +45,7 @@ related:
 ## On this page
 
 * [Getting in](#getting-in)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The architecture loop](#the-architecture-loop)
 * [Depot Boijmans and Euromast](#depot-boijmans-and-euromast)
@@ -67,6 +68,25 @@ Rotterdam Centraal is the gateway. The small regional Rotterdam The Hague Airpor
 **OVpay** is the contactless tap-and-go system across the Dutch rail network and on RET buses, trams, and metro. Tap a Visa, Mastercard, Maestro, Apple Pay, or Google Pay at the yellow gate or the bus reader on entry, ride, tap again on exit. The fare is the same as a printed ticket and the system charges per kilometer. The Underground-shape gotcha applies: forget to tap out and the system charges the maximum possible fare for that leg. Always tap out.
 
 Walking from Centraal to the Markthal is 12 minutes. To the Cube Houses 15. Most of central Rotterdam is walkable end-to-end in under 30 minutes, which is why most visitors do not bother with a metro ticket beyond the airport leg.
+
+## Festivals and big annual events
+
+Rotterdam runs a tighter and more contemporary festival calendar than Amsterdam, weighted toward film, jazz, and dance music plus one of the bigger summer carnivals in Europe.
+
+| Event | When | What it changes |
+|---|---|---|
+| **International Film Festival Rotterdam (IFFR)** | Late January to early February, 10 days | One of the largest film festivals in Europe and the headline cultural event of the Rotterdam year. Around 280,000 attendees, multiple venues across the city (de Doelen, Pathé Schouwburgplein, LantarenVenster). Hotels in the center fill, prices double. Tickets release in December |
+| **North Sea Jazz Festival** | A weekend in mid-July, three days | One of the biggest jazz festivals in the world. Held at Rotterdam Ahoy. Around 70,000 across the weekend. Hotels fill heavily, with the spillover going to The Hague and the suburbs |
+| **Rotterdam Summer Carnival (Zomercarnaval)** | Last weekend of July | The Dutch Caribbean-style carnival, one of the bigger summer carnivals in Europe. Around 900,000 attendees across the weekend. Parade through the center on the Saturday. Free, photogenic, the most diverse weekend on the Rotterdam calendar |
+| **Eurovision (2021)** | One-off, May 2021 | Not annual, but worth flagging: Rotterdam Ahoy hosted Eurovision in 2021. The city is sometimes mentioned as a future bidder. Verify if booking around it for any given year |
+| **Rotterdam Marathon (NN Marathon Rotterdam)** | A Sunday in early April | One of the fastest marathon courses in the world (multiple world records set here). Around 30,000 runners. Road closures across the city |
+| **Wereldhavendagen (World Port Days)** | First weekend of September, three days | The free port-and-shipping festival. The Rotterdam port (the biggest in Europe) opens to the public, plus the air and water displays in the Maas. Around 350,000 attendees. Smaller hotel pressure than IFFR or North Sea Jazz |
+| **Rotterdam Architecture Month (Rotterdam Architectuur Maand)** | All of June | The citywide architecture festival with open-house events at landmark buildings, tours, lectures. The right month to be in Rotterdam for the architecture half of the trip |
+| **Pleinmuziek and free summer concerts** | Most summer weekends | Free outdoor concerts at venues across the city. Not a single event but a year-round summer pattern |
+| **Christmas market (Rotterdam Lichtjes)** | December | Smaller and more compact than the German equivalents. Worth a visit but not the booking reason |
+| **King's Day (Koningsdag)** | April 27 | The Dutch national holiday. Less of a flea-market event than Amsterdam, more of a street-party event in Rotterdam, especially around Witte de Withstraat and the Cool district |
+
+The trip-shaping events are IFFR in January (the right week if you are a film traveler) and North Sea Jazz in mid-July (book months ahead). Architecture Month in June is the underrated quieter trip for architecture travelers who would rather not be in Amsterdam.
 
 ## Where to stay
 

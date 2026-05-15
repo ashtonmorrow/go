@@ -59,6 +59,7 @@ related:
 ## On this page
 
 * [How to get there](#how-to-get-there)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The beaches by type](#the-beaches-by-type)
 * [Castell de Santa Bàrbara and the Roman sites](#castell-de-santa-bàrbara-and-the-roman-sites)
@@ -84,6 +85,23 @@ Three things to know about Spanish high-speed trains:
 3. **Assigned seats**. The system seats you with strangers by default. Book a group together if you want adjacent seats.
 
 A 5-hour train run from Barcelona is the other long-distance option. AVE-class Renfe is the move there. Ouigo also runs the route.
+
+## Festivals and big annual events
+
+Alicante runs one of the bigger fire-based festivals in Spain (Hogueras de San Juan), which is the trip-shaping window in late June. Plus the standard Spanish national-calendar events.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Hogueras de San Juan (Fogueres de Sant Joan)** | June 20 to 24, five days plus warm-up week | Alicante's headline festival, a UNESCO-listed event. Massive papier-mâché sculptures (hogueras, up to 20 meters tall) built across the city's plazas and burned in coordinated fires on the night of June 24 (the Cremà). Plus daily mascletà (gunpowder concerts) at noon in Plaza de los Luceros, the bullfights, the parades, the firework displays over Postiguet beach. Hotels triple in price, book months ahead. The single biggest week of the Alicante year |
+| **Moros y Cristianos (Moors and Christians)** | Variable, usually April, May, or July depending on town | The historic re-enactment festivals across the Alicante province towns: Villajoyosa in late July, Alcoy in April, Elche in October. Costumed parades commemorating the Reconquista. Worth knowing about for day-trip-from-Alicante planning, less so for the city itself |
+| **Carnival** | The week before Lent (February or March) | Smaller than Sitges or Tenerife but a real Costa Blanca local-feel weekend. Free, photogenic |
+| **Festes de la Mare de Déu del Remei** | Around August 5, several days | The smaller Alicante summer festival in the Santa Cruz neighborhood. Free, local, smaller than Hogueras |
+| **Semana Santa (Holy Week)** | The week before Easter (March or April) | Real procession tradition in Alicante, smaller than Málaga or Sevilla. The Tarsicio Castro Tronos and the Procession of the Encounter on Holy Wednesday are the photogenic moments |
+| **Three Kings Day (Reyes)** | January 5 evening, January 6 holiday | The Cabalgata parade through the center on the evening of January 5. Most museums and many shops close January 6 |
+| **Volvo Ocean Race (when held in Alicante)** | Variable, every 3 to 4 years | The around-the-world sailing race has historically started in Alicante. Hotels along the Marina fill |
+| **Christmas Lights and Belén** | Late November to January 6 | Free large-scale nativity displays at the Town Hall (Ayuntamiento) and citywide light installations. The Belén Monumental is the photo. Smaller hotel pressure than the summer events |
+
+The trip-shaping window is Hogueras de San Juan from June 20 to 24. If a fire-and-firework spectacle is the trip, book a hotel three to six months ahead. The Cremà on the night of June 24 is one of the more dramatic single evenings on the European festival calendar.
 
 ## Where to stay
 

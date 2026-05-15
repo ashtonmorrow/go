@@ -130,6 +130,7 @@ Three days covers the city: Uber in from the airport, a hotel in the center, the
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
+* [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
 * [The architecture, one block at a time](#the-architecture-one-block-at-a-time)
 * [Getting around: the metro and the cable car](#getting-around-the-metro-and-the-cable-car)
@@ -148,6 +149,27 @@ Uber is the answer for the ride into town. The app works at the airport, the rid
 The one wrinkle is matching the car. Georgian uses its own alphabet, Mkhedruli, which is unrelated to Latin or Cyrillic. The driver's profile name on the in-app pin will often render in Georgian script, and signage at the curb queue is mostly Georgian. License plates use Latin characters in the modern AA-NNN-AA format and are fine to read. Matching a Georgian-script driver name to the car that pulled up takes a beat the first few times. After day one the script stops being surprising and starts being a useful navigational signal: a sign you cannot read is almost always a local business, and that is usually the one you want.
 
 The curb taxi rank outside arrivals will quote a higher fare than the city meter, and the meter does not run cleanly for airport pickups. If the app is somehow down, agree the fare before you get in. The 337 city bus runs into the center cheaply but takes 35 to 40 minutes and is not the move with luggage at 3 a.m.
+
+## Festivals and big annual events
+
+Tbilisi's signature event is Tbilisoba, the autumn city festival. The rest of the calendar runs on Orthodox holidays plus an electronic-music and arts circuit that has built since 2010.
+
+| Event | When | What it changes |
+|---|---|---|
+| **Tbilisoba** | First weekend of October, two days | The city's biggest annual festival. Free events across the old town and Rike Park: traditional Georgian dance, polyphonic singing, wine tastings from the regions, supra (the Georgian feast tradition) dinners, the qvevri amphora wine-making tradition on display. Around half a million attendees across the weekend. Hotels in the center fill but not at international-festival prices |
+| **Art Gene Festival** | Variable, usually a weekend in July | The folk and ethnographic festival at the Open Air Museum of Ethnography. Music, crafts, traditional Georgian food, contemporary art. The slower, more rural-feel version of Georgian culture |
+| **Tbilisi Open Air** | A weekend in late June, three days | The biggest open-air music festival in Georgia, at Lisi Lake. Around 30,000 across the weekend. International and Georgian rock and electronic acts. Hotels fill, the cheap-Tbilisi premise stops working that weekend |
+| **Tbilisi International Film Festival** | A week in early December | The national film festival across multiple central venues. Smaller hotel pressure |
+| **Tbilisi Pride** | Variable, typically July (when it can run) | The Tbilisi Pride march has been contested in recent years, with hostile counter-protests in 2021 and 2023 and a 2024 anti-LGBT law restricting public assembly. Verify current status before assuming it runs |
+| **New Year (Akhali Tseli)** | December 31 to January 2 | The biggest secular holiday of the Georgian year. Fireworks from Mtatsminda and across the old town. Most restaurants closed January 1, many shops closed through January 2. Hotels at peak prices |
+| **Georgian Orthodox Christmas** | January 7 | National holiday. Religious services at Sameba Cathedral and the Sioni Cathedral. Quieter than New Year's. Many small shops still closed from the New Year window |
+| **Easter (Pascha)** | Usually one to four weeks after Western Easter (April or May) | Georgian Orthodox Easter is the biggest religious holiday. Most Tbilisians leave the city for family villages, so central Tbilisi empties of locals and fills with visitors. Restaurants and shops close Good Friday and Easter Saturday |
+| **Mother of Georgia Day (Mother's Day)** | March 3 | The Mother of Georgia day is a national holiday. Smaller scale than Easter |
+| **Mariamoba** | August 28 | The Orthodox feast of the Dormition of Mary. National holiday. Religious services at Sameba |
+| **Independence Day (Day of Restoration of Independence)** | May 26 | Georgian Independence Day. Civic parades through Rustaveli Avenue, military display, fireworks. Restaurants normal |
+| **Rtveli (grape harvest)** | September and October across Kakheti | Not in Tbilisi itself but a reason to extend the trip: the wine harvest in Kakheti province (90 minutes east) is the country's longest cultural event of the year, with family-run wineries inviting visitors to help harvest, crush, and ferment. The right months for a wine-country day trip |
+
+The trip-shaping window is Tbilisoba in early October. If a free, music-and-wine-heavy city festival is the appeal, this is the weekend. New Year and Orthodox Easter are the two windows where the city behaves differently from a normal trip: many shops closed, locals out of town, hotels at peak prices.
 
 ## Where to stay
 
