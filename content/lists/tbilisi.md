@@ -41,6 +41,12 @@ related:
   city: tbilisi
   country: georgia
 
+topics:
+  - festivals
+  - spa
+  - architecture
+  - markets
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a pass on
 #   facts (Mkhedruli alphabet, qvevri spelling, kabini terminology,

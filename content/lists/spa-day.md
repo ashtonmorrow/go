@@ -39,6 +39,9 @@ related:
   posts:
     - spa-day
 
+topics:
+  - spa
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a fact pass
 #   on opening hours, kabini terminology vs Pamukkale terms, and the

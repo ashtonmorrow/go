@@ -13,6 +13,10 @@ hero_alt: ""
 related:
   country: spain
 
+topics:
+  - festivals
+  - wine
+
 # Authoring notes (kept here, not rendered):
 # - 2026-05-13: Initial scaffold. Mike's lived note covers Sabaté i Coca
 #   (Castellroig) — booked an Uber from Barcelona, tour was in Catalan

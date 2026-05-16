@@ -38,6 +38,10 @@ faqs:
 related:
   city: montevideo
   country: uruguay
+topics:
+  - festivals
+  - beaches
+  - day-trips
 ---
 
 [Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip. From Puerto Madero you can be in [Uruguay](/countries/uruguay) in 2.5 hours by ferry, walking out of the terminal into Ciudad Vieja with customs already cleared. The city itself is a slow one: an asado lunch, an afternoon along the Rambla, sunsets from a high floor in Punta Carretas. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.

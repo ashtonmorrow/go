@@ -41,6 +41,11 @@ related:
   posts:
     - bath-uk
 
+topics:
+  - festivals
+  - spa
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip after a fact pass on:
 #   GWR Bath → Salisbury timing (was 60 to 75 min in 2024. Some

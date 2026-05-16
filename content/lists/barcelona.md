@@ -39,6 +39,10 @@ related:
   city: barcelona
   country: spain
 
+topics:
+  - festivals
+  - markets
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/barcelona via the picker.

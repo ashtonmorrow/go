@@ -14,6 +14,10 @@ related:
   city: tokyo
   country: japan
 
+topics:
+  - festivals
+  - nightlife
+
 # Authoring notes (kept here, not rendered):
 # - 2026-05-14: Expanded from the May 2026 thin scaffold (410 words)
 #   with the survival-lens treatment: ward geography, where-to-stay

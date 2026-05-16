@@ -41,6 +41,11 @@ related:
   city: sitges
   country: spain
 
+topics:
+  - festivals
+  - beaches
+  - markets
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a pass on
 #   facts (Rodalies frequency, beach names, exact Vivero/Sabàtic

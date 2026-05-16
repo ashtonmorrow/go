@@ -39,6 +39,10 @@ related:
   city: amsterdam
   country: netherlands
 
+topics:
+  - festivals
+  - museums
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - featured is true so the scaffold appears on the home page Travel

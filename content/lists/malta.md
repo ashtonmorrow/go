@@ -41,6 +41,9 @@ related:
   city: valletta
   country: malta
 
+topics:
+  - festivals
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip after a pass on:
 #   ferry pricing (Ċirkewwa to Mġarr foot fare moves. Verify against

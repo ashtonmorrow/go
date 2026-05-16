@@ -39,6 +39,10 @@ related:
   city: the-hague
   country: netherlands
 
+topics:
+  - festivals
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/the-hague via the picker.

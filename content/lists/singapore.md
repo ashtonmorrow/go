@@ -38,6 +38,9 @@ faqs:
 related:
   city: singapore
   country: singapore
+topics:
+  - festivals
+  - nightlife
 ---
 
 [Singapore](/cities/singapore) is the most efficient major city in Southeast Asia and the easiest to underestimate by budget. Two to three days, mostly on foot and MRT, with the spending on food rather than drinks, is how the trip works. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.

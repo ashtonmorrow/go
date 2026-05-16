@@ -39,6 +39,10 @@ related:
   city: khao-yai
   country: thailand
 
+topics:
+  - festivals
+  - wine
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - 2026-05-16: pin gap reconciled against the DB. All 11 places flagged

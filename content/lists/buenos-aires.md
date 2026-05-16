@@ -14,6 +14,11 @@ related:
   city: buenos-aires
   country: argentina
 
+topics:
+  - festivals
+  - scams-safety
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - 2026-05-13: Expanded from the May 2026 bulk-scaffold with Mike's
 #   lived notes. Voice pass against current CLAUDE.md rules

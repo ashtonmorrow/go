@@ -37,6 +37,9 @@ related:
   city: bristol
   country: unitedkingdom
 
+topics:
+  - festivals
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/bristol via the picker.

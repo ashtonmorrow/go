@@ -38,6 +38,9 @@ faqs:
 related:
   city: bruges
   country: belgium
+topics:
+  - festivals
+  - day-trips
 ---
 
 [Bruges](/cities/bruges) is the small medieval [Belgian](/countries/belgium) city that everyone tells you to see, and the medieval town is worth the visit. The historic center is a small enough loop that the main sights fit into one full day. The canals, the chocolate, and a brewery tour are the spine of that day. Be there before 10 a.m. or after 6 p.m. and you skip most of the day-trip crowd. The full pin map sits below. This writeup covers the parts of it that change the trip.

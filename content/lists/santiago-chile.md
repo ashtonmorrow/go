@@ -39,6 +39,12 @@ related:
   city: santiago
   country: chile
 
+topics:
+  - festivals
+  - wine
+  - museums
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - 2026-05-16: pin gap reconciled against the DB. All 14 places flagged

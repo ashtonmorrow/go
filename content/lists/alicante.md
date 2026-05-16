@@ -39,6 +39,12 @@ related:
   city: alicante
   country: spain
 
+topics:
+  - festivals
+  - beaches
+  - museums
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - hero_image is empty.

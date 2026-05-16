@@ -42,6 +42,11 @@ related:
   city: ""
   country: indonesia
 
+topics:
+  - festivals
+  - scams-safety
+  - beaches
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was written
 #   from the curated saved_list set rather than from a fresh Mike

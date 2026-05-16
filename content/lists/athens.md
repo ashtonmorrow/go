@@ -38,6 +38,10 @@ faqs:
 related:
   city: athens
   country: greece
+topics:
+  - festivals
+  - scams-safety
+  - day-trips
 ---
 
 [Athens](/cities/athens) is the city most travelers underestimate going in and oversell coming out. Two days is enough to do the headline sights well. Three is the sweet spot once you add a day trip. Four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets on the Syntagma-Monastiraki spine and the midday Acropolis queue are the two things to plan around. The full pin map sits below. This writeup covers the parts of it that change the trip.

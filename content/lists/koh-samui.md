@@ -37,6 +37,10 @@ related:
   city: ko-samui
   country: thailand
 
+topics:
+  - festivals
+  - beaches
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - hero_image is empty. Pick one in /admin/lists/koh-samui.

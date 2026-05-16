@@ -39,6 +39,10 @@ related:
   city: kotor
   country: montenegro
 
+topics:
+  - festivals
+  - markets
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a pass on:
 #   the current Kotor walls entry fee (it moves), the Blue Line bus

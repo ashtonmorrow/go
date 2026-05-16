@@ -39,6 +39,11 @@ related:
   city: ho-chi-minh-city
   country: vietnam
 
+topics:
+  - festivals
+  - nightlife
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - hero_image is empty. Pick one in /admin/lists/ho-chi-minh-city.

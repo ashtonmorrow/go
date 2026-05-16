@@ -43,6 +43,10 @@ related:
   city: cairo
   country: egypt
 
+topics:
+  - festivals
+  - scams-safety
+
 # Authoring notes (kept here, not rendered):
 # - May 2026 rewrite against the updated CLAUDE.md voice rules and Mike's
 #   factual corrections (17.2k Bonvoy points actual, Sphinx Airport added,

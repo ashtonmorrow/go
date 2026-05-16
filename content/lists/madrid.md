@@ -37,6 +37,11 @@ related:
   city: madrid
   country: spain
 
+topics:
+  - festivals
+  - markets
+  - museums
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/madrid via the picker.

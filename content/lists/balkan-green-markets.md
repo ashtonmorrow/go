@@ -34,6 +34,8 @@ faqs:
 related:
   posts:
     - balkan-green-markets
+topics:
+  - markets
 ---
 
 I started paying attention to green markets because I often stay in apartments for four to eight weeks. Eating every meal out gets old, and in this part of Europe the market is still the quickest way to understand how a city feeds itself. You see who is buying for dinner, what is in season, which stalls are for residents, and which stalls are quietly priced for people passing through.

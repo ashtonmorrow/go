@@ -41,6 +41,12 @@ related:
   city: bangkok
   country: thailand
 
+topics:
+  - festivals
+  - scams-safety
+  - markets
+  - nightlife
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/bangkok via the picker.

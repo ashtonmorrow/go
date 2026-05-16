@@ -39,6 +39,12 @@ related:
   city: phuket
   country: thailand
 
+topics:
+  - festivals
+  - scams-safety
+  - beaches
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/phuket via the picker.

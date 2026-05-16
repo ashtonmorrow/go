@@ -36,6 +36,11 @@ faqs:
 related:
   city: cape-town
   country: southafrica
+topics:
+  - festivals
+  - scams-safety
+  - wine
+  - day-trips
 ---
 
 [Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around safety, weather, transport, and where you sleep.

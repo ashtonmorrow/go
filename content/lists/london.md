@@ -41,6 +41,11 @@ related:
   city: london
   country: unitedkingdom
 
+topics:
+  - festivals
+  - markets
+  - museums
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/london via the picker.

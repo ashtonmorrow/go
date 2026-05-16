@@ -14,6 +14,9 @@ related:
   city: manchester
   country: united-kingdom
 
+topics:
+  - festivals
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.

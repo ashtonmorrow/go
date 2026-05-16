@@ -39,6 +39,10 @@ related:
   city: cordoba-ar
   country: argentina
 
+topics:
+  - festivals
+  - nightlife
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/cordoba-ar.

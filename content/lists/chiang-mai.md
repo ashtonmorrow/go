@@ -39,6 +39,10 @@ related:
   city: chiang-mai
   country: thailand
 
+topics:
+  - festivals
+  - markets
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - hero_image is empty.

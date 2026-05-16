@@ -32,6 +32,8 @@ faqs:
 
 related:
   country: belgium
+topics:
+  - beaches
 ---
 
 [Belgium](/countries/belgium)'s Kusttram is a daytrip adventure from [Ghent](/cities/ghent), [Brussels](/cities/brussels), or [Bruges](/cities/bruges) disguised as a public transportation system. It runs for roughly 67 kilometers along the Flemish coast, from [De Panne](/cities/de-panne) near [France](/countries/france) to [Knokke-Heist](/cities/knokke) near the [Dutch](/countries/netherlands) border, linking beach towns, dunes, apartment blocks, promenades, and pockets of Belle Époque stubbornness.

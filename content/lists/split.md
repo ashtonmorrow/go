@@ -38,6 +38,11 @@ faqs:
 related:
   city: split
   country: croatia
+topics:
+  - festivals
+  - beaches
+  - nightlife
+  - day-trips
 ---
 
 [Split](/cities/split) is the Croatian Adriatic city built inside Diocletian's 4th-century palace. The walls are streets now, the basement is wine cellars, the cathedral is the emperor's mausoleum. Two days for the city, more if you're using it as a Dalmatian base.

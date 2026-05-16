@@ -41,6 +41,11 @@ related:
   city: munich
   country: germany
 
+topics:
+  - festivals
+  - museums
+  - day-trips
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip after a pass on:
 #   brewery hours (verify against current municipal listings. They

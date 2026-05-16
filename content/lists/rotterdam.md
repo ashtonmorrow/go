@@ -38,6 +38,11 @@ faqs:
 related:
   city: rotterdam
   country: netherlands
+topics:
+  - festivals
+  - architecture
+  - nightlife
+  - day-trips
 ---
 
 [Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. WWII bombing erased the medieval city, and the rebuild made it the proving ground for modern Dutch architecture. Two days for the walking architecture loop and the food scene, plus a half day for Kinderdijk.
