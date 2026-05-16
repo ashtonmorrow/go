@@ -99,6 +99,18 @@ The inverse case (saved_lists row without a .md file) is fine and common — tho
 
 Run `scripts/find-orphan-pin-links.ts` after any structural changes that touch slugs or cross-links — it audits every `[Name](/pins/<slug>)` reference in published prose and reports any that don't resolve.
 
+**Topics taxonomy.** Cross-cutting themes (festivals, food, where-to-stay, scams-safety, etc.) are a controlled vocabulary, not free-text tags. The registry in `lib/topics.ts` is the single source of truth. A guide or post opts into a topic with a frontmatter `topics:` array:
+
+```
+topics:
+  - festivals
+  - where-to-stay
+```
+
+Only slugs that exist in the `TOPICS` registry are kept — `filterValidTopics` drops anything else at parse time, so the taxonomy cannot sprawl. To use a topic that does not exist yet, add it to the registry first; do not invent frontmatter values. Each topic auto-aggregates every tagged guide and post at `/topics/<slug>`.
+
+A topic hub is `noindex` until its registry entry gets an `intro` paragraph — the same rolling-release rule as guides. Writing the `intro` opens the hub to search and adds it (and the `/topics` index) to the sitemap automatically. Nothing else needs to change. The legacy post field `tags:` is read as a fallback alias for `topics:` but is otherwise retired; new content uses `topics:`.
+
 ## Voice for travel guides
 
 Mike has two registers in his writing: the casual private trip-planning notes (date+place+action fragments, dollar amounts and points balances, brand names dropped in directly, mixed-language asides) and the published professional explainer on layer.team (question-as-H2 structure, bold-key-term-then-definition, comparison tables, plain declarative sentences, American spelling, no semicolons, no literary flourishes, no transition crutches). **The travel guides should sit between these two registers**, closer to the layer.team published voice with first-person personal asides surfaced where the lived experience earns them.

@@ -5,6 +5,8 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { unstable_cache } from "next/cache";
 
+import { filterValidTopics } from "./topics";
+
 const POSTS_DIR = path.join(process.cwd(), "content/posts");
 
 export type PostScope = "pins" | "cities" | "countries" | "lists";
@@ -45,7 +47,11 @@ export type Post = {
   authors: string[];
   links: PostLinks;
   structuredItemLists: PostStructuredItemList[];
-  tags: string[];
+  /** Cross-cutting topic slugs, validated against the lib/topics.ts
+   *  registry. Unregistered frontmatter values are dropped. Powers the
+   *  /topics/<slug> hub aggregation. Reads `topics:` (and legacy `tags:`
+   *  as a fallback alias) from frontmatter. */
+  topics: string[];
   /** When set, this post is a stub that points at a hand-coded page elsewhere
    *  (e.g. /airline-stopover-programs). Surfaces (article index, related posts)
    *  should treat it like a redirect — render the canonical article entry, not
@@ -147,7 +153,7 @@ async function readPostFile(slug: string): Promise<Post | null> {
     authors: normalizeStringArray(data.authors),
     links: normalizeLinks(data.links),
     structuredItemLists: normalizeStructuredItemLists(data.structured_item_lists),
-    tags: normalizeStringArray(data.tags),
+    topics: filterValidTopics(data.topics ?? data.tags),
     externalRoute:
       typeof data.external_route === "string" ? data.external_route : null,
     bodyHtml,

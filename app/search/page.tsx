@@ -57,7 +57,7 @@ async function searchPosts(query: string): Promise<SearchHit[]> {
     .filter((post) => post.indexable)
     .filter((post) =>
       includesQuery(
-        [post.title, post.subtitle, post.bodyMd, ...post.tags],
+        [post.title, post.subtitle, post.bodyMd, ...post.topics],
         query,
       ),
     )

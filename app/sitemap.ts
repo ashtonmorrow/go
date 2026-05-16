@@ -8,6 +8,7 @@ import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';
 import { getAllArticleEntries } from '@/lib/articles';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
+import { TOPICS, anyTopicHasIntro } from '@/lib/topics';
 
 /** Read /content/<scope>/<slug>.md frontmatter and return the indexable
  *  flag. Returns false when the file is missing or `indexable !== true`.
@@ -160,6 +161,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
+  // Topic hubs ship in the sitemap only once they carry an editorial
+  // intro — the same signal that flips /topics/<slug> from noindex to
+  // indexable. An intro-less hub is a live aggregation page but stays
+  // out of the sitemap so we don't list a noindex URL. The /topics
+  // index follows the same gate.
+  const topicRoutes: MetadataRoute.Sitemap = anyTopicHasIntro()
+    ? [
+        { url: `${SITE_URL}/topics`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.7 },
+        ...TOPICS.filter(t => t.intro != null).map(t => ({
+          url: `${SITE_URL}/topics/${t.slug}`,
+          lastModified: now,
+          changeFrequency: 'weekly' as const,
+          priority: 0.7,
+        })),
+      ]
+    : [];
+
   const articleRoutes: MetadataRoute.Sitemap = articleEntries.map(entry => ({
     url: `${SITE_URL}${entry.href}`,
     lastModified: entry.publishedAt ?? now,
@@ -179,6 +197,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticRoutes,
+    ...topicRoutes,
     ...articleRoutes,
     ...listRoutes,
     ...cityRoutes,

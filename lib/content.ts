@@ -5,6 +5,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { filterValidTopics } from './topics';
 
 /**
  * File-based content collection.
@@ -162,6 +163,11 @@ export type ListContent = {
   guideCards: ListGuideCards | null;
   faqs: ListFaq[];
   related: ListRelated;
+  /** Cross-cutting topic slugs, validated against the lib/topics.ts
+   *  registry. Frontmatter `topics:` values that are not registered are
+   *  dropped here, so this array only ever contains real topic slugs.
+   *  Powers the /topics/<slug> hub aggregation. */
+  topics: string[];
 };
 
 function asString(v: unknown): string | null {
@@ -292,6 +298,7 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
     guideCards: parseGuideCards(data.guide_cards),
     faqs: parseFaqs(data.faqs),
     related: parseRelated(data.related),
+    topics: filterValidTopics(data.topics),
   };
 }
 
@@ -301,6 +308,53 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
  * lists can opt into rendered blocks like guide cards and FAQs.
  */
 export const readListContent = cache(_readListContent);
+
+/** Lightweight per-guide shape for the /topics hub aggregation. */
+export type GuideTopicEntry = {
+  slug: string;
+  /** Frontmatter title, or a prettified slug fallback. */
+  title: string;
+  description: string | null;
+  heroImage: string | null;
+  /** Validated topic slugs (see lib/topics.ts). */
+  topics: string[];
+  indexable: boolean;
+};
+
+/**
+ * Scan /content/lists and return every guide with its validated topics.
+ * Used by the /topics/<slug> hubs to aggregate guides by topic. readListContent
+ * is React-cache'd within a request, so the per-file parse is cheap and the
+ * whole scan is ISR-cached by the calling route.
+ */
+export async function getAllGuideTopicEntries(): Promise<GuideTopicEntry[]> {
+  const dir = path.join(CONTENT_ROOT, 'lists');
+  let files: string[];
+  try {
+    files = await fs.readdir(dir);
+  } catch {
+    return [];
+  }
+  const slugs = files
+    .filter(f => f.endsWith('.md'))
+    .map(f => f.slice(0, -3))
+    .filter(s => SAFE_SLUG.test(s));
+  const entries = await Promise.all(
+    slugs.map(async slug => {
+      const content = await readListContent(slug);
+      if (!content) return null;
+      return {
+        slug,
+        title: content.title ?? slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        description: content.description,
+        heroImage: content.heroImage,
+        topics: content.topics,
+        indexable: content.indexable,
+      } satisfies GuideTopicEntry;
+    }),
+  );
+  return entries.filter((e): e is GuideTopicEntry => e !== null);
+}
 
 // === Inline pin photo injection =============================================
 // The pure markdown-rewriting helpers live in lib/inlinePinPhotos.ts so they
