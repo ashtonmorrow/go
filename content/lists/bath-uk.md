@@ -45,9 +45,8 @@ related:
 # - indexable: false until Mike reviews. Flip after a fact pass on:
 #   GWR Bath → Salisbury timing (was 60 to 75 min in 2024. Some
 #   services change at Westbury), Stonehenge Tour bus frequency
-#   (every 30 min in summer, less in winter), Hotel Indigo current
-#   rate band, and the specific pub near Larkhill that the free-walk
-#   section gestures at.
+#   (every 30 min in summer, less in winter), and Hotel Indigo current
+#   rate band.
 # - featured: true so it sits alongside the destination guides on the
 #   home page.
 # - hero_image is empty. Pick one in /admin/lists/bath-uk via the picker.
@@ -69,13 +68,14 @@ related:
 #     · stonehenge-avebury-and-associated-sites (UNESCO ref. Wired onto
 #       the salisbury list this pass)
 #
-# - Pin to create for the free-walking-path section:
-#     · The Mike-mentioned pub near Larkhill where you park, have a pint,
-#       then walk over to the stones. The specific establishment name
-#       needs Mike to confirm (likely candidates: The Bell at Lopcombe
-#       Corner, The Mason Arms in Larkhill, The Bustard Inn on the A360
-#       between Stonehenge and the artillery ranges). Left as plain text
-#       in the body until Mike pins the right one.
+# - 2026-05-16: free-walking-path pub confirmed by Mike as The Packhorse
+#   on Wilson Road, Larkhill (SP4 8QB, 51.1972/-1.8190). Pin created:
+#   the-packhorse-larkhill, on the salisbury-stonehenge saved_list,
+#   source manual-2026-05. Body now links it. Fact-check done: the pub
+#   has its own free car park (the section says park-and-pint there),
+#   and it is the closest pub to the stones, about a 30-minute byway
+#   walk south. Mike's "park around the park" note was the pub's own
+#   car park, not a separate green.
 #
 # - Saved-list slug rename in the same pass: "salisbury-&-stonehenge"
 #   → "salisbury-stonehenge". The ampersand in a URL segment forces
@@ -166,7 +166,7 @@ The train: GWR from Bath Spa to Salisbury runs frequently, takes about an hour, 
 
 The bus to the stones: the Stonehenge Tour is the dedicated hop-on-hop-off operated by Salisbury Reds. It leaves from outside Salisbury station, runs every 30 minutes in summer and less frequently in winter, takes about 30 minutes to the stones, and lets you also stop at Old Sarum on the way. The standard ticket bundles the bus with English Heritage admission to the stones, which is the easiest way to handle the visit.
 
-The free walking path: the public byway across Salisbury Plain crosses near the stones and gives you a free view from outside the English Heritage paid perimeter. The route from the Larkhill side passes a pub near the artillery training area where you can park, have a pint, then walk over. You cannot walk all the way around the stones from this approach (the inner perimeter is fenced) but the view from the byway is real and the trip is free. The approach is worth knowing if you are sceptical of the paid English Heritage experience or have already done that version.
+The free walking path: the public byway across Salisbury Plain crosses near the stones and gives you a free view from outside the English Heritage paid perimeter. The Larkhill-side route starts at [The Packhorse](/pins/the-packhorse-larkhill) on Wilson Road, the closest pub to the stones. It has its own free car park, so the rhythm is park there, have a pint, then walk the byway south. Stonehenge is about a 30-minute walk across the plain. You cannot walk all the way around the stones from this approach (the inner perimeter is fenced) but the view from the byway is real and the trip is free. The approach is worth knowing if you are skeptical of the paid English Heritage experience or have already done that version.
 
 Salisbury itself eats much better than anything around the stones. The Stonehenge site has a single visitor-center café that prices for a captive market. Salisbury has a real food list. [Côte Salisbury](/pins/cote-salisbury) on St Thomas's Square is the French-bistro pick I would book first. [Wagamama Salisbury](/pins/wagamama-salisbury) on Bridge Street is the casual lunch when you have a bus to catch. [The Haunch of Venison](/pins/the-haunch-of-venison) is the historic pub for a slower meal. The wider Salisbury planning (the cathedral, the Magna Carta, where to walk) sits in the [Salisbury and Stonehenge cross-list](/lists/salisbury-stonehenge).
 
