@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Lyon travel guide: bouchons, the food capital of France, and getting in from LYS"
-description: "A personal Lyon travel guide. Getting in from LYS on the Rhônexpress, the bouchon-and-bistro rotation, and the casual French food worth the trip."
+title: "Lyon travel guide: Fête des Lumières, the bouchons, and getting in from LYS"
+description: "A personal Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in Roman theaters, the bouchons, and getting in from LYS."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

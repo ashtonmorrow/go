@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Houston travel guide: where to eat in the food capital of Texas"
-description: "A personal Houston travel guide. Getting in from IAH or HOU, where to find Tex-Mex, Vietnamese, and crawfish, and the under-rated Houston food story."
+title: "Houston travel guide: the Rodeo, where to eat, and the food capital of Texas"
+description: "A personal Houston travel guide. RodeoHouston, where to find Tex-Mex, Vietnamese, and crawfish, and the underrated Houston food story."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

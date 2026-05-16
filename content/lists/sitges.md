@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Sitges travel guide: a relaxed beach base near Barcelona, where to stay, where to eat"
-description: "A personal Sitges travel guide. Why it works as a base near Barcelona for weddings and cruise meetups, the Rodalies train, beach picks, and where to eat."
+title: "Sitges travel guide: the Film Festival, Carnival, and the beaches"
+description: "A personal Sitges travel guide. The October Film Festival, February Carnival, Corpus Christi flower carpets, the beaches, and where to eat."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

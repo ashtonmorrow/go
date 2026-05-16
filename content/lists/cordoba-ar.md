@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Córdoba Argentina travel guide: getting there, the food, and the Sierras"
-description: "A short Córdoba (Argentina) travel guide. Limited international flights, a 500-year-old center, college-town nightlife, and weekend escapes into the Sierras."
+title: "Córdoba Argentina travel guide: Cosquín, the food, and the Sierras"
+description: "A short Córdoba (Argentina) travel guide. Cosquín Folklore Festival in January, the historic center, college-town nightlife, and weekend escapes into the Sierras."
 published: 2026-05-11
 updated: 2026-05-15
 authors:

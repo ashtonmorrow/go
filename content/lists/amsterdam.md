@@ -1,8 +1,8 @@
 ---
 indexable: true
 featured: true
-title: "Amsterdam travel guide: things to do, where to stay, and a Schiphol arrival plan"
-description: "A personal Amsterdam travel guide. Where to stay in the canal ring, Zuid, or The Hague, the Schiphol train, the Buiksloterweg ferry, Zaanse Schans, and museums to book in advance."
+title: "Amsterdam travel guide: King's Day, tulip season, and where to stay"
+description: "A personal Amsterdam travel guide. King's Day, tulip season at Keukenhof, where to stay in the canal ring or The Hague, the Schiphol train, and Zaanse Schans."
 published: 2026-05-10
 updated: 2026-05-13
 authors:

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Milan travel guide: where to eat, aperitivo, and getting in from MXP"
-description: "A personal Milan travel guide. Getting in from Malpensa on the Malpensa Express, where to stay near the center, and the aperitivo + restaurant rotation worth the trip."
+title: "Milan travel guide: Fashion Week, Salone, aperitivo, and where to eat"
+description: "A personal Milan travel guide. Fashion Week, Salone del Mobile, where to eat, aperitivo, and getting in from MXP on the Malpensa Express."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

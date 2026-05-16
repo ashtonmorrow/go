@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Hilton Head travel guide: where to eat, beach time, and getting in from SAV"
-description: "A personal Hilton Head travel guide. Getting in from Savannah, the south coast US food rotation, and the Low Country beach base."
+title: "Hilton Head travel guide: the RBC Heritage, the beaches, and where to eat"
+description: "A personal Hilton Head travel guide. The RBC Heritage week in April, the Low Country food rotation, the beaches, and getting in from Savannah (SAV)."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

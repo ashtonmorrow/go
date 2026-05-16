@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Medellín travel guide: where to eat in El Poblado, the cable cars, and getting in from MDE"
-description: "A personal Medellín travel guide. Getting in from MDE, where to stay in El Poblado, the modern Colombian restaurant rotation, and the metrocable system."
+title: "Medellín travel guide: Feria de las Flores, the cable cars, and El Poblado"
+description: "A personal Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the cable cars, and getting in from MDE."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

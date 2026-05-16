@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Buenos Aires travel guide: where to stay in Palermo, the steak, and getting in from EZE or AEP"
-description: "A personal Buenos Aires travel guide. Where to stay in Palermo, getting in from EZE or AEP, Don Julio and the rest of the parrilla, the sushi at Cerezo, and the Tigre day trip."
+title: "Buenos Aires travel guide: Tango BA, the steak, and where to stay in Palermo"
+description: "A personal Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP."
 published: 2026-05-12
 updated: 2026-05-13
 authors:

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Singapore travel guide: the three-day version that does not break the bank"
-description: "A personal Singapore travel guide. Gardens by the Bay, Marina Bay Sands, the hawker centers, where to stay (Robertson Quay), and how to do the city without spending $200 on a round of drinks."
+title: "Singapore travel guide: the F1, the hawker centers, and where to stay"
+description: "A personal Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay (Robertson Quay), and the three-day version."
 published: 2026-05-11
 updated: 2026-05-15
 authors:

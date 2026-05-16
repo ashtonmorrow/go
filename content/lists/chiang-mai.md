@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Chiang Mai travel guide: where to stay, the temples, and a khao soi rotation"
-description: "A personal Chiang Mai travel guide. Where to base (Old City, Nimman, Riverside), Wat Chedi Luang and Doi Suthep, Elephant Nature Park, and the khao soi worth queuing for."
+title: "Chiang Mai travel guide: Yi Peng, the temples, and where to stay"
+description: "A personal Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base (Old City, Nimman, Riverside)."
 published: 2026-05-12
 updated: 2026-05-15
 authors:

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Tenerife travel guide: Mount Teide, the beaches, and getting in from TFS or TFN"
-description: "A personal Tenerife travel guide. Getting in from TFS (south) or TFN (north), the resort-and-volcano shape, and the Canarian food rotation worth booking around."
+title: "Tenerife travel guide: Carnival, Mount Teide, and the beaches"
+description: "A personal Tenerife travel guide. Carnival in Santa Cruz, Mount Teide, La Orotava sand carpets, the beaches, and getting in from TFS or TFN."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

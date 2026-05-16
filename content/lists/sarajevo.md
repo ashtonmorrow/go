@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Sarajevo travel guide: where to eat, the historic center, and getting in from SJJ"
-description: "A personal Sarajevo travel guide. Getting in from SJJ, where to stay near the Baščaršija, and the ćevapi-and-burek rotation worth the trip."
+title: "Sarajevo travel guide: the Film Festival, the historic center, and where to eat"
+description: "A personal Sarajevo travel guide. The Sarajevo Film Festival in August, Baščaršija Nights through July, where to stay, and getting in from SJJ."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

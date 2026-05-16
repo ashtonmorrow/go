@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Alicante travel guide: how to get there, the beaches, and where to eat"
-description: "A personal Alicante travel guide. How to get there from Madrid by train, the city and rocky beaches, Castell de Santa Bàrbara, the Mercat, and a casual food rotation."
+title: "Alicante travel guide: Hogueras de San Juan, the beaches, and where to eat"
+description: "A personal Alicante travel guide. Hogueras de San Juan in June, the beaches by type, Castell de Santa Bàrbara, and how to get there from Madrid by train."
 published: 2026-05-12
 updated: 2026-05-15
 authors:

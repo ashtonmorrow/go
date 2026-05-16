@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Kuala Lumpur travel guide: where to stay, KLCC vs Bukit Bintang, and Batu Caves"
-description: "A personal Kuala Lumpur travel guide. Where to stay (Bangsar, KLCC, Bukit Bintang), how to do Batu Caves and the Bird Park, getting in from KLIA, and what to skip."
+title: "Kuala Lumpur travel guide: Thaipusam, Batu Caves, and where to stay"
+description: "A personal Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay (Bangsar, KLCC, Bukit Bintang), the Bird Park, and getting in from KLIA."
 published: 2026-05-11
 updated: 2026-05-15
 authors:

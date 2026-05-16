@@ -1,8 +1,8 @@
 ---
 indexable: true
 featured: true
-title: "Bristol travel guide: things to do, where to stay, and the Banksy walk"
-description: "A personal Bristol travel guide. Where to stay (and which central hotels to skip), a self-guided Banksy walking tour, Clifton, and how Bristol fits a London week."
+title: "Bristol travel guide: Glastonbury, the Banksy walk, and where to stay"
+description: "A personal Bristol travel guide. Glastonbury logistics, the Banksy walking tour, where to stay, Clifton, and the London-Bristol-Bath loop."
 published: 2026-05-10
 updated: 2026-05-10
 authors:

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Venice travel guide: where to eat, where to stay, and getting in from VCE"
-description: "A personal Venice travel guide. Getting in from VCE on the Alilaguna, where to stay near the canals, and the cicchetti-and-pasta rotation worth the trip."
+title: "Venice travel guide: Carnevale, the Biennale, where to stay, and where to eat"
+description: "A personal Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay, and getting in from VCE on the Alilaguna."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

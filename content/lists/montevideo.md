@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Montevideo travel guide: the Buquebus, the asado, and where to stay"
-description: "A personal Montevideo travel guide. The Buquebus ferry from Buenos Aires beats flying, asado at Mercado del Puerto, beaches along the Rambla, and where to stay near Punta Carretas."
+title: "Montevideo travel guide: Carnaval, the Buquebus, the asado, and where to stay"
+description: "A personal Montevideo travel guide. Carnaval (the longest in the world), the Buquebus ferry, asado at Mercado del Puerto, and where to stay near Punta Carretas."
 published: 2026-05-11
 updated: 2026-05-15
 authors:

@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "São Paulo travel guide: where to eat the steak, where to stay, and getting in from GRU"
-description: "A personal São Paulo travel guide. Getting in from GRU, where to stay in Jardins, and the parrilla-and-Japanese food rotation worth the long flight."
+title: "São Paulo travel guide: Pride, Carnaval, the steakhouses, and where to stay"
+description: "A personal São Paulo travel guide. The world's largest Pride parade, Carnaval, the steakhouses, where to stay in Jardins, and getting in from GRU."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

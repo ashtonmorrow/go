@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Vienna travel guide: where to eat, the coffee houses, and getting in from VIE"
-description: "A personal Vienna travel guide. Getting in from VIE on the CAT or S-Bahn, where to stay near the Ring, and the classic Wiener cuisine rotation worth the trip."
+title: "Vienna travel guide: ball season, Christmas markets, and the coffee houses"
+description: "A personal Vienna travel guide. The ball season (Opernball, Philharmonic), Christmas markets, the coffee houses, and where to stay near the Ring."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

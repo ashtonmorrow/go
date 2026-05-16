@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Tokyo travel guide: where to stay, the wards by train, and booking the famous sights"
-description: "A personal Tokyo travel guide. Where to stay by trip type, the wards by train, how to book Ghibli/teamLab/Imperial Palace, and the sushi rotation worth the long flight."
+title: "Tokyo travel guide: cherry blossom, where to stay, and the famous sights"
+description: "A personal Tokyo travel guide. Cherry blossom season, where to stay by trip type, the wards by train, how to book Ghibli and teamLab, and the sushi rotation."
 published: 2026-05-12
 updated: 2026-05-14
 authors:

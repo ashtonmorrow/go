@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Berlin travel guide: where to eat, the döner kebab, and getting in from BER"
-description: "A personal Berlin travel guide. Getting in from BER on the S-Bahn, where to stay, where to find the döner, and the casual restaurant scene worth the trip."
+title: "Berlin travel guide: Berlinale, the Christmas markets, and where to stay"
+description: "A personal Berlin travel guide. Berlinale tickets, the Christmas markets, where to stay, where to find the döner, and getting in from BER on the S-Bahn."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

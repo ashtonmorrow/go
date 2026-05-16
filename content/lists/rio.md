@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Rio de Janeiro travel guide: where to stay in Ipanema, where to eat, and getting in from GIG"
-description: "A personal Rio travel guide. Getting in from GIG, where to stay near Ipanema, the rotation of beachfront and Centro food, and what to know going in."
+title: "Rio travel guide: Carnival, where to stay in Ipanema, and a first Rio trip"
+description: "A personal Rio de Janeiro travel guide. Carnival logistics, Réveillon at Copacabana, where to stay in Ipanema, the beaches, and getting in from GIG."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

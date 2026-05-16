@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Prague travel guide: where to stay, where to eat, and getting in from the airport"
-description: "A personal Prague travel guide. Václav Havel airport in from PRG, where to stay near the center, the restaurants and beer halls worth the walk."
+title: "Prague travel guide: Christmas markets, Prague Spring, and where to stay"
+description: "A personal Prague travel guide. Christmas markets at Old Town Square, Prague Spring music festival, where to stay, and getting in from PRG."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

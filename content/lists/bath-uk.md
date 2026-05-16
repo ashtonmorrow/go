@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Bath travel guide: the day-trip shape, where to eat, and Stonehenge as the add-on"
-description: "A personal Bath travel guide. The city as a day trip, Hotel Indigo if you stay over, Sunday roast at the Bathwick, and Stonehenge as the easy add-on."
+title: "Bath travel guide: the Christmas market, the day trip, and Stonehenge"
+description: "A personal Bath travel guide. The Christmas market window, day-trip vs overnight, Hotel Indigo, the Bathwick Boatman roast, and Stonehenge as the add-on."
 published: 2026-05-12
 updated: 2026-05-12
 authors:

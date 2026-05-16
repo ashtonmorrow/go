@@ -1,8 +1,8 @@
 ---
 indexable: false
 featured: true
-title: "Frankfurt travel guide: where to eat, where to stay, and getting in from FRA"
-description: "A personal Frankfurt travel guide. Getting in from FRA on the S-Bahn, where to stay near the center, and a casual food rotation across the dishes Frankfurt invented."
+title: "Frankfurt travel guide: the Book Fair, apple wine, and getting in from FRA"
+description: "A personal Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
