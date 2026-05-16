@@ -40,23 +40,12 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - Atlas pin coverage is 0 for Djerba. Everything mentioned in
-#   the body is currently plain text. Pins to create on a later
-#   pass:
-#     · Djerba-Zarzis International Airport (DJE)
-#     · Houmt Souk medina + fish market
-#     · Sidi Mahrez Beach, Seguia Beach, Plage Omarit
-#     · El Ghriba Synagogue
-#     · Djerbahood (Erriadh village)
-#     · Djerba Explore Park (crocodile farm + Lalla Hadria Museum)
-#     · Guellala Museum
-#     · Midoun Market (Thursday weekly)
-#     · Hotel Sidi Driss (Matmata, Star Wars filming)
-#     · Iberostar Selection Eolia Djerba
-#   When created, swap text mentions for /pins/<slug> links. Many
-#   restaurant and accommodation pins will probably never materialize
-#   for an island this size. The saved_list at /lists/djerba will
-#   render thin until then.
+# - 2026-05-16: pin gap reconciled against the DB. All places flagged
+#   here now exist as pins on the djerba saved_list (most created in
+#   earlier passes; midoun-market created this pass as a manual-2026-05
+#   stub, enrichment_status pending). Body still has them as plain text;
+#   swap text->/pins/<slug> links after the enrichment thread fills
+#   coordinates and descriptions.
 # - Tunisian Dinar 1 TND ≈ 0.30 EUR (mid-2026). Verify before each
 #   republish.
 # - Source: Mike's Djerba travel brief. Personal references stripped.

@@ -40,23 +40,12 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - Atlas pin coverage is 2 pins (multi-island country. City/pin
-#   coverage is thin). Everything mentioned in the body is currently
-#   plain text. Pins to create on a later pass:
-#     · Amílcar Cabral International Airport (SID, Sal)
-#     · Nelson Mandela International Airport (RAI, Praia)
-#     · Santa Maria Beach (Sal)
-#     · Praia de Chaves (Boa Vista)
-#     · Mindelo (port town center, São Vicente)
-#     · Pico do Fogo (the volcano)
-#     · Chã das Caldeiras (crater village, Fogo)
-#     · Cidade Velha (UNESCO, Santiago island)
-#     · Cova Crater (Santo Antão)
-#     · Mindelo Fish Market
-#     · Tarrafal beach (Santiago)
-#     · Maio Island
-#     · Praia Municipal Market
-#   When created, swap text mentions for /pins/<slug> links.
+# - 2026-05-16: pin gap reconciled against the DB. All places flagged
+#   here now exist as pins on the cabo-verde saved_list (most created in
+#   earlier passes; maio-island created this pass as a manual-2026-05
+#   stub, enrichment_status pending). Body still has them as plain text;
+#   swap text->/pins/<slug> links after the enrichment thread fills
+#   coordinates and descriptions.
 # - This scaffold is at the country/multi-island level rather than
 #   a single city. The Bernina-Express writeup at
 #   /content/posts/bernina-express-first-class.md is the closest

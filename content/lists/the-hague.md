@@ -59,12 +59,19 @@ related:
 #   (Emma → Wilhelmina → Juliana → Beatrix → Willem-Alexander).
 # - Binnenhof: not provably the world's oldest parliament in continuous
 #   use (Tynwald, Althing predate it). Phrasing softened to "one of."
-# - Pins still to create on a later pass (currently plain text in body):
-#   voco The Hague, Hotel Des Indes, Staybridge Suites The Hague Parliament,
-#   De Basiliek, Little V, Baladi Manouche, De Bakkerswinkel, Bouzy,
-#   Ciao Ciao, Boterwaag, Lola Bikes & Coffee, Habana Beach, Panorama Mesdag,
-#   Voorlinden, Strandhuisjes Kijkduin, Royal Delft (Koninklijke Porceleyne
-#   Fles), Nieuwe Kerk, Vermeer Center, The Hague Tower / Sky Bar.
+# - 2026-05-16: pin gap reconciled against the DB. voco The Hague,
+#   Staybridge Suites, De Basiliek, Lola Bikes & Coffee, Panorama Mesdag,
+#   and the Hague Tower (haagse-toren / the-pier-skyview) already existed.
+#   13 missing pins created as stubs (source manual-2026-05,
+#   enrichment_status pending, indexable false): hotel-des-indes-the-hague,
+#   little-v-the-hague, baladi-manouche, de-bakkerswinkel-the-hague,
+#   bouzy-the-hague, ciao-ciao-the-hague, boterwaag, habana-beach-the-hague,
+#   museum-voorlinden, strandhuisjes-kijkduin, royal-delft,
+#   nieuwe-kerk-den-haag, vermeer-centrum-delft. Body still has these as
+#   plain text; swap text->/pins/<slug> links after enrichment.
+# - Data bug spotted: pins capital-hilton and hotel-zena-a-viceroy-urban-
+#   retreat are tagged city_names "The Hague" but are Washington DC hotels.
+#   Worth a cleanup pass.
 # - SEO title pattern: current "36 hours in The Hague" tested fine, but
 #   the audited tested pattern is "[City] travel guide: [hook A], [hook B],
 #   and [hook C]". Consider for the v2 pass.

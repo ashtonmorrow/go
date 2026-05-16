@@ -41,25 +41,16 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - Atlas pin coverage is thin (3 pins). Everything mentioned in
-#   the body is currently plain text. Pins to create on a later
-#   pass:
-#     · Arturo Merino Benitez International Airport (SCL)
-#     · Plaza de Armas
-#     · Cerro San Cristobal + Funicular + Santiago Metropolitan Park
-#     · Catedral Metropolitana de Santiago
-#     · Mercado Central
-#     · Barrio Lastarria
-#     · La Chascona (Neruda house)
-#     · Museo Nacional de Bellas Artes
-#     · Museo de la Memoria y los Derechos Humanos
-#     · Gabriela Mistral Cultural Center (GAM)
-#     · Concha y Toro winery (Maipo)
-#     · Santa Rita winery (Maipo)
-#     · Parque Bicentenario
-#     · Cajón del Maipo (the hiking gorge)
-#     · Valparaíso (city page should already exist. Verify)
-#   When created, swap text mentions for /pins/<slug> links.
+# - 2026-05-16: pin gap reconciled against the DB. All 14 places flagged
+#   here already exist as pins on the santiago-chile saved_list (created
+#   in earlier passes): arturo-merino-benitez-international-airport,
+#   plaza-de-armas-santiago, cerro-san-cristobal, catedral-metropolitana-
+#   de-santiago, mercado-central-santiago, barrio-lastarria, la-chascona,
+#   museo-nacional-de-bellas-artes, museo-de-la-memoria-y-los-derechos-
+#   humanos, centro-gabriela-mistral-gam, concha-y-toro-winery,
+#   santa-rita-winery, parque-bicentenario, cajon-del-maipo. Valparaíso is
+#   a city page. Body still has some as plain text; swap text->/pins/<slug>
+#   links where it reads naturally.
 # - SCL taxi pricing in USD reflects 2026 conversion at ~880 CLP/USD.
 #   verify before each republish.
 # - Source: Mike's Santiago travel brief. Personal references stripped.

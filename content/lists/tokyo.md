@@ -21,22 +21,18 @@ related:
 #   Kabukicho/Roppongi note. Most ward and landmark mentions are
 #   plain text because no pins exist for them yet.
 #
-# - Pins flagged to create on a future pass:
-#     · shibuya, shinjuku, ginza, asakusa, roppongi, harajuku, akasaka,
-#       shimokitazawa (the wards)
-#     · sensoji-temple (Asakusa headline)
-#     · meiji-jingu (the shrine)
-#     · shibuya-crossing
-#     · teamlab-planets-toyosu (the visitor-going one)
-#     · teamlab-borderless-azabudai-hills
-#     · ghibli-museum-mitaka
-#     · imperial-palace-tokyo + imperial-palace-east-gardens
-#     · tsukiji-outer-market (the outer market is still working, the
-#       inner moved to Toyosu in 2018)
-#     · toyosu-fish-market
-#     · tokyo-skytree, tokyo-tower
-#     · golden-gai (shinjuku six-alley bar district)
-#     · omoide-yokocho ("Piss Alley")
+# - 2026-05-16: 14 attraction pins created as stubs (source
+#   manual-2026-05, enrichment_status pending, indexable false):
+#   sensoji-temple, meiji-jingu, shibuya-crossing, teamlab-planets-tokyo,
+#   teamlab-borderless-tokyo, ghibli-museum, tokyo-imperial-palace,
+#   imperial-palace-east-gardens, tsukiji-outer-market, toyosu-fish-market,
+#   tokyo-skytree, tokyo-tower, golden-gai, omoide-yokocho. Body still has
+#   them as plain text; swap text->/pins/<slug> links after the enrichment
+#   thread fills coordinates, descriptions, and photos.
+# - The 8 wards (Shibuya, Shinjuku, Ginza, Asakusa, Roppongi, Harajuku,
+#   Akasaka, Shimokitazawa) were intentionally NOT pinned. They are
+#   neighborhoods, and the cross-linking standard keeps areas as plain
+#   text. Flag for Mike if he wants ward-level pins anyway.
 #
 # - indexable: false until Mike reviews and a hero image is picked.
 ---

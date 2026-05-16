@@ -41,21 +41,10 @@ related:
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
-# - Atlas pin coverage is thin (1 pin). Everything mentioned in
-#   the body is currently plain text. Pins to create on a later
-#   pass:
-#     · Khao Yai National Park entry / Visitor Center
-#     · Haew Narok Waterfall
-#     · Haew Suwat Waterfall
-#     · Pha Diao Dai viewpoint
-#     · PB Valley Khao Yai Winery
-#     · GranMonte Estate
-#     · Granja Chokchai (the Chokchai farm)
-#     · Palio Khao Yai (the kitschy Italian-style village)
-#     · Mosaic Khao Yai
-#     · Muthi Maya Forest Pool Villa
-#     · Pak Chong railway station
-#   When created, swap text mentions for /pins/<slug> links.
+# - 2026-05-16: pin gap reconciled against the DB. All 11 places flagged
+#   here already exist as pins on the khao-yai saved_list (created in
+#   earlier passes). Body still has most as plain text; swap
+#   text->/pins/<slug> links where it reads naturally after enrichment.
 # - Entry fee 400-500 THB reflects the 2026 range. Verify at the
 #   gate before each republish.
 # - Source: Mike's Thailand Spanish travel doc translated and
