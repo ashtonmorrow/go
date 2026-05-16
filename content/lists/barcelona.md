@@ -43,6 +43,27 @@ topics:
   - festivals
   - markets
 
+day_trips:
+  intro: Barcelona is one of the better European bases for day trips. Wine country, a serrated mountain monastery, a Roman provincial capital, and a calmer beach town are all inside about 90 minutes by train, and most run on the same Rodalies commuter network you would use inside the city.
+  trips:
+    - name: Sitges
+      travel: 35 to 40 min by Rodalies R2 Sud train from Barcelona-Sants
+      summary: A calmer beach town with locally-owned restaurants, a famous October film festival, and hotel rates that often beat anything central. Works as a half-day or a cheaper base.
+      list: sitges
+    - name: Penedès wine country
+      travel: 45 min by R4 train to Vilafranca del Penedès, or 30 min by car
+      summary: The cava heartland. Cellar visits at the big houses and the small growers, plus the wine-town centers of Vilafranca and Sant Sadurní d'Anoia.
+      list: penedes
+    - name: Montserrat
+      travel: About 1 hr by R5 train from Plaça Espanya, then the rack railway or cable car
+      summary: The Benedictine monastery set in a serrated rock massif. Mountain walks, the basilica, and the boys' choir most days at midday.
+    - name: Girona
+      travel: 38 min by high-speed AVE, or about 1 hr 20 by regional train
+      summary: A walled medieval old town with a steep Jewish quarter, a colorful riverfront, and cathedral steps that filming made famous. Easy on foot once you arrive.
+    - name: Tarragona
+      travel: About 1 hr 10 by regional train, or 35 min by AVE
+      summary: A Roman provincial capital with a UNESCO-listed amphitheatre above the sea, surviving walls and circus ruins, and a working beach below the old town.
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/barcelona via the picker.

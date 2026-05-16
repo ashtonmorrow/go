@@ -111,6 +111,21 @@ Only slugs that exist in the `TOPICS` registry are kept — `filterValidTopics` 
 
 A topic hub is `noindex` until its registry entry gets an `intro` paragraph — the same rolling-release rule as guides. Writing the `intro` opens the hub to search and adds it (and the `/topics` index) to the sitemap automatically. Nothing else needs to change. The legacy post field `tags:` is read as a fallback alias for `topics:` but is otherwise retired; new content uses `topics:`.
 
+**Place × intent pages.** Travel search demand is overwhelmingly `<intent> + <place>` ("day trips from Barcelona", "things to do in Bangkok"), not the bare intent. So intents that are always origin-anchored get their own per-city route, not a flat topic hub. The pattern: `/cities/<slug>/{things-to-do,hotels,day-trips}`. `things-to-do` and `hotels` are pin-driven; `day-trips` is driven by an authored `day_trips:` frontmatter block in the city's guide:
+
+```
+day_trips:
+  intro: Optional editorial intro paragraph for the page.
+  trips:
+    - name: Sitges
+      travel: 35 to 40 min by Rodalies R2 Sud train
+      summary: One or two sentences on why the trip is worth it.
+      list: sitges   # optional internal link to a guide
+      pin: null      # optional internal link to a pin
+```
+
+`day_trips:` accepts either a bare array of trips or the `{ intro, trips }` shape. The page resolves the city via `related.city` (falling back to the list slug). Every place × intent page has a substance gate: it is `noindex` until it clears a real content threshold (`MIN_INDEXABLE_PIN_COUNT` = 4 for things-to-do, `MIN_INDEXABLE_DAY_TRIPS` = 3 for day-trips), and the sitemap lists only the pages that clear it. This is the line between programmatic *coverage* and thin doorway pages — never ship the page below the gate.
+
 ## Voice for travel guides
 
 Mike has two registers in his writing: the casual private trip-planning notes (date+place+action fragments, dollar amounts and points balances, brand names dropped in directly, mixed-language asides) and the published professional explainer on layer.team (question-as-H2 structure, bold-key-term-then-definition, comparison tables, plain declarative sentences, American spelling, no semicolons, no literary flourishes, no transition crutches). **The travel guides should sit between these two registers**, closer to the layer.team published voice with first-person personal asides surfaced where the lived experience earns them.

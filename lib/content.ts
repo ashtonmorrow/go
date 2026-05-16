@@ -129,6 +129,26 @@ export type ListGuideCards = {
 
 export type ListFaq = { question: string; answer: string };
 
+/** One day-trip destination reachable from a guide's city. Authored in the
+ *  list frontmatter `day_trips:` block; powers /cities/<slug>/day-trips. */
+export type DayTrip = {
+  name: string;
+  /** How far / how to get there, e.g. "35 min by R2 train from Sants". */
+  travel: string | null;
+  /** One or two sentences on why the trip is worth it. */
+  summary: string;
+  /** Optional internal link to a guide for the destination. */
+  list: string | null;
+  /** Optional internal link to a pin for the destination. */
+  pin: string | null;
+};
+
+export type DayTrips = {
+  /** Optional editorial intro paragraph for the day-trips page. */
+  intro: string | null;
+  trips: DayTrip[];
+};
+
 export type ListRelated = {
   city: string | null;
   country: string | null;
@@ -168,6 +188,9 @@ export type ListContent = {
    *  dropped here, so this array only ever contains real topic slugs.
    *  Powers the /topics/<slug> hub aggregation. */
   topics: string[];
+  /** Authored day-trip destinations. Powers /cities/<slug>/day-trips.
+   *  null when the frontmatter has no `day_trips:` block. */
+  dayTrips: DayTrips | null;
 };
 
 function asString(v: unknown): string | null {
@@ -236,6 +259,41 @@ function parseFaqs(v: unknown): ListFaq[] {
     .filter((f): f is ListFaq => f !== null);
 }
 
+/** Parse the `day_trips:` frontmatter block. Accepts either a bare array
+ *  of trips, or the full `{ intro, trips: [...] }` shape — mirrors how
+ *  parseGuideCards handles its two forms. Each trip needs at minimum a
+ *  name and a summary; entries missing either are dropped. */
+function parseDayTrips(v: unknown): DayTrips | null {
+  if (!v || typeof v !== 'object') return null;
+  const tripsRaw = Array.isArray(v) ? v : (v as Record<string, unknown>).trips;
+  const trips = parseDayTripArray(tripsRaw);
+  if (trips.length === 0) return null;
+  const intro = Array.isArray(v)
+    ? null
+    : asString((v as Record<string, unknown>).intro);
+  return { intro, trips };
+}
+
+function parseDayTripArray(v: unknown): DayTrip[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map(entry => {
+      if (!entry || typeof entry !== 'object') return null;
+      const e = entry as Record<string, unknown>;
+      const name = asString(e.name);
+      const summary = asString(e.summary);
+      if (!name || !summary) return null;
+      return {
+        name,
+        summary,
+        travel: asString(e.travel),
+        list: asString(e.list),
+        pin: asString(e.pin),
+      };
+    })
+    .filter((t): t is DayTrip => t !== null);
+}
+
 function parseRelated(v: unknown): ListRelated {
   const empty: ListRelated = { city: null, country: null, posts: [] };
   if (!v || typeof v !== 'object') return empty;
@@ -299,6 +357,7 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
     faqs: parseFaqs(data.faqs),
     related: parseRelated(data.related),
     topics: filterValidTopics(data.topics),
+    dayTrips: parseDayTrips(data.day_trips),
   };
 }
 
@@ -354,6 +413,48 @@ export async function getAllGuideTopicEntries(): Promise<GuideTopicEntry[]> {
     }),
   );
   return entries.filter((e): e is GuideTopicEntry => e !== null);
+}
+
+/** A guide's day-trips block, keyed by the city it belongs to. */
+export type DayTripSet = {
+  /** The city slug the day-trips page lives under (/cities/<citySlug>/day-trips).
+   *  Frontmatter `related.city` when set, else the list slug. */
+  citySlug: string;
+  /** The source guide's list slug. */
+  listSlug: string;
+  dayTrips: DayTrips;
+};
+
+/**
+ * Scan /content/lists and return every guide that has an authored
+ * `day_trips:` block, keyed by city slug. Used by /cities/<slug>/day-trips
+ * to find a city's trips and by the sitemap to list only the cities whose
+ * page clears the substance gate.
+ */
+export async function getAllDayTripSets(): Promise<DayTripSet[]> {
+  const dir = path.join(CONTENT_ROOT, 'lists');
+  let files: string[];
+  try {
+    files = await fs.readdir(dir);
+  } catch {
+    return [];
+  }
+  const slugs = files
+    .filter(f => f.endsWith('.md'))
+    .map(f => f.slice(0, -3))
+    .filter(s => SAFE_SLUG.test(s));
+  const sets = await Promise.all(
+    slugs.map(async listSlug => {
+      const content = await readListContent(listSlug);
+      if (!content?.dayTrips) return null;
+      return {
+        citySlug: content.related.city ?? listSlug,
+        listSlug,
+        dayTrips: content.dayTrips,
+      } satisfies DayTripSet;
+    }),
+  );
+  return sets.filter((s): s is DayTripSet => s !== null);
 }
 
 // === Inline pin photo injection =============================================

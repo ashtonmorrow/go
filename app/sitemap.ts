@@ -9,6 +9,7 @@ import { SITE_URL } from '@/lib/seo';
 import { getAllArticleEntries } from '@/lib/articles';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import { TOPICS, anyTopicHasIntro } from '@/lib/topics';
+import { getAllDayTripSets } from '@/lib/content';
 
 /** Read /content/<scope>/<slug>.md frontmatter and return the indexable
  *  flag. Returns false when the file is missing or `indexable !== true`.
@@ -37,12 +38,13 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [cities, countries, pins, articleEntries, listsMeta] = await Promise.all([
+  const [cities, countries, pins, articleEntries, listsMeta, dayTripSets] = await Promise.all([
     fetchAllCities(),
     fetchAllCountries(),
     fetchAllPins(),
     getAllArticleEntries(),
     fetchAllSavedListsMeta(),
+    getAllDayTripSets(),
   ]);
   const now = new Date();
 
@@ -125,6 +127,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.75,
     }));
 
+  // Per-city /day-trips pages. Listed only when the city's guide has at
+  // least 3 authored day trips — the same substance gate the page uses
+  // to flip itself from noindex to indexable. Below that the page is a
+  // noindex stub and listing it would contradict its own directive.
+  const DAY_TRIPS_MIN = 3;
+  const dayTripRoutes: MetadataRoute.Sitemap = dayTripSets
+    .filter(s => s.dayTrips.trips.length >= DAY_TRIPS_MIN)
+    .map(s => ({
+      url: `${SITE_URL}/cities/${s.citySlug}/day-trips`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      // High-intent long-tail ("day trips from <city>"); priced just
+      // below things-to-do, just above the country pages.
+      priority: 0.7,
+    }));
+
   // Same gate as cities — only countries with an indexable content
   // file ship in the sitemap.
   const countryIndexability = await Promise.all(
@@ -203,6 +221,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...cityRoutes,
     ...thingsToDoRoutes,
     ...hotelHubRoutes,
+    ...dayTripRoutes,
     ...countryRoutes,
     ...pinRoutes,
     ...viewRoutes,
