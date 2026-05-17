@@ -46,6 +46,27 @@ topics:
   - spa
   - day-trips
 
+day_trips:
+  intro: Bath sits in easy reach of the prehistoric, the medieval, and the chocolate-box Cotswolds. Stonehenge is the headline add-on, but the wider West Country is a string of villages and one cathedral city all inside about an hour.
+  trips:
+    - name: Stonehenge
+      travel: About 1 hr by GWR train to Salisbury, then the Stonehenge Tour bus
+      summary: The prehistoric stone circle on Salisbury Plain. The guide covers both the English Heritage visit and the free public-byway walk from Larkhill.
+      list: salisbury-stonehenge
+    - name: Salisbury
+      travel: About 1 hr by GWR train from Bath Spa
+      summary: A medieval cathedral city with the tallest church spire in Britain and one of the four surviving original copies of Magna Carta.
+    - name: Bristol
+      travel: 12 to 15 min by train from Bath Spa
+      summary: The bigger neighbor. Harbourside, the Banksy trail, Clifton and the suspension bridge, and a stronger food and bar scene.
+      list: bristol
+    - name: Lacock
+      travel: About 45 min by bus
+      summary: A National Trust village kept so unspoiled it doubles as a film set for period dramas and Harry Potter. The abbey and the medieval streets are the draw.
+    - name: Castle Combe
+      travel: About 40 min by car, awkward by public transport
+      summary: A Cotswold village often called the prettiest in England, with honey-stone cottages and a market cross. Easiest paired with a hired car or a tour.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip after a fact pass on:
 #   GWR Bath → Salisbury timing (was 60 to 75 min in 2024. Some

@@ -42,6 +42,22 @@ topics:
   - festivals
   - scams-safety
   - day-trips
+
+day_trips:
+  intro: Athens is the base for some of the most legible sites in the ancient Greek world. A cliff-top temple, a Saronic island, a Byzantine monastery, and the oracle at Delphi are all reachable, though Delphi rewards an overnight.
+  trips:
+    - name: Cape Sounion
+      travel: About 2 hr each way on the KTEL X80 coastal bus
+      summary: The Temple of Poseidon on a headland above the Aegean. The late-afternoon slot for the sunset is the photograph everyone takes.
+    - name: Aegina
+      travel: 40 min to 1 hr by ferry from Piraeus
+      summary: A Saronic island known for its pistachios and the well-preserved Temple of Aphaia. Take the morning ferry from Piraeus.
+    - name: Daphni Monastery
+      travel: Metro M3 to Agia Marina, then a short bus
+      summary: An 11th-century monastery with some of the finest Byzantine mosaics in Greece. UNESCO-listed and free to enter.
+    - name: Delphi
+      travel: About 3 hr each way by KTEL bus
+      summary: The oracle sanctuary on the slopes of Mount Parnassus, with its theater, stadium, and museum. Better as an overnight than a rushed single day.
 ---
 
 [Athens](/cities/athens) is the city most travelers underestimate going in and oversell coming out. Two days is enough to do the headline sights well. Three is the sweet spot once you add a day trip. Four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets on the Syntagma-Monastiraki spine and the midday Acropolis queue are the two things to plan around. The full pin map sits below. This writeup covers the parts of it that change the trip.

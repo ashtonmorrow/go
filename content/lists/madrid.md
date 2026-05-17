@@ -42,6 +42,25 @@ topics:
   - markets
   - museums
 
+day_trips:
+  intro: Madrid sits at the center of the Spanish high-speed rail map, which puts a walled medieval capital, a Roman aqueduct, and a giant royal monastery all inside an hour of Atocha.
+  trips:
+    - name: Toledo
+      travel: About 33 min by high-speed AVE from Atocha
+      summary: The walled former capital on a hill above the Tagus, a UNESCO city layered with Christian, Jewish, and Muslim Spain, and the home of El Greco.
+    - name: Segovia
+      travel: About 30 min by high-speed AVE
+      summary: A near-intact Roman aqueduct runs straight through town, and the Alcázar is the castle said to have inspired Disney.
+    - name: El Escorial
+      travel: About 1 hr by Cercanías commuter train
+      summary: The vast monastery, palace, and royal mausoleum built by Philip II, set against the Guadarrama mountains.
+    - name: Ávila
+      travel: About 1 hr 30 by train
+      summary: The most complete medieval city walls in Spain, a full circuit you can walk, plus the legacy of Saint Teresa.
+    - name: Aranjuez
+      travel: About 45 min by Cercanías commuter train
+      summary: The royal palace and its formal gardens on the Tagus, a UNESCO cultural landscape and the easiest green day out from the city.
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/madrid via the picker.

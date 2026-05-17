@@ -43,6 +43,27 @@ topics:
   - beaches
   - nightlife
   - day-trips
+
+day_trips:
+  intro: Split is the launch point for Dalmatia. Two UNESCO old towns, a hilltop fortress, a waterfall park, and the island ferries all leave from the city, most of them inside about an hour.
+  trips:
+    - name: Trogir
+      travel: 50 to 60 min on local bus 37 from Split bus station
+      summary: A small UNESCO-listed medieval town on its own island, dense with Venetian stonework. An easy half-day.
+      list: trogir
+    - name: Krka National Park
+      travel: About 90 min by bus or organized tour
+      summary: A river park of travertine waterfalls and pools. Closer and easier than Plitvice, which is a 3-hour overnight from Split.
+      list: krka
+    - name: Klis Fortress
+      travel: About 30 min on local bus 22
+      summary: A fortress strung along a rock saddle above the city, with a long siege history and a turn as Meereen in Game of Thrones.
+    - name: Hvar
+      travel: 1 hr by Krilo catamaran, 2 hrs by Jadrolinija ferry
+      summary: The headline island, with the strongest food scene of the nearby islands and a busy nightlife in Hvar Town.
+    - name: Brač
+      travel: 50 min car ferry to Supetar, then about 1 hr by bus to Bol
+      summary: The island of Zlatni Rat, the shifting shingle spit that is the most photographed beach in Croatia.
 ---
 
 [Split](/cities/split) is the Croatian Adriatic city built inside Diocletian's 4th-century palace. The walls are streets now, the basement is wine cellars, the cathedral is the emperor's mausoleum. Two days for the city, more if you're using it as a Dalmatian base.

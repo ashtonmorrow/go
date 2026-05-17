@@ -47,6 +47,22 @@ topics:
   - markets
   - nightlife
 
+day_trips:
+  intro: Bangkok is ringed by the older Thailand the capital grew out of. A ruined royal capital, the floating markets, a WWII river town, and the tallest stupa in the world are all inside about three hours.
+  trips:
+    - name: Ayutthaya
+      travel: About 1.5 hr by train from Krung Thep Aphiwat station
+      summary: The ruined former Siamese capital, a UNESCO park of brick temple towers and the famous Buddha head held in tree roots. Hire a bicycle or a tuk-tuk for the day.
+    - name: Amphawa and Damnoen Saduak
+      travel: About 1.5 hr by road
+      summary: The floating markets west of the city. Damnoen Saduak is the big photogenic one, Amphawa is the more local weekend market with an evening firefly boat ride.
+    - name: Kanchanaburi
+      travel: About 2.5 hr by road or the scenic train
+      summary: The Bridge over the River Kwai and the Death Railway, with the WWII cemeteries and museums. Often paired with Erawan waterfall.
+    - name: Nakhon Pathom
+      travel: About 1 hr by train
+      summary: Home of Phra Pathom Chedi, the tallest Buddhist stupa in the world, ringed by a busy temple market.
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/bangkok via the picker.

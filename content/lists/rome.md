@@ -18,6 +18,25 @@ topics:
   - festivals
   - scams-safety
 
+day_trips:
+  intro: Rome is ringed by day trips the capital itself can overshadow. Renaissance water gardens, a Roman port frozen in time, hill-town white wine, and an Umbrian cathedral town are all inside about an hour by train.
+  trips:
+    - name: Tivoli
+      travel: About 1 hr by regional train or bus
+      summary: Two UNESCO sites in one town. Villa d'Este for its Renaissance fountain gardens, Hadrian's Villa for the sprawling ruins of the emperor's country estate.
+    - name: Ostia Antica
+      travel: About 40 min on the Roma-Lido train
+      summary: The remarkably intact ruins of Rome's ancient port city. Quieter and far closer than Pompeii, with streets, baths, and a theater you can walk freely.
+    - name: Castelli Romani
+      travel: 40 to 60 min by regional train
+      summary: The hill towns south of Rome, including Frascati for crisp white wine and Castel Gandolfo for the lakeside former papal summer palace.
+    - name: Orvieto
+      travel: About 1 hr 15 by train
+      summary: An Umbrian town on a volcanic outcrop, crowned by one of the most dramatic striped Gothic cathedral facades in Italy.
+    - name: Naples and Pompeii
+      travel: About 1 hr 10 by high-speed train to Naples, then the Circumvesuviana to Pompeii
+      summary: A long but doable day. The Roman city buried by Vesuvius, paired with pizza in the city that invented it.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
