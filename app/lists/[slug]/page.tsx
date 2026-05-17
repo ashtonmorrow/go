@@ -390,6 +390,17 @@ export default async function ListPage({ params }: Props) {
   const guideCards = content?.guideCards ?? null;
   const routeMapKey = content?.routeMap ?? null;
 
+  // Day-trips cross-link. When the guide carries an authored day_trips:
+  // block that clears the substance gate (>=3 trips, the same threshold
+  // /cities/<slug>/day-trips uses to flip itself indexable), surface a
+  // pill to that page. This is the link that un-orphans the day-trips
+  // page from the strongest page for the destination.
+  const dayTripCount = content?.dayTrips?.trips.length ?? 0;
+  const showDayTrips = dayTripCount >= 3;
+  const dayTripCitySlug = content?.related.city ?? slug;
+  const dayTripCityName =
+    cityMatch?.name ?? found.name.replace(/\b\w/g, c => c.toUpperCase());
+
   // Related strip — anchor city, anchor country, and any posts that link
   // here. Frontmatter explicit overrides come first via the resolved
   // matches above; auto-detection fills in.
@@ -459,7 +470,7 @@ export default async function ListPage({ params }: Props) {
             links under the H1, which were easy to skip over as body
             copy; promoted to filled pill buttons with a border and an
             arrow so the navigational intent reads clearly at a glance. */}
-        {(cityMatch || countryMatch) && (
+        {(cityMatch || countryMatch || showDayTrips) && (
           <div className="mt-4 flex flex-wrap gap-2">
             {cityMatch && (
               <Link
@@ -476,6 +487,24 @@ export default async function ListPage({ params }: Props) {
               >
                 <span aria-hidden className="text-base leading-none">📮</span>
                 <span>See the {cityMatch.name} city page</span>
+                <span aria-hidden className="text-muted">→</span>
+              </Link>
+            )}
+            {showDayTrips && (
+              <Link
+                href={`/cities/${dayTripCitySlug}/day-trips`}
+                className="
+                  inline-flex items-center gap-2
+                  rounded-full border border-sand
+                  bg-white px-4 py-2
+                  text-small font-medium text-ink-deep
+                  shadow-sm
+                  hover:bg-cream-soft hover:border-teal hover:text-teal
+                  transition-colors
+                "
+              >
+                <span aria-hidden className="text-base leading-none">🚆</span>
+                <span>Day trips from {dayTripCityName}</span>
                 <span aria-hidden className="text-muted">→</span>
               </Link>
             )}

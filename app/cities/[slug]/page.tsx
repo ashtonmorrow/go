@@ -22,7 +22,7 @@ import { fetchTransitOperators } from '@/lib/transit';
 import LanguageLinkPanel from '@/components/LanguageLinkPanel';
 import ForecastPanel from '@/components/ForecastPanel';
 import { fetchForecast } from '@/lib/forecast';
-import { readPlaceContent, paragraphs } from '@/lib/content';
+import { readPlaceContent, paragraphs, getAllDayTripSets } from '@/lib/content';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
 import { thumbUrl } from '@/lib/imageUrl';
@@ -176,6 +176,15 @@ export default async function CityPage({
   const cityPinsRaw = matchedLists.length === 0
     ? []
     : await fetchPinsForLists(matchedLists);
+
+  // Does this city have an indexable /day-trips page? True when a guide
+  // carries an authored day_trips: block for it that clears the 3-trip
+  // substance gate. Gates the cross-link below so we never link to an
+  // empty noindex day-trips stub.
+  const dayTripSets = await getAllDayTripSets();
+  const hasDayTrips = dayTripSets.some(
+    s => s.citySlug === slug && s.dayTrips.trips.length >= 3,
+  );
 
   // The Pin shape from fetchPinsForLists already has `saved_lists` populated;
   // we still filter to be safe (the OR predicate at the DB layer covers any
@@ -768,6 +777,17 @@ export default async function CityPage({
                   className="text-teal hover:underline"
                 >
                   Hotels in {city.name} →
+                </Link>
+              </>
+            )}
+            {hasDayTrips && (
+              <>
+                {' · '}
+                <Link
+                  href={`/cities/${city.slug}/day-trips`}
+                  className="text-teal hover:underline"
+                >
+                  Day trips from {city.name} →
                 </Link>
               </>
             )}
