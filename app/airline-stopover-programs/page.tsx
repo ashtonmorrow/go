@@ -9,8 +9,8 @@ import {
   PROGRAMS,
   groupByAlliance,
 } from "./_data/programs";
+import { SITE_URL } from "@/lib/seo";
 
-const SITE_URL = "https://go.mike-lee.me";
 const PAGE_PATH = "/airline-stopover-programs";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 const PUBLISHED_ISO = "2026-04-30";

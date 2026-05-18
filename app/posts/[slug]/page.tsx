@@ -5,9 +5,7 @@ import { notFound } from "next/navigation";
 import { fetchPinsForLists } from "@/lib/pins";
 import { getAllPosts, getPost } from "@/lib/posts";
 import { fetchAllSavedListsMeta, listNameToSlug } from "@/lib/savedLists";
-import { AUTHOR_ID, WEBSITE_ID } from "@/lib/seo";
-
-const SITE_URL = "https://go.mike-lee.me";
+import { AUTHOR_ID, WEBSITE_ID, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
