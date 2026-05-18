@@ -26,17 +26,17 @@ guide_cards:
 
 faqs:
   - q: How do I get to Brighton from London?
-    a: Direct trains run from London Victoria and London Bridge to Brighton every few minutes through the day. The journey is about one hour. Brighton station is a 15-minute downhill walk to the seafront, or a short bus or taxi. No car is needed for the city itself.
+    a: Direct trains run from London Victoria, London Bridge, and St Pancras to Brighton every few minutes through the day, and the journey is about an hour. Unlike the dynamically priced long-distance routes, Brighton fares stay cheap whenever you book, and an off-peak or weekend return usually runs somewhere around 20 to 30 pounds. Brighton station sits up the hill from the sea, a 15-minute walk down to the seafront, or a short bus or taxi.
   - q: Is Brighton a day trip or an overnight?
     a: A day trip works easily. An hour each way leaves a full day for the pier, the Royal Pavilion, the Lanes, and a seafront meal. An overnight is worth it if you want the beach in the evening light, the bars after the day-trippers leave, or a slower pace across two days.
   - q: Is the beach sand or pebbles?
     a: Pebbles. Brighton beach is shingle, not sand, the whole way along. Bring something to sit on. The water is swimmable in summer and cold the rest of the year. The beach is the seafront's social spine more than a sunbathing beach.
   - q: When is the best time to visit Brighton?
-    a: May to September for the seafront in its element, with May worth a special look for the Brighton Festival and Fringe. The city is lively year-round, but the beach, the bars, and the i360 all read better in warm weather and long evenings.
+    a: May to September for the seafront in its element, with May worth a special look for the Brighton Festival and Fringe. The city is lively year-round, but the beach, the bars, and the whole front read better in warm weather and long evenings.
 
 related:
   city: brighton
-  country: united-kingdom
+  country: unitedkingdom
 
 topics:
   - beaches
@@ -44,9 +44,18 @@ topics:
   - festivals
 
 # Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. New scaffold, May 2026, written
-#   to turn the existing 14-pin brighton saved_list into a real guide.
-#   The saved_lists row already exists, so this .md is all that was needed.
+# - indexable: false. New scaffold May 2026, then Mike's personal-notes
+#   pass incorporated (London Bridge + cheap off-peak fares, the uphill
+#   slog back to the station, the art/LGBTQ+ background, the West Pier
+#   ruins, the free Pavilion Gardens, the Palace Pier penny-pushers).
+#   Ready to flip indexable once a hero image is set.
+# - Built from the existing 14-pin brighton saved_list. The saved_lists
+#   row already exists, so this .md is all that was needed.
+# - VERIFY before indexable: the British Airways i360 has had serious
+#   financial trouble and may have closed. The guide hedges its
+#   operating status. Confirm and update before publishing.
+# - The 20-30 pound off-peak fare figure is Mike's estimate, so
+#   fact-check it before flipping indexable.
 # - featured: true so it joins the home-page guides feed.
 # - hero_image is empty. Pick one in /admin/lists/brighton.
 # - related.city: /cities/brighton should exist in go_cities (verify).
@@ -62,7 +71,7 @@ topics:
 # - Brighton is wired into the London guide's day_trips block.
 ---
 
-[Brighton](/cities/brighton) is the seaside city an hour south of London, a Regency resort town that grew into the most relaxed coastal city in England. The headline objects, the pebble beach, the Palace Pier, the Royal Pavilion, and the independent-shop grid of the Lanes and North Laine, all sit within a walkable strip behind the seafront. It is the easiest proper day at the sea from London, no car and no planning required, and a good overnight if the trip wants the beach in evening light.
+[Brighton](/cities/brighton) is the seaside city an hour south of London, a Regency resort that grew into the most relaxed, and most openly bohemian, coastal city in England. It is the country's unofficial LGBTQ+ capital, a long-standing arts town, and a place built for a day of walking between the pebble beach, the Palace Pier, the Royal Pavilion, and the independent-shop grid of the Lanes and North Laine. It is the easiest proper day at the sea from London, no car and no planning required, and a good overnight if the trip wants the beach in evening light.
 
 ## On this page
 
@@ -82,27 +91,31 @@ The overnight earns its place when you want the beach and the seafront bars in t
 
 ## Getting in from London
 
-**Direct trains** run from London Victoria and London Bridge to Brighton every few minutes through the day. The journey is about one hour. Walk-up fares are reasonable and advance booking is rarely necessary for a trip this short. Brighton station sits up the hill from the sea, a fifteen-minute downhill walk to the front, or a short bus or taxi.
+**Direct trains** run to Brighton from London Victoria, London Bridge, and St Pancras every few minutes through the day, and the journey is about an hour. London Bridge is the easy one to aim for, with trains constantly. This is the opposite of a long-distance trip: fares stay low whenever you book, and an off-peak or weekend return runs somewhere around 20 to 30 pounds, with no advance booking needed.
 
-Inside the city you do not need transport. The seafront, the Pavilion, the Lanes, and North Laine are all walkable, with the one rule that the city runs uphill away from the beach, so the return leg is the climb.
+Brighton station sits up the hill from the sea. The walk down to the seafront takes about fifteen minutes and is all downhill, which is pleasant on the way in. The catch is the return leg. After a long evening in the bars, the climb back up to the station is a genuine slog, so keep bus or taxi money in reserve.
+
+Inside the city you do not need transport. The seafront, the Pavilion, the Lanes, and North Laine are all walkable.
 
 ## Where to stay
 
 Stay near the seafront or in the streets just behind it, between the two piers' worth of beach. From there everything in this guide is on foot, and you get the morning and evening seafront the day-tripper misses.
 
-Kemptown, east of the Palace Pier, is the quieter, more characterful base. The streets around the Lanes and North Laine put you in the middle of the shops and restaurants. The grand seafront hotels are the postcard but price for it. The atlas does not yet carry hotel pins for Brighton, so book on the usual sites and read recent reviews for the property.
+Kemptown, east of the Palace Pier, is the heart of Brighton's LGBTQ+ scene and the quieter, more characterful base. The streets around the Lanes and North Laine put you in the middle of the shops and restaurants. The grand seafront hotels are the postcard but price for it. The atlas does not yet carry hotel pins for Brighton, so book on the usual sites and read recent reviews for the property.
 
 ## The seafront and the pier
 
-The seafront is the spine of any Brighton visit, a long pebble beach strung with bars, the skeleton of the old West Pier, and a run of attractions.
+The seafront is the spine of any Brighton visit, a long pebble beach and promenade you can walk for miles in either direction. The beach is shingle, not sand, the whole way along, less a sunbathing beach than the city's open-air social space, busiest on warm evenings. Walking it, between the two piers and past the beach bars and the seafront arches, is half of what a Brighton day is.
 
-[Brighton Palace Pier](/pins/brighton-palace-pier) is the working Victorian pier, all arcades, fairground rides, and fried food over the water. It is loud and unsubtle and it is the thing to do once. [British Airways i360](/pins/british-airways-i360) is the slender observation tower on the site of the old West Pier, a slow glass pod ride to 138 meters for the view along the coast. [Volk's Electric Railway](/pins/volk-s-electric-railway) is the oldest operating electric railway in the world, a short narrow-gauge run along the eastern seafront, charming and brief.
+[Brighton Palace Pier](/pins/brighton-palace-pier) is the working Victorian pier, all arcades, fairground rides, and fried food out over the water. Walking the pier is free, so you can go just to see it, eat something, and play a few games. My own ritual there is faintly degenerate: change a pound into 1p coins and feed them into the coin-pusher machines in the arcade, the ones that nudge a shelf of coins toward an edge they rarely fall off. It costs almost nothing and kills a happy half-hour.
 
-The beach itself is shingle, not sand, the whole way along. It is less a sunbathing beach than the city's open-air social space, busiest on warm evenings.
+Offshore stand the ruins of the **West Pier**, the derelict Victorian pleasure pier wrecked by storms and then fire in the early 2000s and left as a blackened skeleton in the water. It is oddly beautiful, and walking out along the front to look at it is one of the quieter pleasures of the seafront. [Volk's Electric Railway](/pins/volk-s-electric-railway), running along the eastern seafront, is the oldest operating electric railway in the world, a short and charming Victorian ride.
+
+The [British Airways i360](/pins/british-airways-i360) is the slender observation tower at the West Pier's landward end, lifting a glass pod high over the seafront for a view along the coast. It is a striking ride, though never cheap and often crowded. It has also been through serious financial trouble, so check whether it is currently operating before you build a visit around it.
 
 ## The Royal Pavilion and the Lanes
 
-The [Royal Pavilion](/pins/royal-pavilion) is the one indoor thing to prioritize. It is George IV's seaside palace, an Indo-Saracenic fantasy of domes and minarets on the outside and a chinoiserie extravagance within. It is unlike any other building in England, and the audio tour is the way to read it.
+The [Royal Pavilion](/pins/royal-pavilion) is the one indoor thing to prioritize. It is George IV's seaside palace, an Indo-Saracenic fantasy of domes and minarets on the outside and a chinoiserie extravagance within. It is unlike any other building in England, and the audio tour is the way to read it. The surrounding **Pavilion Gardens** are free to walk and worth a slow loop on their own, a Regency-planted green space in the middle of the city.
 
 Behind the seafront, the **Lanes** are the narrow old-town alleys, a tight knot of jewelers, cafes, and small shops. **North Laine** is the broader, scruffier grid further north, the better hunting ground for independent shops, records, and vintage. Both are the browsing half of the trip. [Brighton Open Market](/pins/brighton-open-market) is the covered market for produce, makers, and street food.
 
