@@ -101,7 +101,7 @@ topics:
 #   and the UK section (Bath).
 ---
 
-The hack: book the first night of a longer trip in a city with a serious thermal spa, then book the spa for the next morning. Soak, get a massage, eat lunch, keep going. Arrival day stays a buffer for sleep and orientation, and you start the real trip on a body that can carry it. Five destinations where this works.
+My favorite travel hack after a cheap red-eye flight is to stop somewhere that I can soak in thermal waters. Here's my list of the top spots to layover and treat yourself.
 
 ## On this page
 
