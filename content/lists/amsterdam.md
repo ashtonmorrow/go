@@ -62,6 +62,7 @@ day_trips:
     - name: Delft
       travel: About 1 hr by train
       summary: Vermeer's town, with two landmark churches, the Royal Delft blue-pottery works, and a canal-laced center between Rotterdam and The Hague.
+      list: delft
 
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.

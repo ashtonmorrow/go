@@ -29,6 +29,7 @@ day_trips:
     - name: Eger
       travel: About 2 hr by train
       summary: A baroque town with a castle that held off an Ottoman siege, plus the Valley of the Beautiful Women, a cluster of cellars pouring the Bull's Blood red.
+      list: eger
     - name: Gödöllő
       travel: About 45 min by HÉV suburban train
       summary: The royal palace most associated with Empress Elisabeth (Sisi), a large baroque residence with restored state rooms and gardens.

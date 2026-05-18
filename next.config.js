@@ -119,6 +119,12 @@ const nextConfig = {
       // renamed to salisbury-stonehenge as part of the Bath guide work
       // since the Bath guide cross-links to it.
       ['salisbury-&-stonehenge',        'salisbury-stonehenge'],
+
+      // May 2026: the Ávila list's slug carried a non-ascii leading
+      // character (àvila-es), which the content loader's SAFE_SLUG
+      // rejects — so a guide .md could never attach. Slug renamed to the
+      // ascii 'avila' when the Ávila guide was written.
+      ['àvila-es',                      'avila'],
     ];
     const listSlugRedirects = legacyListSlugs.flatMap(([from, to]) => [
       { source: `/lists/${from}`,       destination: `/lists/${to}`,       permanent: true },

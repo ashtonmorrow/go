@@ -57,6 +57,7 @@ day_trips:
     - name: Ávila
       travel: About 1 hr 30 by train
       summary: The most complete medieval city walls in Spain, a full circuit you can walk, plus the legacy of Saint Teresa.
+      list: avila
     - name: Aranjuez
       travel: About 45 min by Cercanías commuter train
       summary: The royal palace and its formal gardens on the Tagus, a UNESCO cultural landscape and the easiest green day out from the city.
