@@ -120,7 +120,6 @@ Bruges is small enough that most central restaurants are within a 5-minute walk 
 | [Délice Brugge](/pins/delice-brugge) | Sit-down lunch with locally-sourced plates | Cash and card |
 | [Lobster Pot](/pins/lobster-pot) | Seafood splurge | Pricier, North Sea catch |
 | [The Chocolate Line](/pins/the-chocolate-line) | The Dominique Persoone artisan chocolate stop | The bacon-and-tomato bonbon and the chocolate-shooter are the signatures |
-| [The Line](/pins/the-line) | Small modern brasserie | Quieter alternative to the main-square restaurants |
 | ['T walpoortje](/pins/t-walpoortje) | A neighborhood beer cafe outside the tourist core | Pour-perfect Westvleteren (the Trappist beer notoriously hard to get outside the abbey gates) if they have it. Cash only |
 
 The Steenstraat chain shops (Leonidas, Godiva) are everywhere in Belgium, train stations included. The artisan windows where you can see a kitchen are the reason to buy chocolate in Bruges specifically.

@@ -26,7 +26,7 @@ guide_cards:
 
 faqs:
   - q: How do I get to York from London?
-    a: LNER trains run from London King's Cross direct to York every 30 minutes or so. The journey is about 1 hour 50 minutes to 2 hours 10 minutes depending on the service. Book ahead for the cheaper advance fares. York station is a 10-minute walk from the Minster across the river.
+    a: LNER and Grand Central both run direct from London King's Cross to York. LNER goes roughly every half hour, and Grand Central fewer times a day but with fewer stops. The journey is about 1 hour 50 minutes to 2 hours 10 minutes. This is not a turn-up-and-go local line, and fares are dynamically priced, so a weekend trip booked late costs far more than one booked weeks ahead. York station is a 10-minute walk from the Minster across the river.
   - q: Is York a day trip or an overnight?
     a: Both work. A day trip from London covers the Minster, a walk along the walls and the Shambles, and one museum before the last train back. An overnight adds the early-morning city before the coach groups arrive, a proper pub evening, and the time to fit a second museum or the Castle Howard half-day.
   - q: Do I need to book York Minster in advance?
@@ -44,9 +44,13 @@ topics:
   - festivals
 
 # Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. New scaffold, May 2026, written
-#   to turn the existing 17-pin york saved_list into a real guide. The
-#   saved_lists row already exists, so this .md is all that was needed.
+# - indexable: false. New scaffold May 2026, then Mike's personal-notes
+#   pass incorporated (Grand Central + dynamic-pricing, Hotel Indigo on
+#   points, the Whippet Inn steak and its no-children rule, the Mallard
+#   as the reason to come, the gin scene, the long Spark York evening).
+#   Ready to flip indexable once a hero image is set.
+# - Built from the existing 17-pin york saved_list. The saved_lists row
+#   already exists, so this .md is all that was needed.
 # - featured: true so it joins the home-page guides feed.
 # - hero_image is empty. Pick one in /admin/lists/york.
 # - related.city: /cities/york should exist in go_cities (verify).
@@ -58,8 +62,9 @@ topics:
 #   the-whippet-inn, evil-eye, tank-and-paddle-york, bora-bora-cocktails,
 #   the-nook, shambles-market, spark-york-cic.
 # - Pins to create (currently plain text in the body): York Minster,
-#   the Shambles (the street itself), York city walls, Clifford's Tower
-#   is pinned but the York Castle Museum next to it is not.
+#   the Shambles (the street itself), York city walls, Hotel Indigo
+#   York (Walmgate). Clifford's Tower is pinned but the York Castle
+#   Museum next to it is not.
 # - York is wired into the London guide's day_trips block.
 ---
 
@@ -83,7 +88,11 @@ The overnight shape is what you do when the day-trip box is ticked, or when you 
 
 ## Getting in from London
 
-**LNER trains** run direct from London King's Cross to York roughly every half hour. The journey is about 1 hour 50 minutes to 2 hours 10 minutes depending on the service. Advance fares booked ahead are far cheaper than walk-up. York station sits a ten-minute walk from the Minster, across the Ouse.
+**LNER and Grand Central trains** run direct from London King's Cross to York. LNER runs roughly every half hour. Grand Central runs fewer services but stops less often along the way. The journey is about 1 hour 50 minutes to 2 hours 10 minutes.
+
+Treat this as a trip to book, not a local train to catch. Fares are dynamically priced, and a weekend booked late can cost several times the advance fare, so book as far ahead as you can. The cheapest fare I found, to my surprise, was Grand Central, on a quieter train with a more comfortable carriage, though pricing moves around and that may not hold when you look.
+
+York station sits a ten-minute walk from the Minster, across the Ouse.
 
 Inside York you do not need transport. The walled city is small and flat, and almost everything in this guide is within a fifteen-minute walk of the Minster. The one exception is the Yorkshire Air Museum, which is out at Elvington, and Castle Howard, which is northeast of the city. Both need a car, a taxi, or a tour bus.
 
@@ -91,7 +100,7 @@ Inside York you do not need transport. The walled city is small and flat, and al
 
 Stay inside or just outside the bar walls, the medieval gates that ring the old city. From there the Minster, the Shambles, the museums, and the pub circuit are all on foot, and you get the quiet early-morning city the day-tripper never sees.
 
-The area between the Minster and Bootham is the calmer base. The streets around the station and Micklegate are convenient for an early train and have a good run of restaurants and bars. York has no shortage of small hotels, Georgian townhouse conversions, and guesthouses. The atlas does not yet carry hotel pins for York, so book on the usual sites and read recent reviews for the specific property.
+The area between the Minster and Bootham is the calmer base. The streets around the station and Micklegate are convenient for an early train and have a good run of restaurants and bars. I stayed at the Hotel Indigo on Walmgate, booked on IHG points, and found it fair value, inside the walls and a short walk from both the Minster and Spark York. York also has a long run of small hotels, Georgian townhouse conversions, and guesthouses. The atlas does not yet carry hotel pins for the city, so book on the usual sites and read recent reviews for the property.
 
 ## The walled city on foot
 
@@ -105,7 +114,9 @@ The **Shambles** is the narrow medieval street of overhanging timber-framed buil
 
 ## The museums
 
-York has three museums worth the trip, and the planning move is to pick by interest rather than try to do all of them.
+I came to York for one object. The Mallard, the streamlined blue locomotive that still holds the world speed record for a steam train, sits in the National Railway Museum, and it was the whole reason for the trip. The museum is free, like most English national museums, which is worth holding onto when the train fare and the hotel are not.
+
+York has three museums worth the trip, and the sensible plan is to pick by interest rather than try to do all of them.
 
 | Museum | What it is | Why go |
 |---|---|---|
@@ -115,19 +126,21 @@ York has three museums worth the trip, and the planning move is to pick by inter
 
 ## Where to eat and drink
 
-York runs on tea rooms by day and old coaching-inn pubs by night.
+York runs on tea rooms by day and old coaching-inn pubs by night, with one steak dinner and a surprising number of gin bars worth building an evening around.
 
-[Bettys Café Tea Rooms](/pins/bettys-cafe-tea-rooms) is the Yorkshire institution, a 1930s tea room that does a proper afternoon tea and a long queue to match. Touristy, worth it once. [Spark York](/pins/spark-york-cic) is the shipping-container food-and-drink hall, the casual modern counterpoint, good for a fast lunch with options.
+[Bettys Café Tea Rooms](/pins/bettys-cafe-tea-rooms) is the Yorkshire institution, a 1930s tea room that does a proper afternoon tea and a long queue to match. Touristy, worth it once. [Spark York](/pins/spark-york-cic) is the food-and-drink hall built from stacked shipping containers, a short walk from the Walmgate end of the old city. I spent a long summer evening there, working through different stalls with a few beers. This far north the light holds well past nine, and the place is built for exactly that.
 
-The pubs are the evening. [House of Trembling Madness](/pins/house-of-trembling-madness-lendal) on Lendal is the headline, a medieval upstairs room above a bottle shop with a deep beer list. [The Golden Fleece](/pins/the-golden-fleece) is the old, reputedly haunted inn near the Shambles. [Ye Olde Starre Inne](/pins/ye-olde-starre-inne) is one of the oldest licensed pubs in the city, down a snickelway off Stonegate. [The Three Legged Mare](/pins/three-legged-mare) is named for the old York gallows and pours well. [The Whippet Inn](/pins/the-whippet-inn) is the quieter, more food-led option.
+The standout meal was [The Whippet Inn](/pins/the-whippet-inn). I had booked two steak dinners in York for the same day, which is its own kind of confession, and the Whippet was the one that landed. The steak was one of the ten best I have eaten, and the bill was lower than that sentence suggests. It is an adults-only dining room, and on my visit a family arrived with children, were turned away, and made a scene of it at the door. I was glad of the rule. A white tablecloth, a quiet room, and a steak to work through alone made the evening.
 
-For a change of register, [Evil Eye](/pins/evil-eye) is the cluttered cult cocktail bar on Stonegate, [Tank & Paddle](/pins/tank-and-paddle-york) does pour-your-own-beer tables, [Bora Bora](/pins/bora-bora-cocktails) is the tiki end of the scale, and [The Nook](/pins/the-nook) is the small neighborhood bar for a slower drink.
+The pubs are the rest of it. [House of Trembling Madness](/pins/house-of-trembling-madness-lendal) on Lendal is a medieval upstairs room above a bottle shop with a deep beer list. [The Golden Fleece](/pins/the-golden-fleece) is the old, reputedly haunted inn near the Shambles. [Ye Olde Starre Inne](/pins/ye-olde-starre-inne) is one of the oldest licensed pubs in the city, down a snickelway off Stonegate. [The Three Legged Mare](/pins/three-legged-mare) is named for the old York gallows and pours well.
+
+York is also, improbably, a gin city. Several bars specialize in it, and I do not even like gin, but they still made it taste good. [Evil Eye](/pins/evil-eye) is the cluttered cult bar on Stonegate, with a gin list long enough to convert a skeptic. [Tank & Paddle](/pins/tank-and-paddle-york) does pour-your-own-beer tables, [Bora Bora](/pins/bora-bora-cocktails) is the tiki corner, and [The Nook](/pins/the-nook) is the small neighborhood bar for a slower drink.
 
 If you have a car or take the tour bus, [Castle Howard](/pins/castle-howard) is the great Baroque house northeast of the city, the filming location for Brideshead Revisited, and an easy half-day with the grounds.
 
 ## Festivals and big annual events
 
-York runs a busy heritage-festival calendar, with the Christmas market as the headline window.
+York runs a busy heritage-festival calendar, with the Christmas market as the standout window.
 
 | Event | When | What it changes |
 |---|---|---|
