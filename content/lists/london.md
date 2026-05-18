@@ -47,7 +47,7 @@ topics:
   - museums
 
 day_trips:
-  intro: London is the easiest base in Britain for day trips. Two ancient university cities, a royal castle, a Roman spa town, a prehistoric stone circle, and the seaside are all about an hour out by direct train.
+  intro: London is the easiest base in Britain for day trips. University cities, a royal castle, a Roman spa town, a prehistoric stone circle, and the south-coast seaside are all about an hour out by direct train, with the walled medieval city of York about two hours north.
   trips:
     - name: Oxford
       travel: About 1 hr by train from Paddington or Marylebone
@@ -69,6 +69,11 @@ day_trips:
     - name: Brighton
       travel: About 1 hr by train from Victoria or London Bridge
       summary: The closest proper seaside city, with a pebble beach, the pier, the Royal Pavilion, and the independent shops of the Lanes.
+      list: brighton
+    - name: York
+      travel: About 2 hr by LNER train from King's Cross
+      summary: The walled medieval cathedral city of the north, with York Minster, the Shambles, a near-complete circuit of city walls, and the Jorvik and railway museums. A long day trip, better as an overnight.
+      list: york
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true to ship.
