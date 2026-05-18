@@ -17,6 +17,25 @@ related:
 topics:
   - festivals
 
+day_trips:
+  intro: Dublin's day trips swing from a coastal cliff walk to a passage tomb older than the pyramids. The closest are a short DART ride; the furthest fill a long day.
+  trips:
+    - name: Howth
+      travel: About 25 min by DART from the city center
+      summary: A fishing village on a headland at the end of the train line, with a cliff-path loop, seafood on the pier, and views back across the bay.
+    - name: Glendalough and the Wicklow Mountains
+      travel: About 1 hr 30 by bus
+      summary: A glacial valley holding an early-medieval monastic settlement with a round tower, set among the moors and lakes of Wicklow.
+    - name: Newgrange and the Boyne Valley
+      travel: About 1 hr by car or tour
+      summary: A 5,000-year-old passage tomb, older than Stonehenge and the pyramids, aligned to the winter-solstice sunrise. Access is by timed tour from the visitor center.
+    - name: Belfast
+      travel: About 2 hr by Enterprise train
+      summary: Northern Ireland's capital, with the Titanic Quarter, the political murals and peace walls, and the launch point for the Giant's Causeway.
+    - name: Cliffs of Moher
+      travel: About 3 hr each way, best on an organized tour
+      summary: The dramatic Atlantic sea cliffs of County Clare. A very long single day from Dublin, and better with a night in Galway.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

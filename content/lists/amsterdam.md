@@ -43,6 +43,26 @@ topics:
   - festivals
   - museums
 
+day_trips:
+  intro: Amsterdam's day trips run on one of the densest rail networks in Europe. Working windmills, the spring bulb fields, and three historic Dutch cities are all inside about an hour.
+  trips:
+    - name: Zaanse Schans
+      travel: About 20 min by train to Zaandijk, then a short walk
+      summary: A riverside set of working windmills, green wooden houses, and craft workshops. The easiest half-day from the city.
+    - name: Keukenhof and the bulb fields
+      travel: About 40 min by direct bus, spring only
+      summary: The cut-flower park open only mid-March to mid-May, surrounded by the striped tulip fields of the Bollenstreek. Pre-book the timed ticket.
+    - name: Haarlem
+      travel: 15 to 20 min by train
+      summary: A calmer historic city with a grand market square, the Grote Kerk, and the Frans Hals Museum. The easy antidote to Amsterdam's crowds.
+    - name: Utrecht
+      travel: About 30 min by train
+      summary: Canals on two levels with wharf-side cafes, the Dom Tower, and a student-city energy. The Dutch city most visitors skip and should not.
+      list: utrect-nl
+    - name: Delft
+      travel: About 1 hr by train
+      summary: Vermeer's town, with two landmark churches, the Royal Delft blue-pottery works, and a canal-laced center between Rotterdam and The Hague.
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - featured is true so the scaffold appears on the home page Travel

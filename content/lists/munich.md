@@ -46,6 +46,26 @@ topics:
   - museums
   - day-trips
 
+day_trips:
+  intro: Munich is the gateway to the Bavarian Alps and a short hop from Austria. A fairy-tale castle, a Mozart city across the border, a concentration-camp memorial, and an alpine lake are all easy days out.
+  trips:
+    - name: Neuschwanstein
+      travel: About 2 hr by train to Füssen, then a bus to Hohenschwangau
+      summary: The 19th-century fantasy castle of Ludwig II, the model for the Disney castle. Book the timed entry online well ahead.
+    - name: Salzburg
+      travel: About 1 hr 30 to 2 hr by train
+      summary: Mozart's birthplace just across the Austrian border, a baroque old town under a hilltop fortress, with the Sound of Music scenery.
+    - name: Dachau
+      travel: About 30 min by S-Bahn, then a short bus
+      summary: The first Nazi concentration camp, now a memorial site. A serious, essential half-day, and the right context for the rest of Bavaria.
+    - name: Nuremberg
+      travel: About 1 hr by ICE train
+      summary: A rebuilt medieval old town under the imperial castle, the famous Christmas market, and the Nazi rally grounds and trials history.
+      list: nuremberg
+    - name: Tegernsee
+      travel: About 1 hr by train
+      summary: An alpine lake ringed by villages, breweries, and trailheads. The easy nature day when the city has been enough.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip after a pass on:
 #   brewery hours (verify against current municipal listings. They

@@ -18,6 +18,22 @@ topics:
   - festivals
   - nightlife
 
+day_trips:
+  intro: Tokyo's day trips reach hot-spring valleys, an old shogunate capital, a mountain shrine complex, and the lakes beneath Mount Fuji, all inside about two hours.
+  trips:
+    - name: Hakone
+      travel: About 1 hr 30 by train via Odawara
+      summary: A hot-spring region looped by mountain railway, cable car, and a lake boat, with Mount Fuji views on a clear day and strong ryokan and onsen options.
+    - name: Kamakura
+      travel: About 1 hr by train
+      summary: A seaside former capital dense with temples and shrines, anchored by the Great Buddha, a 13th-century bronze figure that has sat outdoors for centuries.
+    - name: Nikko
+      travel: About 2 hr by train
+      summary: A UNESCO shrine complex set in cedar forest and mountains, the lavishly carved Toshogu shrine, plus waterfalls and a high lake above the town.
+    - name: Kawaguchiko and Mount Fuji
+      travel: About 2 hr by bus or train
+      summary: The Fuji Five Lakes region, the classic place to see Mount Fuji mirrored in the water, with onsen towns and the climbing season in July and August.
+
 # Authoring notes (kept here, not rendered):
 # - 2026-05-14: Expanded from the May 2026 thin scaffold (410 words)
 #   with the survival-lens treatment: ward geography, where-to-stay

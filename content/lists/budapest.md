@@ -17,6 +17,22 @@ related:
 topics:
   - festivals
 
+day_trips:
+  intro: Budapest's day trips follow the Danube north to artist towns and royal castles, and east to a baroque wine town. The nearest are a short suburban-train ride.
+  trips:
+    - name: Szentendre
+      travel: About 40 min by HÉV suburban train
+      summary: A small riverside town of cobbled lanes, baroque churches, and galleries, long settled by Serbian merchants and now an easy artists' day out.
+    - name: The Danube Bend
+      travel: About 1 to 1.5 hr by train or boat
+      summary: The stretch where the Danube turns sharply south, with the hilltop citadel at Visegrád and the vast basilica at Esztergom, Hungary's religious capital.
+    - name: Eger
+      travel: About 2 hr by train
+      summary: A baroque town with a castle that held off an Ottoman siege, plus the Valley of the Beautiful Women, a cluster of cellars pouring the Bull's Blood red.
+    - name: Gödöllő
+      travel: About 45 min by HÉV suburban train
+      summary: The royal palace most associated with Empress Elisabeth (Sisi), a large baroque residence with restored state rooms and gardens.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

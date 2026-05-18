@@ -18,6 +18,25 @@ topics:
   - festivals
   - scams-safety
 
+day_trips:
+  intro: Prague sits within easy reach of a bone-decorated chapel, a Gothic crown-jewel castle, a sobering WWII memorial, and Bohemia's grand spa town. Most are an hour or so out by train or bus.
+  trips:
+    - name: Kutná Hora
+      travel: About 1 hr by train
+      summary: A UNESCO silver-mining town, known for the Sedlec Ossuary decorated with the bones of tens of thousands, and the soaring St Barbara's Cathedral.
+    - name: Karlštejn Castle
+      travel: About 40 min by train, then a 20-minute walk uphill
+      summary: The grand Gothic castle Charles IV built to hold the imperial crown jewels, set above a village in the Bohemian woods.
+    - name: Terezín
+      travel: About 1 hr by bus from Holešovice
+      summary: The fortress town the Nazis ran as a ghetto and transit camp. A serious half-day memorial and museum, not a casual outing.
+    - name: Český Krumlov
+      travel: About 3 hr by bus or train
+      summary: A UNESCO town wrapped in a bend of the Vltava under a huge castle. Doable in a long day, but it rewards an overnight once the day-trippers leave.
+    - name: Karlovy Vary
+      travel: About 2 hr 15 by bus
+      summary: Bohemia's grand spa town, a valley of colonnades, hot springs you sip from ceramic cups, and the Becherovka herbal liqueur.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

@@ -17,6 +17,25 @@ related:
 topics:
   - festivals
 
+day_trips:
+  intro: Lisbon has the best cluster of day trips of any Iberian capital. A UNESCO palace town, the Atlantic coast, a walled medieval village, and an Alentejo wine city are all inside about 90 minutes, most by direct train.
+  trips:
+    - name: Sintra
+      travel: About 40 min by train from Rossio station
+      summary: A hillside of romantic palaces and estates, including Pena Palace and Quinta da Regaleira. The headline day trip. Go early and book Pena online.
+    - name: Cascais
+      travel: About 40 min by train from Cais do Sodré
+      summary: A breezy coastal resort town at the end of the line, with beaches, a walkable center, and the Boca do Inferno sea cliff nearby.
+    - name: Óbidos
+      travel: About 1 hr by bus from Campo Grande
+      summary: A whitewashed medieval village inside intact castle walls, known for its bookshops and the ginja cherry liqueur served in a chocolate cup.
+    - name: Setúbal and Arrábida
+      travel: About 1 hr by train or ferry and bus
+      summary: The Arrábida natural park, green hills dropping to clear-water beaches, plus dolphin-watching in the Sado estuary and fried cuttlefish in Setúbal.
+    - name: Évora
+      travel: About 1.5 hr by train
+      summary: A UNESCO-listed Alentejo town with a Roman temple, a cathedral, and the macabre Chapel of Bones, set in Portugal's main wine region.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

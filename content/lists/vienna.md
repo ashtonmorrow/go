@@ -17,6 +17,22 @@ related:
 topics:
   - festivals
 
+day_trips:
+  intro: Vienna sits an hour from another national capital and at the mouth of a Danube wine valley. The day trips run from a spa town to a Slovak old town to abbeys in the woods.
+  trips:
+    - name: Bratislava
+      travel: About 1 hr by train, or 1 hr 15 by Danube boat
+      summary: The Slovak capital, a compact old town under a blocky white castle, in a different country and easily seen in a day.
+    - name: The Wachau Valley
+      travel: About 1 to 1.5 hr by train to Melk or Krems
+      summary: A UNESCO stretch of the Danube lined with vineyards and apricot orchards, anchored by the golden baroque abbey at Melk and the wine town of Dürnstein.
+    - name: Baden bei Wien
+      travel: About 45 min by train or the local tram
+      summary: A genteel spa town at the edge of the Vienna Woods, with sulfur baths, a casino, a rose garden, and long Beethoven associations.
+    - name: The Vienna Woods
+      travel: About 45 min to 1 hr by train and bus
+      summary: The forested hills southwest of the city, with the Cistercian abbey at Heiligenkreuz and the former imperial hunting lodge at Mayerling.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

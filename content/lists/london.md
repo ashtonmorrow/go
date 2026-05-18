@@ -46,6 +46,30 @@ topics:
   - markets
   - museums
 
+day_trips:
+  intro: London is the easiest base in Britain for day trips. Two ancient university cities, a royal castle, a Roman spa town, a prehistoric stone circle, and the seaside are all about an hour out by direct train.
+  trips:
+    - name: Oxford
+      travel: About 1 hr by train from Paddington or Marylebone
+      summary: The oldest university in the English-speaking world, a dense core of honey-stone colleges, the Bodleian Library, and the covered market.
+    - name: Cambridge
+      travel: 50 min to 1 hr 20 by train from King's Cross or Liverpool Street
+      summary: The other ancient university city, best seen punting on the Cam past the college backs. King's College Chapel is the set piece.
+    - name: Windsor
+      travel: 35 min to 1 hr by train, changing at Slough
+      summary: Windsor Castle, the oldest and largest occupied castle in the world and a working royal residence, with Eton College across the river.
+    - name: Bath
+      travel: About 1 hr 20 by train from Paddington
+      summary: The Roman bath complex and a complete Georgian city in honey-colored stone. A UNESCO city, and an easy pairing with Stonehenge.
+      list: bath-uk
+    - name: Stonehenge and Salisbury
+      travel: About 1 hr 30 by train to Salisbury, then the Stonehenge Tour bus
+      summary: The prehistoric stone circle on Salisbury Plain, paired with Salisbury's medieval cathedral and its original copy of Magna Carta.
+      list: salisbury-stonehenge
+    - name: Brighton
+      travel: About 1 hr by train from Victoria or London Bridge
+      summary: The closest proper seaside city, with a pebble beach, the pier, the Royal Pavilion, and the independent shops of the Lanes.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/london via the picker.
