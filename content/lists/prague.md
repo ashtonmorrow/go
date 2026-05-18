@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Prague travel guide: Christmas markets, Prague Spring, and where to stay"
+headline: "Prague, the old town everyone walks, done well"
 description: "A personal Prague travel guide. Christmas markets at Old Town Square, Prague Spring music festival, where to stay, and getting in from PRG."
 published: 2026-05-12
 updated: 2026-05-12

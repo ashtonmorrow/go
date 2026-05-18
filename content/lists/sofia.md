@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Sofia travel guide: where to eat, where to stay, and getting in from SOF"
+headline: "Sofia, the overlooked Balkan capital"
 description: "A personal Sofia travel guide. Getting in from SOF, where to stay near the center, and the Balkan-fusion restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Sitges travel guide: the Film Festival, Carnival, and the beaches"
+headline: "Sitges, the calmer beach town next to Barcelona"
 description: "A personal Sitges travel guide. The October Film Festival, February Carnival, Corpus Christi flower carpets, the beaches, and where to eat."
 published: 2026-05-12
 updated: 2026-05-12

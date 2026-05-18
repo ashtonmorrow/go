@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Houston travel guide: the Rodeo, where to eat, and the food capital of Texas"
+headline: "Houston is the most underrated food city in America"
 description: "A personal Houston travel guide. RodeoHouston, where to find Tex-Mex, Vietnamese, and crawfish, and the underrated Houston food story."
 published: 2026-05-12
 updated: 2026-05-12

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "São Paulo travel guide: Pride, Carnaval, the steakhouses, and where to stay"
+headline: "São Paulo, the megacity travelers skip and should not"
 description: "A personal São Paulo travel guide. The world's largest Pride parade, Carnaval, the steakhouses, where to stay in Jardins, and getting in from GRU."
 published: 2026-05-12
 updated: 2026-05-12

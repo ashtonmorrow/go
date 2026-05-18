@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Bristol travel guide: Glastonbury, the Banksy walk, and where to stay"
+headline: "Bristol doesn't get enough love"
 description: "A personal Bristol travel guide. Glastonbury logistics, the Banksy walking tour, where to stay, Clifton, and the London-Bristol-Bath loop."
 published: 2026-05-10
 updated: 2026-05-10

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Tenerife travel guide: Carnival, Mount Teide, and the beaches"
+headline: "Tenerife, the volcano and its two very different coasts"
 description: "A personal Tenerife travel guide. Carnival in Santa Cruz, Mount Teide, La Orotava sand carpets, the beaches, and getting in from TFS or TFN."
 published: 2026-05-12
 updated: 2026-05-12

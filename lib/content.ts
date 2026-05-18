@@ -169,7 +169,14 @@ export type ListContent = {
    *  (Alicante tram stops, Kusttram station guide) stay indexable for
    *  search but featured: false so they don't pollute the home. */
   featured: boolean;
+  /** SEO `<title>` element — keyword-formatted, the Google SERP + browser
+   *  tab line. Never rendered as the visible page headline. */
   title: string | null;
+  /** Editorial headline in Mike's voice — the visible <h1> on the guide
+   *  page and the /lists index card. Decoupled from `title` so the voice
+   *  surface and the SEO surface never compete. Falls back to `title`
+   *  (then the list name) when absent. */
+  headline: string | null;
   /** Short summary used as the meta description and the page subhead. */
   description: string | null;
   heroImage: string | null;
@@ -346,6 +353,7 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
     indexable: data.indexable === true,
     featured: data.featured === true,
     title: asString(data.title),
+    headline: asString(data.headline),
     description: asString(data.description),
     heroImage: asString(data.hero_image),
     heroAlt: asString(data.hero_alt),

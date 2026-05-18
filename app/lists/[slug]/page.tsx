@@ -224,6 +224,10 @@ export default async function ListPage({ params }: Props) {
   ]);
 
   const titleCase = content?.title ?? found.name.replace(/\b\w/g, c => c.toUpperCase());
+  // The visible <h1>. `headline` is Mike's editorial voice line; it falls
+  // back to the SEO title, then the list name. When a headline is set it
+  // is a written sentence, so it renders as-authored (no CSS capitalize).
+  const headline = content?.headline ?? titleCase;
   const description = content?.description ?? meta?.description ?? null;
 
   // Resolve anchor city/country. Frontmatter slugs win when set; otherwise
@@ -453,8 +457,15 @@ export default async function ListPage({ params }: Props) {
       </nav>
 
       <header className="mb-6">
-        <h1 className="text-h1 text-ink-deep leading-tight capitalize">
-          {titleCase}
+        <h1
+          className={
+            'text-h1 text-ink-deep leading-tight' +
+            // Authored headlines are sentences — render as written. The
+            // capitalize class only helps the bare list-name fallback.
+            (content?.headline ? '' : ' capitalize')
+          }
+        >
+          {headline}
         </h1>
 
         {/* Lede: meta description sits directly under the title. text-prose

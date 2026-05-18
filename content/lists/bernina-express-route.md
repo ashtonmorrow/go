@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Bernina Express travel guide: riding the scenic train from Milan to Chur"
+headline: "Riding the Bernina Express through the Alps"
 description: "A personal Bernina Express travel guide. The Milan to Tirano regional connection, the panoramic train through the Alps, the booking traps, and Chur as the end."
 published: 2026-05-12
 updated: 2026-05-12

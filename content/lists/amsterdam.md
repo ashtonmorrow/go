@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Amsterdam travel guide: King's Day, tulip season, and where to stay"
+headline: "Amsterdam, my guide to the canal city and the day trips out"
 description: "A personal Amsterdam travel guide. King's Day, tulip season at Keukenhof, where to stay in the canal ring or The Hague, the Schiphol train, and Zaanse Schans."
 published: 2026-05-10
 updated: 2026-05-13

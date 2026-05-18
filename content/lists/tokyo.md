@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Tokyo travel guide: cherry blossom, where to stay, and the famous sights"
+headline: "Tokyo, the world's largest city, three wards at a time"
 description: "A personal Tokyo travel guide. Cherry blossom season, where to stay by trip type, the wards by train, how to book Ghibli and teamLab, and the sushi rotation."
 published: 2026-05-12
 updated: 2026-05-14

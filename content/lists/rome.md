@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Rome travel guide: where to eat the real pasta and getting in from Fiumicino"
+headline: "Rome really is as good as advertised"
 description: "A personal Rome travel guide. Leonardo Express in from FCO, where to stay near the center, the real pasta spots, and the four-Roman-pastas worth tracking down."
 published: 2026-05-12
 updated: 2026-05-12

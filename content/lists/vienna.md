@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Vienna travel guide: ball season, Christmas markets, and the coffee houses"
+headline: "Vienna still reads like an imperial capital"
 description: "A personal Vienna travel guide. The ball season (Opernball, Philharmonic), Christmas markets, the coffee houses, and where to stay near the Ring."
 published: 2026-05-12
 updated: 2026-05-12

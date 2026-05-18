@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Bogotá travel guide: where to stay, where to eat, and getting in from BOG"
+headline: "Bogotá deserves more than the layover most people give it"
 description: "A personal Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the steak-and-pasta rotation, and what to know about altitude."
 published: 2026-05-12
 updated: 2026-05-12

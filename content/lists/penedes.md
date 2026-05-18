@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Penedès wine country travel guide: cava tours from Barcelona, the top producers, language access"
+headline: "Penedès, the cava country an hour from Barcelona"
 description: "A personal Penedès travel guide. How to get to the wineries from Barcelona, the top cava and still-wine producers to book, hours and languages, and the Barcelona → Penedès → Sitges day chain."
 published: 2026-05-13
 updated: 2026-05-13

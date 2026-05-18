@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Cabo Verde travel guide: which island, the volcano, and the music in Mindelo"
+headline: "Cabo Verde, the Atlantic islands most people never consider"
 description: "A short Cabo Verde travel guide. Which island to pick (Sal, São Vicente, Santo Antão, Fogo), the volcanic crater village, Mindelo's music scene, and inter-island travel."
 published: 2026-05-12
 updated: 2026-05-15

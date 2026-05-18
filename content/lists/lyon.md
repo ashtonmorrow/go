@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Lyon travel guide: Fête des Lumières, the bouchons, and getting in from LYS"
+headline: "Lyon, France's quiet food capital"
 description: "A personal Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in Roman theaters, the bouchons, and getting in from LYS."
 published: 2026-05-12
 updated: 2026-05-12

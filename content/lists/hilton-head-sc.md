@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Hilton Head travel guide: the RBC Heritage, the beaches, and where to eat"
+headline: "Hilton Head, the Lowcountry island for a slower week"
 description: "A personal Hilton Head travel guide. The RBC Heritage week in April, the Low Country food rotation, the beaches, and getting in from Savannah (SAV)."
 published: 2026-05-12
 updated: 2026-05-12

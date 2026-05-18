@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Saranda and Ksamil travel guide: where to stay on the Albanian Riviera, where to eat"
+headline: "Saranda and Ksamil, the Albanian Riviera before everyone catches on"
 description: "A personal Saranda and Ksamil travel guide. Ferry from Corfu, where to stay on the Albanian Riviera, the beach restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

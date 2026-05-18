@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Krabi travel guide: where to stay in Ao Nang, where to eat, and getting in from KBV"
+headline: "Krabi, the limestone coast and where to base"
 description: "A personal Krabi travel guide. Getting in from Krabi (KBV), where to stay in Ao Nang, and the casual Thai-and-international rotation on the Andaman coast."
 published: 2026-05-12
 updated: 2026-05-12

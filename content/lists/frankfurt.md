@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Frankfurt travel guide: the Book Fair, apple wine, and getting in from FRA"
+headline: "Frankfurt is more than its airport"
 description: "A personal Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA."
 published: 2026-05-12
 updated: 2026-05-12

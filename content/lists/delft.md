@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Delft travel guide: Vermeer's town, the two churches, and the Delftware"
+headline: "Delft, Vermeer's quiet town between the big two"
 description: "A personal Delft travel guide. The canal-laced center between Rotterdam and The Hague, the Markt and its two great churches, the blue pottery, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18

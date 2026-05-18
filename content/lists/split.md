@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Split travel guide: Diocletian's Palace, the islands, and where to eat konoba-style"
+headline: "Split, the city built inside a Roman palace"
 description: "A personal Split travel guide. Diocletian's Palace UNESCO walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay near the old town, and the konobas that locals actually go to."
 published: 2026-05-11
 updated: 2026-05-15

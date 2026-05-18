@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Malta travel guide: where to base in St Julian's, day trips by ferry, what to actually do"
+headline: "Malta, a whole country you can cross in an hour"
 description: "A personal Malta travel guide. The St Julian's hotel strip, walking to Valletta, Gozo by ferry, rabbit and tourist food, plus the high/low season tradeoff."
 published: 2026-05-12
 updated: 2026-05-12

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Panama City travel guide: where to stay, where to eat, and getting in from PTY"
+headline: "Panama City, where the skyline meets the old town"
 description: "A personal Panama City travel guide. Getting in from Tocumen, where to stay near Casco Viejo, and the modern Central-American restaurant rotation."
 published: 2026-05-12
 updated: 2026-05-12

@@ -164,7 +164,8 @@ export default async function ListsIndex() {
       return {
         ...d,
         isGuide,
-        guideTitle: isGuide ? content?.title ?? null : null,
+        // Show the editorial headline on the card; fall back to the SEO title.
+        guideTitle: isGuide ? content?.headline ?? content?.title ?? null : null,
         guideDescription: isGuide ? content?.description ?? null : null,
         // Promote the guide's hero_image to the cover when one is set;
         // editorial pages are more likely to have a deliberate hero

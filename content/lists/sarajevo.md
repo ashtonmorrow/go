@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Sarajevo travel guide: the Film Festival, the historic center, and where to eat"
+headline: "Sarajevo carries its history in plain sight"
 description: "A personal Sarajevo travel guide. The Sarajevo Film Festival in August, Baščaršija Nights through July, where to stay, and getting in from SJJ."
 published: 2026-05-12
 updated: 2026-05-12

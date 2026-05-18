@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Brighton travel guide: the pier, the Royal Pavilion, and the day trip from London"
+headline: "Brighton, the easiest day at the sea from London"
 description: "A personal Brighton travel guide. Getting in from London in an hour, the seafront and the pier, the Royal Pavilion, the Lanes, and where to eat by the sea."
 published: 2026-05-18
 updated: 2026-05-18

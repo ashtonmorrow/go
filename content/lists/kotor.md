@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Kotor travel guide: where to stay around the bay, the walls climb, and a day in the old town"
+headline: "Kotor, the bay, the walls, and the climb"
 description: "A personal Kotor travel guide. Stay around the bay (Herceg Novi, Tivat), see the old town in a day, climb the walls early, dodge the cruise-ship crowds."
 published: 2026-05-12
 updated: 2026-05-12

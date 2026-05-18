@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Barcelona travel guide: where to stay, where to eat, and a Sitges daytrip"
+headline: "Barcelona, my guide to the Catalan capital"
 description: "A personal Barcelona travel guide. Where to stay (Poblenou over Barri Gòtic), why the city is winding down Airbnb, neighborhood food, and Sitges as a daytrip."
 published: 2026-05-11
 updated: 2026-05-15

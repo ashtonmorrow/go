@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Koh Phi Phi travel guide: ferries in, where to eat, and what to know going in"
+headline: "Koh Phi Phi, and what to know before the ferry"
 description: "A personal Koh Phi Phi travel guide. Ferry from Phuket or Krabi, where to eat on Tonsai, and what to know about the small no-cars island lifestyle."
 published: 2026-05-12
 updated: 2026-05-12

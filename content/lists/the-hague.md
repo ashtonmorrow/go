@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "36 hours in The Hague: a practical guide to Den Haag's museums, palaces, and coast"
+headline: "The Hague, the easy alternative to Amsterdam"
 description: "A 36-hour Hague travel guide. Mauritshuis Vermeer, Escher in het Paleis, the Peace Palace, Madurodam, Scheveningen, and The Hague as a cheap base for Amsterdam."
 published: 2026-05-12
 updated: 2026-05-15

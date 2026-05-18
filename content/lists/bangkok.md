@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
+headline: "Bangkok gets easier the moment you stop fighting it"
 description: "A personal Bangkok travel guide. Where to stay in Sukhumvit, Silom, or Riverside, the BTS mall walk for jet-lagged days, the river-grouped temple circuit, and Yaowarat at night."
 published: 2026-05-10
 updated: 2026-05-15

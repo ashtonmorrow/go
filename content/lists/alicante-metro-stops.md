@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Alicante tram stops: a station guide for the Costa Blanca coast"
+headline: "Riding the Alicante tram up the Costa Blanca"
 description: "A personal station-pin index for using Alicante as a Costa Blanca tram base, from the city center toward El Campello, Benidorm, and the northern beaches."
 published: 2026-05-06
 updated: 2026-05-13

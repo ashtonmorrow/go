@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Granada travel guide: the Alhambra, where to eat free tapas, and getting in from GRX"
+headline: "Granada is the one Andalusian city I would never skip"
 description: "A personal Granada travel guide. Getting in from GRX or driving from Málaga, the Alhambra-and-Albayzín shape, and the free-tapas culture worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

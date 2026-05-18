@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Munich travel guide: Oktoberfest, the beer halls, and where to base"
+headline: "Munich, the Bavarian capital and the gateway to the Alps"
 description: "A personal Munich travel guide. Oktoberfest, the Hofbräuhaus and Augustiner beer halls, Eisbach river surfers, and where to base for a rail trip."
 published: 2026-05-12
 updated: 2026-05-12

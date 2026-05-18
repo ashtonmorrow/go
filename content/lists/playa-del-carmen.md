@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Playa del Carmen travel guide: where to stay on Quinta Avenida, where to eat, and getting in from CUN"
+headline: "Playa del Carmen, the Riviera Maya base"
 description: "A personal Playa del Carmen travel guide. Getting in from Cancún, where to stay on Quinta Avenida, and the casual Yucatán restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

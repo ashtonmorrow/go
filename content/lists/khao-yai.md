@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Khao Yai travel guide: the national park, the wineries, and Pak Chong"
+headline: "Khao Yai, the nature break from Bangkok"
 description: "A short Khao Yai travel guide. The 3-hour drive from Bangkok, the national park entry, two waterfalls, two wineries, and where to base if you only have a day."
 published: 2026-05-12
 updated: 2026-05-15

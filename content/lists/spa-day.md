@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Spa days for travelers: where to soak after a long coach flight"
+headline: "Where to soak after a long-haul flight"
 description: "A working list of spa towns to fly into when a long coach flight has left your body sore. Therme Erding near Munich, Pamukkale, Budapest, and Thermae Bath."
 published: 2026-05-12
 updated: 2026-05-12

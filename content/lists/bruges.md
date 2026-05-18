@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Bruges travel guide: the chocolate, the beer, and how to do it in a day"
+headline: "Bruges is worth it if you beat the day-trippers"
 description: "A personal Bruges travel guide. The UNESCO historic center, De Halve Maan brewery, the chocolate stops, the Béguinage, and whether to do it as a day trip from Brussels or stay overnight."
 published: 2026-05-11
 updated: 2026-05-15

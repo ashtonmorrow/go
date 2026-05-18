@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Cairo travel guide: where to stay, how to do the pyramids, and the scams to know"
+headline: "Cairo asks more of you than most cities. Go anyway."
 description: "A personal Cairo travel guide. Le Méridien at the airport on Bonvoy points, where to stay in Giza, doing the pyramids DIY, and the scams to know going in."
 published: 2026-05-12
 updated: 2026-05-13

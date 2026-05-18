@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Málaga travel guide: the beaches, the Picasso museum, and getting in from AGP"
+headline: "Málaga is more than the Costa del Sol's airport"
 description: "A personal Málaga travel guide. Getting in from AGP, the Costa del Sol shape, the Picasso museum, and a casual Andalusian food rotation through the city."
 published: 2026-05-12
 updated: 2026-05-12

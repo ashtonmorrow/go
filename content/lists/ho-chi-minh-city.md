@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
+headline: "Ho Chi Minh City, Saigon at full speed"
 description: "A personal Ho Chi Minh City travel guide. Vietnam e-visa, where to stay in District 1, the Saigon craft beer crawl (Heart of Darkness, Pasteur Street, Belgo, East West), and a one-day cultural circuit."
 published: 2026-05-11
 updated: 2026-05-15

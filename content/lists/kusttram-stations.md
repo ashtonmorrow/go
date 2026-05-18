@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Belgian coast travel guide: the Kusttram, where to ride, where to eat"
+headline: "Riding the Kusttram down the whole Belgian coast"
 description: "A personal Belgian coast guide. Riding the Kusttram, where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen."
 published: 2026-04-30
 updated: 2026-05-14

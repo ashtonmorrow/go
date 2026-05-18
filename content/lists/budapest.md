@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Budapest travel guide: Sziget, the thermal baths, and where to eat"
+headline: "Budapest, the two cities the Danube splits"
 description: "A personal Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD."
 published: 2026-05-12
 updated: 2026-05-12

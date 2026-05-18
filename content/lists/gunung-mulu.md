@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Gunung Mulu travel guide: the bats, the caves, and the Marriott in the rainforest"
+headline: "Gunung Mulu, a rainforest national park with a Marriott in it"
 description: "A personal Gunung Mulu travel guide. How to route through Kuching or Kota Kinabalu, why the Mulu Marriott is the only sensible base, what to book at the park, and what the Pinnacles trek actually involves."
 published: 2026-05-11
 updated: 2026-05-15

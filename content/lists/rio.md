@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Rio travel guide: Carnival, where to stay in Ipanema, and a first Rio trip"
+headline: "Rio, and how to plan a first trip you won't regret"
 description: "A personal Rio de Janeiro travel guide. Carnival logistics, Réveillon at Copacabana, where to stay in Ipanema, the beaches, and getting in from GIG."
 published: 2026-05-12
 updated: 2026-05-12

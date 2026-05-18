@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Djerba travel guide: the beaches, Houmt Souk, and the Djerbahood street art"
+headline: "Djerba, the Tunisian island most North Americans have never heard of"
 description: "A short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, the Djerbahood murals, and the Matmata daytrip."
 published: 2026-05-12
 updated: 2026-05-15

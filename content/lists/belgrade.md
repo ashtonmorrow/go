@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Belgrade travel guide: where to eat, the nightlife, and getting in from BEG"
+headline: "Belgrade is rougher than you expect, and that's the appeal"
 description: "A personal Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

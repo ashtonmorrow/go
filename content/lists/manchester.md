@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Manchester travel guide: where to eat, the Northern Quarter, and getting in from MAN"
+headline: "Manchester, the northern city that reinvented itself"
 description: "A personal Manchester travel guide. Getting in from MAN, where to stay near Northern Quarter, the curry mile, and the modern Manc restaurant rotation."
 published: 2026-05-12
 updated: 2026-05-12

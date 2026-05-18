@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Venice travel guide: Carnevale, the Biennale, where to stay, and where to eat"
+headline: "Venice is worth it if you plan it right"
 description: "A personal Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay, and getting in from VCE on the Alilaguna."
 published: 2026-05-12
 updated: 2026-05-12

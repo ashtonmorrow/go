@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Eger travel guide: the castle, the wine valley, and the day trip from Budapest"
+headline: "Eger, the Hungarian wine town worth the two-hour train"
 description: "A personal Eger travel guide. The two-hour train from Budapest, the siege castle, the Ottoman minaret, and the Bull's Blood cellars of the Valley of the Beautiful Women."
 published: 2026-05-18
 updated: 2026-05-18

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Pattaya travel guide: where to stay, where to eat, and getting in from BKK"
+headline: "Pattaya, taken on its own terms"
 description: "A personal Pattaya travel guide. Getting in from Bangkok Suvarnabhumi, the resort hotel rotation including the Andaz Jomtien, and where to actually eat well."
 published: 2026-05-12
 updated: 2026-05-12

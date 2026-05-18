@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "York travel guide: the Minster, the Shambles, and the day trip from London"
+headline: "York, the walled city worth the trip north"
 description: "A personal York travel guide. Getting in from London by LNER, the walled medieval city on foot, the Jorvik and railway museums, and the pub-and-tea-room food scene."
 published: 2026-05-18
 updated: 2026-05-18

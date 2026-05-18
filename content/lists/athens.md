@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Athens travel guide: the Acropolis ticket, where to eat in Plaka, and the Cape Sounion day trip"
+headline: "Athens is better than the two days most people give it"
 description: "A personal Athens travel guide. The Acropolis ticket, Plaka tavernas, the National Archaeological Museum, where to stay, and Cape Sounion at sunset."
 published: 2026-05-11
 updated: 2026-05-15

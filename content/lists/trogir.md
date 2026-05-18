@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Trogir travel guide: the easy half-day from Split"
+headline: "Trogir, a UNESCO old town and an easy half-day"
 description: "A short Trogir travel guide. Split bus 37, Kamerlengo Castle, the green market, the resident cats, and lunch spots in the old town worth walking to."
 published: 2026-05-11
 updated: 2026-05-13

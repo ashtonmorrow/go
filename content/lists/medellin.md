@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Medellín travel guide: Feria de las Flores, the cable cars, and El Poblado"
+headline: "Medellín, the city of eternal spring"
 description: "A personal Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the cable cars, and getting in from MDE."
 published: 2026-05-12
 updated: 2026-05-12

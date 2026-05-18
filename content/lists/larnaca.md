@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Larnaca travel guide: where to eat, the Finikoudes promenade, and getting in from LCA"
+headline: "Larnaca, the low-key way into Cyprus"
 description: "A personal Larnaca travel guide. Getting in from LCA (the gateway airport for Cyprus), where to stay near Finikoudes, and the kebab-and-Mediterranean rotation."
 published: 2026-05-12
 updated: 2026-05-12

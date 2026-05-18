@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Balkan green markets: where to shop, snack, and look around"
+headline: "A wander through the green markets of the Balkans"
 description: "A working list of green markets from longer Balkan city stays, useful for apartment cooking, morning walks, honey, figs, olive oil, and small food gifts."
 published: 2026-05-11
 updated: 2026-05-13

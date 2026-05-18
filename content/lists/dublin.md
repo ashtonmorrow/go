@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Dublin travel guide: St Patrick's Day, the pubs, and where to eat"
+headline: "Dublin, the city that runs on its pubs"
 description: "A personal Dublin travel guide. St Patrick's Day logistics, where to stay near the center, the pub-and-restaurant rotation, and getting in from DUB."
 published: 2026-05-12
 updated: 2026-05-12

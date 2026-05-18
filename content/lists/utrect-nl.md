@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Utrecht travel guide: where to eat, where to stay, and getting in from AMS"
+headline: "Utrecht, the Dutch city most visitors skip"
 description: "A personal Utrecht travel guide. Train from Schiphol or Amsterdam Centraal, where to stay near Centraal, and the casual Dutch restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

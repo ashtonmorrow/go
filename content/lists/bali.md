@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Bali travel guide: which base for which trip, Seminyak vs Canggu vs Ubud"
+headline: "Bali, and which base is actually right for your trip"
 description: "A personal Bali travel guide. Which base suits which trip. Seminyak for the beach clubs, Canggu for the surf and the cafés, Ubud for the inland temples."
 published: 2026-05-12
 updated: 2026-05-12

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Kuala Lumpur travel guide: Thaipusam, Batu Caves, and where to stay"
+headline: "Kuala Lumpur, a gentle first stop in Southeast Asia"
 description: "A personal Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay (Bangsar, KLCC, Bukit Bintang), the Bird Park, and getting in from KLIA."
 published: 2026-05-11
 updated: 2026-05-15

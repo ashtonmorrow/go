@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Cartagena travel guide: where to eat in the walled city and getting in from CTG"
+headline: "Cartagena, the walled city on the Colombian Caribbean"
 description: "A personal Cartagena travel guide. Getting in from CTG, where to stay in the walled city, and the ceviche-and-rooftop rotation worth the heat."
 published: 2026-05-12
 updated: 2026-05-12

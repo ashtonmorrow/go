@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Tirana travel guide: where to eat, the Bunkers, and getting in from TIA"
+headline: "Tirana, the Balkan capital changing the fastest"
 description: "A personal Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the modern Albanian-fusion restaurant rotation worth the trip."
 published: 2026-05-12
 updated: 2026-05-12

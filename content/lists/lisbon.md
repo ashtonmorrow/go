@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Lisbon travel guide: where to eat, the trams, and getting in from LIS"
+headline: "Lisbon, my guide to the city of seven hills"
 description: "A personal Lisbon travel guide. Getting in from Humberto Delgado airport on the metro, where to stay near the center, and a casual food rotation through the tascas."
 published: 2026-05-12
 updated: 2026-05-12

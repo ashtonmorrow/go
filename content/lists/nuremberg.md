@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Nuremberg travel guide: the Christmas market, the sausages, and getting in from NUE"
+headline: "Nuremberg, the better German Christmas-market trip"
 description: "A personal Nuremberg travel guide. Getting in from NUE, the medieval old town, the Christmas-market case, and where to find the Nürnberger sausage."
 published: 2026-05-12
 updated: 2026-05-12

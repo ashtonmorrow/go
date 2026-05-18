@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Ávila travel guide: the medieval walls, Saint Teresa, and the day trip from Madrid"
+headline: "Ávila, the walled city an hour from Madrid"
 description: "A personal Ávila travel guide. The high Castilian city an hour from Madrid, the most complete medieval walls in Spain, Saint Teresa, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18

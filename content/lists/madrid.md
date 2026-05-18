@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Madrid travel guide: things to do, where to stay, and what to skip"
+headline: "Madrid, the Spanish capital that gets underrated"
 description: "A personal Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset."
 published: 2026-05-10
 updated: 2026-05-10

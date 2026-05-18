@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Montevideo travel guide: Carnaval, the Buquebus, the asado, and where to stay"
+headline: "Montevideo, the easy add-on to a Buenos Aires trip"
 description: "A personal Montevideo travel guide. Carnaval (the longest in the world), the Buquebus ferry, asado at Mercado del Puerto, and where to stay near Punta Carretas."
 published: 2026-05-11
 updated: 2026-05-15

@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Bucharest travel guide: where to eat, where to stay, and getting in from OTP"
+headline: "Bucharest is a slow burn, and worth the patience"
 description: "A personal Bucharest travel guide. Getting in from Henri Coandă, where to stay in the Old Town, and the restaurant rotation worth booking around."
 published: 2026-05-12
 updated: 2026-05-12

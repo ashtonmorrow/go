@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Milan travel guide: Fashion Week, Salone, aperitivo, and where to eat"
+headline: "Milan rewards you once you stop expecting Rome"
 description: "A personal Milan travel guide. Fashion Week, Salone del Mobile, where to eat, aperitivo, and getting in from MXP on the Malpensa Express."
 published: 2026-05-12
 updated: 2026-05-12

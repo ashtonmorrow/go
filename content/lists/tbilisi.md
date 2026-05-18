@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Tbilisi travel guide: getting in, where to stay, what to eat, three days in Georgia"
+headline: "Tbilisi might be my favorite city you haven't been to"
 description: "A personal Tbilisi travel guide. Uber from the airport, where to stay, khinkali, qvevri amber wine, cable car views, sulfur baths, and the right markets."
 published: 2026-05-12
 updated: 2026-05-12

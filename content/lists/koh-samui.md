@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Koh Samui travel guide: which beach, which hotel, how to get there"
+headline: "Koh Samui, the quieter Thai island week"
 description: "A personal Koh Samui travel guide. Chaweng vs Lamai vs Bophut vs Choeng Mon, when to use Bangkok Airways, beach clubs, temples, viewpoints, and what to skip."
 published: 2026-05-11
 updated: 2026-05-13

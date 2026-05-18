@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Phuket travel guide: where to stay, the beaches worth the trip, and what to skip"
+headline: "Phuket, the practical big-island Thailand trip"
 description: "A personal Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
 published: 2026-05-12
 updated: 2026-05-15

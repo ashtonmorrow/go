@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Santiago travel guide: where to stay, the wine country, and a Valparaíso daytrip"
+headline: "Santiago, a practical capital with wine country beside it"
 description: "A short Santiago Chile travel guide. Where to stay (Providencia, Bellavista, Lastarria), Cerro San Cristóbal, the Maipo Valley wineries, and a Valparaíso daytrip."
 published: 2026-05-12
 updated: 2026-05-15

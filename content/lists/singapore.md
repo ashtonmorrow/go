@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Singapore travel guide: the F1, the hawker centers, and where to stay"
+headline: "Singapore, the soft landing into Asia"
 description: "A personal Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay (Robertson Quay), and the three-day version."
 published: 2026-05-11
 updated: 2026-05-15

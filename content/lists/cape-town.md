@@ -2,6 +2,7 @@
 indexable: true
 featured: true
 title: "Cape Town travel guide: things to do, where to stay, and what is actually worth it"
+headline: "Cape Town, after a few weeks on the ground"
 description: "A personal Cape Town travel guide. Where to stay, climbing Table Mountain, the Boulders penguins and Cape Peninsula, the Winelands, and planning around the weather."
 published: 2026-05-07
 updated: 2026-05-07

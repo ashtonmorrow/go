@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Dubrovnik travel guide: where to eat, the city walls, and getting in from DBV"
+headline: "Dubrovnik, and how to see it outside the cruise-ship hours"
 description: "A personal Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, and the konoba-and-modern restaurant rotation worth the price."
 published: 2026-05-12
 updated: 2026-05-12

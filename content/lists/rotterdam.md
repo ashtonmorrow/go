@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk"
+headline: "Rotterdam, the architectural opposite of Amsterdam"
 description: "A personal Rotterdam travel guide. The Markthal and Cube Houses walking loop, Depot Boijmans, Euromast, Hotel New York, and Kinderdijk as a day trip. Where to base near Centraal."
 published: 2026-05-11
 updated: 2026-05-15

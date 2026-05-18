@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Kota Kinabalu travel guide: Borneo on the easy setting"
+headline: "Kota Kinabalu, Borneo on the easy setting"
 description: "A personal Kota Kinabalu travel guide. Where to stay (Hyatt Regency or the Marriott), how to do Tunku Abdul Rahman Marine Park, Kinabalu Park as a day trip, and what to expect from a predominantly Muslim, conservative coastal city."
 published: 2026-05-11
 updated: 2026-05-15

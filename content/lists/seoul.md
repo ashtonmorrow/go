@@ -2,6 +2,7 @@
 indexable: false
 featured: true
 title: "Seoul travel guide: where to stay, the palaces, and the markets to eat at"
+headline: "Seoul, a ten-million city that somehow feels easy"
 description: "A personal Seoul travel guide. Getting in from Incheon on the AREX, where to stay by neighborhood, the Joseon palaces, Bukchon, and the night markets."
 published: 2026-05-18
 updated: 2026-05-18
