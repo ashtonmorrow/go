@@ -36,7 +36,7 @@ faqs:
 
 related:
   city: seoul
-  country: south-korea
+  country: southkorea
 
 topics:
   - markets

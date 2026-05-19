@@ -46,11 +46,10 @@ related:
 # - This is a national-park / region guide, not a city guide. No
 #   go_cities row applies. related.city is omitted, related.country is
 #   croatia.
-# - DATA NOISE: the krka saved_list contains st-john-s-fort, whose
-#   city_names is ["Malacca"] -- that is St. John's Fort in Malacca,
-#   Malaysia, not Sibenik. It is deliberately not linked here and should
-#   be removed from the krka list. (Sibenik does have its own forts,
-#   and st-nicholas-fortress is the correct pinned one.)
+# - DATA FIXED (May 2026): st-john-s-fort (St. John's Fort in Malacca,
+#   Malaysia, not Sibenik) was mis-tagged into the krka list and has been
+#   removed from it. The guide never linked it. st-nicholas-fortress is
+#   the correct Sibenik fort pin.
 # - Pins linked (11): skradinski-buk-waterfall,
 #   krka-waterfalls-entrance-at-lozovac, skradinski-buk-ferry-pier,
 #   city-beach-skradin, trutin-beach, tributary-cikola-into-krka,

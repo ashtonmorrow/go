@@ -66,7 +66,6 @@ The trip-shaping window is the Christmas-NYE peak. Push the dates a week in eith
 
 | Property | Note |
 |---|---|
-| [Amethyst Hotel Pattaya](/pins/amethyst-hotel-pattaya) | Pinned |
 | [Andaz Pattaya Jomtien Beach - a Concept by Hyatt](/pins/andaz-pattaya-jomtien-beach-a-concept-by-hyatt) | Pinned |
 | [InterContinental Pattaya Resort, an IHG Hotel](/pins/intercontinental-pattaya-resort-an-ihg-hotel) | Pinned |
 

@@ -13,7 +13,7 @@ hero_alt: ""
 
 related:
   city: hilton-head-sc
-  country: united-states
+  country: unitedstatesofamerica
 
 topics:
   - festivals

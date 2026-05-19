@@ -13,7 +13,7 @@ hero_alt: ""
 
 related:
   city: sarajevo
-  country: bosnia-and-herzegovina
+  country: bosniaherzegovina
 
 topics:
   - festivals

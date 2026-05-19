@@ -38,7 +38,7 @@ faqs:
 
 related:
   city: bath
-  country: united-kingdom
+  country: unitedkingdom
   posts:
     - bath-uk
 

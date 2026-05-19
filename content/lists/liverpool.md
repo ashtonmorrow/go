@@ -36,7 +36,7 @@ faqs:
 
 related:
   city: liverpool
-  country: united-kingdom
+  country: unitedkingdom
 
 topics:
   - markets

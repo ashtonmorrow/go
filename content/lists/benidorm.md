@@ -46,10 +46,9 @@ related:
 # - NO go_cities ROW for Benidorm. related.city is deliberately omitted
 #   (only related.country: spain is set), and the body opener says
 #   "Benidorm" as plain text, not a /cities/ link.
-# - DATA NOISE: the benidorm saved_list contains d-vora-restaurante,
-#   whose city_names is ["Alicante"] -- it is in Alicante, not Benidorm
-#   (and is rated 5). It is deliberately not linked here and should be
-#   moved to the alicante list.
+# - DATA FIXED (May 2026): d-vora-restaurante (an Alicante restaurant,
+#   rated 5) was mis-tagged into the benidorm list and has been removed
+#   from it. It stays on the alicante list, where it belongs.
 # - Pins linked from the benidorm saved_list (3 legit): muu-grill-beach,
 #   restaurante-northern-sole, vajra-bistro.
 # - Pins to create (plain text in the body): Levante Beach, Poniente

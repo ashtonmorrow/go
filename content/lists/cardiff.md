@@ -46,9 +46,9 @@ related:
 # - NO go_cities ROW for Cardiff. related.city is deliberately omitted
 #   (only related.country: wales is set), and the body opener says
 #   "Cardiff" as plain text, not a /cities/ link.
-# - DATA NOISE: the cardiff saved_list contains one mis-tagged pin,
-#   crispy-dosa-restaurant-bristol, which is in Bristol, not Cardiff. It
-#   is deliberately not linked here and should be removed from the list.
+# - DATA FIXED (May 2026): crispy-dosa-restaurant-bristol, mis-tagged
+#   into the cardiff list, has been removed from it. It stays on the
+#   bristol list, where it belongs. The guide never linked it.
 # - Pins linked from the cardiff saved_list (8 legit): crofters-garden,
 #   cafe-citta, casanova, chopstix-cardiff, lezzet-turkish-kitchen,
 #   oak-restaurant, pasture-restaurant-cardiff, the-potted-pig.

@@ -13,7 +13,7 @@ hero_alt: ""
 
 related:
   city: houston
-  country: united-states
+  country: unitedstatesofamerica
 
 topics:
   - festivals

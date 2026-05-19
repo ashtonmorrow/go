@@ -13,7 +13,7 @@ hero_alt: ""
 
 related:
   city: manchester
-  country: united-kingdom
+  country: unitedkingdom
 
 topics:
   - festivals

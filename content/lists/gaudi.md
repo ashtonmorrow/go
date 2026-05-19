@@ -54,10 +54,10 @@ related:
 #   park-guell, casa-batllo, la-pedrera-casa-mila, casa-vicens-gaudi,
 #   guell-palace, col-legi-de-les-teresianes, cripta-de-la-colonia-guell,
 #   el-capricho-de-gaudi.
-# - DATA NOTE: el-capricho-de-gaudi has city_names ["Barcelona"], but
-#   El Capricho is in Comillas, Cantabria, far from Barcelona. The pin
-#   belongs in this themed list, and its city_names should be corrected
-#   to Comillas.
+# - DATA FIXED (May 2026): el-capricho-de-gaudi had city_names
+#   ["Barcelona"] but El Capricho is in Comillas, Cantabria. The
+#   city_names were corrected to ["Comillas"]. The pin correctly stays
+#   on this themed list.
 # - col-legi-de-les-teresianes is a working school with very limited
 #   public access, and is described as such.
 ---

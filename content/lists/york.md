@@ -36,7 +36,7 @@ faqs:
 
 related:
   city: york
-  country: united-kingdom
+  country: unitedkingdom
 
 topics:
   - museums

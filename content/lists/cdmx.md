@@ -50,11 +50,10 @@ topics:
 #   omitted (only related.country: mexico is set), and the body opener
 #   says "Mexico City" as plain text, not a /cities/ link. Add related.city
 #   and link the opener if a go_cities row is created later.
-# - DATA NOISE: the cdmx saved_list contains two mis-tagged pins,
-#   rhd-railway-new-romney and rhd-railway-hythe, which are the Romney,
-#   Hythe & Dymchurch Railway in Kent, England (both rated 5). They are
-#   NOT in Mexico City and are deliberately not linked here. They should
-#   be removed from the cdmx saved_list.
+# - DATA FIXED (May 2026): two pins mis-tagged into the cdmx saved_list,
+#   the Romney, Hythe & Dymchurch Railway pins in Kent, England, have
+#   been removed from the list. rhd-railway-hythe was also merged away
+#   in the pin dedup. The guide never linked them.
 # - Pins linked from the cdmx saved_list (8 legit): hemiciclo-a-juarez,
 #   agua-and-sal, bamboo-asian-cuisine, batta-sushi, el-bajio,
 #   el-tizoncito, entremar, porfirio-s-masaryk.
