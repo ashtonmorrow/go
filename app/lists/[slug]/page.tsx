@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { fetchPinsForLists } from '@/lib/pins';
+import { resolveListCover } from '@/lib/listCover';
 import {
   fetchCityByName,
   fetchCountryByName,
@@ -284,30 +285,17 @@ export default async function ListPage({ params }: Props) {
     lng: p.lng,
   }));
 
-  // === Cover hero precedence ================================================
-  // Frontmatter `hero_image` is the strongest signal — when present it wins
-  // unconditionally so an editor can pick exactly the cover they want.
-  // Otherwise fall through: curated cover URL (codex art / city or country
-  // hero / Wikidata pin image) > curated personal photo > curated cover pin
-  // > anchor city's personal photo > first visited pin's photo.
-  const coverFromCuratedUrl = meta?.coverImageUrl ?? null;
-  const coverFromCurated = meta?.coverPhotoUrl ?? null;
-  const coverFromPin = meta?.coverPinId
-    ? listPins.find(p => p.id === meta.coverPinId)?.images?.[0]?.url ?? null
-    : null;
-  const coverFromCity = cityMatch ? cityMatch.personalPhoto ?? null : null;
-  const coverFromPinPile = (() => {
-    const visitedFirst = listPins
-      .slice()
-      .sort((a, b) => (a.visited === b.visited ? 0 : a.visited ? -1 : 1));
-    for (const p of visitedFirst) {
-      const url = p.images?.[0]?.url;
-      if (url) return url;
-    }
-    return null;
-  })();
-  const coverUrl =
-    content?.heroImage ?? coverFromCuratedUrl ?? coverFromCurated ?? coverFromPin ?? coverFromCity ?? coverFromPinPile;
+  // Cover hero — one shared precedence chain (see lib/listCover.ts), the
+  // same logic the /lists index card uses, so a list looks identical in
+  // both places.
+  const coverUrl = resolveListCover({
+    heroImage: content?.heroImage,
+    coverImageUrl: meta?.coverImageUrl,
+    coverPhotoUrl: meta?.coverPhotoUrl,
+    coverPinId: meta?.coverPinId,
+    cityCover: cityMatch?.personalPhoto ?? null,
+    pins: listPins,
+  });
   const coverAlt = content?.heroAlt ?? '';
 
   // === Inline pin photos in the body ========================================

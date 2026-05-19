@@ -4,6 +4,7 @@ import { fetchCitiesCardData } from '@/lib/citiesCardData';
 import { fetchAllCountries } from '@/lib/notion';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import { readListContent } from '@/lib/content';
+import { resolveListCover } from '@/lib/listCover';
 import { SITE_URL } from '@/lib/seo';
 import ListsBrowser, { type ListEntry } from '@/components/ListsBrowser';
 
@@ -88,28 +89,6 @@ export default async function ListsIndex() {
     }
   }
 
-  function pickPinCover(arr: PinForCard[]): string | null {
-    // Prefer a visited pin's first photo over a draft's, since drafts often
-    // have no images at all. Either way, take the first usable image.
-    const visitedFirst = arr.slice().sort((a, b) => {
-      if (a.visited !== b.visited) return a.visited ? -1 : 1;
-      return 0;
-    });
-    for (const p of visitedFirst) {
-      const img = p.images?.[0]?.url;
-      if (img) return img;
-    }
-    return null;
-  }
-
-  // Pin id → first image url, used to resolve curated coverPinId without a
-  // second pass over `pins`.
-  const pinPrimaryPhoto = new Map<string, string>();
-  for (const p of pins) {
-    const url = p.images?.[0]?.url;
-    if (url) pinPrimaryPhoto.set(p.id, url);
-  }
-
   // Build the rough list set first; the guide-content read happens in a
   // second async pass so we can fan out fs reads in parallel.
   const draft = Array.from(buckets.entries()).map(([name, arr]) => {
@@ -121,20 +100,9 @@ export default async function ListsIndex() {
       : country
       ? { kind: 'country' as const, name: country.name, slug: country.slug }
       : null;
-    // Curated covers always win. The picker stores either a raw URL
-    // (cover_image_url — codex art, Wikidata pin image, city/country
-    // hero), a specific personal photo (cover_photo_id, joined to its
-    // URL at fetch time), or a pin (cover_pin_id, whose first image
-    // we look up here). After the curated chain, fall back to the
-    // matching city's hero photo and finally to whatever the pin pile
-    // turns up.
+    // The cover itself is resolved in the decoration pass below, once the
+    // guide content (and its hero_image) is in hand. Carry the inputs.
     const meta = listsMeta.get(name);
-    const cover =
-      meta?.coverImageUrl
-      ?? meta?.coverPhotoUrl
-      ?? (meta?.coverPinId ? pinPrimaryPhoto.get(meta.coverPinId) ?? null : null)
-      ?? city?.cover
-      ?? pickPinCover(arr);
     // Prefer the saved_lists.slug column (the URL identifier, editable
     // independently of name since May 2026). Fall back to the derived form
     // for bucket names that don't have a meta row yet — that path keeps
@@ -144,8 +112,14 @@ export default async function ListsIndex() {
       slug: meta?.slug ?? listNameToSlug(name),
       count: arr.length,
       visitedCount: arr.filter(p => p.visited).length,
-      cover,
       anchor,
+      coverInputs: {
+        coverImageUrl: meta?.coverImageUrl ?? null,
+        coverPhotoUrl: meta?.coverPhotoUrl ?? null,
+        coverPinId: meta?.coverPinId ?? null,
+        cityCover: city?.cover ?? null,
+        pins: arr,
+      },
     };
   });
 
@@ -161,16 +135,16 @@ export default async function ListsIndex() {
     draft.map(async d => {
       const content = await readListContent(d.slug);
       const isGuide = !!content?.featured;
+      const { coverInputs, ...rest } = d;
       return {
-        ...d,
+        ...rest,
         isGuide,
         // Show the editorial headline on the card; fall back to the SEO title.
         guideTitle: isGuide ? content?.headline ?? content?.title ?? null : null,
         guideDescription: isGuide ? content?.description ?? null : null,
-        // Promote the guide's hero_image to the cover when one is set;
-        // editorial pages are more likely to have a deliberate hero
-        // than the auto-fallback covers.
-        cover: (isGuide && content?.heroImage) || d.cover,
+        // One shared cover chain (lib/listCover.ts), the same precedence
+        // /lists/<slug> uses, so the list looks identical in both places.
+        cover: resolveListCover({ heroImage: content?.heroImage, ...coverInputs }),
       };
     }),
   );
