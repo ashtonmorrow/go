@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Cologne travel guide: the cathedral, the Old Town, and where to eat"
 headline: "Cologne is a giant cathedral with a city attached"
-description: "A personal Cologne travel guide. The Cologne Cathedral, the Old Town and the Rhine, Kölsch and the brewhouses, where to stay, and where to eat."
+description: "My Cologne travel guide. The cathedral, the Old Town and the Rhine, Kölsch and the brewhouses, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -64,7 +64,7 @@ topics:
 #   are pinned yet.
 ---
 
-[Cologne](/cities/cologne) is a city of about 1.1 million people on the Rhine in western Germany, one of the country's oldest, founded by the Romans. It is dominated by its cathedral, a twin-spired Gothic giant beside the main station, and runs on its own pale beer, Kölsch, and a deep brewhouse culture. A day or two covers it. This guide covers getting in, where to stay, the cathedral and the Old Town, and where to eat.
+[Cologne](/cities/cologne) is a giant Gothic cathedral with a city attached, one of Germany's oldest, sat on the Rhine and running on its own pale beer. A day or two covers it. Here's how I'd use the time, brewhouses included.
 
 ## On this page
 

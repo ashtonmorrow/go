@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Cape Town travel guide: things to do, where to stay, and what is actually worth it"
 headline: "Cape Town, after a few weeks on the ground"
-description: "A personal Cape Town travel guide. Where to stay, climbing Table Mountain, the Boulders penguins and Cape Peninsula, the Winelands, and planning around the weather."
+description: "My Cape Town travel guide. Where to stay, climbing Table Mountain, the Boulders penguins and Cape Peninsula, the Winelands, and planning around the weather."
 published: 2026-05-07
 updated: 2026-05-07
 authors:
@@ -44,9 +44,7 @@ topics:
   - day-trips
 ---
 
-[Cape Town](/cities/cape-town) is not a city I would plan casually. The mountain, coast, food, and vineyards make the trip easy to justify, but the city works better when you plan around safety, weather, transport, and where you sleep.
-
-I spent a few weeks there, long enough for the first impression to settle into something more useful. The landscape is the obvious fact: [Table Mountain](/pins/table-mountain-national-park) above the city bowl, the coast curling around Sea Point, the vineyards within reach, the dry summer light. The practical facts matter just as much. I used Uber constantly, never used cash, kept my phone out of my hand on the street, and chose hotels partly by how much friction they removed from my day.
+[Cape Town](/cities/cape-town) is not a city I'd plan casually. The setting sells itself, [Table Mountain](/pins/table-mountain-national-park) over the city bowl, two oceans, the Winelands within reach, but the city rewards planning around safety, weather, and where you sleep. I spent a few weeks there. Here's what I learned.
 
 ## On this page
 

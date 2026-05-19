@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Djerba travel guide: the beaches, Houmt Souk, and the Djerbahood street art"
 headline: "Djerba, the Tunisian island most North Americans have never heard of"
-description: "A short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, the Djerbahood murals, and the Matmata daytrip."
+description: "My short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, and the Djerbahood murals."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -57,7 +57,7 @@ topics:
 # - Source: Mike's Djerba travel brief. Personal references stripped.
 ---
 
-Djerba is the [Tunisian](/countries/tunisia) island most North Americans have never heard of. European package travelers have known about it for thirty years. The sand is good, the resorts are cheap by Mediterranean standards, and the cultural anchors (a 14th-century-rooted synagogue, an open-air street-art village, a desert-edge Berber daytrip) are dense enough that two or three days do not run thin. ("Berber," increasingly called Amazigh, is the indigenous North African population that predates the Arab conquest.)
+Djerba is the [Tunisian](/countries/tunisia) island most North Americans have never heard of, though European package travelers have known it for thirty years. Cheap Mediterranean sand, plus a 14th-century synagogue, a street-art village, and a desert-edge Berber day trip. Two or three days do not run thin. Here's how I'd do it.
 
 ## On this page
 

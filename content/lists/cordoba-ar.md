@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Córdoba Argentina travel guide: Cosquín, the food, and the Sierras"
 headline: "Córdoba, the Argentina most visitors fly past"
-description: "A short Córdoba (Argentina) travel guide. Cosquín Folklore Festival in January, the historic center, college-town nightlife, and weekend escapes into the Sierras."
+description: "My short Córdoba (Argentina) travel guide. The Cosquín Folklore Festival in January, the colonial center, college-town nightlife, and the Sierras."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -91,7 +91,7 @@ topics:
 #   can browse below.
 ---
 
-[Córdoba, Argentina](/cities/cordoba-ar) is one of those cities most international travelers skip, partly because it is a hassle to fly into and partly because Buenos Aires absorbs the trip. It is worth more than that. The city was founded in 1573, which makes it roughly five hundred years old, with a colonial center that holds together better than most South American capitals. It is also a college town, which is the other thing to know: dinner is at 10, the bars get going at 2, and the rhythm of the place follows the students.
+[Córdoba, Argentina](/cities/cordoba-ar) is the city most visitors fly past, skipped for Buenos Aires and a hassle to reach. It is worth more than that: a five-hundred-year-old colonial center and a college town where dinner is at 10 and the bars get going at 2. Here's what I'd do with a few days.
 
 ## On this page
 

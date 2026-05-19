@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Cardiff travel guide: the castle, Cardiff Bay, and where to eat"
 headline: "Cardiff is the capital you can cross on foot"
-description: "A personal Cardiff travel guide. Cardiff Castle and the Victorian arcades, Cardiff Bay, where to stay, the rugby at the Principality Stadium, and the food."
+description: "My Cardiff travel guide. Cardiff Castle and the Victorian arcades, Cardiff Bay, where to stay, the rugby at the Principality Stadium, and the food."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -63,7 +63,7 @@ related:
 # - No hotel pins exist for Cardiff yet, so where-to-stay is prose.
 ---
 
-Cardiff is the capital of Wales, a compact port city of about 370,000 people with a castle in the middle, a regenerated waterfront, and a national stadium that drops 70,000 spectators into the center on a rugby weekend. It is small enough to cross on foot in half an hour, which makes it an easy one or two-day stop, on its own or as the anchor of a wider Wales trip. This guide covers getting in, where to stay, the castle and the arcades, Cardiff Bay, and where to eat.
+Cardiff is the Welsh capital you can cross on foot in half an hour: a castle in the middle, a regenerated bay, and a stadium that drops 70,000 rugby fans into the center on a match day. A day or two does it, alone or as the anchor for a wider Wales trip. Here's how I'd spend it.
 
 ## On this page
 

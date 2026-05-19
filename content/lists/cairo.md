@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Cairo travel guide: where to stay, how to do the pyramids, and the scams to know"
 headline: "Cairo asks more of you than most cities. Go anyway."
-description: "A personal Cairo travel guide. Le Méridien at the airport on Bonvoy points, where to stay in Giza, doing the pyramids DIY, and the scams to know going in."
+description: "My Cairo travel guide. The airport hotel on points, where to stay in Giza, doing the pyramids DIY, and the scams to know going in."
 published: 2026-05-12
 updated: 2026-05-13
 authors:
@@ -91,11 +91,7 @@ topics:
 #     · sphinx-cafe (bottom-gate café with the Sphinx view)
 ---
 
-Cairo is the Egyptian capital and one of the largest cities in the world. 22 million people in the metro area. Three thousand years of layered history on the streets. The pyramids 30 kilometers from the main airport. The Grand Egyptian Museum opened its full collection in 2024. The food is cheap and good. The traffic runs at all hours.
-
-The hustle is also real. Touts at the pyramids, drivers angling for cash on Uber, the occasional friendly stranger whose welcome ends in a sales pitch. None of that lands easily if you are not ready for it.
-
-If Cairo is your first international trip outside Western Europe, a guided tour with a private car and an Egyptologist for the pyramid day is the right choice for many travelers. A good guide clears the path, which is most of what the cost is paying for. I don't book tours, so the notes below are written for the way I traveled the city: airport hotel on points, Hyatt in Giza, Uber to the upper gate at 7 a.m., walk the plateau before the heat, fresh Uber to the museum.
+Cairo asks more of you than most cities: 22 million people, three thousand years of history layered on the streets, and real hustle at the pyramids. I don't book tours, so these are my DIY notes, an airport hotel on points, an Uber to the plateau gate at 7 a.m., the Grand Egyptian Museum after the heat. Go anyway. Few cities give back more.
 
 ## On this page
 

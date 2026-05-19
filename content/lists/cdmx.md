@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Mexico City travel guide: where to stay, the neighborhoods, and the food"
 headline: "Mexico City is the food trip people keep putting off"
-description: "A personal Mexico City travel guide. Where to stay in Roma and Condesa, the historic center, the museums, the Teotihuacan pyramids, and the food scene."
+description: "My Mexico City travel guide. Where to stay in Roma and Condesa, the historic center, the museums, the Teotihuacan pyramids, and the food scene."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -68,7 +68,7 @@ topics:
 # - No hotel pins exist for Mexico City yet, so where-to-stay is prose.
 ---
 
-Mexico City is the capital of Mexico and one of the largest cities in the world, about 9 million people in the city proper and more than 22 million across the metro area, set at 2,240 meters in a high valley ringed by mountains. It is one of the great food cities on earth, and far easier and more rewarding to visit than its reputation suggests. A first trip is four or five days, built around a couple of neighborhoods, the major museums, and one day out at the pyramids. This guide covers getting in, where to stay, the neighborhoods, what to see, the safety question, and where to eat.
+Mexico City is one of the great food cities on earth, and far easier and more rewarding than its reputation suggests. It is huge, it sits at 2,240 meters in a ring of mountains, and a first trip wants four or five days across a couple of neighborhoods. Here's how I'd plan it.
 
 ## On this page
 

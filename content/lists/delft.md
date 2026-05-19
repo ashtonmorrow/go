@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Delft travel guide: Vermeer's town, the two churches, and the Delftware"
 headline: "Delft, Vermeer's quiet town between the big two"
-description: "A personal Delft travel guide. The canal-laced center between Rotterdam and The Hague, the Markt and its two great churches, the blue pottery, and where to eat."
+description: "My Delft travel guide. The canal center between Rotterdam and The Hague, the Markt and its two great churches, the blue pottery, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -60,7 +60,7 @@ topics:
 # - Delft is wired into the Amsterdam guide's day_trips block.
 ---
 
-[Delft](/cities/delft) is the small canal city wedged between Rotterdam and The Hague, the town that produced Johannes Vermeer and the blue-and-white pottery that carries its name. The historic center is compact, flat, and laced with canals, walkable end to end in an afternoon and dense enough to hold a full day. It is one of the easiest day trips in the Netherlands and the quiet counterweight to a Randstad week built around Amsterdam.
+[Delft](/cities/delft) is the quiet canal town wedged between Rotterdam and The Hague, the place that gave the world Vermeer and the blue-and-white pottery. The historic center is small, flat, and walkable end to end in an afternoon. It is one of the easiest day trips in the Netherlands. Here's how I'd spend it.
 
 ## On this page
 

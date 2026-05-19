@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Cabo Verde travel guide: which island, the volcano, and the music in Mindelo"
 headline: "Cabo Verde, the Atlantic islands most people never consider"
-description: "A short Cabo Verde travel guide. Which island to pick (Sal, São Vicente, Santo Antão, Fogo), the volcanic crater village, Mindelo's music scene, and inter-island travel."
+description: "My short Cabo Verde guide. Picking your island between Sal, São Vicente, Santo Antão, and Fogo, the volcanic crater village, Mindelo's music, and inter-island travel."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -60,7 +60,7 @@ topics:
 #   stripped.
 ---
 
-[Cabo Verde](/countries/caboverde) is the archipelago many travelers cannot quite place. Ten volcanic islands off West Africa, roughly 570 km west of Senegal at the nearest point. Portuguese-and-Kriolu speaking. About 525,000 people. Year-round trade winds. The country was uninhabited until Portuguese settlement in the 1460s and has been independent since 1975. The trip is mostly about choosing the right island: Cabo Verde is not one destination.
+[Cabo Verde](/countries/caboverde) is the archipelago travelers can't quite place: ten volcanic islands in the Atlantic off West Africa, Portuguese and Kriolu speaking, trade winds year-round. The whole trip is really one decision, which island. Here's how I'd choose between Sal, São Vicente, Santo Antão, and Fogo.
 
 ## On this page
 

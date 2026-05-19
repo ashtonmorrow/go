@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Chiang Mai travel guide: Yi Peng, the temples, and where to stay"
 headline: "Chiang Mai, the slower half of a Thailand trip"
-description: "A personal Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base (Old City, Nimman, Riverside)."
+description: "My Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base yourself."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -59,7 +59,7 @@ topics:
 #   pin creation on a later pass if Mike wants stronger cross-linking.
 ---
 
-[Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip. Bangkok is the heat and the energy. Chiang Mai is the temples and the long lunch. The food is, by most measures, better than most of Bangkok. The pace is slower. The temples are denser. The mountains start at the edge of the city. If you are already planning Thailand, three to four days here is the right amount.
+[Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip: where Bangkok is heat and noise, this is temples and a long lunch, with the mountains starting at the edge of town. The food, by most measures, beats Bangkok's. If Thailand is already the plan, give it three or four days.
 
 ## On this page
 

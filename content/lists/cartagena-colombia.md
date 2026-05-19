@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Cartagena travel guide: where to eat in the walled city and getting in from CTG"
 headline: "Cartagena, the walled city on the Colombian Caribbean"
-description: "A personal Cartagena travel guide. Getting in from CTG, where to stay in the walled city, and the ceviche-and-rooftop rotation worth the heat."
+description: "My Cartagena travel guide. Getting in from CTG, where to stay in the walled city, and the ceviche-and-rooftop rotation worth the heat."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Cartagena](/cities/cartagena) is the Colombian Caribbean coast city that does the walled-colonial-old-town better than almost any other in the Americas. The Ciudad Amurallada (walled city) is small, photogenic, and dense. Getsemaní just outside the walls is the cheaper-and-younger neighborhood. The Bocagrande peninsula is the high-rise beach district. The heat is real (28 to 32°C year-round, humidity high) and shapes the rhythm of the day. Two or three days is the right length.
+[Cartagena](/cities/cartagena) does the walled colonial old town better than almost anywhere in the Americas, a dense, photogenic Ciudad Amurallada on the Colombian Caribbean. The heat is relentless and shapes the whole day. Two or three days is right. Here's how I'd handle them.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Dublin travel guide: St Patrick's Day, the pubs, and where to eat"
 headline: "Dublin, the city that runs on its pubs"
-description: "A personal Dublin travel guide. St Patrick's Day logistics, where to stay near the center, the pub-and-restaurant rotation, and getting in from DUB."
+description: "My Dublin travel guide. St Patrick's Day logistics, where to stay near the center, the pub-and-restaurant rotation, and getting in from DUB."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -51,7 +51,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Dublin](/cities/dublin) is the small capital that runs on its pubs, its writers, and its rebuilding-since-the-2008-crash energy. The Liffey splits the city north and south. Almost every visitor stays south of the river, near St Stephen's Green or Temple Bar. The pub scene is the cultural fact. The food has caught up with the visitor density in the last decade and is now respectable enough to plan around. A long weekend covers the city. A week opens up Howth, the Wicklow Mountains, and the Aran Islands.
+[Dublin](/cities/dublin) runs on its pubs, its writers, and a rebuilding energy that has not let up since 2008. The Liffey splits it, and almost everyone stays south of the river. A long weekend covers the city, a week opens up Howth and the Wicklow Mountains. Here's how I'd plan it.
 
 ## On this page
 
