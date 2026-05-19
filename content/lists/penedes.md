@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Penedès wine country travel guide: cava tours from Barcelona, the top producers, language access"
 headline: "Penedès, the cava country an hour from Barcelona"
-description: "A personal Penedès travel guide. How to get to the wineries from Barcelona, the top cava and still-wine producers to book, hours and languages, and the Barcelona → Penedès → Sitges day chain."
+description: "My Penedès wine guide. Getting to the wineries from Barcelona, the top cava and still-wine producers to book, and the Barcelona-Penedès-Sitges day chain."
 published: 2026-05-13
 updated: 2026-05-13
 authors:
@@ -83,9 +83,7 @@ topics:
 #   penedes 90/mo).
 ---
 
-Penedès is the wine region inland from Barcelona and Sitges that produces cava (Spanish sparkling wine made the traditional method) and a serious set of still wines. 30 to 45 minutes from Barcelona by car. The classic shape is a half-day cava tour with lunch on the estate or in Vilafranca, then dinner back in Sitges or Barcelona that night.
-
-The natural Catalonia day chain works like this: a city morning in [Barcelona](/lists/barcelona), wine tour in Penedès, sunset and dinner in [Sitges](/lists/sitges). This guide covers the wine side. The Barcelona and Sitges guides cover the other two ends.
+Penedès is the wine country just inland from Barcelona, the home of cava, Spain's traditional-method sparkling wine, and a serious set of still wines, 30 to 45 minutes from the city. The classic move is a half-day cava tour slotted between a Barcelona morning and a Sitges sunset. Here's how I'd chain it.
 
 ## On this page
 

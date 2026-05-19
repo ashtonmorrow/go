@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Miami travel guide: South Beach, the neighborhoods, and where to eat"
 headline: "Miami is South Beach, but the city is the rest of it"
-description: "A personal Miami travel guide. South Beach and the Art Deco District, Wynwood, Little Havana, where to stay, and where to eat."
+description: "My Miami travel guide. South Beach and the Art Deco District, Wynwood, Little Havana, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -54,7 +54,7 @@ related:
 # - No hotel pins exist for Miami yet, so where-to-stay is prose.
 ---
 
-[Miami](/cities/miami) is a city on the southeast coast of Florida, a warm, Latin-inflected metropolis of beaches, Art Deco architecture, and a deep Cuban and Latin American food culture. Most first trips fix on South Beach, but the city beyond it is the better half. A first visit is three or four days. This guide covers getting in, where to stay, the neighborhoods and beaches, and where to eat.
+[Miami](/cities/miami) is a warm, Latin-inflected Florida metropolis of beaches, Art Deco, and deep Cuban and Latin American food. Most first trips fix on South Beach, but the city beyond it, Wynwood, Little Havana, is the better half. Three or four days. Here's how I'd split them.
 
 ## On this page
 

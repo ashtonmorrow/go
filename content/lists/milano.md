@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Milan travel guide: Fashion Week, Salone, aperitivo, and where to eat"
 headline: "Milan rewards you once you stop expecting Rome"
-description: "A personal Milan travel guide. Fashion Week, Salone del Mobile, where to eat, aperitivo, and getting in from MXP on the Malpensa Express."
+description: "My Milan travel guide. Fashion Week, Salone del Mobile, the Duomo and the Last Supper, aperitivo, and getting in from MXP on the Malpensa Express."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -32,7 +32,7 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Milan](/cities/milan) is the working capital of northern Italy: a design-and-finance city more than a tourist destination, with a smaller historic center than Rome or Venice but a much denser modern side. The city is the home of aperitivo (the early-evening drink with substantial small plates that has spread across Italy), the Duomo and its rooftop, the Galleria Vittorio Emanuele II, and the Last Supper at Santa Maria delle Grazie. Two or three days is the right length. Longer if you are using Milan as a base for Lake Como, Bergamo, or the Bernina Express to Switzerland.
+[Milan](/cities/milan) is northern Italy's working capital, a design-and-finance city more than a tourist one, with a small historic core and a dense modern side. It is the home of aperitivo, the Duomo, and the Last Supper. Two or three days, more if you are using it as a base for Lake Como or the Bernina Express. Here's how I'd do it.
 
 ## On this page
 

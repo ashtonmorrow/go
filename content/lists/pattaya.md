@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Pattaya travel guide: where to stay, where to eat, and getting in from BKK"
 headline: "Pattaya, taken on its own terms"
-description: "A personal Pattaya travel guide. Getting in from Bangkok Suvarnabhumi, the resort hotel rotation including the Andaz Jomtien, and where to actually eat well."
+description: "My Pattaya travel guide. Getting in from Bangkok Suvarnabhumi, the resort hotels including the Andaz Jomtien, picking the right end of town, and where to eat well."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/pattaya via the picker.
 ---
 
-[Pattaya](/cities/pattaya) is the beach-resort town on the Gulf of Thailand two hours south-east of Bangkok. The reputation is mixed and earned in both directions. The south end (Jomtien, Pratumnak Hill, Na Jomtien) is family-and-couple friendly, while central Pattaya beach skews toward the older nightlife circuit. The trade-off of a Pattaya trip is that the right neighborhood matters more than usual. Pick the south side and the trip is fine, pick the center and it can be very different. Three or four days is the right shape if you want a beach base. Longer if you are using it as the warm half of a longer Thailand trip.
+[Pattaya](/cities/pattaya) is the Gulf of Thailand beach-resort town two hours from Bangkok, with a reputation earned in both directions. The whole trip turns on which end you pick: the south side, Jomtien and Pratumnak, is calm and family-friendly, central Pattaya is the old nightlife circuit. Pick right and it is a fine beach base. Here's how.
 
 ## On this page
 

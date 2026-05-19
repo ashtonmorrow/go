@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Palma travel guide: the cathedral, the old town, and where to eat"
 headline: "Palma is the part of Mallorca people skip"
-description: "A personal Palma de Mallorca travel guide. The seafront cathedral, the old town, Bellver Castle, where to stay, the Tramuntana, and where to eat."
+description: "My Palma de Mallorca travel guide. The seafront cathedral, the old town, Bellver Castle, where to stay, the Tramuntana, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ related:
 # - No hotel pins exist for Palma yet, so where-to-stay is prose.
 ---
 
-Palma is the capital of Mallorca and of Spain's Balearic Islands, a city of about 420,000 people on a wide Mediterranean bay. Most visitors treat it only as the airport for Mallorca's beaches and resorts, which skips past a real Spanish city: a giant seafront cathedral, a walkable old town, and a strong restaurant scene. A first visit is two or three days. This guide covers getting in, where to stay, what to see, the island day trips, and where to eat.
+Palma is the capital of Mallorca, and most visitors treat it as nothing but the airport for the island's beaches. That skips a real Spanish city: a giant seafront cathedral, a walkable old town, a strong restaurant scene. Two or three days for Palma itself. Here's how I'd spend them.
 
 ## On this page
 

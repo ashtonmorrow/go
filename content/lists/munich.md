@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Munich travel guide: Oktoberfest, the beer halls, and where to base"
 headline: "Munich, the Bavarian capital and the gateway to the Alps"
-description: "A personal Munich travel guide. Oktoberfest, the Hofbräuhaus and Augustiner beer halls, Eisbach river surfers, and where to base for a rail trip."
+description: "My Munich travel guide. Oktoberfest, the Hofbräuhaus and Augustiner beer halls, the Eisbach surfers, and where to base for a rail trip."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -139,9 +139,7 @@ day_trips:
 #   Leberkäs-Semmel) kept in German, the standard form.
 ---
 
-Munich is the Bavarian capital that most travelers come for two postcards: the beer halls and the surfers on the Eisbach standing wave. Both are as advertised. Two days for the city if those are the goal. Use it as a rail hub for the Alps south or Vienna east.
-
-This guide treats Munich as a rail-trip hub: a day or two for the city, then south for the Alps or east for Vienna. The map and the wider pin set sit underneath.
+Munich is the Bavarian capital most people come to for two postcards, the beer halls and the surfers on the Eisbach standing wave, and both are exactly as advertised. Two days does the city. Its real value, though, is as a rail hub, south for the Alps, east for Vienna. Here's how I'd use it.
 
 ## On this page
 

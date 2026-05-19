@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Medellín travel guide: Feria de las Flores, the cable cars, and El Poblado"
 headline: "Medellín, the city of eternal spring"
-description: "A personal Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the cable cars, and getting in from MDE."
+description: "My Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the Metrocable cars, and getting in from MDE."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Medellín](/cities/medellin) is the Colombian city of eternal spring (the elevation puts the temperature at 22 to 28°C all year, no seasons), the rebuilt post-Pablo-Escobar civic story, and the Metrocable cable cars that connect the hillside neighborhoods (Comuna 13 became the famous one). El Poblado is where almost every visitor stays. Laureles is the more local-feeling neighborhood for a longer stay. Comuna 13 is the day-trip with a guide. Three or four days for the city. Longer if you are pairing with the coffee region.
+[Medellín](/cities/medellin) is the Colombian city of eternal spring, 22 to 28°C all year, and the rebuilt civic story everyone has heard about, with cable cars climbing to the hillside neighborhoods. Most people stay in El Poblado. Three or four days for the city, more with the coffee region. Here's how I'd plan it.
 
 ## On this page
 

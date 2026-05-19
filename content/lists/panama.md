@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Panama City travel guide: where to stay, where to eat, and getting in from PTY"
 headline: "Panama City, where the skyline meets the old town"
-description: "A personal Panama City travel guide. Getting in from Tocumen, where to stay near Casco Viejo, and the modern Central-American restaurant rotation."
+description: "My Panama City travel guide. Getting in from Tocumen, where to stay near Casco Viejo, the Canal, and the modern Central-American restaurant scene."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Panama City](/cities/panama-city) is the Central American capital that does not feel like the rest of Central America. The modern Punta Pacífica skyline shares the city with the colonial Casco Viejo, the Panama Canal sits on the doorstep, and the airport is the hemispheric hub for Copa Airlines (which is why Panama makes such a clean stopover). Two or three days for the city. Longer for the canal expansion locks tour or for Bocas del Toro on the Caribbean coast.
+[Panama City](/cities/panama-city) does not feel like the rest of Central America: a Punta Pacífica skyline beside the colonial Casco Viejo, the Canal on the doorstep, and an airport that makes it a clean stopover. Two or three days for the city, more for the Canal locks or Bocas del Toro. Here's how I'd plan it.
 
 ## On this page
 

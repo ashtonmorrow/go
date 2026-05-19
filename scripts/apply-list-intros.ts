@@ -8,54 +8,54 @@ import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 6 ---
-  'larnaca': {
-    description: 'My Larnaca travel guide. Getting in from LCA, the gateway airport for Cyprus, where to stay near Finikoudes, and the kebab-and-taverna food.',
-    intro: "[Larnaca](/cities/larnaca) is the small Cypriot port most visitors pass straight through, on their way to Limassol or Ayia Napa, and it rewards staying instead. A seafront promenade, a medieval castle, a mosque on a salt lake, and good cheap tavernas make it a calmer base than the resort towns. Two or three days. Here's how I'd use them.",
+  // --- batch 7 ---
+  'medellin': {
+    description: 'My Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the Metrocable cars, and getting in from MDE.',
+    intro: "[Medellín](/cities/medellin) is the Colombian city of eternal spring, 22 to 28°C all year, and the rebuilt civic story everyone has heard about, with cable cars climbing to the hillside neighborhoods. Most people stay in El Poblado. Three or four days for the city, more with the coffee region. Here's how I'd plan it.",
   },
-  'lima': {
-    description: 'My Lima travel guide. Where to stay in Miraflores and Barranco, the ceviche and Nikkei food scene, the historic center, the Larco Museum, and the markets.',
-    intro: "[Lima](/cities/lima) gets a single night from most travelers, a layover on the way to Cusco, and that sells it badly short. It is one of the best eating cities in the world, strung along desert cliffs over the Pacific. Give it two or three days. Here's how I'd spend them.",
+  'miami': {
+    description: 'My Miami travel guide. South Beach and the Art Deco District, Wynwood, Little Havana, where to stay, and where to eat.',
+    intro: "[Miami](/cities/miami) is a warm, Latin-inflected Florida metropolis of beaches, Art Deco, and deep Cuban and Latin American food. Most first trips fix on South Beach, but the city beyond it, Wynwood, Little Havana, is the better half. Three or four days. Here's how I'd split them.",
   },
-  'lisbon': {
-    description: 'My Lisbon travel guide. Getting in from Humberto Delgado on the metro, where to stay near the center, the tascas, and the side trips to Sintra and Cascais.',
-    intro: "[Lisbon](/cities/lisbon) has been on every must-visit list for a decade, and the reasons hold up on arrival: the light, the trams, the food, hotels you can afford, and seven hills that turn every corner into a viewpoint. A long weekend gets the headlines, a week unlocks Sintra and Cascais. Here's how I'd plan it.",
+  'milano': {
+    description: 'My Milan travel guide. Fashion Week, Salone del Mobile, the Duomo and the Last Supper, aperitivo, and getting in from MXP on the Malpensa Express.',
+    intro: "[Milan](/cities/milan) is northern Italy's working capital, a design-and-finance city more than a tourist one, with a small historic core and a dense modern side. It is the home of aperitivo, the Duomo, and the Last Supper. Two or three days, more if you are using it as a base for Lake Como or the Bernina Express. Here's how I'd do it.",
   },
-  'liverpool': {
-    description: "My Liverpool travel guide. The Albert Dock waterfront, the Beatles sites, where to stay, the two cathedrals, and the food and bar scene.",
-    intro: "[Liverpool](/cities/liverpool) has more going for it than its tourist reputation lets on, a compact, walkable port city with one of Britain's best waterfronts and a real food-and-bar scene under the Beatles industry. Two days, three if you want a football match. Here's how I'd do it.",
+  'montevideo': {
+    description: 'My Montevideo travel guide. Carnaval, the longest in the world, the Buquebus ferry, asado at the Mercado del Puerto, and where to stay near Punta Carretas.',
+    intro: "[Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip, 2.5 hours across the river by ferry into [Uruguay](/countries/uruguay), customs cleared at the terminal. It is a slow city: an asado lunch, an afternoon on the Rambla, a sunset over Punta Carretas. Here's how I'd spend a couple of days.",
   },
-  'london': {
-    description: 'My London travel guide. Where to stay across Canary Wharf, Tower Hill, and Kensington, the Bankside walk, the markets worth eating at, and the Sky Garden.',
-    intro: "[London](/cities/london) is the easiest world city to plan and the easiest to overspend on. The transport is the best part of the trip, the markets are the best places to eat, and most of the famous sights are walkable in two long days. Where people overspend is an expensive base they don't need and views they could see for free. Here's how I'd do it.",
+  'mostar': {
+    description: 'My Mostar travel guide. The Stari Most Old Bridge and the divers, the old bazaar, where to stay, Kravica Waterfall, and where to eat.',
+    intro: "[Mostar](/cities/mostar) is a small Herzegovina town on the green Neretva, built around the Stari Most, the Ottoman bridge shelled to rubble in the 1990s and rebuilt in 2004. The old core is tiny, but the buses pour in midday, so an overnight is the better trip. Here's how I'd time it.",
   },
-  'lpq': {
-    description: 'My Luang Prabang travel guide. The old town and temples, Mount Phousi, Kuang Si Falls, the night market, where to stay, and where to eat.',
-    intro: "[Luang Prabang](/cities/luang-prabang) is the small Lao town on a peninsula between two rivers, a UNESCO old town of gilded temples and French colonial shophouses that runs at a deliberately slow pace. Three or four days, and you will want to slow down to match it. Here's how I'd spend them.",
+  'munich': {
+    description: 'My Munich travel guide. Oktoberfest, the Hofbräuhaus and Augustiner beer halls, the Eisbach surfers, and where to base for a rail trip.',
+    intro: "Munich is the Bavarian capital most people come to for two postcards, the beer halls and the surfers on the Eisbach standing wave, and both are exactly as advertised. Two days does the city. Its real value, though, is as a rail hub, south for the Alps, east for Vienna. Here's how I'd use it.",
   },
-  'lyon': {
-    description: 'My Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in the Roman theaters, the bouchons, and getting in from LYS.',
-    intro: "[Lyon](/cities/lyon) takes its claim to be the food capital of France seriously, and the bouchon, the small casual Lyonnais restaurant, is the local proof. Add a UNESCO old town between two rivers and you have an easy two or three days. Here's how I'd eat my way through it.",
+  'nuremberg': {
+    description: 'My Nuremberg travel guide. Getting in from NUE, the medieval old town, the Christmas-market case, and where to find the Nürnberger sausage.',
+    intro: "[Nuremberg](/cities/nuremberg) is the medieval Franconian city that, for the German Christmas-market trip, beats Munich. An imperial castle crowns the old town, the 20th-century weight of the Nazi rallies and the post-war Trials is real and clearly told, and the little Nürnberger sausage is the food. Two or three days. Here's the shape.",
   },
-  'madrid': {
-    description: 'My Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset.',
-    intro: "[Madrid](/cities/madrid) is easy to recommend and easy to mis-plan. The neighborhoods sit close together, the food rewards walking, and the transport works the way you want it to. Where people go wrong is the base, the famous market they treat as a meal, and walking up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday. Here's how I'd get it right.",
+  'nyc': {
+    description: 'My New York City travel guide. Where to stay across the boroughs, getting in from JFK, LaGuardia, and Newark, the subway and OMNY, and where to eat.',
+    intro: "New York City is too big to finish, and the first-timer mistake is trying. It is 8.5 million people across five boroughs, and a first visit, four or five days, should be built around a couple of neighborhoods and a short list of sights. Here's how I'd choose.",
   },
-  'malaga': {
-    description: 'My Málaga travel guide. Getting in from AGP, the Costa del Sol shape, the Picasso museum, the Alcazaba, and a casual Andalusian food rotation.',
-    intro: "[Málaga](/cities/malaga) keeps reading better year after year, a small, walkable Andalusian old town dense with tapas bars, city beaches right there, a Moorish fortress on the hill, and the Picasso museum in the painter's birthplace. Two or three days for the city, more with the Costa del Sol. Here's how I'd plan it.",
+  'palma': {
+    description: 'My Palma de Mallorca travel guide. The seafront cathedral, the old town, Bellver Castle, where to stay, the Tramuntana, and where to eat.',
+    intro: "Palma is the capital of Mallorca, and most visitors treat it as nothing but the airport for the island's beaches. That skips a real Spanish city: a giant seafront cathedral, a walkable old town, a strong restaurant scene. Two or three days for Palma itself. Here's how I'd spend them.",
   },
-  'malta': {
-    description: 'My Malta travel guide. The St Julian’s hotel strip, walking Valletta, Gozo by ferry, rabbit and where to eat, and the high-versus-low season tradeoff.',
-    intro: "Malta is the smallest country in the EU, and that is the planning fact everything depends on: 27 km long, a single base covers it. Stay on the St Julian's strip, then ferry, bus, and walk to [Valletta](/pins/valletta), the Three Cities, Gozo, and a swim at Comino. Three or four nights, and a meal with rabbit at least once.",
+  'panama': {
+    description: 'My Panama City travel guide. Getting in from Tocumen, where to stay near Casco Viejo, the Canal, and the modern Central-American restaurant scene.',
+    intro: "[Panama City](/cities/panama-city) does not feel like the rest of Central America: a Punta Pacífica skyline beside the colonial Casco Viejo, the Canal on the doorstep, and an airport that makes it a clean stopover. Two or three days for the city, more for the Canal locks or Bocas del Toro. Here's how I'd plan it.",
   },
-  'manchester': {
-    description: 'My Manchester travel guide. Getting in from MAN, where to stay near the Northern Quarter, the curry mile, and the modern Manc restaurant scene.',
-    intro: "[Manchester](/cities/manchester) is the northern English industrial city that has been reinventing itself fast since the 2000s. The Northern Quarter carries the new bar-and-restaurant scene, Rusholme's curry mile carries the food it is famous for, and a United match or a Liverpool day trip stretches it to a week. Two or three days otherwise.",
+  'pattaya': {
+    description: 'My Pattaya travel guide. Getting in from Bangkok Suvarnabhumi, the resort hotels including the Andaz Jomtien, picking the right end of town, and where to eat well.',
+    intro: "[Pattaya](/cities/pattaya) is the Gulf of Thailand beach-resort town two hours from Bangkok, with a reputation earned in both directions. The whole trip turns on which end you pick: the south side, Jomtien and Pratumnak, is calm and family-friendly, central Pattaya is the old nightlife circuit. Pick right and it is a fine beach base. Here's how.",
   },
-  'marrakech': {
-    description: 'My Marrakech travel guide. Where to stay in a riad, the medina and souks, Jemaa el-Fnaa, the palaces and gardens, and the faux-guide scams.',
-    intro: "[Marrakech](/cities/marrakesh) is a Moroccan city at the foot of the High Atlas, and the part you came for is all inside the walls of the medieval medina: the souks, Jemaa el-Fnaa, the palaces, the riads down car-free lanes. Three or four days, one saved for the mountains. Here's how I'd handle it, scams included.",
+  'penedes': {
+    description: 'My Penedès wine guide. Getting to the wineries from Barcelona, the top cava and still-wine producers to book, and the Barcelona-Penedès-Sitges day chain.',
+    intro: "Penedès is the wine country just inland from Barcelona, the home of cava, Spain's traditional-method sparkling wine, and a serious set of still wines, 30 to 45 minutes from the city. The classic move is a half-day cava tour slotted between a Barcelona morning and a Sitges sunset. Here's how I'd chain it.",
   },
 };
 

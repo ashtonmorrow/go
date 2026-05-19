@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Mostar travel guide: the Old Bridge, the bazaar, and Kravica Falls"
 headline: "Mostar is a small town built around one famous bridge"
-description: "A personal Mostar travel guide. The Stari Most Old Bridge and the divers, the old bazaar, where to stay, Kravica Waterfall, and where to eat."
+description: "My Mostar travel guide. The Stari Most Old Bridge and the divers, the old bazaar, where to stay, Kravica Waterfall, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -56,7 +56,7 @@ related:
 #   lodging pin and is rated 5.
 ---
 
-[Mostar](/cities/mostar) is a town of about 100,000 in Herzegovina, the southern half of Bosnia and Herzegovina, set along the green Neretva River. Its centerpiece is the Stari Most, the high-arched Ottoman bridge destroyed in the 1990s war and rebuilt in 2004, now a UNESCO World Heritage Site. The old core is small, walkable in a few hours, but the buses arrive midday and an overnight is the better trip. This guide covers getting in, where to stay, the Old Bridge and the Old Town, Kravica Waterfall, and where to eat.
+[Mostar](/cities/mostar) is a small Herzegovina town on the green Neretva, built around the Stari Most, the Ottoman bridge shelled to rubble in the 1990s and rebuilt in 2004. The old core is tiny, but the buses pour in midday, so an overnight is the better trip. Here's how I'd time it.
 
 ## On this page
 

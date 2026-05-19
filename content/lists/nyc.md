@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "New York City travel guide: where to stay, the boroughs, and the subway"
 headline: "New York City is too big to finish. Don't try."
-description: "A personal New York City travel guide. Where to stay across the boroughs, getting in from JFK, LaGuardia, and Newark, the subway and OMNY, and where to eat."
+description: "My New York City travel guide. Where to stay across the boroughs, getting in from JFK, LaGuardia, and Newark, the subway and OMNY, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -65,7 +65,7 @@ topics:
 # - No hotel pins exist for NYC yet, so where-to-stay is prose.
 ---
 
-New York City is the largest city in the United States, about 8.5 million people across five boroughs at the mouth of the Hudson River. It is too big to see in one trip, and the first-timer mistake is trying to. A first visit is four or five days, built around a couple of neighborhoods and a short list of sights rather than the whole map. This guide covers getting in from the three airports, where to stay, how the city is laid out, the sights worth booking ahead, the subway, and where to eat.
+New York City is too big to finish, and the first-timer mistake is trying. It is 8.5 million people across five boroughs, and a first visit, four or five days, should be built around a couple of neighborhoods and a short list of sights. Here's how I'd choose.
 
 ## On this page
 

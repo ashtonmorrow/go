@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Montevideo travel guide: Carnaval, the Buquebus, the asado, and where to stay"
 headline: "Montevideo, the easy add-on to a Buenos Aires trip"
-description: "A personal Montevideo travel guide. Carnaval (the longest in the world), the Buquebus ferry, asado at Mercado del Puerto, and where to stay near Punta Carretas."
+description: "My Montevideo travel guide. Carnaval, the longest in the world, the Buquebus ferry, asado at the Mercado del Puerto, and where to stay near Punta Carretas."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -45,7 +45,7 @@ topics:
   - day-trips
 ---
 
-[Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip. From Puerto Madero you can be in [Uruguay](/countries/uruguay) in 2.5 hours by ferry, walking out of the terminal into Ciudad Vieja with customs already cleared. The city itself is a slow one: an asado lunch, an afternoon along the Rambla, sunsets from a high floor in Punta Carretas. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.
+[Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip, 2.5 hours across the river by ferry into [Uruguay](/countries/uruguay), customs cleared at the terminal. It is a slow city: an asado lunch, an afternoon on the Rambla, a sunset over Punta Carretas. Here's how I'd spend a couple of days.
 
 ## On this page
 

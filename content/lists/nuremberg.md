@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Nuremberg travel guide: the Christmas market, the sausages, and getting in from NUE"
 headline: "Nuremberg, the better German Christmas-market trip"
-description: "A personal Nuremberg travel guide. Getting in from NUE, the medieval old town, the Christmas-market case, and where to find the Nürnberger sausage."
+description: "My Nuremberg travel guide. Getting in from NUE, the medieval old town, the Christmas-market case, and where to find the Nürnberger sausage."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/nuremberg via the picker.
 ---
 
-[Nuremberg](/cities/nuremberg) is the medieval Bavarian-Franconian city that runs better than Munich for the German Christmas-market trip (covered in the Munich guide cross-link). The Imperial Castle (Kaiserburg) crowns the old town. The city was the historic Nazi-rally site and the post-war Trials venue, so the 20th-century weight is real and clearly presented in the local museums. The small Franconian Nürnberger Rostbratwurst is the food shape. Two or three days for the city. Pair with Bamberg or Rothenburg ob der Tauber for a longer Franconia trip.
+[Nuremberg](/cities/nuremberg) is the medieval Franconian city that, for the German Christmas-market trip, beats Munich. An imperial castle crowns the old town, the 20th-century weight of the Nazi rallies and the post-war Trials is real and clearly told, and the little Nürnberger sausage is the food. Two or three days. Here's the shape.
 
 ## On this page
 
