@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Djerba
-  intro: Djerba is the Tunisian Mediterranean island that European package travelers know and most North Americans have never heard of. Beaches, a working medina, an ancient Jewish synagogue, a famous street-art village, and a half-day desert trip to the troglodyte dwellings of Matmata. The trick is dodging the August heat and the airport-taxi shakedown on arrival.
+  intro: Djerba is the Tunisian Mediterranean island that European package travelers know and most North Americans have never heard of. Beaches, a working medina, an ancient Jewish synagogue, a famous street-art village, and a half-day desert trip to the troglodyte dwellings of Matmata. Dodge the August heat and the airport-taxi shakedown on arrival.
   cards:
     - title: When to go matters more here than most places
       body: March to June and September to November are the windows. July and August push above 35°C and the resorts fill with European school holidays. December to February are mild and very quiet. Some restaurants close.

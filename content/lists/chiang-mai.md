@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Chiang Mai
-  intro: Chiang Mai is the calm half of a Thailand trip. The pace is slower, the food is better than most of Bangkok, the temples are more concentrated, and the mountains start at the edge of the city. The trick is matching the base (Old City, Nimman, Riverside) to the day you want, and planning around the spring burn-off haze that can fog the air in March.
+  intro: Chiang Mai is the calm half of a Thailand trip. The pace is slower, the food is better than most of Bangkok, the temples are more concentrated, and the mountains start at the edge of the city. Match the base (Old City, Nimman, Riverside) to the day you want, and plan around the spring burn-off haze that can fog the air in March.
   cards:
     - title: Pick a base by neighborhood
       body: Old City for temples and the walking street markets. Nimmanhaemin for cafes, boutiques, and a digital-nomad lean. Riverside for a calmer luxury stay along the Ping. Doi Suthep for mountain access (you need a Grab for most evenings).
@@ -110,7 +110,7 @@ Chiang Mai's calendar runs on the Lanna northern-Thai tradition, which is simila
 
 Yi Peng is the trip-shaping one. If sky lanterns are the reason for the trip, base in Chiang Mai for the November window and book the hotel and any ticketed lantern-release event four to six months ahead. If you are not planning around Yi Peng, push the dates a week in either direction because the city is full and the prices are at their annual peak.
 
-A practical note on the lanterns: the city of Chiang Mai restricts releases tightly during the festival window because of the airport and aviation safety, with legal-release nights and zones changing year to year. The ticketed mass-release events outside the city (CAD Khom Loi, Doi Saket events) are the way to participate in the postcard-version release. Buying a lantern from a market stall and releasing it from your hotel balcony is not the version of the trip you want.
+A practical note on the lanterns: the city of Chiang Mai restricts releases tightly during the festival window because of the airport and aviation safety, with legal-release nights and zones changing year to year. The ticketed mass-release events outside the city (CAD Khom Loi, Doi Saket events) are the way to take part legally. Buying a lantern from a market stall and releasing it from your hotel balcony is not what you came for.
 
 ## Where to stay
 

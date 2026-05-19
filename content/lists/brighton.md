@@ -88,7 +88,7 @@ topics:
 
 The day trip is the default. An hour each way from London leaves a full day for the pier, the Royal Pavilion, a wander through the Lanes, and a seafront meal before the train back. For most first visits that is the right shape.
 
-The overnight earns its place when you want the beach and the seafront bars in the evening, after the day crowd has thinned, or when you want to slow the trip down across two days. Brighton at dusk, with the pier lit and the light off the water, is a different city from Brighton at noon.
+The overnight is the choice when you want the beach and the seafront bars in the evening, after the day crowd has thinned, or when you want to slow the trip down across two days. Brighton at dusk, with the pier lit and the light off the water, is a different city from Brighton at noon.
 
 ## Getting in from London
 

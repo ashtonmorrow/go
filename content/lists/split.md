@@ -32,7 +32,7 @@ faqs:
   - q: How does the ferry to Hvar work?
     a: Jadrolinija and Krilo Shipping both run Split-Hvar. Jadrolinija is the slower car ferry (~2 hours, ~€8) and lands at Stari Grad on the north of the island. Krilo's fast catamaran goes to Hvar Town directly (~1 hour, ~€12). Book Krilo ahead in summer. It sells out. Jadrolinija never quite sells out for foot passengers.
   - q: Are the cruise crowds really that bad?
-    a: Yes between 10 a.m. and 4 p.m. in July and August. Two to four ships dock and disgorge guided tours through the palace. The trick is the early morning (8 to 10 a.m.) and the evening (after 5 p.m.), almost a different city.
+    a: Yes between 10 a.m. and 4 p.m. in July and August. Two to four ships dock and disgorge guided tours through the palace. Go in the early morning (8 to 10 a.m.) or the evening (after 5 p.m.), almost a different city.
   - q: What is a konoba?
     a: The Croatian rural-style taverna. Fixed menu of local dishes, often family-run, often without an English menu. Konoba Fetivi, Konoba Marjan, and Konoba Oliva are three of the better Split ones. Expect pašticada (beef braised in red wine), peka (lamb under an iron bell), brodet (fish stew). Wines are usually local. Ask for Pošip or Plavac Mali.
 

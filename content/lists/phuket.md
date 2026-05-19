@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Phuket
-  intro: Phuket is the practical Thai island. The big airport, every hotel category, a real cultural circuit, and easy day trips to Phi Phi and Phang Nga. The trick is picking the beach side that matches the trip and not letting the tuk-tuk pricing eat the day.
+  intro: Phuket is the practical Thai island. The big airport, every hotel category, a real cultural circuit, and easy day trips to Phi Phi and Phang Nga. Pick the beach side that matches the trip and do not let the tuk-tuk pricing eat the day.
   cards:
     - title: Pick the beach that matches the trip
       body: Patong for nightlife and walkability. Kata and Karon for families and beginner surf. Kamala for boutique-resort quiet. Bang Tao for resort-on-a-beach. Phuket Town for Sino-Portuguese cafes, not for sleeping near sand.

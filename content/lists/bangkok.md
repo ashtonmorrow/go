@@ -214,7 +214,7 @@ The three temples most first-time visitors should see all sit close to the river
 | 2 | [Wat Pho](/pins/wat-phra-chetuphon-wimon-mangkhalaram-rajwaramahawihan) | 45 minutes | Walk south from the Grand Palace, ~10 minutes |
 | 3 | [Wat Arun](/pins/wat-arun-ratchawararam-ratchawaramahawihan) | 30–45 minutes | Cross-river ferry from Tha Tien pier (a few baht). Best in late afternoon for the porcelain detail |
 
-If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add: a 318-step climb to a city view that earns its keep at sunset.
+If you have a fourth temple in you, [Wat Saket](/pins/wat-saket) on the Golden Mount is the easy add: a 318-step climb to a city view that is best at sunset.
 
 ## Common scams around the temples
 

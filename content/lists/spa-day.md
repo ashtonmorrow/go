@@ -146,9 +146,9 @@ Two to three days covers the full Pamukkale stop with the pools, the terraces, t
 
 ## Budapest: Gellért over Széchenyi, and Rudas for the older one
 
-Budapest is the spa-lover's city. Geothermal water reaches the surface in dozens of springs across the city, and the bath culture has been built on top of them in waves: Ottoman, Habsburg, and early-twentieth-century art-deco. Most visitors pick one bath and call it done. The trick is to know which one.
+Budapest is the spa-lover's city. Geothermal water reaches the surface in dozens of springs across the city, and the bath culture has been built on top of them in waves: Ottoman, Habsburg, and early-twentieth-century art-deco. Most visitors pick one bath and call it done. The question is which one.
 
-The default choice for most travelers is [Széchenyi](/pins/sz-chenyi-thermal-bath), the big outdoor neo-Baroque complex in City Park. The photograph of the steaming outdoor pool in winter with snow on the columns is the postcard. Széchenyi is large, photogenic, and busy. It earns its reputation. It is also, on a typical Saturday afternoon, packed.
+The default choice for most travelers is [Széchenyi](/pins/sz-chenyi-thermal-bath), the big outdoor neo-Baroque complex in City Park. The photograph of the steaming outdoor pool in winter with snow on the columns is the famous one. Széchenyi is a large, photogenic complex that draws crowds. On a typical Saturday afternoon it is packed.
 
 My favorite is [Gellért](/pins/gell-rt-thermal-bath), in the base of the Gellért Hotel on the Buda side of the river. The interior is art-deco done right: marble, mosaic tilework, stained glass over the indoor pool, the columns and ironwork the Habsburg architects could afford in 1918. The crowds are smaller. The water is the same temperature. If I had one bath day in Budapest, this is the one I would book.
 

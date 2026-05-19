@@ -70,7 +70,7 @@ Prague Václav Havel Airport Prague (PRG) sits about 17 km west of the center. T
 |---|---|---|---|
 | Bus 119 + Metro line A | 35 to 45 min | 40 CZK (a single integrated ticket) | The default. Bus 119 from outside terminals to Nádraží Veleslavín, transfer to the green metro line into the center |
 | Airport Express (AE) bus | 35 to 40 min | 100 CZK | Direct to Praha hlavní nádraží (main train station) with luggage racks. Useful if you are arriving with bags or continuing on the train |
-| Uber / Bolt / Liftago | 25 to 45 min | 350 to 650 CZK | The right call with luggage or after a late arrival. Liftago is the Czech rideshare. Bolt and Uber both work too |
+| Uber / Bolt / Liftago | 25 to 45 min | 350 to 650 CZK | Best with luggage or after a late arrival. Liftago is the Czech rideshare. Bolt and Uber both work too |
 | Taxi from the rank | 25 to 45 min | 600 to 900 CZK | Last resort. Use the Fix Taxi or AAA Taxi counters inside arrivals to avoid the worse street rates |
 
 ## Festivals and big annual events

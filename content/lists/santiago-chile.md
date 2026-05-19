@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Santiago
-  intro: Santiago is a practical South American capital to plan. The metro works, the food is strong, the wine country is close, and the Andes are visible from much of the city on clear days. The trick is matching the base to the trip, with Providencia for ease, Bellavista for bars, Lastarria for museum days, and one full day for the Maipo Valley wineries.
+  intro: Santiago is a practical South American capital to plan. The metro works, the food is strong, the wine country is close, and the Andes are visible from much of the city on clear days. Match the base to the trip, with Providencia for ease, Bellavista for bars, Lastarria for museum days, and one full day for the Maipo Valley wineries.
   cards:
     - title: Use the metro and Cabify
       body: Santiago's metro is unusually useful by regional standards, clean, fast, and cheap. Cabify (the Spanish-Latin American rideshare app, the regional alternative to Uber) and Uber both work for the gaps. Skip street taxis unless you have a fixed price agreed before you get in.

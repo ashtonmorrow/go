@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Singapore
-  intro: Singapore rewards travelers who eat at hawker centers and walk in the morning. Stay near a transit station, time your visits to Gardens by the Bay for the cooler hours, and choose a few headline attractions rather than trying to do them all in one day. Two to three days is the right shape.
+  intro: Eat at hawker centers and walk in the morning before the heat. Stay near a transit station, time your visits to Gardens by the Bay for the cooler hours, and pick a handful of attractions rather than trying to do them all in one day. Two to three days is the right shape.
   cards:
     - title: Stay on Robertson Quay or Tanjong Pagar
       body: InterContinental Singapore Robertson Quay is the easy pick. Riverfront, walking distance to Clarke Quay and Boat Quay, and a 15-minute MRT to Marina Bay. Tanjong Pagar is the budget-conscious alternative with the highest food density per block.
@@ -22,7 +22,7 @@ guide_cards:
     - title: Plan Gardens by the Bay around the cooler hours
       body: Cloud Forest opens at 9 a.m. and is best before 11. Supertree Grove is best at 7:45 p.m. for the free light show, then again at 8:45. Flower Dome has the best AC if you need a 30-minute heat break. Combo tickets are cheaper than singles.
     - title: Do not drink at the hotel bars unless that is the trip
-      body: Singapore is the city where a casual round costs $50. Cocktails at headline rooftop bars start at $25 each. The trick is to plan a single splurge (Atlas, Smoke & Mirrors, the Marina Bay Sands rooftop) and otherwise stick to hawker beer at $6 a pint.
+      body: Singapore is the city where a casual round costs $50. Cocktails at the famous rooftop bars start at $25 each. Plan one splurge (Atlas, Smoke & Mirrors, the Marina Bay Sands rooftop) and stick to hawker beer at $6 a pint otherwise.
 
 faqs:
   - q: How long should I plan in Singapore?

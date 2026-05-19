@@ -197,7 +197,7 @@ The sit-down version is [Bazi's Schlemmerkucherl](/pins/bazi-s-schlemmerkucherl)
 
 ## The brewery beer halls
 
-The Munich brewery beer halls are tourist attractions and worth doing anyway. The Hofbräuhaus is the famous one and probably the least authentic. It is also the one I keep coming back to. The trick is to pick one beer hall per visit rather than try to do the circuit. The rooms are large, the meals are heavy, and the second one will not improve on the first.
+The Munich brewery beer halls are tourist attractions and worth doing anyway. The Hofbräuhaus is the famous one and probably the least authentic. It is also the one I keep coming back to. Pick one beer hall per visit rather than try to do the circuit. The rooms are large, the meals are heavy, and the second one will not improve on the first.
 
 | Brewery hall | What to drink | What to eat | Hours (approx.) | Price band |
 |---|---|---|---|---|

@@ -47,7 +47,7 @@ São Paulo São Paulo / Guarulhos International (the international gateway. CGH 
 
 ## Festivals and big annual events
 
-São Paulo runs the largest single Pride parade in the world plus a calendar of music, fashion, and business events that fill specific weeks. The city does not have the international postcard recognition of Rio Carnival, but it is the bigger and more international festival city by most internal Brazilian measures.
+São Paulo runs the largest single Pride parade in the world plus a calendar of music, fashion, and business events that fill specific weeks. The city does not have the international name recognition of Rio Carnival, but it is the bigger and more international festival city by most internal Brazilian measures.
 
 | Event | When | What it changes |
 |---|---|---|
