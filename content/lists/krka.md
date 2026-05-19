@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Krka National Park
-  intro: Krka National Park is a Croatian river park in inland Dalmatia, built around a chain of travertine waterfalls on the Krka River. The headline is Skradinski Buk, the wide terraced falls at the park's south end. The riverside town of Skradin and the cathedral city of Sibenik are the two bases, and the park is an easy day from either, or from Split.
+  intro: Krka National Park is a Croatian river park in inland Dalmatia, built around a chain of travertine waterfalls on the Krka River. The centerpiece is Skradinski Buk, the wide terraced falls at the park's south end. The riverside town of Skradin and the cathedral city of Sibenik are the two bases, and the park is an easy day from either, or from Split.
   cards:
     - title: A half-day in the park
       body: Skradinski Buk and its boardwalks are the core of a visit and take two to three hours. Add a boat trip upriver and it fills a day.

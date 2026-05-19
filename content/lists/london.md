@@ -144,7 +144,12 @@ The "don't base here unless you're working" zones:
 - **Stratford (Stratford, Maryland).** The 2012 Olympic Park area, twenty-plus minutes east of the West End. Cheap hotels, excellent transit (Jubilee, Elizabeth, Overground, DLR), but the trip-spent-on-the-tube ratio is the catch. Fine for a budget night or two, not a holiday base.
 - **Heathrow / airport hotels.** Two hours of dead commute per day. Only worth it for an early flight, never as a city base.
 
-The lines themselves are worth knowing in shorthand. **The Elizabeth Line** (purple) runs east-west through Paddington, Bond Street, Tottenham Court Road, Farringdon, Liverpool Street, Canary Wharf and out to ExCeL/Custom House. It is the single best line for connecting Heathrow, central, and the docks. **The Jubilee Line** (gray) runs Westminster → Waterloo → London Bridge → Canary Wharf and is the spine of any sightseeing day from a Canary Wharf or Stratford base. **The Piccadilly Line** (dark blue) runs Heathrow → Earl's Court → South Kensington → Knightsbridge → Hyde Park → Piccadilly Circus → King's Cross, which is the museum-and-shopping spine. **The Northern Line** (black) and **District Line** (green) cover almost everything else central. They are the lines you transfer to.
+The lines worth knowing in shorthand:
+
+- **The Elizabeth Line** (purple). Paddington → Bond Street → Tottenham Court Road → Farringdon → Liverpool Street → Canary Wharf → ExCeL/Custom House. The best line for connecting Heathrow, central, and the docks.
+- **The Jubilee Line** (gray). Westminster → Waterloo → London Bridge → Canary Wharf. The spine of any sightseeing day from a Canary Wharf or Stratford base.
+- **The Piccadilly Line** (dark blue). Heathrow → Earl's Court → South Kensington → Knightsbridge → Hyde Park → Piccadilly Circus → King's Cross. The museum-and-shopping spine.
+- **The Northern Line** (black) and **District Line** (green). Cover most of the rest of central. The lines you transfer to.
 
 ## Festivals and big annual events
 
@@ -203,11 +208,13 @@ Pick the base from the trip type, not from a chain loyalty program. The London h
 
 The Transport for London system runs on contactless tap-to-pay, and the way the pricing works is the single most useful thing to understand before your first day. Most visitors muddle through it and end up paying more than they had to. A few minutes of context now saves a real amount of money over a week.
 
-The headline rule is that **you only pay up to the daily cap, no matter how many trips you take**. A Zone 1-2 day's worth of unlimited Tube, bus, and most Overground/Elizabeth Line travel currently caps at around £8.90. Zone 1-3 around £10.50. The system charges you per leg as you tap, and the moment your day's tally hits the cap it stops charging. Two trips on a slow day, eight trips on a busy one, same cost. That means you are not "rationing" your moves around London. Once you have crossed the cap threshold (usually after two or three Tube journeys) every additional ride is essentially free for the rest of the day. Walk an extra ten minutes to a different station, take a bus for one stop just to see a neighborhood, double back across town for dinner, all the same fare.
+The main rule: **you only pay up to the daily cap, no matter how many trips you take**. Zone 1-2 caps at around £8.90 for unlimited Tube, bus, and most Overground/Elizabeth Line travel. Zone 1-3 around £10.50. The system charges per leg as you tap, then stops once your day's tally hits the cap, usually after two or three journeys. From there every ride is essentially free for the rest of the day. Walk an extra ten minutes to a different station, take a bus one stop, double back across town for dinner, all the same fare.
 
 The system can only apply the cap if it sees all of your day's journeys on **one card**. This is the most important practical detail in the whole TfL setup. If you tap in with your phone Wallet on the morning Tube and then tap with your physical bank card after lunch, the system treats them as two different riders, charges them both at the per-leg rate, and neither one hits the cap. Pick one method on your first morning, your phone or one specific contactless card, and stick with it for the whole stay. Tap with the same thing every single time. That one habit is the difference between paying £6 a day and paying £20.
 
-The other gotcha worth a paragraph is the **tap-out**. At every Tube, Elizabeth Line, Overground, and DLR station, you tap your card on the yellow gate pad both on entry and on exit. The system uses the pair of taps to calculate the fare for that journey. If you tap in but forget to tap out (the gate is open, you walk through with the crowd, you exit through a side door because the station is being rebuilt), the system has no exit and charges you the maximum possible fare for that leg, usually £6+ as if you rode end-to-end. Worse, the next time you tap in, the system can sometimes read the tap as your previous trip's missing tap-out, which then mis-charges the leg you just started and corrupts the next one too. Always tap out. Buses are different (single tap on boarding, no exit tap), but on rail you tap twice.
+The other gotcha is the **tap-out**. At every Tube, Elizabeth Line, Overground, and DLR station, tap your card on the yellow gate pad both on entry and on exit. The system uses the pair of taps to calculate the fare.
+
+If you tap in and forget to tap out (open gate, side exit during a rebuild, walking through with a crowd), the system has no exit and charges the maximum for that leg, usually £6+. The next tap-in can also be misread as the previous trip's missing tap-out, which corrupts two legs in a row. Always tap out. Buses are single tap on boarding only. Rail is two taps.
 
 A few smaller notes that round out the practical picture:
 
@@ -241,7 +248,7 @@ The named restaurants in tourist London charge tourist prices. The markets and t
 
 | Market | Best for | Notes |
 |---|---|---|
-| [Borough Market](/pins/borough-market) | Lunch on the Bankside walk | The headline market. The prices have climbed but the quality holds |
+| [Borough Market](/pins/borough-market) | Lunch on the Bankside walk | The main market. The prices have climbed but the quality holds |
 | [Spitalfields Market](/pins/spitalfields-market) | East-end street food | Closes earlier than you expect. Visit before 17:00 |
 | [Seven Dials Market](/pins/seven-dials-market) | Theater-district food hall | Always a zoo. Useful for a fast meal between Covent Garden and Soho |
 | Brixton Village | Caribbean and pan-African food | Best at lunch on a weekday. Quieter than the central markets |

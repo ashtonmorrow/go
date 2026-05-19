@@ -23,7 +23,7 @@ day_trips:
   trips:
     - name: Sintra
       travel: About 40 min by train from Rossio station
-      summary: A hillside of romantic palaces and estates, including Pena Palace and Quinta da Regaleira. The headline day trip. Go early and book Pena online.
+      summary: A hillside of romantic palaces and estates, including Pena Palace and Quinta da Regaleira. The main day trip. Go early and book Pena online.
     - name: Cascais
       travel: About 40 min by train from Cais do Sodré
       summary: A breezy coastal resort town at the end of the line, with beaches, a walkable center, and the Boca do Inferno sea cliff nearby.

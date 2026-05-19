@@ -133,7 +133,7 @@ The three temples that anchor a Chiang Mai day:
 |---|---|---|
 | [Wat Chedi Luang](/pins/wat-chedi-luang) | Old City | The 14th-century chedi at the center of the walled city. One of the most photographed ruined-stupa silhouettes in northern Thailand |
 | Wat Phra Singh | Old City | Lanna-style architecture, central naga staircases, the calm one to spend an hour at |
-| Wat Phra That Doi Suthep | Mountain summit, 15 km west of the city | The headline temple. 309 stair-step naga staircase up. Best in early morning before the haze and tour buses. Grab one-way is about 200 to 300 baht |
+| Wat Phra That Doi Suthep | Mountain summit, 15 km west of the city | The main temple. 309 stair-step naga staircase up. Best in early morning before the haze and tour buses. Grab one-way is about 200 to 300 baht |
 
 Modest dress is required at all three. Shorts and tank tops will get you turned away or handed a loaner sarong. Bring a thin layer if you visit Doi Suthep in winter. The summit can be 5 to 10°C cooler than the city.
 

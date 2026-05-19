@@ -61,7 +61,7 @@ day_trips:
       summary: A fortress strung along a rock saddle above the city, with a long siege history and a turn as Meereen in Game of Thrones.
     - name: Hvar
       travel: 1 hr by Krilo catamaran, 2 hrs by Jadrolinija ferry
-      summary: The headline island, with the strongest food scene of the nearby islands and a busy nightlife in Hvar Town.
+      summary: The main island, with the strongest food scene of the nearby islands and a busy nightlife in Hvar Town.
     - name: Brač
       travel: 50 min car ferry to Supetar, then about 1 hr by bus to Bol
       summary: The island of Zlatni Rat, the shifting shingle spit that is the most photographed beach in Croatia.
@@ -152,7 +152,7 @@ Marjan Hill is the forested peninsula west of the old town. The walk up:
 |---|---|
 | First viewpoint (Telegrin path) | 5-min walk from the city, harbor view |
 | Sv. Nikola church | Small Romanesque church tucked into the slope |
-| Vidilica viewpoint | The headline city view |
+| Vidilica viewpoint | The main city view |
 | [Vrh Telegrin](/pins/vrh-telegrin) | The summit at 178 m. 45-min walk total |
 | [Klisko polje](/pins/klisko-polje) | The plateau between summits. Quiet picnic spot |
 

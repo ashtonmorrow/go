@@ -180,7 +180,7 @@ Canggu has urbanized rapidly since 2018. The rice fields have shrunk, traffic on
 
 ## Ubud: the cooler air and the temples
 
-Ubud is the inland Bali. About an hour and a quarter north of Canggu, 200 meters higher in elevation, noticeably cooler and greener. The town center is small and walkable. The headline sights cluster within a fifteen-minute radius:
+Ubud is the inland Bali. About an hour and a quarter north of Canggu, 200 meters higher in elevation, noticeably cooler and greener. The town center is small and walkable. The main sights cluster within a fifteen-minute radius:
 
 - [Sacred Monkey Forest Sanctuary](/pins/sacred-monkey-forest-sanctuary) at the south end of Jalan Hanoman. Stone-paved paths through a forest of resident long-tailed macaques and Hindu temple ruins
 - [Saraswati Temple](/pins/saraswati-temple), the small water temple with the lotus pond fronting the Lotus Café

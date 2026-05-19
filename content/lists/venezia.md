@@ -47,7 +47,7 @@ Venice Venice Marco Polo Airport (VCE) sits about 12 km north of central Venice.
 |---|---|---|---|
 | Alilaguna water bus | 70 to 90 min | €15 single | The default. The Linea Blu, Linea Arancio, and Linea Rossa lines connect VCE to Murano, Rialto, San Marco, and the Lido. Arrive at your hotel by water, which is the experience |
 | ATVO express bus | 20 min | €10 single | Faster but drops at Piazzale Roma (the bus terminal). You then walk or take a vaporetto into the islands |
-| Private water taxi | 25 to 40 min | €110 to €150 | The headline arrival. Direct to your hotel's water entrance. Worth the premium for a special trip or a late night |
+| Private water taxi | 25 to 40 min | €110 to €150 | The marquee arrival. Direct to your hotel's water entrance. Worth the premium for a special trip or a late night |
 | Taxi to Piazzale Roma + vaporetto | 30 to 60 min | €45 land taxi + €9.50 vaporetto | Last resort. The water-taxi is the cleaner premium and the Alilaguna is the cleaner budget |
 
 ## Festivals and big annual events

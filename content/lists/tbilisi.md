@@ -204,7 +204,9 @@ The unified thing about the city is that none of these layers has won and none o
 
 The Tbilisi Metro is small (two lines, about 22 stations) and runs at Soviet depths. A few of the central stations are worth a ride simply for the platform architecture, which is the marble-and-bronze version the Moscow Metro is famous for. Avlabari and Rustaveli are the two stations to walk through if you only see one.
 
-The fare model is the gentle kind. A ride costs a flat 1 GEL (a few cents in dollars), no matter how far you go, with a 90-minute transfer window that lets you switch between metro and city buses on the same fare. You can pay two ways. The simplest is to tap a contactless bank card or your phone wallet at the turnstile. The system reads the tap and charges the flat fare. If contactless tap is not working for your card (some US-issued cards struggle), buy a **Metro Money card** at any station vending machine for 2 GEL and load it with however much you want. You tap that instead. The card is shareable across a group (one tap per person, same card) and is the easier option if you are riding for a week. There is no daily cap on the metro, but the per-ride cost is so low that the question of capping never really comes up.
+The fare model is gentle: a flat 1 GEL per ride (a few cents in dollars), with a 90-minute transfer window that lets you switch metro and city buses on the same fare.
+
+You can pay two ways. **Tap a contactless bank card or phone wallet** at the turnstile, the simplest option. **A Metro Money card** is the fallback if your bank card does not work (some US-issued cards struggle): buy one for 2 GEL at any station vending machine, load it with what you want, and tap that instead. The card is shareable across a group (one tap per person on the same card). There is no daily cap, but the per-ride cost is so low that capping never comes up.
 
 A couple of small things to know on the platform. The trains are loud and run on close headways. You will rarely wait more than three or four minutes for the next one. The signage at the platform shows the next-station list in Georgian and Latin script, so reading where you are going is straightforward. The platform announcements are Georgian only.
 
@@ -222,7 +224,9 @@ The park works in every season. In summer it is a clear-air break from the city 
 
 The Abano Street bath district at the southern foot of the old town is the older, distinctive Tbilisi experience. The city is named for the springs (Tbili means warm in Georgian), the bathing tradition predates the Russian period by centuries, and the format is its own thing rather than a copy of a Western European hammam.
 
-The practical model is this. You arrive at one of the bath houses on or near Abano Street ([the Sulfur Baths cluster](/pins/sulfur-baths) is the navigation anchor), book a private room (a *kabini*) for an hour, and the room comes with its own plunge pool fed by the sulfur spring underneath the building. You undress in the room, soak, get out, and either leave or pay extra for a *kisi*, a vigorous mitt scrub and soap massage by an attendant who has been doing the job for thirty years. The kisi is the part most travelers come back to talk about. Bring flip-flops. The floors are wet and warm. Bring your own toiletries if you have a preference. The houses provide soap that smells of the spring.
+You arrive at one of the bath houses on or near Abano Street ([the Sulfur Baths cluster](/pins/sulfur-baths) is the navigation anchor), book a private room (a *kabini*) for an hour, and the room comes with its own plunge pool fed by the sulfur spring under the building. You undress, soak, get out, and either leave or pay extra for a *kisi*, a vigorous mitt scrub and soap massage by an attendant who has been doing the job for thirty years. The kisi is the part most travelers come back to talk about.
+
+Bring flip-flops. The floors are wet and warm. Bring your own toiletries if you have a preference. The houses provide soap that smells of the spring.
 
 This is closer to the private-room Russian banya model than the big communal hammams of Istanbul. There is no central steam room shared by strangers. You and your party have your own water for the hour. The famous facade on the bath row is [Orbeliani Baths](/pins/orbeliani-baths) (the blue-and-yellow Persian-tile front), but the bathing inside is the same model across the row. The pricing is reasonable for the city. Budget about an hour and a half for a kabini plus a kisi.
 
@@ -230,7 +234,7 @@ This is closer to the private-room Russian banya model than the big communal ham
 
 Georgian food is hearty, regional, and cheap by any Western European measure. A two-course dinner with wine for two runs comfortably under what a single main would cost in central Paris. The food does not travel well. Most visitors are meeting it for the first time, which is part of why the trip lands the way it does.
 
-The headline dishes to know before you sit down:
+The dishes to know before you sit down:
 
 - **Khinkali**: large, twisted soup dumplings, traditionally filled with spiced beef and pork. You hold the top knot, bite the side, slurp the broth, then eat the body. You do not eat the knot. Standard order is five or six pieces a person.
 - **Khachapuri**: cheese bread. The classic *imeruli* version is round and folded. The *adjaruli* version (Adjarian khachapuri) is the famous boat-shaped one with a runny egg yolk on top.

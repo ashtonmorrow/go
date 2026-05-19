@@ -13,7 +13,7 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Koh Samui
-  intro: Koh Samui is the Thai island I would return to first when I want the trip to work without effort. The headline decision is which beach you base on, since the island is a single ring road. Chaweng for choice, Lamai for slower, Bophut for food, Choeng Mon for quiet. Fly via Bangkok unless you really want to ferry.
+  intro: Koh Samui is the Thai island I would return to first when I want the trip to work without effort. The main decision is which beach you base on, since the island is a single ring road. Chaweng for choice, Lamai for slower, Bophut for food, Choeng Mon for quiet. Fly via Bangkok unless you really want to ferry.
   cards:
     - title: Fly Bangkok Airways via BKK
       body: There are no long-haul direct flights to Samui. Connect in Bangkok and fly Bangkok Airways into Koh Samui Airport (USM). They own the airport, run the most frequencies, and tend to be punctual. Stay a couple of days in Bangkok on the way in or out.
@@ -105,7 +105,7 @@ The island is a ring road. You will sleep on one beach and visit the others.
 | Bophut / Fisherman's Village | Mature travelers, families | The strongest food base on the island. Holiday Inn Resort sits here | Neither sunrise nor sunset views are optimal |
 | [Choeng Mon Beach](/pins/choeng-mon-beach) | Upscale, honeymooners, remote workers | Quiet, small bays. Six Senses, Vana Belle (Luxury Collection), and Kimpton Kitalay sit on this side of the island at $200+ a night | Limited nightlife. Some people find it too quiet |
 
-The headline rule: the east side gets the planes and the sunrise, the north has the airport and the easiest food rhythm, the south and west are quieter but harder to range from.
+The basic rule: the east side gets the planes and the sunrise, the north has the airport and the easiest food rhythm, the south and west are quieter but harder to range from.
 
 ## Getting around the island
 

@@ -176,7 +176,7 @@ Coming back into town, swing through the Royal Crescent and the Circus on the wa
 
 ## The Roman Baths and Thermae Bath Spa
 
-The headline doublet is fully covered in the [spa-day cross-list](/lists/spa-day), which goes into the museum vs modern-spa distinction in detail. The short version for the Bath planner:
+Both are fully covered in the [spa-day cross-list](/lists/spa-day), which goes into the museum vs modern-spa distinction in detail. For the Bath planner:
 
 - [The Roman Baths](/pins/the-roman-baths) is the museum: the first-century AD Roman complex with the Sacred Spring still bubbling at the center and the Great Bath still full of warm green water you walk around but cannot enter. About 90 minutes with the audio guide. Worth doing first. The bathing next door makes more sense after.
 - [Thermae Bath Spa](/pins/thermae-bath-spa) is the modern bathing complex, open 9 a.m. to 9 p.m., book the timed entry online. The rooftop pool over the city is the reason to book it, regardless of weather. Rain on warm thermal water is part of the appeal rather than a problem.

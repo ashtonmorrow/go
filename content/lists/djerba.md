@@ -130,7 +130,7 @@ The [Iberostar Selection Eolia Djerba](/pins/iberostar-selection-eolia-djerba) i
 
 The eastern coast is where the sand is. Three beaches worth a specific trip:
 
-* **[Sidi Mahrez Beach](/pins/sidi-mahrez-beach)**. The headline beach on the northeast coast. Wide, white-sand, accessible from most of the Midoun resorts. Get there before 10 a.m. in season to claim shade.
+* **[Sidi Mahrez Beach](/pins/sidi-mahrez-beach)**. The main beach on the northeast coast. Wide, white-sand, accessible from most of the Midoun resorts. Get there before 10 a.m. in season to claim shade.
 * **[Seguia Beach](/pins/seguia-beach-djerba)**. Shallower entry, calmer water, fewer crowds. Best for families and casual swimmers.
 * **[Plage Omarit](/pins/plage-omarit)**. The quieter, less-developed alternative on the south side. Worth a half-day if you want the beach to yourself.
 

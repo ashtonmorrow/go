@@ -183,7 +183,7 @@ Two urban museums are worth a stop on a beach-resting day or if a summer afterno
 Three options that work as a half- or full-day from Alicante:
 
 * **El Campello** is 20 minutes north on the L1 tram. Smaller, less touristy version of the same beach idea. Worth lunch.
-* **Jávea (Xàbia)** is 90 minutes by car. The headline old town and the rocky coves at Cala del Moraig and Cala Granadella nearby.
+* **Jávea (Xàbia)** is 90 minutes by car. The famous old town and the rocky coves at Cala del Moraig and Cala Granadella nearby.
 * **Benidorm** is 40 minutes up the coast. The party-town version of the Costa Blanca. Useful if you want a louder evening than Alicante offers.
 
 For a quieter alternative: take a local Cercanías train south to Santa Pola and the salt flats. Pink flamingos most of the year, and the ferry to Tabarca leaves from the same harbor.
