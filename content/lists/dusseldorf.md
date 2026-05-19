@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Dusseldorf travel guide: the Altstadt, the Rhine, and where to eat"
 headline: "Düsseldorf is an old town that doubles as the longest bar in the world"
-description: "A personal Dusseldorf travel guide. The Altstadt and its Altbier brewhouses, the Rhine promenade, where to stay, and where to eat."
+description: "My Dusseldorf travel guide. The Altstadt and its Altbier brewhouses, the Rhine promenade, the MedienHafen, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -63,7 +63,7 @@ related:
 # - No hotel pins exist for Düsseldorf yet, so where-to-stay is prose.
 ---
 
-[Düsseldorf](/cities/dusseldorf) is a city of about 650,000 people on the Rhine in western Germany, the capital of North Rhine-Westphalia. It is known for its compact old town, where the density of bars has earned it the nickname "the longest bar in the world," for its own dark Altbier, and for a sharp modern side in fashion and architecture. A day or two covers it. This guide covers getting in, where to stay, the Altstadt and the Rhine, and where to eat and drink.
+[Düsseldorf](/cities/dusseldorf) is a compact old town so packed with bars it is nicknamed the longest bar in the world, where you drink the dark local Altbier, plus a sharp modern side in fashion and design. A day or two covers it. Here's how I'd use the time.
 
 ## On this page
 

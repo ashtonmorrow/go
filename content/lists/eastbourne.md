@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Eastbourne travel guide: the seafront, the pier, and Beachy Head"
 headline: "Eastbourne is a quiet seaside town next to a spectacular cliff"
-description: "A personal Eastbourne travel guide. The Victorian seafront and pier, Beachy Head and the Seven Sisters cliffs, where to stay, the Towner gallery, and where to eat."
+description: "My Eastbourne travel guide. The Victorian seafront and pier, the Beachy Head and Seven Sisters cliffs, where to stay, the Towner gallery, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -55,7 +55,7 @@ related:
 #   Head, the Seven Sisters, the bandstand. None are pinned yet.
 ---
 
-[Eastbourne](/cities/eastbourne) is a seaside town of about 100,000 people on the south coast of England, at the eastern end of the South Downs. It is a classic Victorian resort, with a long shingle seafront and a pier, and its real draw sits right next door: the towering white chalk cliffs of Beachy Head and the Seven Sisters. A day covers the town, and an overnight gives you the cliffs as well. This guide covers getting in, where to stay, the seafront, the cliffs, and where to eat.
+[Eastbourne](/cities/eastbourne) is a quiet, old-fashioned seaside town on the south coast, and the reason to come is right next door: Beachy Head and the Seven Sisters, the great white chalk cliffs of England. A day does the town, an overnight gets you the cliff walk. Here's how I'd split it.
 
 ## On this page
 

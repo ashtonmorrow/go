@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Heidelberg travel guide: the castle, the Old Town, and the Philosophers' Walk"
 headline: "Heidelberg is the castle town that lives up to the pictures"
-description: "A personal Heidelberg travel guide. The castle and the Bergbahn, the Old Town and the Old Bridge, the Philosophers' Walk, where to stay, and where to eat."
+description: "My Heidelberg travel guide. The castle and the Bergbahn, the Old Town and the Old Bridge, the Philosophers' Walk, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -55,7 +55,7 @@ related:
 #   the Holy Spirit, the Konigstuhl. None are pinned yet.
 ---
 
-[Heidelberg](/cities/heidelberg) is a university town of about 160,000 people on the Neckar River in southwest Germany, with a ruined red-sandstone castle on the hillside above a long, intact medieval Old Town. It is one of the most photographed towns in the country, small enough to see in a day, and a short train ride from Frankfurt. This guide covers getting in, where to stay, the castle and the Old Town, the Philosophers' Walk, and where to eat.
+[Heidelberg](/cities/heidelberg) is the castle town that actually lives up to the pictures, a ruined red-sandstone castle on the hill above an intact medieval old town on the Neckar. It is small enough to see in a day and a short train from Frankfurt. Here's how I'd spend it.
 
 ## On this page
 

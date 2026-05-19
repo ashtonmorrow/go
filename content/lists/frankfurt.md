@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Frankfurt travel guide: the Book Fair, apple wine, and getting in from FRA"
 headline: "Frankfurt is more than its airport"
-description: "A personal Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA."
+description: "My Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/frankfurt via the picker.
 ---
 
-[Frankfurt](/cities/frankfurt) is the German financial capital that most travelers fly into and immediately leave for somewhere else. That is partly the right move (Frankfurt is not the destination Berlin or Munich is) and partly a missed call (Frankfurt has a denser apple-wine-and-traditional-cuisine scene than people expect, plus easy access to the Rhine and the Moselle wine valleys). One or two days at the center is enough. Pair with the Rhine cruise or the Heidelberg-and-Mannheim corridor for a week.
+[Frankfurt](/cities/frankfurt) is the German finance capital most travelers fly into and immediately leave, and that is half right: it is not Berlin or Munich. But it has a better apple-wine-and-traditional-food scene than its reputation, and the Rhine and Moselle valleys are right there. A day or two is enough. Here's what I'd do with it.
 
 ## On this page
 

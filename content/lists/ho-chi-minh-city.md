@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
 headline: "Ho Chi Minh City, Saigon at full speed"
-description: "A personal Ho Chi Minh City travel guide. Vietnam e-visa, where to stay in District 1, the Saigon craft beer crawl (Heart of Darkness, Pasteur Street, Belgo, East West), and a one-day cultural circuit."
+description: "My Ho Chi Minh City travel guide. The Vietnam e-visa, where to stay in District 1, the Saigon craft-beer crawl, and a one-day cultural circuit."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -60,7 +60,7 @@ topics:
 #   evisa.gov.vn before each republish. Rates have moved historically.
 ---
 
-[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to most people who live there, is the Vietnam entry point I find easiest to plan but easiest to underestimate once you land. It is hot, humid, motorbike-saturated, and much better for craft beer than most first-time visitors expect. The cultural circuit fits into a day on foot. The beer crawl is its own evening. The food sits between the two and is the reason the city rewards a second visit. The full pin map sits below. This writeup covers the parts of it that change the trip.
+[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to the people who live there, is the easiest Vietnam city to plan and the easiest to underestimate. It is hot, motorbike-saturated, and a far better craft-beer town than first-timers expect. The culture fits in a day, the beer is its own evening, and the food is why you come back.
 
 ## On this page
 

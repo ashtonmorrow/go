@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Gaudí travel guide: the Sagrada Família, Park Güell, and Casa Batlló"
 headline: "Gaudí is the reason half of Barcelona looks the way it does"
-description: "A personal guide to Antoni Gaudí's architecture in Barcelona. The Sagrada Família, Park Güell, Casa Batlló, La Pedrera, and how to book them."
+description: "My guide to Antoni Gaudí's architecture in Barcelona. The Sagrada Família, Park Güell, Casa Batlló, La Pedrera, and how to book the ones that sell out."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -62,7 +62,7 @@ related:
 #   public access, and is described as such.
 ---
 
-Antoni Gaudí, the Catalan architect who died in 1926, shaped the look of [Barcelona](/cities/barcelona) more than any other single figure. Seven of his works are inscribed together as a UNESCO World Heritage Site, and most of them cluster within the city. This guide is the Gaudí trail: what to see, how to book it, and the two sites that sit outside Barcelona. For the wider city, see the Barcelona guide. This one stays on Gaudí.
+Antoni Gaudí shaped the look of [Barcelona](/cities/barcelona) more than anyone, and seven of his buildings now share a single UNESCO listing. This is my Gaudí trail: which works to see, how to book the ones that sell out, and the two that sit outside the city. For the rest of Barcelona, see that guide.
 
 ## On this page
 

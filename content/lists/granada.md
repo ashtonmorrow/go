@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Granada travel guide: the Alhambra, where to eat free tapas, and getting in from GRX"
 headline: "Granada is the one Andalusian city I would never skip"
-description: "A personal Granada travel guide. Getting in from GRX or driving from Málaga, the Alhambra-and-Albayzín shape, and the free-tapas culture worth the trip."
+description: "My Granada travel guide. Getting in from GRX or driving from Málaga, the Alhambra and the Albayzín, and the free-tapas culture worth the trip."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/granada via the picker.
 ---
 
-[Granada](/cities/granada) is the southern Spanish city that earns its reputation hard. The Alhambra (the Moorish palace complex above the city) is one of the most spectacular preserved Islamic-era buildings anywhere. The Albayzín is the medieval Moorish quarter on the opposite hill. The city runs on the free-tapas culture (you order a drink, you get a tapa free, the standard practice every bar follows). Two or three days is the right shape. Longer if you are pairing with Córdoba, Seville, or the rest of Andalucía.
+[Granada](/cities/granada) is the one Andalusian city I'd never skip. The Alhambra is one of the most spectacular Islamic-era buildings anywhere, the Albayzín is the medieval Moorish quarter facing it, and the whole city still does free tapas with every drink. Two or three days, and here's how I'd spend them.
 
 ## On this page
 

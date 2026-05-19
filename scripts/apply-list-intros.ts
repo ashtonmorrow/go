@@ -8,54 +8,54 @@ import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 3 ---
-  'cabo-verde': {
-    description: "My short Cabo Verde guide. Picking your island between Sal, São Vicente, Santo Antão, and Fogo, the volcanic crater village, Mindelo's music, and inter-island travel.",
-    intro: "[Cabo Verde](/countries/caboverde) is the archipelago travelers can't quite place: ten volcanic islands in the Atlantic off West Africa, Portuguese and Kriolu speaking, trade winds year-round. The whole trip is really one decision, which island. Here's how I'd choose between Sal, São Vicente, Santo Antão, and Fogo.",
+  // --- batch 4 ---
+  'dubrovnik': {
+    description: 'My Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, beating the cruise-ship hours, and the restaurants worth the price.',
+    intro: "[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that was famous long before Game of Thrones, and it has been managing the cruise-ship crush ever since. The Old Town is tiny, the walls walkable in two hours, the food good. Stay at least two nights so you can have it outside the day-tripper window. Here's how I'd time it.",
   },
-  'cairo': {
-    description: 'My Cairo travel guide. The airport hotel on points, where to stay in Giza, doing the pyramids DIY, and the scams to know going in.',
-    intro: "Cairo asks more of you than most cities: 22 million people, three thousand years of history layered on the streets, and real hustle at the pyramids. I don't book tours, so these are my DIY notes, an airport hotel on points, an Uber to the plateau gate at 7 a.m., the Grand Egyptian Museum after the heat. Go anyway. Few cities give back more.",
+  'durres': {
+    description: 'My Durres travel guide. The Roman amphitheatre, the long Adriatic beach, getting in from Tirana, where to stay, and where to eat.',
+    intro: "[Durres](/cities/durres) is the beach end of an Albania trip, the country's main seaside town, with one of the biggest Roman amphitheatres in the Balkans sitting right in the middle of it. It is 40 minutes from Tirana, so it is an easy add. Here's how I'd fit it in.",
   },
-  'cape-town': {
-    description: 'My Cape Town travel guide. Where to stay, climbing Table Mountain, the Boulders penguins and Cape Peninsula, the Winelands, and planning around the weather.',
-    intro: "[Cape Town](/cities/cape-town) is not a city I'd plan casually. The setting sells itself, [Table Mountain](/pins/table-mountain-national-park) over the city bowl, two oceans, the Winelands within reach, but the city rewards planning around safety, weather, and where you sleep. I spent a few weeks there. Here's what I learned.",
+  'dusseldorf': {
+    description: 'My Dusseldorf travel guide. The Altstadt and its Altbier brewhouses, the Rhine promenade, the MedienHafen, where to stay, and where to eat.',
+    intro: "[Düsseldorf](/cities/dusseldorf) is a compact old town so packed with bars it is nicknamed the longest bar in the world, where you drink the dark local Altbier, plus a sharp modern side in fashion and design. A day or two covers it. Here's how I'd use the time.",
   },
-  'cardiff': {
-    description: 'My Cardiff travel guide. Cardiff Castle and the Victorian arcades, Cardiff Bay, where to stay, the rugby at the Principality Stadium, and the food.',
-    intro: "Cardiff is the Welsh capital you can cross on foot in half an hour: a castle in the middle, a regenerated bay, and a stadium that drops 70,000 rugby fans into the center on a match day. A day or two does it, alone or as the anchor for a wider Wales trip. Here's how I'd spend it.",
+  'eastbourne': {
+    description: 'My Eastbourne travel guide. The Victorian seafront and pier, the Beachy Head and Seven Sisters cliffs, where to stay, the Towner gallery, and where to eat.',
+    intro: "[Eastbourne](/cities/eastbourne) is a quiet, old-fashioned seaside town on the south coast, and the reason to come is right next door: Beachy Head and the Seven Sisters, the great white chalk cliffs of England. A day does the town, an overnight gets you the cliff walk. Here's how I'd split it.",
   },
-  'cartagena-colombia': {
-    description: 'My Cartagena travel guide. Getting in from CTG, where to stay in the walled city, and the ceviche-and-rooftop rotation worth the heat.',
-    intro: "[Cartagena](/cities/cartagena) does the walled colonial old town better than almost anywhere in the Americas, a dense, photogenic Ciudad Amurallada on the Colombian Caribbean. The heat is relentless and shapes the whole day. Two or three days is right. Here's how I'd handle them.",
+  'eger': {
+    description: "My Eger travel guide. The two-hour train from Budapest, the siege castle, the Ottoman minaret, and the Bull's Blood cellars of the Valley of the Beautiful Women.",
+    intro: "[Eger](/cities/eger) is the baroque wine town two hours from Budapest, famous in Hungary for a 1552 siege its castle somehow won and famous to everyone else for the red wine poured in the cellars on its edge. A day does the castle and old town. The wine valley is why you stay the night.",
   },
-  'cdmx': {
-    description: 'My Mexico City travel guide. Where to stay in Roma and Condesa, the historic center, the museums, the Teotihuacan pyramids, and the food scene.',
-    intro: "Mexico City is one of the great food cities on earth, and far easier and more rewarding than its reputation suggests. It is huge, it sits at 2,240 meters in a ring of mountains, and a first trip wants four or five days across a couple of neighborhoods. Here's how I'd plan it.",
+  'frankfurt': {
+    description: 'My Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA.',
+    intro: "[Frankfurt](/cities/frankfurt) is the German finance capital most travelers fly into and immediately leave, and that is half right: it is not Berlin or Munich. But it has a better apple-wine-and-traditional-food scene than its reputation, and the Rhine and Moselle valleys are right there. A day or two is enough. Here's what I'd do with it.",
   },
-  'chiang-mai': {
-    description: 'My Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base yourself.',
-    intro: "[Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip: where Bangkok is heat and noise, this is temples and a long lunch, with the mountains starting at the edge of town. The food, by most measures, beats Bangkok's. If Thailand is already the plan, give it three or four days.",
+  'gaudi': {
+    description: "My guide to Antoni Gaudí's architecture in Barcelona. The Sagrada Família, Park Güell, Casa Batlló, La Pedrera, and how to book the ones that sell out.",
+    intro: "Antoni Gaudí shaped the look of [Barcelona](/cities/barcelona) more than anyone, and seven of his buildings now share a single UNESCO listing. This is my Gaudí trail: which works to see, how to book the ones that sell out, and the two that sit outside the city. For the rest of Barcelona, see that guide.",
   },
-  'cologne': {
-    description: 'My Cologne travel guide. The cathedral, the Old Town and the Rhine, Kölsch and the brewhouses, where to stay, and where to eat.',
-    intro: "[Cologne](/cities/cologne) is a giant Gothic cathedral with a city attached, one of Germany's oldest, sat on the Rhine and running on its own pale beer. A day or two covers it. Here's how I'd use the time, brewhouses included.",
+  'granada': {
+    description: 'My Granada travel guide. Getting in from GRX or driving from Málaga, the Alhambra and the Albayzín, and the free-tapas culture worth the trip.',
+    intro: "[Granada](/cities/granada) is the one Andalusian city I'd never skip. The Alhambra is one of the most spectacular Islamic-era buildings anywhere, the Albayzín is the medieval Moorish quarter facing it, and the whole city still does free tapas with every drink. Two or three days, and here's how I'd spend them.",
   },
-  'cordoba-ar': {
-    description: 'My short Córdoba (Argentina) travel guide. The Cosquín Folklore Festival in January, the colonial center, college-town nightlife, and the Sierras.',
-    intro: "[Córdoba, Argentina](/cities/cordoba-ar) is the city most visitors fly past, skipped for Buenos Aires and a hassle to reach. It is worth more than that: a five-hundred-year-old colonial center and a college town where dinner is at 10 and the bars get going at 2. Here's what I'd do with a few days.",
+  'gunung-mulu': {
+    description: 'My Gunung Mulu travel guide. Routing in through Kuching or Kota Kinabalu, why the Mulu Marriott is the base, what to book at the park, and the Pinnacles trek.',
+    intro: "[Gunung Mulu National Park](/cities/gunung-mulu) in [Sarawak](/countries/malaysia) sits on one of the world's biggest cave systems, with bat colonies that pour out of Deer Cave every dusk. It is also hard to reach, a tiny airport, a few turboprops a day, no road in, so plan it well ahead. Here's how I'd do it.",
   },
-  'delft': {
-    description: 'My Delft travel guide. The canal center between Rotterdam and The Hague, the Markt and its two great churches, the blue pottery, and where to eat.',
-    intro: "[Delft](/cities/delft) is the quiet canal town wedged between Rotterdam and The Hague, the place that gave the world Vermeer and the blue-and-white pottery. The historic center is small, flat, and walkable end to end in an afternoon. It is one of the easiest day trips in the Netherlands. Here's how I'd spend it.",
+  'heidelberg': {
+    description: "My Heidelberg travel guide. The castle and the Bergbahn, the Old Town and the Old Bridge, the Philosophers' Walk, where to stay, and where to eat.",
+    intro: "[Heidelberg](/cities/heidelberg) is the castle town that actually lives up to the pictures, a ruined red-sandstone castle on the hill above an intact medieval old town on the Neckar. It is small enough to see in a day and a short train from Frankfurt. Here's how I'd spend it.",
   },
-  'djerba': {
-    description: "My short Djerba travel guide. When to visit Tunisia's Mediterranean island, where to stay, the beaches, El Ghriba synagogue, and the Djerbahood murals.",
-    intro: "Djerba is the [Tunisian](/countries/tunisia) island most North Americans have never heard of, though European package travelers have known it for thirty years. Cheap Mediterranean sand, plus a 14th-century synagogue, a street-art village, and a desert-edge Berber day trip. Two or three days do not run thin. Here's how I'd do it.",
+  'hilton-head-sc': {
+    description: 'My Hilton Head travel guide. The RBC Heritage golf week in April, the Lowcountry food, the beaches, and pairing it with Savannah.',
+    intro: "[Hilton Head](/cities/hilton-head) is the South Carolina barrier island for a slower week: a wide flat Atlantic beach, pine forest behind it, golf and Lowcountry food carrying the rest. Most people pair it with Savannah, an hour away. Three to five days for a beach trip, more for a real unwind.",
   },
-  'dublin': {
-    description: "My Dublin travel guide. St Patrick's Day logistics, where to stay near the center, the pub-and-restaurant rotation, and getting in from DUB.",
-    intro: "[Dublin](/cities/dublin) runs on its pubs, its writers, and a rebuilding energy that has not let up since 2008. The Liffey splits it, and almost everyone stays south of the river. A long weekend covers the city, a week opens up Howth and the Wicklow Mountains. Here's how I'd plan it.",
+  'ho-chi-minh-city': {
+    description: 'My Ho Chi Minh City travel guide. The Vietnam e-visa, where to stay in District 1, the Saigon craft-beer crawl, and a one-day cultural circuit.',
+    intro: "[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to the people who live there, is the easiest Vietnam city to plan and the easiest to underestimate. It is hot, motorbike-saturated, and a far better craft-beer town than first-timers expect. The culture fits in a day, the beer is its own evening, and the food is why you come back.",
   },
 };
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Hilton Head travel guide: the RBC Heritage, the beaches, and where to eat"
 headline: "Hilton Head, the Lowcountry island for a slower week"
-description: "A personal Hilton Head travel guide. The RBC Heritage week in April, the Low Country food rotation, the beaches, and getting in from Savannah (SAV)."
+description: "My Hilton Head travel guide. The RBC Heritage golf week in April, the Lowcountry food, the beaches, and pairing it with Savannah."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/hilton-head-sc via the picker.
 ---
 
-[Hilton Head](/cities/hilton-head) is the South Carolina barrier-island resort town that runs at a calmer pace than the Florida coast or the Outer Banks. The wide flat Atlantic beach is the daily anchor, the pine-forest interior of the island is the second side, and the food and golf carry the rest of the trip. Many travelers route through Savannah (an hour away by car) for a half-day or a dinner. The Hilton Head guide pairs cleanly with a Savannah extension. Three to five days for a beach trip. Longer for a relaxed week.
+[Hilton Head](/cities/hilton-head) is the South Carolina barrier island for a slower week: a wide flat Atlantic beach, pine forest behind it, golf and Lowcountry food carrying the rest. Most people pair it with Savannah, an hour away. Three to five days for a beach trip, more for a real unwind.
 
 ## On this page
 

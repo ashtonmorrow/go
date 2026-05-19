@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Gunung Mulu travel guide: the bats, the caves, and the Marriott in the rainforest"
 headline: "Gunung Mulu, a rainforest national park with a Marriott in it"
-description: "A personal Gunung Mulu travel guide. How to route through Kuching or Kota Kinabalu, why the Mulu Marriott is the only sensible base, what to book at the park, and what the Pinnacles trek actually involves."
+description: "My Gunung Mulu travel guide. Routing in through Kuching or Kota Kinabalu, why the Mulu Marriott is the base, what to book at the park, and the Pinnacles trek."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -43,7 +43,7 @@ topics:
   - festivals
 ---
 
-[Gunung Mulu National Park](/cities/gunung-mulu) is a UNESCO World Heritage site in [Sarawak, Malaysia](/countries/malaysia), built on top of one of the largest cave systems in the world and home to the bat colonies that fly out of Deer Cave every evening at dusk. It is also difficult to reach: a single regional airport, roughly four daily turboprop flights across the three Borneo hubs, no road in. The trip rewards advance planning more than most. The full pin map for the park sits below. This writeup covers the parts of it that change the trip.
+[Gunung Mulu National Park](/cities/gunung-mulu) in [Sarawak](/countries/malaysia) sits on one of the world's biggest cave systems, with bat colonies that pour out of Deer Cave every dusk. It is also hard to reach, a tiny airport, a few turboprops a day, no road in, so plan it well ahead. Here's how I'd do it.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Durres travel guide: the Roman amphitheatre, the beach, and where to eat"
 headline: "Durres is the beach end of an Albania trip"
-description: "A personal Durres travel guide. The Roman amphitheatre, the long beach, getting in from Tirana, where to stay, and where to eat."
+description: "My Durres travel guide. The Roman amphitheatre, the long Adriatic beach, getting in from Tirana, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -55,7 +55,7 @@ related:
 # - No hotel pins exist for Durres yet, so where-to-stay is prose.
 ---
 
-[Durres](/cities/durres) is a port city on the Adriatic coast of Albania, the country's second city and its main beach town. It pairs an ancient core, including one of the largest Roman amphitheatres in the Balkans, with a long sandy beach strip. It sits about 40 minutes from Tirana, which makes it an easy add to an Albania trip. This guide covers getting in, where to stay, the city and the beach, and where to eat.
+[Durres](/cities/durres) is the beach end of an Albania trip, the country's main seaside town, with one of the biggest Roman amphitheatres in the Balkans sitting right in the middle of it. It is 40 minutes from Tirana, so it is an easy add. Here's how I'd fit it in.
 
 ## On this page
 

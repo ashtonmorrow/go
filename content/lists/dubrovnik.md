@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Dubrovnik travel guide: where to eat, the city walls, and getting in from DBV"
 headline: "Dubrovnik, and how to see it outside the cruise-ship hours"
-description: "A personal Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, and the konoba-and-modern restaurant rotation worth the price."
+description: "My Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, beating the cruise-ship hours, and the restaurants worth the price."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/dubrovnik via the picker.
 ---
 
-[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that earned its reputation centuries before the Game of Thrones years and has been managing the cruise-and-day-tripper density since. The Old Town is small (about 600 meters across), the city walls are walkable in about two hours, and the food has caught up with the visitor pressure. Two nights at minimum to actually experience the city outside the cruise-day window. Longer if you are pairing with Korčula, Mljet, or the Pelješac peninsula.
+[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that was famous long before Game of Thrones, and it has been managing the cruise-ship crush ever since. The Old Town is tiny, the walls walkable in two hours, the food good. Stay at least two nights so you can have it outside the day-tripper window. Here's how I'd time it.
 
 ## On this page
 
