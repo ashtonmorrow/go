@@ -41,7 +41,7 @@ topics:
 
 When I'm in a city for weeks at a time, the green market is how I work out how the place actually eats. Here's my running list of the Balkan ones worth saving on a map, some for cooking, some for gifts, some for a slow morning walk.
 
-## How I use these markets
+## How to use these markets
 
 For a short trip, a green market is best as a morning stop. Buy fruit for the room, a bag of figs, a jar of honey, or a small bottle of olive oil, then keep moving. For a longer stay, go once to understand the layout and prices, then decide whether it is a real grocery source or mainly a pleasant stop near the center.
 

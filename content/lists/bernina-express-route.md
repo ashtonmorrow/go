@@ -81,7 +81,7 @@ The Bernina Express is the scenic train that climbs through the Alps from [Tiran
 
 ## On this page
 
-* [The short version](#the-short-version)
+* [The trip at a glance](#the-trip-at-a-glance)
 * [Getting to Tirano from Milan](#getting-to-tirano-from-milan)
 * [What the Bernina Express actually is](#what-the-bernina-express-actually-is)
 * [Booking without overthinking it](#booking-without-overthinking-it)
@@ -89,7 +89,7 @@ The Bernina Express is the scenic train that climbs through the Alps from [Tiran
 * [Chur is worth a little time](#chur-is-worth-a-little-time)
 * [If the Bernina Express is sold out](#if-the-bernina-express-is-sold-out)
 
-## The short version
+## The trip at a glance
 
 If you are already in [Milan](/cities/milan), the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to [Tirano](/cities/tirano), board the [Bernina Express](/pins/trenino-rosso-bernina) there, and ride north through the Alps to [Chur](/cities/chur). From Chur you can continue deeper into [Switzerland](/countries/switzerland) on the standard SBB network or stay the night and treat it as a small Alpine city stop.
 

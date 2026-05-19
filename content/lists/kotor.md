@@ -123,7 +123,6 @@ Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Euro
 
 ## On this page
 
-* [A short history of the bay and the town](#a-short-history-of-the-bay-and-the-town)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay around the bay](#where-to-stay-around-the-bay)
 * [Getting to old Kotor for the day](#getting-to-old-kotor-for-the-day)
@@ -132,14 +131,7 @@ Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Euro
 * [The green market](#the-green-market)
 * [Where to eat](#where-to-eat)
 * [Cruise-ship rhythm and when to go in](#cruise-ship-rhythm-and-when-to-go-in)
-
-## A short history of the bay and the town
-
-The Bay of Kotor cuts about 28 kilometers inland from the Adriatic, with a narrow strait (Verige) about halfway up that splits the outer bay from the inner basin where Kotor sits. The Romans, the Byzantines, the medieval Serbian kingdom, Venice, Austria-Hungary, Italy, and Yugoslavia have each held the bay at various points. The town's most legible layer is Venetian. Venice held Kotor from 1420 to 1797 and most of what you walk through in the old town (the walls, the gates, the lion-of-Saint-Mark reliefs, the layout itself) is the Venetian inheritance.
-
-The fortifications climb the mountain behind the town. The lower walls and the sea gate are the workable medieval base. The long switchback up to **St John Fortress** (Sveti Ivan) at 1,200 feet above the town is the famous photographable line. The town has been hit by major earthquakes (1563, 1667, and the 1979 quake that prompted the UNESCO designation in the first place) and rebuilt each time on the same footprint, which is why the old town reads coherent rather than layered.
-
-A handful of churches anchor the lanes. **St Tryphon's Cathedral** (Sveti Tripun, consecrated 1166) is the Catholic cathedral on the southern side of the town and the oldest substantial church in the old town. **St Luke's** (Sveti Luka, 1195) is the small Romanesque church near the center, unusual for having Catholic and Orthodox altars side by side after the city's confessional split. **St Nicholas** (1909) is the Serbian Orthodox church with the two domes near the northern wall. **St Mary's Collegiate** (Sveti Marija Koleđata, 1221) is the third small medieval one. None takes more than ten minutes inside. The value is the cluster.
+* [A short history of the bay and the town](#a-short-history-of-the-bay-and-the-town)
 
 ## Festivals and big annual events
 
@@ -226,3 +218,11 @@ The rest of the bay's restaurants render under this writeup on the pin map. The 
 The cruise dock sits about a hundred meters from the Sea Gate. A typical July day has two or three large ships in the bay, each carrying 2,000 to 4,000 passengers, with arrival windows that cluster around 8 a.m. and disembarkation peaks from 9 a.m. to 11 a.m. The town fills, the lanes load, the cathedral queues, and the walls kiosk has a 20-minute line by mid-morning. Ships re-board between 4 p.m. and 5 p.m. and the town empties by 6 p.m.
 
 The schedule is published. A glance at the Kotor cruise calendar before you book a day in the old town lets you pick a low-ships day for the wall climb if you can, and lets you plan a swim or a Perast boat for the busy middle hours of any day. The evening is when Kotor is actually pleasant. Eat dinner inside the walls after the ships leave, walk the empty lanes once, then go back to wherever you are sleeping on the bay.
+
+## A short history of the bay and the town
+
+The Bay of Kotor cuts about 28 kilometers inland from the Adriatic, with a narrow strait (Verige) about halfway up that splits the outer bay from the inner basin where Kotor sits. The Romans, the Byzantines, the medieval Serbian kingdom, Venice, Austria-Hungary, Italy, and Yugoslavia have each held the bay at various points. The town's most legible layer is Venetian. Venice held Kotor from 1420 to 1797 and most of what you walk through in the old town (the walls, the gates, the lion-of-Saint-Mark reliefs, the layout itself) is the Venetian inheritance.
+
+The fortifications climb the mountain behind the town. The lower walls and the sea gate are the workable medieval base. The long switchback up to **St John Fortress** (Sveti Ivan) at 1,200 feet above the town is the famous photographable line. The town has been hit by major earthquakes (1563, 1667, and the 1979 quake that prompted the UNESCO designation in the first place) and rebuilt each time on the same footprint, which is why the old town reads coherent rather than layered.
+
+A handful of churches anchor the lanes. **St Tryphon's Cathedral** (Sveti Tripun, consecrated 1166) is the Catholic cathedral on the southern side of the town and the oldest substantial church in the old town. **St Luke's** (Sveti Luka, 1195) is the small Romanesque church near the center, unusual for having Catholic and Orthodox altars side by side after the city's confessional split. **St Nicholas** (1909) is the Serbian Orthodox church with the two domes near the northern wall. **St Mary's Collegiate** (Sveti Marija Koleđata, 1221) is the third small medieval one. None takes more than ten minutes inside. The value is the cluster.
