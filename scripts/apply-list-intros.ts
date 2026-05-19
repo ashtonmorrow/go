@@ -1,67 +1,66 @@
 /**
- * One-shot: rewrite the frontmatter `description` and the body intro
- * paragraph of list guides into Mike's first-person voice.
+ * One-shot (run per batch): rewrite the frontmatter `description` and the
+ * body intro paragraph of list guides into Mike's first-person voice.
  *
  * Pure text replacement (no gray-matter round-trip) so the in-frontmatter
  * authoring-note comment blocks are preserved. The body intro is defined
  * as everything between the closing frontmatter fence and the first
  * `\n## ` heading; it is replaced wholesale.
  *
- * Idempotent: re-running with the same map yields the same files.
- * Run with --write to apply; without, it is a dry run.
+ * The REWRITES map is overwritten per batch. Run with --write to apply.
  */
 import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 1 ---
-  'alicante-metro-stops': {
-    description: 'My station-by-station notes for using the Alicante tram as a no-car way up the Costa Blanca, from El Campello to the Benidorm beaches.',
-    intro: "The [Alicante](/cities/alicante) tram is what makes a beach day work without a rental car. Here are the stops I'd actually get off at, riding the line up the Costa Blanca from the city toward [El Campello](/pins/el-campello) and [Benidorm](/pins/benidorm).",
+  // --- batch 2 ---
+  'belgrade': {
+    description: 'My Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurants worth the trip.',
+    intro: "[Belgrade](/cities/belgrade) is rougher than the polished European capitals, and that's exactly why I like it. It sits where the Sava meets the Danube, with a fortress over the old town and a food-and-nightlife scene that runs late. Two or three days does it, and it pairs cleanly with Sarajevo and Mostar.",
   },
-  'alicante': {
-    description: 'My case for Alicante, the sunny Costa Blanca city travelers skip. The in-town beach, the hilltop castle, the June bonfire festival, and the train from Madrid.',
-    intro: "[Alicante](/cities/alicante) is the Spanish beach city I keep recommending that almost nobody books. It gets some of the most sunshine in Europe, has a swimmable beach right in the middle of town, a castle on the hill above it, and tapas for a euro. Here's how I'd spend a few days there.",
+  'benidorm': {
+    description: 'My Benidorm travel guide. The Levante and Poniente beaches, the Old Town, getting in from Alicante, where to stay, and where to eat.',
+    intro: "Benidorm is a wall of high-rises behind two long sandy beaches, one of Europe's busiest package-holiday towns, and it is exactly what it says it is. I won't oversell it: come for the beach, the sun, and the cheap nights out. Here's how I'd do a few days.",
   },
-  'amsterdam': {
-    description: 'My Amsterdam travel guide. Walking the canal ring, where to stay, King’s Day and Keukenhof tulip season, the Schiphol train, and day trips like Zaanse Schans.',
-    intro: "[Amsterdam](/cities/amsterdam) is smaller and easier than it looks, a wheel of canals you can mostly cross on foot. The thing I tell every first-timer is that the Dutch trains are so good that basing outside the city and riding in is a real option, not a compromise. Here's how I'd plan it, day trips included.",
+  'berlin': {
+    description: 'My Berlin travel guide. Berlinale tickets, the Christmas markets, where to stay, where to find the best döner, and getting in from BER on the S-Bahn.',
+    intro: "[Berlin](/cities/berlin) plays by its own rules: less polished than Paris, less rich than London, and carrying a rougher cultural energy the other two lost decades ago. It is huge, the transit is superb, and nobody does Turkish-German food better. A long weekend gets the headline sights. A week gets the neighborhoods.",
   },
-  'annecy': {
-    description: 'My Annecy travel guide. The canal-threaded old town, swimming in Lake Annecy, the Palais de l’Ile, the markets, and where to eat.',
-    intro: "[Annecy](/cities/annecy) is the French Alpine town that looks faked: a lake clean enough to swim in, an old town threaded with canals, mountains rising straight out of the water. A day or two is all it takes. Here's what I'd do with the time.",
+  'bernina-express-route': {
+    description: 'My notes on riding the Bernina Express through the Alps. The regional connection from Milan to Tirano, the panoramic train, the booking traps, and Chur at the end.',
+    intro: "The Bernina Express is the scenic train that climbs through the Alps from [Tirano](/cities/tirano) in Italy to [Chur](/cities/chur) in Switzerland, and it is easier to slot into a Milan trip than the map suggests. I booked mine less than a week out. Here are my notes on doing the same: the regional connection from Milan, the booking traps, and what the panoramic windows are actually worth.",
   },
-  'antwerp': {
-    description: 'My Antwerp travel guide. The Cathedral of Our Lady, the showpiece Central Station, the fashion and diamond districts, where to stay, and where to eat.',
-    intro: "[Antwerp](/cities/antwerp) is Belgium's second city and its sharpest, a place of fashion, diamonds, and Rubens with a railway station grand enough to be a sight in itself. A day or two covers it. Here's how I'd use the time.",
+  'bogota': {
+    description: 'My Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the restaurants worth booking, and what to know about the altitude.',
+    intro: "[Bogotá](/cities/bogota) gets a layover when it deserves a few days. It surprises people: the altitude you feel on day one, cool mountain weather all year, and a modern restaurant scene built since the 2000s. Three or four days for the city, more if you are adding the coffee region or Cartagena.",
   },
-  'athens': {
-    description: 'My Athens travel guide. Why two days is not enough, booking the Acropolis, Plaka tavernas, the National Archaeological Museum, and Cape Sounion at sunset.',
-    intro: "Most people give [Athens](/cities/athens) two days and leave underwhelmed, and I think they plan it wrong. Two days does the headline sights, three is the sweet spot, four if you want Delphi as an overnight. Here's how I'd shape it, plus the two things worth planning around.",
+  'brighton': {
+    description: 'My Brighton travel guide. The hour-long train from London, the seafront and the pier, the Royal Pavilion, the Lanes, and where to eat by the sea.',
+    intro: "[Brighton](/cities/brighton) is the easiest day at the sea from London, an hour down the line, and the most relaxed, openly bohemian city in England, the country's unofficial LGBTQ+ capital and a proper arts town. It is built for walking: the pebble beach, the Palace Pier, the Royal Pavilion, the independent-shop lanes. Here's how I'd spend a day, or better, an overnight.",
   },
-  'avila': {
-    description: 'My Ávila travel guide. The most complete medieval walls in Spain, the easy day trip from Madrid, Saint Teresa’s town, and where to eat.',
-    intro: "[Ávila](/cities/avila) is the easiest great day trip out of Madrid: a small granite town wrapped in the most complete set of medieval walls in Spain, a stone circuit you can walk the whole way around. Here's what I'd see in a day.",
+  'bristol': {
+    description: 'My Bristol travel guide. Glastonbury logistics, the Banksy walking tour, where to stay, Clifton, and the London-Bristol-Bath loop.',
+    intro: "I think [Bristol](/cities/bristol) doesn't get enough love. It is the underrated half of a London week, a direct sub-two-hour train from Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads) and the natural anchor for a London, Stonehenge, Bristol, and Bath loop that needs no car. Here's how I'd use a weekend there.",
   },
-  'bali': {
-    description: "My Bali travel guide. Which base fits which trip, from Seminyak's beach clubs to Canggu's surf to Ubud's inland temples.",
-    intro: "Bali gets mis-planned more than almost anywhere, because the postcard, the rice terraces, the surf breaks, the cliff pools, lives in three different parts of an island that take real time to cross. The one decision that shapes the whole trip is where you base. Here's how I'd pick.",
+  'bruges': {
+    description: 'My Bruges travel guide. The UNESCO old town, the De Halve Maan brewery, the chocolate stops, the Béguinage, and day trip versus overnight from Brussels.',
+    intro: "[Bruges](/cities/bruges) is the small medieval Belgian city everyone tells you to see, and they are right, but only if you beat the day-trippers. The historic center is one walkable loop of canals, chocolate, and a brewery. Get there before 10 a.m. or after 6 p.m. and the crowds thin to almost nothing. Here's how I'd do it.",
   },
-  'balkan-green-markets': {
-    description: 'My working list of green markets across the Balkans, saved on long city stays for apartment cooking, honey and figs, and a morning wander.',
-    intro: "When I'm in a city for weeks at a time, the green market is how I work out how the place actually eats. Here's my running list of the Balkan ones worth saving on a map, some for cooking, some for gifts, some for a slow morning walk.",
+  'bucharest': {
+    description: 'My Bucharest travel guide. Getting in from Henri Coandă, where to stay in the Old Town, and the restaurants worth booking around.',
+    intro: "[Bucharest](/cities/bucharest) is a slow burn. Travelers do not expect to like it and often end up liking it more than Europe's famous cities, for the dense walkable Old Town, a food scene rebuilt since the 2000s, and that unmistakable brutalist weight. Two or three days for the city, then pair it with Transylvania.",
   },
-  'bangkok': {
-    description: 'My Bangkok travel guide. Where to stay in Sukhumvit or Riverside, the BTS mall walk for jet-lagged days, the river temple circuit, and Yaowarat at night.',
-    intro: "[Bangkok](/cities/bangkok) is where most Thailand trips begin, and it's worth a few days even when a beach is the real reason you came. It works far better once you stop fighting the traffic and move by river and BTS instead. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).",
+  'budapest': {
+    description: 'My Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD.',
+    intro: "[Budapest](/cities/budapest) is two cities the Danube splits: hilly, quiet Buda on the west, flat and busy Pest on the east where you will stay. The thermal baths are its signature, and the food has caught up hard in the last decade. Here's how I'd plan it. The baths get their own writeup in my [spa-day list](/lists/spa-day).",
   },
-  'barcelona': {
-    description: 'My Barcelona travel guide. Where to stay (Poblenou over the Gothic Quarter), why the city is ending Airbnb, neighborhood food, and Sitges as a day trip.',
-    intro: "I love [Barcelona](/cities/barcelona), but in 2026 it's a city pushing back hard on tourism, and the default first-trip script (an Airbnb on La Rambla, dinner in the Gothic Quarter) is exactly the version locals want gone. Here's how I'd do it instead: Poblenou as a base, eating a block off the tourist spine, the big monuments treated as quick metro stops.",
+  'budva': {
+    description: 'My Budva travel guide. The walled Old Town, the Budva Riviera beaches, Sveti Stefan, where to stay, and where to eat.',
+    intro: "[Budva](/cities/budva) is a small walled Old Town wrapped in a loud beach resort, the busiest stretch of the Montenegrin coast. Two or three days covers it, and its real value is as a base for the rest of the coast, Kotor and Sveti Stefan included. Here's how I'd play it.",
   },
-  'bath-uk': {
-    description: 'My Bath travel guide. The day trip versus the overnight, where to stay, the riverside walk, the Bathwick Boatman roast, and Stonehenge as the add-on.',
-    intro: "Most people see Bath in a single day from London, and it's a good day: the Roman baths, the abbey, and the honey-stone Georgian streets all sit fifteen minutes apart. But it's better with a night. Here's how I'd do both versions. The thermal-spa side lives in my [spa-day list](/lists/spa-day).",
+  'buenos-aires': {
+    description: 'My Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP.',
+    intro: "[Buenos Aires](/cities/buenos-aires) is the South American capital I send people to first, all European-style boulevards, parrilla steakhouse culture, and a peso economy that keeps shifting what your dollars are worth. Give it a week, more if you are adding Mendoza, Iguazú, or Patagonia.",
   },
 };
 

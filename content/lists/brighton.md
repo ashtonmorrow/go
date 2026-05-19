@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Brighton travel guide: the pier, the Royal Pavilion, and the day trip from London"
 headline: "Brighton, the easiest day at the sea from London"
-description: "A personal Brighton travel guide. Getting in from London in an hour, the seafront and the pier, the Royal Pavilion, the Lanes, and where to eat by the sea."
+description: "My Brighton travel guide. The hour-long train from London, the seafront and the pier, the Royal Pavilion, the Lanes, and where to eat by the sea."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -71,7 +71,7 @@ topics:
 # - Brighton is wired into the London guide's day_trips block.
 ---
 
-[Brighton](/cities/brighton) is the seaside city an hour south of London, a Regency resort that grew into the most relaxed, and most openly bohemian, coastal city in England. It is the country's unofficial LGBTQ+ capital, a long-standing arts town, and a place built for a day of walking between the pebble beach, the Palace Pier, the Royal Pavilion, and the independent-shop grid of the Lanes and North Laine. It is the easiest proper day at the sea from London, no car and no planning required, and a good overnight if the trip wants the beach in evening light.
+[Brighton](/cities/brighton) is the easiest day at the sea from London, an hour down the line, and the most relaxed, openly bohemian city in England, the country's unofficial LGBTQ+ capital and a proper arts town. It is built for walking: the pebble beach, the Palace Pier, the Royal Pavilion, the independent-shop lanes. Here's how I'd spend a day, or better, an overnight.
 
 ## On this page
 

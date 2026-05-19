@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Bruges travel guide: the chocolate, the beer, and how to do it in a day"
 headline: "Bruges is worth it if you beat the day-trippers"
-description: "A personal Bruges travel guide. The UNESCO historic center, De Halve Maan brewery, the chocolate stops, the Béguinage, and whether to do it as a day trip from Brussels or stay overnight."
+description: "My Bruges travel guide. The UNESCO old town, the De Halve Maan brewery, the chocolate stops, the Béguinage, and day trip versus overnight from Brussels."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -44,7 +44,7 @@ topics:
   - day-trips
 ---
 
-[Bruges](/cities/bruges) is the small medieval [Belgian](/countries/belgium) city that everyone tells you to see, and the medieval town is worth the visit. The historic center is a small enough loop that the main sights fit into one full day. The canals, the chocolate, and a brewery tour are the spine of that day. Be there before 10 a.m. or after 6 p.m. and you skip most of the day-trip crowd. The full pin map sits below. This writeup covers the parts of it that change the trip.
+[Bruges](/cities/bruges) is the small medieval Belgian city everyone tells you to see, and they are right, but only if you beat the day-trippers. The historic center is one walkable loop of canals, chocolate, and a brewery. Get there before 10 a.m. or after 6 p.m. and the crowds thin to almost nothing. Here's how I'd do it.
 
 ## On this page
 

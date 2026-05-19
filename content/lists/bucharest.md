@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Bucharest travel guide: where to eat, where to stay, and getting in from OTP"
 headline: "Bucharest is a slow burn, and worth the patience"
-description: "A personal Bucharest travel guide. Getting in from Henri Coandă, where to stay in the Old Town, and the restaurant rotation worth booking around."
+description: "My Bucharest travel guide. Getting in from Henri Coandă, where to stay in the Old Town, and the restaurants worth booking around."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Bucharest](/cities/bucharest) is the Romanian capital that travelers do not expect to like and frequently end up liking more than the famous cities. The Old Town (Lipscani) is dense and walkable, the food scene has rebuilt since the 2000s into something competitive, and the brutalist architectural legacy (the Palace of the Parliament is the heaviest building on Earth) is unmistakable. Two or three days for the city. Pair with Brașov, Sighișoara, or Sibiu for a Transylvania extension.
+[Bucharest](/cities/bucharest) is a slow burn. Travelers do not expect to like it and often end up liking it more than Europe's famous cities, for the dense walkable Old Town, a food scene rebuilt since the 2000s, and that unmistakable brutalist weight. Two or three days for the city, then pair it with Transylvania.
 
 ## On this page
 

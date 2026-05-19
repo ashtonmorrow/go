@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Budva travel guide: the Old Town, the beaches, and the riviera"
 headline: "Budva is an old town wrapped in a beach resort"
-description: "A personal Budva travel guide. The walled Old Town, the Budva Riviera beaches, Sveti Stefan, where to stay, and where to eat."
+description: "My Budva travel guide. The walled Old Town, the Budva Riviera beaches, Sveti Stefan, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -55,7 +55,7 @@ related:
 # - No hotel pins exist for Budva yet, so where-to-stay is prose.
 ---
 
-[Budva](/cities/budva) is a coastal town on the Adriatic in Montenegro, the center of the Budva Riviera, the country's busiest stretch of beach. At its heart sits a small walled Old Town on a peninsula, ringed by modern resort development and a long run of beaches and nightlife. A first visit is two or three days. This guide covers getting in, where to stay, the Old Town and the beaches, the coastal day trips, and where to eat.
+[Budva](/cities/budva) is a small walled Old Town wrapped in a loud beach resort, the busiest stretch of the Montenegrin coast. Two or three days covers it, and its real value is as a base for the rest of the coast, Kotor and Sveti Stefan included. Here's how I'd play it.
 
 ## On this page
 

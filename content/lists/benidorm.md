@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Benidorm travel guide: the beaches, the Old Town, and where to eat"
 headline: "Benidorm is a high-rise beach resort and makes no apology for it"
-description: "A personal Benidorm travel guide. The Levante and Poniente beaches, the Old Town, getting in from Alicante, where to stay, and where to eat."
+description: "My Benidorm travel guide. The Levante and Poniente beaches, the Old Town, getting in from Alicante, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ related:
 # - No hotel pins exist for Benidorm yet, so where-to-stay is prose.
 ---
 
-Benidorm is a beach resort on the Costa Blanca in southeast Spain, instantly recognizable for its wall of high-rises rising behind two long sandy beaches. It is one of Europe's busiest package-holiday destinations, especially with British visitors, and it is exactly what it sets out to be. A few days covers it. This guide covers getting in, where to stay, the beaches and the Old Town, and where to eat.
+Benidorm is a wall of high-rises behind two long sandy beaches, one of Europe's busiest package-holiday towns, and it is exactly what it says it is. I won't oversell it: come for the beach, the sun, and the cheap nights out. Here's how I'd do a few days.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Berlin travel guide: Berlinale, the Christmas markets, and where to stay"
 headline: "Berlin, the European capital that plays by its own rules"
-description: "A personal Berlin travel guide. Berlinale tickets, the Christmas markets, where to stay, where to find the döner, and getting in from BER on the S-Bahn."
+description: "My Berlin travel guide. Berlinale tickets, the Christmas markets, where to stay, where to find the best döner, and getting in from BER on the S-Bahn."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -32,7 +32,7 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Berlin](/cities/berlin) is the European capital that runs on its own side. Less polished than Paris, less rich than London, but with the rougher cultural energy that the other two stopped having decades ago. The city is huge by European standards (almost 4 million people, sprawled across the eastern German plain), the transit is excellent, and the food has the dominant Turkish-German style that no other city does as well. A long weekend captures the headlines. A week opens up the neighborhoods.
+[Berlin](/cities/berlin) plays by its own rules: less polished than Paris, less rich than London, and carrying a rougher cultural energy the other two lost decades ago. It is huge, the transit is superb, and nobody does Turkish-German food better. A long weekend gets the headline sights. A week gets the neighborhoods.
 
 ## On this page
 

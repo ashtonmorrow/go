@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Bristol travel guide: Glastonbury, the Banksy walk, and where to stay"
 headline: "Bristol doesn't get enough love"
-description: "A personal Bristol travel guide. Glastonbury logistics, the Banksy walking tour, where to stay, Clifton, and the London-Bristol-Bath loop."
+description: "My Bristol travel guide. Glastonbury logistics, the Banksy walking tour, where to stay, Clifton, and the London-Bristol-Bath loop."
 published: 2026-05-10
 updated: 2026-05-10
 authors:
@@ -56,7 +56,7 @@ topics:
 #   bristol saved_list so it no longer pollutes the city map.
 ---
 
-I think [Bristol](/cities/bristol) does not get enough love. It is the underrated half of a London week: the right length for a Friday-to-Sunday add-on if you are an American working with limited holidays, a direct under-two-hour train from London Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads), and the natural anchor for a London / Stonehenge / Bristol / [Bath](/cities/bath) loop that does not need a car.
+I think [Bristol](/cities/bristol) doesn't get enough love. It is the underrated half of a London week, a direct sub-two-hour train from Paddington to [Bristol Temple Meads](/pins/bristol-temple-meads) and the natural anchor for a London, Stonehenge, Bristol, and Bath loop that needs no car. Here's how I'd use a weekend there.
 
 ## On this page
 

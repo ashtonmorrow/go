@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Belgrade travel guide: where to eat, the nightlife, and getting in from BEG"
 headline: "Belgrade is rougher than you expect, and that's the appeal"
-description: "A personal Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurant rotation worth the trip."
+description: "My Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurants worth the trip."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -32,7 +32,7 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Belgrade](/cities/belgrade) is the Balkan capital that has been climbing the under-the-radar lists for the last few years. The city sits on the confluence of the Sava and Danube rivers, the Kalemegdan fortress crowns the old town, and the food and nightlife scene runs much later than most European capitals. Two or three days is the right length for a first visit. The trip pairs cleanly with Sarajevo and Mostar if you have a week in the region.
+[Belgrade](/cities/belgrade) is rougher than the polished European capitals, and that's exactly why I like it. It sits where the Sava meets the Danube, with a fortress over the old town and a food-and-nightlife scene that runs late. Two or three days does it, and it pairs cleanly with Sarajevo and Mostar.
 
 ## On this page
 

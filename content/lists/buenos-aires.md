@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Buenos Aires travel guide: Tango BA, the steak, and where to stay in Palermo"
 headline: "Buenos Aires is the South American capital I send people to first"
-description: "A personal Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP."
+description: "My Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP."
 published: 2026-05-12
 updated: 2026-05-13
 authors:
@@ -50,7 +50,7 @@ topics:
 #       for the day-trip section)
 ---
 
-[Buenos Aires](/cities/buenos-aires) is the South American capital with European-style boulevards, the parrilla steakhouse culture, an excellent Japanese-Argentine sushi scene, and a peso economy that keeps shifting dollar prices. A week for a first visit, longer if you're adding Mendoza wine country, Iguazú, or a Patagonia leg.
+[Buenos Aires](/cities/buenos-aires) is the South American capital I send people to first, all European-style boulevards, parrilla steakhouse culture, and a peso economy that keeps shifting what your dollars are worth. Give it a week, more if you are adding Mendoza, Iguazú, or Patagonia.
 
 ## On this page
 

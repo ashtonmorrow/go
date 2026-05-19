@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Bogotá travel guide: where to stay, where to eat, and getting in from BOG"
 headline: "Bogotá deserves more than the layover most people give it"
-description: "A personal Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the steak-and-pasta rotation, and what to know about altitude."
+description: "My Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the restaurants worth booking, and what to know about the altitude."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Bogotá](/cities/bogota) is the Colombian capital that surprises most visitors with the altitude (2,640 meters. You will feel it the first day), the cool-mountain weather year-round (15 to 20°C is the normal), and the modern restaurant scene that the post-2000 security improvements built. Zona Rosa, Chapinero, La Macarena, and La Candelaria (the historic center) are the four neighborhoods most visitors rotate through. Three to four days for the city. Longer if you are pairing with the coffee region or Cartagena.
+[Bogotá](/cities/bogota) gets a layover when it deserves a few days. It surprises people: the altitude you feel on day one, cool mountain weather all year, and a modern restaurant scene built since the 2000s. Three or four days for the city, more if you are adding the coffee region or Cartagena.
 
 ## On this page
 

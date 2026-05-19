@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Budapest travel guide: Sziget, the thermal baths, and where to eat"
 headline: "Budapest, the two cities the Danube splits"
-description: "A personal Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD."
+description: "My Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -49,7 +49,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Budapest](/cities/budapest) is two cities split by the Danube. Buda on the western side is the older, quieter, hillier half. Pest on the eastern side is the flatter, busier capital where almost every visitor stays. The thermal-bath culture is the city's signature (the spa-day cross-list at [/lists/spa-day](/lists/spa-day) covers Gellért, Széchenyi, and Rudas in detail). The food has caught up with the visitor density in the last decade and runs from cheap and excellent to serious-restaurant.
+[Budapest](/cities/budapest) is two cities the Danube splits: hilly, quiet Buda on the west, flat and busy Pest on the east where you will stay. The thermal baths are its signature, and the food has caught up hard in the last decade. Here's how I'd plan it. The baths get their own writeup in my [spa-day list](/lists/spa-day).
 
 ## On this page
 
