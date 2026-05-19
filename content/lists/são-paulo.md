@@ -12,7 +12,7 @@ hero_image: ""
 hero_alt: ""
 
 related:
-  city: são-paulo
+  city: sao-paulo
   country: brazil
 
 topics:

@@ -37,7 +37,7 @@ faqs:
     a: Drive to the Sierras. Villa Carlos Paz is the popular escape (lake, gondola, busy in summer). La Cumbre, La Cumbrecita, and the smaller mountain towns are quieter and walkable. Locals make the day trip year-round.
 
 related:
-  city: cordoba-ar
+  city: ""
   country: argentina
 
 topics:

@@ -12,7 +12,7 @@ hero_image: ""
 hero_alt: ""
 
 related:
-  city: milano
+  city: milan
   country: italy
 
 topics:

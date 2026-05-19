@@ -35,6 +35,7 @@ faqs:
     a: The New York City subway runs 24 hours a day and reaches all five boroughs. Pay with OMNY by tapping a contactless credit card, debit card, or phone directly at the turnstile. The old MetroCard has been retired. The fare is a flat 2.90 dollars per ride regardless of distance, and OMNY caps your spending after 12 rides in a 7-day window, so the rest of that week rides free. One tap covers transfers between subway lines.
 
 related:
+  city: new-york-city
   country: unitedstatesofamerica
 
 topics:

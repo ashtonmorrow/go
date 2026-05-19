@@ -12,7 +12,7 @@ hero_image: ""
 hero_alt: ""
 
 related:
-  city: venezia
+  city: venice
   country: italy
 
 topics:

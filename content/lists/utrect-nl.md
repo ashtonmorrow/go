@@ -12,7 +12,7 @@ hero_image: ""
 hero_alt: ""
 
 related:
-  city: utrect-nl
+  city: utrecht
   country: netherlands
 
 topics:

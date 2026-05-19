@@ -55,11 +55,16 @@ export default async function ListsIndex() {
     fetchAllSavedListsMeta(),
   ]);
 
-  // Build lookup maps once. Cities/countries are keyed by lowercased name so
-  // we can match against the saved-list name (which is already lowercase).
-  const cityByName = new Map<string, { name: string; slug: string; cover: string | null }>();
+  // Build lookup maps once. Cities/countries are keyed both by lowercased
+  // name (the legacy saved-list-name match) and by slug, so a guide's
+  // related.city / related.country can resolve directly in the decoration
+  // pass below. The name match fails for any list whose name carries a
+  // country suffix, a local spelling, or an abbreviation.
+  type CityRef = { name: string; slug: string; cover: string | null };
+  const cityByName = new Map<string, CityRef>();
+  const cityBySlug = new Map<string, CityRef>();
   for (const c of cities) {
-    cityByName.set(c.name.toLowerCase(), {
+    const ref: CityRef = {
       name: c.name,
       slug: c.slug,
       // List cover comes from the personal photo only — heroImage is a
@@ -68,11 +73,17 @@ export default async function ListsIndex() {
       // renders ImageCredit alongside it). When the city has no personal
       // photo, the list card falls through to a pin-photo fallback below.
       cover: c.personalPhoto ?? null,
-    });
+    };
+    cityByName.set(c.name.toLowerCase(), ref);
+    cityBySlug.set(c.slug, ref);
   }
-  const countryByName = new Map<string, { name: string; slug: string }>();
+  type CountryRef = { name: string; slug: string };
+  const countryByName = new Map<string, CountryRef>();
+  const countryBySlug = new Map<string, CountryRef>();
   for (const c of countries) {
-    countryByName.set(c.name.toLowerCase(), { name: c.name, slug: c.slug });
+    const ref: CountryRef = { name: c.name, slug: c.slug };
+    countryByName.set(c.name.toLowerCase(), ref);
+    countryBySlug.set(c.slug, ref);
   }
 
   // Group pins by list name once, then derive every per-list aggregate from
@@ -135,16 +146,41 @@ export default async function ListsIndex() {
     draft.map(async d => {
       const content = await readListContent(d.slug);
       const isGuide = !!content?.featured;
-      const { coverInputs, ...rest } = d;
+      const { coverInputs, anchor: nameAnchor, ...rest } = d;
+
+      // Geo anchor: prefer the guide's explicit related.city /
+      // related.country (a slug) over the saved-list-name match. The
+      // name match misses any list whose name is not an exact lowercased
+      // city/country name (cordoba ar, venezia, cdmx, bath uk, ...).
+      const relCity = content?.related?.city
+        ? cityBySlug.get(content.related.city)
+        : undefined;
+      const relCountry =
+        !relCity && content?.related?.country
+          ? countryBySlug.get(content.related.country)
+          : undefined;
+      const anchor = relCity
+        ? { kind: 'city' as const, name: relCity.name, slug: relCity.slug }
+        : relCountry
+        ? { kind: 'country' as const, name: relCountry.name, slug: relCountry.slug }
+        : nameAnchor;
+
       return {
         ...rest,
+        anchor,
         isGuide,
         // Show the editorial headline on the card; fall back to the SEO title.
         guideTitle: isGuide ? content?.headline ?? content?.title ?? null : null,
         guideDescription: isGuide ? content?.description ?? null : null,
         // One shared cover chain (lib/listCover.ts), the same precedence
         // /lists/<slug> uses, so the list looks identical in both places.
-        cover: resolveListCover({ heroImage: content?.heroImage, ...coverInputs }),
+        // When the guide names a related city, that city's cover photo
+        // enters the fallback chain ahead of the name-matched one.
+        cover: resolveListCover({
+          heroImage: content?.heroImage,
+          ...coverInputs,
+          cityCover: relCity?.cover ?? coverInputs.cityCover,
+        }),
       };
     }),
   );

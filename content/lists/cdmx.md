@@ -35,6 +35,7 @@ faqs:
     a: The dry season from November to April is the most comfortable, with warm days and little rain. The rainy season from May to September brings short, heavy afternoon storms that rarely ruin a day. Two dates are worth planning around. Day of the Dead at the start of November brings parades and ofrendas across the city, and the spring jacaranda bloom turns the streets purple in March and April.
 
 related:
+  city: mexico-city
   country: mexico
 
 topics:

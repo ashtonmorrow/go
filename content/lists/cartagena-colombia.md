@@ -12,7 +12,7 @@ hero_image: ""
 hero_alt: ""
 
 related:
-  city: cartagena-colombia
+  city: cartagena
   country: colombia
 
 topics:
