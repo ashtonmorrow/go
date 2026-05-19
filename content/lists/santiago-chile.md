@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Santiago travel guide: where to stay, the wine country, and a Valparaíso daytrip"
 headline: "Santiago, a practical capital with wine country beside it"
-description: "A short Santiago Chile travel guide. Where to stay (Providencia, Bellavista, Lastarria), Cerro San Cristóbal, the Maipo Valley wineries, and a Valparaíso daytrip."
+description: "My short Santiago travel guide. Where to stay across Providencia, Bellavista, and Lastarria, Cerro San Cristóbal, the Maipo Valley wineries, and a Valparaíso day trip."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -63,7 +63,7 @@ topics:
 # - Source: Mike's Santiago travel brief. Personal references stripped.
 ---
 
-[Santiago](/cities/santiago) is a practical major South American capital to plan. The metro covers the routes most visitors need, the food scene has more depth than the city's businesslike reputation suggests, the wine country begins within an hour of downtown, and the Andes are visible from much of the city on a clear day. The trip works as a four to five day base, or as one anchor of a longer Chile loop with Valparaíso and the Atacama or Patagonia.
+[Santiago](/cities/santiago) is an easy South American capital to plan: a metro that covers what you need, more food depth than its businesslike reputation suggests, wine country within an hour, and the Andes on the skyline. Four or five days as a base, or one anchor of a longer Chile loop. Here's how I'd use it.
 
 ## On this page
 

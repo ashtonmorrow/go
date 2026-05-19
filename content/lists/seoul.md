@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Seoul travel guide: where to stay, the palaces, and the markets to eat at"
 headline: "Seoul, a ten-million city that somehow feels easy"
-description: "A personal Seoul travel guide. Getting in from Incheon on the AREX, where to stay by neighborhood, the Joseon palaces, Bukchon, and the night markets."
+description: "My Seoul travel guide. Getting in from Incheon on the AREX, where to stay by neighborhood, the Joseon palaces, Bukchon, and the night markets."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -61,7 +61,7 @@ topics:
 #   Itaewon. Day trips (DMZ, Suwon) are noted but not pinned.
 ---
 
-[Seoul](/cities/seoul) is the South Korean capital, a metropolis of ten million that holds five-hundred-year-old palaces a few subway stops from glass-tower districts and all-night markets. It is large, but it does not feel unmanageable, because the metro is fast, cheap, and legible from the first ride. A first trip is four or five days, built by picking a few neighborhoods and going deep rather than trying to cover the whole sprawl.
+[Seoul](/cities/seoul) is a ten-million-person capital that somehow feels easy, five-hundred-year-old palaces a few subway stops from glass towers and all-night markets, all knit together by a metro you can read from the first ride. A first trip is four or five days. Here's how I'd pick the neighborhoods.
 
 ## On this page
 

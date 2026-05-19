@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Rome travel guide: where to eat the real pasta and getting in from Fiumicino"
 headline: "Rome really is as good as advertised"
-description: "A personal Rome travel guide. Leonardo Express in from FCO, where to stay near the center, the real pasta spots, and the four-Roman-pastas worth tracking down."
+description: "My Rome travel guide. The Leonardo Express from FCO, where to stay near the center, the real pasta spots, and the four Roman pastas to track down."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -52,7 +52,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Rome](/cities/rome) is the European capital that built the template every other European capital draws from, and the ancient sights are as good as advertised. Long weekend minimum. The Roman pasta canon (cacio e pepe, carbonara, amatriciana, gricia) is the trip's other half, and most first-time visitors miss it by booking restaurants on TripAdvisor near the major sights.
+[Rome](/cities/rome) built the template every other European capital copies, and the ancient sights really are as good as advertised. The other half of the trip is the Roman pasta canon, which most first-timers miss by booking tourist restaurants near the monuments. A long weekend minimum. Here's how I'd do it right.
 
 ## On this page
 

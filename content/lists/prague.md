@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Prague travel guide: Christmas markets, Prague Spring, and where to stay"
 headline: "Prague, the old town everyone walks, done well"
-description: "A personal Prague travel guide. Christmas markets at Old Town Square, Prague Spring music festival, where to stay, and getting in from PRG."
+description: "My Prague travel guide. The Christmas markets on Old Town Square, the Prague Spring music festival, where to stay, and getting in from PRG."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -52,7 +52,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Prague](/cities/prague) is the Bohemian capital and one of the most-walked old towns in Europe. The river Vltava splits the city into Staré Město on the east bank and Malá Strana below the castle on the west. A long weekend covers the headlines: Old Town Square, the Charles Bridge, the castle complex, and one beer hall. A week unlocks the smaller neighborhoods.
+[Prague](/cities/prague) is the Bohemian capital and one of the most walkable old towns in Europe, the Vltava splitting it between the Old Town and the castle side. A long weekend covers the headliners, a week opens the smaller neighborhoods. Here's how I'd plan it.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk"
 headline: "Rotterdam, the architectural opposite of Amsterdam"
-description: "A personal Rotterdam travel guide. The Markthal and Cube Houses walking loop, Depot Boijmans, Euromast, Hotel New York, and Kinderdijk as a day trip. Where to base near Centraal."
+description: "My Rotterdam travel guide. The Markthal and Cube Houses loop, Depot Boijmans, the Euromast, Hotel New York, and Kinderdijk as a day trip."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -46,7 +46,7 @@ topics:
   - day-trips
 ---
 
-[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam. WWII bombing erased the medieval city, and the rebuild made it the proving ground for modern Dutch architecture. Two days for the walking architecture loop and the food scene, plus a half day for Kinderdijk.
+[Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam: WWII bombing erased the medieval city, and the rebuild turned it into the proving ground for modern Dutch architecture. Two days for the walking loop and the food, plus a half-day at Kinderdijk. Here's how I'd plan it.
 
 ## On this page
 

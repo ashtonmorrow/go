@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Playa del Carmen travel guide: where to stay on Quinta Avenida, where to eat, and getting in from CUN"
 headline: "Playa del Carmen, the Riviera Maya base"
-description: "A personal Playa del Carmen travel guide. Getting in from Cancún, where to stay on Quinta Avenida, and the casual Yucatán restaurant rotation worth the trip."
+description: "My Playa del Carmen travel guide. Getting in from Cancún, where to stay near Quinta Avenida, the cenotes, and the casual Yucatán restaurants."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Playa del Carmen](/cities/playa-del-carmen) is the Yucatán beach town that grew from a sleepy ferry stop to Cozumel into a serious resort destination. The Quinta Avenida (5th Avenue) pedestrian strip is the spine. The beach is the wide white-sand Caribbean cliché, and the cenote and Mayan-ruin day trips are the depth. Three to five days for a beach trip. Longer if you are pairing with Tulum, Holbox, or Cozumel diving.
+[Playa del Carmen](/cities/playa-del-carmen) grew from a sleepy Cozumel ferry stop into a full Yucatán resort town, strung along the Quinta Avenida pedestrian strip with white Caribbean sand at its edge. The cenotes and Mayan ruins are the depth. Three to five days, more with Tulum or Cozumel. Here's how I'd plan it.
 
 ## On this page
 

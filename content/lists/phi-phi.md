@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Koh Phi Phi travel guide: ferries in, where to eat, and what to know going in"
 headline: "Koh Phi Phi, and what to know before the ferry"
-description: "A personal Koh Phi Phi travel guide. Ferry from Phuket or Krabi, where to eat on Tonsai, and what to know about the small no-cars island lifestyle."
+description: "My Koh Phi Phi travel guide. The ferry from Phuket or Krabi, where to eat on Tonsai, Maya Bay, and the no-cars island lifestyle."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/phi-phi via the picker.
 ---
 
-[Koh Phi Phi](/cities/koh-phi-phi) is the small Thai island in the Andaman Sea that became famous after The Beach (2000) and has been managing the tourism overhang since. Phi Phi Don is the inhabited main island. Phi Phi Leh is the smaller protected sister with Maya Bay where most boat trips go. No cars on either island, no airport. Arrival is by ferry from Phuket or Krabi. Two or three days is the right shape for a beach trip. Longer only if you really want the island pace.
+[Koh Phi Phi](/cities/koh-phi-phi) is the small Thai island that blew up after The Beach and has been managing the crowds ever since. No cars, no airport, you arrive by ferry from Phuket or Krabi. Two or three days is the right shape, longer only if you really want the island pace. Here's how I'd do it.
 
 ## On this page
 

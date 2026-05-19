@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Rio travel guide: Carnival, where to stay in Ipanema, and a first Rio trip"
 headline: "Rio, and how to plan a first trip you won't regret"
-description: "A personal Rio de Janeiro travel guide. Carnival logistics, Réveillon at Copacabana, where to stay in Ipanema, the beaches, and getting in from GIG."
+description: "My Rio de Janeiro travel guide. Carnival logistics, Réveillon at Copacabana, where to stay in Ipanema, the beaches, and getting in from GIG."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Rio de Janeiro](/cities/rio-de-janeiro) is the Brazilian coastal capital where the geography (the Atlantic on one side, the granite peaks of the Tijuca forest on the other, the lagoon and the beaches between them) is the whole reason. The pin set on this list runs heavily through Ipanema, Leblon, and Copacabana where most travelers actually stay. Santa Teresa, Centro, and the Botanical Garden are the day-trip extensions. A long weekend works as a Rio-only trip. A week opens up Búzios and Paraty along the coast.
+[Rio de Janeiro](/cities/rio-de-janeiro) is the Brazilian city where the geography is the whole point, the Atlantic on one side, granite peaks on the other, the beaches and the lagoon between. Most people stay around Ipanema and Copacabana. A long weekend works Rio-only, a week opens the coast. Here's how I'd plan it.
 
 ## On this page
 

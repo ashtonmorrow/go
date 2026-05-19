@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Rennes travel guide: the old town, the market, and where to eat"
 headline: "Rennes is the easygoing capital of Brittany"
-description: "A personal Rennes travel guide. The half-timbered old town, the Saturday market at Place des Lices, where to stay, and where to eat."
+description: "My Rennes travel guide. The half-timbered old town, the huge Saturday market at Place des Lices, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ topics:
 # - No hotel pins exist for Rennes yet, so where-to-stay is prose.
 ---
 
-[Rennes](/cities/rennes) is the capital of Brittany, a city of about 220,000 people in northwest France. It carries a compact medieval old town of leaning half-timbered houses, grand civic buildings, and one of the largest food markets in the country, and a big student population keeps it lively. A day or two covers it. This guide covers getting in, where to stay, the old town and the market, and where to eat.
+[Rennes](/cities/rennes) is the capital of Brittany, a lively university city with a compact old town of leaning half-timbered houses and one of the biggest food markets in France. A day or two does it. Here's how I'd spend it.
 
 ## On this page
 

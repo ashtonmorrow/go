@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Sarajevo travel guide: the Film Festival, the historic center, and where to eat"
 headline: "Sarajevo carries its history in plain sight"
-description: "A personal Sarajevo travel guide. The Sarajevo Film Festival in August, Baščaršija Nights through July, where to stay, and getting in from SJJ."
+description: "My Sarajevo travel guide. The Sarajevo Film Festival in August, Baščaršija Nights, where to stay, and getting in from SJJ."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -32,7 +32,7 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Sarajevo](/cities/sarajevo) is the small Balkan capital that carries an outsized amount of history in a walkable center. Habsburg-era buildings on one side of Marijin Dvor, Ottoman-era bazaar (Baščaršija) on the other. The meeting of the two civilisational layers is the city's signature. The 1990s siege is still legible in the architecture and in the working-memory of the people you meet. This is not background, it is the story most visitors come to understand. Two or three days for the city. Pair with Mostar and Belgrade for a Balkan week.
+[Sarajevo](/cities/sarajevo) carries an outsized amount of history in a small walkable center: Habsburg buildings on one side, an Ottoman bazaar on the other, and the 1990s siege still legible in the architecture and in the people you meet. That last part is not background, it is the story most visitors come to understand. Two or three days. Here's the shape.
 
 ## On this page
 

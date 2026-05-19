@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Saranda and Ksamil travel guide: where to stay on the Albanian Riviera, where to eat"
 headline: "Saranda and Ksamil, the Albanian Riviera before everyone catches on"
-description: "A personal Saranda and Ksamil travel guide. Ferry from Corfu, where to stay on the Albanian Riviera, the beach restaurant rotation worth the trip."
+description: "My Saranda and Ksamil travel guide. The ferry from Corfu, where to stay on the Albanian Riviera, and the beach restaurants worth the trip."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera that has been on the under-the-radar Mediterranean lists for the last five years. Crystal-clear water, dramatic limestone coves, prices half of Greece across the strait, and the small-town pace that the bigger Mediterranean resorts lost decades ago. Saranda is the larger town. Ksamil is the smaller, photogenic, beach-resort version 20 minutes south. Three to four days for the pair. Longer if you are exploring the rest of the Riviera north toward Himara and Dhërmi.
+[Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera, crystal water and limestone coves at half the price of Greece across the strait. Saranda is the larger town, Ksamil the photogenic beach-resort version 20 minutes south. Three or four days for the pair. Here's how I'd split them.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Phuket travel guide: where to stay, the beaches worth the trip, and what to skip"
 headline: "Phuket, the practical big-island Thailand trip"
-description: "A personal Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
+description: "My Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -68,9 +68,7 @@ topics:
 #   paradise-beach as a non-Patong destination.
 ---
 
-[Phuket](/cities/phuket) is the practical Thai island. It has the international airport, the full hotel range from backpacker to resort, the tour infrastructure for Phi Phi and Phang Nga Bay, and the bluntest version of beach tourism in Thailand. None of that is a complaint. If you want a beach week with a real airport at one end and a sit-down dinner choice at the other, Phuket gets the job done.
-
-Match the side of the island to the trip you actually want, budget for the slow expensive taxis, and don't skip the cultural circuit just because everyone else does.
+[Phuket](/cities/phuket) is the practical Thai island: the international airport, every grade of hotel, the tour boats to Phi Phi and Phang Nga, and the bluntest version of beach tourism in Thailand. That is not a complaint. Match the side of the island to the trip you want. Here's how I'd do it.
 
 ## On this page
 
