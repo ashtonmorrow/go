@@ -189,7 +189,16 @@ Rules:
 
 **Length and structure:**
 
-A standard city guide runs 1,200 to 2,500 words. Headline city guides (London, Madrid, Bangkok) can go to 4,000. Smaller-destination guides (Trogir, Sitges, Koh Samui) sit at the low end. Most guides have 5-8 H2 sections. The arrival section is always first after the intro. "Where to stay" is almost always second. The remaining sections vary by destination.
+A standard city guide runs 1,200 to 2,500 words. Headline city guides (London, Madrid, Bangkok) can go to 4,000. Smaller-destination guides (Trogir, Sitges, Koh Samui) sit at the low end. Most guides have 5-8 H2 sections. The arrival section is always first after the intro. The remaining sections vary by template (below).
+
+**Section order by guide type.** The codebase uses four templates. Pick one and follow its H2 order. Mixing across templates is the source of cadence drift, so commit to one template per guide. New scaffolds default to template 1 unless the destination clearly suits another.
+
+1. **Classic city guide** (~60 guides, the bulk of the corpus). Order: intro → "On this page" TOC → arrival → festivals → stay → topics → eat. Festivals sits second because the calendar shapes when to come, and the calendar table reads as part of the planning block. For heat-sensitive or season-driven cities (Madrid, Bangkok, Amsterdam, Phuket, The Hague), open with a "When to go" H2 before arrival. Examples: Barcelona, Berlin, Bristol, Prague, Rome, Tirana, Tbilisi.
+2. **Question-form guide** (~28 guides). Order: intro → "On this page" TOC → How long? → How do I get there? → Where should I stay? → topics → eat. Uses question-as-H2 throughout. Best for shorter destinations or any place that reads as practical-FAQ rather than long-form. Examples: Antwerp, CDMX, Cologne, Düsseldorf, Heidelberg, Lima, Marrakech, NYC, Valencia, Verona.
+3. **Half-day / day-trip guide.** Order: intro → shape → arrival → what to do → eat → festivals (at end, often optional). Skips "Where to stay" because the trip is built around not staying. Examples: Trogir, Sitges (partial), the Bath-Stonehenge day-trip out of London.
+4. **Theme or route guide.** Custom shape per the theme; no mandatory arrival or stay block. Examples: Bernina Express, Kusttram station guide, Balkan green markets, Gaudí walking circuit, the spa-day list.
+
+Standalone rules that apply across all templates: history sections do not open a guide (move to end if useful, otherwise delete). "The short version" / "the longer version" framings do not appear as either H2 or paragraph opener. Background dumps before practical advice violate the survival-lens rule below regardless of template.
 
 **The first-time-visitor survival lens.**
 
