@@ -1,3 +1,5 @@
+import { promises as fs } from 'fs';
+import path from 'path';
 import { NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
 import { supabaseAdmin } from '@/lib/supabaseAdmin';
@@ -18,9 +20,34 @@ import { supabaseAdmin } from '@/lib/supabaseAdmin';
 //   * tag 'supabase-pins' (the unstable_cache key the index pages read)
 //   * path '/pins/cards', '/pins/map', '/pins/table', '/pins/stats'
 //   * path '/pins/<slug>' if the pin had one (the public detail page)
+//
+// Deleting the pin row does NOT scrub `[Name](/pins/<slug>)` links out of
+// the hand-authored guide markdown. After a successful delete the route
+// scans content/lists for the slug and returns a `warning` listing any
+// guides that still link it, so the admin UI can flag the dead links.
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
+
+/** Scan content/lists/*.md for markdown links to a now-deleted pin slug.
+ *  Returns the guide slugs that still reference it. Best-effort: if the
+ *  bundled content dir is not readable, returns []. */
+async function guidesLinkingPin(slug: string): Promise<string[]> {
+  const needle = `(/pins/${slug})`;
+  const out: string[] = [];
+  try {
+    const dir = path.join(process.cwd(), 'content', 'lists');
+    const files = await fs.readdir(dir);
+    for (const f of files) {
+      if (!f.endsWith('.md')) continue;
+      const body = await fs.readFile(path.join(dir, f), 'utf8');
+      if (body.includes(needle)) out.push(f.replace(/\.md$/, ''));
+    }
+  } catch {
+    /* content dir not readable in this runtime — skip the scan */
+  }
+  return out;
+}
 
 export async function POST(req: Request) {
   let body: { pinId?: string };
@@ -82,5 +109,20 @@ export async function POST(req: Request) {
     /* ignore */
   }
 
-  return NextResponse.json({ ok: true, deleted: { id: pin.id, name: pin.name } });
+  // The pin row is gone, but guide markdown that linked it now carries a
+  // dead /pins/<slug> link. Surface those so the admin can fix the prose.
+  const referencedIn = pin.slug ? await guidesLinkingPin(pin.slug) : [];
+  const warning =
+    referencedIn.length > 0
+      ? `Still linked in ${referencedIn.length} guide${
+          referencedIn.length === 1 ? '' : 's'
+        }: ${referencedIn.join(', ')}. Edit the markdown to drop the dead link.`
+      : undefined;
+
+  return NextResponse.json({
+    ok: true,
+    deleted: { id: pin.id, name: pin.name },
+    referencedIn,
+    warning,
+  });
 }

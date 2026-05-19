@@ -122,6 +122,9 @@ export default function VisitedEditorClient({ initialRows }: { initialRows: Row[
         return next;
       });
       originalEdits.delete(id);
+      // Surfaced when guide markdown still links the deleted pin — those
+      // /pins/<slug> links are now dead and need a manual edit.
+      if (data?.warning) window.alert(data.warning);
     } catch (e) {
       window.alert(e instanceof Error ? e.message : 'delete failed');
     } finally {

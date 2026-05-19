@@ -121,7 +121,13 @@ export default function ListDetailClient({ listName, initialRows }: Props) {
       if (!res.ok) throw new Error(data?.error ?? 'delete failed');
       // Drop the row from the local roster.
       setRows(prev => prev.filter(r => r.id !== pinId));
-      setFlash(`Deleted "${pinName}".`);
+      // `data.warning` is set when guide markdown still links the now-
+      // deleted pin — surface it so the dead link gets fixed.
+      setFlash(
+        data?.warning
+          ? `Deleted "${pinName}". ${data.warning}`
+          : `Deleted "${pinName}".`,
+      );
     } catch (e) {
       setFlash(e instanceof Error ? e.message : 'delete failed');
     } finally {
