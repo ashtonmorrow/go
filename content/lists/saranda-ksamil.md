@@ -24,7 +24,7 @@ topics:
 #   rather than from a personal brief, so the voice pass is the
 #   prerequisite before flipping indexable.
 # - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/saranda-_-ksamil via the picker.
+# - hero_image is empty. Pick one in /admin/lists/saranda-ksamil via the picker.
 # - Where-to-stay and Where-to-eat tables are populated from the pinned
 #   hotels and restaurants that already carry a rating. The rest of the
 #   restaurant pin set renders below this prose on the cards/map view.
