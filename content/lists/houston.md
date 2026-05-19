@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Houston travel guide: the Rodeo, where to eat, and the food capital of Texas"
 headline: "Houston is the most underrated food city in America"
-description: "A personal Houston travel guide. RodeoHouston, where to find Tex-Mex, Vietnamese, and crawfish, and the underrated Houston food story."
+description: "My Houston travel guide. RodeoHouston, where to find the Tex-Mex, the Vietnamese, and the crawfish, and the underrated Houston food story."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/houston via the picker.
 ---
 
-[Houston](/cities/houston) is the most multicultural city in the United States by most measures and a serious food city that is consistently under-recommended next to Austin, Dallas, or the New Orleans coast. The city is huge by US standards (4th largest metro), the neighborhoods are spread out (you drive everywhere), and the food story is the multi-ethnic immigration that built it. Houston has the best Vietnamese food in the US (the largest Vietnamese-American population outside Orange County), serious Tex-Mex and Houston-style barbecue, plus the crawfish-and-Cajun thread from Louisiana. Three or four days. Longer if you are using it as the gateway to the Gulf Coast.
+[Houston](/cities/houston) is, I'll argue, the most underrated food city in America. It is the most multicultural city in the country, you drive everywhere, and the food is the immigration story: the best Vietnamese in the US, serious Tex-Mex and barbecue, Gulf Coast crawfish. Three or four days, more if it is your gateway to the coast.
 
 ## On this page
 

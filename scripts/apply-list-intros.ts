@@ -8,54 +8,54 @@ import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 4 ---
-  'dubrovnik': {
-    description: 'My Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, beating the cruise-ship hours, and the restaurants worth the price.',
-    intro: "[Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that was famous long before Game of Thrones, and it has been managing the cruise-ship crush ever since. The Old Town is tiny, the walls walkable in two hours, the food good. Stay at least two nights so you can have it outside the day-tripper window. Here's how I'd time it.",
+  // --- batch 5 ---
+  'houston': {
+    description: 'My Houston travel guide. RodeoHouston, where to find the Tex-Mex, the Vietnamese, and the crawfish, and the underrated Houston food story.',
+    intro: "[Houston](/cities/houston) is, I'll argue, the most underrated food city in America. It is the most multicultural city in the country, you drive everywhere, and the food is the immigration story: the best Vietnamese in the US, serious Tex-Mex and barbecue, Gulf Coast crawfish. Three or four days, more if it is your gateway to the coast.",
   },
-  'durres': {
-    description: 'My Durres travel guide. The Roman amphitheatre, the long Adriatic beach, getting in from Tirana, where to stay, and where to eat.',
-    intro: "[Durres](/cities/durres) is the beach end of an Albania trip, the country's main seaside town, with one of the biggest Roman amphitheatres in the Balkans sitting right in the middle of it. It is 40 minutes from Tirana, so it is an easy add. Here's how I'd fit it in.",
+  'ipoh': {
+    description: 'My Ipoh travel guide. The colonial old town, the limestone cave temples, the white-coffee-and-bean-sprout-chicken food scene, and where to stay.',
+    intro: "[Ipoh](/cities/ipoh) is the Malaysian food town most people pass straight through between KL and Penang. It is an old tin-mining city in a valley of limestone hills, with a walkable colonial center, cave temples in the cliffs, and food worth the stop. A day or two does it. Here's how I'd use them.",
   },
-  'dusseldorf': {
-    description: 'My Dusseldorf travel guide. The Altstadt and its Altbier brewhouses, the Rhine promenade, the MedienHafen, where to stay, and where to eat.',
-    intro: "[Düsseldorf](/cities/dusseldorf) is a compact old town so packed with bars it is nicknamed the longest bar in the world, where you drink the dark local Altbier, plus a sharp modern side in fashion and design. A day or two covers it. Here's how I'd use the time.",
+  'istanbul': {
+    description: 'My Istanbul travel guide. Hagia Sophia and the old city, the bazaars, a Bosphorus ferry, where to stay, and where to eat.',
+    intro: "[Istanbul](/cities/istanbul) is more city than one trip can hold, 15 million people across two continents, with Roman, Byzantine, and Ottoman history stacked under a fast modern metropolis. Four or five days, and you still won't see all of it. Here's how I'd choose.",
   },
-  'eastbourne': {
-    description: 'My Eastbourne travel guide. The Victorian seafront and pier, the Beachy Head and Seven Sisters cliffs, where to stay, the Towner gallery, and where to eat.',
-    intro: "[Eastbourne](/cities/eastbourne) is a quiet, old-fashioned seaside town on the south coast, and the reason to come is right next door: Beachy Head and the Seven Sisters, the great white chalk cliffs of England. A day does the town, an overnight gets you the cliff walk. Here's how I'd split it.",
+  'izmir': {
+    description: 'My Izmir travel guide. The Kordon waterfront, Konak Square, the Kemeralti bazaar, where to stay, and the day trip to Ephesus.',
+    intro: "[Izmir](/cities/izmir) is the Turkish city Istanbul makes everyone skip, and that is its charm: an easygoing Aegean port built for walking the waterfront, with Ephesus an hour down the road. Two or three unhurried days. Here's how I'd spend them.",
   },
-  'eger': {
-    description: "My Eger travel guide. The two-hour train from Budapest, the siege castle, the Ottoman minaret, and the Bull's Blood cellars of the Valley of the Beautiful Women.",
-    intro: "[Eger](/cities/eger) is the baroque wine town two hours from Budapest, famous in Hungary for a 1552 siege its castle somehow won and famous to everyone else for the red wine poured in the cellars on its edge. A day does the castle and old town. The wine valley is why you stay the night.",
+  'khao-yai': {
+    description: 'My short Khao Yai guide. The drive from Bangkok, the national park entry, the waterfalls, the wineries, and where to base for a day or two.',
+    intro: "[Khao Yai](/cities/khao-yai) is the nature break from Bangkok, the closest real national park to the capital and the easy answer when the heat and traffic start to wear. Three hours by car gets you a vast protected forest and a small wine region that is quietly good. One long day, or two slower ones.",
   },
-  'frankfurt': {
-    description: 'My Frankfurt travel guide. The Book Fair in October, the Museumsuferfest, the apple-wine taverns of Sachsenhausen, and getting in from FRA.',
-    intro: "[Frankfurt](/cities/frankfurt) is the German finance capital most travelers fly into and immediately leave, and that is half right: it is not Berlin or Munich. But it has a better apple-wine-and-traditional-food scene than its reputation, and the Rhine and Moselle valleys are right there. A day or two is enough. Here's what I'd do with it.",
+  'koh-samui': {
+    description: 'My Koh Samui travel guide. Choosing between Chaweng, Lamai, Bophut, and Choeng Mon, the beach clubs, the temples and viewpoints, and what to skip.',
+    intro: "Koh Samui is the Thai island I'd go back to first when I want the trip to be simple. It is not the cheapest or the most off-grid, but it does logistics well: easy airport, good hotels, beach clubs, temples, and enough variety that a week never repeats. Here's how I'd plan it.",
   },
-  'gaudi': {
-    description: "My guide to Antoni Gaudí's architecture in Barcelona. The Sagrada Família, Park Güell, Casa Batlló, La Pedrera, and how to book the ones that sell out.",
-    intro: "Antoni Gaudí shaped the look of [Barcelona](/cities/barcelona) more than anyone, and seven of his buildings now share a single UNESCO listing. This is my Gaudí trail: which works to see, how to book the ones that sell out, and the two that sit outside the city. For the rest of Barcelona, see that guide.",
+  'kota-kinabalu': {
+    description: 'My Kota Kinabalu travel guide. Where to stay, the Tunku Abdul Rahman island park, Kinabalu Park as a day trip, and what to expect from the city.',
+    intro: "[Kota Kinabalu](/cities/kota-kinabalu) is Borneo on the easy setting, the capital of [Sabah](/countries/malaysia), a working Malaysian city facing some of the best sunsets you will see, with an island marine park, a mountain park, and rainforest all within an hour. Here's how I'd use a few days.",
   },
-  'granada': {
-    description: 'My Granada travel guide. Getting in from GRX or driving from Málaga, the Alhambra and the Albayzín, and the free-tapas culture worth the trip.',
-    intro: "[Granada](/cities/granada) is the one Andalusian city I'd never skip. The Alhambra is one of the most spectacular Islamic-era buildings anywhere, the Albayzín is the medieval Moorish quarter facing it, and the whole city still does free tapas with every drink. Two or three days, and here's how I'd spend them.",
+  'kotor': {
+    description: 'My Kotor travel guide. Basing around the bay in Perast or Tivat, the old town, climbing the walls early, and dodging the cruise-ship crowds.',
+    intro: "Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Europe's southernmost fjord, and the walled medieval town at the back of it, overrun by cruise ships from mid-morning to late afternoon. Base out on the bay, see the town outside cruise hours, climb the walls early. Two or three days. Here's the shape.",
   },
-  'gunung-mulu': {
-    description: 'My Gunung Mulu travel guide. Routing in through Kuching or Kota Kinabalu, why the Mulu Marriott is the base, what to book at the park, and the Pinnacles trek.',
-    intro: "[Gunung Mulu National Park](/cities/gunung-mulu) in [Sarawak](/countries/malaysia) sits on one of the world's biggest cave systems, with bat colonies that pour out of Deer Cave every dusk. It is also hard to reach, a tiny airport, a few turboprops a day, no road in, so plan it well ahead. Here's how I'd do it.",
+  'krabi': {
+    description: 'My Krabi travel guide. Getting in from KBV, where to stay in Ao Nang, reaching Railay by longtail, and the Andaman-coast restaurants.',
+    intro: "[Krabi](/cities/krabi) is the gateway to the Andaman coast's limestone-karst country, Phi Phi, Railay, and a string of cliff-backed beaches. Ao Nang is where most people base. Three or four days for the area, more if you are chaining it with Phi Phi or Phuket. Here's how I'd set it up.",
   },
-  'heidelberg': {
-    description: "My Heidelberg travel guide. The castle and the Bergbahn, the Old Town and the Old Bridge, the Philosophers' Walk, where to stay, and where to eat.",
-    intro: "[Heidelberg](/cities/heidelberg) is the castle town that actually lives up to the pictures, a ruined red-sandstone castle on the hill above an intact medieval old town on the Neckar. It is small enough to see in a day and a short train from Frankfurt. Here's how I'd spend it.",
+  'krka': {
+    description: 'My Krka National Park guide. The Skradinski Buk waterfalls, the Skradin and Lozovac entrances, where to stay, and the Sibenik base.',
+    intro: "Krka National Park is the Croatian river park built around a chain of travertine waterfalls, with Skradinski Buk, the wide terraced falls, as the headline. It is an easy day trip from Split or the cathedral city of Šibenik. Go before the tour boats arrive. Here's how I'd time it.",
   },
-  'hilton-head-sc': {
-    description: 'My Hilton Head travel guide. The RBC Heritage golf week in April, the Lowcountry food, the beaches, and pairing it with Savannah.',
-    intro: "[Hilton Head](/cities/hilton-head) is the South Carolina barrier island for a slower week: a wide flat Atlantic beach, pine forest behind it, golf and Lowcountry food carrying the rest. Most people pair it with Savannah, an hour away. Three to five days for a beach trip, more for a real unwind.",
+  'kuala-lumpur': {
+    description: 'My Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay across Bangsar, KLCC, and Bukit Bintang, the Bird Park, and getting in from KLIA.',
+    intro: "[Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.",
   },
-  'ho-chi-minh-city': {
-    description: 'My Ho Chi Minh City travel guide. The Vietnam e-visa, where to stay in District 1, the Saigon craft-beer crawl, and a one-day cultural circuit.',
-    intro: "[Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to the people who live there, is the easiest Vietnam city to plan and the easiest to underestimate. It is hot, motorbike-saturated, and a far better craft-beer town than first-timers expect. The culture fits in a day, the beer is its own evening, and the food is why you come back.",
+  'kusttram-stations': {
+    description: 'My personal guide to the Belgian coast by Kusttram. Where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen.',
+    intro: "[Belgium](/countries/belgium)'s Kusttram is a 67-kilometer tram line running the whole length of the coast, billed as the longest in the world, and it turns the seaside into a low-stakes hop-on, hop-off tour. I wouldn't build a trip around it, but if you are already near the coast it is the easy way to find the beach town that fits. Here's my atlas of the station stops. Check [De Lijn](https://www.delijn.be) for live service.",
   },
 };
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Khao Yai travel guide: the national park, the wineries, and Pak Chong"
 headline: "Khao Yai, the nature break from Bangkok"
-description: "A short Khao Yai travel guide. The 3-hour drive from Bangkok, the national park entry, two waterfalls, two wineries, and where to base if you only have a day."
+description: "My short Khao Yai guide. The drive from Bangkok, the national park entry, the waterfalls, the wineries, and where to base for a day or two."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -56,7 +56,7 @@ topics:
 #   adapted. Personal-trip and date references stripped.
 ---
 
-[Khao Yai](/cities/khao-yai) is the closest real national park to Bangkok and the easy answer when the heat and the traffic of the capital start to weigh. Three hours by car, a 2,168 km² protected area on the southwestern edge of the Khorat Plateau, and a small wine region that has quietly produced some of Southeast Asia's better Chenin Blanc since the early 2000s. The trip works as one long day for a single sight or two slower days for the park plus the wineries.
+[Khao Yai](/cities/khao-yai) is the nature break from Bangkok, the closest real national park to the capital and the easy answer when the heat and traffic start to wear. Three hours by car gets you a vast protected forest and a small wine region that is quietly good. One long day, or two slower ones.
 
 ## On this page
 

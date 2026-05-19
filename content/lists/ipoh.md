@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Ipoh travel guide: the old town, the cave temples, and where to eat"
 headline: "Ipoh is the Malaysian food town between KL and Penang"
-description: "A personal Ipoh travel guide. The colonial old town, the limestone cave temples, the food, where to stay, and where to eat."
+description: "My Ipoh travel guide. The colonial old town, the limestone cave temples, the white-coffee-and-bean-sprout-chicken food scene, and where to stay."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -54,7 +54,7 @@ related:
 #   Lane. None are pinned yet.
 ---
 
-[Ipoh](/cities/ipoh) is the capital of Perak state in Malaysia, a city that grew rich on tin mining and sits in a valley ringed by dramatic limestone hills. It is known above all for its food, alongside a walkable colonial old town and a set of temples cut into the surrounding cliffs. A day or two covers it, and it makes an easy stop between Kuala Lumpur and Penang. This guide covers getting in, where to stay, the old town and the cave temples, and where to eat.
+[Ipoh](/cities/ipoh) is the Malaysian food town most people pass straight through between KL and Penang. It is an old tin-mining city in a valley of limestone hills, with a walkable colonial center, cave temples in the cliffs, and food worth the stop. A day or two does it. Here's how I'd use them.
 
 ## On this page
 

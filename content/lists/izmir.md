@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Izmir travel guide: the Kordon, the bazaar, and where to eat"
 headline: "Izmir is the Turkish city Istanbul makes you skip"
-description: "A personal Izmir travel guide. The Kordon waterfront, Konak Square, the Kemeralti bazaar, where to stay, the day trip to Ephesus, and where to eat."
+description: "My Izmir travel guide. The Kordon waterfront, Konak Square, the Kemeralti bazaar, where to stay, and the day trip to Ephesus."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ related:
 # - No hotel pins exist for Izmir yet, so where-to-stay is prose.
 ---
 
-[Izmir](/cities/izmir) is Turkey's third-largest city, an Aegean port of about 3 million people wrapped around a long bay. It is more relaxed and more modern-feeling than Istanbul, built for walking along the water, and it sits within an hour of Ephesus, one of the best-preserved ancient cities in the Mediterranean. A first visit is two or three days. This guide covers getting in, where to stay, what to see, the Ephesus day trip, and where to eat.
+[Izmir](/cities/izmir) is the Turkish city Istanbul makes everyone skip, and that is its charm: an easygoing Aegean port built for walking the waterfront, with Ephesus an hour down the road. Two or three unhurried days. Here's how I'd spend them.
 
 ## On this page
 

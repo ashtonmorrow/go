@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Belgian coast travel guide: the Kusttram, where to ride, where to eat"
 headline: "Riding the Kusttram down the whole Belgian coast"
-description: "A personal Belgian coast guide. Riding the Kusttram, where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen."
+description: "My personal guide to the Belgian coast by Kusttram. Where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen."
 published: 2026-04-30
 updated: 2026-05-14
 authors:
@@ -37,11 +37,7 @@ topics:
   - beaches
 ---
 
-[Belgium](/countries/belgium)'s Kusttram is a daytrip adventure from [Ghent](/cities/ghent), [Brussels](/cities/brussels), or [Bruges](/cities/bruges) disguised as a public transportation system. It runs for roughly 67 kilometers along the Flemish coast, from [De Panne](/cities/de-panne) near [France](/countries/france) to [Knokke-Heist](/cities/knokke) near the [Dutch](/countries/netherlands) border, linking beach towns, dunes, apartment blocks, promenades, and pockets of Belle Époque stubbornness.
-
-It is often billed as the longest tram line in the world, and I wouldn't build a full Belgium trip around the Kusttram unless you are the kind of person who finds a tram depot fascinating. But if you're in the area already, the reason to ride it is that it turns the Belgian seaside into a low cost, low stakes hop-on, hop-off tour. If you feel one town or beach isn't your vibe, it's simple to cruise further up or down the coast to find a place that feels right.
-
-This is my personal atlas of Kusttram station pins, not an official timetable. The map is meant to help you choose a stretch of coast, then connect it to towns and saved places already in the atlas. Check [De Lijn](https://www.delijn.be) before traveling for current service, works, stop changes, and the small indignities of public transportation.
+[Belgium](/countries/belgium)'s Kusttram is a 67-kilometer tram line running the whole length of the coast, billed as the longest in the world, and it turns the seaside into a low-stakes hop-on, hop-off tour. I wouldn't build a trip around it, but if you are already near the coast it is the easy way to find the beach town that fits. Here's my atlas of the station stops. Check [De Lijn](https://www.delijn.be) for live service.
 
 ## Which section to ride
 

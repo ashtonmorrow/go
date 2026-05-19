@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Krabi travel guide: where to stay in Ao Nang, where to eat, and getting in from KBV"
 headline: "Krabi, the limestone coast and where to base"
-description: "A personal Krabi travel guide. Getting in from Krabi (KBV), where to stay in Ao Nang, and the casual Thai-and-international rotation on the Andaman coast."
+description: "My Krabi travel guide. Getting in from KBV, where to stay in Ao Nang, reaching Railay by longtail, and the Andaman-coast restaurants."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/krabi via the picker.
 ---
 
-[Krabi](/cities/krabi) is the Andaman-coast Thai province that serves as the gateway to Koh Phi Phi, Railay, and the rest of the limestone-karst coast. Ao Nang is the main beach town and where most travelers stay. Krabi Town is the local commercial center 20 km inland. Railay is the cliff-bounded beach peninsula accessible only by longtail boat. Three or four days for the area. Pair with Phi Phi or Phuket for a longer Andaman beach trip.
+[Krabi](/cities/krabi) is the gateway to the Andaman coast's limestone-karst country, Phi Phi, Railay, and a string of cliff-backed beaches. Ao Nang is where most people base. Three or four days for the area, more if you are chaining it with Phi Phi or Phuket. Here's how I'd set it up.
 
 ## On this page
 

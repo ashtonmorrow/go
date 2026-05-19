@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Krka National Park travel guide: the waterfalls, Skradin, and Sibenik"
 headline: "Krka National Park is best before the tour boats arrive"
-description: "A personal Krka National Park guide. The Skradinski Buk waterfalls, the Skradin and Lozovac entrances, where to stay, and the Sibenik base."
+description: "My Krka National Park guide. The Skradinski Buk waterfalls, the Skradin and Lozovac entrances, where to stay, and the Sibenik base."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -66,7 +66,7 @@ related:
 #   in Sibenik, St. Michael's Fortress, Roski Slap, Visovac monastery.
 ---
 
-Krka National Park is a Croatian river park in inland Dalmatia, built around a chain of travertine waterfalls on the Krka River. The headline is Skradinski Buk, the wide terraced falls at the park's southern end, wrapped in a network of wooden boardwalks. The riverside town of Skradin and the UNESCO cathedral city of Šibenik are the two bases, and the park works as an easy day trip from either, or from Split an hour down the coast. This guide covers getting in, the two park entrances, where to stay, the waterfalls, Šibenik, and where to eat.
+Krka National Park is the Croatian river park built around a chain of travertine waterfalls, with Skradinski Buk, the wide terraced falls, as the headline. It is an easy day trip from Split or the cathedral city of Šibenik. Go before the tour boats arrive. Here's how I'd time it.
 
 ## On this page
 

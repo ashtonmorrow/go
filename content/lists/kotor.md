@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Kotor travel guide: where to stay around the bay, the walls climb, and a day in the old town"
 headline: "Kotor, the bay, the walls, and the climb"
-description: "A personal Kotor travel guide. Stay around the bay (Herceg Novi, Tivat), see the old town in a day, climb the walls early, dodge the cruise-ship crowds."
+description: "My Kotor travel guide. Basing around the bay in Perast or Tivat, the old town, climbing the walls early, and dodging the cruise-ship crowds."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -119,7 +119,7 @@ topics:
 #   travelers) per the editorial standard for European destinations.
 ---
 
-Kotor is two things: the **Bay of Kotor** (the long Adriatic inlet often called Europe's southernmost fjord), and the **walled medieval town** at the back of the bay, UNESCO-listed and overrun by cruise ships from 10 a.m. to 4 p.m. in season. Base on the bay (Perast or Tivat), visit the old town outside cruise hours. Two or three days is the right shape: one for the walls, one slow on the water, one for Perast and the islands.
+Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Europe's southernmost fjord, and the walled medieval town at the back of it, overrun by cruise ships from mid-morning to late afternoon. Base out on the bay, see the town outside cruise hours, climb the walls early. Two or three days. Here's the shape.
 
 ## On this page
 

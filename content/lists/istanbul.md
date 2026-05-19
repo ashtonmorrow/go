@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Istanbul travel guide: the old city, the Bosphorus, and where to stay"
 headline: "Istanbul is more city than one trip can hold"
-description: "A personal Istanbul travel guide. Hagia Sophia and the old city, the Bosphorus, the bazaars, where to stay, and where to eat."
+description: "My Istanbul travel guide. Hagia Sophia and the old city, the bazaars, a Bosphorus ferry, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -55,7 +55,7 @@ related:
 #   Basilica Cistern, Galata Tower. None are pinned yet.
 ---
 
-[Istanbul](/cities/istanbul) is Turkey's largest city, a metropolis of more than 15 million people straddling the Bosphorus strait, with one half in Europe and one in Asia. It carries layers of Roman, Byzantine, and Ottoman history under a fast, crowded modern city, and no first trip sees all of it. Four or five days is the shape. This guide covers getting in, where to stay, the old city and the Bosphorus, and where to eat.
+[Istanbul](/cities/istanbul) is more city than one trip can hold, 15 million people across two continents, with Roman, Byzantine, and Ottoman history stacked under a fast modern metropolis. Four or five days, and you still won't see all of it. Here's how I'd choose.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Kota Kinabalu travel guide: Borneo on the easy setting"
 headline: "Kota Kinabalu, Borneo on the easy setting"
-description: "A personal Kota Kinabalu travel guide. Where to stay (Hyatt Regency or the Marriott), how to do Tunku Abdul Rahman Marine Park, Kinabalu Park as a day trip, and what to expect from a predominantly Muslim, conservative coastal city."
+description: "My Kota Kinabalu travel guide. Where to stay, the Tunku Abdul Rahman island park, Kinabalu Park as a day trip, and what to expect from the city."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -45,7 +45,7 @@ topics:
   - day-trips
 ---
 
-[Kota Kinabalu](/cities/kota-kinabalu) is the easy entry into Borneo. It is the capital of [Sabah](/countries/malaysia), sits on the South China Sea, and points west, which is the part the sunset photos do not lie about. The city is a working Malaysian one (bustling markets, halal-led food scene, a call to prayer that wakes anyone staying near a mosque) with three of the region's headline natural sights inside a one-hour drive. The full pin map sits below. This writeup covers the parts of it that change the trip.
+[Kota Kinabalu](/cities/kota-kinabalu) is Borneo on the easy setting, the capital of [Sabah](/countries/malaysia), a working Malaysian city facing some of the best sunsets you will see, with an island marine park, a mountain park, and rainforest all within an hour. Here's how I'd use a few days.
 
 ## On this page
 

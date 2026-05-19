@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Kuala Lumpur travel guide: Thaipusam, Batu Caves, and where to stay"
 headline: "Kuala Lumpur, a gentle first stop in Southeast Asia"
-description: "A personal Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay (Bangsar, KLCC, Bukit Bintang), the Bird Park, and getting in from KLIA."
+description: "My Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay across Bangsar, KLCC, and Bukit Bintang, the Bird Park, and getting in from KLIA."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -44,7 +44,7 @@ topics:
   - scams-safety
 ---
 
-[Kuala Lumpur](/cities/kuala-lumpur) is the easy Southeast Asian capital. The metro covers most of what matters, Grab covers the rest, hotel value is among the best in the region for the quality you get, and the cultural circuit is unusually efficient. Most travelers can see the headline sights in two days and leave wanting more food. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.
+[Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Koh Samui travel guide: which beach, which hotel, how to get there"
 headline: "Koh Samui, the quieter Thai island week"
-description: "A personal Koh Samui travel guide. Chaweng vs Lamai vs Bophut vs Choeng Mon, when to use Bangkok Airways, beach clubs, temples, viewpoints, and what to skip."
+description: "My Koh Samui travel guide. Choosing between Chaweng, Lamai, Bophut, and Choeng Mon, the beach clubs, the temples and viewpoints, and what to skip."
 published: 2026-05-11
 updated: 2026-05-13
 authors:
@@ -53,7 +53,7 @@ topics:
 #   with the rest of the Thai domestic network.
 ---
 
-Koh Samui is the Thai island I would return to first when I want the trip to be simple. It is not the cheapest island, nor the quietest, nor the one to choose if you want to feel off the grid. What it does well is logistics: hotels, airport, food, beach clubs, temples, viewpoints, and enough choice that a week does not have to repeat itself. The full pin map sits below. This writeup covers the parts of it that change the trip.
+Koh Samui is the Thai island I'd go back to first when I want the trip to be simple. It is not the cheapest or the most off-grid, but it does logistics well: easy airport, good hotels, beach clubs, temples, and enough variety that a week never repeats. Here's how I'd plan it.
 
 ## On this page
 
