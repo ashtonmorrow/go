@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Bath travel guide: the Christmas market, the day trip, and Stonehenge"
 headline: "Bath is the easy day trip that deserves an overnight"
-description: "A personal Bath travel guide. The Christmas market window, day-trip vs overnight, Hotel Indigo, the Bathwick Boatman roast, and Stonehenge as the add-on."
+description: "My Bath travel guide. The day trip versus the overnight, where to stay, the riverside walk, the Bathwick Boatman roast, and Stonehenge as the add-on."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -121,9 +121,7 @@ day_trips:
 #   "neighborhood", "favorite".
 ---
 
-Bath is the small Georgian town on the western edge of England that most travelers see in a single day from London. The Roman bath complex (the city's namesake), the medieval abbey, the eighteenth-century townscape, and the river with the weir under the Pulteney Bridge all sit inside an area you can walk across in fifteen minutes. The version of the trip a first visitor takes is the day-trip version, and that is a good trip. The version a second visitor takes, or the visitor who is also doing Stonehenge or is using Bath as a weekend break from London, is an overnight, and that one rewards the stay.
-
-The bathing side of Bath (the Roman Baths museum, the modern Thermae Bath Spa rooftop pool, the Sacred Spring) lives mostly inside the [spa-day cross-list](/lists/spa-day) for this atlas. This writeup is the rest of the trip. Where to stay, where to eat, the long walk along the river, and the Stonehenge add-on.
+Most people see Bath in a single day from London, and it's a good day: the Roman baths, the abbey, and the honey-stone Georgian streets all sit fifteen minutes apart. But it's better with a night. Here's how I'd do both versions. The thermal-spa side lives in my [spa-day list](/lists/spa-day).
 
 ## On this page
 

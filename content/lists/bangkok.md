@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
 headline: "Bangkok gets easier the moment you stop fighting it"
-description: "A personal Bangkok travel guide. Where to stay in Sukhumvit, Silom, or Riverside, the BTS mall walk for jet-lagged days, the river-grouped temple circuit, and Yaowarat at night."
+description: "My Bangkok travel guide. Where to stay in Sukhumvit or Riverside, the BTS mall walk for jet-lagged days, the river temple circuit, and Yaowarat at night."
 published: 2026-05-10
 updated: 2026-05-15
 authors:
@@ -101,9 +101,7 @@ day_trips:
 #   indexable: false until reviewed.
 ---
 
-[Bangkok](/cities/bangkok) is the entry point for most Thailand trips and it deserves a few days even when the beach is the emotional reason for the trip. The mistake is treating Bangkok like a city you can cross casually by car. Traffic eats afternoons, the heat eats ambition, and the parts of the city worth seeing are spread along the river and the BTS lines, not along whatever route a taxi will improvise.
-
-This page is the working version of my Bangkok notes. The country-level version lives in [my Thailand planning guide](/posts/thailand-travel-notes). This one is the closer-in map for the city itself.
+[Bangkok](/cities/bangkok) is where most Thailand trips begin, and it's worth a few days even when a beach is the real reason you came. It works far better once you stop fighting the traffic and move by river and BTS instead. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).
 
 ## On this page
 

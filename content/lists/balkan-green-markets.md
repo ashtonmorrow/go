@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Balkan green markets: where to shop, snack, and look around"
 headline: "A wander through the green markets of the Balkans"
-description: "A working list of green markets from longer Balkan city stays, useful for apartment cooking, morning walks, honey, figs, olive oil, and small food gifts."
+description: "My working list of green markets across the Balkans, saved on long city stays for apartment cooking, honey and figs, and a morning wander."
 published: 2026-05-11
 updated: 2026-05-13
 authors:
@@ -39,9 +39,7 @@ topics:
   - markets
 ---
 
-I started paying attention to green markets because I often stay in apartments for four to eight weeks. Eating every meal out gets old, and in this part of Europe the market is still the quickest way to understand how a city feeds itself. You see who is buying for dinner, what is in season, which stalls are for residents, and which stalls are quietly priced for people passing through.
-
-This is not a ranking of the region's prettiest markets. It is a working list of places I would actually save on a map: some for cooking, some for gifts, some for a short morning walk before the old town fills up. The useful question is not whether a market is authentic. It is whether it still helps you read the city.
+When I'm in a city for weeks at a time, the green market is how I work out how the place actually eats. Here's my running list of the Balkan ones worth saving on a map, some for cooking, some for gifts, some for a slow morning walk.
 
 ## How I use these markets
 

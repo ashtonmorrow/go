@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Annecy travel guide: the old town, the lake, and the markets"
 headline: "Annecy is almost too pretty for its own good"
-description: "A personal Annecy travel guide. The canal-threaded old town, Lake Annecy, the Palais de l'Ile, the markets, where to stay, and where to eat."
+description: "My Annecy travel guide. The canal-threaded old town, swimming in Lake Annecy, the Palais de l’Ile, the markets, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -58,7 +58,7 @@ topics:
 # - No hotel pins exist for Annecy yet, so where-to-stay is prose.
 ---
 
-[Annecy](/cities/annecy) is a town of about 130,000 people in the French Alps, set at the northern tip of Lake Annecy, one of the cleanest lakes in Europe. The old town is threaded by branches of the Thiou canal and overlooked by a hilltop castle, the lake is clean enough to swim in, and the mountains rise straight from the water. A day or two covers it. This guide covers getting in, where to stay, the old town and the lake, the markets, and where to eat.
+[Annecy](/cities/annecy) is the French Alpine town that looks faked: a lake clean enough to swim in, an old town threaded with canals, mountains rising straight out of the water. A day or two is all it takes. Here's what I'd do with the time.
 
 ## On this page
 

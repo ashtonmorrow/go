@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Antwerp travel guide: the cathedral, the station, and where to eat"
 headline: "Antwerp is the Belgian city with the grandest train station in Europe"
-description: "A personal Antwerp travel guide. The Cathedral of Our Lady, the great Central Station, fashion and diamonds, where to stay, and where to eat."
+description: "My Antwerp travel guide. The Cathedral of Our Lady, the showpiece Central Station, the fashion and diamond districts, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -53,7 +53,7 @@ related:
 #   the Rubens House. None are pinned yet.
 ---
 
-[Antwerp](/cities/antwerp) is Belgium's second city, a port of about 530,000 people on the River Scheldt in Flanders. It carries a Rubens-era old city, the center of the global diamond trade, a serious avant-garde fashion reputation, and one of the most beautiful railway stations in the world. A day or two covers it. This guide covers getting in, where to stay, the old city, the fashion and diamond districts, and where to eat.
+[Antwerp](/cities/antwerp) is Belgium's second city and its sharpest, a place of fashion, diamonds, and Rubens with a railway station grand enough to be a sight in itself. A day or two covers it. Here's how I'd use the time.
 
 ## On this page
 

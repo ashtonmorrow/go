@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Alicante tram stops: a station guide for the Costa Blanca coast"
 headline: "Riding the Alicante tram up the Costa Blanca"
-description: "A personal station-pin index for using Alicante as a Costa Blanca tram base, from the city center toward El Campello, Benidorm, and the northern beaches."
+description: "My station-by-station notes for using the Alicante tram as a no-car way up the Costa Blanca, from El Campello to the Benidorm beaches."
 published: 2026-05-06
 updated: 2026-05-13
 authors:
@@ -36,9 +36,7 @@ related:
   country: spain
 ---
 
-[Alicante](/cities/alicante)'s tram is the trick that makes the city feel larger than it is. The center is compact, but the network lets you stay near the old town or Postiguet and still spend a beach day farther up the Costa Blanca without renting a car.
-
-I would use it less as a commuter map and more as a low-pressure coastal tool. [El Campello](/pins/el-campello) is the easy first ride. If you want smaller coves, keep looking north toward [Coveta Fumà](/pins/coveta-fuma) and [Cala Piteres](/pins/cala-piteres). [Benidorm](/pins/benidorm) is the long obvious target, partly because you can transfer there if you want to continue farther up the line.
+The [Alicante](/cities/alicante) tram is what makes a beach day work without a rental car. Here are the stops I'd actually get off at, riding the line up the Costa Blanca from the city toward [El Campello](/pins/el-campello) and [Benidorm](/pins/benidorm).
 
 ## Which stretch to ride
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Ávila travel guide: the medieval walls, Saint Teresa, and the day trip from Madrid"
 headline: "Ávila, the walled city an hour from Madrid"
-description: "A personal Ávila travel guide. The high Castilian city an hour from Madrid, the most complete medieval walls in Spain, Saint Teresa, and where to eat."
+description: "My Ávila travel guide. The most complete medieval walls in Spain, the easy day trip from Madrid, Saint Teresa’s town, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -62,7 +62,7 @@ topics:
 # - Ávila is wired into the Madrid guide's day_trips block.
 ---
 
-[Ávila](/cities/avila) is the walled city of high Castile, set on a rise above the Adaja river an hour and a half from Madrid. Its medieval walls are the most complete in Spain, a near-unbroken 2.5-kilometer circuit of stone and towers that still draws the line of the old city exactly. Inside them is a compact granite town, the birthplace of Saint Teresa, and one of the most legible day trips the capital offers.
+[Ávila](/cities/avila) is the easiest great day trip out of Madrid: a small granite town wrapped in the most complete set of medieval walls in Spain, a stone circuit you can walk the whole way around. Here's what I'd see in a day.
 
 ## On this page
 

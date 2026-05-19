@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Barcelona travel guide: where to stay, where to eat, and a Sitges daytrip"
 headline: "Barcelona, my guide to the Catalan capital"
-description: "A personal Barcelona travel guide. Where to stay (Poblenou over Barri Gòtic), why the city is winding down Airbnb, neighborhood food, and Sitges as a daytrip."
+description: "My Barcelona travel guide. Where to stay (Poblenou over the Gothic Quarter), why the city is ending Airbnb, neighborhood food, and Sitges as a day trip."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -137,7 +137,7 @@ day_trips:
 #   each republish, and update the FAQ if the rules ease.
 ---
 
-[Barcelona](/cities/barcelona) in 2026 is pushing back hard against overtourism. The city is phasing out all 10,000 short-term rental licenses by November 2028 as a housing-affordability measure, and the default first-trip script (Airbnb on La Rambla, dinner in Barri Gòtic) is the version most residents are trying to remove. This guide stays off the tourist spine: Poblenou as a base, eating one block off La Rambla, treating the monuments as day-stops you ride the metro to.
+I love [Barcelona](/cities/barcelona), but in 2026 it's a city pushing back hard on tourism, and the default first-trip script (an Airbnb on La Rambla, dinner in the Gothic Quarter) is exactly the version locals want gone. Here's how I'd do it instead: Poblenou as a base, eating a block off the tourist spine, the big monuments treated as quick metro stops.
 
 ## On this page
 

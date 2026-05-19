@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Athens travel guide: the Acropolis ticket, where to eat in Plaka, and the Cape Sounion day trip"
 headline: "Athens is better than the two days most people give it"
-description: "A personal Athens travel guide. The Acropolis ticket, Plaka tavernas, the National Archaeological Museum, where to stay, and Cape Sounion at sunset."
+description: "My Athens travel guide. Why two days is not enough, booking the Acropolis, Plaka tavernas, the National Archaeological Museum, and Cape Sounion at sunset."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -61,7 +61,7 @@ day_trips:
       summary: The oracle sanctuary on the slopes of Mount Parnassus, with its theater, stadium, and museum. Better as an overnight than a rushed single day.
 ---
 
-[Athens](/cities/athens) is the city most travelers underestimate going in and oversell coming out. Two days is enough to do the headline sights well. Three is the sweet spot once you add a day trip. Four if you want Delphi as an overnight. The metro and walking handle everything central. Pickpockets on the Syntagma-Monastiraki spine and the midday Acropolis queue are the two things to plan around. The full pin map sits below. This writeup covers the parts of it that change the trip.
+Most people give [Athens](/cities/athens) two days and leave underwhelmed, and I think they plan it wrong. Two days does the headline sights, three is the sweet spot, four if you want Delphi as an overnight. Here's how I'd shape it, plus the two things worth planning around.
 
 ## On this page
 

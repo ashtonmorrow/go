@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Alicante travel guide: Hogueras de San Juan, the beaches, and where to eat"
 headline: "I don't understand why more people don't visit Alicante"
-description: "A personal Alicante travel guide. Hogueras de San Juan in June, the beaches by type, Castell de Santa Bàrbara, and how to get there from Madrid by train."
+description: "My case for Alicante, the sunny Costa Blanca city travelers skip. The in-town beach, the hilltop castle, the June bonfire festival, and the train from Madrid."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -61,7 +61,7 @@ topics:
 #   stripped per Mike's standing rule.
 ---
 
-[Alicante](/cities/alicante) is the Spanish Mediterranean city most international travelers do not think about, partly because it is hard to fly to direct and partly because Barcelona and Valencia absorb the headlines. It is worth more than that. The city sits among the sunniest in continental Europe at roughly 2,900 hours a year, with a swimmable beach inside the city itself, a castle on the hill, and an underrated food scene that runs from one-euro tapas to a proper steakhouse dinner.
+[Alicante](/cities/alicante) is the Spanish beach city I keep recommending that almost nobody books. It gets some of the most sunshine in Europe, has a swimmable beach right in the middle of town, a castle on the hill above it, and tapas for a euro. Here's how I'd spend a few days there.
 
 ## On this page
 

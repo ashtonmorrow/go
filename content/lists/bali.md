@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Bali travel guide: which base for which trip, Seminyak vs Canggu vs Ubud"
 headline: "Bali, and which base is actually right for your trip"
-description: "A personal Bali travel guide. Which base suits which trip. Seminyak for the beach clubs, Canggu for the surf and the cafés, Ubud for the inland temples."
+description: "My Bali travel guide. Which base fits which trip, from Seminyak's beach clubs to Canggu's surf to Ubud's inland temples."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -107,9 +107,7 @@ topics:
 #   (Ngurah Rai, Tegallalang, Tegenungan, Tirta Empul).
 ---
 
-Bali is one of the most-photographed islands in the world and also one of the most casually mis-planned, partly because the postcard version (the rice terraces, the Monkey Forest stone steps, the infinity pool over the surf break, the swing on the hillside) lives in three different parts of the island that take real time to move between. The single most useful planning decision is which base or combination of bases matches the trip you actually want. The map below carries the curated pin set. This writeup covers the bases, the rhythm, and how to shape a trip around them.
-
-The current Bali saved list is the May 2026 consolidation of four earlier sub-region lists (bali, canggu, seminyak, ubud) into one. The old slugs continue to resolve via the legacy redirect table. The pins, the curation, and the prose all live under `/lists/bali` now.
+Bali gets mis-planned more than almost anywhere, because the postcard, the rice terraces, the surf breaks, the cliff pools, lives in three different parts of an island that take real time to cross. The one decision that shapes the whole trip is where you base. Here's how I'd pick.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Amsterdam travel guide: King's Day, tulip season, and where to stay"
 headline: "Amsterdam, my guide to the canal city and the day trips out"
-description: "A personal Amsterdam travel guide. King's Day, tulip season at Keukenhof, where to stay in the canal ring or The Hague, the Schiphol train, and Zaanse Schans."
+description: "My Amsterdam travel guide. Walking the canal ring, where to stay, King’s Day and Keukenhof tulip season, the Schiphol train, and day trips like Zaanse Schans."
 published: 2026-05-10
 updated: 2026-05-13
 authors:
@@ -95,7 +95,7 @@ day_trips:
 #   later, the pin would be a generic Hoofddorp area marker.
 ---
 
-[Amsterdam](/cities/amsterdam) is more compact than it looks on a map. The city is shaped like a wheel, with [Amsterdam Centraal](/pins/amsterdam-centraal-station) at the hub and the [seventeenth-century canal ring](/pins/seventeenth-century-canal-ring-area-of-amsterdam-inside-the-singelgracht) radiating out from it. That geometry matters for how you pick a base, where the museums and food sit, and how often you actually walk versus take a tram. The other thing worth knowing up front: the Dutch national rail network is the best in Europe, which makes basing outside the city and riding in a real option, not a compromise.
+[Amsterdam](/cities/amsterdam) is smaller and easier than it looks, a wheel of canals you can mostly cross on foot. The thing I tell every first-timer is that the Dutch trains are so good that basing outside the city and riding in is a real option, not a compromise. Here's how I'd plan it, day trips included.
 
 ## On this page
 
