@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Luang Prabang travel guide: the temples, the falls, and where to eat"
 headline: "Luang Prabang is built for slowing down"
-description: "A personal Luang Prabang travel guide. The old town and temples, Mount Phousi, Kuang Si Falls, the night market, where to stay, and where to eat."
+description: "My Luang Prabang travel guide. The old town and temples, Mount Phousi, Kuang Si Falls, the night market, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ related:
 #   None are pinned yet.
 ---
 
-[Luang Prabang](/cities/luang-prabang) is a small town in northern Laos, set on a peninsula where the Nam Khan river meets the Mekong. Its old town is a UNESCO World Heritage Site, blending gilded Lao Buddhist temples with French colonial shophouses, and the whole place runs at a deliberately slow pace. A first visit is three or four days. This guide covers getting in, where to stay, the old town and temples, Kuang Si Falls, and where to eat.
+[Luang Prabang](/cities/luang-prabang) is the small Lao town on a peninsula between two rivers, a UNESCO old town of gilded temples and French colonial shophouses that runs at a deliberately slow pace. Three or four days, and you will want to slow down to match it. Here's how I'd spend them.
 
 ## On this page
 

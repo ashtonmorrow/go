@@ -3,7 +3,7 @@ indexable: true
 featured: true
 title: "Madrid travel guide: things to do, where to stay, and what to skip"
 headline: "Madrid, the Spanish capital that gets underrated"
-description: "A personal Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset."
+description: "My Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset."
 published: 2026-05-10
 updated: 2026-05-10
 authors:
@@ -79,7 +79,7 @@ day_trips:
 #   Prado pin is created later, swap the link.
 ---
 
-[Madrid](/cities/madrid) is one of those cities I find easy to recommend and easy to mis-plan. The neighborhoods are close together, the food rewards walking, and the public transport works the way you want it to. The trip falls apart when you stay in the wrong base, treat the famous market as a meal, or assume you can walk up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday.
+[Madrid](/cities/madrid) is easy to recommend and easy to mis-plan. The neighborhoods sit close together, the food rewards walking, and the transport works the way you want it to. Where people go wrong is the base, the famous market they treat as a meal, and walking up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday. Here's how I'd get it right.
 
 ## On this page
 

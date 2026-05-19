@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Larnaca travel guide: where to eat, the Finikoudes promenade, and getting in from LCA"
 headline: "Larnaca, the low-key way into Cyprus"
-description: "A personal Larnaca travel guide. Getting in from LCA (the gateway airport for Cyprus), where to stay near Finikoudes, and the kebab-and-Mediterranean rotation."
+description: "My Larnaca travel guide. Getting in from LCA, the gateway airport for Cyprus, where to stay near Finikoudes, and the kebab-and-taverna food."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Larnaca](/cities/larnaca) is the small Cypriot port city that most visitors pass through on their way to the larger Limassol or to Ayia Napa, and that rewards staying. The Finikoudes seafront promenade, the medieval Larnaca Castle, the Hala Sultan Tekke mosque on the salt lake, and the casual taverna scene at fair prices make it a calmer base than the bigger resort towns. Two or three days for the city. Pair with Nicosia and the Troodos mountains for a longer Cyprus trip.
+[Larnaca](/cities/larnaca) is the small Cypriot port most visitors pass straight through, on their way to Limassol or Ayia Napa, and it rewards staying instead. A seafront promenade, a medieval castle, a mosque on a salt lake, and good cheap tavernas make it a calmer base than the resort towns. Two or three days. Here's how I'd use them.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Málaga travel guide: the beaches, the Picasso museum, and getting in from AGP"
 headline: "Málaga is more than the Costa del Sol's airport"
-description: "A personal Málaga travel guide. Getting in from AGP, the Costa del Sol shape, the Picasso museum, and a casual Andalusian food rotation through the city."
+description: "My Málaga travel guide. Getting in from AGP, the Costa del Sol shape, the Picasso museum, the Alcazaba, and a casual Andalusian food rotation."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/malaga via the picker.
 ---
 
-[Málaga](/cities/malaga) is the southern Spanish coastal city that has been reading better year after year. The old town is small, walkable, dense with tapas bars. The city beaches are right there (Playa de la Malagueta is the urban one). The Picasso Museum is the headline cultural stop (Málaga was his birthplace). The Alcazaba and the Gibralfaro castle anchor the medieval Moorish-and-medieval-Spanish layer. Two or three days for the city. Longer if you are pairing with the Costa del Sol resort towns (Marbella, Estepona) or the white villages inland.
+[Málaga](/cities/malaga) keeps reading better year after year, a small, walkable Andalusian old town dense with tapas bars, city beaches right there, a Moorish fortress on the hill, and the Picasso museum in the painter's birthplace. Two or three days for the city, more with the Costa del Sol. Here's how I'd plan it.
 
 ## On this page
 

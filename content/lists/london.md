@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "London travel guide: where to stay, the Bankside walk, and the markets to eat at"
 headline: "London, the version of it I would actually plan"
-description: "A personal London travel guide. Where to stay (Canary Wharf, Tower Hill, Liverpool Street, Kensington), the Bankside walk, the markets actually worth eating at, and Sky Garden over the London Eye."
+description: "My London travel guide. Where to stay across Canary Wharf, Tower Hill, and Kensington, the Bankside walk, the markets worth eating at, and the Sky Garden."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -90,7 +90,7 @@ day_trips:
 #   names and trip dates stripped per Mike's standing rule.
 ---
 
-[London](/cities/london) is the easiest world city to plan and the easiest one to overspend on. The transport is the best part of the trip, the markets are the best place to eat, and most of the famous sights are walkable in two long days. The trap is staying somewhere expensive that you do not need and paying for the views you can see for free.
+[London](/cities/london) is the easiest world city to plan and the easiest to overspend on. The transport is the best part of the trip, the markets are the best places to eat, and most of the famous sights are walkable in two long days. Where people overspend is an expensive base they don't need and views they could see for free. Here's how I'd do it.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Lima travel guide: where to stay, the food, and the historic center"
 headline: "Lima is one of the world's great food cities"
-description: "A personal Lima travel guide. Where to stay in Miraflores and Barranco, the ceviche and Nikkei food scene, the historic center, the Larco Museum, and the markets."
+description: "My Lima travel guide. Where to stay in Miraflores and Barranco, the ceviche and Nikkei food scene, the historic center, the Larco Museum, and the markets."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -60,7 +60,7 @@ topics:
 # - No hotel pins exist for Lima yet, so where-to-stay is prose.
 ---
 
-[Lima](/cities/lima) is the capital of Peru, a city of about 10 million people on the Pacific coast, built along desert cliffs above the ocean. Most travelers pass through Lima on the way to Cusco and Machu Picchu and give it a single night, which sells it short. It is one of the best eating cities in the world and worth two or three days of its own. This guide covers getting in, where to stay, the historic center and the neighborhoods, the museums and markets, and where to eat.
+[Lima](/cities/lima) gets a single night from most travelers, a layover on the way to Cusco, and that sells it badly short. It is one of the best eating cities in the world, strung along desert cliffs over the Pacific. Give it two or three days. Here's how I'd spend them.
 
 ## On this page
 

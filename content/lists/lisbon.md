@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Lisbon travel guide: where to eat, the trams, and getting in from LIS"
 headline: "Lisbon, my guide to the city of seven hills"
-description: "A personal Lisbon travel guide. Getting in from Humberto Delgado airport on the metro, where to stay near the center, and a casual food rotation through the tascas."
+description: "My Lisbon travel guide. Getting in from Humberto Delgado on the metro, where to stay near the center, the tascas, and the side trips to Sintra and Cascais."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -51,7 +51,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Lisbon](/cities/lisbon) is the Atlantic capital that has been climbing the must-visit lists for the last decade for reasons that hold up on arrival: the light, the trams, the food, the affordable hotels in a Western European country, the seven hills that make every corner of the center a viewpoint. A long weekend covers the headline experiences. A week unlocks the side trips to Sintra, Cascais, and Setúbal.
+[Lisbon](/cities/lisbon) has been on every must-visit list for a decade, and the reasons hold up on arrival: the light, the trams, the food, hotels you can afford, and seven hills that turn every corner into a viewpoint. A long weekend gets the headlines, a week unlocks Sintra and Cascais. Here's how I'd plan it.
 
 ## On this page
 

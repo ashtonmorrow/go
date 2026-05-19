@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Malta travel guide: where to base in St Julian's, day trips by ferry, what to actually do"
 headline: "Malta, a whole country you can cross in an hour"
-description: "A personal Malta travel guide. The St Julian's hotel strip, walking to Valletta, Gozo by ferry, rabbit and tourist food, plus the high/low season tradeoff."
+description: "My Malta travel guide. The St Julian’s hotel strip, walking Valletta, Gozo by ferry, rabbit and where to eat, and the high-versus-low season tradeoff."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -122,11 +122,7 @@ topics:
 #       cover the ruin/swim spot)
 ---
 
-Malta is the smallest country in the European Union (and one of the smallest in the world), which is the planning fact everything else depends on. The whole archipelago is 27 km long and 14 km across at its widest. You can drive between two random points in under an hour, you can ferry to the second-largest island ([Gozo](/pins/cirkewwa-ferry-terminal)) in 25 minutes, and you can stand on a hotel balcony in [St Julian's](/pins/hyatt-regency-malta) and see the walls of [Valletta](/pins/valletta) across the harbor. One place to stay, and a series of buses, ferries, and short walks to everything else.
-
-Three or four nights covers it. Hotel on the St Julian's strip. Valletta on a walking afternoon, the Three Cities on another, a ferry day to Gozo, a swim at Comino on a third, and a meal that includes rabbit at least once.
-
-Malta is small enough that you do not need to optimise the trip. A long lunch on a marina followed by a slow walk through Valletta is the version of the day most travelers come away talking about.
+Malta is the smallest country in the EU, and that is the planning fact everything depends on: 27 km long, a single base covers it. Stay on the St Julian's strip, then ferry, bus, and walk to [Valletta](/pins/valletta), the Three Cities, Gozo, and a swim at Comino. Three or four nights, and a meal with rabbit at least once.
 
 ## On this page
 

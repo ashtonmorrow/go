@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Liverpool travel guide: the waterfront, the Beatles, and where to eat"
 headline: "Liverpool surprises people who only came for the Beatles"
-description: "A personal Liverpool travel guide. The Albert Dock and waterfront, the Beatles sites, where to stay, the two cathedrals, and the city's food and bar scene."
+description: "My Liverpool travel guide. The Albert Dock waterfront, the Beatles sites, where to stay, the two cathedrals, and the food and bar scene."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -68,7 +68,7 @@ topics:
 # - No hotel pins exist for Liverpool yet, so where-to-stay is prose.
 ---
 
-[Liverpool](/cities/liverpool) is a port city on the River Mersey in northwest England, a place with more going for it than its tourist reputation lets on. The center is compact and walkable, the waterfront is one of the best in Britain, and the city carries a serious food and bar scene on top of the Beatles industry it is known for. A first visit is two days, three if you want a football match or a slower pace. This guide covers getting in, where to stay, the waterfront, the Beatles, the two cathedrals, and where to eat and drink.
+[Liverpool](/cities/liverpool) has more going for it than its tourist reputation lets on, a compact, walkable port city with one of Britain's best waterfronts and a real food-and-bar scene under the Beatles industry. Two days, three if you want a football match. Here's how I'd do it.
 
 ## On this page
 

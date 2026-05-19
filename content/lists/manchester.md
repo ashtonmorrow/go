@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Manchester travel guide: where to eat, the Northern Quarter, and getting in from MAN"
 headline: "Manchester, the northern city that reinvented itself"
-description: "A personal Manchester travel guide. Getting in from MAN, where to stay near Northern Quarter, the curry mile, and the modern Manc restaurant rotation."
+description: "My Manchester travel guide. Getting in from MAN, where to stay near the Northern Quarter, the curry mile, and the modern Manc restaurant scene."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/manchester via the picker.
 ---
 
-[Manchester](/cities/manchester) is the northern English industrial-revolution city that has been reinventing itself fast since the 2000s. The Northern Quarter is the small post-industrial neighborhood the new restaurant and bar scene runs on. Spinningfields and Deansgate are the modern business center. The curry mile in Rusholme is the South Asian food cluster the city is justly famous for. Pair the trip with a Manchester United match or a Liverpool day-trip for a longer week. Two or three days for the city.
+[Manchester](/cities/manchester) is the northern English industrial city that has been reinventing itself fast since the 2000s. The Northern Quarter carries the new bar-and-restaurant scene, Rusholme's curry mile carries the food it is famous for, and a United match or a Liverpool day trip stretches it to a week. Two or three days otherwise.
 
 ## On this page
 

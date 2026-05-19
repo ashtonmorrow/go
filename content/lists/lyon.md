@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Lyon travel guide: Fête des Lumières, the bouchons, and getting in from LYS"
 headline: "Lyon, France's quiet food capital"
-description: "A personal Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in Roman theaters, the bouchons, and getting in from LYS."
+description: "My Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in the Roman theaters, the bouchons, and getting in from LYS."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Lyon](/cities/lyon) is the French city that takes its claim to be the food capital of France seriously. The bouchon (a small, casual, Lyon-specific restaurant side) is the local form. The city sits on the confluence of the Rhône and Saône, the old town (Vieux Lyon) is UNESCO-listed, and the modern Confluence neighborhood gives the south end a different rhythm. Two or three days for the city. Longer if you are pairing with the Beaujolais wine villages or the southern Rhône.
+[Lyon](/cities/lyon) takes its claim to be the food capital of France seriously, and the bouchon, the small casual Lyonnais restaurant, is the local proof. Add a UNESCO old town between two rivers and you have an easy two or three days. Here's how I'd eat my way through it.
 
 ## On this page
 

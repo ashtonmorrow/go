@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Marrakech travel guide: the medina, the souks, and Jemaa el-Fnaa"
 headline: "Marrakech is overwhelming, and that is the trip"
-description: "A personal Marrakech travel guide. Where to stay in a riad, the medina and souks, Jemaa el-Fnaa, the palaces and gardens, and the faux-guide scams."
+description: "My Marrakech travel guide. Where to stay in a riad, the medina and souks, Jemaa el-Fnaa, the palaces and gardens, and the faux-guide scams."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -81,7 +81,7 @@ day_trips:
 # - No hotel/riad pins exist for Marrakech yet, so where-to-stay is prose.
 ---
 
-[Marrakech](/cities/marrakesh) is a Moroccan city of about a million people at the foot of the High Atlas, built around a walled medieval medina that is a UNESCO World Heritage site. The part you came for sits inside those walls: the souks, the central square at Jemaa el-Fnaa, the palaces, and the riads tucked down lanes too narrow for a car. A first trip is three or four days, most of them in the old city, with one day saved for the mountains or the coast. This guide covers getting in, where to stay, the medina, the palaces and gardens, where to eat, the scams to expect, and the trips out of the city.
+[Marrakech](/cities/marrakesh) is a Moroccan city at the foot of the High Atlas, and the part you came for is all inside the walls of the medieval medina: the souks, Jemaa el-Fnaa, the palaces, the riads down car-free lanes. Three or four days, one saved for the mountains. Here's how I'd handle it, scams included.
 
 ## On this page
 

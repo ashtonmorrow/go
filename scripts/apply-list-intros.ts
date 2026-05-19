@@ -8,54 +8,54 @@ import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 5 ---
-  'houston': {
-    description: 'My Houston travel guide. RodeoHouston, where to find the Tex-Mex, the Vietnamese, and the crawfish, and the underrated Houston food story.',
-    intro: "[Houston](/cities/houston) is, I'll argue, the most underrated food city in America. It is the most multicultural city in the country, you drive everywhere, and the food is the immigration story: the best Vietnamese in the US, serious Tex-Mex and barbecue, Gulf Coast crawfish. Three or four days, more if it is your gateway to the coast.",
+  // --- batch 6 ---
+  'larnaca': {
+    description: 'My Larnaca travel guide. Getting in from LCA, the gateway airport for Cyprus, where to stay near Finikoudes, and the kebab-and-taverna food.',
+    intro: "[Larnaca](/cities/larnaca) is the small Cypriot port most visitors pass straight through, on their way to Limassol or Ayia Napa, and it rewards staying instead. A seafront promenade, a medieval castle, a mosque on a salt lake, and good cheap tavernas make it a calmer base than the resort towns. Two or three days. Here's how I'd use them.",
   },
-  'ipoh': {
-    description: 'My Ipoh travel guide. The colonial old town, the limestone cave temples, the white-coffee-and-bean-sprout-chicken food scene, and where to stay.',
-    intro: "[Ipoh](/cities/ipoh) is the Malaysian food town most people pass straight through between KL and Penang. It is an old tin-mining city in a valley of limestone hills, with a walkable colonial center, cave temples in the cliffs, and food worth the stop. A day or two does it. Here's how I'd use them.",
+  'lima': {
+    description: 'My Lima travel guide. Where to stay in Miraflores and Barranco, the ceviche and Nikkei food scene, the historic center, the Larco Museum, and the markets.',
+    intro: "[Lima](/cities/lima) gets a single night from most travelers, a layover on the way to Cusco, and that sells it badly short. It is one of the best eating cities in the world, strung along desert cliffs over the Pacific. Give it two or three days. Here's how I'd spend them.",
   },
-  'istanbul': {
-    description: 'My Istanbul travel guide. Hagia Sophia and the old city, the bazaars, a Bosphorus ferry, where to stay, and where to eat.',
-    intro: "[Istanbul](/cities/istanbul) is more city than one trip can hold, 15 million people across two continents, with Roman, Byzantine, and Ottoman history stacked under a fast modern metropolis. Four or five days, and you still won't see all of it. Here's how I'd choose.",
+  'lisbon': {
+    description: 'My Lisbon travel guide. Getting in from Humberto Delgado on the metro, where to stay near the center, the tascas, and the side trips to Sintra and Cascais.',
+    intro: "[Lisbon](/cities/lisbon) has been on every must-visit list for a decade, and the reasons hold up on arrival: the light, the trams, the food, hotels you can afford, and seven hills that turn every corner into a viewpoint. A long weekend gets the headlines, a week unlocks Sintra and Cascais. Here's how I'd plan it.",
   },
-  'izmir': {
-    description: 'My Izmir travel guide. The Kordon waterfront, Konak Square, the Kemeralti bazaar, where to stay, and the day trip to Ephesus.',
-    intro: "[Izmir](/cities/izmir) is the Turkish city Istanbul makes everyone skip, and that is its charm: an easygoing Aegean port built for walking the waterfront, with Ephesus an hour down the road. Two or three unhurried days. Here's how I'd spend them.",
+  'liverpool': {
+    description: "My Liverpool travel guide. The Albert Dock waterfront, the Beatles sites, where to stay, the two cathedrals, and the food and bar scene.",
+    intro: "[Liverpool](/cities/liverpool) has more going for it than its tourist reputation lets on, a compact, walkable port city with one of Britain's best waterfronts and a real food-and-bar scene under the Beatles industry. Two days, three if you want a football match. Here's how I'd do it.",
   },
-  'khao-yai': {
-    description: 'My short Khao Yai guide. The drive from Bangkok, the national park entry, the waterfalls, the wineries, and where to base for a day or two.',
-    intro: "[Khao Yai](/cities/khao-yai) is the nature break from Bangkok, the closest real national park to the capital and the easy answer when the heat and traffic start to wear. Three hours by car gets you a vast protected forest and a small wine region that is quietly good. One long day, or two slower ones.",
+  'london': {
+    description: 'My London travel guide. Where to stay across Canary Wharf, Tower Hill, and Kensington, the Bankside walk, the markets worth eating at, and the Sky Garden.',
+    intro: "[London](/cities/london) is the easiest world city to plan and the easiest to overspend on. The transport is the best part of the trip, the markets are the best places to eat, and most of the famous sights are walkable in two long days. Where people overspend is an expensive base they don't need and views they could see for free. Here's how I'd do it.",
   },
-  'koh-samui': {
-    description: 'My Koh Samui travel guide. Choosing between Chaweng, Lamai, Bophut, and Choeng Mon, the beach clubs, the temples and viewpoints, and what to skip.',
-    intro: "Koh Samui is the Thai island I'd go back to first when I want the trip to be simple. It is not the cheapest or the most off-grid, but it does logistics well: easy airport, good hotels, beach clubs, temples, and enough variety that a week never repeats. Here's how I'd plan it.",
+  'lpq': {
+    description: 'My Luang Prabang travel guide. The old town and temples, Mount Phousi, Kuang Si Falls, the night market, where to stay, and where to eat.',
+    intro: "[Luang Prabang](/cities/luang-prabang) is the small Lao town on a peninsula between two rivers, a UNESCO old town of gilded temples and French colonial shophouses that runs at a deliberately slow pace. Three or four days, and you will want to slow down to match it. Here's how I'd spend them.",
   },
-  'kota-kinabalu': {
-    description: 'My Kota Kinabalu travel guide. Where to stay, the Tunku Abdul Rahman island park, Kinabalu Park as a day trip, and what to expect from the city.',
-    intro: "[Kota Kinabalu](/cities/kota-kinabalu) is Borneo on the easy setting, the capital of [Sabah](/countries/malaysia), a working Malaysian city facing some of the best sunsets you will see, with an island marine park, a mountain park, and rainforest all within an hour. Here's how I'd use a few days.",
+  'lyon': {
+    description: 'My Lyon travel guide. Fête des Lumières in December, Nuits de Fourvière in the Roman theaters, the bouchons, and getting in from LYS.',
+    intro: "[Lyon](/cities/lyon) takes its claim to be the food capital of France seriously, and the bouchon, the small casual Lyonnais restaurant, is the local proof. Add a UNESCO old town between two rivers and you have an easy two or three days. Here's how I'd eat my way through it.",
   },
-  'kotor': {
-    description: 'My Kotor travel guide. Basing around the bay in Perast or Tivat, the old town, climbing the walls early, and dodging the cruise-ship crowds.',
-    intro: "Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Europe's southernmost fjord, and the walled medieval town at the back of it, overrun by cruise ships from mid-morning to late afternoon. Base out on the bay, see the town outside cruise hours, climb the walls early. Two or three days. Here's the shape.",
+  'madrid': {
+    description: 'My Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset.',
+    intro: "[Madrid](/cities/madrid) is easy to recommend and easy to mis-plan. The neighborhoods sit close together, the food rewards walking, and the transport works the way you want it to. Where people go wrong is the base, the famous market they treat as a meal, and walking up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday. Here's how I'd get it right.",
   },
-  'krabi': {
-    description: 'My Krabi travel guide. Getting in from KBV, where to stay in Ao Nang, reaching Railay by longtail, and the Andaman-coast restaurants.',
-    intro: "[Krabi](/cities/krabi) is the gateway to the Andaman coast's limestone-karst country, Phi Phi, Railay, and a string of cliff-backed beaches. Ao Nang is where most people base. Three or four days for the area, more if you are chaining it with Phi Phi or Phuket. Here's how I'd set it up.",
+  'malaga': {
+    description: 'My Málaga travel guide. Getting in from AGP, the Costa del Sol shape, the Picasso museum, the Alcazaba, and a casual Andalusian food rotation.',
+    intro: "[Málaga](/cities/malaga) keeps reading better year after year, a small, walkable Andalusian old town dense with tapas bars, city beaches right there, a Moorish fortress on the hill, and the Picasso museum in the painter's birthplace. Two or three days for the city, more with the Costa del Sol. Here's how I'd plan it.",
   },
-  'krka': {
-    description: 'My Krka National Park guide. The Skradinski Buk waterfalls, the Skradin and Lozovac entrances, where to stay, and the Sibenik base.',
-    intro: "Krka National Park is the Croatian river park built around a chain of travertine waterfalls, with Skradinski Buk, the wide terraced falls, as the headline. It is an easy day trip from Split or the cathedral city of Šibenik. Go before the tour boats arrive. Here's how I'd time it.",
+  'malta': {
+    description: 'My Malta travel guide. The St Julian’s hotel strip, walking Valletta, Gozo by ferry, rabbit and where to eat, and the high-versus-low season tradeoff.',
+    intro: "Malta is the smallest country in the EU, and that is the planning fact everything depends on: 27 km long, a single base covers it. Stay on the St Julian's strip, then ferry, bus, and walk to [Valletta](/pins/valletta), the Three Cities, Gozo, and a swim at Comino. Three or four nights, and a meal with rabbit at least once.",
   },
-  'kuala-lumpur': {
-    description: 'My Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay across Bangsar, KLCC, and Bukit Bintang, the Bird Park, and getting in from KLIA.',
-    intro: "[Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.",
+  'manchester': {
+    description: 'My Manchester travel guide. Getting in from MAN, where to stay near the Northern Quarter, the curry mile, and the modern Manc restaurant scene.',
+    intro: "[Manchester](/cities/manchester) is the northern English industrial city that has been reinventing itself fast since the 2000s. The Northern Quarter carries the new bar-and-restaurant scene, Rusholme's curry mile carries the food it is famous for, and a United match or a Liverpool day trip stretches it to a week. Two or three days otherwise.",
   },
-  'kusttram-stations': {
-    description: 'My personal guide to the Belgian coast by Kusttram. Where to stop, where to eat in Oostende, the Mercator ship, and the Oostduinkerke shrimp fishermen.',
-    intro: "[Belgium](/countries/belgium)'s Kusttram is a 67-kilometer tram line running the whole length of the coast, billed as the longest in the world, and it turns the seaside into a low-stakes hop-on, hop-off tour. I wouldn't build a trip around it, but if you are already near the coast it is the easy way to find the beach town that fits. Here's my atlas of the station stops. Check [De Lijn](https://www.delijn.be) for live service.",
+  'marrakech': {
+    description: 'My Marrakech travel guide. Where to stay in a riad, the medina and souks, Jemaa el-Fnaa, the palaces and gardens, and the faux-guide scams.',
+    intro: "[Marrakech](/cities/marrakesh) is a Moroccan city at the foot of the High Atlas, and the part you came for is all inside the walls of the medieval medina: the souks, Jemaa el-Fnaa, the palaces, the riads down car-free lanes. Three or four days, one saved for the mountains. Here's how I'd handle it, scams included.",
   },
 };
 
