@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Tbilisi travel guide: getting in, where to stay, what to eat, three days in Georgia"
 headline: "Tbilisi might be my favorite city you haven't been to"
-description: "A personal Tbilisi travel guide. Uber from the airport, where to stay, khinkali, qvevri amber wine, cable car views, sulfur baths, and the right markets."
+description: "My Tbilisi travel guide. The Uber from the airport, where to stay, khinkali and qvevri amber wine, the cable car, the sulfur baths, and the markets."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -130,9 +130,7 @@ topics:
 #   Italicising in the body is intentional first-mention.
 ---
 
-Tbilisi is one of the cheapest, most underrated European-style city trips an American can take. Cheap flights are scarce (a layover from anywhere west), but once you're there the food is excellent, the wine tradition is 8,000 years old and unlike anything in a European wine bar, and the architecture flips between Parisian, Soviet, and Ottoman block by block. Three days for the city. A week if you're adding Kakheti wine country or driving north into the Caucasus.
-
-Three days covers the city: Uber in from the airport, a hotel in the center, the cable car and the sulfur baths on one afternoon, a slow evening of khinkali and amber wine on each of the three. The map and pin set sit below.
+Tbilisi might be my favorite city you have not been to: cheap once you are there, food that is excellent, an 8,000-year-old wine tradition unlike anything in a European wine bar, and architecture that flips between Parisian, Soviet, and Ottoman block by block. Three days for the city, a week with the Kakheti wine country. Here's how I'd spend it.
 
 ## On this page
 

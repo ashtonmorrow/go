@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Tokyo travel guide: cherry blossom, where to stay, and the famous sights"
 headline: "Tokyo, the world's largest city, three wards at a time"
-description: "A personal Tokyo travel guide. Cherry blossom season, where to stay by trip type, the wards by train, how to book Ghibli and teamLab, and the sushi rotation."
+description: "My Tokyo travel guide. Cherry blossom season, where to stay by trip type, the wards by train, booking Ghibli and teamLab, and the sushi rotation."
 published: 2026-05-12
 updated: 2026-05-14
 authors:
@@ -58,7 +58,7 @@ day_trips:
 # - indexable: false until Mike reviews and a hero image is picked.
 ---
 
-[Tokyo](/cities/tokyo) is the largest metropolitan area in the world by most measures (~37 million people) and reads exactly that big once you arrive. The trip is not "seeing Tokyo" so much as picking three or four wards and going deep on each. The food is the canonical reason. Sushi, ramen, izakaya, the seven-eleven sandwich that out-performs most café lunches in Europe. A week is the minimum. Longer for the day trips out to Hakone, Kamakura, and Nikko.
+[Tokyo](/cities/tokyo) is the largest metro area in the world, and it reads exactly that big the moment you land. The trip is not seeing Tokyo so much as picking three or four wards and going deep on each. The food is the canonical reason. A week is the minimum. Here's how I'd plan it.
 
 ## On this page
 

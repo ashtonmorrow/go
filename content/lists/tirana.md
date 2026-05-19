@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Tirana travel guide: where to eat, the Bunkers, and getting in from TIA"
 headline: "Tirana, the Balkan capital changing the fastest"
-description: "A personal Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the modern Albanian-fusion restaurant rotation worth the trip."
+description: "My Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the communist-era legacy, and the modern Albanian-fusion restaurants."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Tirana](/cities/tirana) is the Albanian capital that climbed onto the European travel radar fast after a long isolation. Brutally cheap by Western European standards, generous portions, the cafe-and-rooftop culture that runs late, and the legacy of the Hoxha-era bunker network is still legible in the city. Two or three days for the city. The bigger Albanian trip pairs it with Saranda + Ksamil on the south coast (covered separately at [/lists/saranda-_-ksamil](/lists/saranda-_-ksamil)).
+[Tirana](/cities/tirana) is the Albanian capital that climbed onto the travel radar fast after decades of isolation. It is brutally cheap, the portions are generous, the cafe-and-rooftop culture runs late, and the Hoxha-era bunkers are still legible across the city. Two or three days, paired with the Saranda and Ksamil coast for the wider trip.
 
 ## On this page
 

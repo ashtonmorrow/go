@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "36 hours in The Hague: a practical guide to Den Haag's museums, palaces, and coast"
 headline: "The Hague, the easy alternative to Amsterdam"
-description: "A 36-hour Hague travel guide. Mauritshuis Vermeer, Escher in het Paleis, the Peace Palace, Madurodam, Scheveningen, and The Hague as a cheap base for Amsterdam."
+description: "My Hague travel guide. The Mauritshuis Vermeer, Escher in het Paleis, the Peace Palace, Madurodam, Scheveningen, and The Hague as a cheap base for Amsterdam."
 published: 2026-05-12
 updated: 2026-05-15
 authors:
@@ -82,11 +82,7 @@ topics:
 #   and [hook C]". Consider for the v2 pass.
 ---
 
-[The Hague](/cities/the-hague) is the city most travelers to the Netherlands plan in 24 hours rather than 24 days, which is roughly the right ratio. It is the seat of the Dutch government, the home of the International Court of Justice, and the address of two world-class museums. It is also calmer, cheaper, and easier to walk than [Amsterdam](/cities/amsterdam), with a real beach 15 minutes away by tram. Most Amsterdam-week itineraries skip it. The ones that do not usually end up wishing they had given it the longer half.
-
-The bigger pitch: **hotel rooms in The Hague run roughly 30 to 50 percent cheaper than comparable rooms in Amsterdam**, and Amsterdam is 50 minutes away by train. If you are basing a Netherlands week somewhere, basing here and commuting in is the deal almost nobody takes.
-
-This page is the version I would send a friend who asked how to spend 36 hours in The Hague, or who wanted to base outside Amsterdam without losing the Amsterdam side of the trip.
+[The Hague](/cities/the-hague) is the Dutch city most Netherlands itineraries skip, and the ones that do not usually wish they had given it longer. It is calmer, cheaper, and more walkable than [Amsterdam](/cities/amsterdam), with two world-class museums and a real beach 15 minutes away by tram. Rooms run far cheaper than Amsterdam's, 50 minutes up the line. Here's how I'd use it, as a 36-hour visit or a whole base.
 
 ## On this page
 

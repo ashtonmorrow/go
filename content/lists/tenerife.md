@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Tenerife travel guide: Carnival, Mount Teide, and the beaches"
 headline: "Tenerife, the volcano and its two very different coasts"
-description: "A personal Tenerife travel guide. Carnival in Santa Cruz, Mount Teide, La Orotava sand carpets, the beaches, and getting in from TFS or TFN."
+description: "My Tenerife travel guide. Carnival in Santa Cruz, Mount Teide, the La Orotava sand carpets, the beaches, and getting in from TFS or TFN."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/tenerife via the picker.
 ---
 
-[Tenerife](/cities/tenerife) is the largest of the Canary Islands and the volcanic Atlantic destination that the rest of Europe winters in. The southern coast (Costa Adeje, Los Cristianos, Playa de las Américas) is the resort-and-beach version. The northern coast (Puerto de la Cruz, La Orotava, the laurisilva forests) is the cooler, greener, traditional-villages side. Mount Teide (3,715 m, the highest peak in Spain) is the center. The two ends of the island are different trips. Pick the south for the beach and the north for the slower visit. Four to seven days. Longer for a winter escape.
+[Tenerife](/cities/tenerife) is the biggest of the Canary Islands and the volcanic Atlantic rock the rest of Europe winters on. The south is the resort-and-beach version, the north the cooler, greener, traditional side, and Mount Teide stands in the middle. Pick the end that fits the trip. Four to seven days. Here's how I'd choose.
 
 ## On this page
 

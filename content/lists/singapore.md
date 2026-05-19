@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Singapore travel guide: the F1, the hawker centers, and where to stay"
 headline: "Singapore, the soft landing into Asia"
-description: "A personal Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay (Robertson Quay), and the three-day version."
+description: "My Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay near Robertson Quay, and the three-day version."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -44,7 +44,7 @@ topics:
   - nightlife
 ---
 
-[Singapore](/cities/singapore) is the most efficient major city in Southeast Asia and the easiest to underestimate by budget. Two to three days, mostly on foot and MRT, with the spending on food rather than drinks, is how the trip works. The full pin map for the city sits below. This writeup covers the parts of it that change the trip.
+[Singapore](/cities/singapore) is the most efficient major city in Southeast Asia, and the easiest to underestimate on budget. Two or three days, mostly on foot and the MRT, with the money going on food rather than drinks. Here's how I'd plan it.
 
 ## On this page
 

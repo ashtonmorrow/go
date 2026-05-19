@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "São Paulo travel guide: Pride, Carnaval, the steakhouses, and where to stay"
 headline: "São Paulo, the megacity travelers skip and should not"
-description: "A personal São Paulo travel guide. The world's largest Pride parade, Carnaval, the steakhouses, where to stay in Jardins, and getting in from GRU."
+description: "My São Paulo travel guide. The world’s largest Pride parade, the steakhouses, where to stay in Jardins, the museums, and getting in from GRU."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/são-paulo via the picker.
 ---
 
-[São Paulo](/cities/sao-paulo) is the South American megacity (12 million in the city, 22 million in the metropolitan area) that international travelers visit less than they should. The food culture is among the best in the Americas (the largest Japanese diaspora in the world outside Japan built the sushi scene, the rodízio steakhouse format is the Brazilian invention that the rest of the world copies), the museum slate is real, and the neighborhoods (Jardins, Vila Madalena, Pinheiros, Itaim) read distinct. Three to four days for the city. Pair with Rio for a Brazilian week.
+[São Paulo](/cities/sao-paulo) is the South American megacity travelers visit far less than they should. The food is among the best in the Americas, the rodízio steakhouse and the world's largest Japanese diaspora both start here, and the neighborhoods read sharply distinct. Three or four days. Here's how I'd plan it.
 
 ## On this page
 

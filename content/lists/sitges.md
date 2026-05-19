@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Sitges travel guide: the Film Festival, Carnival, and the beaches"
 headline: "Sitges, the calmer beach town next to Barcelona"
-description: "A personal Sitges travel guide. The October Film Festival, February Carnival, Corpus Christi flower carpets, the beaches, and where to eat."
+description: "My Sitges travel guide. The October Film Festival, February Carnival, Corpus Christi flower carpets, the beaches, and where to eat."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -102,9 +102,7 @@ topics:
 #   neighborhood) per the editorial standard for European destinations.
 ---
 
-Sitges is the small beach town 40 minutes south of [Barcelona](/lists/barcelona) by Rodalies R2 Sud, useful as a calmer base near the city (a wedding, a cruise meet-up, the recovery half of a longer trip) or as a beach daytrip from a Barcelona base. The [Barcelona guide](/lists/barcelona) covers the city itself. This one covers Sitges: getting there, where to stay, beach split, what to eat.
-
-Two-night minimum if you base here. The hotel rates beat anything central in Barcelona and the pace is several gears slower than Barceloneta. If your trip needs museums, a music scene, or restaurant depth, base in Barcelona and ride the Rodalies down for an afternoon. If it needs the opposite, base here and ride the Rodalies up when you want a city day. The cava wine country in [Penedès](/lists/penedes) sits 30 minutes inland by Uber and makes a natural half-day side trip from either base.
+Sitges is the small beach town 40 minutes south of [Barcelona](/lists/barcelona) by Rodalies train, a calmer base near the city or an easy beach day trip from it. The hotel rates beat anything central in Barcelona and the pace is several gears slower. Here's how I'd use it, with the cava country of Penedès 30 minutes inland.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Split travel guide: Diocletian's Palace, the islands, and where to eat konoba-style"
 headline: "Split, the city built inside a Roman palace"
-description: "A personal Split travel guide. Diocletian's Palace UNESCO walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay near the old town, and the konobas that locals actually go to."
+description: "My Split travel guide. The Diocletian's Palace walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay, and the konobas locals use."
 published: 2026-05-11
 updated: 2026-05-15
 authors:
@@ -67,7 +67,7 @@ day_trips:
       summary: The island of Zlatni Rat, the shifting shingle spit that is the most photographed beach in Croatia.
 ---
 
-[Split](/cities/split) is the Croatian Adriatic city built inside Diocletian's 4th-century palace. The walls are streets now, the basement is wine cellars, the cathedral is the emperor's mausoleum. Two days for the city, more if you're using it as a Dalmatian base.
+[Split](/cities/split) is the Croatian Adriatic city built inside a Roman emperor's palace, the walls now streets, the basement now wine cellars, the cathedral his mausoleum. Two days for the city, more if you are using it as a Dalmatian base. Here's how I'd plan it.
 
 ## On this page
 

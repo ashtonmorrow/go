@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Sofia travel guide: where to eat, where to stay, and getting in from SOF"
 headline: "Sofia, the overlooked Balkan capital"
-description: "A personal Sofia travel guide. Getting in from SOF, where to stay near the center, and the Balkan-fusion restaurant rotation worth the trip."
+description: "My Sofia travel guide. Getting in from SOF, where to stay near the center, the Orthodox churches, and the Balkan-fusion restaurant scene."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Sofia](/cities/sofia) is the Bulgarian capital travelers come away surprised by. Brutally cheap by EU standards, very walkable center, a stack of orthodox churches anchored by the Alexander Nevsky Cathedral, an excellent restaurant scene that has caught up with the visitor density in the last few years, and Mount Vitosha rising directly south of the city for a day-trip ski or hike. Two days is the right length. Three if you are pairing with Plovdiv or Belogradchik.
+[Sofia](/cities/sofia) is the Bulgarian capital travelers come away surprised by: brutally cheap by EU standards, a walkable center, a stack of Orthodox churches, a restaurant scene that has caught up fast, and Mount Vitosha rising right behind the city. Two or three days. Here's how I'd spend them.
 
 ## On this page
 
