@@ -50,9 +50,24 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'pin not found' }, { status: 404 });
   }
 
-  const { error: delErr } = await sb.from('pins').delete().eq('id', pinId);
+  // `.select()` makes the DELETE return the rows it actually removed. Without
+  // it, a delete that matches zero rows (RLS silently blocking a non-service
+  // client, a race, a stale id) still comes back with `error: null` — the
+  // route would report a phantom success and the pin would quietly survive.
+  // Verifying the row count turns that failure mode into a real 500.
+  const { data: deleted, error: delErr } = await sb
+    .from('pins')
+    .delete()
+    .eq('id', pinId)
+    .select('id');
   if (delErr) {
     return NextResponse.json({ error: delErr.message }, { status: 500 });
+  }
+  if (!deleted || deleted.length === 0) {
+    return NextResponse.json(
+      { error: 'delete removed 0 rows — the pin was not deleted' },
+      { status: 500 },
+    );
   }
 
   // Invalidate every surface that might still reference the deleted row.
