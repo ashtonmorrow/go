@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Venlo travel guide: the old town, the town hall, and where to eat"
 headline: "Venlo is a small Dutch town on the German doorstep"
-description: "A personal Venlo travel guide. The Renaissance town hall, the old town, getting in, where to stay, and where to eat."
+description: "My Venlo travel guide. The Renaissance town hall, the old center, getting in, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -53,7 +53,7 @@ related:
 # - No hotel pins exist for Venlo yet, so where-to-stay is prose.
 ---
 
-[Venlo](/cities/venlo) is a town of about 100,000 people in the southeastern Dutch province of Limburg, set on the River Maas and directly against the German border. It is a compact, easygoing town with a Renaissance town hall, a walkable old center, and a good local food-and-cafe scene. Half a day to a day covers it. This guide covers getting in, where to stay, what to see, and where to eat.
+[Venlo](/cities/venlo) is a small, easygoing Dutch town in Limburg, right on the German border, with a Renaissance town hall and a walkable old center. Half a day to a day covers it, best slotted into a wider Limburg or cross-border trip. Here's how I'd use it.
 
 ## On this page
 

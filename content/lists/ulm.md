@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Ulm travel guide: the Minster, the Fishermen's Quarter, and the Danube"
 headline: "Ulm has the tallest church spire in the world"
-description: "A personal Ulm travel guide. The Ulm Minster and its world-record spire, the Fishermen's Quarter, where to stay, the Danube, and where to eat."
+description: "My Ulm travel guide. The Minster and its world-record spire, the Fishermen's Quarter, where to stay, the Danube, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ related:
 #   Einstein memorial. None are pinned yet.
 ---
 
-[Ulm](/cities/ulm) is a city of about 130,000 people on the Danube in southwest Germany, on the fast rail line between Stuttgart and Munich. It is known for one extraordinary thing, the Minster with the tallest church steeple in the world, and for a pretty half-timbered Old Town along the river below it. A day covers Ulm comfortably. This guide covers getting in, where to stay, the Minster and the Old Town, the Fishermen's Quarter and the Danube, and where to eat.
+[Ulm](/cities/ulm) has the tallest church spire in the world, and that single fact carries the trip. Below the Minster sits a pretty half-timbered old town on the Danube, easy to see in a day on the fast line between Stuttgart and Munich. Here's how I'd spend it.
 
 ## On this page
 

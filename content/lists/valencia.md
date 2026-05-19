@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Valencia travel guide: the old town, the markets, and where to eat"
 headline: "Valencia is where paella comes from, and that's just the start"
-description: "A personal Valencia travel guide. The old town and the Mercat Central, the City of Arts and Sciences, the Turia gardens, where to stay, and where to eat."
+description: "My Valencia travel guide. The old town and the Mercat Central, the City of Arts and Sciences, the Turia gardens, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -57,7 +57,7 @@ topics:
 # - No hotel pins exist for Valencia yet, so where-to-stay is prose.
 ---
 
-[Valencia](/cities/valencia) is Spain's third-largest city, on the Mediterranean coast, with a walkable old town, a futuristic arts complex, and a former riverbed turned into a long park that loops through the center. It is the birthplace of paella and an easygoing city for two or three days. This guide covers getting in, where to stay, the old town and the markets, and where to eat.
+[Valencia](/cities/valencia) is Spain's easygoing third city, a walkable old town, a futuristic arts complex, and a former riverbed turned into a park that loops the whole center. It is the birthplace of paella. Two or three days. Here's how I'd spend them.
 
 ## On this page
 

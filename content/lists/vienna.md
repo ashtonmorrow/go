@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Vienna travel guide: ball season, Christmas markets, and the coffee houses"
 headline: "Vienna still reads like an imperial capital"
-description: "A personal Vienna travel guide. The ball season (Opernball, Philharmonic), Christmas markets, the coffee houses, and where to stay near the Ring."
+description: "My Vienna travel guide. The winter ball season, the Christmas markets, the coffee houses, where to stay near the Ring, and Therme Wien."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -48,7 +48,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Vienna](/cities/vienna) is the imperial capital that still reads like a capital. The Ringstrasse layout (built on the line of the demolished medieval walls in the 1860s), the Habsburg-era civic architecture, the coffee-house tradition that the city has held onto for two centuries, the music scene anchored on Mozart, Beethoven, Schubert, and Brahms. The food is the imperial-Austrian side (Wiener schnitzel, Tafelspitz, sachertorte). A long weekend covers the headline sights. A week opens up the Vienna Woods, the wine villages of Grinzing, and the spa-day cross-link to Therme Wien.
+[Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the headline sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.
 
 ## On this page
 

@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Utrecht travel guide: where to eat, where to stay, and getting in from AMS"
 headline: "Utrecht, the Dutch city most visitors skip"
-description: "A personal Utrecht travel guide. Train from Schiphol or Amsterdam Centraal, where to stay near Centraal, and the casual Dutch restaurant rotation worth the trip."
+description: "My Utrecht travel guide. The train from Schiphol or Amsterdam, where to stay near Centraal, the Dom Tower, and the casual Dutch restaurants."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -25,7 +25,7 @@ topics:
 # - hero_image is empty. Pick one in /admin/lists/utrect-nl via the picker.
 ---
 
-[Utrecht](/cities/utrecht) is the small Dutch university city that gets steadily under-recommended next to Amsterdam. The historic center is canal-laced like Amsterdam but a third the size and a quarter the tourist density, the Dom Tower (the tallest medieval church tower in the Netherlands) anchors the skyline, and the food and cafe scene runs at fair prices. Two or three days is the right length. Pair with The Hague, Rotterdam, or a day trip to the Kröller-Müller Museum.
+[Utrecht](/cities/utrecht) is the small Dutch university city that keeps getting under-recommended next to Amsterdam, and that is its appeal: the same canal-laced center at a third the size and a quarter the crowds, under the tallest medieval church tower in the country. Two or three days. Here's how I'd spend them.
 
 ## On this page
 

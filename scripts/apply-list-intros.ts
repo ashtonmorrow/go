@@ -8,50 +8,42 @@ import fs from 'fs';
 import path from 'path';
 
 const REWRITES: Record<string, { description: string; intro: string }> = {
-  // --- batch 9 ---
-  'singapore': {
-    description: 'My Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay near Robertson Quay, and the three-day version.',
-    intro: "[Singapore](/cities/singapore) is the most efficient major city in Southeast Asia, and the easiest to underestimate on budget. Two or three days, mostly on foot and the MRT, with the money going on food rather than drinks. Here's how I'd plan it.",
+  // --- batch 10 (final) ---
+  'ulm': {
+    description: "My Ulm travel guide. The Minster and its world-record spire, the Fishermen's Quarter, where to stay, the Danube, and where to eat.",
+    intro: "[Ulm](/cities/ulm) has the tallest church spire in the world, and that single fact carries the trip. Below the Minster sits a pretty half-timbered old town on the Danube, easy to see in a day on the fast line between Stuttgart and Munich. Here's how I'd spend it.",
   },
-  'sitges': {
-    description: 'My Sitges travel guide. The October Film Festival, February Carnival, Corpus Christi flower carpets, the beaches, and where to eat.',
-    intro: "Sitges is the small beach town 40 minutes south of [Barcelona](/lists/barcelona) by Rodalies train, a calmer base near the city or an easy beach day trip from it. The hotel rates beat anything central in Barcelona and the pace is several gears slower. Here's how I'd use it, with the cava country of Penedès 30 minutes inland.",
+  'utrect-nl': {
+    description: 'My Utrecht travel guide. The train from Schiphol or Amsterdam, where to stay near Centraal, the Dom Tower, and the casual Dutch restaurants.',
+    intro: "[Utrecht](/cities/utrecht) is the small Dutch university city that keeps getting under-recommended next to Amsterdam, and that is its appeal: the same canal-laced center at a third the size and a quarter the crowds, under the tallest medieval church tower in the country. Two or three days. Here's how I'd spend them.",
   },
-  'sofia': {
-    description: 'My Sofia travel guide. Getting in from SOF, where to stay near the center, the Orthodox churches, and the Balkan-fusion restaurant scene.',
-    intro: "[Sofia](/cities/sofia) is the Bulgarian capital travelers come away surprised by: brutally cheap by EU standards, a walkable center, a stack of Orthodox churches, a restaurant scene that has caught up fast, and Mount Vitosha rising right behind the city. Two or three days. Here's how I'd spend them.",
+  'valencia': {
+    description: 'My Valencia travel guide. The old town and the Mercat Central, the City of Arts and Sciences, the Turia gardens, where to stay, and where to eat.',
+    intro: "[Valencia](/cities/valencia) is Spain's easygoing third city, a walkable old town, a futuristic arts complex, and a former riverbed turned into a park that loops the whole center. It is the birthplace of paella. Two or three days. Here's how I'd spend them.",
   },
-  'split': {
-    description: "My Split travel guide. The Diocletian's Palace walking circuit, Marjan Hill, the day trips to Hvar and Brač, where to stay, and the konobas locals use.",
-    intro: "[Split](/cities/split) is the Croatian Adriatic city built inside a Roman emperor's palace, the walls now streets, the basement now wine cellars, the cathedral his mausoleum. Two days for the city, more if you are using it as a Dalmatian base. Here's how I'd plan it.",
+  'venezia': {
+    description: 'My Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay inside the lagoon, and getting in from VCE on the Alilaguna.',
+    intro: "[Venice](/cities/venice) gets a bad-faith reputation it does not earn. Yes, San Marco is crowded and the cruise day-trippers are real, but the rest of the city, Cannaregio, Dorsoduro, the quiet end of Castello, is calm and exactly what the postcards promise. The whole difference is staying overnight inside the lagoon instead of day-tripping in. Two or three nights minimum.",
   },
-  'são-paulo': {
-    description: 'My São Paulo travel guide. The world’s largest Pride parade, the steakhouses, where to stay in Jardins, the museums, and getting in from GRU.',
-    intro: "[São Paulo](/cities/sao-paulo) is the South American megacity travelers visit far less than they should. The food is among the best in the Americas, the rodízio steakhouse and the world's largest Japanese diaspora both start here, and the neighborhoods read sharply distinct. Three or four days. Here's how I'd plan it.",
+  'venlo': {
+    description: 'My Venlo travel guide. The Renaissance town hall, the old center, getting in, where to stay, and where to eat.',
+    intro: "[Venlo](/cities/venlo) is a small, easygoing Dutch town in Limburg, right on the German border, with a Renaissance town hall and a walkable old center. Half a day to a day covers it, best slotted into a wider Limburg or cross-border trip. Here's how I'd use it.",
   },
-  'tbilisi': {
-    description: 'My Tbilisi travel guide. The Uber from the airport, where to stay, khinkali and qvevri amber wine, the cable car, the sulfur baths, and the markets.',
-    intro: "Tbilisi might be my favorite city you have not been to: cheap once you are there, food that is excellent, an 8,000-year-old wine tradition unlike anything in a European wine bar, and architecture that flips between Parisian, Soviet, and Ottoman block by block. Three days for the city, a week with the Kakheti wine country. Here's how I'd spend it.",
+  'verona': {
+    description: "My Verona travel guide. The Roman Arena and the opera festival, the old town, Juliet's House, where to stay, and where to eat.",
+    intro: "Verona is a Roman arena, a summer opera season, and the Romeo and Juliet myth, packed into a UNESCO old town on a bend of the Adige. A day or two covers it, slotted neatly between Venice and Milan. Here's how I'd spend it.",
   },
-  'tenerife': {
-    description: 'My Tenerife travel guide. Carnival in Santa Cruz, Mount Teide, the La Orotava sand carpets, the beaches, and getting in from TFS or TFN.',
-    intro: "[Tenerife](/cities/tenerife) is the biggest of the Canary Islands and the volcanic Atlantic rock the rest of Europe winters on. The south is the resort-and-beach version, the north the cooler, greener, traditional side, and Mount Teide stands in the middle. Pick the end that fits the trip. Four to seven days. Here's how I'd choose.",
+  'vienna': {
+    description: 'My Vienna travel guide. The winter ball season, the Christmas markets, the coffee houses, where to stay near the Ring, and Therme Wien.',
+    intro: "[Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the headline sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.",
   },
-  'the-hague': {
-    description: 'My Hague travel guide. The Mauritshuis Vermeer, Escher in het Paleis, the Peace Palace, Madurodam, Scheveningen, and The Hague as a cheap base for Amsterdam.',
-    intro: "[The Hague](/cities/the-hague) is the Dutch city most Netherlands itineraries skip, and the ones that do not usually wish they had given it longer. It is calmer, cheaper, and more walkable than [Amsterdam](/cities/amsterdam), with two world-class museums and a real beach 15 minutes away by tram. Rooms run far cheaper than Amsterdam's, 50 minutes up the line. Here's how I'd use it, as a 36-hour visit or a whole base.",
+  'york': {
+    description: 'My York travel guide. Getting in from London by train, the walled medieval city on foot, the Jorvik and railway museums, and the pub-and-tea-room food.',
+    intro: "[York](/cities/york) is the walled cathedral city of northern England, a compact medieval core inside a near-complete circuit of stone walls, layered over Roman and Viking ground. It works as a long day trip from London, but it is better as an overnight, since the day-tripper only ever sees the busy mid-afternoon version. Here's how I'd do it.",
   },
-  'tirana': {
-    description: 'My Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the communist-era legacy, and the modern Albanian-fusion restaurants.',
-    intro: "[Tirana](/cities/tirana) is the Albanian capital that climbed onto the travel radar fast after decades of isolation. It is brutally cheap, the portions are generous, the cafe-and-rooftop culture runs late, and the Hoxha-era bunkers are still legible across the city. Two or three days, paired with the Saranda and Ksamil coast for the wider trip.",
-  },
-  'tokyo': {
-    description: 'My Tokyo travel guide. Cherry blossom season, where to stay by trip type, the wards by train, booking Ghibli and teamLab, and the sushi rotation.',
-    intro: "[Tokyo](/cities/tokyo) is the largest metro area in the world, and it reads exactly that big the moment you land. The trip is not seeing Tokyo so much as picking three or four wards and going deep on each. The food is the canonical reason. A week is the minimum. Here's how I'd plan it.",
-  },
-  'trogir': {
-    description: 'My short Trogir travel guide. Split bus 37, Kamerlengo Castle, the green market, the resident cats, and lunch in the old town.',
-    intro: "[Trogir](/cities/trogir) is a tiny walled old town so close to [Split](/cities/split) that you see it from the plane window flying in. Treat it as a clean morning with lunch, not a full-day expedition. Here's how I'd fit it in.",
+  'zagreb': {
+    description: "My Zagreb travel guide. The Upper Town and St. Mark's Church, Dolac market, the cafe culture, where to stay, and where to eat.",
+    intro: "[Zagreb](/cities/zagreb) is the Croatian capital travelers skip on the way to the coast, which is their loss: a relaxed, walkable Central European capital with a hilltop old town, a great open-air market, and a coffee culture that is a local institution. A day or two covers it. Here's how I'd spend it.",
   },
 };
 

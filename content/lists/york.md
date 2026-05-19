@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "York travel guide: the Minster, the Shambles, and the day trip from London"
 headline: "York, the walled city worth the trip north"
-description: "A personal York travel guide. Getting in from London by LNER, the walled medieval city on foot, the Jorvik and railway museums, and the pub-and-tea-room food scene."
+description: "My York travel guide. Getting in from London by train, the walled medieval city on foot, the Jorvik and railway museums, and the pub-and-tea-room food."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -68,7 +68,7 @@ topics:
 # - York is wired into the London guide's day_trips block.
 ---
 
-[York](/cities/york) is the walled cathedral city of northern England, a compact medieval core wrapped in a near-complete circuit of stone walls and layered over Roman and Viking foundations. The headline objects, York Minster, the Shambles, the walls, and the river under Lendal Bridge, all sit inside an area you can walk across in twenty minutes. It works as a long day trip from London, and that is a good trip. It works better as an overnight, because the city the day-tripper sees is the busy mid-afternoon version, and York is at its best early and late.
+[York](/cities/york) is the walled cathedral city of northern England, a compact medieval core inside a near-complete circuit of stone walls, layered over Roman and Viking ground. It works as a long day trip from London, but it is better as an overnight, since the day-tripper only ever sees the busy mid-afternoon version. Here's how I'd do it.
 
 ## On this page
 

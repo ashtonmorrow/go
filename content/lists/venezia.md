@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Venice travel guide: Carnevale, the Biennale, where to stay, and where to eat"
 headline: "Venice is worth it if you plan it right"
-description: "A personal Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay, and getting in from VCE on the Alilaguna."
+description: "My Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay inside the lagoon, and getting in from VCE on the Alilaguna."
 published: 2026-05-12
 updated: 2026-05-12
 authors:
@@ -30,7 +30,7 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Venice](/cities/venice) is the Italian island-city that gets a bad-faith reputation it does not earn. Yes, it is crowded in the main San Marco quadrant. Yes, the cruise-ship day-tripper density is real. The actual city (Cannaregio, Dorsoduro, Castello away from the spine) is calm, walkable, and exactly what the postcards promise. The trick is staying overnight inside the lagoon rather than day-tripping from the mainland. Two or three nights is the minimum. Longer for the islands (Murano, Burano, Torcello) and the lagoon depth.
+[Venice](/cities/venice) gets a bad-faith reputation it does not earn. Yes, San Marco is crowded and the cruise day-trippers are real, but the rest of the city, Cannaregio, Dorsoduro, the quiet end of Castello, is calm and exactly what the postcards promise. The whole difference is staying overnight inside the lagoon instead of day-tripping in. Two or three nights minimum.
 
 ## On this page
 

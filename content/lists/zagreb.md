@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Zagreb travel guide: the Upper Town, Dolac market, and where to eat"
 headline: "Zagreb is an easy, unshowy capital"
-description: "A personal Zagreb travel guide. The Upper Town and St. Mark's Church, Dolac market, the cafe culture, where to stay, and where to eat."
+description: "My Zagreb travel guide. The Upper Town and St. Mark's Church, Dolac market, the cafe culture, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -60,7 +60,7 @@ topics:
 # - No hotel pins exist for Zagreb yet, so where-to-stay is prose.
 ---
 
-[Zagreb](/cities/zagreb) is the capital of Croatia, a city of about 800,000 people set inland, away from the coast that draws most of the country's visitors. It is a relaxed, walkable Central European capital with a medieval hilltop old town, a famous open-air market, and a coffee culture that is a local institution in its own right. A day or two covers it. This guide covers getting in, where to stay, the Upper and Lower Towns, the market and cafe scene, and where to eat.
+[Zagreb](/cities/zagreb) is the Croatian capital travelers skip on the way to the coast, which is their loss: a relaxed, walkable Central European capital with a hilltop old town, a great open-air market, and a coffee culture that is a local institution. A day or two covers it. Here's how I'd spend it.
 
 ## On this page
 

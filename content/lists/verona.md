@@ -3,7 +3,7 @@ indexable: false
 featured: true
 title: "Verona travel guide: the Arena, the old town, and where to eat"
 headline: "Verona is a Roman arena, an opera season, and the Romeo and Juliet myth"
-description: "A personal Verona travel guide. The Roman Arena and the opera festival, the old town, Juliet's House, where to stay, and where to eat."
+description: "My Verona travel guide. The Roman Arena and the opera festival, the old town, Juliet's House, where to stay, and where to eat."
 published: 2026-05-18
 updated: 2026-05-18
 authors:
@@ -54,7 +54,7 @@ related:
 #   pinned yet.
 ---
 
-Verona is a city of about 260,000 people in the Veneto region of northern Italy, set on a bend of the Adige River. Its old town is a UNESCO World Heritage Site, built around a remarkably intact Roman amphitheatre that still stages a summer opera festival, and softened by the tourism industry of the Romeo and Juliet myth. A day or two covers it. This guide covers getting in, where to stay, the Arena and the old town, and where to eat.
+Verona is a Roman arena, a summer opera season, and the Romeo and Juliet myth, packed into a UNESCO old town on a bend of the Adige. A day or two covers it, slotted neatly between Venice and Milan. Here's how I'd spend it.
 
 ## On this page
 
