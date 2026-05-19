@@ -66,7 +66,7 @@ The trip-shaping windows are the Rodeo from late February to mid-March (the actu
 
 ## Where to eat
 
-Houston food is the multi-ethnic capital of the South. Tex-Mex, Houston-style barbecue (the smoked brisket with the East Texas accent), the deep Vietnamese food scene (Crawfish & Noodles is the headline. The Hong Kong City Mall area has the depth), the Gulf-coast crawfish and Cajun thread. The picks below cover the casual everyday rotation. The deeper food trip would add a Vietnamese ward sweep and a barbecue pilgrimage.
+Houston food is the multi-ethnic capital of the South. Tex-Mex, Houston-style barbecue (the smoked brisket with the East Texas accent), the deep Vietnamese food scene (Crawfish & Noodles is the standout. The Hong Kong City Mall area has the depth), the Gulf-coast crawfish and Cajun thread. The picks below cover the casual everyday rotation. The deeper food trip would add a Vietnamese ward sweep and a barbecue pilgrimage.
 
 | Spot | Rating |
 |---|---|

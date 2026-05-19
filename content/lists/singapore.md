@@ -18,7 +18,7 @@ guide_cards:
     - title: Stay on Robertson Quay or Tanjong Pagar
       body: InterContinental Singapore Robertson Quay is the easy pick. Riverfront, walking distance to Clarke Quay and Boat Quay, and a 15-minute MRT to Marina Bay. Tanjong Pagar is the budget-conscious alternative with the highest food density per block.
     - title: Eat at hawker centers
-      body: Lau Pa Sat, Maxwell, and Tiong Bahru cover the headline three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! (the DBS bank's mobile-wallet app, the local default) are the norm. Some stalls take card. Wet markets (the open-air produce and seafood halls) close around 2 p.m.. Evening hawker centers run late.
+      body: Lau Pa Sat, Maxwell, and Tiong Bahru are the famous three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! (the DBS bank's mobile-wallet app, the local default) are the norm. Some stalls take card. Wet markets (the open-air produce and seafood halls) close around 2 p.m.. Evening hawker centers run late.
     - title: Plan Gardens by the Bay around the cooler hours
       body: Cloud Forest opens at 9 a.m. and is best before 11. Supertree Grove is best at 7:45 p.m. for the free light show, then again at 8:45. Flower Dome has the best AC if you need a 30-minute heat break. Combo tickets are cheaper than singles.
     - title: Do not drink at the hotel bars unless that is the trip
@@ -26,7 +26,7 @@ guide_cards:
 
 faqs:
   - q: How long should I plan in Singapore?
-    a: Two full days hits the headline sights and a couple of food neighborhoods. Three is the sweet spot. Adds the Singapore Botanic Gardens, an evening at Tiong Bahru or Joo Chiat, and a day trip to Sentosa if Universal Studios or the beach matters. Anything beyond five days needs a real plan or it gets expensive fast.
+    a: Two full days hits the main sights and a couple of food neighborhoods. Three is the sweet spot. Adds the Singapore Botanic Gardens, an evening at Tiong Bahru or Joo Chiat, and a day trip to Sentosa if Universal Studios or the beach matters. Anything beyond five days needs a real plan or it gets expensive fast.
   - q: Where should I stay?
     a: InterContinental Singapore Robertson Quay is the comfortable middle. Riverfront walks, the Quay's restaurants and bars at the door, and easy MRT to Marina Bay. The Fullerton Bay Hotel and Marina Bay Sands are the splurges. Tanjong Pagar and Chinatown are the budget plays with the best food density. Geylang is fine but more local than easy for a first trip. Pick somewhere central instead.
   - q: Is Marina Bay Sands worth it?
@@ -79,7 +79,7 @@ Singapore's calendar reflects the four major ethnic and religious traditions tha
 | **Hari Raya Puasa (Eid al-Fitr)** | End of Ramadan, lunar calendar, varies year to year | Geylang Serai's bazaar runs through the month of Ramadan with food stalls and decorations. Hari Raya itself is a public holiday. Smaller hotel impact than CNY because the celebration is family-home centered |
 | **Deepavali (Diwali)** | A day in October or November | Indian Festival of Lights. Little India fills with lights, decorations, and food stalls in the weeks leading up. Public holiday on the day |
 | **National Day** | August 9 | Singapore's independence day. The National Day Parade at Marina Bay (the Padang in odd years) is a massive military and civic display with aerial flypasts and fireworks. Tickets via ballot. Free to watch the fireworks from anywhere along Marina Bay. Hotels in Marina Bay fill |
-| **Thaipusam** | Late January or early February (full moon of the Tamil month of Thai) | The Hindu festival of devotion. The procession from Sri Srinivasa Perumal Temple in Little India to Sri Thendayuthapani Temple in Tanglin runs through the night and morning. Devotees carry kavadi (elaborate burdens) including milk pots and steel-spike structures driven into the body. Powerful to watch, smaller crowd than the headline festivals |
+| **Thaipusam** | Late January or early February (full moon of the Tamil month of Thai) | The Hindu festival of devotion. The procession from Sri Srinivasa Perumal Temple in Little India to Sri Thendayuthapani Temple in Tanglin runs through the night and morning. Devotees carry kavadi (elaborate burdens) including milk pots and steel-spike structures driven into the body. Powerful to watch, smaller crowd than the major festivals |
 | **Mid-Autumn Festival** | A day in September or October (full moon of the eighth lunar month) | Mooncakes everywhere, lantern displays at Chinatown, Gardens by the Bay, and Sentosa. Family-scale, no major hotel impact, an evening worth being out for if dates line up |
 | **Singapore Food Festival** | Across most of June | The annual food festival across multiple venues and hawker centers. Smaller hotel impact, real reason to plan a Singapore trip around June if food is the trip |
 | **i Light Singapore** | A two-week window in May or June | The Marina Bay light-art festival. Free, around the bay. Smaller hotel pressure, the easier evening agenda |
@@ -100,7 +100,7 @@ Singapore's hotel splits into three useful bases: along the Singapore River (Rob
 
 ## Marina Bay and Gardens by the Bay
 
-The Marina Bay loop is the headline. Done in the right order, it covers the postcard sights with the cooler hours and saves the Spectra show for the end.
+The Marina Bay loop is the main one. Done in the right order, it covers the postcard sights with the cooler hours and saves the Spectra show for the end.
 
 | Time | Stop | Why |
 |---|---|---|

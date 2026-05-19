@@ -202,7 +202,7 @@ The Bali beach club is its own format and worth knowing before you arrive. A day
 
 A reasonable shortlist by base:
 
-- **Seminyak**: Potato Head is the headline (the recycled-shutter facade is the photograph). KU DE TA is the originator of the format on Bali. SugarSand, Tropicola, and MADE Beach Bar are the smaller alternatives if Potato Head is booked.
+- **Seminyak**: Potato Head is the main one (the recycled-shutter facade is the photograph). KU DE TA is the originator of the format on Bali. SugarSand, Tropicola, and MADE Beach Bar are the smaller alternatives if Potato Head is booked.
 - **Canggu**: La Brisa is the rustic timber-and-bamboo registered favorite. Finns is the bigger family-friendly water-park option. Café del Mar is the polished Ibiza-import. COMO is the design-hotel-spinoff version. The Lawn is the budget-friendly bay-front sunset option.
 
 Reservations are essential weekends and in peak (July, August, the December-January period). Midweek in the shoulder months you can walk in but the better daybeds will be gone by lunch.

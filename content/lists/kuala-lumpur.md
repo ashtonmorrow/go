@@ -128,7 +128,7 @@ A second day is the Bird Park and surrounding [Perdana Botanical Garden](/pins/p
 
 ## Batu Caves
 
-[Batu Caves](/pins/batu-caves) is the headline Hindu pilgrimage site north of KL: the 43 m Murugan statue at the base, the 272 rainbow-painted steps, and the limestone caves at the top. Macaques live everywhere. Do not bring food.
+[Batu Caves](/pins/batu-caves) is the main Hindu pilgrimage site north of KL: the 43 m Murugan statue at the base, the 272 rainbow-painted steps, and the limestone caves at the top. Macaques live everywhere. Do not bring food.
 
 | Option | Cost | Time | Notes |
 |---|---|---|---|

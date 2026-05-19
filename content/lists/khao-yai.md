@@ -22,7 +22,7 @@ guide_cards:
     - title: Two wineries that earn the stop
       body: PB Valley and GranMonte run tastings, lunches, and tours. Vineyards are about 30 minutes from the park entrance. The Chenin Blanc and the Syrah are the ones worth ordering.
     - title: Pick a base by what you want
-      body: Inside the park gate for full nature access. Pak Chong for cheaper hotels and dinner options. The vineyard region for boutique stays and slower mornings. Mosaic resort and Muthi Maya are the headline luxury options.
+      body: Inside the park gate for full nature access. Pak Chong for cheaper hotels and dinner options. The vineyard region for boutique stays and slower mornings. Mosaic resort and Muthi Maya are the marquee luxury options.
 
 faqs:
   - q: How do I get to Khao Yai from Bangkok?

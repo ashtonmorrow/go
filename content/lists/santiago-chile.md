@@ -161,7 +161,7 @@ All four sit within a 15-minute walk of each other in the **[Lastarria/Bellas Ar
 
 40 minutes south of the city by car, Maipo is the most famous of Chile's wine valleys and the closest to Santiago. Two estates anchor any visit:
 
-* **[Concha y Toro](/pins/concha-y-toro-winery)**. The largest Chilean producer and the headline tour. Casillero del Diablo and Don Melchor are made here. Tours run hourly. Tasting included. Tour-and-lunch options work as a half-day. The Traditional Tour runs around 50,000 CLP / $55 USD in 2026. Premium tours with transport from Santiago push $80 to $128.
+* **[Concha y Toro](/pins/concha-y-toro-winery)**. The largest Chilean producer and the main tour. Casillero del Diablo and Don Melchor are made here. Tours run hourly. Tasting included. Tour-and-lunch options work as a half-day. The Traditional Tour runs around 50,000 CLP / $55 USD in 2026. Premium tours with transport from Santiago push $80 to $128.
 * **[Santa Rita](/pins/santa-rita-winery)**. The classier alternative. Smaller estate, focused on the wines (the 120 series and Carmenère reserves). A combined tour-and-restaurant lunch ("Doña Paula" or "La Casa de Doña Paula") is the right way to do this one.
 
 Other estates (Cousiño-Macul, Undurraga, Aquitania) are reasonable add-ons if a single estate does not fill the day. A driver from Santiago for the day runs around $80 to $120 USD. A group tour with vineyard pickup runs around $60 USD per person.

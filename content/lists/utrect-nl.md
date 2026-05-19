@@ -51,7 +51,7 @@ Utrecht runs a small but real festival calendar, anchored by the Festival Oude M
 
 | Event | When | What it changes |
 |---|---|---|
-| **Festival Oude Muziek (Festival of Early Music)** | Late August to early September, 10 days | One of the most important early-music festivals in the world. Multiple venues across the historic center (Domkerk, TivoliVredenburg, Hertz Hall). Smaller hotel pressure than the headline Dutch events but the right reason to be in Utrecht if pre-19th-century music is the trip |
+| **Festival Oude Muziek (Festival of Early Music)** | Late August to early September, 10 days | One of the most important early-music festivals in the world. Multiple venues across the historic center (Domkerk, TivoliVredenburg, Hertz Hall). Smaller hotel pressure than the major Dutch events but the right reason to be in Utrecht if pre-19th-century music is the trip |
 | **King's Day (Koningsdag)** | April 27 | The Dutch national holiday. Utrecht's version runs heavily on the canals and the city center. Smaller and more student-feeling than the Amsterdam version |
 | **Liberation Day (Bevrijdingsdag)** | May 5 | National holiday. Festivals and free concerts at Park Lepelenburg |
 | **Le Mini Who?** | A Saturday in early October | The free music festival across small venues in the city center. Around 50 emerging acts on small-bar stages. Smaller scale, real local-feel reason to be in town |

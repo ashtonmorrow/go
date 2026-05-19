@@ -156,7 +156,7 @@ Malta runs more festas (saint's-day village festivals) per capita than almost an
 | Event | When | What it changes |
 |---|---|---|
 | **Village festas (Maltese feast days)** | Most weekends from late May to mid-September | Each of Malta's 60+ villages celebrates its patron saint with a four-day festa. Decorated streets, brass-band marches, fireworks displays (Maltese pyrotechnics are world-class), the church statue carried through the streets on the patron-saint day itself. The summer pattern. The biggest are St Paul's Shipwreck (Valletta, February 10), Imnarja (June 28-29, the harvest festival), Santa Marija (August 15), and Stella Maris (mid-September). Smaller hotel pressure than the global festivals, real reason to plan around a specific village if your name has one |
-| **Malta Carnival** | The week before Lent (February or March) | The Valletta carnival is the headline (parades through the streets, Italian-influenced costumes, the Gostra greasy-pole competition over the harbor). The Gozo carnival in Nadur is the wilder, more masked, more theatrical alternative. Hotels in Valletta and St Julian's fill |
+| **Malta Carnival** | The week before Lent (February or March) | The Valletta carnival is the main one (parades through the streets, Italian-influenced costumes, the Gostra greasy-pole competition over the harbor). The Gozo carnival in Nadur is the wilder, more masked, more theatrical alternative. Hotels in Valletta and St Julian's fill |
 | **Isle of MTV** | Variable, usually late June or July | The free outdoor MTV music festival, traditionally held in Floriana Granaries near Valletta. Has run intermittently in recent years, verify before assuming. When it runs, around 50,000 attendees |
 | **Malta International Fireworks Festival** | A weekend in late April | Free outdoor competition of pyrotechnic displays over the Grand Harbour. The Maltese take this seriously (the village festa tradition is partly why) |
 | **Notte Bianca** | A Saturday in early October | The free citywide cultural night in Valletta. Museums, palaces, and venues open late into the morning. Smaller scale than the Roman or Madrid versions but a beautiful Valletta night |
@@ -165,7 +165,7 @@ Malta runs more festas (saint's-day village festivals) per capita than almost an
 | **Malta Pride** | A Saturday in mid-September | The parade through Valletta. Around 12,000 attendees, smaller than the European headliners but real |
 | **Christmas markets in Valletta** | Mid-December to early January | Small wooden chalets at St George's Square. Smaller and less famous than the European equivalents but a real reason to be in Valletta in December |
 
-The trip-shaping windows depend on what you want. For the headline visitor festivals, Carnival in February and the Fireworks Festival in April are the photogenic single-weekend events. For the local-feel version of Malta, the summer festa calendar is the actual cultural year. Pick a village whose patron-saint date aligns with your dates and that becomes the trip's anchor evening.
+The trip-shaping windows depend on what you want. For the main visitor festivals, Carnival in February and the Fireworks Festival in April are the photogenic single-weekend events. For the local-feel version of Malta, the summer festa calendar is the actual cultural year. Pick a village whose patron-saint date aligns with your dates and that becomes the trip's anchor evening.
 
 ## Where to stay: the St Julian's strip, by price
 
@@ -181,7 +181,7 @@ Sliema is the other walkable base, a slightly quieter seafront town one strip so
 
 ## Getting around: walking, buses, Uber, ferries
 
-Malta is small enough that you can largely walk and ferry to the headline sights without renting a car.
+Malta is small enough that you can largely walk and ferry to the main sights without renting a car.
 
 | Move | How it works | Cost | When to use |
 |---|---|---|---|
@@ -196,7 +196,7 @@ The right shape of a Malta day is to pick one of those moves and build the day a
 
 ## Valletta on a walking day
 
-Valletta is the headline. The UNESCO-listed [City of Valletta](/pins/valletta) was built by the Knights of St John after the Great Siege of 1565. The whole street grid sits on a small peninsula projecting into the Grand Harbor, surrounded on three sides by water and on the fourth by the Knights' fortifications. The city is about 1 km long and 600 m wide, walkable end-to-end in twenty minutes, with the major sights distributed along the central axis (Republic Street and Merchants Street).
+Valletta is the main city. The UNESCO-listed [City of Valletta](/pins/valletta) was built by the Knights of St John after the Great Siege of 1565. The whole street grid sits on a small peninsula projecting into the Grand Harbor, surrounded on three sides by water and on the fourth by the Knights' fortifications. The city is about 1 km long and 600 m wide, walkable end-to-end in twenty minutes, with the major sights distributed along the central axis (Republic Street and Merchants Street).
 
 A reasonable Valletta day:
 

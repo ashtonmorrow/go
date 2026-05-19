@@ -65,7 +65,7 @@ related:
 #   in Sibenik, St. Michael's Fortress, Roski Slap, Visovac monastery.
 ---
 
-Krka National Park is the Croatian river park built around a chain of travertine waterfalls, with Skradinski Buk, the wide terraced falls, as the headline. It is an easy day trip from Split or the cathedral city of Šibenik. Go before the tour boats arrive. Here's how I'd time it.
+Krka National Park is the Croatian river park built around a chain of travertine waterfalls, with Skradinski Buk, the wide terraced falls, as the centerpiece. It is an easy day trip from Split or the cathedral city of Šibenik. Go before the tour boats arrive. Here's how I'd time it.
 
 ## On this page
 

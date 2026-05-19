@@ -124,7 +124,7 @@ Five real zones, each with a distinct character:
 | Erriadh | Live inside the [Djerbahood](/pins/djerbahood-erriadh) street art project. Boutique stays with local character | No beach access. You commute to the sand |
 | Tezdaine | A quieter apartment area between Midoun and the beaches | Less infrastructure than Midoun |
 
-The [Iberostar Selection Eolia Djerba](/pins/iberostar-selection-eolia-djerba) is the headline international resort if you want a known brand. Below it, a long list of European-branded all-inclusives in Midoun and Aghir. Nothing is meaningfully different at the mid-tier level. For local character, a boutique riad in Houmt Souk or a converted house in Erriadh beats the resort experience.
+The [Iberostar Selection Eolia Djerba](/pins/iberostar-selection-eolia-djerba) is the main international resort if you want a known brand. Below it, a long list of European-branded all-inclusives in Midoun and Aghir. Nothing is meaningfully different at the mid-tier level. For local character, a boutique riad in Houmt Souk or a converted house in Erriadh beats the resort experience.
 
 ## The beaches
 
@@ -166,4 +166,4 @@ Practical notes for the daytrip:
 * **A full day, not half.** Add the drive both ways plus 2 to 3 hours at Matmata and you are looking at a 10-hour day. Worth it once.
 * **The local cuisine on the mainland**. Try ojja (egg and tomato stew) at a small village restaurant in Matmata. Cheaper and better than anything on the island.
 
-The Star Wars set is the headline, but the surrounding villages and the broader troglodyte landscape are the real reason to make the trip. The dwellings are still lived in. Most remain family homes.
+The Star Wars set is the famous draw, but the surrounding villages and the broader troglodyte landscape are the real reason to make the trip. The dwellings are still lived in. Most remain family homes.

@@ -19,7 +19,7 @@ guide_cards:
       body: These two leafy, walkable neighborhoods are where most first-time visitors are happiest, full of cafes, restaurants, and parks, and a short ride from the historic center and the museums.
     - title: Four or five days is the shape
       body: That covers the historic center, the big museums, Coyoacan and the Frida Kahlo house, and a day trip to the Teotihuacan pyramids, without rushing a city this size.
-    - title: The food is the headline
+    - title: The food is the reason
       body: Street tacos, market stalls, century-old cantinas, and a deep modern restaurant scene. Eat widely and cheaply. The best meals here are rarely the priciest.
     - title: Take the altitude seriously
       body: At 2,240 meters the city sits high enough to slow you down for a day or two. Go easy on arrival, drink water, and ease into the alcohol.
@@ -111,7 +111,7 @@ The atlas does not yet carry hotel pins for Mexico City, so book on the usual si
 
 Mexico City is best understood as a set of distinct neighborhoods rather than one center.
 
-**Roma and Condesa** are the cafe-and-restaurant heart of a modern visit, side by side and easy to walk between. **Polanco** is the moneyed district, with Avenida Presidente Masaryk for shopping and a cluster of top restaurants. The **Centro Histórico** is the old colonial core around the Zócalo, the vast main square, and holds most of the headline monuments.
+**Roma and Condesa** are the cafe-and-restaurant heart of a modern visit, side by side and easy to walk between. **Polanco** is the moneyed district, with Avenida Presidente Masaryk for shopping and a cluster of top restaurants. The **Centro Histórico** is the old colonial core around the Zócalo, the vast main square, and holds most of the famous monuments.
 
 **Coyoacán**, in the south, is the cobblestoned former village where Frida Kahlo lived, with a calm plaza, markets, and the Casa Azul. **Chapultepec** is the giant park on the west side, holding the castle, the Anthropology Museum, and the zoo. Further south, **Xochimilco** is the network of canals where you ride a painted *trajinera* boat, a half-day in itself.
 

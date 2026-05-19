@@ -48,7 +48,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the headline sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.
+[Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the main sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.
 
 ## On this page
 
@@ -71,7 +71,7 @@ Vienna Vienna International (VIE) sits about 18 km southeast of the center. The 
 
 ## Festivals and big annual events
 
-Vienna runs two distinct festival seasons most travelers do not connect to the city's brand: the winter ball season (which is the actual reason much of Austrian high society uses Vienna in January and February) and the long summer of free outdoor concerts and film. Plus the Christmas markets, which are the headline window most Americans know about.
+Vienna runs two distinct festival seasons most travelers do not connect to the city's brand: the winter ball season (which is the actual reason much of Austrian high society uses Vienna in January and February) and the long summer of free outdoor concerts and film. Plus the Christmas markets, which are the season most Americans know about.
 
 | Event | When | What it changes |
 |---|---|---|

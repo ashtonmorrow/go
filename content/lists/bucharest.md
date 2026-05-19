@@ -81,7 +81,7 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
-Romanian food runs through sarmale (the cabbage-rolled-around-meat stew), mici (skinless small grilled sausages), polenta-stuffed ciorbă soups, and the lemon-and-cream-finished palate that distinguishes it from the rest of the Balkans. The picks below cover the modern rotation. The traditional places (Caru' cu Bere is the headline) are casual to find.
+Romanian food runs through sarmale (the cabbage-rolled-around-meat stew), mici (skinless small grilled sausages), polenta-stuffed ciorbă soups, and the lemon-and-cream-finished palate that distinguishes it from the rest of the Balkans. The picks below cover the modern rotation. The traditional places (Caru' cu Bere is the standout) are casual to find.
 
 | Spot | Rating |
 |---|---|

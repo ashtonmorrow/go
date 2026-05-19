@@ -30,7 +30,7 @@ faqs:
   - q: Is Ávila worth a full day?
     a: Yes, comfortably. Walking the wall circuit, visiting the cathedral, seeing the Saint Teresa sites, and a long Castilian lunch fill a day without rushing. Most visitors do Ávila as a day trip from Madrid rather than staying over.
   - q: Can you walk on the city walls?
-    a: Yes. Long stretches of Ávila's medieval walls have a walkable rampart on top, accessed by ticket at marked entry points. The full perimeter is about 2.5 kilometers with 88 towers, and the walk is the headline experience of a visit.
+    a: Yes. Long stretches of Ávila's medieval walls have a walkable rampart on top, accessed by ticket at marked entry points. The full perimeter is about 2.5 kilometers with 88 towers, and the walk is the main experience of a visit.
   - q: Who was Saint Teresa of Ávila?
     a: Teresa of Ávila was a 16th-century Carmelite nun, mystic, writer, and reformer, born in the city in 1515. She is one of the most important figures in Spanish religious history, and several sites in Ávila, above all the convent built on her birthplace, are tied to her life.
 

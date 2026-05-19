@@ -13,10 +13,10 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Bath
-  intro: Bath is a day trip first and an overnight second, and the planning decision is which of the two you are taking. The city is small, the headline objects (the Roman Baths, Thermae Bath Spa, the Royal Crescent, the river under the Pulteney Weir) are walkable from each other, and a train from London Paddington takes about 90 minutes. A day works. An overnight extends the trip into the kind of long walk past the viaduct and a Sunday roast that you cannot squeeze around a return train. The other reason to stay in Bath is to use it as the base for Stonehenge, which is more easily reached from Bath via Salisbury than from London direct.
+  intro: Bath is a day trip first and an overnight second, and the planning decision is which of the two you are taking. The city is small, the main sights (the Roman Baths, Thermae Bath Spa, the Royal Crescent, the river under the Pulteney Weir) are walkable from each other, and a train from London Paddington takes about 90 minutes. A day works. An overnight extends the trip into the kind of long walk past the viaduct and a Sunday roast that you cannot squeeze around a return train. The other reason to stay in Bath is to use it as the base for Stonehenge, which is more easily reached from Bath via Salisbury than from London direct.
   cards:
     - title: A day is plenty if a day is what you have
-      body: Train in by mid-morning, Roman Baths, lunch in town, Thermae Bath Spa rooftop pool for a couple of hours, dinner before the train back. Bath is small enough that a single day covers the headline experiences without rushing. A second day opens up the slower side. Either shape is a real visit.
+      body: Train in by mid-morning, Roman Baths, lunch in town, Thermae Bath Spa rooftop pool for a couple of hours, dinner before the train back. Bath is small enough that a single day covers the main experiences without rushing. A second day opens up the slower side. Either shape is a real visit.
     - title: An overnight unlocks the slow side
       body: The Hotel Indigo on South Parade is the overnight pick. Walkable to everything, fair price, the building is the right scale for the city. Stay one or two nights and you get the long river walk along the canal, an actual dinner in town, and (if a Sunday falls in the window) the roast at the Bathwick Boatman that the day-tripper version of the trip never reaches.
     - title: Sunday roast at the Bathwick if a Sunday fits
@@ -48,7 +48,7 @@ topics:
   - day-trips
 
 day_trips:
-  intro: Bath sits in easy reach of the prehistoric, the medieval, and the chocolate-box Cotswolds. Stonehenge is the headline add-on, but the wider West Country is a string of villages and one cathedral city all inside about an hour.
+  intro: Bath sits in easy reach of the prehistoric, the medieval, and the chocolate-box Cotswolds. Stonehenge is the main add-on, but the wider West Country is a string of villages and one cathedral city all inside about an hour.
   trips:
     - name: Stonehenge
       travel: About 1 hr by GWR train to Salisbury, then the Stonehenge Tour bus

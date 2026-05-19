@@ -170,7 +170,7 @@ The [Mauritshuis](/pins/mauritshuis) is the highlight of the city for almost eve
 | **Time on site** | 1.5–2 hours |
 | **Closest station** | Den Haag CS, 8-minute walk |
 
-The €4 after-4pm ticket is the move if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the headline rooms. The new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
+The €4 after-4pm ticket is the move if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the famous rooms. The new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
 
 ## The Binnenhof and the city center
 

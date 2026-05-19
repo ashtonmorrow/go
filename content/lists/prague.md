@@ -52,7 +52,7 @@ day_trips:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Prague](/cities/prague) is the Bohemian capital and one of the most walkable old towns in Europe, the Vltava splitting it between the Old Town and the castle side. A long weekend covers the headliners, a week opens the smaller neighborhoods. Here's how I'd plan it.
+[Prague](/cities/prague) is the Bohemian capital and one of the most walkable old towns in Europe, the Vltava splitting it between the Old Town and the castle side. A long weekend covers the main sights, a week opens the smaller neighborhoods. Here's how I'd plan it.
 
 ## On this page
 
@@ -80,7 +80,7 @@ Prague's calendar runs on a small set of headline windows that fill the city, pl
 | Event | When | What it changes |
 |---|---|---|
 | **Christmas markets (Vánoční trhy)** | Late November to January 6 | The Old Town Square and Wenceslas Square markets are the two big ones. Mulled wine (svařák), trdelník (the chimney cake that is not technically Czech but is sold to every visitor), grilled klobása, hand-blown glass and wooden toys. The most-visited Prague window of the year. Hotels in Staré Město book heavily |
-| **Prague Spring (Pražské jaro) music festival** | Mid-May to early June, three weeks | The international classical-music festival, one of the most important in Europe. The opening concert is Smetana's *Má vlast* on May 12 (the anniversary of Smetana's death) at the Obecní dům. The Rudolfinum, Smetana Hall, and Dvořák Hall host the rest. Tickets sell out for the headline concerts. Smaller hotel-pressure impact because the audience is older and more European than the Christmas-market crowd |
+| **Prague Spring (Pražské jaro) music festival** | Mid-May to early June, three weeks | The international classical-music festival, one of the most important in Europe. The opening concert is Smetana's *Má vlast* on May 12 (the anniversary of Smetana's death) at the Obecní dům. The Rudolfinum, Smetana Hall, and Dvořák Hall host the rest. Tickets sell out for the marquee concerts. Smaller hotel-pressure impact because the audience is older and more European than the Christmas-market crowd |
 | **Easter markets (Velikonoční trhy)** | Two weeks before Easter to the week after | The smaller spring equivalent of the Christmas markets, at the same Old Town and Wenceslas Square locations. Painted eggs, pomlázka (the willow whips used in the Easter Monday tradition), spring food. Smaller hotel impact but a real reason to be in town if Easter falls in your travel window |
 | **Signal Festival** | Mid-October, four days | The Prague light festival. Free large-format light installations across the historic center. Around half a million attendees. Hotels in the center fill on the festival weekend |
 | **Bohemia JazzFest** | Mid-July | Free open-air jazz concerts at Old Town Square, plus other Czech cities. Smaller hotel impact, but a reason to spend an evening in the square |

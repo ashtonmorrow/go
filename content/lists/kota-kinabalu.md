@@ -108,7 +108,7 @@ KK splits into three viable bases: the downtown waterfront (closest to Jesselton
 |---|---|---|---|
 | Downtown waterfront | [Hyatt Regency Kinabalu](/pins/hyatt-regency-kinabalu) | The easiest base. Walking distance to Jesselton Point, the [Floating Mosque](/pins/floating-mosque-kota-kinabalu-city-mosque), the [Handicraft Market](/pins/handicraft-market), and the sunset on the seafront. Rooms face the water | An older Hyatt, so the room is functional rather than memorable |
 | Downtown waterfront | [Kota Kinabalu Marriott Hotel](/pins/kota-kinabalu-marriott-hotel) | Newer build, Marriott loyalty, same walkable footprint as the Hyatt | Slightly further from Jesselton Point, slightly less convenient for the marine park |
-| Tanjung Aru | Shangri-La Tanjung Aru, Kota Kinabalu | Private beach, the headline KK sunset, resort layout for families | 10 to 15 minutes from town. You commit to taxis/Grab in for dinner |
+| Tanjung Aru | Shangri-La Tanjung Aru, Kota Kinabalu | Private beach, the famous KK sunset, resort layout for families | 10 to 15 minutes from town. You commit to taxis/Grab in for dinner |
 | Kinabalu Park lodges | Sutera Sanctuary Lodges or similar | Sleep at the base of the mountain if you are climbing | Two hours from town. Only worth it if Mount Kinabalu is the trip |
 
 ## Tunku Abdul Rahman Marine Park

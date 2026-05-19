@@ -263,7 +263,7 @@ The big nationals are free and the queue is the price. The two that consistently
 * [Imperial War Museum](/pins/imperial-war-museum) in Lambeth. Striking exhibits, dense Holocaust gallery, well-curated 20th-century history. Most visitors arrive without expectations and leave reconsidering them.
 * The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum. Book a timed entry to skip the door queue.
 
-For modern art the Tate Modern is the headline. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
+For modern art the Tate Modern is the main one. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
 
 ## Canary Wharf and the Docklands
 
@@ -277,7 +277,7 @@ Two specific Canary Wharf picks: [Humble Grape](/pins/humble-grape-canary-wharf-
 
 London has more pubs than any visitor can rate, and the truth is that the right pub is almost always whichever one is nearest where you are at 5 p.m. Pubs cluster by neighborhood and a few rules of thumb work better than chasing a named list.
 
-- **Avoid pubs facing the major sights.** Anything directly across from the Tower, the Houses of Parliament, or Big Ben is paying tourist-strip rent and the pints reflect it. Walk one or two blocks back from the headline and the room changes.
+- **Avoid pubs facing the major sights.** Anything directly across from the Tower, the Houses of Parliament, or Big Ben is paying tourist-strip rent and the pints reflect it. Walk one or two blocks back from the main sight and the room changes.
 - **Walking distance from a market is a good signal.** Borough Market, Spitalfields, Brick Lane: the pubs in the same three-block radius tend to serve real food at a real price because the lunch crowd is locals coming off shift.
 - **The "Sunday roast" pub is its own category.** A traditional Sunday lunch (roast beef, Yorkshire pudding, gravy, root vegetables) runs £18 to £28 in a good gastropub. Book by Thursday for the bigger places. The pub-of-the-week press in the *Evening Standard* and *Time Out* is a more useful list than any one writer's perennial favorites.
 - **The good neighborhood pub clusters** for a wandering evening: Hampstead and Highgate in the north (heath-adjacent, classic), Spitalfields and Hackney in the east (gastropub-heavy, food-forward), Bermondsey south of the river (the "Bermondsey Beer Mile" railway-arch breweries), Notting Hill and Maida Vale west (canal-side and quiet), Borough on the south bank (food-market adjacent).

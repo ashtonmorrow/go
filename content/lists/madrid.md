@@ -179,7 +179,7 @@ The booking pattern is the part that catches first-time visitors out: the Prado 
 | [Museo del Ferrocarril](/pins/museo-del-ferrocarril-de-madrid) | Railway museum in the 1880 Estación de Delicias iron-and-glass train shed | Walk-up | My personal favorite. **Closed Mondays. Short hours: 9:30/10:00 to 15:00** |
 | [Zoo Aquarium](/pins/zoo-aquarium-de-madrid) | Inside Casa de Campo, has pandas | Walk-up | Easy half-day with kids |
 
-If you only have time for one of the headline two, I am partial to the Reina Sofía. The 20th-century collection is what most first-time visitors actually want to see in person, and the queue without a reservation is shorter than the Prado's. Family weekend programming at the Ferrocarril runs Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend if you have kids.
+If you only have time for one of the main two, I am partial to the Reina Sofía. The 20th-century collection is what most first-time visitors actually want to see in person, and the queue without a reservation is shorter than the Prado's. Family weekend programming at the Ferrocarril runs Saturdays and Sundays during the school year, which is the reason to time the visit for a weekend if you have kids.
 
 ## Casa de Campo for a half-day
 

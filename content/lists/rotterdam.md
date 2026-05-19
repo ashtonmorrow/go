@@ -13,10 +13,10 @@ hero_alt: ""
 
 guide_cards:
   title: Planning Rotterdam
-  intro: Rotterdam is the Netherlands' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the headline modern architecture, the historic harbor walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.
+  intro: Rotterdam is the Netherlands' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the famous modern architecture, the historic harbor walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.
   cards:
     - title: Base near Rotterdam Centraal
-      body: Holiday Inn Express Rotterdam Central is the easy budget pick at the station. Hotel New York (the old Holland America Line headquarters across the river) is the splurge with the best history. Both put you on the metro and tram network and within walking distance of the headline sights.
+      body: Holiday Inn Express Rotterdam Central is the easy budget pick at the station. Hotel New York (the old Holland America Line headquarters across the river) is the splurge with the best history. Both put you on the metro and tram network and within walking distance of the main sights.
     - title: Do the architecture loop in half a day
       body: Markthal → Cube Houses → Erasmusbrug → Hotel New York → Maritime Museum is a 3 km walking loop with the modern Dutch architecture canon along the way. Add Euromast and Depot Boijmans on the second half-day.
     - title: Kinderdijk is the easy day trip
@@ -81,7 +81,7 @@ Rotterdam runs a tighter and more contemporary festival calendar than Amsterdam,
 
 | Event | When | What it changes |
 |---|---|---|
-| **International Film Festival Rotterdam (IFFR)** | Late January to early February, 10 days | One of the largest film festivals in Europe and the headline cultural event of the Rotterdam year. Around 280,000 attendees, multiple venues across the city (de Doelen, Pathé Schouwburgplein, LantarenVenster). Hotels in the center fill, prices double. Tickets release in December |
+| **International Film Festival Rotterdam (IFFR)** | Late January to early February, 10 days | One of the largest film festivals in Europe and the main cultural event of the Rotterdam year. Around 280,000 attendees, multiple venues across the city (de Doelen, Pathé Schouwburgplein, LantarenVenster). Hotels in the center fill, prices double. Tickets release in December |
 | **North Sea Jazz Festival** | A weekend in mid-July, three days | One of the biggest jazz festivals in the world. Held at Rotterdam Ahoy. Around 70,000 across the weekend. Hotels fill heavily, with the spillover going to The Hague and the suburbs |
 | **Rotterdam Summer Carnival (Zomercarnaval)** | Last weekend of July | The Dutch Caribbean-style carnival, one of the bigger summer carnivals in Europe. Around 900,000 attendees across the weekend. Parade through the center on the Saturday. Free, photogenic, the most diverse weekend on the Rotterdam calendar |
 | **Eurovision (2021)** | One-off, May 2021 | Not annual, but worth flagging: Rotterdam Ahoy hosted Eurovision in 2021. The city is sometimes mentioned as a future bidder. Verify if booking around it for any given year |

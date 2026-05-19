@@ -32,7 +32,7 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Berlin](/cities/berlin) plays by its own rules: less polished than Paris, less rich than London, and carrying a rougher cultural energy the other two lost decades ago. It is huge, the transit is superb, and nobody does Turkish-German food better. A long weekend gets the headline sights. A week gets the neighborhoods.
+[Berlin](/cities/berlin) plays by its own rules: less polished than Paris, less rich than London, and carrying a rougher cultural energy the other two lost decades ago. It is huge, the transit is superb, and nobody does Turkish-German food better. A long weekend gets the main sights. A week gets the neighborhoods.
 
 ## On this page
 

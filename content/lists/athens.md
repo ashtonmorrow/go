@@ -61,7 +61,7 @@ day_trips:
       summary: The oracle sanctuary on the slopes of Mount Parnassus, with its theater, stadium, and museum. Better as an overnight than a rushed single day.
 ---
 
-Most people give [Athens](/cities/athens) two days and leave underwhelmed, and I think they plan it wrong. Two days does the headline sights, three is the sweet spot, four if you want Delphi as an overnight. Here's how I'd shape it, plus the two things worth planning around.
+Most people give [Athens](/cities/athens) two days and leave underwhelmed, and I think they plan it wrong. Two days does the main sights, three is the sweet spot, four if you want Delphi as an overnight. Here's how I'd shape it, plus the two things worth planning around.
 
 ## On this page
 

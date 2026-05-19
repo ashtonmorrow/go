@@ -136,7 +136,7 @@ A morning covers all three plus coffee. Bring covered legs and shoulders for the
 
 ## Beach clubs and where to eat
 
-The Samui beach club scene has grown sharply. Pricing is European (€10 to €15 for a cocktail at the headline names), but day-bed minimums are usually F&B credit you can actually use.
+The Samui beach club scene has grown sharply. Pricing is European (€10 to €15 for a cocktail at the marquee names), but day-bed minimums are usually F&B credit you can actually use.
 
 | Spot | Where | Notes |
 |---|---|---|

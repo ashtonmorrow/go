@@ -32,7 +32,7 @@ faqs:
   - q: Where do I stay in Mulu?
     a: Mulu Marriott Resort & Spa, effectively. It sits about $100 a night, the on-demand airport shuttle meets every flight (you do not need to book it), and occupancy is consistently low enough that Marriott status members tend to get suite upgrades, worth saving suite-night awards for. The alternative is the park lodge with hostel beds at $11 and villas at $65 with no Wi-Fi, or a handful of small homestays. The Marriott is open-air on the public floors and there are bats flying around the bar after dark. Some people love this, others do not.
   - q: What is actually worth doing in the park?
-    a: The unguided boardwalks (about 10 km total across five routes) cover most of the wildlife and require nothing more than water and bug spray. The guided cave tours (Deer, Lang, Clearwater) are the headline experience and cost under $10 each. Book ahead because the park keeps reservations in a physical book and spots are limited. The Pinnacles is the famous photo, but it is a 3-day overnight trek with hard turnaround windows. Plan it as a separate trip rather than an add-on.
+    a: The unguided boardwalks (about 10 km total across five routes) cover most of the wildlife and require nothing more than water and bug spray. The guided cave tours (Deer, Lang, Clearwater) are the main experience and cost under $10 each. Book ahead because the park keeps reservations in a physical book and spots are limited. The Pinnacles is the famous photo, but it is a 3-day overnight trek with hard turnaround windows. Plan it as a separate trip rather than an add-on.
   - q: Is the Wi-Fi situation really that bad?
     a: At the park lodge, there is no Wi-Fi at all. At the Marriott, Wi-Fi is in the reception, bar, and pool areas only. The rooms and suites do not have it. I had two bars of 4G in my room which was enough for a hotspot, but bring a Malaysian SIM in advance if you need to work.
 
@@ -57,7 +57,7 @@ topics:
 
 ## Why it is worth the effort
 
-Three reasons. The park is a UNESCO site for its flora and fauna, with the bat colonies as the headline draw. The evening flyout from [Deer Cave](/pins/deer-cave) is the kind of thing that gets onto nature documentaries. The cave system itself is among the largest on the planet, with the Deer Cave entrance over 140 meters tall. And the karst formations the caves carved out include the Pinnacles, a field of vertical limestone blades that are the park's most photographed feature.
+Three reasons. The park is a UNESCO site for its flora and fauna, with the bat colonies as the main draw. The evening flyout from [Deer Cave](/pins/deer-cave) is the kind of thing that gets onto nature documentaries. The cave system itself is among the largest on the planet, with the Deer Cave entrance over 140 meters tall. And the karst formations the caves carved out include the Pinnacles, a field of vertical limestone blades that are the park's most photographed feature.
 
 The trip is also worth it for what it is not: a Marriott in a rainforest where bats fly around the bar at night is a real travel anecdote, and it is one of the few places where a major loyalty program drops you straight into a UNESCO park.
 

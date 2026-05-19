@@ -17,7 +17,7 @@ guide_cards:
   cards:
     - title: Two days, mostly on foot
       body: The waterfront, the Beatles sites, the cathedrals, and the eating-and-drinking streets all sit inside a walkable center. Two days is enough for a first visit, three if you want a football match or a slower pace.
-    - title: The waterfront is the headline
+    - title: The waterfront is the draw
       body: The Royal Albert Dock and the Pier Head are the set-piece, with the Three Graces above the river and a run of museums in the restored dock warehouses. Most of a first day goes here.
     - title: The Beatles, on your own terms
       body: The Cavern Club, Mathew Street, the Beatles Story, and the suburban sites at Penny Lane and Strawberry Field. Pick the level you want, from one statue photo to a full childhood-homes tour.

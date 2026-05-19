@@ -16,7 +16,7 @@ guide_cards:
   intro: Barcelona in 2026 is a city visibly pushing back against the version of itself most tourists arrive expecting. Residents have spent the last several summers protesting overtourism in Ciutat Vella, and the city council is mid-way through phasing out every short-term rental license by November 2028. The planning question that follows from all of that is whether you arrive as another visitor compounding the strain or as someone who base off the tourist spine, books a real hotel, and treats the central monuments as day-stops rather than the center of gravity.
   cards:
     - title: Base off the tourist spine
-      body: Poblenou on the L4 (yellow) metro line sits one short ride from the headline sights and functions as a working neighborhood rather than a visitor precinct. Food costs less because the menus are not pricing in tourists. Evenings are calmer because the bars are local. The Holiday Inn Express runs around €100 a night. You take the metro into the center instead of waking up inside it.
+      body: Poblenou on the L4 (yellow) metro line sits one short ride from the main sights and functions as a working neighborhood rather than a visitor precinct. Food costs less because the menus are not pricing in tourists. Evenings are calmer because the bars are local. The Holiday Inn Express runs around €100 a night. You take the metro into the center instead of waking up inside it.
     - title: Why I do not book Airbnb here
       body: Barcelona is winding down short-term rentals to relieve a housing crisis that pushed long-term renters and pensioners on fixed incomes out of central neighborhoods. The 2028 phase-out is real, enforcement has tightened, and listings can disappear mid-stay. The platform exposure now sits on the traveler rather than the host. Aparthotels like Durlet in Poblenou or The Social Hub cover the "I want a kitchen" case without participating in the squeeze on the residential stock.
     - title: Fira only for an early flight
@@ -203,7 +203,7 @@ The trip-shaping ones are La Mercè (the reason to book Barcelona in late Septem
 
 ## Where to stay
 
-**Poblenou on the L4 (yellow) line is the first pick.** One metro stop from the center, working neighborhood rather than visitor precinct, restaurants priced for residents, evenings calmer, hotel rates roughly a third lower. The catch is the metro ride to the headline sights instead of walking out the door.
+**Poblenou on the L4 (yellow) line is the first pick.** One metro stop from the center, working neighborhood rather than visitor precinct, restaurants priced for residents, evenings calmer, hotel rates roughly a third lower. The catch is the metro ride to the main sights instead of walking out the door.
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
@@ -250,7 +250,7 @@ Every major Barcelona attraction now requires an online timed ticket. Walk-up ti
 | Sight | What to know | Booking |
 |---|---|---|
 | [Sagrada Família](/pins/la-sagrada-familia) | Gaudí's basilica, still under construction since 1882. The most-visited attraction in Spain. 90-minute self-guided visit, longer if you climb a tower | sagradafamilia.org. Book 3 to 6 weeks ahead in peak (May to October). The basic ticket is ~€26. The Towers add-on is ~€10 more and worth it for one of the two towers (Passion is the better climb) |
-| [Park Güell](/pins/park-guell) | Gaudí park on the hill in Gràcia. The Monumental Zone (the headline mosaic terrace) is ticketed. The surrounding park is free | parkguell.barcelona. Timed entry, ~€18, sells out the day-of in peak. Free zones around the perimeter are open without a ticket |
+| [Park Güell](/pins/park-guell) | Gaudí park on the hill in Gràcia. The Monumental Zone (the famous mosaic terrace) is ticketed. The surrounding park is free | parkguell.barcelona. Timed entry, ~€18, sells out the day-of in peak. Free zones around the perimeter are open without a ticket |
 | Casa Batlló | Gaudí house on Passeig de Gràcia. The interior tour is the photogenic one | casabatllo.es. €35+ for a basic ticket. The "Silver" pass with the AR glasses is the upsell most visitors take. Book a few days ahead in peak |
 | La Pedrera (Casa Milà) | The other Passeig de Gràcia Gaudí house, less staged than Batlló | lapedrera.com. ~€28. Day-of tickets usually available outside July-August |
 | Picasso Museum | Five connected medieval palaces in Born holding the early Picasso work | museupicassobcn.cat. Free on Thursday afternoons (4 to 7 p.m., book a free timed ticket online) and the first Sunday of the month. Otherwise ~€14 |

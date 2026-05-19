@@ -108,7 +108,7 @@ For something more offbeat, [Ihwa Mural Village](/pins/ihwa-mural-village) is th
 
 ## Views, parks, and the river
 
-[N Seoul Tower](/pins/n-seoul-tower) on Namsan is the headline viewpoint, reached by cable car or a walk up through the park, with the whole city laid out below. For a view earned on foot, [Inwangsan](/pins/inwangsan) is the granite peak on the city's northwest edge, a real but manageable climb past shamanist shrines and a stretch of the old city wall.
+[N Seoul Tower](/pins/n-seoul-tower) on Namsan is the main viewpoint, reached by cable car or a walk up through the park, with the whole city laid out below. For a view earned on foot, [Inwangsan](/pins/inwangsan) is the granite peak on the city's northwest edge, a real but manageable climb past shamanist shrines and a stretch of the old city wall.
 
 At ground level, [Cheonggyecheon](/pins/cheonggyecheon) is the restored stream that runs sunken through downtown, a long linear walk below the traffic. [Hangang Park](/pins/hangang-park) is the riverside parkland along the Han, the city's open-air living room, best in the evening when families and friends spread out with delivery fried chicken. [Seoul Forest](/pins/seoul-forest) is the larger green park east of the center, the calm half-day.
 
@@ -118,7 +118,7 @@ For families, [Coex Aquarium](/pins/coex-aquarium) sits inside the COEX mall in 
 
 Seoul eats late and eats in markets, and the markets are the best food planning you can do.
 
-[Gwangjang Market](/pins/gwangjang-market) is the headline, one of the oldest markets in the country and a dense hall of food stalls, the place for bindaetteok (mung-bean pancake), mayak gimbap, and raw beef. [Noryangjin Fisheries Wholesale Market](/pins/noryangjin-fisheries-wholesale-market) is the vast seafood market, where you buy from the stalls downstairs and have it cooked at a restaurant upstairs. [Myeong-dong](/pins/myeong-dong) runs a famous evening street-food strip alongside its shopping, the easiest introduction to Korean street snacks.
+[Gwangjang Market](/pins/gwangjang-market) is the main market, one of the oldest markets in the country and a dense hall of food stalls, the place for bindaetteok (mung-bean pancake), mayak gimbap, and raw beef. [Noryangjin Fisheries Wholesale Market](/pins/noryangjin-fisheries-wholesale-market) is the vast seafood market, where you buy from the stalls downstairs and have it cooked at a restaurant upstairs. [Myeong-dong](/pins/myeong-dong) runs a famous evening street-food strip alongside its shopping, the easiest introduction to Korean street snacks.
 
 For a different register, [Common Ground](/pins/common-ground) in Konkuk is a retail-and-food complex built from stacked blue shipping containers, the photogenic modern counterpoint to the old markets.
 
