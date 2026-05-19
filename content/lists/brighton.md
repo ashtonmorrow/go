@@ -26,7 +26,7 @@ guide_cards:
 
 faqs:
   - q: How do I get to Brighton from London?
-    a: Direct trains run from London Victoria, London Bridge, and St Pancras to Brighton every few minutes through the day, and the journey is about an hour. Unlike the dynamically priced long-distance routes, Brighton fares stay cheap whenever you book, and an off-peak or weekend return usually runs somewhere around 20 to 30 pounds. Brighton station sits up the hill from the sea, a 15-minute walk down to the seafront, or a short bus or taxi.
+    a: Direct trains run from London Victoria, London Bridge, and St Pancras to Brighton every few minutes through the day, and the journey is about an hour. Unlike the dynamically priced long-distance routes, Brighton fares stay reasonable whenever you book. An off-peak day return is around 35 pounds, and advance singles booked ahead can be far cheaper. Brighton station sits up the hill from the sea, a 15-minute walk down to the seafront, or a short bus or taxi.
   - q: Is Brighton a day trip or an overnight?
     a: A day trip works easily. An hour each way leaves a full day for the pier, the Royal Pavilion, the Lanes, and a seafront meal. An overnight is worth it if you want the beach in the evening light, the bars after the day-trippers leave, or a slower pace across two days.
   - q: Is the beach sand or pebbles?
@@ -51,11 +51,12 @@ topics:
 #   Ready to flip indexable once a hero image is set.
 # - Built from the existing 14-pin brighton saved_list. The saved_lists
 #   row already exists, so this .md is all that was needed.
-# - VERIFY before indexable: the British Airways i360 has had serious
-#   financial trouble and may have closed. The guide hedges its
-#   operating status. Confirm and update before publishing.
-# - The 20-30 pound off-peak fare figure is Mike's estimate, so
-#   fact-check it before flipping indexable.
+# - i360 status verified May 2026: it closed in administration in
+#   Dec 2024 and reopened March 2025 under new owners (Nightcap), who
+#   cut ticket prices. The guide reflects this.
+# - Fare figure checked May 2026: a London-Brighton off-peak day return
+#   is roughly 35 pounds, advance singles cheaper. The guide reflects
+#   this.
 # - featured: true so it joins the home-page guides feed.
 # - hero_image is empty. Pick one in /admin/lists/brighton.
 # - related.city: /cities/brighton should exist in go_cities (verify).
@@ -91,7 +92,7 @@ The overnight earns its place when you want the beach and the seafront bars in t
 
 ## Getting in from London
 
-**Direct trains** run to Brighton from London Victoria, London Bridge, and St Pancras every few minutes through the day, and the journey is about an hour. London Bridge is the easy one to aim for, with trains constantly. This is the opposite of a long-distance trip: fares stay low whenever you book, and an off-peak or weekend return runs somewhere around 20 to 30 pounds, with no advance booking needed.
+**Direct trains** run to Brighton from London Victoria, London Bridge, and St Pancras every few minutes through the day, and the journey is about an hour. London Bridge is the easy one to aim for, with trains constantly. This is the opposite of a long-distance trip: fares stay low whenever you book, an off-peak day return is around 35 pounds, and advance singles booked ahead can be far cheaper, with no dynamic-pricing trap to plan around.
 
 Brighton station sits up the hill from the sea. The walk down to the seafront takes about fifteen minutes and is all downhill, which is pleasant on the way in. The catch is the return leg. After a long evening in the bars, the climb back up to the station is a genuine slog, so keep bus or taxi money in reserve.
 
@@ -111,7 +112,7 @@ The seafront is the spine of any Brighton visit, a long pebble beach and promena
 
 Offshore stand the ruins of the **West Pier**, the derelict Victorian pleasure pier wrecked by storms and then fire in the early 2000s and left as a blackened skeleton in the water. It is oddly beautiful, and walking out along the front to look at it is one of the quieter pleasures of the seafront. [Volk's Electric Railway](/pins/volk-s-electric-railway), running along the eastern seafront, is the oldest operating electric railway in the world, a short and charming Victorian ride.
 
-The [British Airways i360](/pins/british-airways-i360) is the slender observation tower at the West Pier's landward end, lifting a glass pod high over the seafront for a view along the coast. It is a striking ride, though never cheap and often crowded. It has also been through serious financial trouble, so check whether it is currently operating before you build a visit around it.
+The [British Airways i360](/pins/british-airways-i360) is the slender observation tower at the West Pier's landward end, lifting a glass pod high over the seafront for a view along the coast. It closed in administration at the end of 2024 and reopened in March 2025 under new owners, who cut the ticket prices sharply, so it is a cheaper ride now than its old reputation suggests.
 
 ## The Royal Pavilion and the Lanes
 
