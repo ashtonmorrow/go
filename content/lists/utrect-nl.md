@@ -36,7 +36,7 @@ topics:
 
 ## Getting in from the airport
 
-Utrecht Amsterdam Schiphol (the international gateway. Utrecht has no major airport) (AMS) has no major international airport. Arrival is by train from Schiphol (AMS) or Amsterdam Centraal, both of which connect directly to Utrecht Centraal.
+Utrecht has no major international airport. Amsterdam Schiphol (AMS) is the international gateway. Arrival is by train from Schiphol or Amsterdam Centraal, both of which connect directly to Utrecht Centraal.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|

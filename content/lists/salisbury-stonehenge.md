@@ -24,10 +24,11 @@ related:
 #   walk over. You can't walk all the way around the stones from there
 #   but the view is free.
 # - The free-walk pub is The Packhorse in Larkhill, pinned as
-#   the-packhorse-larkhill. That pin is currently a draft: visited is
-#   false, category and description are null. Enrich it (it's a pub,
-#   Larkhill, near the Royal Artillery garrison) so the cross-link
-#   lands on a real pin page.
+#   the-packhorse-larkhill. 2026-05-19: pin enriched with Mike's lived
+#   notes (visited, kind=restaurant, category=pub, personal_rating=5,
+#   review) plus researched fields (address Wilson Rd Larkhill SP4 8QB,
+#   phone +44 1980 652476, website thepackhorseonline.co.uk, opening
+#   hours). The pin page is real now.
 # - indexable: false until Mike reviews voice and facts and picks a
 #   hero image. Things to verify before flipping: Stonehenge English
 #   Heritage timed-ticket price, Salisbury Cathedral admission, the

@@ -41,7 +41,7 @@ topics:
 
 ## Getting in from the airport
 
-Venice Venice Marco Polo Airport (VCE) sits about 12 km north of central Venice. The Alilaguna water-taxi service connects the airport directly to the lagoon, which is the right way to arrive into a water city.
+Venice Marco Polo Airport (VCE) sits about 12 km north of central Venice. The Alilaguna water-taxi service connects the airport directly to the lagoon, which is the right way to arrive into a water city.
 
 | Mode | Time | Cost | When to use |
 |---|---|---|---|
