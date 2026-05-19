@@ -6,6 +6,7 @@ import { marked } from "marked";
 import { unstable_cache } from "next/cache";
 
 import { filterValidTopics } from "./topics";
+import { asStringArray, asIsoDate } from "./frontmatter";
 
 const POSTS_DIR = path.join(process.cwd(), "content/posts");
 
@@ -77,11 +78,6 @@ function normalizeLinks(raw: unknown): PostLinks {
   };
 }
 
-function normalizeStringArray(raw: unknown): string[] {
-  if (!Array.isArray(raw)) return [];
-  return raw.filter((x): x is string => typeof x === "string");
-}
-
 function normalizeStructuredItemLists(raw: unknown): PostStructuredItemList[] {
   if (!Array.isArray(raw)) return [];
   return raw
@@ -114,13 +110,6 @@ function normalizeStructuredItemLists(raw: unknown): PostStructuredItemList[] {
     .filter((list): list is PostStructuredItemList => list !== null);
 }
 
-function normalizeIsoDate(raw: unknown): string | null {
-  if (!raw) return null;
-  if (raw instanceof Date) return raw.toISOString().slice(0, 10);
-  if (typeof raw === "string") return raw;
-  return null;
-}
-
 async function readPostFile(slug: string): Promise<Post | null> {
   const filePath = path.join(POSTS_DIR, `${slug}.md`);
   let raw: string;
@@ -147,10 +136,10 @@ async function readPostFile(slug: string): Promise<Post | null> {
     subtitle: typeof data.subtitle === "string" ? data.subtitle : null,
     heroImage: typeof data.hero_image === "string" ? data.hero_image : null,
     heroAlt: typeof data.hero_alt === "string" ? data.hero_alt : null,
-    published: normalizeIsoDate(data.published),
-    updated: normalizeIsoDate(data.updated),
+    published: asIsoDate(data.published),
+    updated: asIsoDate(data.updated),
     indexable: data.indexable === true,
-    authors: normalizeStringArray(data.authors),
+    authors: asStringArray(data.authors),
     links: normalizeLinks(data.links),
     structuredItemLists: normalizeStructuredItemLists(data.structured_item_lists),
     topics: filterValidTopics(data.topics ?? data.tags),

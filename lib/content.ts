@@ -6,6 +6,7 @@ import { unstable_cache } from 'next/cache';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import { filterValidTopics } from './topics';
+import { asString, asStringArray, asIsoDate } from './frontmatter';
 
 /**
  * File-based content collection.
@@ -199,21 +200,6 @@ export type ListContent = {
    *  null when the frontmatter has no `day_trips:` block. */
   dayTrips: DayTrips | null;
 };
-
-function asString(v: unknown): string | null {
-  return typeof v === 'string' && v.length > 0 ? v : null;
-}
-
-function asStringArray(v: unknown): string[] {
-  if (!Array.isArray(v)) return [];
-  return v.filter((x): x is string => typeof x === 'string');
-}
-
-function asIsoDate(v: unknown): string | null {
-  if (v instanceof Date) return v.toISOString().slice(0, 10);
-  if (typeof v === 'string' && v.length > 0) return v;
-  return null;
-}
 
 function parseGuideCards(v: unknown): ListGuideCards | null {
   if (!v || typeof v !== 'object') return null;
