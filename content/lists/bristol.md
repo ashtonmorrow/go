@@ -8,8 +8,8 @@ published: 2026-05-10
 updated: 2026-05-10
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/6c/6cf26afe06293258c51c762528347120efe6a9c2c968b27b1aa81a0d7bbe1175.jpg"
+hero_alt: "Banksy's Well Hung Lover mural on a Park Street wall in Bristol"
 
 guide_cards:
   title: Planning Bristol

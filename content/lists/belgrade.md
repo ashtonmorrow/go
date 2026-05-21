@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/8f/8fc225601a0577869be029e262266b3a9e7e5251d23a37998fa0c62bfc59fc23.jpg"
+hero_alt: "A Sherman tank on display at the Military Museum inside Belgrade's Kalemegdan Fortress"
 
 related:
   city: belgrade

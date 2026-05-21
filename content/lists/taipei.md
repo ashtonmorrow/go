@@ -8,8 +8,8 @@ published: 2026-05-20
 updated: 2026-05-20
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/b3/b309759e3778a676091df2c404a7ac6150cac5481080f9ee109da3c3cc202a28.jpg"
+hero_alt: "A Taipei temple at night, intricate dragon and figure carvings lit on the roofs"
 
 related:
   city: taipei

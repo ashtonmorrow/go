@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/a7/a75d4f5e15f588a4a3346241378c5cc80b305a709b37cc5c479e938c1947d8f0.jpg"
+hero_alt: "Beachfront pool view at the InterContinental Pattaya in Jomtien"
 
 related:
   city: pattaya

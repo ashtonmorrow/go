@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/04/0417a0fb8e08b16d623dcf97043ed0feb213d4210dac08c69414be8ff0982b21.jpg"
+hero_alt: "Boats moored at a Hilton Head marina under live oaks"
 
 related:
   city: hilton-head-sc

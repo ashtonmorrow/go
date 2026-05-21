@@ -8,8 +8,8 @@ published: 2026-05-18
 updated: 2026-05-18
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/3d/3d350e5631c7de88daeb92b7c3a85d4837222c6344df9a8e197829d29582bb0b.jpg"
+hero_alt: "A street cat in the foreground with an Istanbul bazaar alley behind"
 
 guide_cards:
   title: Planning Istanbul

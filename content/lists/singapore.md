@@ -8,8 +8,8 @@ published: 2026-05-11
 updated: 2026-05-15
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/1e/1eb4e0d585659fda903ec341fd0551c569c1614eb9127f7a6acb3cb73d877fa6.jpg"
+hero_alt: "Dale Chihuly glass sculptures inside the Cloud Forest at Gardens by the Bay"
 
 guide_cards:
   title: Planning Singapore

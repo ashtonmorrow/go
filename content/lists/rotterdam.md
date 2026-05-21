@@ -8,8 +8,8 @@ published: 2026-05-11
 updated: 2026-05-15
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/bd/bd1845c454c2d01a03fa71d21d8b208b5e4c8968c4500df5b278098a95bd4420.jpg"
+hero_alt: "Looking up at Rotterdam's yellow cube houses"
 
 guide_cards:
   title: Planning Rotterdam

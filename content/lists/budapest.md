@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/97/97c135f1c92e0fb8251eea414087b7fa2808f3d6d631698bf50bd92206c3d01b.jpg"
+hero_alt: "Outdoor pool at Gellért thermal bath with autumn foliage"
 
 related:
   city: budapest
