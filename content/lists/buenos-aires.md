@@ -114,7 +114,7 @@ Buenos Aires is two food cities at once. The parrilla side, where Don Julio is t
 | Spot | Style | Why pick it |
 |---|---|---|
 | [Don Julio Parrilla](/pins/don-julio-parrilla) | Parrilla, Palermo | The tourist headline. Reservation required, and prices have moved (see below) |
-| [Cerezo Sushi](/pins/cerezo-sushi) | Japanese, Palermo | My pick for sushi in the city. Several other rooms compete, this is the one I keep coming back to |
+| [Cerezo Sushi](/pins/cerezo-sushi) | Japanese, Palermo | The sushi room I keep coming back to in the city. Several other rooms compete |
 | Nino Gordo | Asian fusion, Palermo | Reservation required, usually a week or two out. One of the more interesting menus in Palermo |
 | [Martineta Bar](/pins/martineta-bar) | Bar / small plates, Palermo | Late-night, the wine list, the room |
 | [Ribs al Río - Paseo Infanta](/pins/ribs-al-rio-paseo-infanta) | Barbecue ribs | Casual, dependable, fast |

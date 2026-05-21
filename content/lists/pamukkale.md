@@ -27,4 +27,4 @@ related:
 
 ## What's on this list
 
-[The Travertines of Pamukkale](/pins/travertines-of-pamukkale) are the white terraces themselves; you walk them barefoot to protect the surface. [Cleopatra Antique Pools](/pins/cleopatra-antique-pools) is the thermal pool inside the Hierapolis ruins, where you swim among submerged Roman columns for a separate entry fee.
+[The Travertines of Pamukkale](/pins/travertines-of-pamukkale) are the white terraces themselves. You walk them barefoot to protect the surface. [Cleopatra Antique Pools](/pins/cleopatra-antique-pools) is the thermal pool inside the Hierapolis ruins, where you swim among submerged Roman columns for a separate entry fee.

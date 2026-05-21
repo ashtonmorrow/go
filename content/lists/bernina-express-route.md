@@ -93,7 +93,7 @@ The Bernina Express is the scenic train that climbs through the Alps from [Tiran
 
 If you are already in [Milan](/cities/milan), the Bernina Express is a realistic full-day rail trip. Take a regional train from Milano Centrale to [Tirano](/cities/tirano), board the [Bernina Express](/pins/trenino-rosso-bernina) there, and ride north through the Alps to [Chur](/cities/chur). From Chur you can continue deeper into [Switzerland](/countries/switzerland) on the standard SBB network or stay the night and treat it as a small Alpine city stop.
 
-The cleanest path is to book the Bernina Express directly with Rhaetian Railways at rhb.ch. If you have lead time, comparing cheaper booking paths through Deutsche Bahn (the canonical write-up is on Mark Smith's *Man in Seat 61* site) can save real money. First class is comfortable, but the core experience is the line itself. The viaducts, the climb to Ospizio Bernina, the lakes, and the shift from Italian Lombardy into Graubünden. Same train, same view, two cabin classes.
+The cleanest path is to book the Bernina Express directly with Rhaetian Railways at rhb.ch. If you have lead time, comparing cheaper booking paths through Deutsche Bahn (the definitive write-up is on Mark Smith's *Man in Seat 61* site) can save real money. First class is comfortable, but the core experience is the line itself. The viaducts, the climb to Ospizio Bernina, the lakes, and the shift from Italian Lombardy into Graubünden. Same train, same view, two cabin classes.
 
 ## Getting to Tirano from Milan
 

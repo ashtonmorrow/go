@@ -175,7 +175,7 @@ The river is the part most first-time visitors miss. The Chao Phraya Express Boa
 Three trip shapes set the base differently:
 
 - **Young, social, low budget.** Khao San and Banglamphu. Backpacker Bangkok. Stay there only if that is specifically the trip.
-- **Conference plus personal days, or any long stay.** Sukhumvit, Soi 24 or Thong Lo. Long-stay properties (Hyatt Place, Staybridge, the Marriott Executive Apartments) are abundant here and built around how you actually live for a week or a month. Heads-up that the Staybridge in Bangkok bears no resemblance to a US Staybridge. Leave that conception at the door. The property here is a real long-stay hotel with a full kitchen, a washer, and a neighborhood that delivers food at all hours.
+- **Conference plus personal days, or any long stay.** Sukhumvit, Soi 24 or Thong Lo. Long-stay properties (Hyatt Place, Staybridge, the Marriott Executive Apartments) are abundant here and built around how you actually live for a week or a month. Heads-up that the Staybridge in Bangkok bears no resemblance to a US Staybridge. Leave that conception at the door. The property here is a real long-stay hotel with a full kitchen, a washer, and a neighborhood where food delivery runs at all hours.
 - **Honeymoon, anniversary, slower vacation with a partner.** The river. Older, classier properties (Royal Orchid Sheraton, Mandarin Oriental, Shangri-La) on the Chao Phraya are gorgeous day and night. Trade-off: you are further from the shopping and the BTS, and you Grab more often.
 
 The general rule across all three: stay close to the BTS or river artery you actually plan to use. The further you walk to a station the more you will rely on Grab to make up the difference.

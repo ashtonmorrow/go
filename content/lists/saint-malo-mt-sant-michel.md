@@ -28,7 +28,7 @@ related:
 #   Saint-Michel city page yet; first mention stays plain text.
 ---
 
-[Saint-Malo](/cities/saint-malo) and Mont Saint-Michel sit about an hour apart on the border of Brittany and Normandy, and most trips pair them. Saint-Malo is the walled granite corsair port; Mont Saint-Michel is the abbey on a tidal island. This list has a stop for each.
+[Saint-Malo](/cities/saint-malo) and Mont Saint-Michel sit about an hour apart on the border of Brittany and Normandy, and most trips pair them. Saint-Malo is the walled granite corsair port. Mont Saint-Michel is the abbey on a tidal island. This list has a stop for each.
 
 ## What's on this list
 

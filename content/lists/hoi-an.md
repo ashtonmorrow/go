@@ -27,4 +27,4 @@ related:
 
 ## What's on this list
 
-[Ba Ri Tailor](/pins/ba-ri-tailor) is the made-to-measure tailor on this list; allow time for a fitting and a second visit before you leave town. [Jack's Cat Cafe](/pins/jack-s-cat-cafe) is a cat cafe where entry includes a drink.
+[Ba Ri Tailor](/pins/ba-ri-tailor) is the made-to-measure tailor on this list. Allow time for a fitting and a second visit before you leave town. [Jack's Cat Cafe](/pins/jack-s-cat-cafe) is a cat cafe where entry includes a drink.

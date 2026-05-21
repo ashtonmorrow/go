@@ -58,7 +58,7 @@ day_trips:
 # - indexable: false until Mike reviews and a hero image is picked.
 ---
 
-[Tokyo](/cities/tokyo) is the largest metro area in the world, and it reads exactly that big the moment you land. The trip is not seeing Tokyo so much as picking three or four wards and going deep on each. The food is the canonical reason. A week is the minimum. Here's how I'd plan it.
+[Tokyo](/cities/tokyo) is the largest metro area in the world, and it reads exactly that big the moment you land. The trip is not seeing Tokyo so much as picking three or four wards and going deep on each. The food is the reason most people come. A week is the minimum. Here's how I'd plan it.
 
 ## On this page
 

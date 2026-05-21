@@ -91,7 +91,7 @@ Serbian food is the Balkan grill side at its most confident: ćevapi (small gril
 | [The Square Restaurant](/pins/the-square-restaurant) | The modern Hyatt dining room that pairs with Ebisu | Same property as Ebisu, different menu. Globally professional service, ambitious cooking |
 | [Boutique #2](/pins/boutique-2) | A reliable upmarket Serbian-and-international pick | A bit more than average but worth it |
 
-The pin map below carries the rest of the saved list — Serbian grills, brewpubs, the central pizza spots — for a longer stay. The four above are the ones I would build a 48-hour Belgrade eating week around.
+The pin map below carries the rest of the saved list (Serbian grills, brewpubs, the central pizza spots) for a longer stay. The four above are the ones I would build a 48-hour Belgrade eating week around.
 
 ## Nightlife on the Sava
 

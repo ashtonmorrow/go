@@ -139,7 +139,7 @@ The trip-shaping window is the Cosquín Festival in late January. If folk music 
 
 Honest answer: I almost always book an Airbnb here. The Córdoba hotel scene is fine but not where the city shines, and the Airbnb stock in Nueva Córdoba and the center is large, well-priced, and gives you a kitchen and a washing machine for a stay of more than two nights.
 
-If you do want a hotel, [Holiday Inn Córdoba](/pins/holiday-inn-cordoba-an-ihg-hotel) is the value pick. It punches above its weight for an IHG mid-tier, but it is not in the center — plan on Uber or Cabify into the historic core and Nueva Córdoba. [Dos Aguas](/pins/dos-aguas) is the small-boutique pick, walkable to the center and beautiful to wake up in. [Hotel NH Córdoba Panorama](/pins/hotel-nh-c-rdoba-panorama) is the larger chain option closer to the action.
+If you do want a hotel, [Holiday Inn Córdoba](/pins/holiday-inn-cordoba-an-ihg-hotel) is the value pick. It punches above its weight for an IHG mid-tier, but it is not in the center. Plan on Uber or Cabify into the historic core and Nueva Córdoba. [Dos Aguas](/pins/dos-aguas) is the small-boutique pick, walkable to the center and beautiful to wake up in. [Hotel NH Córdoba Panorama](/pins/hotel-nh-c-rdoba-panorama) is the larger chain option closer to the action.
 
 | Property | Why pick it | Trade-off |
 |---|---|---|
@@ -174,7 +174,7 @@ Córdoba's food scene runs from very casual student spots to one or two genuine 
 | [Bros. Comedor](/pins/bros-comedor) | A proper lunch or relaxed dinner | Modern Argentine in the center, second floor on 27 de Abril. The room hits the right balance of busy and not loud. |
 | [Standard 69 (Villa Warcalde)](/pins/standard-69-villa-warcalde) | Quality, in the suburbs | Worth the Uber out for the suburban room. |
 | [Temple Córdoba](/pins/temple-c-rdoba) | Casual evening with friends | Nice interior terrace, the kind of place to hang out for two or three hours. |
-| [Glotón](/pins/gloton-bar-de-carnes) | Weeknight value with a group | "Meat bar." The daily weeknight special is the move, but the portion is too much for one — go with two or more. |
+| [Glotón](/pins/gloton-bar-de-carnes) | Weeknight value with a group | "Meat bar." The daily weeknight special is the move, but the portion is too much for one. Go with two or more. |
 | [Imari Omakase](/pins/imari-omakase) | Reservation-only set menu | A tiny room hidden inside another building. Set sushi menu, optional wine pairing, served right across from the sushi bar. Around $50 a person plus about $25 for wine, currency dependent. A meal that would cost 4 to 10 times more in New York. Book ahead. |
 | [El Papagayo](/pins/el-papagayo-restaurant) | Fancy tasting menu | The city's most written-about restaurant. Multi-course prix fixe around $75 to $80, would carry a Michelin star anywhere with the guide. Reserve. |
 | [La Mona MuseoBar](/pins/la-mona-museobar) | Lunch with a side of culture | A museobar dedicated to La Mona Jiménez, the cuarteto singer. Hard-Rock-Cafe-style but only for La Mona. The most uniquely cordobesian stop, and a good lunch on the way to the airport. |

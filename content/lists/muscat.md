@@ -28,4 +28,4 @@ related:
 
 ## What's on this list
 
-[Bait Al Luban](/pins/bait-al-luban-omani-restaurant-mutrah) is an Omani restaurant on the Mutrah corniche, the place to try the national dishes. [The W6 Balcony Walk](/pins/w6-balcony-walk-hike) is the marked trail that climbs above the corniche; start early and carry water.
+[Bait Al Luban](/pins/bait-al-luban-omani-restaurant-mutrah) is an Omani restaurant on the Mutrah corniche, the place to try the national dishes. [The W6 Balcony Walk](/pins/w6-balcony-walk-hike) is the marked trail that climbs above the corniche. Start early and carry water.

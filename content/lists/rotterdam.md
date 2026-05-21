@@ -112,7 +112,7 @@ A 3 km walking circuit that covers the modern Rotterdam canon. Start from the Ma
 | [Cube Houses](/pins/cube-houses) | Piet Blom's 1984 tilted-cube housing. One is open as a Show Cube museum, the rest are rented apartments |
 | [Rotterdam Historic Harbor](/pins/rotterdam-historic-harbor) and the Witte Huis | The Oude Haven, the boat-builders' workshops, and the 1898 Witte Huis (Europe's first high-rise, 45 m). Tells you what Rotterdam looked like before the bombing |
 | [Koningshavenbrug "De Hef"](/pins/koningshavenbrug-de-hef) | The 1927 lift bridge, preserved as a monument after the rail tunnel opened in 1993 |
-| Erasmusbrug | The asymmetric "Swan" bridge across the Nieuwe Maas (1996, UNStudio / Ben van Berkel). The Rotterdam postcard |
+| Erasmusbrug | The asymmetric "Swan" bridge across the Nieuwe Maas (1996, UNStudio / Ben van Berkel). The bridge you see on every Rotterdam photo |
 | [Hotel New York](/pins/hotel-new-york) | Walk across the bridge into Kop van Zuid. Cross the SS Rotterdam if it is open for tours |
 | [The Iron Lady](/pins/the-iron-lady) | A small sculpture and viewpoint on the river. Free |
 

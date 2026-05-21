@@ -28,4 +28,4 @@ related:
 
 ## Where to eat
 
-[Assembly Food Hall](/pins/assembly-food-hall) is the large downtown food hall, useful for a group that wants different things. [Sushi | Bar Nashville](/pins/sushi-bar-nashville) is the sushi counter on this list; book ahead if it runs an omakase seating.
+[Assembly Food Hall](/pins/assembly-food-hall) is the large downtown food hall, useful for a group that wants different things. [Sushi | Bar Nashville](/pins/sushi-bar-nashville) is the sushi counter on this list. Book ahead if it runs an omakase seating.

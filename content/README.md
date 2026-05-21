@@ -49,7 +49,7 @@ The frontmatter at the top is a tiny YAML-ish block bracketed by
 
 The body below the second `---` is plain paragraphs separated by blank
 lines. No headings, no bullets, no inline markdown. Single-line breaks
-inside a paragraph are folded; double-line breaks start a new paragraph.
+inside a paragraph are folded. Double-line breaks start a new paragraph.
 
 ## Authoring workflow
 
@@ -62,7 +62,7 @@ inside a paragraph are folded; double-line breaks start a new paragraph.
 5. In VS Code: `Cmd+N`, paste, save as `content/<scope>/<slug>.md`.
    Add the `indexable: true` frontmatter line at the top if Claude's
    `INDEX:` flag at the bottom of the response was `yes`.
-6. `git commit && git push`. Vercel rebuilds; the prose appears on the
+6. `git commit && git push`. Vercel rebuilds. The prose appears on the
    page within a minute.
 
 ## Why files instead of a database table
@@ -82,5 +82,5 @@ about, not the ~1,300 stub pages.
 
 ## Slug discovery
 
-Don't remember the slug? Open the place's detail page in your browser —
+Don't remember the slug? Open the place's detail page in your browser:
 the URL ends in the slug. Or grep the database via Supabase / Notion.

@@ -118,7 +118,7 @@ Tour-guide note: Schönbrunn's audio guide is included and is enough. The Englis
 
 ## Where to eat
 
-Wiener cuisine is the imperial style that runs on schnitzel, Tafelspitz (the slow-boiled beef in horseradish), goulash, and the coffee-house cakes (sachertorte, apfelstrudel, esterhazy). The Plachutta family runs the canonical Tafelspitz. The smaller picks below cover the casual end.
+Wiener cuisine is the imperial style that runs on schnitzel, Tafelspitz (the slow-boiled beef in horseradish), goulash, and the coffee-house cakes (sachertorte, apfelstrudel, esterhazy). The Plachutta family runs the best-known Tafelspitz. The smaller picks below cover the casual end.
 
 | Spot | Rating |
 |---|---|

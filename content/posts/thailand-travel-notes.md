@@ -91,7 +91,7 @@ Most visa-exempt tourists now get up to 60 days in Thailand, depending on nation
 
 ## Bangkok is easier if you stop fighting it
 
-Bangkok is usually the entry point, and I think it deserves a few days even if the beach is the emotional reason for the trip. The mistake is treating it like a city you can cross casually by car. Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. If you take a metered taxi, make sure the meter starts. A negotiated flat fare is rarely your friend.
+Bangkok is usually the entry point, and I think it deserves a few days even if the beach is the emotional reason for the trip. Do not try to cross it casually by car. Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. If you take a metered taxi, make sure the meter starts. A negotiated flat fare is rarely your friend.
 
 I would stay in Sukhumvit, Silom, or Riverside depending on the trip. Sukhumvit is convenient and international, with hotels, malls, bars, and BTS access. It is not the most distinctive version of Bangkok, but it works. Silom is a good compromise, with business-district order, markets, bars, and Lumpini Park. Riverside is calmer, better for ferries and the old-city temple circuit, and usually more expensive. [Khao San Road](/pins/khao-san-road) is backpacker Bangkok. That is useful information, not an insult. Stay there only if that is the trip you want.
 
