@@ -32,13 +32,15 @@ topics:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Belgrade](/cities/belgrade) is rougher than the polished European capitals, and that's exactly why I like it. It sits where the Sava meets the Danube, with a fortress over the old town and a food-and-nightlife scene that runs late. Two or three days does it, and it pairs cleanly with Sarajevo and Mostar.
+[Belgrade](/cities/belgrade) is the most unaligned big city in Europe, and that is the appeal. Smoking is still allowed in the airport, and the smell hits you as you walk off the plane like stepping back in time. Modern glass-tower shopping malls drop into the middle of an old town that still carries communist-era apartment blocks two streets away. The food is better than most travelers expect, the cats are everywhere, and a clubbing scene on the Sava River runs until morning, when expensive Viking river-cruise boats arrive at piers a few hundred meters from where the late-night kids are stumbling out. Two or three days does it. Pairs cleanly with Sarajevo and Mostar.
 
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
+* [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
+* [Nightlife on the Sava](#nightlife-on-the-sava)
 
 ## Getting in from the airport
 
@@ -72,16 +74,26 @@ Belgrade's calendar runs on Orthodox holidays plus a strong summer music-festiva
 
 The trip-shaping window is EXIT in Novi Sad in early to mid-July (a hotel-pressure weekend in Belgrade as well as Novi Sad). Belgrade Beer Fest in mid-August is the underrated free week most international visitors do not know about.
 
+## Where to stay
+
+The chain hotels (Hyatt Regency, Crowne Plaza) sit in Novi Beograd across the river. They are fine, and Ebisu and The Square (below) are both inside the Hyatt, so the property has its own appeal. That said, I would rather stay on the old-town side. The center, Dorćol, Vračar, and Savamala are all walkable from each other, and you wake up where the food, the bars, and the river bluff actually are.
+
+My usual move is an Airbnb in the old-town quarter. I have stayed in places that looked rough from the street and turned out to be cleanly renovated inside. That is Belgrade in a sentence. The McDonald's next door to my last apartment was housed in a worn old building that had clearly seen better decades, and the moment you walked in it was a normal modern McDonald's. Both halves are true at once.
+
 ## Where to eat
 
-Serbian food is the Balkan grill side at its most confident: ćevapi (small grilled sausages of mince), pljeskavica (the meat patty), Karadjordje schnitzel (rolled-and-stuffed pork or veal), proja bread, ajvar pepper relish, and rakija to finish. The picks below mix the traditional and the modern.
+Serbian food is the Balkan grill side at its most confident: ćevapi (small grilled sausages of mince), pljeskavica (the meat patty), Karadjordje schnitzel (rolled-and-stuffed pork or veal), proja bread, ajvar pepper relish, and rakija to finish. The Belgrade story I keep telling friends, though, is that the international rooms here are also better than they have any right to be. Two of my best Belgrade meals are not Serbian at all.
 
-| Spot | Rating |
-|---|---|
-| [Boutique #2](/pins/boutique-2) | 5/5 |
-| [Comunale Caffe e Cucina](/pins/comunale-caffe-e-cucina) | 5/5 |
-| [The Square Restaurant](/pins/the-square-restaurant) | 5/5 |
-| [Bela Reka Nacionalni Restoran](/pins/bela-reka-nacionalni-restoran) | Pinned |
-| [Bucko](/pins/bucko) | Pinned |
-| [Burrito Madre](/pins/burrito-madre) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Comunale Caffè e Cucina](/pins/comunale-caffe-e-cucina) | The Italian standout. Michelin-starred and somehow still reasonably priced | On the old docks on the Sava. The bread basket they bring out is the reason to arrive hungry. I have been four times. Book ahead |
+| [Ebisu](/pins/ebisu-belgrade) | The sushi room you would not expect | Inside the Hyatt Regency in Novi Beograd. Stacks up against the better sushi rooms in London or NYC. Prices are high for Belgrade and the quality is why |
+| [The Square Restaurant](/pins/the-square-restaurant) | The modern Hyatt dining room that pairs with Ebisu | Same property as Ebisu, different menu. Globally professional service, ambitious cooking |
+| [Boutique #2](/pins/boutique-2) | A reliable upmarket Serbian-and-international pick | A bit more than average but worth it |
+
+The pin map below carries the rest of the saved list — Serbian grills, brewpubs, the central pizza spots — for a longer stay. The four above are the ones I would build a 48-hour Belgrade eating week around.
+
+## Nightlife on the Sava
+
+The splavovi, floating river clubs on barges along the Sava, are Belgrade's signature nightlife. They run hard from midnight until well after sunrise. The contrast at dawn is the most Belgrade thing about Belgrade: kids stumbling off the boats just downstream from the piers where the expensive Viking river-cruise ships pull in for the day. Both halves of the city happen on the same water, six hours apart. Worth seeing at either end of the clock.
 
