@@ -28,7 +28,7 @@ faqs:
   - q: How do I fly to Córdoba?
     a: International direct service is limited. The reliable foreign routes are Panama City (Copa), and seasonal or rotating routes from Bogotá, Santo Domingo, and Brazilian hubs (São Paulo, Florianópolis). Otherwise plan to connect through Buenos Aires (AEP, the city airport, for domestic transfers. EZE for international arrivals). Domestic carriers Aerolíneas Argentinas, JetSmart, and Flybondi all run multiple daily flights AEP–COR.
   - q: Where is it worth staying?
-    a: Stay in or just south of the historic center. Nueva Córdoba is the university neighborhood and the one most travelers default to. It puts you next to the nightlife, the cafes, and the walk into the old town. Holiday Inn Córdoba and Hotel NH Panorama are practical chains in this area.
+    a: Honestly an Airbnb in Nueva Córdoba is the default — the Córdoba hotel scene is fine but not where the city shines, and the Airbnb stock is large and gives you a kitchen and a washing machine for stays of more than two nights. If you do want a hotel, Holiday Inn Córdoba punches above its weight for an IHG mid-tier but is not central. Dos Aguas is the small-boutique pick walkable to the center. Hotel NH Panorama is the larger practical chain in the area.
   - q: How late does the city actually go?
     a: Late. Dinner reservations at 10 p.m. are normal. Bars do not fill until midnight or 1 a.m. The full "salí" (going out) cycle ends at 6 or 7 a.m., and you will see students walking home in the early morning. Plan dinner accordingly or you will be eating alone.
   - q: How does Córdoba compare to Buenos Aires?
@@ -91,12 +91,13 @@ topics:
 #   can browse below.
 ---
 
-[Córdoba, Argentina](/cities/cordoba-ar) is the city most visitors fly past, skipped for Buenos Aires and a hassle to reach. It is worth more than that: a five-hundred-year-old colonial center and a college town where dinner is at 10 and the bars get going at 2. Here's what I'd do with a few days.
+[Córdoba, Argentina](/cities/cordoba-ar) is not a checklist city. The things-to-do lists do not stack up to Rio or Buenos Aires, and that is fine, because Córdoba is really a university town that happens to be one of the older cities in the Americas. Founded in 1573, the second-oldest in Argentina, with the colonial buildings to show for it, plus the nightlife to match the student population. Come to hang out with friends, walk the old plazas in the morning, eat at 10, and settle into a bar by midnight.
 
 ## On this page
 
 * [Getting in](#getting-in)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
+* [Where to stay](#where-to-stay)
 * [The historic center on foot](#the-historic-center-on-foot)
 * [Where to eat](#where-to-eat)
 * [Drinks and supplies](#drinks-and-supplies)
@@ -134,6 +135,19 @@ Córdoba runs on the Cosquín Folklore Festival in late January (the biggest fol
 
 The trip-shaping window is the Cosquín Festival in late January. If folk music is the trip, plan a Córdoba base for the Cosquín nights, or push to the Sierras themselves. Oktoberfest Villa General Belgrano is the underrated Argentine-Bavarian curiosity that almost no international traveler knows about.
 
+## Where to stay
+
+Honest answer: I almost always book an Airbnb here. The Córdoba hotel scene is fine but not where the city shines, and the Airbnb stock in Nueva Córdoba and the center is large, well-priced, and gives you a kitchen and a washing machine for a stay of more than two nights.
+
+If you do want a hotel, [Holiday Inn Córdoba](/pins/holiday-inn-cordoba-an-ihg-hotel) is the value pick. It punches above its weight for an IHG mid-tier, but it is not in the center — plan on Uber or Cabify into the historic core and Nueva Córdoba. [Dos Aguas](/pins/dos-aguas) is the small-boutique pick, walkable to the center and beautiful to wake up in. [Hotel NH Córdoba Panorama](/pins/hotel-nh-c-rdoba-panorama) is the larger chain option closer to the action.
+
+| Property | Why pick it | Trade-off |
+|---|---|---|
+| Airbnb in Nueva Córdoba | The default. Kitchen, laundry, and a walk into the center and nightlife | Pick by photos, the stock is uneven |
+| [Holiday Inn Córdoba](/pins/holiday-inn-cordoba-an-ihg-hotel) | Better than the average IHG mid-tier, fair price | Not central, you Uber in for evenings |
+| [Dos Aguas](/pins/dos-aguas) | Small, well-designed, walkable to the center | Limited room count, book ahead |
+| [NH Córdoba Panorama](/pins/hotel-nh-c-rdoba-panorama) | Practical chain inside the center | Standard NH-chain feel, not memorable |
+
 ## The historic center on foot
 
 The old center is small and walkable. The anchor is Plaza San Martín, the colonial main square. The [Cabildo de Córdoba](/pins/cabildo-de-cordoba), the colonial-era town hall, sits on the plaza's western side. The Catedral de Córdoba sits next to it. The plaza is the easiest place to start because four or five of the main churches and museums are within a few blocks.
@@ -156,10 +170,14 @@ Córdoba's food scene runs from very casual student spots to one or two genuine 
 | Spot | Best for | Notes |
 |---|---|---|
 | [Camelia](/pins/camelia) | Brunch | The reliable late-morning pick. The kind of room that sets the day up without rushing it. |
+| [Marfer](/pins/marfer) | Lunch sandwiches and takeout | Really good for a takeaway lunch if you are eating in the apartment. |
 | [Bros. Comedor](/pins/bros-comedor) | A proper lunch or relaxed dinner | Modern Argentine in the center, second floor on 27 de Abril. The room hits the right balance of busy and not loud. |
 | [Standard 69 (Villa Warcalde)](/pins/standard-69-villa-warcalde) | Quality, in the suburbs | Worth the Uber out for the suburban room. |
 | [Temple Córdoba](/pins/temple-c-rdoba) | Casual evening with friends | Nice interior terrace, the kind of place to hang out for two or three hours. |
-| [El Papagayo](/pins/el-papagayo-restaurant) | Fancy dinner | The city's headline tasting-menu room. Reserve. |
+| [Glotón](/pins/gloton-bar-de-carnes) | Weeknight value with a group | "Meat bar." The daily weeknight special is the move, but the portion is too much for one — go with two or more. |
+| [Imari Omakase](/pins/imari-omakase) | Reservation-only set menu | A tiny room hidden inside another building. Set sushi menu, optional wine pairing, served right across from the sushi bar. Around $50 a person plus about $25 for wine, currency dependent. A meal that would cost 4 to 10 times more in New York. Book ahead. |
+| [El Papagayo](/pins/el-papagayo-restaurant) | Fancy tasting menu | The city's most written-about restaurant. Multi-course prix fixe around $75 to $80, would carry a Michelin star anywhere with the guide. Reserve. |
+| [La Mona MuseoBar](/pins/la-mona-museobar) | Lunch with a side of culture | A museobar dedicated to La Mona Jiménez, the cuarteto singer. Hard-Rock-Cafe-style but only for La Mona. The most uniquely cordobesian stop, and a good lunch on the way to the airport. |
 
 ## Drinks and supplies
 
@@ -176,6 +194,10 @@ A few non-restaurant picks that round out a week here.
 Córdoba is a college town. That is the dominant fact for anyone planning evenings here. Dinner reservations at 10 p.m. are normal. The bars do not really fill until midnight or 1 a.m. The full going-out cycle (locally "salir") ends around 6 or 7 a.m., and if you are staying in the center it is normal to see students still walking home in the early morning. The energy is genuine and it is one of the more distinctive things about the city. Most older Cordobeses move out to gated suburbs in the hills when they start families, so the center stays young by default.
 
 If you are planning evenings, work backward from this rhythm. Eat at 10, walk for an hour, settle into a bar by midnight. Trying to eat at 7 p.m. and turn in by 11 is technically possible but you will be alone in every restaurant.
+
+### Thursday night at La Cova del Drac
+
+[La Cova del Drac](/pins/la-cova-del-drac-cordoba) is the place to point a visiting friend at. A Córdoba bar that has been there since 2012, doubles as a film location for a handful of Argentine movies, and runs live jazz, blues, and rockabilly through the week. Thursday is the one to plan around: blues night, with tap dancers and a rotating set of musicians coming through. A table of four can have a serious party, food and drinks included, for around 100 USD-equivalent. The kind of evening you remember without remembering most of it.
 
 ## Weekends in the Sierras
 
