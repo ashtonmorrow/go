@@ -8,8 +8,8 @@ published: 2026-05-10
 updated: 2026-05-10
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/80/80e9ee42d8664a7c6c9ca8f272c3868e70089355650e86f3f25b22a4c5d64b1f.jpg"
+hero_alt: "A stone fountain in the rose garden at Madrid's Retiro park"
 
 guide_cards:
   title: Planning Madrid

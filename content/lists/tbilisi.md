@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/75/75a15f65761dd9e8070da8b381ff89258828ee83f3adb98a73911f0e01cd3c55.jpg"
+hero_alt: "Tbilisi street art: a painted cat with a GROOMING banner on a city wall"
 
 guide_cards:
   title: Planning Tbilisi
