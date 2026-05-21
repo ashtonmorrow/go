@@ -8,8 +8,8 @@ published: 2026-05-11
 updated: 2026-05-15
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/b9/b93c8464e1605c705a08004c843b1d53a7b18e72ad91333844dd1dc9aaeb3c0d.jpg"
+hero_alt: "Canopy walkway above the rainforest at KL Forest Eco Park"
 
 guide_cards:
   title: Planning Kuala Lumpur

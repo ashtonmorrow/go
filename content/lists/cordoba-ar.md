@@ -8,8 +8,8 @@ published: 2026-05-11
 updated: 2026-05-15
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/21/21d5652cdd31f02921ced572674b974466c421840927589e6f135fea7b4c3017.jpg"
+hero_alt: "Reflecting pool with a footbridge and trees in central Córdoba, Argentina"
 
 guide_cards:
   title: Planning Córdoba

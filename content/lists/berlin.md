@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/e9/e9bef86ad3997d9631a2b4b845fa3cdd8e6f07ecc5de6e1a50cc28f9b38ff41f.jpg"
+hero_alt: "Bare trees reflected on a winter pond in a Berlin park"
 
 related:
   city: berlin

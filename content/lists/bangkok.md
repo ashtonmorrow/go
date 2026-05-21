@@ -8,8 +8,8 @@ published: 2026-05-10
 updated: 2026-05-15
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/ea/ea5fbee7f7b04c45a27c24458599dff15f15a9d813b38a3cca645fd6394fb0fc.jpg"
+hero_alt: "A red lion-dance costume on a neon-lit Bangkok street at night"
 
 guide_cards:
   title: Planning Bangkok

@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/f4/f4a4d9f3dfa112427205b34a0d675bb14509f675a7822ecfcca0552fe8133b11.jpg"
+hero_alt: "Prague rooftops and the Vltava bridges from a hillside walk"
 
 related:
   city: prague

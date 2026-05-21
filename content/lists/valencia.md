@@ -8,8 +8,8 @@ published: 2026-05-18
 updated: 2026-05-18
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/2e/2eac2903d969155bfd804a8db4c2f604148141e66aa0593d319c8e4d368af213.jpg"
+hero_alt: "Calatrava architecture at Valencia's City of Arts and Sciences"
 
 guide_cards:
   title: Planning Valencia

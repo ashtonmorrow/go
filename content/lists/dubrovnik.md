@@ -8,8 +8,8 @@ published: 2026-05-12
 updated: 2026-05-12
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
+hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/0c/0c2e53b15c5a945f5463b2dd0542c7e7b1721b83359c166b9c985a6ea14adb4f.jpg"
+hero_alt: "A peacock on the rocky coast of Lokrum island, near Dubrovnik"
 
 related:
   city: dubrovnik
