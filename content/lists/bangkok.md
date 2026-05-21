@@ -101,7 +101,7 @@ day_trips:
 #   indexable: false until reviewed.
 ---
 
-[Bangkok](/cities/bangkok) is where most Thailand trips begin, and it's worth a few days even when a beach is the real reason you came. It works far better once you stop fighting the traffic and move by river and BTS instead. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).
+[Bangkok](/cities/bangkok) is the city you can see in one or two days or stay in for over a month and still keep finding new things, depending entirely on the trip you want it to be. It is huge. It rewards picking a base that matches the kind of days you're after and moving by river and BTS instead of fighting the traffic. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).
 
 ## On this page
 
@@ -147,6 +147,8 @@ Most central Bangkok hotels sit about an hour by road from either airport, traff
 
 [Suvarnabhumi (BKK)](/pins/suvarnabhumi-airport) is the larger airport and the more likely first arrival. [Don Mueang (DMK)](/pins/don-mueang-international-airport) is the older airport and serves most of the low-cost regional carriers.
 
+For a late-evening arrival, DMK is usually the friendlier of the two. It is closer to most central hotels, and the traffic thins out enough after 10 p.m. that one hour door-to-door is realistic. BKK is bigger, immigration takes longer, and ground transport also takes longer, even at midnight.
+
 | Option | Airport | Time to center | Best for | Watch out for |
 |---|---|---|---|---|
 | [Airport Rail Link](/pins/airport-rail-link-phaya-thai) | BKK | ~30 min + final mile | Cheapest. Good if your hotel is at a BTS stop | Solves the long leg only. You still need a Grab from Phaya Thai |
@@ -170,7 +172,15 @@ The river is the part most first-time visitors miss. The Chao Phraya Express Boa
 
 ## Where to stay
 
-I pick the base by the kind of trip I want. The areas first. Specific hotels below.
+Three trip shapes set the base differently:
+
+- **Young, social, low budget.** Khao San and Banglamphu. Backpacker Bangkok. Stay there only if that is specifically the trip.
+- **Conference plus personal days, or any long stay.** Sukhumvit, Soi 24 or Thong Lo. Long-stay properties (Hyatt Place, Staybridge, the Marriott Executive Apartments) are abundant here and built around how you actually live for a week or a month. Heads-up that the Staybridge in Bangkok bears no resemblance to a US Staybridge. Leave that conception at the door. The property here is a real long-stay hotel with a full kitchen, a washer, and a neighborhood that delivers food at all hours.
+- **Honeymoon, anniversary, slower vacation with a partner.** The river. Older, classier properties (Royal Orchid Sheraton, Mandarin Oriental, Shangri-La) on the Chao Phraya are gorgeous day and night. Trade-off: you are further from the shopping and the BTS, and you Grab more often.
+
+The general rule across all three: stay close to the BTS or river artery you actually plan to use. The further you walk to a station the more you will rely on Grab to make up the difference.
+
+The areas first. Specific hotels below.
 
 | Area | Best BTS / MRT | Vibe | Trade-off |
 |---|---|---|---|
@@ -185,15 +195,16 @@ The hotels I have actually stayed at and would recommend, by area:
 | Hotel | Area | Why I pick it | Trade-off |
 |---|---|---|---|
 | [Hyatt Place Bangkok Sukhumvit 24](/pins/hyatt-place-bangkok-sukhumvit-24) | Phrom Phong | My usual base. 3–4 minute walk to BTS, smaller rooftop pool, decent gym, good laundry next door, Em District at the doorstep | A Hyatt Place, so the room and breakfast are not the reason you book it |
-| [Staybridge Suites Thonglor](/pins/staybridge-suites-bangkok-thonglor-an-ihg-hotel) | Thong Lo | Apartment-style suites, good for longer stays | Same Thong Lo trade-off as the area note above |
-| [Hotel Indigo Wireless Road](/pins/hotel-indigo-bangkok-wireless-road-an-ihg-hotel) | Phloen Chit | Decent rooms, IHG points, embassy-quarter quiet | Quieter side of Sukhumvit if you want street energy on the door |
+| [Staybridge Suites Thonglor](/pins/staybridge-suites-bangkok-thonglor-an-ihg-hotel) | Thong Lo | Real long-stay hotel that bears no resemblance to a US Staybridge. Apartment-style suites with a kitchen and a washer, walking distance to [The Commons](/pins/the-commons-thonglor) | Same Thong Lo trade-off as the area note above |
+| [Sindhorn Midtown (IHG Vignette Collection)](/pins/sindhorn-midtown-hotel-bangkok-vignette-collection-by-ihg) | Langsuan / Lumpini | Newest property of the four. Spacious rooms with high-rise views, 18th-floor pool, breakfast rivals any hotel in the city, on-site cafe open until 10 p.m. with fair prices, 24-hour 7-Eleven next door | Premium tier inside the IHG portfolio, so points-redemption math is different |
+| [Hotel Indigo Wireless Road](/pins/hotel-indigo-bangkok-wireless-road-an-ihg-hotel) | Phloen Chit | Decent rooms, IHG points, embassy-quarter quiet | A bit of a hike from the BTS. Factor that in if you plan to use the train often |
 | [Royal Orchid Sheraton](/pins/royal-orchid-sheraton-bangkok) | Riverside | The river-facing breakfast terrace is the reason to book it. You eat with the boats moving past | Older property, far from BTS, longer Grabs to central Bangkok |
 
 A word on the Riverside option. Most of the river properties skew older than what you would book on Sukhumvit, and the upside is that the location pays for itself at breakfast. The Royal Orchid Sheraton's terrace looks straight onto the Chao Phraya and you eat while the longtail boats and cargo barges move past. It is one of the distinctive things a Bangkok hotel can give you. The downsides are real too: further from BKK, embedded in narrow lanes off Charoen Krung, and you will Grab to most of the BTS-line city. Pick Riverside deliberately, not by default.
 
 ## A first-day mall walk
 
-If you arrived on a long-haul flight and the temple circuit is too much for the first morning, Bangkok solves this problem better than most cities. You can spend a day walking from one mall to the next without ever leaving the BTS spine and without being outside in the heat for very long. The malls are connected to the train, the train is air-conditioned, and the sequence runs roughly older-and-weirder to newer-and-slicker as you move east.
+If you arrived on a long-haul flight and the temple circuit is too much for the first morning, Bangkok solves this problem better than most cities. You can spend a day walking from one mall to the next without ever leaving the BTS spine and without being outside in the heat for very long. I have done this loop more times than I can count, often with friends or visiting siblings, and the appeal does not wear off because there is always a new food stall to try in one of the food halls. The malls are connected to the train, the train is air-conditioned, and the sequence runs roughly older-and-weirder to newer-and-slicker as you move east.
 
 | # | Stop | BTS | Known for | Vibe |
 |---|---|---|---|---|
