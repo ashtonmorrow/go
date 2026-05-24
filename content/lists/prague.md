@@ -59,6 +59,7 @@ day_trips:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
 * [Common scams to know going in](#common-scams-to-know-going-in)
 
@@ -75,7 +76,7 @@ Prague Václav Havel Airport Prague (PRG) sits about 17 km west of the center. T
 
 ## Festivals and big annual events
 
-Prague's calendar runs on a small set of headline windows that fill the city, plus a quieter year-round programming layer that does not move hotel prices. The Christmas markets and the spring music festival are the trip-shapers.
+Prague's calendar runs on a small set of peak windows that fill the city, plus a quieter year-round programming layer that does not move hotel prices. The Christmas markets and the spring music festival are the trip-shapers.
 
 | Event | When | What it changes |
 |---|---|---|
@@ -98,17 +99,30 @@ The two trip-shaping events are the Christmas markets (the busy window to either
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address, the rough nightly band, and any notes.
 
+## What to see
+
+Prague is a walk-it city, and the central sights line up between Old Town Square, the Charles Bridge, and the castle hill across the river.
+
+**The Old Town and the squares.** The [Astronomical Clock](/pins/prague-astronomical-clock) on the Old Town Hall is the obvious meeting point. The hourly show is brief, but the square around it is the heart of the old town. The [Powder Tower](/pins/the-powder-tower) is the Gothic gate at the edge of the old town, a cool tower and free to walk past, with the art-nouveau [Municipal House](/pins/municipal-house) concert hall right next to it.
+
+**The river and the castle side.** The Charles Bridge is the famous crossing. Do it before 9 a.m. or after 8 p.m. to beat the crowd press (see scams below). Across the river in Malá Strana, the [Lennon Wall](/pins/lennon-wall) is the free graffiti wall, and below the castle the free viewpoints are the value play: [Vyhlídka Na Opyši](/pins/vyhl-dka-na-opy-i) has some of the best views over the city for nothing, and [St Wenceslas Vineyard](/pins/st-wencesla-s-vineyard) is the spot to sit with a glass and the same view.
+
+**The odd ones.** The [Dancing House](/pins/tancici-dum-the-dancing-house-of-prague) is the warped Gehry building on the riverfront, and the [Žižkov Tower](/pins/zizkov-tower) with the crawling-baby sculptures climbing it is the city's strangest landmark. For an indoor hour, the [Choco-Story chocolate museum](/pins/choco-story-prague-chocolate-museum) is a bit overpriced but fun, and the gift shop is free to browse.
+
 ## Where to eat
 
-Czech food is heavier than its neighbours. Cured meats, dumplings, roast pork knuckle, hearty soups. Beer is the national drink in a way few countries can match.
+Czech food is heavier than its neighbors. Cured meats, dumplings, roast pork knuckle, hearty soups. Beer is the national drink in a way few countries can match.
 
-| Spot | Rating |
-|---|---|
-| [BEEF BAR](/pins/beef-bar) | 5/5 |
-| [BRICK'S | Hergetova Cihelna](/pins/brick-s-hergetova-cihelna) | 5/5 |
-| [Good Food Coffee & Bakery](/pins/good-food-coffee-bakery) | 5/5 |
-| [Alebrijes, Cocina Mexicana (Malá Strana)](/pins/alebrijes-cocina-mexicana-mala-strana) | Pinned |
-| [Arepas De Lyna](/pins/arepas-de-lyna) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [BEEF BAR](/pins/beef-bar) | Meat indulgence | Beef is the order. The place to overindulge |
+| [BRICK'S Hergetova Cihelna](/pins/brick-s-hergetova-cihelna) | A fancier riverside dinner | A clear step up from the similar old-town rooms |
+| [Fat Cat Old Town](/pins/fat-cat-old-town) | Beer | The beer is the standout. Gets packed |
+| [Bageterie Boulevard](/pins/bageterie-boulevard) | Quick cheap lunch | Reasonably priced sandwiches made incredibly fast |
+| [Piknik Park](/pins/piknik-park) | Reliable sit-down | Great service, handled a packed Christmas day without a hitch |
+| [Good Food Coffee & Bakery](/pins/good-food-coffee-bakery) | Coffee and bakery | Super friendly staff, convenient to the center |
+
+One I would not repeat: [Alriso Risotteria](/pins/alriso-risotteria-italiana). The food is fine, but the quality does not make up for the service.
 
 ## Common scams to know going in
 
