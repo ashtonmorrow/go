@@ -58,7 +58,9 @@ day_trips:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
+* [Sintra and the day trips](#sintra-and-the-day-trips)
 
 ## Getting in from the airport
 
@@ -97,16 +99,36 @@ If sardines and city festival are the trip, pair Lisbon with Porto for São Joã
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address, the rough nightly band, and any notes.
 
+## What to see
+
+Lisbon is a walking-and-trams city, and most of the central sights cluster in the Baixa, Chiado, and along the river. A first day on foot covers most of it.
+
+[Rua Augusta Arch](/pins/rua-augusta-arch) is the triumphal arch at the foot of the Baixa grid where it meets Praça do Comércio and the river. Free to walk through, with weekend vendors selling signs you do not need, porcelain figures, and shirts. Worth the two minutes.
+
+[Carmo Convent](/pins/carmo-convent) is the roofless Gothic church left as a ruin after the 1755 earthquake, one of the more atmospheric stops in the center. The [Santa Justa Lift](/pins/santa-justa-lift) is the wrought-iron elevator that connects the Baixa to the Carmo level. The queue is long. The same view is free from the Carmo terrace next door if you walk up.
+
+Out in Belém, the [Jerónimos Monastery](/pins/jeronimos-monastery) is the Manueline showpiece and the city's signature monument, paired with the riverside Belém Tower a short walk away. The [National Coach Museum](/pins/national-coach-museum) is the quieter Belém stop if you have the time. For something odd, [Joalharia do Carmo](/pins/joalharia-do-carmo) near the convent is worth stepping into for the interior decoration alone, local silver and gold at prices that match the quality.
+
 ## Where to eat
 
-Portuguese food is the casual Mediterranean side that overlaps with Spain on the surface but diverges in important specifics. Bacalhau (salt cod) in every form, pastéis de nata, grilled sardines in summer, ginja cherry liqueur in shot glasses, the casual neighborhood tasca where lunch costs €10. The picks below lean casual.
+Portuguese food is the casual Mediterranean side that overlaps with Spain on the surface but diverges in the specifics. Bacalhau (salt cod) in every form, pastéis de nata, grilled sardines in summer, ginja in shot glasses, and the neighborhood tasca where lunch runs about €10. My picks lean casual.
 
-| Spot | Rating |
-|---|---|
-| [Affair Restaurante & Bar](/pins/affair-restaurante-and-bar) | Pinned |
-| [Beira Gare](/pins/beira-gare) | Pinned |
-| [Benedita bakery & breakfast](/pins/benedita-bakery-breakfast) | Pinned |
-| [Cafetaria Landeau Chocolate](/pins/cafetaria-landeau-chocolate) | Pinned |
-| [Dallas Burger Joint - Pink Street](/pins/dallas-burger-joint-pink-street) | Pinned |
-| [Floresta das Escadinhas](/pins/floresta-das-escadinhas) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Time Out Market](/pins/time-out-market) | The famous food hall at Cais do Sodré | Worth poking your head in for the spread of options under one roof. Busy at peak meal times |
+| [Tapas Kebab & Grill the Baixa](/pins/tapas-kebab-grill-the-baixa) | The cheap-and-fast pick | Really good doner, fast service, very cheap |
+| [Luka Lisboa](/pins/luka-lisboa) | The atmosphere pick | Beautiful vibe |
+| [Restaurante Rio Grande](/pins/restaurante-rio-grande) | A bar to settle into | An entrancing room |
+| [Benedita Bakery & Breakfast](/pins/benedita-bakery-breakfast) | Morning coffee | A cute coffee shop with accommodating staff |
+| [Union - Portugal Empanadas](/pins/union-portugal-empanadas) | A quick bite | Cute little shop with teas and smoothies |
+
+**Pastéis de nata.** The custard tart is the thing to eat in Lisbon, and you do not need a pilgrimage to find a good one. [Manteigaria](/pins/manteigaria) is the reliable in-the-center pick. [Alfama Doce](/pins/alfama-doce) is the off-the-tourist-drag option with great nata, cash only. The original is Pastéis de Belém out by the monastery, worth it if you are already in Belém, but the line is long and the in-town options hold up. The rest of my Lisbon saved list, including Cafetaria Landeau for the chocolate cake, renders on the map view below.
+
+## Sintra and the day trips
+
+Lisbon has the best cluster of day trips of any Iberian capital, and Sintra is the one to prioritize. About 40 minutes by train from Rossio, the [Sintra parks and palaces](/pins/parques-de-sintra-monte-da-lua-psml) are an hour out of the city and completely unique: a hillside of romantic gardens and estates with a noticeably cooler, wetter microclimate than Lisbon. Check the weather before you make the trek. The palace on site is worth the visit on its own.
+
+[The ruins of the Monserrate chapel](/pins/ru-nas-da-capela-de-monserrate) sit inside a larger Sintra park and are the quieter highlight: beautiful ruins with no wait when I went, tickets straight from a vending machine at the gate. Go early in the day, because the popular palaces (Pena especially) fill up and need online booking.
+
+Beyond Sintra, the [day-trips page](/cities/lisbon/day-trips) covers Cascais on the coast, the walled village of Óbidos, the Arrábida beaches near Setúbal, and the Alentejo wine town of Évora.
 
