@@ -30,13 +30,14 @@ topics:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Tirana](/cities/tirana) is the Albanian capital that climbed onto the travel radar fast after decades of isolation. It is brutally cheap, the portions are generous, the cafe-and-rooftop culture runs late, and the Hoxha-era bunkers are still legible across the city. Two or three days, paired with the Saranda and Ksamil coast for the wider trip.
+[Tirana](/cities/tirana) is the Balkan capital that does not feel like the rest of Europe. Albania is a majority-Muslim country (which surprises most travelers), Tirana was officially stripped of religion under the Hoxha regime, and by the time you get here from western Europe you have crossed into something that feels closer to Turkey than to Germany. That is the appeal. The food is cheap and family-style, the architecture is odd in interesting ways, the communist-era museums are some of the best in the region, and the city is changing fast enough that two trips two years apart will not look the same. Two or three days does it. Pairs cleanly with [Saranda and Ksamil](/lists/saranda-ksamil) on the Albanian Riviera for a wider trip.
 
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see in Tirana](#what-to-see-in-tirana)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -49,6 +50,10 @@ Tirana Tirana International Airport Nënë Tereza (TIA) sits about 17 km north-w
 | Uber-equivalent (Bolt is not yet active) | 25 to 40 min | €20 to €30 in a pre-booked car | Rideshare in Albania is light. Most "Uber" rides are actually pre-booked private cars. Have your hotel arrange in advance |
 | Airport taxi | 25 to 40 min | €20 to €25 fixed rate | The fixed-rate counter inside arrivals is the reliable option. Ignore drivers approaching you in the hall |
 | Hertz / private rental car | 25 min | From €20/day | If you are continuing to the coast (Saranda/Ksamil) or the mountains. Albanian roads are workable but speed limits are enforced patchily |
+
+A note on the arrival itself. **Tirana airport is essentially a big shed.** No jet bridges, mostly low-cost carriers, and one rental-car gotcha to know going in: most rentals from neighboring Balkan and EU countries will not let you take their car into Albania. If you are planning a regional loop with a rental, sort the Albania leg either as a fresh rental from TIA or as a bus.
+
+**The furgon parking lot is the Balkan-east experience.** Inter-city buses out of Tirana run in two registers. The newer terminals (the Northern, Southern, and Regional bus stations) have signposted bays and indoor seating with a restaurant attached, and they are still a long way from anything you would expect from a European capital. The older mode is the furgon: a shared mini-bus that leaves when full, often from a large parking lot with handwritten signs in the windshield for the destination city. Walk the lot, find the sign that matches your city, and pay the driver. The whole flavor reads more eastern than even Germany or the Czech Republic.
 
 ## Festivals and big annual events
 
@@ -71,23 +76,42 @@ The trip-shaping window is the Independence Day weekend in late November. The Fi
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [Tirana Marriott](/pins/tirana-marriott) | 5/5 ⭐⭐⭐⭐⭐ |
-| [Bujtina Jonë](/pins/bujtina-jone) | Pinned |
+**Tirana is mostly Airbnbs.** Hotels exist but the chain selection is thin, and the short-rental stock around the central squares is well-priced against any equivalent western-European capital.
 
-These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
+The exception is the [Tirana Marriott](/pins/tirana-marriott), the one to book if you want a chain anchor. It sits at one corner of Skanderbeg Square and backs onto the football stadium, so a **corner suite gets views of both**: the city's main square on one side and the stadium on the other. The Grand Park is also walkable from the property, which makes for an easy morning loop. [Bujtina Jonë](/pins/bujtina-jone) is the smaller pinned alternative.
+
+## What to see in Tirana
+
+Most of what makes Tirana interesting is the communist-era legacy and the post-isolation architectural experiments. Pair the two and a half-day walking circuit covers most of it.
+
+| Stop | What it is | Notes |
+|---|---|---|
+| [Pyramid of Tirana](/pins/pyramid-of-tirana) | The Hoxha-era monument, recently renovated into a cultural and tech-education center | Climb the exterior steps for the view. The odd-architecture sample if you only see one |
+| [Bunk'Art 1](/pins/bunkart) | The flagship communist-bunker museum on the city edge | Originally Hoxha's five-story underground nuclear shelter. The defining Tirana stop |
+| [Bunk'Art 2](/pins/bunk-art-2) | The central, smaller bunker museum | Focused on the secret police (Sigurimi). Pairs with House of Leaves |
+| [House of Leaves](/pins/house-of-leaves) | The museum of secret-police surveillance | Small, dense, unsettling. One of the best history stops in the city |
+| [Communist-Era Statues](/pins/communist-era-statues) | Open-air display of monumental statuary from the regime | A short stop while you are on the bunker circuit |
+| [Tirana's Colorful Facades](/pins/color-buildings-of-tirana) | Edi Rama's painted-facade urban-renewal program | Walk the residential blocks for the visual signature of post-isolation Tirana |
+| [Tirana Castle](/pins/tirana-castle) | The small Ottoman-era castle in the center | Now mostly a restaurant and shopping arcade, but the walls and gates remain |
+| [Old Bazaar](/pins/old-bazaar) | The historic market | Caters to tourists, so prices run higher than the city average. The odd surprise: older men selling large bags of loose tobacco for very little |
+
+The religious thread here is the absence of one. Albania declared itself the world's first officially atheist state in 1967, closed every mosque and church, and destroyed many of them. Worship is legal again and the city has both mosques and churches, but the count is lower than you would expect for a European capital this size, and that emptied-out feeling is part of what makes Tirana read the way it does.
 
 ## Where to eat
 
-Tirana food runs cheap, generous, and surprisingly international. Albanian byrek (the savoury pie), grilled lamb, the fresh-and-cheap Mediterranean side, plus a wave of fusion that arrived with the post-2010 expat scene. The picks below mix the international (sushi, noodle bar, smokehouse) with the casual local rotation.
+Tirana food runs cheap and family-style. The convention at a Balkan grill or meat house is big plates that arrive for the table to share, so it works best with two or more. Around that core sits a fast-growing international wave (sushi, noodle bars, brunch rooms) that arrived with the post-2010 expat scene.
 
-| Spot | Rating |
-|---|---|
-| [Kungfu Noodle Bar](/pins/kungfu-noodle-bar) | 5/5 |
-| [Smoke House Bar & Grill](/pins/smoke-house-bar-grill) | 5/5 |
-| [Watami Tirana](/pins/watami-tirana) | 5/5 |
-| ["Sartoria" Bistro & Rooftop](/pins/sartoria-bistro-and-rooftop) | Pinned |
-| [Artigiano](/pins/artigiano) | Pinned |
-| [Fa Mulan Sushi & More](/pins/fa-mulan-sushi-and-more) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Smoke House Bar & Grill](/pins/smoke-house-bar-grill) | The meat-deficit fix | Family-style big plates of meats and sides. Better with a group |
+| [Kungfu Noodle Bar](/pins/kungfu-noodle-bar) | Asian noodles and dumplings | 5/5 |
+| [Watami Tirana](/pins/watami-tirana) | Sushi | 5/5 |
+| [Apartament Lounge Bar](/pins/apartament-lounge-bar) | Cocktails and a quieter sit-down | 5/5 |
+| [Oping's](/pins/oping-s) | Reliable casual | 5/5 |
+| [Millennium Garden](/pins/millennium-garden) | Outdoor dining | 5/5 |
+| [FoodLab (Terminali)](/pins/foodlab-terminali) | Brunch and casual, inside the Terminali complex | 5/5 |
+| [Sakura Sushi Bar](/pins/sakura-sushi-bar) | The second sushi pick | 4/5 |
+| [Shtepia e birres King Pils 2](/pins/shtepia-e-birres-king-pils-2) | Beer hall | 4/5 |
+| ["Sartoria" Bistro & Rooftop](/pins/sartoria-bistro-and-rooftop) | The dressier rooftop | Pinned |
+| [Fa Mulan Sushi & More](/pins/fa-mulan-sushi-and-more) | More sushi | Pinned |
 
