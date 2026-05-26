@@ -159,7 +159,7 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 | [Pho Minh](/pins/pho-minh) | A bowl of phở done unfussily | The local-style spot for a cheap, fast lunch |
 | [Bánh Mì Huynh Hoa](/pins/banh-mi-huynh-hoa) | The famous bánh mì. Cash, queue, walk away with two | Take it to the river or to your hotel. Do not eat standing up |
 | [Soul Classic Rooftop Bar](/pins/soul-classic-rooftop-bar) and [Vi Vu Rooftop](/pins/vi-vu-rooftop) | Skyline drink after the crawl | Both are easy walk-ups |
-| [Vo Roof](/pins/vo-roof) | The Instagram rooftop pick | Air con on the ground floor, fans on the rooftop. Food is genuinely good, though the photos are the reason most tables are full |
+| [Vo Roof](/pins/vo-roof) | The Instagram rooftop pick | Air con on the ground floor, fans on the rooftop. Food is real, though the photos are the reason most tables are full |
 | [Kohaku Sashimi & Yakiniku](/pins/kohaku-sashimi-and-yakiniku) | Reasonably priced sushi and a hibachi table option | Useful when you've been on pho and bánh mì all week |
 | [The Running Bean](/pins/the-running-bean) | Specialty coffee | Make a reservation. It is crowded |
 | [Tao Dan Park](/pins/tao-dan-park) | A peaceful afternoon break | Lay out, slow the pace, then walk back into the heat |

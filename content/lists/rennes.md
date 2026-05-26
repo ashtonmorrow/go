@@ -89,7 +89,7 @@ The atlas does not yet carry hotel pins for Rennes, so book on the usual sites a
 
 The **old town** is the draw, a knot of streets lined with leaning half-timbered medieval houses, partly rebuilt after a major fire in 1720. The grand survivor of that fire is the **Parlement de Bretagne**, the 17th-century seat of the Breton parliament, restored after a later fire and open for visits. **Rennes Cathedral** and a string of squares fill out the center, and the **Thabor gardens**, a large formal park, sit just east of it.
 
-The other essential is the market. The **Marché des Lices**, held at the Place des Lices on **Saturday mornings**, is among the largest in France, a sprawl of Breton produce, seafood, cheese, and the local galette-saucisse, the buckwheat-crepe-wrapped sausage eaten on the move. If the trip can flex, build it around a Saturday.
+The other essential is the market. The **Marché des Lices**, held at the Place des Lices on **Saturday mornings**, is among the largest in France, a sprawl of Breton produce, seafood, cheese, and the local galette-saucisse, the buckwheat-crepe-wrapped sausage eaten while walking. If the trip can flex, build it around a Saturday.
 
 ## Where to eat
 

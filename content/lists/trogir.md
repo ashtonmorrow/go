@@ -74,7 +74,7 @@ topics:
 
 ## Getting there from Split
 
-The local city bus to the airport, [Bus 37](/pins/bus-37-to-trogir), is the move. Cheap, slow, frequent.
+The local city bus to the airport, [Bus 37](/pins/bus-37-to-trogir), is what to take. Cheap, slow, frequent.
 
 | What | Detail |
 |---|---|

@@ -108,7 +108,7 @@ A practical heads-up: **the airport taxi rank is known to overcharge tourists**.
 * Negotiate hard before bags go in the boot. Walk away from the first three drivers. The price drops.
 * Pre-arrange a hotel transfer. Most mid-tier and resort hotels include or sell airport pickups for 20 to 30 TND, and you avoid the rank entirely.
 
-Once on the island, a rental car is the move. The island is roughly 25 km across. The attractions spread from Houmt Souk in the north to the beaches on the east coast to [Erriadh](/pins/djerbahood-erriadh) in the middle to the south-coast pottery village of Guellala. Without a car, every trip becomes another taxi negotiation. The roads are straightforward. Driving on the right.
+Once on the island, rent a car. The island is roughly 25 km across. The attractions spread from Houmt Souk in the north to the beaches on the east coast to [Erriadh](/pins/djerbahood-erriadh) in the middle to the south-coast pottery village of Guellala. Without a car, every trip becomes another taxi negotiation. The roads are straightforward. Driving on the right.
 
 Rideshare apps are not reliable on the island. There is no Uber-equivalent.
 

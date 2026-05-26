@@ -30,4 +30,4 @@ related:
 
 ## Where I stayed and ate
 
-I stayed at [Holiday Inn Express Augsburg](/pins/holiday-inn-express-augsburg-by-ihg), a straightforward IHG property within walking distance of the station and the old town. For food, [Landbäckerei IHLE](/pins/landb-ckerei-ihle-gmbh) is a regional Bavarian bakery chain, fine for a quick breakfast or a pastry on the move, and [Razz-Fazz Fingerfood](/pins/razz-fazz-fingerfood) is a small-plates spot for a lighter dinner.
+I stayed at [Holiday Inn Express Augsburg](/pins/holiday-inn-express-augsburg-by-ihg), a straightforward IHG property within walking distance of the station and the old town. For food, [Landbäckerei IHLE](/pins/landb-ckerei-ihle-gmbh) is a regional Bavarian bakery chain, fine for a quick breakfast or a pastry to walk with, and [Razz-Fazz Fingerfood](/pins/razz-fazz-fingerfood) is a small-plates spot for a lighter dinner.

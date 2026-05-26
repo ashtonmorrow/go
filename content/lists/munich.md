@@ -162,9 +162,9 @@ Munich Airport (MUC) sits about 35 km north-east of the Hauptbahnhof and is well
 | Lufthansa Express Bus | 45 to 60 min | €13 single | Direct to Hauptbahnhof with luggage racks. Less frequent than the S-Bahn but a single seat the whole way. Useful if you are traveling with a suitcase that does not love S-Bahn stairs |
 | Uber / FreeNow / taxi | 40 to 60 min | €65 to €90 to the center | Late arrival, heavy luggage, or a group splitting the fare. The taxi rank outside arrivals is reliable. Uber and FreeNow work too but pickup happens at a marked lot a short walk from the terminal |
 
-The S-Bahn day pass is the move for almost every trip into town because it pays for itself within two Munich rides. Validate it once on first use. The system runs on the honor principle but the ticket inspectors are real and the spot fine for an unstamped or expired ticket is €60.
+The S-Bahn day pass is the answer for almost every trip into town because it pays for itself within two Munich rides. Validate it once on first use. The system runs on the honor principle but the ticket inspectors are real and the spot fine for an unstamped or expired ticket is €60.
 
-If you are heading **straight to Therme Erding** (the spa-day hack covered in the [spa-day cross-list](/lists/spa-day)), the smarter move is a taxi from MUC. The train route to Erding goes via the center and adds an hour. From MUC, Erding is 10 to 15 minutes by taxi, about €25 to €35.
+If you are heading **straight to Therme Erding** (the spa-day hack covered in the [spa-day cross-list](/lists/spa-day)), the smarter play is a taxi from MUC. The train route to Erding goes via the center and adds an hour. From MUC, Erding is 10 to 15 minutes by taxi, about €25 to €35.
 
 ## Where to stay: a rail base or the slower trip
 
@@ -209,7 +209,7 @@ The Munich brewery beer halls are tourist attractions and worth doing anyway. Th
 | [Löwenbräukeller](/pins/lowenbraukeller) | Löwenbräu Original. Large beer garden in summer | Classics, plus the Lent-season Triumphator strong beer in February | 10:00 to 24:00 | €€ |
 | [Paulaner am Nockherberg](/pins/paulaner-am-nockherberg) | Paulaner Salvator in March, Helles year-round. The home of the Lenten Salvator celebrations | Bavarian classics in a much larger room than the center options | 11:00 to 23:00 | €€ |
 
-Hofbräuhaus is my pick despite the lack of authenticity. The room is grand in a way I cannot fully justify, the band plays every night, and you sit on a bench with strangers. Augustiner is what I would suggest to someone who wants the version locals also go to. Spatenhaus is the dressed-up dinner if the trip needs one. Schneider is the move for a Weisswurst breakfast (a long-Munich tradition: the white sausage is eaten before noon with sweet mustard and a Weissbier. The locals say the sausage should not hear the noon bell).
+Hofbräuhaus is my pick despite the lack of authenticity. The room is grand in a way I cannot fully justify, the band plays every night, and you sit on a bench with strangers. Augustiner is what I would suggest to someone who wants the version locals also go to. Spatenhaus is the dressed-up dinner if the trip needs one. Schneider is the pick for a Weisswurst breakfast (a long-Munich tradition: the white sausage is eaten before noon with sweet mustard and a Weissbier. The locals say the sausage should not hear the noon bell).
 
 **A note on Erdinger.** [Erdinger Weißbräu](/pins/gasthaus-hotel-zum-erdinger-wei-br-u-erding) is brewed in Erding, 35 minutes north-east of Munich (and 10 to 15 minutes from MUC airport, also the home of Therme Erding). Erdinger pours at most Munich beer halls but does not have its own central flagship in town. The freshest pint of Erdinger you can buy is at the Gasthaus & Hotel zum ERDINGER Weißbräu in Erding old town. The [spa-day cross-list](/lists/spa-day) covers that as part of the Munich/Erding section.
 

@@ -274,7 +274,7 @@ Most working London mornings are a tap-and-go from one of a few coffee counters 
 | Spot | Why | Notes |
 |---|---|---|
 | [The Gentlemen Baristas](/pins/the-gentlemen-baristas) | The Borough-area coffee pick without the crowd | A few minutes off the market, the bench out front is the one |
-| [Flying Horse Coffee](/pins/flying-horse-coffee) | The staff make this the one to return to | Coffee is genuinely good. The team made me a replacement after I dropped one all over myself |
+| [Flying Horse Coffee](/pins/flying-horse-coffee) | The staff make this the one to return to | Coffee is the real reason. The team made me a replacement after I dropped one all over myself |
 | [High Grade Coffee](/pins/high-grade-coffee) | Tucked-away spec coffee | Follow the "coffee this way" sign on the wall. Real plant-based options |
 | [Climpson and Sons](/pins/climpson-and-sons-cafe) | The London Fields roastery | Takeaway only now, the seating area is gone. Coffee still holds |
 | [Pret A Manger](/pins/pret-a-manger) (one specific location) | The Pret to use when you need a Pret | The Liverpool Street area Pret stays clean and has light foot traffic outside |

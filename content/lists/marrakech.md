@@ -123,7 +123,7 @@ Two properties I have actually stayed at:
 | Property | Where | Why pick it | Trade-off |
 |---|---|---|---|
 | [Nobu Hotel Marrakech](/pins/nobu-hotel-marrakech-an-slh-hotel) | Hivernage / new town | Tastefully decorated interiors, large modern rooms, 10-minute walk from the medina. The cleanest upscale base if you do not want to commit to a riad | Outside the medina, so you give up the courtyard-cocoon feeling that is half the trip |
-| [Le Méridien N'Fis](/pins/le-m-ridien-n-fis) | Hivernage | The courtyards, lobby, grounds, and pool are genuinely stunning | The rooms themselves have seen better days. The hard product needs renovation. Book for the grounds and treat the room as a place to sleep |
+| [Le Méridien N'Fis](/pins/le-m-ridien-n-fis) | Hivernage | The courtyards, lobby, grounds, and pool are the highlight | The rooms themselves have seen better days. The hard product needs renovation. Book for the grounds and treat the room as a place to sleep |
 
 Otherwise, book a small medina riad on the usual sites, read recent reviews for the specific property, and confirm the riad arranges an airport pickup and a medina escort.
 

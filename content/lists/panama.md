@@ -72,7 +72,7 @@ The trip-shaping window is Carnival in February. If big-spectacle Carnival is th
 
 | Property | Why | Notes |
 |---|---|---|
-| [InterContinental Miramar Panama](/pins/intercontinental-miramar-panama-an-ihg-hotel) | Central base between Casco Viejo and shopping | Average for an IC, the staff genuinely try. Convenient for moving between Casco Viejo and the financial district without committing to either |
+| [InterContinental Miramar Panama](/pins/intercontinental-miramar-panama-an-ihg-hotel) | Central base between Casco Viejo and shopping | Average for an IC, the staff actually try. Convenient for moving between Casco Viejo and the financial district without committing to either |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 

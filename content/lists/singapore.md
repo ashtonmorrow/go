@@ -120,7 +120,7 @@ The reason to be in Singapore is to eat. Hawker centers are where you do it for 
 | Hawker center | Best for | Notes |
 |---|---|---|
 | [Lau Pa Sat](/pins/lau-pa-sat) | Satay Street after dark | Vendors set up grills outside the Victorian shed. Live music on weekends |
-| Maxwell Hawker Center | Tian Tian Hainanese Chicken Rice, the famous one | Lunch is the move. Weekends queue 30+ min |
+| Maxwell Hawker Center | Tian Tian Hainanese Chicken Rice, the famous one | Lunch is when to go. Weekends queue 30+ min |
 | Tiong Bahru Market | Chwee kueh, lor mee, kopi | Sit-down breakfast culture |
 | Old Airport Road Food Center | The "best of" hawker hall outside the tourist core | Slightly further out, locals' choice |
 

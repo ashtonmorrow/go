@@ -199,7 +199,7 @@ The hack model works cleanly here. Land at OTP, taxi or rideshare 15 minutes to 
 |---|---|---|
 | [Therme Bucharest](/pins/therme-bucharest) | The scale. Three zones (Galaxy family pools, Elysium pure-relax pools, The Palm tropical atrium). A day pass covers all three | Calea Bucureşti 1K, Balotești. ~10 km from OTP |
 
-Three to four hours covers the soak if you are using it as an airport-day add-on. A full day plus a massage is the move if Therme is the trip rather than the trip's first stop. Bucharest is a separate visit from there and is worth its own scaffold once that writeup lands.
+Three to four hours covers the soak if you are using it as an airport-day add-on. A full day plus a massage is what to book if Therme is the trip rather than the trip's first stop. Bucharest is a separate visit from there and is worth its own scaffold once that writeup lands.
 
 ## Black Forest: a slower weekend in Badenweiler or Bad Bellingen
 

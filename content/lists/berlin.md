@@ -105,5 +105,5 @@ Berlin food runs on three threads: the Turkish-German döner kebab that Berlin m
 | [Das Lemke Biergarten](/pins/das-lemke-biergarten-brauerei-deutsche-kuche) | German beer garden | Pinned |
 | [Checkpoint Kebab](/pins/checkpoint-kebab) | Doner near Checkpoint Charlie | Pinned |
 
-One to skip if you have other options: [Café Lebensart am Brandenburger Tor](/pins/caf-lebensart-am-brandenburger-tor). The location next to the gate is convenient, but the staff give off real I-do-not-want-to-be-here energy. Go in only if you genuinely need a coffee in that exact spot.
+One to skip if you have other options: [Café Lebensart am Brandenburger Tor](/pins/caf-lebensart-am-brandenburger-tor). The location next to the gate is convenient, but the staff give off real I-do-not-want-to-be-here energy. Go in only if you really need a coffee in that exact spot.
 

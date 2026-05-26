@@ -147,7 +147,7 @@ Malta International Airport (MLA) sits about 8 km south of Valletta and even clo
 | X2 bus to St Julian's, X4 to Sliema, X3 to Valletta | 30 to 50 min | €2 single (€3 in summer night service) | Cheap and frequent during the day. Slower with luggage and the bus stops are a short walk from many hotels. Works if you are traveling light |
 | Taxi from the rank | 20 to 25 min | €25 to €35 (fixed-rate zones) | Marked yellow-and-black cars at the curb. Pay at the desk inside arrivals before you board so the fare is the printed zone rate rather than a negotiation |
 
-Uber or Bolt is the right default for a hotel-to-arrival trip. The X-bus number depends on where you are staying. Have it in mind before you walk out so you can find the right stop on the bus signage. The white airport buses run frequently in the day and have luggage racks but get loud and busy in summer. Bus is the move for solo light travelers, not couples with bags after a redeye.
+Uber or Bolt is the right default for a hotel-to-arrival trip. The X-bus number depends on where you are staying. Have it in mind before you walk out so you can find the right stop on the bus signage. The white airport buses run frequently in the day and have luggage racks but get loud and busy in summer. Bus works for solo light travelers, not couples with bags after a redeye.
 
 ## Festivals and big annual events
 

@@ -174,7 +174,7 @@ Córdoba's food scene runs from very casual student spots to one or two genuine 
 | [Bros. Comedor](/pins/bros-comedor) | A proper lunch or relaxed dinner | Modern Argentine in the center, second floor on 27 de Abril. The room hits the right balance of busy and not loud. |
 | [Standard 69 (Villa Warcalde)](/pins/standard-69-villa-warcalde) | Quality, in the suburbs | Worth the Uber out for the suburban room. |
 | [Temple Córdoba](/pins/temple-c-rdoba) | Casual evening with friends | Nice interior terrace, the kind of place to hang out for two or three hours. |
-| [Glotón](/pins/gloton-bar-de-carnes) | Weeknight value with a group | "Meat bar." The daily weeknight special is the move, but the portion is too much for one. Go with two or more. |
+| [Glotón](/pins/gloton-bar-de-carnes) | Weeknight value with a group | "Meat bar." The daily weeknight special is the order, but the portion is too much for one. Go with two or more. |
 | [Imari Omakase](/pins/imari-omakase) | Reservation-only set menu | A tiny room hidden inside another building. Set sushi menu, optional wine pairing, served right across from the sushi bar. Around $50 a person plus about $25 for wine, currency dependent. A meal that would cost 4 to 10 times more in New York. Book ahead. |
 | [El Papagayo](/pins/el-papagayo-restaurant) | Fancy tasting menu | The city's most written-about restaurant. Multi-course prix fixe around $75 to $80, would carry a Michelin star anywhere with the guide. Reserve. |
 | [La Mona MuseoBar](/pins/la-mona-museobar) | Lunch with a side of culture | A museobar dedicated to La Mona Jiménez, the cuarteto singer. Hard-Rock-Cafe-style but only for La Mona. The most uniquely cordobesian stop, and a good lunch on the way to the airport. |
@@ -185,7 +185,7 @@ A few non-restaurant picks that round out a week here.
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Galo Wines Jardín](/pins/galo-wines-jardin) | Wine | A self-pour wine bar. You tap a card and pour by the millilitre, which makes a flight night actually feasible without a sommelier across the table. The garden seating is the move when the weather agrees. |
+| [Galo Wines Jardín](/pins/galo-wines-jardin) | Wine | A self-pour wine bar. You tap a card and pour by the millilitre, which makes a flight night actually feasible without a sommelier across the table. The garden seating is what you want when the weather agrees. |
 | [Antares Nueva Córdoba](/pins/antares-nueva-cordoba) | Beers after work | The reliable Argentine craft chain. The student-quarter location is the natural early-evening stop. The Güemes branch is the same idea on the other side of the center. |
 | [Black Bull](/pins/black-bull) | Asado supplies | The shop to hit if you are cooking yourself. Charcoal, cuts of beef, salt, and the small implements (skewers, sharpening stones) you cannot improvise at a supermarket. North of the center toward Villa Warcalde. |
 
