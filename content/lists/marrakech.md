@@ -118,7 +118,14 @@ A **riad** is a traditional Moroccan courtyard house, built inward around a cent
 
 **Gueliz** and **Hivernage** are the modern new-town districts west of the walls, laid out by the French with wide streets, larger hotels, pools, and easy taxis. They are calmer and more convenient, and they put you a ten-minute taxi from the old city. Pick them if a quiet, low-effort base matters more than atmosphere.
 
-The atlas does not yet carry hotel or riad pins for Marrakech. Book on the usual sites, read recent reviews for the specific property, and confirm the riad arranges an airport pickup and a medina escort.
+Two properties I have actually stayed at:
+
+| Property | Where | Why pick it | Trade-off |
+|---|---|---|---|
+| [Nobu Hotel Marrakech](/pins/nobu-hotel-marrakech-an-slh-hotel) | Hivernage / new town | Tastefully decorated interiors, large modern rooms, 10-minute walk from the medina. The cleanest upscale base if you do not want to commit to a riad | Outside the medina, so you give up the courtyard-cocoon feeling that is half the trip |
+| [Le Méridien N'Fis](/pins/le-m-ridien-n-fis) | Hivernage | The courtyards, lobby, grounds, and pool are genuinely stunning | The rooms themselves have seen better days. The hard product needs renovation. Book for the grounds and treat the room as a place to sleep |
+
+Otherwise, book a small medina riad on the usual sites, read recent reviews for the specific property, and confirm the riad arranges an airport pickup and a medina escort.
 
 ## The medina, the souks, and Jemaa el-Fnaa
 
@@ -138,17 +145,15 @@ Outside the walls, the **Jardin Majorelle** in Gueliz is the cobalt-blue garden 
 
 ## Where to eat
 
-The Marrakech pin set is restaurants without notes attached, so this is a list rather than a writeup. All seven are pinned and visited, and the two five-star marks are the ones to start with.
-
-| Spot | Rating |
-|---|---|
-| [Restaurant Lafarmacie](/pins/restaurant-lafarmacie) | 5/5 |
-| [Restaurant Le Jardin Ben Youssef](/pins/restaurant-le-jardin-ben-youssef) | 5/5 |
-| [BlackChich](/pins/blackchich) | Pinned |
-| [Cafe Chez Zaza](/pins/cafe-chez-zaza) | Pinned |
-| [Cafe Restaurant Dar L'hssira](/pins/cafe-restaurant-dar-l-hssira) | Pinned |
-| [Restaurant Angsana Si Said](/pins/restaurant-angsana-si-said) | Pinned |
-| [Restaurant snack grand atlas](/pins/restaurant-snack-grand-atlas) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Restaurant Lafarmacie](/pins/restaurant-lafarmacie) | The dinner pick | The best meal of my week was here |
+| [Restaurant Le Jardin Ben Youssef](/pins/restaurant-le-jardin-ben-youssef) | A garden lunch | A peaceful oasis in the middle of the crazy winding lanes. Cool inside the gardens even in mid-afternoon heat |
+| [LM Bar](/pins/lm-bar) | An evening drink | Classy, tends to be empty in the evenings. Beers around $6 to $7, cocktails around $10. Live music some nights |
+| [Chili's](/pins/chili-s) | An unexpected backup | Yes, the chain. The staff at this location are kind, polite, and quick, and the outdoor patio is shared with a Papa John's. Sometimes that is the trip you want |
+| [BlackChich](/pins/blackchich) | Casual | Pinned |
+| [Cafe Chez Zaza](/pins/cafe-chez-zaza) | Casual | Pinned |
+| [Cafe Restaurant Dar L'hssira](/pins/cafe-restaurant-dar-l-hssira) | Casual | Pinned |
 
 The food itself is Moroccan staples done well: tagine, couscous on Fridays, harira soup, grilled brochettes, and mint tea with everything. The Jemaa el-Fnaa night stalls are an experience worth having once, with the caveat that you pick a busy stall and check the bill.
 
