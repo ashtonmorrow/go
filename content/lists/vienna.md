@@ -100,6 +100,11 @@ Vienna's center is compact. Most travelers do fine inside the Ringstrasse (the b
 
 The Ringstrasse-and-anything-inside-it walk is the heart of the trip. If the budget allows, the 1st district is where it pays off. If it doesn't, the 7th and the 6th are the next-best moves, with the U-Bahn covering the short ride into the center.
 
+Specific properties I have actually stayed at:
+
+- [Hyatt Regency Vienna](/pins/hyatt-regency-vienna) (Landstraße). Easy location right off the train station, large rooms, strong water pressure, nice views. The catch: the bathroom is behind a glass door that opens into the main room with no privacy buffer (a pattern I have hit at multiple Vienna hotels and never understood). My room had no soap on arrival. Breakfast service runs 30-minute waits at peak. The 5-star branding does not quite match the soft product.
+- [Lindner Hotel Vienna Am Belvedere (JDV by Hyatt)](/pins/lindner-hotel-vienna-am-belvedere-jdv-by-hyatt) (Landstraße). Great location near the Belvedere. Same no-bathroom-door issue.
+
 ## The famous sights, and how to book them
 
 Most Vienna headliners run timed entry. Walk-up is usually possible off-peak, but the gap between online and walk-up is the difference between a 5-minute and a 45-minute queue in summer.
@@ -120,12 +125,13 @@ Tour-guide note: Schönbrunn's audio guide is included and is enough. The Englis
 
 Wiener cuisine is the imperial style that runs on schnitzel, Tafelspitz (the slow-boiled beef in horseradish), goulash, and the coffee-house cakes (sachertorte, apfelstrudel, esterhazy). The Plachutta family runs the best-known Tafelspitz. The smaller picks below cover the casual end.
 
-| Spot | Rating |
-|---|---|
-| [Cafe Neko](/pins/cafe-neko) | 5/5 |
-| [Schachtelwirt](/pins/schachtelwirt) | 5/5 |
-| [Agrodolce](/pins/agrodolce) | Pinned |
-| [Café Ritter](/pins/cafe-ritter) | Pinned |
-| [Elstar](/pins/elstar) | Pinned |
-| [Plachutta Wollzeile](/pins/plachutta-wollzeile) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Plachutta Wollzeile](/pins/plachutta-wollzeile) | Tafelspitz | The best-known room for the imperial boiled-beef dish |
+| [Schachtelwirt](/pins/schachtelwirt) | A quick lunch | Fast, fresh, delicious. Dining is small and shared with the kitchen, so the cooking smells follow you out |
+| [Cafe Neko](/pins/cafe-neko) | Cat café | No cover, no catty smell, friendly well-groomed cats. One of the better cat cafés out there |
+| [Café Ritter](/pins/cafe-ritter) | Classic coffee-house | Pinned |
+| [Elstar](/pins/elstar) | Casual sit-down | Pinned |
+| [Agrodolce](/pins/agrodolce) | Italian | Pinned |
+| [Läderach (Kärntnerstrasse)](/pins/l-derach-sterreich-wien-k-rntnerstrasse) | Chocolate shopping | Smells heavenly inside |
 
