@@ -206,9 +206,9 @@ Online timed entry is the rule, not the exception. Walk-ups are turned away. Boo
 | Museum | What it is | Booking | Time on site |
 |---|---|---|---|
 | [Anne Frank House](/pins/anne-frank-house) | The Secret Annex on Prinsengracht. The most famous Amsterdam museum and the hardest to book | **Online only, releases tickets six weeks in advance at 10:00 CET**. Sets out a full day's tickets per release. Sells out in minutes for peak weeks. Set a calendar reminder for the day tickets drop for your visit week | 90 min |
-| [Van Gogh Museum](/pins/van-gogh-museum) | Touristy pick I would still make. Collection is dense and well-curated | **Required online**. Book a few days ahead in peak (May to September). Same-week availability is usually fine off-peak | ~1.5 hours |
+| [Van Gogh Museum](/pins/van-gogh-museum) | Touristy pick I would still make. Collection is dense and well-curated | **Required online**. Book a few days ahead in peak (May to September). On my last visit half of the queue at the door had not pre-booked and were turned away, so the warning is real. Same-week availability is usually fine off-peak | ~1.5 hours |
 | [Rijksmuseum](/pins/rijksmuseum) | The broader Dutch-art collection next door. The queue without a reservation is its own attraction | **Required online**. A few days ahead is enough | 2–3 hours |
 | [NEMO Science Museum](/pins/nemo-science-museum) | The green ship-shaped building near Centraal. Family-friendly | Walk-up OK | 2 hours |
-| [Micropia](/pins/micropia) | A small museum at the zoo dedicated to microorganisms. Punches above its size | Walk-up OK | 1 hour |
+| [Micropia](/pins/micropia) | A small museum at the zoo dedicated to microorganisms. The microscope room is the highlight. Punches above its size | Walk-up OK | 1 hour |
 
 The Anne Frank booking is the one that catches everyone. Six weeks before your visit date, at exactly 10:00 Amsterdam time, the museum releases tickets for that day. Most go in minutes. Miss the release window and the only remaining option is the small number of tickets the museum holds back for sale on the day-of (released at 09:00 Amsterdam time, also online, also gone fast). Don't queue at the door. There is no walk-up line.
