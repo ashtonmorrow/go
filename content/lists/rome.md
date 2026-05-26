@@ -105,18 +105,19 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia) plus the supplì, the artichoke (carciofo alla romana or alla giudia in spring), and the trattorias that have been doing them all the same way for fifty years. The picks below cover the pasta-focused style that Rome is at the center of.
 
-| Spot | Rating |
-|---|---|
-| [Ce Stamo A Pensà](/pins/ce-stamo-a-pensa) | 5/5 |
-| [El Maíz - Roma Prati](/pins/el-maiz-roma-prati) | 5/5 |
-| [Pasta In Corso](/pins/pasta-in-corso) | 5/5 |
-| [Pastasciutta](/pins/pastasciutta) | 5/5 |
-| [al42 by Pasta Chef Monti](/pins/al42-by-pasta-chef-monti) | Pinned |
-| [Bono Bottega Nostrana](/pins/bono-bottega-nostrana) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Ce Stamo A Pensà](/pins/ce-stamo-a-pensa) | Amazing pasta at great prices | Quaint vibe. The deep-fried pizza at €3 is especially good |
+| [Pastasciutta](/pins/pastasciutta) | Cheapest meal in years near the Vatican | €5 to €6 a dish, the kind of price Rome rarely offers anymore. Pass it on the way to or from St Peter's |
+| [Pasta In Corso](/pins/pasta-in-corso) | Cheap and amazing pasta | Inexpensive, fast |
+| [El Maíz Roma Prati](/pins/el-maiz-roma-prati) | The non-Italian pick that earns it | Venezuelan arepas, well-seasoned meat. Why would you eat anything other than Italian in Rome — this is one good reason |
+| [Pompi Trevi](/pins/pompi-trevi) | The snack stop by the Trevi Fountain | Inexpensive and delicious. The right spot when you are already standing in front of the fountain |
+| [al42 by Pasta Chef Monti](/pins/al42-by-pasta-chef-monti) | Pasta in Monti | Pinned |
+| [Bono Bottega Nostrana](/pins/bono-bottega-nostrana) | Sandwich-and-deli pick | Pinned |
 
 ## The famous sights, and how to book them
 
-Rome's headline sights all require advance booking. The Vatican line is a half day on a hot afternoon if you walk up. The Colosseum line is comparable. Borghese Gallery limits visitors per slot and sells out weeks ahead.
+Rome's famous sights all require advance booking. The Vatican line is a half day on a hot afternoon if you walk up. The Colosseum line is comparable. Borghese Gallery limits visitors per slot and sells out weeks ahead.
 
 | Sight | What to know | Booking |
 |---|---|---|
