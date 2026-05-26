@@ -91,7 +91,7 @@ Three things to know about Spanish high-speed trains:
 2. **Dynamic pricing**. Like flights, fares rise as the train fills. Book the moment your dates are firm. Ouigo opens roughly eight months out. Renfe and Iryo are closer in.
 3. **Assigned seats**. The system seats you with strangers by default. Book a group together if you want adjacent seats.
 
-A 5-hour train run from Barcelona is the other long-distance option. AVE-class Renfe is the move there. Ouigo also runs the route.
+A 5-hour train run from Barcelona is the other long-distance option. AVE-class Renfe is what to book. Ouigo also runs the route.
 
 ## Festivals and big annual events
 
@@ -155,13 +155,20 @@ Alicante's eating runs from one-euro tapas with a beer to a 30-euro steak dinner
 | Spot | Best for | Notes |
 |---|---|---|
 | The [Mercat](/pins/mercat) | Local culture, late-afternoon deals | Two floors, fish below, terrestrial meat above. After 17:00 the stalls discount fresh fish heavily. Closed Sunday and mostly Monday |
-| [Ukiyō Raw bar y cositas](/pins/ukiy-raw-bar-y-cositas) | Stall lunch inside the Mercat | The best stall in the building. Chef's choice plates are the move |
+| [Ukiyō Raw bar y cositas](/pins/ukiy-raw-bar-y-cositas) | Stall lunch inside the Mercat | The best stall in the building. The sashimi sampler is huge for the price (€65 with a couple of drinks). Chef's choice plates are the order |
+| [D'Vora Restaurante](/pins/d-vora-restaurante) | Beach-view sit-down on the Postiguet side | Cold large beers, sea view from the terrace, the kitchen runs strong on flavors. The steak ran tough on one visit, the rest of the menu held up |
+| [Samana Mediterrasian Bar](/pins/samana-mediterrasian-bar) | Late-night Asian-Med | I showed up 15 minutes before close and the staff still made it work. The kitchen runs creative with whatever they have left |
+| [Umoo City Grill](/pins/umoo-city-grill) | Argentinian-style steaks | The 500g rib-eye is the order. The beach-side sister property, [Umoo Grill Beach](/pins/umoo-grill-beach), runs cheaper with the same kitchen |
 | [Bodeguita 1999](/pins/bodeguita-1999) | Sit-down dinner, steak | Narrow, intimate. Reserve ahead. Entrecote or gambas a la plancha. €30 to €50 per person depending on drinks |
 | [Tapa-Caña (D'Tablas)](/pins/tapa-cana-d-tablas) | Walk-around tapas with beer | Order a caña (small) or pinta (large). A waiter circulates with a plate of tapas. Take what looks good and pay at the end by plate count |
+| [Katana](/pins/katana) | Asian sit-down | Pricier than the average Alicante meal, the flavors carry it |
+| [Unik Asiatico](/pins/unik-asiatico-restaurante) | Asian takeaway | Quality is high, prices low, speed terrific. The quick-dinner pick |
+| [Vagabond](/pins/vagabond) | Counter-service wraps and bowls | Fast-casual, on-point spice. Lightly over-salted, otherwise the lunch backup |
+| [Café El Mirador](/pins/cafe-el-mirador) | A drink with the best sea view in town | Food is fine, the view is the reason to come |
 | [100 Montaditos](/pins/100-montaditos) | Cheap fast bites | Spanish chain. €1 per small sandwich, €1 large beers on Sunday. Locations near Playa San Juan and next to the Melià at Postiguet |
 | [Salt in Cake](/pins/salt-in-cake-cheesecake-cinnamon-roll-and-cookie) | Cinnamon rolls and cheesecake | Pricey by Alicante standards but worth it. If you grab one to go later, heat it in the oven for a few minutes before eating |
 
-A note on chocolate: [Xocolateria Valor](/pins/xocolateria-valor) does the traditional Spanish thick chocolate-and-churros and is the right closing move on a cool evening.
+A note on chocolate: [Xocolateria Valor](/pins/xocolateria-valor) does the traditional Spanish thick chocolate-and-churros, with a sea view, for less than most places. Service can run slow.
 
 ### Local specialties worth ordering once
 
@@ -187,3 +194,5 @@ Three options that work as a half- or full-day from Alicante:
 * **Benidorm** is 40 minutes up the coast. The party-town version of the Costa Blanca. Useful if you want a louder evening than Alicante offers.
 
 For a quieter alternative: take a local Cercanías train south to Santa Pola and the salt flats. Pink flamingos most of the year, and the ferry to Tabarca leaves from the same harbor.
+
+The inland option is [Pou Clar](/pins/pou-clar) up at Ontinyent, a series of natural pools and waterfalls about 90 minutes by car. It is the trip I have done on a rainy day and still enjoyed, so do not let the weather forecast cancel it.

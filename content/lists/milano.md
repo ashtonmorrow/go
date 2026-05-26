@@ -38,6 +38,7 @@ topics:
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -50,6 +51,8 @@ Milan Milan Malpensa (the main international gateway) (MXP) is served by three a
 | Linate Metro M4 | 15 to 20 min | €2.20 single (city ticket) | If you are flying into Linate (LIN). The M4 blue line connects directly to the city center |
 | Malpensa Shuttle bus | 60 to 80 min | €10 single | Cheaper than the train. Runs from MXP to Milano Centrale every 20 to 30 minutes |
 | Uber Black / taxi | 50 to 80 min | €95 to €120 from MXP, €25 to €40 from LIN | Italy's Uber market is licensed-driver only. Taxis run a real meter. Agree the flat rate to MXP only on confirmed schedules |
+
+A warning on [Linate](/pins/milan-linate-airport): on the few outbound flights I have run through LIN, security has taken closer to 90 minutes than the 15 it should. Build a real buffer if you are flying out from Linate.
 
 ## Festivals and big annual events
 
@@ -70,16 +73,23 @@ Milan's calendar is built around industry weeks (fashion and design) more than c
 
 The trip-shaping windows are Salone del Mobile in mid-April (the most expensive hotel week of the year) and the four fashion weeks. If you are not in the design or fashion business, do not visit Milan during these. Ferragosto in mid-August is the underrated contrarian window: hot, quiet, cheap, and the locals are gone.
 
+## What to see
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Duomo di Milano](/pins/duomo-di-milano) | The check-the-box visit and the city's anchor | Take the terrace tour and use the stairs. The next-day soreness is the reward. The terrace gets you up among the spires for the view that the ground-level photo cannot match |
+
 ## Where to eat
 
 Milanese food has its own style inside Italian cooking: risotto alla milanese (saffron), osso buco, cotoletta alla milanese (the breaded veal cutlet), and the panettone at Christmas. Aperitivo is the cultural fact. Most bars between 18:00 and 21:00 serve a small-plate spread with a €10-€15 drink. The picks below mix the casual evening rotation.
 
-| Spot | Rating |
-|---|---|
-| [Crazy Cat Café](/pins/crazy-cat-caf) | 5/5 |
-| [All'Antico Vinaio](/pins/all-antico-vinaio) | Pinned |
-| [Balticbar](/pins/balticbar) | Pinned |
-| [Bánh Mì 38｜越南法棍](/pins/banh-mi-38) | Pinned |
-| [CasaVietnam](/pins/casavietnam) | Pinned |
-| [Cesarino](/pins/cesarino) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Quore Italiano Duomo](/pins/quore-italiano-duomo) | The aperitivo pick by the cathedral | Tourist-oriented, in the tourist area, no cover, and meaningfully cheaper than the obvious neighbors. Drinks ran a touch slow on my visit |
+| [Crazy Cat Café](/pins/crazy-cat-caf) | An afternoon with cats | The cats are soft and sweet. They nap a lot, the active ones are usually still around |
+| [All'Antico Vinaio](/pins/all-antico-vinaio) | The Florentine sandwich chain | Pinned |
+| [Balticbar](/pins/balticbar) | Cocktails | Pinned |
+| [Bánh Mì 38｜越南法棍](/pins/banh-mi-38) | Vietnamese sandwich | Pinned |
+| [CasaVietnam](/pins/casavietnam) | Vietnamese sit-down | Pinned |
+| [Cesarino](/pins/cesarino) | Italian | Pinned |
 

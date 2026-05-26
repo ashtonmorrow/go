@@ -73,9 +73,9 @@ The trip-shaping window is A to JazZ in early July. The Pernik mummers festival 
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [Hyatt Regency Sofia](/pins/hyatt-regency-sofia) | Pinned |
+| Property | Why | Notes |
+|---|---|---|
+| [Hyatt Regency Sofia](/pins/hyatt-regency-sofia) | Reliable city-center base | A fruit bowl in the room on arrival is the small touch that lands |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 
@@ -83,12 +83,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Bulgarian food carries Ottoman, Balkan, and Slavic threads together: shopska salad, kebapche (the small grilled mince sausages), banitsa (the cheese-and-egg phyllo pie), thick yoghurt, fresh tomato in summer. The picks below cover the modern side. The traditional places are everywhere and cheap.
 
-| Spot | Rating |
-|---|---|
-| [Dönerlandia](/pins/donerlandia) | 5/5 |
-| [Vitamin B - Craft Beer Bar](/pins/vitamin-b-craft-beer-bar) | 5/5 |
-| [Bamboo Flavor Factory](/pins/bamboo-flavor-factory) | Pinned |
-| [Bistro 16](/pins/bistro-16) | Pinned |
-| [Chef Viet](/pins/chef-viet) | Pinned |
-| [Crafter Bar - Craft Beer & Drinks](/pins/crafter-bar-craft-beer-and-drinks) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Dönerlandia](/pins/donerlandia) | The doner pick | Quick, fresh, cheap, the right kind of greasy. Sunday nights the staff break the kitchen apart and bleach it, which says something about the rest of the week |
+| [Vitamin B - Craft Beer Bar](/pins/vitamin-b-craft-beer-bar) | Craft beer | Strong rotating tap selection. What they have changes constantly, plan to try whatever is new |
+| [Bamboo Flavor Factory](/pins/bamboo-flavor-factory) | Asian | Pinned |
+| [Bistro 16](/pins/bistro-16) | Casual sit-down | Pinned |
+| [Chef Viet](/pins/chef-viet) | Vietnamese | Pinned |
+| [Crafter Bar - Craft Beer & Drinks](/pins/crafter-bar-craft-beer-and-drinks) | More craft beer | Pinned |
 

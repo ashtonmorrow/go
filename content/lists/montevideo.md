@@ -60,7 +60,7 @@ topics:
 
 ## Getting in from Buenos Aires
 
-The Buquebus ferry is the move. It leaves from the Terminal Buquebus in Puerto Madero, downtown Buenos Aires. Customs is faster and gentler than any airport, and Argentine exit formalities happen at the terminal before boarding, so when you step off the boat in Montevideo you walk straight into town.
+The Buquebus ferry is how to come. It leaves from the Terminal Buquebus in Puerto Madero, downtown Buenos Aires. Customs is faster and gentler than any airport, and Argentine exit formalities happen at the terminal before boarding, so when you step off the boat in Montevideo you walk straight into town.
 
 | Option | Time | Notes |
 |---|---|---|
@@ -97,8 +97,8 @@ Hotel inventory in Montevideo is thinner than you would expect for a capital cit
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Punta Carretas | [Aloft by Marriott Montevideo](/pins/aloft-by-marriott-montevideo-hotel) | Central to Pocitos and Ciudad Vieja, walkable to the Rambla, and the sunsets from a high floor are the reason to be here. Ask for one when checking in | Aloft brand, so the room is fine but not memorable |
-| Pocitos | [Hyatt Centric Montevideo](/pins/hyatt-centric-montevideo) | Newer build, Hyatt loyalty if you carry it, right on the Pocitos doorstep | A touch outside the residential heart of Punta Carretas |
+| Punta Carretas | [Aloft by Marriott Montevideo](/pins/aloft-by-marriott-montevideo-hotel) | The right place in Montevideo. Across the street from a shopping mall, a block from a Starbucks, and surrounded by some of the best restaurants in the city. The sunsets from a high floor are the reason to ask for one at check-in | Aloft brand, so the room is fine but not memorable |
+| Pocitos | [Hyatt Centric Montevideo](/pins/hyatt-centric-montevideo) | Newer build, Hyatt loyalty if you carry it, right on the Pocitos doorstep | Disorganized on the corporate side. If you are running a working week with conference rooms, expect to chase the staff for basics like pricing and equipment |
 | Apartments | Anywhere near Punta Carretas, Pocitos, or Parque Rodó | Bigger space, more residential feel, often cheaper for stays of a week or longer | Confirm air conditioning before you book. Many older Uruguayan apartments do not have it |
 
 ## Mercado del Puerto and the asado
@@ -116,7 +116,7 @@ The coastline runs the length of the city, broken only by the port and the marin
 | Playa Pocitos | The famous one. Wide curve of sand, joggers and skaters on the Rambla, easy walk from any Pocitos hotel | The most crowded, especially on summer weekends |
 | Playa Ramírez | Closer to Punta Carretas, slightly quieter, easier to find space | Smaller and less photogenic |
 
-If you walk Playa Pocitos far enough, you will hit [El Parador](/pins/el-parador), a small surf shack right on the Rambla. Cristian runs it. Tell him Mike sent you, order a Cerveza Zillertal, and write off the rest of the evening.
+If you walk Playa Pocitos far enough, you will hit [El Parador](/pins/el-parador), a small surf shack right on the Rambla. Cristian runs it. Tell him Mike sent you, order a Cerveza Zillertal (around $4 a beer), and write off the rest of the evening. Music runs a touch loud, the fresh air and the speed of service carry it.
 
 ## Where to eat and drink
 
@@ -124,10 +124,11 @@ Uruguayan eating is meat-led, but the city has a decent range once you go lookin
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Don García](/pins/don-garcia) | The Mercado del Puerto asado | Plan on two hours |
-| [El Parador](/pins/el-parador) | A beer on the Rambla at sunset | Cristian is the move |
-| [Mercado Ferrando](/pins/mercado-ferrando) | Casual market eating away from the cruise-ship crowd | Multiple stalls, easier than committing to one restaurant |
-| [La Perdiz](/pins/la-perdiz) | A proper Punta Carretas parrilla for dinner | Slightly more upscale than the Mercado, no port views |
+| [Don García](/pins/don-garcia) | The Mercado del Puerto asado | Plan on two hours. Lunch was as good as Mercado del Puerto gets |
+| [El Parador](/pins/el-parador) | A beer on the Rambla at sunset | Cristian is the host. Around $4 a beer, fast service |
+| [Mercado Ferrando](/pins/mercado-ferrando) | The food hall pick for a group | The best of the Mercados in town. Big shareable tables, the taco stall and the pizza counters are on point |
+| [La Perdiz](/pins/la-perdiz) | A proper Punta Carretas parrilla for dinner | Slightly more upscale than the Mercado, older clientele, no port views. Reserve on a Friday or Saturday |
+| [Uruguay Natural Parrilla Gourmet](/pins/uruguay-natural-parrilla-gourmet) | A weekend parrilla without the wait | Unlike most Montevideo steakhouses on Saturday and Sunday, this one is not jammed. Enough servers that you do not wait 20 minutes for a check |
 | [Montevideo Beer Company (MBC)](/pins/montevideo-beer-company-mbc) | Local craft beer | Multiple locations. The Pocitos one is the easy default |
 
 ## Day-trip vs longer stay

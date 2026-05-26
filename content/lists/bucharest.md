@@ -37,6 +37,7 @@ topics:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -73,22 +74,32 @@ The trip-shaping window is the Enescu Festival in September of odd years (2025 r
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [Moxy Bucharest Old Town](/pins/moxy-bucharest-old-town) | 5/5 ⭐⭐⭐⭐⭐ |
+| Property | Why | Notes |
+|---|---|---|
+| [Moxy Bucharest Old Town](/pins/moxy-bucharest-old-town) | The best price-vs-location-vs-amenities combo I have found in Bucharest | The in-room desks run cramped, the downstairs work areas are the workaround. Like every Moxy |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
+
+## What to see
+
+Bucharest has the architecture-and-history side most travelers come for, plus an underrated thermal-baths complex on the airport side of town that does not appear in most guidebooks.
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Dimitrie Gusti National Village Museum](/pins/dimitrie-gusti-national-village-museum) | Open-air ethnographic museum in Herastrau Park | If you like history and old buildings, this is a couple of hours of walking through reconstructed Romanian rural architecture. Cats on site, not particularly cuddly. Plan around the weather, it is mostly outdoors |
+| [Therme Bucharest](/pins/therme-bucharest) | One of the best thermal-bath complexes I have been to | Reasonable prices, clean, the captive-audience food is not bad. Pair it with the flight day, it sits near OTP airport |
 
 ## Where to eat
 
 Romanian food runs through sarmale (the cabbage-rolled-around-meat stew), mici (skinless small grilled sausages), polenta-stuffed ciorbă soups, and the lemon-and-cream-finished palate that distinguishes it from the rest of the Balkans. The picks below cover the modern rotation. The traditional places (Caru' cu Bere is the standout) are casual to find.
 
-| Spot | Rating |
-|---|---|
-| [Meygu](/pins/meygu) | 5/5 |
-| [Alt Shift](/pins/alt-shift) | Pinned |
-| [Animaletto Pizza Bar](/pins/animaletto-pizza-bar) | Pinned |
-| [Centrale Pizza](/pins/centrale-pizza) | Pinned |
-| [Derya Döner Kebab](/pins/derya-doner-kebab-comanda-shaorma-mancare-turceasca-livrari-mancare) | Pinned |
-| [Dines Food](/pins/dines-food) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Meygu](/pins/meygu) | Shrimp poboys and buffalo sauce, fast | Under five minutes from order to table. The biggest shrimp I've had in a poboy, perfectly cooked, no chewy textures |
+| [Souvlaki Station](/pins/souvlaki-station) | Quick Greek takeaway | The smell from the counter does most of the recruiting |
+| [Alt Shift](/pins/alt-shift) | Modern Romanian sit-down | Pinned |
+| [Animaletto Pizza Bar](/pins/animaletto-pizza-bar) | Pizza | Pinned |
+| [Centrale Pizza](/pins/centrale-pizza) | More pizza | Pinned |
+| [Derya Döner Kebab](/pins/derya-doner-kebab-comanda-shaorma-mancare-turceasca-livrari-mancare) | Turkish kebab | Pinned |
+| [Dines Food](/pins/dines-food) | Casual lunch | Pinned |
 

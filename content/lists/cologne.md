@@ -90,7 +90,7 @@ Cologne sits close to Düsseldorf and the rest of the Rhine-Ruhr region, so it p
 
 Stay near the **Old Town** and the cathedral. A base there puts the sights, the river, the brewhouses, and the main station all within a short walk.
 
-For a hotel by the river, [Hyatt Regency Cologne](/pins/hyatt-regency-cologne) sits on the far bank of the Rhine with a direct view of the cathedral, and is the lodging pin on the Cologne list, rated 5. Beyond it the atlas does not yet carry a wide hotel pin set for Cologne, so book on the usual sites and read recent reviews for the property.
+For a hotel by the river, [Hyatt Regency Cologne](/pins/hyatt-regency-cologne) sits on the far bank of the Rhine with a direct view of the cathedral. Spacious rooms, fair price, ten minutes across the river to Hauptbahnhof, and a short S-Bahn from Köln Messe if you're in town for a trade fair. Beyond it the atlas does not yet carry a wide hotel pin set for Cologne, so book on the usual sites and read recent reviews for the property.
 
 ## The cathedral and the Old Town
 
@@ -104,11 +104,9 @@ For a trip out of the city, [Wuppertal](/pins/wuppertal), about 40 minutes away,
 
 Cologne eats on Rhineland cooking and brewhouse plates, the Halve Hahn and Himmel un Ääd of the local kitchen, all best washed down with Kölsch. The brewhouses are as much the experience as the food.
 
-The pin set below is the saved Cologne list. Notes are thin, though several pins carry a rating.
-
-| Spot | What it is | Rating |
+| Spot | What it is | Notes |
 |---|---|---|
-| [Schokoladenmuseum Köln](/pins/schokoladenmuseum-koln) | The riverside chocolate museum | 5/5 |
-| [Peters Brauhaus](/pins/peters-brauhaus) | A traditional Kölsch brewhouse | 4/5 |
-| [Min Cuisine asiatique & Bar](/pins/min-cuisine-asiatique-and-bar) | Asian cooking and a bar | 4/5 |
+| [Schokoladenmuseum Köln](/pins/schokoladenmuseum-koln) | The riverside chocolate museum | An extended Lindt advertisement that gives you free chocolate. Worth the visit anyway. Exhibits cover the history of cocoa, sustainability, and a working production line through glass |
+| [Peters Brauhaus](/pins/peters-brauhaus) | A traditional Kölsch brewhouse | Very German in every register. The no-frills authentic experience, the Kölsch arrives until you put your coaster on top of the glass |
+| [Min Cuisine asiatique & Bar](/pins/min-cuisine-asiatique-and-bar) | Asian cooking and a bar | Food is decent, low-key local vibe, not many tourists |
 | [Kaiser Konstantin](/pins/kaiser-konstantin-kolsches-brauhaus) | A Kölsch brewhouse | Pinned |

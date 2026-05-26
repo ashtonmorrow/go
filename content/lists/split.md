@@ -162,16 +162,18 @@ Beaches: Bačvice (the famous one, shallow water. Picigin is the local shallow-w
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Konoba Fetivi](/pins/konoba-fetivi) | The pick. Old-school konoba, fresh fish, locals' lunch | Cash, often a wait. The black risotto is the move |
-| [Konoba Marjan](/pins/konoba-marjan) | Hearty Dalmatian fare in Veli Varoš | Reservations help, no English menu |
+| [Konoba Fetivi](/pins/konoba-fetivi) | This might be the best restaurant in Split. Michelin-recognized at reasonable prices for the calibre | Reserve the night before, space is limited. Around $50 covered a bottle of wine, a steak, and the cuttlefish risotto when I went. Cash |
+| [Konoba Marjan](/pins/konoba-marjan) | Hearty Dalmatian fare in Veli Varoš | Cooked fast, and not as crowded as the more obvious neighbors. Reservations help, no English menu |
 | [Konoba Oliva](/pins/konoba-oliva) | Smaller and quieter than Fetivi | Family-run |
-| [Zlatna ribica](/pins/zlatna-ribica) | Quick fried-fish counter in the fish market | Cash. Stand-up or three benches. Cheapest fresh fish in town |
-| [Fife](/pins/fife) | Local-priced classics. A regular working lunch | No bookings, queue at 12:30 |
+| [Zlatna ribica](/pins/zlatna-ribica) | Quick fresh-fish counter in the fish market | Cash only. Stand-up or three benches. Cheapest fresh seafood in town, cooked fast |
+| [Fife](/pins/fife) | Local-priced classics. A regular working lunch | A bit pricey for the room, the location carries it. No bookings, queue at 12:30 |
 | [Villa Spiza](/pins/villa-spiza) | Small open kitchen, daily blackboard menu | Reservations essential |
-| [Portofino](/pins/portofino) | Sit-down Mediterranean on the Riva | Touristy but consistent |
+| [Portofino](/pins/portofino) | Sit-down risotto and very professional service | Outdoor tables come with blankets, which matters because Split evenings get chilly. The gold-leaf on the shrimp is a bit much, the flavors are on point |
+| [Biberon Sushi Bar](/pins/biberon-sushi-bar) | The sushi pick in Split | The terrace is nice and, unlike the old-town restaurants, never stupidly crowded. Prices match what sushi runs across Croatia |
 | [Mirakul dostava pizza](/pins/mirakul-dostava-pizza) | Late-night pizza | Delivery and walk-in |
-| [TIN Food&Wine](/pins/tin-food-and-wine) | Modern wine bar with small plates | Local wine list, English menu |
 | [Chops Grill - Steak & Seafood](/pins/chops-grill-steak-and-seafood) | A non-konoba option for a steak night | Premium pricing |
+
+One to skip if you have other options: [TIN Food & Wine](/pins/tin-food-and-wine). The atmosphere and the view are great. The sushi was mediocre on my visit. Order a glass and a small plate, then eat elsewhere.
 
 ## Day trips and ferries
 
@@ -190,9 +192,10 @@ Beaches: Bačvice (the famous one, shallow water. Picigin is the local shallow-w
 | Spot | Why |
 |---|---|
 | [Craft Pub, Brewpub, Prostor](/pins/craft-pub-brewpub-pivnica-prostor-pivovara-protokol) | Local craft beer in the old town. Croatian and regional taps |
-| [O'hara's Irish Pub](/pins/o-hara-s-irish-pub) | The reliable late-night pub |
+| [O'hara's Irish Pub](/pins/o-hara-s-irish-pub) | The sports pub. Football (both kinds), baseball, and the rest if Hajduk or the national team are not on |
 | [Harats Irish Pub Split](/pins/harats-irish-pub-split) | The other reliable late-night |
 | [Beach Bar Lungomare](/pins/beach-bar-lungomare) | A daytime beach bar walk from Bačvice |
-| [Joe's Beach Lounge & Bar](/pins/joe-s-beach-lounge-bar-second-location) | More polished beachfront option |
+
+Skip [Joe's Beach Lounge & Bar](/pins/joe-s-beach-lounge-bar-second-location) unless it is the only game at the cove. €35 for a beach lounge, €18.50 for a bottle of water, a cider, and an ice cream, and the glasses were not as clean as the prices suggest.
 
 For wine, almost every konoba has a local list. Pošip is the structured Croatian white from Korčula. Plavac Mali is the local red, the heavy ancestor of Zinfandel grown on the Pelješac peninsula. Babić is a lighter red from around Šibenik. Ask the kitchen what they would drink with what you ordered. It usually beats the menu pick.

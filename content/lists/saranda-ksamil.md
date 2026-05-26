@@ -68,11 +68,11 @@ The trip-shaping pattern is the July-August peak, not any one festival. If your 
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [Valmar Hotel](/pins/valmar-hotel) | 5/5 ⭐⭐⭐⭐⭐ |
-| [Santa Quaranta Premium Resort](/pins/santa-quaranta-premium-resort) | Pinned |
-| [Julia Hotel](/pins/julia-hotel) | Pinned |
+| Property | Why | Notes |
+|---|---|---|
+| [Valmar Hotel](/pins/valmar-hotel) | The staff are the reason to book it | We had a wifi-dead room and they solved it fast. The pool-bar guy is excellent |
+| [Santa Quaranta Premium Resort](/pins/santa-quaranta-premium-resort) | Full resort on the Saranda side | Pinned |
+| [Julia Hotel](/pins/julia-hotel) | Budget anchor near the seafront | Pinned |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 
@@ -80,12 +80,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Albanian Riviera food is the seafood-and-grill side at half-Mediterranean prices: fresh fish, grilled octopus, the Albanian byrek (the savoury pie), and the cheap-and-cold beer that pairs with the beach. The picks below cover the beach bars and the sit-down rotation.
 
-| Spot | Rating |
-|---|---|
-| [Krahu i Shqiponjës](/pins/krahu-i-shqiponj-s) | 5/5 |
-| [Secret Beach](/pins/secret-beach) | 5/5 |
-| [Elvis Bar](/pins/elvis-bar) | 5/5 |
-| [Kuga Beach Bar](/pins/kuga-beach-bar) | 5/5 |
-| [Point Fast Food](/pins/point-fast-food) | 5/5 |
-| [Manta Beach Bar and Restaurant](/pins/manta-beach-bar-and-restaurant) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Krahu i Shqiponjës](/pins/krahu-i-shqiponj-s) | Sit-down dinner with kittens | Food is great, the kittens are a bonus. Mosquito repellent is non-optional in summer evenings |
+| [Elvis Bar](/pins/elvis-bar) | Maybe my favorite bar in Saranda | Chill in the morning, the music selection carries it |
+| [Secret Beach](/pins/secret-beach) | A calmer beach club | More chill than the louder beach clubs nearby. The setting is the whole pitch |
+| [Kuga Beach Bar](/pins/kuga-beach-bar) | A beach-club day | Beds come with a bottle of prosecco. Food priced for the location, fair for what it is |
+| [Point Fast Food](/pins/point-fast-food) | Doner at the end of the day | Fresh, crunchy, salty, the lot |
+| [Manta Beach Bar and Restaurant](/pins/manta-beach-bar-and-restaurant) | A second beach-club option | Pinned |
 
