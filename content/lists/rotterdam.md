@@ -114,7 +114,6 @@ A 3 km walking circuit that covers the modern Rotterdam canon. Start from the Ma
 | [Koningshavenbrug "De Hef"](/pins/koningshavenbrug-de-hef) | The 1927 lift bridge, preserved as a monument after the rail tunnel opened in 1993 |
 | Erasmusbrug | The asymmetric "Swan" bridge across the Nieuwe Maas (1996, UNStudio / Ben van Berkel). The bridge you see on every Rotterdam photo |
 | [Hotel New York](/pins/hotel-new-york) | Walk across the bridge into Kop van Zuid. Cross the SS Rotterdam if it is open for tours |
-| [The Iron Lady](/pins/the-iron-lady) | A small sculpture and viewpoint on the river. Free |
 
 Add [Van Nellefabriek](/pins/van-nellefabriek) (UNESCO-listed modernist factory, 15 minutes by tram) on a separate half-day, plus [Paul McCarthy's 'Santa Claus'](/pins/paul-mccarthys-santa-claus), Rotterdam's grumpy 2002 sculpture on the Eendrachtsplein.
 
@@ -133,12 +132,14 @@ The two ticketed sights worth booking.
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Foodhallen Rotterdam](/pins/foodhallen-rotterdam) | Multi-vendor hall for groups | Central. Easier than committing to one place |
+| [The Iron Lady](/pins/the-iron-lady) | A proper steak dinner | Top-notch meal, steaks at a reasonable price, lovely outdoor seating |
+| [Foodhallen Rotterdam](/pins/foodhallen-rotterdam) | Multi-vendor hall for groups | Central. Easier than committing to one place, plenty of seating |
 | [Fenix Food Factory](/pins/fenix-food-factory) | Same idea, across the river in Katendrecht | Pair with Hotel New York for a half-day on Kop van Zuid |
+| [Mac Elaviv Coolsingel](/pins/mac-elaviv-coolsingel-donerkebab-shoarma-and-nightshop-avondwinkel) | Late-night doner kebab | Cannot be healthy based on how delicious the kebab is |
 | [DeliGriek](/pins/deligriek) | Greek deli/sit-down for a fast cheap lunch | Cash and card |
 | [Pho Hanoi](/pins/pho-hanoi) | The Vietnamese pho fix when the weather is bad | Reliable, fast |
 | [Bambu Kitchen & Bar](/pins/bambu-kitchen-and-bar) | Asian-fusion at sit-down prices | Good cocktail list |
-| [Eatkip](/pins/eatkip) | Fried chicken specialist | The late-night move |
+| [Eatkip](/pins/eatkip) | Fried chicken specialist | The late-night option |
 | [Fikkie](/pins/fikkie) | Modern Dutch brasserie | A reservation-worthy dinner |
 | [Floating Farm](/pins/floating-farm) | Working dairy on a floating barge (yes, really, and you can tour the barn) | Worth combining with a Kop van Zuid walk |
 
