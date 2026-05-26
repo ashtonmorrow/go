@@ -31,6 +31,7 @@ topics:
 
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
+* [Where to stay](#where-to-stay)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -61,6 +62,17 @@ Frankfurt is one of the most trade-fair-driven cities in Europe (the city invent
 | **Sound of Frankfurt** | A weekend in late August | The Zeil shopping street fills with free stages of pop, rock, and electronic music. The Saturday is the centerpiece |
 
 The trip-shaping event is the Frankfurt Book Fair in mid-October. If you are visiting Frankfurt that week and are not attending, your hotel will cost double or triple. Push the trip a week in either direction. The Museumsuferfest in late August is the underrated free weekend most international travelers do not know about.
+
+## Where to stay
+
+Most Frankfurt trips are layover trips, so the question is usually airport-adjacent vs central. The two I've used both sit outside the center, which is fine when the next leg is an early flight or an onward train.
+
+| Property | Why | Notes |
+|---|---|---|
+| [Hyatt House Frankfurt Eschborn](/pins/hyatt-house-frankfurt-eschborn) | Competent business-side stay | Breakfast is basic and the premium rooms are not big, but no real complaints. Eschborn is a 15-minute S-Bahn ride out, fine for a one-night work stop |
+| [Moxy Frankfurt Airport](/pins/moxy-frankfurt-airport) | Airport sleep before an early flight | Fits the bill for an airport stay, though it's not super close on foot to the terminals. Shuttle or short rideshare to make the gate |
+
+These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 
 ## Where to eat
 

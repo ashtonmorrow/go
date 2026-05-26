@@ -130,21 +130,20 @@ The **Metropolitan Cathedral of Christ the King** is the Roman Catholic one, a c
 
 Liverpool's food is better than visitors expect, and most of it clusters in two areas. **Bold Street** is the independent restaurant strip, a long run of small kitchens covering most cuisines. The **Baltic Triangle**, the former industrial quarter south of the center, is the bars-and-street-food district, busiest in the evening.
 
-The pin set below is the saved Liverpool list. None carry notes yet, so this is a list rather than a writeup.
-
-| Spot | What it is |
-|---|---|
-| [Renshaw Street Food Market](/pins/renshaw-street-food-market) | A food market off Bold Street |
-| [Duke Street Food & Drink Market](/pins/duke-street-food-drink-market) | A food-and-drink hall in the Ropewalks |
-| [Etsu](/pins/etsu) | Japanese |
-| [Pho](/pins/pho) | Vietnamese |
-| [Yanni's](/pins/yanni-s) | Greek |
-| [The Italian Club Fish](/pins/the-italian-club-fish) | Italian seafood on Bold Street |
-| [The F*word](/pins/the-f-word) | Casual restaurant |
-| [WAKE and CATE](/pins/wake-and-cate-coffee-breakfast-brunch-cakes) | Coffee, breakfast, and brunch |
-| [The Grapes](/pins/the-grapes) | Pub |
-| [The Swan Inn](/pins/the-swan-inn) | Pub |
-| [The Long Shot Bar](/pins/the-long-shot-bar) | Bar |
-| [ArCains](/pins/arcains) | Arcade bar |
+| Spot | What it is | Notes |
+|---|---|---|
+| [Olive Branch Liverpool Church St](/pins/olive-branch-liverpool-church-st) | Counter-service Middle Eastern | The schwarma was incredibly tasty. The quick lunch when you don't want to sit down |
+| [Duke Street Food & Drink Market](/pins/duke-street-food-drink-market) | A food-and-drink hall in the Ropewalks | Absolutely happening on Saturday morning. Time the visit |
+| [Renshaw Street Food Market](/pins/renshaw-street-food-market) | A food market off Bold Street | Pinned |
+| [Etsu](/pins/etsu) | Japanese | Pinned |
+| [Pho](/pins/pho) | Vietnamese | Pinned |
+| [Yanni's](/pins/yanni-s) | Greek | Pinned |
+| [The Italian Club Fish](/pins/the-italian-club-fish) | Italian seafood on Bold Street | Pinned |
+| [The F*word](/pins/the-f-word) | Casual restaurant | Pinned |
+| [WAKE and CATE](/pins/wake-and-cate-coffee-breakfast-brunch-cakes) | Coffee, breakfast, and brunch | Pinned |
+| [The Grapes](/pins/the-grapes) | Pub | Pinned |
+| [The Swan Inn](/pins/the-swan-inn) | Pub | Pinned |
+| [The Long Shot Bar](/pins/the-long-shot-bar) | Bar | Pinned |
+| [ArCains](/pins/arcains) | Arcade bar | Pinned |
 
 For a drink with something to do, [ArCains](/pins/arcains) pairs retro arcade machines with a bar. [The Long Shot Bar](/pins/the-long-shot-bar) and the city's old pubs cover the more traditional evening.
