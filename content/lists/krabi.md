@@ -32,6 +32,7 @@ topics:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see and do](#what-to-see-and-do)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -64,11 +65,18 @@ The trip-shaping window is the Christmas-NYE peak. If your dates are flexible, p
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [Holiday Inn Resort Krabi Ao Nang Beach](/pins/holiday-inn-resort-krabi-ao-nang-beach-an-ihg-hotel) | Pinned |
+| Property | Why | Notes |
+|---|---|---|
+| [Holiday Inn Resort Krabi Ao Nang Beach](/pins/holiday-inn-resort-krabi-ao-nang-beach-an-ihg-hotel) | The reliable family resort on Ao Nang | Property is super clean, the breakfast spread is real, and the rate is reasonable for what you get |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
+
+## What to see and do
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Emerald Pool](/pins/emerald-pool) | The natural-spring swim inside the national park | Go early. It gets crowded as the day builds, and the experience falls off fast once the crowds arrive |
+| [Ko Poda Beach](/pins/ko-poda-beach) | A boat-to beach for an afternoon nap | Almost pristine sand and water. Take a longtail from Ao Nang and bring water |
 
 ## Where to eat
 

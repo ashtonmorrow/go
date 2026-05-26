@@ -20,7 +20,7 @@ guide_cards:
     - title: Pick the beach that matches the trip
       body: Chaweng is the big, social, family-and-backpacker beach. Lamai is the same idea, slightly older crowd, slightly quieter. Bophut around Fisherman's Village is the food base. Choeng Mon is the small, upscale, work-from-island base.
     - title: Stock up in Bangkok before you fly
-      body: Samui has limited brand range. Specific Western brands, craft beer selection, and specialty hair products are all easier to find in Bangkok. A quick MBK/Siam run on the way through is the move.
+      body: Samui has limited brand range. Specific Western brands, craft beer selection, and specialty hair products are all easier to find in Bangkok. A quick MBK/Siam run on the way through is the answer.
     - title: Budget transport at $20 round-trip between towns
       body: Local taxis and Grab cost roughly the same. ~300 ฿ between adjacent beaches, which lands at $20 round-trip on a day out. Motorbike rental is about the same per day. A license is legally required to ride. Check what your insurance covers.
 
@@ -30,7 +30,7 @@ faqs:
   - q: Which beach should I base on?
     a: Chaweng if it is your first trip and you want choice. Biggest beach, most hotels, restaurants, nightlife. Lamai if you want the same idea but quieter, slightly older crowd. Bophut/Fisherman's Village for food and a more local feel. Choeng Mon if you want quiet, upscale, and remote-work friendly. The island has one ring road so anywhere is "everywhere" eventually, but where you sleep is where you spend most of your time.
   - q: Will I see sunrises or sunsets?
-    a: Both Chaweng and Lamai face east. Great sunrises, no sunset over the water. For sunset over the water, the west coast (Lipa Noi, Taling Ngam) is the move, but it is mostly resort-only. Most of the island's tourist infrastructure clusters on the east and north because that is where the airport and ferry pier sit.
+    a: Both Chaweng and Lamai face east. Great sunrises, no sunset over the water. For sunset over the water, the west coast (Lipa Noi, Taling Ngam) is where to go, though it is mostly resort-only. Most of the island's tourist infrastructure clusters on the east and north because that is where the airport and ferry pier sit.
   - q: Do I need to rent a scooter?
     a: It is the cheapest way to range across the island, and you can rent one for about $20 a day. But a motorcycle license is legally required (and increasingly checked), most rental shops will hold your passport or a large deposit, and the drive into the hills around the viewpoints can be sketchy in wet weather. Grab and local taxis run roughly the same price as elsewhere on the island. For two people, a 300 ฿ short hop is about the same as a scooter day rate.
 
@@ -107,6 +107,8 @@ The island is a ring road. You will sleep on one beach and visit the others.
 
 The basic rule: the east side gets the planes and the sunrise, the north has the airport and the easiest food rhythm, the south and west are quieter but harder to range from.
 
+For a budget anchor with real space, [Chor Chang Villa Resort](/pins/chor-chang-villa-resort) is close enough to the beach to walk, with rooms that come in at a fair price for the size. Useful when the resort-on-the-beach budget does not work.
+
 ## Getting around the island
 
 Local taxis and Grab cost roughly the same, with Grab being the easier card-payment option. Plan on roughly **300 ฿ to go between adjacent towns**, which lands at about $20 round-trip on a day out. A scooter rents for about the same per day. Many hotels include a free airport shuttle on arrival. Ask before you book a transfer.
@@ -142,8 +144,10 @@ The Samui beach club scene has grown sharply. Pricing is European (€10 to €1
 |---|---|---|
 | [SEEN Beach Club Samui](/pins/seen-beach-club-samui) | Maenam | The polished, design-led one. Sunsets |
 | [Coco Tam's](/pins/coco-tam-s) | Bophut | Lower-key, beanbags on the sand, fire-twirlers at sunset |
-| [Elephant Beach Club](/pins/elephant-beach-club) | Lipa Noi (west coast) | Day-club energy, day beds, west-side sunsets |
-| [Night Market Fishermans Village](/pins/night-market-fishermans-village) | Bophut, Friday nights | Street food, locally cheap, the right move for a cheap dinner |
+| [Elephant Beach Club](/pins/elephant-beach-club) | Lipa Noi (west coast) | Fast wifi, big portions, floating cushions in the water, a real pool. Day-club energy with the sunsets |
+| [Mira Serene](/pins/mira-serene) | West coast | The beach-shack done right. Relax, order big, the view is the cover charge |
+| [Nahm](/pins/nahm) | South coast | Make reservations. Even arriving early without one, the better tables are gone. Prices run high for Thailand, fair for Samui. Sunsets when the weather cooperates |
+| [Night Market Fishermans Village](/pins/night-market-fishermans-village) | Bophut, Friday nights | Street food, locally cheap, the right pick for a cheap dinner |
 | [Crab Shack](/pins/crab-shack) | Maenam | Beach-front seafood, casual, lobster and crab at honest prices |
 | [Tops Food Hall Central Samui](/pins/tops-food-hall-central-samui) | Chaweng | Air-conditioned market with a good sushi counter, cheap takeaway |
 

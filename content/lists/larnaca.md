@@ -79,12 +79,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Cypriot food sits at the Greek-Turkish-Levantine meeting point: meze (the multi-plate small dish parade), souvlaki, halloumi, the kebab side that pulls from Anatolia, plus a strong falafel-and-Lebanese thread. The picks below mix the casual taverna with the imported Middle Eastern.
 
-| Spot | Rating |
-|---|---|
-| [Edesma Cyprus Taverna - Souvlaki Place](/pins/edesma-cyprus-taverna-souvlaki-place) | 5/5 |
-| [Falafel Abu Dany](/pins/falafel-abu-dany) | 5/5 |
-| [Häagen-Dazs Makenzy](/pins/h-agen-dazs-makenzy) | 5/5 |
-| [Dimitris Kebab House](/pins/dimitris-kebab-house) | Pinned |
-| [Elia Backyard Restaurant](/pins/elia-backyard-restaurant) | Pinned |
-| [Green Corner Kebab Souvlakia](/pins/green-corner-kebab-souvlakia) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Edesma Cyprus Taverna](/pins/edesma-cyprus-taverna-souvlaki-place) | My favorite restaurant in Larnaca, and the fastest | Souvlaki on the table inside five minutes of ordering. The bar that everywhere else is judged against |
+| [Falafel Abu Dany](/pins/falafel-abu-dany) | The lunch falafel | €4 a wrap, three to four minutes from counter to hand, fresh-made |
+| [Häagen-Dazs Makenzy](/pins/h-agen-dazs-makenzy) | A summer ice cream on the promenade | Brand-consistent. Pricier than the local gelato, the location does the rest |
+| [Dimitris Kebab House](/pins/dimitris-kebab-house) | Kebab | Pinned |
+| [Elia Backyard Restaurant](/pins/elia-backyard-restaurant) | Cypriot sit-down | Pinned |
+| [Green Corner Kebab Souvlakia](/pins/green-corner-kebab-souvlakia) | Souvlaki backup | Pinned |
 

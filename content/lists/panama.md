@@ -70,9 +70,9 @@ The trip-shaping window is Carnival in February. If big-spectacle Carnival is th
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [InterContinental Miramar Panama, an IHG Hotel](/pins/intercontinental-miramar-panama-an-ihg-hotel) | Pinned |
+| Property | Why | Notes |
+|---|---|---|
+| [InterContinental Miramar Panama](/pins/intercontinental-miramar-panama-an-ihg-hotel) | Central base between Casco Viejo and shopping | Average for an IC, the staff genuinely try. Convenient for moving between Casco Viejo and the financial district without committing to either |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 
@@ -80,12 +80,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Panama City food is the Central American Pacific side: ceviche, sancocho (the chicken-and-yuca stew), patacones (twice-fried plantain), plus the imported sushi and the new-wave Casco Viejo rooftop scene. The picks below mix the casual seafood with the dressed-up evening rotation.
 
-| Spot | Rating |
-|---|---|
-| [Finca Del Mar](/pins/finca-del-mar) | 5/5 |
-| [Isaki Casco Rooftop](/pins/isaki-casco-rooftop) | 4/5 |
-| [5inco Cocina Urbana](/pins/5inco-cocina-urbana) | Pinned |
-| [Al Basha](/pins/al-basha) | Pinned |
-| [Antiburger](/pins/antiburger) | Pinned |
-| [Azahar Panama](/pins/azahar-panama) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Finca Del Mar](/pins/finca-del-mar) | Sunset on the bay | Swinging chairs at the bar, water-side seats for the fiery sunset reflections off the bay. Time the visit for golden hour |
+| [Isaki Casco Rooftop](/pins/isaki-casco-rooftop) | The best sushi I've had in Panama | The 12-piece sampler is the order. Up there with some of the better sushi I have had anywhere |
+| [5inco Cocina Urbana](/pins/5inco-cocina-urbana) | Modern Panamanian | Pinned |
+| [Al Basha](/pins/al-basha) | Middle Eastern | Pinned |
+| [Antiburger](/pins/antiburger) | Burgers | Pinned |
+| [Azahar Panama](/pins/azahar-panama) | Casual sit-down | Pinned |
 

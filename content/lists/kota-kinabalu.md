@@ -106,7 +106,7 @@ KK splits into three viable bases: the downtown waterfront (closest to Jesselton
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Downtown waterfront | [Hyatt Regency Kinabalu](/pins/hyatt-regency-kinabalu) | The easiest base. Walking distance to Jesselton Point, the [Floating Mosque](/pins/floating-mosque-kota-kinabalu-city-mosque), the [Handicraft Market](/pins/handicraft-market), and the sunset on the seafront. Rooms face the water | An older Hyatt, so the room is functional rather than memorable |
+| Downtown waterfront | [Hyatt Regency Kinabalu](/pins/hyatt-regency-kinabalu) | The easiest base. Walking distance to Jesselton Point, the [Floating Mosque](/pins/floating-mosque-kota-kinabalu-city-mosque), the [Handicraft Market](/pins/handicraft-market), and the sunset on the seafront. Rooms face the water | An older Hyatt, dated bones but well kept. The club lounge runs a small breakfast spread and afternoon tea, not the highlight of the stay |
 | Downtown waterfront | [Kota Kinabalu Marriott Hotel](/pins/kota-kinabalu-marriott-hotel) | Newer build, Marriott loyalty, same walkable footprint as the Hyatt | Slightly further from Jesselton Point, slightly less convenient for the marine park |
 | Tanjung Aru | Shangri-La Tanjung Aru, Kota Kinabalu | Private beach, the famous KK sunset, resort layout for families | 10 to 15 minutes from town. You commit to taxis/Grab in for dinner |
 | Kinabalu Park lodges | Sutera Sanctuary Lodges or similar | Sleep at the base of the mountain if you are climbing | Two hours from town. Only worth it if Mount Kinabalu is the trip |
@@ -122,6 +122,8 @@ A cluster of five islands a short boat ride off the city. [Jesselton Point Ferry
 | Mamutik | The smallest, the quietest | Less infrastructure, bring water and your own snacks |
 
 The [Sapi, Manukan, Mamutik combined ticket](/pins/sapi-manukan-mamutik-island-kota-kinabalu-sabah-malaysia) is what you actually want for a full day. Hire snorkel gear at Jesselton before you leave. Pricing on the islands is worse than in town. There is a terminal fee plus a marine-park conservation fee. Both are small but cash-only.
+
+A small thing on arrival at Manukan: look down at the water when you step off the boat at the [jetty](/pins/manukan-island-jetty). The fish under the planks are worth a minute. Bring shoes that handle the walking, the path on the island runs farther than it looks.
 
 ## Kinabalu Park as a day trip
 
@@ -147,9 +149,12 @@ KK rewards an afternoon on foot. The downtown waterfront strip is walkable end-t
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Breeze Restaurant](/pins/breeze-restaurant) | Casual rooftop sundowner | Easy add-on to a downtown walk |
-| [D'Dhabita Seafood Restaurant](/pins/d-dhabita-seafood-restaurant-and-catering) | Local seafood at non-resort prices | Halal |
+| [D'Dhabita Seafood Restaurant](/pins/d-dhabita-seafood-restaurant-and-catering) | A bite on the way to the islands | Halal, cash only, fair prices for fresh seafood |
 | [Arang Restaurant @ Manukan Island](/pins/arang-restaurant-manukan-island) | Lunch on the marine-park day | Pre-book a table if you can. Queues otherwise |
 | [The Shamrock Irish Bar](/pins/the-shamrock-irish-bar) | A familiar pint when you want one | One of the few non-hotel beer venues |
 
-For street food, the KK night market at Jesselton runs nightly and is the cheapest seafood in town: pick your fish at the front, name a cooking style, eat at the long tables out back. Cash only, prices marked, plenty of grilled chicken and Malay-style satay if seafood is not the move.
+One to skip: [Breeze Restaurant](/pins/breeze-restaurant). Google Maps and a few aggregators list it as a beach club. It is a hotel pool bar with no beach attached. Not bad in itself, just not what the search results promised.
+
+On the way out, [Kota Kinabalu International Airport](/pins/kota-kinabalu-international-airport) is small and security runs fast. Food options on the airside are thin, so eat before you go through.
+
+For street food, the KK night market at Jesselton runs nightly and is the cheapest seafood in town: pick your fish at the front, name a cooking style, eat at the long tables out back. Cash only, prices marked, plenty of grilled chicken and Malay-style satay if seafood is not what you want.

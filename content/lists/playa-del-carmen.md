@@ -71,23 +71,25 @@ The trip-shaping windows are Christmas-NYE peak (most expensive) and spring brea
 
 ## Where to stay
 
-| Property | Note |
-|---|---|
-| [The Gallery Condos](/pins/the-gallery-condos) | 4/5 ⭐⭐⭐⭐ |
-| [El Punto](/pins/el-punto) | Pinned |
+| Property | Why | Notes |
+|---|---|---|
+| [The Gallery Condos](/pins/the-gallery-condos) | Apartment-style, 2 minutes off Quinta | Great location, removed enough to avoid the street noise. Some units have thin walls and you can hear neighbors, and several units are AirBnB-rented so the building feel changes by week |
+| [El Punto](/pins/el-punto) | A second option | Pinned |
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
+
+For practical errands on a longer stay, [Lavanderia Garcia](/pins/lavanderia-garcia) is the laundry pick. Reasonable prices and a fast turnaround.
 
 ## Where to eat
 
 Yucatán food has its own side inside Mexican cooking: cochinita pibil (slow-roasted pork in achiote and citrus), poc chuc, panuchos, the habanero-and-citrus salsas. Playa's restaurant scene mixes these traditional roots with the international expat-driven rotation. The picks below cover both.
 
-| Spot | Rating |
-|---|---|
-| [De Local - Playa del Carmen](/pins/de-local-playa-del-carmen) | 5/5 |
-| [Ah Carbón](/pins/ah-carbon) | Pinned |
-| [Aldea Corazón](/pins/aldea-corazon) | Pinned |
-| [Amate 38](/pins/amate-38) | Pinned |
-| [Bloody Mary Food Drinks & Rock](/pins/bloody-mary-food-drinks-and-rock) | Pinned |
-| [Carboncitos](/pins/carboncitos) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [De Local - Playa del Carmen](/pins/de-local-playa-del-carmen) | Buenos Aires-quality milanesa | The unexpected Argentine pick in town. Bring mosquito spray for evening seating, they get relentless |
+| [Ah Carbón](/pins/ah-carbon) | Tacos | Pinned |
+| [Aldea Corazón](/pins/aldea-corazon) | Quintana Roo sit-down | Pinned |
+| [Amate 38](/pins/amate-38) | Mexican | Pinned |
+| [Bloody Mary Food Drinks & Rock](/pins/bloody-mary-food-drinks-and-rock) | Bar food | Pinned |
+| [Carboncitos](/pins/carboncitos) | Casual sit-down | Pinned |
 

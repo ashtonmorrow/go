@@ -82,7 +82,7 @@ The [Magna Carta Chapter House](/pins/magna-carta-chapter-house) holds one of on
 
 Salisbury eats far better than anything around the stones, so plan the meal in town and treat the site as a side trip. The city center is compact and most of these are a short walk apart.
 
-[The Haunch of Venison](/pins/the-haunch-of-venison) is the 14th-century pub near the market square, low-beamed and centuries old, good for a drink and a traditional plate. [The Pheasant Inn](/pins/the-pheasant-inn) is the other pub option. For sit-down dinners, [Côte](/pins/cote-salisbury) is the reliable French bistro chain, [Byron](/pins/byron-salisbury) does burgers, and [wagamama](/pins/wagamama-salisbury) covers the fast Asian-bowl option. [Baroushka](/pins/baroushka) and [Chapter 69](/pins/chapter-69) round out the dinner list, and [Culture Coffee](/pins/culture-coffee) is the daytime coffee stop.
+[The Haunch of Venison](/pins/the-haunch-of-venison) is the 14th-century pub near the market square, low-beamed and centuries old, good for a drink and a traditional plate. [The Pheasant Inn](/pins/the-pheasant-inn) is the other pub option. For sit-down dinners, [Côte](/pins/cote-salisbury) is the reliable French bistro chain, decent food, relatively quick, the ambiance lands upscale for the room. [Byron](/pins/byron-salisbury) does burgers, and [wagamama](/pins/wagamama-salisbury) covers the fast Asian-bowl option (one of the better Wagamamas I've eaten at, attentive staff and quick service). [Baroushka](/pins/baroushka) and [Chapter 69](/pins/chapter-69) round out the dinner list, and [Culture Coffee](/pins/culture-coffee) is the daytime coffee stop.
 
 ## Parks and a riverside walk
 

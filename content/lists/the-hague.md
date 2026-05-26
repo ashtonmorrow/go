@@ -151,9 +151,9 @@ The Hague city center is compact. Anywhere within a 10-minute walk of the Binnen
 
 | Hotel | Where | Why pick it | Trade-off |
 |---|---|---|---|
-| voco The Hague | City center, blocks from the Binnenhof | One of my favorite hotels in the country. Set in a restored former bank building. Light, airy rooms, great showers, very quiet. Rates often around €125/night | Books out on weekends |
+| [voco The Hague](/pins/voco-the-hague-by-ihg) | City center, blocks from the Binnenhof | Sets the bar for new IHG properties. Set in a restored former bank building. Light, airy rooms, great showers, breakfast small but high quality. Rates often around €125/night | Books out on weekends |
 | [Hotel Indigo The Hague Palace Noordeinde](/pins/hotel-indigo-the-hague-palace-noordeinde-an-ihg-hotel) | City center, opposite the royal palace | Set in another former bank building. Each room is individually decorated and the dinner-in-the-bank-vault is the kind of trip story that pays for itself | Boutique-property pricing |
-| Staybridge Suites The Hague Parliament | Lange Houtstraat, two blocks from the Binnenhof | Apartment-style suites with kitchenettes, guest laundry, and a weekly happy hour. Best for longer stays. Rates run €100–€200 depending on dates | Has crept up in price. Flexible dates required for the lower end |
+| [Staybridge Suites The Hague Parliament](/pins/staybridge-suites-the-hague-parliament-an-ihg-hotel) | Lange Houtstraat, two blocks from the Binnenhof | My favorite hotel in The Hague. Right across from parliament, spacious rooms, in-building laundry, happy hour on Wednesdays and Thursdays. Best for longer stays. Rates €100–€200 depending on dates | Has crept up in price. Flexible dates required for the lower end |
 | Hotel Des Indes | Lange Voorhout | The historic grand hotel. Anna Pavlova lived (and died) here in 1931, Churchill stayed, Empress Sisi and Mata Hari are on the documented guest list | Top of the budget for the city |
 
 If you are basing outside Amsterdam to save money, this is the cleanest version of that play. From The Hague you reach Amsterdam in 50 minutes, Rotterdam in 25, and Schiphol in 30. A 4-night trip with the museums split across two cities works better here than in either Amsterdam or Rotterdam alone.
@@ -170,7 +170,7 @@ The [Mauritshuis](/pins/mauritshuis) is the highlight of the city for almost eve
 | **Time on site** | 1.5–2 hours |
 | **Closest station** | Den Haag CS, 8-minute walk |
 
-The €4 after-4pm ticket is the move if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the famous rooms. The new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
+The €4 after-4pm ticket is the play if your day is already packed. The collection is small enough to do in 90 minutes if you focus on the famous rooms. The new wing across the Hofvijver doubles the space and pairs with the older palace via an underground passage.
 
 ## The Binnenhof and the city center
 
@@ -261,14 +261,15 @@ The Hague has a deeper international food scene than its size suggests, anchored
 
 | Spot | Best for | Notes |
 |---|---|---|
-| **De Basiliek** | The nicer dinner | Michelin Guide-listed. Lunch is the move if you want the price down: a Michelin-quality lunch can run around €30 |
+| **De Basiliek** | The nicer dinner | Michelin Guide-listed. Lunch is the price-down play: a Michelin-quality plate can run around €30 |
 | **Little V** | Vietnamese | Authentic, fresh, and one of the best meals in the city. The tropical drinks are worth ordering |
 | **Baladi Manouche** | Lebanese street food | Cheap, fast, central. Good lunch on a museum day |
 | **De Bakkerswinkel** | Breakfast and brunch | Yoghurt + granola, decent coffee, friendly room. Multiple locations |
 | **Bouzy** | Wine bar | By-the-glass wines and champagnes with bitterballen and bar snacks |
-| **Ciao Ciao** | Italian | Solid wine list, opposite the Binnenhof, reliable |
+| **Ciao Ciao** | Italian | A real wine list, opposite the Binnenhof, reliable |
 | **Boterwaag** | Traditional Dutch | 17th-century weighhouse building on Markt. Touristy but the room is worth it |
 | **Lola Bikes & Coffee** | Coffee | Vintage bikes on the wall, very good coffee, bike-themed bookshop in the back |
+| [Steam Scheveningen](/pins/steam-scheveningen) | Craft beer on the beach side | Big tap selection, live music on Sunday afternoons, the food backs up the drinks |
 
 The **rijsttafel** ("rice table") is the regional thing to eat in The Hague: a Dutch-Indonesian set of small dishes shared at the table, descended from the colonial era and still better here than anywhere else in the country. Make a reservation. The better rijsttafel restaurants book out on weekends.
 

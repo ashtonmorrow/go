@@ -95,11 +95,11 @@ The trip-shaping consideration is not a festival but the bat-flyout calendar at 
 
 | Where | Why pick it | Trade-off |
 |---|---|---|
-| [Mulu Marriott Resort & Spa](/pins/mulu-marriott-resort-and-spa) | The only Western-grade hotel for a long way. ~$100/night, on-demand shuttle at the airport, suite upgrades common for status members | Open-air public floors mean bats and frogs at the bar at night. Wi-Fi only in reception/bar/pool, not in rooms |
+| [Mulu Marriott Resort & Spa](/pins/mulu-marriott-resort-and-spa) | The only Western-grade hotel for a long way. ~$100/night, on-demand shuttle at the airport, suite upgrades common for status members | Open-air public floors mean bats and frogs at the bar at night. Wi-Fi only in reception/bar/pool, not in rooms. The pool could be cleaner, the park is why you came |
 | Park lodge | Closer to the trailheads, hostel beds ~$11 and villas $65+ | No Wi-Fi at all. Spartan |
 | Homestays / Mulu Village guesthouses | Cheapest, most local | Quality varies. The Marriott is the safer pick unless cost is the deciding factor |
 
-The Marriott runs a free shuttle that meets every flight, so you do not need to pre-book transport. Going back out, the same shuttle drops you at the airport with timing matched to your departure.
+The Marriott runs a free shuttle that meets every flight, so you do not need to pre-book transport. Going back out, the same shuttle drops you at the airport with timing matched to your departure. [Mulu Airport](/pins/mulu-airport-mzv) is tiny and efficient. An hour ahead of the flight is plenty.
 
 ## What to book at the park
 

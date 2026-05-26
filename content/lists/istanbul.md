@@ -83,7 +83,7 @@ The choice is between the old city and the modern center.
 
 **Sultanahmet**, the old city, puts Hagia Sophia, the Blue Mosque, and the bazaars within walking distance, the convenient base for first-time sightseeing. **Beyoğlu**, across the Golden Horn around İstiklal Street and Galata, is the livelier modern base, stronger for restaurants, bars, and nightlife. Many visitors stay in Beyoğlu and take the short tram or walk to the old city.
 
-For a hotel on the Beyoğlu side, [InterContinental Istanbul](/pins/intercontinental-istanbul) is the lodging pin on the list and is rated 5. Beyond it the atlas does not yet carry a wide hotel pin set for Istanbul, so book on the usual sites and read recent reviews for the property.
+For a hotel on the Beyoğlu side, [InterContinental Istanbul](/pins/intercontinental-istanbul) is the lodging pin on the list. The property is plush, the rooms read as "old luxury" rather than modern, and the views from a high floor are the entire pitch. Beyond it the atlas does not yet carry a wide hotel pin set for Istanbul, so book on the usual sites and read recent reviews for the property.
 
 ## The old city and the Bosphorus
 
@@ -97,11 +97,9 @@ The single thing not to skip is the water. A **Bosphorus ferry**, and a crossing
 
 Istanbul eats on a deep Turkish range: kebabs and grilled meats, mezze, fresh fish by the water, the simit and börek of the street, and a strong cafe culture. Both the old city and Beyoğlu are dense with options.
 
-The pin set below is the saved Istanbul list. Notes are thin, though three pins carry a 5 rating.
-
-| Spot | What it is | Rating |
+| Spot | What it is | Notes |
 |---|---|---|
-| [Massa Bistro](/pins/massa-bistro) | A bistro | 5/5 |
-| [Saat Kule Kafeterya](/pins/saat-kule-kafeterya) | A cafe in Beyoğlu | 5/5 |
+| [Massa Bistro](/pins/massa-bistro) | Sit-down near the Grand Bazaar | The place to land after a morning of shopping. Sharp service, reasonable prices, the food carries it. They have cats hanging out, which seals it |
+| [Saat Kule Kafeterya](/pins/saat-kule-kafeterya) | A cafe with the view in Beyoğlu | The view is the reason to come. Prices are in line with a European tourist spot, food was good on my visit, your mileage may vary |
 | [Beyoğlu Cafe](/pins/beyoglu-cafe) | A cafe | Pinned |
 | [The Pub Beyoglu](/pins/the-pub-beyoglu) | A pub | Pinned |
