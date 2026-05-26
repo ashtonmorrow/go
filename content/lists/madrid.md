@@ -141,7 +141,7 @@ I pick a base by which kind of day I want to have. Gran Vía gets you walking di
 | Gran Vía | [Aloft Madrid Gran Via](/pins/aloft-madrid-gran-via) | Was a fair mid-range pick in the same area | I have not stayed since the recent renovation, so confirm the room before booking |
 | Princesa side | [Hotel Indigo Madrid - Princesa](/pins/hotel-indigo-madrid-princesa-an-ihg-hotel) | Quiet street, often a better rate, real neighborhood food on the same blocks | Out of the way for the Sol / Gran Vía buzz at night |
 | La Latina / Lavapiés | [Atocha Hotel, Tapestry Collection by Hilton](/pins/atocha-hotel-madrid-tapestry-collection-by-hilton) | Hilton soft-brand option, walking distance to the Reina Sofía | Rates have been creeping up. Not always the value it used to be |
-| Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, fine as a place to sleep between days out | Tight for two with luggage. Treat as a bed, not a base |
+| Atocha (budget) | [Four Points Flex by Sheraton Madrid Atocha](/pins/four-points-flex-by-sheraton-madrid-atocha) | Spartan budget room, very cheap, fine as a place to sleep between days out | Tight for two with luggage. The bathroom doors are the half-shower / half-restroom hybrid that does not close fully, so privacy is approximate. Treat as a bed, not a base |
 
 La Latina toward Lavapiés is my personal favorite area when I am picking by neighborhood feel rather than hotel. Older buildings, more stairs, the strongest neighborhood food in the center. If you stay near Gran Vía, the [El Corte Inglés](/pins/el-corte-ingles) rooftop at Callao has one of the easier sunset views in the center. The [Camino Sacramento](/pins/camino-sacramento) cheap-steak spot is right there too.
 
@@ -164,7 +164,10 @@ The food rhythm in Madrid rewards walking ten minutes for a better meal rather t
 | [BREW WILD PIZZA BAR](/pins/brew-wild-pizza-bar) | Craft beer in the center | Tap list rotates. Pizza is fine, not a destination |
 | [Chocolat Madrid](/pins/chocolat-madrid) | Chocolate con churros without the San Ginés queue | Almost always walk-in. The famous version is at San Ginés if the queue is the point for you |
 | [Motteau Pasteleria](/pins/motteau-pasteleria) | Pastries on the way to the Retiro or the museums | Best in the city for me |
-| [Camino Sacramento](/pins/camino-sacramento) | Cheap steak near Callao | Worth a stop |
+| [Camino Sacramento](/pins/camino-sacramento) | Cheap steak near Callao | The meat is always great, prices fair |
+| [Café - Restaurante Tyché](/pins/caf-restaurante-tych) | Menu del dia bargain | Small room, big flavors. The set lunch is the way to order |
+| [Yatai Market](/pins/yatai-market) | A group dinner where everyone wants something different | Mostly Asian street style: bao, rice bowls, ramen. Everyone picks their own |
+| [TKO Tacos Santa Isabel](/pins/tko-tacos-santa-isabel) | Quick cheap taco lunch | Pretty good for the price, fast turnaround |
 
 ## Museums
 
