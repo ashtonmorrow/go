@@ -94,14 +94,15 @@ The trip-shaping events are Sziget in mid-August (the music festival to plan aro
 | Sight | What to know | Booking |
 |---|---|---|
 | Hungarian Parliament tour | Neo-Gothic riverfront landmark, Europe's third-largest parliament building. The Holy Crown of Saint Stephen is inside. The tour is the only way to see the interior | jegymester.hu (the only official seller). **45-min English tours sell out 1 to 2 weeks ahead in peak.** ~9,000 HUF for non-EU visitors. Book before you land. Tours are not refundable and run on time |
-| Széchenyi Thermal Bath | Largest medicinal bath in Europe, neo-baroque yellow building in City Park. The Pest-side mass-scale option, less atmospheric than Gellért but with the outdoor pools that produce the famous winter steam photo | szechenyibath.hu. ~8,500-12,000 HUF depending on weekday/weekend, all day. Cabin (private) costs slightly more than locker. Book online to skip the kiosk line on weekends |
-| Gellért Thermal Bath | Art Nouveau bath inside the Hotel Gellért, the more photogenic option. Smaller, more architectural | gellertbath.hu. Similar pricing to Széchenyi. Book online. Reopened after a 2024-25 renovation, so verify the bath is open for your dates |
+| Széchenyi Thermal Bath | Largest medicinal bath in Europe, neo-baroque yellow building in City Park. The Pest-side mass-scale option, less atmospheric than Gellért but with the outdoor pools that produce the famous winter steam photo. My note from the day: indoor pools had flotsam and were not the highlight, the outdoor pools are great, and the main outdoor pool was closed for renovation on my visit | szechenyibath.hu. ~8,500-12,000 HUF depending on weekday/weekend, all day. **The discount tickets before 9 a.m. are the way to go.** Cabin (private) costs slightly more than locker |
+| Gellért Thermal Bath | Art Nouveau bath inside the Hotel Gellért, the more photogenic option. Smaller, more architectural, and my pick of the three | gellertbath.hu. Similar pricing to Széchenyi. A tad pricey but worth the visit once. Reopened after a 2024-25 renovation, so verify the bath is open for your dates |
 | Rudas Thermal Bath | The 16th-century Ottoman-era bath, octagonal pool under a dome. The most historically interesting | rudasbath.hu. Smaller, cheaper (~5,500-8,000 HUF). Mixed-gender only on weekends. Weekdays alternate single-gender. Check the schedule before booking |
 | St. Stephen's Basilica | The dome climb has the best central-Pest view. The Holy Right Hand of Saint Stephen is in a side chapel. Free entry. The dome and treasury are ticketed | bazilika.biz. ~3,200 HUF for the dome. Walk-up usually fine |
 | Buda Castle + Fisherman's Bastion | Free to walk the grounds and the Bastion terraces (the photogenic white-stone fairy-tale walls overlooking the river). Castle interior houses the Hungarian National Gallery, ticketed separately | The walk is free. Buda Castle Funicular is ~4,500 HUF return. The climb is fine, the funicular is the queue trap |
 | Dohány Street Synagogue | The largest synagogue in Europe and the center of the Jewish Quarter | jewishtourhungary.com. ~10,000 HUF including the Hungarian Jewish Museum and the Holocaust Memorial garden. Book a day or two ahead in peak |
+| [Aquincum Museum](/pins/aquincum-museum) | The Roman-period archaeological site in Óbuda, the remains of the provincial capital of Pannonia. Off the standard tourist circuit | A bit of a hike to get there, but worth it for the extensive collection of artifacts |
 
-The thermal baths are the city's signature. The [spa-day cross-list](/lists/spa-day) covers the choice between Gellért, Széchenyi, and Rudas in more depth. A short version: Széchenyi for the outdoor steam-and-snow photo, Gellért for the building, Rudas for the Ottoman dome.
+The thermal baths are the city's signature. The [spa-day cross-list](/lists/spa-day) covers the choice between Gellért, Széchenyi, and Rudas in more depth. Picking between the three at a glance: Széchenyi for the outdoor steam-and-snow photo, Gellért for the building, Rudas for the Ottoman dome.
 
 Tour-guide note: the Parliament tour is the rare case where the guide is the only way in. The building isn't a self-walk. The baths are the opposite, no guide needed. The Buda Castle hill walk benefits from a guide if you care about the layered medieval / Ottoman / Habsburg history, but Wikipedia plus a slow walk works fine.
 
@@ -109,11 +110,14 @@ Tour-guide note: the Parliament tour is the rare case where the guide is the onl
 
 Hungarian food carries the imperial weight: paprika, goulash, slow-braised meats, cured sausage, lángos (the deep-fried flatbread that lives at every market). The restaurant scene has modernized steadily. The picks below mix the casual and the formal.
 
-| Spot | Rating |
-|---|---|
-| [Black Cab Burger](/pins/black-cab-burger) | Pinned |
-| [Bors Gastro Bar](/pins/bors-gastro-bar) | Pinned |
-| [Comme Chez Soi](/pins/comme-chez-soi) | Pinned |
-| [Csalogány 26](/pins/csalogany-26) | Pinned |
-| [Halászbástya Étterem](/pins/halaszbastya-etterem) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [KOLBIZZ Sausage & Beer House](/pins/kolbizz-sausage-beer-house) | Hungarian sausage and tap beer | Great selection of taps. The food is heavy but well prepared. The reason I keep mentioning it: I once mis-tipped a €50 bill thinking it was a smaller one, walked off, and the staff ran after me to give it back. Not the service you assume |
+| [Sushi Lotus](/pins/sushi-lotus-restaurant) | A reasonable sushi pick | Relatively affordable and in the right spot. The return pick when the Hungarian-food calendar needs a break |
+| [Lindt Chocolate Store](/pins/lindt-chocolate-store) | Chocolate and ice cream | Pricey but it is chocolate and ice cream, so the bar is what it is |
+| [Csalogány 26](/pins/csalogany-26) | Modern Hungarian | Pinned |
+| [Halászbástya Étterem](/pins/halaszbastya-etterem) | Inside Fisherman's Bastion | Pinned |
+| [Comme Chez Soi](/pins/comme-chez-soi) | Old-style European | Pinned |
+| [Bors Gastro Bar](/pins/bors-gastro-bar) | Quick lunch | Pinned |
+| [Black Cab Burger](/pins/black-cab-burger) | Burgers | Pinned |
 
