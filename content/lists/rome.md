@@ -110,7 +110,7 @@ Roman food is the four-pasta canon (cacio e pepe, carbonara, amatriciana, gricia
 | [Ce Stamo A Pensà](/pins/ce-stamo-a-pensa) | Amazing pasta at great prices | Quaint vibe. The deep-fried pizza at €3 is especially good |
 | [Pastasciutta](/pins/pastasciutta) | Cheapest meal in years near the Vatican | €5 to €6 a dish, the kind of price Rome rarely offers anymore. Pass it on the way to or from St Peter's |
 | [Pasta In Corso](/pins/pasta-in-corso) | Cheap and amazing pasta | Inexpensive, fast |
-| [El Maíz Roma Prati](/pins/el-maiz-roma-prati) | The non-Italian pick that earns it | Venezuelan arepas, well-seasoned meat. Why would you eat anything other than Italian in Rome — this is one good reason |
+| [El Maíz Roma Prati](/pins/el-maiz-roma-prati) | The non-Italian pick that earns it | Venezuelan arepas, well-seasoned meat. Why would you eat anything other than Italian in Rome? This is one good reason |
 | [Pompi Trevi](/pins/pompi-trevi) | The snack stop by the Trevi Fountain | Inexpensive and delicious. The right spot when you are already standing in front of the fountain |
 | [al42 by Pasta Chef Monti](/pins/al42-by-pasta-chef-monti) | Pasta in Monti | Pinned |
 | [Bono Bottega Nostrana](/pins/bono-bottega-nostrana) | Sandwich-and-deli pick | Pinned |
