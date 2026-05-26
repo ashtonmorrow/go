@@ -39,6 +39,7 @@ topics:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -54,7 +55,7 @@ Berlin Berlin Brandenburg Airport (BER) sits about 25 km south-east of central B
 
 ## Festivals and big annual events
 
-Berlin's calendar is the most varied of any German city, partly because the city itself runs on so many parallel scenes. The film, art, and electronic-music worlds each have their own headline weeks. Plus the Christmas markets, which are the year-end window most American travelers connect to.
+Berlin's calendar is the most varied of any German city, partly because the city itself runs on so many parallel scenes. The film, art, and electronic-music worlds each have their own peak weeks. Plus the Christmas markets, which are the year-end window most American travelers connect to.
 
 | Event | When | What it changes |
 |---|---|---|
@@ -63,7 +64,7 @@ Berlin's calendar is the most varied of any German city, partly because the city
 | **Karneval der Kulturen** | Pentecost weekend, late May or early June | The four-day street festival in Kreuzberg celebrating Berlin's immigrant diversity. The parade on Sunday is the centerpiece. Around a million attendees across the weekend. Less hotel-pressure because the festival is local-first |
 | **Lollapalooza Berlin** | Early September, two days | The Berlin branch of the American festival, at the Olympiapark complex. Around 90,000 a day. Hotels in the Charlottenburg / Olympiastadion corridor fill |
 | **Festival of Lights** | Early to mid-October, ten days | Free large-format light installations on the Brandenburg Gate, the cathedral, the Fernsehturm, and dozens of other landmarks. Smaller hotel impact but the city's most-photographed week |
-| **Berlin Christmas markets (Weihnachtsmärkte)** | Late November to December 24 (some run to early January) | Around 80 Christmas markets across the city. Gendarmenmarkt is the prettiest (ticket required for entry, around €2). Charlottenburg Palace is the postcard one. Alexanderplatz is the loud big one. The Spandau Old Town market is the family-friendly version |
+| **Berlin Christmas markets (Weihnachtsmärkte)** | Late November to December 24 (some run to early January) | Around 80 Christmas markets across the city. Gendarmenmarkt is the prettiest (ticket required for entry, around €2). Charlottenburg Palace is the most photographed. Alexanderplatz is the loud big one. The Spandau Old Town market is the family-friendly version |
 | **CTM and Transmediale** | Late January and early February, around two weeks | The electronic music (CTM) and media-art (Transmediale) festivals run together. Smaller venues across town. The serious electronic-music audience books the city for this week |
 | **Klassik Open Air** | Various summer dates | Free classical concerts at Bebelplatz and Gendarmenmarkt across June and July. The summer-coffee version of Berlin culture |
 | **Berlin Marathon** | Late September | The world-record marathon (10 world records have been set here). Closes most of the central east-west axis. Hotel inventory tightens months ahead |
@@ -81,16 +82,28 @@ The trip-shaping events are Berlinale in February (book early for the screenings
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address, the rough nightly band, and any notes.
 
+## What to see
+
+Berlin is sprawling by European standards and the walks are long. The central spine runs from the Brandenburg Gate east through Unter den Linden to Alexanderplatz, which is the foot-and-tram day if you only have one.
+
+[Brandenburg Gate](/pins/brandenburg-gate) is the city's most-photographed landmark and the must-see on a first visit. The square in front fills for the major civic events (German Unity Day on October 3, the New Year's Eve fireworks show), and the gate is one of the centerpieces of the Festival of Lights in October.
+
+If chocolate is part of the trip, [GALERIA Berlin Alexanderplatz](/pins/galeria-berlin-alexanderplatz) on the east end of the same axis has a chocolate and confectionary section that runs deeper than most dedicated candy stores.
+
 ## Where to eat
 
 Berlin food runs on three threads: the Turkish-German döner kebab that Berlin made into a cuisine (the city has the largest Turkish diaspora outside Turkey), the modern German microbreweries and beer gardens, and the imported restaurant scene that Berlin's open immigration history built. The picks below cover the registers.
 
-| Spot | Rating |
-|---|---|
-| [Asia Land](/pins/asia-land) | 5/5 |
-| [Döner Inn](/pins/d-ner-inn) | 5/5 |
-| [BRLO Charlottenburg](/pins/brlo-charlottenburg) | Pinned |
-| [Checkpoint Kebab](/pins/checkpoint-kebab) | Pinned |
-| [Das Lemke - Biergarten, Brauerei, Deutsche Küche](/pins/das-lemke-biergarten-brauerei-deutsche-kuche) | Pinned |
-| [Döner Kebab Restaurant TERAS Berlin](/pins/doner-kebab-restaurant-teras-berlin) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Asia Land](/pins/asia-land) | Fast Asian, value | Food out in 10 minutes flat. 12–15€ a head, reasonable for Berlin |
+| [Com Nam](/pins/com-nam) | Vietnamese, easy to miss | Small inconspicuous storefront. Low prices for Berlin, quality good, comes fast |
+| [Döner Inn](/pins/d-ner-inn) | Doner near the train station | About 10€ a head. Average price for Berlin, convenient location |
+| [Restaurant Aida](/pins/restaurant-aida) | A quick beer or coffee | Good, fast, fair |
+| [macchina-caffè GmbH](/pins/macchina-caff-gmbh) | Coffee specialty shop, not a cafe | Huge selection of Moka pots and other coffee devices, sizes from extra-small to 10 liters |
+| [BRLO Charlottenburg](/pins/brlo-charlottenburg) | Brewery | Pinned |
+| [Das Lemke Biergarten](/pins/das-lemke-biergarten-brauerei-deutsche-kuche) | German beer garden | Pinned |
+| [Checkpoint Kebab](/pins/checkpoint-kebab) | Doner near Checkpoint Charlie | Pinned |
+
+One to skip if you have other options: [Café Lebensart am Brandenburger Tor](/pins/caf-lebensart-am-brandenburger-tor). The location next to the gate is convenient, but the staff give off real I-do-not-want-to-be-here energy. Go in only if you genuinely need a coffee in that exact spot.
 
