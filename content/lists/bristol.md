@@ -174,6 +174,19 @@ If you want to round out the trail, two more surviving pieces sit east of the ce
 
 A note on the works themselves: outdoor pieces in a wet British city do not last forever. Several of Bristol's Banksys have been damaged by weathering, vandalism, or removal over the years. Plexiglass covers protect a few of them. The others wear visibly. Check the pin pages for the latest condition notes before you walk over.
 
+## Where to eat and drink
+
+Bristol's food and drink scene is dense for a city this size, with St Nicholas Market as the daytime anchor and King Street as the evening one. The picks below are what I rotate through.
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Seven Lucky Gods](/pins/seven-lucky-gods) | The dinner pick on King Street | Make a reservation, the room is small and the wait runs long. The rice on the rolls came out a little dry on my last visit, otherwise the kitchen is on |
+| [Eat A Pitta Broadmead](/pins/eat-a-pitta-broadmead) | The lunch pick when the smell pulls you in | Quick, affordable, falafel wrap is the order |
+| [FoodieVietnam](/pins/foodievietnam) | Vietnamese right by St Nicholas Market | Fresh, fast, fairly priced. Portions are not huge, but the pricing is |
+| [Wagamama Bristol Cabot Circus](/pins/wagamama-bristol-cabot-circus) | A reliable chain when you want one | The food I always like at Wagamama. This location runs slower than the others |
+| [Left Handed Giant Brewpub](/pins/left-handed-giant-brewpub) | The brewpub for an evening pint | Decent rotation on tap. £4-6 a pour, the right price for this side of the harbor |
+| [BrewDog Bristol Baldwin Street](/pins/brewdog-bristol-baldwin-street) | A second-pint stop with foot-traffic views | Card only, no cash. Useful to know before you order |
+
 ## If you have a longer weekend
 
 Two more things, both for stays of three days or more.

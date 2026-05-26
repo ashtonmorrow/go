@@ -94,8 +94,8 @@ KL is one of the few major capitals where the cheap pick and the splurge pick ar
 
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
-| Bangsar | [Alila Bangsar Kuala Lumpur](/pins/alila-bangsar-kuala-lumpur) | The pick. 5-star property directly above the metro, infinity pool with skyline view, walking distance to Bangsar Baru's food scene | Bangsar is calmer than the tourist spine. You ride two stops to the Petronas Towers |
-| KLCC | [Hyatt Centric City Center Kuala Lumpur](/pins/hyatt-centric-city-centre-kuala-lumpur) | Direct on KLCC, Petronas view from many rooms, walking to the park and mall | KLCC is the most touristed zone. Prices peak here |
+| Bangsar | [Alila Bangsar Kuala Lumpur](/pins/alila-bangsar-kuala-lumpur) | The pick. Smaller and boutique-feeling. Every room is floor 35 or higher, the pool is an indoor solarium that never has kids, and the property sits right on the train with food everywhere inside a 10-minute drive | Bangsar is calmer than the tourist spine. You ride two stops to the Petronas Towers |
+| KLCC | [Hyatt Centric City Center Kuala Lumpur](/pins/hyatt-centric-city-centre-kuala-lumpur) | Direct on KLCC, Petronas view from many rooms, walking to the park and mall. The location is central without the pedestrian-crush feel | Rooftop bar prices run high and it does not open until 4 p.m. The rooms have the disconnected toilet/bathroom layout that not everyone enjoys |
 | Bukit Bintang | Various 4-star and 5-star | Best for night-market and bar walks. Easy MRT to KLCC | Less polished than Bangsar or KLCC. Louder evenings |
 
 ### Hotels I would skip
@@ -124,7 +124,7 @@ A roughly chronological full-day on foot and metro, starting from KLCC.
 | [KL Tower](/pins/kl-tower) | 75 min, ticketed | 360 view, easier walk-up than Petronas. Better for sunset than midday |
 | Bukit Bintang | Evening | Night market and dinner. [Atmosphere 360 Restaurant](/pins/atmosphere-360-restaurant) is the revolving option at KL Tower if you want a one-stop dinner-and-view |
 
-A second day is the Bird Park and surrounding [Perdana Botanical Garden](/pins/perdana-botanical-garden), or [Sentul Depot](/pins/sentul-depot) for the rejuvenated warehouse district north of town.
+A second day is the [Bird Park](/pins/kl-bird-park) and surrounding [Perdana Botanical Garden](/pins/perdana-botanical-garden), or [Sentul Depot](/pins/sentul-depot) for the rejuvenated warehouse district north of town. Get to the Bird Park early to beat the equator heat, and bring coins for the fish food at the pond.
 
 ## Batu Caves
 
@@ -164,6 +164,6 @@ The MRT and KLCC are safe at every hour. Bukit Bintang stays busy and well-lit b
 
 ## What to skip
 
-The flashy "Sky Mirror" day trips from KL are a long bus haul for a thin payoff. Tourist agencies sell "floating market" trips that are entirely Thailand. [Pudu Prison Gate](/pins/pudu-prison-gate) is the only remaining wall of the old colonial prison and is fine for a photo but not worth detouring for. [KL Forest Eco Park](/pins/kl-forest-eco-park) reads better in guidebooks than in person. The canopy walk is short, the loop is short, the heat is not.
+The flashy "Sky Mirror" day trips from KL are a long bus haul for a thin payoff. Tourist agencies sell "floating market" trips that are entirely Thailand. [Pudu Prison Gate](/pins/pudu-prison-gate) is the only remaining wall of the old colonial prison and is fine for a photo but not worth detouring for. The [KL Forest Eco Park](/pins/kuala-lumpur-eco-park) canopy walk is short, but it's one of my favorite ways to break from the hustle for an hour, so include it if you're already nearby.
 
 Atlas Obscura travelers may want the [KL Bird Park](/pins/kl-bird-park) (worth the visit), the [Butterfly Park](/pins/kuala-lumpur-butterfly-park), and the [National Textile Museum](/pins/national-textile-museum). The [National Museum of Malaysia](/pins/the-national-museum-of-malaysia) sits next to KL Sentral and is a useful one-hour primer if you have a train layover.

@@ -102,7 +102,7 @@ The practical rules:
 
 - Keep your phone in a zipped bag or pocket when you are walking, not in your hand. The grab-and-scooter pattern happens here and it's the single most common bad thing that happens to tourists.
 - Don't put the phone on the table at a sidewalk café.
-- At night, take an Uber rather than walk after a couple of drinks. The Uber is $3 to $5. The walk is fine if you're alert. The Uber is the move if you're not.
+- At night, take an Uber rather than walk after a couple of drinks. The Uber is $3 to $5. The walk is fine if you're alert. The Uber is the choice if you're not.
 - The neighborhoods to be most careful in are La Boca (outside the immediate tourist three blocks of Caminito) and parts of San Telmo at night.
 
 What you don't need to worry about: **kidnapping or organized violence against tourists**. Those are not the pattern in Buenos Aires. Petty theft from inattentive tourists is.
@@ -114,10 +114,11 @@ Buenos Aires is two food cities at once. The parrilla side, where Don Julio is t
 | Spot | Style | Why pick it |
 |---|---|---|
 | [Don Julio Parrilla](/pins/don-julio-parrilla) | Parrilla, Palermo | The tourist headline. Reservation required, and prices have moved (see below) |
-| [Cerezo Sushi](/pins/cerezo-sushi) | Japanese, Palermo | The sushi room I keep coming back to in the city. Several other rooms compete |
-| Nino Gordo | Asian fusion, Palermo | Reservation required, usually a week or two out. One of the more interesting menus in Palermo |
-| [Martineta Bar](/pins/martineta-bar) | Bar / small plates, Palermo | Late-night, the wine list, the room |
-| [Ribs al Río - Paseo Infanta](/pins/ribs-al-rio-paseo-infanta) | Barbecue ribs | Casual, dependable, fast |
+| [Cerezo Sushi](/pins/cerezo-sushi) | Japanese, Palermo | The sushi room I keep coming back to in the city. Boutique feel, high-quality fish, not cheap but not absurd. Bring cash or a debit card. A credit card runs a 10% surcharge |
+| [Niño Gordo](/pins/ni-o-gordo) | Asian fusion, Palermo | Reservation required, usually a week or two out. Block two hours on the calendar. Prices run high for Buenos Aires, the bodega atmosphere and the food earn it |
+| [Martineta Bar](/pins/martineta-bar) | Bar / small plates, Palermo | The go-to for beers and tapas on the Palermo side. Late-night, the wine list, the room |
+| [Ribs al Río - Paseo Infanta](/pins/ribs-al-rio-paseo-infanta) | Barbecue ribs | Casual and dependable. Pricier than it looks and unapologetically greasy |
+| [Presidente Bar](/pins/presidente-bar) | The Instagram cocktail bar | A photogenic room with cocktails to match. One of the few places in Buenos Aires that struggled with my foreign card, so bring cash |
 | [Arte culinario Jardín Japonés](/pins/arte-culinario-jardin-japones-restaurante) | Japanese, inside the Japanese Garden | Lunch destination tied to the garden itself |
 | [Kajue Café](/pins/kajue-cafe) | Café, Palermo | The morning coffee + medialuna rotation |
 

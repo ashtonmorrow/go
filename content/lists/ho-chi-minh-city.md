@@ -113,7 +113,7 @@ District 1 is the default. Inside that, three tiers cover most travelers.
 
 | Tier | Hotel | Why pick it | Notes |
 |---|---|---|---|
-| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | Tallest building in the country, strong hotel breakfast, attached shopping, and wide city views | In Binh Thanh district, 10 minutes from central District 1 by Grab |
+| Splurge (~$160/night) | [Vinpearl Landmark 81, Autograph Collection](/pins/vinpearl-landmark-81-autograph-collection) | The tallest building in Vietnam and the best hotel I've stayed at in the country. Rooms default to high floors because the hotel occupies the top of the tower. Breakfast is incredible, check the included options on the Bonvoy benefits page before booking | In Binh Thanh district, 10 minutes from central District 1 by Grab |
 | Mid ($100ish) | InterContinental Saigon | Staid but central, next to Book Street. Family-friendly thanks to the Executive Apartments wing | The default IHG choice. Reliable rather than memorable |
 | Boutique ($30 to $75) | Independent 4-star and serviced apartments | District 1 has a deep bench. Many of the new residential towers rent units by the night | Read recent reviews. Quality varies more than at the chains |
 
@@ -141,8 +141,8 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 | Stop | Move | Why |
 |---|---|---|
 | [Heart of Darkness Craft Brewery](/pins/heart-of-darkness-craft-brewery) | Cucumber pils, a flight, and the kitchen specials (Sunday tomahawk is the photo) | HOD is dim and air-conditioned, welcome after the walk in. Consistent quality across the menu |
-| [Pasteur Street Brewing Co.](/pins/pasteur-street-brewing-co) | Flight of whatever is new on tap. Check in on social and they often give you a free taster | Off Pasteur Street, up an alley, second floor. The OG. Passion fruit wit and the IPA rotation are the picks |
-| [Belgo Belgian Craft Beer & Restaurant](/pins/belgo-ton-that-thiep-belgian-craft-beer-and-restaurant) | A strong Belgian-monastic-style ale at a traditional pour | Belgian-style range done well. Bottled beers for takeaway if you want one for the hotel |
+| [Pasteur Street Brewing Co.](/pins/pasteur-street-brewing-co) | Flight of whatever is new on tap. Check in on social and they often give you a free taster | Use the newer location, a corner open layout that beats the up-an-alley OG. Order a beer and watch the world go by. Send anyone who wants to shop to Ben Thanh while you do it |
+| [Belgo Belgian Craft Beer & Restaurant](/pins/belgo-ton-that-thiep-belgian-craft-beer-and-restaurant) | A strong Belgian-monastic-style ale at a traditional pour | The brews taste like what you'd buy at home in Belgium. The food backs them up, and bottles are available for takeaway |
 | [East West Brewing Co.](/pins/craft-beer-east-west-brewing-co-saigon) | Whatever fruit-led local-ingredient beer is on rotation (dragon fruit shows up often) | The biggest taproom of the four, near Ben Thanh, more brunch-spot than brewery. Good landing point for the rest of the night |
 | [Ben Nghe Street Food Market](/pins/ben-nghe-street-food-market) | Heineken, satay, a stagger | The right closing move. Pick stalls by queue length |
 
@@ -159,6 +159,10 @@ This is the part of HCMC most travel writing skips. The four big breweries are a
 | [Pho Minh](/pins/pho-minh) | A bowl of phở done unfussily | The local-style spot for a cheap, fast lunch |
 | [Bánh Mì Huynh Hoa](/pins/banh-mi-huynh-hoa) | The famous bánh mì. Cash, queue, walk away with two | Take it to the river or to your hotel. Do not eat standing up |
 | [Soul Classic Rooftop Bar](/pins/soul-classic-rooftop-bar) and [Vi Vu Rooftop](/pins/vi-vu-rooftop) | Skyline drink after the crawl | Both are easy walk-ups |
+| [Vo Roof](/pins/vo-roof) | The Instagram rooftop pick | Air con on the ground floor, fans on the rooftop. Food is genuinely good, though the photos are the reason most tables are full |
+| [Kohaku Sashimi & Yakiniku](/pins/kohaku-sashimi-and-yakiniku) | Reasonably priced sushi and a hibachi table option | Useful when you've been on pho and bánh mì all week |
+| [The Running Bean](/pins/the-running-bean) | Specialty coffee | Make a reservation. It is crowded |
+| [Tao Dan Park](/pins/tao-dan-park) | A peaceful afternoon break | Lay out, slow the pace, then walk back into the heat |
 
 ## Day trips: Cu Chi and the Mekong
 

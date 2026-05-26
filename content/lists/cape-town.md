@@ -142,6 +142,8 @@ The V&A Waterfront is commercial, but useful. You can eat, shop, catch the [Robb
 
 Robben Island is worth doing if the ferry schedule and weather cooperate. The tour of the former prison is led by former political prisoners, which gives the visit a different weight than a standard museum stop. **Book on robben-island.org.za a week or two ahead**. Ferries leave four times a day from Nelson Mandela Gateway at the V&A and the full visit (ferry + island bus tour + prison walk + ferry back) runs about 3.5 hours. Sailings cancel in rough weather, so leave a buffer day if Robben Island is on the must-do list. Sells out a few days ahead in December-January and over major South African public holidays.
 
+[The Watershed](/pins/the-watershed) at the V&A is the souvenir-shopping stop worth combining with this side of the day. Knick-knacks, clothing, and a row of small craft stores with stock you do not see at every airport shop. Prices run a bit higher than the township markets, the inventory is what carries it.
+
 ## The Cape Peninsula coast
 
 The coastal beaches divide into three rhythms.
@@ -161,7 +163,7 @@ Boulders pairs naturally with Cape Point and the Cape of Good Hope as a single l
 
 For wine, the Hop-on, Hop-off Wine Tram is the easy version. Pick a line, arrange transport in and out, and do not drive yourself. I took the Orange Line. [Babylonstoren](/pins/babylonstoren-wine-estate) and [Bacco](/pins/bacco-estate-winery) were the two stops I enjoyed most. The flights are good value if your goal is to taste widely rather than commit to one estate.
 
-[Aquila Game Reserve](/pins/aquila-private-game-reserve) is the simple safari add-on from Cape Town. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the long drive is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went.
+[Aquila Game Reserve](/pins/aquila-private-game-reserve) is the simple safari add-on from Cape Town and on my list of must-dos for a first visit. It is not the same as building a trip around Kruger or a private reserve, but it can be useful if you have limited time and want the easiest possible wildlife day. Take the package with pickup so the 2-hour drive each way is not your problem. The basic ticket included breakfast, a two-hour drive, and use of the lodge area when I went. Quad bikes and horseback riding cost extra and are worth knowing about as add-ons in advance.
 
 ## Where to eat
 
@@ -169,7 +171,7 @@ The food scene was stronger than I expected. The list below is the version I wou
 
 | Spot | Best for | Notes |
 |---|---|---|
-| [Karibu](/pins/karibu-restaurant) | South African specialties at the Waterfront | $10–20 plates when I went, working-harbor view |
+| [Karibu](/pins/karibu-restaurant) | South African game at the Waterfront | The best lunch or dinner I had at the V&A. Karibu specializes in game: typical steakhouse cuts but from springbok and ostrich instead of beef. Beef and chicken on the menu too if game is not the trip. $10–20 plates when I went |
 | [Yen's Vietnamese Street Food](/pins/yen-s-vietnamese-street-food) | Fresh Vietnamese | Not strictly authentic, well-made |
 | [Sea Breeze Fish & Shell](/pins/seabreeze-fish-and-shell) | Seafood | Reliable, lower-key |
 | [Eastern Food Bazaar](/pins/eastern-food-bazaar) | Indian and Southeast Asian hawker-style | Unfussy, fast, cheap |
