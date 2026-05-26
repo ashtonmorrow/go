@@ -207,11 +207,14 @@ A few picks from the saved list are worth booking around.
 | Spot | Best for | Where |
 |---|---|---|
 | [Restaurant City](/pins/restaurant-city) | Sit-down dinner with bay food and a quieter room than the lane-front cafes inside the walls | Outside the old town, north side of Kotor |
-| [BBQ Tanjga](/pins/bbq-tanjga) | The Balkan grill standard. Cevapi, pljeskavica, large portions, fair prices, cold beer. The lunch move | Just outside the old town on the E65 |
+| [Portofino](/pins/portofino) | The risotto room | Amazing risotto, professional staff. Outdoor tables come with blankets so the cooler evenings still work for dinner |
+| [BBQ Tanjga](/pins/bbq-tanjga) | The Balkan grill standard. Cevapi, pljeskavica, large portions, fair prices, cold beer | Just outside the old town on the E65 |
 | [BUTIGA wine & deli](/pins/butiga-wine-and-deli) | A glass of Montenegrin wine, a board of local cheese, the apartment-snack stop | Just outside the old town |
-| [Konoba Škver](/pins/konoba-skver) | Traditional konoba on the bay, fish-forward, small room, the night when you want the local-tavern side | Outside the walls |
+| [Konoba Škver](/pins/konoba-skver) | Traditional konoba on the bay, fish-forward, small room | Outside the walls |
 
 The rest of the bay's restaurants render under this writeup on the pin map. The saved list includes Hipnos, Tri Lipe, Pasterija Nautica, Verige 65, Konoba Karaca, and a dozen more for a longer stay. The Kotor restaurant rule is the standard one for a cruise-traffic old town. The rooms that price for one-time visitors are inside the walls along the obvious lanes, and the rooms that price for residents and longer-stay travelers are a few minutes' walk outside the gates.
+
+**A practical note on the bus station.** The [Kotor main bus station](/pins/kotor-main-bus-station) is the gateway to the rest of the Balkans by furgon, and the employees can be brusque to the point of comic. Bring cash for the ticket, know the name of where you are going and say it clearly, and the transaction goes through fine. Do not expect a tourist-info smile.
 
 ## Cruise-ship rhythm and when to go in
 
