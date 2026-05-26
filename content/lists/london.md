@@ -28,7 +28,7 @@ faqs:
   - q: Where should I stay for a first London trip?
     a: For sightseeing on foot, Tower Hill or Liverpool Street (Hotel Indigo Tower Hill, citizenM Tower of London, Andaz London Liverpool Street). For business, Canary Wharf (Crowne Plaza Docklands or one of the Hyatt Place options). For a calmer evening rhythm with museum proximity, Kensington (Hotel Indigo London Kensington). Heathrow hotels are only worth it for early flights. The central commute eats two hours each way.
   - q: How do I get from Heathrow to the center?
-    a: The Elizabeth Line is the move now. Direct from all Heathrow terminals to Paddington in 30 minutes, Liverpool Street in 50, Canary Wharf in 55. Around £12 to £14 with a contactless card, no need to buy a paper ticket. The Heathrow Express is faster (15 minutes to Paddington) but two to three times the price. Take the Express only if 15 minutes matters more than the price. Otherwise the Elizabeth Line wins.
+    a: The Elizabeth Line is what you want. Direct from all Heathrow terminals to Paddington in 30 minutes, Liverpool Street in 50, Canary Wharf in 55. Around £12 to £14 with a contactless card, no need to buy a paper ticket. The Heathrow Express is faster (15 minutes to Paddington) but two to three times the price. Take the Express only if 15 minutes matters more than the price. Otherwise the Elizabeth Line wins.
   - q: Do I need to book the Sky Garden in advance?
     a: Yes. Booking opens roughly three weeks ahead of your visit and the popular slots (sunset, weekend mornings) book out the day they open. Entry is free, you bring a passport or photo ID to the security desk on Fenchurch Street, and you can buy a drink upstairs without a separate ticket. It is the best free view in central London.
   - q: Is the London Eye worth doing?
@@ -108,7 +108,7 @@ day_trips:
 
 ## Getting in from Heathrow
 
-The Elizabeth Line is the move. Direct from every Heathrow terminal into central London on the same contactless bank card or phone wallet you use on the Tube (hold the card against the yellow gate pad on entry and exit, the system charges per leg), no paper ticket, no premium airport-rail surcharge. The fare cap means a round trip plus normal Tube use in the same day is still under the daily limit. Roughly:
+The Elizabeth Line is the answer. Direct from every Heathrow terminal into central London on the same contactless bank card or phone wallet you use on the Tube (hold the card against the yellow gate pad on entry and exit, the system charges per leg), no paper ticket, no premium airport-rail surcharge. The fare cap means a round trip plus normal Tube use in the same day is still under the daily limit. Roughly:
 
 | Mode | Heathrow to center | Time | Cost | When it makes sense |
 |---|---|---|---|---|
@@ -195,6 +195,7 @@ Pick the base from the trip type, not from a chain loyalty program. The London h
 | Where | Hotel | Why pick it | Trade-off |
 |---|---|---|---|
 | Shoreditch (budget) | [Four Points Flex by Sheraton London Shoreditch East](/pins/four-points-flex-by-sheraton-london-shoreditch-east) | Cheap, clean, central for the east London food scene | Not a romantic-weekend pick. Book it for value |
+| Aldgate (Hyatt) | [Hyatt Place London City East](/pins/hyatt-place-london-city-east) | Fair price for the location, terrace breakfast is the highlight | Some sketchy foot traffic out front in the evening, the bouncer-equivalent moves it along |
 
 **For a conference at ExCeL or work in Canary Wharf.** Different rules. Book near the work, not near the sights, and budget the Jubilee or Elizabeth Line into the evening if you want to see central London.
 
@@ -203,6 +204,13 @@ Pick the base from the trip type, not from a chain loyalty program. The London h
 | Canary Wharf | [Crowne Plaza London Docklands](/pins/crowne-plaza-london-docklands-by-ihg) | Modern build at Royal Victoria Dock, easy on the Elizabeth Line (Custom House, 5 min walk) and DLR (Royal Victoria). The right base for ExCeL conferences | A conference hotel. Wrong choice for a sightseeing trip. The neighborhood empties on weekends and every dinner is a tube ride out |
 | ExCeL | [Moxy London Excel](/pins/moxy-london-excel) | Two minutes' walk from the convention center | Conference hotel. Same caveat as Canary Wharf, more so |
 | Stratford | [Hyatt Regency London Stratford](/pins/hyatt-regency-london-stratford) | Modern build, two minutes from Stratford station, very fair price for east London | Twenty minutes east of central. Fine for a budget night, wrong as a holiday base |
+
+### Hotels I would skip
+
+| Hotel | Why |
+|---|---|
+| [Hyatt Regency London Blackfriars](/pins/hyatt-regency-london-blackfriars) | Recently renovated bones and large showers do not make up for the rest of the property. Pass for the equivalent Andaz, Hyatt Place, or Indigo |
+| [Moxy London Stratford](/pins/moxy-london-stratford) | The wrong Moxy on multiple counts. The chain usually nails the working-area + bar combo, this property does not. Book the Hyatt Regency Stratford on the same block instead |
 
 ## Getting around: one card, the fare cap, and the tap-out
 
@@ -253,7 +261,24 @@ The named restaurants in tourist London charge tourist prices. The markets and t
 | [Seven Dials Market](/pins/seven-dials-market) | Theater-district food hall | Always a zoo. Useful for a fast meal between Covent Garden and Soho |
 | Brixton Village | Caribbean and pan-African food | Best at lunch on a weekday. Quieter than the central markets |
 
-Two specific picks if you want a sit-down dinner not at a market: [Flat Iron Waterloo](/pins/flat-iron-waterloo) for a £20 ribeye that beats most £40 steaks in the city, and any [Sticks'n'Sushi](/pins/sticks-n-sushi-canary-wharf) (Canary Wharf, Shoreditch, or Victoria) for non-traditional sushi served quickly and well.
+Two specific picks if you want a sit-down dinner not at a market: [Flat Iron Waterloo](/pins/flat-iron-waterloo) for a £20 ribeye that beats most £40 steaks in the city, and [Sticks'n'Sushi](/pins/sticks-n-sushi-canary-wharf) for non-traditional sushi served quickly and well. The [Victoria](/pins/sticks-n-sushi-victoria) and [Shoreditch](/pins/sticks-n-sushi-shoreditch) locations are the two I rotate through, the staff and the room at both make them the better London Sticks visits.
+
+The Bankside walk also lands near [Wagamama Clink Street](/pins/wagamama-clink-street), the back-pocket pick when Borough Market is body-to-body. There is almost always a table, the food is fast, and the bill is reasonable for the postcode. [Bill's London Bridge](/pins/bill-s-london-bridge-restaurant) is the other reasonable sit-down two minutes from the market.
+
+For a quick noodle lunch on a sightseeing day, [Pho](/pins/pho-brunch) is the chain I default to, fast and fairly priced. [DF Tacos at Market Halls Canary Wharf](/pins/df-tacos-x-market-halls-canary-wharf) is the underrated taco counter in the docklands (flour tortillas, but the food carries it). On Bond Street side trips, [Hefaure](/pins/hefaure) is the pricey dessert stop that justifies the queue.
+
+### Coffee and bakery stops
+
+Most working London mornings are a tap-and-go from one of a few coffee counters that beat the chain norm.
+
+| Spot | Why | Notes |
+|---|---|---|
+| [The Gentlemen Baristas](/pins/the-gentlemen-baristas) | The Borough-area coffee pick without the crowd | A few minutes off the market, the bench out front is the one |
+| [Flying Horse Coffee](/pins/flying-horse-coffee) | The staff make this the one to return to | Coffee is genuinely good. The team made me a replacement after I dropped one all over myself |
+| [High Grade Coffee](/pins/high-grade-coffee) | Tucked-away spec coffee | Follow the "coffee this way" sign on the wall. Real plant-based options |
+| [Climpson and Sons](/pins/climpson-and-sons-cafe) | The London Fields roastery | Takeaway only now, the seating area is gone. Coffee still holds |
+| [Pret A Manger](/pins/pret-a-manger) (one specific location) | The Pret to use when you need a Pret | The Liverpool Street area Pret stays clean and has light foot traffic outside |
+| [Brood](/pins/brood) | A sit-down breakfast in the tourist core | More expensive than a Pret bap, the room and the view earn it |
 
 ## Sky Garden over the London Eye
 
@@ -271,6 +296,10 @@ The big nationals are free and the queue is the price. The two that consistently
 * The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum. Book a timed entry to skip the door queue.
 
 For modern art the Tate Modern is the main one. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
+
+The deep-cut museum that almost no first-time visitor books: [Royal Air Force Museum London](/pins/royal-air-force-museum-london) in Colindale. Free, quiet on a weekday morning, and a serious collection if WWII aviation, the Cold War, or jet history is the interest. Forty minutes from central on the Northern Line, which puts it past the tourist threshold.
+
+Two free outdoor stops worth folding into a day if you are nearby: the [Southbank Centre](/pins/southbank-centre) (lunchtime food pop-ups across the plaza), and [St Katharine Docks](/pins/st-katharine-docks) east of the Tower (a working marina with a quick row of boats to walk through). [Albert Bridge](/pins/albert-bridge) is the photogenic one between Battersea and Chelsea, with the famous "troops must break step" sign that prevents marching cadence from resonating the structure.
 
 ## Canary Wharf and the Docklands
 
@@ -294,4 +323,14 @@ A couple I've eaten at and would go back to:
 * [The Astronomer, EC1](/pins/the-astronomer-ec1). Sunday roast is the order. Closes earlier than you'd expect, so book lunch, not dinner.
 * [The George](/pins/the-george), Canary Wharf. Decent old-school pint stop if you happen to be at the Wharf anyway. Not worth a special trip in from central London.
 
-For a non-pub London walk that lands you at a pub: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal east toward Camden, end at one of the canal-side pubs along the way.
+For a non-pub London walk that lands you at a pub: [Word On The Water](/pins/word-on-the-water-the-london-bookbarge), the floating bookshop on Regent's Canal a five-minute walk from King's Cross. Buy a book, walk the canal east toward Camden, end at one of the canal-side pubs along the way. [Coal Drops Yard](/pins/coal-drops-yard) sits between the two if you want to sit down for a coffee mid-walk.
+
+## Practical for a longer stay
+
+A few odd specifics worth knowing if the trip stretches past a week.
+
+- **Suitcase emergency.** [Global Luggage](/pins/global-luggage) sells real replacement bags on a Sunday morning, which is the time you'll need one. Sharp staff.
+- **Food gifts to take home.** Skip the airport tins. [Battersea General Store](/pins/battersea-general-st) carries the same British pantry brands at Tesco-plus prices, with curation that beats the duty-free shelves.
+- **Vintage clothes.** [Rokit Brick Lane](/pins/rokit-brick-lane) prices vintage better than the rest of the strip, especially the men's denim wall.
+
+A small Chinese-medicine specialty store worth a poke if you're in Chinatown: [Beijing Tong Ren Tang](/pins/beijing-tong-ren-tang).

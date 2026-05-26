@@ -163,7 +163,7 @@ I love [Barcelona](/cities/barcelona), but in 2026 it's a city pushing back hard
 | Aerobús (the dedicated airport express bus. A1 from T1, A2 from T2) | €7.75 single / €13.30 return | Hotels near Plaça Catalunya or Plaça d'Espanya | Drops at fixed stops only, runs every 5 to 10 minutes, takes about 35 minutes |
 | Metro L9 Sud | €5.90 with the special Bitllet Aeroport (T-Casual not valid) | A traveler with one bag and time | Requires a transfer (Torrassa for L1 to Catalunya, Collblanc for L5 to Sagrada Família) |
 
-The fixed-rate taxi is the right default for most arrivals with luggage. The Aerobús is the move when your hotel is on the Catalunya / Espanya spine and you do not want to pay €40 for the door-to-door.
+The fixed-rate taxi is the right default for most arrivals with luggage. The Aerobús is the cheaper play when your hotel is on the Catalunya / Espanya spine and you do not want to pay €40 for the door-to-door.
 
 ## Getting around the city
 
@@ -212,6 +212,8 @@ The trip-shaping ones are La Mercè (the reason to book Barcelona in late Septem
 | Rambla del Poblenou (Bogatell beach) | [Durlet Beach Apartments](/pins/durlet-beach-apartments) | Apartment-style with a kitchen, near Bogatell beach, better than any Airbnb in the city | On Rambla del Poblenou (the local Rambla in Poblenou), not La Rambla in the center. Aparthotel rather than full-service |
 | Pedralbes / upper Diagonal | [Grand Hyatt Barcelona](/pins/grand-hyatt-barcelona) | The 2024 rebrand of the old Hotel Princesa Sofia. Rooms are spacious by Barcelona standards. Bathrooms are the thing: high water pressure, walk-in showers, bathtubs with a view in the upper-floor rooms. Safe area, on L3 green at Maria Cristina or Palau Reial | Up the Diagonal, away from the tourist spine. Suites are huge rooms with huge bathrooms, not a separate living area, so do not pay for one expecting the usual suite layout |
 | Working stay (Poblenou) | [The Social Hub Barcelona Poblenou](/pins/the-social-hub-barcelona-poblenou) | Coworking lobby, decent shared space, useful for longer stays | About 10 minutes' walk to Bac de Roda (L2). The permanent entrance reopens in June 2026. Until then check the operator's site for the temporary address |
+| Apartment (Poblenou beach) | [FeelAtHome Poblenou Beach Apartments](/pins/feelathome-poblenou-beach-apartments) | Apartment-style with kitchen and laundry, near Bogatell. I left AirPods at checkout and they held them over the weekend until I came back through | A licensed aparthotel rather than an Airbnb (relevant in 2026 Barcelona, see the Airbnb note below) |
+| Avinguda Diagonal (uptown) | [InterContinental Barcelona](/pins/intercontinental-barcelona-by-ihg) | IHG plat-and-up loyalty pick. Close enough to a metro stop that the walk to the line is short | Not the central location the name suggests. Book it for points value, not for walking out the door to La Rambla |
 
 ### On Airbnb in Barcelona
 
@@ -223,19 +225,59 @@ Walk one block off La Rambla in any direction. The Rambla itself prices for a ca
 
 ### Poblenou
 
-| Spot | Best for | Where |
+This is where I eat most weeknights when I'm in town. The Rambla del Poblenou is the local spine, the side streets carry everything else.
+
+| Spot | Best for | Notes |
 |---|---|---|
 | [Cabernet](/pins/cabernet-bar-tapas-copas-y-vinos) | Med-style cooking, slow pace, casual-upscale dinner | Rambla del Poblenou, near the Holiday Inn Express |
-| [La Uramakeria](/pins/la-uramakeria) | Cheap sushi that works as a casual weeknight | Carrer de Pere IV, Poblenou |
+| [Slow & Low](/pins/slow-and-low) | The dressed-up dinner | Might be the best meal in the city. Reserve |
+| [Boro Bar](/pins/boro-bar) | Brunch, savory or sweet | Probably the best tuna burger I have eaten. Breakfast food and heartier plates run from open, which is the part Barcelona usually gets wrong |
+| [Can Dendê](/pins/can-dende) | Brunch with crispy waffle fries | The fries are almost potato chips. Get there before the line builds |
+| [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona) | Standing caña and a snack | The center version of this is the same idea on Arc del Teatre |
+| [La Pepita](/pins/la-pepita) | Casual dinner where you write on the walls | Bring a wide-tip Sharpie if you want your message to last |
+| [BMC Banh Mi Club](/pins/bmc-banh-mi-club) | Vietnamese sandwich lunch | A hike from most of the office spaces but a real lunch shift |
+| [La Vietnamita](/pins/la-vietnamita-restaurant) | Vietnamese-leaning Southeast Asian | Limited brunch in the mornings. Fresh, fast, good price |
+| [Dionisos Quick Greek](/pins/dionisos-the-quick-greek) | A takeaway gyro before the beach walk | What the name promises |
+| [Tierra del Fuego](/pins/tierra-del-fuego) | Argentine empanadas and pollo | Cheap, fast, the empanada pick in town |
+| [Delicatessen Argentina Poblenou](/pins/delicatessen-argentina-poblenou-pujades) | Argentine pantry and mate gear | The thermos shelf is the reason. Good for the gift run home |
+| [Gust Pollos y Tacos](/pins/gust-pollos-and-tacos) | Quick pollo and tacos | A weeknight rotation pick |
+| [Internacional Restaurant Bar](/pins/internacional-restaurant-bar) | Tacos that use the right tortilla | Corn tortillas on the Tacos al Pastor, which most Barcelona spots get wrong. Quiet room |
+| [4 Makis Barcelona](/pins/4-makis-barcelona) | Upscale sushi | Slightly fancier than I usually want, the food carries it |
+| [Bambú Sushi & Udon](/pins/bamb-sushi-udon) | The best poke in Barcelona | Order the bowl |
+| [La Uramakeria](/pins/la-uramakeria) | Cheap sushi for a weeknight | Carrer de Pere IV |
+| [Ramen House](/pins/ramen-house) | Ramen | Pricier than the average Barcelona kitchen, the broth carries it |
+| [Ikoya Izakaya](/pins/ikoya-izakaya) | A pricey izakaya night | Never been disappointed, never been cheap |
+| [Ziryab Fusion Tapas Bar](/pins/ziryab-fusion-tapas-bar) | Lebanese-tapas in a stone room | The servers are deaf and sign language is the default. Date-night calibration without the date-night formality |
+| [Contigo Bar i Restaurant](/pins/contigo-bar-i-restaurant) | Casual evening drink + bite | The servers are friendlier than the rest of the strip |
+| [Otro Romero Brasa](/pins/otro-romero-brasa) | Outdoor-seating dinner | Runs salty, the room runs nice |
+| [Cocovail Beer Hall](/pins/cocovail-beer-hall-craft-beer-barcelona) | NFL Sundays + American sports | The bar to watch your team in |
+| [Labar Laundry Bar](/pins/labar-laundry-bar) | Coffee, beer, and your laundry | Do a load while you cowork. A specifically-Poblenou kind of place |
+| [Patisserie Hofmann](/pins/patisserie-hofmann) | Pastry that looks like sculpture | Prices read high, the artwork is what you are paying for |
+| [Gamar Espai Sense Alcohol](/pins/gamar-espai-sense-alcohol) | Non-alcoholic outdoor bar | Sandwiches and zero-proof drinks. Useful for a clean weeknight |
 
 ### Central Barcelona (off La Rambla)
 
-| Spot | Best for | Where |
+| Spot | Best for | Notes |
 |---|---|---|
-| [Bar Kiosko La Cazalla](/pins/bar-kiosko-la-cazalla-barcelona) | Standing caña and a snack before dinner | Corner of Arc del Teatre and La Rambla, El Raval |
-| [El Nacional Barcelona](/pins/el-nacional-barcelona) | Multi-vendor Spanish food hall under restored vaulted ceilings. On the tourist drag, but worth a stop for a caña and a graze | Passeig de Gràcia 24 Bis, Eixample |
+| [El Nacional Barcelona](/pins/el-nacional-barcelona) | Multi-vendor Spanish food hall under restored vaulted ceilings | On the tourist drag but worth a stop for a caña and a graze. Passeig de Gràcia 24 Bis |
+| [Kiosko Universal](/pins/kiosko-universal) | A meal inside La Boqueria | Pricey and touristy by definition, the cleanest of the in-market counters |
+| [Caelum](/pins/caelum) | Coffee and cake in a fantasy-novel room | Small space, fast service, well-priced cakes, the take-home shelves are the gift run |
+| [Sandwichez Carme](/pins/sandwichez-carme) | A quiet coffee near Boqueria | Same neighborhood without the crowd |
+| [Beercelona Bar](/pins/beercelona-bar) | A beer on La Rambla itself | The exception to the rule. Dozen-plus taps, fast service, the location is the location |
 
 For anything else in the center, the planning rule is the simplest one in this guide: walk one block off La Rambla in any direction. The places that price for tourists are the ones with picture menus, English-only chalkboards, and a touter outside. The places that price for residents are the ones with a Catalan menu, a queue of older locals at lunchtime, and no English signage at all. A fair caña and a plate of patatas bravas at a neighborhood bar should cost about €6 to €8. On La Rambla the same plates run €12 to €15 and the patatas are usually frozen.
+
+### Sants and the west side
+
+Sants is the working neighborhood around Sants Estació, and the food rhythm there is residential rather than tourist. Worth knowing for a quiet meal between trains.
+
+| Spot | Best for | Notes |
+|---|---|---|
+| [Restaurant Cal Santi](/pins/restaurant-cal-santi) | Neighborhood lunch with very cold beer glasses | The boquerones are the order. The staff are patient with broken Spanish |
+| [Bar Tapes Sense Fronteres](/pins/bar-tapes-sense-fronteres) | Hole-in-the-wall raciones | Bocadillos, jamón, queso. Basic in every register, the prices match |
+| [Bar Cafè Montserrat](/pins/bar-caf-montserrat) | Typical neighborhood bar | The staff seem nice enough |
+| [Cheers Sants](/pins/cheers-sants) | A casual bar | Free hats on St Patrick's day |
+| [El Atril](/pins/el-atril) | Quick lunch with a limited menu | No wait, food in under 15 minutes. The short menu is the appeal |
 
 ## Markets: La Boqueria vs Santa Caterina
 
@@ -258,10 +300,12 @@ Every major Barcelona attraction now requires an online timed ticket. Walk-up ti
 
 A few practical notes:
 
-- **The free-entry windows are real but require booking the timed slot online.** The Picasso Museum's free Thursday afternoon is the cleanest example. Show up without one and you're queueing for the day-of slots, which are usually gone by 4:05 p.m.
+- **The free-entry windows are real but require booking the timed slot online.** The Picasso Museum's free Thursday afternoon is the cleanest example. Show up without one and you're queueing for the day-of slots, which are usually gone by 4:05 p.m. [MUHBA at Casa Padellàs](/pins/casa-padell-s-barcelona-history-museum-muhba), the city history museum that includes the Roman ruins under Plaça del Rei, is free on the first Sunday of the month and the second-best free-Sunday play in the city after the Picasso.
 - **Tour-guide vs self-guide.** Sagrada Família's audio guide is included with the ticket and is good enough. Don't pay for a third-party "skip the line + private guide" combo. The line is the ticket queue, which you've already skipped by booking online. Casa Batlló's AR-glasses experience is more interesting than a human guide for that property.
 - **Avoid the "skip the line" sellers outside the gates.** Same shape as the Vatican equivalent. The tickets are either real (at 2-3x markup) or invalid.
 - **Plan the Gaudí stops by geography, not by booking time.** Sagrada Família is in the Eixample. Park Güell is a 20-minute Uber north of there. Casa Batlló and La Pedrera are two blocks apart on Passeig de Gràcia. Cluster them in one half-day rather than zigzagging.
+
+The free walk-through stops worth folding into a day in the old city: the [Arco de Triunfo](/pins/arco-de-triunfo-de-barcelona) at the top of Passeig de Lluís Companys (cleanest brick-red photo in the city) and the city view from [Salts Terrassa Bar Montjuïc](/pins/salts-terrassa-bar-montjuic) if you are already up the hill for Montjuïc. [Chez Paulette](/pins/chez-paulette-barcelona-palau) near the cathedral is the unusual gift-shop pick: handmade jewelry, leather bags, and line-art postcards you will not find at the standard souvenir stalls.
 
 ## Pickpockets
 
