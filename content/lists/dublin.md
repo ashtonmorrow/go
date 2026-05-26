@@ -100,12 +100,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Irish food has shed the boiled-and-gray reputation. Modern Dublin runs on serious gastropubs, a steady wave of international restaurants, and the bakery and burger scene. The picks below mix the casual evening rotation with the booking-ahead places.
 
-| Spot | Rating |
-|---|---|
-| [Boeuf](/pins/boeuf) | 5/5 |
-| [BIGFAN](/pins/bigfan) | Pinned |
-| [Braza Food](/pins/braza-food) | Pinned |
-| [Bunsen](/pins/bunsen) | Pinned |
-| [Cookieboy](/pins/cookieboy) | Pinned |
-| [Etto](/pins/etto) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Boeuf](/pins/boeuf) | A proper sit-down dinner | Hard to do better in Dublin under €50. Knives could use a sharpening, but the food gets there |
+| [BIGFAN](/pins/bigfan) | Asian-leaning | Pinned |
+| [Braza Food](/pins/braza-food) | Brazilian | Pinned |
+| [Bunsen](/pins/bunsen) | Burgers | Pinned |
+| [Cookieboy](/pins/cookieboy) | Cookies | Pinned |
+| [Etto](/pins/etto) | Italian sit-down | Pinned |
 

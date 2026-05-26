@@ -79,12 +79,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Medellín food has modernized faster than its reputation. El Poblado has a serious restaurant cluster, the craft-beer scene is real (Medellín produces some of the best craft beer in Latin America), and the casual Colombian (bandeja paisa, the cazuela frijoles, the corner-shop arepa) is everywhere. The picks below mix the dressed-up dinner with the casual evening.
 
-| Spot | Rating |
-|---|---|
-| [Colombia Craft Brewing Company](/pins/colombia-craft-brewing-company-cerveza-artesanal-craft-beer) | 5/5 |
-| [Repeat](/pins/repeat) | 5/5 |
-| [Alambique](/pins/alambique) | Pinned |
-| [Bárbaro Cocina Primitiva](/pins/barbaro-cocina-primitiva) | Pinned |
-| [Bonhomía](/pins/bonhomia) | Pinned |
-| [Cevichería Ostras Miramar](/pins/cevicheria-ostras-miramar-ltda) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Repeat](/pins/repeat) | Brunch in El Poblado | Laid-back patio with plants. Breakfast served all day, regular meals if you do not want eggs, the craft cocktails are real |
+| [Colombia Craft Brewing Company](/pins/colombia-craft-brewing-company-cerveza-artesanal-craft-beer) | A pint or two | Low-key place, prices are low even for Colombia, the staff are great. The beer is good without being the best you have ever had, and the 5★ still stands |
+| [Alambique](/pins/alambique) | Modern Colombian | Pinned |
+| [Bárbaro Cocina Primitiva](/pins/barbaro-cocina-primitiva) | Fire-cooked | Pinned |
+| [Bonhomía](/pins/bonhomia) | Café | Pinned |
+| [Cevichería Ostras Miramar](/pins/cevicheria-ostras-miramar-ltda) | Ceviche | Pinned |
 

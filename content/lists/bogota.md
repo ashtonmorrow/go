@@ -81,12 +81,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Bogotá food has modernized faster than its reputation. The Zona T and Parque 93 areas have a serious restaurant cluster, the steakhouse scene rivals Buenos Aires for a lower price, and the casual Italian and gastropub side is now everywhere. The picks below mix the Zona T sit-down with the casual rotation.
 
-| Spot | Rating |
-|---|---|
-| [El Mono Bandido Zona T](/pins/el-mono-bandido-zona-t) | 5/5 |
-| [Tauro Steak House & Bar](/pins/tauro-steak-house-and-bar) | 5/5 |
-| [Beer Lovers Parque 93](/pins/beer-lovers-parque-93) | Pinned |
-| [Cacio & Pepe](/pins/cacio-and-pepe) | Pinned |
-| [Chef Burger Parque 93](/pins/chef-burger-parque-93) | Pinned |
-| [Descortés](/pins/descortes) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Tauro Steak House & Bar](/pins/tauro-steak-house-and-bar) | The dry-aged steakhouse | Serious selection of meats, the dry-aged is the order. Not cheap for Colombia but a bargain compared to the US or EU, with quality to match. 4th floor setting is nice, the music runs loud so table talk gets harder |
+| [El Mono Bandido Zona T](/pins/el-mono-bandido-zona-t) | Craft beer garden | Their own beers and ciders on tap, bar-bite food that can stretch to a full meal. Low-key vibe, good service, the music carries the room |
+| [Beer Lovers Parque 93](/pins/beer-lovers-parque-93) | Craft beer hall | Pinned |
+| [Cacio & Pepe](/pins/cacio-and-pepe) | Italian | Pinned |
+| [Chef Burger Parque 93](/pins/chef-burger-parque-93) | Burgers | Pinned |
+| [Descortés](/pins/descortes) | Casual sit-down | Pinned |
 

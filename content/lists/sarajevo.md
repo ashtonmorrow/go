@@ -84,12 +84,12 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 Bosnian food sits at the meeting point of the Balkan grill (ćevapi, the small grilled sausages of mince served with somun bread and raw onion) and the Ottoman pastry tradition (burek, the meat-stuffed phyllo pie cooked under the sač iron lid). The picks below cover both registers.
 
-| Spot | Rating |
-|---|---|
-| [SMASH BURGER SARAJEVO](/pins/smash-burger-sarajevo) | 5/5 |
-| [Aščinica BISTRICA](/pins/ascinica-bistrica) | Pinned |
-| [Bosnian Cuisine Hadzibajric](/pins/bosnian-cuisine-hadzibajric) | Pinned |
-| [Buregdžinica Sač](/pins/buregdzinica-sac) | Pinned |
-| [Caffe 105](/pins/caffe-105) | Pinned |
-| [Caffe von Habsburg](/pins/caffe-von-habsburg) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [SMASH BURGER SARAJEVO](/pins/smash-burger-sarajevo) | The counter-pick after a week of ćevapi | Excellent burgers, fast turnaround. The one to know when you have had your fill of Bosnian grill |
+| [Aščinica BISTRICA](/pins/ascinica-bistrica) | Traditional point-and-pick | Pinned |
+| [Bosnian Cuisine Hadzibajric](/pins/bosnian-cuisine-hadzibajric) | Bosnian sit-down | Pinned |
+| [Buregdžinica Sač](/pins/buregdzinica-sac) | Burek under the sač | Pinned |
+| [Caffe 105](/pins/caffe-105) | Coffee | Pinned |
+| [Caffe von Habsburg](/pins/caffe-von-habsburg) | Coffee, Habsburg side | Pinned |
 
