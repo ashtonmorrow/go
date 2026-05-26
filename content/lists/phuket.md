@@ -167,7 +167,9 @@ Phuket runs a strong beach-club layer that is more affordable than the equivalen
 |---|---|---|---|
 | [Café del Mar Phuket](/pins/cafe-del-mar-phuket-beach-club) | Kamala | The most photogenic brunch in Kamala | Bring an external battery and a selfie stick if you care about photos |
 | [KUDO Hotel & Beach Club](/pins/kudo-hotel-beach-club) | Patong | The patio is literally open to the beach | Higher prices than nearby restaurants. Mains $10–15, drinks $4–7. Mix of Thai and Western |
-| [Carpe Diem Beach Club](/pins/carpe-diem-beach-club-phuket) | Patong (Kalim end) | Quieter alternative to KUDO with a long sun-bed run | Same minimum-spend dance |
+| [Carpe Diem Beach Club](/pins/carpe-diem-beach-club-phuket) | Patong (Kalim end) | Quieter than the bigger Patong clubs, the sushi is on point | Same minimum-spend dance |
+| [Barefoot Bistro Freedom Beach](/pins/barefoot-bistro-freedom-beach-phuket) | Freedom Beach | Sunset dive bar with the sand at your feet | Bring mosquito spray, you will need it |
+| [beach&bubbles](/pins/beach-and-bubbles) | Patong (south) | Hidden dive-bar feel, first-come seating for sunset | Cash only. Get there early for the seats with the view |
 
 ## The cultural circuit
 
@@ -180,7 +182,7 @@ Most Phuket trips never leave the beach, which is fine but skips the half-day th
 | [Old Phuket Town](/cities/phuket-town) | Sino-Portuguese streets, cafes, weekend night markets | Walk Thalang and Soi Romanee for the historic shophouses. [Wine Connection](/pins/wine-connection-phuket-town) is a nice mid-day break from local food |
 | Promthep Cape | Sunset viewpoint at the southern tip of the island | Park up the hill and walk down. The lighthouse loop adds 20 minutes. Crowded at golden hour |
 | [Paradise Viewpoint](/pins/paradise-viewpoint) | A row of viewpoint restaurants above Paradise Beach | Better than the beach itself. Food good, prices a tad lower than the obvious neighbors |
-| [Monkey Hill Viewpoint](/pins/monkey-hill-viewpoint) | Macaques and a city view above Phuket Town | The monkeys are aggressive. Do not bring food, hold onto your phone, do not engage |
+| [Monkey Hill Viewpoint](/pins/monkey-hill-viewpoint) | Macaques and a city view above Phuket Town | The monkeys are aggressive and, per the wildlife biologists, carry venereal disease. They love meeting new hikers. Do not bring food, hold onto your phone, do not engage |
 
 ## Phi Phi and Phang Nga as day trips
 
@@ -205,6 +207,16 @@ Patong has the highest food density. Phuket Town has the highest food quality. T
 | [Papazula](/pins/papazula) | Patong | Light Turkish-Thai wrap lunch | Decor is 1950s American rockabilly, which makes no sense and is fine |
 | Paradise Viewpoint restaurants | Above Paradise Beach, south of Patong | Lunch with a real view | Better food and lower prices than the obvious tourist stops along the same strip. Note: this is the viewpoint above Paradise Beach, not the Big Buddha hill |
 | [Hard Rock Cafe Phuket](/pins/hard-rock-cafe-phuket) | Patong | A beer and a live band | Food is incidental to the live music, which is the reason to come |
+
+## Practical for a longer stay
+
+If the trip stretches past a week, a few small Patong pins are worth knowing about.
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Aura Wash Laundry](/pins/aura-wash-laundry) | The Patong laundry to use | Aura runs warm, fast pickup, and the clothes come back pressed and wrapped. If you are staying in Patong, this is the one |
+| [VANNOTEN TAILORS](/pins/vannoten-tailors) | A tailor with a real turnaround | Quick, easy to work with. The Phuket version of the Bangkok tailoring stop |
+| [Up To You Cat Cafè](/pins/up-to-you-cat-caf) | A rainy-hour escape | 100 ฿ entry, dozens of cats, air conditioning. Works if you have a kid or it is pouring |
 
 ## Common scams to know going in
 

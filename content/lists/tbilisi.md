@@ -20,13 +20,13 @@ guide_cards:
     - title: The architecture flips block by block
       body: One street in the center reads Parisian (wrought iron, mansard roofs, painted balconies). The next block over is Soviet brutalism (the Bank of Georgia headquarters is the famous example). Two blocks further you are in an Ottoman-era quarter near the sulfur baths. The city does not flatten any of these eras. You walk through them all in twenty minutes.
     - title: Cable car for the views, theme park for the day
-      body: The Rike-Narikala cable car climbs from the river to the Narikala fortress and the Mother of Georgia statue in about a minute. It is the cheapest skyline in the city. The Mtatsminda funicular goes up the other hill to the theme park, which has a few rides, a Soviet-era observation building, and (in season) cats to pet. Lunch at the top with the city view is the move regardless of season.
+      body: The Rike-Narikala cable car climbs from the river to the Narikala fortress and the Mother of Georgia statue in about a minute. It is the cheapest skyline in the city. The Mtatsminda funicular goes up the other hill to the theme park, which has a few rides, a Soviet-era observation building, and (in season) cats to pet. Lunch at the top with the city view is what you came up for.
     - title: Khinkali, eggplant rolls, and the local wine
       body: Georgian food is hearty, specific, and cheap. Khinkali (soup dumplings. You twist the top and slurp). Khachapuri (cheese bread. The Adjarian boat-shaped version is the photogenic one). Badrijani nigvzit (walnut-stuffed eggplant rolls). Most restaurants pour amber wine made in qvevri (clay vessels buried underground) by small producers, which costs less than the soda would in Berlin and reads tart, oxidative, and unlike anything in a French wine bar.
 
 faqs:
   - q: How do I get from Tbilisi International (TBS) to the city center?
-    a: Uber. The app works at the airport, the ride to most central hotels runs a reasonable fare even at 3 a.m., and the cars come within a few minutes. The taxi rank outside arrivals will quote a higher price than the meter is meant to read. If you take a curb taxi anyway, agree the price before you get in. There is a city bus (the 337) that runs into the center cheaply but takes about 40 minutes and is not the move with luggage.
+    a: Uber. The app works at the airport, the ride to most central hotels runs a reasonable fare even at 3 a.m., and the cars come within a few minutes. The taxi rank outside arrivals will quote a higher price than the meter is meant to read. If you take a curb taxi anyway, agree the price before you get in. There is a city bus (the 337) that runs into the center cheaply but takes about 40 minutes, which is too slow with luggage.
   - q: How long should I plan for in Tbilisi?
     a: Three full days for the city itself. That covers the old town and the bath quarter, a half day on the cable car and at Mtatsminda Park, a wine and khinkali evening, a market walk through Dezerter or Dry Bridge, and an afternoon to drift through the architecture. Stretch it to a week if you are adding Kakheti wine country (Sighnaghi and Telavi) or driving north into the Caucasus to Kazbegi.
   - q: Is the Georgian language a real barrier?
@@ -153,7 +153,7 @@ Uber is the answer for the ride into town. The app works at the airport, the rid
 
 The one wrinkle is matching the car. Georgian uses its own alphabet, Mkhedruli, which is unrelated to Latin or Cyrillic. The driver's profile name on the in-app pin will often render in Georgian script, and signage at the curb queue is mostly Georgian. License plates use Latin characters in the modern AA-NNN-AA format and are fine to read. Matching a Georgian-script driver name to the car that pulled up takes a beat the first few times. After day one the script stops being surprising and starts being a useful navigational signal: a sign you cannot read is almost always a local business, and that is usually the one you want.
 
-The curb taxi rank outside arrivals will quote a higher fare than the city meter, and the meter does not run cleanly for airport pickups. If the app is somehow down, agree the fare before you get in. The 337 city bus runs into the center cheaply but takes 35 to 40 minutes and is not the move with luggage at 3 a.m.
+The curb taxi rank outside arrivals will quote a higher fare than the city meter, and the meter does not run cleanly for airport pickups. If the app is somehow down, agree the fare before you get in. The 337 city bus runs into the center cheaply but takes 35 to 40 minutes, which is too slow with luggage at 3 a.m.
 
 ## Festivals and big annual events
 
@@ -218,7 +218,7 @@ A second vertical line, the [**Mtatsminda funicular**](/pins/mtatsminda-funicula
 
 [Mtatsminda Park](/pins/mtatsminda-park) sits on top of Mount Mtatsminda above the city and is the unhurried afternoon I always come back to. The funicular up is the historic 1905 line. The ride takes about ten minutes and dramatically changes the temperature and the perspective. At the top there is a small theme park (a few rides, a Ferris wheel, a roller coaster), a Stalin-era observation building that is now a restaurant with a wraparound terrace, gardens to walk through, and (depending on the season) a population of resident cats that the staff and the visiting kids feed.
 
-The park works in every season. In summer it is a clear-air break from the city heat. In winter the rides are partly closed but the view is the same, the restaurant is open, the cats are still there, and the funicular ride alone is worth the trip. Lunch on the terrace with the city spread underneath is the move regardless of which month you arrive in.
+The park works in every season. In summer it is a clear-air break from the city heat. In winter the rides are partly closed but the view is the same, the restaurant is open, the cats are still there, and the funicular ride alone is worth the trip. Lunch on the terrace with the city spread underneath is the reason to come up regardless of which month you arrive in.
 
 ## The sulfur baths
 
@@ -246,12 +246,23 @@ The local pour to ask for is the natural amber wine made in *qvevri*, the clay v
 
 | Spot | Best for | Where |
 |---|---|---|
-| [Chashnagiri](/pins/chashnagiri) | The traditional Georgian sit-down. Khinkali and khachapuri done well, fair prices, the room a visitor remembers | 25 Kote Afkhazi Street, in the old town a few minutes from the baths |
-| [Mafshalia](/pins/mafshalia) | Megrelian cooking, the cuisine of western Georgia. Spicier than the central-Georgian default. The eggplant rolls and the suluguni cheese dishes are the things to order | 137 Davit Aghmashenebeli Avenue, in the Marjanishvili area |
+| [Chashnagiri](/pins/chashnagiri) | The traditional Georgian sit-down. Khinkali and khachapuri done well, fair prices, the room a visitor remembers. Be ready for a food coma, the portions are large and inexpensive | 25 Kote Afkhazi Street, in the old town a few minutes from the baths |
+| [Mafshalia](/pins/mafshalia) | Megrelian cooking, the cuisine of western Georgia. Spicier than the central-Georgian default. 59 GEL for 3 people to eat and drink wine. Cash only | 137 Davit Aghmashenebeli Avenue, in the Marjanishvili area |
 | [Tsangala's Wine Shop & Bar](/pins/tsangala-s-wine-shop-bar) | A glass of qvevri amber and a small plate, two minutes from the leaning clock tower. The natural-wine bar I would send a friend to | 12 Ioane Shavteli Street, old town |
-| [Bazari Orbeliani](/pins/bazari-orbeliani) | Modern food hall with a dozen vendors under one roof: craft beer, a Buffalo wings counter, dumplings, sushi, a coffee bar. The night-out option for a group that cannot decide | 3 Vekua Street, north of the center |
+| [Bazari Orbeliani](/pins/bazari-orbeliani) | Modern food hall with a dozen vendors under one roof: Irish bar food, Turkish steak, sushi, poke, bao, burgers, coffee and donuts, a craft beer counter. The group dinner where everyone wants something different | 3 Vekua Street, north of the center |
+| [Cafe Daphna Tbilisi](/pins/cafe-daphna-tbilisi) | Amazing food at reasonable prices, you leave super full | Old town |
 
-The rest of the saved list (Cafe Daphna, Hurma, Fabrika Tbilisi, Hopa Taproom, Mego Bari, Seven Roads, the rest) renders on the pin map underneath this writeup and is worth scrolling on a longer stay. The Tbilisi restaurant rule is the standard one for any city with a strong local cuisine and a growing tourist economy: the menu in Georgian-only is almost always the better room. The menu with photographs and four languages is for the bus tour.
+## Bars and a craft beer scene
+
+Tbilisi has built a real craft beer and natural-wine scene since 2018, and the prices remain low even by Georgian standards. The picks below are what I rotate through.
+
+| Spot | Why | Notes |
+|---|---|---|
+| [Seven Roads](/pins/seven-roads) | Probably my favorite bar in Tbilisi | Incredible craft selection, 20 and 40 cl pours, a dozen taps plus the can fridges. $3 to $5 in lari per pour. Quiet enough to talk, ping pong, darts, board games |
+| [Kery Taproom](/pins/kery-taproom) | Broad tap selection, reasonable prices | 15 lari for a half-liter Hoegarden pour |
+| [Hopa Taproom](/pins/hopa-taproom) | Great taps at the lowest end of the price range | $1.75 to $3.50 for everything they pour |
+| [Fabrika Tbilisi](/pins/fabrika-tbilisi) | Hip courtyard with a mix of bars and restaurants | Industrial-feel space furnished with antique bandsaws. Gets better the longer the evening drags on |
+| [Mego Bari](/pins/mego-bari) | A bar inside an old tram | Tourist trap and priced accordingly, 6 € for hot wine. The location and the atmosphere carry it |
 
 ## Markets worth a walk through
 
@@ -259,9 +270,11 @@ Three markets are worth a slow walk on different days, and they read differently
 
 - **[Dezerter Bazaar](/pins/dezerter-bazaar)** is the working food market, north of Station Square. Produce, cheese, dried fruit and *churchkhela* (the candle-shaped walnuts-on-a-string snack), spice stalls, butchers, the wholesale flower section. It is loud, it smells like a real market, and it is where the city actually buys food. Go in the morning.
 - **[Dry Bridge Market](/pins/dry-bridge-market)** is the open-air flea market on the riverbank near Saarbrucken Square (a short walk from the Moxy). Soviet-era cameras, watches, badges, silverware, books in Russian and Georgian, the occasional opera score. The pricing varies wildly and is half the entertainment. Best on a weekend morning when the sellers are all out.
-- **[Meidan Bazar](/pins/meidan-bazar)** is the covered souvenir market in the old town at Meidan Square near the baths. Carpets, ceramics, wine, the obligatory pomegranate tea pots. Useful at the end of the trip for things to take home. Do not plan to do groceries here.
+- **[Meidan Bazar](/pins/meidan-bazar)** is the covered souvenir market in the old town at Meidan Square near the baths. Carpets, ceramics, wine, the obligatory pomegranate tea pots. The market sits inside an old tunnel, which is half the reason to make the visit. Useful at the end of the trip for things to take home.
 
 The first two are the worthwhile ones for a visitor who wants to read the city. Meidan is the gift-shopping stop on the way back from the baths.
+
+If you are buying food at Bazari Orbeliani anyway, [CINNAMON](/pins/cinnamon-bazari-orbeliani) is the bakery counter inside the food hall worth the detour. Everything is fresh, baked in front of you. [Kona Tea](/pins/kona-tea) is the other useful gift-shop stop, a small tea-and-spice counter where the staff will help build a curated bag for someone back home.
 
 ## The leaning clock tower, and what to do with the half hour
 
