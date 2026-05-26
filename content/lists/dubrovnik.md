@@ -32,6 +32,7 @@ topics:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see](#what-to-see)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -73,14 +74,26 @@ These are the hotels I have pinned from prior stays. Each links to the pin with 
 
 ## Where to eat
 
+## What to see
+
+The Dubrovnik city walls are the main walk, a roughly 2 km circuit on top of the ramparts with the orange-roofed old town on one side and the Adriatic on the other. Go early to dodge the cruise-day crush.
+
+[AKVARIJ Dubrovnik Aquarium](/pins/akvarij-dubrovnik-aquarium) is the surprise inside the old town. Around $9 is a serious steal by Dubrovnik standards, the fish look well kept, and the whole thing sits inside the city walls.
+
+## Where to eat
+
 Dubrovnik food is the Dalmatian side: black risotto (cuttlefish ink), grilled fish, pršut (Croatian prosciutto), Pošip and Plavac Mali wines, the casual konoba (tavern) format. Prices in the Old Town are real. The picks below mix the value-conscious lunch with the proper-dinner style.
 
-| Spot | Rating |
-|---|---|
-| [Barba](/pins/barba) | 5/5 |
-| [Bistro cafe bar G](/pins/bistro-cafe-bar-g) | Pinned |
-| [Bistro Paradiso](/pins/bistro-paradiso) | Pinned |
-| [Buža Bar](/pins/buza-bar) | Pinned |
-| [Fast food ALF](/pins/fast-food-alf) | Pinned |
-| [Lucin Kantun Dubrovnik](/pins/lucin-kantun-dubrovnik) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Gradska Kavana Arsenal](/pins/gradska-kavana-arsenal-restaurant) | A proper sit-down dinner | Food is always great. The truffle pasta is the order. Sit outside overlooking the harbor for a particularly nice sunset |
+| [Barba](/pins/barba) | The value-conscious lunch | One of the harder things to find in Dubrovnik: a meal that does not break the bank. Portions are big enough to share, fried up fast |
+| [Mediteraneo Sushi & Seafood](/pins/mediteraneo-sushi-and-seafood) | A quick no-reservation pick | No waiting, no reservation needed. The kitchen runs uneven though: the salmon tartar was not fresh on my visit. A backup, not a destination |
+| [Bistro cafe bar G](/pins/bistro-cafe-bar-g) | Casual sit-down | Pinned |
+| [Bistro Paradiso](/pins/bistro-paradiso) | Italian | Pinned |
+| [Buža Bar](/pins/buza-bar) | The famous cliff-edge bar | Pinned |
+| [Fast food ALF](/pins/fast-food-alf) | Quick lunch | Pinned |
+| [Lucin Kantun Dubrovnik](/pins/lucin-kantun-dubrovnik) | Konoba | Pinned |
+
+One to skip if you have options: [Azur](/pins/azur). The sliders were OK but overpriced (then again, Dubrovnik), the tacos were stale and cold, and the bottle necks were visibly dirty. A 3-star night that should not have been.
 

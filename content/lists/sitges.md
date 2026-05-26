@@ -125,7 +125,7 @@ The Sitges station sits four or five minutes' walk from the seafront. The slope 
 
 ## Festivals and big annual events
 
-Sitges runs an unusually heavy festival calendar for a town its size, partly because it became one of the LGBT-friendly Mediterranean villages early and the cultural programming followed. Two of the events below are genuine international headliners.
+Sitges runs an unusually heavy festival calendar for a town its size, partly because it became one of the LGBT-friendly Mediterranean villages early and the cultural programming followed. Two of the events below are genuine international standouts.
 
 | Event | When | What it changes |
 |---|---|---|
@@ -145,7 +145,7 @@ Inside the old town for the walk to dinner, or on the calmer edge (the Sabàtic 
 
 | Where | Property | Why pick it | Trade-off |
 |---|---|---|---|
-| Edge of town (Avinguda Sofia) | [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) | Yoga-leaning property, two pools, quiet residential block, calm enough to actually unwind | Outside the old town. The walk to the beach and the station is short but the return is uphill, and the dinner radius is "take a taxi or walk back" |
+| Edge of town (Avinguda Sofia) | [Sabàtic, Sitges, Autograph Collection](/pins/sab-tic-sitges-autograph-collection) | Brand-new Marriott Autograph property, yoga-leaning, two pools, an excellent breakfast spread, quiet residential block. One of the better-kept-secret picks in the Marriott portfolio for a Barcelona-area base | Outside the old town. The walk to the beach and the station is short but the return is uphill, and the dinner radius is "take a taxi or walk back" |
 | In the old town | Small family-run hotels and licensed holiday apartments | Walk to the beach in five minutes, walk to dinner in two, the church bells in the morning are part of the package | No single pin to point at yet. The town runs on dozens of small properties and which one is open at your dates matters more than the brand. Book on the usual sites and read the recent reviews |
 
 ## The beaches: south for the family side, north for the rest
@@ -167,7 +167,7 @@ Sitges runs on small local restaurants rather than a big-name dining scene. A fe
 
 The rest of the in-town list (Bella Ciao, NeM, Gaby's, Guria Taberna, the Yatai tapas counter, Sushi Tokio Sitges) renders on the pin map below and is worth scrolling through for variety on a longer stay. The Sitges restaurant rule is the same as in any Mediterranean tourist town: avoid anything with a touter outside, picture menus, and English-only chalkboards. The good rooms run on returning locals and the menu is in Catalan or Spanish without a translation.
 
-For a sunset drink specifically, the [Vivero](/pins/vivero-beach-club-sitges) terrace at the east end of Sant Sebastià is the one. A cocktail there as the light goes off the water and the lamps come on along the paseo is the postcard Sitges sells itself on, and it earns it.
+For a sunset drink specifically, the [Vivero](/pins/vivero-beach-club-sitges) terrace at the east end of Sant Sebastià is the one. A cocktail there as the light goes off the water and the lamps come on along the paseo is exactly the image Sitges sells itself on, and it lives up to the picture.
 
 ## The old market, the churches, the pace
 
@@ -180,3 +180,12 @@ Two churches anchor the town. The parish [Església de Sant Bartomeu i Santa Tec
 The pace itself is the rest. Sitges runs on a Mediterranean clock: lunch from 1:30 p.m. to about 4 p.m., dinner from 9 p.m., shops closed in the middle of the day. If you arrive with a Barcelona itinerary in your head, you will spend the first day frustrated. Adjust the clock and the town starts working.
 
 If you're only doing Sitges as a daytrip from a Barcelona base, the shape is: morning Rodalies down, lunch on a terrace, afternoon on [Sant Sebastià](/pins/platja-de-sant-sebastia-sitges), sunset drink at [Vivero](/pins/vivero-beach-club-sitges), evening train back. The R2 runs frequently enough that you don't need to book the return.
+
+## Practical, for a longer stay
+
+If Sitges is a base for a week or more rather than a weekend, a few practical addresses help.
+
+- [Caprabo](/pins/caprabo) on Avinguda Sofia is the supermarket next door to the Sabàtic side of town. Relatively large for a Spanish grocer, wide variety, limited stock per item. Useful for apartment cooking.
+- [Lavandería Sitges](/pins/lavander-a-sitges) is the small laundromat. Soap included, €10 to €16 a wash-and-dry, coin or card via the app, a change machine on site.
+- [Efimero Barbershop](/pins/efimero-barbershop) does a great affordable cut on a no-reservation, walk-in-take-a-number system.
+- [Enrich](/pins/enrich) is a small bakery with sweet and savory pastries, bread, and drinks. Useful breakfast stop if the apartment kitchen is the plan.

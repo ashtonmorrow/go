@@ -37,6 +37,7 @@ topics:
 * [Getting in from the airport](#getting-in-from-the-airport)
 * [Festivals and big annual events](#festivals-and-big-annual-events)
 * [Where to stay](#where-to-stay)
+* [What to see beyond San Marco](#what-to-see-beyond-san-marco)
 * [Where to eat](#where-to-eat)
 
 ## Getting in from the airport
@@ -78,16 +79,25 @@ The two trip-shaping windows are Carnevale (the city sells out, prices spike, an
 
 These are the hotels I have pinned from prior stays. Each links to the pin with the address and any notes.
 
+## What to see beyond San Marco
+
+The crush around Piazza San Marco is exactly the thing every Venice guide tells you to escape, and the easiest escape is a short vaporetto ride.
+
+[Murano](/pins/murano) is the one I would not skip. A short hop on the vaporetto from the main island, and it reads a lot calmer and more relaxed than the rest of the lagoon. The glass workshops are the obvious reason to come, but the canals on Murano without the cruise-day crowd are the bigger payoff.
+
+[Libreria Acqua Alta](/pins/libreria-acqua-alta) is the famous flooded bookshop near Campo Santa Maria Formosa. It has shifted away from being a place you actually browse and toward a one-way walkway of books with a queue at the door, but the cats are still in the trees, and the staircase made of damaged old books is still in the back. Worth a quick stop, not an hour.
+
 ## Where to eat
 
 Venetian food has its own side inside Italian cooking: cicchetti (the small bar-snack plates eaten standing up), bigoli (the fat hand-rolled pasta), seppie al nero (cuttlefish in its ink), sarde in saor (the sweet-and-sour sardines), the spritz aperitivo (an Italian-Veneto invention). The picks below mix the bacaro (cicchetti bar) register with the sit-down trattorias.
 
-| Spot | Rating |
-|---|---|
-| [Ristorante Casa Cappellari](/pins/ristorante-casa-cappellari) | 5/5 |
-| [Trattoria DiGiorgio](/pins/trattoria-digiorgio) | 5/5 |
-| [6342 A Le Tole Spaghetteria Pizzeria](/pins/6342-a-le-tole-spaghetteria-pizzeria) | Pinned |
-| [Approdo pizzeria ristorante](/pins/approdo-pizzeria-ristorante) | Pinned |
-| [Bar Ristorante Piazza Ducale](/pins/bar-ristorante-piazza-ducale) | Pinned |
-| [Bepe Bigoi Venezia (San Polo)](/pins/bepe-bigoi-venezia-san-polo-pasta-fresca-to-go) | Pinned |
+| Spot | Why | Notes |
+|---|---|---|
+| [Ristorante Casa Cappellari](/pins/ristorante-casa-cappellari) | The favorite, half a block off the main drag | A little hidden, worth the patience to find. The kind of room near the tourist traps that does not feel like one |
+| [Trattoria DiGiorgio](/pins/trattoria-digiorgio) | A classic Venice trattoria | Food and location are great. Standard Venice tourist-zone billing pattern: every yes is an upcharge (bread, water, etc). Go in knowing how it works and the meal is excellent |
+| [Pizzeria L'Angelo](/pins/pizzeria-l-angelo) | Amazing pizza, great prices | Usually a line. Worth the wait |
+| [6342 A Le Tole Spaghetteria Pizzeria](/pins/6342-a-le-tole-spaghetteria-pizzeria) | Casual pasta | Pinned |
+| [Approdo Pizzeria Ristorante](/pins/approdo-pizzeria-ristorante) | Sit-down evening | Pinned |
+| [Bar Ristorante Piazza Ducale](/pins/bar-ristorante-piazza-ducale) | Quick stop near the square | Pinned |
+| [Bepe Bigoi Venezia (San Polo)](/pins/bepe-bigoi-venezia-san-polo-pasta-fresca-to-go) | Fresh pasta to-go | Pinned |
 
