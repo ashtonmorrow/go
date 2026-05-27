@@ -47,6 +47,23 @@ related:
 topics:
   - festivals
   - scams-safety
+  - day-trips
+
+day_trips:
+  intro: Cairo is the base for the Egyptian pyramid catalogue plus Alexandria on the Mediterranean. The pyramid sites cluster around Giza and Saqqara within an easy hired-car day; Alexandria is a longer day or a 1-night stretch.
+  trips:
+    - name: Saqqara and Memphis
+      travel: About 1 hr 30 each way by car
+      summary: The Step Pyramid of Djoser (the oldest stone pyramid, 4,700 years), the Saqqara plateau with multiple smaller pyramids, and the open-air museum at Memphis (the original Egyptian capital). Quieter than Giza, the real archaeology day.
+    - name: Dahshur
+      travel: About 1 hr each way by car
+      summary: The Bent Pyramid and the Red Pyramid, the immediate predecessors to the Giza pyramids. You can usually walk inside the Red Pyramid without the Giza-style queue. Combine with Saqqara on a single hired-car day for the pyramid-evolution arc.
+    - name: Alexandria
+      travel: About 2 hr 30 each way by train
+      summary: The Mediterranean port founded by Alexander the Great. The Bibliotheca Alexandrina, the Catacombs of Kom el Shoqafa, the seaside corniche, the lighthouse site at Qaitbay. A long day or 1-night stretch, real culture-history shift from Cairo.
+    - name: Fayoum
+      travel: About 2 hr each way by car
+      summary: The oasis governorate with Lake Qarun, the Wadi Al-Hitan whale-fossil UNESCO site, and the Tunis pottery village. Off the standard tourist circuit, real desert-and-water landscape.
 
 # Authoring notes (kept here, not rendered):
 # - May 2026 rewrite against the updated CLAUDE.md voice rules and Mike's

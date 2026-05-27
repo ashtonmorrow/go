@@ -45,6 +45,20 @@ topics:
   - nightlife
   - day-trips
 
+day_trips:
+  intro: HCMC is the base for two day trips, plus the Mekong Delta as a separate overnight rather than a day excursion. The famous trip-tour-bus loop misleads here, the better Mekong is a 1- or 2-night stretch.
+  trips:
+    - name: Cu Chi Tunnels
+      travel: About 1 hr 30 each way by van tour
+      summary: The Viet Cong tunnel network from the war, with crawl-through sections, weapons demonstrations, and a working booby-trap display. Most tours run via Ben Dinh (less crowded) rather than Ben Duoc. Half-day to full-day. Wear clothes you can crawl in.
+      pin: ben-dinh-tunnels
+    - name: Vung Tau
+      travel: About 2 hr each way by hydrofoil or car
+      summary: The beach town on the South China Sea, with the giant Christ of Vung Tau statue (the largest in Asia). Long day or 1-night stretch. Not the best Vietnam beach but the closest to HCMC.
+    - name: Mekong Delta (Cai Be, Can Tho)
+      travel: About 3 hr each way, best as 1 or 2 nights
+      summary: The river-life experience, with the floating markets at dawn, the homestay nights on the river, and the rice-noodle workshops. Day trips that promise "Mekong from HCMC" mostly land at My Tho, which is the least interesting option. Real Mekong needs an overnight.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.
 # - hero_image is empty. Pick one in /admin/lists/ho-chi-minh-city.

@@ -42,6 +42,26 @@ related:
 topics:
   - festivals
   - nightlife
+  - day-trips
+
+day_trips:
+  intro: Singapore is a small day-trip catalogue in itself (Sentosa, Pulau Ubin, the Southern Islands) plus a doable cross-border run into Malaysia (Johor Bahru) or a longer hop to the Indonesian Riau Islands (Bintan, Batam).
+  trips:
+    - name: Pulau Ubin
+      travel: About 15 min by bumboat from Changi Point
+      summary: The kampong-life island in the northeast strait, the last village in Singapore that runs on bicycle paths, jungle, and the Chek Jawa wetlands. The opposite of downtown Singapore. Half-day, easy.
+    - name: Sentosa
+      travel: About 10 min by cable car, MRT, or Sentosa Express
+      summary: The resort island connected to the mainland, with Universal Studios, the S.E.A. Aquarium, Adventure Cove, and the beaches. The full-tourist island that lets you stay on the mainland and visit for the day.
+    - name: Southern Islands (St John's, Lazarus, Kusu)
+      travel: About 30 min each way by ferry from Marina South Pier
+      summary: The quieter island ferry circuit that most travelers skip for Sentosa. Lazarus has the best swimming beach in the city, Kusu has the temple and tortoise sanctuary. Bring food, there are no restaurants.
+    - name: Johor Bahru (Malaysia)
+      travel: About 45 min to 2 hr by bus or train, customs the variable
+      summary: The cross-border run into Malaysia for cheaper meals, shopping, and the Sultan Ibrahim mosque. Bring a passport, expect customs queues at peak.
+    - name: Bintan or Batam (Indonesia)
+      travel: About 1 hr by ferry from Tanah Merah or HarbourFront
+      summary: The Riau Islands resort runs, mostly day-spa-and-beach packages. Bintan is the polished one, Batam the cheaper. Visa-on-arrival for most passports.
 ---
 
 [Singapore](/cities/singapore) is the most efficient major city in Southeast Asia, and the easiest to underestimate on budget. Two or three days, mostly on foot and the MRT, with the money going on food rather than drinks. Here's how I'd plan it.

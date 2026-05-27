@@ -32,20 +32,65 @@ export type Topic = {
 // candidate topic would only ever apply to two or three guides, it is a
 // guide section, not a topic.
 export const TOPICS: Topic[] = [
-  { slug: 'festivals',      name: 'Festivals & annual events', intro: null, hero: null },
+  {
+    slug: 'festivals',
+    name: 'Festivals & annual events',
+    intro: 'Festivals reshape a destination far more than weather does. The hotel-price spike around La Tomatina, the unbookable week of MWC, the Day-of-the-Dead window in CDMX, the Songkran water fights in Chiang Mai. Every guide on this site has a festivals-and-big-annual-events section, and the hub here aggregates the trip-shaping ones across the atlas so you can either plan around a specific event or steer your dates clear of one.',
+    hero: null,
+  },
   { slug: 'food',           name: 'Food & restaurants',        intro: null, hero: null },
   { slug: 'where-to-stay',  name: 'Where to stay',             intro: null, hero: null },
   { slug: 'getting-around', name: 'Getting around',            intro: null, hero: null },
-  { slug: 'scams-safety',   name: 'Scams & safety',            intro: null, hero: null },
+  {
+    slug: 'scams-safety',
+    name: 'Scams & safety',
+    intro: 'Scam patterns are local. The Bangkok tuk-tuk taking you to a gem shop instead of the temple, the Cairo camel ride that does not end where it started, the Paris ring-on-the-ground, the Prague drink-bill-switch in Wenceslas Square. Each writeup names the player, names the pitch, names the response. This hub collects the destinations where the scam culture is mature enough to need a section in the guide.',
+    hero: null,
+  },
   { slug: 'unesco',         name: 'UNESCO World Heritage',     intro: null, hero: null },
-  { slug: 'beaches',        name: 'Beaches',                   intro: null, hero: null },
-  { slug: 'wine',           name: 'Wine country',              intro: null, hero: null },
+  {
+    slug: 'beaches',
+    name: 'Beaches',
+    intro: 'Beach trips reward picking by intent. The party-crowded version (Phuket Patong, Mykonos), the family-quiet version (Kata Noi, Cala del Moraig), the photo-postcard version (Zlatni Rat, Ksamil), and the lesser-known cove that costs an extra Uber. This hub aggregates the guides where the beach pick is half the trip decision.',
+    hero: null,
+  },
+  {
+    slug: 'wine',
+    name: 'Wine country',
+    intro: 'Wine country trips are part transport, part tasting strategy. The Cape Winelands run on a wine-tram pass, the Penedès an hour from Barcelona runs on a rental car, the Kakheti region east of Tbilisi runs on a hired driver and a longer day. This hub collects the destinations where the wine day is its own decision rather than an add-on to the city.',
+    hero: null,
+  },
   { slug: 'spa',            name: 'Spas & thermal baths',      intro: null, hero: null },
-  { slug: 'day-trips',      name: 'Day trips',                 intro: null, hero: null },
-  { slug: 'museums',        name: 'Museums & galleries',       intro: null, hero: null },
-  { slug: 'nightlife',      name: 'Nightlife',                 intro: null, hero: null },
-  { slug: 'markets',        name: 'Markets',                   intro: null, hero: null },
-  { slug: 'architecture',   name: 'Architecture',              intro: null, hero: null },
+  {
+    slug: 'day-trips',
+    name: 'Day trips',
+    intro: 'A good day trip is the second-best thing about the city you booked. Sintra from Lisbon, Toledo from Madrid, the Cu Chi Tunnels from Saigon, Lovćen from Kotor, the Cape Winelands from Cape Town. Each guide here has a structured day_trips: block with timings, transport, and a short summary so the picks are scannable rather than buried in prose.',
+    hero: null,
+  },
+  {
+    slug: 'museums',
+    name: 'Museums & galleries',
+    intro: 'Most major-city museums need timed-entry booking, free-entry windows worth knowing about, and a quick decision between the famous-collection visit and the one tourists usually skip. The Prado vs Reina Sofía, the Mauritshuis vs the Rijksmuseum, the Royal Air Force Museum vs the British Museum. The hub aggregates guides where the museum decision is its own planning step.',
+    hero: null,
+  },
+  {
+    slug: 'nightlife',
+    name: 'Nightlife',
+    intro: 'Nightlife shapes where you base. Berlin\'s late-Friday-into-Sunday techno scene, Bangkok\'s Sukhumvit-vs-Silom split, Belgrade\'s splavovi clubs on the river, the Saigon craft-beer crawl. This hub collects destinations where the bar-and-club rhythm is part of why you came.',
+    hero: null,
+  },
+  {
+    slug: 'markets',
+    name: 'Markets',
+    intro: 'Markets are where a city eats and where most travelers eat tourist prices. La Boqueria vs Mercat de Santa Caterina in Barcelona, Mercado de San Miguel vs Mercado de la Cebada in Madrid, Borough vs Spitalfields in London, the Dezerter Bazaar in Tbilisi. The pattern is the same everywhere: the famous market is for a photo and a snack, the one five minutes away is for an actual meal.',
+    hero: null,
+  },
+  {
+    slug: 'architecture',
+    name: 'Architecture',
+    intro: 'A few destinations make architecture the trip. Tbilisi flips between Parisian, Soviet brutalist, and Ottoman block by block. Berlin holds Bauhaus, GDR plattenbau, and 1990s post-reunification glass on the same block. Singapore reads as 1990s skyline plus deliberate preserved shophouse rows. The hub collects the guides where reading the buildings is half the visit.',
+    hero: null,
+  },
   { slug: 'with-kids',      name: 'Travel with kids',          intro: null, hero: null },
 ];
 

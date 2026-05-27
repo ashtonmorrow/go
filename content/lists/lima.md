@@ -41,6 +41,23 @@ related:
 topics:
   - markets
   - museums
+  - day-trips
+
+day_trips:
+  intro: Lima sits at the start of a wider Peru trip rather than at the center of a day-trip catalogue, but a handful of short excursions and the obvious onward stretches are worth knowing about.
+  trips:
+    - name: Pachacamac
+      travel: About 1 hr each way by car or tour
+      summary: The pre-Inca archaeological site 40 km south of Lima, a complex of adobe pyramids and temples from the Lima, Wari, and Inca cultures. Half-day with a guided tour. Quieter than Cuzco-side sites.
+    - name: Paracas and the Ballestas Islands
+      travel: About 3 hr 30 each way, best as 1 night
+      summary: The "poor man's Galapagos" islands off the desert coast, with sea lions, penguins, and coastal birds. The Paracas Reserve adds the candelabra geoglyph and the desert-meets-Pacific landscapes.
+    - name: Caral
+      travel: About 3 hr each way
+      summary: One of the oldest cities in the Americas, dating to about 3000 BCE. UNESCO-listed pyramid complex. Long day, real depth for archaeology travelers.
+    - name: Cuzco and Machu Picchu
+      travel: About 1 hr 30 by flight to Cuzco, then onward
+      summary: Not a Lima day trip but the natural onward leg. Most travelers route Lima -> Cuzco -> Sacred Valley -> Machu Picchu as the wider Peru itinerary.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. New scaffold, May 2026, written

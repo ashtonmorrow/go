@@ -47,6 +47,27 @@ topics:
   - spa
   - architecture
   - markets
+  - day-trips
+  - wine
+
+day_trips:
+  intro: Tbilisi is the base for two distinct day-trip catalogues. The cultural-historical loop (Mtskheta, Uplistsikhe, Gori) and the Kakheti wine country east of the city. Both fit in single days from a Tbilisi base, the wine country also makes a strong overnight.
+  trips:
+    - name: Mtskheta
+      travel: About 30 min by car or marshrutka
+      summary: The ancient royal capital of Georgia, UNESCO-listed, with the Svetitskhoveli Cathedral and the hilltop Jvari Monastery. Half-day, walkable once you're there.
+    - name: Kakheti wine country (Telavi, Sighnaghi)
+      travel: About 1 hr 30 to 2 hr each way
+      summary: Georgia's qvevri wine region, with family wineries, the medieval hilltop town of Sighnaghi, and the Bodbe Monastery. A long day or a 1-night stretch. Rtveli (the September-October grape harvest) is the season.
+    - name: Stepantsminda and Mount Kazbegi
+      travel: About 3 hr each way, best as 1 night
+      summary: The Caucasus mountain town on the Russian border, with the Gergeti Trinity Church framed by Mt Kazbegi. A long day or much better as a 1-night stretch.
+    - name: Uplistsikhe and Gori
+      travel: About 1 hr 30 each way
+      summary: The cave city of Uplistsikhe, carved out of rock starting in the Bronze Age, paired with Gori (Stalin's birthplace, with the museum that is its own travel decision).
+    - name: David Gareja Monastery
+      travel: About 2 hr each way
+      summary: The 6th-century cave monastery complex on the Azerbaijan border. Off the standard circuit and worth the drive for the Caucasus-desert landscape.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a pass on

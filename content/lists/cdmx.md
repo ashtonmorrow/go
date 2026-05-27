@@ -40,6 +40,26 @@ related:
 
 topics:
   - museums
+  - day-trips
+
+day_trips:
+  intro: Mexico City is the base for one of the most layered day-trip catalogues in the Americas. The Aztec pyramids north of town, the floating gardens south, a colonial silver town in the mountains, and a wine-and-pulque circuit east all fit into single days from a CDMX base.
+  trips:
+    - name: Teotihuacán
+      travel: About 1 hr each way by car or organized tour
+      summary: The Pyramid of the Sun and Pyramid of the Moon, the largest pre-Columbian pyramid complex in the Americas. Go before 10 a.m. to beat the heat and the tour-bus arrivals. Climbing the pyramids has been restricted in recent years; check current rules.
+    - name: Xochimilco
+      travel: About 1 hr each way by Metro + light rail
+      summary: The colorful trajinera boats on the Aztec-era canals south of the city, with mariachi rentals, micheladas, and a slow afternoon on the water. Weekends are the busiest, Sunday is the photo.
+    - name: Puebla and Cholula
+      travel: About 2 hr each way by ADO bus
+      summary: The colonial-baroque city with the Talavera-tile facades, plus Cholula and the church on top of the Great Pyramid (the largest pyramid in the world by volume). The mole poblano is the lunch order.
+    - name: Tepoztlán
+      travel: About 1 hr 30 each way by car
+      summary: The pueblo mágico in the mountains south of CDMX, with the Tepozteco pyramid climb above town and the Sunday tianguis market. Smaller and quieter than Puebla.
+    - name: Taxco
+      travel: About 3 hr each way, best as 1 night
+      summary: The silver-mining colonial town in the mountains, with the steep cobbled streets and the Santa Prisca cathedral. The silver shopping is real. A long day or a 1-night stretch.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. New scaffold, May 2026, written
