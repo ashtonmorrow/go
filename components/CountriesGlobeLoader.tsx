@@ -1,17 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { fullBleedSkeleton } from './lazyMap';
 
-// MapLibre touches `window` at module-load, so the country globe loads
-// client-only via dynamic import. Same pattern as WorldGlobeLoader.
-const CountriesGlobe = dynamic(() => import('./CountriesGlobe'), {
+export default dynamic(() => import('./CountriesGlobe'), {
   ssr: false,
-  loading: () => (
-    <div
-      className="w-full bg-cream-soft animate-pulse h-[calc(100svh-56px)] md:h-screen"
-      aria-label="Loading globe"
-    />
-  ),
+  loading: fullBleedSkeleton('Loading globe'),
 });
-
-export default CountriesGlobe;
