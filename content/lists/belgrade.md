@@ -80,7 +80,7 @@ The trip-shaping window is EXIT in Novi Sad in early to mid-July (a hotel-pressu
 
 ## Where to stay
 
-The chain hotels (Hyatt Regency, Crowne Plaza) sit in Novi Beograd across the river. They are fine, but I would rather stay on the old-town side. The center, Dorćol, Vračar, and Savamala are all walkable from each other, and you wake up where the food, the bars, and the river bluff actually are. Square Nine Hotel on Studentski trg is the in-old-town splurge worth knowing about, and both Ebisu and The Square (below) sit inside that property.
+The chain hotels (Hyatt Regency, Crowne Plaza) sit in Novi Beograd across the river. They are fine, but I would rather stay on the old-town side. The center, Dorćol, Vračar, and Savamala are all walkable from each other, and you wake up where the food, the bars, and the river bluff actually are. [Square Nine Hotel](/pins/square-nine-hotel) on Studentski trg is the in-old-town splurge worth knowing about, and both Ebisu and The Square (below) sit inside that property.
 
 My usual move is an Airbnb in the old-town quarter. I have stayed in places that looked rough from the street and turned out to be cleanly renovated inside. That is Belgrade in a sentence. The McDonald's next door to my last apartment was housed in a worn old building that had clearly seen better decades, and the moment you walked in it was a normal modern McDonald's. Both halves are true at once.
 
