@@ -17,6 +17,15 @@ import {
   clip,
 } from '@/lib/seo';
 
+/** Substance gates for the per-city sub-hub pages. Each /cities/<slug>/<hub>
+ *  route is `noindex` until its underlying collection clears the matching
+ *  threshold below — the line between programmatic coverage and thin
+ *  doorway pages. The sitemap reads the same constants when deciding which
+ *  pages to list. */
+export const MIN_INDEXABLE_PIN_COUNT = 4;
+export const MIN_INDEXABLE_HOTEL_COUNT = 3;
+export const MIN_INDEXABLE_DAY_TRIPS = 3;
+
 /** Build the <head> metadata for a city sub-hub. The title/description copy
  *  is hub-specific; the canonical, robots gate, and OG/Twitter shape are not. */
 export function cityHubMetadata(input: {

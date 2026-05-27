@@ -10,22 +10,21 @@ import {
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import { SITE_URL } from '@/lib/seo';
-import { cityHubMetadata, cityHubSchema } from '@/lib/cityHub';
+import { cityHubMetadata, cityHubSchema, MIN_INDEXABLE_PIN_COUNT } from '@/lib/cityHub';
 import CityHubShell from '@/components/CityHubShell';
 
 // === /cities/[slug]/things-to-do ===========================================
 // Long-tail SEO surface: people search "things to do in <city>" more than
 // they search the city name alone. Narrower than the /cities/[slug] detail
-// page — pins only, with brief editorial framing — so it competes for the
+// page (pins only, with brief editorial framing) so it competes for the
 // planning query without diluting the parent page.
 //
-// Indexable only when the city has at least MIN_INDEXABLE_PIN_COUNT pins;
-// below that it renders for navigation but stays noindex,follow. Shared
-// metadata / JSON-LD / shell live in lib/cityHub.ts + CityHubShell.
+// Indexable only when the city has at least MIN_INDEXABLE_PIN_COUNT pins
+// (defined in lib/cityHub.ts alongside the other gate constants). Below
+// that it renders for navigation but stays noindex,follow.
 
 type Props = { params: Promise<{ slug: string }> };
 
-const MIN_INDEXABLE_PIN_COUNT = 4;
 export const revalidate = 604800;
 
 export async function generateStaticParams() {

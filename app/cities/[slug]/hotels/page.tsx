@@ -10,7 +10,7 @@ import {
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import { SITE_URL } from '@/lib/seo';
-import { cityHubMetadata, cityHubSchema } from '@/lib/cityHub';
+import { cityHubMetadata, cityHubSchema, MIN_INDEXABLE_HOTEL_COUNT } from '@/lib/cityHub';
 import CityHubShell from '@/components/CityHubShell';
 
 // === /cities/[slug]/hotels =================================================
@@ -20,12 +20,11 @@ import CityHubShell from '@/components/CityHubShell';
 // markup at /pins/<slug>; this packages them as a curated cluster.
 //
 // Indexable only when the city has at least MIN_INDEXABLE_HOTEL_COUNT
-// hotels. Shared metadata / JSON-LD / shell live in lib/cityHub.ts +
-// CityHubShell.
+// hotels (defined in lib/cityHub.ts alongside the other gate constants).
+// Shared metadata / JSON-LD / shell live in lib/cityHub.ts + CityHubShell.
 
 type Props = { params: Promise<{ slug: string }> };
 
-const MIN_INDEXABLE_HOTEL_COUNT = 3;
 export const revalidate = 604800;
 
 export async function generateStaticParams() {

@@ -5,12 +5,12 @@ import type { Metadata } from 'next';
 import { fetchCityBySlug, fetchCountryById } from '@/lib/places';
 import { getAllDayTripSets, type DayTrip } from '@/lib/content';
 import { SITE_URL } from '@/lib/seo';
-import { cityHubMetadata, cityHubSchema } from '@/lib/cityHub';
+import { cityHubMetadata, cityHubSchema, MIN_INDEXABLE_DAY_TRIPS } from '@/lib/cityHub';
 import CityHubShell from '@/components/CityHubShell';
 
 // === /cities/[slug]/day-trips ==============================================
 // Place x intent SEO surface. "day trips from <city>" is one of the
-// highest-volume, lowest-competition long-tail patterns in travel search —
+// highest-volume, lowest-competition long-tail patterns in travel search,
 // the query is always origin-anchored, so it needs its own URL per city
 // rather than a flat global topic hub.
 //
@@ -23,7 +23,6 @@ import CityHubShell from '@/components/CityHubShell';
 
 type Props = { params: Promise<{ slug: string }> };
 
-const MIN_INDEXABLE_DAY_TRIPS = 3;
 export const revalidate = 604800;
 
 // On-demand ISR, same as the sibling /things-to-do and /hotels sub-hubs.
