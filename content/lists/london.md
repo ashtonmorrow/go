@@ -295,7 +295,7 @@ The big nationals are free and the queue is the price. The two that consistently
 * [Imperial War Museum](/pins/imperial-war-museum) in Lambeth. Striking exhibits, dense Holocaust gallery, well-curated 20th-century history. Most visitors arrive without expectations and leave reconsidering them.
 * The British Museum near Russell Square. The Rosetta Stone, the Parthenon marbles, the Sutton Hoo helmet. Two to three hours minimum. Book a timed entry to skip the door queue.
 
-For modern art the Tate Modern is the main one. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The Natural History Museum next door is the kids' pick if the trip includes any.
+For modern art the Tate Modern is the main one. The Victoria and Albert in South Kensington is the deep cut, especially the Cast Courts. The [Natural History Museum](/pins/natural-history-museum) next door is the kids' pick if the trip includes any.
 
 The deep-cut museum that almost no first-time visitor books: [Royal Air Force Museum London](/pins/royal-air-force-museum-london) in Colindale. Free, quiet on a weekday morning, and a serious collection if WWII aviation, the Cold War, or jet history is the interest. Forty minutes from central on the Northern Line, which puts it past the tourist threshold.
 

@@ -165,7 +165,7 @@ Sitges runs on small local restaurants rather than a big-name dining scene. A fe
 | [Bar Tomeu](/pins/bar-tomeu) | A long dinner of local cooking in a small room. My favorite restaurant in town. Book it | Carrer Jesús, in the old town a few streets back from the seafront |
 | [Vivero Beach Club Restaurant](/pins/vivero-beach-club-sitges) | A drink at sunset with a terrace over the sand. Stay for dinner if the table is good | East end of Platja de Sant Sebastià, on Passeig Balmins |
 
-The rest of the in-town list (Bella Ciao, NeM, Gaby's, Guria Taberna, the Yatai tapas counter, Sushi Tokio Sitges) renders on the pin map below and is worth scrolling through for variety on a longer stay. The Sitges restaurant rule is the same as in any Mediterranean tourist town: avoid anything with a touter outside, picture menus, and English-only chalkboards. The good rooms run on returning locals and the menu is in Catalan or Spanish without a translation.
+The rest of the in-town list ([Bella Ciao](/pins/bella-ciao), NeM, Gaby's, Guria Taberna, the Yatai tapas counter, Sushi Tokio Sitges) renders on the pin map below and is worth scrolling through for variety on a longer stay. The Sitges restaurant rule is the same as in any Mediterranean tourist town: avoid anything with a touter outside, picture menus, and English-only chalkboards. The good rooms run on returning locals and the menu is in Catalan or Spanish without a translation.
 
 For a sunset drink specifically, the [Vivero](/pins/vivero-beach-club-sitges) terrace at the east end of Sant Sebastià is the one. A cocktail there as the light goes off the water and the lamps come on along the paseo is exactly the image Sitges sells itself on, and it lives up to the picture.
 

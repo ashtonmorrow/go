@@ -237,7 +237,7 @@ The two dishes worth ordering once anyway are:
 - **Stuffat tal-Fenek** (rabbit stew, the national dish). Slow-braised rabbit in a tomato-wine sauce with garlic and herbs, usually served with pasta as a first course (al sugo del fenek) and the meat afterwards. Most full-service Maltese restaurants do a version. The better ones are inland, not on the strip. [Nenu The Artisan Baker](/pins/nenu-the-artisan-baker-valletta) in Valletta does an excellent rabbit pie (qassatat) as the casual lunch version.
 - **Ftira**, the Maltese flatbread, usually loaded with tuna, olives, capers, sun-dried tomato, and sometimes anchovies. The lunch-from-a-bakery version of Maltese cooking. Nenu again, or any Valletta bakery.
 
-For the rest of the meals, the St Julian's saved-list set is the menu: the seafront places (Hungry Horse, Plough & Anchor, Happy Dayz Shack), the pasta-and-pizza picks (Bianco's, MÉZ), the international (OBI for sushi, Net Viet for Vietnamese, Georgia Restaurant for Georgian, Two Buoys for the bar-food bay-front evening), the Maltese-leaning casual (Mamachi). All of it renders below on the pin map for browsing.
+For the rest of the meals, the St Julian's saved-list set is the menu: the seafront places ([Hungry Horse](/pins/hungry-horse), [Plough & Anchor](/pins/plough-and-anchor), [Happy Dayz Shack](/pins/happy-dayz-shack)), the pasta-and-pizza picks (Bianco's, MÉZ), the international (OBI for sushi, Net Viet for Vietnamese, [Georgia Restaurant](/pins/georgia-restaurant) for Georgian, [Two Buoys](/pins/two-buoys) for the bar-food bay-front evening), the Maltese-leaning casual ([Mamachi](/pins/mamachi)). All of it renders below on the pin map for browsing.
 
 ## High season, low season, and the bachelor question
 
