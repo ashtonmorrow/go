@@ -1,44 +1,33 @@
 ---
 indexable: false
 featured: true
-title: "Saranda and Ksamil travel guide: where to stay on the Albanian Riviera, where to eat"
-headline: "Saranda and Ksamil, the Albanian Riviera before everyone catches on"
-description: "My Saranda and Ksamil travel guide. The ferry from Corfu, where to stay on the Albanian Riviera, and the beach restaurants worth the trip."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Saranda and Ksamil travel guide: where to stay on the Albanian Riviera, where to eat'
+headline: 'Saranda and Ksamil, the Albanian Riviera before everyone catches on'
+description: 'My Saranda and Ksamil travel guide. The ferry from Corfu, where to stay on the Albanian Riviera, and the beach restaurants worth the trip.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
-  city: ""
+  city: ''
   country: albania
-
 topics:
   - festivals
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
-#   rather than from a personal brief, so the voice pass is the
-#   prerequisite before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/saranda-ksamil via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
+pairs_with:
+  - city: tirana
+    travel: 4 hr by car or 5 hr by furgon
+    why: 'The Albanian capital. The classic Albania loop is capital plus coast, three nights each'
+  - city: dubrovnik
+    travel: 7 hr by car up the coast via Montenegro
+    why: 'The Adriatic walled-city the trip naturally extends into. Pair as the southern Adriatic week, Dubrovnik plus Albanian Riviera'
+  - city: kotor
+    travel: 6 hr by car up the coast
+    why: 'The Bay of Kotor, the next walled-city stop going north. Pairs the Albanian Riviera with the Montenegrin one'
 ---
 
 [Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera, crystal water and limestone coves at half the price of Greece across the strait. Saranda is the larger town, Ksamil the photogenic beach-resort version 20 minutes south. Three or four days for the pair. Here's how I'd split them.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Tirana](/lists/tirana) | 4 hr by car or 5 hr by furgon | The Albanian capital. The classic Albania loop is capital plus coast, three nights each |
-| [Dubrovnik](/lists/dubrovnik) | 7 hr by car up the coast via Montenegro | The Adriatic walled-city the trip naturally extends into. Pair as the southern Adriatic week, Dubrovnik plus Albanian Riviera |
-| [Kotor](/lists/kotor) | 6 hr by car up the coast | The Bay of Kotor, the next walled-city stop going north. Pairs the Albanian Riviera with the Montenegrin one |
 
 ## On this page
 

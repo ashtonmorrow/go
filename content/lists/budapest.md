@@ -1,73 +1,58 @@
 ---
 indexable: false
 featured: true
-title: "Budapest travel guide: Sziget, the thermal baths, and where to eat"
-headline: "Budapest, the two cities the Danube splits"
-description: "My Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Budapest travel guide: Sziget, the thermal baths, and where to eat'
+headline: 'Budapest, the two cities the Danube splits'
+description: 'My Budapest travel guide. Sziget Festival, the thermal baths (Gellért, Széchenyi, Rudas), where to eat, and getting in from BUD.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/97/97c135f1c92e0fb8251eea414087b7fa2808f3d6d631698bf50bd92206c3d01b.jpg"
-hero_alt: "Outdoor pool at Gellért thermal bath with autumn foliage"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/97/97c135f1c92e0fb8251eea414087b7fa2808f3d6d631698bf50bd92206c3d01b.jpg'
+hero_alt: Outdoor pool at Gellért thermal bath with autumn foliage
 related:
   city: budapest
   country: hungary
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Budapest?
-    a: Three to four days covers Buda Castle, the Parliament view from across the Danube, the major thermal baths (Széchenyi or Gellért), the Jewish Quarter ruin-bar scene, and a proper meal at one of the historic cafés. A fifth day adds a Szentendre or Eger day trip. The Pest side is denser for food and bars; Buda is quieter and more residential.
+    a: 'Three to four days covers Buda Castle, the Parliament view from across the Danube, the major thermal baths (Széchenyi or Gellért), the Jewish Quarter ruin-bar scene, and a proper meal at one of the historic cafés. A fifth day adds a Szentendre or Eger day trip. The Pest side is denser for food and bars; Buda is quieter and more residential.'
   - q: Which thermal bath should I pick?
-    a: Széchenyi is the famous outdoor bath in City Park, the photogenic one with the chess-on-the-water shot. Gellért is the art-nouveau bath in the hotel of the same name, with the painted tile pools. Rudas is the historic 16th-century Turkish bath with the rooftop hot tub overlooking the Danube. For one visit, Széchenyi if you want the postcard, Gellért if you want the architecture, Rudas if you want the rooftop view. All open early, the pre-9 a.m. window is the discount.
+    a: 'Széchenyi is the famous outdoor bath in City Park, the photogenic one with the chess-on-the-water shot. Gellért is the art-nouveau bath in the hotel of the same name, with the painted tile pools. Rudas is the historic 16th-century Turkish bath with the rooftop hot tub overlooking the Danube. For one visit, Széchenyi if you want the postcard, Gellért if you want the architecture, Rudas if you want the rooftop view. All open early, the pre-9 a.m. window is the discount.'
   - q: How do I get from Budapest Airport to the center?
-    a: Bus 100E runs from BUD direct to Deák Ferenc tér (the central interchange) in 35 minutes for HUF 1,500 (€4). The 200E bus + M3 metro combination is slightly cheaper but slower. Taxi is HUF 8,000 to 11,000 (€20 to €28). Use Bolt for the cheaper rideshare. Avoid the unofficial drivers in arrivals.
+    a: 'Bus 100E runs from BUD direct to Deák Ferenc tér (the central interchange) in 35 minutes for HUF 1,500 (€4). The 200E bus + M3 metro combination is slightly cheaper but slower. Taxi is HUF 8,000 to 11,000 (€20 to €28). Use Bolt for the cheaper rideshare. Avoid the unofficial drivers in arrivals.'
   - q: Where should I stay in Budapest?
-    a: Pest district 5 (Belváros) or 7 (Erzsébetváros, the Jewish Quarter) for first-time visitors. Both are walking distance to most sights and the ruin-bar evening rhythm. Buda district 1 (the castle hill) is the photogenic option but you cross the river for every dinner. Avoid the cluster directly around Keleti station; convenient on paper, worse street feel.
-
+    a: 'Pest district 5 (Belváros) or 7 (Erzsébetváros, the Jewish Quarter) for first-time visitors. Both are walking distance to most sights and the ruin-bar evening rhythm. Buda district 1 (the castle hill) is the photogenic option but you cross the river for every dinner. Avoid the cluster directly around Keleti station; convenient on paper, worse street feel.'
 day_trips:
-  intro: Budapest's day trips follow the Danube north to artist towns and royal castles, and east to a baroque wine town. The nearest are a short suburban-train ride.
+  intro: 'Budapest''s day trips follow the Danube north to artist towns and royal castles, and east to a baroque wine town. The nearest are a short suburban-train ride.'
   trips:
     - name: Szentendre
       travel: About 40 min by HÉV suburban train
-      summary: A small riverside town of cobbled lanes, baroque churches, and galleries, long settled by Serbian merchants and now an easy artists' day out.
+      summary: 'A small riverside town of cobbled lanes, baroque churches, and galleries, long settled by Serbian merchants and now an easy artists'' day out.'
     - name: The Danube Bend
       travel: About 1 to 1.5 hr by train or boat
-      summary: The stretch where the Danube turns sharply south, with the hilltop citadel at Visegrád and the vast basilica at Esztergom, Hungary's religious capital.
+      summary: 'The stretch where the Danube turns sharply south, with the hilltop citadel at Visegrád and the vast basilica at Esztergom, Hungary''s religious capital.'
     - name: Eger
       travel: About 2 hr by train
-      summary: A baroque town with a castle that held off an Ottoman siege, plus the Valley of the Beautiful Women, a cluster of cellars pouring the Bull's Blood red.
+      summary: 'A baroque town with a castle that held off an Ottoman siege, plus the Valley of the Beautiful Women, a cluster of cellars pouring the Bull''s Blood red.'
       list: eger
     - name: Gödöllő
       travel: About 45 min by HÉV suburban train
-      summary: The royal palace most associated with Empress Elisabeth (Sisi), a large baroque residence with restored state rooms and gardens.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/budapest via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+      summary: 'The royal palace most associated with Empress Elisabeth (Sisi), a large baroque residence with restored state rooms and gardens.'
+pairs_with:
+  - city: vienna
+    travel: 2 hr 30 by direct Railjet train
+    why: 'The Habsburg twin capital, two and a half hours west by train. The single most natural city pair in Central Europe. Three nights each is a clean week'
+  - city: prague
+    travel: 7 hr by direct train or 1 hr 30 by flight
+    why: The third Habsburg-rim capital. Less natural by train but pairs well as a longer central-Europe loop with Vienna in the middle
+  - city: eger
+    travel: 2 hr by direct train
+    why: The Hungarian baroque wine town with the Valley of Beautiful Women cellar district. Pairs with Budapest as a one-night stretch rather than a day trip
 ---
 
 [Budapest](/cities/budapest) is two cities the Danube splits: hilly, quiet Buda on the west, flat and busy Pest on the east where you will stay. The thermal baths are its signature, and the food has caught up hard in the last decade. Here's how I'd plan it. The baths get their own writeup in my [spa-day list](/lists/spa-day).
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Vienna](/lists/vienna) | 2 hr 30 by direct Railjet train | The Habsburg twin capital, two and a half hours west by train. The single most natural city pair in Central Europe. Three nights each is a clean week |
-| [Prague](/lists/prague) | 7 hr by direct train or 1 hr 30 by flight | The third Habsburg-rim capital. Less natural by train but pairs well as a longer central-Europe loop with Vienna in the middle |
-| [Eger](/lists/eger) | 2 hr by direct train | The Hungarian baroque wine town with the Valley of Beautiful Women cellar district. Pairs with Budapest as a one-night stretch rather than a day trip |
 
 ## On this page
 

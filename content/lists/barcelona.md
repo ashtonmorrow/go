@@ -1,151 +1,77 @@
 ---
 indexable: false
 featured: true
-title: "Barcelona travel guide: where to stay, where to eat, and a Sitges daytrip"
-headline: "Barcelona, my guide to the Catalan capital"
-description: "My Barcelona travel guide. Where to stay (Poblenou over the Gothic Quarter), why the city is ending Airbnb, neighborhood food, and Sitges as a day trip."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Barcelona travel guide: where to stay, where to eat, and a Sitges daytrip'
+headline: 'Barcelona, my guide to the Catalan capital'
+description: 'My Barcelona travel guide. Where to stay (Poblenou over the Gothic Quarter), why the city is ending Airbnb, neighborhood food, and Sitges as a day trip.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Barcelona
-  intro: Barcelona in 2026 is a city visibly pushing back against the version of itself most tourists arrive expecting. Residents have spent the last several summers protesting overtourism in Ciutat Vella, and the city council is mid-way through phasing out every short-term rental license by November 2028. The planning question that follows from all of that is whether you arrive as another visitor compounding the strain or as someone who base off the tourist spine, books a real hotel, and treats the central monuments as day-stops rather than the center of gravity.
+  intro: 'Barcelona in 2026 is a city visibly pushing back against the version of itself most tourists arrive expecting. Residents have spent the last several summers protesting overtourism in Ciutat Vella, and the city council is mid-way through phasing out every short-term rental license by November 2028. The planning question that follows from all of that is whether you arrive as another visitor compounding the strain or as someone who base off the tourist spine, books a real hotel, and treats the central monuments as day-stops rather than the center of gravity.'
   cards:
     - title: Base off the tourist spine
       body: Poblenou on the L4 (yellow) metro line sits one short ride from the main sights and functions as a working neighborhood rather than a visitor precinct. Food costs less because the menus are not pricing in tourists. Evenings are calmer because the bars are local. The Holiday Inn Express runs around €100 a night. You take the metro into the center instead of waking up inside it.
     - title: Why I do not book Airbnb here
-      body: Barcelona is winding down short-term rentals to relieve a housing crisis that pushed long-term renters and pensioners on fixed incomes out of central neighborhoods. The 2028 phase-out is real, enforcement has tightened, and listings can disappear mid-stay. The platform exposure now sits on the traveler rather than the host. Aparthotels like Durlet in Poblenou or The Social Hub cover the "I want a kitchen" case without participating in the squeeze on the residential stock.
+      body: 'Barcelona is winding down short-term rentals to relieve a housing crisis that pushed long-term renters and pensioners on fixed incomes out of central neighborhoods. The 2028 phase-out is real, enforcement has tightened, and listings can disappear mid-stay. The platform exposure now sits on the traveler rather than the host. Aparthotels like Durlet in Poblenou or The Social Hub cover the "I want a kitchen" case without participating in the squeeze on the residential stock.'
     - title: Fira only for an early flight
-      body: Hotels around the Fira convention center are cheaper and close to the airport. Transit to the rest of Barcelona is slow and you taxi €10 to €15 each way to anywhere worth eating. Book it when your 6 a.m. flight beats your willingness to negotiate a taxi at 4 a.m., not as a city base.
+      body: 'Hotels around the Fira convention center are cheaper and close to the airport. Transit to the rest of Barcelona is slow and you taxi €10 to €15 each way to anywhere worth eating. Book it when your 6 a.m. flight beats your willingness to negotiate a taxi at 4 a.m., not as a city base.'
     - title: Sitges is the easy add-on
-      body: About 40 minutes south by Rodalies commuter train. Smaller beaches, slower pace, locally-owned restaurants, hotel rates that often beat anything central. A good daytrip with time, or a cheaper base if Barcelona prices push you out.
-
+      body: 'About 40 minutes south by Rodalies commuter train. Smaller beaches, slower pace, locally-owned restaurants, hotel rates that often beat anything central. A good daytrip with time, or a cheaper base if Barcelona prices push you out.'
 faqs:
   - q: How do I get from Barcelona-El Prat (BCN) to the city center?
-    a: Four real options. The black-and-yellow taxi rank straight outside arrivals runs a fixed rate of about €39 to central Barcelona (a few euros more after midnight, on Sundays, or to Forum / Diagonal Mar). Uber and Cabify pick up from the airport parking garage and the exact spot has moved several times, so check the in-app pin. The Aerobús (A1 from T1, A2 from T2) runs every 5 to 10 minutes to Plaça Catalunya via Plaça d'Espanya, takes about 35 minutes, and costs €7.75 single / €13.30 return. Useful if your hotel is near Catalunya. Metro L9 Sud is the cheapest at €5.90 with the special Bitllet Aeroport, but the standard T-Casual is not valid on the airport segment and the line requires a transfer (Torrassa for L1 to Catalunya, Collblanc for L5 to Sagrada Família) which is awkward with two suitcases.
+    a: 'Four real options. The black-and-yellow taxi rank straight outside arrivals runs a fixed rate of about €39 to central Barcelona (a few euros more after midnight, on Sundays, or to Forum / Diagonal Mar). Uber and Cabify pick up from the airport parking garage and the exact spot has moved several times, so check the in-app pin. The Aerobús (A1 from T1, A2 from T2) runs every 5 to 10 minutes to Plaça Catalunya via Plaça d''Espanya, takes about 35 minutes, and costs €7.75 single / €13.30 return. Useful if your hotel is near Catalunya. Metro L9 Sud is the cheapest at €5.90 with the special Bitllet Aeroport, but the standard T-Casual is not valid on the airport segment and the line requires a transfer (Torrassa for L1 to Catalunya, Collblanc for L5 to Sagrada Família) which is awkward with two suitcases.'
   - q: Where should I stay in Barcelona for a first visit?
-    a: Poblenou on the L4 (yellow) metro line. Less tourist-centric food, calmer evenings, the Holiday Inn Express sits ~€100/night and a four-minute walk from Llacuna station. The Grand Hyatt in Pedralbes (L3 green, Maria Cristina) is the upscale move if you want polished bathrooms and a quieter base. Skip Airbnb here. Barcelona is phasing out every short-term rental license by November 2028 as a housing-affordability measure, listings can be canceled mid-stay, and the licensed aparthotels (Durlet, The Social Hub) cover the kitchen case without participating in the squeeze.
+    a: 'Poblenou on the L4 (yellow) metro line. Less tourist-centric food, calmer evenings, the Holiday Inn Express sits ~€100/night and a four-minute walk from Llacuna station. The Grand Hyatt in Pedralbes (L3 green, Maria Cristina) is the upscale move if you want polished bathrooms and a quieter base. Skip Airbnb here. Barcelona is phasing out every short-term rental license by November 2028 as a housing-affordability measure, listings can be canceled mid-stay, and the licensed aparthotels (Durlet, The Social Hub) cover the kitchen case without participating in the squeeze.'
   - q: Is Barri Gòtic worth staying in?
-    a: It is worth walking in daylight, not staying in. It is the priciest area for hotels and the densest pickpocket area at night. Base off the tourist spine and visit on foot.
+    a: 'It is worth walking in daylight, not staying in. It is the priciest area for hotels and the densest pickpocket area at night. Base off the tourist spine and visit on foot.'
   - q: Are the pickpocket warnings real?
-    a: Yes, especially on La Rambla and through Barri Gòtic after dark. The pattern is opportunistic distraction. Phone in pocket when not in use, bag in front of you in crowds, cards in a different pocket than your wallet.
+    a: 'Yes, especially on La Rambla and through Barri Gòtic after dark. The pattern is opportunistic distraction. Phone in pocket when not in use, bag in front of you in crowds, cards in a different pocket than your wallet.'
   - q: What about Sitges as an alternative?
-    a: A 45-minute train ride south. Smaller, beach-oriented, locally-owned restaurants, slower rhythm. Hotel Sabàtic is a fair pick if you want a property near the old town. There are plenty of small holiday apartments too. Works as a daytrip from Barcelona or a budget alternative base.
-
+    a: 'A 45-minute train ride south. Smaller, beach-oriented, locally-owned restaurants, slower rhythm. Hotel Sabàtic is a fair pick if you want a property near the old town. There are plenty of small holiday apartments too. Works as a daytrip from Barcelona or a budget alternative base.'
 related:
   city: barcelona
   country: spain
-
 topics:
   - festivals
   - markets
-
 day_trips:
-  intro: Barcelona is one of the better European bases for day trips. Wine country, a serrated mountain monastery, a Roman provincial capital, and a calmer beach town are all inside about 90 minutes by train, and most run on the same Rodalies commuter network you would use inside the city.
+  intro: 'Barcelona is one of the better European bases for day trips. Wine country, a serrated mountain monastery, a Roman provincial capital, and a calmer beach town are all inside about 90 minutes by train, and most run on the same Rodalies commuter network you would use inside the city.'
   trips:
     - name: Sitges
       travel: 35 to 40 min by Rodalies R2 Sud train from Barcelona-Sants
-      summary: A calmer beach town with locally-owned restaurants, a famous October film festival, and hotel rates that often beat anything central. Works as a half-day or a cheaper base.
+      summary: 'A calmer beach town with locally-owned restaurants, a famous October film festival, and hotel rates that often beat anything central. Works as a half-day or a cheaper base.'
       list: sitges
     - name: Penedès wine country
-      travel: 45 min by R4 train to Vilafranca del Penedès, or 30 min by car
-      summary: The cava heartland. Cellar visits at the big houses and the small growers, plus the wine-town centers of Vilafranca and Sant Sadurní d'Anoia.
+      travel: '45 min by R4 train to Vilafranca del Penedès, or 30 min by car'
+      summary: 'The cava heartland. Cellar visits at the big houses and the small growers, plus the wine-town centers of Vilafranca and Sant Sadurní d''Anoia.'
       list: penedes
     - name: Montserrat
-      travel: About 1 hr by R5 train from Plaça Espanya, then the rack railway or cable car
-      summary: The Benedictine monastery set in a serrated rock massif. Mountain walks, the basilica, and the boys' choir most days at midday.
+      travel: 'About 1 hr by R5 train from Plaça Espanya, then the rack railway or cable car'
+      summary: 'The Benedictine monastery set in a serrated rock massif. Mountain walks, the basilica, and the boys'' choir most days at midday.'
     - name: Girona
-      travel: 38 min by high-speed AVE, or about 1 hr 20 by regional train
-      summary: A walled medieval old town with a steep Jewish quarter, a colorful riverfront, and cathedral steps that filming made famous. Easy on foot once you arrive.
+      travel: '38 min by high-speed AVE, or about 1 hr 20 by regional train'
+      summary: 'A walled medieval old town with a steep Jewish quarter, a colorful riverfront, and cathedral steps that filming made famous. Easy on foot once you arrive.'
     - name: Tarragona
-      travel: About 1 hr 10 by regional train, or 35 min by AVE
-      summary: A Roman provincial capital with a UNESCO-listed amphitheatre above the sea, surviving walls and circus ruins, and a working beach below the old town.
-
-# Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews. Flip to true to ship.
-# - hero_image is empty. Pick one in /admin/lists/barcelona via the picker.
-# - Featured: true so the scaffold appears on the home page Travel
-#   guides section alongside Cape Town / Madrid / Bristol / Bangkok / Amsterdam.
-# - The Supabase saved_list "barcelona" already has 182 pins curated.
-#   This scaffold is the prose layer on top. The map/cards view at
-#   /lists/barcelona renders the full pin set underneath.
-#
-# - Pins linked from this scaffold (all confirmed in the atlas):
-#     · josep-tarradellas-barcelona-el-prat-airport (5/5, reviewed)
-#     · la-sagrada-familia
-#     · holiday-inn-express-barcelona-city-22 (Poblenou / 22@, 5/5)
-#     · four-points-by-sheraton-barcelona-diagonal (5/5, reviewed)
-#     · durlet-beach-apartments (5/5, reviewed)
-#     · grand-hyatt-barcelona (Pedralbes / L3 Maria Cristina, 5/5.
-#       2024 rebrand of the former Hotel Princesa Sofia. Pin coords
-#       and city_names need to be verified for Pedralbes, not Diagonal Mar.)
-#     · the-social-hub-barcelona-poblenou
-#     · renaissance-barcelona-fira-hotel (5/5, reviewed)
-#     · hyatt-regency-barcelona-tower (Fira / L'Hospitalet)
-#     · bar-kiosko-la-cazalla-barcelona (5/5, reviewed)
-#     · cabernet-bar-tapas-copas-y-vinos (5/5, reviewed)
-#     · la-uramakeria (5/5)
-#     · el-nacional-barcelona (5/5, reviewed)
-#     · mercado-de-la-boqueria
-#     · mercat-de-santa-caterina (5/5)
-#     · sab-tic-sitges-autograph-collection (5/5)
-#
-# - Pins created 2026-05-11 to support this scaffold:
-#     · hyatt-regency-barcelona-tower (resolves the Hyatt ambiguity:
-#       distinct property from grand-hyatt-barcelona in Pedralbes)
-#     · the-social-hub-barcelona-poblenou
-#   Both are indexable: false until reviewed. Coordinates are
-#   approximate and worth confirming against Google Place data on
-#   first edit.
-#
-# - Other 5/5 Barcelona pins in the atlas that did not fit Mike's
-#   dictated narrative but are good candidates if/when the scaffold
-#   gets expanded (food has the deepest bench):
-#     · attractions: arco-de-triunfo-de-barcelona, tierra-del-fuego
-#     · poblenou alt hotel: feelathome-poblenou-beach-apartments
-#     · restaurants: 4-makis-barcelona, bambu-sushi-and-ramen-bar,
-#       bmc-banh-mi-club, boro-bar, caelum, can-dende,
-#       cocovail-beer-hall-craft-beer-barcelona, dionisos-the-quick-greek,
-#       gamar-espai-sense-alcohol, ikoya-izakaya, kiosko-universal,
-#       la-pepita, labar-laundry-bar, salts-terrassa-bar-montjuic,
-#       slow-and-low, ziryab-fusion-tapas-bar
-#   The saved_list (189 pins) already renders all of these in the
-#   cards/map view at /lists/barcelona. The question is which ones
-#   Mike wants to lift into the prose with personal context.
-#
-# - T-Casual price drifts annually. The current scaffold avoids
-#   quoting a specific euro figure and instead says "more than three
-#   times the per-ride price." Verify against TMB.cat before the next
-#   republish if a number is added later.
-#
-# - Alt Poblenou aparthotel already in the atlas:
-#   feelathome-poblenou-beach-apartments (5/5). Could be added to the
-#   where-to-stay table as a second Poblenou option alongside the
-#   Holiday Inn Express if Mike wants more breadth.
-#
-# - /lists/sitges now exists as the companion guide. This page's Sitges
-#   section is intentionally a one-paragraph pointer rather than a
-#   mini-guide — anything that's about staying or eating in Sitges
-#   belongs in /lists/sitges, not here. Same rule applies in reverse:
-#   /lists/sitges points back here for the city.
-# - Airbnb regulatory situation in Barcelona changes regularly. Verify
-#   the "tightening short-term rentals" claim is still current before
-#   each republish, and update the FAQ if the rules ease.
+      travel: 'About 1 hr 10 by regional train, or 35 min by AVE'
+      summary: 'A Roman provincial capital with a UNESCO-listed amphitheatre above the sea, surviving walls and circus ruins, and a working beach below the old town.'
+pairs_with:
+  - city: madrid
+    travel: 2 hr 30 by AVE
+    why: 'The Spanish counterpoint. Madrid four nights, Barcelona three is the classic Spain trip. Different food, different language register, different feel of city'
+  - city: sitges
+    travel: 35 min by Rodalies R2 Sud
+    why: 'The beach town 35 km south of Barcelona, an easy three- or four-night stretch as a quieter coastal counterweight to the city days'
+  - city: valencia
+    travel: 3 hr by Euromed
+    why: 'The third-biggest Spanish city, the paella capital, with the Ciudad de las Artes y las Ciencias. Pairs as Barcelona three, Valencia two on a wider Mediterranean Spain loop'
 ---
 
 I love [Barcelona](/cities/barcelona), but in 2026 it's a city pushing back hard on tourism, and the default first-trip script (an Airbnb on La Rambla, dinner in the Gothic Quarter) is exactly the version locals want gone. Here's how I'd do it instead: Poblenou as a base, eating a block off the tourist spine, the big monuments treated as quick metro stops.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Madrid](/lists/madrid) | 2 hr 30 by AVE | The Spanish counterpoint. Madrid four nights, Barcelona three is the classic Spain trip. Different food, different language register, different feel of city |
-| [Sitges](/lists/sitges) | 35 min by Rodalies R2 Sud | The beach town 35 km south of Barcelona, an easy three- or four-night stretch as a quieter coastal counterweight to the city days |
-| [Valencia](/lists/valencia) | 3 hr by Euromed | The third-biggest Spanish city, the paella capital, with the Ciudad de las Artes y las Ciencias. Pairs as Barcelona three, Valencia two on a wider Mediterranean Spain loop |
 
 ## On this page
 

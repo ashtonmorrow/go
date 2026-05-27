@@ -1,53 +1,48 @@
 ---
 indexable: false
 featured: true
-title: "Phuket travel guide: where to stay, the beaches worth the trip, and what to skip"
-headline: "Phuket, the practical big-island Thailand trip"
-description: "My Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip."
-published: 2026-05-12
-updated: 2026-05-15
+title: 'Phuket travel guide: where to stay, the beaches worth the trip, and what to skip'
+headline: 'Phuket, the practical big-island Thailand trip'
+description: 'My Phuket travel guide. Where to stay in Patong, Kamala, or Kata, the beach pecking order, the Big Buddha cultural day, and Phi Phi as a side trip.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Phuket
-  intro: Phuket is the practical Thai island. The big airport, every hotel category, a real cultural circuit, and easy day trips to Phi Phi and Phang Nga. Pick the beach side that matches the trip and do not let the tuk-tuk pricing eat the day.
+  intro: 'Phuket is the practical Thai island. The big airport, every hotel category, a real cultural circuit, and easy day trips to Phi Phi and Phang Nga. Pick the beach side that matches the trip and do not let the tuk-tuk pricing eat the day.'
   cards:
     - title: Pick the beach that matches the trip
-      body: Patong for nightlife and walkability. Kata and Karon for families and beginner surf. Kamala for boutique-resort quiet. Bang Tao for resort-on-a-beach. Phuket Town for Sino-Portuguese cafes, not for sleeping near sand.
+      body: 'Patong for nightlife and walkability. Kata and Karon for families and beginner surf. Kamala for boutique-resort quiet. Bang Tao for resort-on-a-beach. Phuket Town for Sino-Portuguese cafes, not for sleeping near sand.'
     - title: Transport is expensive and slow
-      body: Taxis and tuk-tuks cost more than they should. Grab helps but does not make the island cheap to cross. If you want freedom, rent a scooter only if you are legal, insured, and honest about your comfort level on Thai roads.
+      body: 'Taxis and tuk-tuks cost more than they should. Grab helps but does not make the island cheap to cross. If you want freedom, rent a scooter only if you are legal, insured, and honest about your comfort level on Thai roads.'
     - title: Group the cultural circuit
-      body: Big Buddha, Wat Chalong, Old Phuket Town, Promthep Cape, and a viewpoint or two fit into a single hired-driver day. Most Phuket trips never bother. The day pays off.
+      body: 'Big Buddha, Wat Chalong, Old Phuket Town, Promthep Cape, and a viewpoint or two fit into a single hired-driver day. Most Phuket trips never bother. The day pays off.'
     - title: Day trip to Phi Phi or Phang Nga
       body: Both are crowded and both are worth doing once for the limestone scenery. Pick one. Speedboat tours from Phuket marinas cost the same whether you book on Klook the night before or get hard-sold at your hotel.
-
 faqs:
   - q: When is the best time to visit Phuket?
-    a: November through April is the dry season and the easy answer. February and March in particular run dry and warm, with calm seas and reliable visibility for snorkeling and boat trips. May through October is the rainy season. Storms come through in short bursts and prices drop, but boat days get canceled.
+    a: 'November through April is the dry season and the easy answer. February and March in particular run dry and warm, with calm seas and reliable visibility for snorkeling and boat trips. May through October is the rainy season. Storms come through in short bursts and prices drop, but boat days get canceled.'
   - q: Where should I stay in Phuket for a first trip?
-    a: Patong for the busy, walkable nightlife version. Kata or Karon for a calmer beach day with food at the door. Kamala for boutique resort quiet. Bang Tao if you want to be on the property and not really leave. Phuket Town if you care more about Sino-Portuguese streets, cafes, and markets than the sand.
+    a: 'Patong for the busy, walkable nightlife version. Kata or Karon for a calmer beach day with food at the door. Kamala for boutique resort quiet. Bang Tao if you want to be on the property and not really leave. Phuket Town if you care more about Sino-Portuguese streets, cafes, and markets than the sand.'
   - q: Do I need to rent a scooter to get around Phuket?
-    a: No, but the island is harder to cross than it looks. Grab works and is the easy default. Tuk-tuks and metered taxis are common but charge more than other parts of Thailand. A scooter gives freedom and risk in the same package. Rent one only if you are legal, insured, and comfortable.
+    a: 'No, but the island is harder to cross than it looks. Grab works and is the easy default. Tuk-tuks and metered taxis are common but charge more than other parts of Thailand. A scooter gives freedom and risk in the same package. Rent one only if you are legal, insured, and comfortable.'
   - q: Is the Phi Phi day trip worth it?
-    a: Yes, once, for the limestone-island scenery and a snorkel. The water is crowded with boats and the famous bays are busy. Pick a smaller-boat operator if you can. The big-boat circuits move on a schedule that does not leave much time at the best stops.
-  - q: Should I book the Big Buddha and the temples separately, or together?
-    a: Together. Hire a driver for the day and combine Big Buddha, Wat Chalong, Old Phuket Town, and Promthep Cape into one circuit. Taxis on Phuket are expensive enough that the math on a half-day driver works out better than four separate trips.
-
+    a: 'Yes, once, for the limestone-island scenery and a snorkel. The water is crowded with boats and the famous bays are busy. Pick a smaller-boat operator if you can. The big-boat circuits move on a schedule that does not leave much time at the best stops.'
+  - q: 'Should I book the Big Buddha and the temples separately, or together?'
+    a: 'Together. Hire a driver for the day and combine Big Buddha, Wat Chalong, Old Phuket Town, and Promthep Cape into one circuit. Taxis on Phuket are expensive enough that the math on a half-day driver works out better than four separate trips.'
 related:
   city: phuket
   country: thailand
-
 topics:
   - festivals
   - scams-safety
   - beaches
   - day-trips
-
 day_trips:
-  intro: Phuket sits in the middle of two boat-trip catalogues. Phi Phi and Phang Nga are the famous day-tour names, James Bond Island is the marketing handle, and the Big Buddha cultural circuit fills the inland half-day.
+  intro: 'Phuket sits in the middle of two boat-trip catalogues. Phi Phi and Phang Nga are the famous day-tour names, James Bond Island is the marketing handle, and the Big Buddha cultural circuit fills the inland half-day.'
   trips:
     - name: Phi Phi Islands
       travel: About 1 hr each way by speedboat tour
@@ -55,51 +50,32 @@ day_trips:
       list: phi-phi
     - name: Phang Nga Bay (James Bond Island)
       travel: Half-day or full-day boat tour from Phuket marinas
-      summary: The karst landscape and James Bond Island, with kayak through caves on the better tours. The kayak portion is what makes it work over a pure boat circuit.
+      summary: 'The karst landscape and James Bond Island, with kayak through caves on the better tours. The kayak portion is what makes it work over a pure boat circuit.'
       pin: phang-nga-bay
     - name: Big Buddha and the cultural day
-      travel: Hired driver for the day, roughly 6 hr door-to-door
-      summary: Big Buddha, Wat Chalong, Old Phuket Town, and Promthep Cape combined into one driver day. The half-day most Phuket trips skip and the one that pays off most.
+      travel: 'Hired driver for the day, roughly 6 hr door-to-door'
+      summary: 'Big Buddha, Wat Chalong, Old Phuket Town, and Promthep Cape combined into one driver day. The half-day most Phuket trips skip and the one that pays off most.'
       pin: the-big-buddha-phuket
     - name: Khao Sok National Park
-      travel: About 3 hr each way, best as a 1- or 2-night stretch
+      travel: 'About 3 hr each way, best as a 1- or 2-night stretch'
       summary: The rainforest reserve on the mainland with the Cheow Lan lake floating bungalows. Better as a 1-night trip than a single-day excursion.
     - name: Krabi and Railay
       travel: About 2 hr by speedboat
       summary: The mainland coast with the limestone cliffs at Railay Beach and the four-island tour. Krabi has its own guide for the longer stay.
       list: krabi
-
-# Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews. Flip to true to ship.
-# - hero_image is empty. Pick one in /admin/lists/phuket via the picker.
-# - The Phuket section of /content/posts/thailand-travel-notes.md
-#   (published, indexable) covers Phuket at the country-level altitude.
-#   This list page is the closer-in city-specific extension that links
-#   the actual pins Mike has reviewed.
-# - Hotels referenced are pins Mike has visited and rated:
-#     · hotel-indigo-phuket-patong-by-ihg (5/5)
-#     · hyatt-regency-phuket-resort (4/5)
-#     · four-points-by-sheraton-phuket-patong-beach-resort (4/5, long review)
-#     · the-viva-patong-condo (5/5, lukewarm)
-# - Beach clubs: kudo-hotel-beach-club (Patong), cafe-del-mar-phuket-beach-club
-#   (Kamala), carpe-diem-beach-club-phuket.
-# - Cultural circuit: the-big-buddha-phuket, wat-chaithararam (Wat Chalong),
-#   monkey-hill-viewpoint, paradise-viewpoint.
-# - Beaches: freedom-beach (5/5), paradise-beach (3/5, "skip unless Merlin"),
-#   kata-noi-beach (5/5).
-# - Skip callouts pulled from Mike's actual ratings: night-market-patong (1/5),
-#   paradise-beach as a non-Patong destination.
+pairs_with:
+  - city: krabi
+    travel: 2 hr by speedboat or 3 hr 30 by ferry
+    why: 'The mainland Andaman counterpart, the limestone cliffs at Railay and Ao Nang. Pairs as Phuket three nights, Krabi three for the two-base Andaman trip'
+  - city: phi-phi
+    travel: 1 hr by speedboat
+    why: The famous Maya Bay islands. Worth one or two nights inside the cluster rather than doing it as a Phuket day tour
+  - city: bangkok
+    travel: 1 hr 30 by domestic flight
+    why: 'The capital. The classic Thailand week is Bangkok three nights, Phuket four, on a direct domestic flight'
 ---
 
 [Phuket](/cities/phuket) is the practical Thai island: the international airport, every grade of hotel, the tour boats to Phi Phi and Phang Nga, and the bluntest version of beach tourism in Thailand. That is not a complaint. Match the side of the island to the trip you want. Here's how I'd do it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Krabi](/lists/krabi) | 2 hr by speedboat or 3 hr 30 by ferry | The mainland Andaman counterpart, the limestone cliffs at Railay and Ao Nang. Pairs as Phuket three nights, Krabi three for the two-base Andaman trip |
-| [Phi Phi](/lists/phi-phi) | 1 hr by speedboat | The famous Maya Bay islands. Worth one or two nights inside the cluster rather than doing it as a Phuket day tour |
-| [Bangkok](/lists/bangkok) | 1 hr 30 by domestic flight | The capital. The classic Thailand week is Bangkok three nights, Phuket four, on a direct domestic flight |
 
 ## On this page
 

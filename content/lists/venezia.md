@@ -1,44 +1,33 @@
 ---
 indexable: false
 featured: true
-title: "Venice travel guide: Carnevale, the Biennale, where to stay, and where to eat"
-headline: "Venice is worth it if you plan it right"
-description: "My Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay inside the lagoon, and getting in from VCE on the Alilaguna."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Venice travel guide: Carnevale, the Biennale, where to stay, and where to eat'
+headline: Venice is worth it if you plan it right
+description: 'My Venice travel guide. Carnevale, the Biennale, the Film Festival on the Lido, where to stay inside the lagoon, and getting in from VCE on the Alilaguna.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: venice
   country: italy
-
 topics:
   - festivals
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
-#   rather than from a personal brief, so the voice pass is the
-#   prerequisite before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/venezia via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
+pairs_with:
+  - city: verona
+    travel: 1 hr 15 by direct train
+    why: Half-day or one-night stretch with the Roman arena and the medieval old town. Often the better-pace alternative to a full Rome leg
+  - city: milano
+    travel: 2 hr 30 by Frecciarossa
+    why: 'The northern Italian counterweight, an hour past Verona on the same line. Pairs as Venice three nights, Milan two for design-and-finance contrast'
+  - city: rome
+    travel: 3 hr 45 by direct Frecciarossa
+    why: 'The other top-tier Italian destination. The classic Italy week is Rome four nights, Venice three'
 ---
 
 [Venice](/cities/venice) gets a bad-faith reputation it does not earn. Yes, San Marco is crowded and the cruise day-trippers are real, but the rest of the city, Cannaregio, Dorsoduro, the quiet end of Castello, is calm and exactly what the postcards promise. The whole difference is staying overnight inside the lagoon instead of day-tripping in. Two or three nights minimum.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Verona](/lists/verona) | 1 hr 15 by direct train | Half-day or one-night stretch with the Roman arena and the medieval old town. Often the better-pace alternative to a full Rome leg |
-| [Milano](/lists/milano) | 2 hr 30 by Frecciarossa | The northern Italian counterweight, an hour past Verona on the same line. Pairs as Venice three nights, Milan two for design-and-finance contrast |
-| [Rome](/lists/rome) | 3 hr 45 by direct Frecciarossa | The other top-tier Italian destination. The classic Italy week is Rome four nights, Venice three |
 
 ## On this page
 

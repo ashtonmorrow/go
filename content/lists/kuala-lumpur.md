@@ -1,41 +1,38 @@
 ---
 indexable: false
 featured: true
-title: "Kuala Lumpur travel guide: Thaipusam, Batu Caves, and where to stay"
-headline: "Kuala Lumpur, a gentle first stop in Southeast Asia"
-description: "My Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay across Bangsar, KLCC, and Bukit Bintang, the Bird Park, and getting in from KLIA."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Kuala Lumpur travel guide: Thaipusam, Batu Caves, and where to stay'
+headline: 'Kuala Lumpur, a gentle first stop in Southeast Asia'
+description: 'My Kuala Lumpur travel guide. Thaipusam at Batu Caves, where to stay across Bangsar, KLCC, and Bukit Bintang, the Bird Park, and getting in from KLIA.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/b9/b93c8464e1605c705a08004c843b1d53a7b18e72ad91333844dd1dc9aaeb3c0d.jpg"
-hero_alt: "Canopy walkway above the rainforest at KL Forest Eco Park"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/b9/b93c8464e1605c705a08004c843b1d53a7b18e72ad91333844dd1dc9aaeb3c0d.jpg'
+hero_alt: Canopy walkway above the rainforest at KL Forest Eco Park
 guide_cards:
   title: Planning Kuala Lumpur
-  intro: KL is one of the easier major Southeast Asian capitals. The MRT and Grab cover most of what you need, hotel value is among the best in the region, and the cultural circuit is quick to cover. Batu Caves, the Bird Park, and KLCC fit comfortably into two days. Pick a base by neighborhood. Bangsar for food, KLCC for the view, Bukit Bintang for night markets.
+  intro: 'KL is one of the easier major Southeast Asian capitals. The MRT and Grab cover most of what you need, hotel value is among the best in the region, and the cultural circuit is quick to cover. Batu Caves, the Bird Park, and KLCC fit comfortably into two days. Pick a base by neighborhood. Bangsar for food, KLCC for the view, Bukit Bintang for night markets.'
   cards:
     - title: Use KLIA Ekspres or Grab from the airport
-      body: KLIA is 50 km out of town. The KLIA Ekspres (the dedicated airport express train) hits KL Sentral in 28 minutes. Grab from KLIA is $20 to $30 and takes 60 to 90 minutes in traffic. If you arrive late, take the train.
+      body: 'KLIA is 50 km out of town. The KLIA Ekspres (the dedicated airport express train) hits KL Sentral in 28 minutes. Grab from KLIA is $20 to $30 and takes 60 to 90 minutes in traffic. If you arrive late, take the train.'
     - title: Pick a base by neighborhood
       body: Bangsar for cafe culture and walkable food (Alila Bangsar is the pick). KLCC for the Petronas Towers view and the mall density. Bukit Bintang for nightlife and street markets. All three are connected by MRT.
     - title: Do Batu Caves before 10 a.m.
-      body: The macaques are most active after 11, the heat builds fast, and the 272-step climb is much more pleasant in the morning. Grab from central KL is $5 to $8 each way. The KTM train runs there for under $1.
+      body: 'The macaques are most active after 11, the heat builds fast, and the 272-step climb is much more pleasant in the morning. Grab from central KL is $5 to $8 each way. The KTM train runs there for under $1.'
     - title: KL Bird Park is worth its admission
-      body: World's largest free-flight walk-in aviary. Two hours minimum, half a day if you take it slowly. The hornbill enclosure and the lories are the highlights. Combine with the Butterfly Park next door.
-
+      body: 'World''s largest free-flight walk-in aviary. Two hours minimum, half a day if you take it slowly. The hornbill enclosure and the lories are the highlights. Combine with the Butterfly Park next door.'
 faqs:
   - q: How do I get from KLIA to central KL?
-    a: KLIA Ekspres train is the easy choice. 28 minutes nonstop to KL Sentral, about RM55 (~$12), runs every 20 minutes. Grab is $20 to $30 and takes 60 to 90 minutes in traffic. There is also the Skybus to KL Sentral for ~RM12 if you are traveling light. The airport is 50 km out, so taxi is the slowest of the three.
+    a: 'KLIA Ekspres train is the easy choice. 28 minutes nonstop to KL Sentral, about RM55 (~$12), runs every 20 minutes. Grab is $20 to $30 and takes 60 to 90 minutes in traffic. There is also the Skybus to KL Sentral for ~RM12 if you are traveling light. The airport is 50 km out, so taxi is the slowest of the three.'
   - q: Where should I stay in KL?
-    a: Bangsar if food matters most. Alila Bangsar is a 5-star property on top of a metro station with the best skyline pool in the city. KLCC (Kuala Lumpur City Center, the Petronas Towers district) if you want the towers view and easy mall access. Hyatt Centric City Center is the pick. Bukit Bintang for night-market energy and walking-distance bars. The "Hotels I would skip" section below has the one option I would not book again.
+    a: 'Bangsar if food matters most. Alila Bangsar is a 5-star property on top of a metro station with the best skyline pool in the city. KLCC (Kuala Lumpur City Center, the Petronas Towers district) if you want the towers view and easy mall access. Hyatt Centric City Center is the pick. Bukit Bintang for night-market energy and walking-distance bars. The "Hotels I would skip" section below has the one option I would not book again.'
   - q: What is actually worth doing in two days?
     a: Day one is KLCC Park sunrise → Petronas Towers (book skybridge tickets weeks ahead) → KLCC Aquaria or Suria mall → afternoon at the Bird Park and Butterfly Park → dinner in Bangsar. Day two is Batu Caves early → Central Market and Merdeka Square → afternoon at Sentul Depot or the Textile Museum → dinner and night-market at Bukit Bintang.
   - q: Are the Petronas Towers worth booking?
     a: The skybridge and observation deck are worth booking if you can plan two weeks ahead. Tickets sell out and walk-ups rarely work. The free view of the towers from KLCC Park is the better photo. The 360 view from KL Tower (Menara KL) is the alternative and easier to walk into.
   - q: Is KL safe at night?
-    a: Yes, with normal city common sense. Bukit Bintang and Bangsar are busy and well-lit. Petty crime is the issue more than violent crime. Keep phones in pockets when not in use, walk in groups late at night around Jalan Alor.
-
+    a: 'Yes, with normal city common sense. Bukit Bintang and Bangsar are busy and well-lit. Petty crime is the issue more than violent crime. Keep phones in pockets when not in use, walk in groups late at night around Jalan Alor.'
 related:
   city: kuala-lumpur
   country: malaysia
@@ -43,38 +40,39 @@ topics:
   - festivals
   - scams-safety
   - day-trips
-
 day_trips:
-  intro: KL is a real day-trip hub. The cave temple north of town is a half-day, the highlands and the colonial hill stations are a full day, and Melaka or Penang stretch the trip into a multi-day Malaysia loop.
+  intro: 'KL is a real day-trip hub. The cave temple north of town is a half-day, the highlands and the colonial hill stations are a full day, and Melaka or Penang stretch the trip into a multi-day Malaysia loop.'
   trips:
     - name: Batu Caves
       travel: About 30 min by KTM train or Grab from KL Sentral
-      summary: The main Hindu pilgrimage site north of KL, with the 43 m Murugan statue at the base and 272 rainbow-painted steps to the limestone cave temples. Dress for the cave (knees and shoulders covered) and go before 10 a.m. to beat the heat and the macaques.
+      summary: 'The main Hindu pilgrimage site north of KL, with the 43 m Murugan statue at the base and 272 rainbow-painted steps to the limestone cave temples. Dress for the cave (knees and shoulders covered) and go before 10 a.m. to beat the heat and the macaques.'
       pin: batu-caves
     - name: Genting Highlands
-      travel: About 1 hr by bus, plus the Awana cable car up
-      summary: The hilltop casino-and-theme-park resort at 1,800 m. Cooler than KL by 10°C, with the SkyWorlds outdoor theme park and the casino floor. Best as a single day rather than overnighting at the resort hotels.
+      travel: 'About 1 hr by bus, plus the Awana cable car up'
+      summary: 'The hilltop casino-and-theme-park resort at 1,800 m. Cooler than KL by 10°C, with the SkyWorlds outdoor theme park and the casino floor. Best as a single day rather than overnighting at the resort hotels.'
     - name: Melaka (Malacca)
       travel: About 2 hr by bus or car
-      summary: The UNESCO old town on the strait, with Dutch and Portuguese colonial layers, a strong Peranakan food scene, and the night-market weekend at Jonker Street. A long day trip or a 1-night stretch.
+      summary: 'The UNESCO old town on the strait, with Dutch and Portuguese colonial layers, a strong Peranakan food scene, and the night-market weekend at Jonker Street. A long day trip or a 1-night stretch.'
     - name: Cameron Highlands
       travel: About 3 hr 30 by car
-      summary: The tea plantations and strawberry farms in the hill stations, 1,500 m up. Better as a 1- or 2-night trip than a day excursion. Cool weather, walking trails, the BOH tea factory tour.
+      summary: 'The tea plantations and strawberry farms in the hill stations, 1,500 m up. Better as a 1- or 2-night trip than a day excursion. Cool weather, walking trails, the BOH tea factory tour.'
     - name: Penang
-      travel: About 45 min by domestic flight, or 4 hr by train
-      summary: A whole separate Malaysia trip rather than a day excursion. UNESCO George Town, hawker food, and the four-week George Town Festival in August.
+      travel: 'About 45 min by domestic flight, or 4 hr by train'
+      summary: 'A whole separate Malaysia trip rather than a day excursion. UNESCO George Town, hawker food, and the four-week George Town Festival in August.'
       list: george-town
+pairs_with:
+  - city: singapore
+    travel: '5 hr by direct train, 1 hr by flight'
+    why: 'The polished, expensive counterpoint to KL''s value play. The classic Malaysia-Singapore week, two big-city stops on opposite ends of efficiency'
+  - city: ipoh
+    travel: 2 hr by ETS train
+    why: 'The smaller Malaysian city north of KL, with the white-coffee culture and the limestone-cave temples. Pairs as KL three nights, Ipoh two for the wider Malaysia trip'
+  - city: gunung-mulu
+    travel: 2 hr 30 by domestic flight
+    why: The Borneo rainforest UNESCO park with the Deer Cave bat flyout. Pairs KL with a separate Borneo leg if jungle and limestone are the appeal
 ---
 
 [Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Singapore](/lists/singapore) | 5 hr by direct train, 1 hr by flight | The polished, expensive counterpoint to KL's value play. The classic Malaysia-Singapore week, two big-city stops on opposite ends of efficiency |
-| [Ipoh](/lists/ipoh) | 2 hr by ETS train | The smaller Malaysian city north of KL, with the white-coffee culture and the limestone-cave temples. Pairs as KL three nights, Ipoh two for the wider Malaysia trip |
-| [Gunung Mulu](/lists/gunung-mulu) | 2 hr 30 by domestic flight | The Borneo rainforest UNESCO park with the Deer Cave bat flyout. Pairs KL with a separate Borneo leg if jungle and limestone are the appeal |
 
 ## On this page
 

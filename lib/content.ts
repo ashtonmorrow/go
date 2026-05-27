@@ -150,6 +150,26 @@ export type DayTrips = {
   trips: DayTrip[];
 };
 
+/** One "Pairs with" entry — another city that combines with this one into a
+ *  longer trip. Rendered as a chip-style button with the country flag and
+ *  the city name. Authored in the list frontmatter `pairs_with:` block. */
+export type Pair = {
+  /** Slug into /content/lists/<slug>.md — the destination guide to link to.
+   *  Looked up at render time against go_cities to resolve the country flag
+   *  and the canonical display name. */
+  city: string;
+  /** Travel-time summary, e.g. "2 hr 30 by direct Railjet". */
+  travel: string;
+  /** One sentence on why the pair works. */
+  why: string;
+};
+
+export type PairsWith = {
+  /** Optional editorial intro paragraph above the chips. */
+  intro: string | null;
+  pairs: Pair[];
+};
+
 export type ListRelated = {
   city: string | null;
   country: string | null;
@@ -199,6 +219,9 @@ export type ListContent = {
   /** Authored day-trip destinations. Powers /cities/<slug>/day-trips.
    *  null when the frontmatter has no `day_trips:` block. */
   dayTrips: DayTrips | null;
+  /** Authored "Pairs with" destinations. Rendered as flag+name chips
+   *  between the intro and TOC. null when no `pairs_with:` block. */
+  pairsWith: PairsWith | null;
 };
 
 function parseGuideCards(v: unknown): ListGuideCards | null {
@@ -265,6 +288,35 @@ function parseDayTrips(v: unknown): DayTrips | null {
     ? null
     : asString((v as Record<string, unknown>).intro);
   return { intro, trips };
+}
+
+/** Parse the `pairs_with:` frontmatter block. Accepts either a bare array
+ *  of pairs, or `{ intro, pairs: [...] }`. Each pair needs city + travel + why;
+ *  entries missing any are dropped. */
+function parsePairsWith(v: unknown): PairsWith | null {
+  if (!v || typeof v !== 'object') return null;
+  const pairsRaw = Array.isArray(v) ? v : (v as Record<string, unknown>).pairs;
+  const pairs = parsePairArray(pairsRaw);
+  if (pairs.length === 0) return null;
+  const intro = Array.isArray(v)
+    ? null
+    : asString((v as Record<string, unknown>).intro);
+  return { intro, pairs };
+}
+
+function parsePairArray(v: unknown): Pair[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map(entry => {
+      if (!entry || typeof entry !== 'object') return null;
+      const e = entry as Record<string, unknown>;
+      const city = asString(e.city);
+      const travel = asString(e.travel);
+      const why = asString(e.why);
+      if (!city || !travel || !why) return null;
+      return { city, travel, why };
+    })
+    .filter((p): p is Pair => p !== null);
 }
 
 function parseDayTripArray(v: unknown): DayTrip[] {
@@ -352,6 +404,7 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
     related: parseRelated(data.related),
     topics: filterValidTopics(data.topics),
     dayTrips: parseDayTrips(data.day_trips),
+    pairsWith: parsePairsWith(data.pairs_with),
   };
 }
 

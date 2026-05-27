@@ -1,75 +1,60 @@
 ---
 indexable: false
 featured: true
-title: "Lisbon travel guide: where to eat, the trams, and getting in from LIS"
-headline: "Lisbon, my guide to the city of seven hills"
-description: "My Lisbon travel guide. Getting in from Humberto Delgado on the metro, where to stay near the center, the tascas, and the side trips to Sintra and Cascais."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Lisbon travel guide: where to eat, the trams, and getting in from LIS'
+headline: 'Lisbon, my guide to the city of seven hills'
+description: 'My Lisbon travel guide. Getting in from Humberto Delgado on the metro, where to stay near the center, the tascas, and the side trips to Sintra and Cascais.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: lisbon
   country: portugal
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Lisbon?
-    a: Three to four days for the city (Alfama, Bairro Alto, Baixa, Belém), a day for Sintra, and an evening at Time Out Market. A fifth or sixth day adds the Cascais coast or Évora. The hills mean every day in town clocks more steps than the map suggests.
+    a: 'Three to four days for the city (Alfama, Bairro Alto, Baixa, Belém), a day for Sintra, and an evening at Time Out Market. A fifth or sixth day adds the Cascais coast or Évora. The hills mean every day in town clocks more steps than the map suggests.'
   - q: How do I get from Lisbon Airport to the center?
-    a: Metro Red Line from LIS to Saldanha (15 minutes, €1.85), then transfer for most central hotels. The Aerobus runs to Baixa for €4. Taxi is €15 to €20 to most central addresses, faster with luggage. Bolt and Uber both work at the airport with a marked pickup lot.
+    a: 'Metro Red Line from LIS to Saldanha (15 minutes, €1.85), then transfer for most central hotels. The Aerobus runs to Baixa for €4. Taxi is €15 to €20 to most central addresses, faster with luggage. Bolt and Uber both work at the airport with a marked pickup lot.'
   - q: Where should I stay in Lisbon?
-    a: Baixa or Chiado puts you in the central walkable triangle. Alfama is the old-town stay, narrow lanes and photogenic, less suitcase-friendly. Príncipe Real and Bairro Alto skew younger with the bar density. Avoid Parque das Nações (the Expo site) unless you have a specific reason; convenient on paper, far from the historic city.
+    a: 'Baixa or Chiado puts you in the central walkable triangle. Alfama is the old-town stay, narrow lanes and photogenic, less suitcase-friendly. Príncipe Real and Bairro Alto skew younger with the bar density. Avoid Parque das Nações (the Expo site) unless you have a specific reason; convenient on paper, far from the historic city.'
   - q: Is Sintra worth doing as a day trip?
-    a: Yes, and book the palace tickets in advance. Pena Palace is the famous yellow-and-red one and the most-photographed castle in Portugal. The Quinta da Regaleira gardens (with the spiral initiation well) is the second stop. Train from Rossio runs 40 minutes for €2.30. Go on a weekday and start early; the place fills by 11 a.m.
-
+    a: 'Yes, and book the palace tickets in advance. Pena Palace is the famous yellow-and-red one and the most-photographed castle in Portugal. The Quinta da Regaleira gardens (with the spiral initiation well) is the second stop. Train from Rossio runs 40 minutes for €2.30. Go on a weekday and start early; the place fills by 11 a.m.'
 day_trips:
-  intro: Lisbon has the best cluster of day trips of any Iberian capital. A UNESCO palace town, the Atlantic coast, a walled medieval village, and an Alentejo wine city are all inside about 90 minutes, most by direct train.
+  intro: 'Lisbon has the best cluster of day trips of any Iberian capital. A UNESCO palace town, the Atlantic coast, a walled medieval village, and an Alentejo wine city are all inside about 90 minutes, most by direct train.'
   trips:
     - name: Sintra
       travel: About 40 min by train from Rossio station
-      summary: A hillside of romantic palaces and estates, including Pena Palace and Quinta da Regaleira. The main day trip. Go early and book Pena online.
+      summary: 'A hillside of romantic palaces and estates, including Pena Palace and Quinta da Regaleira. The main day trip. Go early and book Pena online.'
     - name: Cascais
       travel: About 40 min by train from Cais do Sodré
-      summary: A breezy coastal resort town at the end of the line, with beaches, a walkable center, and the Boca do Inferno sea cliff nearby.
+      summary: 'A breezy coastal resort town at the end of the line, with beaches, a walkable center, and the Boca do Inferno sea cliff nearby.'
     - name: Óbidos
       travel: About 1 hr by bus from Campo Grande
-      summary: A whitewashed medieval village inside intact castle walls, known for its bookshops and the ginja cherry liqueur served in a chocolate cup.
+      summary: 'A whitewashed medieval village inside intact castle walls, known for its bookshops and the ginja cherry liqueur served in a chocolate cup.'
     - name: Setúbal and Arrábida
       travel: About 1 hr by train or ferry and bus
-      summary: The Arrábida natural park, green hills dropping to clear-water beaches, plus dolphin-watching in the Sado estuary and fried cuttlefish in Setúbal.
+      summary: 'The Arrábida natural park, green hills dropping to clear-water beaches, plus dolphin-watching in the Sado estuary and fried cuttlefish in Setúbal.'
     - name: Évora
       travel: About 1.5 hr by train
-      summary: A UNESCO-listed Alentejo town with a Roman temple, a cathedral, and the macabre Chapel of Bones, set in Portugal's main wine region.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/lisbon via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+      summary: 'A UNESCO-listed Alentejo town with a Roman temple, a cathedral, and the macabre Chapel of Bones, set in Portugal''s main wine region.'
+pairs_with:
+  - city: madrid
+    travel: 9 hr by overnight train or 1 hr 15 by flight
+    why: 'The Iberian neighbor capital. Pairs as Lisbon plus Madrid for a week and a half, easier by flight than by rail'
+  - city: barcelona
+    travel: 2 hr by flight
+    why: 'The other major Iberian stop. Lisbon-Barcelona is the alternative Iberian week, two coastal capitals on opposite ends of the peninsula'
+  - city: marrakech
+    travel: 1 hr 30 by flight across the Strait
+    why: 'The North African neighbor, the closest non-European city. Pairs as a week and a half if Morocco is the second half of the trip'
 ---
 
 [Lisbon](/cities/lisbon) has been on every must-visit list for a decade, and the reasons hold up on arrival: the light, the trams, the food, hotels you can afford, and seven hills that turn every corner into a viewpoint. A long weekend gets the headlines, a week unlocks Sintra and Cascais. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Madrid](/lists/madrid) | 9 hr by overnight train or 1 hr 15 by flight | The Iberian neighbor capital. Pairs as Lisbon plus Madrid for a week and a half, easier by flight than by rail |
-| [Barcelona](/lists/barcelona) | 2 hr by flight | The other major Iberian stop. Lisbon-Barcelona is the alternative Iberian week, two coastal capitals on opposite ends of the peninsula |
-| [Marrakech](/lists/marrakech) | 1 hr 30 by flight across the Strait | The North African neighbor, the closest non-European city. Pairs as a week and a half if Morocco is the second half of the trip |
 
 ## On this page
 

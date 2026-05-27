@@ -1,85 +1,55 @@
 ---
 indexable: false
 featured: true
-title: "Buenos Aires travel guide: Tango BA, the steak, and where to stay in Palermo"
-headline: "Buenos Aires is the South American capital I send people to first"
-description: "My Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP."
-published: 2026-05-12
-updated: 2026-05-13
+title: 'Buenos Aires travel guide: Tango BA, the steak, and where to stay in Palermo'
+headline: Buenos Aires is the South American capital I send people to first
+description: 'My Buenos Aires travel guide. Tango BA Festival, Don Julio and the parrilla, where to stay in Palermo, and getting in from EZE or AEP.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-13T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: buenos-aires
   country: argentina
-
 topics:
   - festivals
   - scams-safety
   - day-trips
-
 day_trips:
-  intro: Buenos Aires day trips run from a river-delta town an hour north to a UNESCO old town across the Río de la Plata in Uruguay, plus the football-and-asado loop in the suburbs.
+  intro: 'Buenos Aires day trips run from a river-delta town an hour north to a UNESCO old town across the Río de la Plata in Uruguay, plus the football-and-asado loop in the suburbs.'
   trips:
     - name: Tigre and the Puerto de Frutos
       travel: About 1 hr by suburban train from Retiro
-      summary: The river-delta town and its riverside market, with mate gear, leather, asado knives, and a boat ride through the stilt-house channels.
+      summary: 'The river-delta town and its riverside market, with mate gear, leather, asado knives, and a boat ride through the stilt-house channels.'
       pin: puerto-de-frutos
     - name: Colonia del Sacramento
       travel: About 1 hr 15 by Buquebus catamaran from Puerto Madero
-      summary: The UNESCO Portuguese-colonial old town in Uruguay across the river. A clean half-day or full-day, customs cleared at the terminal before boarding.
+      summary: 'The UNESCO Portuguese-colonial old town in Uruguay across the river. A clean half-day or full-day, customs cleared at the terminal before boarding.'
     - name: Montevideo
       travel: About 2 hr 30 by Buquebus ferry
-      summary: The Uruguayan capital, doable as a long day trip but better as a 1- or 2-night extension. The asado at Mercado del Puerto is the lunch.
+      summary: 'The Uruguayan capital, doable as a long day trip but better as a 1- or 2-night extension. The asado at Mercado del Puerto is the lunch.'
       list: montevideo
     - name: La Plata
       travel: About 1 hr by suburban train
       summary: The provincial capital with the unfinished neo-Gothic cathedral and the natural history museum. Quieter half-day option for a slow Sunday.
     - name: San Antonio de Areco
       travel: About 1 hr 30 by car or bus
-      summary: The gaucho-tradition town in the Pampas, with the Día de la Tradición festival in early November. Real horse country, real asado.
-
-# Authoring notes (kept here, not rendered):
-# - 2026-05-13: Expanded from the May 2026 bulk-scaffold with Mike's
-#   lived notes. Voice pass against current CLAUDE.md rules
-#   (question-H2s, bold-key-term, American spelling, no semicolons,
-#   specific dollar amounts in prose, no banned phrases).
-# - indexable: false until Mike re-reads.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/buenos-aires via the picker.
-#
-# - Pins linked from this scaffold (all confirmed in the atlas):
-#     · don-julio-parrilla (5/5)
-#     · cerezo-sushi (5/5, Mike's pick for sushi)
-#     · martineta-bar (5/5)
-#     · ribs-al-rio-paseo-infanta (5/5)
-#     · arte-culinario-jardin-japones-restaurante (5/5)
-#     · kajue-cafe (5/5)
-#     · hilton-buenos-aires (Puerto Madero base)
-#
-# - Pins worth creating on a future expansion (mentioned as plain text):
-#     · nino-gordo (Asian fusion, reservation required)
-#     · aeroparque-jorge-newbery (AEP - the in-city airport for Latin
-#       America regional flights, currently mentioned only in prose)
-#     · intercontinental-buenos-aires (Puerto Madero, the other major
-#       big-box hotel base)
-#     · puerto-de-frutos-tigre (the Tigre delta market, souvenirs +
-#       mate + cooking-knife stalls)
-#     · estacion-tren-de-la-costa (the rail line to Tigre, useful pin
-#       for the day-trip section)
+      summary: 'The gaucho-tradition town in the Pampas, with the Día de la Tradición festival in early November. Real horse country, real asado.'
+pairs_with:
+  - city: montevideo
+    travel: 2 hr 30 by Buquebus ferry
+    why: 'The Uruguayan capital across the Río de la Plata. The easy add-on, customs cleared at the terminal, one night or four nights depending on the trip shape'
+  - city: cordoba-ar
+    travel: 1 hr 20 by domestic flight
+    why: 'The university town in central Argentina, with the cuarteto music scene and the Jesuit colonial blocks. Pairs Buenos Aires with a more Argentine-feeling inland stop'
+  - city: são-paulo
+    travel: 2 hr 30 by flight
+    why: 'The Brazilian counterpart. Pairs as a Mercosur big-cities week, two capitals with very different food and language registers'
 ---
 
 [Buenos Aires](/cities/buenos-aires) is the South American capital I send people to first, all European-style boulevards, parrilla steakhouse culture, and a peso economy that keeps shifting what your dollars are worth. Give it a week, more if you are adding Mendoza, Iguazú, or Patagonia.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Montevideo](/lists/montevideo) | 2 hr 30 by Buquebus ferry | The Uruguayan capital across the Río de la Plata. The easy add-on, customs cleared at the terminal, one night or four nights depending on the trip shape |
-| [Córdoba (AR)](/lists/cordoba-ar) | 1 hr 20 by domestic flight | The university town in central Argentina, with the cuarteto music scene and the Jesuit colonial blocks. Pairs Buenos Aires with a more Argentine-feeling inland stop |
-| [São Paulo](/lists/são-paulo) | 2 hr 30 by flight | The Brazilian counterpart. Pairs as a Mercosur big-cities week, two capitals with very different food and language registers |
 
 ## On this page
 

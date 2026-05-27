@@ -1,49 +1,42 @@
 ---
 indexable: false
 featured: true
-title: "Dubrovnik travel guide: where to eat, the city walls, and getting in from DBV"
-headline: "Dubrovnik, and how to see it outside the cruise-ship hours"
-description: "My Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, beating the cruise-ship hours, and the restaurants worth the price."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Dubrovnik travel guide: where to eat, the city walls, and getting in from DBV'
+headline: 'Dubrovnik, and how to see it outside the cruise-ship hours'
+description: 'My Dubrovnik travel guide. Getting in from DBV, where to stay around the Old Town, beating the cruise-ship hours, and the restaurants worth the price.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/0c/0c2e53b15c5a945f5463b2dd0542c7e7b1721b83359c166b9c985a6ea14adb4f.jpg"
-hero_alt: "A peacock on the rocky coast of Lokrum island, near Dubrovnik"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/0c/0c2e53b15c5a945f5463b2dd0542c7e7b1721b83359c166b9c985a6ea14adb4f.jpg'
+hero_alt: 'A peacock on the rocky coast of Lokrum island, near Dubrovnik'
 related:
   city: dubrovnik
   country: croatia
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Dubrovnik?
-    a: Two full days in the Old Town (city walls walk, Cathedral, Sponza Palace, Rector's Palace) plus an evening at Buža Bar overlooking the Adriatic. A third day adds the Lokrum island ferry or a Kotor day trip. Dubrovnik is small enough that more days mostly mean more meals and slower walks.
+    a: 'Two full days in the Old Town (city walls walk, Cathedral, Sponza Palace, Rector''s Palace) plus an evening at Buža Bar overlooking the Adriatic. A third day adds the Lokrum island ferry or a Kotor day trip. Dubrovnik is small enough that more days mostly mean more meals and slower walks.'
   - q: How do I get from Dubrovnik Airport to the Old Town?
-    a: The Platanus airport bus runs from DBV to Pile Gate (the Old Town entrance) in 30 to 45 minutes for €10. Uber and Bolt both work in Dubrovnik, €30 to €50 to most central addresses. Taxis are reliable but pricier than rideshare. The local Libertas bus 38 is the cheapest at about €1.50.
+    a: 'The Platanus airport bus runs from DBV to Pile Gate (the Old Town entrance) in 30 to 45 minutes for €10. Uber and Bolt both work in Dubrovnik, €30 to €50 to most central addresses. Taxis are reliable but pricier than rideshare. The local Libertas bus 38 is the cheapest at about €1.50.'
   - q: When should I walk the Dubrovnik city walls?
-    a: Before 9 a.m. or after 5 p.m. From 10 a.m. to 3 p.m. the cruise-ship tours flood the walls and the Old Town becomes unwalkable. The early-morning slot also has the best light for photos. Tickets are €40 in 2026, sold at the Pile Gate entrance. Plan two hours for the full 2 km circuit.
+    a: 'Before 9 a.m. or after 5 p.m. From 10 a.m. to 3 p.m. the cruise-ship tours flood the walls and the Old Town becomes unwalkable. The early-morning slot also has the best light for photos. Tickets are €40 in 2026, sold at the Pile Gate entrance. Plan two hours for the full 2 km circuit.'
   - q: Is Dubrovnik worth visiting outside Game of Thrones tourism?
-    a: Yes, and the GoT tourism is the lesser reason once you're there. The city walls, the limestone Old Town, the Adriatic coast, the Festival in July and August, and the day trips to Lokrum and the Elaphiti islands all stand on their own. The GoT walking tours mostly stop at Lovrijenac Fortress and the Jesuit Stairs; cover those independently on the Wall walk.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/dubrovnik via the picker.
+    a: 'Yes, and the GoT tourism is the lesser reason once you''re there. The city walls, the limestone Old Town, the Adriatic coast, the Festival in July and August, and the day trips to Lokrum and the Elaphiti islands all stand on their own. The GoT walking tours mostly stop at Lovrijenac Fortress and the Jesuit Stairs; cover those independently on the Wall walk.'
+pairs_with:
+  - city: kotor
+    travel: 2 hr by car or bus south down the coast
+    why: 'The other walled-city stop on the Bay of Kotor. Same shape of trip in a different country, with the fjord-like bay as the visual hook'
+  - city: mostar
+    travel: 3 hr by bus inland through Bosnia
+    why: 'The Old Bridge and the Ottoman quarter, plus the war memory in plain sight. Pairs cleanly into a longer Balkans loop with Sarajevo'
+  - city: split
+    travel: 3 hr by bus up the Croatian coast
+    why: 'Diocletian''s Palace and the Dalmatian island ferries. The two Croatian Adriatic anchors, with Hvar and Korčula in between'
 ---
 
 [Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that was famous long before Game of Thrones, and it has been managing the cruise-ship crush ever since. The Old Town is tiny, the walls walkable in two hours, the food good. Stay at least two nights so you can have it outside the day-tripper window. Here's how I'd time it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Kotor](/lists/kotor) | 2 hr by car or bus south down the coast | The other walled-city stop on the Bay of Kotor. Same shape of trip in a different country, with the fjord-like bay as the visual hook |
-| [Mostar](/lists/mostar) | 3 hr by bus inland through Bosnia | The Old Bridge and the Ottoman quarter, plus the war memory in plain sight. Pairs cleanly into a longer Balkans loop with Sarajevo |
-| [Split](/lists/split) | 3 hr by bus up the Croatian coast | Diocletian's Palace and the Dalmatian island ferries. The two Croatian Adriatic anchors, with Hvar and Korčula in between |
 
 ## On this page
 

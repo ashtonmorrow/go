@@ -1,115 +1,76 @@
 ---
 indexable: true
 featured: true
-title: "Bangkok travel guide: things to do, where to stay, and the mall-walk first day"
-headline: "Bangkok gets easier the moment you stop fighting it"
-description: "My Bangkok travel guide. Where to stay in Sukhumvit or Riverside, the BTS mall walk for jet-lagged days, the river temple circuit, and Yaowarat at night."
-published: 2026-05-10
-updated: 2026-05-15
+title: 'Bangkok travel guide: things to do, where to stay, and the mall-walk first day'
+headline: Bangkok gets easier the moment you stop fighting it
+description: 'My Bangkok travel guide. Where to stay in Sukhumvit or Riverside, the BTS mall walk for jet-lagged days, the river temple circuit, and Yaowarat at night.'
+published: 2026-05-10T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/ea/ea5fbee7f7b04c45a27c24458599dff15f15a9d813b38a3cca645fd6394fb0fc.jpg"
-hero_alt: "A red lion-dance costume on a neon-lit Bangkok street at night"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/ea/ea5fbee7f7b04c45a27c24458599dff15f15a9d813b38a3cca645fd6394fb0fc.jpg'
+hero_alt: A red lion-dance costume on a neon-lit Bangkok street at night
 guide_cards:
   title: Planning Bangkok
-  intro: Bangkok rewards picking a base that fits the kind of day you want, using transit instead of fighting traffic, and grouping the temple circuit on one side of the river. The first day after a long-haul flight, walk the BTS mall spine instead of forcing temples.
+  intro: 'Bangkok rewards picking a base that fits the kind of day you want, using transit instead of fighting traffic, and grouping the temple circuit on one side of the river. The first day after a long-haul flight, walk the BTS mall spine instead of forcing temples.'
   cards:
     - title: Pick a base that matches the trip
       body: Sukhumvit is the convenient international option (Phrom Phong puts the Em District at your doorstep). Silom is the business-and-park compromise. Riverside is calmer and ferry-friendly for the old-city temples. Khao San is backpacker territory. Stay there only if that is the trip you actually want.
     - title: Stop fighting the traffic
-      body: Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. Bangkok is still cash-driven, so keep some baht on hand. Grab drivers will sometimes cancel card-payment rides. If you take a metered taxi, make sure the meter starts.
+      body: 'Use the BTS Skytrain, the MRT subway, the Chao Phraya river ferries, and Grab. Bangkok is still cash-driven, so keep some baht on hand. Grab drivers will sometimes cancel card-payment rides. If you take a metered taxi, make sure the meter starts.'
     - title: Walk the malls on travel-hangover days
-      body: MBK at National Stadium, Siam Center and Siam Paragon at Siam, CentralWorld at Chit Lom, then the Em District (Emporium, EmQuartier, Emsphere) at Phrom Phong. Air-conditioned the whole way, plenty of food, low impact for a jet-lagged first day.
+      body: 'MBK at National Stadium, Siam Center and Siam Paragon at Siam, CentralWorld at Chit Lom, then the Em District (Emporium, EmQuartier, Emsphere) at Phrom Phong. Air-conditioned the whole way, plenty of food, low impact for a jet-lagged first day.'
     - title: Group the temple circuit
-      body: Wat Phra Kaew and the Grand Palace, Wat Pho, and Wat Arun all sit close to the river. Walk the first two, take the cross-river ferry to the third, and you have a clean half-day without taxis.
-
+      body: 'Wat Phra Kaew and the Grand Palace, Wat Pho, and Wat Arun all sit close to the river. Walk the first two, take the cross-river ferry to the third, and you have a clean half-day without taxis.'
 faqs:
   - q: How do I get from BKK or DMK to the city center?
-    a: Most central hotels are about an hour by road from either airport. From Suvarnabhumi (BKK), the three reasonable options are the Airport Rail Link to Phaya Thai BTS (cheapest, about 30 minutes, plus a final-mile taxi or Grab), Grab (easiest with luggage. Keep some cash because some drivers cancel card-payment rides), or the official taxi rank (take a number from the kiosk, go to the assigned stall, confirm the meter is on before you pull away). From Don Mueang (DMK), Grab or the official taxi rank are the cleanest options. Skip anyone offering you a ride inside the terminal.
+    a: 'Most central hotels are about an hour by road from either airport. From Suvarnabhumi (BKK), the three reasonable options are the Airport Rail Link to Phaya Thai BTS (cheapest, about 30 minutes, plus a final-mile taxi or Grab), Grab (easiest with luggage. Keep some cash because some drivers cancel card-payment rides), or the official taxi rank (take a number from the kiosk, go to the assigned stall, confirm the meter is on before you pull away). From Don Mueang (DMK), Grab or the official taxi rank are the cleanest options. Skip anyone offering you a ride inside the terminal.'
   - q: Where should I stay in Bangkok for a first visit?
-    a: Sukhumvit is the easiest base for a first trip, with BTS at the door, restaurants, malls, and hotels at every budget. Silom works if you want a more business-district rhythm and proximity to Lumpini Park. Riverside is calmer and better for the old-city temple circuit but more expensive. Avoid Khao San unless you specifically want backpacker Bangkok.
+    a: 'Sukhumvit is the easiest base for a first trip, with BTS at the door, restaurants, malls, and hotels at every budget. Silom works if you want a more business-district rhythm and proximity to Lumpini Park. Riverside is calmer and better for the old-city temple circuit but more expensive. Avoid Khao San unless you specifically want backpacker Bangkok.'
   - q: How many days should I give Bangkok?
-    a: Two to four days covers the temple circuit, one or two markets, the river, and a Chinatown food night without burning out. Add a day if you want a real museum afternoon (the Jim Thompson House and the Bangkok National Museum are both worth the time) or a day trip out of the city.
+    a: 'Two to four days covers the temple circuit, one or two markets, the river, and a Chinatown food night without burning out. Add a day if you want a real museum afternoon (the Jim Thompson House and the Bangkok National Museum are both worth the time) or a day trip out of the city.'
   - q: When is the best time to visit Bangkok?
-    a: November through February is the cooler-and-drier window. February and March are warm and mostly dry, with afternoons that feel heavier than the temperature suggests. April is the hottest month. May through October is the wet season. Afternoon storms are common but rarely all-day.
+    a: 'November through February is the cooler-and-drier window. February and March are warm and mostly dry, with afternoons that feel heavier than the temperature suggests. April is the hottest month. May through October is the wet season. Afternoon storms are common but rarely all-day.'
   - q: Are the floating markets worth it?
-    a: Honestly not for most trips. The famous ones (Damnoen Saduak, Amphawa) are now visitor circuits rather than working markets, and the half-day round-trip in a van is a lot to spend on photos. If you only have a few days, eat in Chinatown and do Chatuchak instead.
+    a: 'Honestly not for most trips. The famous ones (Damnoen Saduak, Amphawa) are now visitor circuits rather than working markets, and the half-day round-trip in a van is a lot to spend on photos. If you only have a few days, eat in Chinatown and do Chatuchak instead.'
   - q: What can I actually do on the first day after a long-haul flight?
-    a: Walk the BTS mall spine. Start at MBK at National Stadium (older, independent stalls, Thai food court), take the skybridge to Siam Center and Siam Paragon at Siam, ride one stop east to CentralWorld at Chit Lom, then ride out to Phrom Phong for the Em District (Emporium, EmQuartier, Emsphere). Air-conditioned the whole way, low impact, plenty of food. Save the temples and Chinatown for day two when you actually want to be outside.
-
+    a: 'Walk the BTS mall spine. Start at MBK at National Stadium (older, independent stalls, Thai food court), take the skybridge to Siam Center and Siam Paragon at Siam, ride one stop east to CentralWorld at Chit Lom, then ride out to Phrom Phong for the Em District (Emporium, EmQuartier, Emsphere). Air-conditioned the whole way, low impact, plenty of food. Save the temples and Chinatown for day two when you actually want to be outside.'
 related:
   city: bangkok
   country: thailand
-
 topics:
   - festivals
   - scams-safety
   - markets
   - nightlife
-
 day_trips:
-  intro: Bangkok is ringed by the older Thailand the capital grew out of. A ruined royal capital, the floating markets, a WWII river town, and the tallest stupa in the world are all inside about three hours.
+  intro: 'Bangkok is ringed by the older Thailand the capital grew out of. A ruined royal capital, the floating markets, a WWII river town, and the tallest stupa in the world are all inside about three hours.'
   trips:
     - name: Ayutthaya
       travel: About 1.5 hr by train from Krung Thep Aphiwat station
-      summary: The ruined former Siamese capital, a UNESCO park of brick temple towers and the famous Buddha head held in tree roots. Hire a bicycle or a tuk-tuk for the day.
+      summary: 'The ruined former Siamese capital, a UNESCO park of brick temple towers and the famous Buddha head held in tree roots. Hire a bicycle or a tuk-tuk for the day.'
     - name: Amphawa and Damnoen Saduak
       travel: About 1.5 hr by road
-      summary: The floating markets west of the city. Damnoen Saduak is the big photogenic one, Amphawa is the more local weekend market with an evening firefly boat ride.
+      summary: 'The floating markets west of the city. Damnoen Saduak is the big photogenic one, Amphawa is the more local weekend market with an evening firefly boat ride.'
     - name: Kanchanaburi
       travel: About 2.5 hr by road or the scenic train
-      summary: The Bridge over the River Kwai and the Death Railway, with the WWII cemeteries and museums. Often paired with Erawan waterfall.
+      summary: 'The Bridge over the River Kwai and the Death Railway, with the WWII cemeteries and museums. Often paired with Erawan waterfall.'
     - name: Nakhon Pathom
       travel: About 1 hr by train
-      summary: Home of Phra Pathom Chedi, the tallest Buddhist stupa in the world, ringed by a busy temple market.
-
-# Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews. Flip to true to ship.
-# - hero_image is empty. Pick one in /admin/lists/bangkok via the picker.
-# - The Bangkok section of /content/posts/thailand-travel-notes.md
-#   (published, indexable) covers the same ground at a higher altitude.
-#   That post stays as the country itinerary. This list page extends it
-#   into a city-specific guide that can rank for "Bangkok travel guide"
-#   and "things to do in Bangkok." Both are linked via related/links.
-# - Pins created server-side for this scaffold (all indexable: false
-#   until reviewed):
-#     · suvarnabhumi-airport, don-mueang-international-airport
-#     · airport-rail-link-phaya-thai
-#     · siam-paragon, siam-center
-#     · emporium-bangkok, emquartier, emsphere
-#     · royal-orchid-sheraton-bangkok (the Riverside option Mike has stayed at)
-# - Food cross-references woven into the copy from Mike's bangkok
-#   saved-list pins (those with personal_rating=5 + a personal review):
-#     · the-commons-thonglor + fowlmouth-thecommons-thonglor (Thong Lo row)
-#     · she-bar (Thong Lo row)
-#     · arabica-bangkok-central-world (mall walk, CentralWorld stop)
-#   chitbeer (Ko Kret) is also rated 5/5, flag for an "If you have an
-#   extra day" Ko Kret section if/when that gets written.
-# - Mike said his usual base is "Hyatt Place Sukhumvit 74". Only Hyatt
-#   Place Sukhumvit 1 (Phloen Chit area) and Sukhumvit 24 (Phrom Phong)
-#   exist in the atlas, and the Soi 24 location matches his clues
-#   (3-4 minute BTS walk, dense food, laundry next door, Em District
-#   at the doorstep). Linked Sukhumvit 24. Verify the soi number and
-#   swap if Mike actually means a different property.
-# - Sukhumvit / Silom / Riverside / Em District / Thong Lo are areas,
-#   not single pins. The pinned hotels in the stay table are Mike's
-#   actual stays.
-# - All previously-flagged Bangkok pins now exist and are wired:
-#   grand-palace-wat-phra-kaew, lumpini-park, bangkok-national-museum,
-#   yaowarat-bangkok-chinatown, sathorn-pier-chao-phraya-express. All
-#   indexable: false until reviewed.
+      summary: 'Home of Phra Pathom Chedi, the tallest Buddhist stupa in the world, ringed by a busy temple market.'
+pairs_with:
+  - city: chiang-mai
+    travel: 1 hr 15 by domestic flight or 11 hr by overnight train
+    why: 'The cool-climate northern Thai counterpoint to Bangkok''s heat. The classic Thailand two-stop trip, three nights each minimum'
+  - city: phuket
+    travel: 1 hr 30 by domestic flight
+    why: 'The Andaman beach finish to a Bangkok-then-beach Thailand week. Different airport, no transfer needed if you fly direct'
+  - city: krabi
+    travel: 1 hr 30 by domestic flight
+    why: 'The other big Andaman base, the limestone-cliff side. Pairs as the alternative beach stop to Phuket on a longer Thailand trip'
 ---
 
 [Bangkok](/cities/bangkok) is the city you can see in one or two days or stay in for over a month and still keep finding new things, depending entirely on the trip you want it to be. It is huge. It rewards picking a base that matches the kind of days you're after and moving by river and BTS instead of fighting the traffic. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Chiang Mai](/lists/chiang-mai) | 1 hr 15 by domestic flight or 11 hr by overnight train | The cool-climate northern Thai counterpoint to Bangkok's heat. The classic Thailand two-stop trip, three nights each minimum |
-| [Phuket](/lists/phuket) | 1 hr 30 by domestic flight | The Andaman beach finish to a Bangkok-then-beach Thailand week. Different airport, no transfer needed if you fly direct |
-| [Krabi](/lists/krabi) | 1 hr 30 by domestic flight | The other big Andaman base, the limestone-cliff side. Pairs as the alternative beach stop to Phuket on a longer Thailand trip |
 
 ## On this page
 

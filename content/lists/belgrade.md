@@ -1,56 +1,42 @@
 ---
 indexable: false
 featured: true
-title: "Belgrade travel guide: where to eat, the nightlife, and getting in from BEG"
-headline: "Belgrade is rougher than you expect, and that's the appeal"
-description: "My Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurants worth the trip."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Belgrade travel guide: where to eat, the nightlife, and getting in from BEG'
+headline: 'Belgrade is rougher than you expect, and that''s the appeal'
+description: 'My Belgrade travel guide. Getting in from Nikola Tesla, where to stay near the center, and the Serbian-cooking restaurants worth the trip.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/8f/8fc225601a0577869be029e262266b3a9e7e5251d23a37998fa0c62bfc59fc23.jpg"
-hero_alt: "A Sherman tank on display at the Military Museum inside Belgrade's Kalemegdan Fortress"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/8f/8fc225601a0577869be029e262266b3a9e7e5251d23a37998fa0c62bfc59fc23.jpg'
+hero_alt: A Sherman tank on display at the Military Museum inside Belgrade's Kalemegdan Fortress
 related:
   city: belgrade
   country: serbia
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Belgrade?
-    a: Three days covers Kalemegdan Fortress, the Skadarlija bohemian quarter, the Nikola Tesla Museum, a Sava-river splav club night, and dinner at Comunale or Square. A fourth day adds Novi Sad as a day trip. Belgrade is more about the rhythm than a checklist of sights.
+    a: 'Three days covers Kalemegdan Fortress, the Skadarlija bohemian quarter, the Nikola Tesla Museum, a Sava-river splav club night, and dinner at Comunale or Square. A fourth day adds Novi Sad as a day trip. Belgrade is more about the rhythm than a checklist of sights.'
   - q: How do I get from Belgrade Airport to the center?
-    a: The A1 minibus runs from BEG to Slavija Square every 20 minutes for RSD 400 (€3.50). Bus 72 is the cheaper municipal alternative for RSD 150. Taxi is RSD 2,200 to 3,000 (€19 to €25). Use a registered taxi from the official rank, not the unmarked drivers in arrivals. CarGo and Yandex both work as ride apps.
+    a: 'The A1 minibus runs from BEG to Slavija Square every 20 minutes for RSD 400 (€3.50). Bus 72 is the cheaper municipal alternative for RSD 150. Taxi is RSD 2,200 to 3,000 (€19 to €25). Use a registered taxi from the official rank, not the unmarked drivers in arrivals. CarGo and Yandex both work as ride apps.'
   - q: Where should I stay in Belgrade?
     a: Stay on the old-town side near Knez Mihailova or in Dorćol north of Republic Square. Both put you walking distance to Kalemegdan and the restaurants. The Novi Beograd side across the river has the chain hotels and the Štark Arena but is dead at night. Airbnb is cheaper and dominant; central hotel inventory is thinner than the city's size suggests.
   - q: Is the splav (river-club) scene worth planning around?
-    a: If you're under 35 or like a late night, yes. The splavovi are floating clubs on the Sava and Danube riverbanks that get going around midnight and run until dawn, especially May through September. Brankov Most and the Sava side near Hotel Yugoslavia have the densest cluster. Cover is usually RSD 500 to 1,500 (€4 to €13). The opposite-river-bank cruise-ship visitors are usually still in bed.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/belgrade via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+    a: 'If you''re under 35 or like a late night, yes. The splavovi are floating clubs on the Sava and Danube riverbanks that get going around midnight and run until dawn, especially May through September. Brankov Most and the Sava side near Hotel Yugoslavia have the densest cluster. Cover is usually RSD 500 to 1,500 (€4 to €13). The opposite-river-bank cruise-ship visitors are usually still in bed.'
+pairs_with:
+  - city: sarajevo
+    travel: 7 hr by bus or train
+    why: 'The Bosnian capital. Pairs as the Yugoslav-breakup pair, two capitals on opposite sides of the same 1990s history'
+  - city: mostar
+    travel: '8 hr by bus, easier via Sarajevo'
+    why: The Ottoman bridge city. The natural third stop after Sarajevo on a Balkans loop
+  - city: sofia
+    travel: 5 hr 30 by bus
+    why: 'The Bulgarian capital, the next big city east. Pairs as the Belgrade-Sofia-Bucharest line for a wider eastern-Balkans trip'
 ---
 
 [Belgrade](/cities/belgrade) is the most unaligned big city in Europe, and that is the appeal. Smoking is still allowed in the airport, and the smell hits you as you walk off the plane like stepping back in time. Modern glass-tower shopping malls drop into the middle of an old town that still carries communist-era apartment blocks two streets away. The food is better than most travelers expect, the cats are everywhere, and a clubbing scene on the Sava River runs until morning, when expensive Viking river-cruise boats arrive at piers a few hundred meters from where the late-night kids are stumbling out. Two or three days does it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Sarajevo](/lists/sarajevo) | 7 hr by bus or train | The Bosnian capital. Pairs as the Yugoslav-breakup pair, two capitals on opposite sides of the same 1990s history |
-| [Mostar](/lists/mostar) | 8 hr by bus, easier via Sarajevo | The Ottoman bridge city. The natural third stop after Sarajevo on a Balkans loop |
-| [Sofia](/lists/sofia) | 5 hr 30 by bus | The Bulgarian capital, the next big city east. Pairs as the Belgrade-Sofia-Bucharest line for a wider eastern-Balkans trip |
 
 ## On this page
 

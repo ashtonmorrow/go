@@ -1,76 +1,61 @@
 ---
 indexable: false
 featured: true
-title: "Prague travel guide: Christmas markets, Prague Spring, and where to stay"
-headline: "Prague, the old town everyone walks, done well"
-description: "My Prague travel guide. The Christmas markets on Old Town Square, the Prague Spring music festival, where to stay, and getting in from PRG."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Prague travel guide: Christmas markets, Prague Spring, and where to stay'
+headline: 'Prague, the old town everyone walks, done well'
+description: 'My Prague travel guide. The Christmas markets on Old Town Square, the Prague Spring music festival, where to stay, and getting in from PRG.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/f4/f4a4d9f3dfa112427205b34a0d675bb14509f675a7822ecfcca0552fe8133b11.jpg"
-hero_alt: "Prague rooftops and the Vltava bridges from a hillside walk"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/f4/f4a4d9f3dfa112427205b34a0d675bb14509f675a7822ecfcca0552fe8133b11.jpg'
+hero_alt: Prague rooftops and the Vltava bridges from a hillside walk
 related:
   city: prague
   country: czechia
-
 topics:
   - festivals
   - scams-safety
-
 faqs:
   - q: How many days do I need in Prague?
-    a: Three full days covers the old town (Astronomical Clock, Charles Bridge), the castle complex on the hill, the Jewish Quarter (Josefov), and a Vyšehrad afternoon. A fourth day adds a Kutná Hora bone-church day trip or the Žižkov side of the city. The center is compact enough that more days mostly mean slower meals rather than more sights.
+    a: 'Three full days covers the old town (Astronomical Clock, Charles Bridge), the castle complex on the hill, the Jewish Quarter (Josefov), and a Vyšehrad afternoon. A fourth day adds a Kutná Hora bone-church day trip or the Žižkov side of the city. The center is compact enough that more days mostly mean slower meals rather than more sights.'
   - q: How do I get from Prague Airport to the center?
-    a: Bus 119 from PRG to Nádraží Veleslavín metro, then Line A to Můstek for most central hotels. CZK 60 (€2.50) total. Airport Express bus AE runs to Hlavní nádraží (main station) for CZK 100. Taxi is CZK 600 to 800 (€25 to €33). Bolt and Liftago are cheaper than taxis and reliable. Avoid the unmarked drivers at the curb.
+    a: 'Bus 119 from PRG to Nádraží Veleslavín metro, then Line A to Můstek for most central hotels. CZK 60 (€2.50) total. Airport Express bus AE runs to Hlavní nádraží (main station) for CZK 100. Taxi is CZK 600 to 800 (€25 to €33). Bolt and Liftago are cheaper than taxis and reliable. Avoid the unmarked drivers at the curb.'
   - q: Where should I stay in Prague for a first visit?
-    a: Staré Město (Old Town) puts the major sights on foot. Malá Strana on the castle side is quieter and photogenic at night. Vinohrady is the local-feel residential alternative for a longer stay, with the food and bar scene without the tourist crush. Avoid the Wenceslas Square strip, convenient on paper but loud and tourist-priced.
+    a: 'Staré Město (Old Town) puts the major sights on foot. Malá Strana on the castle side is quieter and photogenic at night. Vinohrady is the local-feel residential alternative for a longer stay, with the food and bar scene without the tourist crush. Avoid the Wenceslas Square strip, convenient on paper but loud and tourist-priced.'
   - q: Watch out for the Prague drink-bill scam?
-    a: The pattern is real on the Wenceslas Square strip and the bars approaching the Old Town from the south. Touters draw you in, the menu has one price, the bill has another, and the bouncers make sure you pay. Either read the bill before ordering or skip the strip entirely. Nothing in Old Town proper runs this pattern with the same intensity.
-
+    a: 'The pattern is real on the Wenceslas Square strip and the bars approaching the Old Town from the south. Touters draw you in, the menu has one price, the bill has another, and the bouncers make sure you pay. Either read the bill before ordering or skip the strip entirely. Nothing in Old Town proper runs this pattern with the same intensity.'
 day_trips:
-  intro: Prague sits within easy reach of a bone-decorated chapel, a Gothic crown-jewel castle, a sobering WWII memorial, and Bohemia's grand spa town. Most are an hour or so out by train or bus.
+  intro: 'Prague sits within easy reach of a bone-decorated chapel, a Gothic crown-jewel castle, a sobering WWII memorial, and Bohemia''s grand spa town. Most are an hour or so out by train or bus.'
   trips:
     - name: Kutná Hora
       travel: About 1 hr by train
-      summary: A UNESCO silver-mining town, known for the Sedlec Ossuary decorated with the bones of tens of thousands, and the soaring St Barbara's Cathedral.
+      summary: 'A UNESCO silver-mining town, known for the Sedlec Ossuary decorated with the bones of tens of thousands, and the soaring St Barbara''s Cathedral.'
     - name: Karlštejn Castle
-      travel: About 40 min by train, then a 20-minute walk uphill
-      summary: The grand Gothic castle Charles IV built to hold the imperial crown jewels, set above a village in the Bohemian woods.
+      travel: 'About 40 min by train, then a 20-minute walk uphill'
+      summary: 'The grand Gothic castle Charles IV built to hold the imperial crown jewels, set above a village in the Bohemian woods.'
     - name: Terezín
       travel: About 1 hr by bus from Holešovice
-      summary: The fortress town the Nazis ran as a ghetto and transit camp. A serious half-day memorial and museum, not a casual outing.
+      summary: 'The fortress town the Nazis ran as a ghetto and transit camp. A serious half-day memorial and museum, not a casual outing.'
     - name: Český Krumlov
       travel: About 3 hr by bus or train
-      summary: A UNESCO town wrapped in a bend of the Vltava under a huge castle. Doable in a long day, but it rewards an overnight once the day-trippers leave.
+      summary: 'A UNESCO town wrapped in a bend of the Vltava under a huge castle. Doable in a long day, but it rewards an overnight once the day-trippers leave.'
     - name: Karlovy Vary
       travel: About 2 hr 15 by bus
-      summary: Bohemia's grand spa town, a valley of colonnades, hot springs you sip from ceramic cups, and the Becherovka herbal liqueur.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/prague via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+      summary: 'Bohemia''s grand spa town, a valley of colonnades, hot springs you sip from ceramic cups, and the Becherovka herbal liqueur.'
+pairs_with:
+  - city: vienna
+    travel: 4 hr by direct Railjet
+    why: The first Habsburg neighbor. The classic Prague-Vienna-Budapest seven-to-ten-day Central Europe trip starts here
+  - city: budapest
+    travel: 7 hr by direct train or 1 hr 30 by flight
+    why: 'The third leg of the same Habsburg-rim loop. By flight it''s quicker than the train, by train it''s the slower, scenic version'
+  - city: munich
+    travel: 4 hr 30 by direct ICE train
+    why: 'Bavarian capital, the closest big German city to Prague. Pairs as a beer-hall-vs-pivovar comparison plus the Bavarian Alps day trips'
 ---
 
 [Prague](/cities/prague) is the Bohemian capital and one of the most walkable old towns in Europe, the Vltava splitting it between the Old Town and the castle side. A long weekend covers the main sights, a week opens the smaller neighborhoods. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Vienna](/lists/vienna) | 4 hr by direct Railjet | The first Habsburg neighbor. The classic Prague-Vienna-Budapest seven-to-ten-day Central Europe trip starts here |
-| [Budapest](/lists/budapest) | 7 hr by direct train or 1 hr 30 by flight | The third leg of the same Habsburg-rim loop. By flight it's quicker than the train, by train it's the slower, scenic version |
-| [Munich](/lists/munich) | 4 hr 30 by direct ICE train | Bavarian capital, the closest big German city to Prague. Pairs as a beer-hall-vs-pivovar comparison plus the Bavarian Alps day trips |
 
 ## On this page
 

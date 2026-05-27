@@ -1,54 +1,42 @@
 ---
 indexable: false
 featured: true
-title: "Tirana travel guide: where to eat, the Bunkers, and getting in from TIA"
-headline: "Tirana, the Balkan capital changing the fastest"
-description: "My Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the communist-era legacy, and the modern Albanian-fusion restaurants."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Tirana travel guide: where to eat, the Bunkers, and getting in from TIA'
+headline: 'Tirana, the Balkan capital changing the fastest'
+description: 'My Tirana travel guide. Getting in from TIA, where to stay near Skanderbeg Square, the communist-era legacy, and the modern Albanian-fusion restaurants.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: tirana
   country: albania
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Tirana?
-    a: Two full days covers the city. Expect the painted Communist-era facades, Skanderbeg Square, the Pyramid, Bunk'Art 1 or 2, and a meat-and-rakia dinner. A third day adds a Krujë castle excursion or a beach run down to Durrës. For a wider Albania trip, base in Tirana for two nights then move down to Saranda or Berat.
+    a: 'Two full days covers the city. Expect the painted Communist-era facades, Skanderbeg Square, the Pyramid, Bunk''Art 1 or 2, and a meat-and-rakia dinner. A third day adds a Krujë castle excursion or a beach run down to Durrës. For a wider Albania trip, base in Tirana for two nights then move down to Saranda or Berat.'
   - q: How do I get from Tirana Airport to the city?
-    a: The Rinas Express bus runs from TIA to the city center every 30 minutes for €4, takes about 35 minutes. Taxi is €20 to €25 fixed. Many rental-car companies will not let you take a car from Tirana into neighboring countries, so check before booking. Furgon (minibus) is the practical way to reach the rest of Albania, departures from the Northbound or Southbound parking-lot terminals (there is no official bus station).
+    a: 'The Rinas Express bus runs from TIA to the city center every 30 minutes for €4, takes about 35 minutes. Taxi is €20 to €25 fixed. Many rental-car companies will not let you take a car from Tirana into neighboring countries, so check before booking. Furgon (minibus) is the practical way to reach the rest of Albania, departures from the Northbound or Southbound parking-lot terminals (there is no official bus station).'
   - q: Where should I stay in Tirana?
-    a: The Marriott Tirana on Skanderbeg Square is the central chain option, the corner suites have square-and-stadium views. Most other beds are Airbnb in the Blloku neighborhood (the formerly-restricted Communist-era leadership area, now the bar-and-restaurant strip). Hotel inventory is thinner than the city's tourism numbers suggest.
+    a: 'The Marriott Tirana on Skanderbeg Square is the central chain option, the corner suites have square-and-stadium views. Most other beds are Airbnb in the Blloku neighborhood (the formerly-restricted Communist-era leadership area, now the bar-and-restaurant strip). Hotel inventory is thinner than the city''s tourism numbers suggest.'
   - q: Is Tirana safe at night?
-    a: Yes, more than its reputation suggests. Albania has one of the lower violent-crime rates in Europe and central Tirana stays busy and well-lit well past midnight. The bigger evening question is the smoking, which is still allowed indoors in most bars and restaurants. Plan accordingly if that's a hard limit.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
-#   rather than from a personal brief, so the voice pass is the
-#   prerequisite before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/tirana via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
+    a: 'Yes, more than its reputation suggests. Albania has one of the lower violent-crime rates in Europe and central Tirana stays busy and well-lit well past midnight. The bigger evening question is the smoking, which is still allowed indoors in most bars and restaurants. Plan accordingly if that''s a hard limit.'
+pairs_with:
+  - city: saranda-ksamil
+    travel: 4 hr by car or 5 hr by furgon
+    why: 'The Albanian Riviera, crystal water at half the price of Greece. The classic Albania loop: capital plus coast'
+  - city: kotor
+    travel: 5 hr by car around the bay
+    why: The Bay of Kotor walled-city stop in Montenegro. Pairs Tirana with the Adriatic coast going north
+  - city: dubrovnik
+    travel: 6 hr by car through Montenegro
+    why: The Adriatic walled-city stop continuing north past Kotor. The two together cover the southern Adriatic coast
 ---
 
 [Tirana](/cities/tirana) is the Balkan capital that does not feel like the rest of Europe. Albania is a majority-Muslim country (which surprises most travelers), Tirana was officially stripped of religion under the Hoxha regime, and by the time you get here from western Europe you have crossed into something that feels closer to Turkey than to Germany. That is the appeal. The food is cheap and family-style, the architecture is odd in interesting ways, the communist-era museums are some of the best in the region, and the city is changing fast enough that two trips two years apart will not look the same. Two or three days does it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Saranda and Ksamil](/lists/saranda-ksamil) | 4 hr by car or 5 hr by furgon | The Albanian Riviera, crystal water at half the price of Greece. The classic Albania loop: capital plus coast |
-| [Kotor](/lists/kotor) | 5 hr by car around the bay | The Bay of Kotor walled-city stop in Montenegro. Pairs Tirana with the Adriatic coast going north |
-| [Dubrovnik](/lists/dubrovnik) | 6 hr by car through Montenegro | The Adriatic walled-city stop continuing north past Kotor. The two together cover the southern Adriatic coast |
 
 ## On this page
 

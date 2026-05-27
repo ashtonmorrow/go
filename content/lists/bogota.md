@@ -1,44 +1,33 @@
 ---
 indexable: false
 featured: true
-title: "Bogotá travel guide: where to stay, where to eat, and getting in from BOG"
-headline: "Bogotá deserves more than the layover most people give it"
-description: "My Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the restaurants worth booking, and what to know about the altitude."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Bogotá travel guide: where to stay, where to eat, and getting in from BOG'
+headline: Bogotá deserves more than the layover most people give it
+description: 'My Bogotá travel guide. Getting in from El Dorado, where to stay near Zona T, the restaurants worth booking, and what to know about the altitude.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: bogota
   country: colombia
-
 topics:
   - festivals
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
-#   rather than from a personal brief, so the voice pass is the
-#   prerequisite before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/bogota via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
+pairs_with:
+  - city: medellin
+    travel: 1 hr by domestic flight
+    why: 'The eternal-spring counterpoint to Bogotá''s altitude and rain. The classic Colombia week is Bogotá three nights, Medellín four'
+  - city: cartagena-colombia
+    travel: 1 hr 30 by flight
+    why: 'The Caribbean-coast walled-city finish. Pairs as the climate-change trip: cold mountain, warm tropical, three or four nights'
+  - city: lima
+    travel: 3 hr by flight
+    why: 'The Peruvian capital. Pairs as a wider Andean South America loop, capital-and-capital before adding Cuzco or Cartagena'
 ---
 
 [Bogotá](/cities/bogota) gets a layover when it deserves a few days. It surprises people: the altitude you feel on day one, cool mountain weather all year, and a modern restaurant scene built since the 2000s. Three or four days for the city, more if you are adding the coffee region or Cartagena.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Medellín](/lists/medellin) | 1 hr by domestic flight | The eternal-spring counterpoint to Bogotá's altitude and rain. The classic Colombia week is Bogotá three nights, Medellín four |
-| [Cartagena](/lists/cartagena-colombia) | 1 hr 30 by flight | The Caribbean-coast walled-city finish. Pairs as the climate-change trip: cold mountain, warm tropical, three or four nights |
-| [Lima](/lists/lima) | 3 hr by flight | The Peruvian capital. Pairs as a wider Andean South America loop, capital-and-capital before adding Cuzco or Cartagena |
 
 ## On this page
 

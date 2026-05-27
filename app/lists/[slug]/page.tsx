@@ -36,6 +36,7 @@ import { fetchPersonalPhotosBySlugs } from '@/lib/personalPhotos';
 import { getPost, getPostsForScope } from '@/lib/posts';
 import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
 import FaqBlock from '@/components/list-blocks/FaqBlock';
+import PairsWithBlock from '@/components/list-blocks/PairsWithBlock';
 import RouteMapBlock from '@/components/list-blocks/RouteMapBlock';
 import RelatedStrip, { type RelatedItem } from '@/components/list-blocks/RelatedStrip';
 
@@ -381,6 +382,7 @@ export default async function ListPage({ params }: Props) {
   const faqs = content?.faqs ?? [];
   const guideCards = content?.guideCards ?? null;
   const routeMapKey = content?.routeMap ?? null;
+  const pairsWith = content?.pairsWith ?? null;
 
   // Day-trips cross-link. When the guide carries an authored day_trips:
   // block that clears the substance gate (>=3 trips, the same threshold
@@ -532,13 +534,34 @@ export default async function ListPage({ params }: Props) {
             authors get headings, lists, links, blockquotes, etc. When the
             body references pins with personal photos, those photos are
             spliced in as <figure> blocks after first mention (see
-            renderListBodyWithPinPhotos in lib/content.ts). */}
-        {renderedBodyHtml && (
-          <div
-            className="post-prose mt-5 max-w-prose"
-            dangerouslySetInnerHTML={{ __html: renderedBodyHtml }}
-          />
-        )}
+            renderListBodyWithPinPhotos in lib/content.ts).
+            When pairsWith is set we split the rendered HTML at the first
+            <h2> (typically the "On this page" TOC) and inject the chip
+            block between the intro paragraphs and the rest of the body. */}
+        {renderedBodyHtml && (() => {
+          const firstH2 = renderedBodyHtml.search(/<h2\b/);
+          if (pairsWith && firstH2 > 0) {
+            return (
+              <>
+                <div
+                  className="post-prose mt-5 max-w-prose"
+                  dangerouslySetInnerHTML={{ __html: renderedBodyHtml.slice(0, firstH2) }}
+                />
+                <PairsWithBlock data={pairsWith} />
+                <div
+                  className="post-prose mt-8 max-w-prose"
+                  dangerouslySetInnerHTML={{ __html: renderedBodyHtml.slice(firstH2) }}
+                />
+              </>
+            );
+          }
+          return (
+            <div
+              className="post-prose mt-5 max-w-prose"
+              dangerouslySetInnerHTML={{ __html: renderedBodyHtml }}
+            />
+          );
+        })()}
 
         {/* Opt-in blocks. Each one renders only when its frontmatter is
             present — adding a `faqs:` to a list's .md file lights up the

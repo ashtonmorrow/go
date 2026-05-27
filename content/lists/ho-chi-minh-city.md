@@ -1,88 +1,71 @@
 ---
 indexable: false
 featured: true
-title: "Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1"
-headline: "Ho Chi Minh City, Saigon at full speed"
-description: "My Ho Chi Minh City travel guide. The Vietnam e-visa, where to stay in District 1, the Saigon craft-beer crawl, and a one-day cultural circuit."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Ho Chi Minh City travel guide: visas, the craft beer crawl, and Saigon district 1'
+headline: 'Ho Chi Minh City, Saigon at full speed'
+description: 'My Ho Chi Minh City travel guide. The Vietnam e-visa, where to stay in District 1, the Saigon craft-beer crawl, and a one-day cultural circuit.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Ho Chi Minh City
-  intro: HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of pace. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centerpiece evening.
+  intro: 'HCMC is hot, loud, full of motorbikes, and unusually good for craft beer. Most western visitors need an e-visa, base in District 1, and underestimate the day-of pace. Plan the visa three business days ahead, stay near the river, and treat the beer crawl as the centerpiece evening.'
   cards:
-    - title: Get the e-visa, not from a middleman
+    - title: 'Get the e-visa, not from a middleman'
       body: Vietnam offers 30-day single entry ($25) and 90-day multiple entry ($50) e-visas. The application takes 3 business days. Use the official Government of Vietnam portal at evisa.gov.vn. There are many lookalike sites charging two to three times more for the same thing.
     - title: Stay in District 1
-      body: Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. The InterContinental Saigon is the central family pick, and small boutique 4-stars in District 1 run $30 to $75 a night. Vinpearl Landmark 81 is the view splurge, but sits in Binh Thanh, a 10-minute Grab from central District 1.
+      body: 'Walking distance to Ben Thanh Market, Notre-Dame Cathedral, the Opera House, and the start of the beer crawl. The InterContinental Saigon is the central family pick, and small boutique 4-stars in District 1 run $30 to $75 a night. Vinpearl Landmark 81 is the view splurge, but sits in Binh Thanh, a 10-minute Grab from central District 1.'
     - title: Do the craft beer crawl in one evening
-      body: Heart of Darkness, Pasteur Street, Belgo, East West Brewing, all within walking distance in District 1. Start at HOD with the cucumber pils because of the heat, eat at one of the early stops, finish at Ben Nghe Street Food Market.
+      body: 'Heart of Darkness, Pasteur Street, Belgo, East West Brewing, all within walking distance in District 1. Start at HOD with the cucumber pils because of the heat, eat at one of the early stops, finish at Ben Nghe Street Food Market.'
     - title: One day is the culture day
       body: Reunification Palace + War Remnants Museum + Notre-Dame + Central Post Office + Ben Thanh Market is a tight one-day circuit on foot. Cu Chi Tunnels is the half-day add. Mekong Delta is its own overnight.
-
 faqs:
   - q: Do I need a visa for Vietnam?
-    a: Most western visitors do. Use the official Government of Vietnam e-visa portal at evisa.gov.vn. The 30-day single-entry visa is $25 and the 90-day multiple-entry is $50. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites. They charge two to three times the official rate for the same e-visa.
+    a: 'Most western visitors do. Use the official Government of Vietnam e-visa portal at evisa.gov.vn. The 30-day single-entry visa is $25 and the 90-day multiple-entry is $50. Processing is 3 business days, so do not file the night before you fly. Avoid third-party "visa service" sites. They charge two to three times the official rate for the same e-visa.'
   - q: Where should I stay in HCMC?
-    a: District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the view splurge and has a strong hotel breakfast. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.
+    a: 'District 1, almost always. The cultural attractions, the craft beer crawl, the Opera House, Ben Thanh Market, and the river are all walkable from there. Vinpearl Landmark 81 (~$160/night) is the view splurge and has a strong hotel breakfast. InterContinental Saigon ($100ish) is the staid family pick near Book Street. There is also a deep bench of 4-star boutiques and serviced apartments at $30 to $75 a night.'
   - q: Is Saigon good for craft beer?
-    a: Yes. The scene is dense, the breweries are within walking distance of each other in District 1, the prices are reasonable, and the quality is high. Heart of Darkness, Pasteur Street, Belgo, East West, and 7 Bridges are the names you will see most. The one-evening crawl below covers the four big ones.
+    a: 'Yes. The scene is dense, the breweries are within walking distance of each other in District 1, the prices are reasonable, and the quality is high. Heart of Darkness, Pasteur Street, Belgo, East West, and 7 Bridges are the names you will see most. The one-evening crawl below covers the four big ones.'
   - q: How do I get from Tan Son Nhat (SGN) to District 1?
-    a: Grab is the answer. Around $5 to $10 to most District 1 hotels, 20 to 40 minutes depending on traffic. Avoid the airport taxi touts in arrivals. Official metered taxis (Vinasun, Mai Linh) are fine if you walk to the rank, but Grab is easier with luggage. Bus 109 runs to Ben Thanh for under $1 if you are traveling light.
+    a: 'Grab is the answer. Around $5 to $10 to most District 1 hotels, 20 to 40 minutes depending on traffic. Avoid the airport taxi touts in arrivals. Official metered taxis (Vinasun, Mai Linh) are fine if you walk to the rank, but Grab is easier with luggage. Bus 109 runs to Ben Thanh for under $1 if you are traveling light.'
   - q: Is it safe to walk around at night?
-    a: Yes for District 1, with normal city common sense. Watch crossings. Pedestrians have right of way only in theory. Walk slowly and predictably so the motorbikes can flow around you. Phones snatched from hands by passing scooters is the petty crime to actually watch for, not muggings.
-
+    a: 'Yes for District 1, with normal city common sense. Watch crossings. Pedestrians have right of way only in theory. Walk slowly and predictably so the motorbikes can flow around you. Phones snatched from hands by passing scooters is the petty crime to actually watch for, not muggings.'
 related:
   city: ho-chi-minh-city
   country: vietnam
-
 topics:
   - festivals
   - nightlife
   - day-trips
-
 day_trips:
-  intro: HCMC is the base for two day trips, plus the Mekong Delta as a separate overnight rather than a day excursion. The famous trip-tour-bus loop misleads here, the better Mekong is a 1- or 2-night stretch.
+  intro: 'HCMC is the base for two day trips, plus the Mekong Delta as a separate overnight rather than a day excursion. The famous trip-tour-bus loop misleads here, the better Mekong is a 1- or 2-night stretch.'
   trips:
     - name: Cu Chi Tunnels
       travel: About 1 hr 30 each way by van tour
-      summary: The Viet Cong tunnel network from the war, with crawl-through sections, weapons demonstrations, and a working booby-trap display. Most tours run via Ben Dinh (less crowded) rather than Ben Duoc. Half-day to full-day. Wear clothes you can crawl in.
+      summary: 'The Viet Cong tunnel network from the war, with crawl-through sections, weapons demonstrations, and a working booby-trap display. Most tours run via Ben Dinh (less crowded) rather than Ben Duoc. Half-day to full-day. Wear clothes you can crawl in.'
       pin: ben-dinh-tunnels
     - name: Vung Tau
       travel: About 2 hr each way by hydrofoil or car
-      summary: The beach town on the South China Sea, with the giant Christ of Vung Tau statue (the largest in Asia). Long day or 1-night stretch. Not the best Vietnam beach but the closest to HCMC.
-    - name: Mekong Delta (Cai Be, Can Tho)
-      travel: About 3 hr each way, best as 1 or 2 nights
-      summary: The river-life experience, with the floating markets at dawn, the homestay nights on the river, and the rice-noodle workshops. Day trips that promise "Mekong from HCMC" mostly land at My Tho, which is the least interesting option. Real Mekong needs an overnight.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews.
-# - hero_image is empty. Pick one in /admin/lists/ho-chi-minh-city.
-# - Pin slug fixed 2026-05-13: war-remnants-musem → war-remnants-museum.
-# - Ben Dinh vs Ben Duoc: body now flags the Ben Dinh entry. Pin
-#   slug ben-dinh-tunnels is specific to that complex. If a Ben Duoc
-#   pin gets created, link both from the Cu Chi paragraph.
-# - E-visa portal: evisa.gov.vn is the canonical 2026 URL. The older
-#   evisa.xuatnhapcanh.gov.vn still works but is being phased out.
-# - Vinpearl Landmark 81 is in Binh Thanh district, not District 1
-#   proper. Body now flags this. Previous version misled readers.
-# - Verify the 30-day ($25) and 90-day ($50) e-visa prices at
-#   evisa.gov.vn before each republish. Rates have moved historically.
+      summary: 'The beach town on the South China Sea, with the giant Christ of Vung Tau statue (the largest in Asia). Long day or 1-night stretch. Not the best Vietnam beach but the closest to HCMC.'
+    - name: 'Mekong Delta (Cai Be, Can Tho)'
+      travel: 'About 3 hr each way, best as 1 or 2 nights'
+      summary: 'The river-life experience, with the floating markets at dawn, the homestay nights on the river, and the rice-noodle workshops. Day trips that promise "Mekong from HCMC" mostly land at My Tho, which is the least interesting option. Real Mekong needs an overnight.'
+pairs_with:
+  - city: hoi-an
+    travel: 1 hr 15 by domestic flight to Da Nang plus 45 min by car
+    why: The Vietnamese lantern town and the central-coast counterpoint to Saigon's motorbike-and-skyscraper version. Three nights here is the second leg of a Vietnam week
+  - city: bangkok
+    travel: 1 hr 30 by flight
+    why: 'The other Southeast Asian capital. Pairs as the Mekong-region trip, Saigon plus Bangkok, with Cambodia (Phnom Penh, Siem Reap) potentially in the middle'
+  - city: singapore
+    travel: 2 hr by flight
+    why: 'The efficient-city counterpart. Pairs as the contrast trip more than the same trip, three nights each'
 ---
 
 [Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to the people who live there, is the easiest Vietnam city to plan and the easiest to underestimate. It is hot, motorbike-saturated, and a far better craft-beer town than first-timers expect. The culture fits in a day, the beer is its own evening, and the food is why you come back.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Hoi An](/lists/hoi-an) | 1 hr 15 by domestic flight to Da Nang plus 45 min by car | The Vietnamese lantern town and the central-coast counterpoint to Saigon's motorbike-and-skyscraper version. Three nights here is the second leg of a Vietnam week |
-| [Bangkok](/lists/bangkok) | 1 hr 30 by flight | The other Southeast Asian capital. Pairs as the Mekong-region trip, Saigon plus Bangkok, with Cambodia (Phnom Penh, Siem Reap) potentially in the middle |
-| [Singapore](/lists/singapore) | 2 hr by flight | The efficient-city counterpart. Pairs as the contrast trip more than the same trip, three nights each |
 
 ## On this page
 

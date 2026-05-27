@@ -1,72 +1,57 @@
 ---
 indexable: false
 featured: true
-title: "Vienna travel guide: ball season, Christmas markets, and the coffee houses"
-headline: "Vienna still reads like an imperial capital"
-description: "My Vienna travel guide. The winter ball season, the Christmas markets, the coffee houses, where to stay near the Ring, and Therme Wien."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Vienna travel guide: ball season, Christmas markets, and the coffee houses'
+headline: Vienna still reads like an imperial capital
+description: 'My Vienna travel guide. The winter ball season, the Christmas markets, the coffee houses, where to stay near the Ring, and Therme Wien.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: vienna
   country: austria
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Vienna?
-    a: Three to four days covers the Habsburg circuit (Hofburg, Schönbrunn, the Belvedere with Klimt's Kiss), a coffee-house afternoon in the Innere Stadt, a Mozart or opera evening, and one or two of the bigger museums (Kunsthistorisches and MuseumsQuartier). A fifth day adds a Wachau wine-valley or Bratislava day trip.
+    a: 'Three to four days covers the Habsburg circuit (Hofburg, Schönbrunn, the Belvedere with Klimt''s Kiss), a coffee-house afternoon in the Innere Stadt, a Mozart or opera evening, and one or two of the bigger museums (Kunsthistorisches and MuseumsQuartier). A fifth day adds a Wachau wine-valley or Bratislava day trip.'
   - q: How do I get from Vienna Airport to the center?
     a: The S7 commuter train runs from VIE to Wien Mitte in 25 minutes for €4.30 with a city ticket. The CAT (City Airport Train) is faster (16 min) but €15. Taxi or Uber is €40 to €50 to most central hotels. Bolt also works in Vienna.
   - q: Where should I stay in Vienna?
-    a: Innere Stadt (the 1st district) for first-time visitors who want to walk to the Hofburg, Stephansdom, and the State Opera. Neubau (7th district) and Mariahilf (6th) are the quieter, more residential alternatives with the bar-and-restaurant density. Avoid hotels in the outer Gürtel ring; technically still central by metro but a worse street feel.
+    a: 'Innere Stadt (the 1st district) for first-time visitors who want to walk to the Hofburg, Stephansdom, and the State Opera. Neubau (7th district) and Mariahilf (6th) are the quieter, more residential alternatives with the bar-and-restaurant density. Avoid hotels in the outer Gürtel ring; technically still central by metro but a worse street feel.'
   - q: Do I need to book the Vienna State Opera?
-    a: The Wiener Staatsoper sells standing-room tickets (Stehplätze) for €13 to €18 on the day of the performance from the side box office, starting 80 minutes before curtain. The view from the parterre standing is excellent. For seats, book at wiener-staatsoper.at four to six weeks ahead in season. Dress is smart but not formal.
-
+    a: 'The Wiener Staatsoper sells standing-room tickets (Stehplätze) for €13 to €18 on the day of the performance from the side box office, starting 80 minutes before curtain. The view from the parterre standing is excellent. For seats, book at wiener-staatsoper.at four to six weeks ahead in season. Dress is smart but not formal.'
 day_trips:
   intro: Vienna sits an hour from another national capital and at the mouth of a Danube wine valley. The day trips run from a spa town to a Slovak old town to abbeys in the woods.
   trips:
     - name: Bratislava
-      travel: About 1 hr by train, or 1 hr 15 by Danube boat
-      summary: The Slovak capital, a compact old town under a blocky white castle, in a different country and easily seen in a day.
+      travel: 'About 1 hr by train, or 1 hr 15 by Danube boat'
+      summary: 'The Slovak capital, a compact old town under a blocky white castle, in a different country and easily seen in a day.'
     - name: The Wachau Valley
       travel: About 1 to 1.5 hr by train to Melk or Krems
-      summary: A UNESCO stretch of the Danube lined with vineyards and apricot orchards, anchored by the golden baroque abbey at Melk and the wine town of Dürnstein.
+      summary: 'A UNESCO stretch of the Danube lined with vineyards and apricot orchards, anchored by the golden baroque abbey at Melk and the wine town of Dürnstein.'
     - name: Baden bei Wien
       travel: About 45 min by train or the local tram
-      summary: A genteel spa town at the edge of the Vienna Woods, with sulfur baths, a casino, a rose garden, and long Beethoven associations.
+      summary: 'A genteel spa town at the edge of the Vienna Woods, with sulfur baths, a casino, a rose garden, and long Beethoven associations.'
     - name: The Vienna Woods
       travel: About 45 min to 1 hr by train and bus
-      summary: The forested hills southwest of the city, with the Cistercian abbey at Heiligenkreuz and the former imperial hunting lodge at Mayerling.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/vienna via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+      summary: 'The forested hills southwest of the city, with the Cistercian abbey at Heiligenkreuz and the former imperial hunting lodge at Mayerling.'
+pairs_with:
+  - city: budapest
+    travel: 2 hr 30 by direct Railjet train
+    why: The Habsburg twin capital. The most natural city pair in Central Europe. Three nights each works as a clean week
+  - city: prague
+    travel: 4 hr by direct Railjet
+    why: The third Habsburg-rim capital. Vienna in the middle of a Prague-Vienna-Budapest loop is the cleanest seven-to-ten-day trip in this region
+  - city: munich
+    travel: 4 hr by direct Railjet
+    why: 'Bavaria''s capital, the closest big German city. Pairs as Vienna two to three nights, then Munich for the beer-hall side and the Alps'
 ---
 
 [Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the main sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Budapest](/lists/budapest) | 2 hr 30 by direct Railjet train | The Habsburg twin capital. The most natural city pair in Central Europe. Three nights each works as a clean week |
-| [Prague](/lists/prague) | 4 hr by direct Railjet | The third Habsburg-rim capital. Vienna in the middle of a Prague-Vienna-Budapest loop is the cleanest seven-to-ten-day trip in this region |
-| [Munich](/lists/munich) | 4 hr by direct Railjet | Bavaria's capital, the closest big German city. Pairs as Vienna two to three nights, then Munich for the beer-hall side and the Alps |
 
 ## On this page
 

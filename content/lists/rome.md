@@ -1,76 +1,61 @@
 ---
 indexable: false
 featured: true
-title: "Rome travel guide: where to eat the real pasta and getting in from Fiumicino"
-headline: "Rome really is as good as advertised"
-description: "My Rome travel guide. The Leonardo Express from FCO, where to stay near the center, the real pasta spots, and the four Roman pastas to track down."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Rome travel guide: where to eat the real pasta and getting in from Fiumicino'
+headline: Rome really is as good as advertised
+description: 'My Rome travel guide. The Leonardo Express from FCO, where to stay near the center, the real pasta spots, and the four Roman pastas to track down.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: rome
   country: italy
-
 topics:
   - festivals
   - scams-safety
-
 faqs:
   - q: How many days do I need in Rome?
-    a: Three full days covers the headline circuit (Colosseum + Forum, Vatican, Pantheon area, Trastevere) without rushing. Four to five days adds the museums (Borghese Gallery needs advance booking), a slower walk through Testaccio or Aventine, and an Ostia Antica or Tivoli day trip. Rome is dense enough that a week still leaves things for a return.
+    a: 'Three full days covers the headline circuit (Colosseum + Forum, Vatican, Pantheon area, Trastevere) without rushing. Four to five days adds the museums (Borghese Gallery needs advance booking), a slower walk through Testaccio or Aventine, and an Ostia Antica or Tivoli day trip. Rome is dense enough that a week still leaves things for a return.'
   - q: How do I get from Fiumicino to the center?
-    a: The Leonardo Express runs from FCO to Termini in 32 minutes for €14, every 15 minutes. It's the cleanest option with luggage. Taxis are a fixed €55 to anywhere inside the Aurelian walls and faster door-to-door at off-peak, but stuck in traffic during morning and evening rush. The local FL1 commuter train is cheaper (~€8) but stops everywhere and is slow.
+    a: 'The Leonardo Express runs from FCO to Termini in 32 minutes for €14, every 15 minutes. It''s the cleanest option with luggage. Taxis are a fixed €55 to anywhere inside the Aurelian walls and faster door-to-door at off-peak, but stuck in traffic during morning and evening rush. The local FL1 commuter train is cheaper (~€8) but stops everywhere and is slow.'
   - q: Where should I stay in Rome for a first visit?
-    a: Stay near the Pantheon, around Campo de' Fiori, or in the Monti neighborhood east of Termini. All three put the major sights within walking distance. Trastevere is the photogenic option across the river, slightly less central. Avoid hotels clustered immediately around Termini station, which is convenient on paper but a worse street feel.
+    a: 'Stay near the Pantheon, around Campo de'' Fiori, or in the Monti neighborhood east of Termini. All three put the major sights within walking distance. Trastevere is the photogenic option across the river, slightly less central. Avoid hotels clustered immediately around Termini station, which is convenient on paper but a worse street feel.'
   - q: Do I need to book the Colosseum and Vatican Museums in advance?
-    a: Yes for both. Colosseum tickets sell out the day-of in peak months, book at coopculture.it (the official site) two to four weeks ahead. Vatican Museums sell out similar, book at museivaticani.va (official) for €17 plus the €5 booking fee. The walk-up line at the Vatican can run two-plus hours in summer. Avoid the third-party "skip the line" sellers; the official site IS the skip-the-line.
-
+    a: 'Yes for both. Colosseum tickets sell out the day-of in peak months, book at coopculture.it (the official site) two to four weeks ahead. Vatican Museums sell out similar, book at museivaticani.va (official) for €17 plus the €5 booking fee. The walk-up line at the Vatican can run two-plus hours in summer. Avoid the third-party "skip the line" sellers; the official site IS the skip-the-line.'
 day_trips:
-  intro: Rome is ringed by day trips the capital itself can overshadow. Renaissance water gardens, a Roman port frozen in time, hill-town white wine, and an Umbrian cathedral town are all inside about an hour by train.
+  intro: 'Rome is ringed by day trips the capital itself can overshadow. Renaissance water gardens, a Roman port frozen in time, hill-town white wine, and an Umbrian cathedral town are all inside about an hour by train.'
   trips:
     - name: Tivoli
       travel: About 1 hr by regional train or bus
-      summary: Two UNESCO sites in one town. Villa d'Este for its Renaissance fountain gardens, Hadrian's Villa for the sprawling ruins of the emperor's country estate.
+      summary: 'Two UNESCO sites in one town. Villa d''Este for its Renaissance fountain gardens, Hadrian''s Villa for the sprawling ruins of the emperor''s country estate.'
     - name: Ostia Antica
       travel: About 40 min on the Roma-Lido train
-      summary: The remarkably intact ruins of Rome's ancient port city. Quieter and far closer than Pompeii, with streets, baths, and a theater you can walk freely.
+      summary: 'The remarkably intact ruins of Rome''s ancient port city. Quieter and far closer than Pompeii, with streets, baths, and a theater you can walk freely.'
     - name: Castelli Romani
       travel: 40 to 60 min by regional train
-      summary: The hill towns south of Rome, including Frascati for crisp white wine and Castel Gandolfo for the lakeside former papal summer palace.
+      summary: 'The hill towns south of Rome, including Frascati for crisp white wine and Castel Gandolfo for the lakeside former papal summer palace.'
     - name: Orvieto
       travel: About 1 hr 15 by train
-      summary: An Umbrian town on a volcanic outcrop, crowned by one of the most dramatic striped Gothic cathedral facades in Italy.
+      summary: 'An Umbrian town on a volcanic outcrop, crowned by one of the most dramatic striped Gothic cathedral facades in Italy.'
     - name: Naples and Pompeii
-      travel: About 1 hr 10 by high-speed train to Naples, then the Circumvesuviana to Pompeii
-      summary: A long but doable day. The Roman city buried by Vesuvius, paired with pizza in the city that invented it.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
-#   than from a personal brief, so the voice pass is the prerequisite
-#   before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/rome via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
-# - Pace note and arrival options are the standard shape. Rewrite to
-#   match Mike's voice on each guide as time permits.
+      travel: 'About 1 hr 10 by high-speed train to Naples, then the Circumvesuviana to Pompeii'
+      summary: 'A long but doable day. The Roman city buried by Vesuvius, paired with pizza in the city that invented it.'
+pairs_with:
+  - city: venezia
+    travel: 3 hr 45 by direct Frecciarossa
+    why: 'The other top-tier Italian destination. Rome-Venice on the high-speed line is the classic Italy week, four nights and three.'
+  - city: verona
+    travel: 3 hr 15 by direct Frecciarossa
+    why: Smaller Italian stop with the Roman arena and the medieval old town. Pairs as a single Verona overnight between Rome and Venice
+  - city: milano
+    travel: 3 hr by direct Frecciarossa
+    why: 'The northern Italian counterweight to Rome, the design-and-finance city. Pairs as the contrast trip more than the same trip'
 ---
 
 [Rome](/cities/rome) built the template every other European capital copies, and the ancient sights really are as good as advertised. The other half of the trip is the Roman pasta canon, which most first-timers miss by booking tourist restaurants near the monuments. A long weekend minimum. Here's how I'd do it right.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Venice](/lists/venezia) | 3 hr 45 by direct Frecciarossa | The other top-tier Italian destination. Rome-Venice on the high-speed line is the classic Italy week, four nights and three. |
-| [Verona](/lists/verona) | 3 hr 15 by direct Frecciarossa | Smaller Italian stop with the Roman arena and the medieval old town. Pairs as a single Verona overnight between Rome and Venice |
-| [Milano](/lists/milano) | 3 hr by direct Frecciarossa | The northern Italian counterweight to Rome, the design-and-finance city. Pairs as the contrast trip more than the same trip |
 
 ## On this page
 

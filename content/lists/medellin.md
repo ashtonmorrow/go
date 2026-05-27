@@ -1,54 +1,42 @@
 ---
 indexable: false
 featured: true
-title: "Medellín travel guide: Feria de las Flores, the cable cars, and El Poblado"
-headline: "Medellín, the city of eternal spring"
-description: "My Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the Metrocable cars, and getting in from MDE."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Medellín travel guide: Feria de las Flores, the cable cars, and El Poblado'
+headline: 'Medellín, the city of eternal spring'
+description: 'My Medellín travel guide. Feria de las Flores in August, the Alumbrados Christmas lights, El Poblado, the Metrocable cars, and getting in from MDE.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 related:
   city: medellin
   country: colombia
-
 topics:
   - festivals
-
 faqs:
   - q: How many days do I need in Medellín?
-    a: Three to four days for the city itself (El Poblado base, Comuna 13 graffiti tour, the Metrocable up to Parque Arví, Plaza Botero, a brunch at Repeat). A fifth or sixth day adds Guatapé and El Peñol rock, the coffee region (Salento), or a longer Antioquia loop.
+    a: 'Three to four days for the city itself (El Poblado base, Comuna 13 graffiti tour, the Metrocable up to Parque Arví, Plaza Botero, a brunch at Repeat). A fifth or sixth day adds Guatapé and El Peñol rock, the coffee region (Salento), or a longer Antioquia loop.'
   - q: How do I get from Medellín José María Córdova to the city?
-    a: Uber or Cabify is the practical default at COP 80,000 to 120,000 (USD $19 to $29) and 45 to 75 minutes. The road is mountain switchbacks; a comfortable car ride is worth the price. The Combuses shared minivan is COP 25,000 per person and runs every 30 minutes to El Poblado. The fixed-fare white airport taxi is COP 90,000.
+    a: 'Uber or Cabify is the practical default at COP 80,000 to 120,000 (USD $19 to $29) and 45 to 75 minutes. The road is mountain switchbacks; a comfortable car ride is worth the price. The Combuses shared minivan is COP 25,000 per person and runs every 30 minutes to El Poblado. The fixed-fare white airport taxi is COP 90,000.'
   - q: Where should I stay in Medellín?
-    a: El Poblado, almost always. The neighborhood is where the bars, restaurants, and most chain hotels sit. Inside El Poblado, Provenza is the densest restaurant-and-bar strip, Manila is quieter and more residential. Laureles is the local-feel alternative one metro stop away with a stronger neighborhood food scene. Avoid the historic center for sleeping; fine for day visits.
+    a: 'El Poblado, almost always. The neighborhood is where the bars, restaurants, and most chain hotels sit. Inside El Poblado, Provenza is the densest restaurant-and-bar strip, Manila is quieter and more residential. Laureles is the local-feel alternative one metro stop away with a stronger neighborhood food scene. Avoid the historic center for sleeping; fine for day visits.'
   - q: Is Medellín safe in 2026?
-    a: The tourist neighborhoods (El Poblado, Laureles, Envigado) are broadly safe by day and into the evening. The historic center is fine to visit during the day and questionable after dark. Phone snatching by passing scooters is the petty-crime pattern. Use Uber or Cabify rather than hailing taxis on the street. The "drink-spike with scopolamine" warnings travelers hear about are real but cluster around tourist bars where the buyer accepts a drink from a stranger; pour your own and watch it.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. This scaffold was generated
-#   in the May 2026 second bulk-scaffold pass driven by Mike's pin set
-#   rather than from a personal brief, so the voice pass is the
-#   prerequisite before flipping indexable.
-# - featured: true so the page surfaces as a Guide card on /lists.
-# - hero_image is empty. Pick one in /admin/lists/medellin via the picker.
-# - Where-to-stay and Where-to-eat tables are populated from the pinned
-#   hotels and restaurants that already carry a rating. The rest of the
-#   restaurant pin set renders below this prose on the cards/map view.
+    a: 'The tourist neighborhoods (El Poblado, Laureles, Envigado) are broadly safe by day and into the evening. The historic center is fine to visit during the day and questionable after dark. Phone snatching by passing scooters is the petty-crime pattern. Use Uber or Cabify rather than hailing taxis on the street. The "drink-spike with scopolamine" warnings travelers hear about are real but cluster around tourist bars where the buyer accepts a drink from a stranger; pour your own and watch it.'
+pairs_with:
+  - city: bogota
+    travel: 1 hr by domestic flight
+    why: 'The Colombian capital, the cold-mountain counterpoint to Medellín''s warm valley. The classic Colombia week is Medellín four nights, Bogotá three'
+  - city: cartagena-colombia
+    travel: 1 hr 15 by flight
+    why: The walled Caribbean city on the coast. Pairs as Medellín plus beach finish on a Colombia trip
+  - city: panama
+    travel: 1 hr 30 by flight
+    why: 'The Panamanian capital and the canal. Pairs Medellín with Central America for a wider trip, often as a multi-country airline routing'
 ---
 
 [Medellín](/cities/medellin) is the Colombian city of eternal spring, 22 to 28°C all year, and the rebuilt civic story everyone has heard about, with cable cars climbing to the hillside neighborhoods. Most people stay in El Poblado. Three or four days for the city, more with the coffee region. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Bogotá](/lists/bogota) | 1 hr by domestic flight | The Colombian capital, the cold-mountain counterpoint to Medellín's warm valley. The classic Colombia week is Medellín four nights, Bogotá three |
-| [Cartagena](/lists/cartagena-colombia) | 1 hr 15 by flight | The walled Caribbean city on the coast. Pairs as Medellín plus beach finish on a Colombia trip |
-| [Panama City](/lists/panama) | 1 hr 30 by flight | The Panamanian capital and the canal. Pairs Medellín with Central America for a wider trip, often as a multi-country airline routing |
 
 ## On this page
 

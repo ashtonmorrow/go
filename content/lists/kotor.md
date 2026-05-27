@@ -1,154 +1,77 @@
 ---
 indexable: false
 featured: true
-title: "Kotor travel guide: where to stay around the bay, the walls climb, and a day in the old town"
-headline: "Kotor, the bay, the walls, and the climb"
-description: "My Kotor travel guide. Basing around the bay in Perast or Tivat, the old town, climbing the walls early, and dodging the cruise-ship crowds."
-published: 2026-05-12
-updated: 2026-05-12
+title: 'Kotor travel guide: where to stay around the bay, the walls climb, and a day in the old town'
+headline: 'Kotor, the bay, the walls, and the climb'
+description: 'My Kotor travel guide. Basing around the bay in Perast or Tivat, the old town, climbing the walls early, and dodging the cruise-ship crowds.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Kotor
-  intro: Kotor is a UNESCO-listed walled town at the back of a long Adriatic inlet (often called Europe's southernmost fjord) in Montenegro. Stay around the bay, not inside the walls. Visit the old town on a quiet day, climb the walls at sunrise, and avoid the noon-to-4 p.m. cruise window when 6,000 day-passengers crowd the lanes.
+  intro: 'Kotor is a UNESCO-listed walled town at the back of a long Adriatic inlet (often called Europe''s southernmost fjord) in Montenegro. Stay around the bay, not inside the walls. Visit the old town on a quiet day, climb the walls at sunrise, and avoid the noon-to-4 p.m. cruise window when 6,000 day-passengers crowd the lanes.'
   cards:
-    - title: Stay around the bay, see the town on a day
-      body: The old town itself is small and can be exhausted in a day. The bay has several other bases (Herceg Novi at the mouth, Tivat across the water, Perast halfway in) which all read calmer in the evenings. Pick one to sleep, and budget one full day to walk Kotor's walls, churches, and lanes before the next ship docks.
-    - title: Walls climb at 7 a.m., not 11
-      body: The St John Fortress walls climb is the main experience and the one most worth timing well. In summer you are climbing 1,355 steps in heat that gets uncomfortable fast, and the lower switchbacks fill with cruise traffic by mid-morning. The kind move on yourself is to start at first light, climb in the cool, and be down with a coffee in hand before the day-tripper queues start. Pay the small entry fee at the main gate. It supports the site. A back-trail option through Špiljari exists if you would rather skip the fee, but the official route is the better walk and the maintenance money is worth it.
+    - title: 'Stay around the bay, see the town on a day'
+      body: 'The old town itself is small and can be exhausted in a day. The bay has several other bases (Herceg Novi at the mouth, Tivat across the water, Perast halfway in) which all read calmer in the evenings. Pick one to sleep, and budget one full day to walk Kotor''s walls, churches, and lanes before the next ship docks.'
+    - title: 'Walls climb at 7 a.m., not 11'
+      body: 'The St John Fortress walls climb is the main experience and the one most worth timing well. In summer you are climbing 1,355 steps in heat that gets uncomfortable fast, and the lower switchbacks fill with cruise traffic by mid-morning. The kind move on yourself is to start at first light, climb in the cool, and be down with a coffee in hand before the day-tripper queues start. Pay the small entry fee at the main gate. It supports the site. A back-trail option through Špiljari exists if you would rather skip the fee, but the official route is the better walk and the maintenance money is worth it.'
     - title: Cruise ships set the rhythm
-      body: Kotor's cruise pier sits a hundred meters from the old town walls and a typical summer day has two or three large ships in the bay at once. The town is calm at 7 a.m., bedlam from 10 a.m. to 4 p.m., then empties out for the evening. Plan the walls climb and the church visits inside the calm windows. Come back for dinner.
+      body: 'Kotor''s cruise pier sits a hundred meters from the old town walls and a typical summer day has two or three large ships in the bay at once. The town is calm at 7 a.m., bedlam from 10 a.m. to 4 p.m., then empties out for the evening. Plan the walls climb and the church visits inside the calm windows. Come back for dinner.'
     - title: The cats are real
-      body: Kotor has been a cat city for centuries. The medieval port welcomed cats to control ship rats, the bloodline never left, and there are now more visible street cats in the lanes than in any other comparable old town. The small Cats Museum near Trg Gospa od Anđela is a five-minute stop on the way through.
-
+      body: 'Kotor has been a cat city for centuries. The medieval port welcomed cats to control ship rats, the bloodline never left, and there are now more visible street cats in the lanes than in any other comparable old town. The small Cats Museum near Trg Gospa od Anđela is a five-minute stop on the way through.'
 faqs:
   - q: How long should I plan for in Kotor itself?
-    a: One full day for the old town and the walls, plus another half-day if you are slow-walking the bay villages or driving the coast road. Stretch it to three or four nights if you are using a bay base for swimming, day trips up to Lovćen National Park (the road switchbacks and the Njegoš Mausoleum), and a Perast boat across to Our Lady of the Rocks. The town itself does not need more than a day.
+    a: 'One full day for the old town and the walls, plus another half-day if you are slow-walking the bay villages or driving the coast road. Stretch it to three or four nights if you are using a bay base for swimming, day trips up to Lovćen National Park (the road switchbacks and the Njegoš Mausoleum), and a Perast boat across to Our Lady of the Rocks. The town itself does not need more than a day.'
   - q: Where should I stay if I want to avoid the cruise-ship crowds?
-    a: Anywhere on the bay that is not the old town. Iberostar Waves Herceg Novi at the mouth of the bay regularly runs under $100 a night and sits across from Herceg Novi's own old town. The Blue Line bus to Kotor takes about an hour and costs a few euros. Tivat (Regent Porto Montenegro for the luxury end, smaller apartments for less) is the other side of the water and a similar bus ride. Perast halfway up the bay is the photogenic small-village option but is more limited for restaurants and groceries.
+    a: 'Anywhere on the bay that is not the old town. Iberostar Waves Herceg Novi at the mouth of the bay regularly runs under $100 a night and sits across from Herceg Novi''s own old town. The Blue Line bus to Kotor takes about an hour and costs a few euros. Tivat (Regent Porto Montenegro for the luxury end, smaller apartments for less) is the other side of the water and a similar bus ride. Perast halfway up the bay is the photogenic small-village option but is more limited for restaurants and groceries.'
   - q: Do I have to pay to climb the walls?
-    a: There is a fee at the main gate (€8 to €15 depending on the year and the season), and it supports the maintenance of the site. There is also an unofficial back-trail approach that enters the wall system from the Špiljari side and bypasses the kiosk. The path links into the broader Ladder of Kotor trail system north of the town. The fee is small enough that the front-gate route is the right default. The back-trail is the move if you want a longer hike or a sunrise climb before the kiosk opens.
+    a: 'There is a fee at the main gate (€8 to €15 depending on the year and the season), and it supports the maintenance of the site. There is also an unofficial back-trail approach that enters the wall system from the Špiljari side and bypasses the kiosk. The path links into the broader Ladder of Kotor trail system north of the town. The fee is small enough that the front-gate route is the right default. The back-trail is the move if you want a longer hike or a sunrise climb before the kiosk opens.'
   - q: When is the worst time to be in the old town?
     a: 10 a.m. to about 4 p.m. on a day with two or three cruise ships in. The cruise schedule is published. A quick check before you go lets you plan the morning walls climb and an afternoon nap or a swim somewhere on the bay around the busy block. Evenings after the ships leave the town reads differently and is the right time for dinner.
   - q: Is the Kotor food market worth visiting?
-    a: As a visitor stop, yes, with the usual caveats for an old-town market that now serves a heavy cruise traffic. It is small, it has fruit and honey and rakija, and it is a fair gift-shopping stop. For a deeper read on how this market sits inside the wider Balkan green market scene (and where to find the more residents-first ones), the cross-list at /lists/balkan-green-markets covers the region.
-
+    a: 'As a visitor stop, yes, with the usual caveats for an old-town market that now serves a heavy cruise traffic. It is small, it has fruit and honey and rakija, and it is a fair gift-shopping stop. For a deeper read on how this market sits inside the wider Balkan green market scene (and where to find the more residents-first ones), the cross-list at /lists/balkan-green-markets covers the region.'
 related:
   city: kotor
   country: montenegro
-
 topics:
   - festivals
   - markets
   - day-trips
-
 day_trips:
-  intro: Kotor sits at the deep end of the Bay of Kotor, with the rest of the Montenegrin Adriatic and the Lovćen mountain range all inside a single hired-car day. The bus station is a hassle, so a rental or a driver makes the day-trip set work.
+  intro: 'Kotor sits at the deep end of the Bay of Kotor, with the rest of the Montenegrin Adriatic and the Lovćen mountain range all inside a single hired-car day. The bus station is a hassle, so a rental or a driver makes the day-trip set work.'
   trips:
     - name: Perast and Our Lady of the Rocks
       travel: About 20 min by car or local bus from Kotor
-      summary: The Venetian baroque waterfront village 12 km up the bay, with the boat shuttle to the artificial-island church of Our Lady of the Rocks. Half-day, easy.
+      summary: 'The Venetian baroque waterfront village 12 km up the bay, with the boat shuttle to the artificial-island church of Our Lady of the Rocks. Half-day, easy.'
     - name: Lovćen National Park and the Njegoš Mausoleum
       travel: About 1 hr each way by car
-      summary: The black mountain that gave Montenegro its name, with the 461-step climb to the Njegoš Mausoleum at 1,660 m and the wide view back over the bay.
+      summary: 'The black mountain that gave Montenegro its name, with the 461-step climb to the Njegoš Mausoleum at 1,660 m and the wide view back over the bay.'
     - name: Budva and the Adriatic coast
       travel: About 30 min by car or bus
       summary: The walled old town and the Sveti Stefan island view on the Budva coast. More tourist-heavy than Kotor but the beach side is here.
       list: budva
     - name: Cetinje
       travel: About 50 min each way by car
-      summary: The historic Montenegrin royal capital, with the King Nikola Museum and several monasteries. Quieter than the coast, real cultural-history stop.
+      summary: 'The historic Montenegrin royal capital, with the King Nikola Museum and several monasteries. Quieter than the coast, real cultural-history stop.'
     - name: Skadar Lake
       travel: About 1 hr 15 each way
-      summary: The largest lake in the Balkans, on the Albanian border, with the wine country around Virpazar and boat trips through the lily-pad inlets.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. Flip to true after a pass on:
-#   the current Kotor walls entry fee (it moves), the Blue Line bus
-#   schedule frequency (was hourly in 2023 but verify), and the cruise
-#   ship dock distance to the old gate.
-# - featured: true so it sits alongside the destination guides on the
-#   home page (Barcelona, Madrid, Cape Town, etc.).
-# - hero_image is empty. Pick one in /admin/lists/kotor via the picker.
-#   Candidates: the walls climb at sunrise looking down on the old town
-#   and the bay. The Perast-to-Our-Lady-of-the-Rocks boat shot.
-# - related.city is empty because /cities/kotor does not exist yet.
-#   Create the city scaffold and back-fill. First Kotor mention in the
-#   body stays plain text until the city page exists. Swap then.
-#
-# - Pins linked from this scaffold (all confirmed in the atlas):
-#     · kotor-fortress (5/5. The St John Fortress at the top of the
-#       walls climb)
-#     · start-of-the-ladder-of-kotor (5/5. The back-trail approach
-#       Mike referenced. North of the old town in Dobrota. Joins the
-#       Habsburg-era zigzag trail that links into the Špiljari approach
-#       to St John from outside the kiosk)
-#     · iberostar-waves-herceg-novi (5/5. The Njivice property where
-#       Mike has stayed for under $100. Note the DB has a duplicate
-#       "iberostar-herceg-novi" pin without address that should be
-#       merged into this one. Flagged below.)
-#     · regent-porto-montenegro (Tivat luxury option, alternative base)
-#     · cats-museum (the small museum near Trg Gospa od Anđela)
-#     · kotor-food-market (the small green market in the old town.
-#       cross-linked to /lists/balkan-green-markets)
-#     · restaurant-city (5/5. Kotor old town)
-#     · old-hydroelectric-power-plant (5/5. The 1920s plant in the bay)
-#
-# - Cross-link out to /lists/balkan-green-markets in the FAQ and the
-#   market mention in the body. That list already references Kotor
-#   Food Market as a "convenient also visitor-facing" stop. Once the
-#   Kotor scaffold flips indexable, the green-markets list could
-#   reciprocate with a link back. Flagged for the next pass.
-#
-# - Pins that were dupes, merged in the May 2026 cleanup pass driven
-#   by this scaffold (the survivor carried the personal review, address,
-#   and coords. The deletion candidate had no data and was on the
-#   kotor saved_list with a wrong city tag):
-#     · "iberostar-herceg-novi" → "iberostar-waves-herceg-novi". The
-#       2022 brand rebrand introduced the "Waves" sub-brand. The old
-#       slug now 308s via next.config.js legacyPinSlugs.
-#     · "ladder-of-kotor" → "start-of-the-ladder-of-kotor". The
-#       trailhead pin holds Mike's review explaining the bypass-the-fee
-#       use of the route, and is the slug the body of this guide
-#       already links to. Redirect added.
-#
-# - 5/5-rated Kotor and bay pins on the saved_list that did not fit
-#   Mike's dictated narrative but are good candidates if/when this
-#   gets expanded:
-#     · old-hydroelectric-power-plant (covered briefly but more could
-#       go in if expanded to industrial heritage)
-#     · restaurant-city (mentioned in the eat table. Could be expanded)
-#
-# - Pins created or wired in the May 2026 expansion pass:
-#     · perast (new pin for the village. City_names=Perast)
-#     · our-lady-of-the-rocks (existing pin. City_names corrected to
-#       Perast and added to the kotor saved_list, was untagged before)
-#     · lovcen-national-park (new pin for the half-day-out destination
-#       up the switchback road from Kotor. City_names=Cetinje)
-#   All three are indexable:false. Coords approximate. Wired to the
-#   "kotor" saved_list. Verify and flip indexable when reviewed.
-# - Still to verify before flipping indexable:
-#     · The walls fee figure (€8 to €15) is approximate. Verify
-#       against the current municipal page before flipping.
-#     · The Blue Line bus frequency was hourly in 2023. Verify before
-#       the next publish.
-#
-# - Spelling note: British English used throughout (center, neighborhood,
-#   travelers) per the editorial standard for European destinations.
+      summary: 'The largest lake in the Balkans, on the Albanian border, with the wine country around Virpazar and boat trips through the lily-pad inlets.'
+pairs_with:
+  - city: dubrovnik
+    travel: 2 hr by car or bus up the coast
+    why: 'The other Adriatic walled-city stop, same shape of trip in a different country. The pair is the Adriatic loop'
+  - city: tirana
+    travel: 5 hr by car around the bay and down through Albania
+    why: The unaligned Albanian capital and the easy entry into the Albanian Riviera. Pairs with Kotor as the next leg of a wider Balkans trip
+  - city: saranda-ksamil
+    travel: 6 hr by car along the coast
+    why: 'The Albanian Riviera, crystal water at half the price of Greece. Natural southward continuation of the Adriatic trip'
 ---
 
 Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Europe's southernmost fjord, and the walled medieval town at the back of it, overrun by cruise ships from mid-morning to late afternoon. Base out on the bay, see the town outside cruise hours, climb the walls early. Two or three days. Here's the shape.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Dubrovnik](/lists/dubrovnik) | 2 hr by car or bus up the coast | The other Adriatic walled-city stop, same shape of trip in a different country. The pair is the Adriatic loop |
-| [Tirana](/lists/tirana) | 5 hr by car around the bay and down through Albania | The unaligned Albanian capital and the easy entry into the Albanian Riviera. Pairs with Kotor as the next leg of a wider Balkans trip |
-| [Saranda and Ksamil](/lists/saranda-ksamil) | 6 hr by car along the coast | The Albanian Riviera, crystal water at half the price of Greece. Natural southward continuation of the Adriatic trip |
 
 ## On this page
 

@@ -1,41 +1,38 @@
 ---
 indexable: false
 featured: true
-title: "Montevideo travel guide: Carnaval, the Buquebus, the asado, and where to stay"
-headline: "Montevideo, the easy add-on to a Buenos Aires trip"
-description: "My Montevideo travel guide. Carnaval, the longest in the world, the Buquebus ferry, asado at the Mercado del Puerto, and where to stay near Punta Carretas."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Montevideo travel guide: Carnaval, the Buquebus, the asado, and where to stay'
+headline: 'Montevideo, the easy add-on to a Buenos Aires trip'
+description: 'My Montevideo travel guide. Carnaval, the longest in the world, the Buquebus ferry, asado at the Mercado del Puerto, and where to stay near Punta Carretas.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Montevideo
-  intro: Montevideo is the easy add-on to a Buenos Aires trip. The Buquebus ferry beats flying, the asado at Mercado del Puerto eats half a day in the best way, and the beaches run the length of the city along the Rambla. Pocitos and Punta Carretas are the bases worth booking.
+  intro: 'Montevideo is the easy add-on to a Buenos Aires trip. The Buquebus ferry beats flying, the asado at Mercado del Puerto eats half a day in the best way, and the beaches run the length of the city along the Rambla. Pocitos and Punta Carretas are the bases worth booking.'
   cards:
-    - title: Take the Buquebus, not a plane
-      body: From Puerto Madero in Buenos Aires to the Port of Montevideo in 2.5 hours, customs pre-cleared on the Argentine side. First-class is only 20 to 30% more and gets you bigger chairs and the better view. The terminal lets you out next to Ciudad Vieja, so you walk into town.
+    - title: 'Take the Buquebus, not a plane'
+      body: 'From Puerto Madero in Buenos Aires to the Port of Montevideo in 2.5 hours, customs pre-cleared on the Argentine side. First-class is only 20 to 30% more and gets you bigger chairs and the better view. The terminal lets you out next to Ciudad Vieja, so you walk into town.'
     - title: Stay in Pocitos or Punta Carretas
-      body: Aloft by Marriott in Punta Carretas is the pick. High room, sunsets over the Río de la Plata, central to Pocitos and Ciudad Vieja. Hyatt Centric near Pocitos is the alternative. Western chains are sparse. If you book apartments, confirm air conditioning.
+      body: 'Aloft by Marriott in Punta Carretas is the pick. High room, sunsets over the Río de la Plata, central to Pocitos and Ciudad Vieja. Hyatt Centric near Pocitos is the alternative. Western chains are sparse. If you book apartments, confirm air conditioning.'
     - title: Have the asado at Mercado del Puerto
-      body: Across the street from the ferry terminal. Skip the tourist-trap stalls in front and get a table at Don García. Two-hour lunch, large shareable portions, ordered ala carte. If you are day-tripping, this plus a walk along the Rambla is the day.
+      body: 'Across the street from the ferry terminal. Skip the tourist-trap stalls in front and get a table at Don García. Two-hour lunch, large shareable portions, ordered ala carte. If you are day-tripping, this plus a walk along the Rambla is the day.'
     - title: Find El Parador on the Rambla
-      body: Cristian's surf shack on Playa de Pocitos. Tell him Mike sent you and order a Cerveza Zillertal. After that, the rest of the evening tends to plan itself.
-
+      body: 'Cristian''s surf shack on Playa de Pocitos. Tell him Mike sent you and order a Cerveza Zillertal. After that, the rest of the evening tends to plan itself.'
 faqs:
   - q: How do I get from Buenos Aires to Montevideo?
     a: Take the Buquebus ferry from Puerto Madero in Buenos Aires. The Francisco direct crossing is about 2.5 hours. Some sailings go via Colonia and take around 4 hours. You pre-clear Argentine customs at the terminal and disembark at the Port of Montevideo right next to Ciudad Vieja. First class costs 20 to 30% more for noticeably bigger chairs and a better view. Flying is slower door-to-door and the route is sparse outside Miami.
   - q: Where should I stay in Montevideo?
-    a: Aloft by Marriott in Punta Carretas. Ask for a high room. The sunsets are the property's best feature. Hyatt Centric is the alternative if you prefer to be in Pocitos directly. Holiday Inn is the only other big-chain option in town, and apartments are everywhere but often skip air conditioning, so check before you book.
+    a: 'Aloft by Marriott in Punta Carretas. Ask for a high room. The sunsets are the property''s best feature. Hyatt Centric is the alternative if you prefer to be in Pocitos directly. Holiday Inn is the only other big-chain option in town, and apartments are everywhere but often skip air conditioning, so check before you book.'
   - q: Is Uber any good in Montevideo?
-    a: Uber is legal and works, but the driver count is thin. Expect 10 to 20 minutes for a pickup, longer at the airport. Airport taxis are clean and run about $50 to $60 to the center, 40 minutes from MVD. The airport Uber is the one I would skip.
-  - q: What is asado, and where do I get the best one?
-    a: Asado is the Uruguayan/Argentine grilled-meat tradition, heavy on cuts cooked slowly over wood coals. The classic Montevideo move is Don García inside Mercado del Puerto, right across from the ferry terminal. Order ala carte and plan on a two-hour lunch. Portions are large enough to share and arrive as they are ready.
+    a: 'Uber is legal and works, but the driver count is thin. Expect 10 to 20 minutes for a pickup, longer at the airport. Airport taxis are clean and run about $50 to $60 to the center, 40 minutes from MVD. The airport Uber is the one I would skip.'
+  - q: 'What is asado, and where do I get the best one?'
+    a: 'Asado is the Uruguayan/Argentine grilled-meat tradition, heavy on cuts cooked slowly over wood coals. The classic Montevideo move is Don García inside Mercado del Puerto, right across from the ferry terminal. Order ala carte and plan on a two-hour lunch. Portions are large enough to share and arrive as they are ready.'
   - q: Are the beaches in Montevideo any good?
-    a: They are good for a walk and a beer, less good for swimming. The Río de la Plata (the wide silt-laden estuary between Argentina and Uruguay that the city faces) runs brown most of the year. Do not expect Caribbean water. Playa Pocitos is the famous one and gets the most traffic. Playa Ramírez is slightly quieter and easier to find space on. The Rambla path runs the whole coast, which is the part most worth your time anyway.
-
+    a: 'They are good for a walk and a beer, less good for swimming. The Río de la Plata (the wide silt-laden estuary between Argentina and Uruguay that the city faces) runs brown most of the year. Do not expect Caribbean water. Playa Pocitos is the famous one and gets the most traffic. Playa Ramírez is slightly quieter and easier to find space on. The Rambla path runs the whole coast, which is the part most worth your time anyway.'
 related:
   city: montevideo
   country: uruguay
@@ -43,16 +40,16 @@ topics:
   - festivals
   - beaches
   - day-trips
+pairs_with:
+  - city: buenos-aires
+    travel: 2 hr 30 by Buquebus ferry
+    why: 'The Argentine counterpart and the most natural pair for Montevideo. Most trips here are an add-on to a BA visit, two or three nights in Montevideo'
+  - city: cordoba-ar
+    travel: 3 hr by flight via Buenos Aires
+    why: 'The Argentine university town, the inland counterpoint to the coastal capitals. Pairs as a wider three-stop trip with BA in the middle'
 ---
 
 [Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip, 2.5 hours across the river by ferry into [Uruguay](/countries/uruguay), customs cleared at the terminal. It is a slow city: an asado lunch, an afternoon on the Rambla, a sunset over Punta Carretas. Here's how I'd spend a couple of days.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Buenos Aires](/lists/buenos-aires) | 2 hr 30 by Buquebus ferry | The Argentine counterpart and the most natural pair for Montevideo. Most trips here are an add-on to a BA visit, two or three nights in Montevideo |
-| [Córdoba (AR)](/lists/cordoba-ar) | 3 hr by flight via Buenos Aires | The Argentine university town, the inland counterpoint to the coastal capitals. Pairs as a wider three-stop trip with BA in the middle |
 
 ## On this page
 

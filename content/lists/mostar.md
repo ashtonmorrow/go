@@ -1,70 +1,52 @@
 ---
 indexable: false
 featured: true
-title: "Mostar travel guide: the Old Bridge, the bazaar, and Kravica Falls"
-headline: "Mostar is a small town built around one famous bridge"
-description: "My Mostar travel guide. The Stari Most Old Bridge and the divers, the old bazaar, where to stay, Kravica Waterfall, and where to eat."
-published: 2026-05-18
-updated: 2026-05-18
+title: 'Mostar travel guide: the Old Bridge, the bazaar, and Kravica Falls'
+headline: Mostar is a small town built around one famous bridge
+description: 'My Mostar travel guide. The Stari Most Old Bridge and the divers, the old bazaar, where to stay, Kravica Waterfall, and where to eat.'
+published: 2026-05-18T00:00:00.000Z
+updated: 2026-05-18T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Mostar
-  intro: Mostar is a town of about 100,000 in Herzegovina, the southern half of Bosnia and Herzegovina, built along the green Neretva River. Its centerpiece is the Stari Most, the arched Ottoman bridge destroyed in the 1990s war and rebuilt in 2004. The old core is small, and a day covers it, but an overnight is the better trip.
+  intro: 'Mostar is a town of about 100,000 in Herzegovina, the southern half of Bosnia and Herzegovina, built along the green Neretva River. Its centerpiece is the Stari Most, the arched Ottoman bridge destroyed in the 1990s war and rebuilt in 2004. The old core is small, and a day covers it, but an overnight is the better trip.'
   cards:
-    - title: A day, better as a night
-      body: The Old Bridge and the bazaar can be seen in a few hours. Staying over gets you the town before and after the day-trip buses, which is when Mostar is at its best.
+    - title: 'A day, better as a night'
+      body: 'The Old Bridge and the bazaar can be seen in a few hours. Staying over gets you the town before and after the day-trip buses, which is when Mostar is at its best.'
     - title: The bridge is the center
-      body: Everything in the old core radiates from the Stari Most. Watch the local divers, climb a minaret for the view, and walk the cobbled bazaar around it.
+      body: 'Everything in the old core radiates from the Stari Most. Watch the local divers, climb a minaret for the view, and walk the cobbled bazaar around it.'
     - title: Stay in or near the Old Town
-      body: A base by the bazaar puts the bridge, the mosques, and the restaurants on foot, and gives you the quiet early-morning version of the town.
+      body: 'A base by the bazaar puts the bridge, the mosques, and the restaurants on foot, and gives you the quiet early-morning version of the town.'
     - title: Save time for Kravica
-      body: Kravica Waterfall and the Blagaj dervish house are both short trips from Mostar, and they turn a one-day stop into a proper Herzegovina day.
-
+      body: 'Kravica Waterfall and the Blagaj dervish house are both short trips from Mostar, and they turn a one-day stop into a proper Herzegovina day.'
 faqs:
   - q: How long do I need in Mostar?
-    a: One day covers the old core, the Old Bridge, the bazaar, and a mosque or two. But Mostar fills with day-trip buses from the coast in the middle of the day, so an overnight is the better trip. It gives you the bridge in early morning and late evening light, without the crowds. With a second day you can add Kravica Waterfall and the village of Blagaj.
+    a: 'One day covers the old core, the Old Bridge, the bazaar, and a mosque or two. But Mostar fills with day-trip buses from the coast in the middle of the day, so an overnight is the better trip. It gives you the bridge in early morning and late evening light, without the crowds. With a second day you can add Kravica Waterfall and the village of Blagaj.'
   - q: How do I get to Mostar?
-    a: Mostar sits between Sarajevo and the Adriatic coast. The scenic train from Sarajevo takes about two and a half hours through the Neretva canyon and is a trip in itself. Buses connect Mostar with Sarajevo, Dubrovnik, and Split. Many visitors arrive on a day trip by bus or tour from Dubrovnik or Split, which is exactly the crowd an overnight lets you avoid.
+    a: 'Mostar sits between Sarajevo and the Adriatic coast. The scenic train from Sarajevo takes about two and a half hours through the Neretva canyon and is a trip in itself. Buses connect Mostar with Sarajevo, Dubrovnik, and Split. Many visitors arrive on a day trip by bus or tour from Dubrovnik or Split, which is exactly the crowd an overnight lets you avoid.'
   - q: Is Mostar safe to visit?
-    a: Yes. Mostar is a safe, welcoming town for visitors. The 1990s war is still visible in shell-scarred and ruined buildings around the center, and it is part of understanding the place, but it is history rather than current risk. Normal travel sense is all that is needed.
+    a: 'Yes. Mostar is a safe, welcoming town for visitors. The 1990s war is still visible in shell-scarred and ruined buildings around the center, and it is part of understanding the place, but it is history rather than current risk. Normal travel sense is all that is needed.'
   - q: Can you still see the bridge divers in Mostar?
-    a: Yes. Diving from the Stari Most into the Neretva is a long-standing Mostar tradition, and members of the local divers' club still jump through the day in the warmer months, usually after collecting tips from the crowd. There is also an annual diving competition each summer. The river is cold and the drop is high, so it is strictly their business, not a visitor activity.
-
+    a: 'Yes. Diving from the Stari Most into the Neretva is a long-standing Mostar tradition, and members of the local divers'' club still jump through the day in the warmer months, usually after collecting tips from the crowd. There is also an annual diving competition each summer. The river is cold and the drop is high, so it is strictly their business, not a visitor activity.'
 related:
   city: mostar
   country: bosniaherzegovina
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews. New scaffold, May 2026, written
-#   to turn the existing 9-pin mostar saved_list into a real guide. The
-#   saved_lists row already exists (name + slug both 'mostar').
-# - featured: true so it joins the home-page guides feed.
-# - hero_image is empty. Pick one in /admin/lists/mostar.
-# - related.city mostar exists in go_cities (verified).
-# - Pins linked from the mostar saved_list (9): mostar-old-bridge-photopoint,
-#   mostar-city-viewpoint-for-sunset, gradski-bazen, kravica-waterfall,
-#   apartments-solis-4-9-338, restaurant-bella-vista, restoran-malo-misto,
-#   rota, tima-irma.
-# - Pins to create (plain text in the body): the Stari Most itself, the
-#   Old Bazaar (Kujundziluk), the Koski Mehmed-Pasha Mosque, Blagaj
-#   Tekke. None are pinned yet.
-# - No wide hotel pin set for Mostar. apartments-solis-4-9-338 is the one
-#   lodging pin and is rated 5.
+pairs_with:
+  - city: sarajevo
+    travel: 2 hr 30 by bus or train
+    why: 'The Bosnian capital up the Neretva valley. The standard Bosnia loop is Sarajevo two nights, Mostar one'
+  - city: dubrovnik
+    travel: 3 hr by bus over the mountains to the coast
+    why: The Adriatic finish to an inland Bosnia leg. Most Mostar visitors continue from here on this single bus run
+  - city: kotor
+    travel: 5 hr by bus down the coast
+    why: 'Continues the Adriatic loop past Dubrovnik into Montenegro, the Bay of Kotor as the third walled-city stop'
 ---
 
 [Mostar](/cities/mostar) is a small Herzegovina town on the green Neretva, built around the Stari Most, the Ottoman bridge shelled to rubble in the 1990s and rebuilt in 2004. The old core is tiny, but the buses pour in midday, so an overnight is the better trip. Here's how I'd time it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Sarajevo](/lists/sarajevo) | 2 hr 30 by bus or train | The Bosnian capital up the Neretva valley. The standard Bosnia loop is Sarajevo two nights, Mostar one |
-| [Dubrovnik](/lists/dubrovnik) | 3 hr by bus over the mountains to the coast | The Adriatic finish to an inland Bosnia leg. Most Mostar visitors continue from here on this single bus run |
-| [Kotor](/lists/kotor) | 5 hr by bus down the coast | Continues the Adriatic loop past Dubrovnik into Montenegro, the Bay of Kotor as the third walled-city stop |
 
 ## On this page
 

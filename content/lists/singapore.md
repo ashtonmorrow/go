@@ -1,41 +1,38 @@
 ---
 indexable: false
 featured: true
-title: "Singapore travel guide: the F1, the hawker centers, and where to stay"
-headline: "Singapore, the soft landing into Asia"
-description: "My Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay near Robertson Quay, and the three-day version."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Singapore travel guide: the F1, the hawker centers, and where to stay'
+headline: 'Singapore, the soft landing into Asia'
+description: 'My Singapore travel guide. The Marina Bay F1 weekend, Gardens by the Bay, the hawker centers, where to stay near Robertson Quay, and the three-day version.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/1e/1eb4e0d585659fda903ec341fd0551c569c1614eb9127f7a6acb3cb73d877fa6.jpg"
-hero_alt: "Dale Chihuly glass sculptures inside the Cloud Forest at Gardens by the Bay"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/1e/1eb4e0d585659fda903ec341fd0551c569c1614eb9127f7a6acb3cb73d877fa6.jpg'
+hero_alt: Dale Chihuly glass sculptures inside the Cloud Forest at Gardens by the Bay
 guide_cards:
   title: Planning Singapore
-  intro: Eat at hawker centers and walk in the morning before the heat. Stay near a transit station, time your visits to Gardens by the Bay for the cooler hours, and pick a handful of attractions rather than trying to do them all in one day. Two to three days is the right shape.
+  intro: 'Eat at hawker centers and walk in the morning before the heat. Stay near a transit station, time your visits to Gardens by the Bay for the cooler hours, and pick a handful of attractions rather than trying to do them all in one day. Two to three days is the right shape.'
   cards:
     - title: Stay on Robertson Quay or Tanjong Pagar
-      body: InterContinental Singapore Robertson Quay is the easy pick. Riverfront, walking distance to Clarke Quay and Boat Quay, and a 15-minute MRT to Marina Bay. Tanjong Pagar is the budget-conscious alternative with the highest food density per block.
+      body: 'InterContinental Singapore Robertson Quay is the easy pick. Riverfront, walking distance to Clarke Quay and Boat Quay, and a 15-minute MRT to Marina Bay. Tanjong Pagar is the budget-conscious alternative with the highest food density per block.'
     - title: Eat at hawker centers
-      body: Lau Pa Sat, Maxwell, and Tiong Bahru are the famous three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! (the DBS bank's mobile-wallet app, the local default) are the norm. Some stalls take card. Wet markets (the open-air produce and seafood halls) close around 2 p.m.. Evening hawker centers run late.
+      body: 'Lau Pa Sat, Maxwell, and Tiong Bahru are the famous three. Expect $4 to $8 a meal at most stalls, plus another $1 for a drink. Cash and PayLah! (the DBS bank''s mobile-wallet app, the local default) are the norm. Some stalls take card. Wet markets (the open-air produce and seafood halls) close around 2 p.m.. Evening hawker centers run late.'
     - title: Plan Gardens by the Bay around the cooler hours
-      body: Cloud Forest opens at 9 a.m. and is best before 11. Supertree Grove is best at 7:45 p.m. for the free light show, then again at 8:45. Flower Dome has the best AC if you need a 30-minute heat break. Combo tickets are cheaper than singles.
+      body: 'Cloud Forest opens at 9 a.m. and is best before 11. Supertree Grove is best at 7:45 p.m. for the free light show, then again at 8:45. Flower Dome has the best AC if you need a 30-minute heat break. Combo tickets are cheaper than singles.'
     - title: Do not drink at the hotel bars unless that is the trip
-      body: Singapore is the city where a casual round costs $50. Cocktails at the famous rooftop bars start at $25 each. Plan one splurge (Atlas, Smoke & Mirrors, the Marina Bay Sands rooftop) and stick to hawker beer at $6 a pint otherwise.
-
+      body: 'Singapore is the city where a casual round costs $50. Cocktails at the famous rooftop bars start at $25 each. Plan one splurge (Atlas, Smoke & Mirrors, the Marina Bay Sands rooftop) and stick to hawker beer at $6 a pint otherwise.'
 faqs:
   - q: How long should I plan in Singapore?
-    a: Two full days hits the main sights and a couple of food neighborhoods. Three is the sweet spot. Adds the Singapore Botanic Gardens, an evening at Tiong Bahru or Joo Chiat, and a day trip to Sentosa if Universal Studios or the beach matters. Anything beyond five days needs a real plan or it gets expensive fast.
+    a: 'Two full days hits the main sights and a couple of food neighborhoods. Three is the sweet spot. Adds the Singapore Botanic Gardens, an evening at Tiong Bahru or Joo Chiat, and a day trip to Sentosa if Universal Studios or the beach matters. Anything beyond five days needs a real plan or it gets expensive fast.'
   - q: Where should I stay?
-    a: InterContinental Singapore Robertson Quay is the comfortable middle. Riverfront walks, the Quay's restaurants and bars at the door, and easy MRT to Marina Bay. The Fullerton Bay Hotel and Marina Bay Sands are the splurges. Tanjong Pagar and Chinatown are the budget plays with the best food density. Geylang is fine but more local than easy for a first trip. Pick somewhere central instead.
+    a: 'InterContinental Singapore Robertson Quay is the comfortable middle. Riverfront walks, the Quay''s restaurants and bars at the door, and easy MRT to Marina Bay. The Fullerton Bay Hotel and Marina Bay Sands are the splurges. Tanjong Pagar and Chinatown are the budget plays with the best food density. Geylang is fine but more local than easy for a first trip. Pick somewhere central instead.'
   - q: Is Marina Bay Sands worth it?
-    a: As a hotel, only if the SkyPark Pool is the reason. The rooms themselves are dated for the price. As a sight, yes. The SkyPark Observation Deck ticket (without staying) is the same view at a fraction of the cost. The 8 p.m. and 9 p.m. Spectra water-and-light shows from the boardwalk are free and worth the walk.
+    a: 'As a hotel, only if the SkyPark Pool is the reason. The rooms themselves are dated for the price. As a sight, yes. The SkyPark Observation Deck ticket (without staying) is the same view at a fraction of the cost. The 8 p.m. and 9 p.m. Spectra water-and-light shows from the boardwalk are free and worth the walk.'
   - q: How do I get from Changi to my hotel?
-    a: MRT East-West Line is the cheap option. About 30 minutes to City Hall with a change at Tanah Merah from the Changi branch onto the main EWL. Costs about $2 with an EZ-Link card (the local stored-value transit card, buy at any station) or just tap any contactless bank card or phone wallet at the gate. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. Grab is the easy pick unless you are traveling light.
+    a: 'MRT East-West Line is the cheap option. About 30 minutes to City Hall with a change at Tanah Merah from the Changi branch onto the main EWL. Costs about $2 with an EZ-Link card (the local stored-value transit card, buy at any station) or just tap any contactless bank card or phone wallet at the gate. Grab or taxi is $15 to $25 and takes 15 to 25 minutes depending on traffic. Grab is the easy pick unless you are traveling light.'
   - q: Is the heat really that bad?
     a: It is 30°C and 80% humidity year-round. The Singaporean strategy is to alternate between air-conditioned interiors and short outdoor walks. Buildings are connected by covered walkways and underground tunnels in the central districts. Plan walks for early morning or after 6 p.m. Pack an umbrella for the daily afternoon rain.
-
 related:
   city: singapore
   country: singapore
@@ -43,36 +40,37 @@ topics:
   - festivals
   - nightlife
   - day-trips
-
 day_trips:
-  intro: Singapore is a small day-trip catalogue in itself (Sentosa, Pulau Ubin, the Southern Islands) plus a doable cross-border run into Malaysia (Johor Bahru) or a longer hop to the Indonesian Riau Islands (Bintan, Batam).
+  intro: 'Singapore is a small day-trip catalogue in itself (Sentosa, Pulau Ubin, the Southern Islands) plus a doable cross-border run into Malaysia (Johor Bahru) or a longer hop to the Indonesian Riau Islands (Bintan, Batam).'
   trips:
     - name: Pulau Ubin
       travel: About 15 min by bumboat from Changi Point
-      summary: The kampong-life island in the northeast strait, the last village in Singapore that runs on bicycle paths, jungle, and the Chek Jawa wetlands. The opposite of downtown Singapore. Half-day, easy.
+      summary: 'The kampong-life island in the northeast strait, the last village in Singapore that runs on bicycle paths, jungle, and the Chek Jawa wetlands. The opposite of downtown Singapore. Half-day, easy.'
     - name: Sentosa
-      travel: About 10 min by cable car, MRT, or Sentosa Express
-      summary: The resort island connected to the mainland, with Universal Studios, the S.E.A. Aquarium, Adventure Cove, and the beaches. The full-tourist island that lets you stay on the mainland and visit for the day.
-    - name: Southern Islands (St John's, Lazarus, Kusu)
+      travel: 'About 10 min by cable car, MRT, or Sentosa Express'
+      summary: 'The resort island connected to the mainland, with Universal Studios, the S.E.A. Aquarium, Adventure Cove, and the beaches. The full-tourist island that lets you stay on the mainland and visit for the day.'
+    - name: 'Southern Islands (St John''s, Lazarus, Kusu)'
       travel: About 30 min each way by ferry from Marina South Pier
-      summary: The quieter island ferry circuit that most travelers skip for Sentosa. Lazarus has the best swimming beach in the city, Kusu has the temple and tortoise sanctuary. Bring food, there are no restaurants.
+      summary: 'The quieter island ferry circuit that most travelers skip for Sentosa. Lazarus has the best swimming beach in the city, Kusu has the temple and tortoise sanctuary. Bring food, there are no restaurants.'
     - name: Johor Bahru (Malaysia)
-      travel: About 45 min to 2 hr by bus or train, customs the variable
-      summary: The cross-border run into Malaysia for cheaper meals, shopping, and the Sultan Ibrahim mosque. Bring a passport, expect customs queues at peak.
+      travel: 'About 45 min to 2 hr by bus or train, customs the variable'
+      summary: 'The cross-border run into Malaysia for cheaper meals, shopping, and the Sultan Ibrahim mosque. Bring a passport, expect customs queues at peak.'
     - name: Bintan or Batam (Indonesia)
       travel: About 1 hr by ferry from Tanah Merah or HarbourFront
-      summary: The Riau Islands resort runs, mostly day-spa-and-beach packages. Bintan is the polished one, Batam the cheaper. Visa-on-arrival for most passports.
+      summary: 'The Riau Islands resort runs, mostly day-spa-and-beach packages. Bintan is the polished one, Batam the cheaper. Visa-on-arrival for most passports.'
+pairs_with:
+  - city: kuala-lumpur
+    travel: 5 hr by direct train or 1 hr by flight
+    why: 'The Malaysian counterpoint, half the price, twice the food scene. Most travelers do them together as a regional week'
+  - city: bali
+    travel: 2 hr 45 by flight
+    why: 'The Indonesian beach finish. Pairs as Singapore two to three nights for the city, Bali five to seven for the slowdown'
+  - city: bangkok
+    travel: 2 hr by flight
+    why: The Thai counterpart. Both are major Southeast Asian hubs but the food and price registers are different. Useful as parts of a wider regional loop
 ---
 
 [Singapore](/cities/singapore) is the most efficient major city in Southeast Asia, and the easiest to underestimate on budget. Two or three days, mostly on foot and the MRT, with the money going on food rather than drinks. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Kuala Lumpur](/lists/kuala-lumpur) | 5 hr by direct train or 1 hr by flight | The Malaysian counterpoint, half the price, twice the food scene. Most travelers do them together as a regional week |
-| [Bali](/lists/bali) | 2 hr 45 by flight | The Indonesian beach finish. Pairs as Singapore two to three nights for the city, Bali five to seven for the slowdown |
-| [Bangkok](/lists/bangkok) | 2 hr by flight | The Thai counterpart. Both are major Southeast Asian hubs but the food and price registers are different. Useful as parts of a wider regional loop |
 
 ## On this page
 

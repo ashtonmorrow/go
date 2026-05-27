@@ -1,93 +1,76 @@
 ---
 indexable: false
 featured: true
-title: "Chiang Mai travel guide: Yi Peng, the temples, and where to stay"
-headline: "Chiang Mai, the slower half of a Thailand trip"
-description: "My Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base yourself."
-published: 2026-05-12
-updated: 2026-05-15
+title: 'Chiang Mai travel guide: Yi Peng, the temples, and where to stay'
+headline: 'Chiang Mai, the slower half of a Thailand trip'
+description: 'My Chiang Mai travel guide. Yi Peng sky lanterns in November, the Old City temples, khao soi, and where to base yourself.'
+published: 2026-05-12T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Chiang Mai
-  intro: Chiang Mai is the calm half of a Thailand trip. The pace is slower, the food is better than most of Bangkok, the temples are more concentrated, and the mountains start at the edge of the city. Match the base (Old City, Nimman, Riverside) to the day you want, and plan around the spring burn-off haze that can fog the air in March.
+  intro: 'Chiang Mai is the calm half of a Thailand trip. The pace is slower, the food is better than most of Bangkok, the temples are more concentrated, and the mountains start at the edge of the city. Match the base (Old City, Nimman, Riverside) to the day you want, and plan around the spring burn-off haze that can fog the air in March.'
   cards:
     - title: Pick a base by neighborhood
-      body: Old City for temples and the walking street markets. Nimmanhaemin for cafes, boutiques, and a digital-nomad lean. Riverside for a calmer luxury stay along the Ping. Doi Suthep for mountain access (you need a Grab for most evenings).
+      body: 'Old City for temples and the walking street markets. Nimmanhaemin for cafes, boutiques, and a digital-nomad lean. Riverside for a calmer luxury stay along the Ping. Doi Suthep for mountain access (you need a Grab for most evenings).'
     - title: The temple cluster is the half-day
-      body: Wat Phra That Doi Suthep on the mountain (the photogenic one), Wat Chedi Luang in the Old City, Wat Phra Singh on the same walk. Modest dress required. Sarongs loaned at the gate.
-    - title: One trip, one ethical elephant experience
+      body: 'Wat Phra That Doi Suthep on the mountain (the photogenic one), Wat Chedi Luang in the Old City, Wat Phra Singh on the same walk. Modest dress required. Sarongs loaned at the gate.'
+    - title: 'One trip, one ethical elephant experience'
       body: Elephant Nature Park is the credible refuge. Bookings open weeks ahead. Avoid the operations that advertise riding. The sanctuary day is most of a full day with the round-trip drive included.
     - title: March burns the air
-      body: February is the sweet spot. Late February into early March is dry, sunny, and the air is clear. By mid-March the agricultural burn-off can drop visibility and air quality. If a March trip is unavoidable, plan around higher-elevation activities.
-
+      body: 'February is the sweet spot. Late February into early March is dry, sunny, and the air is clear. By mid-March the agricultural burn-off can drop visibility and air quality. If a March trip is unavoidable, plan around higher-elevation activities.'
 faqs:
   - q: How do I get to Chiang Mai?
-    a: Fly into Chiang Mai International Airport (CNX). From Bangkok the flight is about 75 minutes. Thai Airways, Thai AirAsia, Nok Air, and Bangkok Airways all run multiple daily (Thai Smile was folded back into Thai Airways in 2024). From other Asian capitals direct service is reasonable. From outside Asia almost everyone connects in Bangkok or Singapore.
+    a: 'Fly into Chiang Mai International Airport (CNX). From Bangkok the flight is about 75 minutes. Thai Airways, Thai AirAsia, Nok Air, and Bangkok Airways all run multiple daily (Thai Smile was folded back into Thai Airways in 2024). From other Asian capitals direct service is reasonable. From outside Asia almost everyone connects in Bangkok or Singapore.'
   - q: Where should I stay for a first trip?
     a: Old City if it is your first visit and you want temples on foot. Nimmanhaemin if you care more about cafes and shopping than temples. Riverside if you want a calmer luxury stay. Doi Suthep area if you want mountain quiet and do not mind a daily Grab into town.
   - q: Is the elephant park experience ethical?
-    a: Some are, most are not. Elephant Nature Park is the credible refuge in the area. No riding, focus on rescued animals, transparent in how they operate. Skip operations that advertise rides or staged photo shows. The training for those uses is widely documented as inhumane.
+    a: 'Some are, most are not. Elephant Nature Park is the credible refuge in the area. No riding, focus on rescued animals, transparent in how they operate. Skip operations that advertise rides or staged photo shows. The training for those uses is widely documented as inhumane.'
   - q: When is the best time to visit?
-    a: Late November through February is the cool dry season and the best window. February in particular is reliably dry, warm in the day, and cool at night. March can be hazy because of agricultural burning. April is the hottest month. May through October is the rainy season with short afternoon storms.
+    a: 'Late November through February is the cool dry season and the best window. February in particular is reliably dry, warm in the day, and cool at night. March can be hazy because of agricultural burning. April is the hottest month. May through October is the rainy season with short afternoon storms.'
   - q: How do I get around the city?
-    a: Grab works city-wide and is cheap. Songthaew (red shared trucks) work the main routes. Walking the Old City is realistic for most days. For day trips into the mountains, hire a driver for the day or rent a scooter only if you are legal, insured, and confident.
-
+    a: 'Grab works city-wide and is cheap. Songthaew (red shared trucks) work the main routes. Walking the Old City is realistic for most days. For day trips into the mountains, hire a driver for the day or rent a scooter only if you are legal, insured, and confident.'
 related:
   city: chiang-mai
   country: thailand
-
 topics:
   - festivals
   - markets
   - day-trips
-
 day_trips:
-  intro: Chiang Mai is the base for the cool-climate northern Thailand circuit. Doi Suthep, Doi Inthanon, the Pai mountain village, and elephant sanctuaries all sit within a half- to full-day window.
+  intro: 'Chiang Mai is the base for the cool-climate northern Thailand circuit. Doi Suthep, Doi Inthanon, the Pai mountain village, and elephant sanctuaries all sit within a half- to full-day window.'
   trips:
     - name: Doi Suthep
       travel: About 45 min by songthaew or rented scooter
-      summary: The 14th-century hilltop temple, Wat Phra That Doi Suthep, sits above the city with the Naga staircase climb to the gold chedi at the top. Sunrise and late afternoon are the right windows. The Wat Pha Lat secret-temple walk is the under-the-radar alternative on the same route.
+      summary: 'The 14th-century hilltop temple, Wat Phra That Doi Suthep, sits above the city with the Naga staircase climb to the gold chedi at the top. Sunrise and late afternoon are the right windows. The Wat Pha Lat secret-temple walk is the under-the-radar alternative on the same route.'
     - name: Doi Inthanon
       travel: About 1 hr 30 each way by car
-      summary: The highest peak in Thailand at 2,565 m, with the royal pagodas at the summit and the Mae Ya waterfall on the descent. A full day, best with a hired driver or a guided tour.
+      summary: 'The highest peak in Thailand at 2,565 m, with the royal pagodas at the summit and the Mae Ya waterfall on the descent. A full day, best with a hired driver or a guided tour.'
     - name: Elephant Nature Park
       travel: About 1 hr by van pickup
-      summary: The ethical-sanctuary alternative to the riding-camp circuit. Day passes include lunch, feeding, and walking with the elephants. Book 2 to 3 weeks ahead. The single most-asked Chiang Mai day-trip question.
+      summary: 'The ethical-sanctuary alternative to the riding-camp circuit. Day passes include lunch, feeding, and walking with the elephants. Book 2 to 3 weeks ahead. The single most-asked Chiang Mai day-trip question.'
     - name: Pai
       travel: About 3 hr 30 by minivan over 762 curves
-      summary: The mountain village in Mae Hong Son province, famous for the night market, the canyon, and the Land Split. Worth a 2-night stretch rather than a day excursion. Pack motion-sickness medication for the van.
-    - name: Chiang Rai (White Temple, Black House, Blue Temple)
+      summary: 'The mountain village in Mae Hong Son province, famous for the night market, the canyon, and the Land Split. Worth a 2-night stretch rather than a day excursion. Pack motion-sickness medication for the van.'
+    - name: 'Chiang Rai (White Temple, Black House, Blue Temple)'
       travel: About 3 hr 30 each way by bus or van
-      summary: Wat Rong Khun (the White Temple), Baan Dam (the Black House), and Wat Rong Suea Ten (the Blue Temple) form the three-temple loop. A long day or a 1-night stretch with the Golden Triangle border view as the bonus.
-
-# Authoring notes (kept here, not rendered):
-# - indexable: false until Mike reviews.
-# - hero_image is empty.
-# - 17 Chiang Mai pins in the atlas. Prose surfaces ~10 anchors,
-#   cards/map view carries the rest.
-# - The country-level Thailand travel notes article (/posts/thailand-
-#   travel-notes) covers Chiang Mai briefly at a higher altitude.
-#   this list page is the closer-in city guide.
-# - Source: Mike's Thailand Spanish travel doc translated and adapted.
-#   companion / specific-date references removed per standing rule.
-# - Doi Inthanon, Sticky Waterfalls, and the Saturday Walking Street
-#   are mentioned in the body as plain text. No pins yet. Flag for
-#   pin creation on a later pass if Mike wants stronger cross-linking.
+      summary: 'Wat Rong Khun (the White Temple), Baan Dam (the Black House), and Wat Rong Suea Ten (the Blue Temple) form the three-temple loop. A long day or a 1-night stretch with the Golden Triangle border view as the bonus.'
+pairs_with:
+  - city: bangkok
+    travel: 1 hr 15 by domestic flight or 11 hr by overnight train
+    why: 'The classic Thailand pair, the south-vs-north contrast. Three nights each minimum, the overnight train is the experience if time allows'
+  - city: phuket
+    travel: 2 hr by domestic flight
+    why: The Andaman beach finish to a temples-then-beach Thailand week. Skip the Bangkok leg via direct CM-Phuket flights if you have the time
+  - city: lpq
+    travel: 1 hr by flight or 2 days by Mekong slow boat
+    why: The Laotian UNESCO town just over the border. Pairs Chiang Mai with the next country if Thailand is the trip's starting point
 ---
 
 [Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip: where Bangkok is heat and noise, this is temples and a long lunch, with the mountains starting at the edge of town. The food, by most measures, beats Bangkok's. If Thailand is already the plan, give it three or four days.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Bangkok](/lists/bangkok) | 1 hr 15 by domestic flight or 11 hr by overnight train | The classic Thailand pair, the south-vs-north contrast. Three nights each minimum, the overnight train is the experience if time allows |
-| [Phuket](/lists/phuket) | 2 hr by domestic flight | The Andaman beach finish to a temples-then-beach Thailand week. Skip the Bangkok leg via direct CM-Phuket flights if you have the time |
-| [Luang Prabang](/lists/lpq) | 1 hr by flight or 2 days by Mekong slow boat | The Laotian UNESCO town just over the border. Pairs Chiang Mai with the next country if Thailand is the trip's starting point |
 
 ## On this page
 

@@ -1,93 +1,75 @@
 ---
 indexable: true
 featured: true
-title: "Madrid travel guide: things to do, where to stay, and what to skip"
-headline: "Madrid, the Spanish capital that gets underrated"
-description: "My Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset."
-published: 2026-05-10
-updated: 2026-05-10
+title: 'Madrid travel guide: things to do, where to stay, and what to skip'
+headline: 'Madrid, the Spanish capital that gets underrated'
+description: 'My Madrid travel guide. Where to stay, an El Rastro Sunday, the Mercado de San Miguel trap, Reina Sofía over the Prado, and Templo de Debod at sunset.'
+published: 2026-05-10T00:00:00.000Z
+updated: 2026-05-10T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/80/80e9ee42d8664a7c6c9ca8f272c3868e70089355650e86f3f25b22a4c5d64b1f.jpg"
-hero_alt: "A stone fountain in the rose garden at Madrid's Retiro park"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/80/80e9ee42d8664a7c6c9ca8f272c3868e70089355650e86f3f25b22a4c5d64b1f.jpg'
+hero_alt: A stone fountain in the rose garden at Madrid's Retiro park
 guide_cards:
   title: Planning Madrid
-  intro: Madrid rewards picking a base that fits the day you actually want, eating from real neighborhoods over photogenic markets, and saving the Prado for a booked slot rather than a walk-up line.
+  intro: 'Madrid rewards picking a base that fits the day you actually want, eating from real neighborhoods over photogenic markets, and saving the Prado for a booked slot rather than a walk-up line.'
   cards:
     - title: Pick a base that matches the trip
-      body: Gran Vía is the central, busy choice. La Latina toward Lavapiés is quieter, with smaller hotels and stronger neighborhood food. The Princesa side is a quiet, often well-priced middle ground.
-    - title: Treat El Rastro as a 7:30 am thing
-      body: Go when it opens on Sunday. By mid-morning the lanes are body-to-body, which is when phones come out of pockets. Plan a churro stop nearby and walk it off afterward.
+      body: 'Gran Vía is the central, busy choice. La Latina toward Lavapiés is quieter, with smaller hotels and stronger neighborhood food. The Princesa side is a quiet, often well-priced middle ground.'
+    - title: 'Treat El Rastro as a 7:30 am thing'
+      body: 'Go when it opens on Sunday. By mid-morning the lanes are body-to-body, which is when phones come out of pockets. Plan a churro stop nearby and walk it off afterward.'
     - title: Use markets the right way
-      body: Mercado de San Miguel is for a beer and a snack with a view, not a meal. For actual market eating, walk five minutes to Mercado de la Cebada. For a sit-down dinner near San Miguel, the better pick is right next door, not the places with picture menus.
-    - title: Book the Prado, walk into Reina Sofía
-      body: The Prado line moves slowly on weekends, so book a timed entry. Reina Sofía tends to be quieter and works as a walk-up. If you only have time for one, pick by which collection you actually want to see.
-
+      body: 'Mercado de San Miguel is for a beer and a snack with a view, not a meal. For actual market eating, walk five minutes to Mercado de la Cebada. For a sit-down dinner near San Miguel, the better pick is right next door, not the places with picture menus.'
+    - title: 'Book the Prado, walk into Reina Sofía'
+      body: 'The Prado line moves slowly on weekends, so book a timed entry. Reina Sofía tends to be quieter and works as a walk-up. If you only have time for one, pick by which collection you actually want to see.'
 faqs:
   - q: How do I get from Madrid-Barajas to the city center?
-    a: A taxi to the city center inside the M-30 ring is a €33 flat fare. Bolt and Uber both work in Madrid. Bolt is often a few euros cheaper, but the gap moves with demand. The Metro (Line 8) and the Cercanías commuter rail are the cheapest options if you are not loaded down with luggage.
+    a: 'A taxi to the city center inside the M-30 ring is a €33 flat fare. Bolt and Uber both work in Madrid. Bolt is often a few euros cheaper, but the gap moves with demand. The Metro (Line 8) and the Cercanías commuter rail are the cheapest options if you are not loaded down with luggage.'
   - q: Where should I stay in Madrid for a first visit?
     a: Gran Vía if you want to walk to most things and do not mind crowds. La Latina toward Lavapiés if you want neighborhood restaurants and a quieter daily rhythm. The Princesa side if you want value and a calm street while still being on the metro.
   - q: Is the Mercado de San Miguel worth it?
-    a: For a beer, a snack, and a quick look at the building, yes. The food is overpriced and the seating is awkward. For a real meal, walk to a nearby restaurant or to the Mercado de la Cebada five minutes away.
+    a: 'For a beer, a snack, and a quick look at the building, yes. The food is overpriced and the seating is awkward. For a real meal, walk to a nearby restaurant or to the Mercado de la Cebada five minutes away.'
   - q: How many days should I give Madrid?
-    a: Three to four days covers the central neighborhoods, El Rastro on Sunday, one museum done properly, the Retiro, and a sunset at the Templo de Debod. Add days if you want to ride out to El Escorial or build a Toledo or Segovia day trip.
-
+    a: 'Three to four days covers the central neighborhoods, El Rastro on Sunday, one museum done properly, the Retiro, and a sunset at the Templo de Debod. Add days if you want to ride out to El Escorial or build a Toledo or Segovia day trip.'
 related:
   city: madrid
   country: spain
-
 topics:
   - festivals
   - markets
   - museums
-
 day_trips:
-  intro: Madrid sits at the center of the Spanish high-speed rail map, which puts a walled medieval capital, a Roman aqueduct, and a giant royal monastery all inside an hour of Atocha.
+  intro: 'Madrid sits at the center of the Spanish high-speed rail map, which puts a walled medieval capital, a Roman aqueduct, and a giant royal monastery all inside an hour of Atocha.'
   trips:
     - name: Toledo
       travel: About 33 min by high-speed AVE from Atocha
-      summary: The walled former capital on a hill above the Tagus, a UNESCO city layered with Christian, Jewish, and Muslim Spain, and the home of El Greco.
+      summary: 'The walled former capital on a hill above the Tagus, a UNESCO city layered with Christian, Jewish, and Muslim Spain, and the home of El Greco.'
     - name: Segovia
       travel: About 30 min by high-speed AVE
-      summary: A near-intact Roman aqueduct runs straight through town, and the Alcázar is the castle said to have inspired Disney.
+      summary: 'A near-intact Roman aqueduct runs straight through town, and the Alcázar is the castle said to have inspired Disney.'
     - name: El Escorial
       travel: About 1 hr by Cercanías commuter train
-      summary: The vast monastery, palace, and royal mausoleum built by Philip II, set against the Guadarrama mountains.
+      summary: 'The vast monastery, palace, and royal mausoleum built by Philip II, set against the Guadarrama mountains.'
     - name: Ávila
       travel: About 1 hr 30 by train
-      summary: The most complete medieval city walls in Spain, a full circuit you can walk, plus the legacy of Saint Teresa.
+      summary: 'The most complete medieval city walls in Spain, a full circuit you can walk, plus the legacy of Saint Teresa.'
       list: avila
     - name: Aranjuez
       travel: About 45 min by Cercanías commuter train
-      summary: The royal palace and its formal gardens on the Tagus, a UNESCO cultural landscape and the easiest green day out from the city.
-
-# Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews. Flip to true to ship.
-# - hero_image is empty. Pick one in /admin/lists/madrid via the picker.
-# - Three Madrid pins were just created and are now linked from the prose:
-#     · museo-del-ferrocarril-de-madrid (Train Museum, Mike's favorite)
-#     · casa-de-campo-madrid (the park west of the city)
-#     · el-rastro (Sunday flea market, anchored at Plaza de Cascorro)
-# - Hotel Indigo Madrid - Gran Vía now exists as its own pin and is
-#   linked in the where-to-stay table. Atocha Hotel Tapestry by Hilton
-#   replaced the earlier "Hilton Canopy" placeholder for the La Latina
-#   side.
-# - The Prado link points at the UNESCO "Paseo del Prado and Buen
-#   Retiro" pin since that is the pin we have. If a standalone Museo del
-#   Prado pin is created later, swap the link.
+      summary: 'The royal palace and its formal gardens on the Tagus, a UNESCO cultural landscape and the easiest green day out from the city.'
+pairs_with:
+  - city: barcelona
+    travel: 2 hr 30 by AVE high-speed train
+    why: 'The other Spanish big city. The classic Spain week is Madrid four nights, Barcelona three. Different food, different language register, different feel of city'
+  - city: lisbon
+    travel: 9 hr by overnight train or 1 hr 15 by flight
+    why: The Iberian neighbor. Pairs as a week and a half if you want to see both peninsulas. Flight is easier than the rail; the overnight train was suspended in 2020
+  - city: granada
+    travel: 3 hr by AVE
+    why: 'The Alhambra and the Andalusian Moorish heritage. Pairs as Madrid three nights, then southward into Andalusia'
 ---
 
 [Madrid](/cities/madrid) is easy to recommend and easy to mis-plan. The neighborhoods sit close together, the food rewards walking, and the transport works the way you want it to. Where people go wrong is the base, the famous market they treat as a meal, and walking up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday. Here's how I'd get it right.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Barcelona](/lists/barcelona) | 2 hr 30 by AVE high-speed train | The other Spanish big city. The classic Spain week is Madrid four nights, Barcelona three. Different food, different language register, different feel of city |
-| [Lisbon](/lists/lisbon) | 9 hr by overnight train or 1 hr 15 by flight | The Iberian neighbor. Pairs as a week and a half if you want to see both peninsulas. Flight is easier than the rail; the overnight train was suspended in 2020 |
-| [Granada](/lists/granada) | 3 hr by AVE | The Alhambra and the Andalusian Moorish heritage. Pairs as Madrid three nights, then southward into Andalusia |
 
 ## On this page
 

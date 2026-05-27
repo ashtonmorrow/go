@@ -1,41 +1,38 @@
 ---
 indexable: false
 featured: true
-title: "Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk"
-headline: "Rotterdam, the architectural opposite of Amsterdam"
-description: "My Rotterdam travel guide. The Markthal and Cube Houses loop, Depot Boijmans, the Euromast, Hotel New York, and Kinderdijk as a day trip."
-published: 2026-05-11
-updated: 2026-05-15
+title: 'Rotterdam travel guide: Markthal, Cube Houses, and a day at Kinderdijk'
+headline: 'Rotterdam, the architectural opposite of Amsterdam'
+description: 'My Rotterdam travel guide. The Markthal and Cube Houses loop, Depot Boijmans, the Euromast, Hotel New York, and Kinderdijk as a day trip.'
+published: 2026-05-11T00:00:00.000Z
+updated: 2026-05-15T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: "https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/bd/bd1845c454c2d01a03fa71d21d8b208b5e4c8968c4500df5b278098a95bd4420.jpg"
-hero_alt: "Looking up at Rotterdam's yellow cube houses"
-
+hero_image: 'https://pdjrvlhepiwkshxerkpz.supabase.co/storage/v1/object/public/personal-photos/bd/bd1845c454c2d01a03fa71d21d8b208b5e4c8968c4500df5b278098a95bd4420.jpg'
+hero_alt: Looking up at Rotterdam's yellow cube houses
 guide_cards:
   title: Planning Rotterdam
-  intro: Rotterdam is the Netherlands' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the famous modern architecture, the historic harbor walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.
+  intro: 'Rotterdam is the Netherlands'' second city, and the most architecturally ambitious one. It is also small enough to do well in a long weekend. The Markthal-Cube Houses-Erasmusbrug walking loop covers the famous modern architecture, the historic harbor walk covers the old port, Kinderdijk is the day-trip outside the city, and the food scene at Foodhallen and Fenix is the best non-Amsterdam dining in the country.'
   cards:
     - title: Base near Rotterdam Centraal
       body: Holiday Inn Express Rotterdam Central is the easy budget pick at the station. Hotel New York (the old Holland America Line headquarters across the river) is the splurge with the best history. Both put you on the metro and tram network and within walking distance of the main sights.
     - title: Do the architecture loop in half a day
       body: Markthal → Cube Houses → Erasmusbrug → Hotel New York → Maritime Museum is a 3 km walking loop with the modern Dutch architecture canon along the way. Add Euromast and Depot Boijmans on the second half-day.
     - title: Kinderdijk is the easy day trip
-      body: Mill Network at Kinderdijk-Elshout is a UNESCO site 30 minutes south by water from the Erasmusbrug. The old Waterbus Line 202 was rebranded the WaterShuttle in late 2025 and now runs Fridays, Saturdays, and Sundays only. 19 windmills, polders, the original Dutch postcard. Half-day at most. Pack a rain shell.
+      body: 'Mill Network at Kinderdijk-Elshout is a UNESCO site 30 minutes south by water from the Erasmusbrug. The old Waterbus Line 202 was rebranded the WaterShuttle in late 2025 and now runs Fridays, Saturdays, and Sundays only. 19 windmills, polders, the original Dutch postcard. Half-day at most. Pack a rain shell.'
     - title: Eat at Foodhallen or Fenix Food Factory
       body: Both are former warehouses redeveloped as multi-vendor halls. Foodhallen is in the city center near Centraal. Fenix is across the river in Katendrecht next to Hotel New York. Either one solves dinner for a group.
-
 faqs:
   - q: Is Rotterdam worth a separate trip from Amsterdam?
-    a: Yes, if you have three or more nights in the Netherlands. The two cities are completely different. Amsterdam is the canals and the small-scale 17th-century, Rotterdam is the modern architecture and the port. A day trip from Amsterdam works, but a long weekend in Rotterdam itself is the better version. The trains run every 10 to 15 minutes and take 40 minutes via the Intercity Direct.
+    a: 'Yes, if you have three or more nights in the Netherlands. The two cities are completely different. Amsterdam is the canals and the small-scale 17th-century, Rotterdam is the modern architecture and the port. A day trip from Amsterdam works, but a long weekend in Rotterdam itself is the better version. The trains run every 10 to 15 minutes and take 40 minutes via the Intercity Direct.'
   - q: Where should I stay?
     a: Near Rotterdam Centraal. Holiday Inn Express is the budget pick directly across from the station. Hotel New York across the river in Kop van Zuid is the splurge if maritime history matters to you. Anywhere along the Cool district and Witte de Withstraat puts you in walking distance of the center.
   - q: Do I need a car?
-    a: No. Rotterdam has a dense metro/tram/bus network with OVpay (contactless tap, including phone) covering everything. For Kinderdijk, take the WaterShuttle from the Erasmusbrug (Fri/Sat/Sun) or Bus 489 from Centraal on other days. The Dutch trains handle longer day trips to Delft, Gouda, Utrecht.
+    a: 'No. Rotterdam has a dense metro/tram/bus network with OVpay (contactless tap, including phone) covering everything. For Kinderdijk, take the WaterShuttle from the Erasmusbrug (Fri/Sat/Sun) or Bus 489 from Centraal on other days. The Dutch trains handle longer day trips to Delft, Gouda, Utrecht.'
   - q: How do I do Kinderdijk?
-    a: From late 2025 the old Waterbus Line 202 was rebranded as the WaterShuttle Rotterdam-Kinderdijk. It now runs Fridays, Saturdays, and Sundays only, costs €9.75 single / €19.50 return, and takes 30 minutes from the Erasmusbrug. OVpay is no longer accepted on this leg. Buy the ticket on the operator's site or at the boat. On other days, take Bus 489 from Rotterdam Centraal. Half-day on site walking the polders between the 19 windmills, entering two that are open as museums. Buy a Kinderdijk combo ticket at the visitor center. Bring a windbreaker even in summer.
+    a: 'From late 2025 the old Waterbus Line 202 was rebranded as the WaterShuttle Rotterdam-Kinderdijk. It now runs Fridays, Saturdays, and Sundays only, costs €9.75 single / €19.50 return, and takes 30 minutes from the Erasmusbrug. OVpay is no longer accepted on this leg. Buy the ticket on the operator''s site or at the boat. On other days, take Bus 489 from Rotterdam Centraal. Half-day on site walking the polders between the 19 windmills, entering two that are open as museums. Buy a Kinderdijk combo ticket at the visitor center. Bring a windbreaker even in summer.'
   - q: What is the historic harbor walk?
-    a: The Oude Haven (old harbor) is right next to the Cube Houses and shows what Rotterdam looked like before the WWII bombing. A 20-minute loop on foot past boat-builders, old warehouses, and the Witte Huis (the first European skyscraper, 1898). Adds context to the modern Rotterdam you walk through elsewhere.
-
+    a: 'The Oude Haven (old harbor) is right next to the Cube Houses and shows what Rotterdam looked like before the WWII bombing. A 20-minute loop on foot past boat-builders, old warehouses, and the Witte Huis (the first European skyscraper, 1898). Adds context to the modern Rotterdam you walk through elsewhere.'
 related:
   city: rotterdam
   country: netherlands
@@ -44,17 +41,19 @@ topics:
   - architecture
   - nightlife
   - day-trips
+pairs_with:
+  - city: amsterdam
+    travel: 40 min by Intercity Direct
+    why: 'The canal city up the rail line. Pairs as the modern-vs-medieval Dutch contrast, two or three nights each'
+  - city: the-hague
+    travel: 25 min by Intercity
+    why: The political capital with the Mauritshuis. Often the cheaper base for both Rotterdam and Amsterdam visits
+  - city: antwerp
+    travel: 1 hr 15 by Intercity through Brussels
+    why: 'The Belgian neighbor city across the border, the diamond and fashion capital. Pairs Rotterdam with Flanders for a wider Low Countries trip'
 ---
 
 [Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam: WWII bombing erased the medieval city, and the rebuild turned it into the proving ground for modern Dutch architecture. Two days for the walking loop and the food, plus a half-day at Kinderdijk. Here's how I'd plan it.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Amsterdam](/lists/amsterdam) | 40 min by Intercity Direct | The canal city up the rail line. Pairs as the modern-vs-medieval Dutch contrast, two or three nights each |
-| [The Hague](/lists/the-hague) | 25 min by Intercity | The political capital with the Mauritshuis. Often the cheaper base for both Rotterdam and Amsterdam visits |
-| [Antwerp](/lists/antwerp) | 1 hr 15 by Intercity through Brussels | The Belgian neighbor city across the border, the diamond and fashion capital. Pairs Rotterdam with Flanders for a wider Low Countries trip |
 
 ## On this page
 

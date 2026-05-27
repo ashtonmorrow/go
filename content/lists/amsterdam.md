@@ -1,109 +1,77 @@
 ---
 indexable: true
 featured: true
-title: "Amsterdam travel guide: King's Day, tulip season, and where to stay"
-headline: "Amsterdam, my guide to the canal city and the day trips out"
-description: "My Amsterdam travel guide. Walking the canal ring, where to stay, King’s Day and Keukenhof tulip season, the Schiphol train, and day trips like Zaanse Schans."
-published: 2026-05-10
-updated: 2026-05-13
+title: 'Amsterdam travel guide: King''s Day, tulip season, and where to stay'
+headline: 'Amsterdam, my guide to the canal city and the day trips out'
+description: 'My Amsterdam travel guide. Walking the canal ring, where to stay, King’s Day and Keukenhof tulip season, the Schiphol train, and day trips like Zaanse Schans.'
+published: 2026-05-10T00:00:00.000Z
+updated: 2026-05-13T00:00:00.000Z
 authors:
   - Mike Lee
-hero_image: ""
-hero_alt: ""
-
+hero_image: ''
+hero_alt: ''
 guide_cards:
   title: Planning Amsterdam
-  intro: Land at Schiphol, ride a train into town from the platform under the airport, and accept that the canals are pricey. The Netherlands has the best regional rail in Europe, so basing outside Amsterdam (or in Zuid) and tapping a bank card on every leg often wins.
+  intro: 'Land at Schiphol, ride a train into town from the platform under the airport, and accept that the canals are pricey. The Netherlands has the best regional rail in Europe, so basing outside Amsterdam (or in Zuid) and tapping a bank card on every leg often wins.'
   cards:
     - title: Schiphol is the easy arrival
-      body: Customs, bags, escalator, train. The platform sits directly under the airport. Trains to Amsterdam Centraal run every few minutes. Tap your contactless card on the gate and you are in town in fifteen.
+      body: 'Customs, bags, escalator, train. The platform sits directly under the airport. Trains to Amsterdam Centraal run every few minutes. Tap your contactless card on the gate and you are in town in fifteen.'
     - title: Don't fight the canal pricing
-      body: Central canal-house hotels are €200+. Amsterdam Zuid is mid-priced and clean. The Hague, Utrecht, and Rotterdam all have good, cheaper hotels and the regional train back to Amsterdam runs constantly.
+      body: 'Central canal-house hotels are €200+. Amsterdam Zuid is mid-priced and clean. The Hague, Utrecht, and Rotterdam all have good, cheaper hotels and the regional train back to Amsterdam runs constantly.'
     - title: Tap your card on the train and tram
-      body: NS (the national rail), GVB (Amsterdam metro and trams), and the regional buses all accept contactless bank cards directly under the OVpay rollout. Tap in, tap out, charged per kilometer. No paper ticket, no OV-chipkaart needed.
+      body: 'NS (the national rail), GVB (Amsterdam metro and trams), and the regional buses all accept contactless bank cards directly under the OVpay rollout. Tap in, tap out, charged per kilometer. No paper ticket, no OV-chipkaart needed.'
     - title: Pick the boat tour deliberately
-      body: Yes, do a canal boat tour. No, do not buy from someone on the street. Architecture and small-boat tours are better than the big-boat circuit. It's worth ten minutes of search before you book.
-
+      body: 'Yes, do a canal boat tour. No, do not buy from someone on the street. Architecture and small-boat tours are better than the big-boat circuit. It''s worth ten minutes of search before you book.'
 faqs:
   - q: How do I get from Schiphol to central Amsterdam?
-    a: Take a Sprinter or Intercity train from Schiphol Plaza to Amsterdam Centraal. The platform is one floor below arrivals. Signs are clear and in English. About fifteen minutes, runs every few minutes day and night. Tap a contactless card at the entry and exit gates (OVpay) and you'll be charged about €5–6. The fare cap is small. It's the easiest move with luggage.
+    a: 'Take a Sprinter or Intercity train from Schiphol Plaza to Amsterdam Centraal. The platform is one floor below arrivals. Signs are clear and in English. About fifteen minutes, runs every few minutes day and night. Tap a contactless card at the entry and exit gates (OVpay) and you''ll be charged about €5–6. The fare cap is small. It''s the easiest move with luggage.'
   - q: Where should I stay in Amsterdam?
-    a: Three real options. Central (anywhere along the canals or near Centraal) is convenient and pricey, often €200+ for an unremarkable room. Amsterdam Zuid is a business district with mid-tier chains around €100, sterile but clean. Given how good the trains are, basing in The Hague, Utrecht, or Rotterdam and riding in works well. All three have nicer hotels at lower prices and the regional train is part of the day.
+    a: 'Three real options. Central (anywhere along the canals or near Centraal) is convenient and pricey, often €200+ for an unremarkable room. Amsterdam Zuid is a business district with mid-tier chains around €100, sterile but clean. Given how good the trains are, basing in The Hague, Utrecht, or Rotterdam and riding in works well. All three have nicer hotels at lower prices and the regional train is part of the day.'
   - q: Do I need a transit card?
-    a: No. As of the OVpay rollout, you tap a contactless bank card or a phone wallet directly on the gates and poles. Works on NS trains, GVB metro and trams, regional buses. Fares are charged per kilometer, no upfront top-up.
+    a: 'No. As of the OVpay rollout, you tap a contactless bank card or a phone wallet directly on the gates and poles. Works on NS trains, GVB metro and trams, regional buses. Fares are charged per kilometer, no upfront top-up.'
   - q: Is the Van Gogh Museum worth doing?
-    a: Yes, even if "touristy" makes you wary. The collection is dense and well-curated. One catch worth knowing in advance is that you must reserve a timed entry online. Walk-ups are turned away at the door, and the staff there spend most of the day explaining this to people who tried it.
+    a: 'Yes, even if "touristy" makes you wary. The collection is dense and well-curated. One catch worth knowing in advance is that you must reserve a timed entry online. Walk-ups are turned away at the door, and the staff there spend most of the day explaining this to people who tried it.'
   - q: Are the canal boat tours worth it?
-    a: Yes, but pick deliberately. A small-boat or architecture-themed tour beats the big-boat sightseeing run. Spend ten minutes researching before you book. Do not buy a ticket from someone with a clipboard on the street.
-
+    a: 'Yes, but pick deliberately. A small-boat or architecture-themed tour beats the big-boat sightseeing run. Spend ten minutes researching before you book. Do not buy a ticket from someone with a clipboard on the street.'
 related:
   city: amsterdam
   country: netherlands
-
 topics:
   - festivals
   - museums
-
 day_trips:
-  intro: Amsterdam's day trips run on one of the densest rail networks in Europe. Working windmills, the spring bulb fields, and three historic Dutch cities are all inside about an hour.
+  intro: 'Amsterdam''s day trips run on one of the densest rail networks in Europe. Working windmills, the spring bulb fields, and three historic Dutch cities are all inside about an hour.'
   trips:
     - name: Zaanse Schans
-      travel: About 20 min by train to Zaandijk, then a short walk
-      summary: A riverside set of working windmills, green wooden houses, and craft workshops. The easiest half-day from the city.
+      travel: 'About 20 min by train to Zaandijk, then a short walk'
+      summary: 'A riverside set of working windmills, green wooden houses, and craft workshops. The easiest half-day from the city.'
     - name: Keukenhof and the bulb fields
-      travel: About 40 min by direct bus, spring only
-      summary: The cut-flower park open only mid-March to mid-May, surrounded by the striped tulip fields of the Bollenstreek. Pre-book the timed ticket.
+      travel: 'About 40 min by direct bus, spring only'
+      summary: 'The cut-flower park open only mid-March to mid-May, surrounded by the striped tulip fields of the Bollenstreek. Pre-book the timed ticket.'
     - name: Haarlem
       travel: 15 to 20 min by train
-      summary: A calmer historic city with a grand market square, the Grote Kerk, and the Frans Hals Museum. The easy antidote to Amsterdam's crowds.
+      summary: 'A calmer historic city with a grand market square, the Grote Kerk, and the Frans Hals Museum. The easy antidote to Amsterdam''s crowds.'
     - name: Utrecht
       travel: About 30 min by train
-      summary: Canals on two levels with wharf-side cafes, the Dom Tower, and a student-city energy. The Dutch city most visitors skip and should not.
+      summary: 'Canals on two levels with wharf-side cafes, the Dom Tower, and a student-city energy. The Dutch city most visitors skip and should not.'
       list: utrect-nl
     - name: Delft
       travel: About 1 hr by train
-      summary: Vermeer's town, with two landmark churches, the Royal Delft blue-pottery works, and a canal-laced center between Rotterdam and The Hague.
+      summary: 'Vermeer''s town, with two landmark churches, the Royal Delft blue-pottery works, and a canal-laced center between Rotterdam and The Hague.'
       list: delft
-
-# Authoring notes (kept here, not rendered):
-# - indexable is false until Mike reviews. Flip to true to ship.
-# - featured is true so the scaffold appears on the home page Travel
-#   guides section alongside Cape Town / Madrid / Bristol / Bangkok.
-# - hero_image is empty. Pick one in /admin/lists/amsterdam via the picker.
-# - related.country = "netherlands", confirm matches go_countries
-#   slug. Might need to be a different value (e.g., "the-netherlands").
-# - Pin ops on this commit:
-#     · Deleted the typo'd Brouwerij dupe (slug brouwerij-t-lj)
-#     · Backfilled brouwerij-t-ij with coords + Wikipedia
-#     · Backfilled kimpton-de-witt-amsterdam with address + coords
-#     · Backfilled rob-wigboldus-fishmonger with address + coords (the
-#       herring stand Mike means)
-#     · Created amsterdam-airport-schiphol
-#     · Created crowne-plaza-amsterdam-south-an-ihg-hotel
-#     · Created buiksloterweg-ferry-amsterdam (the free GVB F3 ferry)
-#     · Added zaanse-schans + windmill-viewpoint + station-zaandam to
-#       the amsterdam saved_list so they show on the map
-# - Pins still worth creating later for richer cross-linking:
-#     · Hotel Indigo The Hague - Palace Noordeinde already exists. If
-#       Mike wants The Hague more prominent in the prose, link it.
-#     · Crowne Plaza Utrecht Central Station already exists. Same.
-#     · An NDSM Werf pin for the further-out ferry destination (the
-#       Buiksloterweg is closer. NDSM is the longer ride to the
-#       creative-district side).
-# - Hoofddorp is mentioned by name as a "do not stay" without a pin
-#   link. If you want it pinned for a "definitely avoid" cross-link
-#   later, the pin would be a generic Hoofddorp area marker.
+pairs_with:
+  - city: rotterdam
+    travel: 40 min by Intercity Direct
+    why: 'The modern post-war counterweight to Amsterdam''s canals. Pairs as Amsterdam four nights, Rotterdam two for the architecture-and-port contrast'
+  - city: the-hague
+    travel: 50 min by Intercity
+    why: The political capital with the Mauritshuis (the Vermeer Girl with a Pearl Earring). Also the cheaper base if you want to ride the trains into Amsterdam and Rotterdam from a quieter hotel
+  - city: bruges
+    travel: 3 hr 15 by Eurostar via Brussels
+    why: The Belgian canal city across the border. Pairs Amsterdam with Flanders for a wider Low Countries trip
 ---
 
 [Amsterdam](/cities/amsterdam) is smaller and easier than it looks, a wheel of canals you can mostly cross on foot. The thing I tell every first-timer is that the Dutch trains are so good that basing outside the city and riding in is a real option, not a compromise. Here's how I'd plan it, day trips included.
-
-## Pairs with
-
-| City | Travel | Why pair |
-|---|---|---|
-| [Rotterdam](/lists/rotterdam) | 40 min by Intercity Direct | The modern post-war counterweight to Amsterdam's canals. Pairs as Amsterdam four nights, Rotterdam two for the architecture-and-port contrast |
-| [The Hague](/lists/the-hague) | 50 min by Intercity | The political capital with the Mauritshuis (the Vermeer Girl with a Pearl Earring). Also the cheaper base if you want to ride the trains into Amsterdam and Rotterdam from a quieter hotel |
-| [Bruges](/lists/bruges) | 3 hr 15 by Eurostar via Brussels | The Belgian canal city across the border. Pairs Amsterdam with Flanders for a wider Low Countries trip |
 
 ## On this page
 
