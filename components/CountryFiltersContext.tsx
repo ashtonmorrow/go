@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from 'react';
+import { makeFiltersContext, toggleSet } from '@/lib/filtersContext';
 import type { Continent, VisaUs, TapWater, DriveSide } from './CityFiltersContext';
 
 // === Country filter state ==================================================
@@ -17,6 +17,8 @@ import type { Continent, VisaUs, TapWater, DriveSide } from './CityFiltersContex
 //
 // Sort options are country-shaped: name, # of cities in the atlas, # of
 // those cities I've been to.
+//
+// Provider boilerplate lives in lib/filtersContext.tsx.
 
 export type CountrySortKey = 'name' | 'cityCount' | 'beenCount';
 /** A country's relationship to the user. Mirrors CityLayer. */
@@ -56,26 +58,9 @@ const DEFAULT_STATE: CountryFilterState = {
   desc: false,
 };
 
-type Ctx = {
-  state: CountryFilterState;
-  setState: React.Dispatch<React.SetStateAction<CountryFilterState>>;
-  reset: () => void;
-  activeFilterCount: number;
-  resultCount: number | null;
-  totalCount: number | null;
-  setCounts: (result: number, total: number) => void;
-};
-
-const CountryFiltersContext = createContext<Ctx | null>(null);
-
-export function CountryFiltersProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<CountryFilterState>(DEFAULT_STATE);
-  const [counts, setCountsState] = useState<{ result: number | null; total: number | null }>({
-    result: null,
-    total: null,
-  });
-
-  const activeFilterCount = useMemo(() => {
+const { Provider, useFilters } = makeFiltersContext<CountryFilterState>({
+  defaultState: DEFAULT_STATE,
+  countActive: state => {
     let n = 0;
     if (state.statusFocus !== DEFAULT_STATE.statusFocus) n++;
     if (state.schengenOnly !== DEFAULT_STATE.schengenOnly) n++;
@@ -85,36 +70,9 @@ export function CountryFiltersProvider({ children }: { children: ReactNode }) {
     n += state.tapWater.size > 0 ? 1 : 0;
     n += state.drive.size > 0 ? 1 : 0;
     return n;
-  }, [state]);
+  },
+});
 
-  const setCounts = useCallback((result: number, total: number) => {
-    setCountsState(prev =>
-      prev.result === result && prev.total === total ? prev : { result, total }
-    );
-  }, []);
-
-  const stableReset = useCallback(() => setState(DEFAULT_STATE), []);
-
-  const value = useMemo(
-    () => ({
-      state, setState,
-      reset: stableReset,
-      activeFilterCount,
-      resultCount: counts.result, totalCount: counts.total, setCounts,
-    }),
-    [state, activeFilterCount, counts.result, counts.total, stableReset, setCounts]
-  );
-
-  return <CountryFiltersContext.Provider value={value}>{children}</CountryFiltersContext.Provider>;
-}
-
-export function useCountryFilters(): Ctx | null {
-  return useContext(CountryFiltersContext);
-}
-
-export function toggleCountrySet<T>(set: Set<T>, value: T): Set<T> {
-  const next = new Set(set);
-  if (next.has(value)) next.delete(value);
-  else next.add(value);
-  return next;
-}
+export const CountryFiltersProvider = Provider;
+export const useCountryFilters = useFilters;
+export const toggleCountrySet = toggleSet;

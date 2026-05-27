@@ -1,6 +1,6 @@
 import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import CountriesGrid from '@/components/CountriesGrid';
-import CountriesPageTitle from '@/components/CountriesPageTitle';
+import PageTitle from '@/components/PageTitle';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';
 import { driveSide } from '@/lib/driveSide';
@@ -116,7 +116,7 @@ export default async function CountriesPage() {
   return (
     <>
       <JsonLd data={collectionData} />
-      <section className="max-w-page mx-auto px-5 pt-6"><CountriesPageTitle /></section>
+      <section className="max-w-page mx-auto px-5 pt-6"><PageTitle scope="countries" /></section>
       <CountriesGrid countries={minimal} />
     </>
   );

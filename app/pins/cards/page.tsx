@@ -7,7 +7,7 @@
 import type { Metadata } from 'next';
 import JsonLd from '@/components/JsonLd';
 import PinsGrid from '@/components/PinsGrid';
-import PinsPageTitle from '@/components/PinsPageTitle';
+import PageTitle from '@/components/PageTitle';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import { fetchPinsCardData } from '@/lib/pinsCardData';
 
@@ -53,7 +53,7 @@ export default async function PinsPage() {
         })}
       />
 
-      <section className="max-w-page mx-auto px-5 pt-6"><PinsPageTitle /></section>
+      <section className="max-w-page mx-auto px-5 pt-6"><PageTitle scope="pins" /></section>
 
       <PinsGrid pins={pins} countryNameToIso2={countryNameToIso2} />
     </div>

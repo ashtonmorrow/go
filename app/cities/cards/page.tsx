@@ -1,6 +1,6 @@
 import { fetchCitiesCardData } from '@/lib/citiesCardData';
 import CitiesGrid from '@/components/CitiesGrid';
-import CitiesPageTitle from '@/components/CitiesPageTitle';
+import PageTitle from '@/components/PageTitle';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, collectionJsonLd } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -51,7 +51,7 @@ export default async function CitiesPage() {
     <>
       <JsonLd data={collectionData} />
       <section className="max-w-page mx-auto px-5 pt-6">
-        <CitiesPageTitle />
+        <PageTitle scope="cities" />
       </section>
       <CitiesGrid cities={cities} />
     </>

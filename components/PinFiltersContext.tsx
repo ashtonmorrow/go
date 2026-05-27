@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from 'react';
+import { makeFiltersContext, toggleSet } from '@/lib/filtersContext';
 import type { Continent } from './CityFiltersContext';
 
 // === Pin filter state ======================================================
@@ -10,8 +10,8 @@ import type { Continent } from './CityFiltersContext';
 //   * Different boolean toggles (Visited rather than Been/Go/Saved trio)
 //   * Different multi-selects (category + UNESCO; no Köppen, voltage, etc.)
 //
-// Trade-off: a tiny bit of duplication for clean, decoupled cockpit state
-// when the user flips between /cities and /pins.
+// Provider boilerplate lives in lib/filtersContext.tsx — this file just
+// declares the domain-specific state shape and the active-filter counter.
 
 export type PinSortKey = 'name' | 'recent';
 
@@ -58,7 +58,8 @@ export type PinFilterState = {
 
 // Curated landing — pins is mostly a personal "places I've been" list, so the
 // default narrows to visited. Reset() returns to NEUTRAL_STATE for a real
-// escape hatch.
+// escape hatch (visitedFilter='all') so the user can break out of the
+// curation lens with one click.
 const DEFAULT_STATE: PinFilterState = {
   q: '',
   visitedFilter: 'visited',
@@ -82,26 +83,9 @@ const DEFAULT_STATE: PinFilterState = {
   desc: true,
 };
 
-type Ctx = {
-  state: PinFilterState;
-  setState: React.Dispatch<React.SetStateAction<PinFilterState>>;
-  reset: () => void;
-  activeFilterCount: number;
-  resultCount: number | null;
-  totalCount: number | null;
-  setCounts: (result: number, total: number) => void;
-};
-
-const PinFiltersContext = createContext<Ctx | null>(null);
-
-export function PinFiltersProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<PinFilterState>(DEFAULT_STATE);
-  const [counts, setCountsState] = useState<{ result: number | null; total: number | null }>({
-    result: null,
-    total: null,
-  });
-
-  const activeFilterCount = useMemo(() => {
+const { Provider, useFilters } = makeFiltersContext<PinFilterState>({
+  defaultState: DEFAULT_STATE,
+  countActive: state => {
     let n = 0;
     if (state.visitedFilter !== DEFAULT_STATE.visitedFilter) n++;
     if (state.unescoOnly !== DEFAULT_STATE.unescoOnly) n++;
@@ -120,44 +104,12 @@ export function PinFiltersProvider({ children }: { children: ReactNode }) {
     n += state.savedLists.size > 0 ? 1 : 0;
     if (state.inceptionMin != null || state.inceptionMax != null) n++;
     return n;
-  }, [state]);
+  },
+  // Reset clears EVERYTHING including the curated visited='visited'
+  // default so the user has a true "show me all 1300+ pins" escape hatch.
+  resetState: () => ({ ...DEFAULT_STATE, visitedFilter: 'all' }),
+});
 
-  const setCounts = useCallback((result: number, total: number) => {
-    setCountsState(prev =>
-      prev.result === result && prev.total === total ? prev : { result, total }
-    );
-  }, []);
-
-  // Reset clears EVERYTHING including the curated visited='visited' default
-  // so the user has a true "show me all 1300+ pins" escape hatch.
-  const stableReset = useCallback(
-    () => setState({ ...DEFAULT_STATE, visitedFilter: 'all' }),
-    [],
-  );
-
-  const value = useMemo(
-    () => ({
-      state,
-      setState,
-      reset: stableReset,
-      activeFilterCount,
-      resultCount: counts.result,
-      totalCount: counts.total,
-      setCounts,
-    }),
-    [state, activeFilterCount, counts.result, counts.total, stableReset, setCounts]
-  );
-
-  return <PinFiltersContext.Provider value={value}>{children}</PinFiltersContext.Provider>;
-}
-
-export function usePinFilters(): Ctx | null {
-  return useContext(PinFiltersContext);
-}
-
-export function togglePinSet<T>(set: Set<T>, value: T): Set<T> {
-  const next = new Set(set);
-  if (next.has(value)) next.delete(value);
-  else next.add(value);
-  return next;
-}
+export const PinFiltersProvider = Provider;
+export const usePinFilters = useFilters;
+export const togglePinSet = toggleSet;

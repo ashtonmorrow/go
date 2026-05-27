@@ -1,6 +1,18 @@
 'use client';
 
-import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react';
+import {
+  makeFiltersContext,
+  toggleSet,
+  type BaseFiltersCtx,
+} from '@/lib/filtersContext';
 
 // === City filters: layers / filters split ==================================
 // Two distinct jobs were previously mashed together into one "filter" cockpit:
@@ -29,6 +41,11 @@ import { createContext, useCallback, useContext, useMemo, useState, ReactNode } 
 // State is kept FLAT (not nested under .layers / .filters) for simpler
 // consumer migration; semantic grouping is by naming convention (showX for
 // layers, everything else for facets).
+//
+// The base provider boilerplate (state, counts, reset) comes from
+// makeFiltersContext; this file layers per-layer counts on top via a
+// secondary context so the cards / map views can push their per-layer
+// breakdown back into the sidebar without touching the filter state.
 
 export type SortKey =
   // Default. Cities I've curated most heavily come first: those with a
@@ -143,44 +160,9 @@ const DEFAULT_STATE: FilterState = {
   desc: false,
 };
 
-type Ctx = {
-  state: FilterState;
-  setState: React.Dispatch<React.SetStateAction<FilterState>>;
-  reset: () => void;
-  /** Number of NARROWING facets currently active. Layers are explicitly
-   *  excluded — they're encoding controls, not filter conditions, so a
-   *  user with "Been only visible" should not see a "1 active filter"
-   *  counter. */
-  activeFilterCount: number;
-  /** True when at least one layer is hidden. Drives the contextual hint
-   *  "Some statuses are hidden" so the user is never silently puzzled
-   *  about a missing color on the map. */
-  activeLayerHidden: boolean;
-  // Push-channel from view → FilterPanel for the "X / Y cities" badge.
-  resultCount: number | null;
-  totalCount: number | null;
-  setCounts: (result: number, total: number) => void;
-  /** Per-layer counts within the narrowed (post-facet, pre-visibility) set.
-   *  Pushed by view components so the FilterPanel can render
-   *  "Been (47) · Go (12) · Saved (3) · Other (188)" next to each toggle.
-   *  Null until a view mounts and calls setLayerCounts. */
-  layerCounts: Record<CityLayer, number> | null;
-  setLayerCounts: (counts: Record<CityLayer, number>) => void;
-};
-
-const CityFiltersContext = createContext<Ctx | null>(null);
-
-export function CityFiltersProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<FilterState>(DEFAULT_STATE);
-  const [counts, setCountsState] = useState<{ result: number | null; total: number | null }>({
-    result: null,
-    total: null,
-  });
-  const [layerCounts, setLayerCountsState] = useState<Record<CityLayer, number> | null>(null);
-
-  // Active-filter counter — every active narrowing facet (including
-  // statusFocus when set, since it's now a real filter not a layer).
-  const activeFilterCount = useMemo(() => {
+const { Provider: BaseProvider, useFilters: useBaseFilters } = makeFiltersContext<FilterState>({
+  defaultState: DEFAULT_STATE,
+  countActive: state => {
     let n = 0;
     if (state.q.trim()) n++;
     if (state.statusFocus !== null) n++;
@@ -193,42 +175,13 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     if (state.populationMin != null || state.populationMax != null) n++;
     if (state.hasSavedPlaces !== 'any') n++;
     return n;
-  }, [state]);
-
-  // Kept on the context for backwards compat with any leftover consumer;
-  // always false now since there's no separate layer-visibility axis.
-  const activeLayerHidden = false;
-
-  // Stable identity so consumers can include it in useEffect deps without
-  // creating a re-fire loop on every render.
-  const setCounts = useCallback((result: number, total: number) => {
-    setCountsState(prev =>
-      prev.result === result && prev.total === total ? prev : { result, total }
-    );
-  }, []);
-
-  const setLayerCounts = useCallback((next: Record<CityLayer, number>) => {
-    setLayerCountsState(prev => {
-      // Cheap shallow equality so the view's effect doesn't trigger a
-      // re-render of the sidebar on every filter tick when nothing's changed.
-      if (
-        prev &&
-        prev.visited === next.visited &&
-        prev.planning === next.planning &&
-        prev.researching === next.researching
-      ) {
-        return prev;
-      }
-      return next;
-    });
-  }, []);
-
+  },
   // Clear-all explicitly resets to a TRULY-neutral state, not to
-  // DEFAULT_STATE. The default carries hasSavedPlaces='with' so the
+  // DEFAULT_STATE. The default carries statusFocus='visited' so the
   // initial page load lands on the curated subset; but clicking
   // "Clear all" should give the user the full atlas, otherwise the
   // button feels broken ("I clicked clear and I still have a filter").
-  const stableReset = useCallback(() => setState({
+  resetState: () => ({
     ...DEFAULT_STATE,
     statusFocus: null,
     hasSavedPlaces: 'any',
@@ -241,40 +194,75 @@ export function CityFiltersProvider({ children }: { children: ReactNode }) {
     drive: new Set(),
     populationMin: null,
     populationMax: null,
-  }), []);
+  }),
+});
 
-  const value = useMemo(
-    () => ({
-      state,
-      setState,
-      reset: stableReset,
-      activeFilterCount,
-      activeLayerHidden,
-      resultCount: counts.result,
-      totalCount: counts.total,
-      setCounts,
-      layerCounts,
-      setLayerCounts,
-    }),
-    [state, activeFilterCount, activeLayerHidden, counts.result, counts.total, stableReset, setCounts, layerCounts, setLayerCounts]
+// === City-specific extension: per-layer counts =============================
+// Pushed from view → sidebar so the FilterPanel can show
+// "Been (47) · Go (12) · Saved (3) · Other (188)" next to each toggle.
+// Kept on a secondary context so the base factory stays domain-agnostic.
+type CityExtras = {
+  /** True when at least one layer is hidden. Drives the "Some statuses
+   *  are hidden" hint. Always false now since the layer-visibility axis
+   *  was removed; kept on the context for backwards compat with any
+   *  leftover consumer. */
+  activeLayerHidden: boolean;
+  layerCounts: Record<CityLayer, number> | null;
+  setLayerCounts: (counts: Record<CityLayer, number>) => void;
+};
+
+const LayerCountsContext = createContext<CityExtras | null>(null);
+
+function LayerCountsProvider({ children }: { children: ReactNode }) {
+  const [layerCounts, setLayerCountsState] =
+    useState<Record<CityLayer, number> | null>(null);
+
+  const setLayerCounts = useCallback((next: Record<CityLayer, number>) => {
+    setLayerCountsState(prev => {
+      // Cheap shallow equality so the view's effect doesn't re-render
+      // the sidebar on every filter tick when nothing's changed.
+      if (
+        prev &&
+        prev.visited === next.visited &&
+        prev.planning === next.planning &&
+        prev.researching === next.researching
+      ) {
+        return prev;
+      }
+      return next;
+    });
+  }, []);
+
+  const value = useMemo<CityExtras>(
+    () => ({ activeLayerHidden: false, layerCounts, setLayerCounts }),
+    [layerCounts, setLayerCounts],
   );
 
   return (
-    <CityFiltersContext.Provider value={value}>{children}</CityFiltersContext.Provider>
+    <LayerCountsContext.Provider value={value}>{children}</LayerCountsContext.Provider>
+  );
+}
+
+export function CityFiltersProvider({ children }: { children: ReactNode }) {
+  return (
+    <BaseProvider>
+      <LayerCountsProvider>{children}</LayerCountsProvider>
+    </BaseProvider>
   );
 }
 
 // Hook returns null when no provider is mounted (e.g. outside the cities
 // route). Consumers should null-check before rendering filter UI so the
 // sidebar can opt-out gracefully on /map and detail pages.
-export function useCityFilters(): Ctx | null {
-  return useContext(CityFiltersContext);
+export type CityFiltersCtx = BaseFiltersCtx<FilterState> & CityExtras;
+
+export function useCityFilters(): CityFiltersCtx | null {
+  const base = useBaseFilters();
+  const extras = useContext(LayerCountsContext);
+  if (!base || !extras) return null;
+  return { ...base, ...extras };
 }
 
-// Helper for toggling a value in/out of a Set (immutable update).
-export function toggleSet<T>(set: Set<T>, value: T): Set<T> {
-  const next = new Set(set);
-  if (next.has(value)) next.delete(value);
-  else next.add(value);
-  return next;
-}
+// Re-export the shared toggle helper so existing imports of
+// `toggleSet` from this module keep working.
+export { toggleSet };
