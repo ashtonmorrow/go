@@ -113,8 +113,20 @@ export type ListRelated = {
 export type ListContent = {
   /** Trimmed raw markdown — exposed for clients that want their own renderer. */
   body: string;
-  /** Pre-rendered HTML (marked → string). Render with .post-prose styling. */
+  /** Pre-rendered HTML (marked → string). Render with .post-prose styling.
+   *  Split into two halves at the first H2 (the "On this page" TOC, by
+   *  convention) so that opt-in blocks like PairsWithBlock can render
+   *  between the intro paragraphs and the rest of the body without a
+   *  regex on the rendered HTML at the page level. */
   bodyHtml: string;
+  /** Everything in bodyHtml up to (but not including) the first <h2>.
+   *  Typically the intro paragraph(s) that precede "On this page". When
+   *  the body has no H2, this equals the full bodyHtml and bodyAfterIntroHtml
+   *  is the empty string. */
+  introHtml: string;
+  /** Everything from the first <h2> onward. Empty string when the body
+   *  has no H2 (a single-paragraph list, or no body at all). */
+  bodyAfterIntroHtml: string;
   indexable: boolean;
   /** Decoupled from `indexable`. `featured: true` puts the list on the
    *  home page Travel guides section, regardless of whether Google is
@@ -284,6 +296,21 @@ function parseRelated(v: unknown): ListRelated {
   };
 }
 
+/** Split rendered list HTML at the first H2. Returns the intro half
+ *  (everything before <h2>) and the body-after-intro half (from the H2
+ *  onward). When there is no H2 the intro is the full body and the
+ *  after-intro half is the empty string.
+ *
+ *  Used so opt-in blocks like PairsWithBlock can render between the
+ *  intro paragraphs and the rest of the body without page-level regex
+ *  on dangerouslySetInnerHTML output. */
+export function splitBodyAtFirstH2(html: string): { introHtml: string; bodyAfterIntroHtml: string } {
+  if (!html) return { introHtml: '', bodyAfterIntroHtml: '' };
+  const idx = html.search(/<h2\b/);
+  if (idx < 0) return { introHtml: html, bodyAfterIntroHtml: '' };
+  return { introHtml: html.slice(0, idx), bodyAfterIntroHtml: html.slice(idx) };
+}
+
 // _readListContent intentionally is NOT wrapped in unstable_cache.
 // Previous versions used a 24-hour cross-request cache on this function,
 // which caused a recurring class of bug: whenever a new /content/lists/<slug>.md
@@ -319,9 +346,12 @@ async function _readListContent(slug: string): Promise<ListContent | null> {
     return null;
   }
   const bodyHtml = bodyMd ? await marked.parse(bodyMd, { async: true }) : '';
+  const { introHtml, bodyAfterIntroHtml } = splitBodyAtFirstH2(bodyHtml);
   return {
     body: bodyMd,
     bodyHtml,
+    introHtml,
+    bodyAfterIntroHtml,
     indexable: data.indexable === true,
     featured: data.featured === true,
     title: asString(data.title),

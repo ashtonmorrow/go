@@ -29,6 +29,7 @@ import {
   readListContent,
   extractPinSlugsFromBody,
   renderListBodyWithPinPhotos,
+  splitBodyAtFirstH2,
   type ListFaq,
   type InlinePinPhotoEntry,
 } from '@/lib/content';
@@ -535,31 +536,43 @@ export default async function ListPage({ params }: Props) {
             body references pins with personal photos, those photos are
             spliced in as <figure> blocks after first mention (see
             renderListBodyWithPinPhotos in lib/content.ts).
-            When pairsWith is set we split the rendered HTML at the first
-            <h2> (typically the "On this page" TOC) and inject the chip
-            block between the intro paragraphs and the rest of the body. */}
+            When pairsWith is set the body is split at the first <h2>
+            (typically the "On this page" TOC) so the chip block can
+            render between the intro paragraphs and the rest. The
+            split helper lives in lib/content.ts. */}
         {renderedBodyHtml && (() => {
-          const firstH2 = renderedBodyHtml.search(/<h2\b/);
-          if (pairsWith && firstH2 > 0) {
+          if (!pairsWith) {
+            return (
+              <div
+                className="post-prose mt-5 max-w-prose"
+                dangerouslySetInnerHTML={{ __html: renderedBodyHtml }}
+              />
+            );
+          }
+          const { introHtml, bodyAfterIntroHtml } = splitBodyAtFirstH2(renderedBodyHtml);
+          if (!bodyAfterIntroHtml) {
             return (
               <>
                 <div
                   className="post-prose mt-5 max-w-prose"
-                  dangerouslySetInnerHTML={{ __html: renderedBodyHtml.slice(0, firstH2) }}
+                  dangerouslySetInnerHTML={{ __html: introHtml }}
                 />
                 <PairsWithBlock data={pairsWith} />
-                <div
-                  className="post-prose mt-8 max-w-prose"
-                  dangerouslySetInnerHTML={{ __html: renderedBodyHtml.slice(firstH2) }}
-                />
               </>
             );
           }
           return (
-            <div
-              className="post-prose mt-5 max-w-prose"
-              dangerouslySetInnerHTML={{ __html: renderedBodyHtml }}
-            />
+            <>
+              <div
+                className="post-prose mt-5 max-w-prose"
+                dangerouslySetInnerHTML={{ __html: introHtml }}
+              />
+              <PairsWithBlock data={pairsWith} />
+              <div
+                className="post-prose mt-8 max-w-prose"
+                dangerouslySetInnerHTML={{ __html: bodyAfterIntroHtml }}
+              />
+            </>
           );
         })()}
 
