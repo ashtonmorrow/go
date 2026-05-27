@@ -19,6 +19,16 @@ topics:
   - festivals
   - scams-safety
 
+faqs:
+  - q: How many days do I need in Prague?
+    a: Three full days covers the old town (Astronomical Clock, Charles Bridge), the castle complex on the hill, the Jewish Quarter (Josefov), and a Vyšehrad afternoon. A fourth day adds a Kutná Hora bone-church day trip or the Žižkov side of the city. The center is compact enough that more days mostly mean slower meals rather than more sights.
+  - q: How do I get from Prague Airport to the center?
+    a: Bus 119 from PRG to Nádraží Veleslavín metro, then Line A to Můstek for most central hotels. CZK 60 (€2.50) total. Airport Express bus AE runs to Hlavní nádraží (main station) for CZK 100. Taxi is CZK 600 to 800 (€25 to €33). Bolt and Liftago are cheaper than taxis and reliable. Avoid the unmarked drivers at the curb.
+  - q: Where should I stay in Prague for a first visit?
+    a: Staré Město (Old Town) puts the major sights on foot. Malá Strana on the castle side is quieter and photogenic at night. Vinohrady is the local-feel residential alternative for a longer stay, with the food and bar scene without the tourist crush. Avoid the Wenceslas Square strip; convenient on paper but loud and tourist-priced.
+  - q: Watch out for the Prague drink-bill scam?
+    a: The pattern is real on the Wenceslas Square strip and the bars approaching the Old Town from the south. Touters draw you in, the menu has one price, the bill has another, and the bouncers make sure you pay. Either read the bill before ordering or skip the strip entirely. Nothing in Old Town proper runs this pattern with the same intensity.
+
 day_trips:
   intro: Prague sits within easy reach of a bone-decorated chapel, a Gothic crown-jewel castle, a sobering WWII memorial, and Bohemia's grand spa town. Most are an hour or so out by train or bus.
   trips:

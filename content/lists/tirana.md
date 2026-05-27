@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Tirana?
+    a: Two full days covers the city: the painted Communist-era facades, Skanderbeg Square, the Pyramid, Bunk'Art 1 or 2, and a meat-and-rakia dinner. A third day adds a Krujë castle excursion or a beach run down to Durrës. For a wider Albania trip, base in Tirana for two nights then move down to Saranda or Berat.
+  - q: How do I get from Tirana Airport to the city?
+    a: The Rinas Express bus runs from TIA to the city center every 30 minutes for €4, takes about 35 minutes. Taxi is €20 to €25 fixed. Many rental-car companies will not let you take a car from Tirana into neighboring countries, so check before booking. Furgon (minibus) is the practical way to reach the rest of Albania, departures from the Northbound or Southbound parking-lot terminals (there is no official bus station).
+  - q: Where should I stay in Tirana?
+    a: The Marriott Tirana on Skanderbeg Square is the central chain option, the corner suites have square-and-stadium views. Most other beds are Airbnb in the Blloku neighborhood (the formerly-restricted Communist-era leadership area, now the bar-and-restaurant strip). Hotel inventory is thinner than the city's tourism numbers suggest.
+  - q: Is Tirana safe at night?
+    a: Yes, more than its reputation suggests. Albania has one of the lower violent-crime rates in Europe and central Tirana stays busy and well-lit well past midnight. The bigger evening question is the smoking, which is still allowed indoors in most bars and restaurants. Plan accordingly if that's a hard limit.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 second bulk-scaffold pass driven by Mike's pin set

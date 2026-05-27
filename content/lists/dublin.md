@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Dublin?
+    a: Two full days cover Trinity College and the Book of Kells, a Guinness Storehouse afternoon, the National Museum, a Temple Bar walk-through (skip the actual Temple Bar pub), and a real pub crawl in the back streets. A third day adds Howth or Wicklow as a coastal day trip, or a half-day at Kilmainham Gaol.
+  - q: How do I get from Dublin Airport to the city?
+    a: The Airlink Express bus 747 or 757 runs to the city center every 15 minutes for €8 single. Aircoach is the alternative private operator (€10) with a wider set of stops. Taxi or Uber is €30 to €50, faster with luggage. The local bus 16 is the cheapest option (€2) if you're traveling light.
+  - q: Where should I stay in Dublin?
+    a: South of the Liffey is where almost every visitor wants to be. Temple Bar is convenient but loud overnight. The Georgian quarter east of St Stephen's Green (Merrion Square, Fitzwilliam Square) is the quieter walkable option. The Docklands is the modern build, easy DART access but limited evening foot traffic. Avoid the area immediately north of the Liffey along O'Connell Street.
+  - q: Should I book the Guinness Storehouse in advance?
+    a: Yes. Buy timed-entry tickets online at guinness-storehouse.com (€26+, includes the Gravity Bar pint at the top). The walk-up queue is real, especially on weekends. The Jameson Distillery on Bow Street is the smaller, quieter alternative if you prefer the spirit-tasting format.
+
 day_trips:
   intro: Dublin's day trips swing from a coastal cliff walk to a passage tomb older than the pyramids. The closest are a short DART ride; the furthest fill a long day.
   trips:

@@ -19,6 +19,16 @@ topics:
   - festivals
   - scams-safety
 
+faqs:
+  - q: How many days do I need in Rome?
+    a: Three full days covers the headline circuit (Colosseum + Forum, Vatican, Pantheon area, Trastevere) without rushing. Four to five days adds the museums (Borghese Gallery needs advance booking), a slower walk through Testaccio or Aventine, and an Ostia Antica or Tivoli day trip. Rome is dense enough that a week still leaves things for a return.
+  - q: How do I get from Fiumicino to the center?
+    a: The Leonardo Express runs from FCO to Termini in 32 minutes for €14, every 15 minutes. It's the cleanest option with luggage. Taxis are a fixed €55 to anywhere inside the Aurelian walls and faster door-to-door at off-peak, but stuck in traffic during morning and evening rush. The local FL1 commuter train is cheaper (~€8) but stops everywhere and is slow.
+  - q: Where should I stay in Rome for a first visit?
+    a: Stay near the Pantheon, around Campo de' Fiori, or in the Monti neighborhood east of Termini. All three put the major sights within walking distance. Trastevere is the photogenic option across the river, slightly less central. Avoid hotels clustered immediately around Termini station, which is convenient on paper but a worse street feel.
+  - q: Do I need to book the Colosseum and Vatican Museums in advance?
+    a: Yes for both. Colosseum tickets sell out the day-of in peak months, book at coopculture.it (the official site) two to four weeks ahead. Vatican Museums sell out similar, book at museivaticani.va (official) for €17 plus the €5 booking fee. The walk-up line at the Vatican can run two-plus hours in summer. Avoid the third-party "skip the line" sellers; the official site IS the skip-the-line.
+
 day_trips:
   intro: Rome is ringed by day trips the capital itself can overshadow. Renaissance water gardens, a Roman port frozen in time, hill-town white wine, and an Umbrian cathedral town are all inside about an hour by train.
   trips:

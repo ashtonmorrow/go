@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Berlin?
+    a: Three to four days for the major sights (Brandenburg Gate, Museum Island, Checkpoint Charlie, the East Side Gallery, Tiergarten), the Cold War history (Stasi Museum, Berlin Wall Memorial), and a couple of meals you'd return for. Five to seven days opens up the modern districts (Kreuzberg, Friedrichshain, Neukölln), Potsdam as a day trip, and the late-night techno club rhythm if that's the trip.
+  - q: How do I get from Berlin Brandenburg Airport to the center?
+    a: The FEX (Flughafen Express) and S-Bahn S9 both run from BER to the center in 30 to 50 minutes for €4.40 with an ABC zone ticket. The FEX goes to Hauptbahnhof (30 min, half-hourly). The S9 stops at Alexanderplatz, Friedrichstraße, Zoo (slower but more central stops). Taxi or Uber runs €40 to €60 to most central hotels.
+  - q: Where should I stay in Berlin?
+    a: Mitte for first-time sightseeing (walking distance to Museum Island and Unter den Linden). Kreuzberg or Friedrichshain for food, bars, and the modern Berlin rhythm. Charlottenburg for a calmer base near the Ku'damm shopping spine. Avoid hotels clustered near the old Tegel airport area; the closures left that part of town less convenient than the marketing suggests.
+  - q: Is the Berlin techno scene worth planning around?
+    a: If clubbing is a real reason for the trip, yes. The clubs (Berghain, Tresor, Sisyphos, KitKat) run their best programming Friday late through Sunday morning. The door at Berghain in particular is notorious, plan for that with low expectations. Most clubs are 18-plus, ID required. Cash on hand, line up early or late, dress dark and casual.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Budapest?
+    a: Three to four days covers Buda Castle, the Parliament view from across the Danube, the major thermal baths (Széchenyi or Gellért), the Jewish Quarter ruin-bar scene, and a proper meal at one of the historic cafés. A fifth day adds a Szentendre or Eger day trip. The Pest side is denser for food and bars; Buda is quieter and more residential.
+  - q: Which thermal bath should I pick?
+    a: Széchenyi is the famous outdoor bath in City Park, the photogenic one with the chess-on-the-water shot. Gellért is the art-nouveau bath in the hotel of the same name, with the painted tile pools. Rudas is the historic 16th-century Turkish bath with the rooftop hot tub overlooking the Danube. For one visit, Széchenyi if you want the postcard, Gellért if you want the architecture, Rudas if you want the rooftop view. All open early, the pre-9 a.m. window is the discount.
+  - q: How do I get from Budapest Airport to the center?
+    a: Bus 100E runs from BUD direct to Deák Ferenc tér (the central interchange) in 35 minutes for HUF 1,500 (€4). The 200E bus + M3 metro combination is slightly cheaper but slower. Taxi is HUF 8,000 to 11,000 (€20 to €28). Use Bolt for the cheaper rideshare. Avoid the unofficial drivers in arrivals.
+  - q: Where should I stay in Budapest?
+    a: Pest district 5 (Belváros) or 7 (Erzsébetváros, the Jewish Quarter) for first-time visitors. Both are walking distance to most sights and the ruin-bar evening rhythm. Buda district 1 (the castle hill) is the photogenic option but you cross the river for every dinner. Avoid the cluster directly around Keleti station; convenient on paper, worse street feel.
+
 day_trips:
   intro: Budapest's day trips follow the Danube north to artist towns and royal castles, and east to a baroque wine town. The nearest are a short suburban-train ride.
   trips:

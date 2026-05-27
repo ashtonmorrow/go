@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Lisbon?
+    a: Three to four days for the city (Alfama, Bairro Alto, Baixa, Belém), a day for Sintra, and an evening at Time Out Market. A fifth or sixth day adds the Cascais coast or Évora. The hills mean every day in town clocks more steps than the map suggests.
+  - q: How do I get from Lisbon Airport to the center?
+    a: Metro Red Line from LIS to Saldanha (15 minutes, €1.85), then transfer for most central hotels. The Aerobus runs to Baixa for €4. Taxi is €15 to €20 to most central addresses, faster with luggage. Bolt and Uber both work at the airport with a marked pickup lot.
+  - q: Where should I stay in Lisbon?
+    a: Baixa or Chiado puts you in the central walkable triangle. Alfama is the old-town stay, narrow lanes and photogenic, less suitcase-friendly. Príncipe Real and Bairro Alto skew younger with the bar density. Avoid Parque das Nações (the Expo site) unless you have a specific reason; convenient on paper, far from the historic city.
+  - q: Is Sintra worth doing as a day trip?
+    a: Yes, and book the palace tickets in advance. Pena Palace is the famous yellow-and-red one and the most-photographed castle in Portugal. The Quinta da Regaleira gardens (with the spiral initiation well) is the second stop. Train from Rossio runs 40 minutes for €2.30. Go on a weekday and start early; the place fills by 11 a.m.
+
 day_trips:
   intro: Lisbon has the best cluster of day trips of any Iberian capital. A UNESCO palace town, the Atlantic coast, a walled medieval village, and an Alentejo wine city are all inside about 90 minutes, most by direct train.
   trips:
