@@ -41,10 +41,10 @@ related:
 
 ## Where to eat in Belluno
 
-The eating skews casual. [Ristorante da asporto Tbilisi](/pins/ristorante-da-asporto-tbilisi) is the standout, a small Georgian takeaway that brings the dumplings, breads, and stews you might not expect in a Veneto mountain town. [Cantiere del Gusto](/pins/cantiere-del-gusto) is the sit-down Italian dinner, and [Terracotta](/pins/terracotta) and [Japan House Belluno](/pins/japan-house-belluno) cover the broader rotation.
+The eating skews casual. [Ristorante da asporto Tbilisi](/pins/ristorante-da-asporto-tbilisi) is the standout, a small Georgian takeaway that brings the dumplings, breads, and stews you might not expect in a Veneto mountain town. The guy running the place is patient and friendly, and the food is a real reset on a cold day. [Cantiere del Gusto](/pins/cantiere-del-gusto) is the sit-down Italian dinner, and [Terracotta](/pins/terracotta) and [Japan House Belluno](/pins/japan-house-belluno) cover the broader rotation.
 
 For something quicker, [Poke Club Belluno](/pins/poke-club-belluno) is the lunch bowl, [Pizzeria Ristorante Costa](/pins/pizzeria-ristorante-costa) and [Excalibur](/pins/excalibur-ristorante-pizzeria-birreria) are the pizza picks, and [Il Koala Pub Shop](/pins/il-koala-pub-shop-belluno) is the casual beer-and-snack stop. [Albergo Ristorante Alle Codole](/pins/albergo-ristorante-alle-codole) and [Albergo Ristorante Monte Civetta](/pins/albergo-ristorante-monte-civetta) are the hotel-restaurant options.
 
 ## The Marmolada day from Caviola
 
-[Marmolada](/pins/marmolada) is the highest peak in the Dolomites at 3,343 meters, an hour by car from Caviola. The cable car from Malga Ciapela runs to Punta Rocca for the glacier-edge view and a small museum on the Italian front in the First World War. Go in good weather and check the cable-car schedule before you set out.
+[Marmolada](/pins/marmolada) is the highest peak in the Dolomites at 3,343 meters, an hour by car from Caviola. The cable car from Malga Ciapela runs to Punta Rocca for the glacier-edge view and a small museum on the Italian front in the First World War. The views are real. If you are not skiing, bring real cold-weather clothes regardless of the season at the bottom of the mountain. Check the cable-car schedule before you set out.

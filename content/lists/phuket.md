@@ -46,6 +46,29 @@ topics:
   - beaches
   - day-trips
 
+day_trips:
+  intro: Phuket sits in the middle of two boat-trip catalogues. Phi Phi and Phang Nga are the famous day-tour names, James Bond Island is the marketing handle, and the Big Buddha cultural circuit fills the inland half-day.
+  trips:
+    - name: Phi Phi Islands
+      travel: About 1 hr each way by speedboat tour
+      summary: The Maya Bay limestone scenery and snorkeling at Bamboo Island and Pileh Lagoon. Crowded with boats. Smaller-boat operators help. An overnight on Phi Phi Don gets you the islands without the day-tour rush.
+      list: phi-phi
+    - name: Phang Nga Bay (James Bond Island)
+      travel: Half-day or full-day boat tour from Phuket marinas
+      summary: The karst landscape and James Bond Island, with kayak through caves on the better tours. The kayak portion is what makes it work over a pure boat circuit.
+      pin: phang-nga-bay
+    - name: Big Buddha and the cultural day
+      travel: Hired driver for the day, roughly 6 hr door-to-door
+      summary: Big Buddha, Wat Chalong, Old Phuket Town, and Promthep Cape combined into one driver day. The half-day most Phuket trips skip and the one that pays off most.
+      pin: the-big-buddha-phuket
+    - name: Khao Sok National Park
+      travel: About 3 hr each way, best as a 1- or 2-night stretch
+      summary: The rainforest reserve on the mainland with the Cheow Lan lake floating bungalows. Better as a 1-night trip than a single-day excursion.
+    - name: Krabi and Railay
+      travel: About 2 hr by speedboat
+      summary: The mainland coast with the limestone cliffs at Railay Beach and the four-island tour. Krabi has its own guide for the longer stay.
+      list: krabi
+
 # Authoring notes (kept here, not rendered):
 # - indexable is false until Mike reviews. Flip to true to ship.
 # - hero_image is empty. Pick one in /admin/lists/phuket via the picker.

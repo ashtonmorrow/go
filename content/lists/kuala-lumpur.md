@@ -42,6 +42,28 @@ related:
 topics:
   - festivals
   - scams-safety
+  - day-trips
+
+day_trips:
+  intro: KL is a real day-trip hub. The cave temple north of town is a half-day, the highlands and the colonial hill stations are a full day, and Melaka or Penang stretch the trip into a multi-day Malaysia loop.
+  trips:
+    - name: Batu Caves
+      travel: About 30 min by KTM train or Grab from KL Sentral
+      summary: The main Hindu pilgrimage site north of KL, with the 43 m Murugan statue at the base and 272 rainbow-painted steps to the limestone cave temples. Dress for the cave (knees and shoulders covered) and go before 10 a.m. to beat the heat and the macaques.
+      pin: batu-caves
+    - name: Genting Highlands
+      travel: About 1 hr by bus, plus the Awana cable car up
+      summary: The hilltop casino-and-theme-park resort at 1,800 m. Cooler than KL by 10°C, with the SkyWorlds outdoor theme park and the casino floor. Best as a single day rather than overnighting at the resort hotels.
+    - name: Melaka (Malacca)
+      travel: About 2 hr by bus or car
+      summary: The UNESCO old town on the strait, with Dutch and Portuguese colonial layers, a strong Peranakan food scene, and the night-market weekend at Jonker Street. A long day trip or a 1-night stretch.
+    - name: Cameron Highlands
+      travel: About 3 hr 30 by car
+      summary: The tea plantations and strawberry farms in the hill stations, 1,500 m up. Better as a 1- or 2-night trip than a day excursion. Cool weather, walking trails, the BOH tea factory tour.
+    - name: Penang
+      travel: About 45 min by domestic flight, or 4 hr by train
+      summary: A whole separate Malaysia trip rather than a day excursion. UNESCO George Town, hawker food, and the four-week George Town Festival in August.
+      list: george-town
 ---
 
 [Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.

@@ -43,6 +43,26 @@ related:
 topics:
   - festivals
   - markets
+  - day-trips
+
+day_trips:
+  intro: Chiang Mai is the base for the cool-climate northern Thailand circuit. Doi Suthep, Doi Inthanon, the Pai mountain village, and elephant sanctuaries all sit within a half- to full-day window.
+  trips:
+    - name: Doi Suthep
+      travel: About 45 min by songthaew or rented scooter
+      summary: The 14th-century hilltop temple, Wat Phra That Doi Suthep, sits above the city with the Naga staircase climb to the gold chedi at the top. Sunrise and late afternoon are the right windows. The Wat Pha Lat secret-temple walk is the under-the-radar alternative on the same route.
+    - name: Doi Inthanon
+      travel: About 1 hr 30 each way by car
+      summary: The highest peak in Thailand at 2,565 m, with the royal pagodas at the summit and the Mae Ya waterfall on the descent. A full day, best with a hired driver or a guided tour.
+    - name: Elephant Nature Park
+      travel: About 1 hr by van pickup
+      summary: The ethical-sanctuary alternative to the riding-camp circuit. Day passes include lunch, feeding, and walking with the elephants. Book 2 to 3 weeks ahead. The single most-asked Chiang Mai day-trip question.
+    - name: Pai
+      travel: About 3 hr 30 by minivan over 762 curves
+      summary: The mountain village in Mae Hong Son province, famous for the night market, the canyon, and the Land Split. Worth a 2-night stretch rather than a day excursion. Pack motion-sickness medication for the van.
+    - name: Chiang Rai (White Temple, Black House, Blue Temple)
+      travel: About 3 hr 30 each way by bus or van
+      summary: Wat Rong Khun (the White Temple), Baan Dam (the Black House), and Wat Rong Suea Ten (the Blue Temple) form the three-temple loop. A long day or a 1-night stretch with the Golden Triangle border view as the bonus.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews.

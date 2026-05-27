@@ -20,6 +20,27 @@ topics:
   - scams-safety
   - day-trips
 
+day_trips:
+  intro: Buenos Aires day trips run from a river-delta town an hour north to a UNESCO old town across the Río de la Plata in Uruguay, plus the football-and-asado loop in the suburbs.
+  trips:
+    - name: Tigre and the Puerto de Frutos
+      travel: About 1 hr by suburban train from Retiro
+      summary: The river-delta town and its riverside market, with mate gear, leather, asado knives, and a boat ride through the stilt-house channels.
+      pin: puerto-de-frutos
+    - name: Colonia del Sacramento
+      travel: About 1 hr 15 by Buquebus catamaran from Puerto Madero
+      summary: The UNESCO Portuguese-colonial old town in Uruguay across the river. A clean half-day or full-day, customs cleared at the terminal before boarding.
+    - name: Montevideo
+      travel: About 2 hr 30 by Buquebus ferry
+      summary: The Uruguayan capital, doable as a long day trip but better as a 1- or 2-night extension. The asado at Mercado del Puerto is the lunch.
+      list: montevideo
+    - name: La Plata
+      travel: About 1 hr by suburban train
+      summary: The provincial capital with the unfinished neo-Gothic cathedral and the natural history museum. Quieter half-day option for a slow Sunday.
+    - name: San Antonio de Areco
+      travel: About 1 hr 30 by car or bus
+      summary: The gaucho-tradition town in the Pampas, with the Día de la Tradición festival in early November. Real horse country, real asado.
+
 # Authoring notes (kept here, not rendered):
 # - 2026-05-13: Expanded from the May 2026 bulk-scaffold with Mike's
 #   lived notes. Voice pass against current CLAUDE.md rules

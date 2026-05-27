@@ -42,6 +42,24 @@ topics:
   - scams-safety
   - wine
   - day-trips
+
+day_trips:
+  intro: Cape Town is built for day trips. The Cape Peninsula coast, the Cape Winelands an hour east, and a safari-style reserve two hours northeast all fit into a single car day, and each is a fundamentally different version of the South African Cape.
+  trips:
+    - name: Cape Peninsula (Boulders, Cape Point, Chapman's Peak)
+      travel: About 1 hr 30 each way by car
+      summary: The penguin colony at Boulders, the Cape of Good Hope at the southwestern tip, and the cliff-edge Chapman's Peak Drive on the return. A full day, not a quick errand from town.
+    - name: The Winelands (Stellenbosch, Franschhoek, Paarl)
+      travel: About 1 hr by car or the Hop-on Hop-off Wine Tram
+      summary: The Cape Winelands run multiple wine tram lines. The Orange Line through Franschhoek and Paarl is the easy version, with Babylonstoren and Bacco the standouts.
+      pin: babylonstoren-wine-estate
+    - name: Aquila Private Game Reserve
+      travel: About 2 hr each way, take the package with pickup
+      summary: The simple safari add-on from Cape Town. Not the same as Kruger or a private reserve, but the easiest possible wildlife day for limited time.
+      pin: aquila-private-game-reserve
+    - name: Hermanus and the whale coast
+      travel: About 1 hr 30 by car, June to November for the right whales
+      summary: The southern right whale season puts whales close to shore at Hermanus, with the official whale crier walking the cliff path.
 ---
 
 [Cape Town](/cities/cape-town) is not a city I'd plan casually. The setting sells itself, [Table Mountain](/pins/table-mountain-national-park) over the city bowl, two oceans, the Winelands within reach, but the city rewards planning around safety, weather, and where you sleep. I spent a few weeks there. Here's what I learned.

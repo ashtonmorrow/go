@@ -43,6 +43,27 @@ related:
 topics:
   - festivals
   - markets
+  - day-trips
+
+day_trips:
+  intro: Kotor sits at the deep end of the Bay of Kotor, with the rest of the Montenegrin Adriatic and the Lovćen mountain range all inside a single hired-car day. The bus station is a hassle, so a rental or a driver makes the day-trip set work.
+  trips:
+    - name: Perast and Our Lady of the Rocks
+      travel: About 20 min by car or local bus from Kotor
+      summary: The Venetian baroque waterfront village 12 km up the bay, with the boat shuttle to the artificial-island church of Our Lady of the Rocks. Half-day, easy.
+    - name: Lovćen National Park and the Njegoš Mausoleum
+      travel: About 1 hr each way by car
+      summary: The black mountain that gave Montenegro its name, with the 461-step climb to the Njegoš Mausoleum at 1,660 m and the wide view back over the bay.
+    - name: Budva and the Adriatic coast
+      travel: About 30 min by car or bus
+      summary: The walled old town and the Sveti Stefan island view on the Budva coast. More tourist-heavy than Kotor but the beach side is here.
+      list: budva
+    - name: Cetinje
+      travel: About 50 min each way by car
+      summary: The historic Montenegrin royal capital, with the King Nikola Museum and several monasteries. Quieter than the coast, real cultural-history stop.
+    - name: Skadar Lake
+      travel: About 1 hr 15 each way
+      summary: The largest lake in the Balkans, on the Albanian border, with the wine country around Virpazar and boat trips through the lily-pad inlets.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. Flip to true after a pass on:
