@@ -102,7 +102,9 @@ export default function PinsMap({ pins }: { pins: PinForCard[] }) {
         cursor={hovered ? 'pointer' : 'grab'}
       >
         {/* bottom-left to match WorldGlobe + CountriesGlobe convention and
-            keep the top-right corner clear for the MapFilterDock. */}
+            keep the top-right corner clear for the ViewSwitcher pill.
+            The sidebar (which used to be replaced by MapFilterDock on
+            map routes) now overlays the left edge at z-30. */}
         <NavigationControl position="bottom-left" />
         <Source id="pins" type="geojson" data={geojson as never}>
           <Layer

@@ -339,10 +339,10 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
         <span className="ml-1">{matchedIso3.length === 1 ? 'country' : 'countries'}</span>
       </div>
 
-      {/* === Projection toggle === bottom-right. Was top-right until
-          MapFilterDock (May 2026) took over the top-right corner with the
-          filter cockpit. Moved here for parity with WorldGlobe, which has
-          always lived bottom-right. */}
+      {/* === Projection toggle === bottom-right. The top-right corner is
+          reserved for the ViewSwitcher pill (rendered globally by
+          AppHeader). Bottom-right matches WorldGlobe, which has always
+          lived here. */}
       <div className="absolute bottom-3 right-3 z-10">
         <div className="inline-flex rounded-full bg-white/90 backdrop-blur border border-sand p-1 shadow-sm">
           <ProjectionPill
@@ -361,8 +361,9 @@ export default function CountriesGlobe({ cities, countriesByIso3, countryIdToIso
       </div>
 
       {/* The active-filter chip ribbon used to float top-center here.
-          The MapFilterDock's cockpit footer (May 2026) already shows the
-          "X / Y · Clear all" summary inside its panel, so the floating
+          With the sidebar overlaying the left edge of the globe (May 2026
+          unified-nav pass), the filter cockpit inside the sidebar shows
+          the "X / Y · Clear all" summary in its panel, so the floating
           duplicate over the canvas is gone. */}
 
       {/* View switcher lives at the page level (app/countries/map/page.tsx). */}

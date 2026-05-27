@@ -10,10 +10,13 @@ import { useCountryFilters } from './CountryFiltersContext';
 import { withUtm } from '@/lib/utm';
 import type { ArticleEntry } from '@/lib/articles';
 import SearchModal, { type SearchItem } from './SearchModal';
-import MapFilterDock from './MapFilterDock';
 
-// Map routes get a full-bleed globe with a floating filter dock in the
-// top-right; the persistent desktop rail hides itself on these URLs.
+// Map routes still use the sidebar — it just overlays the globe at z-30
+// instead of taking width from the flex flow. This is the unified-nav
+// shape (May 2026): one nav surface across all routes, no per-route
+// chrome rearrangement. The MapFilterDock that used to live here is
+// gone; its filter panels were the same FilterPanel / PinFilterPanel /
+// CountryFilterPanel that the sidebar already lazy-loads.
 const MAP_ROUTES = new Set(['/cities/map', '/pins/map', '/countries/map']);
 
 // Filter panels lazy-loaded so chrome-less routes (about, privacy,
@@ -150,39 +153,32 @@ export default function SidebarShell({
         />
       </aside>
 
-      {/* === Desktop sticky rail === Visible md+ on every route except
-          the three /<scope>/map URLs. On those URLs the MapFilterDock
-          is the single control surface (scope + view + filters + small
-          nav strip) and the rail would only compete for visual weight.
-          Mobile drawer still works on map routes via the top-bar
-          hamburger above. */}
-      {!isMapRoute && (
-        <aside className="hidden md:block sticky top-0 h-screen w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto">
-          <NavBody
-            counts={counts}
-            countryOptions={countryOptions}
-            pinCountryOptions={pinCountryOptions}
-            pinCategoryOptions={pinCategoryOptions}
-            pinListOptions={pinListOptions}
-            pinTagOptions={pinTagOptions}
-            pinSavedListOptions={pinSavedListOptions}
-            articleEntries={articleEntries}
-            searchItems={searchItems}
-          />
-        </aside>
-      )}
-
-      {/* Floating filter dock for the /<scope>/map routes. Returns null
-          when not on one of those three URLs, so this is safe to mount
-          unconditionally from the sidebar tree. */}
-      <MapFilterDock
-        countryOptions={countryOptions}
-        pinCountryOptions={pinCountryOptions}
-        pinCategoryOptions={pinCategoryOptions}
-        pinListOptions={pinListOptions}
-        pinTagOptions={pinTagOptions}
-        pinSavedListOptions={pinSavedListOptions}
-      />
+      {/* === Desktop rail === Always visible md+. On most routes it's
+          a sticky in-flow column (the layout uses md:flex with main as
+          the flex sibling). On the three /<scope>/map routes it switches
+          to fixed overlay positioning so the globe underneath gets full
+          width and the rail floats over the left edge at z-30. Same
+          contents either way — one nav surface across the site. */}
+      <aside
+        className={
+          'hidden md:block w-64 flex-shrink-0 bg-white border-r border-sand overflow-y-auto h-screen ' +
+          (isMapRoute
+            ? 'fixed top-0 left-0 z-30 shadow-lg'
+            : 'sticky top-0')
+        }
+      >
+        <NavBody
+          counts={counts}
+          countryOptions={countryOptions}
+          pinCountryOptions={pinCountryOptions}
+          pinCategoryOptions={pinCategoryOptions}
+          pinListOptions={pinListOptions}
+          pinTagOptions={pinTagOptions}
+          pinSavedListOptions={pinSavedListOptions}
+          articleEntries={articleEntries}
+          searchItems={searchItems}
+        />
+      </aside>
     </>
   );
 }

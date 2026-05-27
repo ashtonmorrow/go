@@ -13,10 +13,13 @@ import ViewSwitcher, { type ObjectKey, type ViewKey } from './ViewSwitcher';
  *
  * The MapScopeSwitcher (Cities / Pins / Countries pill cluster) that
  * used to sit alongside this one moved into the sidebar's main nav in
- * May 2026 — scope is "what" you're looking at, view is "how", and
+ * May 2026, scope is "what" you're looking at, view is "how", and
  * keeping the scope axis in the rail (alongside Lists / About) made
  * the two axes mentally cleaner and gave map-route visitors a way
- * back out to the rest of the site.
+ * back out to the rest of the site. The same May 2026 pass deleted
+ * MapFilterDock and unified the sidebar across all routes (including
+ * the three /<scope>/map URLs, where the rail now overlays the globe
+ * at z-30 instead of being suppressed in favor of a separate dock).
  *
  * Why it lives here instead of inside each route:
  *   - Detail and map pages used to render their own ViewSwitcher with
@@ -35,10 +38,10 @@ import ViewSwitcher, { type ObjectKey, type ViewKey } from './ViewSwitcher';
 // (admin, articles, the about/credits/privacy static pages) plus the
 // landing page if/when one exists. Add new exceptions as needed.
 //
-// The three /<scope>/map routes are in this list because MapFilterDock
-// owns the consolidated scope + view + filters surface on those pages;
-// rendering the ViewSwitcher pill separately would split the controls
-// across two corners.
+// As of May 2026 the three /<scope>/map routes also get the ViewSwitcher
+// pill in the same top-right corner as every other Object route —
+// MapFilterDock used to suppress it there, but that file is gone and
+// nav is unified across all routes.
 const HIDDEN_ON: RegExp[] = [
   /^\/admin(\/|$)/,
   /^\/articles(\/|$)/,
@@ -46,7 +49,6 @@ const HIDDEN_ON: RegExp[] = [
   /^\/about(\/|$)/,
   /^\/credits(\/|$)/,
   /^\/privacy(\/|$)/,
-  /^\/(cities|pins|countries)\/map\/?$/,
 ];
 
 const KNOWN_OBJECTS = new Set<ObjectKey>(['cities', 'countries', 'pins']);

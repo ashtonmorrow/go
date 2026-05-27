@@ -744,10 +744,10 @@ export default function WorldGlobe({ pins }: { pins: Pin[] }) {
       </div>
 
       {/* The active-filter chip ribbon used to float top-center here.
-          Since the MapFilterDock landed (May 2026) with the cockpit's
-          own "X / Y cities · Clear all" footer, the ribbon was a
-          second copy of the same information in the visitor's
-          line-of-sight. Removed so the globe canvas reads clean. */}
+          The sidebar's filter cockpit (visible across all routes since
+          the May 2026 unified-nav pass) shows the "X / Y cities · Clear
+          all" footer in its panel, so a second copy of the same
+          information over the canvas was noise. Removed. */}
 
       {/* View switcher lives at the page level (app/cities/map/page.tsx). */}
     </div>
