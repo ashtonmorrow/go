@@ -80,7 +80,7 @@ The trip-shaping window is EXIT in Novi Sad in early to mid-July (a hotel-pressu
 
 ## Where to stay
 
-The chain hotels (Hyatt Regency, Crowne Plaza) sit in Novi Beograd across the river. They are fine, and Ebisu and The Square (below) are both inside the Hyatt, so the property has its own appeal. That said, I would rather stay on the old-town side. The center, Dorćol, Vračar, and Savamala are all walkable from each other, and you wake up where the food, the bars, and the river bluff actually are.
+The chain hotels (Hyatt Regency, Crowne Plaza) sit in Novi Beograd across the river. They are fine, but I would rather stay on the old-town side. The center, Dorćol, Vračar, and Savamala are all walkable from each other, and you wake up where the food, the bars, and the river bluff actually are. Square Nine Hotel on Studentski trg is the in-old-town splurge worth knowing about, and both Ebisu and The Square (below) sit inside that property.
 
 My usual move is an Airbnb in the old-town quarter. I have stayed in places that looked rough from the street and turned out to be cleanly renovated inside. That is Belgrade in a sentence. The McDonald's next door to my last apartment was housed in a worn old building that had clearly seen better decades, and the moment you walked in it was a normal modern McDonald's. Both halves are true at once.
 
@@ -91,8 +91,8 @@ Serbian food is the Balkan grill side at its most confident: ćevapi (small gril
 | Spot | Why | Notes |
 |---|---|---|
 | [Comunale Caffè e Cucina](/pins/comunale-caffe-e-cucina) | The Italian standout. Michelin-starred and somehow still reasonably priced | On the old docks on the Sava. The bread basket they bring out is the reason to arrive hungry. I have been four times. Book ahead |
-| [Ebisu](/pins/ebisu-belgrade) | The sushi room you would not expect | Inside the Hyatt Regency in Novi Beograd. Stacks up against the better sushi rooms in London or NYC. Prices are high for Belgrade and the quality is why |
-| [The Square Restaurant](/pins/the-square-restaurant) | The modern Hyatt dining room that pairs with Ebisu | Same property as Ebisu, different menu. Globally professional service, ambitious cooking |
+| [Ebisu](/pins/ebisu-belgrade) | The sushi room you would not expect | Inside Square Nine Hotel on Studentski trg, central old town. Stacks up against the better sushi rooms in London or NYC. Prices are high for Belgrade and the quality is why |
+| [The Square Restaurant](/pins/the-square-restaurant) | The modern dining room that pairs with Ebisu | Same Square Nine property, different menu. Globally professional service, ambitious cooking |
 | [Boutique #2](/pins/boutique-2) | A reliable upmarket Serbian-and-international pick | A bit more than average but worth it |
 
 The pin map below carries the rest of the saved list (Serbian grills, brewpubs, the central pizza spots) for a longer stay. The four above are the ones I would build a 48-hour Belgrade eating week around.
