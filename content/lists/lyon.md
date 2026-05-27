@@ -17,6 +17,28 @@ related:
 
 topics:
   - festivals
+  - day-trips
+  - wine
+
+day_trips:
+  intro: Lyon sits at the head of the Rhône wine valley and within an hour of three Alpine lakes and a Roman archaeological park. The TGV puts Paris, Marseille, and Geneva each under two hours, which makes Lyon the rare French city where the day-trip catalogue includes other capitals.
+  trips:
+    - name: Beaujolais wine country
+      travel: About 45 min by car or guided tour
+      summary: The cru-Beaujolais villages (Brouilly, Morgon, Fleurie, Moulin-à-Vent) north of Lyon. Hilltop tasting rooms and the granite-soil wine that's nothing like Beaujolais Nouveau. Half-day to full-day with a guide if you don't want to drive between wineries.
+    - name: Pérouges
+      travel: About 50 min each way by car or train
+      summary: The medieval walled village 35 km northeast of Lyon, untouched since the 15th century and used as a Three Musketeers film set. The galette de Pérouges is the lunch. Half-day.
+    - name: Annecy
+      travel: About 1 hr 30 by TGV-direct
+      summary: The Alpine lake town with the canal-laced old quarter and a turquoise lake for paddleboarding. A long day or 1-night stretch.
+      list: annecy
+    - name: Vienne and Saint-Romain-en-Gal
+      travel: About 30 min by regional train
+      summary: The Roman archaeological site south of Lyon on the Rhône, with the temple of Augustus and Livia, the Pyramide circus monument, and the museum at Saint-Romain-en-Gal across the river. Quieter half-day, real Roman depth.
+    - name: Côte du Rhône (Châteauneuf-du-Pape side)
+      travel: About 2 hr each way by car
+      summary: The southern Rhône wine country with the famous appellation. Long day. Use as a 1-night stretch via Avignon if wine is the trip.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated

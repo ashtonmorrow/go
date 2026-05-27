@@ -42,6 +42,27 @@ related:
 topics:
   - festivals
   - day-trips
+
+day_trips:
+  intro: Bruges is a small enough city that the day-trip catalogue is half of why you book a few nights. Ghent, the Flanders Fields battlefields, and the coast at Ostend or Knokke are all inside about an hour by train.
+  trips:
+    - name: Ghent
+      travel: About 25 min by direct train
+      summary: The lesser-photographed Flemish counterpart to Bruges, with the Van Eyck altarpiece in Saint Bavo's Cathedral and a more student-and-art rhythm. A clean full day. Pairs naturally with Bruges as a two-city Flanders trip.
+      list: ghent
+    - name: Ypres (Ieper) and Flanders Fields
+      travel: About 1 hr by train + bus
+      summary: The WWI battlefield region, with the In Flanders Fields Museum, the Menin Gate ceremony at 8 p.m. nightly, and the Tyne Cot cemetery (the largest Commonwealth war cemetery). Heavy but worth doing for a half- or full-day.
+    - name: Ostend (Oostende) and the Belgian coast
+      travel: About 15 min by train
+      summary: The Belgian coast resort with the long beach promenade and the Mu.ZEE contemporary art museum. The Kusttram (coastal tram) runs the full Belgian shore from here.
+      list: kusttram-stations
+    - name: Knokke-Heist
+      travel: About 30 min by train
+      summary: The upscale end of the Belgian coast, with the casino, designer shopping, and the Het Zwin nature reserve on the Dutch border. Beach-side day trip if Ostend feels too touristy.
+    - name: Damme
+      travel: About 30 min by bike along the canal
+      summary: The medieval canal-side village four kilometers north of Bruges, the polder version of the Bruges old town without the crowds. Best as a bike trip rather than driving. Half-day.
 ---
 
 [Bruges](/cities/bruges) is the small medieval Belgian city everyone tells you to see, and they are right, but only if you beat the day-trippers. The historic center is one walkable loop of canals, chocolate, and a brewery. Get there before 10 a.m. or after 6 p.m. and the crowds thin to almost nothing. Here's how I'd do it.

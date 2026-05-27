@@ -42,6 +42,27 @@ topics:
   - beaches
   - nightlife
   - festivals
+  - day-trips
+
+day_trips:
+  intro: Brighton is itself a day trip from London, but the South Downs and the East Sussex coast extend the visit into a longer week.
+  trips:
+    - name: Seven Sisters Cliffs
+      travel: About 1 hr by Brighton & Hove bus 12X
+      summary: The chalk cliffs above the Cuckmere Estuary, the more photogenic and more walkable alternative to the better-known Dover cliffs. The Beachy Head walk to the Belle Tout lighthouse is the route. Bring real walking shoes.
+    - name: Lewes
+      travel: About 15 min by direct train
+      summary: The Sussex county town with the Norman castle, Anne of Cleves House, and the famously raucous Bonfire Night celebrations on November 5. Quieter half-day except on bonfire weekend.
+    - name: Eastbourne and Beachy Head
+      travel: About 30 min by train
+      summary: The Edwardian resort town with the long promenade and the start of the Seven Sisters cliff walk on the western side. Pairs naturally with the Seven Sisters trip.
+      list: eastbourne
+    - name: Arundel
+      travel: About 45 min by train
+      summary: The medieval Sussex town with the castle (still occupied by the Norfolk family) and the Catholic cathedral. The riverside walk to the Black Rabbit pub is the picture. Half-day.
+    - name: Rye
+      travel: About 1 hr 30 by train (change at Hastings or Ashford)
+      summary: The cobbled medieval Cinque Port town with the Mermaid Inn and the smugglers' tunnels. The full-day version pairs with Camber Sands beach a 10-minute drive away.
 
 # Authoring notes (kept here, not rendered):
 # - indexable: false. New scaffold May 2026, then Mike's personal-notes

@@ -17,6 +17,26 @@ related:
 
 topics:
   - festivals
+  - day-trips
+
+day_trips:
+  intro: Berlin sits on the Brandenburg flatland, and its day-trip catalogue runs from Prussian royal gardens half an hour out to a small Polish town across the river. The S-Bahn covers most of the half-day picks, the regional trains cover the rest.
+  trips:
+    - name: Potsdam (Sanssouci)
+      travel: About 40 min by S-Bahn S7 from central Berlin
+      summary: Frederick the Great's summer palace and the surrounding park, a UNESCO site with about 17 historic buildings across 290 hectares. A clean half-day, with the Cecilienhof (the Potsdam Conference site) as the add.
+    - name: Sachsenhausen Memorial
+      travel: About 45 min by S1 to Oranienburg
+      summary: The Nazi concentration camp 35 km north of Berlin, now a memorial and educational site. Free entry, with audio guide. Heavy but worth doing. Half-day to full-day.
+    - name: Spreewald
+      travel: About 1 hr by regional train (RE2) to Lübbenau
+      summary: The UNESCO biosphere reserve with the canal network through the forest, kayaks or guided punt-boat tours. The pickled cucumbers (Spreewaldgurken) are the regional thing to eat. Half-day to full-day.
+    - name: Wittenberg
+      travel: About 50 min by ICE to Lutherstadt Wittenberg
+      summary: The town where Luther nailed the 95 Theses in 1517, with the castle church (Schlosskirche) and the Luther House Museum. Half-day for Reformation history travelers.
+    - name: Frankfurt (Oder) and Słubice (Poland)
+      travel: About 1 hr 15 by regional train to Frankfurt (Oder)
+      summary: The German-Polish twin towns on the Oder river. Cross the bridge into Słubice for the Polish-side market, the Bazar exchange, and a cheaper lunch. An unusual day trip if cross-border is the appeal.
 
 faqs:
   - q: How many days do I need in Berlin?
