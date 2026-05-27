@@ -10,7 +10,7 @@
 //
 import type { Metadata } from 'next';
 import { fetchCitiesCardData } from '@/lib/citiesCardData';
-import { fetchAllCountries } from '@/lib/notion';
+import { fetchAllCountries } from '@/lib/places';
 import JsonLd from '@/components/JsonLd';
 import CityStatsClient from '@/components/CityStatsClient';
 import ActiveFilters from '@/components/ActiveFilters';

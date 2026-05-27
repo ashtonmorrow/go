@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { fetchCityBySlug } from '@/lib/notion';
+import { fetchCityBySlug } from '@/lib/places';
 
 // Per-city OG card. Two-pane layout when a cover photo exists: city
 // name + country on the left, full-bleed cover photo on the right. No

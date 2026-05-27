@@ -7,7 +7,7 @@ Mike Lee's personal travel atlas. Three objects: **Cities**, **Countries**, **Pi
 - **Next.js 15** (App Router) + React 19 + TypeScript strict
 - **Tailwind CSS v3** with custom design tokens (no shadcn — read `lib/colors.ts`)
 - **Supabase Postgres** is the source of truth for cities, countries, and pins. The Postgres instance happens to live in a project named "Stray" (`pdjrvlhepiwkshxerkpz`) — that's a separate Mike Lee product (a cat app at stray.tips) just sharing the database. Treat it as infrastructure: the data is travel atlas content, not cats.
-- `lib/notion.ts` is legacy-named for import stability; city + country reads come from `go_cities` and `go_countries`. Notion is still used only for legacy page blocks where local content files do not exist yet.
+- `lib/places.ts` (was `lib/notion.ts` until May 2026) holds city + country reads from `go_cities` and `go_countries`. The Notion API path remains for `fetchPageBlocks` only, which renders legacy block content on city/country detail pages that lack richer Supabase data.
 - **MapLibre GL + react-map-gl** for the globes
 - Hosted on **Vercel**. ISR with `revalidate = 604800` (7 days) on every page.
 

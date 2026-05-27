@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-import { fetchCountryBySlug } from '@/lib/notion';
+import { fetchCountryBySlug } from '@/lib/places';
 
 // Per-country OG card. Country name dominates; capital + continent
 // sits as supporting text. 1200x630.

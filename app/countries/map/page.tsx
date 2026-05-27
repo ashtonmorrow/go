@@ -1,4 +1,4 @@
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import CountriesGlobe from '@/components/CountriesGlobeLoader';
 import JsonLd from '@/components/JsonLd';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { fetchAllPins } from '@/lib/pins';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import { SITE_URL } from '@/lib/seo';
 import { sovereignParent, isSubNational } from '@/lib/sovereignty';
 import { getGuideAnchors } from '@/lib/guideAnchors';

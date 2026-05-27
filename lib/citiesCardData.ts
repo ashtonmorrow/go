@@ -1,7 +1,7 @@
 import 'server-only';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
-import { fetchAllCities, fetchAllCountries } from './notion';
+import { fetchAllCities, fetchAllCountries } from './places';
 import { fetchCityFlags } from './cityFlags';
 import { driveSide } from './driveSide';
 import { visaUs } from './visaUs';

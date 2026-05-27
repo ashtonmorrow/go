@@ -1,4 +1,4 @@
-import type { ImageAttribution } from '@/lib/notion';
+import type { ImageAttribution } from '@/lib/places';
 
 /**
  * Compact "Photo by … / License (link) / via Commons" caption.

@@ -3,7 +3,7 @@ import {
   fetchPageBlocks,
   fetchCountryById,
   fetchCitiesByIds,
-} from '@/lib/notion';
+} from '@/lib/places';
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

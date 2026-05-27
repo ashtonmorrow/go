@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
-import { fetchCityBySlug, fetchCountryById } from '@/lib/notion';
+import { fetchCityBySlug, fetchCountryById } from '@/lib/places';
 import { getAllDayTripSets, type DayTrip } from '@/lib/content';
 import { SITE_URL } from '@/lib/seo';
 import { cityHubMetadata, cityHubSchema } from '@/lib/cityHub';

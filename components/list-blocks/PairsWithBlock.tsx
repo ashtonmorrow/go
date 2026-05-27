@@ -18,7 +18,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Pair, PairsWith } from '@/lib/content';
-import { fetchCityBySlug, fetchCountryById } from '@/lib/notion';
+import { fetchCityBySlug, fetchCountryById } from '@/lib/places';
 
 type ResolvedPair = Pair & {
   /** Canonical display name from go_cities, falls back to titlecased slug. */

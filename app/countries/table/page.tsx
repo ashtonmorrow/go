@@ -5,7 +5,7 @@
 // voltage, visa, tap-water, calling code, schengen).
 //
 import type { Metadata } from 'next';
-import { fetchAllCountries, fetchAllCities } from '@/lib/notion';
+import { fetchAllCountries, fetchAllCities } from '@/lib/places';
 import { tapWater } from '@/lib/tapWater';
 import { visaUs } from '@/lib/visaUs';
 import { driveSide } from '@/lib/driveSide';

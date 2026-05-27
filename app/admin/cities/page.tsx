@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fetchAllCities } from '@/lib/notion';
+import { fetchAllCities } from '@/lib/places';
 import CitiesAdminClient, { type AdminCityRow } from './CitiesAdminClient';
 
 export const dynamic = 'force-dynamic';

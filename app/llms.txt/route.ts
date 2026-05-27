@@ -9,7 +9,7 @@
 // We serve it via a Next.js Route Handler so the URL list stays fresh
 // without manual edits. Same data flow as the sitemap.
 //
-import { fetchAllCountries, fetchAllCities } from '@/lib/notion';
+import { fetchAllCountries, fetchAllCities } from '@/lib/places';
 import { fetchAllPins } from '@/lib/pins';
 import {
   SITE_URL,

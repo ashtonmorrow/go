@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import CountriesAdminClient, { type AdminCountryRow } from './CountriesAdminClient';
 
 export const dynamic = 'force-dynamic';

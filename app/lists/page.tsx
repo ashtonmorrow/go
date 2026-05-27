@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { fetchPinsCardData, type PinForCard } from '@/lib/pinsCardData';
 import { fetchCitiesCardData } from '@/lib/citiesCardData';
-import { fetchAllCountries } from '@/lib/notion';
+import { fetchAllCountries } from '@/lib/places';
 import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
 import { readListContent } from '@/lib/content';
 import { resolveListCover } from '@/lib/listCover';

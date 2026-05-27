@@ -3,7 +3,7 @@
 import { APIProvider, Map, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import type { City } from '@/lib/notion';
+import type { City } from '@/lib/places';
 
 type Props = {
   cities: Pick<City, 'id' | 'name' | 'slug' | 'country' | 'lat' | 'lng' | 'been' | 'go' | 'heroImage'>[];

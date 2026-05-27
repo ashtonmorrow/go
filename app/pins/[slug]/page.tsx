@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { fetchPinBySlug, fetchPinsInBbox, type Pin } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
-import { fetchCountryByName, fetchCityByName } from '@/lib/notion';
+import { fetchCountryByName, fetchCityByName } from '@/lib/places';
 import { flagCircle } from '@/lib/flags';
 import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
 import { admissionView, admissionShortLabel } from '@/lib/admission';

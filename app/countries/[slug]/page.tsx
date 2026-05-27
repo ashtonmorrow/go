@@ -1,4 +1,4 @@
-import { fetchCountryBySlug, fetchCitiesByCountryId, fetchPageBlocks } from '@/lib/notion';
+import { fetchCountryBySlug, fetchCitiesByCountryId, fetchPageBlocks } from '@/lib/places';
 import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

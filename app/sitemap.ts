@@ -2,7 +2,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import type { MetadataRoute } from 'next';
 import matter from 'gray-matter';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import { fetchAllPins } from '@/lib/pins';
 import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';

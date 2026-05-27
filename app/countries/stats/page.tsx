@@ -4,7 +4,7 @@
 // consumes the cockpit and recomputes from the filtered set.
 //
 import type { Metadata } from 'next';
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import { fetchAllCountryFacts } from '@/lib/countryFacts';
 import { visaUs } from '@/lib/visaUs';
 import { tapWater } from '@/lib/tapWater';

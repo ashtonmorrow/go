@@ -3,7 +3,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { fetchAllPins, type Pin } from './pins';
 import { fetchPersonalCovers } from './personalPhotos';
-import { fetchAllCountries } from './notion';
+import { fetchAllCountries } from './places';
 
 // === /pins/cards aggregator ================================================
 // Pre-computes the slim Pin shape needed for the cockpit grid + filters

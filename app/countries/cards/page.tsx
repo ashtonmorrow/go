@@ -1,4 +1,4 @@
-import { fetchAllCities, fetchAllCountries } from '@/lib/notion';
+import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import CountriesGrid from '@/components/CountriesGrid';
 import CountriesPageTitle from '@/components/CountriesPageTitle';
 import { visaUs } from '@/lib/visaUs';

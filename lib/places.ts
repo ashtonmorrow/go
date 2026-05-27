@@ -4,26 +4,22 @@ import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
 import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE } from './goTables';
 
-// PHASE 2 NOTE — Apr 2026
+// Places library — city + country reads.
 // =========================================================================
-// This file is named notion.ts for git-history continuity, but the runtime
-// reads for cities + countries are now backed by Supabase tables (mirrored
-// from the original Notion databases via scripts/migrate-notion-to-supabase.ts).
-// The Notion API call path is kept *only* for fetchPageBlocks, which still
-// renders legacy Notion blocks for any city/country page that doesn't yet
-// have a /content/<scope>/<slug>.md file overriding the prose.
+// Renamed from lib/notion.ts in the May 2026 plumbing pass. The runtime
+// reads for cities + countries are backed by Supabase tables (mirrored from
+// the original Notion databases). The Notion API call path is kept only
+// for fetchPageBlocks, which still renders legacy Notion blocks for any
+// city/country detail page lacking richer Supabase content.
 //
-// Why the file isn't renamed: 21 import sites depend on `@/lib/notion` and
-// the public surface here (City, Country, fetchAllCities, fetchCityBySlug,
-// fetchAllCountries, fetchCountryBySlug, fetchPageBlocks) hasn't changed.
-// We can rename later in a mechanical pass; for now keep the surface and
-// swap the internals.
+// Public surface: City, Country, fetchAllCities, fetchCityBySlug,
+// fetchAllCountries, fetchCountryBySlug, fetchPageBlocks.
 //
-// Cache layer: Supabase is fast (~30-80ms) so we drop the 24h unstable_cache
-// in favor of a 5-minute one. Edits in Supabase Studio appear within minutes
-// rather than waiting for a manual revalidate. We tag with both the new
-// `supabase-*` names and the old `notion-*` names so existing revalidation
-// hooks keep working while new augmentation code can use clearer names.
+// Cache layer: Supabase is fast (~30-80ms) so the layer uses a 5-minute
+// unstable_cache window. Edits in Supabase Studio appear within minutes
+// rather than waiting for a manual revalidate. Tagged with both the new
+// `supabase-*` names and the legacy `notion-*` names so existing
+// revalidation hooks keep working.
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 

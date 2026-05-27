@@ -8,7 +8,7 @@ import {
   fetchCountryByName,
   fetchCityBySlug,
   fetchCountryBySlug,
-} from '@/lib/notion';
+} from '@/lib/places';
 import {
   listNameToSlug,
   slugToListName,
