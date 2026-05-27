@@ -36,8 +36,7 @@ import { fetchPinsForLists } from '@/lib/pins';
 import { fetchPinPhotosForCity } from '@/lib/personalPhotos';
 import {
   fetchAllSavedListsMeta,
-  listsMatchingPlace,
-  listNameToSlug,
+  listSlugsMatchingPlace,
   snippet,
 } from '@/lib/savedLists';
 import type { Metadata } from 'next';
@@ -150,12 +149,13 @@ export default async function CityPage({
     fetchPinPhotosForCity(city.name, 80),
   ]);
 
-  // Match the city's name/slug against saved-list names BEFORE fetching pins
-  // — most cities have no matching list, so we skip the pin query entirely
-  // for them. When there is a match, we fan out a surgical query keyed on
-  // the matched list names instead of pulling the whole 5k-pin corpus.
-  const allSavedListNames = Array.from(listsMeta.keys());
-  const matchedLists = listsMatchingPlace(allSavedListNames, [city.name, slug]);
+  // Match the city's name/slug against saved-list slugs BEFORE fetching
+  // pins — most cities have no matching list, so we skip the pin query
+  // entirely for them. When there is a match, we fan out a surgical
+  // query keyed on the matched list slugs instead of pulling the whole
+  // 5k-pin corpus. listsMeta is keyed by slug post-R2-migration so
+  // matchedLists holds slugs that line up with pins.saved_lists.
+  const matchedLists = listSlugsMatchingPlace(listsMeta, [city.name, slug]);
   const matchedSet = new Set(matchedLists);
   const cityPinsRaw = matchedLists.length === 0
     ? []
@@ -208,15 +208,15 @@ export default async function CityPage({
   // Pick the saved-list metadata with the most members, prefer one with a
   // Google share URL set, so the "View live" link points at the most useful
   // collection when the city has multiple matching lists.
-  const primaryListName = matchedLists
-    .map(name => ({ name, meta: listsMeta.get(name) ?? null }))
+  const primaryListSlug = matchedLists
+    .map(s => ({ slug: s, meta: listsMeta.get(s) ?? null }))
     .sort((a, b) => {
       const aHasUrl = !!a.meta?.googleShareUrl;
       const bHasUrl = !!b.meta?.googleShareUrl;
       if (aHasUrl !== bHasUrl) return aHasUrl ? -1 : 1;
-      return a.name.localeCompare(b.name);
-    })[0]?.name ?? null;
-  const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
+      return a.slug.localeCompare(b.slug);
+    })[0]?.slug ?? null;
+  const primaryListMeta = primaryListSlug ? listsMeta.get(primaryListSlug) ?? null : null;
 
   // Curated cities = ones I've been to or want to go to. The remaining
   // ~1,000 placeholder cities have AI-generated prose that isn't worth
@@ -296,9 +296,9 @@ export default async function CityPage({
                 scroll past the city's prose to find the curated places.
                 The same list also renders in full lower on the page; this
                 chip is the click-target for "skip to the goods". */}
-            {primaryListName && cityListPins.length > 0 && (
+            {primaryListSlug && cityListPins.length > 0 && (
               <Link
-                href={`/lists/${listNameToSlug(primaryListName)}`}
+                href={`/lists/${primaryListSlug}`}
                 className="pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
                 title={`Mike's ${city.name} saved list — ${cityListPins.length} place${cityListPins.length === 1 ? '' : 's'}`}
               >
@@ -683,11 +683,11 @@ export default async function CityPage({
       {/* Saved-list section — pins from any of Mike's saved lists that match
           this city's name. Renders nothing if the city has no matching list,
           so it only appears for places he's actively curated. */}
-      {cityListPins.length > 0 && primaryListName && (
+      {cityListPins.length > 0 && primaryListSlug && (
         <>
           <SavedListSection
             title={`Saved on my ${city.name} list`}
-            listSlug={listNameToSlug(primaryListName)}
+            listSlug={primaryListSlug}
             googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
             pins={cityListPins}
           />

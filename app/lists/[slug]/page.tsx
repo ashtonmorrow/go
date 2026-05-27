@@ -10,9 +10,8 @@ import {
   fetchCountryBySlug,
 } from '@/lib/places';
 import {
-  listNameToSlug,
-  slugToListName,
   fetchAllSavedListsMeta,
+  type SavedListMeta,
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import ListMapAndCards from '@/components/ListMapAndCardsLoader';
@@ -60,64 +59,50 @@ import RelatedStrip, { type RelatedItem } from '@/components/list-blocks/Related
 
 type Props = { params: Promise<{ slug: string }> };
 
-async function findList(slug: string) {
-  // Resolve slug → list name. The metadata table holds every list name
-  // (seeded after every saved-list import + create), so the common path
-  // doesn't walk the pin corpus.
+async function findList(slug: string): Promise<{ meta: SavedListMeta } | null> {
+  // Resolve URL slug → saved-list metadata. After the May 2026 R2
+  // migration, pins.saved_lists[] holds slugs (not display names), and
+  // the meta map is keyed by saved_lists.slug — so this is a single
+  // O(1) lookup. The legacy 4-step fallback chain (slug exact / slug
+  // ↔ name reverse / probe pins) is gone.
   //
-  // Resolution order:
-  //   1. saved_lists.slug column exact match (the canonical lookup since
-  //      May 2026 when the slug column shipped).
-  //   2. slugToListName(slug) === name exact match (handles the common
-  //      pre-migration case where slug was just name with dashes for spaces).
-  //   3. listNameToSlug(name) === slug for any name in the meta table
-  //      (covers names with punctuation where slugToListName's reverse
-  //      isn't exact).
-  //   4. Synthesize on the fly if pins.saved_lists still references the
-  //      candidate name even though no meta row exists.
+  // The orphan probe — render a synthesized meta row for any slug
+  // referenced in pins.saved_lists without a saved_lists row — survives
+  // for the same reason the migration script kept that path open: a
+  // bad-import or hand-edited pin could carry a stale slug.
   const listsMeta = await fetchAllSavedListsMeta();
+  const meta = listsMeta.get(slug);
+  if (meta) return { meta };
 
-  for (const meta of listsMeta.values()) {
-    if (meta.slug === slug) return { name: meta.name, listsMeta };
-  }
-
-  const allNames = new Set<string>(listsMeta.keys());
-  const candidate = slugToListName(slug);
-  if (allNames.has(candidate)) return { name: candidate, listsMeta };
-  for (const name of allNames) {
-    if (listNameToSlug(name) === slug) return { name, listsMeta };
-  }
-  // Fallback: the meta table may have drifted out of sync with what's
-  // referenced in pins.saved_lists. Probe pins.saved_lists for the
-  // candidate name; if any pin references this list, render the page
-  // and synthesize a meta entry on the fly.
-  if (await pinsReferenceList(candidate)) {
-    listsMeta.set(candidate, {
-      name: candidate,
-      slug: listNameToSlug(candidate),
-      googleShareUrl: null,
-      description: null,
-      coverPinId: null,
-      coverPhotoId: null,
-      coverPhotoUrl: null,
-      coverImageUrl: null,
-      pinOrder: [],
-      updatedAt: null,
-    });
-    return { name: candidate, listsMeta };
+  if (await pinsReferenceList(slug)) {
+    return {
+      meta: {
+        name: slug,
+        slug,
+        googleShareUrl: null,
+        description: null,
+        coverPinId: null,
+        coverPhotoId: null,
+        coverPhotoUrl: null,
+        coverImageUrl: null,
+        pinOrder: [],
+        updatedAt: null,
+      },
+    };
   }
   return null;
 }
 
 /** Cheap server-side existence check via .limit(1) — never loads the
- *  full pin corpus. */
-async function pinsReferenceList(name: string): Promise<boolean> {
-  if (!name) return false;
+ *  full pin corpus. Probes by slug (the value pins.saved_lists[] holds
+ *  post-R2-migration). */
+async function pinsReferenceList(slug: string): Promise<boolean> {
+  if (!slug) return false;
   const { supabase } = await import('@/lib/supabase');
   const { data, error } = await supabase
     .from('pins')
     .select('id')
-    .overlaps('saved_lists', [name])
+    .overlaps('saved_lists', [slug])
     .limit(1);
   if (error) {
     console.error('[lists/[slug]] pinsReferenceList probe failed:', error);
@@ -139,10 +124,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const found = await findList(slug);
   if (!found) return { title: 'List not found' };
   const content = await readListContent(slug);
-  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const titleCase = found.meta.name.replace(/\b\w/g, c => c.toUpperCase());
   const title = content?.title ?? titleCase;
   const url = `${SITE_URL}/lists/${slug}`;
-  const meta = found.listsMeta.get(found.name) ?? null;
+  const meta = found.meta;
   // Description preference: frontmatter > saved-list meta > generic.
   const description =
     content?.description ??
@@ -216,17 +201,17 @@ export default async function ListPage({ params }: Props) {
   const found = await findList(slug);
   if (!found) notFound();
 
-  const meta = found.listsMeta.get(found.name) ?? null;
+  const meta = found.meta;
 
   // Editorial intro + city/country anchor lookups + the pin slice for this
   // list, all in one Promise.all. Frontmatter `related.city` / `related.country`
   // override the auto-detected anchors; if absent, we match by list name.
   const [content, listPins] = await Promise.all([
     readListContent(slug),
-    fetchPinsForLists([found.name]),
+    fetchPinsForLists([meta.slug]),
   ]);
 
-  const titleCase = content?.title ?? found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const titleCase = content?.title ?? meta.name.replace(/\b\w/g, c => c.toUpperCase());
   // The visible <h1>. `headline` is Mike's editorial voice line; it falls
   // back to the SEO title, then the list name. When a headline is set it
   // is a written sentence, so it renders as-authored (no CSS capitalize).
@@ -238,10 +223,10 @@ export default async function ListPage({ params }: Props) {
   const [cityMatch, countryMatch] = await Promise.all([
     content?.related.city
       ? fetchCityBySlug(content.related.city)
-      : fetchCityByName(found.name),
+      : fetchCityByName(meta.name),
     content?.related.country
       ? fetchCountryBySlug(content.related.country)
-      : fetchCountryByName(countryLookupName(found.name)),
+      : fetchCountryByName(countryLookupName(meta.name)),
   ]);
 
   // Posts that mention this list — frontmatter explicit list + auto-discovery
@@ -394,7 +379,7 @@ export default async function ListPage({ params }: Props) {
   const showDayTrips = dayTripCount >= 3;
   const dayTripCitySlug = content?.related.city ?? slug;
   const dayTripCityName =
-    cityMatch?.name ?? found.name.replace(/\b\w/g, c => c.toUpperCase());
+    cityMatch?.name ?? meta.name.replace(/\b\w/g, c => c.toUpperCase());
 
   // Related strip — anchor city, anchor country, and any posts that link
   // here. Frontmatter explicit overrides come first via the resolved

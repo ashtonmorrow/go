@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { fetchPinsCardData, type PinForCard } from '@/lib/pinsCardData';
 import { fetchCitiesCardData } from '@/lib/citiesCardData';
 import { fetchAllCountries } from '@/lib/places';
-import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { readListContent } from '@/lib/content';
 import { resolveListCover } from '@/lib/listCover';
 import { SITE_URL } from '@/lib/seo';
@@ -86,15 +86,17 @@ export default async function ListsIndex() {
     countryBySlug.set(c.slug, ref);
   }
 
-  // Group pins by list name once, then derive every per-list aggregate from
-  // the bucket. Avoids three passes over 5k pins.
+  // Group pins by list slug once, then derive every per-list aggregate
+  // from the bucket. Avoids three passes over 5k pins. pins.saved_lists[]
+  // holds slugs after the May 2026 R2 migration; listsMeta is keyed by
+  // saved_lists.slug — both align around the same identifier.
   const buckets = new Map<string, PinForCard[]>();
   for (const p of pins) {
-    for (const name of p.savedLists ?? []) {
-      let arr = buckets.get(name);
+    for (const s of p.savedLists ?? []) {
+      let arr = buckets.get(s);
       if (!arr) {
         arr = [];
-        buckets.set(name, arr);
+        buckets.set(s, arr);
       }
       arr.push(p);
     }
@@ -102,25 +104,27 @@ export default async function ListsIndex() {
 
   // Build the rough list set first; the guide-content read happens in a
   // second async pass so we can fan out fs reads in parallel.
-  const draft = Array.from(buckets.entries()).map(([name, arr]) => {
-    const lcName = name.toLowerCase();
-    const city = cityByName.get(lcName);
-    const country = !city ? countryByName.get(lcName) : null;
+  const draft = Array.from(buckets.entries()).map(([slug, arr]) => {
+    const meta = listsMeta.get(slug);
+    const name = meta?.name ?? slug;
+    // Anchor-by-name: convert the slug back to a name candidate (dashes
+    // to spaces) so multi-word lists like "new-york" still hit the
+    // cityByName map. content.related.city wins downstream when set.
+    const nameCandidate = name.toLowerCase();
+    const slugAsName = slug.replace(/-/g, ' ');
+    const city = cityByName.get(nameCandidate) ?? cityByName.get(slugAsName);
+    const country =
+      !city
+        ? countryByName.get(nameCandidate) ?? countryByName.get(slugAsName)
+        : null;
     const anchor = city
       ? { kind: 'city' as const, name: city.name, slug: city.slug }
       : country
       ? { kind: 'country' as const, name: country.name, slug: country.slug }
       : null;
-    // The cover itself is resolved in the decoration pass below, once the
-    // guide content (and its hero_image) is in hand. Carry the inputs.
-    const meta = listsMeta.get(name);
-    // Prefer the saved_lists.slug column (the URL identifier, editable
-    // independently of name since May 2026). Fall back to the derived form
-    // for bucket names that don't have a meta row yet — that path keeps
-    // pre-meta lists discoverable from /lists.
     return {
       name,
-      slug: meta?.slug ?? listNameToSlug(name),
+      slug,
       count: arr.length,
       visitedCount: arr.filter(p => p.visited).length,
       anchor,

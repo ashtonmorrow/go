@@ -514,11 +514,22 @@ export async function GET(req: Request) {
   // === Scope: members of a saved list ======================================
   // Personal photos AND pin.images for every pin in the list — codex art
   // and Wikidata pictures get equal billing alongside Mike's own uploads.
+  //
+  // pins.saved_lists[] holds slugs after the R2 migration, so look up
+  // the slug from the meta row before the contains() query. Fall back
+  // to the listName itself if no meta row exists (covers the orphan
+  // case where a list exists only in pins.saved_lists).
   if (listName) {
+    const { data: metaRow } = await sb
+      .from('saved_lists')
+      .select('slug')
+      .eq('name', listName)
+      .maybeSingle();
+    const listSlug = (metaRow?.slug as string | undefined) ?? listName;
     const { data: memberPins, error: pinErr } = await sb
       .from('pins')
       .select('id')
-      .contains('saved_lists', [listName]);
+      .contains('saved_lists', [listSlug]);
     if (pinErr) {
       return NextResponse.json({ error: pinErr.message }, { status: 500 });
     }

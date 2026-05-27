@@ -14,11 +14,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { fetchAllPins } from '@/lib/pins';
-import {
-  fetchAllSavedListsMeta,
-  listNameToSlug,
-  slugToListName,
-} from '@/lib/savedLists';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import EditableMeta from './EditableMeta';
 import CoverSection from './CoverSection';
 import AdminListEditor, { type AdminPinRow } from './AdminListEditor';
@@ -33,23 +29,32 @@ async function findList(slug: string) {
     fetchAllSavedListsMeta(),
   ]);
 
-  // 1. Canonical lookup: saved_lists.slug column (the column added May
-  //    2026 to decouple URL identifier from display name).
-  for (const meta of listsMeta.values()) {
-    if (meta.slug === slug) return { name: meta.name, pins, listsMeta };
-  }
+  // Single lookup: the meta map is keyed by saved_lists.slug (the URL
+  // identifier) post-R2-migration. For freshly-created lists that
+  // somehow lack a meta row but appear in pins.saved_lists[], we
+  // synthesize a meta entry on the fly so the admin can still load and
+  // populate it. Same orphan-survival path as the public /lists/[slug].
+  const meta = listsMeta.get(slug);
+  if (meta) return { meta, pins, listsMeta };
 
-  // 2. Legacy fallbacks for the transition window: reverse-derive name
-  //    from slug, then scan for matching listNameToSlug(name). Also
-  //    looks at names that only exist in pins.saved_lists[] (no meta
-  //    row yet), so a freshly-created list still resolves.
-  const allNames = new Set<string>(listsMeta.keys());
-  for (const p of pins) for (const l of p.savedLists ?? []) allNames.add(l);
-
-  const candidate = slugToListName(slug);
-  if (allNames.has(candidate)) return { name: candidate, pins, listsMeta };
-  for (const name of allNames) {
-    if (listNameToSlug(name) === slug) return { name, pins, listsMeta };
+  const referenced = pins.some(p => (p.savedLists ?? []).includes(slug));
+  if (referenced) {
+    return {
+      meta: {
+        name: slug,
+        slug,
+        googleShareUrl: null,
+        description: null,
+        coverPinId: null,
+        coverPhotoId: null,
+        coverPhotoUrl: null,
+        coverImageUrl: null,
+        pinOrder: [],
+        updatedAt: null,
+      },
+      pins,
+      listsMeta,
+    };
   }
   return null;
 }
@@ -59,8 +64,8 @@ export default async function ListDetailAdminPage({ params }: Props) {
   const found = await findList(slug);
   if (!found) notFound();
 
-  const meta = found.listsMeta.get(found.name) ?? null;
-  const titleCase = found.name.replace(/\b\w/g, c => c.toUpperCase());
+  const meta = found.meta;
+  const titleCase = meta.name.replace(/\b\w/g, c => c.toUpperCase());
 
   // Build the slim row shape the editor needs. Members and non-members
   // share the same shape — `isMember` flips. The grid renders members,
@@ -92,7 +97,7 @@ export default async function ListDetailAdminPage({ params }: Props) {
       description: p.description ?? null,
       hours: p.hours ?? null,
       priceText: p.priceText ?? null,
-      isMember: (p.savedLists ?? []).includes(found.name),
+      isMember: (p.savedLists ?? []).includes(meta.slug),
       isDraft:
         p.lat == null &&
         p.lng == null &&
@@ -121,16 +126,16 @@ export default async function ListDetailAdminPage({ params }: Props) {
   let coverSource: 'curated-photo' | 'curated-pin' | 'fallback' | 'none' = 'none';
 
   const memberPins = found.pins.filter(p =>
-    (p.savedLists ?? []).includes(found.name),
+    (p.savedLists ?? []).includes(meta.slug),
   );
 
-  if (meta?.coverImageUrl) {
+  if (meta.coverImageUrl) {
     coverUrl = meta.coverImageUrl;
     coverSource = 'curated-photo';
-  } else if (meta?.coverPhotoUrl) {
+  } else if (meta.coverPhotoUrl) {
     coverUrl = meta.coverPhotoUrl;
     coverSource = 'curated-photo';
-  } else if (meta?.coverPinId) {
+  } else if (meta.coverPinId) {
     const pin = memberPins.find(p => p.id === meta.coverPinId);
     coverUrl = pin?.images?.[0]?.url ?? null;
     coverSource = coverUrl ? 'curated-pin' : 'none';
@@ -181,21 +186,21 @@ export default async function ListDetailAdminPage({ params }: Props) {
             slug now lives on its own row under the title since May 2026
             so renames don't kick the admin to a different URL. */}
         <EditableMeta
-          initialName={found.name}
-          initialSlug={meta?.slug ?? listNameToSlug(found.name)}
-          initialDescription={meta?.description ?? null}
+          initialName={meta.name}
+          initialSlug={meta.slug}
+          initialDescription={meta.description ?? null}
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-3 text-label">
           <Link
-            href={`/lists/${meta?.slug ?? listNameToSlug(found.name)}`}
+            href={`/lists/${meta.slug}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-teal hover:underline"
           >
             View public page ↗
           </Link>
-          {meta?.googleShareUrl && (
+          {meta.googleShareUrl && (
             <a
               href={meta.googleShareUrl}
               target="_blank"
@@ -213,17 +218,17 @@ export default async function ListDetailAdminPage({ params }: Props) {
         {/* Cover picker editor — sits below the hero in a thin admin
             strip. Click "Change cover…" to open the photo picker modal. */}
         <CoverSection
-          listName={found.name}
-          initialCoverPhotoId={meta?.coverPhotoId ?? null}
+          listName={meta.name}
+          initialCoverPhotoId={meta.coverPhotoId ?? null}
           initialCoverUrl={coverUrl}
           initialSource={coverSource}
         />
       </header>
 
       <AdminListEditor
-        listName={found.name}
+        listName={meta.name}
         initialRows={rows}
-        initialPinOrder={meta?.pinOrder ?? []}
+        initialPinOrder={meta.pinOrder ?? []}
       />
     </div>
   );

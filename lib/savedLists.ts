@@ -1,20 +1,20 @@
 // === Saved-list slug helpers =================================================
-// Saved-list names in the DB are lowercased + emoji-stripped at import time
-// (see scripts/import-google-takeout.ts → slugify_list_name). So a name like
-// "Bangkok 🇹🇭" is stored as "bangkok"; "Coffee Shops" stored as "coffee
-// shops". The URL slug used to be derived from the name on the fly via
-// `listNameToSlug`. As of May 2026 saved_lists.slug is a real column so
-// the URL identifier can be edited independently of the display name
+// Saved-list names in the DB are lowercased + emoji-stripped at import
+// time (see scripts/import-google-takeout.ts → slugify_list_name). So a
+// name like "Bangkok 🇹🇭" is stored as "bangkok"; "Coffee Shops" stored
+// as "coffee shops". As of May 2026 saved_lists.slug is a real column,
+// so the URL identifier can be edited independently of the display name
 // without forcing an admin redirect every time a name is changed.
 //
-// `listNameToSlug` is still exported because:
-//   • The /lists index builds URLs for every unique name it sees on
-//     `pins.saved_lists[]`. Bucket names that don't have a corresponding
-//     `saved_lists` row (rare; ghost entries) fall back to the derived
-//     slug.
-//   • Backward compatibility: any pre-May-2026 link to /lists/<derived>
-//     still resolves because the page-resolution code tries the slug
-//     column first, then falls back to a derived match.
+// The R2 migration (May 2026) unified list-membership identifiers
+// around saved_lists.slug:
+//   • saved_lists meta table is keyed by slug (this module's Map).
+//   • pins.saved_lists[] holds slugs (scripts/migrate-saved-lists-to-slugs.mjs).
+//   • All URL routing keys on saved_lists.slug.
+//
+// `listNameToSlug` survives as a soft fallback for orphan entries that
+// somehow lack a meta row (e.g., hand-edited pin.saved_lists, mid-import
+// state) and inside the admin API where callers still pass display names.
 
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
@@ -148,18 +148,20 @@ const _fetchAllSavedListsMetaArray = unstable_cache(
 );
 
 /** Wrapped in React.cache so the Map reconstruction happens once per render.
- *  Callers see the same Map shape they did before this fix. */
+ *  Keyed by SLUG since the May 2026 R2 migration unified list-membership
+ *  identifiers around saved_lists.slug — both pins.saved_lists[] and the
+ *  meta map now key on the same string. */
 export const fetchAllSavedListsMeta = cache(async (): Promise<Map<string, SavedListMeta>> => {
   const arr = await _fetchAllSavedListsMetaArray();
   const map = new Map<string, SavedListMeta>();
-  for (const row of arr) map.set(row.name, row);
+  for (const row of arr) map.set(row.slug, row);
   return map;
 });
 
-/** Convenience for a single name. */
-export async function fetchSavedListMeta(name: string): Promise<SavedListMeta | null> {
+/** Convenience for a single slug. */
+export async function fetchSavedListMeta(slug: string): Promise<SavedListMeta | null> {
   const all = await fetchAllSavedListsMeta();
-  return all.get(name) ?? null;
+  return all.get(slug) ?? null;
 }
 
 // === City / country → saved-list matching ===================================
@@ -182,7 +184,9 @@ function normalizeCandidate(s: string): string {
 /** Return saved-list names whose normalized form contains the place name as
  *  a word boundary. The `places` argument lets a city pass [name, slug,
  *  alternates] so we catch all reasonable matches without a full fuzzy
- *  search. The result is dedup'd. */
+ *  search. The result is dedup'd.
+ *
+ *  Used by listsMatchingPlace / listSlugsMatchingPlace below. */
 export function listsMatchingPlace(
   allListNames: Iterable<string>,
   places: (string | null | undefined)[],
@@ -207,4 +211,19 @@ export function listsMatchingPlace(
     }
   }
   return Array.from(matches);
+}
+
+/** Like listsMatchingPlace, but expects + returns slugs. Use this for
+ *  feeding the result to fetchPinsForLists, which queries
+ *  pins.saved_lists (the membership column that holds slugs as of the
+ *  May 2026 R2 migration).
+ *
+ *  The meta map is keyed by slug, so iterating its keys gives slugs;
+ *  word-boundary matching works the same on slugs (hyphens normalize
+ *  to spaces inside normalizeCandidate) as it did on display names. */
+export function listSlugsMatchingPlace(
+  listsMeta: Map<string, { slug: string }>,
+  places: (string | null | undefined)[],
+): string[] {
+  return listsMatchingPlace(listsMeta.keys(), places);
 }

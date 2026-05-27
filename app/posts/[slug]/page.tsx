@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { fetchPinsForLists } from "@/lib/pins";
 import { getAllPosts, getPost } from "@/lib/posts";
-import { fetchAllSavedListsMeta, listNameToSlug } from "@/lib/savedLists";
+import { fetchAllSavedListsMeta } from "@/lib/savedLists";
 import { AUTHOR_ID, WEBSITE_ID, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -195,23 +195,23 @@ function titleCase(value: string): string {
 async function getRelatedListCards(slugs: string[] = []) {
   if (slugs.length === 0) return [];
 
+  // listsMeta is keyed by saved_lists.slug, the same identifier the
+  // post frontmatter holds in links.lists — so this is a direct lookup.
+  // fetchPinsForLists takes slugs too post-R2-migration.
   const listsMeta = await fetchAllSavedListsMeta();
-  const metaBySlug = new Map(
-    Array.from(listsMeta.values()).map((meta) => [listNameToSlug(meta.name), meta])
-  );
   const metas = slugs
     .map((slug) => {
-      const meta = metaBySlug.get(slug);
+      const meta = listsMeta.get(slug);
       return meta ? { slug, meta } : null;
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
   if (metas.length === 0) return [];
 
-  const names = metas.map((item) => item.meta.name);
-  const pins = await fetchPinsForLists(names);
+  const metaSlugs = metas.map((item) => item.slug);
+  const pins = await fetchPinsForLists(metaSlugs);
   return metas.map(({ slug, meta }) => {
-    const count = pins.filter((pin) => pin.savedLists.includes(meta.name)).length;
+    const count = pins.filter((pin) => pin.savedLists.includes(slug)).length;
     const title = `${titleCase(meta.name)} list`;
     const description =
       meta.description ??

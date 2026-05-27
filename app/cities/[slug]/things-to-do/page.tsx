@@ -5,7 +5,7 @@ import { fetchCityBySlug, fetchCountryById } from '@/lib/places';
 import { fetchPinsForLists } from '@/lib/pins';
 import {
   fetchAllSavedListsMeta,
-  listsMatchingPlace,
+  listSlugsMatchingPlace,
   snippet,
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
@@ -40,8 +40,7 @@ async function fetchData(slug: string) {
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
   ]);
 
-  const allSavedListNames = Array.from(listsMeta.keys());
-  const matchedLists = listsMatchingPlace(allSavedListNames, [city.name, slug]);
+  const matchedLists = listSlugsMatchingPlace(listsMeta, [city.name, slug]);
   const matchedSet = new Set(matchedLists);
   const cityPinsRaw = matchedLists.length === 0
     ? []

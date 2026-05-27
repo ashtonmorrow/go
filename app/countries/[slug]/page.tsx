@@ -21,8 +21,7 @@ import ClosedDaysPanel from '@/components/ClosedDaysPanel';
 import LanguageLinkPanel from '@/components/LanguageLinkPanel';
 import {
   fetchAllSavedListsMeta,
-  listsMatchingPlace,
-  listNameToSlug,
+  listSlugsMatchingPlace,
   snippet,
 } from '@/lib/savedLists';
 import type { Metadata } from 'next';
@@ -107,9 +106,10 @@ export default async function CountryPage({
   // in the country (so the Spain page surfaces madrid/barcelona/alicante
   // lists). Then a single surgical Supabase query pulls only the pins on
   // those lists — replacing what used to be a 5k-pin walk per render.
-  const allListNames = Array.from(listsMeta.keys());
+  // listsMeta is keyed by slug, so matchedLists is a slug array that
+  // lines up with pins.saved_lists post-R2-migration.
   const cityNamesInCountry = cities.map(c => c.name);
-  const matchedLists = listsMatchingPlace(allListNames, [
+  const matchedLists = listSlugsMatchingPlace(listsMeta, [
     country.name,
     slug,
     ...cityNamesInCountry,
@@ -120,11 +120,12 @@ export default async function CountryPage({
     : await fetchPinsForLists(matchedLists);
   const countryListPins: SavedListPin[] = countryPinsRaw
     .filter(p => p.savedLists?.some(l => matchedSet.has(l)))
-    // Anchor to country. listsMatchingPlace() walks every city in the
-    // country, so collisions like Manchester (UK + US) or Salisbury (UK + US)
-    // pull in lists meant for the foreign place. Without this filter,
-    // pins from Montevideo, Uruguay would surface on the US country page
-    // because the matching turned up a "Manchester" or "Salisbury" list.
+    // Anchor to country. listSlugsMatchingPlace() walks every city in
+    // the country, so collisions like Manchester (UK + US) or Salisbury
+    // (UK + US) pull in lists meant for the foreign place. Without this
+    // filter, pins from Montevideo, Uruguay would surface on the US
+    // country page because the matching turned up a "Manchester" or
+    // "Salisbury" list.
     .filter(p => (p.statesNames ?? []).includes(country.name))
     .sort((a, b) => {
       if (a.visited !== b.visited) return a.visited ? -1 : 1;
@@ -146,13 +147,14 @@ export default async function CountryPage({
       free: !!p.free,
       unesco: p.unescoId != null,
     }));
-  // Pick a representative list — prefer one whose name exactly matches the
-  // country name (so "spain" wins over "madrid" on the Spain country page).
+  // Pick a representative list — prefer one whose slug exactly matches
+  // the country slug (so "spain" wins over "madrid" on the Spain country
+  // page). matchedLists is slugs; the country page slug is too.
   const exactCountryMatch = matchedLists.find(
-    l => l.toLowerCase() === country.name.toLowerCase(),
+    l => l === slug || l === country.name.toLowerCase(),
   );
-  const primaryListName = exactCountryMatch ?? matchedLists[0] ?? null;
-  const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
+  const primaryListSlug = exactCountryMatch ?? matchedLists[0] ?? null;
+  const primaryListMeta = primaryListSlug ? listsMeta.get(primaryListSlug) ?? null : null;
   const perCapita = fact ? gdpPerCapita(fact) : null;
 
   // eVisa portal lookup. The portal map (lib/visaPortals.ts) is
@@ -239,9 +241,9 @@ export default async function CountryPage({
           {/* Saved-list callout — surfaces matching list(s) up at the
               header so the curated places aren't buried under the
               country prose. Mirrors the same chip on /cities/[slug]. */}
-          {primaryListName && countryListPins.length > 0 && (
+          {primaryListSlug && countryListPins.length > 0 && (
             <Link
-              href={`/lists/${listNameToSlug(primaryListName)}`}
+              href={`/lists/${primaryListSlug}`}
               className="mt-3 pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
               title={`Mike's ${country.name} saved list — ${countryListPins.length} place${countryListPins.length === 1 ? '' : 's'}`}
             >
@@ -478,10 +480,10 @@ export default async function CountryPage({
           this country or its cities. Renders nothing for countries with no
           curated lists yet. Caps at ~80 visible (page size 40 with one
           load-more) so country pages with hundreds of pins don't bloat. */}
-      {countryListPins.length > 0 && primaryListName && (
+      {countryListPins.length > 0 && primaryListSlug && (
         <SavedListSection
           title={`Saved on my ${country.name} lists`}
-          listSlug={listNameToSlug(primaryListName)}
+          listSlug={primaryListSlug}
           googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
           pins={countryListPins}
           pageSize={40}

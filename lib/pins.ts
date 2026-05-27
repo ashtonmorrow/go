@@ -630,14 +630,17 @@ export const fetchAllPins = cache(async (): Promise<Pin[]> => {
 /** Pins on at least one of the given saved lists. Uses a single GIN-indexed
  *  array overlap (`saved_lists && ARRAY[...]`). Empty-list input returns
  *  []; identical input returns identical output (the result is cached
- *  per-name set, sorted to dedupe permutations). */
+ *  per-slug set, sorted to dedupe permutations).
+ *
+ *  Takes SLUGS (saved_lists.slug) since the May 2026 R2 migration
+ *  switched pins.saved_lists[] from holding names to holding slugs. */
 const _fetchPinsForLists = unstable_cache(
-  async (names: string[]): Promise<Pin[]> => {
-    if (names.length === 0) return [];
+  async (slugs: string[]): Promise<Pin[]> => {
+    if (slugs.length === 0) return [];
     const { data, error } = await supabase
       .from('pins')
       .select(INDEX_COLUMNS)
-      .overlaps('saved_lists', names)
+      .overlaps('saved_lists', slugs)
       .order('name', { ascending: true });
     if (error) {
       console.error('[pins] fetchPinsForLists failed:', error);
@@ -645,13 +648,14 @@ const _fetchPinsForLists = unstable_cache(
     }
     return (data ?? []).map(rowToPin);
   },
-  // v7: refresh saved-list snapshots after Cape Town list curation.
-  ['supabase-pins-for-lists-v7'],
+  // v8: pins.saved_lists holds slugs after the R2 migration, so cached
+  // v7 entries (keyed by name-set inputs) would miss every lookup.
+  ['supabase-pins-for-lists-v8'],
   { revalidate: 86400, tags: ['supabase-pins'] },
 );
-export const fetchPinsForLists = cache(async (names: string[]): Promise<Pin[]> => {
+export const fetchPinsForLists = cache(async (slugs: string[]): Promise<Pin[]> => {
   // Sort + dedupe inputs so the cache key is stable across permutations.
-  const sorted = Array.from(new Set(names)).sort();
+  const sorted = Array.from(new Set(slugs)).sort();
   const pins = await _fetchPinsForLists(sorted);
   return decoratePinsWithBlogTags(pins);
 });

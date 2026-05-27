@@ -7,7 +7,7 @@ import { fetchAllPins } from '@/lib/pins';
 import { listPinViews } from '@/lib/pinViews';
 import { SITE_URL } from '@/lib/seo';
 import { getAllArticleEntries } from '@/lib/articles';
-import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { TOPICS, anyTopicHasIntro } from '@/lib/topics';
 import { getAllDayTripSets } from '@/lib/content';
 
@@ -204,10 +204,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const listRoutes: MetadataRoute.Sitemap = Array.from(listsMeta.values()).map(list => ({
-    // Prefer the saved_lists.slug column over the derived form. Falls
-    // back to derived for any row that somehow missed the May 2026
-    // backfill so the sitemap stays exhaustive.
-    url: `${SITE_URL}/lists/${list.slug ?? listNameToSlug(list.name)}`,
+    url: `${SITE_URL}/lists/${list.slug}`,
     lastModified: list.updatedAt ?? now,
     changeFrequency: 'monthly',
     priority: list.description ? 0.7 : 0.5,

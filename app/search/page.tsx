@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 import JsonLd from '@/components/JsonLd';
 import { getAllPosts } from '@/lib/posts';
-import { fetchAllSavedListsMeta, listNameToSlug } from '@/lib/savedLists';
+import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { supabase } from '@/lib/supabase';
 import { SITE_URL, webPageJsonLd } from '@/lib/seo';
 
@@ -140,7 +140,7 @@ async function searchLists(query: string): Promise<SearchHit[]> {
     .filter((list) => includesQuery([list.name, list.description], query))
     .slice(0, 10)
     .map((list) => ({
-      href: `/lists/${listNameToSlug(list.name)}`,
+      href: `/lists/${list.slug}`,
       title: list.name.replace(/\b\w/g, (c) => c.toUpperCase()),
       eyebrow: 'Saved list',
       description: list.description,

@@ -97,6 +97,22 @@ function normalizeName(s: string): string {
   return s.trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+/** Resolve a list `name` to its `saved_lists.slug`. After the May 2026
+ *  R2 migration, pins.saved_lists[] holds slugs, so any operation that
+ *  touches pin membership has to convert name → slug first. Falls back
+ *  to listNameToSlug(name) for orphan lists with no meta row. */
+async function resolveSlug(
+  sb: ReturnType<typeof supabaseAdmin>,
+  name: string,
+): Promise<string> {
+  const { data } = await sb
+    .from('saved_lists')
+    .select('slug')
+    .eq('name', name)
+    .maybeSingle();
+  return (data?.slug as string | undefined) ?? listNameToSlug(name);
+}
+
 export async function POST(req: Request) {
   let body: Body;
   try {
@@ -120,54 +136,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ updated: 0, message: 'no-op' });
     }
 
-    // Postgres doesn't have a native array-rename, so we drive it via SQL:
-    // strip the old token, then append the new one (de-duped).
-    const { data, error } = await sb.rpc('rename_saved_list', { from, to });
-    let updatedCount: number;
-    if (error) {
-      // Fall back to client-side if the RPC doesn't exist — this lets the
-      // endpoint work without a stored procedure deploy.
-      const fallback = await renameByQuery(sb, from, to);
-      if (fallback.error) {
-        return NextResponse.json({ error: fallback.error }, { status: 500 });
-      }
-      updatedCount = fallback.updated;
-    } else {
-      updatedCount = data ?? 0;
-    }
-
-    // Move the metadata row's name. The pins.saved_lists[] rewrite above
-    // points every pin at the new name; the saved_lists row itself still
-    // sat on the old name until this patch (May 2026). Keep the slug
-    // column unchanged: the URL identifier is independent of name now,
-    // so a rename does not flip the URL.
-    const { data: existing, error: selErr } = await sb
+    // Post-R2-migration, pins.saved_lists[] holds slugs — and slugs are
+    // independent of name and stable across rename. So a rename is just
+    // a meta-row update; no pin rewrite is needed (which dropped the
+    // RPC-or-fallback dance the pre-migration code carried). The URL
+    // identifier sits on saved_lists.slug, which is also unchanged.
+    const { error: updErr } = await sb
       .from('saved_lists')
-      .select('name')
-      .eq('name', from)
-      .maybeSingle();
-    if (selErr) {
-      console.error('[saved-list] rename: meta-row lookup failed:', selErr);
-    } else if (existing) {
-      const { error: updErr } = await sb
-        .from('saved_lists')
-        .update({ name: to, updated_at: new Date().toISOString() })
-        .eq('name', from);
-      if (updErr) {
-        // Likely a uniqueness collision if `to` already exists as a meta
-        // row. Surface as 409 so the admin can rename around it.
-        if (updErr.code === '23505' || /duplicate key|unique/i.test(updErr.message)) {
-          return NextResponse.json(
-            { error: `meta row for "${to}" already exists; rename to another name or merge manually first` },
-            { status: 409 },
-          );
-        }
-        console.error('[saved-list] rename: meta-row update failed:', updErr);
+      .update({ name: to, updated_at: new Date().toISOString() })
+      .eq('name', from);
+    if (updErr) {
+      // Likely a uniqueness collision if `to` already exists as a meta
+      // row. Surface as 409 so the admin can rename around it.
+      if (updErr.code === '23505' || /duplicate key|unique/i.test(updErr.message)) {
+        return NextResponse.json(
+          { error: `meta row for "${to}" already exists; rename to another name or merge manually first` },
+          { status: 409 },
+        );
       }
+      console.error('[saved-list] rename: meta-row update failed:', updErr);
+      return NextResponse.json({ error: updErr.message }, { status: 500 });
     }
 
     bustCaches(from, to);
-    return NextResponse.json({ updated: updatedCount });
+    return NextResponse.json({ updated: 1 });
   }
 
   if (body.action === 'delete') {
@@ -175,7 +167,10 @@ export async function POST(req: Request) {
     if (!name) {
       return NextResponse.json({ error: 'delete requires `name`' }, { status: 400 });
     }
-    const result = await deleteByQuery(sb, name);
+    // Look up the slug first — pins.saved_lists[] stores slugs, not
+    // names, so the cleanup pass has to filter by slug.
+    const slug = await resolveSlug(sb, name);
+    const result = await deleteByQuery(sb, slug);
     if (result.error) {
       return NextResponse.json({ error: result.error }, { status: 500 });
     }
@@ -215,6 +210,12 @@ export async function POST(req: Request) {
     // dash, no consecutive dashes) and let the unique constraint catch
     // collisions. If the slug is the only thing changing we still bust
     // the URL-keyed caches below.
+    //
+    // When the slug actually changes, pins.saved_lists[] still references
+    // the old slug — every pin needs the entry rewritten. Capture the
+    // old slug first so we can do that pass after the meta-row update
+    // commits.
+    let oldSlugForRewrite: string | null = null;
     if (body.slug !== undefined) {
       const s = (body.slug ?? '').trim().toLowerCase();
       if (!s) {
@@ -230,6 +231,10 @@ export async function POST(req: Request) {
         );
       }
       patch.slug = s;
+      const currentSlug = await resolveSlug(sb, name);
+      if (currentSlug !== s) {
+        oldSlugForRewrite = currentSlug;
+      }
     }
     // Upsert so the row exists even for lists that haven't gotten metadata yet.
     const { error } = await sb.from('saved_lists').upsert({ name, ...patch });
@@ -243,6 +248,15 @@ export async function POST(req: Request) {
         );
       }
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    // If the slug column itself changed, rewrite every pin's
+    // saved_lists[] entry from the old slug to the new one so
+    // membership stays consistent with the renamed identifier.
+    if (oldSlugForRewrite && typeof patch.slug === 'string') {
+      const rewrite = await renameByQuery(sb, oldSlugForRewrite, patch.slug);
+      if (rewrite.error) {
+        console.error('[saved-list] slug rename: pin rewrite failed:', rewrite.error);
+      }
     }
     // Bust the saved-lists-meta cache so the new URL surfaces immediately on
     // /lists, /lists/<slug>, and any city/country page that links to it.
@@ -295,6 +309,10 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    // pins.saved_lists[] stores slugs (post-R2-migration), so convert the
+    // incoming name → slug before adding or removing from the array. The
+    // API contract still accepts `name` to keep the admin UI stable.
+    const slug = await resolveSlug(sb, name);
     // Read-modify-write the single pin's saved_lists array. The set
     // is small (rarely more than 5–10 entries), so the round-trip is fine.
     const { data: pinRow, error: selErr } = await sb
@@ -307,8 +325,8 @@ export async function POST(req: Request) {
 
     const current = (pinRow.saved_lists as string[]) ?? [];
     const next = body.action === 'addPin'
-      ? Array.from(new Set([...current, name])).sort()
-      : current.filter(s => s !== name);
+      ? Array.from(new Set([...current, slug])).sort()
+      : current.filter(s => s !== slug);
     // Skip the write if nothing changed — keeps updated_at honest.
     if (next.length === current.length && next.every((v, i) => v === current[i])) {
       return NextResponse.json({ ok: true, changed: false });
@@ -470,22 +488,24 @@ export async function POST(req: Request) {
   );
 }
 
-/** Rename a list across all pins by reading affected rows + re-writing. */
+/** Rewrite every pin's saved_lists[] entry from `fromSlug` → `toSlug`.
+ *  Used by the slug-rename path on updateMeta; pins.saved_lists[] stores
+ *  slugs, so a slug change requires a sweep across the pin corpus. */
 async function renameByQuery(
   sb: ReturnType<typeof supabaseAdmin>,
-  from: string,
-  to: string,
+  fromSlug: string,
+  toSlug: string,
 ): Promise<{ updated: number; error?: string }> {
   const { data: hits, error: selErr } = await sb
     .from('pins')
     .select('id, saved_lists')
-    .contains('saved_lists', [from]);
+    .contains('saved_lists', [fromSlug]);
   if (selErr) return { updated: 0, error: selErr.message };
   let updated = 0;
   for (const row of hits ?? []) {
     const next = Array.from(
       new Set(
-        ((row.saved_lists as string[]) ?? []).map(s => (s === from ? to : s)),
+        ((row.saved_lists as string[]) ?? []).map(s => (s === fromSlug ? toSlug : s)),
       ),
     ).sort();
     const { error: updErr } = await sb.from('pins').update({ saved_lists: next }).eq('id', row.id);
@@ -494,19 +514,19 @@ async function renameByQuery(
   return { updated };
 }
 
-/** Delete a list name from every pin that carries it. */
+/** Delete a list slug from every pin that carries it. */
 async function deleteByQuery(
   sb: ReturnType<typeof supabaseAdmin>,
-  name: string,
+  slug: string,
 ): Promise<{ updated: number; error?: string }> {
   const { data: hits, error: selErr } = await sb
     .from('pins')
     .select('id, saved_lists')
-    .contains('saved_lists', [name]);
+    .contains('saved_lists', [slug]);
   if (selErr) return { updated: 0, error: selErr.message };
   let updated = 0;
   for (const row of hits ?? []) {
-    const next = ((row.saved_lists as string[]) ?? []).filter(s => s !== name);
+    const next = ((row.saved_lists as string[]) ?? []).filter(s => s !== slug);
     const { error: updErr } = await sb.from('pins').update({ saved_lists: next }).eq('id', row.id);
     if (!updErr) updated++;
   }

@@ -23,15 +23,12 @@ export default async function ListOgImage({
 
   // Resolve the list name the same way the page does: prefer
   // frontmatter title, otherwise the saved-list metadata name (title
-  // cased), otherwise the slug as a last resort.
-  const fallbackName = (() => {
-    for (const name of listsMeta.keys()) {
-      if (name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === slug) {
-        return name.replace(/\b\w/g, c => c.toUpperCase());
-      }
-    }
-    return slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  })();
+  // cased), otherwise the slug as a last resort. listsMeta is keyed
+  // by slug post-R2-migration, so this is one direct lookup.
+  const meta = listsMeta.get(slug);
+  const fallbackName = meta
+    ? meta.name.replace(/\b\w/g, c => c.toUpperCase())
+    : slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   const title = content?.title ?? fallbackName;
   const description = content?.description ?? null;
 

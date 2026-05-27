@@ -18,7 +18,6 @@ import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
 import { thumbUrl } from '@/lib/imageUrl';
-import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
 import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
@@ -431,15 +430,15 @@ export default async function PinPage({
               the highest-value cross-link: clicking lands on the full
               list, which is the natural next step after viewing one pin
               from it. */}
-          {pin.savedLists.map(name => (
+          {pin.savedLists.map(listSlug => (
             <Link
-              key={`sl-${name}`}
-              href={`/lists/${listNameToSlug(name)}`}
+              key={`sl-${listSlug}`}
+              href={`/lists/${listSlug}`}
               className="pill bg-cream-soft text-slate hover:bg-sand hover:text-ink-deep transition-colors inline-flex items-center gap-1.5"
-              title={`On Mike's ${name} list`}
+              title={`On Mike's ${listSlug.replace(/-/g, ' ')} list`}
             >
               <span aria-hidden>🗂️</span>
-              <span className="capitalize">{name}</span>
+              <span className="capitalize">{listSlug.replace(/-/g, ' ')}</span>
             </Link>
           ))}
           </div>
