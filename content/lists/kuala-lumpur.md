@@ -68,6 +68,14 @@ day_trips:
 
 [Kuala Lumpur](/cities/kuala-lumpur) is the gentlest first stop in Southeast Asia: a metro that covers what matters, Grab for the rest, hotel value among the best in the region, and a cultural circuit you can do in two days. Most people leave wanting more food. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Singapore](/lists/singapore) | 5 hr by direct train, 1 hr by flight | The polished, expensive counterpoint to KL's value play. The classic Malaysia-Singapore week, two big-city stops on opposite ends of efficiency |
+| [Ipoh](/lists/ipoh) | 2 hr by ETS train | The smaller Malaysian city north of KL, with the white-coffee culture and the limestone-cave temples. Pairs as KL three nights, Ipoh two for the wider Malaysia trip |
+| [Gunung Mulu](/lists/gunung-mulu) | 2 hr 30 by domestic flight | The Borneo rainforest UNESCO park with the Deer Cave bat flyout. Pairs KL with a separate Borneo leg if jungle and limestone are the appeal |
+
 ## On this page
 
 * [Getting in from KLIA](#getting-in-from-klia)

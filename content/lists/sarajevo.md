@@ -44,6 +44,14 @@ faqs:
 
 [Sarajevo](/cities/sarajevo) carries an outsized amount of history in a small walkable center: Habsburg buildings on one side, an Ottoman bazaar on the other, and the 1990s siege still legible in the architecture and in the people you meet. That last part is not background, it is the story most visitors come to understand. Two or three days. Here's the shape.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Mostar](/lists/mostar) | 2 hr 30 by bus through the Neretva valley | The Old Bridge city and the other Ottoman-quarter stop in Bosnia. The standard Bosnia loop. Pair as Sarajevo two nights + Mostar one |
+| [Belgrade](/lists/belgrade) | 7 hr by bus or train across the border | The Serbian capital and the larger story of Yugoslavia's breakup. Different city, same broader regional thread |
+| [Dubrovnik](/lists/dubrovnik) | 5 hr by bus down to the coast | The Adriatic coast finish to a Sarajevo-Mostar inland leg. The most-photographed Croatian stop completes the trip on the water |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

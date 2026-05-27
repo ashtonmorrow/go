@@ -32,6 +32,14 @@ topics:
 
 [Bogotá](/cities/bogota) gets a layover when it deserves a few days. It surprises people: the altitude you feel on day one, cool mountain weather all year, and a modern restaurant scene built since the 2000s. Three or four days for the city, more if you are adding the coffee region or Cartagena.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Medellín](/lists/medellin) | 1 hr by domestic flight | The eternal-spring counterpoint to Bogotá's altitude and rain. The classic Colombia week is Bogotá three nights, Medellín four |
+| [Cartagena](/lists/cartagena-colombia) | 1 hr 30 by flight | The Caribbean-coast walled-city finish. Pairs as the climate-change trip: cold mountain, warm tropical, three or four nights |
+| [Lima](/lists/lima) | 3 hr by flight | The Peruvian capital. Pairs as a wider Andean South America loop, capital-and-capital before adding Cuzco or Cartagena |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

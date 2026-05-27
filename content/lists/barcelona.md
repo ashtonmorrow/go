@@ -139,6 +139,14 @@ day_trips:
 
 I love [Barcelona](/cities/barcelona), but in 2026 it's a city pushing back hard on tourism, and the default first-trip script (an Airbnb on La Rambla, dinner in the Gothic Quarter) is exactly the version locals want gone. Here's how I'd do it instead: Poblenou as a base, eating a block off the tourist spine, the big monuments treated as quick metro stops.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Madrid](/lists/madrid) | 2 hr 30 by AVE | The Spanish counterpoint. Madrid four nights, Barcelona three is the classic Spain trip. Different food, different language register, different feel of city |
+| [Sitges](/lists/sitges) | 35 min by Rodalies R2 Sud | The beach town 35 km south of Barcelona, an easy three- or four-night stretch as a quieter coastal counterweight to the city days |
+| [Valencia](/lists/valencia) | 3 hr by Euromed | The third-biggest Spanish city, the paella capital, with the Ciudad de las Artes y las Ciencias. Pairs as Barcelona three, Valencia two on a wider Mediterranean Spain loop |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

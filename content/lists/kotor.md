@@ -142,6 +142,14 @@ day_trips:
 
 Kotor is two things: the Bay of Kotor, the long Adriatic inlet often called Europe's southernmost fjord, and the walled medieval town at the back of it, overrun by cruise ships from mid-morning to late afternoon. Base out on the bay, see the town outside cruise hours, climb the walls early. Two or three days. Here's the shape.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Dubrovnik](/lists/dubrovnik) | 2 hr by car or bus up the coast | The other Adriatic walled-city stop, same shape of trip in a different country. The pair is the Adriatic loop |
+| [Tirana](/lists/tirana) | 5 hr by car around the bay and down through Albania | The unaligned Albanian capital and the easy entry into the Albanian Riviera. Pairs with Kotor as the next leg of a wider Balkans trip |
+| [Saranda and Ksamil](/lists/saranda-ksamil) | 6 hr by car along the coast | The Albanian Riviera, crystal water at half the price of Greece. Natural southward continuation of the Adriatic trip |
+
 ## On this page
 
 * [Festivals and big annual events](#festivals-and-big-annual-events)

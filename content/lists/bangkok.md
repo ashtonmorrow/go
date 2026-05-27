@@ -103,6 +103,14 @@ day_trips:
 
 [Bangkok](/cities/bangkok) is the city you can see in one or two days or stay in for over a month and still keep finding new things, depending entirely on the trip you want it to be. It is huge. It rewards picking a base that matches the kind of days you're after and moving by river and BTS instead of fighting the traffic. Here's how I'd plan the city itself. The country-level version is in [my Thailand notes](/posts/thailand-travel-notes).
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Chiang Mai](/lists/chiang-mai) | 1 hr 15 by domestic flight or 11 hr by overnight train | The cool-climate northern Thai counterpoint to Bangkok's heat. The classic Thailand two-stop trip, three nights each minimum |
+| [Phuket](/lists/phuket) | 1 hr 30 by domestic flight | The Andaman beach finish to a Bangkok-then-beach Thailand week. Different airport, no transfer needed if you fly direct |
+| [Krabi](/lists/krabi) | 1 hr 30 by domestic flight | The other big Andaman base, the limestone-cliff side. Pairs as the alternative beach stop to Phuket on a longer Thailand trip |
+
 ## On this page
 
 * [When to go](#when-to-go)

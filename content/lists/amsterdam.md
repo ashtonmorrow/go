@@ -97,6 +97,14 @@ day_trips:
 
 [Amsterdam](/cities/amsterdam) is smaller and easier than it looks, a wheel of canals you can mostly cross on foot. The thing I tell every first-timer is that the Dutch trains are so good that basing outside the city and riding in is a real option, not a compromise. Here's how I'd plan it, day trips included.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Rotterdam](/lists/rotterdam) | 40 min by Intercity Direct | The modern post-war counterweight to Amsterdam's canals. Pairs as Amsterdam four nights, Rotterdam two for the architecture-and-port contrast |
+| [The Hague](/lists/the-hague) | 50 min by Intercity | The political capital with the Mauritshuis (the Vermeer Girl with a Pearl Earring). Also the cheaper base if you want to ride the trains into Amsterdam and Rotterdam from a quieter hotel |
+| [Bruges](/lists/bruges) | 3 hr 15 by Eurostar via Brussels | The Belgian canal city across the border. Pairs Amsterdam with Flanders for a wider Low Countries trip |
+
 ## On this page
 
 * [When to go](#when-to-go)

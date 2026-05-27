@@ -47,6 +47,13 @@ topics:
 
 [Montevideo](/cities/montevideo) is the easy add-on to a Buenos Aires trip, 2.5 hours across the river by ferry into [Uruguay](/countries/uruguay), customs cleared at the terminal. It is a slow city: an asado lunch, an afternoon on the Rambla, a sunset over Punta Carretas. Here's how I'd spend a couple of days.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Buenos Aires](/lists/buenos-aires) | 2 hr 30 by Buquebus ferry | The Argentine counterpart and the most natural pair for Montevideo. Most trips here are an add-on to a BA visit, two or three nights in Montevideo |
+| [Córdoba (AR)](/lists/cordoba-ar) | 3 hr by flight via Buenos Aires | The Argentine university town, the inland counterpoint to the coastal capitals. Pairs as a wider three-stop trip with BA in the middle |
+
 ## On this page
 
 * [Getting in from Buenos Aires](#getting-in-from-buenos-aires)

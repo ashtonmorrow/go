@@ -32,6 +32,14 @@ topics:
 
 [Venice](/cities/venice) gets a bad-faith reputation it does not earn. Yes, San Marco is crowded and the cruise day-trippers are real, but the rest of the city, Cannaregio, Dorsoduro, the quiet end of Castello, is calm and exactly what the postcards promise. The whole difference is staying overnight inside the lagoon instead of day-tripping in. Two or three nights minimum.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Verona](/lists/verona) | 1 hr 15 by direct train | Half-day or one-night stretch with the Roman arena and the medieval old town. Often the better-pace alternative to a full Rome leg |
+| [Milano](/lists/milano) | 2 hr 30 by Frecciarossa | The northern Italian counterweight, an hour past Verona on the same line. Pairs as Venice three nights, Milan two for design-and-finance contrast |
+| [Rome](/lists/rome) | 3 hr 45 by direct Frecciarossa | The other top-tier Italian destination. The classic Italy week is Rome four nights, Venice three |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

@@ -32,6 +32,14 @@ topics:
 
 [Saranda](/cities/saranda) and [Ksamil](/cities/ksamil) are the southern Albanian Riviera, crystal water and limestone coves at half the price of Greece across the strait. Saranda is the larger town, Ksamil the photogenic beach-resort version 20 minutes south. Three or four days for the pair. Here's how I'd split them.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Tirana](/lists/tirana) | 4 hr by car or 5 hr by furgon | The Albanian capital. The classic Albania loop is capital plus coast, three nights each |
+| [Dubrovnik](/lists/dubrovnik) | 7 hr by car up the coast via Montenegro | The Adriatic walled-city the trip naturally extends into. Pair as the southern Adriatic week, Dubrovnik plus Albanian Riviera |
+| [Kotor](/lists/kotor) | 6 hr by car up the coast | The Bay of Kotor, the next walled-city stop going north. Pairs the Albanian Riviera with the Montenegrin one |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

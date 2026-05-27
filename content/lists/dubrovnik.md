@@ -37,6 +37,14 @@ faqs:
 
 [Dubrovnik](/cities/dubrovnik) is the Adriatic walled city that was famous long before Game of Thrones, and it has been managing the cruise-ship crush ever since. The Old Town is tiny, the walls walkable in two hours, the food good. Stay at least two nights so you can have it outside the day-tripper window. Here's how I'd time it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Kotor](/lists/kotor) | 2 hr by car or bus south down the coast | The other walled-city stop on the Bay of Kotor. Same shape of trip in a different country, with the fjord-like bay as the visual hook |
+| [Mostar](/lists/mostar) | 3 hr by bus inland through Bosnia | The Old Bridge and the Ottoman quarter, plus the war memory in plain sight. Pairs cleanly into a longer Balkans loop with Sarajevo |
+| [Split](/lists/split) | 3 hr by bus up the Croatian coast | Diocletian's Palace and the Dalmatian island ferries. The two Croatian Adriatic anchors, with Hvar and Korčula in between |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

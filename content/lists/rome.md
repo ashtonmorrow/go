@@ -64,6 +64,14 @@ day_trips:
 
 [Rome](/cities/rome) built the template every other European capital copies, and the ancient sights really are as good as advertised. The other half of the trip is the Roman pasta canon, which most first-timers miss by booking tourist restaurants near the monuments. A long weekend minimum. Here's how I'd do it right.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Venice](/lists/venezia) | 3 hr 45 by direct Frecciarossa | The other top-tier Italian destination. Rome-Venice on the high-speed line is the classic Italy week, four nights and three. |
+| [Verona](/lists/verona) | 3 hr 15 by direct Frecciarossa | Smaller Italian stop with the Roman arena and the medieval old town. Pairs as a single Verona overnight between Rome and Venice |
+| [Milano](/lists/milano) | 3 hr by direct Frecciarossa | The northern Italian counterweight to Rome, the design-and-finance city. Pairs as the contrast trip more than the same trip |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

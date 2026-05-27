@@ -25,7 +25,7 @@ faqs:
   - q: How do I get from Prague Airport to the center?
     a: Bus 119 from PRG to Nádraží Veleslavín metro, then Line A to Můstek for most central hotels. CZK 60 (€2.50) total. Airport Express bus AE runs to Hlavní nádraží (main station) for CZK 100. Taxi is CZK 600 to 800 (€25 to €33). Bolt and Liftago are cheaper than taxis and reliable. Avoid the unmarked drivers at the curb.
   - q: Where should I stay in Prague for a first visit?
-    a: Staré Město (Old Town) puts the major sights on foot. Malá Strana on the castle side is quieter and photogenic at night. Vinohrady is the local-feel residential alternative for a longer stay, with the food and bar scene without the tourist crush. Avoid the Wenceslas Square strip; convenient on paper but loud and tourist-priced.
+    a: Staré Město (Old Town) puts the major sights on foot. Malá Strana on the castle side is quieter and photogenic at night. Vinohrady is the local-feel residential alternative for a longer stay, with the food and bar scene without the tourist crush. Avoid the Wenceslas Square strip, convenient on paper but loud and tourist-priced.
   - q: Watch out for the Prague drink-bill scam?
     a: The pattern is real on the Wenceslas Square strip and the bars approaching the Old Town from the south. Touters draw you in, the menu has one price, the bill has another, and the bouncers make sure you pay. Either read the bill before ordering or skip the strip entirely. Nothing in Old Town proper runs this pattern with the same intensity.
 
@@ -63,6 +63,14 @@ day_trips:
 ---
 
 [Prague](/cities/prague) is the Bohemian capital and one of the most walkable old towns in Europe, the Vltava splitting it between the Old Town and the castle side. A long weekend covers the main sights, a week opens the smaller neighborhoods. Here's how I'd plan it.
+
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Vienna](/lists/vienna) | 4 hr by direct Railjet | The first Habsburg neighbor. The classic Prague-Vienna-Budapest seven-to-ten-day Central Europe trip starts here |
+| [Budapest](/lists/budapest) | 7 hr by direct train or 1 hr 30 by flight | The third leg of the same Habsburg-rim loop. By flight it's quicker than the train, by train it's the slower, scenic version |
+| [Munich](/lists/munich) | 4 hr 30 by direct ICE train | Bavarian capital, the closest big German city to Prague. Pairs as a beer-hall-vs-pivovar comparison plus the Bavarian Alps day trips |
 
 ## On this page
 

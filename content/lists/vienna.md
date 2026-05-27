@@ -60,6 +60,14 @@ day_trips:
 
 [Vienna](/cities/vienna) still reads like an imperial capital: the Ringstrasse grandeur, the Habsburg architecture, the two-century coffee-house habit, the music of Mozart and Beethoven. A long weekend covers the main sights, a week opens the Vienna Woods and the wine villages. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Budapest](/lists/budapest) | 2 hr 30 by direct Railjet train | The Habsburg twin capital. The most natural city pair in Central Europe. Three nights each works as a clean week |
+| [Prague](/lists/prague) | 4 hr by direct Railjet | The third Habsburg-rim capital. Vienna in the middle of a Prague-Vienna-Budapest loop is the cleanest seven-to-ten-day trip in this region |
+| [Munich](/lists/munich) | 4 hr by direct Railjet | Bavaria's capital, the closest big German city. Pairs as Vienna two to three nights, then Munich for the beer-hall side and the Alps |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

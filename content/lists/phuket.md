@@ -93,6 +93,14 @@ day_trips:
 
 [Phuket](/cities/phuket) is the practical Thai island: the international airport, every grade of hotel, the tour boats to Phi Phi and Phang Nga, and the bluntest version of beach tourism in Thailand. That is not a complaint. Match the side of the island to the trip you want. Here's how I'd do it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Krabi](/lists/krabi) | 2 hr by speedboat or 3 hr 30 by ferry | The mainland Andaman counterpart, the limestone cliffs at Railay and Ao Nang. Pairs as Phuket three nights, Krabi three for the two-base Andaman trip |
+| [Phi Phi](/lists/phi-phi) | 1 hr by speedboat | The famous Maya Bay islands. Worth one or two nights inside the cluster rather than doing it as a Phuket day tour |
+| [Bangkok](/lists/bangkok) | 1 hr 30 by domestic flight | The capital. The classic Thailand week is Bangkok three nights, Phuket four, on a direct domestic flight |
+
 ## On this page
 
 * [When to go](#when-to-go)

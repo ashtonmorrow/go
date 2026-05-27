@@ -48,6 +48,14 @@ topics:
 
 [Rotterdam](/cities/rotterdam) is the architectural counterpoint to Amsterdam: WWII bombing erased the medieval city, and the rebuild turned it into the proving ground for modern Dutch architecture. Two days for the walking loop and the food, plus a half-day at Kinderdijk. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Amsterdam](/lists/amsterdam) | 40 min by Intercity Direct | The canal city up the rail line. Pairs as the modern-vs-medieval Dutch contrast, two or three nights each |
+| [The Hague](/lists/the-hague) | 25 min by Intercity | The political capital with the Mauritshuis. Often the cheaper base for both Rotterdam and Amsterdam visits |
+| [Antwerp](/lists/antwerp) | 1 hr 15 by Intercity through Brussels | The Belgian neighbor city across the border, the diamond and fashion capital. Pairs Rotterdam with Flanders for a wider Low Countries trip |
+
 ## On this page
 
 * [Getting in](#getting-in)

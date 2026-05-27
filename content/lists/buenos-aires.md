@@ -73,6 +73,14 @@ day_trips:
 
 [Buenos Aires](/cities/buenos-aires) is the South American capital I send people to first, all European-style boulevards, parrilla steakhouse culture, and a peso economy that keeps shifting what your dollars are worth. Give it a week, more if you are adding Mendoza, Iguazú, or Patagonia.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Montevideo](/lists/montevideo) | 2 hr 30 by Buquebus ferry | The Uruguayan capital across the Río de la Plata. The easy add-on, customs cleared at the terminal, one night or four nights depending on the trip shape |
+| [Córdoba (AR)](/lists/cordoba-ar) | 1 hr 20 by domestic flight | The university town in central Argentina, with the cuarteto music scene and the Jesuit colonial blocks. Pairs Buenos Aires with a more Argentine-feeling inland stop |
+| [São Paulo](/lists/são-paulo) | 2 hr 30 by flight | The Brazilian counterpart. Pairs as a Mercosur big-cities week, two capitals with very different food and language registers |
+
 ## On this page
 
 * [How do I get in from the airport?](#how-do-i-get-in-from-the-airport)

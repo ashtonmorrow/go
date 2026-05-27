@@ -20,7 +20,7 @@ topics:
 
 faqs:
   - q: How many days do I need in Tirana?
-    a: Two full days covers the city: the painted Communist-era facades, Skanderbeg Square, the Pyramid, Bunk'Art 1 or 2, and a meat-and-rakia dinner. A third day adds a Krujë castle excursion or a beach run down to Durrës. For a wider Albania trip, base in Tirana for two nights then move down to Saranda or Berat.
+    a: Two full days covers the city. Expect the painted Communist-era facades, Skanderbeg Square, the Pyramid, Bunk'Art 1 or 2, and a meat-and-rakia dinner. A third day adds a Krujë castle excursion or a beach run down to Durrës. For a wider Albania trip, base in Tirana for two nights then move down to Saranda or Berat.
   - q: How do I get from Tirana Airport to the city?
     a: The Rinas Express bus runs from TIA to the city center every 30 minutes for €4, takes about 35 minutes. Taxi is €20 to €25 fixed. Many rental-car companies will not let you take a car from Tirana into neighboring countries, so check before booking. Furgon (minibus) is the practical way to reach the rest of Albania, departures from the Northbound or Southbound parking-lot terminals (there is no official bus station).
   - q: Where should I stay in Tirana?
@@ -40,7 +40,15 @@ faqs:
 #   restaurant pin set renders below this prose on the cards/map view.
 ---
 
-[Tirana](/cities/tirana) is the Balkan capital that does not feel like the rest of Europe. Albania is a majority-Muslim country (which surprises most travelers), Tirana was officially stripped of religion under the Hoxha regime, and by the time you get here from western Europe you have crossed into something that feels closer to Turkey than to Germany. That is the appeal. The food is cheap and family-style, the architecture is odd in interesting ways, the communist-era museums are some of the best in the region, and the city is changing fast enough that two trips two years apart will not look the same. Two or three days does it. Pairs cleanly with [Saranda and Ksamil](/lists/saranda-ksamil) on the Albanian Riviera for a wider trip.
+[Tirana](/cities/tirana) is the Balkan capital that does not feel like the rest of Europe. Albania is a majority-Muslim country (which surprises most travelers), Tirana was officially stripped of religion under the Hoxha regime, and by the time you get here from western Europe you have crossed into something that feels closer to Turkey than to Germany. That is the appeal. The food is cheap and family-style, the architecture is odd in interesting ways, the communist-era museums are some of the best in the region, and the city is changing fast enough that two trips two years apart will not look the same. Two or three days does it.
+
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Saranda and Ksamil](/lists/saranda-ksamil) | 4 hr by car or 5 hr by furgon | The Albanian Riviera, crystal water at half the price of Greece. The classic Albania loop: capital plus coast |
+| [Kotor](/lists/kotor) | 5 hr by car around the bay | The Bay of Kotor walled-city stop in Montenegro. Pairs Tirana with the Adriatic coast going north |
+| [Dubrovnik](/lists/dubrovnik) | 6 hr by car through Montenegro | The Adriatic walled-city stop continuing north past Kotor. The two together cover the southern Adriatic coast |
 
 ## On this page
 

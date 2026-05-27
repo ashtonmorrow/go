@@ -81,6 +81,14 @@ day_trips:
 
 [Chiang Mai](/cities/chiang-mai) is the calm half of a Thailand trip: where Bangkok is heat and noise, this is temples and a long lunch, with the mountains starting at the edge of town. The food, by most measures, beats Bangkok's. If Thailand is already the plan, give it three or four days.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Bangkok](/lists/bangkok) | 1 hr 15 by domestic flight or 11 hr by overnight train | The classic Thailand pair, the south-vs-north contrast. Three nights each minimum, the overnight train is the experience if time allows |
+| [Phuket](/lists/phuket) | 2 hr by domestic flight | The Andaman beach finish to a temples-then-beach Thailand week. Skip the Bangkok leg via direct CM-Phuket flights if you have the time |
+| [Luang Prabang](/lists/lpq) | 1 hr by flight or 2 days by Mekong slow boat | The Laotian UNESCO town just over the border. Pairs Chiang Mai with the next country if Thailand is the trip's starting point |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

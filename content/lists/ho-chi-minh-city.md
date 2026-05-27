@@ -76,6 +76,14 @@ day_trips:
 
 [Ho Chi Minh City](/cities/ho-chi-minh-city), Saigon to the people who live there, is the easiest Vietnam city to plan and the easiest to underestimate. It is hot, motorbike-saturated, and a far better craft-beer town than first-timers expect. The culture fits in a day, the beer is its own evening, and the food is why you come back.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Hoi An](/lists/hoi-an) | 1 hr 15 by domestic flight to Da Nang plus 45 min by car | The Vietnamese lantern town and the central-coast counterpoint to Saigon's motorbike-and-skyscraper version. Three nights here is the second leg of a Vietnam week |
+| [Bangkok](/lists/bangkok) | 1 hr 30 by flight | The other Southeast Asian capital. Pairs as the Mekong-region trip, Saigon plus Bangkok, with Cambodia (Phnom Penh, Siem Reap) potentially in the middle |
+| [Singapore](/lists/singapore) | 2 hr by flight | The efficient-city counterpart. Pairs as the contrast trip more than the same trip, three nights each |
+
 ## On this page
 
 * [Get the e-visa first](#get-the-e-visa-first)

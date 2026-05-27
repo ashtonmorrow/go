@@ -58,6 +58,14 @@ related:
 
 [Mostar](/cities/mostar) is a small Herzegovina town on the green Neretva, built around the Stari Most, the Ottoman bridge shelled to rubble in the 1990s and rebuilt in 2004. The old core is tiny, but the buses pour in midday, so an overnight is the better trip. Here's how I'd time it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Sarajevo](/lists/sarajevo) | 2 hr 30 by bus or train | The Bosnian capital up the Neretva valley. The standard Bosnia loop is Sarajevo two nights, Mostar one |
+| [Dubrovnik](/lists/dubrovnik) | 3 hr by bus over the mountains to the coast | The Adriatic finish to an inland Bosnia leg. Most Mostar visitors continue from here on this single bus run |
+| [Kotor](/lists/kotor) | 5 hr by bus down the coast | Continues the Adriatic loop past Dubrovnik into Montenegro, the Bay of Kotor as the third walled-city stop |
+
 ## On this page
 
 * [How long do I need?](#how-long-do-i-need)

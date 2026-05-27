@@ -42,6 +42,14 @@ faqs:
 
 [Medellín](/cities/medellin) is the Colombian city of eternal spring, 22 to 28°C all year, and the rebuilt civic story everyone has heard about, with cable cars climbing to the hillside neighborhoods. Most people stay in El Poblado. Three or four days for the city, more with the coffee region. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Bogotá](/lists/bogota) | 1 hr by domestic flight | The Colombian capital, the cold-mountain counterpoint to Medellín's warm valley. The classic Colombia week is Medellín four nights, Bogotá three |
+| [Cartagena](/lists/cartagena-colombia) | 1 hr 15 by flight | The walled Caribbean city on the coast. Pairs as Medellín plus beach finish on a Colombia trip |
+| [Panama City](/lists/panama) | 1 hr 30 by flight | The Panamanian capital and the canal. Pairs Medellín with Central America for a wider trip, often as a multi-country airline routing |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

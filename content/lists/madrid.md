@@ -81,6 +81,14 @@ day_trips:
 
 [Madrid](/cities/madrid) is easy to recommend and easy to mis-plan. The neighborhoods sit close together, the food rewards walking, and the transport works the way you want it to. Where people go wrong is the base, the famous market they treat as a meal, and walking up to the [Prado](/pins/paseo-del-prado-and-buen-retiro-a-landscape-of-arts-and-sciences) on a Saturday. Here's how I'd get it right.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Barcelona](/lists/barcelona) | 2 hr 30 by AVE high-speed train | The other Spanish big city. The classic Spain week is Madrid four nights, Barcelona three. Different food, different language register, different feel of city |
+| [Lisbon](/lists/lisbon) | 9 hr by overnight train or 1 hr 15 by flight | The Iberian neighbor. Pairs as a week and a half if you want to see both peninsulas. Flight is easier than the rail; the overnight train was suspended in 2020 |
+| [Granada](/lists/granada) | 3 hr by AVE | The Alhambra and the Andalusian Moorish heritage. Pairs as Madrid three nights, then southward into Andalusia |
+
 ## On this page
 
 * [When to go](#when-to-go)

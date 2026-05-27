@@ -66,6 +66,14 @@ day_trips:
 
 [Singapore](/cities/singapore) is the most efficient major city in Southeast Asia, and the easiest to underestimate on budget. Two or three days, mostly on foot and the MRT, with the money going on food rather than drinks. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Kuala Lumpur](/lists/kuala-lumpur) | 5 hr by direct train or 1 hr by flight | The Malaysian counterpoint, half the price, twice the food scene. Most travelers do them together as a regional week |
+| [Bali](/lists/bali) | 2 hr 45 by flight | The Indonesian beach finish. Pairs as Singapore two to three nights for the city, Bali five to seven for the slowdown |
+| [Bangkok](/lists/bangkok) | 2 hr by flight | The Thai counterpart. Both are major Southeast Asian hubs but the food and price registers are different. Useful as parts of a wider regional loop |
+
 ## On this page
 
 * [Getting in from Changi](#getting-in-from-changi)

@@ -61,6 +61,14 @@ day_trips:
 
 [Budapest](/cities/budapest) is two cities the Danube splits: hilly, quiet Buda on the west, flat and busy Pest on the east where you will stay. The thermal baths are its signature, and the food has caught up hard in the last decade. Here's how I'd plan it. The baths get their own writeup in my [spa-day list](/lists/spa-day).
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Vienna](/lists/vienna) | 2 hr 30 by direct Railjet train | The Habsburg twin capital, two and a half hours west by train. The single most natural city pair in Central Europe. Three nights each is a clean week |
+| [Prague](/lists/prague) | 7 hr by direct train or 1 hr 30 by flight | The third Habsburg-rim capital. Less natural by train but pairs well as a longer central-Europe loop with Vienna in the middle |
+| [Eger](/lists/eger) | 2 hr by direct train | The Hungarian baroque wine town with the Valley of Beautiful Women cellar district. Pairs with Budapest as a one-night stretch rather than a day trip |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)

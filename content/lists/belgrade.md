@@ -42,7 +42,15 @@ faqs:
 #   match Mike's voice on each guide as time permits.
 ---
 
-[Belgrade](/cities/belgrade) is the most unaligned big city in Europe, and that is the appeal. Smoking is still allowed in the airport, and the smell hits you as you walk off the plane like stepping back in time. Modern glass-tower shopping malls drop into the middle of an old town that still carries communist-era apartment blocks two streets away. The food is better than most travelers expect, the cats are everywhere, and a clubbing scene on the Sava River runs until morning, when expensive Viking river-cruise boats arrive at piers a few hundred meters from where the late-night kids are stumbling out. Two or three days does it. Pairs cleanly with Sarajevo and Mostar.
+[Belgrade](/cities/belgrade) is the most unaligned big city in Europe, and that is the appeal. Smoking is still allowed in the airport, and the smell hits you as you walk off the plane like stepping back in time. Modern glass-tower shopping malls drop into the middle of an old town that still carries communist-era apartment blocks two streets away. The food is better than most travelers expect, the cats are everywhere, and a clubbing scene on the Sava River runs until morning, when expensive Viking river-cruise boats arrive at piers a few hundred meters from where the late-night kids are stumbling out. Two or three days does it.
+
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Sarajevo](/lists/sarajevo) | 7 hr by bus or train | The Bosnian capital. Pairs as the Yugoslav-breakup pair, two capitals on opposite sides of the same 1990s history |
+| [Mostar](/lists/mostar) | 8 hr by bus, easier via Sarajevo | The Ottoman bridge city. The natural third stop after Sarajevo on a Balkans loop |
+| [Sofia](/lists/sofia) | 5 hr 30 by bus | The Bulgarian capital, the next big city east. Pairs as the Belgrade-Sofia-Bucharest line for a wider eastern-Balkans trip |
 
 ## On this page
 

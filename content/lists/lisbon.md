@@ -63,6 +63,14 @@ day_trips:
 
 [Lisbon](/cities/lisbon) has been on every must-visit list for a decade, and the reasons hold up on arrival: the light, the trams, the food, hotels you can afford, and seven hills that turn every corner into a viewpoint. A long weekend gets the headlines, a week unlocks Sintra and Cascais. Here's how I'd plan it.
 
+## Pairs with
+
+| City | Travel | Why pair |
+|---|---|---|
+| [Madrid](/lists/madrid) | 9 hr by overnight train or 1 hr 15 by flight | The Iberian neighbor capital. Pairs as Lisbon plus Madrid for a week and a half, easier by flight than by rail |
+| [Barcelona](/lists/barcelona) | 2 hr by flight | The other major Iberian stop. Lisbon-Barcelona is the alternative Iberian week, two coastal capitals on opposite ends of the peninsula |
+| [Marrakech](/lists/marrakech) | 1 hr 30 by flight across the Strait | The North African neighbor, the closest non-European city. Pairs as a week and a half if Morocco is the second half of the trip |
+
 ## On this page
 
 * [Getting in from the airport](#getting-in-from-the-airport)
