@@ -18,7 +18,6 @@ import JsonLd from '@/components/JsonLd';
 import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib/seo';
 import { withUtm } from '@/lib/utm';
 import { thumbUrl } from '@/lib/imageUrl';
-import { readPlaceContent, paragraphs } from '@/lib/content';
 import { listNameToSlug } from '@/lib/savedLists';
 import Lightbox from '@/components/Lightbox';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
@@ -88,8 +87,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // page only gets indexed once the pin has a generated review on it.
     // The page itself still renders for anyone with the link, but search
     // engines stay out until there's real prose to read.
-    const fileContent = await readPlaceContent('pins', pin.slug ?? '');
-    const explicitIndexable = fileContent?.indexable === true || pin.indexable;
+    // Pin indexability is now driven by the pin row itself (pin.indexable
+    // flag + hotel-has-review rule + isThinPin heuristic for the rest).
+    // The /content/pins/<slug>.md file source that used to override this
+    // was deleted in the May 2026 plumbing pass (nothing was ever populated).
+    const explicitIndexable = pin.indexable;
     let noindex: boolean;
     if (explicitIndexable) {
       noindex = false;
@@ -97,7 +99,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       const hasReview = !!(pin.generatedReview && pin.generatedReview.trim());
       noindex = !hasReview;
     } else {
-      noindex = isThinPin(pin, !!fileContent);
+      noindex = isThinPin(pin, false);
     }
 
     // Long-tail-friendly title: "Pyramids of Egypt — review, hours, tickets".
@@ -149,11 +151,10 @@ export default async function PinPage({
   // call that gates first byte if it stalls (3s timeout cap, but cold cache
   // is still slow). We render the lede + extract via <Suspense> below so the
   // rest of the page streams without it.
-  const [countryRecord, cityRecord, personalPhotos, content, bboxCandidates] = await Promise.all([
+  const [countryRecord, cityRecord, personalPhotos, bboxCandidates] = await Promise.all([
     country ? fetchCountryByName(country) : Promise.resolve(null),
     cityName ? fetchCityByName(cityName) : Promise.resolve(null),
     fetchPhotosForPin(pin.id),
-    readPlaceContent('pins', pin.slug ?? ''),
     pin.lat != null && pin.lng != null
       ? fetchPinsInBbox(
           pin.lat - BBOX_DELTA, pin.lat + BBOX_DELTA,
@@ -571,17 +572,6 @@ export default async function PinPage({
             <PersonalSection pin={pin} />
           )}
 
-          {/* Personal-voice notes from /content/pins/<slug>.md, when present —
-              long-form companion to the short Google review above. */}
-          {content && (
-            <section className="mt-8 pt-8 border-t border-sand">
-              {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
-                  {p}
-                </p>
-              ))}
-            </section>
-          )}
 
           <Suspense fallback={null}>
             <WikipediaSection wikipediaUrl={pin.wikipediaUrl} />

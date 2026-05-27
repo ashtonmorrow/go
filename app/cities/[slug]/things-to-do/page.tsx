@@ -8,7 +8,6 @@ import {
   listsMatchingPlace,
   snippet,
 } from '@/lib/savedLists';
-import { readPlaceContent, paragraphs } from '@/lib/content';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import { SITE_URL } from '@/lib/seo';
 import { cityHubMetadata, cityHubSchema } from '@/lib/cityHub';
@@ -37,8 +36,7 @@ async function fetchData(slug: string) {
   const city = await fetchCityBySlug(slug);
   if (!city) return null;
 
-  const [content, listsMeta, country] = await Promise.all([
-    readPlaceContent('cities', slug),
+  const [listsMeta, country] = await Promise.all([
     fetchAllSavedListsMeta(),
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
   ]);
@@ -79,7 +77,7 @@ async function fetchData(slug: string) {
       unesco: p.unescoId != null,
     }));
 
-  return { city, country, content, pins };
+  return { city, country, pins };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -109,7 +107,7 @@ export default async function ThingsToDoPage({ params }: Props) {
   const { slug } = await params;
   const data = await fetchData(slug);
   if (!data) notFound();
-  const { city, country, content, pins } = data;
+  const { city, country, pins } = data;
 
   const schema = cityHubSchema({
     citySlug: slug,
@@ -127,10 +125,6 @@ export default async function ThingsToDoPage({ params }: Props) {
     articleHeadline: `Things to do in ${city.name}`,
     articleDescription: `${pins.length} curated pins for ${city.name}.`,
   });
-
-  // First paragraph of /content/cities/<slug>.md, when one exists, runs as
-  // a brief contextual lede. The rest of that article stays on the city page.
-  const firstPara = content ? paragraphs(content.body)[0] : null;
 
   const intro = (
     <>
@@ -155,9 +149,6 @@ export default async function ThingsToDoPage({ params }: Props) {
           holds the rest of the orientation: climate, language, currency,
           transit, the local quirks worth knowing before you go.
         </p>
-      )}
-      {firstPara && (
-        <p className="mt-4 text-prose text-ink leading-relaxed">{firstPara}</p>
       )}
     </>
   );

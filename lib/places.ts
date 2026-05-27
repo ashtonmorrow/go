@@ -1,19 +1,20 @@
-import { Client, APIResponseError } from '@notionhq/client';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { supabase } from './supabase';
 import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE } from './goTables';
 
-// Places library — city + country reads.
+// Places library — city + country reads from Supabase.
 // =========================================================================
 // Renamed from lib/notion.ts in the May 2026 plumbing pass. The runtime
 // reads for cities + countries are backed by Supabase tables (mirrored from
-// the original Notion databases). The Notion API call path is kept only
-// for fetchPageBlocks, which still renders legacy Notion blocks for any
-// city/country detail page lacking richer Supabase content.
+// the original Notion databases). The Notion API path was removed at the
+// same time; fetchPageBlocks and the SDK retry wrapper are gone, since no
+// city/country page in the corpus was returning non-empty blocks.
 //
-// Public surface: City, Country, fetchAllCities, fetchCityBySlug,
-// fetchAllCountries, fetchCountryBySlug, fetchPageBlocks.
+// Public surface: City, Country, ImageAttribution, fetchAllCities,
+// fetchCityBySlug, fetchAllCountries, fetchCountryBySlug,
+// fetchCitiesByIds, fetchCitiesByCountryId, fetchCountryById,
+// fetchCountryByName, fetchCityByName.
 //
 // Cache layer: Supabase is fast (~30-80ms) so the layer uses a 5-minute
 // unstable_cache window. Edits in Supabase Studio appear within minutes
@@ -21,31 +22,9 @@ import { GO_CITIES_TABLE, GO_COUNTRIES_TABLE } from './goTables';
 // `supabase-*` names and the legacy `notion-*` names so existing
 // revalidation hooks keep working.
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
-
-// Retry wrapper with exponential backoff for Notion's rate_limited (429) errors.
-// Notion returns a Retry-After header; we honor it when present.
-async function withRetry<T>(fn: () => Promise<T>, tries = 5): Promise<T> {
-  let lastErr: unknown;
-  for (let i = 0; i < tries; i++) {
-    try {
-      return await fn();
-    } catch (e) {
-      lastErr = e;
-      if (e instanceof APIResponseError && e.code === 'rate_limited') {
-        // Retry-After may be exposed on the error headers; default to exp backoff
-        const hdr = (e as any).headers?.get?.('retry-after');
-        const retryAfterMs = hdr ? parseFloat(hdr) * 1000 : Math.min(1000 * 2 ** i, 10000);
-        await new Promise(r => setTimeout(r, retryAfterMs));
-        continue;
-      }
-      throw e;
-    }
-  }
-  throw lastErr;
-}
-
-// Notion database IDs. The Notion SDK's `databases.query` uses these directly for single-source databases.
+// Legacy Notion database IDs. Kept exported because pin/list cross-references
+// historically used these — leaving them on the public surface costs nothing
+// and avoids a separate import-site fixup pass.
 export const CITIES_DB = '2d3fdea3fd4b8080b8e4fc674cdf8cd4';
 export const COUNTRIES_DB = 'a925032ca4da48fa952e9dde3713955f';
 
@@ -494,45 +473,3 @@ const _fetchCitiesByCountryId = unstable_cache(
 );
 export const fetchCitiesByCountryId = cache(_fetchCitiesByCountryId);
 
-// Blocks vary per page so caching is per-pageId. Wrapping with `cache()` still
-// dedupes multiple calls for the same pageId within a render.
-//
-// PERF: this used to be the slowest fetch on the city + country detail
-// pages — Notion's blocks.children.list runs 500ms-2s per call, and we
-// were doing it uncached on every request. Wrapping with `unstable_cache`
-// keyed on the pageId means the second request to a given detail page
-// hits the Next.js data cache instead of Notion. Combined with the
-// content-file short-circuit at the call sites, most detail-page renders
-// no longer touch Notion at all for blocks.
-const _fetchPageBlocks = unstable_cache(
-  async (pageId: string): Promise<any[]> => {
-    if (!process.env.NOTION_TOKEN) return [];
-    const blocks: any[] = [];
-    let cursor: string | undefined;
-    try {
-      do {
-        const res: any = await withRetry(() =>
-          notion.blocks.children.list({
-            block_id: pageId,
-            start_cursor: cursor,
-            page_size: 100,
-          })
-        );
-        blocks.push(...res.results);
-        cursor = res.has_more ? res.next_cursor : undefined;
-      } while (cursor);
-    } catch (err) {
-      // Supabase-native records do not have a corresponding Notion block.
-      // Treat a missing legacy block as "no notes" rather than taking down
-      // the whole detail page.
-      if (err instanceof APIResponseError && (err.code === 'object_not_found' || err.status === 404)) {
-        return [];
-      }
-      throw err;
-    }
-    return blocks;
-  },
-  ['notion-page-blocks'],
-  { revalidate: CACHE_REVALIDATE_SECONDS, tags: ['notion-page-blocks'] }
-);
-export const fetchPageBlocks = cache(_fetchPageBlocks);

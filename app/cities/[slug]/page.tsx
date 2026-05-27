@@ -1,10 +1,8 @@
 import {
   fetchCityBySlug,
-  fetchPageBlocks,
   fetchCountryById,
   fetchCitiesByIds,
 } from '@/lib/places';
-import { renderBlocks } from '@/lib/blocks';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
@@ -22,9 +20,7 @@ import { fetchTransitOperators } from '@/lib/transit';
 import LanguageLinkPanel from '@/components/LanguageLinkPanel';
 import ForecastPanel from '@/components/ForecastPanel';
 import { fetchForecast } from '@/lib/forecast';
-import { readPlaceContent, paragraphs, getAllDayTripSets } from '@/lib/content';
-import FaqBlock from '@/components/list-blocks/FaqBlock';
-import GuideCardsBlock from '@/components/list-blocks/GuideCardsBlock';
+import { getAllDayTripSets } from '@/lib/content';
 import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCity } from '@/lib/placeCovers';
 import ImageCredit from '@/components/ImageCredit';
@@ -90,16 +86,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // come from personal_photos via fetchCoverForCity, never Wikimedia).
   const image = city.personalPhoto ?? undefined;
 
-  // Pages with a /content/cities/<slug>.md become indexable; everything else
-  // stays noindex by default to avoid bloating the search index with stub
-  // pages that are essentially Wikipedia regurgitated.
-  const fileContent = await readPlaceContent('cities', slug);
+  // City detail pages stay noindex by default. They render Wikipedia
+  // summary + Mike-voice columns (why_visit, avoid) + facts, but Google
+  // would treat the long tail as thin pages. Indexable flips would happen
+  // through a future per-city policy column, not the legacy markdown gate.
 
   return {
     title: city.name,
     description,
     alternates: { canonical: url },
-    robots: fileContent?.indexable ? undefined : { index: false, follow: true },
+    robots: { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -129,25 +125,13 @@ export default async function CityPage({
   const city = await fetchCityBySlug(slug);
   if (!city) notFound();
 
-  // Read the file-based content first — it's a fast disk read and lets us
-  // decide whether to skip the slow Notion blocks fetch entirely. When a
-  // content file exists, it IS the prose; the legacy Notion-blocks rendering
-  // would just sit underneath it and we'd be paying 500ms-2s for nothing.
-  const content = await readPlaceContent('cities', slug);
-
-  // Fan everything else out in parallel. Each call is now a surgical query
-  // (indexed lookup or filtered subset) — we used to call fetchAllCountries
-  // + fetchAllCities here just to find one country and a handful of sister
-  // cities, which shipped 1.5 MB of JSON for every cold render. Now we hit
-  // exactly the rows we need.
+  // Fan the (now surgical) supporting fetches out in parallel. fetchAllSavedListsMeta
+  // is needed up front to compute matchedLists, which gates the (potentially
+  // expensive) pin query that follows.
   // Wikimedia heroImage no longer counts as a cover. Always reach for the
   // pin-photo fallback when no personal photo is set.
   const needsCoverFallback = !city.personalPhoto;
-  // First pass — everything that's cheap and unconditional. fetchAllSavedListsMeta
-  // is needed up front to compute matchedLists, which gates the (potentially
-  // expensive) pin query that follows.
-  const [blocks, country, sisters, climate, airQuality, transitOperators, forecast, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
-    !content && city.notionSyncedAt ? fetchPageBlocks(city.id) : Promise.resolve([]),
+  const [country, sisters, climate, airQuality, transitOperators, forecast, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     city.countryPageId ? fetchCountryById(city.countryPageId) : Promise.resolve(null),
     city.sisterCities.length > 0 ? fetchCitiesByIds(city.sisterCities) : Promise.resolve([]),
     fetchCityClimate(city.lat, city.lng),
@@ -233,7 +217,6 @@ export default async function CityPage({
       return a.name.localeCompare(b.name);
     })[0]?.name ?? null;
   const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
-  const hasBody = blocks.length > 0;
 
   // Curated cities = ones I've been to or want to go to. The remaining
   // ~1,000 placeholder cities have AI-generated prose that isn't worth
@@ -284,29 +267,10 @@ export default async function CityPage({
     { name: city.name },
   ];
 
-  // FAQPage rich-result schema, when the content file ships a `faqs:`
-  // block. Same builder shape as the lists page.
-  const faqs = content?.faqs ?? [];
-  const cityUrl = `${SITE_URL}/cities/${city.slug}`;
-  const faqJsonLd =
-    faqs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          '@id': `${cityUrl}#quick-answers`,
-          mainEntity: faqs.map(f => ({
-            '@type': 'Question',
-            name: f.question,
-            acceptedAnswer: { '@type': 'Answer', text: f.answer },
-          })),
-        }
-      : null;
-
   return (
     <article className="max-w-page mx-auto px-5 py-8">
       <JsonLd data={cityData} />
       <JsonLd data={breadcrumbJsonLd(breadcrumbItems)} />
-      {faqJsonLd && <JsonLd data={faqJsonLd} />}
       {/* Breadcrumbs + persistent View switcher (no pill highlighted —
           this is a detail page, not any of the four index views). */}
       <div className="mb-3 flex items-center justify-between gap-3 flex-wrap">
@@ -463,24 +427,6 @@ export default async function CityPage({
             <blockquote className="border-l-4 border-teal pl-4 text-slate italic">{city.quote}</blockquote>
           )}
 
-          {/* Personal-voice prose from /content/cities/<slug>.md, if present.
-              Sits above Wikipedia so the page reads "what I think" first
-              and "what the encyclopedia says" second. */}
-          {content && (
-            <section className={city.quote ? 'mt-6' : ''}>
-              {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
-                  {p}
-                </p>
-              ))}
-            </section>
-          )}
-
-          {/* Opt-in "How I would use this city" cards. Same schema as
-              the lists pages — `guide_cards:` in /content/cities/<slug>.md
-              frontmatter lights this up. */}
-          {content?.guideCards && <GuideCardsBlock data={content.guideCards} />}
-
           {city.wikipediaSummary && (
             <section className="mt-6">
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
@@ -612,17 +558,6 @@ export default async function CityPage({
               countries and when the guide page has no phrases yet. */}
           <LanguageLinkPanel countryIso2={country?.iso2 ?? null} />
 
-          {hasBody && (
-            <section className="mt-10 border-t border-sand pt-8">
-              <h2 className="text-h2 text-ink-deep mb-4">Notes</h2>
-              <div className="max-w-prose">{renderBlocks(blocks)}</div>
-            </section>
-          )}
-
-          {/* Optional FAQ block, surfaced from /content/cities/<slug>.md
-              `faqs:` frontmatter. Pairs with the FAQPage JSON-LD emitted
-              at the top of the article so the Q&A is rich-result-eligible. */}
-          {faqs.length > 0 && <FaqBlock items={faqs} />}
         </div>
 
         {/* Sidebar facts */}

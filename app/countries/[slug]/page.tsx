@@ -1,5 +1,4 @@
-import { fetchCountryBySlug, fetchCitiesByCountryId, fetchPageBlocks } from '@/lib/places';
-import { renderBlocks } from '@/lib/blocks';
+import { fetchCountryBySlug, fetchCitiesByCountryId } from '@/lib/places';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/components/JsonLd';
@@ -9,7 +8,6 @@ import CurrencyWidget from '@/components/CurrencyWidget';
 import AdvisoryBadge from '@/components/AdvisoryBadge';
 import { visaPortal } from '@/lib/visaPortals';
 import { fetchCountryFactByIso2, compactNumber, compactUsd, gdpPerCapita } from '@/lib/countryFacts';
-import { readPlaceContent, paragraphs } from '@/lib/content';
 import { thumbUrl } from '@/lib/imageUrl';
 import { fetchCoverForCountry } from '@/lib/placeCovers';
 import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
@@ -49,14 +47,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const url = `${SITE_URL}/countries/${country.slug}`;
 
-  // Indexable iff /content/countries/<slug>.md exists with indexable:true.
-  const fileContent = await readPlaceContent('countries', slug);
+  // Country detail pages stay noindex by default. The legacy markdown
+  // indexable gate was removed in May 2026 (no /content/countries/<slug>.md
+  // was ever populated).
 
   return {
     title: country.name,
     description,
     alternates: { canonical: url },
-    robots: fileContent?.indexable ? undefined : { index: false, follow: true },
+    robots: { index: false, follow: true },
     openGraph: {
       type: 'article',
       url,
@@ -85,18 +84,13 @@ export default async function CountryPage({
   const country = await fetchCountryBySlug(slug);
   if (!country) notFound();
 
-  // Read the local content file first; if present, skip the slow Notion
-  // blocks fetch entirely (the file IS the prose now).
-  const content = await readPlaceContent('countries', slug);
-
   // First pass — cheap fetches and the saved-list metadata we need to
   // compute matchedLists. Pin data is gated on the result: most countries
   // match at least one list (the country itself), but skipping fetchAllPins
   // entirely on a no-match render is the win we're after.
-  const [cities, fact, blocks, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
+  const [cities, fact, fallbackCover, listsMeta, pinPhotos] = await Promise.all([
     fetchCitiesByCountryId(country.id),
     fetchCountryFactByIso2(country.iso2),
-    !content && country.notionSyncedAt ? fetchPageBlocks(country.id) : Promise.resolve([]),
     fetchCoverForCountry(country.name),
     fetchAllSavedListsMeta(),
     // Photos from any pin in this country — joined server-side via
@@ -160,7 +154,6 @@ export default async function CountryPage({
   const primaryListName = exactCountryMatch ?? matchedLists[0] ?? null;
   const primaryListMeta = primaryListName ? listsMeta.get(primaryListName) ?? null : null;
   const perCapita = fact ? gdpPerCapita(fact) : null;
-  const hasBody = blocks.length > 0;
 
   // eVisa portal lookup. The portal map (lib/visaPortals.ts) is
   // the source of truth — many countries that take U.S. travellers via
@@ -320,33 +313,14 @@ export default async function CountryPage({
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-8">
         <div className="md:col-span-2 min-w-0">
-          {/* Personal-voice prose from /content/countries/<slug>.md, if present.
-              Reads first; the Wikipedia summary follows for breadth. */}
-          {content && (
-            <section>
-              {paragraphs(content.body).map((p, i) => (
-                <p key={i} className={'text-ink leading-relaxed text-prose' + (i > 0 ? ' mt-4' : '')}>
-                  {p}
-                </p>
-              ))}
-            </section>
-          )}
-
           {country.wikipediaSummary && (
-            <section className={content ? 'mt-8 pt-8 border-t border-sand' : ''}>
+            <section>
               <h2 className="text-h2 text-ink-deep mb-4">About</h2>
               <p className="text-ink leading-relaxed text-prose">{country.wikipediaSummary}</p>
               <WikipediaAttribution
                 title={country.name}
                 url={`https://en.wikipedia.org/wiki/${encodeURIComponent(country.name.replace(/\s+/g, '_'))}`}
               />
-            </section>
-          )}
-
-          {hasBody && (
-            <section className="mt-8 border-t border-sand pt-8 max-w-prose">
-              <h2 className="text-h2 text-ink-deep mb-4">Notes</h2>
-              {renderBlocks(blocks)}
             </section>
           )}
 

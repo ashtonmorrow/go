@@ -2,7 +2,6 @@ import 'server-only';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { cache } from 'react';
-import { unstable_cache } from 'next/cache';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import { filterValidTopics } from './topics';
@@ -39,21 +38,6 @@ import { asString, asStringArray, asIsoDate } from './frontmatter';
  *   - no admin UI to maintain
  */
 
-export type ContentScope = 'pins' | 'cities' | 'countries' | 'lists';
-
-export type PlaceContent = {
-  /** The prose body, trimmed. Paragraphs separated by blank lines. */
-  body: string;
-  /** When true, the page metadata can drop the noindex robots header. */
-  indexable: boolean;
-  /** Optional FAQ block — same shape as the lists schema. When set,
-   *  the page renders a Q&A section + emits FAQPage JSON-LD. Empty
-   *  array when no faqs are authored. */
-  faqs: ListFaq[];
-  /** Optional "how I would use this" card grid. Same shape as lists. */
-  guideCards: ListGuideCards | null;
-};
-
 const CONTENT_ROOT = path.join(process.cwd(), 'content');
 
 /**
@@ -61,56 +45,6 @@ const CONTENT_ROOT = path.join(process.cwd(), 'content');
  * slug is taken straight from the URL.
  */
 const SAFE_SLUG = /^[a-z0-9][a-z0-9-]*$/;
-
-const _readContent = unstable_cache(
-  async (scope: ContentScope, slug: string): Promise<PlaceContent | null> => {
-    if (!SAFE_SLUG.test(slug)) return null;
-    const file = path.join(CONTENT_ROOT, scope, `${slug}.md`);
-    let raw: string;
-    try {
-      raw = await fs.readFile(file, 'utf8');
-    } catch {
-      return null;
-    }
-    // gray-matter so files can opt into structured blocks (`faqs:`,
-    // `guide_cards:`) the same way list pages do. Existing pin / city
-    // / country files with just `indexable: true` round-trip unchanged.
-    const parsed = matter(raw);
-    const data = (parsed.data ?? {}) as Record<string, unknown>;
-    const trimmed = parsed.content.trim();
-    if (!trimmed) return null;
-    return {
-      body: trimmed,
-      indexable: data.indexable === true,
-      faqs: parseFaqs(data.faqs),
-      guideCards: parseGuideCards(data.guide_cards),
-    };
-  },
-  // v2: shape gained faqs + guideCards. Bumping the cache key forces a
-  // fresh read so v1 entries (which lacked those fields) don't leak
-  // into the new typed shape.
-  ['place-content-v2'],
-  { revalidate: 86400, tags: ['place-content'] },
-);
-
-/**
- * Read the content file for a (scope, slug) pair. Returns null if the file
- * doesn't exist, the slug is unsafe, or the body is empty.
- */
-export const readPlaceContent = cache(_readContent);
-
-/**
- * Render a content body as JSX-ready paragraphs. Splits on one-or-more blank
- * lines; trims each paragraph; preserves intentional single-line breaks
- * inside a paragraph as `<br />`-equivalent spaces (we never use them, but
- * the prose handoff doesn't promise to never use them either).
- */
-export function paragraphs(body: string): string[] {
-  return body
-    .split(/\r?\n\s*\r?\n/)
-    .map(p => p.trim())
-    .filter(Boolean);
-}
 
 // === Rich list content =====================================================
 // Lists support a richer authoring layer than pin / city / country pages:
