@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Vienna?
+    a: Three to four days covers the Habsburg circuit (Hofburg, Schönbrunn, the Belvedere with Klimt's Kiss), a coffee-house afternoon in the Innere Stadt, a Mozart or opera evening, and one or two of the bigger museums (Kunsthistorisches and MuseumsQuartier). A fifth day adds a Wachau wine-valley or Bratislava day trip.
+  - q: How do I get from Vienna Airport to the center?
+    a: The S7 commuter train runs from VIE to Wien Mitte in 25 minutes for €4.30 with a city ticket. The CAT (City Airport Train) is faster (16 min) but €15. Taxi or Uber is €40 to €50 to most central hotels. Bolt also works in Vienna.
+  - q: Where should I stay in Vienna?
+    a: Innere Stadt (the 1st district) for first-time visitors who want to walk to the Hofburg, Stephansdom, and the State Opera. Neubau (7th district) and Mariahilf (6th) are the quieter, more residential alternatives with the bar-and-restaurant density. Avoid hotels in the outer Gürtel ring; technically still central by metro but a worse street feel.
+  - q: Do I need to book the Vienna State Opera?
+    a: The Wiener Staatsoper sells standing-room tickets (Stehplätze) for €13 to €18 on the day of the performance from the side box office, starting 80 minutes before curtain. The view from the parterre standing is excellent. For seats, book at wiener-staatsoper.at four to six weeks ahead in season. Dress is smart but not formal.
+
 day_trips:
   intro: Vienna sits an hour from another national capital and at the mouth of a Danube wine valley. The day trips run from a spa town to a Slovak old town to abbeys in the woods.
   trips:

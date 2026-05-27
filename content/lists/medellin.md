@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Medellín?
+    a: Three to four days for the city itself (El Poblado base, Comuna 13 graffiti tour, the Metrocable up to Parque Arví, Plaza Botero, a brunch at Repeat). A fifth or sixth day adds Guatapé and El Peñol rock, the coffee region (Salento), or a longer Antioquia loop.
+  - q: How do I get from Medellín José María Córdova to the city?
+    a: Uber or Cabify is the practical default at COP 80,000 to 120,000 (USD $19 to $29) and 45 to 75 minutes. The road is mountain switchbacks; a comfortable car ride is worth the price. The Combuses shared minivan is COP 25,000 per person and runs every 30 minutes to El Poblado. The fixed-fare white airport taxi is COP 90,000.
+  - q: Where should I stay in Medellín?
+    a: El Poblado, almost always. The neighborhood is where the bars, restaurants, and most chain hotels sit. Inside El Poblado, Provenza is the densest restaurant-and-bar strip, Manila is quieter and more residential. Laureles is the local-feel alternative one metro stop away with a stronger neighborhood food scene. Avoid the historic center for sleeping; fine for day visits.
+  - q: Is Medellín safe in 2026?
+    a: The tourist neighborhoods (El Poblado, Laureles, Envigado) are broadly safe by day and into the evening. The historic center is fine to visit during the day and questionable after dark. Phone snatching by passing scooters is the petty-crime pattern. Use Uber or Cabify rather than hailing taxis on the street. The "drink-spike with scopolamine" warnings travelers hear about are real but cluster around tourist bars where the buyer accepts a drink from a stranger; pour your own and watch it.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 second bulk-scaffold pass driven by Mike's pin set

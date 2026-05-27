@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Dubrovnik?
+    a: Two full days in the Old Town (city walls walk, Cathedral, Sponza Palace, Rector's Palace) plus an evening at Buža Bar overlooking the Adriatic. A third day adds the Lokrum island ferry or a Kotor day trip. Dubrovnik is small enough that more days mostly mean more meals and slower walks.
+  - q: How do I get from Dubrovnik Airport to the Old Town?
+    a: The Platanus airport bus runs from DBV to Pile Gate (the Old Town entrance) in 30 to 45 minutes for €10. Uber and Bolt both work in Dubrovnik, €30 to €50 to most central addresses. Taxis are reliable but pricier than rideshare. The local Libertas bus 38 is the cheapest at about €1.50.
+  - q: When should I walk the Dubrovnik city walls?
+    a: Before 9 a.m. or after 5 p.m. From 10 a.m. to 3 p.m. the cruise-ship tours flood the walls and the Old Town becomes unwalkable. The early-morning slot also has the best light for photos. Tickets are €40 in 2026, sold at the Pile Gate entrance. Plan two hours for the full 2 km circuit.
+  - q: Is Dubrovnik worth visiting outside Game of Thrones tourism?
+    a: Yes, and the GoT tourism is the lesser reason once you're there. The city walls, the limestone Old Town, the Adriatic coast, the Festival in July and August, and the day trips to Lokrum and the Elaphiti islands all stand on their own. The GoT walking tours mostly stop at Lovrijenac Fortress and the Jesuit Stairs; cover those independently on the Wall walk.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 third bulk-scaffold pass driven by Mike's pin set.

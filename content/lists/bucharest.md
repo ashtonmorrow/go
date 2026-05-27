@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Bucharest?
+    a: Two to three days for the Old Town (Lipscani), the Palace of the Parliament (the second-largest administrative building in the world after the Pentagon), the Village Museum, Therme Bucharest on the airport side, and a couple of meat-and-mici dinners. The city is denser than its reputation suggests but not a five-day stop on its own; pair it with Brașov and Transylvania for a wider Romania trip.
+  - q: How do I get from Henri Coandă (OTP) to the center?
+    a: The Express bus 783 runs to Piața Unirii via Piața Victoriei every 30 minutes for RON 7 (€1.40) return. Bolt and Uber both work at OTP, RON 40 to 70 (€8 to €14) to most central addresses. The CFR train to Gara de Nord is RON 8.30 in 20 minutes, useful only if you're continuing by train. Use the metered Black Cab kiosks inside arrivals, not unsolicited drivers.
+  - q: Where should I stay in Bucharest?
+    a: The Old Town (Lipscani) for a first visit puts the bars and restaurants on foot. Universitate or Calea Victoriei is the quieter, more residential alternative one tram stop out. The Moxy Bucharest Old Town is the best price-vs-location combo I've found in the city. Avoid the area immediately around Gara de Nord; cheap but a worse street feel.
+  - q: Is Therme Bucharest worth the trip out to the airport?
+    a: Yes, and it's specifically a smart airport-day add. The complex sits 10 km from OTP, with three zones (Galaxy family pools, Elysium quiet pools, The Palm tropical atrium) and a day pass that covers all three. Reasonable prices, clean, the captive-audience food is not bad. Pair it with the flight day; the rest of the city is on a separate metro from there.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 second bulk-scaffold pass driven by Mike's pin set

@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Belgrade?
+    a: Three days covers Kalemegdan Fortress, the Skadarlija bohemian quarter, the Nikola Tesla Museum, a Sava-river splav club night, and dinner at Comunale or Square. A fourth day adds Novi Sad as a day trip. Belgrade is more about the rhythm than a checklist of sights.
+  - q: How do I get from Belgrade Airport to the center?
+    a: The A1 minibus runs from BEG to Slavija Square every 20 minutes for RSD 400 (€3.50). Bus 72 is the cheaper municipal alternative for RSD 150. Taxi is RSD 2,200 to 3,000 (€19 to €25). Use a registered taxi from the official rank, not the unmarked drivers in arrivals. CarGo and Yandex both work as ride apps.
+  - q: Where should I stay in Belgrade?
+    a: Stay on the old-town side near Knez Mihailova or in Dorćol north of Republic Square. Both put you walking distance to Kalemegdan and the restaurants. The Novi Beograd side across the river has the chain hotels and the Štark Arena but is dead at night. Airbnb is cheaper and dominant; central hotel inventory is thinner than the city's size suggests.
+  - q: Is the splav (river-club) scene worth planning around?
+    a: If you're under 35 or like a late night, yes. The splavovi are floating clubs on the Sava and Danube riverbanks that get going around midnight and run until dawn, especially May through September. Brankov Most and the Sava side near Hotel Yugoslavia have the densest cluster. Cover is usually RSD 500 to 1,500 (€4 to €13). The opposite-river-bank cruise-ship visitors are usually still in bed.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather

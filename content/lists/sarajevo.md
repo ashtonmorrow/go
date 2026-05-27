@@ -18,6 +18,16 @@ related:
 topics:
   - festivals
 
+faqs:
+  - q: How many days do I need in Sarajevo?
+    a: Two to three days covers Baščaršija (the Ottoman bazaar), the Habsburg-era streets, the Tunnel of Hope museum, the Latin Bridge (Franz Ferdinand assassination site), and a meal of ćevapi at one of the old town spots. A third day adds Mostar as a day trip or a longer walk through the siege memory sites.
+  - q: How do I get from Sarajevo Airport to the center?
+    a: A taxi from the rank runs about 30 BAM (€15) metered, or 40 BAM flat to the center. Bolt is the dominant rideshare in Sarajevo, 20 to 35 BAM. The Centrotrans bus is 5 BAM but only goes to the Nedjarici bus station, not the historic center. The pre-booked hotel transfer is 40 to 60 BAM and useful for a late arrival.
+  - q: Where should I stay in Sarajevo?
+    a: Baščaršija or Ferhadija puts you in the Ottoman-and-Habsburg meeting point with most sights on foot. Marijin Dvor is the more residential modern alternative with the bigger hotels. Avoid hotels along Vrbanja or further into Novo Sarajevo if you want to walk to the old town. The Sarajevo Film Festival in mid-August fills the central hotels six weeks ahead.
+  - q: Is Sarajevo safe to visit?
+    a: Yes, more than the headlines about the 1990s siege suggest. Sarajevo today is one of the safer Balkan capitals to walk around at night, with the standard urban-attentiveness rules. The Sarajevo Roses (the red-painted shell-impact markings on pavements) are still visible across the city and are the lived memory rather than a tourist attraction. The Tunnel of Hope museum and the Sniper Alley walks add the historical context.
+
 # Authoring notes (kept here, not rendered):
 # - indexable: false until Mike reviews. This scaffold was generated
 #   in the May 2026 bulk-scaffold pass driven by Mike's pin set rather
