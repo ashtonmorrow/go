@@ -44,10 +44,12 @@ export default function PinFilterPanel({
   categoryOptions?: string[];
   listOptions?: string[];
   tagOptions?: string[];
-  /** Mike's personal Google Maps saved-list names (Madrid, Bangkok, Coffee
-   *  Shops, …). Sorted by member count desc upstream in Sidebar.tsx so the
-   *  most-populated lists surface first. */
-  savedListOptions?: string[];
+  /** Mike's personal Google Maps saved-list options. `value` is the
+   *  slug stored in pins.saved_lists[] (used for filter matching);
+   *  `label` is the friendly display name. Sorted by member count desc
+   *  upstream in lib/sidebarData.ts so the most-populated lists surface
+   *  first. */
+  savedListOptions?: { value: string; label: string }[];
 }) {
   const ctx = usePinFilters();
   if (!ctx) return null;
@@ -215,13 +217,17 @@ export default function PinFilterPanel({
 
       {/* Saved on my lists — Mike's personal Google Maps collections
           (Madrid, Bangkok, Coffee Shops, …) imported from Takeout. Long
-          tail of ~230 list names, so a searchable multi-select is the
-          right shape rather than a fixed chip group. OR semantics: pick
-          "madrid" + "barcelona" → see everything across both lists. */}
+          tail of ~230 lists, so a searchable multi-select is the right
+          shape rather than a fixed chip group. OR semantics: pick
+          "madrid" + "barcelona" → see everything across both lists.
+          Uses LabelledMultiSelect because pins.saved_lists[] stores
+          slugs (e.g. "want-to-go") but the dropdown should read as a
+          friendly name (e.g. "Want to go") — `value` is the slug used
+          for filter matching, `label` is what the chip displays. */}
       {savedListOptions.length > 0 && (
         <div>
           <SectionLabel>My lists</SectionLabel>
-          <SearchableMultiSelect
+          <LabelledMultiSelect
             placeholder="Search my lists"
             options={savedListOptions}
             selected={state.savedLists}

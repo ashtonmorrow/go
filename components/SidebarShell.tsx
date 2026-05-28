@@ -89,7 +89,7 @@ export default function SidebarShell({
   pinCategoryOptions?: string[];
   pinListOptions?: string[];
   pinTagOptions?: string[];
-  pinSavedListOptions?: string[];
+  pinSavedListOptions?: { value: string; label: string }[];
   /** Server-fetched article + post union — see lib/articles.getAllArticleEntries.
    *  Defaults to [] so existing call sites keep typechecking before the prop
    *  is threaded through; we should always pass it in production. */
@@ -220,7 +220,7 @@ function NavBody({
   pinCategoryOptions: string[];
   pinListOptions: string[];
   pinTagOptions: string[];
-  pinSavedListOptions: string[];
+  pinSavedListOptions: { value: string; label: string }[];
   articleEntries: ArticleEntry[];
   searchItems: SearchItem[];
   onLinkClick?: () => void;

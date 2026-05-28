@@ -37,7 +37,11 @@ export type SidebarChipData = {
   pinCategoryOptions: string[];
   pinListOptions: string[];
   pinTagOptions: string[];
-  pinSavedListOptions: string[];
+  /** Saved-list filter chips. `value` is the slug stored in
+   *  pins.saved_lists[] (used for membership matching in lib/pinFilter);
+   *  `label` is the friendly display name from saved_lists.name, or a
+   *  hyphens-to-spaces conversion of the slug when no meta row exists. */
+  pinSavedListOptions: { value: string; label: string }[];
 };
 
 const ZERO: SidebarChipData = {
@@ -226,14 +230,22 @@ const _fetchSidebarChipData = unstable_cache(
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .map(([t]) => t);
 
+    // pins.saved_lists[] holds slugs (post-R2-migration). Aggregate by
+    // slug, then look up the friendly display name from listsMeta so
+    // the sidebar chips read as "Want to go" rather than "want-to-go".
+    // Falls back to a hyphens-to-spaces conversion for orphan slugs
+    // that exist in pin memberships without a meta row.
     const savedListCounts = new Map<string, number>();
-    for (const p of pins) for (const l of p.savedLists) {
-      savedListCounts.set(l, (savedListCounts.get(l) ?? 0) + 1);
+    for (const p of pins) for (const slug of p.savedLists) {
+      savedListCounts.set(slug, (savedListCounts.get(slug) ?? 0) + 1);
     }
     const pinSavedListOptions = Array.from(savedListCounts.entries())
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 50)
-      .map(([name]) => name);
+      .map(([slug]) => ({
+        value: slug,
+        label: listsMeta.get(slug)?.name ?? slug.replace(/-/g, ' '),
+      }));
 
     return {
       counts,
@@ -245,7 +257,10 @@ const _fetchSidebarChipData = unstable_cache(
       pinSavedListOptions,
     };
   },
-  ['sidebar-chip-data-v2'],
+  // v3: pinSavedListOptions changed shape from string[] to
+  // { value, label }[]. v2 entries deserialize as the wrong shape and
+  // crash PinFilterPanel — bump the key so stale cache misses cleanly.
+  ['sidebar-chip-data-v3'],
   {
     revalidate: 86400,
     tags: [
