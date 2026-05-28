@@ -262,7 +262,15 @@ const _fetchSidebarChipData = unstable_cache(
   // crash PinFilterPanel — bump the key so stale cache misses cleanly.
   ['sidebar-chip-data-v3'],
   {
-    revalidate: 86400,
+    // 7-day TTL. The chip-option arrays (countries, categories, list
+    // names, tag set) move slowly — adding a new pin one-off changes
+    // counts but rarely introduces a new category or country. Bumped
+    // from 24h to 7d (May 2026 perf pass) because this aggregator runs
+    // on EVERY page render across the entire site, and any tag-bus
+    // (admin pin edit, list create, country edit) busts via revalidateTag
+    // for the affected scope on the same request, so the long TTL is
+    // safe — staleness only persists for non-edit code paths.
+    revalidate: 604800,
     tags: [
       'supabase-pins',
       'supabase-cities',

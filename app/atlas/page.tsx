@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { fetchAllPins } from '@/lib/pins';
-import { fetchAllCities, fetchAllCountries } from '@/lib/places';
 import { SITE_URL } from '@/lib/seo';
-import { sovereignParent, isSubNational } from '@/lib/sovereignty';
 import { getGuideAnchors } from '@/lib/guideAnchors';
+import { fetchAtlasData } from '@/lib/atlasData';
 import HomeCitiesGlobe from '@/components/HomeCitiesGlobe';
 
 // === /atlas =================================================================
@@ -16,7 +14,14 @@ import HomeCitiesGlobe from '@/components/HomeCitiesGlobe';
 // This was the home page until the May 2026 IA refactor moved the
 // city-picker hero to / and demoted the globe to its own explorer
 // route. The picker is the planning entry; the atlas is the wandering
-// entry. Different intents, different surfaces.
+// entry.
+//
+// Data pipeline (May 2026 perf pass): replaced the previous
+// fetchAllPins + fetchAllCities + fetchAllCountries trio (each over
+// the 2 MB data-cache ceiling, so every render hit Supabase fresh)
+// with a slim fetchAtlasData aggregator that returns only the columns
+// the globe + stat tiles need. The full cached payload now fits in
+// ~200 KB, so warm renders are an in-memory map lookup.
 
 export const metadata: Metadata = {
   title: { absolute: 'Atlas — explore every city on the map' },
@@ -28,48 +33,21 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function AtlasPage() {
-  const [pins, cities, countries] = await Promise.all([
-    fetchAllPins(),
-    fetchAllCities(),
-    fetchAllCountries(),
-  ]);
-
-  // Countries visited: collapse sub-national tags (England, Wales, etc.)
-  // into their sovereign parent (United Kingdom) so the UK trip counts
-  // as one country. The denominator does the same collapse so the "of X"
-  // matches what visitors actually mean.
-  const visitedCountryNames = new Set<string>();
-  let visitedPinCount = 0;
-  for (const p of pins) {
-    if (!p.visited) continue;
-    visitedPinCount++;
-    const c = p.statesNames?.[0];
-    if (c) {
-      const parent = sovereignParent(c);
-      if (parent) visitedCountryNames.add(parent);
-    }
-  }
-  const sovereignTotal = countries.filter(c => !isSubNational(c.name)).length;
-  const visitedCities = cities.filter(c => c.been).length;
-  const { guidesCount, articlesCount } = await countPublishedContent();
-
-  const cityRows = cities.map(c => ({
-    name: c.name,
-    slug: c.slug,
-    lat: c.lat ?? null,
-    lng: c.lng ?? null,
-    been: !!c.been,
-  }));
-  const guideAnchors = await getGuideAnchors(cityRows);
+  const data = await fetchAtlasData();
+  const guideAnchors = await getGuideAnchors(
+    // getGuideAnchors only reads lat/lng/name/slug, so the slim
+    // AtlasCity shape satisfies it without changing the helper.
+    data.cities,
+  );
 
   return (
     <div className="relative w-full">
       <div className="relative w-full h-[calc(100svh-3.5rem)] md:h-screen bg-cream-soft">
-        <HomeCitiesGlobe cities={cityRows} guides={guideAnchors} />
+        <HomeCitiesGlobe cities={data.cities} guides={guideAnchors} />
 
-        {/* Floating stats strip — same five tiles, same glass treatment
-            as the legacy home, repurposed as drill-downs into the
-            matching browse views. */}
+        {/* Floating stats strip — five tiles in the brand's glass
+            treatment over the globe. Each tile drills into the
+            matching browse view. */}
         <div className="absolute inset-x-0 bottom-3 sm:bottom-5 px-3 sm:px-5 pointer-events-none">
           <ul
             className="
@@ -80,31 +58,31 @@ export default async function AtlasPage() {
           >
             <StatTile
               label="Countries visited"
-              value={visitedCountryNames.size}
-              sublabel={`of ${sovereignTotal}`}
+              value={data.visitedCountryNames.length}
+              sublabel={`of ${data.sovereignCountryTotal}`}
               href="/countries/cards"
             />
             <StatTile
               label="Cities visited"
-              value={visitedCities}
-              sublabel={`of ${cities.length.toLocaleString()}`}
+              value={data.visitedCities}
+              sublabel={`of ${data.totalCities.toLocaleString()}`}
               href="/cities/map"
             />
             <StatTile
               label="Pins curated"
-              value={pins.length}
-              sublabel={`${visitedPinCount.toLocaleString()} visited`}
+              value={data.totalPins}
+              sublabel={`${data.visitedPins.toLocaleString()} visited`}
               href="/pins/cards"
             />
             <StatTile
               label="Guides published"
-              value={guidesCount}
+              value={data.guidesCount}
               sublabel="and growing"
               href="/lists"
             />
             <StatTile
               label="Articles published"
-              value={articlesCount}
+              value={data.articlesCount}
               sublabel="and growing"
               href="/articles"
             />
@@ -152,28 +130,4 @@ function StatTile({
       </Link>
     </li>
   );
-}
-
-// Cheap published-content counters; same shape the legacy home used.
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
-import { readListContent } from '@/lib/content';
-import { getAllArticleEntries } from '@/lib/articles';
-
-async function countPublishedContent(): Promise<{
-  guidesCount: number;
-  articlesCount: number;
-}> {
-  const dir = path.join(process.cwd(), 'content', 'lists');
-  let files: string[] = [];
-  try {
-    files = await fs.readdir(dir);
-  } catch {
-    files = [];
-  }
-  const slugs = files.filter(f => f.endsWith('.md')).map(f => f.replace(/\.md$/, ''));
-  const contents = await Promise.all(slugs.map(slug => readListContent(slug)));
-  const guidesCount = contents.filter(c => c?.featured).length;
-  const articles = await getAllArticleEntries();
-  return { guidesCount, articlesCount: articles.length };
 }

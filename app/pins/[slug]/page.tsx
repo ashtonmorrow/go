@@ -298,7 +298,7 @@ export default async function PinPage({
   const enrichmentChecked = formatSourceDate(pin.enrichmentCheckedAt);
 
   return (
-    <article className="max-w-page mx-auto px-5 py-8">
+    <article className="max-w-page mx-auto px-5 py-8 pb-24 md:pb-8">
       <JsonLd
         data={pinJsonLd({
           slug: pin.slug ?? pin.id,
