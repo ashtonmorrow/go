@@ -239,78 +239,122 @@ export default function PinFilterPanel({
         </div>
       )}
 
-      {/* Bring requirements as a popover multi-select — visually matches
-          the My lists / Country / Saved-list controls above. Collapsed
-          to one row by default; click to expand into a searchable
-          checklist. Underlying chip group still rendered when expanded
-          so existing behaviour is unchanged. */}
-      <div>
-        <SectionLabel>Bring</SectionLabel>
-        <LabelledMultiSelect
-          placeholder="Bring requirements"
-          options={Object.keys(BRING_FACET).map(k => ({
-            value: k,
-            label: bringFacet(k).label,
-          }))}
-          selected={state.bring}
-          onToggle={v =>
-            setState(s => ({ ...s, bring: togglePinSet(s.bring, v) }))
-          }
-          onClear={() => setState(s => ({ ...s, bring: new Set() }))}
-        />
-      </div>
+      {/* === More filters disclosure ====================================
+          Tiering pass (May 2026): the cockpit was exposing 15+ facets
+          simultaneously, which signaled "this site is a database"
+          before the visitor even started planning. The high-intent
+          facets above stay visible (Search, Status, quick chips, Type,
+          Saved lists). The power-user facets (Bring requirements,
+          Established-year range, Continent picker, Country list) move
+          behind this disclosure — they're niche enough that most
+          visits never need them, but valuable enough to keep one tap
+          away.
+          Defaults to open when ANY power-user facet is active so a
+          deep-linked URL doesn't render the disclosure as collapsed
+          while the filter quietly applies. */}
+      {(() => {
+        const morePowerUserActive =
+          state.bring.size > 0 ||
+          state.continents.size > 0 ||
+          state.countries.size > 0 ||
+          state.categories.size > 0 ||
+          state.inceptionMin != null ||
+          state.inceptionMax != null;
+        return (
+          <details
+            className="-mx-1 px-1 pt-3 border-t border-sand group"
+            open={morePowerUserActive}
+          >
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-3 py-1">
+              <span className="text-label text-ink-deep font-medium">
+                More filters
+              </span>
+              <span
+                aria-hidden
+                className="text-muted text-small inline-flex items-center gap-1 group-open:rotate-180 transition-transform"
+              >
+                <svg width="12" height="12" viewBox="0 0 14 14">
+                  <path
+                    d="M3 5l4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </summary>
 
-      <div>
-        <SectionLabel>Established</SectionLabel>
-        <YearRangeSlider
-          min={state.inceptionMin}
-          max={state.inceptionMax}
-          onChange={({ min, max }) =>
-            setState(s => ({ ...s, inceptionMin: min, inceptionMax: max }))
-          }
-        />
-      </div>
+            <div className="flex flex-col gap-5 pt-4">
+              <div>
+                <SectionLabel>Bring</SectionLabel>
+                <LabelledMultiSelect
+                  placeholder="Bring requirements"
+                  options={Object.keys(BRING_FACET).map(k => ({
+                    value: k,
+                    label: bringFacet(k).label,
+                  }))}
+                  selected={state.bring}
+                  onToggle={v =>
+                    setState(s => ({ ...s, bring: togglePinSet(s.bring, v) }))
+                  }
+                  onClear={() => setState(s => ({ ...s, bring: new Set() }))}
+                />
+              </div>
 
-      {categoryOptions.length > 0 && (
-        <div>
-          <SectionLabel>Category</SectionLabel>
-          <ChipGroup
-            options={categoryOptions.map(c => ({ value: c, label: c }))}
-            selected={state.categories}
-            onToggle={v =>
-              setState(s => ({ ...s, categories: togglePinSet(s.categories, v) }))
-            }
-          />
-        </div>
-      )}
+              <div>
+                <SectionLabel>Established</SectionLabel>
+                <YearRangeSlider
+                  min={state.inceptionMin}
+                  max={state.inceptionMax}
+                  onChange={({ min, max }) =>
+                    setState(s => ({ ...s, inceptionMin: min, inceptionMax: max }))
+                  }
+                />
+              </div>
 
-      {/* Continent — pictorial world map. Same component the cities and
-          countries cockpits use; here the click resolves the pin's
-          country to its continent via the baked Natural Earth lookup. */}
-      <div>
-        <SectionLabel>Continent</SectionLabel>
-        <WorldMapPicker
-          selected={state.continents}
-          onToggle={(c: Continent) =>
-            setState(s => ({ ...s, continents: togglePinSet(s.continents, c) }))
-          }
-        />
-      </div>
+              {categoryOptions.length > 0 && (
+                <div>
+                  <SectionLabel>Category</SectionLabel>
+                  <ChipGroup
+                    options={categoryOptions.map(c => ({ value: c, label: c }))}
+                    selected={state.categories}
+                    onToggle={v =>
+                      setState(s => ({ ...s, categories: togglePinSet(s.categories, v) }))
+                    }
+                  />
+                </div>
+              )}
 
-      {countryOptions.length > 0 && (
-        <div>
-          <SectionLabel>Country</SectionLabel>
-          <SearchableMultiSelect
-            placeholder="Search countries"
-            options={countryOptions}
-            selected={state.countries}
-            onToggle={v =>
-              setState(s => ({ ...s, countries: togglePinSet(s.countries, v) }))
-            }
-            onClear={() => setState(s => ({ ...s, countries: new Set() }))}
-          />
-        </div>
-      )}
+              <div>
+                <SectionLabel>Continent</SectionLabel>
+                <WorldMapPicker
+                  selected={state.continents}
+                  onToggle={(c: Continent) =>
+                    setState(s => ({ ...s, continents: togglePinSet(s.continents, c) }))
+                  }
+                />
+              </div>
+
+              {countryOptions.length > 0 && (
+                <div>
+                  <SectionLabel>Country</SectionLabel>
+                  <SearchableMultiSelect
+                    placeholder="Search countries"
+                    options={countryOptions}
+                    selected={state.countries}
+                    onToggle={v =>
+                      setState(s => ({ ...s, countries: togglePinSet(s.countries, v) }))
+                    }
+                    onClear={() => setState(s => ({ ...s, countries: new Set() }))}
+                  />
+                </div>
+              )}
+            </div>
+          </details>
+        );
+      })()}
 
       <div>
         <SectionLabel>Sort by</SectionLabel>

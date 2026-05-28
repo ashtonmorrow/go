@@ -166,41 +166,83 @@ export default function CountryFilterPanel() {
         />
       </div>
 
-      <div>
-        <SectionLabel>Visa (US passport)</SectionLabel>
-        <ChipGroup
-          options={VISA_OPTIONS}
-          selected={state.visa}
-          onToggle={v =>
-            setState(s => ({ ...s, visa: toggleCountrySet(s.visa, v as VisaUs) }))
-          }
-        />
-      </div>
+      {/* === More filters disclosure ====================================
+          Tiering pass (May 2026). Status, schengen/disputed toggles,
+          and the continent map stay visible above. Visa / tap-water /
+          drive-side are power-user fields that move behind this
+          disclosure so the cockpit doesn't lead with database fields.
+          Auto-opens when any power-user facet is active. */}
+      {(() => {
+        const morePowerUserActive =
+          state.visa.size > 0 ||
+          state.tapWater.size > 0 ||
+          state.drive.size > 0;
+        return (
+          <details
+            className="-mx-1 px-1 pt-3 border-t border-sand group"
+            open={morePowerUserActive}
+          >
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-3 py-1">
+              <span className="text-label text-ink-deep font-medium">
+                More filters
+              </span>
+              <span
+                aria-hidden
+                className="text-muted text-small inline-flex items-center gap-1 group-open:rotate-180 transition-transform"
+              >
+                <svg width="12" height="12" viewBox="0 0 14 14">
+                  <path
+                    d="M3 5l4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </summary>
 
-      <div>
-        <SectionLabel>Tap water</SectionLabel>
-        <ChipGroup
-          options={TAP_WATER_OPTIONS}
-          selected={state.tapWater}
-          onToggle={v =>
-            setState(s => ({ ...s, tapWater: toggleCountrySet(s.tapWater, v as TapWater) }))
-          }
-        />
-      </div>
+            <div className="flex flex-col gap-5 pt-4">
+              <div>
+                <SectionLabel>Visa (US passport)</SectionLabel>
+                <ChipGroup
+                  options={VISA_OPTIONS}
+                  selected={state.visa}
+                  onToggle={v =>
+                    setState(s => ({ ...s, visa: toggleCountrySet(s.visa, v as VisaUs) }))
+                  }
+                />
+              </div>
 
-      <div>
-        <SectionLabel>Drive side</SectionLabel>
-        <ChipGroup
-          options={[
-            { value: 'L', label: 'Left' },
-            { value: 'R', label: 'Right' },
-          ]}
-          selected={state.drive}
-          onToggle={v =>
-            setState(s => ({ ...s, drive: toggleCountrySet(s.drive, v as DriveSide) }))
-          }
-        />
-      </div>
+              <div>
+                <SectionLabel>Tap water</SectionLabel>
+                <ChipGroup
+                  options={TAP_WATER_OPTIONS}
+                  selected={state.tapWater}
+                  onToggle={v =>
+                    setState(s => ({ ...s, tapWater: toggleCountrySet(s.tapWater, v as TapWater) }))
+                  }
+                />
+              </div>
+
+              <div>
+                <SectionLabel>Drive side</SectionLabel>
+                <ChipGroup
+                  options={[
+                    { value: 'L', label: 'Left' },
+                    { value: 'R', label: 'Right' },
+                  ]}
+                  selected={state.drive}
+                  onToggle={v =>
+                    setState(s => ({ ...s, drive: toggleCountrySet(s.drive, v as DriveSide) }))
+                  }
+                />
+              </div>
+            </div>
+          </details>
+        );
+      })()}
 
     </div>
   );

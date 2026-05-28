@@ -210,66 +210,113 @@ export default function FilterPanel({
         />
       </div>
 
-      {/* Climate picker — Köppen icon group, label dropped for the same
-          reason: the icons read as the section. */}
-      <div>
-        <ClimatePicker
-          selected={state.koppenGroups}
-          onToggle={v =>
-            setState(s => ({ ...s, koppenGroups: toggleSet(s.koppenGroups, v) }))
-          }
-        />
-      </div>
+      {/* === More filters disclosure ====================================
+          Tiering pass (May 2026). Status, search, country list, and
+          the continent map stay visible above — those are the
+          high-intent facets a first-time visitor reaches for. Climate /
+          visa / tap-water / drive-side / population are power-user
+          fields and move behind this disclosure so the cockpit doesn't
+          signal "this site is a database" on first glance. Auto-opens
+          when any power-user facet is active. */}
+      {(() => {
+        const morePowerUserActive =
+          state.koppenGroups.size > 0 ||
+          state.visa.size > 0 ||
+          state.tapWater.size > 0 ||
+          state.drive.size > 0 ||
+          state.populationMin != null ||
+          state.populationMax != null;
+        return (
+          <details
+            className="-mx-1 px-1 pt-3 border-t border-sand group"
+            open={morePowerUserActive}
+          >
+            <summary className="cursor-pointer list-none flex items-center justify-between gap-3 py-1">
+              <span className="text-label text-ink-deep font-medium">
+                More filters
+              </span>
+              <span
+                aria-hidden
+                className="text-muted text-small inline-flex items-center gap-1 group-open:rotate-180 transition-transform"
+              >
+                <svg width="12" height="12" viewBox="0 0 14 14">
+                  <path
+                    d="M3 5l4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+                </svg>
+              </span>
+            </summary>
 
-      <div>
-        <SectionLabel>Visa (US passport)</SectionLabel>
-        <ChipGroup
-          options={VISA_OPTIONS}
-          selected={state.visa}
-          onToggle={v => setState(s => ({ ...s, visa: toggleSet(s.visa, v as VisaUs) }))}
-        />
-      </div>
+            <div className="flex flex-col gap-5 pt-4">
+              {/* Climate picker — Köppen icon group, label dropped for
+                  the same reason: the icons read as the section. */}
+              <div>
+                <ClimatePicker
+                  selected={state.koppenGroups}
+                  onToggle={v =>
+                    setState(s => ({ ...s, koppenGroups: toggleSet(s.koppenGroups, v) }))
+                  }
+                />
+              </div>
 
-      <div>
-        <SectionLabel>Tap water</SectionLabel>
-        <ChipGroup
-          options={TAP_WATER_OPTIONS}
-          selected={state.tapWater}
-          onToggle={v =>
-            setState(s => ({ ...s, tapWater: toggleSet(s.tapWater, v as TapWater) }))
-          }
-        />
-      </div>
+              <div>
+                <SectionLabel>Visa (US passport)</SectionLabel>
+                <ChipGroup
+                  options={VISA_OPTIONS}
+                  selected={state.visa}
+                  onToggle={v => setState(s => ({ ...s, visa: toggleSet(s.visa, v as VisaUs) }))}
+                />
+              </div>
 
-      <div>
-        <SectionLabel>Drive side</SectionLabel>
-        <ChipGroup
-          options={[
-            { value: 'L', label: 'Left' },
-            { value: 'R', label: 'Right' },
-          ]}
-          selected={state.drive}
-          onToggle={v =>
-            setState(s => ({ ...s, drive: toggleSet(s.drive, v as DriveSide) }))
-          }
-        />
-      </div>
+              <div>
+                <SectionLabel>Tap water</SectionLabel>
+                <ChipGroup
+                  options={TAP_WATER_OPTIONS}
+                  selected={state.tapWater}
+                  onToggle={v =>
+                    setState(s => ({ ...s, tapWater: toggleSet(s.tapWater, v as TapWater) }))
+                  }
+                />
+              </div>
 
-      {/* Population — dual-thumb log-scale slider. Tucked at the bottom
-          since most users don't reach for it, but kept available because
-          the city set spans 4 orders of magnitude (Pyrgos at 4k people
-          to Tokyo at 37M) and it's the cleanest narrowing tool when the
-          user wants "big-city" or "small-town" trips. */}
-      <div>
-        <SectionLabel>Population</SectionLabel>
-        <PopulationRangeSlider
-          min={state.populationMin}
-          max={state.populationMax}
-          onChange={({ min, max }) =>
-            setState(s => ({ ...s, populationMin: min, populationMax: max }))
-          }
-        />
-      </div>
+              <div>
+                <SectionLabel>Drive side</SectionLabel>
+                <ChipGroup
+                  options={[
+                    { value: 'L', label: 'Left' },
+                    { value: 'R', label: 'Right' },
+                  ]}
+                  selected={state.drive}
+                  onToggle={v =>
+                    setState(s => ({ ...s, drive: toggleSet(s.drive, v as DriveSide) }))
+                  }
+                />
+              </div>
+
+              {/* Population — dual-thumb log-scale slider. The city
+                  set spans 4 orders of magnitude (Pyrgos at 4k people
+                  to Tokyo at 37M) and this is the cleanest narrowing
+                  tool when the user wants "big-city" or "small-town"
+                  trips. */}
+              <div>
+                <SectionLabel>Population</SectionLabel>
+                <PopulationRangeSlider
+                  min={state.populationMin}
+                  max={state.populationMax}
+                  onChange={({ min, max }) =>
+                    setState(s => ({ ...s, populationMin: min, populationMax: max }))
+                  }
+                />
+              </div>
+            </div>
+          </details>
+        );
+      })()}
 
     </div>
   );
