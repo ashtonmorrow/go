@@ -7,6 +7,7 @@ import { readListContent } from '@/lib/content';
 import { resolveListCover } from '@/lib/listCover';
 import { SITE_URL } from '@/lib/seo';
 import ListsBrowser, { type ListEntry } from '@/components/ListsBrowser';
+import EmptyState from '@/components/EmptyState';
 
 // === /lists ================================================================
 // Index of every saved-list Mike has imported from his Google Maps Takeout.
@@ -239,10 +240,15 @@ export default async function ListsIndex() {
       </header>
 
       {lists.length === 0 ? (
-        <div className="card p-8 text-center text-slate">
-          No guides yet. Check back soon, or open one of the city pages
-          from the atlas.
-        </div>
+        <EmptyState
+          icon="🗂️"
+          title="No guides yet."
+          body="The first ones are in progress. In the meantime, the atlas globe still works."
+          suggestions={[
+            { href: '/atlas', label: 'Open the atlas' },
+            { href: '/articles', label: 'Read the articles' },
+          ]}
+        />
       ) : (
         <ListsBrowser lists={lists} />
       )}

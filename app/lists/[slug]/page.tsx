@@ -15,6 +15,7 @@ import {
 } from '@/lib/savedLists';
 import SavedListSection, { type SavedListPin } from '@/components/SavedListSection';
 import ListMapAndCards from '@/components/ListMapAndCardsLoader';
+import EmptyState from '@/components/EmptyState';
 import JsonLd from '@/components/JsonLd';
 import {
   SITE_URL,
@@ -627,9 +628,20 @@ export default async function ListPage({ params }: Props) {
       </header>
 
       {onList.length === 0 ? (
-        <div className="card p-8 text-center text-slate">
-          No pins on this list yet.
-        </div>
+        <EmptyState
+          icon="🗂️"
+          title="Nothing on this list yet."
+          body="The guide is still being built. The destination pages below may already have the places you would want."
+          suggestions={[
+            ...(cityMatch
+              ? [{ href: `/cities/${cityMatch.slug}`, label: `${cityMatch.name} city page` }]
+              : []),
+            ...(countryMatch
+              ? [{ href: `/countries/${countryMatch.slug}`, label: `${countryMatch.name} country page` }]
+              : []),
+            { href: '/lists', label: 'Browse other guides' },
+          ].slice(0, 3)}
+        />
       ) : routeMapKey ? (
         // RouteMap block already rendered above. Skip the duplicate
         // ListMapAndCards globe — that would put two maps on the page.

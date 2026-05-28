@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/JsonLd';
+import EmptyState from '@/components/EmptyState';
 import { getAllPosts } from '@/lib/posts';
 import { fetchAllSavedListsMeta } from '@/lib/savedLists';
 import { supabase } from '@/lib/supabase';
@@ -256,9 +257,17 @@ export default async function SearchPage({ searchParams }: Props) {
       ) : null}
 
       {query.length >= 2 && total === 0 ? (
-        <p className="mt-8 text-prose text-slate">
-          No matches found for &quot;{query}&quot;.
-        </p>
+        <div className="mt-8">
+          <EmptyState
+            icon="🔎"
+            title={`No matches for "${query}".`}
+            body="Try a city name, a country, or a topic like 'food' or 'festivals'."
+            suggestions={[
+              { href: '/lists', label: 'Browse all guides' },
+              { href: '/atlas', label: 'Open the atlas' },
+            ]}
+          />
+        </div>
       ) : null}
 
       <ResultsSection title="Articles" hits={results.posts} />

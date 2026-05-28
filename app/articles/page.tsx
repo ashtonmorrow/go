@@ -3,6 +3,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { getAllArticleEntries, type ArticleEntry } from '@/lib/articles';
 import { SITE_URL } from '@/lib/seo';
+import EmptyState from '@/components/EmptyState';
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -30,9 +31,15 @@ export default async function ArticlesIndex() {
       </header>
 
       {entries.length === 0 ? (
-        <div className="card p-8 text-center text-slate">
-          No articles yet. First one drops soon.
-        </div>
+        <EmptyState
+          icon="📰"
+          title="No articles yet."
+          body="The first one is in progress. The destination guides have a similar voice if you want to start there."
+          suggestions={[
+            { href: '/lists', label: 'Read a destination guide' },
+            { href: '/atlas', label: 'Open the atlas' },
+          ]}
+        />
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {entries.map(item => (
