@@ -24,6 +24,10 @@ export type ListEntry = {
   isGuide: boolean;
   guideTitle: string | null;
   guideDescription: string | null;
+  /** ISO date used for "recent first" ordering when no search query is
+   *  active. Guides: their content's updated/published date. Non-guides:
+   *  the saved_lists meta-row's updated_at. Null = sinks to the back. */
+  updatedAt: string | null;
 };
 
 export default function ListsBrowser({ lists }: { lists: ListEntry[] }) {
@@ -67,9 +71,13 @@ export default function ListsBrowser({ lists }: { lists: ListEntry[] }) {
             </span>
             <input
               type="search"
+              inputMode="search"
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck={false}
               value={query}
               onChange={e => setQuery(e.target.value)}
-              placeholder="Search by city, country, or list name…"
+              placeholder="Try 'Bangkok', 'spain', or 'coffee'"
               className="
                 w-full pl-9 pr-3 py-2.5
                 rounded-md border border-sand bg-white

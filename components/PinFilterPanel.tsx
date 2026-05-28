@@ -171,7 +171,7 @@ export default function PinFilterPanel({
             <QuickFilterChip
               on={state.mikesListOnly}
               icon="🗂️"
-              label="Mike's List"
+              label="On a curated list"
               onChange={v => setState(s => ({ ...s, mikesListOnly: v }))}
             />
             {/* Canonical-list membership chips appended inline. Each

@@ -14,16 +14,16 @@ import type { Metadata } from 'next';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Cities I've traveled to",
+  title: 'Cities I can help you plan',
   description:
-    "Cities I've traveled to, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side, and sort.",
+    'Cities I can help you plan, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side. Click any card to open the guide.',
   alternates: { canonical: `${SITE_URL}/cities/cards` },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/cities/cards`,
-    title: "Cities I've traveled to · Mike Lee",
+    title: 'Cities I can help you plan',
     description:
-      "Cities I've traveled to, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side, and sort.",
+      'Cities I can help you plan, as hand-rotated postcards. Filter by continent, climate, visa, tap-water safety, drive side. Click any card to open the guide.',
   },
 };
 

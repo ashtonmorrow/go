@@ -31,9 +31,9 @@ import ListsBrowser, { type ListEntry } from '@/components/ListsBrowser';
 // to a real geo entity, not just a theme.
 
 export const metadata: Metadata = {
-  title: "Mike's Saved Lists",
+  title: 'Travel guides and city lists',
   description:
-    "Mike's saved travel lists: places grouped by city, theme, and intent, originally built in Google Maps and organized here for easier planning.",
+    'Polished destination writeups and the working saved-lists behind them. Skip-the-line advice, where to stay, what to skip, what to pair. Madrid, Bangkok, Bristol, Cape Town, and 80 more.',
   alternates: { canonical: `${SITE_URL}/lists` },
 };
 
@@ -128,6 +128,10 @@ export default async function ListsIndex() {
       count: arr.length,
       visitedCount: arr.filter(p => p.visited).length,
       anchor,
+      // saved_lists.updated_at is the recency signal for non-guide
+      // entries; the decoration pass below overrides it with the
+      // content file's updated/published date when one exists.
+      metaUpdatedAt: meta?.updatedAt ?? null,
       coverInputs: {
         coverImageUrl: meta?.coverImageUrl ?? null,
         coverPhotoUrl: meta?.coverPhotoUrl ?? null,
@@ -150,7 +154,7 @@ export default async function ListsIndex() {
     draft.map(async d => {
       const content = await readListContent(d.slug);
       const isGuide = !!content?.featured;
-      const { coverInputs, anchor: nameAnchor, ...rest } = d;
+      const { coverInputs, anchor: nameAnchor, metaUpdatedAt, ...rest } = d;
 
       // Geo anchor: prefer the guide's explicit related.city /
       // related.country (a slug) over the saved-list-name match. The
@@ -176,6 +180,10 @@ export default async function ListsIndex() {
         // Show the editorial headline on the card; fall back to the SEO title.
         guideTitle: isGuide ? content?.headline ?? content?.title ?? null : null,
         guideDescription: isGuide ? content?.description ?? null : null,
+        // Recency signal: guide-content updated/published date wins (it's
+        // the editorial-touch timestamp), saved_lists.updated_at is the
+        // fallback for working buckets without a content file.
+        updatedAt: content?.updated ?? content?.published ?? metaUpdatedAt,
         // One shared cover chain (lib/listCover.ts), the same precedence
         // /lists/<slug> uses, so the list looks identical in both places.
         // When the guide names a related city, that city's cover photo
@@ -188,13 +196,23 @@ export default async function ListsIndex() {
       };
     }),
   );
-  // One unified order: guides first (so the polished writeups
-  // surface on top of any single grid render), then everything else
-  // by pin count desc. Within tier, alpha tiebreak. The page renders
-  // a single grid downstream; this sort is what visitors see when
-  // they arrive without a search query.
+  // One unified order: guides first (so the polished writeups surface
+  // on top of any single grid render), then everything else. Within the
+  // guide tier, recency wins so the visitor sees the freshest editorial
+  // first; within the working-bucket tier, pin count is still the right
+  // signal (which lists Mike has actually invested in). Alphabetical
+  // is the final tiebreak, never the primary sort — "Recently updated"
+  // beats A-Z on perceived freshness, which matters more than ordering
+  // predictability for a writing-led product. Lists with no updated
+  // date sink to the bottom of their tier.
   lists.sort((a, b) => {
     if (a.isGuide !== b.isGuide) return a.isGuide ? -1 : 1;
+    if (a.isGuide) {
+      const at = a.updatedAt ? Date.parse(a.updatedAt) : 0;
+      const bt = b.updatedAt ? Date.parse(b.updatedAt) : 0;
+      if (at !== bt) return bt - at;
+      return a.name.localeCompare(b.name);
+    }
     return b.count - a.count || a.name.localeCompare(b.name);
   });
 
@@ -204,25 +222,26 @@ export default async function ListsIndex() {
     <article className="max-w-page mx-auto px-5 py-8">
       <header className="mb-6">
         <h1 className="text-display text-ink-deep leading-none">
-          Travel guides &amp; saved lists
+          Pick a destination
         </h1>
         <p className="mt-3 max-w-prose text-slate leading-relaxed">
-          Polished destination writeups (tagged Guide) and the working
-          saved lists from Google Maps Takeout, in one searchable place.
-          Type a city or country to filter the grid.
+          Polished writeups for {guideCount} cities (tagged Guide), plus
+          the working pin buckets behind them. Search by city, country, or
+          theme. Click any card to open the guide.
         </p>
         <p className="mt-3 text-small text-muted tabular-nums">
-          {lists.length} {lists.length === 1 ? 'list' : 'lists'}
-          {' · '}
           {guideCount} {guideCount === 1 ? 'guide' : 'guides'}
           {' · '}
-          {lists.reduce((n, l) => n + l.count, 0)} saved places
+          {lists.length - guideCount} more lists
+          {' · '}
+          {lists.reduce((n, l) => n + l.count, 0)} places
         </p>
       </header>
 
       {lists.length === 0 ? (
         <div className="card p-8 text-center text-slate">
-          No saved lists yet. The import has not been run.
+          No guides yet. Check back soon, or open one of the city pages
+          from the atlas.
         </div>
       ) : (
         <ListsBrowser lists={lists} />

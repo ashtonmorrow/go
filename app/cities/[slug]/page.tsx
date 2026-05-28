@@ -300,7 +300,7 @@ export default async function CityPage({
               <Link
                 href={`/lists/${primaryListSlug}`}
                 className="pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
-                title={`Mike's ${city.name} saved list — ${cityListPins.length} place${cityListPins.length === 1 ? '' : 's'}`}
+                title={`${city.name} list — ${cityListPins.length} place${cityListPins.length === 1 ? '' : 's'}`}
               >
                 <span aria-hidden>🗂️</span>
                 <span>
@@ -686,7 +686,7 @@ export default async function CityPage({
       {cityListPins.length > 0 && primaryListSlug && (
         <>
           <SavedListSection
-            title={`Saved on my ${city.name} list`}
+            title={`Places to go in ${city.name}`}
             listSlug={primaryListSlug}
             googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
             pins={cityListPins}

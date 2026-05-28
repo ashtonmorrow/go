@@ -245,6 +245,8 @@ function CityCard({ city, onClick }: { city: City; onClick: () => void }) {
                     key={`${t.dx}_${t.dy}`}
                     src={thumbUrl(t.url, { size: TILE_SIZE / 2 }) ?? t.url}
                     alt=""
+                    width={TILE_SIZE}
+                    height={TILE_SIZE}
                     style={{
                       position: 'absolute',
                       left: (t.dx + 1) * TILE_SIZE,

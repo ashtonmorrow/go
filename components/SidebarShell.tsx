@@ -286,7 +286,7 @@ function NavBody({
         />
       </div>
 
-      <Section label="Atlas">
+      <Section label="Browse the atlas">
         <Item
           href={scopeHref('cities', pathname)}
           emoji="🏙️"
@@ -349,7 +349,7 @@ function NavBody({
       {/* Elsewhere — external Mike Lee subdomains. Now sits below the
           Collections / Filters block so the in-section content controls
           come before the off-site links. */}
-      <Section label="Elsewhere">
+      <Section label="Mike's other sites">
         {ELSEWHERE.map(p => (
           <ExternalItem key={p.href} href={p.href} emoji={p.emoji} label={p.label} campaign={p.campaign} />
         ))}

@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   // have written guides for, so the SERP snippet earns the click
   // against generic city-name competitors without sounding like a
   // brochure.
-  title: { absolute: "Mike Lee's travel atlas" },
+  title: { absolute: 'Travel guides written by someone who has been' },
   description:
-    "Every city I have been to, the places I went back to, and written guides for Madrid, Bristol, Bangkok, Cape Town, and Amsterdam.",
+    'Trip-planning guides written from inside the trip. Skip-the-line advice, where to stay, what to skip, what to pair, for Madrid, Bangkok, Bristol, Cape Town, and 80 other cities.',
   alternates: { canonical: SITE_URL },
 };
 

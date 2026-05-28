@@ -245,7 +245,7 @@ export default async function CountryPage({
             <Link
               href={`/lists/${primaryListSlug}`}
               className="mt-3 pill bg-accent/10 text-accent border border-accent/20 inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors"
-              title={`Mike's ${country.name} saved list — ${countryListPins.length} place${countryListPins.length === 1 ? '' : 's'}`}
+              title={`${country.name} list — ${countryListPins.length} place${countryListPins.length === 1 ? '' : 's'}`}
             >
               <span aria-hidden>🗂️</span>
               <span>
@@ -482,7 +482,7 @@ export default async function CountryPage({
           load-more) so country pages with hundreds of pins don't bloat. */}
       {countryListPins.length > 0 && primaryListSlug && (
         <SavedListSection
-          title={`Saved on my ${country.name} lists`}
+          title={`Places to go in ${country.name}`}
           listSlug={primaryListSlug}
           googleShareUrl={primaryListMeta?.googleShareUrl ?? null}
           pins={countryListPins}

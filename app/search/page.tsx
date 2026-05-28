@@ -233,6 +233,10 @@ export default async function SearchPage({ searchParams }: Props) {
         <input
           name="q"
           type="search"
+          inputMode="search"
+          autoCorrect="off"
+          autoCapitalize="none"
+          spellCheck={false}
           defaultValue={query}
           placeholder="Barcelona, Bernina, Cape Town..."
           className="min-w-0 flex-1 rounded-lg border border-sand bg-white px-4 py-2 text-body text-ink outline-none focus:border-teal"

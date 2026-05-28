@@ -192,9 +192,13 @@ export default function SearchModal({ items }: Props) {
               <input
                 ref={inputRef}
                 type="search"
+                inputMode="search"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck={false}
                 value={query}
                 onChange={e => setQuery(e.target.value)}
-                placeholder="Search guides, articles, pages…"
+                placeholder="Search a city, guide, or topic"
                 className="flex-1 bg-transparent outline-none text-ink-deep placeholder:text-muted"
               />
               <button
