@@ -92,7 +92,7 @@ function isCommonsHostedUrl(url: string | null | undefined): boolean {
   return !!url && COMMONS_HOSTS_RE.test(url);
 }
 
-/** Same word-boundary check as listsMatchingPlace, but inverted: given a
+/** Same word-boundary check as listSlugsMatchingPlace, but inverted: given a
  *  list name, decide whether a place name appears as a whole word inside
  *  it. So a place "Bangkok" matches the list "bangkok 🇹🇭" (normalized to
  *  "bangkok"); place "Rio" matches "rio botanical garden". Returns false

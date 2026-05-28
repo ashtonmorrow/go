@@ -47,11 +47,6 @@ export function snippet(text: string | null | undefined, max = 140): string | nu
   return (lastSpace > max - 30 ? cut.slice(0, lastSpace) : cut).trim() + '…';
 }
 
-/** Convert a URL slug back to a saved-list name (best-effort reverse). */
-export function slugToListName(slug: string): string {
-  return decodeURIComponent(slug).replace(/-/g, ' ').toLowerCase();
-}
-
 export type SavedListMeta = {
   name: string;
   /** URL identifier. Editable independently of `name` since May 2026.
@@ -158,12 +153,6 @@ export const fetchAllSavedListsMeta = cache(async (): Promise<Map<string, SavedL
   return map;
 });
 
-/** Convenience for a single slug. */
-export async function fetchSavedListMeta(slug: string): Promise<SavedListMeta | null> {
-  const all = await fetchAllSavedListsMeta();
-  return all.get(slug) ?? null;
-}
-
 // === City / country → saved-list matching ===================================
 // Heuristic: a list is "for" a place if its name contains the place name as
 // a whole word. Bangkok 🇹🇭 → "bangkok" matches city "Bangkok"; "Madrid"
@@ -181,14 +170,19 @@ function normalizeCandidate(s: string): string {
     .trim();
 }
 
-/** Return saved-list names whose normalized form contains the place name as
- *  a word boundary. The `places` argument lets a city pass [name, slug,
- *  alternates] so we catch all reasonable matches without a full fuzzy
- *  search. The result is dedup'd.
+/** Return saved-list slugs whose normalized form contains any of the
+ *  place names as a whole-word match. The `places` argument lets a
+ *  city pass [name, slug, alternates] so we catch all reasonable
+ *  matches without a full fuzzy search. The result is dedup'd.
  *
- *  Used by listsMatchingPlace / listSlugsMatchingPlace below. */
-export function listsMatchingPlace(
-  allListNames: Iterable<string>,
+ *  Use this when feeding the result to fetchPinsForLists, which
+ *  queries pins.saved_lists (the membership column that holds slugs
+ *  as of the May 2026 R2 migration). The meta map is keyed by slug
+ *  too, so iterating its keys gives slugs; word-boundary matching
+ *  works the same on slugs (hyphens normalize to spaces inside
+ *  normalizeCandidate) as it did on display names. */
+export function listSlugsMatchingPlace(
+  listsMeta: Map<string, { slug: string }>,
   places: (string | null | undefined)[],
 ): string[] {
   const targets = places
@@ -198,32 +192,17 @@ export function listsMatchingPlace(
   if (targets.length === 0) return [];
 
   const matches = new Set<string>();
-  for (const list of allListNames) {
-    const norm = normalizeCandidate(list);
+  for (const slug of listsMeta.keys()) {
+    const norm = normalizeCandidate(slug);
     for (const t of targets) {
-      // Whole-word containment so "rio" matches "rio botanical garden" but
-      // "ri" doesn't match anything spurious.
+      // Whole-word containment so "rio" matches "rio botanical garden"
+      // but "ri" doesn't match anything spurious.
       const re = new RegExp(`(?:^|\\s)${t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}(?:\\s|$)`);
       if (re.test(norm)) {
-        matches.add(list);
+        matches.add(slug);
         break;
       }
     }
   }
   return Array.from(matches);
-}
-
-/** Like listsMatchingPlace, but expects + returns slugs. Use this for
- *  feeding the result to fetchPinsForLists, which queries
- *  pins.saved_lists (the membership column that holds slugs as of the
- *  May 2026 R2 migration).
- *
- *  The meta map is keyed by slug, so iterating its keys gives slugs;
- *  word-boundary matching works the same on slugs (hyphens normalize
- *  to spaces inside normalizeCandidate) as it did on display names. */
-export function listSlugsMatchingPlace(
-  listsMeta: Map<string, { slug: string }>,
-  places: (string | null | undefined)[],
-): string[] {
-  return listsMatchingPlace(listsMeta.keys(), places);
 }
