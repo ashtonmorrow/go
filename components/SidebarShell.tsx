@@ -264,24 +264,35 @@ function NavBody({
           when closed. */}
       <SearchModal items={searchItems} />
 
-      {/* Top nav. Lists leads (destination guides + raw saved lists);
-          the Atlas block under it surfaces the three scopes (Cities,
-          Pins, Countries) as their own rail items so the visitor can
-          pivot scope without leaving the canonical primary navigation.
-          The href for each scope preserves the visitor's current view
-          (cards / map / table / stats) when they're already on a
-          /<scope>/<view> URL, so flipping from /cities/map to Pins
-          lands on /pins/map rather than dumping them back to the
-          default. About closes the block. Articles moved to the
-          footer (May 2026); the home page mixes articles into the
-          unified feed, so a primary-nav slot for the same content
-          was duplicative. */}
+      {/* Top nav. Home leads (the destination picker — the May 2026
+          IA refactor made / a planning entry, not the globe); Guides
+          is the published-guides index; Atlas is the spinner-view
+          explorer surface (the globe that used to be on /). The
+          three-scope block below surfaces Cities / Pins / Countries
+          so the visitor can pivot scope without leaving the canonical
+          primary navigation. About closes the block. Articles moved
+          to the footer (May 2026); the home page mixes articles into
+          the unified feed, so a primary-nav slot was duplicative. */}
       <div className="flex flex-col gap-0.5">
+        <Item
+          href="/"
+          emoji="🏡"
+          label="Home"
+          active={pathname === '/'}
+          onClick={onLinkClick}
+        />
         <Item
           href="/lists"
           emoji="🗂️"
-          label="Lists"
+          label="Guides"
           active={pathname === '/lists' || pathname.startsWith('/lists/')}
+          onClick={onLinkClick}
+        />
+        <Item
+          href="/atlas"
+          emoji="🌍"
+          label="Atlas"
+          active={pathname === '/atlas'}
           onClick={onLinkClick}
         />
       </div>

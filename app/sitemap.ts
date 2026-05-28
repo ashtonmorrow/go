@@ -62,6 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // distributes link authority to the editorial pages below it.
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL,                      lastModified: now, changeFrequency: 'daily',  priority: 1.0 },
+    { url: `${SITE_URL}/atlas`,           lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${SITE_URL}/lists`,           lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${SITE_URL}/articles`,        lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${SITE_URL}/cities/map`,      lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
