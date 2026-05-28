@@ -261,10 +261,9 @@ export default async function SearchPage({ searchParams }: Props) {
           <EmptyState
             icon="🔎"
             title={`No matches for "${query}".`}
-            body="Try a city name, a country, or a topic like 'food' or 'festivals'."
             suggestions={[
-              { href: '/lists', label: 'Browse all guides' },
-              { href: '/atlas', label: 'Open the atlas' },
+              { href: '/lists', label: 'Lists' },
+              { href: '/', label: 'Atlas' },
             ]}
           />
         </div>

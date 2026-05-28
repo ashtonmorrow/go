@@ -34,10 +34,10 @@ export default async function ArticlesIndex() {
         <EmptyState
           icon="📰"
           title="No articles yet."
-          body="The first one is in progress. The destination guides have a similar voice if you want to start there."
+          body="First one drops soon."
           suggestions={[
-            { href: '/lists', label: 'Read a destination guide' },
-            { href: '/atlas', label: 'Open the atlas' },
+            { href: '/lists', label: 'Lists' },
+            { href: '/', label: 'Atlas' },
           ]}
         />
       ) : (

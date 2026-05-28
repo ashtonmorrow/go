@@ -181,7 +181,7 @@ export function PinHeaderChips({ pin }: { pin: Pin }) {
           key={`sl-${listSlug}`}
           href={`/lists/${listSlug}`}
           className="pill bg-cream-soft text-slate hover:bg-sand hover:text-ink-deep transition-colors inline-flex items-center gap-1.5"
-          title={`On the ${listSlug.replace(/-/g, ' ')} list`}
+          title={`On Mike's ${listSlug.replace(/-/g, ' ')} list`}
         >
           <span aria-hidden>🗂️</span>
           <span className="capitalize">{listSlug.replace(/-/g, ' ')}</span>
@@ -445,9 +445,9 @@ export function PersonalSection({ pin }: { pin: Pin }) {
   if (!universal && !hasHotel && !hasMeal) return null;
 
   const heading =
-    pin.kind === 'hotel' ? 'The stay' :
-    pin.kind === 'restaurant' ? 'The meal' :
-    'The visit';
+    pin.kind === 'hotel' ? "Mike's stay" :
+    pin.kind === 'restaurant' ? "Mike's meal" :
+    "Mike's review";
 
   return (
     <section className="rounded-xl border border-sand bg-cream-soft/60 p-5 sm:p-6 shadow-sm">

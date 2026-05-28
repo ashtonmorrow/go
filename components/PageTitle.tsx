@@ -20,21 +20,21 @@ import { usePinFilters } from '@/components/PinFiltersContext';
 
 const COPY = {
   cities: {
-    visited: 'Cities I can help you plan',
-    planning: "Cities I'm planning to visit",
-    researching: "Cities I've been researching",
-    null: 'Every city in the atlas',
+    visited: "Cities I’ve traveled to",
+    planning: "Cities I’m planning to visit",
+    researching: "Cities I’ve been researching",
+    null: 'Cities in the atlas',
   },
   countries: {
-    visited: "Countries I've visited",
+    visited: "Countries I’ve visited",
     'short-list': 'Countries on my short list',
-    researched: "Countries I've been researching",
-    null: 'Every country in the atlas',
+    researched: "Countries I’ve been researching",
+    null: 'Countries in the atlas',
   },
   pins: {
-    visited: 'Places I would actually send you to',
-    'not-visited': "Places I haven't been to yet",
-    all: 'Every place in the atlas',
+    visited: "Pins I’ve been to",
+    'not-visited': "Pins I haven’t been to yet",
+    all: 'Every pin in the atlas',
   },
 } as const;
 

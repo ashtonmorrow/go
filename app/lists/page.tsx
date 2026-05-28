@@ -32,9 +32,9 @@ import EmptyState from '@/components/EmptyState';
 // to a real geo entity, not just a theme.
 
 export const metadata: Metadata = {
-  title: 'Travel guides and city lists',
+  title: "Mike's Saved Lists",
   description:
-    'Polished destination writeups and the working saved-lists behind them. Skip-the-line advice, where to stay, what to skip, what to pair. Madrid, Bangkok, Bristol, Cape Town, and 80 more.',
+    "Mike's saved travel lists: places grouped by city, theme, and intent, originally built in Google Maps and organized here for easier planning.",
   alternates: { canonical: `${SITE_URL}/lists` },
 };
 
@@ -223,29 +223,29 @@ export default async function ListsIndex() {
     <article className="max-w-page mx-auto px-5 py-8">
       <header className="mb-6">
         <h1 className="text-display text-ink-deep leading-none">
-          Pick a destination
+          Travel guides &amp; saved lists
         </h1>
         <p className="mt-3 max-w-prose text-slate leading-relaxed">
-          Polished writeups for {guideCount} cities (tagged Guide), plus
-          the working pin buckets behind them. Search by city, country, or
-          theme. Click any card to open the guide.
+          Polished destination writeups (tagged Guide) and the working
+          saved lists from Google Maps Takeout, in one searchable place.
+          Type a city or country to filter the grid.
         </p>
         <p className="mt-3 text-small text-muted tabular-nums">
+          {lists.length} {lists.length === 1 ? 'list' : 'lists'}
+          {' · '}
           {guideCount} {guideCount === 1 ? 'guide' : 'guides'}
           {' · '}
-          {lists.length - guideCount} more lists
-          {' · '}
-          {lists.reduce((n, l) => n + l.count, 0)} places
+          {lists.reduce((n, l) => n + l.count, 0)} saved places
         </p>
       </header>
 
       {lists.length === 0 ? (
         <EmptyState
           icon="🗂️"
-          title="No guides yet."
-          body="The first ones are in progress. In the meantime, the atlas globe still works."
+          title="No saved lists yet."
+          body="The import has not been run."
           suggestions={[
-            { href: '/atlas', label: 'Open the atlas' },
+            { href: '/', label: 'Open the atlas' },
             { href: '/articles', label: 'Read the articles' },
           ]}
         />

@@ -630,8 +630,7 @@ export default async function ListPage({ params }: Props) {
       {onList.length === 0 ? (
         <EmptyState
           icon="🗂️"
-          title="Nothing on this list yet."
-          body="The guide is still being built. The destination pages below may already have the places you would want."
+          title="No pins on this list yet."
           suggestions={[
             ...(cityMatch
               ? [{ href: `/cities/${cityMatch.slug}`, label: `${cityMatch.name} city page` }]
@@ -639,7 +638,7 @@ export default async function ListPage({ params }: Props) {
             ...(countryMatch
               ? [{ href: `/countries/${countryMatch.slug}`, label: `${countryMatch.name} country page` }]
               : []),
-            { href: '/lists', label: 'Browse other guides' },
+            { href: '/lists', label: 'Other lists' },
           ].slice(0, 3)}
         />
       ) : routeMapKey ? (

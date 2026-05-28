@@ -20,16 +20,16 @@ import { fetchPinsCardData } from '@/lib/pinsCardData';
 export const dynamic = 'force-dynamic';
 
 const DESCRIPTION =
-  'Specific places worth a detour. UNESCO sites, museums, viewpoints, and the small ones you would not find on the tourism board page. Each links straight to Google Maps so you can drop it into your trip.';
+  'Curated places worth a detour. UNESCO sites, museums, viewpoints. Each pin links straight to Google Maps so you can drop it into your trip.';
 
 export const metadata: Metadata = {
-  title: 'Places worth a detour',
+  title: 'Pins',
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/pins/cards` },
   openGraph: {
     type: 'website',
     url: `${SITE_URL}/pins/cards`,
-    title: 'Places worth a detour',
+    title: 'Pins · Mike Lee',
     description: DESCRIPTION,
   },
 };
