@@ -98,72 +98,181 @@ export default function ListsBrowser({ lists }: { lists: ListEntry[] }) {
         <div className="card p-8 text-center text-slate">
           No lists match &ldquo;{query}&rdquo;. Try a city, country, or theme.
         </div>
+      ) : query.trim() ? (
+        // === Search mode ============================================
+        // When the visitor has typed a query, render a flat ranked grid.
+        // Sections would fight the search intent (the visitor wants
+        // every match together, not chunked back by country).
+        <Grid lists={filtered} />
       ) : (
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {filtered.map(l => (
-            <li key={l.slug}>
-              <Link
-                href={`/lists/${l.slug}`}
-                className="group block card overflow-hidden hover:shadow-paper transition-shadow h-full"
-              >
-                {l.cover ? (
-                  <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
-                    <Image
-                      src={thumbUrl(l.cover, { size: 480 }) ?? l.cover}
-                      alt=""
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                    {l.anchor && (
-                      <span className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 pill bg-black/55 text-white text-micro backdrop-blur-sm">
-                        <span aria-hidden>
-                          {l.anchor.kind === 'city' ? '📮' : '🌍'}
-                        </span>
-                        {l.anchor.name}
-                      </span>
-                    )}
-                    {l.isGuide && (
-                      <span
-                        className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro font-medium uppercase tracking-wider"
-                        title="A polished destination guide with a writeup"
-                      >
-                        Guide
-                      </span>
-                    )}
-                  </div>
-                ) : (
-                  <div className="relative aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
-                    No photo yet
-                    {l.isGuide && (
-                      <span className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro font-medium uppercase tracking-wider">
-                        Guide
-                      </span>
-                    )}
-                  </div>
-                )}
-                <div className="p-3">
-                  <h2 className="text-ink-deep font-semibold leading-tight group-hover:text-teal transition-colors capitalize truncate">
-                    {l.guideTitle ?? l.name}
-                  </h2>
-                  {l.guideDescription ? (
-                    <p className="mt-1.5 text-label text-slate leading-snug line-clamp-2">
-                      {l.guideDescription}
-                    </p>
-                  ) : (
-                    <p className="mt-0.5 text-label text-muted tabular-nums">
-                      {l.count} {l.count === 1 ? 'pin' : 'pins'}
-                      {l.visitedCount > 0 && (
-                        <> · {l.visitedCount} visited</>
-                      )}
-                    </p>
-                  )}
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        // === Browse mode ============================================
+        // No query — chunk into reading-friendly sections so a 150-card
+        // wall doesn't drop on the visitor. Order:
+        //   1. Featured guides (already recency-sorted upstream)
+        //   2. Per-country sections, ordered by entry count desc, so
+        //      Spain (16 lists) leads over Portugal (4)
+        //   3. Themes (no geo anchor) at the bottom
+        // The UX review (May 2026) called this out: "long grids of
+        // similar cards with no sectioning give the eye no rest. Your
+        // grids are 50-150 cards in one continuous flow."
+        <SectionedGrid lists={filtered} />
       )}
     </>
+  );
+}
+
+// === SectionedGrid ===========================================================
+function SectionedGrid({ lists }: { lists: ListEntry[] }) {
+  const guides = lists.filter(l => l.isGuide);
+  const nonGuides = lists.filter(l => !l.isGuide);
+
+  // Group non-guide lists by anchor country. City-anchored entries roll
+  // up to their country so /lists/sitges + /lists/penedes both land in
+  // the Spain section. Unanchored entries (themes) get their own
+  // section at the bottom.
+  type Bucket = { key: string; label: string; lists: ListEntry[] };
+  const byCountry = new Map<string, Bucket>();
+  const themed: ListEntry[] = [];
+  for (const l of nonGuides) {
+    if (!l.anchor) {
+      themed.push(l);
+      continue;
+    }
+    // The anchor itself can be a city or a country. For city anchors
+    // we don't have the country name on the entry, so we just bucket
+    // by the city anchor name; the country bucket alone covers the
+    // country-anchored entries. A future pass could thread country
+    // up from the city, but this gets us most of the value.
+    const key = l.anchor.kind === 'country' ? `country:${l.anchor.slug}` : `city:${l.anchor.slug}`;
+    let bucket = byCountry.get(key);
+    if (!bucket) {
+      bucket = { key, label: l.anchor.name, lists: [] };
+      byCountry.set(key, bucket);
+    }
+    bucket.lists.push(l);
+  }
+  const countryBuckets = Array.from(byCountry.values()).sort(
+    (a, b) => b.lists.length - a.lists.length || a.label.localeCompare(b.label),
+  );
+
+  return (
+    <div className="flex flex-col gap-10">
+      {guides.length > 0 && (
+        <Section title="Featured guides" sublabel={`${guides.length} polished writeups`}>
+          <Grid lists={guides} />
+        </Section>
+      )}
+      {countryBuckets.map(b => (
+        <Section
+          key={b.key}
+          title={b.label}
+          sublabel={`${b.lists.length} ${b.lists.length === 1 ? 'list' : 'lists'}`}
+        >
+          <Grid lists={b.lists} />
+        </Section>
+      ))}
+      {themed.length > 0 && (
+        <Section title="Themes" sublabel={`${themed.length} ${themed.length === 1 ? 'list' : 'lists'}`}>
+          <Grid lists={themed} />
+        </Section>
+      )}
+    </div>
+  );
+}
+
+function Section({
+  title,
+  sublabel,
+  children,
+}: {
+  title: string;
+  sublabel?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section>
+      <header className="mb-3 flex items-baseline justify-between gap-3 flex-wrap">
+        <h2 className="text-h2 text-ink-deep leading-tight capitalize">{title}</h2>
+        {sublabel && (
+          <span className="text-label text-muted tabular-nums">{sublabel}</span>
+        )}
+      </header>
+      {children}
+    </section>
+  );
+}
+
+function Grid({ lists }: { lists: ListEntry[] }) {
+  return (
+    <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+      {lists.map(l => (
+        <li key={l.slug}>
+          <ListCard list={l} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ListCard({ list: l }: { list: ListEntry }) {
+  return (
+    <Link
+      href={`/lists/${l.slug}`}
+      className="group block card overflow-hidden hover:shadow-paper transition-shadow h-full"
+    >
+      {l.cover ? (
+        <div className="relative aspect-[4/3] bg-cream-soft overflow-hidden">
+          <Image
+            src={thumbUrl(l.cover, { size: 480 }) ?? l.cover}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+          {l.anchor && (
+            <span className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 pill bg-black/55 text-white text-micro backdrop-blur-sm">
+              <span aria-hidden>
+                {l.anchor.kind === 'city' ? '📮' : '🌍'}
+              </span>
+              {l.anchor.name}
+            </span>
+          )}
+          {l.isGuide && (
+            <span
+              className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro font-medium uppercase tracking-wider"
+              title="A polished destination guide with a writeup"
+            >
+              Guide
+            </span>
+          )}
+        </div>
+      ) : (
+        <div className="relative aspect-[4/3] bg-cream-soft border-b border-sand flex items-center justify-center text-muted text-micro uppercase tracking-wider">
+          No photo yet
+          {l.isGuide && (
+            <span className="absolute top-1.5 left-1.5 pill bg-teal text-white text-micro font-medium uppercase tracking-wider">
+              Guide
+            </span>
+          )}
+        </div>
+      )}
+      <div className="p-3">
+        <h3 className="text-ink-deep font-semibold leading-tight group-hover:text-teal transition-colors capitalize truncate">
+          {l.guideTitle ?? l.name}
+        </h3>
+        {l.guideDescription ? (
+          <p className="mt-1.5 text-label text-slate leading-snug line-clamp-2">
+            {l.guideDescription}
+          </p>
+        ) : (
+          <p className="mt-0.5 text-label text-muted tabular-nums">
+            {l.count} {l.count === 1 ? 'pin' : 'pins'}
+            {l.visitedCount > 0 && (
+              <> · {l.visitedCount} visited</>
+            )}
+          </p>
+        )}
+      </div>
+    </Link>
   );
 }
