@@ -6,10 +6,9 @@ import { fetchPinBySlug, fetchPinsInBbox, type Pin } from '@/lib/pins';
 import { fetchPhotosForPin } from '@/lib/personalPhotos';
 import { fetchCountryByName, fetchCityByName } from '@/lib/places';
 import { flagCircle } from '@/lib/flags';
-import { getListUrl, LIST_ICONS, type CanonicalList } from '@/lib/pinLists';
 import { admissionView, admissionShortLabel } from '@/lib/admission';
 import {
-  STATUS_FACET, FOOD_FACET, RESTROOMS_FACET,
+  FOOD_FACET, RESTROOMS_FACET,
   SHADE_FACET, INDOOR_FACET, WHEELCHAIR_FACET, PHOTOGRAPHY_FACET,
   DIFFICULTY_FACET, PARKING_FACET, REQUIRES_GUIDE_FACET,
   bringFacet,
@@ -19,8 +18,6 @@ import { SITE_URL, clip, breadcrumbJsonLd, pinJsonLd, pinPageTitle } from '@/lib
 import { withUtm } from '@/lib/utm';
 import { thumbUrl } from '@/lib/imageUrl';
 import Lightbox from '@/components/Lightbox';
-import HeroCollage, { type CollageImage } from '@/components/HeroCollage';
-import HeroGallery, { type GalleryImage } from '@/components/HeroGallery';
 import AdminEditLink from '@/components/AdminEditLink';
 import PinActionBar from '@/components/PinActionBar';
 // Detail-page helpers + sections, extracted out of this file (R3 plumbing).
@@ -42,6 +39,8 @@ import {
   FacetGrid,
   WikipediaSection,
   Fact,
+  PinHero,
+  PinHeaderChips,
 } from '@/components/pin/PinDetailSections';
 
 // 7-day ISR — bust via /api/revalidate when the underlying pin or its
@@ -373,147 +372,16 @@ export default async function PinPage({
           {placeText && (
             <p className="mt-2 text-prose text-slate leading-snug">{placeText}</p>
           )}
-          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-            {pin.visited && (
-              <span className="text-teal text-label uppercase tracking-wider font-medium inline-flex items-center gap-1.5">
-                <span aria-hidden>✅</span>
-                <span>Visited</span>
-              </span>
-            )}
-            {pin.status && pin.status !== 'active' && (
-              <span className="pill bg-orange/10 text-orange">{STATUS_FACET[pin.status].label}</span>
-            )}
-            {pin.lists.map(l => {
-            const canonical = l as CanonicalList;
-            const icon = LIST_ICONS[canonical];
-            const url = icon
-              ? getListUrl(canonical, {
-                  unescoId: pin.unescoId,
-                  atlasObscuraSlug: pin.atlasObscuraSlug,
-                  wikidataQid: pin.wikidataQid,
-                })
-              : null;
-            const className =
-              'pill bg-accent/10 text-accent border border-accent/20 ' +
-              'inline-flex items-center gap-1.5 hover:bg-accent/15 transition-colors';
-            const inner = (
-              <>
-                {icon && <span aria-hidden>{icon}</span>}
-                <span>{l}</span>
-                {url && <span aria-hidden className="text-accent/60 text-micro">↗</span>}
-              </>
-            );
-            return url ? (
-              <a
-                key={l}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={className}
-                title={`Featured on ${l} — open source`}
-              >
-                {inner}
-              </a>
-            ) : (
-              <span key={l} className={className} title={`Featured on ${l}`}>
-                {inner}
-              </span>
-            );
-          })}
-          {pin.category && pin.lists.length === 0 && (
-            <span className="pill bg-cream-soft text-slate">{pin.category}</span>
-          )}
-          {/* Saved-list chips. A pin can be on Mike's "Cape Town" list,
-              "Coffee shops" list, etc. — these are the curated buckets
-              that surface as /lists/<slug>. We render them after curated
-              lists (UNESCO etc.) since they're the lowest-tier signal but
-              the highest-value cross-link: clicking lands on the full
-              list, which is the natural next step after viewing one pin
-              from it. */}
-          {pin.savedLists.map(listSlug => (
-            <Link
-              key={`sl-${listSlug}`}
-              href={`/lists/${listSlug}`}
-              className="pill bg-cream-soft text-slate hover:bg-sand hover:text-ink-deep transition-colors inline-flex items-center gap-1.5"
-              title={`On Mike's ${listSlug.replace(/-/g, ' ')} list`}
-            >
-              <span aria-hidden>🗂️</span>
-              <span className="capitalize">{listSlug.replace(/-/g, ' ')}</span>
-            </Link>
-          ))}
-          </div>
+          <PinHeaderChips pin={pin} />
         </div>
       </header>
 
-      {/* Hero collage — combines personal photos + curated gallery images.
-          When only one image exists the collage falls through to the same
-          single-tile letterbox the page used to render. Mike's personal
-          photos lead the priority order so they land in the feature tile. */}
-      {(((pin.heroPhotoUrls?.length ?? 0) > 0) || personalPhotos.length > 0 || galleryImages.length > 0) && (() => {
-        // Curated path: Mike picked the heroes for this pin in admin.
-        // Render via HeroGallery — every image at native aspect, no crop.
-        // Defensive `?? []` so a stale unstable_cache entry from before the
-        // heroPhotoUrls field existed doesn't crash the page render.
-        const heroPicks = pin.heroPhotoUrls ?? [];
-        if (heroPicks.length > 0) {
-          const personalByUrl = new Map(personalPhotos.map(p => [p.url, p]));
-          const galleryImagesCurated: GalleryImage[] = heroPicks.map(url => {
-            const personal = personalByUrl.get(url);
-            return {
-              url,
-              alt: pin.name,
-              width: personal?.width ?? null,
-              height: personal?.height ?? null,
-              isPersonal: !!personal,
-              caption: personal?.caption ?? null,
-              posterUrl: personal?.posterUrl ?? null,
-            };
-          });
-          return (
-            <HeroGallery
-              className="mt-6"
-              images={galleryImagesCurated}
-              title={pin.name}
-            />
-          );
-        }
-        // Fallback: existing auto-pick collage.
-        const seen = new Set<string>();
-        const collageImages: CollageImage[] = [];
-        for (const p of personalPhotos) {
-          if (seen.has(p.url)) continue;
-          seen.add(p.url);
-          collageImages.push({
-            url: p.url,
-            alt: pin.name,
-            width: p.width,
-            height: p.height,
-            isPersonal: true,
-            caption: p.caption ?? null,
-            posterUrl: p.posterUrl ?? null,
-          });
-        }
-        for (const img of galleryImages) {
-          if (seen.has(img.url)) continue;
-          seen.add(img.url);
-          collageImages.push({
-            url: img.url,
-            alt: pin.name,
-            width: null,
-            height: null,
-            isPersonal: false,
-            caption: null,
-          });
-        }
-        if (collageImages.length === 0) return null;
-        return (
-          <HeroCollage
-            className="mt-6"
-            images={collageImages}
-            title={pin.name}
-          />
-        );
-      })()}
+      {/* Hero collage — combines personal photos + curated gallery
+          images. Falls through to HeroGallery when the pin has curated
+          heroPhotoUrls picks, otherwise HeroCollage auto-arranges the
+          dedup'd personal+gallery pool. Returns null when no images
+          exist. See components/pin/PinDetailSections.tsx → PinHero. */}
+      <PinHero pin={pin} personalPhotos={personalPhotos} galleryImages={galleryImages} />
 
       {/* Admin-only inline edit link, opt in via ?admin=1 so the URL
           stays bookmarkable without surfacing the link to drive-by
